@@ -159,6 +159,13 @@ cp -R ${INTERDIR}/iPhoneSimulator${SDKVERSION}-i386.sdk/include/* ${OUTPUTDIR}/i
 
 echo "Building done."
 echo "Cleaning up..."
+# Remove the copy of libz we created. (Our XCode project will use the system
+# version.) Ditto with sys/pthread.h.
+rm -f ${OUTPUTDIR}/lib/libz.a
+rm -f ${OUTPUTDIR}/include/zlib*
+rm -fr ${OUTPUTDIR}/include/sys/
+
+# Remove intermediary and source directories
 rm -fr ${INTERDIR}
-rm -fr "${SRCDIR}/libevent-${VERSION}"
+rm -fr "${SRCDIR}/tor-${VERSION}"
 echo "Done."
