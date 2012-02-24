@@ -6,6 +6,7 @@
 //
 
 #import "AppDelegate.h"
+#include <Openssl/sha.h>
 
 @implementation AppDelegate
 
@@ -23,6 +24,50 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    /* Test */
+    // Test A
+    unsigned char *inStrg = (unsigned char*)[@"" cStringUsingEncoding:NSASCIIStringEncoding];
+	unsigned long lngth = 0;
+    NSMutableString *outStrg = [NSMutableString string];
+
+    // Test B
+    NSString *stringB = @"The quick brown fox jumps over the lazy dog";
+    unsigned char *inStrgB = (unsigned char*)[stringB cStringUsingEncoding:NSASCIIStringEncoding];
+	unsigned long lngthB = [stringB length];
+    NSMutableString *outStrgB = [NSMutableString string];
+	
+    // Initialize a sha256 object, a counter, and a result array.
+    unsigned int i;
+    SHA256_CTX sha256;
+	unsigned char result[SHA256_DIGEST_LENGTH];
+    
+    // Process first test
+    SHA256_Init(&sha256);
+    SHA256_Update(&sha256, inStrg, lngth);
+    SHA256_Final(result, &sha256);
+    for(i = 0; i < SHA256_DIGEST_LENGTH; i++) {
+        [outStrg appendFormat:@"%02x", result[i]];
+    }
+    // Process second test
+    SHA256_Init(&sha256);
+    SHA256_Update(&sha256, inStrgB, lngthB);
+    SHA256_Final(result, &sha256);
+    for(i = 0; i < SHA256_DIGEST_LENGTH; i++) {
+        [outStrgB appendFormat:@"%02x", result[i]];
+    }
+    
+    NSLog(@"Some SHA256 tests to make sure OpenSSL compiled in properly:");
+    NSLog(@"'':");
+    NSLog(@"\t%@", outStrg);
+    NSLog(@"should be: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855");
+    NSLog(@"");
+    NSLog(@"'test':");
+    NSLog(@"\t%@", outStrgB);
+    NSLog(@"should be: d7a8fbb307d7809469ca9abcb0082e4f8d5651e46d3cdb762d02d0bf37c9e592");
+    NSLog(@"");
+    NSLog(@"View https://en.wikipedia.org/wiki/SHA-2 for more info");
+
     return YES;
 }
 
