@@ -29,42 +29,58 @@
     // Test A
     unsigned char *inStrg = (unsigned char*)[@"" cStringUsingEncoding:NSASCIIStringEncoding];
 	unsigned long lngth = 0;
-    NSMutableString *outStrg = [NSMutableString string];
 
     // Test B
     NSString *stringB = @"The quick brown fox jumps over the lazy dog";
     unsigned char *inStrgB = (unsigned char*)[stringB cStringUsingEncoding:NSASCIIStringEncoding];
 	unsigned long lngthB = [stringB length];
-    NSMutableString *outStrgB = [NSMutableString string];
 	
-    // Initialize a sha256 object, a counter, and a result array.
-    unsigned int i;
-    SHA256_CTX sha256;
-	unsigned char result[SHA256_DIGEST_LENGTH];
+    // Initialize a sha2 object, a counter, and a result array.
+    SHA512_CTX sha512;
+	unsigned char result[SHA512_DIGEST_LENGTH];
     
-    // Process first test
-    SHA256_Init(&sha256);
-    SHA256_Update(&sha256, inStrg, lngth);
-    SHA256_Final(result, &sha256);
-    for(i = 0; i < SHA256_DIGEST_LENGTH; i++) {
+    NSLog(@"RUNNING TIMER OF 300,000 SHA512 LOOPS");
+    NSTimeInterval start = [NSDate timeIntervalSinceReferenceDate];
+    unsigned int z;
+    for (z=0; z<300000; z++) {
+        // Process first test
+        SHA512_Init(&sha512);
+        SHA512_Update(&sha512, inStrg, lngth);
+        SHA512_Final(result, &sha512);
+
+        // Process second test
+        SHA512_Init(&sha512);
+        SHA512_Update(&sha512, inStrgB, lngthB);
+        SHA512_Final(result, &sha512);
+    }
+    NSTimeInterval duration = [NSDate timeIntervalSinceReferenceDate] - start;
+    NSLog(@"TIMER: %f", duration);
+    NSLog(@"");
+    
+    NSLog(@"====================");
+    NSLog(@"TEST VECTORS");
+    NSLog(@"====================");
+    unsigned int i;
+    NSMutableString *outStrg = [NSMutableString string];
+    SHA512_Init(&sha512);
+    SHA512_Update(&sha512, inStrg, lngth);
+    SHA512_Final(result, &sha512);
+    for(i = 0; i < SHA512_DIGEST_LENGTH; i++) {
         [outStrg appendFormat:@"%02x", result[i]];
     }
-    // Process second test
-    SHA256_Init(&sha256);
-    SHA256_Update(&sha256, inStrgB, lngthB);
-    SHA256_Final(result, &sha256);
-    for(i = 0; i < SHA256_DIGEST_LENGTH; i++) {
+    NSLog(@"''");
+    NSLog(@"output   : %@", outStrg);
+    NSLog(@"should be: cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e");
+    NSMutableString *outStrgB = [NSMutableString string];
+    SHA512_Init(&sha512);
+    SHA512_Update(&sha512, inStrgB, lngthB);
+    SHA512_Final(result, &sha512);
+    for(i = 0; i < SHA512_DIGEST_LENGTH; i++) {
         [outStrgB appendFormat:@"%02x", result[i]];
     }
-    
-    NSLog(@"Some SHA256 tests to make sure OpenSSL compiled in properly:");
-    NSLog(@"'':");
-    NSLog(@"\t%@", outStrg);
-    NSLog(@"should be: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855");
-    NSLog(@"");
-    NSLog(@"'test':");
-    NSLog(@"\t%@", outStrgB);
-    NSLog(@"should be: d7a8fbb307d7809469ca9abcb0082e4f8d5651e46d3cdb762d02d0bf37c9e592");
+    NSLog(@"'The quick brown fox jumps over the lazy dog'");
+    NSLog(@"output   : %@", outStrgB);
+    NSLog(@"should be: 07e547d9586f6a73f73fbac0435ed76951218fb7d0c8d788a309d785436bbb642e93a252a954f23912547d1e8a3b5ed6e1bfd7097821233fa0538f3db854fee6");
     NSLog(@"");
     NSLog(@"View https://en.wikipedia.org/wiki/SHA-2 for more info");
 

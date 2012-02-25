@@ -80,7 +80,7 @@ do
 		sed -ie "s!static volatile sig_atomic_t intr_signal;!static volatile intr_signal;!" "crypto/ui/ui_openssl.c"
 		PLATFORM="iPhoneOS"
         TARGET="BSD-arm"
-        patch -p2 < "${REPOROOT}/openssl-1.0.1-beta3-armv7-asm.diff"
+        patch -p2 < "${REPOROOT}/patches/openssl-1.0.1-beta3-armv7-asm.diff"
 	fi
 	
 	echo "Building openssl-${VERSION} for ${PLATFORM} ${SDKVERSION} ${ARCH}"
