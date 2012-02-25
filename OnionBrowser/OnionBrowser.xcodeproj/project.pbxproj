@@ -13,6 +13,11 @@
 		696EBD8214F7877900B81BC9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 696EBD8014F7877900B81BC9 /* InfoPlist.strings */; };
 		696EBD8414F7877900B81BC9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 696EBD8314F7877900B81BC9 /* main.m */; };
 		696EBD8814F7877900B81BC9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 696EBD8714F7877900B81BC9 /* AppDelegate.m */; };
+		696F9EAB14F8D5A900BC5FDC /* TorWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 696F9EA914F8D51300BC5FDC /* TorWrapper.m */; };
+		696F9EAE14F8D6ED00BC5FDC /* tor_main.c in Sources */ = {isa = PBXBuildFile; fileRef = 696F9EAD14F8D6ED00BC5FDC /* tor_main.c */; };
+		696F9EB014F8DA6900BC5FDC /* torrc in Resources */ = {isa = PBXBuildFile; fileRef = 696F9EAF14F8DA6900BC5FDC /* torrc */; };
+		696F9EB414F8DD6D00BC5FDC /* ULINetSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 696F9EB314F8DD6D00BC5FDC /* ULINetSocket.m */; };
+		696F9EB614F8E21200BC5FDC /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696F9EB514F8E21200BC5FDC /* CFNetwork.framework */; };
 		69847C4714F788E100288277 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69847C3C14F788E100288277 /* libcrypto.a */; };
 		69847C4814F788E100288277 /* libevent_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69847C3D14F788E100288277 /* libevent_core.a */; };
 		69847C4914F788E100288277 /* libevent_extra.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69847C3E14F788E100288277 /* libevent_extra.a */; };
@@ -38,6 +43,13 @@
 		696EBD8514F7877900B81BC9 /* OnionBrowser-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OnionBrowser-Prefix.pch"; sourceTree = "<group>"; };
 		696EBD8614F7877900B81BC9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		696EBD8714F7877900B81BC9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		696F9EA814F8D51300BC5FDC /* TorWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TorWrapper.h; sourceTree = "<group>"; };
+		696F9EA914F8D51300BC5FDC /* TorWrapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TorWrapper.m; sourceTree = "<group>"; };
+		696F9EAD14F8D6ED00BC5FDC /* tor_main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tor_main.c; sourceTree = "<group>"; };
+		696F9EAF14F8DA6900BC5FDC /* torrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = torrc; sourceTree = "<group>"; };
+		696F9EB214F8DD6D00BC5FDC /* ULINetSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ULINetSocket.h; sourceTree = "<group>"; };
+		696F9EB314F8DD6D00BC5FDC /* ULINetSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ULINetSocket.m; sourceTree = "<group>"; };
+		696F9EB514F8E21200BC5FDC /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		69847C3C14F788E100288277 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = ../dependencies/lib/libcrypto.a; sourceTree = "<group>"; };
 		69847C3D14F788E100288277 /* libevent_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libevent_core.a; path = ../dependencies/lib/libevent_core.a; sourceTree = "<group>"; };
 		69847C3E14F788E100288277 /* libevent_extra.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libevent_extra.a; path = ../dependencies/lib/libevent_extra.a; sourceTree = "<group>"; };
@@ -60,6 +72,7 @@
 				696EBD7814F7877900B81BC9 /* UIKit.framework in Frameworks */,
 				696EBD7A14F7877900B81BC9 /* Foundation.framework in Frameworks */,
 				696EBD7C14F7877900B81BC9 /* CoreGraphics.framework in Frameworks */,
+				696F9EB614F8E21200BC5FDC /* CFNetwork.framework in Frameworks */,
 				69847C5414F788E900288277 /* libz.dylib in Frameworks */,
 				69847C4714F788E100288277 /* libcrypto.a in Frameworks */,
 				69847C4814F788E100288277 /* libevent_core.a in Frameworks */,
@@ -81,6 +94,8 @@
 		696EBD6814F7877900B81BC9 = {
 			isa = PBXGroup;
 			children = (
+				696F9EB114F8DD5300BC5FDC /* ThirdParty */,
+				69BB0A4C14F8D31800E7E909 /* Tor */,
 				696EBD7D14F7877900B81BC9 /* OnionBrowser */,
 				696EBD7614F7877900B81BC9 /* Frameworks */,
 				696EBD7414F7877900B81BC9 /* Products */,
@@ -103,6 +118,7 @@
 				696EBD7714F7877900B81BC9 /* UIKit.framework */,
 				696EBD7914F7877900B81BC9 /* Foundation.framework */,
 				696EBD7B14F7877900B81BC9 /* CoreGraphics.framework */,
+				696F9EB514F8E21200BC5FDC /* CFNetwork.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -128,6 +144,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		696F9EB114F8DD5300BC5FDC /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				696F9EB214F8DD6D00BC5FDC /* ULINetSocket.h */,
+				696F9EB314F8DD6D00BC5FDC /* ULINetSocket.m */,
+			);
+			name = ThirdParty;
+			sourceTree = "<group>";
+		};
 		69847C5514F788F600288277 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
@@ -144,6 +169,17 @@
 				69847C4614F788E100288277 /* libtor.a */,
 			);
 			name = Dependencies;
+			sourceTree = "<group>";
+		};
+		69BB0A4C14F8D31800E7E909 /* Tor */ = {
+			isa = PBXGroup;
+			children = (
+				696F9EA814F8D51300BC5FDC /* TorWrapper.h */,
+				696F9EA914F8D51300BC5FDC /* TorWrapper.m */,
+				696F9EAD14F8D6ED00BC5FDC /* tor_main.c */,
+				696F9EAF14F8DA6900BC5FDC /* torrc */,
+			);
+			name = Tor;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,6 +233,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				696EBD8214F7877900B81BC9 /* InfoPlist.strings in Resources */,
+				696F9EB014F8DA6900BC5FDC /* torrc in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,7 +245,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				696EBD8414F7877900B81BC9 /* main.m in Sources */,
+				696F9EAB14F8D5A900BC5FDC /* TorWrapper.m in Sources */,
 				696EBD8814F7877900B81BC9 /* AppDelegate.m in Sources */,
+				696F9EAE14F8D6ED00BC5FDC /* tor_main.c in Sources */,
+				696F9EB414F8DD6D00BC5FDC /* ULINetSocket.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,7 +285,11 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = ../dependencies/include;
+				HEADER_SEARCH_PATHS = (
+					../dependencies/include,
+					../dependencies/include/common,
+					../dependencies/include/or,
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = ../dependencies/lib;
 				SDKROOT = iphoneos;
@@ -265,7 +309,11 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = ../dependencies/include;
+				HEADER_SEARCH_PATHS = (
+					../dependencies/include,
+					../dependencies/include/common,
+					../dependencies/include/or,
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = ../dependencies/lib;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";

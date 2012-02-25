@@ -10,7 +10,9 @@
 
 @implementation AppDelegate
 
-@synthesize window = _window;
+@synthesize window = _window, torThread = _torThread,
+            torCheckLoopTimer = _torCheckLoopTimer,
+            mSocket = _mSocket;
 
 - (void)dealloc
 {
@@ -20,12 +22,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    self.torThread = [[TorWrapper alloc] init];
+    [self.torThread start];
+    
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    /* Test */
+    /*
     // Test A
     unsigned char *inStrg = (unsigned char*)[@"" cStringUsingEncoding:NSASCIIStringEncoding];
 	unsigned long lngth = 0;
@@ -117,14 +122,72 @@
     NSLog(@"should be: 07e547d9586f6a73f73fbac0435ed76951218fb7d0c8d788a309d785436bbb642e93a252a954f23912547d1e8a3b5ed6e1bfd7097821233fa0538f3db854fee6");
     NSLog(@"");
     NSLog(@"View https://en.wikipedia.org/wiki/SHA-2 for more info");
-
+     */
+     
+    [NSTimer scheduledTimerWithTimeInterval:4.0f
+                                     target:self
+                                   selector:@selector(activateTorCheckLoop)
+                                   userInfo:nil
+                                    repeats:NO];
+    
     return YES;
+}
+
+- (void)checkTor {
+    // Send a simple HTTP 1.0 header to the server and hopefully we won't be rejected
+    [_mSocket writeString:@"getinfo circuit-status\n\r" encoding:NSUTF8StringEncoding];
+    
+}
+
+- (void)netsocketDisconnected:(ULINetSocket*)inNetSocket {    
+    NSLog( @"GET Example: Disconnected" );
+    NSLog(@"%@", [_mSocket readString:NSUTF8StringEncoding]);
+}
+
+- (void)netsocket:(ULINetSocket*)inNetSocket dataAvailable:(unsigned)inAmount {
+    NSLog( @"GET Example: Data available (%u)", inAmount );
+    NSLog(@"%@", [_mSocket readString:NSUTF8StringEncoding]);
+}
+
+- (void)netsocketDataSent:(ULINetSocket*)inNetSocket {
+    //NSLog( @"GET Example: Data sent" );
+}
+
+#pragma mark -
+
+- (void)activateTorCheckLoop {
+    NSLog(@"Starting to check loop");
+    [ULINetSocket ignoreBrokenPipes];
+    // Create a new ULINetSocket connected to the host. Since ULINetSocket is asynchronous, the socket is not
+    // connected to the host until the delegate method is called.
+    _mSocket = [[ULINetSocket netsocketConnectedToHost:@"127.0.0.1" port:60602] retain];
+    
+    // Schedule the ULINetSocket on the current runloop
+    [_mSocket scheduleOnCurrentRunLoop];
+    
+    // Set the ULINetSocket's delegate to ourself
+    [_mSocket setDelegate:self];
+    
+    [_mSocket writeString:@"authenticate\n\r" encoding:NSUTF8StringEncoding];
+    [_mSocket writeString:@"setevents circ\n\r" encoding:NSUTF8StringEncoding];
+
+    _torCheckLoopTimer = [NSTimer scheduledTimerWithTimeInterval:4.0f
+                                                          target:self
+                                                        selector:@selector(checkTor)
+                                                        userInfo:nil
+                                                         repeats:YES];
+
+}
+- (void)disableTorCheckLoop {
+    [_torCheckLoopTimer invalidate];
+
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    [self disableTorCheckLoop];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
@@ -141,11 +204,44 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [self activateTorCheckLoop];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [self activateTorCheckLoop];
+    [self.torThread halt_tor];
 }
+
+
+/*
+- (void) gameLoop {
+    while (running)
+    {
+        NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+        [self renderFrame];
+        [pool release];
+    }
+}
+
+- (void) startLoop
+{
+    running = YES;
+#ifdef THREADED_ANIMATION
+    [NSThread detachNewThreadSelector:@selector(gameLoop)
+                             toTarget:self withObject:nil];
+#else
+    timer = [NSTimer scheduledTimerWithTimeInterval:1.0f/60
+                                             target:self selector:@selector(renderFrame) userInfo:nil repeats:YES];
+#endif
+}
+
+- (void) stopLoop
+{
+    [timer invalidate];
+    running = NO;
+}
+*/
 
 @end
