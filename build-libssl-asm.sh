@@ -23,7 +23,7 @@
 #  Choose your openssl version and your currently-installed iOS SDK version:
 #
 VERSION="1.0.1-beta3"
-SDKVERSION="5.0"
+SDKVERSION="5.1"
 #
 #
 ###########################################################################
@@ -90,7 +90,7 @@ do
 	#LOG="${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/build-openssl-${VERSION}.log"
 
     export CC="${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/usr/bin/gcc -arch ${ARCH}"
-	./configure no-gost ${TARGET} \
+	./configure ${TARGET} \
     --openssldir="${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk" #> "${LOG}" 2>&1
 
 	# add -isysroot to configure-generated CFLAGS
