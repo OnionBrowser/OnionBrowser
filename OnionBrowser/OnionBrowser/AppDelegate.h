@@ -11,6 +11,8 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
+@property (nonatomic) NSUInteger lastMessageSent;
+
 @property (nonatomic, retain) TorWrapper *torThread;
 
 @property (strong, nonatomic) UIWindow *window;

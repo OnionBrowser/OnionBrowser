@@ -8,11 +8,17 @@
 #import "AppDelegate.h"
 #include <Openssl/sha.h>
 
+#define TOR_MSG_NONE 0
+#define TOR_MSG_AUTHENTICATE 1
+#define TOR_MSG_GETSTATUS 2
+
+
 @implementation AppDelegate
 
 @synthesize window = _window, torThread = _torThread,
             torCheckLoopTimer = _torCheckLoopTimer,
-            mSocket = _mSocket;
+            mSocket = _mSocket,
+            lastMessageSent = _lastMessageSent;
 
 - (void)dealloc
 {
@@ -25,6 +31,14 @@
     self.torThread = [[TorWrapper alloc] init];
     [self.torThread start];
     
+    _lastMessageSent = TOR_MSG_NONE;
+    
+    _torCheckLoopTimer = [NSTimer scheduledTimerWithTimeInterval:0.25f
+                                                          target:self
+                                                        selector:@selector(activateTorCheckLoop)
+                                                        userInfo:nil
+                                                         repeats:NO];
+
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
@@ -123,20 +137,23 @@
     NSLog(@"");
     NSLog(@"View https://en.wikipedia.org/wiki/SHA-2 for more info");
      */
-     
-    [NSTimer scheduledTimerWithTimeInterval:4.0f
-                                     target:self
-                                   selector:@selector(activateTorCheckLoop)
-                                   userInfo:nil
-                                    repeats:NO];
     
     return YES;
 }
 
+- (void)netsocketConnected:(ULINetSocket*)inNetSocket {    
+    NSLog( @"GET Example: Connected" );
+    [_mSocket writeString:@"authenticate\n" encoding:NSUTF8StringEncoding];
+    _lastMessageSent = TOR_MSG_AUTHENTICATE;
+}
+
 - (void)checkTor {
     // Send a simple HTTP 1.0 header to the server and hopefully we won't be rejected
-    [_mSocket writeString:@"getinfo circuit-status\n\r" encoding:NSUTF8StringEncoding];
-    
+    //[_mSocket writeString:@"getinfo circuit-status\n\r" encoding:NSUTF8StringEncoding];
+    //[_mSocket writeString:@"setevents circ" encoding:NSUTF8StringEncoding];
+    //[_mSocket writeString:@"setevents circ status_general\n" encoding:NSUTF8StringEncoding];
+    [_mSocket writeString:@"getinfo circuit-status\n" encoding:NSUTF8StringEncoding];
+    _lastMessageSent = TOR_MSG_GETSTATUS;
 }
 
 - (void)netsocketDisconnected:(ULINetSocket*)inNetSocket {    
@@ -145,8 +162,42 @@
 }
 
 - (void)netsocket:(ULINetSocket*)inNetSocket dataAvailable:(unsigned)inAmount {
-    NSLog( @"GET Example: Data available (%u)", inAmount );
-    NSLog(@"%@", [_mSocket readString:NSUTF8StringEncoding]);
+    NSString *msgIn = [_mSocket readString:NSUTF8StringEncoding];
+    if (_lastMessageSent == TOR_MSG_AUTHENTICATE) {
+        if ([msgIn hasPrefix:@"250 OK"]) {
+            NSLog(@"Authenticated.");
+            //[_mSocket writeString:@"getinfo circuit-status\n\r" encoding:NSUTF8StringEncoding];
+            _torCheckLoopTimer = [NSTimer scheduledTimerWithTimeInterval:4.0f
+                                                                  target:self
+                                                                selector:@selector(checkTor)
+                                                                userInfo:nil
+                                                                 repeats:NO];
+        } else {
+            NSLog(@"??? %@", msgIn);
+        }
+    } else if (_lastMessageSent == TOR_MSG_GETSTATUS) {
+        //NSLog(@"%@", msgIn);
+        NSUInteger built_connections = 0;
+        NSUInteger inprogress_connections = 0;
+        NSArray *connections = [msgIn componentsSeparatedByString:@"\n"];
+        for (int i=0; i<[connections count]; i++) {
+            NSString *line = [connections objectAtIndex:i];
+            NSLog(@"%@", line);
+            NSArray *line_bits = [line componentsSeparatedByString:@" "];
+            if (([line_bits count] > 2) && ([@"BUILT" isEqualToString:[line_bits objectAtIndex:1]])) {
+                built_connections += 1;
+            }
+            if (([line_bits count] > 2) && ([@"EXTENDED" isEqualToString:[line_bits objectAtIndex:1]])) {
+                inprogress_connections += 1;
+            }
+        }
+        NSLog(@"%d pending connections; %d current connections", inprogress_connections, built_connections);
+        _torCheckLoopTimer = [NSTimer scheduledTimerWithTimeInterval:4.0f
+                                                              target:self
+                                                            selector:@selector(checkTor)
+                                                            userInfo:nil
+                                                             repeats:NO];
+    }
 }
 
 - (void)netsocketDataSent:(ULINetSocket*)inNetSocket {
@@ -156,7 +207,7 @@
 #pragma mark -
 
 - (void)activateTorCheckLoop {
-    NSLog(@"Starting to check loop");
+    NSLog(@"Starting tor check loop");
     [ULINetSocket ignoreBrokenPipes];
     // Create a new ULINetSocket connected to the host. Since ULINetSocket is asynchronous, the socket is not
     // connected to the host until the delegate method is called.
@@ -167,20 +218,12 @@
     
     // Set the ULINetSocket's delegate to ourself
     [_mSocket setDelegate:self];
-    
-    [_mSocket writeString:@"authenticate\n\r" encoding:NSUTF8StringEncoding];
-    [_mSocket writeString:@"setevents circ\n\r" encoding:NSUTF8StringEncoding];
-
-    _torCheckLoopTimer = [NSTimer scheduledTimerWithTimeInterval:4.0f
-                                                          target:self
-                                                        selector:@selector(checkTor)
-                                                        userInfo:nil
-                                                         repeats:YES];
-
 }
-- (void)disableTorCheckLoop {
-    [_torCheckLoopTimer invalidate];
 
+- (void)disableTorCheckLoop {
+    [_mSocket close];
+
+    [_torCheckLoopTimer invalidate];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -204,13 +247,15 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    [self activateTorCheckLoop];
+    if ((_lastMessageSent != TOR_MSG_NONE) && ![_mSocket isConnected]) {
+        [self activateTorCheckLoop];
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    [self activateTorCheckLoop];
+    [self disableTorCheckLoop];
     [self.torThread halt_tor];
 }
 
