@@ -18,7 +18,9 @@
 @synthesize window = _window, torThread = _torThread,
             torCheckLoopTimer = _torCheckLoopTimer,
             mSocket = _mSocket,
-            lastMessageSent = _lastMessageSent;
+            lastMessageSent = _lastMessageSent,
+            wvc = _wvc,
+            webViewStarted = _webViewStarted;
 
 - (void)dealloc
 {
@@ -28,6 +30,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    _webViewStarted = NO;
+    
     self.torThread = [[TorWrapper alloc] init];
     [self.torThread start];
     
@@ -42,7 +46,11 @@
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
+    
+    _wvc = [[WebViewController alloc] initWithUrl:@"https://check.torproject.org/"];
+    //[wvc.myWebView setBounds:[[UIScreen mainScreen] bounds]];
+    [_window addSubview:_wvc.view];
+    [_window makeKeyAndVisible];
     
     /*
     // Test A
@@ -182,7 +190,7 @@
         NSArray *connections = [msgIn componentsSeparatedByString:@"\n"];
         for (int i=0; i<[connections count]; i++) {
             NSString *line = [connections objectAtIndex:i];
-            NSLog(@"%@", line);
+            //NSLog(@"%@", line);
             NSArray *line_bits = [line componentsSeparatedByString:@" "];
             if (([line_bits count] > 2) && ([@"BUILT" isEqualToString:[line_bits objectAtIndex:1]])) {
                 built_connections += 1;
@@ -190,6 +198,10 @@
             if (([line_bits count] > 2) && ([@"EXTENDED" isEqualToString:[line_bits objectAtIndex:1]])) {
                 inprogress_connections += 1;
             }
+        }
+        if ((inprogress_connections+built_connections > 2) && !_webViewStarted) {
+            [_wvc startLoad];
+            _webViewStarted = YES;
         }
         NSLog(@"%d pending connections; %d current connections", inprogress_connections, built_connections);
         _torCheckLoopTimer = [NSTimer scheduledTimerWithTimeInterval:4.0f

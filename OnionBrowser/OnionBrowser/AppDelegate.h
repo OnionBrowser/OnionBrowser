@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 #import "TorWrapper.h"
 #import "ULINetSocket.h"
+#import "WebViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -19,6 +20,11 @@
 
 @property (nonatomic, retain) NSTimer *torCheckLoopTimer;
 @property (nonatomic, retain) ULINetSocket	*mSocket;
+
+
+@property (nonatomic, retain) WebViewController *wvc;
+@property (nonatomic) Boolean webViewStarted;
+
 
 - (void)checkTor;
 

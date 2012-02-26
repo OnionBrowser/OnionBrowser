@@ -94,13 +94,13 @@
 
     NSString *tmpDir = NSTemporaryDirectory();
     NSString *base_torrc = [[NSBundle mainBundle] pathForResource:@"torrc" ofType:nil];
-    const char *arg_0 = "tor";
-    const char *arg_1 = "DataDirectory";
-    const char *arg_2 = [tmpDir cStringUsingEncoding:NSUTF8StringEncoding];
-    const char *arg_3 = "-f";
-    const char *arg_4 = [base_torrc cStringUsingEncoding:NSUTF8StringEncoding];
+    char *arg_0 = "tor";
+    char *arg_1 = "DataDirectory";
+    char *arg_2 = (char *)[tmpDir cStringUsingEncoding:NSUTF8StringEncoding];
+    char *arg_3 = "-f";
+    char *arg_4 = (char *)[base_torrc cStringUsingEncoding:NSUTF8StringEncoding];
     
-    const char* argv[] = {arg_0, arg_1, arg_2, arg_3, arg_4, NULL};
+    char* argv[] = {arg_0, arg_1, arg_2, arg_3, arg_4, NULL};
     tor_main(5, argv);
 }
 -(void)halt_tor {
