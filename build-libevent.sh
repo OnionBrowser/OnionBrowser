@@ -32,7 +32,10 @@ SDKVERSION="5.1"
 #
 ###########################################################################
 
-ARCHS="i386 armv6 armv7"
+# No need to change this since xcode build will only compile in the
+# necessary bits from the libraries we create
+ARCHS="i386 armv7"
+
 DEVELOPER=`xcode-select -print-path`
 
 cd "`dirname \"$0\"`"
@@ -112,20 +115,44 @@ echo "Build library..."
 # These are the libs that comprise libevent. `libevent_openssl` and `libevent_pthreads`
 # may not be compiled if those dependencies aren't available.
 OUTPUT_LIBS="libevent.a libevent_core.a libevent_extra.a libevent_openssl.a libevent_pthreads.a"
-for OUTPUT_LIB in ${OUTPUT_LIBS}
-do
+for OUTPUT_LIB in ${OUTPUT_LIBS}; do
+    INPUT_LIBS=""
+    for ARCH in ${ARCHS}; do
+        if [ "${ARCH}" == "i386" ];
+        then
+            PLATFORM="iPhoneSimulator"
+        else
+            PLATFORM="iPhoneOS"
+        fi
+        INPUT_ARCH_LIB="${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/lib/${OUTPUT_LIB}"
+        if [ -e $INPUT_ARCH_LIB ]; then
+            INPUT_LIBS="${INPUT_LIBS} ${INPUT_ARCH_LIB}"
+        fi
+    done
     # Combine the three architectures into a universal library.
-    if [ -e "${INTERDIR}/iPhoneSimulator${SDKVERSION}-i386.sdk/lib/${OUTPUT_LIB}" ]; then
-        lipo -create "${INTERDIR}/iPhoneSimulator${SDKVERSION}-i386.sdk/lib/${OUTPUT_LIB}" \
-        "${INTERDIR}/iPhoneOS${SDKVERSION}-armv6.sdk/lib/${OUTPUT_LIB}" \
-        "${INTERDIR}/iPhoneOS${SDKVERSION}-armv7.sdk/lib/${OUTPUT_LIB}" \
+    if [ -n "$INPUT_LIBS"  ]; then
+        lipo -create $INPUT_LIBS \
         -output "${OUTPUTDIR}/lib/${OUTPUT_LIB}"
     else
         echo "$OUTPUT_LIB does not exist, skipping (are the dependencies installed?)"
     fi
 done
 
-cp -R ${INTERDIR}/iPhoneSimulator${SDKVERSION}-i386.sdk/include/* ${OUTPUTDIR}/include/
+for ARCH in ${ARCHS}; do
+    if [ "${ARCH}" == "i386" ];
+    then
+        PLATFORM="iPhoneSimulator"
+    else
+        PLATFORM="iPhoneOS"
+    fi
+    cp -R ${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/* ${OUTPUTDIR}/include/
+    if [ $? == "0" ]; then
+        # We only need to copy the headers over once. (So break out of forloop
+        # once we get first success.)
+        break
+    fi
+done
+
 
 ####################
 
