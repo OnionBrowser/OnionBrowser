@@ -90,6 +90,15 @@ cp -R ${DEVELOPER}/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimul
 
 cd "${SRCDIR}/tor-${VERSION}"
 
+CCACHE=`which ccache`
+if [ $? == "0" ]; then
+    echo "Building with ccache: $CCACHE"
+    CCACHE="${CCACHE} "
+else
+    echo "Building without ccache"
+    CCACHE=""
+fi
+
 for ARCH in ${ARCHS}
 do
 	if [ "${ARCH}" == "i386" ];
@@ -112,7 +121,7 @@ do
     --with-libevent-dir="${OUTPUTDIR}" \
     --with-zlib-dir="${OUTPUTDIR}" \
     --disable-asciidoc \
-    CC="${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/usr/bin/gcc -arch ${ARCH}" \
+    CC="${CCACHE}${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/usr/bin/gcc -arch ${ARCH}" \
     LDFLAGS="$LDFLAGS -L${OUTPUTDIR}/lib" \
     CFLAGS="$CFLAGS -I${OUTPUTDIR}/include -isysroot ${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/SDKs/${PLATFORM}${SDKVERSION}.sdk" \
     CPPFLAGS="$CPPFLAGS -I${OUTPUTDIR}/include -isysroot ${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/SDKs/${PLATFORM}${SDKVERSION}.sdk"

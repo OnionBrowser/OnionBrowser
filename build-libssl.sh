@@ -69,6 +69,15 @@ fi
 tar zxf openssl-${VERSION}.tar.gz -C $SRCDIR
 cd "${SRCDIR}/openssl-${VERSION}"
 
+CCACHE=`which ccache`
+if [ $? == "0" ]; then
+    echo "Building with ccache: $CCACHE"
+    CCACHE="${CCACHE} "
+else
+    echo "Building without ccache"
+    CCACHE=""
+fi
+
 for ARCH in ${ARCHS}
 do
 	if [ "${ARCH}" == "i386" ];
@@ -85,7 +94,7 @@ do
 	mkdir -p "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk"
 	#LOG="${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/build-openssl-${VERSION}.log"
 
-    export CC="${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/usr/bin/gcc -arch ${ARCH}"
+    export CC="${CCACHE}${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/usr/bin/gcc -arch ${ARCH}"
 	./configure BSD-generic32 \
     --openssldir="${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk" #> "${LOG}" 2>&1
 
