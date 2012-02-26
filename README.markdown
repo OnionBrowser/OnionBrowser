@@ -33,6 +33,9 @@ Run the commands in the following order.
 
 ### OpenSSL 1.0.1 ARM w/ASM-Acceleration
 
+**NOTE (2/25/2012)**: This branch is broken: I have no idea what I am doing
+in assembly. (Tor does not run due to my fudging of symbols such as `_armv7_tick`.)
+
 A patch is located at [patches/openssl-1.0.1-beta3-armv7-asm.diff][asm_patch]
 which enables building a custom `BSD-asm` target that enables the `armv4_asm`
 assembly files (originally written for `linux-armv4` and `android-armv7`).
