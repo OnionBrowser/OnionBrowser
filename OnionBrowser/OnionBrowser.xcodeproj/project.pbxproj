@@ -35,7 +35,6 @@
 		69847C5414F788E900288277 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 69847C5314F788E900288277 /* libz.dylib */; };
 		699CCEBD14FA1939004A2F56 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 699CCEBC14FA1939004A2F56 /* libxml2.dylib */; };
 		69C6F6A514FACC3000894495 /* ProxyURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C6F6A414FACC3000894495 /* ProxyURLProtocol.m */; };
-		69F3B2D414FA0561009E433F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F3B2D314FA0561009E433F /* Reachability.m */; };
 		69F3C5FD14FC8739008274C3 /* CKHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F3C5F814FC8739008274C3 /* CKHTTPConnection.m */; };
 /* End PBXBuildFile section */
 
@@ -76,8 +75,6 @@
 		699CCEBC14FA1939004A2F56 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		69C6F6A314FACC3000894495 /* ProxyURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProxyURLProtocol.h; path = ../ProxyURLProtocol.h; sourceTree = "<group>"; };
 		69C6F6A414FACC3000894495 /* ProxyURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProxyURLProtocol.m; path = ../ProxyURLProtocol.m; sourceTree = "<group>"; };
-		69F3B2D214FA0561009E433F /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
-		69F3B2D314FA0561009E433F /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		69F3C5F714FC8739008274C3 /* CKHTTPConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CKHTTPConnection.h; path = ../ConnectionKit/CKHTTPConnection.h; sourceTree = "<group>"; };
 		69F3C5F814FC8739008274C3 /* CKHTTPConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CKHTTPConnection.m; path = ../ConnectionKit/CKHTTPConnection.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -177,7 +174,6 @@
 		696F9EB114F8DD5300BC5FDC /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
-				69F3B2D114FA0561009E433F /* Reachability */,
 				696F9EB214F8DD6D00BC5FDC /* ULINetSocket.h */,
 				696F9EB314F8DD6D00BC5FDC /* ULINetSocket.m */,
 			);
@@ -211,15 +207,6 @@
 				696F9EAF14F8DA6900BC5FDC /* torrc */,
 			);
 			name = Tor;
-			sourceTree = "<group>";
-		};
-		69F3B2D114FA0561009E433F /* Reachability */ = {
-			isa = PBXGroup;
-			children = (
-				69F3B2D214FA0561009E433F /* Reachability.h */,
-				69F3B2D314FA0561009E433F /* Reachability.m */,
-			);
-			path = Reachability;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -290,7 +277,6 @@
 				696F9EAE14F8D6ED00BC5FDC /* tor_main.c in Sources */,
 				696F9EB414F8DD6D00BC5FDC /* ULINetSocket.m in Sources */,
 				697ABCD414FA036E00E1678C /* WebViewController.m in Sources */,
-				69F3B2D414FA0561009E433F /* Reachability.m in Sources */,
 				69C6F6A514FACC3000894495 /* ProxyURLProtocol.m in Sources */,
 				69F3C5FD14FC8739008274C3 /* CKHTTPConnection.m in Sources */,
 			);
@@ -335,7 +321,7 @@
 					../dependencies/include/or,
 					"${SDK_DIR}/usr/include/libxml2",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = ../dependencies/lib;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -360,7 +346,7 @@
 					../dependencies/include/or,
 					"${SDK_DIR}/usr/include/libxml2",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = ../dependencies/lib;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
