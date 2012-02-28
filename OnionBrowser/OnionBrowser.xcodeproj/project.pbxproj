@@ -18,6 +18,12 @@
 		696F9EB014F8DA6900BC5FDC /* torrc in Resources */ = {isa = PBXBuildFile; fileRef = 696F9EAF14F8DA6900BC5FDC /* torrc */; };
 		696F9EB414F8DD6D00BC5FDC /* ULINetSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 696F9EB314F8DD6D00BC5FDC /* ULINetSocket.m */; };
 		696F9EB614F8E21200BC5FDC /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696F9EB514F8E21200BC5FDC /* CFNetwork.framework */; };
+		69737AAF14FCD2B200775275 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 69737AA914FCD2B200775275 /* Icon-72.png */; };
+		69737AB014FCD2B200775275 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 69737AAA14FCD2B200775275 /* Icon-Small-50.png */; };
+		69737AB114FCD2B200775275 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 69737AAB14FCD2B200775275 /* Icon-Small.png */; };
+		69737AB214FCD2B200775275 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69737AAC14FCD2B200775275 /* Icon-Small@2x.png */; };
+		69737AB314FCD2B200775275 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 69737AAD14FCD2B200775275 /* Icon.png */; };
+		69737AB414FCD2B200775275 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 69737AAE14FCD2B200775275 /* Icon@2x.png */; };
 		697ABCD414FA036E00E1678C /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 697ABCD314FA036E00E1678C /* WebViewController.m */; };
 		697ABCD614FA042C00E1678C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 697ABCD514FA042C00E1678C /* SystemConfiguration.framework */; };
 		697ABCD814FA043300E1678C /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 697ABCD714FA043300E1678C /* MobileCoreServices.framework */; };
@@ -56,6 +62,12 @@
 		696F9EB214F8DD6D00BC5FDC /* ULINetSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ULINetSocket.h; sourceTree = "<group>"; };
 		696F9EB314F8DD6D00BC5FDC /* ULINetSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ULINetSocket.m; sourceTree = "<group>"; };
 		696F9EB514F8E21200BC5FDC /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		69737AA914FCD2B200775275 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		69737AAA14FCD2B200775275 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
+		69737AAB14FCD2B200775275 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
+		69737AAC14FCD2B200775275 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
+		69737AAD14FCD2B200775275 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		69737AAE14FCD2B200775275 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		697ABCD214FA036E00E1678C /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		697ABCD314FA036E00E1678C /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		697ABCD514FA042C00E1678C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -112,6 +124,7 @@
 		696EBD6814F7877900B81BC9 = {
 			isa = PBXGroup;
 			children = (
+				69737A9B14FCD20600775275 /* Resources */,
 				696F9EB114F8DD5300BC5FDC /* ThirdParty */,
 				69BB0A4C14F8D31800E7E909 /* Tor */,
 				696EBD7D14F7877900B81BC9 /* OnionBrowser */,
@@ -178,6 +191,19 @@
 				696F9EB314F8DD6D00BC5FDC /* ULINetSocket.m */,
 			);
 			name = ThirdParty;
+			sourceTree = "<group>";
+		};
+		69737A9B14FCD20600775275 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				69737AA914FCD2B200775275 /* Icon-72.png */,
+				69737AAA14FCD2B200775275 /* Icon-Small-50.png */,
+				69737AAB14FCD2B200775275 /* Icon-Small.png */,
+				69737AAC14FCD2B200775275 /* Icon-Small@2x.png */,
+				69737AAD14FCD2B200775275 /* Icon.png */,
+				69737AAE14FCD2B200775275 /* Icon@2x.png */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		69847C5514F788F600288277 /* External */ = {
@@ -261,6 +287,12 @@
 			files = (
 				696EBD8214F7877900B81BC9 /* InfoPlist.strings in Resources */,
 				696F9EB014F8DA6900BC5FDC /* torrc in Resources */,
+				69737AAF14FCD2B200775275 /* Icon-72.png in Resources */,
+				69737AB014FCD2B200775275 /* Icon-Small-50.png in Resources */,
+				69737AB114FCD2B200775275 /* Icon-Small.png in Resources */,
+				69737AB214FCD2B200775275 /* Icon-Small@2x.png in Resources */,
+				69737AB314FCD2B200775275 /* Icon.png in Resources */,
+				69737AB414FCD2B200775275 /* Icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

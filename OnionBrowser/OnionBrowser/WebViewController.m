@@ -186,9 +186,9 @@ static const CGFloat kAddressHeight = 26.0f;
 
     [self updateButtons];
     [self informError:error];
-    NSString* errorString = [NSString stringWithFormat:@"error %@",
-                             error.localizedDescription];
     #ifdef DEBUG
+        NSString* errorString = [NSString stringWithFormat:@"error %@",
+                                 error.localizedDescription];
         NSLog(@"[WebViewController] Error: %@", errorString);
     #endif
 }

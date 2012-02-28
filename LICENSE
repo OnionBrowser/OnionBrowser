@@ -20,6 +20,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 ###########################################################################
+Demo icon derived from "Onion_817406" by Dubravko Sorić (SoraZG) on Flickr.
+https://secure.flickr.com/photos/11939863@N08/3794106676/
+
+Photo under the Creative Commons CC-BY 2.0 License:
+https://creativecommons.org/licenses/by/2.0/
+
+###########################################################################
 Contains portions of ConnectionKit (2.0 branch), available under the Modified
 BSD License at:
 http://www.opensource.utr-software.com/
@@ -92,4 +99,3 @@ Copyright (c) 2007-2011, The Tor Project, Inc.
 Full license available at:
 
 https://gitweb.torproject.org/tor.git?a=blob_plain;hb=HEAD;f=LICENSE
-
