@@ -12,8 +12,20 @@
 }
 
 @property (nonatomic, retain) UIWebView *myWebView;
-@property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, retain) UIToolbar* toolbar;
+@property (nonatomic, retain) UIBarButtonItem* backButton;
+@property (nonatomic, retain) UIBarButtonItem* forwardButton;
+@property (nonatomic, retain) UIBarButtonItem* refreshButton;
+@property (nonatomic, retain) UIBarButtonItem* stopButton;
+@property (nonatomic, retain) UILabel* pageTitleLabel;
+@property (nonatomic, retain) UITextField* addressField;
 
--(void)loadURL: (NSURL *)navigationURL;
+- (void)loadURL: (NSURL *)navigationURL;
+
+- (void)updateButtons;
+- (void)updateTitle:(UIWebView*)aWebView;
+- (void)updateAddress:(NSURLRequest*)request;
+- (void)loadAddress:(id)sender event:(UIEvent*)event;
+- (void)informError:(NSError*)error;
 
 @end
