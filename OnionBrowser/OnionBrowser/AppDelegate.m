@@ -31,13 +31,15 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     _webViewStarted = NO;
+    [[NSURLCache sharedURLCache] removeAllCachedResponses];
     
     self.torThread = [[TorWrapper alloc] init];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [self.torThread start];
     
     _lastMessageSent = TOR_MSG_NONE;
     
-    _torCheckLoopTimer = [NSTimer scheduledTimerWithTimeInterval:0.25f
+    _torCheckLoopTimer = [NSTimer scheduledTimerWithTimeInterval:0.1f
                                                           target:self
                                                         selector:@selector(activateTorCheckLoop)
                                                         userInfo:nil
@@ -47,9 +49,10 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     
-    _wvc = [[WebViewController alloc] initWithUrl:@"https://check.torproject.org/"];
+    _wvc = [[WebViewController alloc] init];
     //[wvc.myWebView setBounds:[[UIScreen mainScreen] bounds]];
     [_window addSubview:_wvc.view];
+    
     [_window makeKeyAndVisible];
     
     /*
@@ -150,7 +153,9 @@
 }
 
 - (void)netsocketConnected:(ULINetSocket*)inNetSocket {    
-    NSLog( @"GET Example: Connected" );
+    #ifdef DEBUG
+        NSLog(@"[tor] Control Port Connected" );
+    #endif
     [_mSocket writeString:@"authenticate\n" encoding:NSUTF8StringEncoding];
     _lastMessageSent = TOR_MSG_AUTHENTICATE;
 }
@@ -165,32 +170,35 @@
 }
 
 - (void)netsocketDisconnected:(ULINetSocket*)inNetSocket {    
-    NSLog( @"GET Example: Disconnected" );
-    NSLog(@"%@", [_mSocket readString:NSUTF8StringEncoding]);
+    #ifdef DEBUG
+        NSLog(@"[tor] Control Port Disconnected" );
+    #endif
 }
 
 - (void)netsocket:(ULINetSocket*)inNetSocket dataAvailable:(unsigned)inAmount {
     NSString *msgIn = [_mSocket readString:NSUTF8StringEncoding];
     if (_lastMessageSent == TOR_MSG_AUTHENTICATE) {
         if ([msgIn hasPrefix:@"250 OK"]) {
-            NSLog(@"Authenticated.");
-            //[_mSocket writeString:@"getinfo circuit-status\n\r" encoding:NSUTF8StringEncoding];
-            _torCheckLoopTimer = [NSTimer scheduledTimerWithTimeInterval:4.0f
+            #ifdef DEBUG
+                NSLog(@"[tor] Control Port Authenticated Successfully" );
+            #endif
+            [_mSocket writeString:@"getinfo circuit-status\n\r" encoding:NSUTF8StringEncoding];
+            _torCheckLoopTimer = [NSTimer scheduledTimerWithTimeInterval:2.5f
                                                                   target:self
                                                                 selector:@selector(checkTor)
                                                                 userInfo:nil
                                                                  repeats:NO];
         } else {
-            NSLog(@"??? %@", msgIn);
+            #ifdef DEBUG
+                NSLog(@"[tor] Control Port: Got unknown message %@", msgIn);
+            #endif
         }
     } else if (_lastMessageSent == TOR_MSG_GETSTATUS) {
-        //NSLog(@"%@", msgIn);
         NSUInteger built_connections = 0;
         NSUInteger inprogress_connections = 0;
         NSArray *connections = [msgIn componentsSeparatedByString:@"\n"];
         for (int i=0; i<[connections count]; i++) {
             NSString *line = [connections objectAtIndex:i];
-            //NSLog(@"%@", line);
             NSArray *line_bits = [line componentsSeparatedByString:@" "];
             if (([line_bits count] > 2) && ([@"BUILT" isEqualToString:[line_bits objectAtIndex:1]])) {
                 built_connections += 1;
@@ -200,11 +208,11 @@
             }
         }
         if ((inprogress_connections+built_connections > 2) && !_webViewStarted) {
-            [_wvc startLoad];
+            NSURL *navigationUrl = [[NSURL URLWithString:@"https://check.torproject.org/"] retain];
+            [_wvc loadURL:navigationUrl];
             _webViewStarted = YES;
         }
-        NSLog(@"%d pending connections; %d current connections", inprogress_connections, built_connections);
-        _torCheckLoopTimer = [NSTimer scheduledTimerWithTimeInterval:4.0f
+        _torCheckLoopTimer = [NSTimer scheduledTimerWithTimeInterval:2.5f
                                                               target:self
                                                             selector:@selector(checkTor)
                                                             userInfo:nil
@@ -212,14 +220,14 @@
     }
 }
 
-- (void)netsocketDataSent:(ULINetSocket*)inNetSocket {
-    //NSLog( @"GET Example: Data sent" );
-}
+- (void)netsocketDataSent:(ULINetSocket*)inNetSocket { }
 
 #pragma mark -
 
 - (void)activateTorCheckLoop {
-    NSLog(@"Starting tor check loop");
+    #ifdef DEBUG
+        NSLog(@"[tor] Checking Tor Control Port" );
+    #endif
     [ULINetSocket ignoreBrokenPipes];
     // Create a new ULINetSocket connected to the host. Since ULINetSocket is asynchronous, the socket is not
     // connected to the host until the delegate method is called.
@@ -260,7 +268,7 @@
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     if ((_lastMessageSent != TOR_MSG_NONE) && ![_mSocket isConnected]) {
-        [self activateTorCheckLoop];
+        //[self activateTorCheckLoop];
     }
 }
 

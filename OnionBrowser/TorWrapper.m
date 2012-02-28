@@ -105,7 +105,9 @@
 }
 -(void)halt_tor {
     if (self.status == TOR_IS_RUNNING) {
-        NSLog(@"Halting tor...");
+        #ifdef DEBUG
+            NSLog(@"Halting tor...");
+        #endif
         self.status = TOR_IS_STOPPING;
         [self cancel];
         raise(SIGINT);
@@ -114,7 +116,9 @@
 }
 -(void)kill_tor {
     if (self.status == TOR_IS_RUNNING) {
-        NSLog(@"Halting tor...");
+        #ifdef DEBUG
+            NSLog(@"Halting tor...");
+        #endif
         self.status = TOR_IS_STOPPING;
         [self cancel];
         raise(SIGTERM);
@@ -124,16 +128,20 @@
 
 /** Do whatever cleanup is necessary before shutting Tor down. */
 void fake_tor_cleanup(void) {
-    NSLog(@"fake tor cleanup");
-#ifdef USE_DMALLOC
-    dmalloc_log_stats();
-#endif
+    #ifdef DEBUG
+        NSLog(@"fake tor cleanup");
+    #endif
+    
+    #ifdef USE_DMALLOC
+        dmalloc_log_stats();
+    #endif
     tor_free_all(1);
     crypto_global_cleanup();
-#ifdef USE_DMALLOC
-    dmalloc_log_unfreed();
-    dmalloc_shutdown();
-#endif
+    
+    #ifdef USE_DMALLOC
+        dmalloc_log_unfreed();
+        dmalloc_shutdown();
+    #endif
 }
 
 

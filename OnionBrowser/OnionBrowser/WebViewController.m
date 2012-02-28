@@ -14,15 +14,7 @@
 
 @implementation WebViewController
 
-@synthesize urlName = _urlName, myWebView = _myWebView, activityIndicator = _activityIndicator;
-
-- (id)initWithUrl:(NSString *)url{
-    self = [super init];
-    if (self) {
-        _urlName = [url retain];
-    }
-    return self;
-}
+@synthesize myWebView = _myWebView, activityIndicator = _activityIndicator;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,21 +26,16 @@
 }
 
 -(void)loadView {
-    //[super loadView];
-    NSLog(@"loading webview");
-    
     UIView *contentView = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
     self.view = contentView;
     CGRect webFrame = [[UIScreen mainScreen] applicationFrame];
     webFrame.origin.y = 0.0f;
-    NSLog(@"loading webview2");
     _myWebView = [[UIWebView alloc] initWithFrame:webFrame];
     _myWebView.backgroundColor = [UIColor whiteColor];
     _myWebView.scalesPageToFit = YES;
     _myWebView.contentScaleFactor = 3;
     _myWebView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
-    _myWebView.delegate = nil;
-    NSLog(@"loading webview3");
+    _myWebView.delegate = self;
     [self.view addSubview: _myWebView];
     _activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     _activityIndicator.frame = CGRectMake(0.0, 0.0, 40.0, 40.0);
@@ -56,32 +43,20 @@
     [self.view addSubview: _activityIndicator];
 }
 
--(void)startLoad { 
-    NSURL *navigationURL = [[NSURL alloc] initWithString:_urlName];
-    __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:navigationURL];
-    [request setProxyHost:@"127.0.0.1"];
-    [request setProxyPort:60601];
-    [request setProxyType:(NSString *)kCFProxyTypeSOCKS];
-    [request setCompletionBlock:^{
-        // Use when fetching text data
-        NSString *responseString = [request responseString];
-        [_myWebView loadHTMLString:responseString baseURL:nil];
-    }];
-    [request setFailedBlock:^{
-        NSError *error = [request error];
-        NSString* errorString = [NSString stringWithFormat:@"error %@",
-                                 error.localizedDescription];
-        NSLog(@"error: %@", errorString);
-        [_myWebView loadHTMLString:errorString baseURL:nil];
-    }];
-    [request startSynchronous];
+-(void)loadURL: (NSURL *)navigationURL {
+    _myWebView.delegate = self;
+    _myWebView.scalesPageToFit = YES;
+    
+    NSURLRequest *req = [[NSURLRequest requestWithURL:navigationURL] retain];
+    [_myWebView loadRequest:req];
 }
 
-- (void)viewDidLoad
-{
+
+- (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 }
+
 
 - (void)viewDidUnload
 {
@@ -93,32 +68,33 @@
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
+# pragma mark -
+
+// Hook for filtering URLs or hijacking stuff?
 /*
-- (void)webViewDidStartLoad:(UIWebView *)webView
-{
-    // starting the load, show the activity indicator in the status bar
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    return YES;
+}
+ */
+
+ - (void)webViewDidStartLoad:(UIWebView *)webView {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    [_activityIndicator startAnimating];
-    NSLog(@"starting load");
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView
-{
-    // finished loading, hide the activity indicator in the status bar
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    [_activityIndicator stopAnimating];
-    NSLog(@"loaded");
 }
 
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
-{
-    // load error, hide the activity indicator in the status bar
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    // report the error inside the webview
+
     NSString* errorString = [NSString stringWithFormat:@"error %@",
                              error.localizedDescription];
-    NSLog(@"error: %@", errorString);
-    [_myWebView loadHTMLString:errorString baseURL:nil];
+    #ifdef DEBUG
+        NSLog(@"[WebViewController] Error: %@", errorString);
+    #endif
+    
 }
-*/
+
 @end

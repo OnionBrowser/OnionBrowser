@@ -9,8 +9,12 @@
 
 #import "AppDelegate.h"
 
+#import "ProxyURLProtocol.h"
+
 int main(int argc, char *argv[])
 {
+    [NSURLProtocol registerClass:[ProxyURLProtocol class]];
+    
     @autoreleasepool {
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
     }

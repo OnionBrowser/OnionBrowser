@@ -7,16 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ASIHTTPRequest.h"
 
-@interface WebViewController : UIViewController 
+@interface WebViewController : UIViewController <UIWebViewDelegate> {
+}
 
-@property (nonatomic, retain) NSString *urlName;
 @property (nonatomic, retain) UIWebView *myWebView;
 @property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
 
--(id)initWithUrl:(NSString *)url;
-
--(void)startLoad;
+-(void)loadURL: (NSURL *)navigationURL;
 
 @end
