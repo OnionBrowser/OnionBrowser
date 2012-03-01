@@ -157,7 +157,7 @@
     #ifdef DEBUG
         NSLog(@"[tor] Control Port Connected" );
     #endif
-    [_mSocket writeString:@"authenticate onionbrowsertest\n" encoding:NSUTF8StringEncoding];
+    [_mSocket writeString:@"authenticate \"onionbrowsertest\"\n" encoding:NSUTF8StringEncoding];
     _lastMessageSent = TOR_MSG_AUTHENTICATE;
 }
 
@@ -190,9 +190,7 @@
                                                                 userInfo:nil
                                                                  repeats:NO];
         } else {
-            #ifdef DEBUG
-                NSLog(@"[tor] Control Port: Got unknown message %@", msgIn);
-            #endif
+            NSLog(@"[tor] Control Port: Got unknown post-authenticate message %@", msgIn);
         }
     } else if (_lastMessageSent == TOR_MSG_GETSTATUS) {
         NSUInteger built_connections = 0;
