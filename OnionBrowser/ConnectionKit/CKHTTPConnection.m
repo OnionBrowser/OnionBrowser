@@ -35,7 +35,7 @@
 
 @interface CKHTTPAuthenticationChallenge : NSURLAuthenticationChallenge
 {
-    __strong CFHTTPAuthenticationRef _HTTPAuthentication;
+    CFHTTPAuthenticationRef _HTTPAuthentication;
 }
 
 - (id)initWithResponse:(CFHTTPMessageRef)response
@@ -72,7 +72,7 @@
 
 + (CKHTTPConnection *)connectionWithRequest:(NSURLRequest *)request delegate:(id <CKHTTPConnectionDelegate>)delegate
 {
-    return [[[self alloc] initWithRequest:request delegate:delegate] autorelease];
+    return [[self alloc] initWithRequest:request delegate:delegate];
 }
 
 - (id)initWithRequest:(NSURLRequest *)request delegate:(id <CKHTTPConnectionDelegate>)delegate;
@@ -85,7 +85,6 @@
         
         // Kick off the connection
         _HTTPRequest = [request makeHTTPMessage];
-        [(NSObject *)_HTTPRequest retain];
         
         [self start];
     }
@@ -99,7 +98,6 @@
     NSAssert(!_HTTPStream, @"Deallocating HTTP connection while stream still exists");
     NSAssert(!_authenticationChallenge, @"HTTP connection deallocated mid-authentication");
     
-    [super dealloc];
 }
 
 #pragma mark Accessors
@@ -127,7 +125,7 @@
 {
     NSAssert(!_HTTPStream, @"Connection already started");
     
-    _HTTPStream = NSMakeCollectable(CFReadStreamCreateForHTTPRequest(NULL, [self HTTPRequest]));
+    _HTTPStream = (__bridge_transfer NSInputStream *)CFReadStreamCreateForHTTPRequest(NULL, [self HTTPRequest]);
 
     NSString *hostKey = (NSString *)kCFStreamPropertySOCKSProxyHost;
     NSString *portKey = (NSString *)kCFStreamPropertySOCKSProxyPort;
@@ -137,7 +135,7 @@
                                        [NSNumber numberWithInt: 60601],portKey,
                                        nil];
     
-    CFReadStreamSetProperty((CFReadStreamRef)_HTTPStream, kCFStreamPropertySOCKSProxy, proxyToUse);
+    CFReadStreamSetProperty((__bridge CFReadStreamRef)_HTTPStream, kCFStreamPropertySOCKSProxy, (__bridge CFTypeRef)proxyToUse);
     
     [_HTTPStream setDelegate:self];
     [_HTTPStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
@@ -151,7 +149,9 @@
     //  B) Waiting to restart the connection while authentication takes place
     //  C) Restarting the connection after an HTTP redirect
     [_HTTPStream close];
-    [_HTTPStream release];  _HTTPStream = nil;
+    CFBridgingRelease((__bridge_retained CFTypeRef)(_HTTPStream));
+    //[_HTTPStream release]; 
+    _HTTPStream = nil;
 }
 
 - (void)cancel
@@ -168,7 +168,7 @@
     // Handle the response as soon as it's available
     if (!_haveReceivedResponse)
     {
-        CFHTTPMessageRef response = (CFHTTPMessageRef)[theStream propertyForKey:(NSString *)kCFStreamPropertyHTTPResponseHeader];
+        CFHTTPMessageRef response = (__bridge CFHTTPMessageRef)[theStream propertyForKey:(NSString *)kCFStreamPropertyHTTPResponseHeader];
         if (response && CFHTTPMessageIsHeaderComplete(response))
         {
             // Construct a NSURLResponse object from the HTTP message
@@ -252,7 +252,6 @@
 
 - (void)_finishCurrentAuthenticationChallenge
 {
-    [_authenticationChallenge autorelease]; // we still want to work with the challenge for a moment
     _authenticationChallenge = nil;
 }
 
@@ -265,8 +264,8 @@
     CFHTTPAuthenticationRef HTTPAuthentication = [(CKHTTPAuthenticationChallenge *)challenge CFHTTPAuthentication];
     CFHTTPMessageApplyCredentials([self HTTPRequest],
                                   HTTPAuthentication,
-                                  (CFStringRef)[credential user],
-                                  (CFStringRef)[credential password],
+                                  (__bridge CFStringRef)[credential user],
+                                  (__bridge CFStringRef)[credential password],
                                   NULL);
     [self start];
 }
@@ -301,10 +300,10 @@
 - (CFHTTPMessageRef)makeHTTPMessage
 {
     CFHTTPMessageRef result = CFHTTPMessageCreateRequest(NULL,
-                                                         (CFStringRef)[self HTTPMethod],
-                                                         (CFURLRef)[self URL],
+                                                         (__bridge CFStringRef)[self HTTPMethod],
+                                                         (__bridge CFURLRef)[self URL],
                                                          kCFHTTPVersion1_1);
-    [NSMakeCollectable(result) autorelease];
+    //[NSMakeCollectable(result) autorelease];
     
     NSDictionary *HTTPHeaderFields = [self allHTTPHeaderFields];
     NSEnumerator *HTTPHeaderFieldsEnumerator = [HTTPHeaderFields keyEnumerator];
@@ -312,14 +311,14 @@
     while (aHTTPHeaderField = [HTTPHeaderFieldsEnumerator nextObject])
     {
         CFHTTPMessageSetHeaderFieldValue(result,
-                                         (CFStringRef)aHTTPHeaderField,
-                                         (CFStringRef)[HTTPHeaderFields objectForKey:aHTTPHeaderField]);
+                                         (__bridge CFStringRef)aHTTPHeaderField,
+                                         (__bridge CFStringRef)[HTTPHeaderFields objectForKey:aHTTPHeaderField]);
     }
     
     NSData *body = [self HTTPBody];
     if (body)
     {
-        CFHTTPMessageSetBody(result, (CFDataRef)body);
+        CFHTTPMessageSetBody(result, (__bridge_retained CFDataRef)body);
     }
     
     return result;  // NOT autoreleased/collectable
@@ -335,7 +334,7 @@
 
 + (NSHTTPURLResponse *)responseWithURL:(NSURL *)URL HTTPMessage:(CFHTTPMessageRef)message
 {
-    return [[[CKHTTPURLResponse alloc] initWithURL:URL HTTPMessage:message] autorelease];
+    return [[CKHTTPURLResponse alloc] initWithURL:URL HTTPMessage:message];
 }
 
 @end
@@ -345,7 +344,8 @@
 
 - (id)initWithURL:(NSURL *)URL HTTPMessage:(CFHTTPMessageRef)message
 {
-    _headerFields = NSMakeCollectable(CFHTTPMessageCopyAllHeaderFields(message));
+    //_headerFields = NSMakeCollectable(CFHTTPMessageCopyAllHeaderFields(message));
+    _headerFields = (__bridge_transfer NSDictionary *)CFHTTPMessageCopyAllHeaderFields(message);
     
     NSString *MIMEType = [_headerFields objectForKey:@"Content-Type"];
     NSInteger contentLength = [[_headerFields objectForKey:@"Content-Length"] intValue];
@@ -358,10 +358,8 @@
     return self;
 }
     
-- (void)dealloc
-{
-    [_headerFields release];
-    [super dealloc];
+- (void)dealloc {
+    CFRelease((__bridge_retained CFTypeRef)_headerFields);
 }
 
 - (NSDictionary *)allHeaderFields { return _headerFields;  }
@@ -391,34 +389,30 @@
     _HTTPAuthentication = CFHTTPAuthenticationCreateFromResponse(NULL, response);
     if (![self CFHTTPAuthentication])
     {
-        [self release];
         return nil;
     }
-    CFMakeCollectable(_HTTPAuthentication);
+    //CFMakeCollectable(_HTTPAuthentication);
     
     
     // NSURLAuthenticationChallenge only handles user and password
     if (!CFHTTPAuthenticationIsValid([self CFHTTPAuthentication], NULL))
     {
-        [self release];
         return nil;
     }
     
     if (!CFHTTPAuthenticationRequiresUserNameAndPassword([self CFHTTPAuthentication]))
     {
-        [self release];
         return nil;
     }
     
     
     // Fail if we can't retrieve decent protection space info
     CFArrayRef authenticationDomains = CFHTTPAuthenticationCopyDomains([self CFHTTPAuthentication]);
-    NSURL *URL = [(NSArray *)authenticationDomains lastObject];
+    NSURL *URL = [(__bridge NSArray *)authenticationDomains lastObject];
     CFRelease(authenticationDomains);
     
     if (!URL || ![URL host])
     {
-        [self release];
         return nil;
     }
     
@@ -426,18 +420,18 @@
     // Fail for an unsupported authentication method
     CFStringRef authMethod = CFHTTPAuthenticationCopyMethod([self CFHTTPAuthentication]);
     NSString *authenticationMethod;
-    if ([(NSString *)authMethod isEqualToString:(NSString *)kCFHTTPAuthenticationSchemeBasic])
+    if ([(__bridge NSString *)authMethod isEqualToString:(NSString *)kCFHTTPAuthenticationSchemeBasic])
     {
         authenticationMethod = NSURLAuthenticationMethodHTTPBasic;
     }
-    else if ([(NSString *)authMethod isEqualToString:(NSString *)kCFHTTPAuthenticationSchemeDigest])
+    else if ([(__bridge NSString *)authMethod isEqualToString:(NSString *)kCFHTTPAuthenticationSchemeDigest])
     {
         authenticationMethod = NSURLAuthenticationMethodHTTPDigest;
     }
     else
     {
         CFRelease(authMethod);
-        [self release]; // unsupported authentication scheme
+         // unsupported authentication scheme
         return nil;
     }
     CFRelease(authMethod);
@@ -449,7 +443,7 @@
     NSURLProtectionSpace *protectionSpace = [[NSURLProtectionSpace alloc] initWithHost:[URL host]
                                                                                   port:([URL port] ? [[URL port] intValue] : 80)
                                                                               protocol:[URL scheme]
-                                                                                 realm:(NSString *)realm
+                                                                                 realm:(__bridge NSString *)realm
                                                                   authenticationMethod:authenticationMethod];
     CFRelease(realm);
     
@@ -462,14 +456,12 @@
     
     
     // Tidy up
-    [protectionSpace release];
     return self;
 }
 
 - (void)dealloc
 {
     CFRelease(_HTTPAuthentication);
-    [super dealloc];
 }
 
 - (CFHTTPAuthenticationRef)CFHTTPAuthentication { return _HTTPAuthentication; }

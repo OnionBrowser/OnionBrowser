@@ -11,14 +11,14 @@
 @interface WebViewController : UIViewController <UIWebViewDelegate> {
 }
 
-@property (nonatomic, retain) UIWebView *myWebView;
-@property (nonatomic, retain) UIToolbar* toolbar;
-@property (nonatomic, retain) UIBarButtonItem* backButton;
-@property (nonatomic, retain) UIBarButtonItem* forwardButton;
-@property (nonatomic, retain) UIBarButtonItem* refreshButton;
-@property (nonatomic, retain) UIBarButtonItem* stopButton;
-@property (nonatomic, retain) UILabel* pageTitleLabel;
-@property (nonatomic, retain) UITextField* addressField;
+@property (strong, nonatomic) UIWebView *myWebView;
+@property (nonatomic) UIToolbar* toolbar;
+@property (nonatomic) UIBarButtonItem* backButton;
+@property (nonatomic) UIBarButtonItem* forwardButton;
+@property (nonatomic) UIBarButtonItem* refreshButton;
+@property (nonatomic) UIBarButtonItem* stopButton;
+@property (nonatomic) UILabel* pageTitleLabel;
+@property (nonatomic) UITextField* addressField;
 
 - (void)loadURL: (NSURL *)navigationURL;
 

@@ -14,15 +14,15 @@
 
 @property (nonatomic) NSUInteger lastMessageSent;
 
-@property (nonatomic, retain) TorWrapper *torThread;
+@property (nonatomic) TorWrapper *torThread;
 
 @property (strong, nonatomic) UIWindow *window;
 
-@property (nonatomic, retain) NSTimer *torCheckLoopTimer;
-@property (nonatomic, retain) ULINetSocket	*mSocket;
+@property (nonatomic) NSTimer *torCheckLoopTimer;
+@property (nonatomic) ULINetSocket	*mSocket;
 
 
-@property (nonatomic, retain) WebViewController *wvc;
+@property (nonatomic) WebViewController *wvc;
 @property (nonatomic) Boolean webViewStarted;
 
 

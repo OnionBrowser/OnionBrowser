@@ -92,7 +92,6 @@ static void _cfsocketCallback( CFSocketRef inCFSocketRef, CFSocketCallBackType i
 	// If creation of the CFSocketRef failed, we return nothing and cleanup
 	if( ![self _cfsocketCreated] )
 	{
-		[super dealloc];
 		return nil;
 	}
 	
@@ -121,10 +120,8 @@ static void _cfsocketCallback( CFSocketRef inCFSocketRef, CFSocketCallBackType i
 	mSocketListening = NO;
 	
 	// Release our incoming buffer
-	[mIncomingBuffer release];
 	mIncomingBuffer = nil;
 	
-	[super dealloc];
 }
 
 #pragma mark -
@@ -135,7 +132,7 @@ static void _cfsocketCallback( CFSocketRef inCFSocketRef, CFSocketCallBackType i
 	BOOL			success = NO;
 	
 	// Allocate new ULINetSocket
-	netsocket = [[[ULINetSocket alloc] init] autorelease];
+	netsocket = [[ULINetSocket alloc] init];
 	
 	// Attempt to open the socket and schedule it on the current runloop
 	if( [netsocket open] )
@@ -251,7 +248,6 @@ static void _cfsocketCallback( CFSocketRef inCFSocketRef, CFSocketCallBackType i
 	mSocketListening = NO;
 	
 	// Release outgoing buffer
-	[mOutgoingBuffer release];
 	mOutgoingBuffer = nil;
 }
 
@@ -439,7 +435,7 @@ static void _cfsocketCallback( CFSocketRef inCFSocketRef, CFSocketCallBackType i
 	socketAddressData = [NSData dataWithBytes:(void*)&socketAddress length:sizeof( socketAddress )];
 	
 	// Attempt to connect our CFSocketRef to the specified host
-	socketError = CFSocketConnectToAddress( mCFSocketRef, (CFDataRef)socketAddressData, -1.0 );
+	socketError = CFSocketConnectToAddress( mCFSocketRef, (__bridge CFDataRef)socketAddressData, -1.0 );
 	if( socketError != kCFSocketSuccess )
 		return NO;
 	
@@ -477,7 +473,7 @@ static void _cfsocketCallback( CFSocketRef inCFSocketRef, CFSocketCallBackType i
 	socketAddressData = [NSData dataWithBytes:(void*)&socketAddress length:sizeof( socketAddress )];
     
 	// Attempt to connect our CFSocketRef to the specified host
-	socketError = CFSocketConnectToAddress( mCFSocketRef, (CFDataRef)socketAddressData, -1.0 );
+	socketError = CFSocketConnectToAddress( mCFSocketRef, (__bridge CFDataRef)socketAddressData, -1.0 );
 	if( socketError != kCFSocketSuccess )
 		return NO;
     
@@ -586,12 +582,9 @@ static void _cfsocketCallback( CFSocketRef inCFSocketRef, CFSocketCallBackType i
 		[inString appendString:readString];
 		
 		// Release the NSString we created
-		[readString release];
 	}
 	
 	// Release our buffer if it is not our incoming data buffer
-	if( readData != mIncomingBuffer )
-		[readData release];
 	
 	return amountToRead;
 }
@@ -647,7 +640,7 @@ static void _cfsocketCallback( CFSocketRef inCFSocketRef, CFSocketCallBackType i
 		return nil;
 	
 	// Read bytes from our incoming buffer
-	readString = [[[NSString alloc] initWithData:mIncomingBuffer encoding:inEncoding] autorelease];
+	readString = [[NSString alloc] initWithData:mIncomingBuffer encoding:inEncoding];
 	if( !readString )
 		return nil;
 	
@@ -681,7 +674,7 @@ static void _cfsocketCallback( CFSocketRef inCFSocketRef, CFSocketCallBackType i
 		return nil;
 	
 	// Create a new NSString from the read bytes using the specified encoding
-	readString = [[[NSString alloc] initWithData:readData encoding:inEncoding] autorelease];
+	readString = [[NSString alloc] initWithData:readData encoding:inEncoding];
 	if( readString )
 	{
 		// Read bytes from our incoming buffer
@@ -689,8 +682,6 @@ static void _cfsocketCallback( CFSocketRef inCFSocketRef, CFSocketCallBackType i
 	}
 	
 	// Release our buffer if it is not our incoming data buffer
-	if( readData != mIncomingBuffer )
-		[readData release];
 	
 	return readString;
 }
@@ -866,7 +857,7 @@ static void _cfsocketCallback( CFSocketRef inCFSocketRef, CFSocketCallBackType i
 	
 	// Create socket context
 	bzero( &socketContext, sizeof( socketContext ) );
-	socketContext.info = self;
+	socketContext.info = (__bridge void *)(self);
 	
 	// Set socket callbacks
 	socketCallbacks = kCFSocketConnectCallBack + kCFSocketReadCallBack + kCFSocketWriteCallBack;
@@ -1002,7 +993,7 @@ static void _cfsocketCallback( CFSocketRef inCFSocketRef, CFSocketCallBackType i
 		return nil;
 	
 	// Create a new ULINetSocket object based on the accepted connection
-	netsocket = [[[ULINetSocket alloc] initWithNativeSocket:socketDescriptor] autorelease];
+	netsocket = [[ULINetSocket alloc] initWithNativeSocket:socketDescriptor];
 	
 	// If creating the ULINetSocket object failed, let's close the connection and never speak of this to anyone
 	if( !netsocket )
@@ -1171,7 +1162,7 @@ static void _cfsocketCallback( CFSocketRef inCFSocketRef, CFSocketCallBackType i
 - (void)_scheduleConnectionTimeoutTimer:(NSTimeInterval)inTimeout
 {
 	// Schedule our timeout timer
-	mConnectionTimer = [[NSTimer scheduledTimerWithTimeInterval:inTimeout target:self selector:@selector( _socketConnectionTimedOut: ) userInfo:nil repeats:NO] retain];
+	mConnectionTimer = [NSTimer scheduledTimerWithTimeInterval:inTimeout target:self selector:@selector( _socketConnectionTimedOut: ) userInfo:nil repeats:NO];
 }
 
 - (void)_unscheduleConnectionTimeoutTimer
@@ -1180,7 +1171,6 @@ static void _cfsocketCallback( CFSocketRef inCFSocketRef, CFSocketCallBackType i
 	[mConnectionTimer invalidate];
 	
 	// Release the timer and reset our reference to it
-	[mConnectionTimer release];
 	mConnectionTimer = nil;
 }
 
@@ -1193,7 +1183,7 @@ _cfsocketCallback( CFSocketRef inCFSocketRef, CFSocketCallBackType inType, CFDat
 {
 	ULINetSocket*	netsocket;
 	
-	netsocket = (ULINetSocket*)inContext;
+	netsocket = (__bridge ULINetSocket*)inContext;
 	if( !netsocket )
 		return;
 	

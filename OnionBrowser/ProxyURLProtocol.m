@@ -16,13 +16,12 @@ static NSString *PBProxyURLHeader = @"X-PB";
 // Accessors
 
 - (CKHTTPConnection *)connection {
-    return [[_connection retain] autorelease];
+    return _connection;
 }
 
 - (void)setConnection:(CKHTTPConnection *)value {
     if (_connection != value) {
-        [_connection release];
-        _connection = [value retain];
+        _connection = value;
     }
 }
 
@@ -32,7 +31,6 @@ static NSString *PBProxyURLHeader = @"X-PB";
     // Modify request
     NSMutableURLRequest *myRequest = [request mutableCopy];
     [myRequest setValue:@"" forHTTPHeaderField:PBProxyURLHeader];
-    [myRequest retain];
     
     self = [super initWithRequest:myRequest
                    cachedResponse:cachedResponse
@@ -44,18 +42,17 @@ static NSString *PBProxyURLHeader = @"X-PB";
 }
 
 - (NSURLRequest *)request {
-    return [[_request retain] autorelease];
+    return _request;
 }
 
 - (void)setRequest:(NSURLRequest *)value {
     if (_request != value) {
-        [_request release];
-        _request = [value retain];
+        _request = value;
     }
 }
 
 - (NSMutableData *)data {
-    return [[_data retain] autorelease];
+    return _data;
 }
 
 - (void)appendData:(NSData *)newData {
@@ -83,13 +80,6 @@ static NSString *PBProxyURLHeader = @"X-PB";
     return request;
 }
 
-- (void)dealloc
-{
-    [_request release];
-    [_connection release];
-    [_data release];
-    [super dealloc];
-}
 
 // Instance methods
 
@@ -113,12 +103,11 @@ static NSString *PBProxyURLHeader = @"X-PB";
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     [self.client URLProtocol:self didFailWithError:error];
 	[self setConnection:nil];
-	[_data release]; _data = nil;
+	 _data = nil;
 }
 
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     if( _data != nil ) {
-        [_data release];
         _data = nil;
     }
     _data.length = 0;
@@ -129,7 +118,7 @@ static NSString *PBProxyURLHeader = @"X-PB";
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection {
     [self.client URLProtocolDidFinishLoading:self];
 	[self setConnection:nil];
-	[_data release]; _data = nil;
+	 _data = nil;
 }
 
 
@@ -149,7 +138,6 @@ static NSString *PBProxyURLHeader = @"X-PB";
         NSLog(@"[ProxyURLProtocol] Got response: content-type: %@", [response MIMEType]);
     #endif
     if( _data != nil ) {
-        [_data release];
         _data = nil;
     }
     _data.length = 0;
@@ -185,12 +173,12 @@ static NSString *PBProxyURLHeader = @"X-PB";
 - (void)HTTPConnectionDidFinishLoading:(CKHTTPConnection *)connection {
     [self.client URLProtocolDidFinishLoading:self];
 	[self setConnection:nil];
-	[_data release]; _data = nil;
+	 _data = nil;
 }
 - (void)HTTPConnection:(CKHTTPConnection *)connection didFailWithError:(NSError *)error {
     [self.client URLProtocol:self didFailWithError:error];
 	[self setConnection:nil];
-	[_data release]; _data = nil;
+	 _data = nil;
 }
 
 

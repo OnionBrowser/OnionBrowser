@@ -27,9 +27,9 @@
 @interface CKHTTPConnection : NSObject
 {
     @private
-    id <CKHTTPConnectionDelegate>   _delegate;       // weak ref
+    __weak id <CKHTTPConnectionDelegate>   _delegate;       // weak ref
     
-    __strong CFHTTPMessageRef       _HTTPRequest;
+    CFHTTPMessageRef       _HTTPRequest;
     NSInputStream                   *_HTTPStream;
     BOOL                            _haveReceivedResponse;
     CKHTTPAuthenticationChallenge   *_authenticationChallenge;

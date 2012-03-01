@@ -22,20 +22,15 @@
             wvc = _wvc,
             webViewStarted = _webViewStarted;
 
-- (void)dealloc
-{
-    [_window release];
-    [super dealloc];
-}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     _webViewStarted = NO;
     [[NSURLCache sharedURLCache] removeAllCachedResponses];
     
-    self.torThread = [[TorWrapper alloc] init];
+    _torThread = [[TorWrapper alloc] init];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    [self.torThread start];
+    [_torThread start];
     
     _lastMessageSent = TOR_MSG_NONE;
     
@@ -51,9 +46,9 @@
                                                         userInfo:nil
                                                          repeats:NO];
 
-    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
+    _window.backgroundColor = [UIColor whiteColor];
     
     _wvc = [[WebViewController alloc] init];
     //[wvc.myWebView setBounds:[[UIScreen mainScreen] bounds]];
@@ -162,7 +157,7 @@
     #ifdef DEBUG
         NSLog(@"[tor] Control Port Connected" );
     #endif
-    [_mSocket writeString:@"authenticate\n" encoding:NSUTF8StringEncoding];
+    [_mSocket writeString:@"authenticate onionbrowsertest\n" encoding:NSUTF8StringEncoding];
     _lastMessageSent = TOR_MSG_AUTHENTICATE;
 }
 
@@ -214,7 +209,7 @@
             }
         }
         if ((inprogress_connections+built_connections > 2) && !_webViewStarted) {
-            NSURL *navigationUrl = [[NSURL URLWithString:@"https://check.torproject.org/"] retain];
+            NSURL *navigationUrl = [NSURL URLWithString:@"https://check.torproject.org/"];
             [_wvc loadURL:navigationUrl];
             _webViewStarted = YES;
         }
@@ -237,7 +232,7 @@
     [ULINetSocket ignoreBrokenPipes];
     // Create a new ULINetSocket connected to the host. Since ULINetSocket is asynchronous, the socket is not
     // connected to the host until the delegate method is called.
-    _mSocket = [[ULINetSocket netsocketConnectedToHost:@"127.0.0.1" port:60602] retain];
+    _mSocket = [ULINetSocket netsocketConnectedToHost:@"127.0.0.1" port:60602];
     
     // Schedule the ULINetSocket on the current runloop
     [_mSocket scheduleOnCurrentRunLoop];
@@ -282,7 +277,7 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     [self disableTorCheckLoop];
-    [self.torThread halt_tor];
+    [_torThread halt_tor];
 }
 
 

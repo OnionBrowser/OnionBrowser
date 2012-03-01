@@ -45,26 +45,28 @@ static const CGFloat kAddressHeight = 26.0f;
     self.view = contentView;
     CGRect webFrame = [[UIScreen mainScreen] applicationFrame];
     webFrame.origin.y = 0.0f;
-    self.myWebView = [[UIWebView alloc] initWithFrame:webFrame];
-    self.myWebView.backgroundColor = [UIColor whiteColor];
-    self.myWebView.scalesPageToFit = YES;
-    self.myWebView.contentScaleFactor = 3;
-    self.myWebView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
-    self.myWebView.delegate = self;
-    [self.view addSubview: self.myWebView];
+    _myWebView = [[UIWebView alloc] initWithFrame:webFrame];
+    _myWebView.backgroundColor = [UIColor whiteColor];
+    _myWebView.scalesPageToFit = YES;
+    _myWebView.contentScaleFactor = 3;
+    _myWebView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
+    _myWebView.delegate = self;
+    [self.view addSubview: _myWebView];
 }
 
 -(void)loadURL: (NSURL *)navigationURL {
     // partially covered by the nav bar
-    CGRect webViewFrame = self.myWebView.frame;
+    CGRect webViewFrame = _myWebView.frame;
     webViewFrame.origin.y = kNavBarHeight;
-    webViewFrame.size.height = self.toolbar.frame.origin.y - webViewFrame.origin.y;
-    self.myWebView.frame = webViewFrame;
+    webViewFrame.size.height = _toolbar.frame.origin.y - webViewFrame.origin.y;
+    _myWebView.frame = webViewFrame;
     
-    self.myWebView.delegate = self;
-    self.myWebView.scalesPageToFit = YES;
-    NSURLRequest *req = [[NSURLRequest requestWithURL:navigationURL] retain];
-    [self.myWebView loadRequest:req];
+    _myWebView.delegate = self;
+    _myWebView.scalesPageToFit = YES;
+    NSURLRequest *req = [NSURLRequest requestWithURL:navigationURL];
+    
+    NSLog(@"loading first request");
+    [_myWebView loadRequest:req];
 
     [self updateButtons];
 }
@@ -73,41 +75,39 @@ static const CGFloat kAddressHeight = 26.0f;
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.toolbar = [[UIToolbar alloc] init];
-    self.toolbar.frame = CGRectMake(0, self.view.frame.size.height-44, self.view.frame.size.width, 44);
+    _toolbar = [[UIToolbar alloc] init];
+    _toolbar.frame = CGRectMake(0, self.view.frame.size.height-44, self.view.frame.size.width, 44);
     NSMutableArray *items = [[NSMutableArray alloc] init];
-    UIBarButtonItem *space = [[[UIBarButtonItem alloc]
+    UIBarButtonItem *space = [[UIBarButtonItem alloc]
                                initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                target:nil
-                               action:nil] autorelease];
+                               action:nil];
     
-    self.backButton = [[[UIBarButtonItem alloc]
+    _backButton = [[UIBarButtonItem alloc]
                     initWithBarButtonSystemItem:UIBarButtonSystemItemRewind
-                    target:self.myWebView
-                    action:@selector(goBack)] autorelease];
-    self.stopButton = [[[UIBarButtonItem alloc]
+                    target:_myWebView
+                    action:@selector(goBack)];
+    _stopButton = [[UIBarButtonItem alloc]
                     initWithBarButtonSystemItem:UIBarButtonSystemItemStop
-                    target:self.myWebView
-                    action:@selector(stopLoading)] autorelease];
-    self.refreshButton = [[[UIBarButtonItem alloc]
+                    target:_myWebView
+                    action:@selector(stopLoading)];
+    _refreshButton = [[UIBarButtonItem alloc]
                        initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
-                       target:self.myWebView
-                       action:@selector(reload)] autorelease];
-    self.forwardButton = [[[UIBarButtonItem alloc]
+                       target:_myWebView
+                       action:@selector(reload)];
+    _forwardButton = [[UIBarButtonItem alloc]
                        initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward
-                       target:self.myWebView
-                       action:@selector(goForward)] autorelease];
-    [items addObject:self.backButton];
+                       target:_myWebView
+                       action:@selector(goForward)];
+    [items addObject:_backButton];
     [items addObject:space];
-    [items addObject:self.stopButton];
+    [items addObject:_stopButton];
     [items addObject:space];
-    [items addObject:self.refreshButton];
+    [items addObject:_refreshButton];
     [items addObject:space];
-    [items addObject:self.forwardButton];
-    [self.toolbar setItems:items animated:NO];
-    [items release];
-    [self.view addSubview:self.toolbar];
-    [self.toolbar release];
+    [items addObject:_forwardButton];
+    [_toolbar setItems:items animated:NO];
+    [self.view addSubview:_toolbar];
     
     
     CGRect navBarFrame = self.view.bounds;
@@ -124,8 +124,7 @@ static const CGFloat kAddressHeight = 26.0f;
     label.font = [UIFont systemFontOfSize:12];
     label.textAlignment = UITextAlignmentCenter;
     [navBar addSubview:label];
-    self.pageTitleLabel = label;
-    [label release];
+    _pageTitleLabel = label;
     
     // The address field is the same with as the label and located just below 
     // it with a gap of kSpacer
@@ -142,11 +141,9 @@ static const CGFloat kAddressHeight = 26.0f;
                 action:@selector(loadAddress:event:) 
       forControlEvents:UIControlEventEditingDidEndOnExit];
     [navBar addSubview:address];
-    self.addressField = address;
-    [address release];
+    _addressField = address;
     
     [self.view addSubview:navBar];
-    [navBar release];
 }
 
 
@@ -201,26 +198,26 @@ static const CGFloat kAddressHeight = 26.0f;
 
 - (void)updateButtons
 {
-    self.forwardButton.enabled = self.myWebView.canGoForward;
-    self.backButton.enabled = self.myWebView.canGoBack;
-    self.stopButton.enabled = self.myWebView.loading;
+    _forwardButton.enabled = _myWebView.canGoForward;
+    _backButton.enabled = _myWebView.canGoBack;
+    _stopButton.enabled = _myWebView.loading;
 }
 
 - (void)updateTitle:(UIWebView*)aWebView
 {
     NSString* pageTitle = [aWebView stringByEvaluatingJavaScriptFromString:@"document.title"];
-    self.pageTitleLabel.text = pageTitle; 
+    _pageTitleLabel.text = pageTitle; 
 }
 
 - (void)updateAddress:(NSURLRequest*)request
 {
     NSURL* url = [request mainDocumentURL];
     NSString* absoluteString = [url absoluteString];
-    self.addressField.text = absoluteString;
+    _addressField.text = absoluteString;
 }
 
 - (void)loadAddress:(id)sender event:(UIEvent *)event {
-    NSString* urlString = self.addressField.text;
+    NSString* urlString = _addressField.text;
     NSURL* url = [NSURL URLWithString:urlString];
     if(!url.scheme)
     {
@@ -239,7 +236,6 @@ static const CGFloat kAddressHeight = 26.0f;
                               cancelButtonTitle:@"OK" 
                               otherButtonTitles:nil];
     [alertView show];
-    [alertView release];
 }
 
 
