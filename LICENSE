@@ -20,15 +20,19 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 ###########################################################################
-Demo icon derived from "Onion_817406" by Dubravko Sorić (SoraZG) on Flickr.
+Demo icon derived from the photograph "Onion_817406" by Dubravko Sorić
+(SoraZG) on Flickr.
+
 https://secure.flickr.com/photos/11939863@N08/3794106676/
 
 Photo under the Creative Commons CC-BY 2.0 License:
+
 https://creativecommons.org/licenses/by/2.0/
 
 ###########################################################################
-Contains portions of ConnectionKit (2.0 branch), available under the Modified
-BSD License at:
+Contains code based on portions of ConnectionKit (2.0 branch), available
+under the Modified BSD License at:
+
 http://www.opensource.utr-software.com/
 
 Copyright 2009 Karelia Software. All rights reserved.
@@ -69,9 +73,14 @@ You may obtain a copy of the License at
 http://www.apache.org/licenses/LICENSE-2.0
 
 ###########################################################################
-OpenSSL is not bundled with this application, but is required to compile.
+OpenSSL is not bundled in the source tree of this application, but is required
+to compile the application. NOTE: Binary forms of this application are subject
+to the license and must reproduce the copyright notices and disclaimers
+located in the full license (link below).
+
 OpenSSL is available under a dual license of the (BSD-like) OpenSSL License
-and the (Apache-like) SSLeay License.
+and the (Apache-like) SSLeay License:
+
 Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
 Copyright (c) 1998-2011 The OpenSSL Project.  All rights reserved.
 
@@ -80,8 +89,13 @@ Full license available at:
 http://www.openssl.org/source/license.html
 
 ###########################################################################
-libevent is not bundled with this application, but is required to compile.
-libevent is available under the Modified (3-clause) BSD License
+libevent is not bundled in the source tree of this application, but is required
+to compile the application. NOTE: Binary forms of this application are subject
+to the license and must reproduce the copyright notices and disclaimers
+located in the full license (link below).
+
+libevent is available under the Modified (3-clause) BSD License:
+
 Copyright (c) 2000-2007 Niels Provos <provos@citi.umich.edu>
 Copyright (c) 2007-2010 Niels Provos and Nick Mathewson
 
@@ -90,8 +104,13 @@ Full license available at:
 http://libevent.org/LICENSE.txt
 
 ###########################################################################
-Tor is not bundled with this application, but is required to compile.
-Tor is available under the BSD License
+Tor is not bundled in the source tree of this application, but is required
+to compile the application. NOTE: Binary forms of this application are subject
+to the license and must reproduce the copyright notices and disclaimers
+located in the full license (link below).
+
+Tor is available under the BSD License:
+
 Copyright (c) 2001-2004, Roger Dingledine
 Copyright (c) 2004-2006, Roger Dingledine, Nick Mathewson
 Copyright (c) 2007-2011, The Tor Project, Inc.
