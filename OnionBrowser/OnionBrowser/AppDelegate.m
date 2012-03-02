@@ -56,100 +56,6 @@
     
     [_window makeKeyAndVisible];
     
-    /*
-    // Test A
-    unsigned char *inStrg = (unsigned char*)[@"" cStringUsingEncoding:NSASCIIStringEncoding];
-	unsigned long lngth = 0;
-
-    // Test B
-    NSString *stringB = @"The quick brown fox jumps over the lazy dog";
-    unsigned char *inStrgB = (unsigned char*)[stringB cStringUsingEncoding:NSASCIIStringEncoding];
-	unsigned long lngthB = [stringB length];
-	
-    // Initialize a sha2 object, a counter, and a result array.
-    SHA256_CTX sha256;
-	unsigned char result256[SHA256_DIGEST_LENGTH];
-    SHA512_CTX sha512;
-	unsigned char result512[SHA512_DIGEST_LENGTH];
-    
-    NSLog(@"RUNNING TIMER OF 300,000 SHA256,SHA512,SHA256,SHA512 LOOPS");
-    NSTimeInterval start = [NSDate timeIntervalSinceReferenceDate];
-    unsigned int z;
-    for (z=0; z<300000; z++) {
-        // Process first test
-        SHA256_Init(&sha256);
-        SHA256_Update(&sha256, inStrg, lngth);
-        SHA256_Final(result256, &sha256);
-
-        // Process first test
-        SHA512_Init(&sha512);
-        SHA512_Update(&sha512, inStrg, lngth);
-        SHA512_Final(result512, &sha512);
-        
-        // Process second test
-        SHA256_Init(&sha256);
-        SHA256_Update(&sha256, inStrgB, lngthB);
-        SHA256_Final(result256, &sha256);
-
-        // Process second test
-        SHA512_Init(&sha512);
-        SHA512_Update(&sha512, inStrgB, lngthB);
-        SHA512_Final(result512, &sha512);
-    }
-    NSTimeInterval duration = [NSDate timeIntervalSinceReferenceDate] - start;
-    NSLog(@"TIMER: %f", duration);
-    NSLog(@"");
-    
-    NSLog(@"====================");
-    NSLog(@"TEST VECTORS");
-    NSLog(@"====================");
-    unsigned int i;
-    NSMutableString *outStrg = [NSMutableString string];
-    SHA256_Init(&sha256);
-    SHA256_Update(&sha256, inStrg, lngth);
-    SHA256_Final(result256, &sha256);
-    for(i = 0; i < SHA256_DIGEST_LENGTH; i++) {
-        [outStrg appendFormat:@"%02x", result256[i]];
-    }
-    NSLog(@"''");
-    NSLog(@"out256   : %@", outStrg);
-    NSLog(@"should be: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855");
-    
-    NSMutableString *outStrgB = [NSMutableString string];
-    SHA512_Init(&sha512);
-    SHA512_Update(&sha512, inStrg, lngth);
-    SHA512_Final(result512, &sha512);
-    for(i = 0; i < SHA512_DIGEST_LENGTH; i++) {
-        [outStrgB appendFormat:@"%02x", result512[i]];
-    }
-    NSLog(@"out512   : %@", outStrgB);
-    NSLog(@"should be: cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e");
-    
-    NSMutableString *outStrgC = [NSMutableString string];
-    SHA256_Init(&sha256);
-    SHA256_Update(&sha256, inStrgB, lngthB);
-    SHA256_Final(result256, &sha256);
-    for(i = 0; i < SHA256_DIGEST_LENGTH; i++) {
-        [outStrgC appendFormat:@"%02x", result256[i]];
-    }
-    NSLog(@"");
-    NSLog(@"'The quick brown fox jumps over the lazy dog'");
-    NSLog(@"out256   : %@", outStrgC);
-    NSLog(@"should be: d7a8fbb307d7809469ca9abcb0082e4f8d5651e46d3cdb762d02d0bf37c9e592");
-    
-    NSMutableString *outStrgD = [NSMutableString string];
-    SHA512_Init(&sha512);
-    SHA512_Update(&sha512, inStrgB, lngthB);
-    SHA512_Final(result512, &sha512);
-    for(i = 0; i < SHA512_DIGEST_LENGTH; i++) {
-        [outStrgD appendFormat:@"%02x", result512[i]];
-    }
-    NSLog(@"out512   : %@", outStrgD);
-    NSLog(@"should be: 07e547d9586f6a73f73fbac0435ed76951218fb7d0c8d788a309d785436bbb642e93a252a954f23912547d1e8a3b5ed6e1bfd7097821233fa0538f3db854fee6");
-    NSLog(@"");
-    NSLog(@"View https://en.wikipedia.org/wiki/SHA-2 for more info");
-     */
-    
     return YES;
 }
 
@@ -184,7 +90,7 @@
                 NSLog(@"[tor] Control Port Authenticated Successfully" );
             #endif
             [_mSocket writeString:@"getinfo circuit-status\n\r" encoding:NSUTF8StringEncoding];
-            _torCheckLoopTimer = [NSTimer scheduledTimerWithTimeInterval:2.5f
+            _torCheckLoopTimer = [NSTimer scheduledTimerWithTimeInterval:0.1f
                                                                   target:self
                                                                 selector:@selector(checkTor)
                                                                 userInfo:nil
@@ -206,12 +112,13 @@
                 inprogress_connections += 1;
             }
         }
-        if ((inprogress_connections+built_connections > 2) && !_webViewStarted) {
+//        if ((inprogress_connections+built_connections > 1) && !_webViewStarted) {
+        if ((built_connections > 0) && !_webViewStarted) {
             NSURL *navigationUrl = [NSURL URLWithString:@"https://check.torproject.org/"];
             [_wvc loadURL:navigationUrl];
             _webViewStarted = YES;
         }
-        _torCheckLoopTimer = [NSTimer scheduledTimerWithTimeInterval:2.5f
+        _torCheckLoopTimer = [NSTimer scheduledTimerWithTimeInterval:0.1f
                                                               target:self
                                                             selector:@selector(checkTor)
                                                             userInfo:nil
@@ -277,35 +184,5 @@
     [self disableTorCheckLoop];
     [_torThread halt_tor];
 }
-
-
-/*
-- (void) gameLoop {
-    while (running)
-    {
-        NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-        [self renderFrame];
-        [pool release];
-    }
-}
-
-- (void) startLoop
-{
-    running = YES;
-#ifdef THREADED_ANIMATION
-    [NSThread detachNewThreadSelector:@selector(gameLoop)
-                             toTarget:self withObject:nil];
-#else
-    timer = [NSTimer scheduledTimerWithTimeInterval:1.0f/60
-                                             target:self selector:@selector(renderFrame) userInfo:nil repeats:YES];
-#endif
-}
-
-- (void) stopLoop
-{
-    [timer invalidate];
-    running = NO;
-}
-*/
 
 @end

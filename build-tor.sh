@@ -194,6 +194,8 @@ for ARCH in ${ARCHS}; do
     fi
 done
 
+mkdir ${OUTPUTDIR}/share
+cp "${SRCDIR}/tor-${VERSION}/src/config/geoip" ${OUTPUTDIR}/share
 
 ####################
 
