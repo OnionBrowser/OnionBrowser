@@ -9,7 +9,7 @@
 #import "ProxyURLProtocol.h"
 #import <Foundation/NSURLProtocol.h>
 
-static NSString *PBProxyURLHeader = @"X-PB";
+//static NSString *PBProxyURLHeader = @"X-PB";
 
 @implementation ProxyURLProtocol
 
@@ -30,7 +30,7 @@ static NSString *PBProxyURLHeader = @"X-PB";
               client:(id <NSURLProtocolClient>)client {
     // Modify request
     NSMutableURLRequest *myRequest = [request mutableCopy];
-    [myRequest setValue:@"" forHTTPHeaderField:PBProxyURLHeader];
+    //[myRequest setValue:@"" forHTTPHeaderField:PBProxyURLHeader];
     
     self = [super initWithRequest:myRequest
                    cachedResponse:cachedResponse
@@ -58,9 +58,7 @@ static NSString *PBProxyURLHeader = @"X-PB";
 - (void)appendData:(NSData *)newData {
     if( _data == nil ) {
         _data = [[NSMutableData alloc] initWithData:newData];
-    }
-    else
-    {
+    } else {
         [_data appendData:newData];
     }
 }
@@ -68,12 +66,20 @@ static NSString *PBProxyURLHeader = @"X-PB";
 // Class methods
 
 + (BOOL)canInitWithRequest:(NSURLRequest *)request {
-    if ( ([[[request URL] scheme] isEqualToString:@"http"] || [[[request URL] scheme] isEqualToString:@"https"]) &&
-        [request valueForHTTPHeaderField:PBProxyURLHeader] == nil )
-    {
+    if ( ([[[request URL] scheme] isEqualToString:@"http"] || [[[request URL] scheme] isEqualToString:@"https"])) {
+        /*
+        if ([request valueForHTTPHeaderField:PBProxyURLHeader] == nil) {
+            NSLog(@"1");
+            return YES;
+        } else {
+            NSLog(@"2");
+            return NO;
+        }
+        */
         return YES;
+    } else {
+        return NO;
     }
-    return NO;
 }
 
 + (NSURLRequest *)canonicalRequestForRequest:(NSURLRequest *)request {
@@ -95,6 +101,12 @@ static NSString *PBProxyURLHeader = @"X-PB";
 #pragma mark - 
 #pragma mark NSURLConnectionDelegate
 
+- (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)response {
+    if (response != nil) {
+        [[self client] URLProtocol:self wasRedirectedToRequest:request redirectResponse:response];
+    }
+    return request;
+}
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     [self.client URLProtocol:self didLoadData:data];
     [self appendData:data];
@@ -132,15 +144,25 @@ static NSString *PBProxyURLHeader = @"X-PB";
 - (void)HTTPConnection:(CKHTTPConnection *)connection didCancelAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
     [self.client URLProtocol:self didCancelAuthenticationChallenge:challenge];    
 }
-
 - (void)HTTPConnection:(CKHTTPConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response {
     #ifdef DEBUG
-        NSLog(@"[ProxyURLProtocol] Got response: content-type: %@", [response MIMEType]);
+        NSLog(@"[ProxyURLProtocol] Got response %d: content-type: %@", [response statusCode], [response MIMEType]);
     #endif
     if( _data != nil ) {
         _data = nil;
     }
     _data.length = 0;
+    
+    if ((response.statusCode == 301)||(response.statusCode == 302)||(response.statusCode == 307)) {
+        NSString *newURL = [[response allHeaderFields] objectForKey:@"Location"];
+        #ifdef DEBUG
+            NSLog(@"[ProxyURLProtocol] Got %d redirect from %@ to %@", response.statusCode, _request.URL, newURL);
+        #endif
+        NSMutableURLRequest *newRequest = [_request mutableCopy];
+        newRequest.URL = [NSURL URLWithString:newURL relativeToURL:_request.URL];
+        _request = newRequest;
+        [[self client] URLProtocol:self wasRedirectedToRequest:_request redirectResponse:response];
+    }
     
     // For some reason, passing the response directly doesn't always properly
     // set the separate mimetype and content-encoding bits, so attempt to parse

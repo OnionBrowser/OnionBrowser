@@ -182,7 +182,7 @@ static const CGFloat kAddressHeight = 26.0f;
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 
     [self updateButtons];
-    [self informError:error];
+    //[self informError:error];
     #ifdef DEBUG
         NSString* errorString = [NSString stringWithFormat:@"error %@",
                                  error.localizedDescription];
@@ -227,8 +227,7 @@ static const CGFloat kAddressHeight = 26.0f;
     [self loadURL:url];
 }
 
-- (void)informError:(NSError *)error
-{
+- (void)informError:(NSError *)error {
     NSString* localizedDescription = [error localizedDescription];
     UIAlertView* alertView = [[UIAlertView alloc] 
                               initWithTitle:@"Error" 
