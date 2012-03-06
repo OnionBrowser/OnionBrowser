@@ -182,7 +182,7 @@ static const CGFloat kAddressHeight = 26.0f;
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 
     [self updateButtons];
-    //[self informError:error];
+    [self informError:error];
     #ifdef DEBUG
         NSString* errorString = [NSString stringWithFormat:@"error %@",
                                  error.localizedDescription];
@@ -228,13 +228,25 @@ static const CGFloat kAddressHeight = 26.0f;
 }
 
 - (void)informError:(NSError *)error {
-    NSString* localizedDescription = [error localizedDescription];
-    UIAlertView* alertView = [[UIAlertView alloc] 
-                              initWithTitle:@"Error" 
-                              message:localizedDescription delegate:nil 
-                              cancelButtonTitle:@"OK" 
-                              otherButtonTitles:nil];
-    [alertView show];
+    if ([error.domain isEqualToString:(NSString *)kCFErrorDomainCFNetwork]) {
+        NSString* errorDescription;
+        
+        if (error.code == kCFSOCKS5ErrorBadState) {
+            errorDescription = @"Could not connect to the server. Either the domain name is incorrect, the server is inaccessible, or the Tor circuit was broken.";
+        } else if (error.code == kCFHostErrorHostNotFound) {
+            errorDescription = @"The server could not be found";
+        } else {
+            errorDescription = [NSString stringWithFormat:@"An unknown error occurred: %@",
+                                error.localizedDescription];
+        }
+        UIAlertView* alertView = [[UIAlertView alloc] 
+                                  initWithTitle:@"Cannot Open Page" 
+                                  message:errorDescription delegate:nil 
+                                  cancelButtonTitle:@"OK" 
+                                  otherButtonTitles:nil];
+        [alertView show];
+        
+    }
 }
 
 
