@@ -25,8 +25,6 @@ UseEntryGuards 1
 TunnelDirConns 1
 PreferTunneledDirConns 1
 
-#NumEntryGuards 6  #default 3
-
 # debug, info, notice, warn, err
 SafeLogging relay
 Log warn stderr
@@ -35,17 +33,3 @@ TestSocks 0
 WarnUnsafeSocks 0  #default 1 (we don't care on iOS)
 
 EntryNodes {us}
-#ExitNodes {us},{ca},{mx},{gb},{de},{fr},{jp},{au}
-
-#UseBridges 1
-# US/CA
-#Bridge 23.20.19.166:443    3DA12A24CE0AA3F7E55EB92622A80AA04DA5B381 # US: AWS USEast10
-#Bridge 68.169.35.103:443   6A5B9235E61E1470C72EE76F4BC0F5AAD35E3A0B # US: UT (WestHost)
-#Bridge 97.86.123.95:443    90855B83252D4334F7664DF5C5C816C462958E48 # US: MN/WI (Charter)
-#Bridge 97.89.36.202:443    D8BDAD9664C481E53DCF6489121983D3C3576B07 # US: VA/TN (Charter)
-#Bridge 97.116.23.74:443    6BD48A36CBC706AB152FD23519CC1B835A16A5FB # US: MN (Qwest)
-#Bridge 107.22.155.157:443  FFD05B4B9AFC10106F20F97D0B6C48D14A4975C5 # US: AWS USEast8
-#Bridge 128.30.30.25:9001   F26368255D79AD10C5D307903D265FE7AD16E7D2 # US: MA (MIT)
-#Bridge 152.7.0.214:443     2793B2AB2CDC8C961F1822BC537F996AEFB513F5 # US: NC (NC State Univ.)
-# INT
-#Bridge 209.177.151.163:443 1CEBCFBD7B8ABC5911A61B2D442E748086F82A82 # registed in Panama but very fast from US (possible US server)

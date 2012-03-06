@@ -135,6 +135,8 @@ static const CGFloat kAddressHeight = 26.0f;
     address.borderStyle = UITextBorderStyleRoundedRect;
     address.font = [UIFont systemFontOfSize:17];
     address.keyboardType = UIKeyboardTypeURL;
+    address.returnKeyType = UIReturnKeyGo;
+    address.autocorrectionType = UITextAutocorrectionTypeNo;
     address.autocapitalizationType = UITextAutocapitalizationTypeNone;
     address.clearButtonMode = UITextFieldViewModeWhileEditing;
     [address addTarget:self 
