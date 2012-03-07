@@ -21,8 +21,11 @@
 @property (nonatomic) UITextField* addressField;
 @property (nonatomic) NSString *currentURL;
 
+@property (nonatomic) NSString *torStatus;
+
 - (void)loadURL: (NSURL *)navigationURL;
 - (void)addressBarCancel;
+- (void)renderTorStatus: (NSString *)statusLine;
 
 - (void)updateButtons;
 - (void)updateTitle:(UIWebView*)aWebView;

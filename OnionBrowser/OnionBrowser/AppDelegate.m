@@ -25,6 +25,17 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    // Override point for customization after application launch.
+    _window.backgroundColor = [UIColor whiteColor];
+    
+    _wvc = [[WebViewController alloc] init];
+    [_window addSubview:_wvc.view];
+    [_window makeKeyAndVisible];
+    
+    
+    
+    
     _webViewStarted = NO;
     [[NSURLCache sharedURLCache] removeAllCachedResponses];
     
@@ -40,21 +51,11 @@
         [storage deleteCookie:cookie];
     }
     
-    _torCheckLoopTimer = [NSTimer scheduledTimerWithTimeInterval:0.1f
+    _torCheckLoopTimer = [NSTimer scheduledTimerWithTimeInterval:0.15f
                                                           target:self
                                                         selector:@selector(activateTorCheckLoop)
                                                         userInfo:nil
                                                          repeats:NO];
-
-    _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    _window.backgroundColor = [UIColor whiteColor];
-    
-    _wvc = [[WebViewController alloc] init];
-    //[wvc.myWebView setBounds:[[UIScreen mainScreen] bounds]];
-    [_window addSubview:_wvc.view];
-    
-    [_window makeKeyAndVisible];
     
     return YES;
 }
@@ -72,7 +73,7 @@
     //[_mSocket writeString:@"getinfo circuit-status\n\r" encoding:NSUTF8StringEncoding];
     //[_mSocket writeString:@"setevents circ" encoding:NSUTF8StringEncoding];
     //[_mSocket writeString:@"setevents circ status_general\n" encoding:NSUTF8StringEncoding];
-    [_mSocket writeString:@"getinfo circuit-status\n" encoding:NSUTF8StringEncoding];
+    [_mSocket writeString:@"getinfo status/bootstrap-phase\n" encoding:NSUTF8StringEncoding];
     _lastMessageSent = TOR_MSG_GETSTATUS;
 }
 
@@ -85,12 +86,12 @@
 - (void)netsocket:(ULINetSocket*)inNetSocket dataAvailable:(unsigned)inAmount {
     NSString *msgIn = [_mSocket readString:NSUTF8StringEncoding];
     if (_lastMessageSent == TOR_MSG_AUTHENTICATE) {
-        if ([msgIn hasPrefix:@"250 OK"]) {
+        if ([msgIn hasPrefix:@"250"]) {
             #ifdef DEBUG
                 NSLog(@"[tor] Control Port Authenticated Successfully" );
             #endif
-            [_mSocket writeString:@"getinfo circuit-status\n\r" encoding:NSUTF8StringEncoding];
-            _torCheckLoopTimer = [NSTimer scheduledTimerWithTimeInterval:0.1f
+            [_mSocket writeString:@"getinfo status/bootstrap-phase\n\r" encoding:NSUTF8StringEncoding];
+            _torCheckLoopTimer = [NSTimer scheduledTimerWithTimeInterval:0.15f
                                                                   target:self
                                                                 selector:@selector(checkTor)
                                                                 userInfo:nil
@@ -99,30 +100,19 @@
             NSLog(@"[tor] Control Port: Got unknown post-authenticate message %@", msgIn);
         }
     } else if (_lastMessageSent == TOR_MSG_GETSTATUS) {
-        NSUInteger built_connections = 0;
-        NSUInteger inprogress_connections = 0;
-        NSArray *connections = [msgIn componentsSeparatedByString:@"\n"];
-        for (int i=0; i<[connections count]; i++) {
-            NSString *line = [connections objectAtIndex:i];
-            NSArray *line_bits = [line componentsSeparatedByString:@" "];
-            if (([line_bits count] > 2) && ([@"BUILT" isEqualToString:[line_bits objectAtIndex:1]])) {
-                built_connections += 1;
-            }
-            if (([line_bits count] > 2) && ([@"EXTENDED" isEqualToString:[line_bits objectAtIndex:1]])) {
-                inprogress_connections += 1;
-            }
-        }
-//        if ((inprogress_connections+built_connections > 1) && !_webViewStarted) {
-        if ((built_connections > 0) && !_webViewStarted) {
+        if ([msgIn rangeOfString:@"BOOTSTRAP PROGRESS=100"].location != NSNotFound) {
             NSURL *navigationUrl = [NSURL URLWithString:@"https://check.torproject.org/"];
             [_wvc loadURL:navigationUrl];
             _webViewStarted = YES;
+        } else {
+            [_wvc renderTorStatus:msgIn];
+            //NSLog(@"%@", msgIn);
+            _torCheckLoopTimer = [NSTimer scheduledTimerWithTimeInterval:0.15f
+                                                                  target:self
+                                                                selector:@selector(checkTor)
+                                                                userInfo:nil
+                                                                 repeats:NO];
         }
-        _torCheckLoopTimer = [NSTimer scheduledTimerWithTimeInterval:0.1f
-                                                              target:self
-                                                            selector:@selector(checkTor)
-                                                            userInfo:nil
-                                                             repeats:NO];
     }
 }
 

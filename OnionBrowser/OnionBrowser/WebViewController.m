@@ -19,6 +19,7 @@ static const CGFloat kAddressHeight = 26.0f;
 static const NSInteger kNavBarTag = 1000;
 static const NSInteger kAddressFieldTag = 1001;
 static const NSInteger kAddressCancelButtonTag = 1002;
+static const NSInteger kLoadingStatusTag = 1003;
 
 @interface WebViewController ()
 
@@ -34,7 +35,8 @@ static const NSInteger kAddressCancelButtonTag = 1002;
             stopButton = _stopButton,
             pageTitleLabel = _pageTitleLabel,
             addressField = _addressField,
-            currentURL = _currentURL;
+            currentURL = _currentURL,
+            torStatus = _torStatus;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -59,7 +61,37 @@ static const NSInteger kAddressCancelButtonTag = 1002;
     [self.view addSubview: _myWebView];
 }
 
+- (void)renderTorStatus: (NSString *)statusLine {
+    UILabel *loadingStatus = (UILabel *)[self.view viewWithTag:kLoadingStatusTag];
+                                                                       
+    _torStatus = [NSString stringWithFormat:@"%@\n%@",
+                  _torStatus, statusLine];
+    NSRange progress_loc = [statusLine rangeOfString:@"BOOTSTRAP PROGRESS="];
+    NSRange progress_r = {
+        progress_loc.location+progress_loc.length,
+        2
+    };
+    NSString *progress_str = [statusLine substringWithRange:progress_r];
+
+    NSRange summary_loc = [statusLine rangeOfString:@" SUMMARY="];
+    NSString *summary_str = [statusLine substringFromIndex:summary_loc.location+summary_loc.length+1];
+    NSRange summary_loc2 = [summary_str rangeOfString:@"\""];
+    summary_str = [summary_str substringToIndex:summary_loc2.location];
+    //NSLog(@"%@", summary_str);
+
+    NSString *status = [NSString stringWithFormat:@"Connecting to Tor network...\n%@%%\n%@",
+                            progress_str,
+                            summary_str];
+    loadingStatus.text = status;
+   
+}
+
 -(void)loadURL: (NSURL *)navigationURL {
+    UIView *loadingStatus = [self.view viewWithTag:kLoadingStatusTag];
+    if (loadingStatus != nil) {
+        [loadingStatus removeFromSuperview];
+    }
+
     // partially covered by the nav bar
     CGRect webViewFrame = _myWebView.frame;
     webViewFrame.origin.y = kNavBarHeight;
@@ -155,6 +187,20 @@ static const NSInteger kAddressCancelButtonTag = 1002;
     _addressField = address;
     
     [self.view addSubview:navBar];
+    
+    CGRect screenFrame = [[UIScreen mainScreen] applicationFrame];
+    UILabel *loadingStatus = [[UILabel alloc] initWithFrame:CGRectMake(0,
+                                                                       kNavBarHeight,
+                                                                       screenFrame.size.width,
+                                                                       screenFrame.size.height-kNavBarHeight-44)];
+    loadingStatus.tag = kLoadingStatusTag;
+    loadingStatus.numberOfLines = 0;
+    loadingStatus.font = [UIFont fontWithName:@"Helvetica" size:(20.0)];
+    loadingStatus.lineBreakMode = UILineBreakModeWordWrap;
+    loadingStatus.textAlignment =  UITextAlignmentLeft;
+    [self.view addSubview:loadingStatus];
+    
+
 }
 
 
