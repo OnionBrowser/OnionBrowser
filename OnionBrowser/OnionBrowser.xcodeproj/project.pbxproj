@@ -126,11 +126,11 @@
 		696EBD6814F7877900B81BC9 = {
 			isa = PBXGroup;
 			children = (
-				69737A9B14FCD20600775275 /* Resources */,
 				696F9EB114F8DD5300BC5FDC /* ThirdParty */,
 				69BB0A4C14F8D31800E7E909 /* Tor */,
 				696EBD7D14F7877900B81BC9 /* OnionBrowser */,
 				696EBD7614F7877900B81BC9 /* Frameworks */,
+				69737A9B14FCD20600775275 /* Resources */,
 				696EBD7414F7877900B81BC9 /* Products */,
 			);
 			sourceTree = "<group>";

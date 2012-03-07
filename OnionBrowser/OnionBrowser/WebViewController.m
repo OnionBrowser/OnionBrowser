@@ -16,6 +16,10 @@ static const CGFloat kLabelFontSize = 12.0f;
 static const CGFloat kAddressHeight = 26.0f;
 
 
+static const NSInteger kNavBarTag = 1000;
+static const NSInteger kAddressFieldTag = 1001;
+static const NSInteger kAddressCancelButtonTag = 1002;
+
 @interface WebViewController ()
 
 @end
@@ -29,7 +33,8 @@ static const CGFloat kAddressHeight = 26.0f;
             refreshButton = _refreshButton,
             stopButton = _stopButton,
             pageTitleLabel = _pageTitleLabel,
-            addressField = _addressField;
+            addressField = _addressField,
+            currentURL = _currentURL;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -113,13 +118,14 @@ static const CGFloat kAddressHeight = 26.0f;
     CGRect navBarFrame = self.view.bounds;
     navBarFrame.size.height = kNavBarHeight;
     UINavigationBar *navBar = [[UINavigationBar alloc] initWithFrame:navBarFrame];
+    navBar.tag = kNavBarTag;
     navBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     
     CGRect labelFrame = CGRectMake(kMargin, kSpacer, 
                                    navBar.bounds.size.width - 2*kMargin, kLabelHeight);
     UILabel *label = [[UILabel alloc] initWithFrame:labelFrame];
     label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    label.text = @"Page Title";
+    label.text = @"";
     label.backgroundColor = [UIColor clearColor];
     label.font = [UIFont systemFontOfSize:12];
     label.textAlignment = UITextAlignmentCenter;
@@ -131,6 +137,7 @@ static const CGFloat kAddressHeight = 26.0f;
     CGRect addressFrame = CGRectMake(kMargin, kSpacer*2.0 + kLabelHeight, 
                                      labelFrame.size.width, kAddressHeight);
     UITextField *address = [[UITextField alloc] initWithFrame:addressFrame];
+    
     address.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     address.borderStyle = UITextBorderStyleRoundedRect;
     address.font = [UIFont systemFontOfSize:17];
@@ -138,7 +145,9 @@ static const CGFloat kAddressHeight = 26.0f;
     address.returnKeyType = UIReturnKeyGo;
     address.autocorrectionType = UITextAutocorrectionTypeNo;
     address.autocapitalizationType = UITextAutocapitalizationTypeNone;
-    address.clearButtonMode = UITextFieldViewModeWhileEditing;
+    address.clearButtonMode = UITextFieldViewModeNever;
+    address.delegate = self;
+    address.tag = kAddressFieldTag;
     [address addTarget:self 
                 action:@selector(loadAddress:event:) 
       forControlEvents:UIControlEventEditingDidEndOnExit];
@@ -193,7 +202,80 @@ static const CGFloat kAddressHeight = 26.0f;
 }
 
 
+# pragma mark -
 
+- (void)addressBarCancel {
+    _addressField.text = _currentURL;
+    [_addressField resignFirstResponder];
+}
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+	[textField resignFirstResponder];
+	return YES;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    UINavigationBar *navBar = (UINavigationBar *)[self.view viewWithTag:kNavBarTag];
+        
+    UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
+    [cancelButton setTitle:@"Cancel" forState:UIControlStateHighlighted];
+    [cancelButton setFrame:CGRectMake(navBar.bounds.size.width,
+                                      kSpacer*2.0 + kLabelHeight,
+                                      75 - 2*kMargin,
+                                      kAddressHeight)];
+    [cancelButton setHidden:NO];
+    [cancelButton setEnabled:YES];
+    [cancelButton addTarget:self action:@selector(addressBarCancel) forControlEvents:UIControlEventTouchUpInside];
+    cancelButton.tag = kAddressCancelButtonTag;
+
+    
+    
+    [UIView setAnimationsEnabled:YES];
+    [UIView animateWithDuration:0.2
+                          delay:0.0
+                        options:UIViewAnimationCurveEaseInOut
+                     animations:^{
+                         _addressField.frame = CGRectMake(kMargin,
+                                                          kSpacer*2.0 + kLabelHeight,
+                                                          navBar.bounds.size.width - 2*kMargin - 75,
+                                                          kAddressHeight);
+                         
+                         [cancelButton setFrame:CGRectMake(navBar.bounds.size.width - 75,
+                                                           kSpacer*2.0 + kLabelHeight,
+                                                           75 - kMargin,
+                                                           kAddressHeight)];
+                         [navBar addSubview:cancelButton];
+
+                     }
+                     completion:^(BOOL finished) {
+                         _addressField.clearButtonMode = UITextFieldViewModeAlways;
+                     }]; 
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    UINavigationBar *navBar = (UINavigationBar *)[self.view viewWithTag:kNavBarTag];
+    UIButton *cancelButton = (UIButton *)[self.view viewWithTag:kAddressCancelButtonTag];
+
+    _addressField.clearButtonMode = UITextFieldViewModeNever;
+    
+    [UIView setAnimationsEnabled:YES];
+    [UIView animateWithDuration:0.2
+                          delay:0.0
+                        options:UIViewAnimationCurveEaseInOut
+                     animations:^{
+                         _addressField.frame = CGRectMake(kMargin,
+                                                          kSpacer*2.0 + kLabelHeight,
+                                                          navBar.bounds.size.width - 2*kMargin,
+                                                          kAddressHeight);
+                         [cancelButton setFrame:CGRectMake(navBar.bounds.size.width,
+                                                           kSpacer*2.0 + kLabelHeight,
+                                                           75 - kMargin,
+                                                           kAddressHeight)];
+                     }
+                     completion:^(BOOL finished) {
+                         [cancelButton removeFromSuperview];
+                     }]; 
+}
 # pragma mark -
 
 
@@ -215,7 +297,12 @@ static const CGFloat kAddressHeight = 26.0f;
 {
     NSURL* url = [request mainDocumentURL];
     NSString* absoluteString = [url absoluteString];
-    _addressField.text = absoluteString;
+    if (![absoluteString isEqualToString:_currentURL]){
+        _currentURL = absoluteString;
+        if (!_addressField.isEditing) {
+            _addressField.text = absoluteString;
+        }
+    }
 }
 
 - (void)loadAddress:(id)sender event:(UIEvent *)event {
@@ -223,9 +310,10 @@ static const CGFloat kAddressHeight = 26.0f;
     NSURL* url = [NSURL URLWithString:urlString];
     if(!url.scheme)
     {
-        NSString* modifiedURLString = [NSString stringWithFormat:@"http://%@", urlString];
-        url = [NSURL URLWithString:modifiedURLString];
+        NSString *absUrl = [NSString stringWithFormat:@"http://%@", urlString];
+        url = [NSURL URLWithString:absUrl];
     }
+    _currentURL = [url absoluteString];
     [self loadURL:url];
 }
 

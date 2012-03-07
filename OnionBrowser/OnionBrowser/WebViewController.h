@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WebViewController : UIViewController <UIWebViewDelegate> {
+@interface WebViewController : UIViewController <UIWebViewDelegate, UITextFieldDelegate> {
 }
 
 @property (strong, nonatomic) UIWebView *myWebView;
@@ -19,8 +19,10 @@
 @property (nonatomic) UIBarButtonItem* stopButton;
 @property (nonatomic) UILabel* pageTitleLabel;
 @property (nonatomic) UITextField* addressField;
+@property (nonatomic) NSString *currentURL;
 
 - (void)loadURL: (NSURL *)navigationURL;
+- (void)addressBarCancel;
 
 - (void)updateButtons;
 - (void)updateTitle:(UIWebView*)aWebView;
