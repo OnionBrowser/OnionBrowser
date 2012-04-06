@@ -101,7 +101,7 @@
         }
     } else if (_lastMessageSent == TOR_MSG_GETSTATUS) {
         if ([msgIn rangeOfString:@"BOOTSTRAP PROGRESS=100"].location != NSNotFound) {
-            NSURL *navigationUrl = [NSURL URLWithString:@"https://check.torproject.org/"];
+            NSURL *navigationUrl = [NSURL URLWithString:@"https://3g2upl4pq6kufc4m.onion/lite/"];
             [_wvc loadURL:navigationUrl];
             _webViewStarted = YES;
         } else {
