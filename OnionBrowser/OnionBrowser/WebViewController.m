@@ -77,7 +77,6 @@ static const NSInteger kLoadingStatusTag = 1003;
     NSString *summary_str = [statusLine substringFromIndex:summary_loc.location+summary_loc.length+1];
     NSRange summary_loc2 = [summary_str rangeOfString:@"\""];
     summary_str = [summary_str substringToIndex:summary_loc2.location];
-    //NSLog(@"%@", summary_str);
 
     NSString *status = [NSString stringWithFormat:@"Connecting to Tor network...\n%@%%\n%@",
                             progress_str,
@@ -102,7 +101,6 @@ static const NSInteger kLoadingStatusTag = 1003;
     _myWebView.scalesPageToFit = YES;
     NSURLRequest *req = [NSURLRequest requestWithURL:navigationURL];
     
-    NSLog(@"loading first request");
     [_myWebView loadRequest:req];
 
     [self updateButtons];
@@ -114,6 +112,8 @@ static const NSInteger kLoadingStatusTag = 1003;
 
     _toolbar = [[UIToolbar alloc] init];
     _toolbar.frame = CGRectMake(0, self.view.frame.size.height-44, self.view.frame.size.width, 44);
+    _toolbar.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
+    _toolbar.contentMode = UIViewContentModeBottom;
     NSMutableArray *items = [[NSMutableArray alloc] init];
     UIBarButtonItem *space = [[UIBarButtonItem alloc]
                                initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
@@ -182,7 +182,7 @@ static const NSInteger kLoadingStatusTag = 1003;
     address.tag = kAddressFieldTag;
     [address addTarget:self 
                 action:@selector(loadAddress:event:) 
-      forControlEvents:UIControlEventEditingDidEndOnExit];
+      forControlEvents:UIControlEventEditingDidEndOnExit|UIControlEventEditingDidEnd];
     [navBar addSubview:address];
     _addressField = address;
     
@@ -212,7 +212,10 @@ static const NSInteger kLoadingStatusTag = 1003;
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    if (IS_IPAD)
+        return YES;
+    else
+        return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
 # pragma mark -
