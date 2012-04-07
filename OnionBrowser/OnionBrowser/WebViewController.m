@@ -348,7 +348,7 @@ static const NSInteger kLoadingStatusTag = 1003;
     NSString* absoluteString = [url absoluteString];
     if (![absoluteString isEqualToString:_currentURL]){
         _currentURL = absoluteString;
-        if (!_addressField.isEditing) {
+        if ((!_addressField.isEditing) && ([_currentURL rangeOfString:@"file://"].location != 0)) {
             _addressField.text = absoluteString;
         }
     }

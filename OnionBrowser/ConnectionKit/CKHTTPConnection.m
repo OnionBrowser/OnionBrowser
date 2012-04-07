@@ -145,7 +145,7 @@
                                        nil];
     CFReadStreamSetProperty((__bridge CFReadStreamRef)_HTTPStream, kCFStreamPropertySOCKSProxy, (__bridge CFTypeRef)proxyToUse);
     
-    [_HTTPStream setDelegate:self];
+    [_HTTPStream setDelegate:(id<NSStreamDelegate>)self];
     [_HTTPStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     [_HTTPStream open];
 }

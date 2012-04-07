@@ -101,8 +101,13 @@
         }
     } else if (_lastMessageSent == TOR_MSG_GETSTATUS) {
         if ([msgIn rangeOfString:@"BOOTSTRAP PROGRESS=100"].location != NSNotFound) {
-            NSURL *navigationUrl = [NSURL URLWithString:@"https://3g2upl4pq6kufc4m.onion/lite/"];
-            [_wvc loadURL:navigationUrl];
+            //NSURL *navigationUrl = [NSURL URLWithString:@"https://3g2upl4pq6kufc4m.onion/lite/"];
+            //[_wvc loadURL:navigationUrl];
+            NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
+            resourcePath = [resourcePath stringByReplacingOccurrencesOfString:@"/" withString:@"//"];
+            resourcePath = [resourcePath stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+            NSLog(@"%@", [NSString stringWithFormat:@"file:/%@//startup.html",resourcePath]);
+            [_wvc loadURL:[NSURL URLWithString: [NSString stringWithFormat:@"file:/%@//startup.html",resourcePath]]];
             _webViewStarted = YES;
         } else {
             [_wvc renderTorStatus:msgIn];

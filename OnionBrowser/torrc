@@ -35,4 +35,4 @@ WarnUnsafeSocks 0  #default 1 (we don't care on iOS)
 EntryNodes {us}
 
 # change to 1 when releasing
-DisableDebuggerAttachment 0
+DisableDebuggerAttachment 1
