@@ -29,7 +29,7 @@ dependencies, [libevent][libevent] and [openssl][openssl].
 
 The build scripts for Tor and these dependencies are based on
 [build-libssl.sh][build_libssl] from [x2on/OpenSSL-for-iPhone][openssliphone].
-The scripts are configured to compile universal binaries for armv6, armv7, and
+The scripts are configured to compile universal binaries for armv7 and
 i386 (for the iOS Simulator).
 
 [build_libssl]: https://github.com/x2on/OpenSSL-for-iPhone/blob/c637f773a99810bb101169f8e534d0d6b09f3396/build-libssl.sh
@@ -74,5 +74,5 @@ containing the statically-compiled library files.
 
 Open `OnionBrowser/OnionBrowser.xcodeproj`. You should be
 able to compile and run the application at this point. (The app is compatible
-with armv6, armv7, and i386 targets, meaning that all iOS 5.0 devices and the
+with armv7 and i386 targets, meaning that all iOS 5.0 devices and the
 iPhone/iPad Simulators should be able to run the application.)
