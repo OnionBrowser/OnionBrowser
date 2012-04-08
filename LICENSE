@@ -1,6 +1,15 @@
-"Onion Browser" is a trademark of Mike Tigas. Forks of this project must not
-use the "Onion Browser" name or logo when distributing binary forms of
+"Onion Browser" is a trademark of Mike Tigas. Forks of this project *must not*
+use the "Onion Browser" name when distributing binary forms of
 this application.
+
+The "Onion Browser" icon is a trademark of Mike Tigas. Icon image[1] under the
+Creative Commons CC-BY-SA 3.0 license[2].
+
+    [1] https://github.com/mtigas/iOS-OnionBrowser/tree/master/OnionBrowser/icon
+    [2] https://creativecommons.org/licenses/by-sa/3.0/
+
+Forks of this project *should not* use the "Onion Browser" icon when
+distributing binary forms of this application.
 
 Mike Tigas and OnionBrowser are not affiliated with nor endorsed by the Tor
 Project. ("Tor" is a registered trademark of The Tor Project, Inc.)
