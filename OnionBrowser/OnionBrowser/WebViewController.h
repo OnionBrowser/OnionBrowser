@@ -8,13 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WebViewController : UIViewController <UIWebViewDelegate, UITextFieldDelegate> {
+@interface WebViewController : UIViewController <UIWebViewDelegate, UITextFieldDelegate, UIActionSheetDelegate> {
 }
 
 @property (strong, nonatomic) UIWebView *myWebView;
 @property (nonatomic) UIToolbar* toolbar;
 @property (nonatomic) UIBarButtonItem* backButton;
 @property (nonatomic) UIBarButtonItem* forwardButton;
+@property (nonatomic) UIBarButtonItem* toolButton;
+@property (nonatomic) UIActionSheet* optionsMenu;
 @property (nonatomic) UIBarButtonItem* refreshButton;
 @property (nonatomic) UIBarButtonItem* stopButton;
 @property (nonatomic) UILabel* pageTitleLabel;
@@ -26,6 +28,8 @@
 - (void)loadURL: (NSURL *)navigationURL;
 - (void)addressBarCancel;
 - (void)renderTorStatus: (NSString *)statusLine;
+
+- (void)openOptionsMenu;
 
 - (void)updateButtons;
 - (void)updateTitle:(UIWebView*)aWebView;

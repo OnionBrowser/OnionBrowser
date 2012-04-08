@@ -31,6 +31,8 @@ static const NSInteger kLoadingStatusTag = 1003;
             toolbar = _toolbar,
             backButton = _backButton,
             forwardButton = _forwardButton,
+            toolButton = _toolButton,
+            optionsMenu = _optionsMenu,
             refreshButton = _refreshButton,
             stopButton = _stopButton,
             pageTitleLabel = _pageTitleLabel,
@@ -129,6 +131,17 @@ static const NSInteger kLoadingStatusTag = 1003;
                     initWithBarButtonSystemItem:UIBarButtonSystemItemRewind
                     target:_myWebView
                     action:@selector(goBack)];
+    _forwardButton = [[UIBarButtonItem alloc]
+                      initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward
+                      target:_myWebView
+                      action:@selector(goForward)];
+    _optionsMenu = [[UIActionSheet alloc] initWithTitle:@"Menu" delegate:self cancelButtonTitle:@"Close" destructiveButtonTitle:@"Clear Cookies" otherButtonTitles:@"Open Home Page", @"About", nil];
+
+    
+    _toolButton = [[UIBarButtonItem alloc]
+                      initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+                      target:self
+                      action:@selector(openOptionsMenu)];
     _stopButton = [[UIBarButtonItem alloc]
                     initWithBarButtonSystemItem:UIBarButtonSystemItemStop
                     target:_myWebView
@@ -137,17 +150,15 @@ static const NSInteger kLoadingStatusTag = 1003;
                        initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
                        target:_myWebView
                        action:@selector(reload)];
-    _forwardButton = [[UIBarButtonItem alloc]
-                       initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward
-                       target:_myWebView
-                       action:@selector(goForward)];
     [items addObject:_backButton];
+    [items addObject:space];
+    [items addObject:_forwardButton];
+    [items addObject:space];
+    [items addObject:_toolButton];
     [items addObject:space];
     [items addObject:_stopButton];
     [items addObject:space];
     [items addObject:_refreshButton];
-    [items addObject:space];
-    [items addObject:_forwardButton];
     [_toolbar setItems:items animated:NO];
     [self.view addSubview:_toolbar];
     
@@ -268,6 +279,10 @@ static const NSInteger kLoadingStatusTag = 1003;
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
+    // Stop loading if we are loading a page
+    [_myWebView stopLoading];
+    
+    // Move a "cancel" button into the nav bar a la Safari.
     UINavigationBar *navBar = (UINavigationBar *)[self.view viewWithTag:kNavBarTag];
         
     UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -332,7 +347,37 @@ static const NSInteger kLoadingStatusTag = 1003;
 }
 # pragma mark -
 
+- (void)openOptionsMenu {
+    [_optionsMenu showFromToolbar:_toolbar];
+}
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        [[NSURLCache sharedURLCache] removeAllCachedResponses];
+        NSHTTPCookie *cookie;
+        NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+        for (cookie in [storage cookies]) {
+            [storage deleteCookie:cookie];
+        }
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
+                                                        message:@"Cache and cookies cleared"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK" 
+                                              otherButtonTitles:nil];
+        [alert show];
+    } else if (buttonIndex == 1) {
+        NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
+        resourcePath = [resourcePath stringByReplacingOccurrencesOfString:@"/" withString:@"//"];
+        resourcePath = [resourcePath stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+        [self loadURL:[NSURL URLWithString: [NSString stringWithFormat:@"file:/%@//startup.html",resourcePath]]];
+    } else if (buttonIndex == 2) {
+        NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
+        resourcePath = [resourcePath stringByReplacingOccurrencesOfString:@"/" withString:@"//"];
+        resourcePath = [resourcePath stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+        [self loadURL:[NSURL URLWithString: [NSString stringWithFormat:@"file:/%@//about.html",resourcePath]]];
+    }
+}
 
+# pragma mark -
 
 - (void)updateButtons
 {

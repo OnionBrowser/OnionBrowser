@@ -1,3 +1,12 @@
+"Onion Browser" is a trademark of Mike Tigas. Forks of this project must not
+use the "Onion Browser" name or logo when distributing binary forms of
+this application.
+
+Mike Tigas and OnionBrowser are not affiliated with nor endorsed by the Tor
+Project. ("Tor" is a registered trademark of The Tor Project, Inc.)
+
+###########################################################################
+
 OnionBrowser
 Copyright (c) 2012 Mike Tigas <mike@tig.as>
 
@@ -20,23 +29,27 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 ###########################################################################
-Demo icon derived from the photograph "Onion_817406" by Dubravko Sorić
-(SoraZG) on Flickr and "Compass - Baltimore National Aquarium" by voobie
-on Flickr:
+App icon derived from the following photographs on Flickr:
 
-https://secure.flickr.com/photos/11939863@N08/3794106676/
-  Photo under the Creative Commons CC-BY 2.0 License:
-  https://creativecommons.org/licenses/by/2.0/
+"Compass - Baltimore National Aquarium" by voobie
+    https://secure.flickr.com/photos/84421355@N00/4468611274/
+    Photo under the Creative Commons CC-BY-SA 2.0 License
+    https://creativecommons.org/licenses/by-sa/2.0/
 
-https://secure.flickr.com/photos/84421355@N00/4468611274/
-  Photo under the Creative Commons CC-BY-SA 2.0 License:
-  https://creativecommons.org/licenses/by-sa/2.0/
+"black leather texture" by kitkatscrapper
+    https://secure.flickr.com/photos/kitkatscrapper/6484685303/
+    Photo under the Creative Commons CC-BY 2.0 License
+    https://creativecommons.org/licenses/by/2.0/
 
-https://secure.flickr.com/photos/kitkatscrapper/6484685303/
+"Webtreats Tileable Metal Textures 4-1024px" by webtreats
+    https://secure.flickr.com/photos/webtreatsetc/4724731217/
+    Photo under the Creative Commons CC-BY 2.0 License
+    https://creativecommons.org/licenses/by/2.0/
 
-https://secure.flickr.com/photos/webtreatsetc/4682148161/
-https://secure.flickr.com/photos/webtreatsetc/4724731217/
-https://secure.flickr.com/photos/seier/4338268272/
+"free concrete texture, seamless libeskind judische museum" by seier+seier
+    https://secure.flickr.com/photos/seier/4338268272/
+    Photo under the Creative Commons CC-BY 2.0 License
+    https://creativecommons.org/licenses/by/2.0/
 
 ###########################################################################
 Contains code based on portions of ConnectionKit (2.0 branch), available
