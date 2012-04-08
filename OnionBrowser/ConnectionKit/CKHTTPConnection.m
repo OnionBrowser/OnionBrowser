@@ -127,7 +127,12 @@
     
     _HTTPStream = (__bridge_transfer NSInputStream *)CFReadStreamCreateForHTTPRequest(NULL, [self HTTPRequest]);
 
-    // Ignore SSL errors for .onion addresses
+    // Ignore SSL errors for .onion addresses because they will not have been
+    // signed by known authorities. (They will be self-signed or signed by alternative roots
+    // similar to CACert.)
+    // TODO: actually implement a popup with cert signature info (like a desktop browser would)
+    //       which would provide a more secure way of manually whitelisting exceptions (and
+    //       disallowing SSL certificates that are non-matching, unknown, or etc)
     NSURL *URL = [_HTTPStream propertyForKey:(NSString *)kCFStreamPropertyHTTPFinalURL];
     if (([URL.absoluteString rangeOfString:@"https://"].location == 0) && ([URL.host rangeOfString:@".onion"].location != NSNotFound)) {
         #ifdef DEBUG
