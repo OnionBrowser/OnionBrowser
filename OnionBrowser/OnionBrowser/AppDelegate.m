@@ -26,36 +26,31 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    _window.backgroundColor = [UIColor whiteColor];
     
     _wvc = [[WebViewController alloc] init];
     [_window addSubview:_wvc.view];
     [_window makeKeyAndVisible];
     
-    
-    
-    
     _webViewStarted = NO;
-    [[NSURLCache sharedURLCache] removeAllCachedResponses];
     
+    _lastMessageSent = TOR_MSG_NONE;
     _torThread = [[TorWrapper alloc] init];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [_torThread start];
-    
-    _lastMessageSent = TOR_MSG_NONE;
-    
+    _torCheckLoopTimer = [NSTimer scheduledTimerWithTimeInterval:0.15f
+                                                          target:self
+                                                        selector:@selector(activateTorCheckLoop)
+                                                        userInfo:nil
+                                                         repeats:NO];
+
+    /*******************/
+    [[NSURLCache sharedURLCache] removeAllCachedResponses];
     NSHTTPCookie *cookie;
     NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     for (cookie in [storage cookies]) {
         [storage deleteCookie:cookie];
     }
     
-    _torCheckLoopTimer = [NSTimer scheduledTimerWithTimeInterval:0.15f
-                                                          target:self
-                                                        selector:@selector(activateTorCheckLoop)
-                                                        userInfo:nil
-                                                         repeats:NO];
     
     return YES;
 }
@@ -160,6 +155,9 @@
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    [self disableTorCheckLoop];
+    //[_torThread halt_tor];
+    //_torThread = nil;
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -171,7 +169,14 @@
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     if ((_lastMessageSent != TOR_MSG_NONE) && ![_mSocket isConnected]) {
-        //[self activateTorCheckLoop];
+        //_torThread = [[TorWrapper alloc] init];
+        //[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+        //[_torThread start];
+        _torCheckLoopTimer = [NSTimer scheduledTimerWithTimeInterval:0.15f
+                                                              target:self
+                                                            selector:@selector(activateTorCheckLoop)
+                                                            userInfo:nil
+                                                             repeats:NO];
     }
 }
 
@@ -180,6 +185,7 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     [self disableTorCheckLoop];
     [_torThread halt_tor];
+    _torThread = nil;
 }
 
 @end

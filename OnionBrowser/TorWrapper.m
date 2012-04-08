@@ -13,105 +13,16 @@
 @synthesize status;
 
 -(void)main {
-    /*
-     NSFileManager *filemgr;
-     NSArray *dirPaths;
-     dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, 
-     NSUserDomainMask, YES);
-     
-     NSString *docsDir;
-     NSString *torDir;
-     NSString *tmpDir = NSTemporaryDirectory();
-     
-     docsDir = [dirPaths objectAtIndex:0];
-     torDir = [docsDir stringByAppendingPathComponent:@"tor"];
-     
-     NSLog(@"%@", docsDir);
-     NSLog(@"%@", torDir);
-     
-     NSDictionary *fileperms = [NSDictionary dictionaryWithObject:[NSNumber numberWithUnsignedInteger:0x777]
-     forKey:NSFilePosixPermissions];
-     
-     if ([filemgr isWritableFileAtPath:docsDir] == YES) {
-     NSLog(@"is writable");
-     } else {
-     NSLog(@"NOT writable");
-     }
-     if ([filemgr setAttributes:fileperms ofItemAtPath:docsDir error:nil] == NO) {
-     NSLog(@"docsdir perms?");
-     }
-     NSDictionary *f = [filemgr attributesOfItemAtPath:docsDir error:nil];
-     NSLog(@"%@", f);
-     
-     if ([filemgr createDirectoryAtPath:torDir withIntermediateDirectories:YES attributes:nil error: NULL] == NO)
-     {
-     NSLog (@"failed to create tor dir");
-     }
-     if ([filemgr setAttributes:fileperms ofItemAtPath:torDir error:nil] == NO) {
-     NSLog(@"torDir perms?");
-     }
-     
-     NSArray *filelist;
-     int count;
-     int i;
-     
-     NSLog(@"%@", torDir);
-     filemgr =[NSFileManager defaultManager];
-     filelist = [filemgr contentsOfDirectoryAtPath:torDir error:NULL];
-     count = [filelist count];
-     
-     for (i = 0; i < count; i++)
-     NSLog(@"%@", [filelist objectAtIndex: i]);
-     
-     NSString *base_torrc = [[NSBundle mainBundle] pathForResource:@"torrc" ofType:nil];
-     NSString *user_torrc = [torDir stringByAppendingPathComponent:@"torrc"];
-     
-     filemgr = [NSFileManager defaultManager];
-     
-     if ([filemgr removeItemAtPath: user_torrc error: NULL]  == YES) {
-     }
-     
-     if ([filemgr fileExistsAtPath: user_torrc ] == YES) {
-     //NSLog (@"user torrc exists");
-     } else {
-     NSLog (@"creating user torrc from default");
-     if ([filemgr copyItemAtPath: base_torrc toPath: user_torrc error: NULL]  == YES) {
-     //NSLog (@"Copy successful");
-     } else {
-     NSLog (@"Copy failed");
-     }
-     }
-     
-     char *arg_0 = "tor";
-     char *arg_1 = "DataDirectory";
-     char *arg_2 = (char*)[[torDir dataUsingEncoding:NSUTF8StringEncoding] bytes];
-     char *arg_3 = "-f";
-     char *arg_4 = (char*)[[user_torrc dataUsingEncoding:NSUTF8StringEncoding] bytes];
-     */
-    
-    self.status = TOR_IS_RUNNING;
-    
     NSString *tmpDir = NSTemporaryDirectory();
     NSString *base_torrc = [[NSBundle mainBundle] pathForResource:@"torrc" ofType:nil];
     NSString *geoip = [[NSBundle mainBundle] pathForResource:@"geoip" ofType:nil];
-    
-    /*
-    NSFileManager *filemgr;
-    NSArray *filelist;
-    int count;
-    int i;
-    NSLog(@"%@", tmpDir);
-    filemgr =[NSFileManager defaultManager];
-    filelist = [filemgr contentsOfDirectoryAtPath:tmpDir error:NULL];
-    count = [filelist count];
-    
-    for (i = 0; i < count; i++)
-        NSLog(@"%@", [filelist objectAtIndex: i]);
-    */
-    
+
     /**************/
     
     char *arg_0 = "tor";
+
+    // These options here (and not in torrc) since we don't know the temp dir
+    // and data dir for this app until runtime.
     char *arg_1 = "DataDirectory";
     char *arg_2 = (char *)[tmpDir cStringUsingEncoding:NSUTF8StringEncoding];
     char *arg_3 = "GeoIPFile";
@@ -119,6 +30,9 @@
     char *arg_5 = "-f";
     char *arg_6 = (char *)[base_torrc cStringUsingEncoding:NSUTF8StringEncoding];
     
+    // Set loglevel based on compilation option (loglevel "notice" for debug,
+    // loglevel "warn" for release). Debug also will receive "DisableDebuggerAttachment"
+    // torrc option (which allows GDB/LLDB to attach to the process).
     char *arg_7 = "Log";
 
     #ifndef DEBUG
@@ -134,12 +48,14 @@
     tor_main(11, argv);
     #endif
 }
+
 -(void)halt_tor {
     if (self.status == TOR_IS_RUNNING) {
         #ifdef DEBUG
-            NSLog(@"Halting tor...");
+            NSLog(@"TorWrapper: Halting tor (SIGINT)...");
         #endif
         self.status = TOR_IS_STOPPING;
+        //fake_tor_cleanup();
         [self cancel];
         raise(SIGINT);
         self.status = TOR_IS_STOPPED;
@@ -148,9 +64,10 @@
 -(void)kill_tor {
     if (self.status == TOR_IS_RUNNING) {
         #ifdef DEBUG
-            NSLog(@"Halting tor...");
+            NSLog(@"TorWrapper: Halting tor (SIGTERM)...");
         #endif
         self.status = TOR_IS_STOPPING;
+        //fake_tor_cleanup();
         [self cancel];
         raise(SIGTERM);
         self.status = TOR_IS_STOPPED;
@@ -163,16 +80,16 @@ void fake_tor_cleanup(void) {
         NSLog(@"fake tor cleanup");
     #endif
     
-    #ifdef USE_DMALLOC
-        dmalloc_log_stats();
-    #endif
+    //#ifdef USE_DMALLOC
+    //    dmalloc_log_stats();
+    //#endif
     tor_free_all(1);
     crypto_global_cleanup();
     
-    #ifdef USE_DMALLOC
-        dmalloc_log_unfreed();
-        dmalloc_shutdown();
-    #endif
+    //#ifdef USE_DMALLOC
+    //    dmalloc_log_unfreed();
+    //    dmalloc_shutdown();
+    //#endif
 }
 
 
