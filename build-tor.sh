@@ -22,7 +22,7 @@
 ###########################################################################
 #  Choose your tor version and your currently-installed iOS SDK version:
 #
-VERSION="0.2.3.12-alpha"
+VERSION="0.2.3.13-alpha"
 #VERSION="0.2.2.35"
 SDKVERSION="5.1"
 #

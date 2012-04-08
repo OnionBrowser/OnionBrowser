@@ -15,6 +15,11 @@ and App Store links.
 
 #### Technical notes
 
+* **OnionBrowser**: 1.0
+* **Tor**: 0.2.3.13-alpha
+* **libevent**: 2.0.18-stable
+* **OpenSSL**: 1.0.1
+
 The app, when compiled, contains static library versions of [Tor][tor] and it's
 dependencies, [libevent][libevent] and [openssl][openssl].
 
