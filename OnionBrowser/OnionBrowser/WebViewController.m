@@ -71,12 +71,17 @@ static const NSInteger kLoadingStatusTag = 1003;
         progress_loc.location+progress_loc.length,
         2
     };
-    NSString *progress_str = [statusLine substringWithRange:progress_r];
+    NSString *progress_str = @"";
+    if (progress_loc.location != NSNotFound)
+        progress_str = [statusLine substringWithRange:progress_r];
 
     NSRange summary_loc = [statusLine rangeOfString:@" SUMMARY="];
-    NSString *summary_str = [statusLine substringFromIndex:summary_loc.location+summary_loc.length+1];
+    NSString *summary_str = @"";
+    if (summary_loc.location != NSNotFound)
+        summary_str = [statusLine substringFromIndex:summary_loc.location+summary_loc.length+1];
     NSRange summary_loc2 = [summary_str rangeOfString:@"\""];
-    summary_str = [summary_str substringToIndex:summary_loc2.location];
+    if (summary_loc2.location != NSNotFound)
+        summary_str = [summary_str substringToIndex:summary_loc2.location];
 
     NSString *status = [NSString stringWithFormat:@"Connecting to Tor network...\n%@%%\n%@",
                             progress_str,
