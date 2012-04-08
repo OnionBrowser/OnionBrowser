@@ -5,7 +5,8 @@
 &copy; 2012 [Mike Tigas][miketigas] ([MIT License][license])
 
 A minimal, open-source web browser for iOS that tunnels web traffic through
-the [Tor network][tor]. See the [official site][official] for more details.
+the [Tor network][tor]. See the [official site][official] for more details
+and App Store links.
 
 [official]: http://onionbrowser.com/
 [help]: http://onionbrowser.com/help/
