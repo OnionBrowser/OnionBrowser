@@ -208,15 +208,14 @@ static const NSInteger kLoadingStatusTag = 1003;
     UILabel *loadingStatus = [[UILabel alloc] initWithFrame:CGRectMake(0,
                                                                        kNavBarHeight,
                                                                        screenFrame.size.width,
-                                                                       screenFrame.size.height-kNavBarHeight-44)];
+                                                                       100)];
     loadingStatus.tag = kLoadingStatusTag;
     loadingStatus.numberOfLines = 0;
     loadingStatus.font = [UIFont fontWithName:@"Helvetica" size:(20.0)];
     loadingStatus.lineBreakMode = UILineBreakModeWordWrap;
     loadingStatus.textAlignment =  UITextAlignmentLeft;
+    loadingStatus.text = @"Initializing tor...";
     [self.view addSubview:loadingStatus];
-    
-
 }
 
 
