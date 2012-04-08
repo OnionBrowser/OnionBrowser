@@ -44,6 +44,8 @@
 		69847C5414F788E900288277 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 69847C5314F788E900288277 /* libz.dylib */; };
 		69855E0515314DB200720327 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 69855E0415314DB200720327 /* Default.png */; };
 		69855E071531576800720327 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = 69855E061531576800720327 /* about.html */; };
+		69855E0A153168B100720327 /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 69855E08153168B100720327 /* Default-Landscape.png */; };
+		69855E0B153168B100720327 /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 69855E09153168B100720327 /* Default-Portrait.png */; };
 		699CCEBD14FA1939004A2F56 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 699CCEBC14FA1939004A2F56 /* libxml2.dylib */; };
 		69C6F6A514FACC3000894495 /* ProxyURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C6F6A414FACC3000894495 /* ProxyURLProtocol.m */; };
 		69F3C5FD14FC8739008274C3 /* CKHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F3C5F814FC8739008274C3 /* CKHTTPConnection.m */; };
@@ -95,6 +97,8 @@
 		69847C5314F788E900288277 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		69855E0415314DB200720327 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = art/Default.png; sourceTree = "<group>"; };
 		69855E061531576800720327 /* about.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about.html; sourceTree = "<group>"; };
+		69855E08153168B100720327 /* Default-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape.png"; path = "art/Default-Landscape.png"; sourceTree = "<group>"; };
+		69855E09153168B100720327 /* Default-Portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait.png"; path = "art/Default-Portrait.png"; sourceTree = "<group>"; };
 		699CCEBC14FA1939004A2F56 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		69C6F6A314FACC3000894495 /* ProxyURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProxyURLProtocol.h; path = ../ProxyURLProtocol.h; sourceTree = "<group>"; };
 		69C6F6A414FACC3000894495 /* ProxyURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProxyURLProtocol.m; path = ../ProxyURLProtocol.m; sourceTree = "<group>"; };
@@ -210,6 +214,8 @@
 			children = (
 				69855E061531576800720327 /* about.html */,
 				69855E0415314DB200720327 /* Default.png */,
+				69855E08153168B100720327 /* Default-Landscape.png */,
+				69855E09153168B100720327 /* Default-Portrait.png */,
 				696C33AD1530D0D400990E69 /* startup.html */,
 				694F34E9152ECFF20002BCBC /* Icon.png */,
 				694F34EA152ECFF20002BCBC /* Icon-72.png */,
@@ -317,6 +323,8 @@
 				696C33AE1530D0D400990E69 /* startup.html in Resources */,
 				69855E0515314DB200720327 /* Default.png in Resources */,
 				69855E071531576800720327 /* about.html in Resources */,
+				69855E0A153168B100720327 /* Default-Landscape.png in Resources */,
+				69855E0B153168B100720327 /* Default-Portrait.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
