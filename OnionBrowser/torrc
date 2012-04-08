@@ -26,13 +26,11 @@ TunnelDirConns 1
 PreferTunneledDirConns 1
 
 # debug, info, notice, warn, err
-SafeLogging relay
-Log warn stderr
+SafeLogging 1
+#Log warn stderr
+#Log err file /dev/null
 
 TestSocks 0
 WarnUnsafeSocks 0  #default 1 (we don't care on iOS)
 
 EntryNodes {us}
-
-# change to 1 when releasing
-DisableDebuggerAttachment 1

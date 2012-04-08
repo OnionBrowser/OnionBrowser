@@ -74,7 +74,6 @@
     //[_mSocket writeString:@"setevents circ" encoding:NSUTF8StringEncoding];
     //[_mSocket writeString:@"setevents circ status_general\n" encoding:NSUTF8StringEncoding];
     [_mSocket writeString:@"getinfo status/bootstrap-phase\n" encoding:NSUTF8StringEncoding];
-    _lastMessageSent = TOR_MSG_GETSTATUS;
 }
 
 - (void)netsocketDisconnected:(ULINetSocket*)inNetSocket {    
@@ -91,27 +90,30 @@
                 NSLog(@"[tor] Control Port Authenticated Successfully" );
             #endif
             [_mSocket writeString:@"getinfo status/bootstrap-phase\n\r" encoding:NSUTF8StringEncoding];
+            _lastMessageSent = TOR_MSG_GETSTATUS;
             _torCheckLoopTimer = [NSTimer scheduledTimerWithTimeInterval:0.15f
                                                                   target:self
                                                                 selector:@selector(checkTor)
                                                                 userInfo:nil
                                                                  repeats:NO];
-        } else {
+        }
+        #ifdef DEBUG
+        else {
             NSLog(@"[tor] Control Port: Got unknown post-authenticate message %@", msgIn);
         }
+        #endif
     } else if (_lastMessageSent == TOR_MSG_GETSTATUS) {
         if ([msgIn rangeOfString:@"BOOTSTRAP PROGRESS=100"].location != NSNotFound) {
+            NSLog(@"%@", msgIn);
             //NSURL *navigationUrl = [NSURL URLWithString:@"https://3g2upl4pq6kufc4m.onion/lite/"];
             //[_wvc loadURL:navigationUrl];
             NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
             resourcePath = [resourcePath stringByReplacingOccurrencesOfString:@"/" withString:@"//"];
             resourcePath = [resourcePath stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
-            NSLog(@"%@", [NSString stringWithFormat:@"file:/%@//startup.html",resourcePath]);
             [_wvc loadURL:[NSURL URLWithString: [NSString stringWithFormat:@"file:/%@//startup.html",resourcePath]]];
             _webViewStarted = YES;
         } else {
             [_wvc renderTorStatus:msgIn];
-            //NSLog(@"%@", msgIn);
             _torCheckLoopTimer = [NSTimer scheduledTimerWithTimeInterval:0.15f
                                                                   target:self
                                                                 selector:@selector(checkTor)

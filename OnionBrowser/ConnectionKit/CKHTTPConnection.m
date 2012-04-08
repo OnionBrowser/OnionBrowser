@@ -130,7 +130,9 @@
     // Ignore SSL errors for .onion addresses
     NSURL *URL = [_HTTPStream propertyForKey:(NSString *)kCFStreamPropertyHTTPFinalURL];
     if ([URL.host rangeOfString:@".onion"].location != NSNotFound) {
-        NSLog(@"loading .onion URL %@, ignoring SSL certificate status", URL.absoluteString);
+        #ifdef DEBUG
+            NSLog(@"loading .onion URL, ignoring SSL certificate status (%@)", URL.absoluteString);
+        #endif
         CFMutableDictionaryRef sslOption = CFDictionaryCreateMutable(kCFAllocatorDefault, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
         CFDictionarySetValue(sslOption, kCFStreamSSLValidatesCertificateChain, kCFBooleanFalse);
         CFReadStreamSetProperty((__bridge CFReadStreamRef)_HTTPStream, kCFStreamPropertySSLSettings, sslOption);
