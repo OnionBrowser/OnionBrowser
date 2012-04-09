@@ -53,9 +53,10 @@ static const NSInteger kLoadingStatusTag = 1003;
 -(void)loadView {
     UIView *contentView = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
     self.view = contentView;
-    CGRect webFrame = [[UIScreen mainScreen] applicationFrame];
-    webFrame.origin.y = 0.0f;
-    _myWebView = [[UIWebView alloc] initWithFrame:webFrame];
+    CGRect webViewFrame = _myWebView.frame;
+    webViewFrame.origin.y = kNavBarHeight;
+    webViewFrame.size.height = _toolbar.frame.origin.y - webViewFrame.origin.y;
+    _myWebView.frame = webViewFrame;
     _myWebView.backgroundColor = [UIColor whiteColor];
     _myWebView.scalesPageToFit = YES;
     _myWebView.contentScaleFactor = 3;
@@ -99,7 +100,6 @@ static const NSInteger kLoadingStatusTag = 1003;
         [loadingStatus removeFromSuperview];
     }
 
-    // partially covered by the nav bar
     CGRect webViewFrame = _myWebView.frame;
     webViewFrame.origin.y = kNavBarHeight;
     webViewFrame.size.height = _toolbar.frame.origin.y - webViewFrame.origin.y;
@@ -136,7 +136,7 @@ static const NSInteger kLoadingStatusTag = 1003;
                       initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward
                       target:_myWebView
                       action:@selector(goForward)];
-    _optionsMenu = [[UIActionSheet alloc] initWithTitle:@"Menu" delegate:self cancelButtonTitle:@"Close" destructiveButtonTitle:@"New Identity" otherButtonTitles:@"Open Home Page", @"About", nil];
+    _optionsMenu = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Close" destructiveButtonTitle:@"New Identity" otherButtonTitles:@"Open Home Page", @"About Onion Browser", nil];
 
     
     _toolButton = [[UIBarButtonItem alloc]
