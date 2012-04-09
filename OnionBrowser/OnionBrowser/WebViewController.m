@@ -7,6 +7,7 @@
 //
 
 #import "WebViewController.h"
+#import "AppDelegate.h"
 
 static const CGFloat kNavBarHeight = 52.0f;
 static const CGFloat kLabelHeight = 14.0f;
@@ -135,7 +136,7 @@ static const NSInteger kLoadingStatusTag = 1003;
                       initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward
                       target:_myWebView
                       action:@selector(goForward)];
-    _optionsMenu = [[UIActionSheet alloc] initWithTitle:@"Menu" delegate:self cancelButtonTitle:@"Close" destructiveButtonTitle:@"Clear Cookies" otherButtonTitles:@"Open Home Page", @"About", nil];
+    _optionsMenu = [[UIActionSheet alloc] initWithTitle:@"Menu" delegate:self cancelButtonTitle:@"Close" destructiveButtonTitle:@"New Identity" otherButtonTitles:@"Open Home Page", @"About", nil];
 
     
     _toolButton = [[UIBarButtonItem alloc]
@@ -351,19 +352,42 @@ static const NSInteger kLoadingStatusTag = 1003;
 }
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
-        [[NSURLCache sharedURLCache] removeAllCachedResponses];
+        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        [appDelegate requestNewTorIdentity];
+        
         NSHTTPCookie *cookie;
         NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
         for (cookie in [storage cookies]) {
             [storage deleteCookie:cookie];
         }
+        [[NSURLCache sharedURLCache] removeAllCachedResponses];
+        
+        // Initialize a new UIWebView (to clear the history of the previous one)
+        CGRect webFrame = _myWebView.frame;
+        [_myWebView removeFromSuperview];
+        _myWebView = nil;
+        _myWebView = [[UIWebView alloc] initWithFrame:webFrame];
+        _myWebView.backgroundColor = [UIColor whiteColor];
+        _myWebView.scalesPageToFit = YES;
+        _myWebView.contentScaleFactor = 3;
+        _myWebView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
+        _myWebView.delegate = self;
+        [self.view addSubview: _myWebView];
+        
+        // Reset forward/back buttons.
+        [self updateButtons];
+        
+        // Reset the address field
+        _addressField.text = @"";
+        
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
-                                                        message:@"Cache and cookies cleared"
+                                                        message:@"Attempting to get a new IP address from Tor. Cache and cookies cleared."
                                                        delegate:nil
                                               cancelButtonTitle:@"OK" 
                                               otherButtonTitles:nil];
         [alert show];
-    } else if (buttonIndex == 1) {
+    }
+    if ((buttonIndex == 0) || (buttonIndex == 1)) {
         NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
         resourcePath = [resourcePath stringByReplacingOccurrencesOfString:@"/" withString:@"//"];
         resourcePath = [resourcePath stringByReplacingOccurrencesOfString:@" " withString:@"%20"];

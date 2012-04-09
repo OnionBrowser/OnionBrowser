@@ -28,6 +28,7 @@
 
 - (void)checkTor;
 
+- (void)requestNewTorIdentity;
 - (void)activateTorCheckLoop;
 - (void)disableTorCheckLoop;
 

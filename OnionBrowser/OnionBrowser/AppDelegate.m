@@ -65,7 +65,7 @@
 
 - (void)checkTor {
     // Send a simple HTTP 1.0 header to the server and hopefully we won't be rejected
-    //[_mSocket writeString:@"getinfo circuit-status\n\r" encoding:NSUTF8StringEncoding];
+    //[_mSocket writeString:@"getinfo circuit-status\n" encoding:NSUTF8StringEncoding];
     //[_mSocket writeString:@"setevents circ" encoding:NSUTF8StringEncoding];
     //[_mSocket writeString:@"setevents circ status_general\n" encoding:NSUTF8StringEncoding];
     [_mSocket writeString:@"getinfo status/bootstrap-phase\n" encoding:NSUTF8StringEncoding];
@@ -84,7 +84,7 @@
             #ifdef DEBUG
                 NSLog(@"[tor] Control Port Authenticated Successfully" );
             #endif
-            [_mSocket writeString:@"getinfo status/bootstrap-phase\n\r" encoding:NSUTF8StringEncoding];
+            [_mSocket writeString:@"getinfo status/bootstrap-phase\n" encoding:NSUTF8StringEncoding];
             _lastMessageSent = TOR_MSG_GETSTATUS;
             _torCheckLoopTimer = [NSTimer scheduledTimerWithTimeInterval:0.15f
                                                                   target:self
@@ -144,6 +144,12 @@
     [_torCheckLoopTimer invalidate];
 }
 
+- (void)requestNewTorIdentity {
+    #ifdef DEBUG
+        NSLog(@"[tor] Requesting new identity (SIGNAL NEWNYM)" );
+    #endif
+    [_mSocket writeString:@"SIGNAL NEWNYM\n" encoding:NSUTF8StringEncoding];
+}
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
