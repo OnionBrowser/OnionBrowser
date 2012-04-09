@@ -53,10 +53,10 @@ static const NSInteger kLoadingStatusTag = 1003;
 -(void)loadView {
     UIView *contentView = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
     self.view = contentView;
-    CGRect webViewFrame = _myWebView.frame;
+    CGRect webViewFrame = [[UIScreen mainScreen] applicationFrame];
     webViewFrame.origin.y = kNavBarHeight;
-    webViewFrame.size.height = _toolbar.frame.origin.y - webViewFrame.origin.y;
-    _myWebView.frame = webViewFrame;
+    webViewFrame.size.height = webViewFrame.size.height - 44;
+    _myWebView = [[UIWebView alloc] initWithFrame:webViewFrame];
     _myWebView.backgroundColor = [UIColor whiteColor];
     _myWebView.scalesPageToFit = YES;
     _myWebView.contentScaleFactor = 3;
