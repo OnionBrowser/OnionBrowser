@@ -175,10 +175,11 @@
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     if ((_lastMessageSent != TOR_MSG_NONE) && ![_mSocket isConnected]) {
-        //_torThread = [[TorWrapper alloc] init];
-        //[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-        //[_torThread start];
-        _torCheckLoopTimer = [NSTimer scheduledTimerWithTimeInterval:0.15f
+        #ifdef DEBUG
+            NSLog(@"[tor] Came back from background, sending HUP" );
+        #endif
+        [_mSocket writeString:@"SIGNAL HUP\n" encoding:NSUTF8StringEncoding];
+        _torCheckLoopTimer = [NSTimer scheduledTimerWithTimeInterval:0.35f
                                                               target:self
                                                             selector:@selector(activateTorCheckLoop)
                                                             userInfo:nil
