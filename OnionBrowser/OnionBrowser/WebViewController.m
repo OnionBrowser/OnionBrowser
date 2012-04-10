@@ -136,8 +136,21 @@ static const NSInteger kLoadingStatusTag = 1003;
                       initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward
                       target:_myWebView
                       action:@selector(goForward)];
-    _optionsMenu = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Close" destructiveButtonTitle:@"New Identity" otherButtonTitles:@"Open Home Page", @"About Onion Browser", nil];
-
+    
+    NSHTTPCookieAcceptPolicy policy = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookieAcceptPolicy];
+    NSString *cookieStr;
+    if (policy == NSHTTPCookieAcceptPolicyAlways) {
+        cookieStr = @"Cookies: Allow All";
+    } else if (policy == NSHTTPCookieAcceptPolicyOnlyFromMainDocumentDomain) {
+        cookieStr = @"Cookies: No Third Party";
+    } else {
+        cookieStr = @"Cookies: Block All";
+    }
+    _optionsMenu = [[UIActionSheet alloc] initWithTitle:nil
+                                               delegate:self
+                                      cancelButtonTitle:@"Close"
+                                 destructiveButtonTitle:@"New Identity"
+                                      otherButtonTitles:cookieStr, @"Open Home Page", @"About Onion Browser", nil];
     
     _toolButton = [[UIBarButtonItem alloc]
                       initWithBarButtonSystemItem:UIBarButtonSystemItemAction
@@ -387,12 +400,49 @@ static const NSInteger kLoadingStatusTag = 1003;
                                               otherButtonTitles:nil];
         [alert show];
     }
-    if ((buttonIndex == 0) || (buttonIndex == 1)) {
+    
+    if (buttonIndex == 1) {
+        NSHTTPCookie *cookie;
+        NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+        for (cookie in [storage cookies]) {
+            [storage deleteCookie:cookie];
+        }
+
+        NSHTTPCookieAcceptPolicy oldPolicy = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookieAcceptPolicy];
+        NSString *cookieStr;
+        if (oldPolicy == NSHTTPCookieAcceptPolicyAlways) {
+            [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyOnlyFromMainDocumentDomain];
+            cookieStr = @"No Third Party";
+        } else if (oldPolicy == NSHTTPCookieAcceptPolicyOnlyFromMainDocumentDomain) {
+            [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyNever];
+            cookieStr = @"Block All";
+        } else {
+            [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
+            cookieStr = @"Allow All";
+        }
+        
+        _optionsMenu = [[UIActionSheet alloc] initWithTitle:nil
+                                                   delegate:self
+                                          cancelButtonTitle:@"Close"
+                                     destructiveButtonTitle:@"New Identity"
+                                          otherButtonTitles:[NSString stringWithFormat:@"Cookies: %@", cookieStr], @"Open Home Page", @"About Onion Browser", nil];
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
+                                                        message:[NSString stringWithFormat:@"Cookies cleared. New cookie policy: %@.\n\nPress again to cycle options.\n(Allow All/Block All/Block Third Party)", cookieStr]
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK" 
+                                              otherButtonTitles:nil];
+        [alert show];
+
+    }
+    
+    
+    if ((buttonIndex == 0) || (buttonIndex == 2)) {
         NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
         resourcePath = [resourcePath stringByReplacingOccurrencesOfString:@"/" withString:@"//"];
         resourcePath = [resourcePath stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
         [self loadURL:[NSURL URLWithString: [NSString stringWithFormat:@"file:/%@//startup.html",resourcePath]]];
-    } else if (buttonIndex == 2) {
+    } else if (buttonIndex == 3) {
         NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
         resourcePath = [resourcePath stringByReplacingOccurrencesOfString:@"/" withString:@"//"];
         resourcePath = [resourcePath stringByReplacingOccurrencesOfString:@" " withString:@"%20"];

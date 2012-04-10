@@ -30,7 +30,7 @@
               client:(id <NSURLProtocolClient>)client {
     // Modify request
     NSMutableURLRequest *myRequest = [request mutableCopy];
-    //[myRequest setValue:@"" forHTTPHeaderField:PBProxyURLHeader];
+    //[myRequest setHTTPShouldUsePipelining:YES];
     
     self = [super initWithRequest:myRequest
                    cachedResponse:cachedResponse
@@ -159,6 +159,7 @@
             NSLog(@"[ProxyURLProtocol] Got %d redirect from %@ to %@", response.statusCode, _request.URL, newURL);
         #endif
         NSMutableURLRequest *newRequest = [_request mutableCopy];
+        //[newRequest setHTTPShouldUsePipelining:YES];
         newRequest.URL = [NSURL URLWithString:newURL relativeToURL:_request.URL];
         _request = newRequest;
         [[self client] URLProtocol:self wasRedirectedToRequest:_request redirectResponse:response];

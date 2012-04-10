@@ -330,6 +330,19 @@
                                          (__bridge CFStringRef)[HTTPHeaderFields objectForKey:aHTTPHeaderField]);
     }
     
+    NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:[self URL]];
+    if ([cookies count] > 0) {
+        NSDictionary *cookieHeaders = [NSHTTPCookie requestHeaderFieldsWithCookies:cookies];
+        for (NSString *headerKey in cookieHeaders) {
+            CFHTTPMessageSetHeaderFieldValue(result,
+                                             (__bridge CFStringRef)headerKey,
+                                             (__bridge CFStringRef)[cookieHeaders objectForKey:headerKey]);
+            NSLog(@"%@: %@",
+                  headerKey,
+                  [cookieHeaders objectForKey:headerKey]);
+        }
+    }
+
     NSData *body = [self HTTPBody];
     if (body)
     {
@@ -370,6 +383,12 @@
     {
         _statusCode = CFHTTPMessageGetResponseStatusCode(message);
     }
+    
+    NSArray *newCookies = [NSHTTPCookie cookiesWithResponseHeaderFields:_headerFields forURL:[self URL]];
+    [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookies:newCookies forURL:[self URL] mainDocumentURL:nil];
+    //for (NSHTTPCookie *cookie in newCookies)
+    //    NSLog(@"Name: %@ : Value: %@, Expires: %@", cookie.name, cookie.value, cookie.expiresDate);
+
     return self;
 }
     
