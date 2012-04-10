@@ -20,7 +20,8 @@
             mSocket = _mSocket,
             lastMessageSent = _lastMessageSent,
             wvc = _wvc,
-            webViewStarted = _webViewStarted;
+            webViewStarted = _webViewStarted,
+            spoofUserAgent;
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -32,6 +33,7 @@
     [_window makeKeyAndVisible];
     
     _webViewStarted = NO;
+    spoofUserAgent = NO;
     
     _lastMessageSent = TOR_MSG_NONE;
     _torThread = [[TorWrapper alloc] init];

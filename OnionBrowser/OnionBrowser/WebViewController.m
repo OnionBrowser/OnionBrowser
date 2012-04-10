@@ -148,11 +148,20 @@ static const NSInteger kLoadingStatusTag = 1003;
     } else {
         cookieStr = @"Cookies: Block All";
     }
+    
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSString *uaSpoofStr;
+    if (appDelegate.spoofUserAgent) {
+        uaSpoofStr = @"User-Agent: Win7 Firefox";
+    } else {
+        uaSpoofStr = @"User-Agent: Standard";
+    }
+    
     _optionsMenu = [[UIActionSheet alloc] initWithTitle:nil
                                                delegate:self
                                       cancelButtonTitle:@"Close"
                                  destructiveButtonTitle:@"New Identity"
-                                      otherButtonTitles:cookieStr, @"Open Home Page", @"About Onion Browser", nil];
+                                      otherButtonTitles:cookieStr, uaSpoofStr, @"Open Home Page", @"About Onion Browser", nil];
     
     _toolButton = [[UIBarButtonItem alloc]
                       initWithBarButtonSystemItem:UIBarButtonSystemItemAction
@@ -367,6 +376,9 @@ static const NSInteger kLoadingStatusTag = 1003;
 }
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
+        ////////////////////////////////////////////////////////
+        // New Identity
+        ////////////////////////////////////////////////////////
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         [appDelegate requestNewTorIdentity];
         
@@ -401,9 +413,10 @@ static const NSInteger kLoadingStatusTag = 1003;
                                               cancelButtonTitle:@"OK" 
                                               otherButtonTitles:nil];
         [alert show];
-    }
-    
-    if (buttonIndex == 1) {
+    } else if (buttonIndex == 1) {
+        ////////////////////////////////////////////////////////
+        // Cookie Option
+        ////////////////////////////////////////////////////////
         NSHTTPCookie *cookie;
         NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
         for (cookie in [storage cookies]) {
@@ -423,11 +436,12 @@ static const NSInteger kLoadingStatusTag = 1003;
             cookieStr = @"Allow All";
         }
         
+        NSString *uaSpoofStr = @"User-Agent: Standard";
         _optionsMenu = [[UIActionSheet alloc] initWithTitle:nil
                                                    delegate:self
                                           cancelButtonTitle:@"Close"
                                      destructiveButtonTitle:@"New Identity"
-                                          otherButtonTitles:[NSString stringWithFormat:@"Cookies: %@", cookieStr], @"Open Home Page", @"About Onion Browser", nil];
+                                          otherButtonTitles:[NSString stringWithFormat:@"Cookies: %@", cookieStr], uaSpoofStr, @"Open Home Page", @"About Onion Browser", nil];
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
                                                         message:[NSString stringWithFormat:@"Cookies cleared. New cookie policy: %@.\n\nPress again to cycle options.\n(Allow All/Block All/Block Third Party)", cookieStr]
@@ -436,15 +450,67 @@ static const NSInteger kLoadingStatusTag = 1003;
                                               otherButtonTitles:nil];
         [alert show];
 
+    } else if (buttonIndex == 2) {
+        ////////////////////////////////////////////////////////
+        // UserAgent Option
+        ////////////////////////////////////////////////////////
+        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        NSString *uaSpoofStr;
+        if (appDelegate.spoofUserAgent) {
+            appDelegate.spoofUserAgent = NO;
+            uaSpoofStr = @"User-Agent: Standard";
+        } else {
+            appDelegate.spoofUserAgent = YES;
+            uaSpoofStr = @"User-Agent: Win7 Firefox";
+        }
+
+        NSHTTPCookieAcceptPolicy policy = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookieAcceptPolicy];
+        NSString *cookieStr;
+        if (policy == NSHTTPCookieAcceptPolicyAlways) {
+            cookieStr = @"Allow All";
+        } else if (policy == NSHTTPCookieAcceptPolicyOnlyFromMainDocumentDomain) {
+            cookieStr = @"No Third Party";
+        } else {
+            cookieStr = @"Block All";
+        }
+        
+        _optionsMenu = [[UIActionSheet alloc] initWithTitle:nil
+                                                   delegate:self
+                                          cancelButtonTitle:@"Close"
+                                     destructiveButtonTitle:@"New Identity"
+                                          otherButtonTitles:[NSString stringWithFormat:@"Cookies: %@", cookieStr], uaSpoofStr, @"Open Home Page", @"About Onion Browser", nil];
+    
+        if (appDelegate.spoofUserAgent) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
+                                                            message:[NSString stringWithFormat:@"User Agent spoofing enabled.\n\nNote that scripts and certain behaviors of iOS may still identify your browser.\n\nAlso note that some mobile websites may not work properly without the original mobile User Agent."]
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK" 
+                                                  otherButtonTitles:nil];
+            [alert show];
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
+                                                            message:[NSString stringWithFormat:@"User Agent spoofing disabled. (Identifying as Standard iOS Safari.)"]
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK" 
+                                                  otherButtonTitles:nil];
+            [alert show];
+        }
     }
+
     
     
-    if ((buttonIndex == 0) || (buttonIndex == 2)) {
+    if ((buttonIndex == 0) || (buttonIndex == 3)) {
+        ////////////////////////////////////////////////////////
+        // New Identity OR Return To Home
+        ////////////////////////////////////////////////////////
         NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
         resourcePath = [resourcePath stringByReplacingOccurrencesOfString:@"/" withString:@"//"];
         resourcePath = [resourcePath stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
         [self loadURL:[NSURL URLWithString: [NSString stringWithFormat:@"file:/%@//startup.html",resourcePath]]];
-    } else if (buttonIndex == 3) {
+    } else if (buttonIndex == 4) {
+        ////////////////////////////////////////////////////////
+        // About Page
+        ////////////////////////////////////////////////////////
         NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
         resourcePath = [resourcePath stringByReplacingOccurrencesOfString:@"/" withString:@"//"];
         resourcePath = [resourcePath stringByReplacingOccurrencesOfString:@" " withString:@"%20"];

@@ -26,6 +26,9 @@
 @property (nonatomic) Boolean webViewStarted;
 
 
+@property (nonatomic) Boolean spoofUserAgent;
+
+
 - (void)checkTor;
 
 - (void)requestNewTorIdentity;

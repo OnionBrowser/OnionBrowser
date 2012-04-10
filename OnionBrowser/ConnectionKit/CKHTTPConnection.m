@@ -14,7 +14,7 @@
 //
 
 #import "CKHTTPConnection.h"
-
+#import "AppDelegate.h"
 
 // There is no public API for creating an NSHTTPURLResponse. The only way to create one then, is to
 // have a private subclass that others treat like a standard NSHTTPURLResponse object. Framework
@@ -320,11 +320,24 @@
                                                          kCFHTTPVersion1_1);
     //[NSMakeCollectable(result) autorelease];
     
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    Boolean spoofUserAgent = appDelegate.spoofUserAgent;
+
+    
     NSDictionary *HTTPHeaderFields = [self allHTTPHeaderFields];
     NSEnumerator *HTTPHeaderFieldsEnumerator = [HTTPHeaderFields keyEnumerator];
     NSString *aHTTPHeaderField;
     while (aHTTPHeaderField = [HTTPHeaderFieldsEnumerator nextObject])
     {
+        if (([aHTTPHeaderField isEqualToString:@"User-Agent"])&& spoofUserAgent){
+            #ifdef DEBUG
+                NSLog(@"Spoofing User-Agent");
+            #endif
+            CFHTTPMessageSetHeaderFieldValue(result,
+                                             (__bridge CFStringRef)aHTTPHeaderField,
+                                             (__bridge CFStringRef)@"Mozilla/5.0 (Windows NT 6.1; rv:5.0) Gecko/20100101 Firefox/5.0");
+            continue;
+        }
         CFHTTPMessageSetHeaderFieldValue(result,
                                          (__bridge CFStringRef)aHTTPHeaderField,
                                          (__bridge CFStringRef)[HTTPHeaderFields objectForKey:aHTTPHeaderField]);
