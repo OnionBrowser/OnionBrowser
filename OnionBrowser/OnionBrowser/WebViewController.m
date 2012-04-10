@@ -152,9 +152,9 @@ static const NSInteger kLoadingStatusTag = 1003;
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSString *uaSpoofStr;
     if (appDelegate.spoofUserAgent) {
-        uaSpoofStr = @"User-Agent: Win7 Firefox";
+        uaSpoofStr = @"Disable UA Spoofing";
     } else {
-        uaSpoofStr = @"User-Agent: Standard";
+        uaSpoofStr = @"Enable UA Spoofing";
     }
     
     _optionsMenu = [[UIActionSheet alloc] initWithTitle:nil
@@ -436,7 +436,13 @@ static const NSInteger kLoadingStatusTag = 1003;
             cookieStr = @"Allow All";
         }
         
-        NSString *uaSpoofStr = @"User-Agent: Standard";
+        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        NSString *uaSpoofStr;
+        if (appDelegate.spoofUserAgent) {
+            uaSpoofStr = @"Disable UA Spoofing";
+        } else {
+            uaSpoofStr = @"Enable UA Spoofing";
+        }
         _optionsMenu = [[UIActionSheet alloc] initWithTitle:nil
                                                    delegate:self
                                           cancelButtonTitle:@"Close"
@@ -458,10 +464,10 @@ static const NSInteger kLoadingStatusTag = 1003;
         NSString *uaSpoofStr;
         if (appDelegate.spoofUserAgent) {
             appDelegate.spoofUserAgent = NO;
-            uaSpoofStr = @"User-Agent: Standard";
+            uaSpoofStr = @"Enable UA Spoofing";
         } else {
             appDelegate.spoofUserAgent = YES;
-            uaSpoofStr = @"User-Agent: Win7 Firefox";
+            uaSpoofStr = @"Disable UA Spoofing";
         }
 
         NSHTTPCookieAcceptPolicy policy = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookieAcceptPolicy];
