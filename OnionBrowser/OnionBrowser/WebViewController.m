@@ -121,6 +121,7 @@ static const NSInteger kLoadingStatusTag = 1003;
     [super viewDidLoad];
 
     _toolbar = [[UIToolbar alloc] init];
+    //[_toolbar setTintColor:[UIColor blackColor]];
     _toolbar.frame = CGRectMake(0, self.view.frame.size.height-44, self.view.frame.size.width, 44);
     _toolbar.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
     _toolbar.contentMode = UIViewContentModeBottom;
@@ -202,6 +203,10 @@ static const NSInteger kLoadingStatusTag = 1003;
     label.backgroundColor = [UIColor clearColor];
     label.font = [UIFont systemFontOfSize:12];
     label.textAlignment = UITextAlignmentCenter;
+    
+    //[navBar setTintColor:[UIColor blackColor]];
+    //[label setTextColor:[UIColor whiteColor]];
+
     [navBar addSubview:label];
     _pageTitleLabel = label;
     
