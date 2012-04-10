@@ -87,7 +87,7 @@ static const NSInteger kLoadingStatusTag = 1003;
     if (summary_loc2.location != NSNotFound)
         summary_str = [summary_str substringToIndex:summary_loc2.location];
 
-    NSString *status = [NSString stringWithFormat:@"Connecting to Tor network...\n%@%%\n%@",
+    NSString *status = [NSString stringWithFormat:@"Connecting...\n%@%%\n%@",
                             progress_str,
                             summary_str];
     loadingStatus.text = status;
@@ -239,7 +239,7 @@ static const NSInteger kLoadingStatusTag = 1003;
     loadingStatus.font = [UIFont fontWithName:@"Helvetica" size:(20.0)];
     loadingStatus.lineBreakMode = UILineBreakModeWordWrap;
     loadingStatus.textAlignment =  UITextAlignmentLeft;
-    loadingStatus.text = @"Initializing tor...";
+    loadingStatus.text = @"Initializing...";
     [self.view addSubview:loadingStatus];
 }
 
