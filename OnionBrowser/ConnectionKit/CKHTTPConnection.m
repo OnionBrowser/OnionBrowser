@@ -337,9 +337,10 @@
             CFHTTPMessageSetHeaderFieldValue(result,
                                              (__bridge CFStringRef)headerKey,
                                              (__bridge CFStringRef)[cookieHeaders objectForKey:headerKey]);
-            NSLog(@"%@: %@",
+            /*NSLog(@"%@: %@",
                   headerKey,
                   [cookieHeaders objectForKey:headerKey]);
+             */
         }
     }
 

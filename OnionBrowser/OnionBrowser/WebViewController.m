@@ -107,7 +107,9 @@ static const NSInteger kLoadingStatusTag = 1003;
     
     _myWebView.delegate = self;
     _myWebView.scalesPageToFit = YES;
-    NSURLRequest *req = [NSURLRequest requestWithURL:navigationURL];
+    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:navigationURL];
+    [req setHTTPShouldUsePipelining:YES];
+
     
     [_myWebView loadRequest:req];
 
