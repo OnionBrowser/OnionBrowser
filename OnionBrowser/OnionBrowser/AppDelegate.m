@@ -101,14 +101,13 @@
         #endif
     } else if (_lastMessageSent == TOR_MSG_GETSTATUS) {
         if ([msgIn rangeOfString:@"BOOTSTRAP PROGRESS=100"].location != NSNotFound) {
-            NSLog(@"%@", msgIn);
-            //NSURL *navigationUrl = [NSURL URLWithString:@"https://3g2upl4pq6kufc4m.onion/lite/"];
-            //[_wvc loadURL:navigationUrl];
-            NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
-            resourcePath = [resourcePath stringByReplacingOccurrencesOfString:@"/" withString:@"//"];
-            resourcePath = [resourcePath stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
-            [_wvc loadURL:[NSURL URLWithString: [NSString stringWithFormat:@"file:/%@//startup.html",resourcePath]]];
-            _webViewStarted = YES;
+            if (!_webViewStarted) {
+                NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
+                resourcePath = [resourcePath stringByReplacingOccurrencesOfString:@"/" withString:@"//"];
+                resourcePath = [resourcePath stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+                [_wvc loadURL:[NSURL URLWithString: [NSString stringWithFormat:@"file:/%@//startup.html",resourcePath]]];
+                _webViewStarted = YES;
+            }
         } else {
             [_wvc renderTorStatus:msgIn];
             _torCheckLoopTimer = [NSTimer scheduledTimerWithTimeInterval:0.15f
@@ -181,7 +180,7 @@
             NSLog(@"[tor] Came back from background, sending HUP" );
         #endif
         [_mSocket writeString:@"SIGNAL HUP\n" encoding:NSUTF8StringEncoding];
-        _torCheckLoopTimer = [NSTimer scheduledTimerWithTimeInterval:0.35f
+        _torCheckLoopTimer = [NSTimer scheduledTimerWithTimeInterval:0.25f
                                                               target:self
                                                             selector:@selector(activateTorCheckLoop)
                                                             userInfo:nil
