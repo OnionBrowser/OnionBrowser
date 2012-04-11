@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 
 static const CGFloat kNavBarHeight = 52.0f;
+static const CGFloat kToolBarHeight = 44.0f;
 static const CGFloat kLabelHeight = 14.0f;
 static const CGFloat kMargin = 10.0f;
 static const CGFloat kSpacer = 2.0f;
@@ -55,11 +56,11 @@ static const NSInteger kLoadingStatusTag = 1003;
     self.view = contentView;
     CGRect webViewFrame = [[UIScreen mainScreen] applicationFrame];
     webViewFrame.origin.y = kNavBarHeight;
-    webViewFrame.size.height = webViewFrame.size.height - 44;
+    webViewFrame.size.height = webViewFrame.size.height - kToolBarHeight - kNavBarHeight;
     _myWebView = [[UIWebView alloc] initWithFrame:webViewFrame];
     _myWebView.backgroundColor = [UIColor whiteColor];
-    _myWebView.scalesPageToFit = YES;
-    _myWebView.contentScaleFactor = 3;
+    //_myWebView.scalesPageToFit = YES;
+    //_myWebView.contentScaleFactor = 3;
     _myWebView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
     _myWebView.delegate = self;
     [self.view addSubview: _myWebView];
@@ -100,13 +101,8 @@ static const NSInteger kLoadingStatusTag = 1003;
         [loadingStatus removeFromSuperview];
     }
 
-    CGRect webViewFrame = _myWebView.frame;
-    webViewFrame.origin.y = kNavBarHeight;
-    webViewFrame.size.height = _toolbar.frame.origin.y - webViewFrame.origin.y;
-    _myWebView.frame = webViewFrame;
-    
     _myWebView.delegate = self;
-    _myWebView.scalesPageToFit = YES;
+    //_myWebView.scalesPageToFit = YES;
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:navigationURL];
     [req setHTTPShouldUsePipelining:YES];
 
@@ -122,7 +118,7 @@ static const NSInteger kLoadingStatusTag = 1003;
 
     _toolbar = [[UIToolbar alloc] init];
     //[_toolbar setTintColor:[UIColor blackColor]];
-    _toolbar.frame = CGRectMake(0, self.view.frame.size.height-44, self.view.frame.size.width, 44);
+    _toolbar.frame = CGRectMake(0, self.view.frame.size.height - kToolBarHeight, self.view.frame.size.width, kToolBarHeight);
     _toolbar.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
     _toolbar.contentMode = UIViewContentModeBottom;
     NSMutableArray *items = [[NSMutableArray alloc] init];
@@ -395,15 +391,14 @@ static const NSInteger kLoadingStatusTag = 1003;
         [[NSURLCache sharedURLCache] removeAllCachedResponses];
         
         // Initialize a new UIWebView (to clear the history of the previous one)
-        CGRect webFrame = _myWebView.frame;
+        UIWebView *newWebView = [[UIWebView alloc] initWithFrame:_myWebView.frame];
+        newWebView.backgroundColor = _myWebView.backgroundColor;
+        newWebView.scalesPageToFit = _myWebView.scalesPageToFit;
+        newWebView.contentScaleFactor = _myWebView.contentScaleFactor;
+        newWebView.autoresizingMask = _myWebView.autoresizingMask;
+        newWebView.delegate = _myWebView.delegate;
         [_myWebView removeFromSuperview];
-        _myWebView = nil;
-        _myWebView = [[UIWebView alloc] initWithFrame:webFrame];
-        _myWebView.backgroundColor = [UIColor whiteColor];
-        _myWebView.scalesPageToFit = YES;
-        _myWebView.contentScaleFactor = 3;
-        _myWebView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
-        _myWebView.delegate = self;
+        _myWebView = newWebView;
         [self.view addSubview: _myWebView];
         
         // Reset forward/back buttons.
