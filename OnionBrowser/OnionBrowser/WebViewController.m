@@ -488,7 +488,7 @@ static const NSInteger kLoadingStatusTag = 1003;
     
         if (appDelegate.spoofUserAgent) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
-                                                            message:[NSString stringWithFormat:@"User Agent spoofing enabled.\n\nNote that scripts and certain behaviors of iOS may still identify your browser.\n\nAlso note that some mobile websites may not work properly without the original mobile User Agent."]
+                                                            message:[NSString stringWithFormat:@"User Agent spoofing enabled.\n\nNote that due to iOS limitations, scripts cannont be disabled. Scripts and other iOS features may still identify your browser.\n\nAlso note that some mobile or tablet websites may not work properly without the original mobile User Agent."]
                                                            delegate:nil
                                                   cancelButtonTitle:@"OK" 
                                                   otherButtonTitles:nil];
