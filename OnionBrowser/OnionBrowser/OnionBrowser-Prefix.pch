@@ -13,7 +13,6 @@
     #import <Foundation/Foundation.h>
 #endif
 
-
 /** String: Identifier **/
 #define DEVICE_IDENTIFIER ( ( IS_IPAD ) ? DEVICE_IPAD : ( IS_IPHONE ) ? DEVICE_IPHONE , DEVICE_SIMULATOR )
 
