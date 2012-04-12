@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		691958D61536BA67000423A4 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 691958D41536B8AC000423A4 /* Reachability.m */; };
 		694F34F1152ECFF20002BCBC /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 694F34E9152ECFF20002BCBC /* Icon.png */; };
 		694F34F2152ECFF20002BCBC /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 694F34EA152ECFF20002BCBC /* Icon-72.png */; };
 		694F34F3152ECFF20002BCBC /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 694F34EB152ECFF20002BCBC /* Icon-72@2x.png */; };
@@ -56,6 +57,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		691958D31536B8AC000423A4 /* Reachability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		691958D41536B8AC000423A4 /* Reachability.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		694F34E9152ECFF20002BCBC /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = icon/Icon.png; sourceTree = "<group>"; };
 		694F34EA152ECFF20002BCBC /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "icon/Icon-72.png"; sourceTree = "<group>"; };
 		694F34EB152ECFF20002BCBC /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72@2x.png"; path = "icon/Icon-72@2x.png"; sourceTree = "<group>"; };
@@ -209,6 +212,8 @@
 		696F9EB114F8DD5300BC5FDC /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				691958D31536B8AC000423A4 /* Reachability.h */,
+				691958D41536B8AC000423A4 /* Reachability.m */,
 				696F9EB214F8DD6D00BC5FDC /* ULINetSocket.h */,
 				696F9EB314F8DD6D00BC5FDC /* ULINetSocket.m */,
 			);
@@ -349,6 +354,7 @@
 			files = (
 				696EBD8414F7877900B81BC9 /* main.m in Sources */,
 				696F9EAB14F8D5A900BC5FDC /* TorWrapper.m in Sources */,
+				691958D61536BA67000423A4 /* Reachability.m in Sources */,
 				696EBD8814F7877900B81BC9 /* AppDelegate.m in Sources */,
 				696F9EAE14F8D6ED00BC5FDC /* tor_main.c in Sources */,
 				696F9EB414F8DD6D00BC5FDC /* ULINetSocket.m in Sources */,

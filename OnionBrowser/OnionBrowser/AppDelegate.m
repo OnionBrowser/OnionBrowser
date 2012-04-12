@@ -7,6 +7,7 @@
 
 #import "AppDelegate.h"
 #include <Openssl/sha.h>
+#import "Reachability.h"
 
 #define TOR_MSG_NONE 0
 #define TOR_MSG_AUTHENTICATE 1
@@ -32,6 +33,18 @@
     [_window addSubview:_wvc.view];
     [_window makeKeyAndVisible];
     
+    // listen to changes in connection state
+    // (tor has auto detection when external IP changes, but if we went
+    //  offline, tor might not handle coming back gracefully -- we will SIGHUP
+    //  on those)
+    Reachability* reach = [Reachability reachabilityForInternetConnection];
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(reachabilityChanged) 
+                                                 name:kReachabilityChangedNotification 
+                                               object:nil];
+    [reach startNotifier];
+
+    
     _webViewStarted = NO;
     spoofUserAgent = NO;
     
@@ -56,6 +69,21 @@
     
     return YES;
 }
+- (void)reachabilityChanged {
+    Reachability* reach = [Reachability reachabilityForInternetConnection];
+    if (reach.isReachable) {
+        #ifdef DEBUG
+            NSLog(@"[tor] Reachability changed (now online), sending HUP" );
+        #endif
+        [_mSocket writeString:@"SIGNAL HUP\n" encoding:NSUTF8StringEncoding];
+        _torCheckLoopTimer = [NSTimer scheduledTimerWithTimeInterval:0.25f
+                                                          target:self
+                                                        selector:@selector(activateTorCheckLoop)
+                                                        userInfo:nil
+                                                         repeats:NO];
+    }
+}
+
 
 - (void)netsocketConnected:(ULINetSocket*)inNetSocket {    
     #ifdef DEBUG

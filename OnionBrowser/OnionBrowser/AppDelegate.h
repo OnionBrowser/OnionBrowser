@@ -35,4 +35,6 @@
 - (void)activateTorCheckLoop;
 - (void)disableTorCheckLoop;
 
+- (void)reachabilityChanged;
+
 @end
