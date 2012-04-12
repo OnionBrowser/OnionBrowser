@@ -37,4 +37,6 @@
 - (void)loadAddress:(id)sender event:(UIEvent*)event;
 - (void)informError:(NSError*)error;
 
+- (UIImage *)makeBackButtonImage;
+- (UIImage *)makeForwardButtonImage;
 @end

@@ -59,8 +59,8 @@ static const NSInteger kLoadingStatusTag = 1003;
     webViewFrame.size.height = webViewFrame.size.height - kToolBarHeight - kNavBarHeight;
     _myWebView = [[UIWebView alloc] initWithFrame:webViewFrame];
     _myWebView.backgroundColor = [UIColor whiteColor];
-    //_myWebView.scalesPageToFit = YES;
-    //_myWebView.contentScaleFactor = 3;
+    _myWebView.scalesPageToFit = YES;
+    _myWebView.contentScaleFactor = 3;
     _myWebView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
     _myWebView.delegate = self;
     [self.view addSubview: _myWebView];
@@ -102,7 +102,7 @@ static const NSInteger kLoadingStatusTag = 1003;
     }
 
     _myWebView.delegate = self;
-    //_myWebView.scalesPageToFit = YES;
+    _myWebView.scalesPageToFit = YES;
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:navigationURL];
     [req setHTTPShouldUsePipelining:YES];
 
@@ -113,11 +113,62 @@ static const NSInteger kLoadingStatusTag = 1003;
 }
 
 
+- (UIImage *)makeBackButtonImage {
+    CGFloat scale = [[UIScreen mainScreen] scale];
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGContextRef context = CGBitmapContextCreate(nil,28*scale,28*scale,8,0,
+                                                 colorSpace,kCGImageAlphaPremultipliedLast);
+    CFRelease(colorSpace);
+    CGColorRef fillColor = [[UIColor blackColor] CGColor];
+    CGContextSetFillColor(context, CGColorGetComponents(fillColor));
+    
+    CGContextBeginPath(context);
+    CGContextMoveToPoint(context, 8.0f*scale, 12.0f*scale);
+    CGContextAddLineToPoint(context, 24.0f*scale, 4.0f*scale);
+    CGContextAddLineToPoint(context, 24.0f*scale, 22.0f*scale);
+    CGContextClosePath(context);
+    CGContextFillPath(context);
+    
+    // convert the context into a CGImageRef
+    CGImageRef theCGImage = CGBitmapContextCreateImage(context);
+    CGContextRelease(context);
+    UIImage *backImage = [[UIImage alloc] initWithCGImage:theCGImage
+                                                    scale:[[UIScreen mainScreen] scale]
+                                              orientation:UIImageOrientationUp];
+    CGImageRelease(theCGImage);
+    return backImage;
+}
+- (UIImage *)makeForwardButtonImage {
+    CGFloat scale = [[UIScreen mainScreen] scale];
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGContextRef context = CGBitmapContextCreate(nil,28*scale,28*scale,8,0,
+                                                 colorSpace,kCGImageAlphaPremultipliedLast);
+    CFRelease(colorSpace);
+    CGColorRef fillColor = [[UIColor blackColor] CGColor];
+    CGContextSetFillColor(context, CGColorGetComponents(fillColor));
+    
+    CGContextBeginPath(context);
+    CGContextMoveToPoint(context, 20.0f*scale, 12.0f*scale);
+    CGContextAddLineToPoint(context, 4.0f*scale, 4.0f*scale);
+    CGContextAddLineToPoint(context, 4.0f*scale, 22.0f*scale);
+    CGContextClosePath(context);
+    CGContextFillPath(context);
+    
+    // convert the context into a CGImageRef
+    CGImageRef theCGImage = CGBitmapContextCreateImage(context);
+    CGContextRelease(context);
+    UIImage *forwardImage = [[UIImage alloc] initWithCGImage:theCGImage
+                                                    scale:[[UIScreen mainScreen] scale]
+                                              orientation:UIImageOrientationUp];
+    CGImageRelease(theCGImage);
+    return forwardImage;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     _toolbar = [[UIToolbar alloc] init];
-    //[_toolbar setTintColor:[UIColor blackColor]];
+    [_toolbar setTintColor:[UIColor blackColor]];
     _toolbar.frame = CGRectMake(0, self.view.frame.size.height - kToolBarHeight, self.view.frame.size.width, kToolBarHeight);
     _toolbar.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
     _toolbar.contentMode = UIViewContentModeBottom;
@@ -126,15 +177,15 @@ static const NSInteger kLoadingStatusTag = 1003;
                                initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                target:nil
                                action:nil];
-    
-    _backButton = [[UIBarButtonItem alloc]
-                    initWithBarButtonSystemItem:UIBarButtonSystemItemRewind
+        
+    _backButton = [[UIBarButtonItem alloc] initWithImage:[self makeBackButtonImage]
+                    style:UIBarButtonItemStylePlain
                     target:_myWebView
                     action:@selector(goBack)];
-    _forwardButton = [[UIBarButtonItem alloc]
-                      initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward
-                      target:_myWebView
-                      action:@selector(goForward)];
+    _forwardButton = [[UIBarButtonItem alloc] initWithImage:[self makeForwardButtonImage]
+                    style:UIBarButtonItemStylePlain
+                    target:_myWebView
+                    action:@selector(goForward)];
     
     NSHTTPCookieAcceptPolicy policy = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookieAcceptPolicy];
     NSString *cookieStr;
@@ -200,8 +251,8 @@ static const NSInteger kLoadingStatusTag = 1003;
     label.font = [UIFont systemFontOfSize:12];
     label.textAlignment = UITextAlignmentCenter;
     
-    //[navBar setTintColor:[UIColor blackColor]];
-    //[label setTextColor:[UIColor whiteColor]];
+    [navBar setTintColor:[UIColor blackColor]];
+    [label setTextColor:[UIColor whiteColor]];
 
     [navBar addSubview:label];
     _pageTitleLabel = label;
