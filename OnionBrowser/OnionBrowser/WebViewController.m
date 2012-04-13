@@ -179,11 +179,11 @@ static const Boolean kBackwardButton = NO;
                       action:@selector(openOptionsMenu)];
     _stopButton = [[UIBarButtonItem alloc]
                     initWithBarButtonSystemItem:UIBarButtonSystemItemStop
-                    target:_myWebView
+                    target:self
                     action:@selector(stopLoading)];
     _refreshButton = [[UIBarButtonItem alloc]
                        initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
-                       target:_myWebView
+                       target:self
                        action:@selector(reload)];
     [items addObject:_backButton];
     [items addObject:space];
@@ -461,12 +461,15 @@ static const Boolean kBackwardButton = NO;
         [[NSURLCache sharedURLCache] removeAllCachedResponses];
         
         // Initialize a new UIWebView (to clear the history of the previous one)
-        UIWebView *newWebView = [[UIWebView alloc] initWithFrame:_myWebView.frame];
-        newWebView.backgroundColor = _myWebView.backgroundColor;
-        newWebView.scalesPageToFit = _myWebView.scalesPageToFit;
-        newWebView.contentScaleFactor = _myWebView.contentScaleFactor;
-        newWebView.autoresizingMask = _myWebView.autoresizingMask;
-        newWebView.delegate = _myWebView.delegate;
+        CGRect webViewFrame = [[UIScreen mainScreen] applicationFrame];
+        webViewFrame.origin.y = kNavBarHeight;
+        webViewFrame.size.height = webViewFrame.size.height - kToolBarHeight - kNavBarHeight;
+        UIWebView *newWebView = [[UIWebView alloc] initWithFrame:webViewFrame];
+        newWebView.backgroundColor = [UIColor whiteColor];
+        newWebView.scalesPageToFit = YES;
+        newWebView.contentScaleFactor = 3;
+        newWebView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
+        newWebView.delegate = self;
         [_myWebView removeFromSuperview];
         _myWebView = newWebView;
         [self.view addSubview: _myWebView];
@@ -607,6 +610,22 @@ static const Boolean kBackwardButton = NO;
     [_myWebView goBack];
     [self updateTitle:_myWebView];
     [self updateAddress:[_myWebView request]];
+    [self updateButtons];
+}
+- (void)stopLoading {
+    [_myWebView stopLoading];
+    [self updateTitle:_myWebView];
+    if ([_currentURL rangeOfString:@"file:"].location == 0) {
+        _addressField.text = @"";
+    } else {
+        if (!_addressField.isEditing) {
+            _addressField.text = _currentURL;
+        }
+    }
+    [self updateButtons];
+}
+- (void)reload {
+    [_myWebView reload];
     [self updateButtons];
 }
 

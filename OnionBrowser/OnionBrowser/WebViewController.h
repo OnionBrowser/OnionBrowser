@@ -32,6 +32,8 @@
 - (void)openOptionsMenu;
 - (void)goForward;
 - (void)goBack;
+- (void)reload;
+- (void)stopLoading;
 
 - (void)updateButtons;
 - (void)updateTitle:(UIWebView*)aWebView;

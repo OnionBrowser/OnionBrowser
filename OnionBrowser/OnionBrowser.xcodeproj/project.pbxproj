@@ -386,6 +386,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -405,7 +406,9 @@
 					"${SDK_DIR}/usr/include/libxml2",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				KEEP_PRIVATE_EXTERNS = YES;
 				LIBRARY_SEARCH_PATHS = ../dependencies/lib;
+				LINKER_DISPLAYS_MANGLED_NAMES = YES;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				STRIP_INSTALLED_PRODUCT = NO;
