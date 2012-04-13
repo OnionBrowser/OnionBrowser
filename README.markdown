@@ -15,7 +15,7 @@ and App Store links.
 
 #### Technical notes
 
-* **OnionBrowser**: 1.0
+* **OnionBrowser**: 0.9.1 (20120413a)
 * **Tor**: 0.2.3.12-alpha
 * **libevent**: 2.0.18-stable
 * **OpenSSL**: 1.0.1
@@ -51,6 +51,12 @@ DNS requests are sent over the Tor network, as well.)
 (I had WireShark packet logs to support the claim that this app protects all
 HTTP/HTTPS/DNS traffic in the browser, but seem to have misplaced them. You'll
 have to take my word for it or run your own tests.)
+
+The app uses [Automatic Reference Counting (ARC)][arc] and was developed against
+iOS 5.X. (It *may* work when building against iOS 4.X, since most of the ARC
+behavior exists in that older SDK, with the notable exception of weakrefs.)
+
+[arc]: https://developer.apple.com/library/ios/releasenotes/ObjectiveC/RN-TransitioningToARC/index.html
 
 ## Building
 

@@ -85,6 +85,45 @@
 }
 
 
+#pragma mark -
+#pragma mark Tor control port
+
+- (void)activateTorCheckLoop {
+    #ifdef DEBUG
+        NSLog(@"[tor] Checking Tor Control Port" );
+    #endif
+    [ULINetSocket ignoreBrokenPipes];
+    // Create a new ULINetSocket connected to the host. Since ULINetSocket is asynchronous, the socket is not
+    // connected to the host until the delegate method is called.
+    _mSocket = [ULINetSocket netsocketConnectedToHost:@"127.0.0.1" port:60602];
+    
+    // Schedule the ULINetSocket on the current runloop
+    [_mSocket scheduleOnCurrentRunLoop];
+    
+    // Set the ULINetSocket's delegate to ourself
+    [_mSocket setDelegate:self];
+}
+
+- (void)disableTorCheckLoop {
+    // When in background, don't poll the Tor control port.
+    [_mSocket close];
+    
+    [_torCheckLoopTimer invalidate];
+}
+
+- (void)checkTor {
+    if (!_webViewStarted) {
+        // We haven't loaded a page yet, so we are checking against bootstrap first.
+        [_mSocket writeString:@"getinfo status/bootstrap-phase\n" encoding:NSUTF8StringEncoding];
+    }
+    #ifdef DEBUG
+    else {
+        // This is a "heartbeat" check, so we are checking our circuits.
+        [_mSocket writeString:@"getinfo orconn-status\n" encoding:NSUTF8StringEncoding];
+    }
+    #endif
+}
+
 - (void)netsocketConnected:(ULINetSocket*)inNetSocket {    
     #ifdef DEBUG
         NSLog(@"[tor] Control Port Connected" );
@@ -93,13 +132,6 @@
     _lastMessageSent = TOR_MSG_AUTHENTICATE;
 }
 
-- (void)checkTor {
-    // Send a simple HTTP 1.0 header to the server and hopefully we won't be rejected
-    //[_mSocket writeString:@"getinfo circuit-status\n" encoding:NSUTF8StringEncoding];
-    //[_mSocket writeString:@"setevents circ" encoding:NSUTF8StringEncoding];
-    //[_mSocket writeString:@"setevents circ status_general\n" encoding:NSUTF8StringEncoding];
-    [_mSocket writeString:@"getinfo status/bootstrap-phase\n" encoding:NSUTF8StringEncoding];
-}
 
 - (void)netsocketDisconnected:(ULINetSocket*)inNetSocket {    
     #ifdef DEBUG
@@ -128,50 +160,52 @@
         }
         #endif
     } else if (_lastMessageSent == TOR_MSG_GETSTATUS) {
-        if ([msgIn rangeOfString:@"BOOTSTRAP PROGRESS=100"].location != NSNotFound) {
-            if (!_webViewStarted) {
+        if (!_webViewStarted) {
+            if ([msgIn rangeOfString:@"BOOTSTRAP PROGRESS=100"].location != NSNotFound) {
+                // This is our first go-around (haven't loaded page into webView yet)
+                // but we are now at 100%, so go ahead.
                 NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
                 resourcePath = [resourcePath stringByReplacingOccurrencesOfString:@"/" withString:@"//"];
                 resourcePath = [resourcePath stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
                 [_wvc loadURL:[NSURL URLWithString: [NSString stringWithFormat:@"file:/%@//startup.html",resourcePath]]];
                 _webViewStarted = YES;
-            }
-        } else {
-            [_wvc renderTorStatus:msgIn];
-            _torCheckLoopTimer = [NSTimer scheduledTimerWithTimeInterval:0.15f
+                
+                // See "checkTor call in middle of app" a little bit below.
+                /*
+                #ifdef DEBUG
+                _torCheckLoopTimer = [NSTimer scheduledTimerWithTimeInterval:5.0f
+                                                                      target:self
+                                                                    selector:@selector(checkTor)
+                                                                    userInfo:nil
+                                                                     repeats:YES];
+                #endif
+                */
+            } else {
+                // Haven't done initial load yet and still waiting on bootstrap, so
+                // render status.
+                [_wvc renderTorStatus:msgIn];
+                _torCheckLoopTimer = [NSTimer scheduledTimerWithTimeInterval:0.15f
                                                                   target:self
                                                                 selector:@selector(checkTor)
                                                                 userInfo:nil
                                                                  repeats:NO];
+            }
         }
+        #ifdef DEBUG
+        else {
+            // This is a response to a "checkTor" call in the middle of our app.
+                NSLog(@"[tor] Control Port: orconn-status:\n    %@",
+                      [msgIn
+                       stringByReplacingOccurrencesOfString:@"\n"
+                       withString:@"\n    "]
+                     );
+        }
+        #endif
     }
 }
 
 - (void)netsocketDataSent:(ULINetSocket*)inNetSocket { }
 
-#pragma mark -
-
-- (void)activateTorCheckLoop {
-    #ifdef DEBUG
-        NSLog(@"[tor] Checking Tor Control Port" );
-    #endif
-    [ULINetSocket ignoreBrokenPipes];
-    // Create a new ULINetSocket connected to the host. Since ULINetSocket is asynchronous, the socket is not
-    // connected to the host until the delegate method is called.
-    _mSocket = [ULINetSocket netsocketConnectedToHost:@"127.0.0.1" port:60602];
-    
-    // Schedule the ULINetSocket on the current runloop
-    [_mSocket scheduleOnCurrentRunLoop];
-    
-    // Set the ULINetSocket's delegate to ourself
-    [_mSocket setDelegate:self];
-}
-
-- (void)disableTorCheckLoop {
-    [_mSocket close];
-
-    [_torCheckLoopTimer invalidate];
-}
 
 - (void)requestNewTorIdentity {
     #ifdef DEBUG
@@ -179,6 +213,11 @@
     #endif
     [_mSocket writeString:@"SIGNAL NEWNYM\n" encoding:NSUTF8StringEncoding];
 }
+
+
+#pragma mark -
+#pragma mark App lifecycle
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -191,8 +230,6 @@
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     [self disableTorCheckLoop];
-    //[_torThread halt_tor];
-    //_torThread = nil;
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -220,7 +257,6 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     [self disableTorCheckLoop];
-    [_torThread halt_tor];
     _torThread = nil;
 }
 

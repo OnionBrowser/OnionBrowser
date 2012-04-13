@@ -9,8 +9,6 @@
 #import "ProxyURLProtocol.h"
 #import <Foundation/NSURLProtocol.h>
 
-//static NSString *PBProxyURLHeader = @"X-PB";
-
 @implementation ProxyURLProtocol
 
 // Accessors
@@ -67,15 +65,7 @@
 
 + (BOOL)canInitWithRequest:(NSURLRequest *)request {
     if ( ([[[request URL] scheme] isEqualToString:@"http"] || [[[request URL] scheme] isEqualToString:@"https"])) {
-        /*
-        if ([request valueForHTTPHeaderField:PBProxyURLHeader] == nil) {
-            NSLog(@"1");
-            return YES;
-        } else {
-            NSLog(@"2");
-            return NO;
-        }
-        */
+        // Web browser can only handle HTTP/HTTPS over tor. (FTP cannot, file:// cannot.)
         return YES;
     } else {
         return NO;
@@ -87,7 +77,6 @@
 }
 
 
-// Instance methods
 
 - (void)startLoading {
     CKHTTPConnection *con = [CKHTTPConnection connectionWithRequest:[self request] delegate:self];
@@ -98,7 +87,7 @@
     [[self connection] cancel];
 }
 
-#pragma mark - 
+#pragma mark -
 #pragma mark NSURLConnectionDelegate
 
 - (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)response {
@@ -134,7 +123,7 @@
 }
 
 
-#pragma mark - 
+#pragma mark -
 #pragma mark CKHTTPConnectionDelegate
 
 

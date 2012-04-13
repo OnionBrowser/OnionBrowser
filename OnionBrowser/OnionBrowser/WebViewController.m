@@ -17,11 +17,13 @@ static const CGFloat kSpacer = 2.0f;
 static const CGFloat kLabelFontSize = 12.0f;
 static const CGFloat kAddressHeight = 26.0f;
 
-
 static const NSInteger kNavBarTag = 1000;
 static const NSInteger kAddressFieldTag = 1001;
 static const NSInteger kAddressCancelButtonTag = 1002;
 static const NSInteger kLoadingStatusTag = 1003;
+
+static const Boolean kForwardButton = YES;
+static const Boolean kBackwardButton = NO;
 
 @interface WebViewController ()
 
@@ -67,6 +69,8 @@ static const NSInteger kLoadingStatusTag = 1003;
 }
 
 - (void)renderTorStatus: (NSString *)statusLine {
+    // TODO: really needs cleanup / prettiness
+    //       (turn into semi-transparent modal with spinner?)
     UILabel *loadingStatus = (UILabel *)[self.view viewWithTag:kLoadingStatusTag];
                                                                        
     _torStatus = [NSString stringWithFormat:@"%@\n%@",
@@ -88,7 +92,7 @@ static const NSInteger kLoadingStatusTag = 1003;
     if (summary_loc2.location != NSNotFound)
         summary_str = [summary_str substringToIndex:summary_loc2.location];
 
-    NSString *status = [NSString stringWithFormat:@"Connecting...\n%@%%\n%@",
+    NSString *status = [NSString stringWithFormat:@"Connecting...\nThis may take a minute.\n\n%@%%\n%@",
                             progress_str,
                             summary_str];
     loadingStatus.text = status;
@@ -96,24 +100,26 @@ static const NSInteger kLoadingStatusTag = 1003;
 }
 
 -(void)loadURL: (NSURL *)navigationURL {
+    // Remove the "connecting..." (initial tor load) overlay if it still exists.
     UIView *loadingStatus = [self.view viewWithTag:kLoadingStatusTag];
     if (loadingStatus != nil) {
         [loadingStatus removeFromSuperview];
     }
 
+    // Build request and go.
     _myWebView.delegate = self;
     _myWebView.scalesPageToFit = YES;
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:navigationURL];
     [req setHTTPShouldUsePipelining:YES];
-
-    
     [_myWebView loadRequest:req];
 
     [self updateButtons];
 }
 
 
-- (UIImage *)makeBackButtonImage {
+- (UIImage *)makeForwardBackButtonImage:(Boolean)whichButton {
+    // Draws the vector image for the forward or back button. (see kForwardButton
+    // and kBackwardButton for the "whichButton" values)
     CGFloat scale = [[UIScreen mainScreen] scale];
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     CGContextRef context = CGBitmapContextCreate(nil,28*scale,28*scale,8,0,
@@ -123,50 +129,31 @@ static const NSInteger kLoadingStatusTag = 1003;
     CGContextSetFillColor(context, CGColorGetComponents(fillColor));
     
     CGContextBeginPath(context);
-    CGContextMoveToPoint(context, 8.0f*scale, 12.0f*scale);
-    CGContextAddLineToPoint(context, 24.0f*scale, 4.0f*scale);
-    CGContextAddLineToPoint(context, 24.0f*scale, 22.0f*scale);
+    if (whichButton == kForwardButton) {
+        CGContextMoveToPoint(context, 20.0f*scale, 12.0f*scale);
+        CGContextAddLineToPoint(context, 4.0f*scale, 4.0f*scale);
+        CGContextAddLineToPoint(context, 4.0f*scale, 22.0f*scale);
+    } else {
+        CGContextMoveToPoint(context, 8.0f*scale, 12.0f*scale);
+        CGContextAddLineToPoint(context, 24.0f*scale, 4.0f*scale);
+        CGContextAddLineToPoint(context, 24.0f*scale, 22.0f*scale);
+    }
     CGContextClosePath(context);
     CGContextFillPath(context);
     
-    // convert the context into a CGImageRef
     CGImageRef theCGImage = CGBitmapContextCreateImage(context);
     CGContextRelease(context);
-    UIImage *backImage = [[UIImage alloc] initWithCGImage:theCGImage
+    UIImage *buttonImage = [[UIImage alloc] initWithCGImage:theCGImage
                                                     scale:[[UIScreen mainScreen] scale]
                                               orientation:UIImageOrientationUp];
     CGImageRelease(theCGImage);
-    return backImage;
-}
-- (UIImage *)makeForwardButtonImage {
-    CGFloat scale = [[UIScreen mainScreen] scale];
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    CGContextRef context = CGBitmapContextCreate(nil,28*scale,28*scale,8,0,
-                                                 colorSpace,kCGImageAlphaPremultipliedLast);
-    CFRelease(colorSpace);
-    CGColorRef fillColor = [[UIColor blackColor] CGColor];
-    CGContextSetFillColor(context, CGColorGetComponents(fillColor));
-    
-    CGContextBeginPath(context);
-    CGContextMoveToPoint(context, 20.0f*scale, 12.0f*scale);
-    CGContextAddLineToPoint(context, 4.0f*scale, 4.0f*scale);
-    CGContextAddLineToPoint(context, 4.0f*scale, 22.0f*scale);
-    CGContextClosePath(context);
-    CGContextFillPath(context);
-    
-    // convert the context into a CGImageRef
-    CGImageRef theCGImage = CGBitmapContextCreateImage(context);
-    CGContextRelease(context);
-    UIImage *forwardImage = [[UIImage alloc] initWithCGImage:theCGImage
-                                                    scale:[[UIScreen mainScreen] scale]
-                                              orientation:UIImageOrientationUp];
-    CGImageRelease(theCGImage);
-    return forwardImage;
+    return buttonImage;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    // Set up toolbar.
     _toolbar = [[UIToolbar alloc] init];
     [_toolbar setTintColor:[UIColor blackColor]];
     _toolbar.frame = CGRectMake(0, self.view.frame.size.height - kToolBarHeight, self.view.frame.size.width, kToolBarHeight);
@@ -178,39 +165,14 @@ static const NSInteger kLoadingStatusTag = 1003;
                                target:nil
                                action:nil];
         
-    _backButton = [[UIBarButtonItem alloc] initWithImage:[self makeBackButtonImage]
+    _backButton = [[UIBarButtonItem alloc] initWithImage:[self makeForwardBackButtonImage:kBackwardButton]
                     style:UIBarButtonItemStylePlain
-                    target:_myWebView
+                    target:self
                     action:@selector(goBack)];
-    _forwardButton = [[UIBarButtonItem alloc] initWithImage:[self makeForwardButtonImage]
+    _forwardButton = [[UIBarButtonItem alloc] initWithImage:[self makeForwardBackButtonImage:kForwardButton]
                     style:UIBarButtonItemStylePlain
-                    target:_myWebView
+                    target:self
                     action:@selector(goForward)];
-    
-    NSHTTPCookieAcceptPolicy policy = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookieAcceptPolicy];
-    NSString *cookieStr;
-    if (policy == NSHTTPCookieAcceptPolicyAlways) {
-        cookieStr = @"Cookies: Allow All";
-    } else if (policy == NSHTTPCookieAcceptPolicyOnlyFromMainDocumentDomain) {
-        cookieStr = @"Cookies: No Third Party";
-    } else {
-        cookieStr = @"Cookies: Block All";
-    }
-    
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    NSString *uaSpoofStr;
-    if (appDelegate.spoofUserAgent) {
-        uaSpoofStr = @"Disable UA Spoofing";
-    } else {
-        uaSpoofStr = @"Enable UA Spoofing";
-    }
-    
-    _optionsMenu = [[UIActionSheet alloc] initWithTitle:nil
-                                               delegate:self
-                                      cancelButtonTitle:@"Close"
-                                 destructiveButtonTitle:@"New Identity"
-                                      otherButtonTitles:cookieStr, uaSpoofStr, @"Open Home Page", @"About Onion Browser", nil];
-    
     _toolButton = [[UIBarButtonItem alloc]
                       initWithBarButtonSystemItem:UIBarButtonSystemItemAction
                       target:self
@@ -234,8 +196,36 @@ static const NSInteger kLoadingStatusTag = 1003;
     [items addObject:_refreshButton];
     [_toolbar setItems:items animated:NO];
     [self.view addSubview:_toolbar];
+    // (/toolbar)
+    
+    // Set up "action sheet" (options menu)
+    NSHTTPCookieAcceptPolicy policy = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookieAcceptPolicy];
+    NSString *cookieStr;
+    if (policy == NSHTTPCookieAcceptPolicyAlways) {
+        cookieStr = @"Cookies: Allow All";
+    } else if (policy == NSHTTPCookieAcceptPolicyOnlyFromMainDocumentDomain) {
+        cookieStr = @"Cookies: No Third Party";
+    } else {
+        cookieStr = @"Cookies: Block All";
+    }
+    
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSString *uaSpoofStr;
+    if (appDelegate.spoofUserAgent) {
+        uaSpoofStr = @"Disable UA Spoofing";
+    } else {
+        uaSpoofStr = @"Enable UA Spoofing";
+    }
+    
+    _optionsMenu = [[UIActionSheet alloc] initWithTitle:nil
+                                               delegate:self
+                                      cancelButtonTitle:@"Close"
+                                 destructiveButtonTitle:@"New Identity"
+                                      otherButtonTitles:cookieStr, uaSpoofStr, @"Open Home Page", @"About Onion Browser", nil];
+    // (/actionsheet)
     
     
+    // Set up navbar
     CGRect navBarFrame = self.view.bounds;
     navBarFrame.size.height = kNavBarHeight;
     UINavigationBar *navBar = [[UINavigationBar alloc] initWithFrame:navBarFrame];
@@ -278,39 +268,38 @@ static const NSInteger kLoadingStatusTag = 1003;
       forControlEvents:UIControlEventEditingDidEndOnExit|UIControlEventEditingDidEnd];
     [navBar addSubview:address];
     _addressField = address;
-    
     [self.view addSubview:navBar];
+    // (/navbar)
     
+    // Since this is first load: set up the overlay "loading..." bit that
+    // will display tor initialization status.
     CGRect screenFrame = [[UIScreen mainScreen] applicationFrame];
     UILabel *loadingStatus = [[UILabel alloc] initWithFrame:CGRectMake(0,
                                                                        kNavBarHeight,
                                                                        screenFrame.size.width,
-                                                                       100)];
+                                                                       160)];
     loadingStatus.tag = kLoadingStatusTag;
     loadingStatus.numberOfLines = 0;
-    loadingStatus.font = [UIFont fontWithName:@"Helvetica" size:(20.0)];
+    loadingStatus.font = [UIFont fontWithName:@"Helvetica" size:(18.0)];
     loadingStatus.lineBreakMode = UILineBreakModeWordWrap;
     loadingStatus.textAlignment =  UITextAlignmentLeft;
-    loadingStatus.text = @"Initializing...";
+    loadingStatus.text = @"Connecting...\n\n\n\n\n";
     [self.view addSubview:loadingStatus];
 }
 
 
-- (void)viewDidUnload
-{
+- (void)viewDidUnload {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    if (IS_IPAD)
-        return YES;
-    else
-        return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    // Allow all four orientations on iPad.
+    // Disallow upside-down for iPhone.
+    return (IS_IPAD) || (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
 # pragma mark -
+# pragma mark WebView behavior
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     [self updateAddress:request];
@@ -342,8 +331,36 @@ static const NSInteger kLoadingStatusTag = 1003;
     #endif
 }
 
+- (void)informError:(NSError *)error {
+    if ([error.domain isEqualToString:(NSString *)kCFErrorDomainCFNetwork]) {
+        NSString* errorDescription;
+        
+        if (error.code == kCFSOCKS5ErrorBadState) {
+            errorDescription = @"Could not connect to the server. Either the domain name is incorrect, the server is inaccessible, or the Tor circuit was broken.";
+        } else if (error.code == kCFHostErrorHostNotFound) {
+            errorDescription = @"The server could not be found";
+        } else {
+            errorDescription = [NSString stringWithFormat:@"An unknown error occurred: %@",
+                                error.localizedDescription];
+        }
+        UIAlertView* alertView = [[UIAlertView alloc] 
+                                  initWithTitle:@"Cannot Open Page" 
+                                  message:errorDescription delegate:nil 
+                                  cancelButtonTitle:@"OK" 
+                                  otherButtonTitles:nil];
+        [alertView show];
+    }
+    #ifdef DEBUG
+    else {
+        NSLog(@"[WebViewController] uncaught error: %@", [error localizedDescription]);
+    }
+    #endif
+}
+
+
 
 # pragma mark -
+# pragma mark Address Bar
 
 - (void)addressBarCancel {
     _addressField.text = _currentURL;
@@ -421,7 +438,9 @@ static const NSInteger kLoadingStatusTag = 1003;
                          [cancelButton removeFromSuperview];
                      }]; 
 }
+
 # pragma mark -
+# pragma mark Options Menu action sheet
 
 - (void)openOptionsMenu {
     [_optionsMenu showFromToolbar:_toolbar];
@@ -576,6 +595,20 @@ static const NSInteger kLoadingStatusTag = 1003;
 }
 
 # pragma mark -
+# pragma mark Toolbar/navbar behavior
+
+- (void)goForward {
+    [_myWebView goForward];
+    [self updateTitle:_myWebView];
+    [self updateAddress:[_myWebView request]];
+    [self updateButtons];
+}
+- (void)goBack {
+    [_myWebView goBack];
+    [self updateTitle:_myWebView];
+    [self updateAddress:[_myWebView request]];
+    [self updateButtons];
+}
 
 - (void)updateButtons
 {
@@ -594,9 +627,12 @@ static const NSInteger kLoadingStatusTag = 1003;
 {
     NSURL* url = [request mainDocumentURL];
     NSString* absoluteString = [url absoluteString];
-    if (![absoluteString isEqualToString:_currentURL]){
+    
+    if ([absoluteString rangeOfString:@"file:"].location == 0) {
+        _addressField.text = @"";
+    } else if (![absoluteString isEqualToString:_currentURL]){
         _currentURL = absoluteString;
-        if ((!_addressField.isEditing) && ([_currentURL rangeOfString:@"file://"].location != 0)) {
+        if (!_addressField.isEditing) {
             _addressField.text = absoluteString;
         }
     }
@@ -613,28 +649,5 @@ static const NSInteger kLoadingStatusTag = 1003;
     _currentURL = [url absoluteString];
     [self loadURL:url];
 }
-
-- (void)informError:(NSError *)error {
-    if ([error.domain isEqualToString:(NSString *)kCFErrorDomainCFNetwork]) {
-        NSString* errorDescription;
-        
-        if (error.code == kCFSOCKS5ErrorBadState) {
-            errorDescription = @"Could not connect to the server. Either the domain name is incorrect, the server is inaccessible, or the Tor circuit was broken.";
-        } else if (error.code == kCFHostErrorHostNotFound) {
-            errorDescription = @"The server could not be found";
-        } else {
-            errorDescription = [NSString stringWithFormat:@"An unknown error occurred: %@",
-                                error.localizedDescription];
-        }
-        UIAlertView* alertView = [[UIAlertView alloc] 
-                                  initWithTitle:@"Cannot Open Page" 
-                                  message:errorDescription delegate:nil 
-                                  cancelButtonTitle:@"OK" 
-                                  otherButtonTitles:nil];
-        [alertView show];
-        
-    }
-}
-
 
 @end

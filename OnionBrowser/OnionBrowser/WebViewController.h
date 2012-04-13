@@ -30,6 +30,8 @@
 - (void)renderTorStatus: (NSString *)statusLine;
 
 - (void)openOptionsMenu;
+- (void)goForward;
+- (void)goBack;
 
 - (void)updateButtons;
 - (void)updateTitle:(UIWebView*)aWebView;
@@ -37,6 +39,5 @@
 - (void)loadAddress:(id)sender event:(UIEvent*)event;
 - (void)informError:(NSError*)error;
 
-- (UIImage *)makeBackButtonImage;
-- (UIImage *)makeForwardButtonImage;
+- (UIImage *)makeForwardBackButtonImage:(Boolean)whichButton;
 @end

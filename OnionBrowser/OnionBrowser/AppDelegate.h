@@ -21,20 +21,16 @@
 @property (nonatomic) NSTimer *torCheckLoopTimer;
 @property (nonatomic) ULINetSocket	*mSocket;
 
-
 @property (nonatomic) WebViewController *wvc;
 @property (nonatomic) Boolean webViewStarted;
 
-
 @property (nonatomic) Boolean spoofUserAgent;
 
+- (void)reachabilityChanged;
 
-- (void)checkTor;
-
-- (void)requestNewTorIdentity;
 - (void)activateTorCheckLoop;
 - (void)disableTorCheckLoop;
-
-- (void)reachabilityChanged;
+- (void)checkTor;
+- (void)requestNewTorIdentity;
 
 @end

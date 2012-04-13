@@ -10,8 +10,6 @@
 
 @implementation TorWrapper
 
-@synthesize status;
-
 -(void)main {
     NSString *tmpDir = NSTemporaryDirectory();
     NSString *base_torrc = [[NSBundle mainBundle] pathForResource:@"torrc" ofType:nil];
@@ -48,49 +46,5 @@
     tor_main(11, argv);
     #endif
 }
-
--(void)halt_tor {
-    if (self.status == TOR_IS_RUNNING) {
-        #ifdef DEBUG
-            NSLog(@"TorWrapper: Halting tor (SIGINT)...");
-        #endif
-        self.status = TOR_IS_STOPPING;
-        //fake_tor_cleanup();
-        [self cancel];
-        raise(SIGINT);
-        self.status = TOR_IS_STOPPED;
-    }
-}
--(void)kill_tor {
-    if (self.status == TOR_IS_RUNNING) {
-        #ifdef DEBUG
-            NSLog(@"TorWrapper: Halting tor (SIGTERM)...");
-        #endif
-        self.status = TOR_IS_STOPPING;
-        //fake_tor_cleanup();
-        [self cancel];
-        raise(SIGTERM);
-        self.status = TOR_IS_STOPPED;
-    }
-}
-
-/** Do whatever cleanup is necessary before shutting Tor down. */
-void fake_tor_cleanup(void) {
-    #ifdef DEBUG
-        NSLog(@"fake tor cleanup");
-    #endif
-    
-    //#ifdef USE_DMALLOC
-    //    dmalloc_log_stats();
-    //#endif
-    tor_free_all(1);
-    crypto_global_cleanup();
-    
-    //#ifdef USE_DMALLOC
-    //    dmalloc_log_unfreed();
-    //    dmalloc_shutdown();
-    //#endif
-}
-
 
 @end
