@@ -13,9 +13,14 @@ and App Store links.
 [miketigas]: http://mike.tig.as/
 [license]: https://github.com/mtigas/iOS-OnionBrowser/blob/master/LICENSE
 
-<a href="//d2p12wh0p3fo1n.cloudfront.net/files/20120411/002.png"><img src="//d2p12wh0p3fo1n.cloudfront.net/files/20120411/002-285.png" width="260"/></a>
-<a href="//d2p12wh0p3fo1n.cloudfront.net/files/20120411/003.png"><img src="//d2p12wh0p3fo1n.cloudfront.net/files/20120411/003-285.png" width="260"/></a>
-<a href="//d2p12wh0p3fo1n.cloudfront.net/files/20120411/004.png"><img src="//d2p12wh0p3fo1n.cloudfront.net/files/20120411/004-285.png" width="260"/></a>
+<a href="//d2p12wh0p3fo1n.cloudfront.net/files/20120413/004.png"><img src="//d2p12wh0p3fo1n.cloudfront.net/files/20120413/004-100.jpg" width="100"/></a>
+<a href="//d2p12wh0p3fo1n.cloudfront.net/files/20120413/003.png"><img src="//d2p12wh0p3fo1n.cloudfront.net/files/20120413/003-100.jpg" width="100"/></a>
+<a href="//d2p12wh0p3fo1n.cloudfront.net/files/20120413/002.png"><img src="//d2p12wh0p3fo1n.cloudfront.net/files/20120413/002-100.jpg" width="100"/></a>
+<a href="//d2p12wh0p3fo1n.cloudfront.net/files/20120413/005.png"><img src="//d2p12wh0p3fo1n.cloudfront.net/files/20120413/005-100.jpg" width="100"/></a>
+<br>
+<a href="//d2p12wh0p3fo1n.cloudfront.net/files/20120413/p003.png"><img src="//d2p12wh0p3fo1n.cloudfront.net/files/20120413/p003-150.jpg" width="150"/></a>
+<a href="//d2p12wh0p3fo1n.cloudfront.net/files/20120413/p002.png"><img src="//d2p12wh0p3fo1n.cloudfront.net/files/20120413/p002-150.jpg" width="150"/></a>
+<a href="//d2p12wh0p3fo1n.cloudfront.net/files/20120413/p001.png"><img src="//d2p12wh0p3fo1n.cloudfront.net/files/20120413/p001-150.jpg" width="150"/></a>
 
 #### Technical notes
 
