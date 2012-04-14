@@ -561,7 +561,7 @@ static const Boolean kBackwardButton = NO;
     
         if (appDelegate.spoofUserAgent) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
-                                                            message:[NSString stringWithFormat:@"User Agent spoofing enabled.\n\nNote that due to iOS limitations, scripts cannont be disabled. Scripts and other iOS features may still identify your browser.\n\nAlso note that some mobile or tablet websites may not work properly without the original mobile User Agent."]
+                                                            message:[NSString stringWithFormat:@"User Agent spoofing enabled.\n\nNote that JavaScript cannot be disabled due to framework limitations. Scripts and other iOS features may still identify your browser.\n\nSome mobile or tablet websites may not work properly without the original mobile User Agent."]
                                                            delegate:nil
                                                   cancelButtonTitle:@"OK" 
                                                   otherButtonTitles:nil];
