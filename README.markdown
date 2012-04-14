@@ -13,9 +13,9 @@ and App Store links.
 [miketigas]: http://mike.tig.as/
 [license]: https://github.com/mtigas/iOS-OnionBrowser/blob/master/LICENSE
 
-<a href="//d2p12wh0p3fo1n.cloudfront.net/files/20120411/002.png"><img src="//d2p12wh0p3fo1n.cloudfront.net/files/20120411/002-285.png" width="285"/></a>
-<a href="//d2p12wh0p3fo1n.cloudfront.net/files/20120411/003.png"><img src="//d2p12wh0p3fo1n.cloudfront.net/files/20120411/003-285.png" width="285"/></a>
-<a href="//d2p12wh0p3fo1n.cloudfront.net/files/20120411/004.png"><img src="//d2p12wh0p3fo1n.cloudfront.net/files/20120411/004-285.png" width="285"/></a>
+<a href="//d2p12wh0p3fo1n.cloudfront.net/files/20120411/002.png"><img src="//d2p12wh0p3fo1n.cloudfront.net/files/20120411/002-285.png" width="260"/></a>
+<a href="//d2p12wh0p3fo1n.cloudfront.net/files/20120411/003.png"><img src="//d2p12wh0p3fo1n.cloudfront.net/files/20120411/003-285.png" width="260"/></a>
+<a href="//d2p12wh0p3fo1n.cloudfront.net/files/20120411/004.png"><img src="//d2p12wh0p3fo1n.cloudfront.net/files/20120411/004-285.png" width="260"/></a>
 
 #### Technical notes
 
