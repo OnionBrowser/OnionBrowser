@@ -1,8 +1,8 @@
 ## Onion Browser
 
-[Official Site][official] | 
-[Support][help] | 
-&copy; 2012 [Mike Tigas][miketigas] ([MIT License][license])
+[Official Site][official] | [Support][help]<br>
+&copy; 2012 [Mike Tigas][miketigas] ([@mtigas](https://twitter.com/mtigas))<br>
+[MIT License][license]
 
 A minimal, open-source web browser for iOS that tunnels web traffic through
 the [Tor network][tor]. See the [official site][official] for more details
