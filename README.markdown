@@ -44,6 +44,18 @@ i386 (for the iOS Simulator).
 [build_libssl]: https://github.com/x2on/OpenSSL-for-iPhone/blob/c637f773a99810bb101169f8e534d0d6b09f3396/build-libssl.sh
 [openssliphone]: https://github.com/x2on/OpenSSL-for-iPhone
 
+The tor `build-tor.sh` script patches one file in Tor (`src/common/compat.c`)
+to remove references to `ptrace()`. This code is only used for the
+`DisableDebuggerAttachment` feature (default: True) implemented in Tor
+0.2.3.9-alpha. (See [changelog][tor_dev_changelog] and [manual][tor_dev_manual].)
+`ptrace()` calls are not allowed in App Store apps; apps
+submitted with `ptrace()` symbols are rejected on upload by Apple's
+auto-validation of the uploaded binary. See the `build-tor-ptrace-patch.diff`
+file.
+
+[tor_dev_changelog]: https://gitweb.torproject.org/tor.git/blob/tor-0.2.3.12-alpha:/ChangeLog
+[tor_dev_manual]: https://www.torproject.org/docs/tor-manual-dev.html.en
+
 Because iOS applications cannot launch subprocesses or otherwise execute other
 binaries, the tor client is run in-process in a `NSThread` subclass which
 attempts to safely wrap the Tor binary within this app. (`libor.a` and
