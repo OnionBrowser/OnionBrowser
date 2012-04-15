@@ -34,3 +34,8 @@ TestSocks 0
 WarnUnsafeSocks 0  #default 1 (we don't care on iOS)
 
 EntryNodes {us}
+
+# We actually disabled this by removing ptrace() calls when building tor.
+# See "build-tor-ptrace-patch.diff" and "build-tor.sh" in the OnionBrowser
+# repo root.
+DisableDebuggerAttachment 0

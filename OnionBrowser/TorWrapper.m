@@ -35,16 +35,12 @@
 
     #ifndef DEBUG
     char *arg_8 = "warn stderr";
-    char* argv[] = {arg_0, arg_1, arg_2, arg_3, arg_4, arg_5, arg_6, arg_7, arg_8, NULL};
-    tor_main(9, argv);
     #endif
     #ifdef DEBUG
     char *arg_8 = "notice stderr";
-    char *arg_9 = "DisableDebuggerAttachment";
-    char *arg_10 = "0";
-    char* argv[] = {arg_0, arg_1, arg_2, arg_3, arg_4, arg_5, arg_6, arg_7, arg_8, arg_9, arg_10, NULL};
-    tor_main(11, argv);
     #endif
+    char* argv[] = {arg_0, arg_1, arg_2, arg_3, arg_4, arg_5, arg_6, arg_7, arg_8, NULL};
+    tor_main(9, argv);
 }
 
 @end

@@ -72,6 +72,10 @@ fi
 tar zxf tor-${VERSION}.tar.gz -C $SRCDIR
 cd "${SRCDIR}/tor-${VERSION}"
 
+####
+# Patch to remove the "DisableDebuggerAttachment" ptrace() calls
+# that are not allowed in App Store apps
+patch -p3 < ../../../build-tor-ptrace-patch.diff
 
 #####
 # Collect libz.dylib from the iPhoneSimulator.sdk and iPhoneOS.sdk (already contains armv6 and armv7)
@@ -194,7 +198,7 @@ for ARCH in ${ARCHS}; do
     fi
 done
 
-mkdir ${OUTPUTDIR}/share
+mkdir -p ${OUTPUTDIR}/share
 cp "${SRCDIR}/tor-${VERSION}/src/config/geoip" ${OUTPUTDIR}/share
 
 ####################

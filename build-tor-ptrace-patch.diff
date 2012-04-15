@@ -1,0 +1,25 @@
+--- build/src/tor-0.2.3.12-alpha/src/common/compat.c	2012-02-09 01:21:18.000000000 -0800
++++ build/src/tor-0.2.3.12-alpha/src/common/compat2.c	2012-04-14 19:48:42.000000000 -0700
+@@ -1545,16 +1545,16 @@
+ #ifdef PR_SET_DUMPABLE
+   attempted = 1;
+   r = prctl(PR_SET_DUMPABLE, 0);
+ #endif
+ #endif
+-#if defined(__APPLE__) && defined(PT_DENY_ATTACH)
+-  if (r < 0) {
+-    attempted = 1;
+-    r = ptrace(PT_DENY_ATTACH, 0, 0, 0);
+-  }
+-#endif
++//#if defined(__APPLE__) && defined(PT_DENY_ATTACH)
++//  if (r < 0) {
++//    attempted = 1;
++//    r = ptrace(PT_DENY_ATTACH, 0, 0, 0);
++//  }
++//#endif
+ 
+   // XXX: TODO - Mac OS X has dtrace and this may be disabled.
+   // XXX: TODO - Windows probably has something similar
+   if (r == 0 && attempted) {
+     log_debug(LD_CONFIG,"Debugger attachment disabled for "
