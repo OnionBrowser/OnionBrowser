@@ -16,6 +16,11 @@ HashedControlPassword 16:104439FC739692EC606CC837F4AE601DC19DB00CE6AAC9CC13B9E2B
 
 ConnLimit 100
 
+# Use very strict and small timeouts (and don't take the network consensus values)
+# to boost performance a little bit.
+# (This is may mildly impact privacy, but within the scope of the application's
+# description and stated claims.)
+# See also: EntryNodes below
 LearnCircuitBuildTimeout 0
 CircuitBuildTimeout 15
 CircuitIdleTimeout 1800
@@ -33,7 +38,15 @@ SafeLogging 1
 TestSocks 0
 WarnUnsafeSocks 0  #default 1 (we don't care on iOS)
 
-EntryNodes {us}
+# Until ERN process is complete, mainline version of this app is only for sale
+# in US & CA. Optimize performance (since latency is already high on mobile and
+# user tolerance is not) until some point in the future when we can determine
+# the performance penalty of allowing EntryNodes from everywhere. NOTE tor can
+# still connect to EntryNodes that do not match this if it wants to, but it
+# will strongly prefer US/CA.
+# (This is may mildly impact privacy, but within the scope of the application's
+# description and stated claims.)
+EntryNodes {us}, {ca}
 
 # We actually disabled this by removing ptrace() calls when building tor.
 # See "build-tor-ptrace-patch.diff" and "build-tor.sh" in the OnionBrowser
