@@ -51,20 +51,16 @@ See http://www.wassenaar.org/ for more information.
 
 This source package does not directly contain encryption software. Please see
 the OpenSSL and Tor Project license portions for links to the encryption-containing
-portions of this application's source code.
+portions of this application.. Distributions of this source package
+(and only this source package, without external dependencies) may not be
+considered encryption software depending on the regulations of your jurisdiction.
 
-In the United States, the open-source manner of this package and
-it's dependencies makes free binary distributions eligible for export under the
-License Exception ENC Technology Software Unrestricted (TSU) exception.
-
-Free versions of this application's binary are exempt via the TSU exception,
-but binary forms for sale must go through the full regulatory registration
-process as per the "My application uses a public domain library (openssh)..."
-question in the "World Wide Trade Compliance for the App Store"
-page on the Apple iTunes Connect FAQs[3] site. Binary forms for sale
-only in the United States and Canada in the App Store are exempt. (See "I intend to
-distribute my app only in the United States and Canada..." question on that FAQ
-page.)
+Distribution of binary versions of this application may be subject to
+further export/import and/or use restrictions. (iOS developers: see the
+"My application uses a public domain library (openssh)..." question in the
+"World Wide Trade Compliance for the App Store" page on the Apple iTunes Connect
+FAQs[3] site. Also note the "I intend to distribute my app only in the United
+States and Canada..." question on that FAQ page.)
 
     [3]: https://itunesconnect.apple.com/WebObjects/iTunesConnect.woa/wa/jumpTo?page=faqs
 
