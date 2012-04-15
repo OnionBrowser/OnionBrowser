@@ -58,9 +58,13 @@ file.
 
 Because iOS applications cannot launch subprocesses or otherwise execute other
 binaries, the tor client is run in-process in a `NSThread` subclass which
-attempts to safely wrap the Tor binary within this app. (`libor.a` and
+executes the `tor_main()` function (as an external `tor` executable would)
+and attempts to safely wrap Tor within the app. (`libor.a` and
 `libtor.a`, intermediate binaries created when compiling Tor, are used to
 provide Tor.) Side-effects of this method have not yet been fully evaluated.
+Management of most tor functionality (status checks, reloading tor on connection
+changes) is handled by accessing the Tor control port in an internal, telnet-like
+session from the `AppDelegate`.
 
 The app uses a `NSURLProtocol` subclass (`ProxyURLProtocol`), registered to
 handle HTTP/HTTPS requests. That protocol uses the `CKHTTPConnection` class
