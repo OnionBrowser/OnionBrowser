@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		691958D61536BA67000423A4 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 691958D41536B8AC000423A4 /* Reachability.m */; };
+		692B86AF153CD4CB000806A9 /* NSData+Conversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 692B86AE153CD4CB000806A9 /* NSData+Conversion.m */; };
 		694F34F1152ECFF20002BCBC /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 694F34E9152ECFF20002BCBC /* Icon.png */; };
 		694F34F2152ECFF20002BCBC /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 694F34EA152ECFF20002BCBC /* Icon-72.png */; };
 		694F34F3152ECFF20002BCBC /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 694F34EB152ECFF20002BCBC /* Icon-72@2x.png */; };
@@ -59,6 +60,8 @@
 /* Begin PBXFileReference section */
 		691958D31536B8AC000423A4 /* Reachability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		691958D41536B8AC000423A4 /* Reachability.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		692B86AD153CD4CB000806A9 /* NSData+Conversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Conversion.h"; sourceTree = "<group>"; };
+		692B86AE153CD4CB000806A9 /* NSData+Conversion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Conversion.m"; sourceTree = "<group>"; };
 		694F34E9152ECFF20002BCBC /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = icon/Icon.png; sourceTree = "<group>"; };
 		694F34EA152ECFF20002BCBC /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "icon/Icon-72.png"; sourceTree = "<group>"; };
 		694F34EB152ECFF20002BCBC /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72@2x.png"; path = "icon/Icon-72@2x.png"; sourceTree = "<group>"; };
@@ -216,6 +219,8 @@
 				691958D41536B8AC000423A4 /* Reachability.m */,
 				696F9EB214F8DD6D00BC5FDC /* ULINetSocket.h */,
 				696F9EB314F8DD6D00BC5FDC /* ULINetSocket.m */,
+				692B86AD153CD4CB000806A9 /* NSData+Conversion.h */,
+				692B86AE153CD4CB000806A9 /* NSData+Conversion.m */,
 			);
 			name = ThirdParty;
 			sourceTree = "<group>";
@@ -361,6 +366,7 @@
 				697ABCD414FA036E00E1678C /* WebViewController.m in Sources */,
 				69C6F6A514FACC3000894495 /* ProxyURLProtocol.m in Sources */,
 				69F3C5FD14FC8739008274C3 /* CKHTTPConnection.m in Sources */,
+				692B86AF153CD4CB000806A9 /* NSData+Conversion.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

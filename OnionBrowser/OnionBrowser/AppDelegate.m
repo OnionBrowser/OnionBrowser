@@ -8,6 +8,7 @@
 #import "AppDelegate.h"
 #include <Openssl/sha.h>
 #import "Reachability.h"
+#import "NSData+Conversion.h"
 
 #define TOR_MSG_NONE 0
 #define TOR_MSG_AUTHENTICATE 1
@@ -22,8 +23,9 @@
             lastMessageSent = _lastMessageSent,
             wvc = _wvc,
             webViewStarted = _webViewStarted,
-            spoofUserAgent;
-
+            spoofUserAgent,
+            torControlPort = _torControlPort,
+            torSocksPort = _torSocksPort;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -32,6 +34,9 @@
     _wvc = [[WebViewController alloc] init];
     [_window addSubview:_wvc.view];
     [_window makeKeyAndVisible];
+    
+    _torControlPort = (arc4random() % (57343-49153)) + 49153;
+    _torSocksPort = (arc4random() % (65534-57344)) + 57344;
     
     // listen to changes in connection state
     // (tor has auto detection when external IP changes, but if we went
@@ -95,7 +100,7 @@
     [ULINetSocket ignoreBrokenPipes];
     // Create a new ULINetSocket connected to the host. Since ULINetSocket is asynchronous, the socket is not
     // connected to the host until the delegate method is called.
-    _mSocket = [ULINetSocket netsocketConnectedToHost:@"127.0.0.1" port:60602];
+    _mSocket = [ULINetSocket netsocketConnectedToHost:@"127.0.0.1" port:_torControlPort];
     
     // Schedule the ULINetSocket on the current runloop
     [_mSocket scheduleOnCurrentRunLoop];
@@ -128,7 +133,11 @@
     #ifdef DEBUG
         NSLog(@"[tor] Control Port Connected" );
     #endif
-    [_mSocket writeString:@"authenticate \"onionbrowsertest\"\n" encoding:NSUTF8StringEncoding];
+    NSData *torCookie = [_torThread readTorCookie];
+    
+    NSString *authMsg = [NSString stringWithFormat:@"authenticate %@\n", 
+                         [torCookie hexadecimalString]];
+    [_mSocket writeString:authMsg encoding:NSUTF8StringEncoding];
     _lastMessageSent = TOR_MSG_AUTHENTICATE;
 }
 

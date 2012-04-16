@@ -26,6 +26,9 @@
 
 @property (nonatomic) Boolean spoofUserAgent;
 
+@property (nonatomic) NSUInteger torSocksPort;
+@property (nonatomic) NSUInteger torControlPort;
+
 - (void)reachabilityChanged;
 
 - (void)activateTorCheckLoop;

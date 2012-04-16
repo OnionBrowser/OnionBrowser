@@ -11,4 +11,6 @@
 #include "or/main.h"
 
 @interface TorWrapper : NSThread
+
+-(NSData *)readTorCookie;
 @end

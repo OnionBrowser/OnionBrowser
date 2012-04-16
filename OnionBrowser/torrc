@@ -6,13 +6,14 @@ ExitPolicy reject *:*
 AvoidDiskWrites 1
 HardwareAccel 1
 
-SocksPort 60601
+# Port numbers are randomly generated in AppDelegate. TorWrapper picks these up
+# and executes tor with these as command-line args.
+#SocksPort 60601
+#ControlPort 60602
 SocksListenAddress 127.0.0.1
-ControlPort 60602
 ControlListenAddress 127.0.0.1
 
-#onionbrowsertest
-HashedControlPassword 16:104439FC739692EC606CC837F4AE601DC19DB00CE6AAC9CC13B9E2B395
+CookieAuthentication 1
 
 ConnLimit 100
 
