@@ -60,7 +60,9 @@ mkdir -p $INTERDIR
 
 cd $SRCDIR
 
+# Exit the script if an error happens
 set -e
+
 if [ ! -e "${SRCDIR}/openssl-${VERSION}.tar.gz" ]; then
 	echo "Downloading openssl-${VERSION}.tar.gz"
     curl -O http://www.openssl.org/source/openssl-${VERSION}.tar.gz
@@ -71,6 +73,7 @@ fi
 tar zxf openssl-${VERSION}.tar.gz -C $SRCDIR
 cd "${SRCDIR}/openssl-${VERSION}"
 
+set +e # don't bail out of bash script if ccache doesn't exist
 CCACHE=`which ccache`
 if [ $? == "0" ]; then
     echo "Building with ccache: $CCACHE"
@@ -79,6 +82,7 @@ else
     echo "Building without ccache"
     CCACHE=""
 fi
+set -e # back to regular "bail out on error" mode
 
 for ARCH in ${ARCHS}
 do

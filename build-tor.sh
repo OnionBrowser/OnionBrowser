@@ -61,7 +61,9 @@ mkdir -p $INTERDIR
 
 cd $SRCDIR
 
+# Exit the script if an error happens
 set -e
+
 if [ ! -e "${SRCDIR}/tor-${VERSION}.tar.gz" ]; then
 	echo "Downloading tor-${VERSION}.tar.gz"
     curl -O https://www.torproject.org/dist/tor-${VERSION}.tar.gz
@@ -97,6 +99,7 @@ cp -R ${DEVELOPER}/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimul
 
 cd "${SRCDIR}/tor-${VERSION}"
 
+set +e # don't bail out of bash script if ccache doesn't exist
 CCACHE=`which ccache`
 if [ $? == "0" ]; then
     echo "Building with ccache: $CCACHE"
@@ -105,6 +108,7 @@ else
     echo "Building without ccache"
     CCACHE=""
 fi
+set -e # back to regular "bail out on error" mode
 
 for ARCH in ${ARCHS}
 do
