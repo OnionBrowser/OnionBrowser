@@ -17,7 +17,7 @@ the Tor network (https://www.torproject.org/). See the official site
 
 ## Technical notes
 
-* OnionBrowser: 1.1.0 (20120416.1)
+* OnionBrowser: 1.1.1 (20120425.1)
 * Tor: 0.2.3.12-alpha
 * libevent: 2.0.18-stable
 * OpenSSL: 1.0.1
