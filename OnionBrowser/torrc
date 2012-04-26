@@ -39,15 +39,8 @@ SafeLogging 1
 TestSocks 0
 WarnUnsafeSocks 0  #default 1 (we don't care on iOS)
 
-# Until ERN process is complete, mainline version of this app is only for sale
-# in US & CA. Optimize performance (since latency is already high on mobile and
-# user tolerance is not) until some point in the future when we can determine
-# the performance penalty of allowing EntryNodes from everywhere. NOTE tor can
-# still connect to EntryNodes that do not match this if it wants to, but it
-# will strongly prefer US/CA.
-# (This is may mildly impact privacy, but within the scope of the application's
-# description and stated claims.)
-EntryNodes {us}, {ca}
+# TODO
+#UseBridges 1
 
 # We actually disabled this by removing ptrace() calls when building tor.
 # See "build-tor-ptrace-patch.diff" and "build-tor.sh" in the OnionBrowser
