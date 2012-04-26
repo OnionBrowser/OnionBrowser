@@ -113,6 +113,9 @@ static const Boolean kBackwardButton = NO;
     [req setHTTPShouldUsePipelining:YES];
     [_myWebView loadRequest:req];
 
+    _addressField.enabled = YES;
+    _toolButton.enabled = YES;
+    _refreshButton.enabled = YES;
     [self updateButtons];
 }
 
@@ -185,6 +188,13 @@ static const Boolean kBackwardButton = NO;
                        initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
                        target:self
                        action:@selector(reload)];
+
+    _forwardButton.enabled = NO;
+    _backButton.enabled = NO;
+    _stopButton.enabled = NO;
+    _toolButton.enabled = NO;
+    _refreshButton.enabled = NO;
+
     [items addObject:_backButton];
     [items addObject:space];
     [items addObject:_forwardButton];
@@ -268,6 +278,7 @@ static const Boolean kBackwardButton = NO;
       forControlEvents:UIControlEventEditingDidEndOnExit|UIControlEventEditingDidEnd];
     [navBar addSubview:address];
     _addressField = address;
+    _addressField.enabled = NO;
     [self.view addSubview:navBar];
     // (/navbar)
     
