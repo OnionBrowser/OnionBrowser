@@ -472,10 +472,7 @@ static const Boolean kBackwardButton = NO;
         [[NSURLCache sharedURLCache] removeAllCachedResponses];
         
         // Initialize a new UIWebView (to clear the history of the previous one)
-        CGRect webViewFrame = [[UIScreen mainScreen] applicationFrame];
-        webViewFrame.origin.y = kNavBarHeight;
-        webViewFrame.size.height = webViewFrame.size.height - kToolBarHeight - kNavBarHeight;
-        UIWebView *newWebView = [[UIWebView alloc] initWithFrame:webViewFrame];
+        UIWebView *newWebView = [[UIWebView alloc] initWithFrame:_myWebView.frame];
         newWebView.backgroundColor = [UIColor whiteColor];
         newWebView.scalesPageToFit = YES;
         newWebView.contentScaleFactor = 3;
