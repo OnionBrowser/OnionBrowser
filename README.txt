@@ -87,6 +87,7 @@ five and thirty minutes depending on your system speed.)
     bash build-libssl.sh
     bash build-libevent.sh
     bash build-tor.sh
+    bash OnionBrowser/icon/install.sh
 
 This should create a `dependencies` directory in the root of the repository,
 containing the statically-compiled library files.
