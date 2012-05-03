@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		691958D61536BA67000423A4 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 691958D41536B8AC000423A4 /* Reachability.m */; };
+		6924C28C155262E2004BE7F9 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6924C28A155262E2004BE7F9 /* SettingsViewController.m */; };
+		6924C28D155262E2004BE7F9 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6924C28B155262E2004BE7F9 /* SettingsViewController.xib */; };
+		6924C29015526343004BE7F9 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6924C28F15526343004BE7F9 /* SettingsTableViewController.m */; };
 		692B86AF153CD4CB000806A9 /* NSData+Conversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 692B86AE153CD4CB000806A9 /* NSData+Conversion.m */; };
 		694F34F1152ECFF20002BCBC /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 694F34E9152ECFF20002BCBC /* Icon.png */; };
 		694F34F2152ECFF20002BCBC /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 694F34EA152ECFF20002BCBC /* Icon-72.png */; };
@@ -60,6 +63,11 @@
 /* Begin PBXFileReference section */
 		691958D31536B8AC000423A4 /* Reachability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		691958D41536B8AC000423A4 /* Reachability.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		6924C289155262E2004BE7F9 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		6924C28A155262E2004BE7F9 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		6924C28B155262E2004BE7F9 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
+		6924C28E15526343004BE7F9 /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
+		6924C28F15526343004BE7F9 /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
 		692B86AD153CD4CB000806A9 /* NSData+Conversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Conversion.h"; sourceTree = "<group>"; };
 		692B86AE153CD4CB000806A9 /* NSData+Conversion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Conversion.m"; sourceTree = "<group>"; };
 		694F34E9152ECFF20002BCBC /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = icon/Icon.png; sourceTree = "<group>"; };
@@ -149,6 +157,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6924C27515525F3B004BE7F9 /* Settings View */ = {
+			isa = PBXGroup;
+			children = (
+				6924C289155262E2004BE7F9 /* SettingsViewController.h */,
+				6924C28A155262E2004BE7F9 /* SettingsViewController.m */,
+				6924C28B155262E2004BE7F9 /* SettingsViewController.xib */,
+				6924C28E15526343004BE7F9 /* SettingsTableViewController.h */,
+				6924C28F15526343004BE7F9 /* SettingsTableViewController.m */,
+			);
+			name = "Settings View";
+			sourceTree = "<group>";
+		};
 		696EBD6814F7877900B81BC9 = {
 			isa = PBXGroup;
 			children = (
@@ -197,6 +217,7 @@
 				69C6F6A414FACC3000894495 /* ProxyURLProtocol.m */,
 				69F3C5F714FC8739008274C3 /* CKHTTPConnection.h */,
 				69F3C5F814FC8739008274C3 /* CKHTTPConnection.m */,
+				6924C27515525F3B004BE7F9 /* Settings View */,
 			);
 			path = OnionBrowser;
 			sourceTree = "<group>";
@@ -347,6 +368,7 @@
 				6995CC00153660D3000EFBE8 /* Default-Portrait@2x.png in Resources */,
 				6995CC01153660D3000EFBE8 /* Default.png in Resources */,
 				6995CC02153660D3000EFBE8 /* Default@2x.png in Resources */,
+				6924C28D155262E2004BE7F9 /* SettingsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,6 +389,8 @@
 				69C6F6A514FACC3000894495 /* ProxyURLProtocol.m in Sources */,
 				69F3C5FD14FC8739008274C3 /* CKHTTPConnection.m in Sources */,
 				692B86AF153CD4CB000806A9 /* NSData+Conversion.m in Sources */,
+				6924C28C155262E2004BE7F9 /* SettingsViewController.m in Sources */,
+				6924C29015526343004BE7F9 /* SettingsTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

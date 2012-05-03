@@ -10,6 +10,12 @@
 #import "ULINetSocket.h"
 #import "WebViewController.h"
 
+#define DNT_HEADER_UNSET -1
+#define DNT_HEADER_CANTRACK 0
+#define DNT_HEADER_NOTRACK 1
+
+
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (nonatomic) NSUInteger lastMessageSent;
@@ -25,6 +31,7 @@
 @property (nonatomic) Boolean webViewStarted;
 
 @property (nonatomic) Boolean spoofUserAgent;
+@property (nonatomic) Byte dntHeader;
 
 @property (nonatomic) NSUInteger torSocksPort;
 @property (nonatomic) NSUInteger torControlPort;

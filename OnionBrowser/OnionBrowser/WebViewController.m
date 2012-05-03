@@ -8,6 +8,7 @@
 
 #import "WebViewController.h"
 #import "AppDelegate.h"
+#import "SettingsViewController.h"
 
 static const CGFloat kNavBarHeight = 52.0f;
 static const CGFloat kToolBarHeight = 44.0f;
@@ -498,6 +499,7 @@ static const Boolean kBackwardButton = NO;
         ////////////////////////////////////////////////////////
         // Cookie Option
         ////////////////////////////////////////////////////////
+        /*
         NSHTTPCookie *cookie;
         NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
         for (cookie in [storage cookies]) {
@@ -536,7 +538,9 @@ static const Boolean kBackwardButton = NO;
                                               cancelButtonTitle:@"OK" 
                                               otherButtonTitles:nil];
         [alert show];
-
+        */
+        SettingsViewController *settingsController = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:nil];
+        [self presentModalViewController:settingsController animated:YES];
     } else if (buttonIndex == 2) {
         ////////////////////////////////////////////////////////
         // UserAgent Option

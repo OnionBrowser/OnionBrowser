@@ -14,7 +14,6 @@
 #define TOR_MSG_AUTHENTICATE 1
 #define TOR_MSG_GETSTATUS 2
 
-
 @implementation AppDelegate
 
 @synthesize window = _window, torThread = _torThread,
@@ -24,6 +23,7 @@
             wvc = _wvc,
             webViewStarted = _webViewStarted,
             spoofUserAgent,
+            dntHeader,
             torControlPort = _torControlPort,
             torSocksPort = _torSocksPort;
 
@@ -52,6 +52,7 @@
     
     _webViewStarted = NO;
     spoofUserAgent = NO;
+    spoofUserAgent = DNT_HEADER_UNSET;
     
     _lastMessageSent = TOR_MSG_NONE;
     _torThread = [[TorWrapper alloc] init];

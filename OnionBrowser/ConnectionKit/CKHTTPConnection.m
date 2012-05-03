@@ -16,6 +16,7 @@
 #import "CKHTTPConnection.h"
 #import "AppDelegate.h"
 
+
 // There is no public API for creating an NSHTTPURLResponse. The only way to create one then, is to
 // have a private subclass that others treat like a standard NSHTTPURLResponse object. Framework
 // code can instantiate a CKHTTPURLResponse object directly. Alternatively, there is a public
@@ -345,6 +346,20 @@
                                          (__bridge CFStringRef)aHTTPHeaderField,
                                          (__bridge CFStringRef)[HTTPHeaderFields objectForKey:aHTTPHeaderField]);
     }
+    /* Do not track (DNT) header */
+    Byte dntHeader = appDelegate.dntHeader;
+    if (dntHeader != DNT_HEADER_UNSET) {
+        // DNT_HEADER_CANTRACK is 0 and DNT_HEADER_NOTRACK is 1,
+        // so we can pass that value in as the "DNT: X" value
+        CFHTTPMessageSetHeaderFieldValue(result,
+                                         (__bridge CFStringRef)@"DNT",
+                                         (__bridge CFStringRef)[NSString stringWithFormat:@"%d",
+                                                                dntHeader]);
+        #if DEBUG
+        NSLog(@"Sending 'DNT: %d' header", dntHeader);
+        #endif
+    }
+
     
     NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:[self URL]];
     if ([cookies count] > 0) {
