@@ -47,7 +47,7 @@
     if (section == 0) {
         return 3;
     } else if (section == 1) {
-        return 2;
+        return 3;
     } else if (section == 2) {
         //return 3;
         return 2;
@@ -57,7 +57,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     if(section == 0)
-        return @"Cookies";
+        return @"Cookies\n(Changing Will Clear Cookies)";
     else if (section == 1)
         return @"User-Agent Spoofing";
     else if (section == 2)
@@ -77,6 +77,12 @@
     
     if(indexPath.section == 0) {
         // Cookies
+        NSHTTPCookie *cookie;
+        NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+        for (cookie in [storage cookies]) {
+            [storage deleteCookie:cookie];
+        }
+
         NSHTTPCookieAcceptPolicy currentCookieStatus = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookieAcceptPolicy];
         NSUInteger cookieStatusSection = 0;
         if (currentCookieStatus == NSHTTPCookieAcceptPolicyAlways) {
@@ -105,14 +111,21 @@
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         if (indexPath.row == 0) {
             cell.textLabel.text = @"No Spoofing (iOS Safari)";
-            if (!appDelegate.spoofUserAgent) {
+            if (appDelegate.spoofUserAgent == UA_SPOOF_NO) {
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             } else {
                 cell.accessoryType = UITableViewCellAccessoryNone;
             }
         } else if (indexPath.row == 1) {
-            cell.textLabel.text = @"Windows Firefox";
-            if (appDelegate.spoofUserAgent) {
+            cell.textLabel.text = @"Windows 7 (NT 6.1), Firefox 5.0";
+            if (appDelegate.spoofUserAgent == UA_SPOOF_WIN7_FX5) {
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            } else {
+                cell.accessoryType = UITableViewCellAccessoryNone;
+            }
+        } else if (indexPath.row == 2) {
+            cell.textLabel.text = @"Mac OS X Lion, Safari 5.1.5";
+            if (appDelegate.spoofUserAgent == UA_SPOOF_SAFARI_LION) {
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             } else {
                 cell.accessoryType = UITableViewCellAccessoryNone;
@@ -204,9 +217,19 @@
         // User-Agent
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         if (indexPath.row == 0) {
-            appDelegate.spoofUserAgent = NO;
-        } else if (indexPath.row == 1) {
-            appDelegate.spoofUserAgent = YES;
+            appDelegate.spoofUserAgent = UA_SPOOF_NO;
+        } else {
+            if (indexPath.row == 1) {
+                appDelegate.spoofUserAgent = UA_SPOOF_WIN7_FX5;
+            } else if (indexPath.row == 2) {
+                appDelegate.spoofUserAgent = UA_SPOOF_SAFARI_LION;
+            }
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
+                                                            message:[NSString stringWithFormat:@"User Agent spoofing enabled.\n\nNote that JavaScript cannot be disabled due to framework limitations. Scripts and other iOS features may still identify your browser.\n\nSome mobile or tablet websites may not work properly without the original mobile User Agent."]
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK" 
+                                                  otherButtonTitles:nil];
+            [alert show];
         }
     } else if (indexPath.section == 2) {
         // DNT
@@ -216,6 +239,12 @@
         } else if (indexPath.row == 1) {
         //    appDelegate.dntHeader = DNT_HEADER_CANTRACK;
         //} else if (indexPath.row == 2) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
+                                                            message:[NSString stringWithFormat:@"Onion Browser will now send the 'DNT: 1' header. Note that because only very new browsers send this optional header, this opt-in feature may allow others to uniquely identify you."]
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK" 
+                                                  otherButtonTitles:nil];
+            [alert show];
             appDelegate.dntHeader = DNT_HEADER_NOTRACK;
         }
     }

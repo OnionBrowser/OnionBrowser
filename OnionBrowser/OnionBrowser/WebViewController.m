@@ -210,29 +210,11 @@ static const Boolean kBackwardButton = NO;
     // (/toolbar)
     
     // Set up "action sheet" (options menu)
-    NSHTTPCookieAcceptPolicy policy = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookieAcceptPolicy];
-    NSString *cookieStr;
-    if (policy == NSHTTPCookieAcceptPolicyAlways) {
-        cookieStr = @"Cookies: Allow All";
-    } else if (policy == NSHTTPCookieAcceptPolicyOnlyFromMainDocumentDomain) {
-        cookieStr = @"Cookies: No Third Party";
-    } else {
-        cookieStr = @"Cookies: Block All";
-    }
-    
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    NSString *uaSpoofStr;
-    if (appDelegate.spoofUserAgent) {
-        uaSpoofStr = @"Disable UA Spoofing";
-    } else {
-        uaSpoofStr = @"Enable UA Spoofing";
-    }
-    
     _optionsMenu = [[UIActionSheet alloc] initWithTitle:nil
                                                delegate:self
                                       cancelButtonTitle:@"Close"
                                  destructiveButtonTitle:@"New Identity"
-                                      otherButtonTitles:cookieStr, uaSpoofStr, @"Open Home Page", @"About Onion Browser", nil];
+                                      otherButtonTitles:@"Cookie/Privacy Settings", @"Open Home Page", @"About Onion Browser", nil];
     // (/actionsheet)
     
     
@@ -497,100 +479,13 @@ static const Boolean kBackwardButton = NO;
         [alert show];
     } else if (buttonIndex == 1) {
         ////////////////////////////////////////////////////////
-        // Cookie Option
+        // Settings Menu
         ////////////////////////////////////////////////////////
-        /*
-        NSHTTPCookie *cookie;
-        NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-        for (cookie in [storage cookies]) {
-            [storage deleteCookie:cookie];
-        }
-
-        NSHTTPCookieAcceptPolicy oldPolicy = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookieAcceptPolicy];
-        NSString *cookieStr;
-        if (oldPolicy == NSHTTPCookieAcceptPolicyAlways) {
-            [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyOnlyFromMainDocumentDomain];
-            cookieStr = @"No Third Party";
-        } else if (oldPolicy == NSHTTPCookieAcceptPolicyOnlyFromMainDocumentDomain) {
-            [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyNever];
-            cookieStr = @"Block All";
-        } else {
-            [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
-            cookieStr = @"Allow All";
-        }
-        
-        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-        NSString *uaSpoofStr;
-        if (appDelegate.spoofUserAgent) {
-            uaSpoofStr = @"Disable UA Spoofing";
-        } else {
-            uaSpoofStr = @"Enable UA Spoofing";
-        }
-        _optionsMenu = [[UIActionSheet alloc] initWithTitle:nil
-                                                   delegate:self
-                                          cancelButtonTitle:@"Close"
-                                     destructiveButtonTitle:@"New Identity"
-                                          otherButtonTitles:[NSString stringWithFormat:@"Cookies: %@", cookieStr], uaSpoofStr, @"Open Home Page", @"About Onion Browser", nil];
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
-                                                        message:[NSString stringWithFormat:@"Cookies cleared. New cookie policy: %@.\n\nPress again to cycle options.\n(Allow All/Block All/Block Third Party)", cookieStr]
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK" 
-                                              otherButtonTitles:nil];
-        [alert show];
-        */
         SettingsViewController *settingsController = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:nil];
         [self presentModalViewController:settingsController animated:YES];
-    } else if (buttonIndex == 2) {
-        ////////////////////////////////////////////////////////
-        // UserAgent Option
-        ////////////////////////////////////////////////////////
-        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-        NSString *uaSpoofStr;
-        if (appDelegate.spoofUserAgent) {
-            appDelegate.spoofUserAgent = NO;
-            uaSpoofStr = @"Enable UA Spoofing";
-        } else {
-            appDelegate.spoofUserAgent = YES;
-            uaSpoofStr = @"Disable UA Spoofing";
-        }
-
-        NSHTTPCookieAcceptPolicy policy = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookieAcceptPolicy];
-        NSString *cookieStr;
-        if (policy == NSHTTPCookieAcceptPolicyAlways) {
-            cookieStr = @"Allow All";
-        } else if (policy == NSHTTPCookieAcceptPolicyOnlyFromMainDocumentDomain) {
-            cookieStr = @"No Third Party";
-        } else {
-            cookieStr = @"Block All";
-        }
-        
-        _optionsMenu = [[UIActionSheet alloc] initWithTitle:nil
-                                                   delegate:self
-                                          cancelButtonTitle:@"Close"
-                                     destructiveButtonTitle:@"New Identity"
-                                          otherButtonTitles:[NSString stringWithFormat:@"Cookies: %@", cookieStr], uaSpoofStr, @"Open Home Page", @"About Onion Browser", nil];
-    
-        if (appDelegate.spoofUserAgent) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
-                                                            message:[NSString stringWithFormat:@"User Agent spoofing enabled.\n\nNote that JavaScript cannot be disabled due to framework limitations. Scripts and other iOS features may still identify your browser.\n\nSome mobile or tablet websites may not work properly without the original mobile User Agent."]
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK" 
-                                                  otherButtonTitles:nil];
-            [alert show];
-        } else {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
-                                                            message:[NSString stringWithFormat:@"User Agent spoofing disabled. (Identifying as Standard iOS Safari.)"]
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK" 
-                                                  otherButtonTitles:nil];
-            [alert show];
-        }
     }
-
     
-    
-    if ((buttonIndex == 0) || (buttonIndex == 3)) {
+    if ((buttonIndex == 0) || (buttonIndex == 2)) {
         ////////////////////////////////////////////////////////
         // New Identity OR Return To Home
         ////////////////////////////////////////////////////////
@@ -598,7 +493,7 @@ static const Boolean kBackwardButton = NO;
         resourcePath = [resourcePath stringByReplacingOccurrencesOfString:@"/" withString:@"//"];
         resourcePath = [resourcePath stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
         [self loadURL:[NSURL URLWithString: [NSString stringWithFormat:@"file:/%@//startup.html",resourcePath]]];
-    } else if (buttonIndex == 4) {
+    } else if (buttonIndex == 3) {
         ////////////////////////////////////////////////////////
         // About Page
         ////////////////////////////////////////////////////////

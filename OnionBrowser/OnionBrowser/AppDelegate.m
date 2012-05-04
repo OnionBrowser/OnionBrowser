@@ -51,7 +51,7 @@
 
     
     _webViewStarted = NO;
-    spoofUserAgent = NO;
+    spoofUserAgent = UA_SPOOF_NO;
     spoofUserAgent = DNT_HEADER_UNSET;
     
     _lastMessageSent = TOR_MSG_NONE;

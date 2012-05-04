@@ -14,6 +14,10 @@
 #define DNT_HEADER_CANTRACK 1
 #define DNT_HEADER_NOTRACK 2
 
+#define UA_SPOOF_NO 0
+#define UA_SPOOF_WIN7_FX5 1
+#define UA_SPOOF_SAFARI_LION 2
+
 
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
@@ -30,7 +34,7 @@
 @property (nonatomic) WebViewController *wvc;
 @property (nonatomic) Boolean webViewStarted;
 
-@property (nonatomic) Boolean spoofUserAgent;
+@property (nonatomic) Byte spoofUserAgent;
 @property (nonatomic) Byte dntHeader;
 
 @property (nonatomic) NSUInteger torSocksPort;
