@@ -10,9 +10,9 @@
 #import "ULINetSocket.h"
 #import "WebViewController.h"
 
-#define DNT_HEADER_UNSET -1
-#define DNT_HEADER_CANTRACK 0
-#define DNT_HEADER_NOTRACK 1
+#define DNT_HEADER_UNSET 0
+#define DNT_HEADER_CANTRACK 1
+#define DNT_HEADER_NOTRACK 2
 
 
 

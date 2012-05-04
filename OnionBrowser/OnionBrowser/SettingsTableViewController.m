@@ -120,18 +120,29 @@
         }
     } else if (indexPath.section == 2) {
         // DNT
-        if (indexPath.row == 0) {
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        } else {
-            cell.accessoryType = UITableViewCellAccessoryNone;
-        }
+        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         
         if (indexPath.row == 0) {
             cell.textLabel.text = @"No Header";
+            if (appDelegate.dntHeader == DNT_HEADER_UNSET) {
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            } else {
+                cell.accessoryType = UITableViewCellAccessoryNone;
+            }
         } else if (indexPath.row == 1) {
         //    cell.textLabel.text = @"Opt In To Tracking";
+        //    if (appDelegate.dntHeader == DNT_HEADER_CANTRACK) {
+        //        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        //    } else {
+        //        cell.accessoryType = UITableViewCellAccessoryNone;
+        //    }
         //} else if (indexPath.row == 2) {
             cell.textLabel.text = @"Opt Out Of Tracking";
+            if (appDelegate.dntHeader == DNT_HEADER_NOTRACK) {
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            } else {
+                cell.accessoryType = UITableViewCellAccessoryNone;
+            }
         }
     }
     
@@ -179,15 +190,36 @@
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(indexPath.section == 0) {
+        // Cookies
+        if (indexPath.row == 0) {
+            [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
+        } else if (indexPath.row == 1) {
+            [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyOnlyFromMainDocumentDomain];
+        } else if (indexPath.row == 2) {
+            [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyNever];
+        }
+    } else if (indexPath.section == 1) {
+        // User-Agent
+        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        if (indexPath.row == 0) {
+            appDelegate.spoofUserAgent = NO;
+        } else if (indexPath.row == 1) {
+            appDelegate.spoofUserAgent = YES;
+        }
+    } else if (indexPath.section == 2) {
+        // DNT
+        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        if (indexPath.row == 0) {
+            appDelegate.dntHeader = DNT_HEADER_UNSET;
+        } else if (indexPath.row == 1) {
+        //    appDelegate.dntHeader = DNT_HEADER_CANTRACK;
+        //} else if (indexPath.row == 2) {
+            appDelegate.dntHeader = DNT_HEADER_NOTRACK;
+        }
+    }
+    [tableView reloadData];
 }
 
 @end

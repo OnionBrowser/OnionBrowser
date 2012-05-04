@@ -351,12 +351,17 @@
     if (dntHeader != DNT_HEADER_UNSET) {
         // DNT_HEADER_CANTRACK is 0 and DNT_HEADER_NOTRACK is 1,
         // so we can pass that value in as the "DNT: X" value
+        NSUInteger dntValue = 1;
+        if (dntHeader == DNT_HEADER_CANTRACK) {
+            dntValue = 0;
+        }
+
         CFHTTPMessageSetHeaderFieldValue(result,
                                          (__bridge CFStringRef)@"DNT",
                                          (__bridge CFStringRef)[NSString stringWithFormat:@"%d",
-                                                                dntHeader]);
+                                                                dntValue]);
         #if DEBUG
-        NSLog(@"Sending 'DNT: %d' header", dntHeader);
+        NSLog(@"Sending 'DNT: %d' header", dntValue);
         #endif
     }
 
