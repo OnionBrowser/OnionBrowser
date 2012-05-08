@@ -18,9 +18,9 @@ the Tor network (https://www.torproject.org/). See the official site
 ## Technical notes
 
 * OnionBrowser: 1.1.2 (201205XX.1)
-* Tor: 0.2.3.15-alpha
-* libevent: 2.0.18-stable
-* OpenSSL: 1.0.1
+* Tor: 0.2.3.15-alpha (Apr 30 2012)
+* libevent: 2.0.19-stable (May 03 2012)
+* OpenSSL: 1.0.1b (Apr 26 2012)
 
 The app, when compiled, contains static library versions of Tor and it's
 dependencies, libevent and openssl.
