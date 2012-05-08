@@ -65,7 +65,7 @@ set -e
 
 if [ ! -e "${SRCDIR}/tor-${VERSION}.tar.gz" ]; then
 	echo "Downloading tor-${VERSION}.tar.gz"
-    curl -O https://www.torproject.org/dist/tor-${VERSION}.tar.gz
+    curl -O https://archive.torproject.org/tor-package-archive/tor-${VERSION}.tar.gz
 else
 	echo "Using tor-${VERSION}.tar.gz"
 fi
