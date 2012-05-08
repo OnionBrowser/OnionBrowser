@@ -22,8 +22,7 @@
 ###########################################################################
 #  Choose your tor version and your currently-installed iOS SDK version:
 #
-VERSION="0.2.3.12-alpha" # 0.2.3.13-alpha does not compile at the moment
-#VERSION="0.2.2.35"
+VERSION="0.2.3.15-alpha"
 SDKVERSION="5.1"
 #
 #
@@ -71,13 +70,19 @@ else
 	echo "Using tor-${VERSION}.tar.gz"
 fi
 
+rm -fr "${SRCDIR}/tor-${VERSION}"
 tar zxf tor-${VERSION}.tar.gz -C $SRCDIR
 cd "${SRCDIR}/tor-${VERSION}"
 
 ####
 # Patch to remove the "DisableDebuggerAttachment" ptrace() calls
 # that are not allowed in App Store apps
-patch -p3 < ../../../build-tor-ptrace-patch.diff
+patch -p3 < ../../../build-patches/tor-ptrace.diff
+
+# Patch to remove "_NSGetEnviron()" call not allowed in App Store
+# apps (even fails to compile under iPhoneSDK due to that function
+# being undefined)
+patch -p3 < ../../../build-patches/tor-nsenviron.diff
 
 #####
 # Collect libz.dylib from the iPhoneSimulator.sdk and iPhoneOS.sdk (already contains armv6 and armv7)

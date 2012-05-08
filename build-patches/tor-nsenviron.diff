@@ -1,0 +1,40 @@
+--- build/src/tor-0.2.3.12-alpha/src/common/compat.c	2012-04-30 12:25:37.000000000 -0700
++++ build/src/tor-0.2.3.12-alpha/src/common/compat2.c	2012-05-08 15:21:29.000000000 -0700
+@@ -1709,30 +1709,30 @@
+ 
+   return absfname;
+ #endif
+ }
+ 
+-#ifndef HAVE__NSGETENVIRON
++//#ifndef HAVE__NSGETENVIRON
+ #ifndef HAVE_EXTERN_ENVIRON_DECLARED
+ /* Some platforms declare environ under some circumstances, others don't. */
+ extern char **environ;
+ #endif
+-#endif
++//#endif
+ 
+ /** Return the current environment. This is a portable replacement for
+  * 'environ'. */
+ char **
+ get_environment(void)
+ {
+-#ifdef HAVE__NSGETENVIRON
++//#ifdef HAVE__NSGETENVIRON
+   /* This is for compatibility between OSX versions.  Otherwise (for example)
+    * when we do a mostly-static build on OSX 10.7, the resulting binary won't
+    * work on OSX 10.6. */
+-  return *_NSGetEnviron();
+-#else
++//  return *_NSGetEnviron();
++//#else
+   return environ;
+-#endif
++//#endif
+ }
+ 
+ /** Set *addr to the IP address (in dotted-quad notation) stored in c.
+  * Return 1 on success, 0 if c is badly formatted.  (Like inet_aton(c,addr),
+  * but works on Windows and Solaris.)
+

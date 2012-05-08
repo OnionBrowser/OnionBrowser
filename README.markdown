@@ -25,7 +25,7 @@ and App Store links.
 #### Technical notes
 
 * **OnionBrowser**: 1.1.2 (201205XX.1)
-* **Tor**: 0.2.3.12-alpha
+* **Tor**: 0.2.3.15-alpha
 * **libevent**: 2.0.18-stable
 * **OpenSSL**: 1.0.1
 
@@ -45,15 +45,16 @@ i386 (for the iOS Simulator).
 [openssliphone]: https://github.com/x2on/OpenSSL-for-iPhone
 
 The tor `build-tor.sh` script patches one file in Tor (`src/common/compat.c`)
-to remove references to `ptrace()`. This code is only used for the
-`DisableDebuggerAttachment` feature (default: True) implemented in Tor
+to remove references to `ptrace()` and `_NSGetEnviron()`. This first is only used
+for the `DisableDebuggerAttachment` feature (default: True) implemented in Tor
 0.2.3.9-alpha. (See [changelog][tor_dev_changelog] and [manual][tor_dev_manual].)
-`ptrace()` calls are not allowed in App Store apps; apps
+`ptrace()` and `_NSGetEnviron()` calls are not allowed in App Store apps; apps
 submitted with `ptrace()` symbols are rejected on upload by Apple's
-auto-validation of the uploaded binary. See the `build-tor-ptrace-patch.diff`
-file.
+auto-validation of the uploaded binary. (The `_NSGetEnviron()` code does not
+even compile when using iPhoneSDK due to that function being undefined.)
+See the patch files in `build-patches/` if you are interested in the changes.
 
-[tor_dev_changelog]: https://gitweb.torproject.org/tor.git/blob/tor-0.2.3.12-alpha:/ChangeLog
+[tor_dev_changelog]: https://gitweb.torproject.org/tor.git/blob/tor-0.2.3.15-alpha:/ChangeLog
 [tor_dev_manual]: https://www.torproject.org/docs/tor-manual-dev.html.en
 
 Because iOS applications cannot launch subprocesses or otherwise execute other
