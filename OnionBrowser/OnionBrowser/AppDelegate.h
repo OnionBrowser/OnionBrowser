@@ -40,6 +40,8 @@
 @property (nonatomic) NSUInteger torSocksPort;
 @property (nonatomic) NSUInteger torControlPort;
 
+@property (nonatomic) NSMutableArray *sslWhitelistedDomains; // for self-signed
+
 - (void)reachabilityChanged;
 
 - (void)activateTorCheckLoop;

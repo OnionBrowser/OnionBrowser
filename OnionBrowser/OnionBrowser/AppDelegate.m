@@ -25,7 +25,8 @@
             spoofUserAgent,
             dntHeader,
             torControlPort = _torControlPort,
-            torSocksPort = _torSocksPort;
+            torSocksPort = _torSocksPort,
+            sslWhitelistedDomains;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -37,6 +38,8 @@
     
     _torControlPort = (arc4random() % (57343-49153)) + 49153;
     _torSocksPort = (arc4random() % (65534-57344)) + 57344;
+    
+    sslWhitelistedDomains = [[NSMutableArray alloc] init];
     
     // listen to changes in connection state
     // (tor has auto detection when external IP changes, but if we went

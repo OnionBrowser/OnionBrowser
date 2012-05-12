@@ -326,7 +326,21 @@ static const Boolean kBackwardButton = NO;
 }
 
 - (void)informError:(NSError *)error {
-    if ([error.domain isEqualToString:(NSString *)kCFErrorDomainCFNetwork]) {
+    if ([error.domain isEqualToString:@"NSOSStatusErrorDomain"] &&
+        (error.code == -9807 || error.code == -9812)) {
+        // Invalid certificate chain; valid cert chain, untrusted root
+
+        UIAlertView* alertView = [[UIAlertView alloc]
+                                  initWithTitle:@"SSL Error"
+                                  message:@"Certificate chain is invalid. Either the site's SSL certificate is self-signed or the certificate was signed by an untrusted authority."
+                                  delegate:nil
+                                  cancelButtonTitle:@"Cancel"
+                                  otherButtonTitles:@"Continue",nil];
+        alertView.delegate = self;
+        [alertView show];
+
+    } else if ([error.domain isEqualToString:(NSString *)kCFErrorDomainCFNetwork] ||
+               [error.domain isEqualToString:@"NSOSStatusErrorDomain"]) {
         NSString* errorDescription;
         
         if (error.code == kCFSOCKS5ErrorBadState) {
@@ -334,21 +348,44 @@ static const Boolean kBackwardButton = NO;
         } else if (error.code == kCFHostErrorHostNotFound) {
             errorDescription = @"The server could not be found";
         } else {
-            errorDescription = [NSString stringWithFormat:@"An unknown error occurred: %@",
+            errorDescription = [NSString stringWithFormat:@"An error occurred: %@",
                                 error.localizedDescription];
         }
-        UIAlertView* alertView = [[UIAlertView alloc] 
-                                  initWithTitle:@"Cannot Open Page" 
-                                  message:errorDescription delegate:nil 
-                                  cancelButtonTitle:@"OK" 
+        UIAlertView* alertView = [[UIAlertView alloc]
+                                  initWithTitle:@"Cannot Open Page"
+                                  message:errorDescription delegate:nil
+                                  cancelButtonTitle:@"OK"
                                   otherButtonTitles:nil];
         [alertView show];
     }
     #ifdef DEBUG
     else {
         NSLog(@"[WebViewController] uncaught error: %@", [error localizedDescription]);
+        NSLog(@"\t -> %@", error.domain);
     }
     #endif
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        // "Continue anyway" for SSL cert error
+        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+
+        // Assumung URL in address bar is the one that caused this error.
+        NSURL *url = [NSURL URLWithString:_currentURL];
+        NSString *hostname = url.host;
+        [appDelegate.sslWhitelistedDomains addObject:hostname];
+
+        UIAlertView* alertView = [[UIAlertView alloc]
+                                  initWithTitle:@"Whitelisted Domain"
+                                  message:[NSString stringWithFormat:@"SSL certificate errors for '%@' will be ignored for the rest of this session.", hostname] delegate:nil 
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+        [alertView show];
+
+        // Reload (now that we have added host to whitelist)
+        [self loadURL:url];
+    }
 }
 
 
