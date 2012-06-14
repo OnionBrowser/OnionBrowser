@@ -1,7 +1,7 @@
---- build/src/tor-0.2.3.12-alpha/src/common/compat.c	2012-04-30 12:25:37.000000000 -0700
-+++ build/src/tor-0.2.3.12-alpha/src/common/compat2.c	2012-05-08 15:21:29.000000000 -0700
-@@ -1709,30 +1709,30 @@
- 
+--- build/src/tor-0.2.3.16-alpha/src/common/compat.c.orig	2012-06-13 17:06:02.000000000 -0700
++++ build/src/tor-0.2.3.16-alpha/src/common/compat.c	2012-06-13 17:05:30.000000000 -0700
+@@ -1788,32 +1788,32 @@
+   }
    return absfname;
  #endif
  }
@@ -10,7 +10,9 @@
 +//#ifndef HAVE__NSGETENVIRON
  #ifndef HAVE_EXTERN_ENVIRON_DECLARED
  /* Some platforms declare environ under some circumstances, others don't. */
+ #ifndef RUNNING_DOXYGEN
  extern char **environ;
+ #endif
  #endif
 -#endif
 +//#endif
@@ -37,4 +39,3 @@
  /** Set *addr to the IP address (in dotted-quad notation) stored in c.
   * Return 1 on success, 0 if c is badly formatted.  (Like inet_aton(c,addr),
   * but works on Windows and Solaris.)
-
