@@ -77,8 +77,23 @@ behavior exists in that older SDK, with the notable exception of weakrefs.)
 
 ## Building
 
-1. Build dependencies via command-line
-2. Build application in XCode
+1. Check Xcode version
+2. Build dependencies via command-line
+3. Build application in XCode
+
+### Check Xcode version
+
+Double-check that the "currently selected" Xcode Tools correspond to the version
+of Xcode you have installed:
+
+    xcode-select -print-path
+
+For the newer Xcode 4.3+ installed via the App Store, the directory should be
+`/Applications/Xcode.app/Contents/Developer`, and not the straight `/Developer`
+(used by Xcode 4.2 and earlier). If you have both copies of Xcode installed
+(or if you have updated to Xcode 4.3 but `/Developer` still shows), do this:
+
+    sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer
 
 ### Building dependencies
 
@@ -94,7 +109,7 @@ five and thirty minutes depending on your system speed.)
 This should create a `dependencies` directory in the root of the repository,
 containing the statically-compiled library files.
 
-### OnionBrowser.xcodeproj
+### Build OnionBrowser.xcodeproj in Xcode
 
 Open `OnionBrowser/OnionBrowser.xcodeproj`. You should be
 able to compile and run the application at this point. (The app is compatible
