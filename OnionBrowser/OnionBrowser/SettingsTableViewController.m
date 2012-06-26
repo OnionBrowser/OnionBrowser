@@ -93,7 +93,7 @@
             cookieStatusSection = 2;
         }
 
-        if (indexPath.row == currentCookieStatus) {
+        if (indexPath.row == cookieStatusSection) {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         } else {
             cell.accessoryType = UITableViewCellAccessoryNone;
