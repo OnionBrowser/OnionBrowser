@@ -22,7 +22,7 @@
 ###########################################################################
 #  Choose your tor version and your currently-installed iOS SDK version:
 #
-VERSION="0.2.3.16-alpha"
+VERSION="0.2.3.17-beta"
 SDKVERSION="5.1"
 #
 #
@@ -64,10 +64,10 @@ cd $SRCDIR
 set -e
 
 if [ ! -e "${SRCDIR}/tor-${VERSION}.tar.gz" ]; then
-	echo "Downloading tor-${VERSION}.tar.gz"
+    echo "Downloading tor-${VERSION}.tar.gz"
     curl -O https://archive.torproject.org/tor-package-archive/tor-${VERSION}.tar.gz
 else
-	echo "Using tor-${VERSION}.tar.gz"
+    echo "Using tor-${VERSION}.tar.gz"
 fi
 
 rm -fr "${SRCDIR}/tor-${VERSION}"
@@ -117,20 +117,20 @@ set -e # back to regular "bail out on error" mode
 
 for ARCH in ${ARCHS}
 do
-	if [ "${ARCH}" == "i386" ];
-	then
-		PLATFORM="iPhoneSimulator"
+    if [ "${ARCH}" == "i386" ];
+    then
+        PLATFORM="iPhoneSimulator"
         EXTRA_CONFIG=""
-	else
-		PLATFORM="iPhoneOS"
-        EXTRA_CONFIG="--host=arm-apple-darwin10 --target=arm-apple-darwin10"
-	fi
+    else
+        PLATFORM="iPhoneOS"
+        EXTRA_CONFIG="--host=arm-apple-darwin10 --target=arm-apple-darwin10 --disable-gcc-hardening --disable-linker-hardening"
+    fi
 
-	mkdir -p "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk"
-	mkdir -p "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include"
-	mkdir -p "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/lib"
+    mkdir -p "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk"
+    mkdir -p "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include"
+    mkdir -p "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/lib"
 
-	./configure ${EXTRA_CONFIG} \
+    ./configure ${EXTRA_CONFIG} \
     --prefix="${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk" \
     --enable-static-openssl --enable-static-libevent --enable-static-zlib \
     --with-openssl-dir="${OUTPUTDIR}" \
@@ -143,7 +143,7 @@ do
     CPPFLAGS="$CPPFLAGS -I${OUTPUTDIR}/include -isysroot ${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/SDKs/${PLATFORM}${SDKVERSION}.sdk"
 
     # Build the application
-	make -j2
+    make -j2
 
     # Don't make install. We actually don't want the tor binary or the
     # documentation, we just want the archives of the compiled sources.
@@ -160,7 +160,7 @@ do
     find src/or -name "*.h" -exec cp {} "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/or/" \;
     find src/or -name "*.i" -exec cp {} "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/or/" \;
     find src/tools -name "*.h" -exec cp {} "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/tools/" \;
-	make clean
+    make clean
 done
 
 ########################################

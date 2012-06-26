@@ -17,8 +17,8 @@ the Tor network (https://www.torproject.org/). See the official site
 
 ## Technical notes
 
-* OnionBrowser: 1.2.2 (20120613.1)
-* Tor: 0.2.3.16-alpha (Jun 05 2012)
+* OnionBrowser: 1.2.3 (20120625.1)
+* Tor: 0.2.3.17-beta (Jun 15 2012)
 * libevent: 2.0.19-stable (May 03 2012)
 * OpenSSL: 1.0.1c (May 10 2012)
 
@@ -47,8 +47,16 @@ even compile when using iPhoneSDK due to that function being undefined.)
 See the patch files in `build-patches/` if you are interested in the changes.
 
 
-    Tor 0.2.3.15 changelog: https://gitweb.torproject.org/tor.git/blob/tor-0.2.3.15-alpha:/ChangeLog
+    Tor 0.2.3.17 changelog: https://gitweb.torproject.org/tor.git/blob/tor-0.2.3.17-beta:/ChangeLog
     Tor 0.2.3.X manual: https://www.torproject.org/docs/tor-manual-dev.html.en
+
+0.2.3.17-beta introduced compiler and linker "hardening" (Tor ticket 5210),
+which is incompatible with the iOS Device build chain.  The app (when building
+for iOS devices) is configured with `--disable-gcc-hardening --disable-linker-hardening`
+to get around this issue. (Due to the isolation of executable code on iOS devices,
+this should not cause a significant change in security.)
+
+    Tor Ticket 5210: https://trac.torproject.org/projects/tor/ticket/5210
 
 Because iOS applications cannot launch subprocesses or otherwise execute other
 binaries, the tor client is run in-process in a `NSThread` subclass which
