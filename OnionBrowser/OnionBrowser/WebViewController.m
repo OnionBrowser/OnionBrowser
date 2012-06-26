@@ -93,7 +93,7 @@ static const Boolean kBackwardButton = NO;
     if (summary_loc2.location != NSNotFound)
         summary_str = [summary_str substringToIndex:summary_loc2.location];
 
-    NSString *status = [NSString stringWithFormat:@"Connecting...\nThis may take a minute.\n\n%@%%\n%@",
+    NSString *status = [NSString stringWithFormat:@"Connecting… This may take a minute.\n\nIf this takes longer than 60 seconds, please visit the following web page in another browser:\nhttp://onionbrowser.com/help/\n\n%@%%\n%@",
                             progress_str,
                             summary_str];
     loadingStatus.text = status;
@@ -271,7 +271,7 @@ static const Boolean kBackwardButton = NO;
     UILabel *loadingStatus = [[UILabel alloc] initWithFrame:CGRectMake(0,
                                                                        kNavBarHeight,
                                                                        screenFrame.size.width,
-                                                                       160)];
+                                                                       250)];
     loadingStatus.tag = kLoadingStatusTag;
     loadingStatus.numberOfLines = 0;
     loadingStatus.font = [UIFont fontWithName:@"Helvetica" size:(18.0)];
