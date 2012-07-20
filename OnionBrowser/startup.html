@@ -11,8 +11,16 @@
 <ul>
     <!-- This is my default search engine here, because page responses tend to be
          less than 30KB including all resources. Helpful for limited bandwidth
-         situations such as Tor and mobile, and we're doing both. -->
-    <li><a href="https://3g2upl4pq6kufc4m.onion/lite/">DuckDuckGo Web Search (.onion)</a></li>
+         situations such as Tor and mobile, and we're doing both.
+         Note: the only reason we care about accessing the DDG .onion service
+         via HTTPS is because browsers will scrub HTTPS referers so that websites
+         we hit won't know we came from "3g2upl4pq6kufc4m.onion". -->
+    <li><a href="https://3g2upl4pq6kufc4m.onion/lite/">DuckDuckGo Web Search (.onion)</a>
+  <form action="https://3g2upl4pq6kufc4m.onion/lite/" method="POST">
+    <input type="text" size="40" name="q" autocomplete="off" value="" autofocus />
+    <input type="submit" value="Search" />
+  </form>
+    </li>
 </ul>
 <ul>
     <li><a href="https://check.torproject.org/">Am I Using Tor? / What is my IP? (Regular HTTPS)</a></li>
