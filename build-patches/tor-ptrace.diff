@@ -1,6 +1,6 @@
---- build/src/tor-0.2.3.16-alpha/src/common/compat.c.orig	2012-06-13 17:08:04.000000000 -0700
-+++ build/src/tor-0.2.3.16-alpha/src/common/compat.c	2012-06-13 17:08:17.000000000 -0700
-@@ -1632,16 +1632,16 @@
+--- build/src/tor-0.2.3.19-rc/src/common/compat.c.orig	2012-07-20 12:12:44.000000000 -0700
++++ build/src/tor-0.2.3.19-rc/src/common/compat.c	2012-07-20 12:13:00.000000000 -0700
+@@ -1641,16 +1641,16 @@
  #ifdef PR_SET_DUMPABLE
    attempted = 1;
    r = prctl(PR_SET_DUMPABLE, 0);

@@ -1,6 +1,6 @@
---- build/src/tor-0.2.3.16-alpha/src/common/compat.c.orig	2012-06-13 17:06:02.000000000 -0700
-+++ build/src/tor-0.2.3.16-alpha/src/common/compat.c	2012-06-13 17:05:30.000000000 -0700
-@@ -1788,32 +1788,32 @@
+--- build/src/tor-0.2.3.19-rc/src/common/compat.c.orig	2012-07-20 12:11:13.000000000 -0700
++++ build/src/tor-0.2.3.19-rc/src/common/compat.c	2012-07-20 12:12:07.000000000 -0700
+@@ -1797,32 +1797,32 @@
    }
    return absfname;
  #endif
