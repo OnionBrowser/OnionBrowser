@@ -64,8 +64,14 @@
 // Class methods
 
 + (BOOL)canInitWithRequest:(NSURLRequest *)request {
-    if ( ([[[request URL] scheme] isEqualToString:@"http"] || [[[request URL] scheme] isEqualToString:@"https"])) {
-        // Web browser can only handle HTTP/HTTPS over tor. (FTP cannot, file:// cannot.)
+    if ( !([[[request URL] scheme] isEqualToString:@"file"] || [[[request URL] scheme] isEqualToString:@"data"]) ) {
+        if (!([[[request URL] scheme] isEqualToString:@"http"]||[[[request URL] scheme] isEqualToString:@"https"])) {
+            NSLog(@"%@", [[request URL] scheme]);
+        }
+        // Previously we checked if it matched "http" or "https". Apparently
+        // UIWebView can attempt to make FTP connections for HTML page resources (i.e.
+        // a <link> tag for a CSS file with an FTP scheme.). So we whitelist
+        // file:// and data:// urls and attempt to tunnel everything else over Tor.
         return YES;
     } else {
         return NO;

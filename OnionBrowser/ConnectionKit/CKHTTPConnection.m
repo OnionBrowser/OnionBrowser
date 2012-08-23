@@ -96,9 +96,6 @@
 - (void)dealloc
 {
     CFRelease(_HTTPRequest);
-    NSAssert(!_HTTPStream, @"Deallocating HTTP connection while stream still exists");
-    NSAssert(!_authenticationChallenge, @"HTTP connection deallocated mid-authentication");
-    
 }
 
 #pragma mark Accessors
