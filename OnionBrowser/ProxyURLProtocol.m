@@ -8,6 +8,7 @@
 
 #import "ProxyURLProtocol.h"
 #import <Foundation/NSURLProtocol.h>
+#import "AppDelegate.h"
 
 @implementation ProxyURLProtocol
 
@@ -28,7 +29,9 @@
               client:(id <NSURLProtocolClient>)client {
     // Modify request
     NSMutableURLRequest *myRequest = [request mutableCopy];
-    [myRequest setHTTPShouldUsePipelining:YES];
+    
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    [myRequest setHTTPShouldUsePipelining:appDelegate.usePipelining];
     
     self = [super initWithRequest:myRequest
                    cachedResponse:cachedResponse

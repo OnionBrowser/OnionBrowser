@@ -36,6 +36,7 @@
 
 @property (nonatomic) Byte spoofUserAgent;
 @property (nonatomic) Byte dntHeader;
+@property (nonatomic) Boolean usePipelining;
 
 @property (nonatomic) NSUInteger torSocksPort;
 @property (nonatomic) NSUInteger torControlPort;

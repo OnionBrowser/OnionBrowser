@@ -24,6 +24,7 @@
             webViewStarted = _webViewStarted,
             spoofUserAgent,
             dntHeader,
+            usePipelining,
             torControlPort = _torControlPort,
             torSocksPort = _torSocksPort,
             sslWhitelistedDomains;
@@ -56,6 +57,7 @@
     _webViewStarted = NO;
     spoofUserAgent = UA_SPOOF_NO;
     spoofUserAgent = DNT_HEADER_UNSET;
+    usePipelining = YES;
     
     _lastMessageSent = TOR_MSG_NONE;
     _torThread = [[TorWrapper alloc] init];

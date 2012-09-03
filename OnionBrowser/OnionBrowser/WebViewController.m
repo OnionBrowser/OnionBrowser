@@ -214,7 +214,7 @@ static const Boolean kBackwardButton = NO;
                                                delegate:self
                                       cancelButtonTitle:@"Close"
                                  destructiveButtonTitle:@"New Identity"
-                                      otherButtonTitles:@"Cookie/Privacy Settings", @"Open Home Page", @"About Onion Browser", nil];
+                                      otherButtonTitles:@"Browser Settings", @"Open Home Page", @"About Onion Browser", nil];
     // (/actionsheet)
     
     

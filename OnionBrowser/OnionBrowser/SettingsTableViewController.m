@@ -40,16 +40,21 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
+        // Cookies
         return 3;
     } else if (section == 1) {
+        // UA Spoofing
         return 3;
     } else if (section == 2) {
-        //return 3;
+        // Pipelining
+        return 2;
+    } else if (section == 3) {
+        // DNT header
         return 2;
     }
     return 0;
@@ -61,6 +66,8 @@
     else if (section == 1)
         return @"User-Agent Spoofing";
     else if (section == 2)
+        return @"HTTP Pipelining\n(Disable if you have issues with images on some websites)";
+    else if (section == 3)
         return @"DNT (Do Not Track) Header";
     else
         return nil;
@@ -132,6 +139,25 @@
             }
         }
     } else if (indexPath.section == 2) {
+        // Pipelining
+        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        
+        if (indexPath.row == 0) {
+            cell.textLabel.text = @"Enabled (Better Performance)";
+            if (appDelegate.usePipelining == YES) {
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            } else {
+                cell.accessoryType = UITableViewCellAccessoryNone;
+            }
+        } else if (indexPath.row == 1) {
+            cell.textLabel.text = @"Disabled (Better Compatibility)";
+            if (appDelegate.usePipelining == NO) {
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            } else {
+                cell.accessoryType = UITableViewCellAccessoryNone;
+            }
+        }
+    } else if (indexPath.section == 3) {
         // DNT
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         
@@ -232,6 +258,14 @@
             [alert show];
         }
     } else if (indexPath.section == 2) {
+        // Pipelining
+        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        if (indexPath.row == 0) {
+            appDelegate.usePipelining = YES;
+        } else if (indexPath.row == 1) {
+            appDelegate.usePipelining = NO;
+        }
+    } else if (indexPath.section == 3) {
         // DNT
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         if (indexPath.row == 0) {
