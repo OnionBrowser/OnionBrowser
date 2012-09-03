@@ -64,7 +64,7 @@
     if(section == 0)
         return @"Cookies\n(Changing Will Clear Cookies)";
     else if (section == 1)
-        return @"User-Agent Spoofing";
+        return @"User-Agent Spoofing\n* iOS Safari provides better mobile website compatibility.\n* Windows 7 string is recommended for privacy and uses the same string as the official Tor Browser Bundle.";
     else if (section == 2)
         return @"HTTP Pipelining\n(Disable if you have issues with images on some websites)";
     else if (section == 3)
@@ -117,22 +117,22 @@
         // User-Agent
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         if (indexPath.row == 0) {
-            cell.textLabel.text = @"No Spoofing (iOS Safari)";
+            cell.textLabel.text = @"No Spoofing: iOS Safari";
             if (appDelegate.spoofUserAgent == UA_SPOOF_NO) {
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             } else {
                 cell.accessoryType = UITableViewCellAccessoryNone;
             }
         } else if (indexPath.row == 1) {
-            cell.textLabel.text = @"Windows 7 (NT 6.1), Firefox 5.0";
-            if (appDelegate.spoofUserAgent == UA_SPOOF_WIN7_FX5) {
+            cell.textLabel.text = @"Windows 7 (NT 6.1), Firefox 10";
+            if (appDelegate.spoofUserAgent == UA_SPOOF_WIN7_TORBROWSER) {
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             } else {
                 cell.accessoryType = UITableViewCellAccessoryNone;
             }
         } else if (indexPath.row == 2) {
-            cell.textLabel.text = @"Mac OS X Lion, Safari 5.1.5";
-            if (appDelegate.spoofUserAgent == UA_SPOOF_SAFARI_LION) {
+            cell.textLabel.text = @"Mac OS X 10.8.1, Safari 6.0";
+            if (appDelegate.spoofUserAgent == UA_SPOOF_SAFARI_MAC) {
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             } else {
                 cell.accessoryType = UITableViewCellAccessoryNone;
@@ -169,13 +169,6 @@
                 cell.accessoryType = UITableViewCellAccessoryNone;
             }
         } else if (indexPath.row == 1) {
-        //    cell.textLabel.text = @"Opt In To Tracking";
-        //    if (appDelegate.dntHeader == DNT_HEADER_CANTRACK) {
-        //        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        //    } else {
-        //        cell.accessoryType = UITableViewCellAccessoryNone;
-        //    }
-        //} else if (indexPath.row == 2) {
             cell.textLabel.text = @"Opt Out Of Tracking";
             if (appDelegate.dntHeader == DNT_HEADER_NOTRACK) {
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -246,9 +239,9 @@
             appDelegate.spoofUserAgent = UA_SPOOF_NO;
         } else {
             if (indexPath.row == 1) {
-                appDelegate.spoofUserAgent = UA_SPOOF_WIN7_FX5;
+                appDelegate.spoofUserAgent = UA_SPOOF_WIN7_TORBROWSER;
             } else if (indexPath.row == 2) {
-                appDelegate.spoofUserAgent = UA_SPOOF_SAFARI_LION;
+                appDelegate.spoofUserAgent = UA_SPOOF_SAFARI_MAC;
             }
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
                                                             message:[NSString stringWithFormat:@"User Agent spoofing enabled.\n\nNote that JavaScript cannot be disabled due to framework limitations. Scripts and other iOS features may still identify your browser.\n\nSome mobile or tablet websites may not work properly without the original mobile User Agent."]
@@ -271,10 +264,8 @@
         if (indexPath.row == 0) {
             appDelegate.dntHeader = DNT_HEADER_UNSET;
         } else if (indexPath.row == 1) {
-        //    appDelegate.dntHeader = DNT_HEADER_CANTRACK;
-        //} else if (indexPath.row == 2) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
-                                                            message:[NSString stringWithFormat:@"Onion Browser will now send the 'DNT: 1' header. Note that because only very new browsers send this optional header, this opt-in feature may allow others to uniquely identify you."]
+                                                            message:[NSString stringWithFormat:@"Onion Browser will now send the 'DNT: 1' header. Note that because only very new browsers send this optional header, this opt-in feature may allow websites to uniquely identify you."]
                                                            delegate:nil
                                                   cancelButtonTitle:@"OK" 
                                                   otherButtonTitles:nil];

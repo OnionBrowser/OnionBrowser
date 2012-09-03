@@ -56,7 +56,7 @@
     
     _webViewStarted = NO;
     spoofUserAgent = UA_SPOOF_NO;
-    spoofUserAgent = DNT_HEADER_UNSET;
+    dntHeader = DNT_HEADER_UNSET;
     usePipelining = YES;
     
     _lastMessageSent = TOR_MSG_NONE;
