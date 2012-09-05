@@ -27,10 +27,11 @@
 -(id)initWithRequest:(NSURLRequest *)request
       cachedResponse:(NSCachedURLResponse *)cachedResponse
               client:(id <NSURLProtocolClient>)client {
+
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+
     // Modify request
     NSMutableURLRequest *myRequest = [request mutableCopy];
-    
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     [myRequest setHTTPShouldUsePipelining:appDelegate.usePipelining];
     
     self = [super initWithRequest:myRequest
@@ -153,8 +154,10 @@
         #ifdef DEBUG
             NSLog(@"[ProxyURLProtocol] Got %d redirect from %@ to %@", response.statusCode, _request.URL, newURL);
         #endif
+        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+
         NSMutableURLRequest *newRequest = [_request mutableCopy];
-        [newRequest setHTTPShouldUsePipelining:YES];
+        [newRequest setHTTPShouldUsePipelining:appDelegate.usePipelining];
         newRequest.URL = [NSURL URLWithString:newURL relativeToURL:_request.URL];
         _request = newRequest;
         [[self client] URLProtocol:self wasRedirectedToRequest:_request redirectResponse:response];

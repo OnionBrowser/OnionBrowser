@@ -107,11 +107,13 @@ static const Boolean kBackwardButton = NO;
         [loadingStatus removeFromSuperview];
     }
 
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+
     // Build request and go.
     _myWebView.delegate = self;
     _myWebView.scalesPageToFit = YES;
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:navigationURL];
-    [req setHTTPShouldUsePipelining:YES];
+    [req setHTTPShouldUsePipelining:appDelegate.usePipelining];
     [_myWebView loadRequest:req];
 
     _addressField.enabled = YES;
