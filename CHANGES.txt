@@ -1,0 +1,56 @@
+Onion Browser Version History (since 1.2.2)
+
+===== 1.2.6 =====
+Sep 05, 2012 - Build/submit date
+         TBD - App Store accept date
+
+* Add warning message when clicking "New Identity" because of possible
+  history leak: ":visited" CSS style still triggers on visited URLs
+  despite clearing UIWebView history. (Issue #20 reported by sintime.)
+
+* Closing the app while doing "initial connection" no longer causes
+  connection to hang. App properly cancels connections/exits so that
+  initialization retries properly on next app open.
+
+* HTTP Pipelining can now be disabled. Can fix issues with some
+  websites. (Based on issue reported by Jose C. M.)
+
+* User-Agent spoof strings updated to Windows 7 Firefox 10 (matching
+  TorButton) and Safari 6 Mountain Lion.
+
+* Updated libevent to 2.0.20-stable (Aug 23, 2012)
+
+===== 1.2.5 =====
+Aug 23, 2012 - Build/submit date
+Aug 30, 2012 - App Store accept date
+
+* Fix rare IP address leak demonstrated on "ip-check.info": web pages
+  with resources defined in non-HTTP/HTTPS URLs (i.e. "ftp://...")
+  would leak IP address. (Hat-tip to Graham R.)
+
+* Update tor to 0.2.3.20-rc (Aug 05, 2012).
+
+===== 1.2.4 =====
+Jul 20, 2012 - Build/submit date
+Jul 31, 2012 - App Store accept date
+
+* Add searchbox for DuckDuckGo Tor on start pageto make searching
+  slightly easier.
+
+* Update tor to 0.2.3.19-rc (Jul 06, 2012).
+
+===== 1.2.3 =====
+Jun 25, 2012 - Build/submit date
+Jul 05, 2012 - App Store accept date
+
+* Fixed checkbox behavior for Cookies in the options menu.
+
+* Added help text to “Connecting…” stage.
+
+* Update tor to 0.2.3.17-beta (Jun 15, 2012).
+
+===== 1.2.2 =====
+Jun 13, 2012 - Build/submit date
+Jun 20, 2012 - App Store accept date
+
+* Update tor to 0.2.3.16-alpha (Jun 05, 2012).
