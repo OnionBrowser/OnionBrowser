@@ -486,7 +486,7 @@ static const Boolean kBackwardButton = NO;
         // New Identity
         ////////////////////////////////////////////////////////
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-        [appDelegate requestNewTorIdentity];
+        [appDelegate.tor requestNewTorIdentity];
         
         NSHTTPCookie *cookie;
         NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];

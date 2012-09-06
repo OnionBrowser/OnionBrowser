@@ -12,6 +12,7 @@
 		6924C28D155262E2004BE7F9 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6924C28B155262E2004BE7F9 /* SettingsViewController.xib */; };
 		6924C29015526343004BE7F9 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6924C28F15526343004BE7F9 /* SettingsTableViewController.m */; };
 		692B86AF153CD4CB000806A9 /* NSData+Conversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 692B86AE153CD4CB000806A9 /* NSData+Conversion.m */; };
+		6940BD1F15F84C0C00FE74CB /* TorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6940BD1E15F84C0C00FE74CB /* TorController.m */; };
 		694F34F1152ECFF20002BCBC /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 694F34E9152ECFF20002BCBC /* Icon.png */; };
 		694F34F2152ECFF20002BCBC /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 694F34EA152ECFF20002BCBC /* Icon-72.png */; };
 		694F34F3152ECFF20002BCBC /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 694F34EB152ECFF20002BCBC /* Icon-72@2x.png */; };
@@ -70,6 +71,8 @@
 		6924C28F15526343004BE7F9 /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
 		692B86AD153CD4CB000806A9 /* NSData+Conversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Conversion.h"; sourceTree = "<group>"; };
 		692B86AE153CD4CB000806A9 /* NSData+Conversion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Conversion.m"; sourceTree = "<group>"; };
+		6940BD1D15F84C0C00FE74CB /* TorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TorController.h; sourceTree = "<group>"; };
+		6940BD1E15F84C0C00FE74CB /* TorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TorController.m; sourceTree = "<group>"; };
 		694F34E9152ECFF20002BCBC /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = icon/Icon.png; sourceTree = "<group>"; };
 		694F34EA152ECFF20002BCBC /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "icon/Icon-72.png"; sourceTree = "<group>"; };
 		694F34EB152ECFF20002BCBC /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72@2x.png"; path = "icon/Icon-72@2x.png"; sourceTree = "<group>"; };
@@ -292,6 +295,8 @@
 			children = (
 				696F9EA814F8D51300BC5FDC /* TorWrapper.h */,
 				696F9EA914F8D51300BC5FDC /* TorWrapper.m */,
+				6940BD1D15F84C0C00FE74CB /* TorController.h */,
+				6940BD1E15F84C0C00FE74CB /* TorController.m */,
 				696F9EAD14F8D6ED00BC5FDC /* tor_main.c */,
 				696F9EAF14F8DA6900BC5FDC /* torrc */,
 				69F88FCB1500A9D900C7BE98 /* geoip */,
@@ -391,6 +396,7 @@
 				692B86AF153CD4CB000806A9 /* NSData+Conversion.m in Sources */,
 				6924C28C155262E2004BE7F9 /* SettingsViewController.m in Sources */,
 				6924C29015526343004BE7F9 /* SettingsTableViewController.m in Sources */,
+				6940BD1F15F84C0C00FE74CB /* TorController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

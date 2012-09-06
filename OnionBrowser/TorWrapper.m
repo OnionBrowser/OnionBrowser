@@ -28,8 +28,10 @@
     NSString *geoip = [[NSBundle mainBundle] pathForResource:@"geoip" ofType:nil];
     
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    NSString *controlPortStr = [NSString stringWithFormat:@"%d", appDelegate.torControlPort];
-    NSString *socksPortStr = [NSString stringWithFormat:@"%d", appDelegate.torSocksPort];
+    NSString *controlPortStr = [NSString stringWithFormat:@"%d", appDelegate.tor.torControlPort];
+    NSString *socksPortStr = [NSString stringWithFormat:@"%d", appDelegate.tor.torSocksPort];
+    
+    NSLog(@"%@ / %@", controlPortStr, socksPortStr);
     
     /**************/
     
