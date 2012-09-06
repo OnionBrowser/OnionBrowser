@@ -13,6 +13,7 @@
 
 @implementation TorController
 
+#define STATUS_CHECK_TIMEOUT 1.0f
 
 @synthesize
     didFirstConnect,
@@ -20,6 +21,7 @@
     torSocksPort = _torSocksPort,
     torThread = _torThread,
     torCheckLoopTimer = _torCheckLoopTimer,
+    torStatusTimeoutTimer = _torStatusTimeoutTimer,
     mSocket = _mSocket,
     controllerIsAuthenticated = _controllerIsAuthenticated
 ;
@@ -48,13 +50,18 @@
 -(void)startTor {
     // Starts or restarts tor thread.
     
-    if (_torThread == nil) {
-        _torThread = [[TorWrapper alloc] init];
-    } else {
+    if (_torCheckLoopTimer != nil) {
+        [_torCheckLoopTimer invalidate];
+    }
+    if (_torStatusTimeoutTimer != nil) {
+        [_torStatusTimeoutTimer invalidate];
+    }
+    if (_torThread != nil) {
         [_torThread cancel];
         _torThread = nil;
-        _torThread = [[TorWrapper alloc] init];
     }
+    
+    _torThread = [[TorWrapper alloc] init];
     [_torThread start];
     
     _torCheckLoopTimer = [NSTimer scheduledTimerWithTimeInterval:0.15f
@@ -64,10 +71,23 @@
                                                          repeats:NO];
 }
 
+- (void)hupTor {
+    if (_torCheckLoopTimer != nil) {
+        [_torCheckLoopTimer invalidate];
+    }
+
+    [_mSocket writeString:@"SIGNAL HUP\n" encoding:NSUTF8StringEncoding];
+    _torCheckLoopTimer = [NSTimer scheduledTimerWithTimeInterval:0.25f
+                                                          target:self
+                                                        selector:@selector(activateTorCheckLoop)
+                                                        userInfo:nil
+                                                         repeats:NO];
+}
+
 - (void)requestNewTorIdentity {
-#ifdef DEBUG
+    #ifdef DEBUG
     NSLog(@"[tor] Requesting new identity (SIGNAL NEWNYM)" );
-#endif
+    #endif
     [_mSocket writeString:@"SIGNAL NEWNYM\n" encoding:NSUTF8StringEncoding];
 }
 
@@ -81,12 +101,7 @@
         #ifdef DEBUG
         NSLog(@"[tor] Reachability changed (now online), sending HUP" );
         #endif
-        [_mSocket writeString:@"SIGNAL HUP\n" encoding:NSUTF8StringEncoding];
-        _torCheckLoopTimer = [NSTimer scheduledTimerWithTimeInterval:0.25f
-                                                              target:self
-                                                            selector:@selector(activateTorCheckLoop)
-                                                            userInfo:nil
-                                                             repeats:NO];
+        [self hupTor];
     }
 }
 
@@ -148,12 +163,26 @@
     else {
         // This is a "heartbeat" check, so we are checking our circuits.
         [_mSocket writeString:@"getinfo orconn-status\n" encoding:NSUTF8StringEncoding];
+        if (_torStatusTimeoutTimer != nil) {
+            [_torStatusTimeoutTimer invalidate];
+        }
+        _torStatusTimeoutTimer = [NSTimer scheduledTimerWithTimeInterval:STATUS_CHECK_TIMEOUT
+                                                              target:self
+                                                            selector:@selector(checkTorStatusTimeout)
+                                                            userInfo:nil
+                                                             repeats:NO];
     }
 }
 
-- (void)checkLoopDidFail {
-    // Our orconn-status check didn't return before the alotted timeout. Restart
-    // Tor.
+- (void)checkTorStatusTimeout {
+    // Our orconn-status check didn't return before the alotted timeout.
+    // (We're basically giving it STATUS_CHECK_TIMEOUT seconds -- default 1 sec
+    // -- since this is a LOCAL port and LOCAL instance of tor, it should be
+    // near instantaneous.)
+    //
+    // Fail: Restart Tor? (Maybe HUP?)
+    NSLog(@"[tor] checkTor timed out, attempting to restart tor");
+    [self startTor];
 }
 
 
@@ -190,7 +219,7 @@
         // Response to AUTHENTICATE
         if ([msgIn hasPrefix:@"250"]) {
             #ifdef DEBUG
-            //NSLog(@"[tor] Control Port Authenticated Successfully" );
+            NSLog(@"[tor] Control Port Authenticated Successfully" );
             #endif
             _controllerIsAuthenticated = YES;
 
@@ -229,7 +258,7 @@
                  target:self
                  selector:@selector(checkTor)
                  userInfo:nil
-                 repeats:YES];
+                 repeats:NO];
             } else {
                 // Haven't done initial load yet and still waiting on bootstrap, so
                 // render status.
@@ -242,16 +271,29 @@
             }
         }
     } else if ([msgIn rangeOfString:@"+orconn-status="].location != NSNotFound) {
+        [_torStatusTimeoutTimer invalidate];
+        
         // Response to "getinfo orconn-status"
         // This is a response to a "checkTor" call in the middle of our app.
-        if ([msgIn rangeOfString:@"250 OK"].location != NSNotFound) {
-            NSLog(@"[tor] Control Port: orconn-status: OK");
-        } else {
-            NSLog(@"[tor] Control Port: orconn-status: ERROR?\n    %@",
+        if ([msgIn rangeOfString:@"250 OK"].location == NSNotFound) {
+            // Bad stuff! Should HUP since this means we can still talk to
+            // Tor, but Tor is having issues with it's onion routing connections.
+            NSLog(@"[tor] Control Port: orconn-status: NOT OK\n    %@",
                   [msgIn
                    stringByReplacingOccurrencesOfString:@"\n"
                    withString:@"\n    "]
                   );
+            
+            [self hupTor];
+        } else {
+            #ifdef DEBUG
+            NSLog(@"[tor] Control Port: orconn-status: OK");
+            #endif
+            _torCheckLoopTimer = [NSTimer scheduledTimerWithTimeInterval:5.0f
+                                                                  target:self
+                                                                selector:@selector(checkTor)
+                                                                userInfo:nil
+                                                                 repeats:NO];
         }
     }
 }

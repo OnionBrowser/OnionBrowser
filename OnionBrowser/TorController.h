@@ -17,6 +17,7 @@
 
 @property (nonatomic) TorWrapper *torThread;
 @property (nonatomic) NSTimer *torCheckLoopTimer;
+@property (nonatomic) NSTimer *torStatusTimeoutTimer;
 @property (nonatomic) ULINetSocket	*mSocket;
 
 @property (nonatomic) NSUInteger torSocksPort;
@@ -25,13 +26,14 @@
 
 - (id)init;
 - (void)startTor;
+- (void)hupTor;
 
 - (void)requestNewTorIdentity;
 
 - (void)activateTorCheckLoop;
 - (void)disableTorCheckLoop;
 - (void)checkTor;
-- (void)checkLoopDidFail;
+- (void)checkTorStatusTimeout;
 
 - (void)reachabilityChanged;
 - (void)appDidEnterBackground;
