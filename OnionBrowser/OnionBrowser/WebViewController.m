@@ -38,8 +38,9 @@ static const Boolean kBackwardButton = NO;
             forwardButton = _forwardButton,
             toolButton = _toolButton,
             optionsMenu = _optionsMenu,
-            refreshButton = _refreshButton,
-            stopButton = _stopButton,
+            bookmarkButton = _bookmarkButton,
+            bookmarkMenu = _bookmarkMenu,
+            stopRefreshButton = _stopRefreshButton,
             pageTitleLabel = _pageTitleLabel,
             addressField = _addressField,
             currentURL = _currentURL,
@@ -118,7 +119,7 @@ static const Boolean kBackwardButton = NO;
 
     _addressField.enabled = YES;
     _toolButton.enabled = YES;
-    _refreshButton.enabled = YES;
+    _stopRefreshButton.enabled = YES;
     [self updateButtons];
 }
 
@@ -165,7 +166,6 @@ static const Boolean kBackwardButton = NO;
     _toolbar.frame = CGRectMake(0, self.view.frame.size.height - kToolBarHeight, self.view.frame.size.width, kToolBarHeight);
     _toolbar.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
     _toolbar.contentMode = UIViewContentModeBottom;
-    NSMutableArray *items = [[NSMutableArray alloc] init];
     UIBarButtonItem *space = [[UIBarButtonItem alloc]
                                initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                target:nil
@@ -183,31 +183,33 @@ static const Boolean kBackwardButton = NO;
                       initWithBarButtonSystemItem:UIBarButtonSystemItemAction
                       target:self
                       action:@selector(openOptionsMenu)];
-    _stopButton = [[UIBarButtonItem alloc]
-                    initWithBarButtonSystemItem:UIBarButtonSystemItemStop
+    _bookmarkButton = [[UIBarButtonItem alloc]
+                   initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks
+                   target:nil
+                   action:nil];
+    _stopRefreshButton = [[UIBarButtonItem alloc]
+                    initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
                     target:self
                     action:@selector(stopLoading)];
-    _refreshButton = [[UIBarButtonItem alloc]
-                       initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
-                       target:self
-                       action:@selector(reload)];
 
     _forwardButton.enabled = NO;
     _backButton.enabled = NO;
-    _stopButton.enabled = NO;
+    _stopRefreshButton.enabled = NO;
     _toolButton.enabled = NO;
-    _refreshButton.enabled = NO;
+    _bookmarkButton.enabled = NO;
 
+    NSMutableArray *items = [[NSMutableArray alloc] init];
     [items addObject:_backButton];
     [items addObject:space];
     [items addObject:_forwardButton];
     [items addObject:space];
     [items addObject:_toolButton];
     [items addObject:space];
-    [items addObject:_stopButton];
+    [items addObject:_bookmarkButton];
     [items addObject:space];
-    [items addObject:_refreshButton];
+    [items addObject:_stopRefreshButton];
     [_toolbar setItems:items animated:NO];
+    
     [self.view addSubview:_toolbar];
     // (/toolbar)
     
@@ -319,7 +321,6 @@ static const Boolean kBackwardButton = NO;
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-
     [self updateButtons];
     [self informError:error];
     #ifdef DEBUG
@@ -565,10 +566,8 @@ static const Boolean kBackwardButton = NO;
     [self updateTitle:_myWebView];
     if ([_currentURL rangeOfString:@"file:"].location == 0) {
         _addressField.text = @"";
-    } else {
-        if (!_addressField.isEditing) {
-            _addressField.text = _currentURL;
-        }
+    } else if (!_addressField.isEditing) {
+        _addressField.text = _currentURL;
     }
     [self updateButtons];
 }
@@ -581,7 +580,36 @@ static const Boolean kBackwardButton = NO;
 {
     _forwardButton.enabled = _myWebView.canGoForward;
     _backButton.enabled = _myWebView.canGoBack;
-    _stopButton.enabled = _myWebView.loading;
+    if (_myWebView.loading) {
+        _stopRefreshButton = nil;
+        _stopRefreshButton = [[UIBarButtonItem alloc]
+                              initWithBarButtonSystemItem:UIBarButtonSystemItemStop
+                              target:self
+                              action:@selector(stopLoading)];
+    } else {
+        _stopRefreshButton = nil;
+        _stopRefreshButton = [[UIBarButtonItem alloc]
+                              initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
+                              target:self
+                              action:@selector(reload)];
+    }
+    _stopRefreshButton.enabled = YES;
+    NSMutableArray *items = [[NSMutableArray alloc] init];
+    UIBarButtonItem *space = [[UIBarButtonItem alloc]
+                              initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                              target:nil
+                              action:nil];
+    [items addObject:_backButton];
+    [items addObject:space];
+    [items addObject:_forwardButton];
+    [items addObject:space];
+    [items addObject:_toolButton];
+    [items addObject:space];
+    [items addObject:_bookmarkButton];
+    [items addObject:space];
+    [items addObject:_stopRefreshButton];
+    [_toolbar setItems:items animated:NO];
+
 }
 
 - (void)updateTitle:(UIWebView*)aWebView
