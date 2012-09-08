@@ -18,11 +18,12 @@
 @property (nonatomic) UIBarButtonItem* toolButton;
 @property (nonatomic) UIActionSheet* optionsMenu;
 @property (nonatomic) UIBarButtonItem* bookmarkButton;
-@property (nonatomic) UIActionSheet* bookmarkMenu;
 @property (nonatomic) UIBarButtonItem* stopRefreshButton;
 @property (nonatomic) UILabel* pageTitleLabel;
 @property (nonatomic) UITextField* addressField;
 @property (nonatomic) NSString *currentURL;
+
+@property (nonatomic, retain) UINavigationController *bookmarkNavController;
 
 @property (nonatomic) NSString *torStatus;
 
@@ -36,6 +37,9 @@
 - (void)reload;
 - (void)stopLoading;
 
+- (void)prePopulateBookmarks;
+- (void)showBookmarks;
+- (void)addCurrentAsBookmark;
 - (void)updateButtons;
 - (void)updateTitle:(UIWebView*)aWebView;
 - (void)updateAddress:(NSURLRequest*)request;

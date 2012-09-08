@@ -13,7 +13,7 @@
 
 @implementation TorController
 
-#define STATUS_CHECK_TIMEOUT 1.0f
+#define STATUS_CHECK_TIMEOUT 3.0f
 
 @synthesize
     didFirstConnect,
@@ -182,7 +182,8 @@
     //
     // Fail: Restart Tor? (Maybe HUP?)
     NSLog(@"[tor] checkTor timed out, attempting to restart tor");
-    [self startTor];
+    //[self startTor];
+    [self hupTor];
 }
 
 
@@ -247,10 +248,7 @@
             if ([msgIn rangeOfString:@"BOOTSTRAP PROGRESS=100"].location != NSNotFound) {
                 // This is our first go-around (haven't loaded page into webView yet)
                 // but we are now at 100%, so go ahead.
-                NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
-                resourcePath = [resourcePath stringByReplacingOccurrencesOfString:@"/" withString:@"//"];
-                resourcePath = [resourcePath stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
-                [wvc loadURL:[NSURL URLWithString: [NSString stringWithFormat:@"file:/%@//startup.html",resourcePath]]];
+                [wvc loadURL:[NSURL URLWithString:@"onionbrowser:start"]];
                 didFirstConnect = YES;
                 
                 // See "checkTor call in middle of app" a little bit below.

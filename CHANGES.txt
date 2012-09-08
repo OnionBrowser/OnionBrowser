@@ -1,6 +1,20 @@
 Onion Browser Version History (since 1.2.2)
 
-===== 1.2.6 =====
+===== 1.3.0 - In Development =====
+         TBD - Build/submit date
+         TBD - App Store accept date
+
+* Bookmarking ability. Moved most of the "quick links" from startup
+  page into default bookmarks.
+
+* Major changes to underlying Tor wrapper code. May solve issues
+  related to connection dying after the app has been open for some
+  time and if the app was open while the device went into idle sleep.
+  (Issue #2, Issue #3)
+
+* Update tor to 0.2.3.21-rc (Sep 05, 2012).
+
+===== 1.2.6 - In Review =====
 Sep 05, 2012 - Build/submit date
          TBD - App Store accept date
 
@@ -20,7 +34,7 @@ Sep 05, 2012 - Build/submit date
 
 * Updated libevent to 2.0.20-stable (Aug 23, 2012)
 
-===== 1.2.5 =====
+===== 1.2.5 - In App Store =====
 Aug 23, 2012 - Build/submit date
 Aug 30, 2012 - App Store accept date
 

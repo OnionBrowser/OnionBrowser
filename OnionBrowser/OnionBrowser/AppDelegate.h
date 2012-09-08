@@ -23,6 +23,10 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
+@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+
 @property (nonatomic) WebViewController *appWebView;
 
 @property (nonatomic) Byte spoofUserAgent;
@@ -30,5 +34,8 @@
 @property (nonatomic) Boolean usePipelining;
 
 @property (nonatomic) NSMutableArray *sslWhitelistedDomains; // for self-signed
+
+@property (nonatomic) Boolean doPrepopulateBookmarks;
+- (NSURL *)applicationDocumentsDirectory;
 
 @end

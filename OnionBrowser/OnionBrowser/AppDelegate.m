@@ -7,6 +7,7 @@
 
 #import "AppDelegate.h"
 #include <Openssl/sha.h>
+#include "Bookmark.h"
 
 @implementation AppDelegate
 
@@ -17,11 +18,20 @@
     sslWhitelistedDomains,
     appWebView,
     tor = _tor,
-    window = _window
+    window = _window,
+    managedObjectContext = __managedObjectContext,
+    managedObjectModel = __managedObjectModel,
+    persistentStoreCoordinator = __persistentStoreCoordinator,
+    doPrepopulateBookmarks
 ;
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    // Detect
+    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Bookmarks.sqlite"];
+    NSLog(@"%@", [storeURL absoluteString]);
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    doPrepopulateBookmarks = (![fileManager fileExistsAtPath:[storeURL path]]);
+
     _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     appWebView = [[WebViewController alloc] init];
@@ -51,6 +61,66 @@
     
     return YES;
 }
+
+#pragma mark - Core Data stack
+
+// Returns the managed object context for the application.
+// If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
+- (NSManagedObjectContext *)managedObjectContext
+{
+    if (__managedObjectContext != nil) {
+        return __managedObjectContext;
+    }
+    
+    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
+    if (coordinator != nil) {
+        __managedObjectContext = [[NSManagedObjectContext alloc] init];
+        [__managedObjectContext setPersistentStoreCoordinator:coordinator];
+    }
+    return __managedObjectContext;
+}
+
+// Returns the managed object model for the application.
+// If the model doesn't already exist, it is created from the application's model.
+- (NSManagedObjectModel *)managedObjectModel
+{
+    if (__managedObjectModel != nil) {
+        return __managedObjectModel;
+    }
+    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"Bookmarks" withExtension:@"momd"];
+    __managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+    return __managedObjectModel;
+}
+
+// Returns the persistent store coordinator for the application.
+// If the coordinator doesn't already exist, it is created and the application's store added to it.
+- (NSPersistentStoreCoordinator *)persistentStoreCoordinator
+{
+    if (__persistentStoreCoordinator != nil) {
+        return __persistentStoreCoordinator;
+    }
+    
+    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Bookmarks.sqlite"];
+    
+    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
+                             [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
+                             [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
+    
+    NSError *error = nil;
+    __persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+    if (![__persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error]) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+    
+    return __persistentStoreCoordinator;
+}
+
+- (NSURL *)applicationDocumentsDirectory {
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+
 
 #pragma mark -
 #pragma mark App lifecycle

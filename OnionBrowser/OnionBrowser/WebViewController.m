@@ -8,7 +8,9 @@
 
 #import "WebViewController.h"
 #import "AppDelegate.h"
+#import "BookmarkTableViewController.h"
 #import "SettingsViewController.h"
+#import "Bookmark.h"
 
 static const CGFloat kNavBarHeight = 52.0f;
 static const CGFloat kToolBarHeight = 44.0f;
@@ -39,7 +41,6 @@ static const Boolean kBackwardButton = NO;
             toolButton = _toolButton,
             optionsMenu = _optionsMenu,
             bookmarkButton = _bookmarkButton,
-            bookmarkMenu = _bookmarkMenu,
             stopRefreshButton = _stopRefreshButton,
             pageTitleLabel = _pageTitleLabel,
             addressField = _addressField,
@@ -94,7 +95,7 @@ static const Boolean kBackwardButton = NO;
     if (summary_loc2.location != NSNotFound)
         summary_str = [summary_str substringToIndex:summary_loc2.location];
 
-    NSString *status = [NSString stringWithFormat:@"Connecting… This may take a minute.\n\nIf this takes longer than 60 seconds, please close and re-open the app to retry connection initialization.\n\nIf this problem persists, please visit the following web page in another browser:\nhttp://onionbrowser.com/help/\n\n%@%%\n%@",
+    NSString *status = [NSString stringWithFormat:@"Connecting… This may take a minute.\n\nIf this takes longer than 60 seconds, please close and re-open the app to try connecting from scratch.\n\nIf this problem persists, please visit the following web page in another browser:\nhttp://onionbrowser.com/help/\n\n%@%%\n%@",
                             progress_str,
                             summary_str];
     loadingStatus.text = status;
@@ -120,6 +121,7 @@ static const Boolean kBackwardButton = NO;
     _addressField.enabled = YES;
     _toolButton.enabled = YES;
     _stopRefreshButton.enabled = YES;
+    _bookmarkButton.enabled = YES;
     [self updateButtons];
 }
 
@@ -185,8 +187,8 @@ static const Boolean kBackwardButton = NO;
                       action:@selector(openOptionsMenu)];
     _bookmarkButton = [[UIBarButtonItem alloc]
                    initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks
-                   target:nil
-                   action:nil];
+                   target:self
+                   action:@selector(showBookmarks)];
     _stopRefreshButton = [[UIBarButtonItem alloc]
                     initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
                     target:self
@@ -213,13 +215,13 @@ static const Boolean kBackwardButton = NO;
     [self.view addSubview:_toolbar];
     // (/toolbar)
     
-    // Set up "action sheet" (options menu)
+    // Set up actionsheets (options menu, bookmarks menu)
     _optionsMenu = [[UIActionSheet alloc] initWithTitle:nil
                                                delegate:self
                                       cancelButtonTitle:@"Close"
                                  destructiveButtonTitle:@"New Identity"
-                                      otherButtonTitles:@"Browser Settings", @"Open Home Page", @"About Onion Browser", nil];
-    // (/actionsheet)
+                                      otherButtonTitles:@"Bookmark Current Page", @"Browser Settings", @"Open Start Page", @"About Onion Browser", nil];
+    // (/actionsheets)
     
     
     // Set up navbar
@@ -285,6 +287,66 @@ static const Boolean kBackwardButton = NO;
     loadingStatus.textAlignment =  UITextAlignmentLeft;
     loadingStatus.text = @"Connecting...\n\n\n\n\n";
     [self.view addSubview:loadingStatus];
+    
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    if (appDelegate.doPrepopulateBookmarks){
+        [self prePopulateBookmarks];
+    }
+}
+
+-(void) prePopulateBookmarks {
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+
+    NSUInteger i = 0;
+    
+    Bookmark *bookmark;
+    
+    bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
+    [bookmark setTitle:@"The Tor Project (.onion)"];
+    [bookmark setUrl:@"http://idnxcnkne4qt76tg.onion/"];
+    [bookmark setOrder:i++];
+    
+    bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
+    [bookmark setTitle:@"Tor Project News (HTTPS)"];
+    [bookmark setUrl:@"https://blog.torproject.org/"];
+    [bookmark setOrder:i++];
+    
+    bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
+    [bookmark setTitle:@"The Cleaned Hidden Wiki (.onion)"];
+    [bookmark setUrl:@"http://3suaolltfj2xjksb.onion/hiddenwiki/index.php/Main_Page"];
+    [bookmark setOrder:i++];
+    
+    bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
+    [bookmark setTitle:@"The Tor Library (.onion)"];
+    [bookmark setUrl:@"http://am4wuhz3zifexz5u.onion/"];
+    [bookmark setOrder:i++];
+
+    bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
+    [bookmark setTitle:@"Reddit /r/onions"];
+    [bookmark setUrl:@"http://www.reddit.com/r/onions"];
+    [bookmark setOrder:i++];
+    
+    bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
+    [bookmark setTitle:@"Reddit /r/netsec"];
+    [bookmark setUrl:@"http://www.reddit.com/r/netsec"];
+    [bookmark setOrder:i++];
+    
+    bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
+    [bookmark setTitle:@"Tor Mail (.onion)"];
+    [bookmark setUrl:@"http://jhiwjjlqpyawmpjx.onion/"];
+    [bookmark setOrder:i++];
+    
+    bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
+    [bookmark setTitle:@"RedditTor (.onion)"];
+    [bookmark setUrl:@"http://gmyzy5exjw4pimvf.onion/"];
+    [bookmark setOrder:i++];
+    
+    NSError *error = nil;
+    if (![context save:&error]) {
+        NSLog(@"Error adding bookmarks: %@", error);
+    }
 }
 
 
@@ -482,67 +544,68 @@ static const Boolean kBackwardButton = NO;
     [_optionsMenu showFromToolbar:_toolbar];
 }
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 0) {
-        ////////////////////////////////////////////////////////
-        // New Identity
-        ////////////////////////////////////////////////////////
-        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-        [appDelegate.tor requestNewTorIdentity];
-        
-        NSHTTPCookie *cookie;
-        NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-        for (cookie in [storage cookies]) {
-            [storage deleteCookie:cookie];
+    if (actionSheet == _optionsMenu) {
+        if (buttonIndex == 0) {
+            ////////////////////////////////////////////////////////
+            // New Identity
+            ////////////////////////////////////////////////////////
+            AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+            [appDelegate.tor requestNewTorIdentity];
+            
+            NSHTTPCookie *cookie;
+            NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+            for (cookie in [storage cookies]) {
+                [storage deleteCookie:cookie];
+            }
+            [[NSURLCache sharedURLCache] removeAllCachedResponses];
+            
+            // Initialize a new UIWebView (to clear the history of the previous one)
+            UIWebView *newWebView = [[UIWebView alloc] initWithFrame:_myWebView.frame];
+            newWebView.backgroundColor = [UIColor whiteColor];
+            newWebView.scalesPageToFit = YES;
+            newWebView.contentScaleFactor = 3;
+            newWebView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
+            newWebView.delegate = self;
+            [_myWebView removeFromSuperview];
+            _myWebView = newWebView;
+            [self.view addSubview: _myWebView];
+            
+            // Reset forward/back buttons.
+            [self updateButtons];
+            
+            // Reset the address field
+            _addressField.text = @"";
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
+                                                            message:@"Requesting a new IP address from Tor. Cache, cookies, and browser history cleared.\n\nDue to an iOS limitation, visisted links will still get the ':visited' CSS highlight state. iOS is resistant to script-based access to this information, but if you are still concerned about leaking history, please force-quit this app and re-launch. Please visit http://yu8.in/M5 for more detailed information."
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK" 
+                                                  otherButtonTitles:nil];
+            [alert show];
+        } else if (buttonIndex == 1) {
+            ////////////////////////////////////////////////////////
+            // Add To Bookmarks
+            ////////////////////////////////////////////////////////
+            [self addCurrentAsBookmark];
+        } else if (buttonIndex == 2) {
+            ////////////////////////////////////////////////////////
+            // Settings Menu
+            ////////////////////////////////////////////////////////
+            SettingsViewController *settingsController = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:nil];
+            [self presentModalViewController:settingsController animated:YES];
         }
-        [[NSURLCache sharedURLCache] removeAllCachedResponses];
         
-        // Initialize a new UIWebView (to clear the history of the previous one)
-        UIWebView *newWebView = [[UIWebView alloc] initWithFrame:_myWebView.frame];
-        newWebView.backgroundColor = [UIColor whiteColor];
-        newWebView.scalesPageToFit = YES;
-        newWebView.contentScaleFactor = 3;
-        newWebView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
-        newWebView.delegate = self;
-        [_myWebView removeFromSuperview];
-        _myWebView = newWebView;
-        [self.view addSubview: _myWebView];
-        
-        // Reset forward/back buttons.
-        [self updateButtons];
-        
-        // Reset the address field
-        _addressField.text = @"";
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
-                                                        message:@"Requesting a new IP address from Tor. Cache, cookies, and browser history cleared.\n\nDue to an iOS limitation, visisted links will still get the ':visited' CSS highlight state. iOS is resistant to script-based access to this information, but if you are still concerned about leaking history, please force-quit this app and re-launch. Please visit http://yu8.in/M5 for more detailed information."
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK" 
-                                              otherButtonTitles:nil];
-        [alert show];
-    } else if (buttonIndex == 1) {
-        ////////////////////////////////////////////////////////
-        // Settings Menu
-        ////////////////////////////////////////////////////////
-        SettingsViewController *settingsController = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:nil];
-        [self presentModalViewController:settingsController animated:YES];
-    }
-    
-    if ((buttonIndex == 0) || (buttonIndex == 2)) {
-        ////////////////////////////////////////////////////////
-        // New Identity OR Return To Home
-        ////////////////////////////////////////////////////////
-        NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
-        resourcePath = [resourcePath stringByReplacingOccurrencesOfString:@"/" withString:@"//"];
-        resourcePath = [resourcePath stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
-        [self loadURL:[NSURL URLWithString: [NSString stringWithFormat:@"file:/%@//startup.html",resourcePath]]];
-    } else if (buttonIndex == 3) {
-        ////////////////////////////////////////////////////////
-        // About Page
-        ////////////////////////////////////////////////////////
-        NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
-        resourcePath = [resourcePath stringByReplacingOccurrencesOfString:@"/" withString:@"//"];
-        resourcePath = [resourcePath stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
-        [self loadURL:[NSURL URLWithString: [NSString stringWithFormat:@"file:/%@//about.html",resourcePath]]];
+        if ((buttonIndex == 0) || (buttonIndex == 3)) {
+            ////////////////////////////////////////////////////////
+            // New Identity OR Return To Home
+            ////////////////////////////////////////////////////////
+            [self loadURL:[NSURL URLWithString:@"onionbrowser:start"]];
+        } else if (buttonIndex == 4) {
+            ////////////////////////////////////////////////////////
+            // About Page
+            ////////////////////////////////////////////////////////
+            [self loadURL:[NSURL URLWithString:@"onionbrowser:about"]];
+        }
     }
 }
 
@@ -564,9 +627,7 @@ static const Boolean kBackwardButton = NO;
 - (void)stopLoading {
     [_myWebView stopLoading];
     [self updateTitle:_myWebView];
-    if ([_currentURL rangeOfString:@"file:"].location == 0) {
-        _addressField.text = @"";
-    } else if (!_addressField.isEditing) {
+    if (!_addressField.isEditing) {
         _addressField.text = _currentURL;
     }
     [self updateButtons];
@@ -618,14 +679,26 @@ static const Boolean kBackwardButton = NO;
     _pageTitleLabel.text = pageTitle; 
 }
 
-- (void)updateAddress:(NSURLRequest*)request
-{
+- (void)updateAddress:(NSURLRequest*)request {
     NSURL* url = [request mainDocumentURL];
-    NSString* absoluteString = [url absoluteString];
+    NSString* absoluteString;
     
-    if ([absoluteString rangeOfString:@"file:"].location == 0) {
-        _addressField.text = @"";
-    } else if (![absoluteString isEqualToString:_currentURL]){
+    if ((url != nil) && [[url scheme] isEqualToString:@"file"]) {
+        // Faked local URLs
+        if ([[url absoluteString] rangeOfString:@"startup.html"].location != NSNotFound) {
+            absoluteString = @"onionbrowser:start";
+        }
+        else if ([[url absoluteString] rangeOfString:@"about.html"].location != NSNotFound) {
+            absoluteString = @"onionbrowser:about";
+        } else {
+            absoluteString = @"";
+        }
+    } else {
+        // Regular ol' web URL.
+        absoluteString = [url absoluteString];
+    }
+    
+    if (![absoluteString isEqualToString:_currentURL]){
         _currentURL = absoluteString;
         if (!_addressField.isEditing) {
             _addressField.text = absoluteString;
@@ -643,6 +716,65 @@ static const Boolean kBackwardButton = NO;
     }
     _currentURL = [url absoluteString];
     [self loadURL:url];
+}
+
+- (void) addCurrentAsBookmark {
+    if ((_currentURL != nil) && ![_currentURL isEqualToString:@""]) {
+        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Bookmark" inManagedObjectContext:appDelegate.managedObjectContext];
+        [request setEntity:entity];
+        
+        NSError *error = nil;
+        NSUInteger numBookmarks = [appDelegate.managedObjectContext countForFetchRequest:request error:&error];
+        if (error) {
+            // error state?
+        }
+        Bookmark *bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:appDelegate.managedObjectContext];
+        
+        NSString *pageTitle = [_myWebView stringByEvaluatingJavaScriptFromString:@"document.title"];
+        [bookmark setTitle:pageTitle];
+        [bookmark setUrl:_currentURL];
+        [bookmark setOrder:numBookmarks];
+        
+        NSError *saveError = nil;
+        if (![appDelegate.managedObjectContext save:&saveError]) {
+            NSLog(@"Error saving bookmark: %@", saveError);
+        }
+
+        UIAlertView* alertView = [[UIAlertView alloc]
+                                  initWithTitle:@"Add Bookmark"
+                                  message:[NSString stringWithFormat:@"Added '%@' %@ to bookmarks.",
+                                           pageTitle, _currentURL]
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+        alertView.delegate = self;
+        [alertView show];
+    } else {
+        UIAlertView* alertView = [[UIAlertView alloc]
+                                  initWithTitle:@"Add Bookmark"
+                                  message:@"Can't bookmark a (local) page with no URL."
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+        alertView.delegate = self;
+        [alertView show];
+    }
+}
+
+-(void)showBookmarks {
+    BookmarkTableViewController *bookmarksVC = [[BookmarkTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    UINavigationController *bookmarkNavController = [[UINavigationController alloc]
+                                                     initWithRootViewController:bookmarksVC];
+    
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    
+    bookmarksVC.managedObjectContext = context;
+    
+    [self presentModalViewController:bookmarkNavController animated:YES];
 }
 
 @end

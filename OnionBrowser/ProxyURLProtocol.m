@@ -68,7 +68,12 @@
 // Class methods
 
 + (BOOL)canInitWithRequest:(NSURLRequest *)request {
-    if ( !([[[request URL] scheme] isEqualToString:@"file"] || [[[request URL] scheme] isEqualToString:@"data"]) ) {
+    if ( !([[[request URL] scheme] isEqualToString:@"file"] ||
+           [[[request URL] scheme] isEqualToString:@"data"] ||
+           [[[request URL] scheme] isEqualToString:@"itms"] ||
+           [[[request URL] scheme] isEqualToString:@"itms-apps"]
+           )
+    ) {
         // Previously we checked if it matched "http" or "https". Apparently
         // UIWebView can attempt to make FTP connections for HTML page resources (i.e.
         // a <link> tag for a CSS file with an FTP scheme.). So we whitelist
@@ -86,8 +91,27 @@
 
 
 - (void)startLoading {
-    CKHTTPConnection *con = [CKHTTPConnection connectionWithRequest:[self request] delegate:self];
-    [self setConnection:con];
+    if ([[[[self request] URL] scheme] isEqualToString:@"onionbrowser"]) {
+        /*
+         This is either "onionbrowser:start" or "onionbrowser:about".
+         */
+        NSURL *url;
+        NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
+        resourcePath = [resourcePath stringByReplacingOccurrencesOfString:@"/" withString:@"//"];
+        resourcePath = [resourcePath stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+        if ([[[[self request] URL] absoluteString] rangeOfString:@"about"].location != NSNotFound) {
+            url = [NSURL URLWithString: [NSString stringWithFormat:@"file:/%@/about.html",resourcePath]];
+        } else {
+            url = [NSURL URLWithString: [NSString stringWithFormat:@"file:/%@/startup.html",resourcePath]];
+        }
+        NSMutableURLRequest *newRequest = [NSMutableURLRequest requestWithURL:url];
+        [newRequest setAllHTTPHeaderFields:[[self request] allHTTPHeaderFields]];
+        NSURLConnection *con = [NSURLConnection connectionWithRequest:newRequest delegate:self];
+        [self setConnection:(CKHTTPConnection *)con]; // lie.
+    } else {
+        CKHTTPConnection *con = [CKHTTPConnection connectionWithRequest:[self request] delegate:self];
+        [self setConnection:con];
+    }
 }
 
 -(void)stopLoading {

@@ -11,8 +11,12 @@
 		6924C28C155262E2004BE7F9 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6924C28A155262E2004BE7F9 /* SettingsViewController.m */; };
 		6924C28D155262E2004BE7F9 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6924C28B155262E2004BE7F9 /* SettingsViewController.xib */; };
 		6924C29015526343004BE7F9 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6924C28F15526343004BE7F9 /* SettingsTableViewController.m */; };
+		692B338815FAD31D00A23DD5 /* Bookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = 692B338715FAD31D00A23DD5 /* Bookmark.m */; };
+		692B338C15FAF2E500A23DD5 /* BookmarkEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 692B338B15FAF2E400A23DD5 /* BookmarkEditViewController.m */; };
 		692B86AF153CD4CB000806A9 /* NSData+Conversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 692B86AE153CD4CB000806A9 /* NSData+Conversion.m */; };
 		6940BD1F15F84C0C00FE74CB /* TorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6940BD1E15F84C0C00FE74CB /* TorController.m */; };
+		6940BD2315F86B5C00FE74CB /* Bookmarks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6940BD2115F86B5C00FE74CB /* Bookmarks.xcdatamodeld */; };
+		6940BD2515F8761900FE74CB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6940BD2415F8761900FE74CB /* CoreData.framework */; };
 		694F34F1152ECFF20002BCBC /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 694F34E9152ECFF20002BCBC /* Icon.png */; };
 		694F34F2152ECFF20002BCBC /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 694F34EA152ECFF20002BCBC /* Icon-72.png */; };
 		694F34F3152ECFF20002BCBC /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 694F34EB152ECFF20002BCBC /* Icon-72@2x.png */; };
@@ -21,6 +25,7 @@
 		694F34F6152ECFF20002BCBC /* Icon-Small-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 694F34EE152ECFF20002BCBC /* Icon-Small-50@2x.png */; };
 		694F34F7152ECFF20002BCBC /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 694F34EF152ECFF20002BCBC /* Icon-Small@2x.png */; };
 		694F34F8152ECFF20002BCBC /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 694F34F0152ECFF20002BCBC /* Icon@2x.png */; };
+		6963E61615FAB2EC00310E8D /* BookmarkTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6963E61515FAB2EC00310E8D /* BookmarkTableViewController.m */; };
 		696C33AE1530D0D400990E69 /* startup.html in Resources */ = {isa = PBXBuildFile; fileRef = 696C33AD1530D0D400990E69 /* startup.html */; };
 		696EBD7814F7877900B81BC9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696EBD7714F7877900B81BC9 /* UIKit.framework */; };
 		696EBD7A14F7877900B81BC9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696EBD7914F7877900B81BC9 /* Foundation.framework */; };
@@ -69,10 +74,17 @@
 		6924C28B155262E2004BE7F9 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		6924C28E15526343004BE7F9 /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
 		6924C28F15526343004BE7F9 /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
+		692B338615FAD31D00A23DD5 /* Bookmark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bookmark.h; sourceTree = "<group>"; };
+		692B338715FAD31D00A23DD5 /* Bookmark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bookmark.m; sourceTree = "<group>"; };
+		692B338915FAD4B600A23DD5 /* Bookmarks 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bookmarks 2.xcdatamodel"; sourceTree = "<group>"; };
+		692B338A15FAF2E400A23DD5 /* BookmarkEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkEditViewController.h; sourceTree = "<group>"; };
+		692B338B15FAF2E400A23DD5 /* BookmarkEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkEditViewController.m; sourceTree = "<group>"; };
 		692B86AD153CD4CB000806A9 /* NSData+Conversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Conversion.h"; sourceTree = "<group>"; };
 		692B86AE153CD4CB000806A9 /* NSData+Conversion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Conversion.m"; sourceTree = "<group>"; };
 		6940BD1D15F84C0C00FE74CB /* TorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TorController.h; sourceTree = "<group>"; };
 		6940BD1E15F84C0C00FE74CB /* TorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TorController.m; sourceTree = "<group>"; };
+		6940BD2215F86B5C00FE74CB /* Bookmarks.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Bookmarks.xcdatamodel; sourceTree = "<group>"; };
+		6940BD2415F8761900FE74CB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		694F34E9152ECFF20002BCBC /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = icon/Icon.png; sourceTree = "<group>"; };
 		694F34EA152ECFF20002BCBC /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "icon/Icon-72.png"; sourceTree = "<group>"; };
 		694F34EB152ECFF20002BCBC /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72@2x.png"; path = "icon/Icon-72@2x.png"; sourceTree = "<group>"; };
@@ -81,6 +93,8 @@
 		694F34EE152ECFF20002BCBC /* Icon-Small-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small-50@2x.png"; path = "icon/Icon-Small-50@2x.png"; sourceTree = "<group>"; };
 		694F34EF152ECFF20002BCBC /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small@2x.png"; path = "icon/Icon-Small@2x.png"; sourceTree = "<group>"; };
 		694F34F0152ECFF20002BCBC /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "icon/Icon@2x.png"; sourceTree = "<group>"; };
+		6963E61415FAB2EC00310E8D /* BookmarkTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkTableViewController.h; sourceTree = "<group>"; };
+		6963E61515FAB2EC00310E8D /* BookmarkTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkTableViewController.m; sourceTree = "<group>"; };
 		696C33AD1530D0D400990E69 /* startup.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = startup.html; sourceTree = "<group>"; };
 		696EBD7314F7877900B81BC9 /* OnionBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnionBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		696EBD7714F7877900B81BC9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -135,6 +149,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6940BD2515F8761900FE74CB /* CoreData.framework in Frameworks */,
 				699CCEBD14FA1939004A2F56 /* libxml2.dylib in Frameworks */,
 				697ABCD814FA043300E1678C /* MobileCoreServices.framework in Frameworks */,
 				697ABCD614FA042C00E1678C /* SystemConfiguration.framework in Frameworks */,
@@ -160,7 +175,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6924C27515525F3B004BE7F9 /* Settings View */ = {
+		6924C27515525F3B004BE7F9 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				69A82A7D15F97553009B31F1 /* Bookmarks */,
+				6940BD3115F87FC100FE74CB /* SettingsView */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		6940BD3115F87FC100FE74CB /* SettingsView */ = {
 			isa = PBXGroup;
 			children = (
 				6924C289155262E2004BE7F9 /* SettingsViewController.h */,
@@ -169,12 +193,13 @@
 				6924C28E15526343004BE7F9 /* SettingsTableViewController.h */,
 				6924C28F15526343004BE7F9 /* SettingsTableViewController.m */,
 			);
-			name = "Settings View";
+			name = SettingsView;
 			sourceTree = "<group>";
 		};
 		696EBD6814F7877900B81BC9 = {
 			isa = PBXGroup;
 			children = (
+				6940BD2415F8761900FE74CB /* CoreData.framework */,
 				696F9EB114F8DD5300BC5FDC /* ThirdParty */,
 				69BB0A4C14F8D31800E7E909 /* Tor */,
 				696EBD7D14F7877900B81BC9 /* OnionBrowser */,
@@ -220,7 +245,7 @@
 				69C6F6A414FACC3000894495 /* ProxyURLProtocol.m */,
 				69F3C5F714FC8739008274C3 /* CKHTTPConnection.h */,
 				69F3C5F814FC8739008274C3 /* CKHTTPConnection.m */,
-				6924C27515525F3B004BE7F9 /* Settings View */,
+				6924C27515525F3B004BE7F9 /* Settings */,
 			);
 			path = OnionBrowser;
 			sourceTree = "<group>";
@@ -288,6 +313,20 @@
 				69847C4614F788E100288277 /* libtor.a */,
 			);
 			name = External;
+			sourceTree = "<group>";
+		};
+		69A82A7D15F97553009B31F1 /* Bookmarks */ = {
+			isa = PBXGroup;
+			children = (
+				6940BD2115F86B5C00FE74CB /* Bookmarks.xcdatamodeld */,
+				6963E61415FAB2EC00310E8D /* BookmarkTableViewController.h */,
+				6963E61515FAB2EC00310E8D /* BookmarkTableViewController.m */,
+				692B338615FAD31D00A23DD5 /* Bookmark.h */,
+				692B338715FAD31D00A23DD5 /* Bookmark.m */,
+				692B338A15FAF2E400A23DD5 /* BookmarkEditViewController.h */,
+				692B338B15FAF2E400A23DD5 /* BookmarkEditViewController.m */,
+			);
+			name = Bookmarks;
 			sourceTree = "<group>";
 		};
 		69BB0A4C14F8D31800E7E909 /* Tor */ = {
@@ -397,6 +436,10 @@
 				6924C28C155262E2004BE7F9 /* SettingsViewController.m in Sources */,
 				6924C29015526343004BE7F9 /* SettingsTableViewController.m in Sources */,
 				6940BD1F15F84C0C00FE74CB /* TorController.m in Sources */,
+				6940BD2315F86B5C00FE74CB /* Bookmarks.xcdatamodeld in Sources */,
+				6963E61615FAB2EC00310E8D /* BookmarkTableViewController.m in Sources */,
+				692B338815FAD31D00A23DD5 /* Bookmark.m in Sources */,
+				692B338C15FAF2E500A23DD5 /* BookmarkEditViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -545,6 +588,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		6940BD2115F86B5C00FE74CB /* Bookmarks.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				692B338915FAD4B600A23DD5 /* Bookmarks 2.xcdatamodel */,
+				6940BD2215F86B5C00FE74CB /* Bookmarks.xcdatamodel */,
+			);
+			currentVersion = 692B338915FAD4B600A23DD5 /* Bookmarks 2.xcdatamodel */;
+			path = Bookmarks.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 696EBD6A14F7877900B81BC9 /* Project object */;
 }
