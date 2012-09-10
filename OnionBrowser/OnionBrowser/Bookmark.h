@@ -2,7 +2,7 @@
 //  Bookmark.h
 //  OnionBrowser
 //
-//  Created by Mike Tigas on 9/7/12.
+//  Created by Mike Tigas on 9/9/12.
 //
 //
 
@@ -12,8 +12,8 @@
 
 @interface Bookmark : NSManagedObject
 
+@property (nonatomic) int16_t order;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * url;
-@property (nonatomic) int16_t order;
 
 @end

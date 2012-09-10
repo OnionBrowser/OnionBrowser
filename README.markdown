@@ -1,6 +1,6 @@
 ## Onion Browser
 
-[Official Site][official] | [Support][help]<br>
+[Official Site][official] | [Support][help] | [Changelog][changelog]<br>
 &copy; 2012 [Mike Tigas][miketigas] ([@mtigas](https://twitter.com/mtigas))<br>
 [MIT License][license]
 
@@ -10,6 +10,7 @@ and App Store links.
 
 [official]: http://onionbrowser.com/
 [help]: http://onionbrowser.com/help/
+[changelog]: https://raw.github.com/mtigas/iOS-OnionBrowser/master/CHANGES.txt
 [miketigas]: http://mike.tig.as/
 [license]: https://github.com/mtigas/iOS-OnionBrowser/blob/master/LICENSE
 
@@ -24,7 +25,7 @@ and App Store links.
 
 #### Technical notes
 
-* **OnionBrowser**: 1.3.0 (20120907.1)
+* **OnionBrowser**: 1.3.0 (20120909.1)
 * **Tor**: 0.2.3.21-rc (Sep 05 2012)
 * **libevent**: 2.0.20-stable (Aug 23 2012)
 * **OpenSSL**: 1.0.1c (May 10 2012)

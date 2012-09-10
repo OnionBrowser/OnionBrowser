@@ -8,6 +8,7 @@
 
 #import "SettingsTableViewController.h"
 #import "AppDelegate.h"
+#import "BridgeTableViewController.h"
 
 @interface SettingsTableViewController ()
 
@@ -40,7 +41,7 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 4;
+    return 5;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -56,6 +57,9 @@
     } else if (section == 3) {
         // DNT header
         return 2;
+    } else if (section == 4) {
+        // Bridges
+        return 1;
     }
     return 0;
 }
@@ -69,6 +73,8 @@
         return @"HTTP Pipelining\n(Disable if you have issues with images on some websites)";
     else if (section == 3)
         return @"DNT (Do Not Track) Header";
+    else if (section == 4)
+        return @"Tor Bridges\nSet up bridges if you have issues connecting to Tor. Remove all bridges to go back standard connection mode.\nSee http://onionbrowser.com/help/ for instructions.";
     else
         return nil;
 }
@@ -176,49 +182,32 @@
                 cell.accessoryType = UITableViewCellAccessoryNone;
             }
         }
+    } else if (indexPath.section == 4) {
+        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Bridge" inManagedObjectContext:appDelegate.managedObjectContext];
+        [request setEntity:entity];
+        
+        NSError *error = nil;
+        NSMutableArray *mutableFetchResults = [[appDelegate.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+        if (mutableFetchResults == nil) {
+            // Handle the error.
+        }
+
+        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+        cell.textLabel.textAlignment = UITextAlignmentCenter;
+        NSUInteger numBridges = [mutableFetchResults count];
+        if (numBridges == 0) {
+            cell.textLabel.text = @"Not Using Bridges";
+        } else {
+            cell.textLabel.text = [NSString stringWithFormat:@"%d Bridges Configured",
+                                   numBridges];
+        }
     }
     
     return cell;
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
 
@@ -272,6 +261,15 @@
             [alert show];
             appDelegate.dntHeader = DNT_HEADER_NOTRACK;
         }
+    } else if (indexPath.section == 4) {
+        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+
+        BridgeTableViewController *bridgesVC = [[BridgeTableViewController alloc] initWithStyle:UITableViewStylePlain];
+        [bridgesVC setManagedObjectContext:[appDelegate managedObjectContext]];
+        
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:bridgesVC];
+        navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+        [self presentModalViewController:navController animated:YES];
     }
     [tableView reloadData];
 }

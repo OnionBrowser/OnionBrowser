@@ -23,11 +23,13 @@
 }
 
 -(void)main {
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSString *tmpDir = NSTemporaryDirectory();
-    NSString *base_torrc = [[NSBundle mainBundle] pathForResource:@"torrc" ofType:nil];
+    
+    //NSString *base_torrc = [[NSBundle mainBundle] pathForResource:@"torrc" ofType:nil];
+    NSString *base_torrc = [[[appDelegate applicationDocumentsDirectory] URLByAppendingPathComponent:@"torrc"] relativePath];
     NSString *geoip = [[NSBundle mainBundle] pathForResource:@"geoip" ofType:nil];
     
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSString *controlPortStr = [NSString stringWithFormat:@"%d", appDelegate.tor.torControlPort];
     NSString *socksPortStr = [NSString stringWithFormat:@"%d", appDelegate.tor.torSocksPort];
     

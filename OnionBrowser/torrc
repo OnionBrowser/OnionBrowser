@@ -17,32 +17,19 @@ CookieAuthentication 1
 
 ConnLimit 100
 
-# Use very strict and small timeouts (and don't take the network consensus values)
-# to boost performance a little bit.
-# (This is may mildly impact privacy, but within the scope of the application's
-# description and stated claims.)
-# See also: EntryNodes below
-LearnCircuitBuildTimeout 0
-CircuitBuildTimeout 15
-CircuitIdleTimeout 1800
-CircuitStreamTimeout 45
-
 UseEntryGuards 1
 TunnelDirConns 1
 PreferTunneledDirConns 1
 
-# debug, info, notice, warn, err
 SafeLogging 1
-#Log warn stderr
-#Log err file /dev/null
 
 TestSocks 0
 WarnUnsafeSocks 0  #default 1 (we don't care on iOS)
-
-# TODO
-#UseBridges 1
 
 # We actually disabled this by removing ptrace() calls when building tor.
 # See "build-tor-ptrace-patch.diff" and "build-tor.sh" in the OnionBrowser
 # repo root.
 DisableDebuggerAttachment 0
+
+# "UseBridges" and "bridge" lines get appended automatically if there
+# are bridges enabled.

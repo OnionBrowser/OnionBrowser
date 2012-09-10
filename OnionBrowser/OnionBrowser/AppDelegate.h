@@ -36,6 +36,8 @@
 @property (nonatomic) NSMutableArray *sslWhitelistedDomains; // for self-signed
 
 @property (nonatomic) Boolean doPrepopulateBookmarks;
+
+- (void)updateTorrc;
 - (NSURL *)applicationDocumentsDirectory;
 
 @end

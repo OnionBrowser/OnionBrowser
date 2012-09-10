@@ -2,7 +2,7 @@
 //  Bookmark.m
 //  OnionBrowser
 //
-//  Created by Mike Tigas on 9/7/12.
+//  Created by Mike Tigas on 9/9/12.
 //
 //
 
@@ -11,8 +11,8 @@
 
 @implementation Bookmark
 
+@dynamic order;
 @dynamic title;
 @dynamic url;
-@dynamic order;
 
 @end

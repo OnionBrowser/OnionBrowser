@@ -7,7 +7,7 @@
 
 #import "AppDelegate.h"
 #include <Openssl/sha.h>
-#include "Bookmark.h"
+#import "Bridge.h"
 
 @implementation AppDelegate
 
@@ -27,8 +27,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Detect
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Bookmarks.sqlite"];
-    NSLog(@"%@", [storeURL absoluteString]);
+    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Settings.sqlite"];
     NSFileManager *fileManager = [NSFileManager defaultManager];
     doPrepopulateBookmarks = (![fileManager fileExistsAtPath:[storeURL path]]);
 
@@ -37,7 +36,8 @@
     appWebView = [[WebViewController alloc] init];
     [_window addSubview:appWebView.view];
     [_window makeKeyAndVisible];
-
+    
+    [self updateTorrc];
     _tor = [[TorController alloc] init];
     [_tor startTor];
 
@@ -60,6 +60,48 @@
     }
     
     return YES;
+}
+
+- (void)updateTorrc {
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *destTorrc = [[[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"torrc"] relativePath];
+    if ([fileManager fileExistsAtPath:destTorrc]) {
+        [fileManager removeItemAtPath:destTorrc error:NULL];
+    }
+    NSString *sourceTorrc = [[NSBundle mainBundle] pathForResource:@"torrc" ofType:nil];
+    NSError *error = nil;
+    [fileManager copyItemAtPath:sourceTorrc toPath:destTorrc error:&error];
+    if (error != nil) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        if (![fileManager fileExistsAtPath:sourceTorrc]) {
+            NSLog(@"(Source torrc %@ doesnt exist)", sourceTorrc);
+        }
+    }
+    
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Bridge" inManagedObjectContext:self.managedObjectContext];
+    [request setEntity:entity];
+    
+    error = nil;
+    NSMutableArray *mutableFetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+    if (mutableFetchResults == nil) {
+
+    } else if ([mutableFetchResults count] > 0) {
+        NSFileHandle *myHandle = [NSFileHandle fileHandleForWritingAtPath:destTorrc];
+        [myHandle seekToEndOfFile];
+        [myHandle writeData:[@"UseBridges 1\n" dataUsingEncoding:NSUTF8StringEncoding]];
+        for (Bridge *bridge in mutableFetchResults) {
+            if ([bridge.conf isEqualToString:@"Tap Here To Edit"]||[bridge.conf isEqualToString:@""]) {
+                // skip
+            } else {
+                [myHandle writeData:[[NSString stringWithFormat:@"bridge %@\n", bridge.conf]
+                                     dataUsingEncoding:NSUTF8StringEncoding]];
+            }
+        }
+    }
+    
+    
 }
 
 #pragma mark - Core Data stack
@@ -87,7 +129,7 @@
     if (__managedObjectModel != nil) {
         return __managedObjectModel;
     }
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"Bookmarks" withExtension:@"momd"];
+    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"Settings" withExtension:@"momd"];
     __managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     return __managedObjectModel;
 }
@@ -100,7 +142,7 @@
         return __persistentStoreCoordinator;
     }
     
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Bookmarks.sqlite"];
+    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Settings.sqlite"];
     
     NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
                              [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,

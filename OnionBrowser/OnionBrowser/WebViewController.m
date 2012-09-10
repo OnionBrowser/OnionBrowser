@@ -11,6 +11,7 @@
 #import "BookmarkTableViewController.h"
 #import "SettingsViewController.h"
 #import "Bookmark.h"
+#import "BridgeTableViewController.h"
 
 static const CGFloat kNavBarHeight = 52.0f;
 static const CGFloat kToolBarHeight = 44.0f;
@@ -95,7 +96,7 @@ static const Boolean kBackwardButton = NO;
     if (summary_loc2.location != NSNotFound)
         summary_str = [summary_str substringToIndex:summary_loc2.location];
 
-    NSString *status = [NSString stringWithFormat:@"Connecting… This may take a minute.\n\nIf this takes longer than 60 seconds, please close and re-open the app to try connecting from scratch.\n\nIf this problem persists, please visit the following web page in another browser:\nhttp://onionbrowser.com/help/\n\n%@%%\n%@",
+    NSString *status = [NSString stringWithFormat:@"Connecting… This may take a minute.\n\nIf this takes longer than 60 seconds, please close and re-open the app to try connecting from scratch.\n\nIf this problem persists, you can try connecting via Tor bridges by pressing the \"options\" button below. Visit http://onionbrowser.com/help/ if you need help with bridges or if you continue to have issues.\n\n%@%%\n%@",
                             progress_str,
                             summary_str];
     loadingStatus.text = status;
@@ -197,7 +198,7 @@ static const Boolean kBackwardButton = NO;
     _forwardButton.enabled = NO;
     _backButton.enabled = NO;
     _stopRefreshButton.enabled = NO;
-    _toolButton.enabled = NO;
+    _toolButton.enabled = YES;
     _bookmarkButton.enabled = NO;
 
     NSMutableArray *items = [[NSMutableArray alloc] init];
@@ -541,7 +542,26 @@ static const Boolean kBackwardButton = NO;
 # pragma mark Options Menu action sheet
 
 - (void)openOptionsMenu {
-    [_optionsMenu showFromToolbar:_toolbar];
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    if (![appDelegate.tor didFirstConnect]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Opening Bridge Configuration"
+                                                        message:@"This configuration is for advanced Tor users. It *may* help if you are having trouble getting past the initial \"Connecting...\" step.\n\nPlease visit the following link in another browser for instructions:\n\nhttp://onionbrowser.com/help/"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        
+        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        
+        BridgeTableViewController *bridgesVC = [[BridgeTableViewController alloc] initWithStyle:UITableViewStylePlain];
+        [bridgesVC setManagedObjectContext:[appDelegate managedObjectContext]];
+        
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:bridgesVC];
+        navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+        [self presentModalViewController:navController animated:YES];
+    } else {
+        [_optionsMenu showFromToolbar:_toolbar];
+    }
 }
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (actionSheet == _optionsMenu) {

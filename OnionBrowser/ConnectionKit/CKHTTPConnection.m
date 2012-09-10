@@ -269,6 +269,9 @@
             [[self delegate] HTTPConnection:self didReceiveData:data];
             break;
         }
+            
+        default:
+            break;
     }
 }
 

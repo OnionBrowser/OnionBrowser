@@ -12,6 +12,10 @@ Onion Browser Version History (since 1.2.2)
   time and if the app was open while the device went into idle sleep.
   (Issue #2, Issue #3)
 
+* Ability to configure Tor bridges. This is primarily geared toward advanced
+  users that are using networks that block Tor based on known Tor nodes.
+  See http://onionbrowser.com/help/ for instructions.
+
 * Update tor to 0.2.3.21-rc (Sep 05, 2012).
 
 ===== 1.2.6 - In Review =====

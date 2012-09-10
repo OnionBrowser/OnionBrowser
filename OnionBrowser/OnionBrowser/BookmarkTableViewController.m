@@ -40,6 +40,7 @@
                             [NSArray arrayWithObjects:@"Source Code Site", @"https://github.com/mtigas/iOS-OnionBrowser/", nil],
                             [NSArray arrayWithObjects:@"Version History", @"https://raw.github.com/mtigas/iOS-OnionBrowser/master/CHANGES.txt", nil],
                             [NSArray arrayWithObjects:@"Mike Tigas, App Developer", @"http://mike.tig.as/", nil],
+                            [NSArray arrayWithObjects:@"Tor Bridges", @"https://bridges.torproject.org/", nil],
                              nil];
     }
     return _presetBookmarks;
