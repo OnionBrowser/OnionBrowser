@@ -141,7 +141,8 @@
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self saveAndGoBack];
+    if (indexPath.section == 1)
+        [self saveAndGoBack];
 }
 
 -(void)saveAndGoBack {
