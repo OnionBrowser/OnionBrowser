@@ -1,7 +1,7 @@
 Onion Browser Version History (since 1.2.2)
 
-===== 1.3.0 - In Development =====
-         TBD - Build/submit date
+===== 1.3.0 - Waiting For Review =====
+Sep 11, 2012 - Build/submit date
          TBD - App Store accept date
 
 * Bookmarking ability. Moved most of the "quick links" from startup
@@ -12,15 +12,19 @@ Onion Browser Version History (since 1.2.2)
   time and if the app was open while the device went into idle sleep.
   (Issue #2, Issue #3)
 
+* Fixes CSS/JS on sites like meine-startseite.de, where statically gzipped
+  resources are served (i.e. "foo.gz.css") automatically. HTTP code in
+  Onion Browser now automatically handles these cases. (Issue #21)
+
 * Ability to configure Tor bridges. This is primarily geared toward advanced
   users that are using networks that block Tor based on known Tor nodes.
   See http://onionbrowser.com/help/ for instructions.
 
 * Update tor to 0.2.3.21-rc (Sep 05, 2012).
 
-===== 1.2.6 - In Review =====
+===== 1.2.6 - In App Store =====
 Sep 05, 2012 - Build/submit date
-         TBD - App Store accept date
+Sep 11, 2012 - App Store accept date
 
 * Add warning message when clicking "New Identity" because of possible
   history leak: ":visited" CSS style still triggers on visited URLs
@@ -38,7 +42,12 @@ Sep 05, 2012 - Build/submit date
 
 * Updated libevent to 2.0.20-stable (Aug 23, 2012)
 
-===== 1.2.5 - In App Store =====
+
+
+PREVIOUS VERSIONS:
+
+
+===== 1.2.5 =====
 Aug 23, 2012 - Build/submit date
 Aug 30, 2012 - App Store accept date
 
