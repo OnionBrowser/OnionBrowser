@@ -14,6 +14,7 @@
     NSURLRequest *_request;
     CKHTTPConnection *_connection;
     NSMutableData *_data;
+    Boolean isGzippedResponse;
 }
 
 - (NSMutableData *)data;

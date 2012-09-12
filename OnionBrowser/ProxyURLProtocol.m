@@ -9,6 +9,8 @@
 #import "ProxyURLProtocol.h"
 #import <Foundation/NSURLProtocol.h>
 #import "AppDelegate.h"
+#import "NSData+CocoaDevUsersAdditions.h"
+
 
 @implementation ProxyURLProtocol
 
@@ -165,6 +167,7 @@
     [self.client URLProtocol:self didCancelAuthenticationChallenge:challenge];    
 }
 - (void)HTTPConnection:(CKHTTPConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response {
+    isGzippedResponse = NO;
     #ifdef DEBUG
         NSLog(@"[ProxyURLProtocol] Got response %d: content-type: %@", [response statusCode], [response MIMEType]);
     #endif
@@ -199,26 +202,47 @@
     } else { 
         NSString *mime = [content_type_bits objectAtIndex:0];
         NSString *encoding = @"UTF-8";
+        NSString *content_encoding = [[response allHeaderFields] objectForKey:@"Content-Encoding"];
+        if ([content_encoding isEqualToString:@"gzip"]) {
+            isGzippedResponse = YES;
+        }
         NSArray *charset_bits = [content_type componentsSeparatedByString:@"charset="];
         if ([charset_bits count] > 1) {
             encoding = [charset_bits objectAtIndex:1];
         }
         #ifdef DEBUG
-            NSLog(@"[ProxyURLProtocol] parsed content-type=%@, encoding=%@", mime, encoding);
+            NSLog(@"[ProxyURLProtocol] parsed content-type=%@, encoding=%@, content_encoding=%@", mime, encoding, content_encoding);
         #endif
-        NSURLResponse *textResponse = [[NSURLResponse alloc] initWithURL:response.URL MIMEType:mime expectedContentLength:response.expectedContentLength textEncodingName:encoding];
+        NSURLResponse *textResponse;
+        if ([[[response URL] scheme] isEqualToString:@"http"] || [[[response URL] scheme] isEqualToString:@"https"]) {
+            textResponse = [[NSHTTPURLResponse alloc] initWithURL:response.URL statusCode:response.statusCode HTTPVersion:@"1.1" headerFields:[response allHeaderFields]];
+        } else {
+            textResponse = [[NSURLResponse alloc] initWithURL:response.URL MIMEType:mime expectedContentLength:response.expectedContentLength textEncodingName:encoding];
+        }
         [self.client URLProtocol:self didReceiveResponse:textResponse cacheStoragePolicy:NSURLCacheStorageAllowedInMemoryOnly];
     }
 }
 - (void)HTTPConnection:(CKHTTPConnection *)connection didReceiveData:(NSData *)data {
-    [self.client URLProtocol:self didLoadData:data];
     [self appendData:data];
+    if (isGzippedResponse) {
+        // Try to un-gzip the data we've received so far.
+        // If we get nil (it's incomplete gzip data), continue to
+        // buffer it before passing it along. If we *can* ungzip it,
+        // pass the ugzip'd data along and reset the buffer.
+        NSData *newData = [_data gzipInflate];
+        if (newData != nil) {
+            [self.client URLProtocol:self didLoadData:newData];
+            _data = nil;
+        }
+    } else {
+        [self.client URLProtocol:self didLoadData:data];
+    }
 }
 
 - (void)HTTPConnectionDidFinishLoading:(CKHTTPConnection *)connection {
     [self.client URLProtocolDidFinishLoading:self];
-	[self setConnection:nil];
-	 _data = nil;
+    [self setConnection:nil];
+    _data = nil;
 }
 - (void)HTTPConnection:(CKHTTPConnection *)connection didFailWithError:(NSError *)error {
     [self.client URLProtocol:self didFailWithError:error];
