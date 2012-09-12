@@ -75,9 +75,12 @@
     if (_torCheckLoopTimer != nil) {
         [_torCheckLoopTimer invalidate];
     }
+    if (_torStatusTimeoutTimer != nil) {
+        [_torStatusTimeoutTimer invalidate];
+    }
 
     [_mSocket writeString:@"SIGNAL HUP\n" encoding:NSUTF8StringEncoding];
-    _torCheckLoopTimer = [NSTimer scheduledTimerWithTimeInterval:0.25f
+    _torCheckLoopTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f
                                                           target:self
                                                         selector:@selector(activateTorCheckLoop)
                                                         userInfo:nil
@@ -237,8 +240,26 @@
             #endif
             // Could not authenticate with control port. This is the worst thing
             // that can happen on app init and should fail badly so that the
-            // app does not just hang there. So: crash. :(
-            exit(0);
+            // app does not just hang there.
+            if (didFirstConnect) {
+                // If we've already performed initial connect, wait a couple
+                // seconds and try to HUP tor.
+                if (_torCheckLoopTimer != nil) {
+                    [_torCheckLoopTimer invalidate];
+                }
+                if (_torStatusTimeoutTimer != nil) {
+                    [_torStatusTimeoutTimer invalidate];
+                }
+                _torCheckLoopTimer = [NSTimer scheduledTimerWithTimeInterval:2.5f
+                                                                      target:self
+                                                                    selector:@selector(hupTor)
+                                                                    userInfo:nil
+                                                                     repeats:NO];
+            } else {
+                // Otherwise, crash because we don't know the app's current state
+                // (since it hasn't totally initialized yet).
+                exit(0);
+            }
         }
     } else if ([msgIn rangeOfString:@"-status/bootstrap-phase="].location != NSNotFound) {
         // Response to "getinfo status/bootstrap-phase"
