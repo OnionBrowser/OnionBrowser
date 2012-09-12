@@ -13,6 +13,7 @@
 		69156B6315FD54BC00BC560A /* Bridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 69156B6215FD54BC00BC560A /* Bridge.m */; };
 		69156B6615FD599100BC560A /* BridgeEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69156B6515FD599100BC560A /* BridgeEditViewController.m */; };
 		691958D61536BA67000423A4 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 691958D41536B8AC000423A4 /* Reachability.m */; };
+		691F2052160148A600F6D58B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 691F2051160148A600F6D58B /* Default-568h@2x.png */; };
 		6924C28C155262E2004BE7F9 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6924C28A155262E2004BE7F9 /* SettingsViewController.m */; };
 		6924C28D155262E2004BE7F9 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6924C28B155262E2004BE7F9 /* SettingsViewController.xib */; };
 		6924C29015526343004BE7F9 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6924C28F15526343004BE7F9 /* SettingsTableViewController.m */; };
@@ -82,6 +83,7 @@
 		69156B6515FD599100BC560A /* BridgeEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BridgeEditViewController.m; sourceTree = "<group>"; };
 		691958D31536B8AC000423A4 /* Reachability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		691958D41536B8AC000423A4 /* Reachability.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		691F2051160148A600F6D58B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "art/Default-568h@2x.png"; sourceTree = "<group>"; };
 		6924C289155262E2004BE7F9 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		6924C28A155262E2004BE7F9 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		6924C28B155262E2004BE7F9 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
@@ -312,6 +314,7 @@
 				6995CBFA153660D3000EFBE8 /* Default-Portrait@2x.png */,
 				6995CBFB153660D3000EFBE8 /* Default.png */,
 				6995CBFC153660D3000EFBE8 /* Default@2x.png */,
+				691F2051160148A600F6D58B /* Default-568h@2x.png */,
 				696C33AD1530D0D400990E69 /* startup.html */,
 				694F34E9152ECFF20002BCBC /* Icon.png */,
 				694F34EA152ECFF20002BCBC /* Icon-72.png */,
@@ -440,6 +443,7 @@
 				6995CC01153660D3000EFBE8 /* Default.png in Resources */,
 				6995CC02153660D3000EFBE8 /* Default@2x.png in Resources */,
 				6924C28D155262E2004BE7F9 /* SettingsViewController.xib in Resources */,
+				691F2052160148A600F6D58B /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -512,7 +516,7 @@
 					../dependencies/include/or,
 					"${SDK_DIR}/usr/include/libxml2",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				KEEP_PRIVATE_EXTERNS = NO;
 				LIBRARY_SEARCH_PATHS = ../dependencies/lib;
 				LINKER_DISPLAYS_MANGLED_NAMES = NO;
@@ -566,7 +570,7 @@
 					../dependencies/include/or,
 					"${SDK_DIR}/usr/include/libxml2",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				KEEP_PRIVATE_EXTERNS = YES;
 				LIBRARY_SEARCH_PATHS = ../dependencies/lib;
 				LINKER_DISPLAYS_MANGLED_NAMES = YES;
@@ -601,7 +605,7 @@
 					../dependencies/include/or,
 					"${SDK_DIR}/usr/include/libxml2",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = ../dependencies/lib;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
