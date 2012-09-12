@@ -34,7 +34,7 @@
     _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     appWebView = [[WebViewController alloc] init];
-    [_window addSubview:appWebView.view];
+    [_window setRootViewController:appWebView];
     [_window makeKeyAndVisible];
     
     [self updateTorrc];
