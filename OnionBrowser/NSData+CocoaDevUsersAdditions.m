@@ -191,7 +191,8 @@
 		charsOffset += 8;
 		bytesLen -= 5;
 	}
-	return [NSString stringWithCString:chars length:sizeof(chars)];
+	return [NSString stringWithUTF8String:chars];
+    
 }
 
 #define FinishBlock(X)  (*code_ptr = (X),   code_ptr = dst++,   code = 0x01)
@@ -491,7 +492,7 @@ for(i=0; i<method##_DIGEST_LENGTH; i++) {				\
     digestString[2*i]   = __HEHexDigits[digest[i] >> 4];	\
     digestString[2*i+1] = __HEHexDigits[digest[i] & 0x0f];\
 }											\
-return [NSString stringWithCString:(char *)digestString length:2*method##_DIGEST_LENGTH];
+return [NSString stringWithUTF8String:(char *)digestString];
 
 #define SHA1_CTX				SHA_CTX
 #define SHA1_DIGEST_LENGTH		SHA_DIGEST_LENGTH
