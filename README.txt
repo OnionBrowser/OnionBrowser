@@ -8,7 +8,7 @@ Changelog: https://raw.github.com/mtigas/iOS-OnionBrowser/master/CHANGES.txt
 http://mike.tig.as/
 Twitter: @mtigas
 
-MIT License (See LICENSE)
+MIT License (See LICENSE file)
 
 ---
 
@@ -121,6 +121,9 @@ containing the statically-compiled library files.
 ### Build OnionBrowser.xcodeproj in Xcode
 
 Open `OnionBrowser/OnionBrowser.xcodeproj`. You should be
-able to compile and run the application at this point. (The app is compatible
-with armv7 and i386 targets, meaning that all iOS 5.0 devices and the
-iPhone/iPad Simulators should be able to run the application.)
+able to compile and run the application at this point.
+
+The app and all dependencies are compiled to run against armv7s (iPhone 5's
+"A6" processor), armv7, and i386 targets, meaning that all devices since the
+iPhone 4 (running at least iOS 5.0) and the iOS Simulators should be able to
+run the application.
