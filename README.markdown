@@ -25,7 +25,7 @@ and App Store links.
 
 #### Technical notes
 
-* **OnionBrowser**: 1.3.1 (20120912.1)
+* **OnionBrowser**: 1.3.1 (20120912.2)
 * **Tor**: 0.2.3.22-rc (Sep 11 2012)
 * **libevent**: 2.0.20-stable (Aug 23 2012)
 * **OpenSSL**: 1.0.1c (May 10 2012)
