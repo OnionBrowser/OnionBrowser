@@ -14,14 +14,18 @@ and App Store links.
 [miketigas]: http://mike.tig.as/
 [license]: https://github.com/mtigas/iOS-OnionBrowser/blob/master/LICENSE
 
-<a href="//d2p12wh0p3fo1n.cloudfront.net/files/20120413/004.png"><img src="//d2p12wh0p3fo1n.cloudfront.net/files/20120413/004-100.jpg" width="100"/></a>
-<a href="//d2p12wh0p3fo1n.cloudfront.net/files/20120413/003.png"><img src="//d2p12wh0p3fo1n.cloudfront.net/files/20120413/003-100.jpg" width="100"/></a>
-<a href="//d2p12wh0p3fo1n.cloudfront.net/files/20120413/002.png"><img src="//d2p12wh0p3fo1n.cloudfront.net/files/20120413/002-100.jpg" width="100"/></a>
-<a href="//d2p12wh0p3fo1n.cloudfront.net/files/20120413/005.png"><img src="//d2p12wh0p3fo1n.cloudfront.net/files/20120413/005-100.jpg" width="100"/></a>
-<br>
-<a href="//d2p12wh0p3fo1n.cloudfront.net/files/20120413/p003.png"><img src="//d2p12wh0p3fo1n.cloudfront.net/files/20120413/p003-150.jpg" width="150"/></a>
-<a href="//d2p12wh0p3fo1n.cloudfront.net/files/20120413/p002.png"><img src="//d2p12wh0p3fo1n.cloudfront.net/files/20120413/p002-150.jpg" width="150"/></a>
-<a href="//d2p12wh0p3fo1n.cloudfront.net/files/20120413/p001.png"><img src="//d2p12wh0p3fo1n.cloudfront.net/files/20120413/p001-150.jpg" width="150"/></a>
+---
+
+<a href="https://d2p12wh0p3fo1n.cloudfront.net/files/20120918/a.png"><img src="//d2p12wh0p3fo1n.cloudfront.net/files/20120918/a-100.jpg" width="100"/></a>
+<a href="https://d2p12wh0p3fo1n.cloudfront.net/files/20120918/b.png"><img src="//d2p12wh0p3fo1n.cloudfront.net/files/20120918/b-100.jpg" width="100"/></a>
+<a href="https://d2p12wh0p3fo1n.cloudfront.net/files/20120918/c.png"><img src="//d2p12wh0p3fo1n.cloudfront.net/files/20120918/c-100.jpg" width="100"/></a>
+<a href="https://d2p12wh0p3fo1n.cloudfront.net/files/20120918/d.png"><img src="//d2p12wh0p3fo1n.cloudfront.net/files/20120918/d-100.jpg" width="100"/></a>
+<a href="https://d2p12wh0p3fo1n.cloudfront.net/files/20120918/e.png"><img src="//d2p12wh0p3fo1n.cloudfront.net/files/20120918/e-100.jpg" width="100"/></a>
+<a href="https://d2p12wh0p3fo1n.cloudfront.net/files/20120918/f.png"><img src="//d2p12wh0p3fo1n.cloudfront.net/files/20120918/f-150.jpg" width="150"/></a>
+
+<i>Screenshots: iPhone 4/4S, iPhone 5, iPad 3</i>
+
+---
 
 #### Technical notes
 
