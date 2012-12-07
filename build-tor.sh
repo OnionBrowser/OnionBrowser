@@ -22,7 +22,7 @@
 ###########################################################################
 #  Choose your tor version and your currently-installed iOS SDK version:
 #
-VERSION="0.2.3.24-rc"
+VERSION="0.2.3.25"
 SDKVERSION="6.0"
 #
 #
@@ -123,7 +123,7 @@ do
         EXTRA_CONFIG=""
     else
         PLATFORM="iPhoneOS"
-        EXTRA_CONFIG="--host=arm-apple-darwin10 --target=arm-apple-darwin10 --disable-gcc-hardening --disable-linker-hardening"
+        EXTRA_CONFIG="--host=arm-apple-darwin11 --target=arm-apple-darwin11 --disable-gcc-hardening --disable-linker-hardening"
     fi
 
     mkdir -p "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk"

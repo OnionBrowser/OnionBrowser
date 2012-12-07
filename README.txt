@@ -18,9 +18,9 @@ the Tor network (https://www.torproject.org/). See the official site
 
 ## Technical notes
 
-* OnionBrowser: 1.3.2 (20121104.1)
-* Tor: 0.2.3.24-rc (Oct 25 2012)
-* libevent: 2.0.20-stable (Aug 23 2012)
+* OnionBrowser: 1.3.3 (20121207.1)
+* Tor: 0.2.3.25 (Nov 19 2012)
+* libevent: 2.0.21-stable (Nov 18 2012)
 * OpenSSL: 1.0.1c (May 10 2012)
 
 The app, when compiled, contains static library versions of Tor and it's
@@ -47,9 +47,8 @@ auto-validation of the uploaded binary. (The `_NSGetEnviron()` code does not
 even compile when using iPhoneSDK due to that function being undefined.)
 See the patch files in `build-patches/` if you are interested in the changes.
 
-
-    Tor 0.2.3.24 changelog: https://gitweb.torproject.org/tor.git/blob/tor-0.2.3.24-rc:/ChangeLog
-    Tor 0.2.3.X manual: https://www.torproject.org/docs/tor-manual-dev.html.en
+    Tor 0.2.3.X changelog: https://gitweb.torproject.org/tor.git/blob/release-0.2.3:/ReleaseNotes
+    Tor manual: https://www.torproject.org/docs/tor-manual.html.en
 
 0.2.3.17-beta introduced compiler and linker "hardening" (Tor ticket 5210),
 which is incompatible with the iOS Device build chain.  The app (when building

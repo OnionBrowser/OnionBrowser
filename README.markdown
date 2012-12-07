@@ -29,9 +29,9 @@ and App Store links.
 
 #### Technical notes
 
-* **OnionBrowser**: 1.3.2 (20121104.1)
-* **Tor**: 0.2.3.24-rc (Oct 25 2012)
-* **libevent**: 2.0.20-stable (Aug 23 2012)
+* **OnionBrowser**: 1.3.3 (20121207.1)
+* **Tor**: 0.2.3.25 (Nov 19 2012)
+* **libevent**: 2.0.21-stable (Nov 18 2012)
 * **OpenSSL**: 1.0.1c (May 10 2012)
 
 The app, when compiled, contains static library versions of [Tor][tor] and it's
@@ -52,15 +52,15 @@ i386 (for the iOS Simulator).
 The tor `build-tor.sh` script patches one file in Tor (`src/common/compat.c`)
 to remove references to `ptrace()` and `_NSGetEnviron()`. This first is only used
 for the `DisableDebuggerAttachment` feature (default: True) implemented in Tor
-0.2.3.9-alpha. (See [changelog][tor_dev_changelog] and [manual][tor_dev_manual].)
+0.2.3.9-alpha. (See [changelog][tor_023_changelog] and [manual][tor_manual].)
 `ptrace()` and `_NSGetEnviron()` calls are not allowed in App Store apps; apps
 submitted with `ptrace()` symbols are rejected on upload by Apple's
 auto-validation of the uploaded binary. (The `_NSGetEnviron()` code does not
 even compile when using iPhoneSDK due to that function being undefined.)
 See the patch files in `build-patches/` if you are interested in the changes.
 
-[tor_dev_changelog]: https://gitweb.torproject.org/tor.git/blob/tor-0.2.3.24-rc:/ChangeLog
-[tor_dev_manual]: https://www.torproject.org/docs/tor-manual-dev.html.en
+[tor_023_changelog]: https://gitweb.torproject.org/tor.git/blob/release-0.2.3:/ReleaseNotes
+[tor_manual]: https://www.torproject.org/docs/tor-manual.html.en
 
 0.2.3.17-beta introduced compiler and linker "hardening" ([Tor ticket 5210][ticket5210]),
 which is incompatible with the iOS Device build chain.  The app (when building
