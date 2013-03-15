@@ -4,7 +4,7 @@ Official Site: http://onionbrowser.com/
 Support: http://onionbrowser.com/help/
 Changelog: https://raw.github.com/mtigas/iOS-OnionBrowser/master/CHANGES.txt
 
-(c) 2012 Mike Tigas
+(c) 2012-2013 Mike Tigas
 http://mike.tig.as/
 Twitter: @mtigas
 
@@ -18,10 +18,10 @@ the Tor network (https://www.torproject.org/). See the official site
 
 ## Technical notes
 
-* OnionBrowser: 1.3.3 (20121207.1)
+* OnionBrowser: 1.3.4 (20130315.1)
 * Tor: 0.2.3.25 (Nov 19 2012)
 * libevent: 2.0.21-stable (Nov 18 2012)
-* OpenSSL: 1.0.1c (May 10 2012)
+* OpenSSL: 1.0.1e (Feb 11 2013)
 
 The app, when compiled, contains static library versions of Tor and it's
 dependencies, libevent and openssl.
