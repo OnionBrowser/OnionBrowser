@@ -19,6 +19,9 @@ Mar 17, 2013 - Build/submit date
 
 * Update openssl to 1.0.1e (Feb 11 2013).
 
+  Changes 1.0.1c -> 1.0.1d: https://www.openssl.org/news/news.html
+  Changes 1.0.1d -> 1.0.1e: https://www.openssl.org/news/announce.html
+
 * Update compile settings to build against iOS SDK 6.1. App remains
   compatible for devices running iOS 5.0+.
 
