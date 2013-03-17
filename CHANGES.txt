@@ -4,7 +4,7 @@ Onion Browser Version History (since 1.2.2)
 Mar 17, 2013 - Build/submit date
 
 * Update tor to 0.2.4.11-alpha (Mar 11, 2013). Moved back to alpha
-  releases since 0.2.4.X introduces several perforamance improvements.
+  releases since 0.2.4.X introduces several performance improvements.
   Also eases future investigation of integrating obfs2 or other
   pluggable transports in the future. (This would allow Onion Browser
   to operate in areas where Tor is blocked due to deep packet
