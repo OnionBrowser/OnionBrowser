@@ -4,11 +4,18 @@ Onion Browser Version History (since 1.2.2)
 Mar 17, 2013 - Build/submit date
 
 * Update tor to 0.2.4.11-alpha (Mar 11, 2013). Moved back to alpha
-  releases since 0.2.4.X introduces several performance improvements.
-  Also eases future investigation of integrating obfs2 or other
-  pluggable transports in the future. (This would allow Onion Browser
+  releases since 0.2.4.X introduces several security & performance
+  improvements. Also eases future investigation of integrating obfs2 or
+  other pluggable transports in the future. (This would allow Onion Browser
   to operate in areas where Tor is blocked due to deep packet
   inspection techniques.)
+
+  The new "ntor" circuit-building handshake protocol[1] (with improved
+  security and performance) is compiled into this version but will not
+  be used until it Tor directory servers recommend[2] it.
+
+  [1]: https://gitweb.torproject.org/tor.git/blob/tor-0.2.4.11-alpha:/ChangeLog#l315
+  [2]: http://archives.seul.org/tor/cvs/Jan-2013/msg00121.html
 
 * Update openssl to 1.0.1e (Feb 11 2013).
 
