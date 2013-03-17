@@ -107,7 +107,7 @@ do
     # Build the application and install it to the fake SDK intermediary dir
     # we have set up. Make sure to clean up afterward because we will re-use
     # this source tree to cross-compile other targets.
-	make -j2
+	make -j4
 	make install
 	make clean
 done
