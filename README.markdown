@@ -16,12 +16,12 @@ and App Store links.
 
 ---
 
-<a href="https://d2p12wh0p3fo1n.cloudfront.net/files/20120918/a.png"><img src="//d2p12wh0p3fo1n.cloudfront.net/files/20120918/a-100.jpg" width="100"/></a>
-<a href="https://d2p12wh0p3fo1n.cloudfront.net/files/20120918/b.png"><img src="//d2p12wh0p3fo1n.cloudfront.net/files/20120918/b-100.jpg" width="100"/></a>
-<a href="https://d2p12wh0p3fo1n.cloudfront.net/files/20120918/c.png"><img src="//d2p12wh0p3fo1n.cloudfront.net/files/20120918/c-100.jpg" width="100"/></a>
-<a href="https://d2p12wh0p3fo1n.cloudfront.net/files/20120918/d.png"><img src="//d2p12wh0p3fo1n.cloudfront.net/files/20120918/d-100.jpg" width="100"/></a>
-<a href="https://d2p12wh0p3fo1n.cloudfront.net/files/20120918/e.png"><img src="//d2p12wh0p3fo1n.cloudfront.net/files/20120918/e-100.jpg" width="100"/></a>
-<a href="https://d2p12wh0p3fo1n.cloudfront.net/files/20120918/f.png"><img src="//d2p12wh0p3fo1n.cloudfront.net/files/20120918/f-150.jpg" width="150"/></a>
+<a href="https://d2p12wh0p3fo1n.cloudfront.net/files/20120918/a.png"><img src="https://d2p12wh0p3fo1n.cloudfront.net/files/20120918/a-100.jpg" width="100"/></a>
+<a href="https://d2p12wh0p3fo1n.cloudfront.net/files/20120918/b.png"><img src="https://d2p12wh0p3fo1n.cloudfront.net/files/20120918/b-100.jpg" width="100"/></a>
+<a href="https://d2p12wh0p3fo1n.cloudfront.net/files/20120918/c.png"><img src="https://d2p12wh0p3fo1n.cloudfront.net/files/20120918/c-100.jpg" width="100"/></a>
+<a href="https://d2p12wh0p3fo1n.cloudfront.net/files/20120918/d.png"><img src="https://d2p12wh0p3fo1n.cloudfront.net/files/20120918/d-100.jpg" width="100"/></a>
+<a href="https://d2p12wh0p3fo1n.cloudfront.net/files/20120918/e.png"><img src="https://d2p12wh0p3fo1n.cloudfront.net/files/20120918/e-100.jpg" width="100"/></a>
+<a href="https://d2p12wh0p3fo1n.cloudfront.net/files/20120918/f.png"><img src="https://d2p12wh0p3fo1n.cloudfront.net/files/20120918/f-150.jpg" width="150"/></a>
 
 <i>Screenshots: iPhone 4/4S, iPhone 5, iPad 3</i>
 
