@@ -59,7 +59,7 @@ auto-validation of the uploaded binary. (The `_NSGetEnviron()` code does not
 even compile when using iPhoneSDK due to that function being undefined.)
 See the patch files in `build-patches/` if you are interested in the changes.
 
-[tor_changelog]: https://gitweb.torproject.org/tor.git/blob/tor-0.2.4.11-alpha:/ChangeLog
+[tor_changelog]: https://gitweb.torproject.org/tor.git/blob/tor-0.2.4.12-alpha:/ChangeLog
 [tor_manual]: https://www.torproject.org/docs/tor-manual-dev.html.en
 
 0.2.3.17-beta introduced compiler and linker "hardening" ([Tor ticket 5210][ticket5210]),
