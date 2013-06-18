@@ -31,6 +31,7 @@
     
     CFHTTPMessageRef       _HTTPRequest;
     NSInputStream                   *_HTTPStream;
+    NSInputStream                   *_HTTPBodyStream;
     BOOL                            _haveReceivedResponse;
     CKHTTPAuthenticationChallenge   *_authenticationChallenge;
     NSInteger                       _authenticationAttempts;
