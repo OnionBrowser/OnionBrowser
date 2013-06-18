@@ -86,7 +86,8 @@
         
         // Kick off the connection
         _HTTPRequest = [request makeHTTPMessage];
-        
+        _HTTPBodyStream = [request HTTPBodyStream];
+
         [self start];
     }
     
@@ -123,7 +124,12 @@
 {
     NSAssert(!_HTTPStream, @"Connection already started");
     
-    _HTTPStream = (__bridge_transfer NSInputStream *)CFReadStreamCreateForHTTPRequest(NULL, [self HTTPRequest]);
+    if (_HTTPBodyStream)
+        _HTTPStream = (__bridge NSInputStream *)(CFReadStreamCreateForStreamedHTTPRequest(NULL, [self HTTPRequest], (__bridge CFReadStreamRef)_HTTPBodyStream));
+    else
+        _HTTPStream = (__bridge_transfer NSInputStream *)CFReadStreamCreateForHTTPRequest(NULL, [self HTTPRequest]);
+    
+    CFReadStreamSetProperty((__bridge CFReadStreamRef)(_HTTPStream), kCFStreamPropertyHTTPAttemptPersistentConnection, kCFBooleanTrue);
 
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
 
