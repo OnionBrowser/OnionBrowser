@@ -29,8 +29,8 @@ and App Store links.
 
 #### Technical notes
 
-* **OnionBrowser**: 1.3.5 (20130516.1)
-* **Tor**: 0.2.4.12-alpha (Apr 18 2013)
+* **OnionBrowser**: 1.3.6 (20130618.1)
+* **Tor**: 0.2.4.13-alpha (Jun 14 2013)
 * **libevent**: 2.0.21-stable (Nov 18 2012)
 * **OpenSSL**: 1.0.1e (Feb 11 2013)
 
@@ -59,7 +59,7 @@ auto-validation of the uploaded binary. (The `_NSGetEnviron()` code does not
 even compile when using iPhoneSDK due to that function being undefined.)
 See the patch files in `build-patches/` if you are interested in the changes.
 
-[tor_changelog]: https://gitweb.torproject.org/tor.git/blob/tor-0.2.4.12-alpha:/ChangeLog
+[tor_changelog]: https://gitweb.torproject.org/tor.git/blob/tor-0.2.4.13-alpha:/ChangeLog
 [tor_manual]: https://www.torproject.org/docs/tor-manual-dev.html.en
 
 0.2.3.17-beta introduced compiler and linker "hardening" ([Tor ticket 5210][ticket5210]),
@@ -92,8 +92,9 @@ HTTP/HTTPS/DNS traffic in the browser, but seem to have misplaced them. You'll
 have to take my word for it or run your own tests.)
 
 The app uses [Automatic Reference Counting (ARC)][arc] and was developed against
-iOS 5.X. (It *may* work when building against iOS 4.X, since most of the ARC
-behavior exists in that older SDK, with the notable exception of weakrefs.)
+iOS 5.X or greater. (It *may* work when building against iOS 4.X, since most
+of the ARC behavior exists in that older SDK, with the notable exception
+of weakrefs.)
 
 [arc]: https://developer.apple.com/library/ios/releasenotes/ObjectiveC/RN-TransitioningToARC/index.html
 

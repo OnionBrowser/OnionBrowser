@@ -1,4 +1,4 @@
-# https://www.torproject.org/docs/tor-manual.html
+# See https://www.torproject.org/docs/tor-manual.html
 
 ClientOnly 1
 ExitPolicy reject *:*
@@ -6,10 +6,9 @@ ExitPolicy reject *:*
 AvoidDiskWrites 1
 HardwareAccel 1
 
-# Port numbers are randomly generated in AppDelegate. TorWrapper picks these up
-# and executes tor with these as command-line args.
-#SocksPort 60601
-#ControlPort 60602
+# Port numbers (SocksPort, ControlPort) are randomly generated in TorController.
+# TorWrapper picks these up and executes tor with these as command-line args.
+# See TorController.m:31-32 and TorWrapper.m (main).
 SocksListenAddress 127.0.0.1
 ControlListenAddress 127.0.0.1
 
@@ -24,12 +23,13 @@ PreferTunneledDirConns 1
 SafeLogging 1
 
 TestSocks 0
-WarnUnsafeSocks 0  #default 1 (we don't care on iOS)
+WarnUnsafeSocks 0 # default 1 (we don't care on iOS)
 
 # We actually disabled this by removing ptrace() calls when building tor.
 # See "build-tor-ptrace-patch.diff" and "build-tor.sh" in the OnionBrowser
-# repo root.
+# repo root. This technically results in "less security", but iOS
+# restrictions do not allow ptrace() calls. See README.
 DisableDebuggerAttachment 0
 
 # "UseBridges" and "bridge" lines get appended automatically if there
-# are bridges enabled.
+# are bridges enabled in settings.

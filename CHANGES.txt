@@ -1,13 +1,31 @@
 Onion Browser Version History (since 1.2.2)
 
-===== 1.3.5 - Pending =====
-May 18, 2013 - Submit date
+===== 1.3.6 - Pending =====
+Jun 18, 2013 - Submit date
 ??? ??, 2013 - App store availability
+
+* Fixes support for streamed HTTP requests. This fixes "long" requests, such
+  as uploading images or other media, i.e. on Twitter. (Issue #29; fix
+  contributed by brantyoung)
+
+* Update tor to 0.2.4.13-alpha (Jun 14, 2013). Provides important fix to
+  crash-related vulnerability, and other security updates and minor fixes.[1]
+
+  [1]: https://gitweb.torproject.org/tor.git/blob/tor-0.2.4.13-alpha:/ChangeLog
+
+===== 1.3.5 - In App Store =====
+May 18, 2013 - Submit date
+May 22, 2013 - App store availability
 
 * Update tor to 0.2.4.12-alpha (Apr 18, 2013). Provides several security
   updates and minor fixes.[1]
 
   [1]: https://gitweb.torproject.org/tor.git/blob/tor-0.2.4.12-alpha:/ChangeLog
+
+
+
+
+PREVIOUS VERSIONS:
 
 ===== 1.3.4 - In App Store =====
 Mar 17, 2013 - Build/submit date
@@ -34,10 +52,6 @@ Mar 21, 2013 - App store availability
 
 * Update compile settings to build against iOS SDK 6.1. App remains
   compatible for devices running iOS 5.0+.
-
-
-
-PREVIOUS VERSIONS:
 
 ===== 1.3.3 =====
 Dec 07, 2012 - Build date
