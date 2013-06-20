@@ -495,7 +495,7 @@ static const Boolean kBackwardButton = NO;
     [UIView setAnimationsEnabled:YES];
     [UIView animateWithDuration:0.2
                           delay:0.0
-                        options:UIViewAnimationCurveEaseInOut
+                        options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
                          _addressField.frame = CGRectMake(kMargin,
                                                           kSpacer*2.0 + kLabelHeight,
@@ -523,7 +523,7 @@ static const Boolean kBackwardButton = NO;
     [UIView setAnimationsEnabled:YES];
     [UIView animateWithDuration:0.2
                           delay:0.0
-                        options:UIViewAnimationCurveEaseInOut
+                        options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
                          _addressField.frame = CGRectMake(kMargin,
                                                           kSpacer*2.0 + kLabelHeight,
