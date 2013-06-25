@@ -130,14 +130,14 @@
                 cell.accessoryType = UITableViewCellAccessoryNone;
             }
         } else if (indexPath.row == 1) {
-            cell.textLabel.text = @"Windows 7 (NT 6.1), Firefox 10";
+            cell.textLabel.text = @"Windows 7 (NT 6.1), Firefox 17";
             if (appDelegate.spoofUserAgent == UA_SPOOF_WIN7_TORBROWSER) {
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             } else {
                 cell.accessoryType = UITableViewCellAccessoryNone;
             }
         } else if (indexPath.row == 2) {
-            cell.textLabel.text = @"Mac OS X 10.8.1, Safari 6.0";
+            cell.textLabel.text = @"Mac OS X 10.8.4, Safari 6.0";
             if (appDelegate.spoofUserAgent == UA_SPOOF_SAFARI_MAC) {
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             } else {
