@@ -361,7 +361,7 @@
             #endif
             NSString *uaString = @"";
             if (spoofUserAgent == UA_SPOOF_WIN7_TORBROWSER) {
-                uaString = @"Mozilla/5.0 (Windows NT 6.1; rv:5.0) Gecko/20100101 Firefox/10.0";
+                uaString = @"Mozilla/5.0 (Windows NT 6.1; rv:17.0) Gecko/20100101 Firefox/17.0";
             } else if (spoofUserAgent == UA_SPOOF_SAFARI_MAC) {
                 uaString = @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_1) AppleWebKit/536.25 (KHTML, like Gecko) Version/6.0 Safari/536.25";
             }
