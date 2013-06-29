@@ -136,7 +136,7 @@
     // Open an editing pane
     Bridge *bridge = (Bridge *)[bridgeArray objectAtIndex:indexPath.row];
     BridgeEditViewController *editController = [[BridgeEditViewController alloc] initWithBridge:bridge];
-    [self presentModalViewController:editController animated:YES];
+    [self presentViewController:editController animated:YES completion:nil];
 }
 
 - (void)addBridgeLine {
@@ -222,7 +222,7 @@
     } else {
         // One of the "Bridges Enabled" or "Bridges Disabled" prompts
         if (buttonIndex == 0) {
-            [self dismissModalViewControllerAnimated:YES];
+            [self dismissViewControllerAnimated:YES completion:nil];
         } else {
             exit(0);
         }

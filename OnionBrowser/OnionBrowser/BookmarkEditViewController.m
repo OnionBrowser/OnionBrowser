@@ -106,7 +106,7 @@
         editField.textColor = [UIColor blackColor];
         editField.backgroundColor = [UIColor whiteColor];
         */
-        editField.textAlignment = UITextAlignmentLeft;
+        editField.textAlignment = NSTextAlignmentLeft;
         editField.clearButtonMode = UITextFieldViewModeNever; // no clear 'x' button to the right
         [editField setEnabled: YES];
         editField.delegate = self;
@@ -130,7 +130,7 @@
     } else {
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
 
-        cell.textLabel.textAlignment = UITextAlignmentCenter;
+        cell.textLabel.textAlignment = NSTextAlignmentCenter;
         cell.textLabel.text = @"Done";
     }
     
@@ -180,6 +180,6 @@
         NSLog(@"Error updating bookmark order: %@", error);
     }
     [tableVC reload];
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end

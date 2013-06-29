@@ -240,7 +240,7 @@ static const Boolean kBackwardButton = NO;
     label.text = @"";
     label.backgroundColor = [UIColor clearColor];
     label.font = [UIFont systemFontOfSize:12];
-    label.textAlignment = UITextAlignmentCenter;
+    label.textAlignment = NSTextAlignmentCenter;
     
     [navBar setTintColor:[UIColor blackColor]];
     [label setTextColor:[UIColor whiteColor]];
@@ -285,8 +285,8 @@ static const Boolean kBackwardButton = NO;
     loadingStatus.tag = kLoadingStatusTag;
     loadingStatus.numberOfLines = 0;
     loadingStatus.font = [UIFont fontWithName:@"Helvetica" size:(18.0)];
-    loadingStatus.lineBreakMode = UILineBreakModeWordWrap;
-    loadingStatus.textAlignment =  UITextAlignmentLeft;
+    loadingStatus.lineBreakMode = NSLineBreakByWordWrapping;
+    loadingStatus.textAlignment =  NSTextAlignmentLeft;
     loadingStatus.text = @"Connecting...\n\n\n\n\n";
     [self.view addSubview:loadingStatus];
     
@@ -559,7 +559,7 @@ static const Boolean kBackwardButton = NO;
         
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:bridgesVC];
         navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-        [self presentModalViewController:navController animated:YES];
+        [self presentViewController:navController animated:YES completion:nil];
     } else {
         [_optionsMenu showFromToolbar:_toolbar];
     }
@@ -617,7 +617,7 @@ static const Boolean kBackwardButton = NO;
             // Settings Menu
             ////////////////////////////////////////////////////////
             SettingsViewController *settingsController = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:nil];
-            [self presentModalViewController:settingsController animated:YES];
+            [self presentViewController:settingsController animated:YES completion:nil];
         }
         
         if ((buttonIndex == 0) || (buttonIndex == 3)) {
@@ -799,7 +799,7 @@ static const Boolean kBackwardButton = NO;
     
     bookmarksVC.managedObjectContext = context;
     
-    [self presentModalViewController:bookmarkNavController animated:YES];
+    [self presentViewController:bookmarkNavController animated:YES completion:nil];
 }
 
 @end

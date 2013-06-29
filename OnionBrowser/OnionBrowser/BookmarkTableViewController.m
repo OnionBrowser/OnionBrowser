@@ -194,7 +194,7 @@
             // Open an editing pane
             Bookmark *bookmark = (Bookmark *)[bookmarksArray objectAtIndex:indexPath.row];
             BookmarkEditViewController *editController = [[BookmarkEditViewController alloc] initWithBookmark:bookmark];
-            [self presentModalViewController:editController animated:YES];
+            [self presentViewController:editController animated:YES completion:nil];
         } else {
             
         }
@@ -233,7 +233,7 @@
     [self saveBookmarkOrder];
 
     BookmarkEditViewController *editController = [[BookmarkEditViewController alloc] initWithBookmark:bookmark];
-    [self presentModalViewController:editController animated:YES];
+    [self presentViewController:editController animated:YES completion:nil];
     /*
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:order inSection:0];
     [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
@@ -261,7 +261,7 @@
     [self setEditing:NO];
 }
 - (void)goBack {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

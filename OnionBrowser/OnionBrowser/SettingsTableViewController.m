@@ -196,7 +196,7 @@
         }
 
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-        cell.textLabel.textAlignment = UITextAlignmentCenter;
+        cell.textLabel.textAlignment = NSTextAlignmentCenter;
         NSUInteger numBridges = [mutableFetchResults count];
         if (numBridges == 0) {
             cell.textLabel.text = @"Not Using Bridges";
@@ -269,7 +269,7 @@
         
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:bridgesVC];
         navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-        [self presentModalViewController:navController animated:YES];
+        [self presentViewController:navController animated:YES completion:nil];
     }
     [tableView reloadData];
 }
