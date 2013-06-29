@@ -100,7 +100,8 @@
 
 - (void)reachabilityChanged {
     Reachability* reach = [Reachability reachabilityForInternetConnection];
-    if (reach.isReachable) {
+
+    if (reach.currentReachabilityStatus != NotReachable) {
         #ifdef DEBUG
         NSLog(@"[tor] Reachability changed (now online), sending HUP" );
         #endif
