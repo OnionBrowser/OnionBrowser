@@ -1,8 +1,8 @@
 Onion Browser Version History (since 1.2.2)
 
-===== 1.3.7 - Pending =====
+===== 1.3.7 - In App Store =====
 Jun 29, 2013 - Submit date
-??? ??, 2013 - App store availability
+Jul 03, 2013 - App store availability
 
 * COMPATIBILITY NOTE: App now requires iOS 5.1 and greater. This change should
   only affect an extreme minority of users who remain on iOS 5.0.
@@ -22,7 +22,11 @@ Jun 29, 2013 - Submit date
 
   [1]: https://gitweb.torproject.org/tor.git/blob/tor-0.2.4.14-alpha:/ChangeLog
 
-===== 1.3.6 - In App Store =====
+
+
+PREVIOUS VERSIONS:
+
+===== 1.3.6 =====
 Jun 18, 2013 - Submit date
 Jun 21, 2013 - App store availability
 
@@ -34,11 +38,6 @@ Jun 21, 2013 - App store availability
   crash-related vulnerability, and other security updates and minor fixes.[1]
 
   [1]: https://gitweb.torproject.org/tor.git/blob/tor-0.2.4.13-alpha:/ChangeLog
-
-
-
-
-PREVIOUS VERSIONS:
 
 ===== 1.3.5 =====
 May 18, 2013 - Submit date
