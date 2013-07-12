@@ -24,6 +24,7 @@
 #
 VERSION="1.0.1e"
 SDKVERSION="6.1"
+VERIFYGPG=true
 #
 #
 ###########################################################################
@@ -64,10 +65,27 @@ cd $SRCDIR
 set -e
 
 if [ ! -e "${SRCDIR}/openssl-${VERSION}.tar.gz" ]; then
-	echo "Downloading openssl-${VERSION}.tar.gz"
+    echo "Downloading openssl-${VERSION}.tar.gz"
     curl -O http://www.openssl.org/source/openssl-${VERSION}.tar.gz
-else
-	echo "Using openssl-${VERSION}.tar.gz"
+fi
+echo "Using openssl-${VERSION}.tar.gz"
+
+# see https://www.openssl.org/about/,
+# up to you to set up `gpg` and add keys to your keychain
+if $VERIFYGPG; then
+    if [ ! -e "${SRCDIR}/openssl-${VERSION}.tar.gz.asc" ]; then
+        curl -O http://www.openssl.org/source/openssl-${VERSION}.tar.gz.asc
+    fi
+    echo "Using openssl-${VERSION}.tar.gz.asc"
+    if out=$(gpg --status-fd 1 --verify "openssl-${VERSION}.tar.gz.asc" "openssl-${VERSION}.tar.gz" 2>/dev/null) &&
+    echo "$out" | grep -qs "^\[GNUPG:\] VALIDSIG"; then
+        echo "$out" | egrep "GOODSIG|VALIDSIG"
+        echo "Verified GPG signature for source..."
+    else
+        echo "$out" >&2
+        echo "COULD NOT VERIFY PACKAGE SIGNATURE..."
+        exit 1
+    fi
 fi
 
 tar zxf openssl-${VERSION}.tar.gz -C $SRCDIR
