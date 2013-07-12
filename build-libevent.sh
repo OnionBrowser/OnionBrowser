@@ -24,7 +24,7 @@
 #
 VERSION="2.0.21-stable"
 SDKVERSION="6.1"
-VERIFYGPG=true
+VERIFYGPG=false # cross-certify issue w/key. http://www.gnupg.org/faq/subkey-cross-certify.html
 #
 #
 ###########################################################################
