@@ -65,27 +65,27 @@ cd $SRCDIR
 set -e
 
 if [ ! -e "${SRCDIR}/openssl-${VERSION}.tar.gz" ]; then
-    echo "Downloading openssl-${VERSION}.tar.gz"
-    curl -O http://www.openssl.org/source/openssl-${VERSION}.tar.gz
+	echo "Downloading openssl-${VERSION}.tar.gz"
+	curl -O http://www.openssl.org/source/openssl-${VERSION}.tar.gz
 fi
 echo "Using openssl-${VERSION}.tar.gz"
 
 # see https://www.openssl.org/about/,
 # up to you to set up `gpg` and add keys to your keychain
 if $VERIFYGPG; then
-    if [ ! -e "${SRCDIR}/openssl-${VERSION}.tar.gz.asc" ]; then
-        curl -O http://www.openssl.org/source/openssl-${VERSION}.tar.gz.asc
-    fi
-    echo "Using openssl-${VERSION}.tar.gz.asc"
-    if out=$(gpg --status-fd 1 --verify "openssl-${VERSION}.tar.gz.asc" "openssl-${VERSION}.tar.gz" 2>/dev/null) &&
-    echo "$out" | grep -qs "^\[GNUPG:\] VALIDSIG"; then
-        echo "$out" | egrep "GOODSIG|VALIDSIG"
-        echo "Verified GPG signature for source..."
-    else
-        echo "$out" >&2
-        echo "COULD NOT VERIFY PACKAGE SIGNATURE..."
-        exit 1
-    fi
+	if [ ! -e "${SRCDIR}/openssl-${VERSION}.tar.gz.asc" ]; then
+		curl -O http://www.openssl.org/source/openssl-${VERSION}.tar.gz.asc
+	fi
+	echo "Using openssl-${VERSION}.tar.gz.asc"
+	if out=$(gpg --status-fd 1 --verify "openssl-${VERSION}.tar.gz.asc" "openssl-${VERSION}.tar.gz" 2>/dev/null) &&
+	echo "$out" | grep -qs "^\[GNUPG:\] VALIDSIG"; then
+		echo "$out" | egrep "GOODSIG|VALIDSIG"
+		echo "Verified GPG signature for source..."
+	else
+		echo "$out" >&2
+		echo "COULD NOT VERIFY PACKAGE SIGNATURE..."
+		exit 1
+	fi
 fi
 
 tar zxf openssl-${VERSION}.tar.gz -C $SRCDIR
@@ -94,11 +94,11 @@ cd "${SRCDIR}/openssl-${VERSION}"
 set +e # don't bail out of bash script if ccache doesn't exist
 CCACHE=`which ccache`
 if [ $? == "0" ]; then
-    echo "Building with ccache: $CCACHE"
-    CCACHE="${CCACHE} "
+	echo "Building with ccache: $CCACHE"
+	CCACHE="${CCACHE} "
 else
-    echo "Building without ccache"
-    CCACHE=""
+	echo "Building without ccache"
+	CCACHE=""
 fi
 set -e # back to regular "bail out on error" mode
 
@@ -118,16 +118,16 @@ do
 	mkdir -p "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk"
 	#LOG="${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/build-openssl-${VERSION}.log"
 
-    export CC="${CCACHE}${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/usr/bin/gcc -arch ${ARCH}"
+	export CC="${CCACHE}${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/usr/bin/gcc -arch ${ARCH}"
 	./configure BSD-generic32 \
-    --openssldir="${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk" #> "${LOG}" 2>&1
+	--openssldir="${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk" #> "${LOG}" 2>&1
 
 	# add -isysroot to configure-generated CFLAGS
 	sed -ie "s!^CFLAG=!CFLAG=-isysroot ${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/SDKs/${PLATFORM}${SDKVERSION}.sdk !" "Makefile"
 
-    # Build the application and install it to the fake SDK intermediary dir
-    # we have set up. Make sure to clean up afterward because we will re-use
-    # this source tree to cross-compile other targets.
+	# Build the application and install it to the fake SDK intermediary dir
+	# we have set up. Make sure to clean up afterward because we will re-use
+	# this source tree to cross-compile other targets.
 	make #>> "${LOG}" 2>&1
 	make install #>> "${LOG}" 2>&1
 	make clean #>> "${LOG}" 2>&1
@@ -138,41 +138,41 @@ done
 echo "Build library..."
 OUTPUT_LIBS="libssl.a libcrypto.a"
 for OUTPUT_LIB in ${OUTPUT_LIBS}; do
-    INPUT_LIBS=""
-    for ARCH in ${ARCHS}; do
-        if [ "${ARCH}" == "i386" ];
-        then
-            PLATFORM="iPhoneSimulator"
-        else
-            PLATFORM="iPhoneOS"
-        fi
-        INPUT_ARCH_LIB="${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/lib/${OUTPUT_LIB}"
-        if [ -e $INPUT_ARCH_LIB ]; then
-            INPUT_LIBS="${INPUT_LIBS} ${INPUT_ARCH_LIB}"
-        fi
-    done
-    # Combine the three architectures into a universal library.
-    if [ -n "$INPUT_LIBS"  ]; then
-        lipo -create $INPUT_LIBS \
-        -output "${OUTPUTDIR}/lib/${OUTPUT_LIB}"
-    else
-        echo "$OUTPUT_LIB does not exist, skipping (are the dependencies installed?)"
-    fi
+	INPUT_LIBS=""
+	for ARCH in ${ARCHS}; do
+		if [ "${ARCH}" == "i386" ];
+		then
+			PLATFORM="iPhoneSimulator"
+		else
+			PLATFORM="iPhoneOS"
+		fi
+		INPUT_ARCH_LIB="${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/lib/${OUTPUT_LIB}"
+		if [ -e $INPUT_ARCH_LIB ]; then
+			INPUT_LIBS="${INPUT_LIBS} ${INPUT_ARCH_LIB}"
+		fi
+	done
+	# Combine the three architectures into a universal library.
+	if [ -n "$INPUT_LIBS"  ]; then
+		lipo -create $INPUT_LIBS \
+		-output "${OUTPUTDIR}/lib/${OUTPUT_LIB}"
+	else
+		echo "$OUTPUT_LIB does not exist, skipping (are the dependencies installed?)"
+	fi
 done
 
 for ARCH in ${ARCHS}; do
-    if [ "${ARCH}" == "i386" ];
-    then
-        PLATFORM="iPhoneSimulator"
-    else
-        PLATFORM="iPhoneOS"
-    fi
-    cp -R ${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/* ${OUTPUTDIR}/include/
-    if [ $? == "0" ]; then
-        # We only need to copy the headers over once. (So break out of forloop
-        # once we get first success.)
-        break
-    fi
+	if [ "${ARCH}" == "i386" ];
+	then
+		PLATFORM="iPhoneSimulator"
+	else
+		PLATFORM="iPhoneOS"
+	fi
+	cp -R ${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/* ${OUTPUTDIR}/include/
+	if [ $? == "0" ]; then
+		# We only need to copy the headers over once. (So break out of forloop
+		# once we get first success.)
+		break
+	fi
 done
 
 echo "Building done."
