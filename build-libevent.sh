@@ -23,7 +23,7 @@
 #  Choose your libevent version and your currently-installed iOS SDK version:
 #
 VERSION="2.0.21-stable"
-SDKVERSION="6.1"
+SDKVERSION="7.0"
 VERIFYGPG=false # cross-certify issue w/key. http://www.gnupg.org/faq/subkey-cross-certify.html
 #
 #
@@ -115,9 +115,14 @@ do
 
 	mkdir -p "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk"
 
+	if [ "${SDKVERSION}" == "7.0" ];
+	then
+		export CC="${CCACHE}${DEVELOPER}/usr/bin/gcc -arch ${ARCH}"
+	else
+		export CC="${CCACHE}${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/usr/bin/gcc -arch ${ARCH}"
+	fi
 	./configure --disable-shared --enable-static --disable-debug-mode ${EXTRA_CONFIG} \
 	--prefix="${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk" \
-	CC="${CCACHE}${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/usr/bin/gcc -arch ${ARCH}" \
 	LDFLAGS="$LDFLAGS -L${OUTPUTDIR}/lib" \
 	CFLAGS="$CFLAGS -I${OUTPUTDIR}/include -isysroot ${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/SDKs/${PLATFORM}${SDKVERSION}.sdk" \
 	CPPFLAGS="$CPPFLAGS -I${OUTPUTDIR}/include -isysroot ${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/SDKs/${PLATFORM}${SDKVERSION}.sdk"

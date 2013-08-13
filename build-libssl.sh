@@ -23,7 +23,7 @@
 #  Choose your openssl version and your currently-installed iOS SDK version:
 #
 VERSION="1.0.1e"
-SDKVERSION="6.1"
+SDKVERSION="7.0"
 VERIFYGPG=true
 #
 #
@@ -118,7 +118,12 @@ do
 	mkdir -p "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk"
 	#LOG="${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/build-openssl-${VERSION}.log"
 
-	export CC="${CCACHE}${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/usr/bin/gcc -arch ${ARCH}"
+	if [ "${SDKVERSION}" == "7.0" ];
+	then
+		export CC="${CCACHE}${DEVELOPER}/usr/bin/gcc -arch ${ARCH}"
+	else
+		export CC="${CCACHE}${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/usr/bin/gcc -arch ${ARCH}"
+	fi
 	./configure BSD-generic32 \
 	--openssldir="${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk" #> "${LOG}" 2>&1
 
