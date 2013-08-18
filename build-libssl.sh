@@ -23,9 +23,13 @@
 #  Choose your openssl version and your currently-installed iOS SDK version:
 #
 VERSION="1.0.1e"
-SDKVERSION="6.1"
-#
-#
+SDKVERSION="7.0"
+
+# IF USING IOS 7.0+
+# We need an old copy of Xcode (4.X or earlier), so we can use real GCC
+# compiler. (Xcode 5+ only contains clang.)
+XCODE4_APP="/Applications/Xcode.app"
+
 ###########################################################################
 #
 # Don't change anything under this line!
@@ -100,7 +104,13 @@ do
 	mkdir -p "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk"
 	#LOG="${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/build-openssl-${VERSION}.log"
 
-    export CC="${CCACHE}${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/usr/bin/gcc -arch ${ARCH}"
+	if [ "${SDKVERSION}" == "7.0" ];
+	then
+		export CC="${CCACHE}${XCODE4_APP}/Contents/Developer/Platforms/${PLATFORM}.platform/Developer/usr/bin/gcc -arch ${ARCH}"
+	else
+		export CC="${CCACHE}${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/usr/bin/gcc -arch ${ARCH}"
+	fi
+
 	./configure BSD-generic32 \
     --openssldir="${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk" #> "${LOG}" 2>&1
 
