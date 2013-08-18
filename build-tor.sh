@@ -23,9 +23,13 @@
 #  Choose your tor version and your currently-installed iOS SDK version:
 #
 VERSION="0.2.4.14-alpha"
-SDKVERSION="6.1"
-#
-#
+SDKVERSION="7.0"
+
+# IF USING IOS 7.0+
+# We need an old copy of Xcode (4.X or earlier), so we can use real GCC
+# compiler. (Xcode 5+ only contains clang.)
+XCODE4_APP="/Applications/Xcode.app"
+
 ###########################################################################
 #
 # Don't change anything under this line!
@@ -130,6 +134,13 @@ do
     mkdir -p "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include"
     mkdir -p "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/lib"
 
+    if [ "${SDKVERSION}" == "7.0" ];
+    then
+      export CC="${CCACHE}${XCODE4_APP}/Contents/Developer/Platforms/${PLATFORM}.platform/Developer/usr/bin/gcc -arch ${ARCH}"
+    else
+      export CC="${CCACHE}${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/usr/bin/gcc -arch ${ARCH}"
+    fi
+
     ./configure ${EXTRA_CONFIG} \
     --prefix="${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk" \
     --enable-static-openssl --enable-static-libevent --enable-static-zlib \
@@ -137,7 +148,6 @@ do
     --with-libevent-dir="${OUTPUTDIR}" \
     --with-zlib-dir="${OUTPUTDIR}" \
     --disable-asciidoc \
-    CC="${CCACHE}${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/usr/bin/gcc -arch ${ARCH}" \
     LDFLAGS="$LDFLAGS -L${OUTPUTDIR}/lib" \
     CFLAGS="$CFLAGS -I${OUTPUTDIR}/include -isysroot ${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/SDKs/${PLATFORM}${SDKVERSION}.sdk" \
     CPPFLAGS="$CPPFLAGS -I${OUTPUTDIR}/include -isysroot ${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/SDKs/${PLATFORM}${SDKVERSION}.sdk"

@@ -23,9 +23,13 @@
 #  Choose your libevent version and your currently-installed iOS SDK version:
 #
 VERSION="2.0.21-stable"
-SDKVERSION="6.1"
-#
-#
+SDKVERSION="7.0"
+
+# IF USING IOS 7.0+
+# We need an old copy of Xcode (4.X or earlier), so we can use real GCC
+# compiler. (Xcode 5+ only contains clang.)
+XCODE4_APP="/Applications/Xcode.app"
+
 ###########################################################################
 #
 # Don't change anything under this line!
@@ -97,9 +101,15 @@ do
 
 	mkdir -p "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk"
 
+	if [ "${SDKVERSION}" == "7.0" ];
+	then
+		export CC="${CCACHE}${XCODE4_APP}/Contents/Developer/Platforms/${PLATFORM}.platform/Developer/usr/bin/gcc -arch ${ARCH}"
+	else
+		export CC="${CCACHE}${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/usr/bin/gcc -arch ${ARCH}"
+	fi
+
 	./configure --disable-shared --enable-static --disable-debug-mode ${EXTRA_CONFIG} \
     --prefix="${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk" \
-    CC="${CCACHE}${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/usr/bin/gcc -arch ${ARCH}" \
     LDFLAGS="$LDFLAGS -L${OUTPUTDIR}/lib" \
     CFLAGS="$CFLAGS -I${OUTPUTDIR}/include -isysroot ${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/SDKs/${PLATFORM}${SDKVERSION}.sdk" \
     CPPFLAGS="$CPPFLAGS -I${OUTPUTDIR}/include -isysroot ${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/SDKs/${PLATFORM}${SDKVERSION}.sdk"
