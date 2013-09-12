@@ -1,7 +1,7 @@
 ## Onion Browser
 
-[Official Site][official] | [Support][help] | [Changelog][changelog]<br>
-&copy; 2012-2013 [Mike Tigas][miketigas] ([@mtigas](https://twitter.com/mtigas))<br>
+[Official Site][official] | [Support][help] | [Changelog][changelog]  
+&copy; 2012-2013 [Mike Tigas][miketigas] ([@mtigas](https://twitter.com/mtigas))  
 [MIT License][license]
 
 A minimal, open-source web browser for iOS that tunnels web traffic through
@@ -30,7 +30,7 @@ and App Store links.
 #### Technical notes
 
 * **OnionBrowser**: 1.4.0 (20130704.1)
-* **Tor**: 0.2.4.14-alpha (Jun 18 2013)
+* **Tor**: 0.2.4.15-rc (Jul 01 2013)
 * **libevent**: 2.0.21-stable (Nov 18 2012)
 * **OpenSSL**: 1.0.1e (Feb 11 2013)
 
@@ -59,7 +59,7 @@ auto-validation of the uploaded binary. (The `_NSGetEnviron()` code does not
 even compile when using iPhoneSDK due to that function being undefined.)
 See the patch files in `build-patches/` if you are interested in the changes.
 
-[tor_changelog]: https://gitweb.torproject.org/tor.git/blob/tor-0.2.4.14-alpha:/ChangeLog
+[tor_changelog]: https://gitweb.torproject.org/tor.git/blob/tor-0.2.4.15-rc:/ChangeLog
 [tor_manual]: https://www.torproject.org/docs/tor-manual-dev.html.en
 
 0.2.3.17-beta introduced compiler and linker "hardening" ([Tor ticket 5210][ticket5210]),

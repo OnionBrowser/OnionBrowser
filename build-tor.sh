@@ -22,8 +22,9 @@
 ###########################################################################
 #  Choose your tor version and your currently-installed iOS SDK version:
 #
-VERSION="0.2.4.14-alpha"
+VERSION="0.2.4.15-rc"
 SDKVERSION="7.0"
+VERIFYGPG=true
 
 # IF USING IOS 7.0+
 # We need an old copy of Xcode (4.X or earlier), so we can use real GCC
@@ -38,7 +39,7 @@ XCODE4_APP="/Applications/Xcode.app"
 
 # No need to change this since xcode build will only compile in the
 # necessary bits from the libraries we create
-ARCHS="i386 armv7 armv7s"
+ARCHS="i386 armv7 armv7s arm64"
 
 DEVELOPER=`xcode-select -print-path`
 
@@ -68,10 +69,29 @@ cd $SRCDIR
 set -e
 
 if [ ! -e "${SRCDIR}/tor-${VERSION}.tar.gz" ]; then
-    echo "Downloading tor-${VERSION}.tar.gz"
-    curl -O https://archive.torproject.org/tor-package-archive/tor-${VERSION}.tar.gz
-else
-    echo "Using tor-${VERSION}.tar.gz"
+	echo "Downloading tor-${VERSION}.tar.gz"
+	#curl -O https://archive.torproject.org/tor-package-archive/tor-${VERSION}.tar.gz
+	curl -O https://www.torproject.org/dist/tor-${VERSION}.tar.gz
+fi
+echo "Using tor-${VERSION}.tar.gz"
+
+# see https://www.torproject.org/docs/verifying-signatures.html.en
+# and https://www.torproject.org/docs/signing-keys.html.en
+# up to you to set up `gpg` and add keys to your keychain
+if $VERIFYGPG; then
+	if [ ! -e "${SRCDIR}/tor-${VERSION}.tar.gz.asc" ]; then
+		curl -O https://www.torproject.org/dist/tor-${VERSION}.tar.gz.asc
+	fi
+	echo "Using tor-${VERSION}.tar.gz.asc"
+	if out=$(gpg --status-fd 1 --verify "tor-${VERSION}.tar.gz.asc" "tor-${VERSION}.tar.gz" 2>/dev/null) &&
+	echo "$out" | grep -qs "^\[GNUPG:\] VALIDSIG"; then
+		echo "$out" | egrep "GOODSIG|VALIDSIG"
+		echo "Verified GPG signature for source..."
+	else
+		echo "$out" >&2
+		echo "COULD NOT VERIFY PACKAGE SIGNATURE..."
+		exit 1
+	fi
 fi
 
 rm -fr "${SRCDIR}/tor-${VERSION}"
@@ -111,11 +131,11 @@ cd "${SRCDIR}/tor-${VERSION}"
 set +e # don't bail out of bash script if ccache doesn't exist
 CCACHE=`which ccache`
 if [ $? == "0" ]; then
-    echo "Building with ccache: $CCACHE"
-    CCACHE="${CCACHE} "
+	echo "Building with ccache: $CCACHE"
+	CCACHE="${CCACHE} "
 else
-    echo "Building without ccache"
-    CCACHE=""
+	echo "Building without ccache"
+	CCACHE=""
 fi
 set -e # back to regular "bail out on error" mode
 
@@ -183,41 +203,41 @@ echo "Build library..."
 # These are the libs that comprise tor's internals
 OUTPUT_LIBS="libor-crypto.a libor-event.a libor.a libtor.a libcurve25519_donna.a"
 for OUTPUT_LIB in ${OUTPUT_LIBS}; do
-    INPUT_LIBS=""
-    for ARCH in ${ARCHS}; do
-        if [ "${ARCH}" == "i386" ];
-        then
-            PLATFORM="iPhoneSimulator"
-        else
-            PLATFORM="iPhoneOS"
-        fi
-        INPUT_ARCH_LIB="${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/lib/${OUTPUT_LIB}"
-        if [ -e $INPUT_ARCH_LIB ]; then
-            INPUT_LIBS="${INPUT_LIBS} ${INPUT_ARCH_LIB}"
-        fi
-    done
-    # Combine the three architectures into a universal library.
-    if [ -n "$INPUT_LIBS"  ]; then
-        lipo -create $INPUT_LIBS \
-        -output "${OUTPUTDIR}/lib/${OUTPUT_LIB}"
-    else
-        echo "$OUTPUT_LIB does not exist, skipping (are the dependencies installed?)"
-    fi
+	INPUT_LIBS=""
+	for ARCH in ${ARCHS}; do
+		if [ "${ARCH}" == "i386" ];
+		then
+			PLATFORM="iPhoneSimulator"
+		else
+			PLATFORM="iPhoneOS"
+		fi
+		INPUT_ARCH_LIB="${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/lib/${OUTPUT_LIB}"
+		if [ -e $INPUT_ARCH_LIB ]; then
+			INPUT_LIBS="${INPUT_LIBS} ${INPUT_ARCH_LIB}"
+		fi
+	done
+	# Combine the three architectures into a universal library.
+	if [ -n "$INPUT_LIBS"  ]; then
+		lipo -create $INPUT_LIBS \
+		-output "${OUTPUTDIR}/lib/${OUTPUT_LIB}"
+	else
+		echo "$OUTPUT_LIB does not exist, skipping (are the dependencies installed?)"
+	fi
 done
 
 for ARCH in ${ARCHS}; do
-    if [ "${ARCH}" == "i386" ];
-    then
-        PLATFORM="iPhoneSimulator"
-    else
-        PLATFORM="iPhoneOS"
-    fi
-    cp -R ${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/* ${OUTPUTDIR}/include/
-    if [ $? == "0" ]; then
-        # We only need to copy the headers over once. (So break out of forloop
-        # once we get first success.)
-        break
-    fi
+	if [ "${ARCH}" == "i386" ];
+	then
+		PLATFORM="iPhoneSimulator"
+	else
+		PLATFORM="iPhoneOS"
+	fi
+	cp -R ${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/* ${OUTPUTDIR}/include/
+	if [ $? == "0" ]; then
+		# We only need to copy the headers over once. (So break out of forloop
+		# once we get first success.)
+		break
+	fi
 done
 
 mkdir -p ${OUTPUTDIR}/share
