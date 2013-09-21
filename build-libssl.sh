@@ -119,7 +119,7 @@ do
 	export CC="${CCACHE}`which gcc` -arch ${ARCH} -miphoneos-version-min=${MINIOSVERSION}"
 
 	if [ "${ARCH}" == "x86_64" ] || [ "${ARCH}" == "arm64" ]; then
-		./configure BSD-generic64 no-asm \
+		./configure BSD-generic64 no-asm enable-ec_nistp_64_gcc_128 \
 		--openssldir="${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk"
 	else
 		./configure BSD-generic32 no-asm \
