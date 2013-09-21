@@ -24,12 +24,8 @@
 #
 VERSION="2.0.21-stable"
 SDKVERSION="7.0"
+MINIOSVERSION="6.0"
 VERIFYGPG=false # cross-certify issue w/key. http://www.gnupg.org/faq/subkey-cross-certify.html
-
-# IF USING IOS 7.0+
-# We need an old copy of Xcode (4.X or earlier), so we can use real GCC
-# compiler. (Xcode 5+ only contains clang.)
-XCODE4_APP="/Applications/Xcode.app"
 
 ###########################################################################
 #
@@ -39,9 +35,10 @@ XCODE4_APP="/Applications/Xcode.app"
 
 # No need to change this since xcode build will only compile in the
 # necessary bits from the libraries we create
-ARCHS="i386 armv7 armv7s"
+ARCHS="i386 x86_64 armv7 armv7s arm64"
 
 DEVELOPER=`xcode-select -print-path`
+#DEVELOPER="/Applications/Xcode.app/Contents/Developer"
 
 cd "`dirname \"$0\"`"
 REPOROOT=$(pwd)
@@ -106,9 +103,11 @@ else
 fi
 set -e # back to regular "bail out on error" mode
 
+export ORIGINALPATH=$PATH
+
 for ARCH in ${ARCHS}
 do
-	if [ "${ARCH}" == "i386" ];
+	if [ "${ARCH}" == "i386" ] || [ "${ARCH}" == "x86_64" ];
 	then
 		PLATFORM="iPhoneSimulator"
 		EXTRA_CONFIG=""
@@ -119,17 +118,13 @@ do
 
 	mkdir -p "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk"
 
-	if [ "${SDKVERSION}" == "7.0" ];
-	then
-		export CC="${CCACHE}${XCODE4_APP}/Contents/Developer/Platforms/${PLATFORM}.platform/Developer/usr/bin/gcc -arch ${ARCH}"
-	else
-		export CC="${CCACHE}${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/usr/bin/gcc -arch ${ARCH}"
-	fi
+	export PATH="${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/usr/bin/:${DEVELOPER}/Toolchains/XcodeDefault.xct‌​oolchain/usr/bin:${DEVELOPER}/usr/bin:${ORIGINALPATH}"
+	export CC="${CCACHE}`which gcc` -arch ${ARCH} -miphoneos-version-min=${MINIOSVERSION}"
 
 	./configure --disable-shared --enable-static --disable-debug-mode ${EXTRA_CONFIG} \
     --prefix="${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk" \
     LDFLAGS="$LDFLAGS -L${OUTPUTDIR}/lib" \
-    CFLAGS="$CFLAGS -I${OUTPUTDIR}/include -isysroot ${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/SDKs/${PLATFORM}${SDKVERSION}.sdk" \
+    CFLAGS="$CFLAGS -O2 -I${OUTPUTDIR}/include -isysroot ${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/SDKs/${PLATFORM}${SDKVERSION}.sdk" \
     CPPFLAGS="$CPPFLAGS -I${OUTPUTDIR}/include -isysroot ${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/SDKs/${PLATFORM}${SDKVERSION}.sdk"
 
     # Build the application and install it to the fake SDK intermediary dir
@@ -150,7 +145,7 @@ OUTPUT_LIBS="libevent.a libevent_core.a libevent_extra.a libevent_openssl.a libe
 for OUTPUT_LIB in ${OUTPUT_LIBS}; do
 	INPUT_LIBS=""
 	for ARCH in ${ARCHS}; do
-		if [ "${ARCH}" == "i386" ];
+		if [ "${ARCH}" == "i386" ] || [ "${ARCH}" == "x86_64" ];
 		then
 			PLATFORM="iPhoneSimulator"
 		else
@@ -171,7 +166,7 @@ for OUTPUT_LIB in ${OUTPUT_LIBS}; do
 done
 
 for ARCH in ${ARCHS}; do
-	if [ "${ARCH}" == "i386" ];
+	if [ "${ARCH}" == "i386" ] || [ "${ARCH}" == "x86_64" ];
 	then
 		PLATFORM="iPhoneSimulator"
 	else

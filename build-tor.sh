@@ -22,14 +22,10 @@
 ###########################################################################
 #  Choose your tor version and your currently-installed iOS SDK version:
 #
-VERSION="0.2.4.15-rc"
+VERSION="0.2.4.17-rc"
 SDKVERSION="7.0"
-VERIFYGPG=true
-
-# IF USING IOS 7.0+
-# We need an old copy of Xcode (4.X or earlier), so we can use real GCC
-# compiler. (Xcode 5+ only contains clang.)
-XCODE4_APP="/Applications/Xcode.app"
+MINIOSVERSION="6.0"
+VERIFYGPG=false
 
 ###########################################################################
 #
@@ -39,9 +35,10 @@ XCODE4_APP="/Applications/Xcode.app"
 
 # No need to change this since xcode build will only compile in the
 # necessary bits from the libraries we create
-ARCHS="i386 armv7 armv7s arm64"
+ARCHS="i386 x86_64 armv7 armv7s arm64"
 
 DEVELOPER=`xcode-select -print-path`
+#DEVELOPER="/Applications/Xcode.app/Contents/Developer"
 
 cd "`dirname \"$0\"`"
 REPOROOT=$(pwd)
@@ -139,27 +136,41 @@ else
 fi
 set -e # back to regular "bail out on error" mode
 
+export ORIGINALPATH=$PATH
+
+# Keep a copy of `configure` around. In non-64bit arm, we need to
+# explicitly disable curve25519-donna-c64, since it causes compile
+# error under clang (Xcode 5) for ARM (non-64) archs
+export VANILLA_CONFIGURE="${INTERDIR}/tor-${VERSION}.configure"
+cp "${SRCDIR}/tor-${VERSION}/configure" "${VANILLA_CONFIGURE}"
+
 for ARCH in ${ARCHS}
 do
-    if [ "${ARCH}" == "i386" ];
-    then
+	if [ "${ARCH}" == "i386" ] || [ "${ARCH}" == "x86_64" ]; then
         PLATFORM="iPhoneSimulator"
         EXTRA_CONFIG=""
     else
         PLATFORM="iPhoneOS"
-        EXTRA_CONFIG="--host=arm-apple-darwin11 --target=arm-apple-darwin11 --disable-gcc-hardening --disable-linker-hardening"
+        EXTRA_CONFIG="--host=arm-apple-darwin13 --target=arm-apple-darwin13 --disable-gcc-hardening --disable-linker-hardening"
     fi
 
     mkdir -p "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk"
     mkdir -p "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include"
     mkdir -p "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/lib"
 
-    if [ "${SDKVERSION}" == "7.0" ];
-    then
-      export CC="${CCACHE}${XCODE4_APP}/Contents/Developer/Platforms/${PLATFORM}.platform/Developer/usr/bin/gcc -arch ${ARCH}"
-    else
-      export CC="${CCACHE}${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/usr/bin/gcc -arch ${ARCH}"
-    fi
+	export PATH="${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/usr/bin/:${DEVELOPER}/Toolchains/XcodeDefault.xctolchain/usr/bin:${DEVELOPER}/usr/bin:${ORIGINALPATH}"
+	export CC="${CCACHE}`which gcc` -arch ${ARCH} -miphoneos-version-min=${MINIOSVERSION}"
+
+    # (since we're editing configure, make sure to start with an modified
+    # copy when building a new arch)
+	cp "${VANILLA_CONFIGURE}" "${SRCDIR}/tor-${VERSION}/configure"
+
+	# explicitly disable curve25519-donna-c64, since it causes compile
+	# error under clang (Xcode 5) for ARM (non-64) archs
+    if [ "${ARCH}" == "armv7" ] || [ "${ARCH}" == "armv7s" ]; then
+		sed -ie "s/tor_cv_can_use_curve25519_donna_c64=cross/tor_cv_can_use_curve25519_donna_c64=no/g" "${SRCDIR}/tor-${VERSION}/configure"
+		sed -ie "s/tor_cv_can_use_curve25519_donna_c64=yes/tor_cv_can_use_curve25519_donna_c64=no/g" "${SRCDIR}/tor-${VERSION}/configure"
+	fi
 
     ./configure ${EXTRA_CONFIG} \
     --prefix="${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk" \
@@ -167,10 +178,10 @@ do
     --with-openssl-dir="${OUTPUTDIR}" \
     --with-libevent-dir="${OUTPUTDIR}" \
     --with-zlib-dir="${OUTPUTDIR}" \
-    --disable-asciidoc \
+    --disable-asciidoc --disable-transparent --disable-threads \
     LDFLAGS="$LDFLAGS -L${OUTPUTDIR}/lib" \
-    CFLAGS="$CFLAGS -I${OUTPUTDIR}/include -isysroot ${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/SDKs/${PLATFORM}${SDKVERSION}.sdk" \
-    CPPFLAGS="$CPPFLAGS -I${OUTPUTDIR}/include -isysroot ${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/SDKs/${PLATFORM}${SDKVERSION}.sdk"
+    CFLAGS="$CFLAGS -O2 -I${OUTPUTDIR}/include -isysroot ${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/SDKs/${PLATFORM}${SDKVERSION}.sdk" \
+    CPPFLAGS="$CPPFLAGS -I${OUTPUTDIR}/include -isysroot ${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/SDKs/${PLATFORM}${SDKVERSION}.sdk" 
 
     # Build the application
     make -j4
@@ -205,7 +216,7 @@ OUTPUT_LIBS="libor-crypto.a libor-event.a libor.a libtor.a libcurve25519_donna.a
 for OUTPUT_LIB in ${OUTPUT_LIBS}; do
 	INPUT_LIBS=""
 	for ARCH in ${ARCHS}; do
-		if [ "${ARCH}" == "i386" ];
+		if [ "${ARCH}" == "i386" ] || [ "${ARCH}" == "x86_64" ];
 		then
 			PLATFORM="iPhoneSimulator"
 		else
@@ -226,7 +237,7 @@ for OUTPUT_LIB in ${OUTPUT_LIBS}; do
 done
 
 for ARCH in ${ARCHS}; do
-	if [ "${ARCH}" == "i386" ];
+	if [ "${ARCH}" == "i386" ] || [ "${ARCH}" == "x86_64" ];
 	then
 		PLATFORM="iPhoneSimulator"
 	else

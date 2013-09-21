@@ -24,12 +24,8 @@
 #
 VERSION="1.0.1e"
 SDKVERSION="7.0"
+MINIOSVERSION="6.0"
 VERIFYGPG=true
-
-# IF USING IOS 7.0+
-# We need an old copy of Xcode (4.X or earlier), so we can use real GCC
-# compiler. (Xcode 5+ only contains clang.)
-XCODE4_APP="/Applications/Xcode.app"
 
 ###########################################################################
 #
@@ -39,9 +35,10 @@ XCODE4_APP="/Applications/Xcode.app"
 
 # No need to change this since xcode build will only compile in the
 # necessary bits from the libraries we create
-ARCHS="i386 armv7 armv7s arm64"
+ARCHS="i386 x86_64 armv7 armv7s arm64"
 
 DEVELOPER=`xcode-select -print-path`
+#DEVELOPER="/Applications/Xcode.app/Contents/Developer"
 
 cd "`dirname \"$0\"`"
 REPOROOT=$(pwd)
@@ -50,7 +47,6 @@ REPOROOT=$(pwd)
 OUTPUTDIR="${REPOROOT}/dependencies"
 mkdir -p ${OUTPUTDIR}/include
 mkdir -p ${OUTPUTDIR}/lib
-
 
 BUILDDIR="${REPOROOT}/build"
 
@@ -106,30 +102,29 @@ else
 fi
 set -e # back to regular "bail out on error" mode
 
+export ORIGINALPATH=$PATH
+
 for ARCH in ${ARCHS}
 do
-	if [ "${ARCH}" == "i386" ];
-	then
+	if [ "${ARCH}" == "i386" ] || [ "${ARCH}" == "x86_64" ]; then
 		PLATFORM="iPhoneSimulator"
 	else
 		sed -ie "s!static volatile sig_atomic_t intr_signal;!static volatile intr_signal;!" "crypto/ui/ui_openssl.c"
 		PLATFORM="iPhoneOS"
 	fi
 	
-	echo "Building openssl-${VERSION} for ${PLATFORM} ${SDKVERSION} ${ARCH}"
-	echo "Please stand by..."
-
 	mkdir -p "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk"
-	#LOG="${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/build-openssl-${VERSION}.log"
 
-	if [ "${SDKVERSION}" == "7.0" ];
-	then
-		export CC="${CCACHE}${XCODE4_APP}/Contents/Developer/Platforms/${PLATFORM}.platform/Developer/usr/bin/gcc -arch ${ARCH}"
+	export PATH="${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/usr/bin/:${DEVELOPER}/Toolchains/XcodeDefault.xct‌​oolchain/usr/bin:${DEVELOPER}/usr/bin:${ORIGINALPATH}"
+	export CC="${CCACHE}`which gcc` -arch ${ARCH} -miphoneos-version-min=${MINIOSVERSION}"
+
+	if [ "${ARCH}" == "x86_64" ] || [ "${ARCH}" == "arm64" ]; then
+		./configure BSD-generic64 no-asm \
+		--openssldir="${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk"
 	else
-		export CC="${CCACHE}${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/usr/bin/gcc -arch ${ARCH}"
+		./configure BSD-generic32 no-asm \
+		--openssldir="${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk"
 	fi
-	./configure BSD-generic32 \
-	--openssldir="${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk" #> "${LOG}" 2>&1
 
 	# add -isysroot to configure-generated CFLAGS
 	sed -ie "s!^CFLAG=!CFLAG=-isysroot ${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/SDKs/${PLATFORM}${SDKVERSION}.sdk !" "Makefile"
@@ -137,9 +132,9 @@ do
 	# Build the application and install it to the fake SDK intermediary dir
 	# we have set up. Make sure to clean up afterward because we will re-use
 	# this source tree to cross-compile other targets.
-	make #>> "${LOG}" 2>&1
-	make install #>> "${LOG}" 2>&1
-	make clean #>> "${LOG}" 2>&1
+	make
+	make install
+	make clean
 done
 
 ########################################
@@ -149,8 +144,7 @@ OUTPUT_LIBS="libssl.a libcrypto.a"
 for OUTPUT_LIB in ${OUTPUT_LIBS}; do
 	INPUT_LIBS=""
 	for ARCH in ${ARCHS}; do
-		if [ "${ARCH}" == "i386" ];
-		then
+		if [ "${ARCH}" == "i386" ] || [ "${ARCH}" == "x86_64" ]; then
 			PLATFORM="iPhoneSimulator"
 		else
 			PLATFORM="iPhoneOS"
@@ -170,8 +164,7 @@ for OUTPUT_LIB in ${OUTPUT_LIBS}; do
 done
 
 for ARCH in ${ARCHS}; do
-	if [ "${ARCH}" == "i386" ];
-	then
+	if [ "${ARCH}" == "i386" ] || [ "${ARCH}" == "x86_64" ]; then
 		PLATFORM="iPhoneSimulator"
 	else
 		PLATFORM="iPhoneOS"
