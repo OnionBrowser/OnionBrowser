@@ -321,15 +321,10 @@ static const Boolean kBackwardButton = NO;
     [bookmark setOrder:i++];
     
     bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
-    [bookmark setTitle:@"The Cleaned Hidden Wiki (.onion)"];
-    [bookmark setUrl:@"http://3suaolltfj2xjksb.onion/hiddenwiki/index.php/Main_Page"];
+    [bookmark setTitle:@"The Hidden Wiki Mirror (.onion)"];
+    [bookmark setUrl:@"http://wikitjerrta4qgz4.onion/"];
     [bookmark setOrder:i++];
     
-    bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
-    [bookmark setTitle:@"The Tor Library (.onion)"];
-    [bookmark setUrl:@"http://am4wuhz3zifexz5u.onion/"];
-    [bookmark setOrder:i++];
-
     bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
     [bookmark setTitle:@"Reddit /r/onions"];
     [bookmark setUrl:@"http://www.reddit.com/r/onions"];
@@ -338,16 +333,6 @@ static const Boolean kBackwardButton = NO;
     bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
     [bookmark setTitle:@"Reddit /r/netsec"];
     [bookmark setUrl:@"http://www.reddit.com/r/netsec"];
-    [bookmark setOrder:i++];
-    
-    bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
-    [bookmark setTitle:@"Tor Mail (.onion)"];
-    [bookmark setUrl:@"http://jhiwjjlqpyawmpjx.onion/"];
-    [bookmark setOrder:i++];
-    
-    bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
-    [bookmark setTitle:@"RedditTor (.onion)"];
-    [bookmark setUrl:@"http://gmyzy5exjw4pimvf.onion/"];
     [bookmark setOrder:i++];
     
     NSError *error = nil;
