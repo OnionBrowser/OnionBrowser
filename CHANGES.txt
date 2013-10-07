@@ -1,6 +1,42 @@
 Onion Browser Version History (since 1.2.2)
 
-===== 1.3.7 - In App Store =====
+
+===== 1.3.9 - Pending =====
+Oct 06, 2013 - Submit date
+??? ??, ???? - App store availability
+
+* Quick fix to support iOS 5.1+. Previous update accidentally required
+  iOS 7.0.
+
+* OPTIMIZATION NOTE: iPhone 5s (64-bit) CPU optimization -- introduced in
+  the previous version -- has been removed. Apps compiled with these CPU
+  optimziations are only compatible with iOS 6.0 and greater.
+
+  This only affects minor portions of the encryption/decryption code. Much
+  of the CPU load related to Onion Browser is caused by browser rendering,
+  rather than encryption, so the speedups were negligible in the first place.
+
+  When compiling your own copy of Onion Browser from this source tree, you
+  can re-enable the CPU optimizations by going to [OnionBrowser project ->
+  Build Settings -> Architectures] and then selecting "Standard architectures
+  (including 64-bit)". This will require you to change Deployment Target
+  to 6.0 or greater.
+
+===== 1.3.8 - In App Store =====
+
+* COMPATIBILITY NOTE: An issue with the way this release was processed
+  causes it to require iOS 7.0. An update has been submitted that will return
+  support for iOS versions earlier than 7.0.
+
+* Native iOS 7 support and iPhone 5s (64-bit) performance optimizations.
+
+* Tor updated to 0.2.4.17-rc.
+
+
+
+PREVIOUS VERSIONS:
+
+===== 1.3.7 =====
 Jun 29, 2013 - Submit date
 Jul 03, 2013 - App store availability
 
@@ -21,10 +57,6 @@ Jul 03, 2013 - App store availability
 * Update tor to 0.2.4.14-alpha (Jun 18, 2013) [1]
 
   [1]: https://gitweb.torproject.org/tor.git/blob/tor-0.2.4.14-alpha:/ChangeLog
-
-
-
-PREVIOUS VERSIONS:
 
 ===== 1.3.6 =====
 Jun 18, 2013 - Submit date

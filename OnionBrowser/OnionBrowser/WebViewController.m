@@ -43,9 +43,7 @@ static const Boolean kBackwardButton = NO;
             optionsMenu = _optionsMenu,
             bookmarkButton = _bookmarkButton,
             stopRefreshButton = _stopRefreshButton,
-#ifndef __IPHONE_7_0
             pageTitleLabel = _pageTitleLabel,
-#endif
             addressField = _addressField,
             currentURL = _currentURL,
             torStatus = _torStatus;
@@ -238,20 +236,25 @@ static const Boolean kBackwardButton = NO;
     CGRect labelFrame = CGRectMake(kMargin, kSpacer,
                                    navBar.bounds.size.width - 2*kMargin, kLabelHeight);
 
-#ifndef __IPHONE_7_0
-    UILabel *label = [[UILabel alloc] initWithFrame:labelFrame];
-    label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    label.text = @"";
-    label.backgroundColor = [UIColor clearColor];
-    label.font = [UIFont systemFontOfSize:12];
-    label.textAlignment = NSTextAlignmentCenter;
-    
-    [navBar setTintColor:[UIColor blackColor]];
-    [label setTextColor:[UIColor whiteColor]];
+    /* if iOS < 7.0 */
+    NSString *reqSysVer = @"7.0";
+    NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
+    if ([currSysVer compare:reqSysVer options:NSNumericSearch] == NSOrderedAscending) {
+        UILabel *label = [[UILabel alloc] initWithFrame:labelFrame];
+        label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        label.text = @"";
+        label.backgroundColor = [UIColor clearColor];
+        label.font = [UIFont systemFontOfSize:12];
+        label.textAlignment = NSTextAlignmentCenter;
+        
+        [navBar setTintColor:[UIColor blackColor]];
+        [label setTextColor:[UIColor whiteColor]];
+        
+        [navBar addSubview:label];
+        _pageTitleLabel = label;
+    }
+    /* endif */
 
-    [navBar addSubview:label];
-    _pageTitleLabel = label;
-#endif
     
     // The address field is the same with as the label and located just below 
     // it with a gap of kSpacer
@@ -691,9 +694,14 @@ static const Boolean kBackwardButton = NO;
 - (void)updateTitle:(UIWebView*)aWebView
 {
     NSString* pageTitle = [aWebView stringByEvaluatingJavaScriptFromString:@"document.title"];
-#ifndef __IPHONE_7_0
-    _pageTitleLabel.text = pageTitle;
-#endif
+    
+    /* if iOS < 7.0 */
+    NSString *reqSysVer = @"7.0";
+    NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
+    if ([currSysVer compare:reqSysVer options:NSNumericSearch] == NSOrderedAscending) {
+        _pageTitleLabel.text = pageTitle;
+    }
+    /* endif */
 }
 
 - (void)updateAddress:(NSURLRequest*)request {
