@@ -1,9 +1,36 @@
 Onion Browser Version History (since 1.2.2)
 
 
-===== 1.3.9 - Pending =====
-Oct 06, 2013 - Submit date
+===== 1.3.10 - In Development =====
+Oct ??, 2013 - Submit date
 ??? ??, ???? - App store availability
+
+* MAJOR PRIVACY ISSUE FIXED: App previously did not successfully wipe
+  HTML5 "application storage" (aka "local storage" or "app cache"), even
+  when force-quitting or selecting "New Identity". This could be seen by
+  testing a Google Search and noticing previous searches in a dropdown
+  (due to Google's use of this cache). (Issue 26)
+  https://github.com/mtigas/iOS-OnionBrowser/commit/dffce7070856927a8bb9f92a8fa67523d0e9eb10
+  https://github.com/mtigas/iOS-OnionBrowser/commit/7ae6bcb5aa33538159c423a3b6c9987725e46d9a
+
+* Add check.torproject.org frame to homepage, to ensure that user has
+  successfully connected to Tor. (See Issue 28)
+  https://github.com/mtigas/iOS-OnionBrowser/commit/18590148ee9e527c07dc82cb85143bc085f29c1e
+
+* Fix issue with "New Identity" button on iPad when device is rotated
+  in landscape mode. (Issue 32)
+  https://github.com/mtigas/iOS-OnionBrowser/commit/df1c98b96e05db6e1c2f86125396e10cb8bb48a6
+
+* Force using "ntor" connection handshake, which is faster and is now
+  the default for 0.2.4.X and newer versions of Tor. This is preferred
+  by 0.2.4.X relays (and is forced on in 0.2.5.X). This is a countermeasure
+  against the botnet congestion that was introduced in September 2013
+  and helps reduce load on the overall Tor network.
+  https://github.com/mtigas/iOS-OnionBrowser/commit/68deb93eab4e99527f959297be571514f4ea6911
+
+===== 1.3.9 - In App Store =====
+Oct 06, 2013 - Submit date
+Oct 10, 2013 - App store availability
 
 * Quick fix to support iOS 5.1+. Previous update accidentally required
   iOS 7.0.
@@ -22,7 +49,11 @@ Oct 06, 2013 - Submit date
   (including 64-bit)". This will require you to change Deployment Target
   to 6.0 or greater.
 
-===== 1.3.8 - In App Store =====
+
+
+PREVIOUS VERSIONS:
+
+===== 1.3.8 =====
 
 * COMPATIBILITY NOTE: An issue with the way this release was processed
   causes it to require iOS 7.0. An update has been submitted that will return
@@ -31,10 +62,6 @@ Oct 06, 2013 - Submit date
 * Native iOS 7 support and iPhone 5s (64-bit) performance optimizations.
 
 * Tor updated to 0.2.4.17-rc.
-
-
-
-PREVIOUS VERSIONS:
 
 ===== 1.3.7 =====
 Jun 29, 2013 - Submit date
