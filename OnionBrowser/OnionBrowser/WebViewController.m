@@ -60,10 +60,31 @@ static const Boolean kBackwardButton = NO;
 -(void)loadView {
     UIView *contentView = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
     self.view = contentView;
+
+    
+    // Initialize a new UIWebView (to clear the history of the previous one)
+    CGSize size = [UIScreen mainScreen].bounds.size;
+    UIApplication *application = [UIApplication sharedApplication];
+    NSString *reqSysVer = @"7.0";
+    NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
+    
+    if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
+        size = CGSizeMake(size.height, size.width);
+    }
+    
+    // If iOS 7.0+ (statusbar is part of topbar size)
+    if ([currSysVer compare:reqSysVer options:NSNumericSearch] == NSOrderedAscending) {
+        NSLog(@"7.0+");
+        size.height -= MIN(application.statusBarFrame.size.width, application.statusBarFrame.size.height);
+    }
+    size.height -= self.toolbar.frame.size.height;
+    size.height -= kNavBarHeight;
+    
     CGRect webViewFrame = [[UIScreen mainScreen] applicationFrame];
     webViewFrame.origin.y = kNavBarHeight;
     webViewFrame.origin.x = 0;
-    webViewFrame.size.height = webViewFrame.size.height - kToolBarHeight - kNavBarHeight;
+    webViewFrame.size = size;
+
     _myWebView = [[UIWebView alloc] initWithFrame:webViewFrame];
     _myWebView.backgroundColor = [UIColor whiteColor];
     _myWebView.scalesPageToFit = YES;
@@ -569,10 +590,29 @@ static const Boolean kBackwardButton = NO;
             [appDelegate wipeAppData];
             
             // Initialize a new UIWebView (to clear the history of the previous one)
+            CGSize size = [UIScreen mainScreen].bounds.size;
+            UIApplication *application = [UIApplication sharedApplication];
+            NSString *reqSysVer = @"7.0";
+            NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
+
+            if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
+                size = CGSizeMake(size.height, size.width);
+            }
+
+            // If iOS 7.0+ (statusbar is part of topbar size)
+            if ([currSysVer compare:reqSysVer options:NSNumericSearch] == NSOrderedAscending) {
+                NSLog(@"7.0+");
+                size.height -= MIN(application.statusBarFrame.size.width, application.statusBarFrame.size.height);
+            }
+            size.height -= self.toolbar.frame.size.height;
+            size.height -= kNavBarHeight;
+            
             CGRect webViewFrame = [[UIScreen mainScreen] applicationFrame];
             webViewFrame.origin.y = kNavBarHeight;
             webViewFrame.origin.x = 0;
-            webViewFrame.size.height = webViewFrame.size.height - kToolBarHeight - kNavBarHeight;
+            
+            webViewFrame.size = size;
+            
             UIWebView *newWebView = [[UIWebView alloc] initWithFrame:webViewFrame];
             newWebView.backgroundColor = [UIColor whiteColor];
             newWebView.scalesPageToFit = YES;
