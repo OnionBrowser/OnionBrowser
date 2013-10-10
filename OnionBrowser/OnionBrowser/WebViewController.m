@@ -566,12 +566,7 @@ static const Boolean kBackwardButton = NO;
             AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
             [appDelegate.tor requestNewTorIdentity];
             
-            NSHTTPCookie *cookie;
-            NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-            for (cookie in [storage cookies]) {
-                [storage deleteCookie:cookie];
-            }
-            [[NSURLCache sharedURLCache] removeAllCachedResponses];
+            [appDelegate wipeAppData];
             
             // Initialize a new UIWebView (to clear the history of the previous one)
             CGRect webViewFrame = [[UIScreen mainScreen] applicationFrame];

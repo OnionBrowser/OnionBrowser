@@ -39,5 +39,6 @@
 
 - (void)updateTorrc;
 - (NSURL *)applicationDocumentsDirectory;
+- (void)wipeAppData;
 
 @end

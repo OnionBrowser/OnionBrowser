@@ -26,10 +26,14 @@
 ;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Detect
+    // Detect bookmarks file.
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Settings.sqlite"];
     NSFileManager *fileManager = [NSFileManager defaultManager];
     doPrepopulateBookmarks = (![fileManager fileExistsAtPath:[storeURL path]]);
+    
+    // Wipe all cookies & caches from previous invocations of app (in case we didn't wipe
+    // cleanly upon exit last time)
+    [self wipeAppData];
 
     _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
@@ -100,8 +104,29 @@
             }
         }
     }
+}
+
+- (void)wipeAppData {
+    /* This is probably incredibly redundant since we just delete all the files, below */
+    NSHTTPCookie *cookie;
+    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    for (cookie in [storage cookies]) {
+        [storage deleteCookie:cookie];
+    }
+    [[NSURLCache sharedURLCache] removeAllCachedResponses];
     
-    
+    /* Delete all Caches, Cookies, Preferences in app's "Library" data dir. (Connection settings
+     * & etc end up in "Documents", not "Library".) */
+    NSArray *dataPaths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+    NSString *dataDir = ([dataPaths count] > 0) ? [dataPaths objectAtIndex:0] : nil;
+    if (dataDir != nil) {
+        NSString *cookiesDir = [NSString stringWithFormat:@"%@/Cookies", dataDir];
+        NSString *cachesDir = [NSString stringWithFormat:@"%@/Caches", dataDir];
+        NSString *prefsDir = [NSString stringWithFormat:@"%@/Preferences", dataDir];
+        [[NSFileManager defaultManager] removeItemAtPath:cookiesDir error:nil];
+        [[NSFileManager defaultManager] removeItemAtPath:cachesDir error:nil];
+        [[NSFileManager defaultManager] removeItemAtPath:prefsDir error:nil];
+    }
 }
 
 #pragma mark - Core Data stack
@@ -192,6 +217,11 @@
     // Don't want to call "activateTorCheckLoop" directly since we
     // want to HUP tor first.
     [_tor appDidBecomeActive];
+}
+
+- (void)applicationWillTerminate:(UIApplication *)application {
+    // Wipe all cookies & caches on the way out.
+    [self wipeAppData];
 }
 
 @end
