@@ -218,12 +218,16 @@
 
 - (void) alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if ([actionSheet.title isEqualToString:@"Please Restart App"]) {
+        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        [appDelegate wipeAppData];
         exit(0);
     } else {
         // One of the "Bridges Enabled" or "Bridges Disabled" prompts
         if (buttonIndex == 0) {
             [self dismissViewControllerAnimated:YES completion:nil];
         } else {
+            AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+            [appDelegate wipeAppData];
             exit(0);
         }
     }
