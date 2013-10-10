@@ -20,6 +20,12 @@ UseEntryGuards 1
 TunnelDirConns 1
 PreferTunneledDirConns 1
 
+# Use "ntor" connection handshake to help w/tor network congestion.
+# In theory, this is already happening since consensus is likely promoting "ntor" already.
+# It is now preferred by 0.2.4.17 relays: https://blog.torproject.org/blog/how-to-handle-millions-new-tor-clients
+# It is now on by default in 0.2.5.X: https://trac.torproject.org/projects/tor/ticket/8561
+UseNTorHandshake 1
+
 SafeLogging 1
 
 TestSocks 0
