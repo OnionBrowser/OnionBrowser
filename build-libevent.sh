@@ -35,7 +35,8 @@ VERIFYGPG=false # cross-certify issue w/key. http://www.gnupg.org/faq/subkey-cro
 
 # No need to change this since xcode build will only compile in the
 # necessary bits from the libraries we create
-ARCHS="i386 x86_64 armv7 armv7s arm64"
+#ARCHS="i386 x86_64 armv7 armv7s arm64"
+ARCHS="i386 armv7 armv7s"
 
 DEVELOPER=`xcode-select -print-path`
 #DEVELOPER="/Applications/Xcode.app/Contents/Developer"

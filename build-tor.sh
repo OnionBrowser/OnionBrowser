@@ -23,6 +23,7 @@
 #  Choose your tor version and your currently-installed iOS SDK version:
 #
 VERSION="0.2.4.17-rc"
+#VERSION="0.2.5.1-alpha"
 SDKVERSION="7.0"
 MINIOSVERSION="6.0"
 VERIFYGPG=false
@@ -35,7 +36,8 @@ VERIFYGPG=false
 
 # No need to change this since xcode build will only compile in the
 # necessary bits from the libraries we create
-ARCHS="i386 x86_64 armv7 armv7s arm64"
+#ARCHS="i386 x86_64 armv7 armv7s arm64"
+ARCHS="i386 armv7 armv7s"
 
 DEVELOPER=`xcode-select -print-path`
 #DEVELOPER="/Applications/Xcode.app/Contents/Developer"
@@ -200,6 +202,10 @@ do
     cp micro-revision.i "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/"
     cp orconfig.h "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/"
     cp src/ext/ht.h "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/"
+    set +e # dont bail on error
+    # for Tor 0.2.5.X
+    cp src/ext/tor_queue.h "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/"
+    set -e # back to regular "bail out on error" mode
     find src/common -name "*.h" -exec cp {} "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/common/" \;
     find src/or -name "*.h" -exec cp {} "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/or/" \;
     find src/or -name "*.i" -exec cp {} "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/or/" \;
