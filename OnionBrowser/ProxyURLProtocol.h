@@ -10,7 +10,7 @@
 
 #import "CKHTTPConnection.h"
 
-@interface ProxyURLProtocol : NSURLProtocol <CKHTTPConnectionDelegate> {
+@interface ProxyURLProtocol : NSURLProtocol <CKHTTPConnectionDelegate, UIAlertViewDelegate> {
     NSURLRequest *_request;
     CKHTTPConnection *_connection;
     NSMutableData *_data;
