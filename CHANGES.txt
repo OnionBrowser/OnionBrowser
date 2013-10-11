@@ -1,8 +1,8 @@
 Onion Browser Version History (since 1.2.2)
 
 
-===== 1.3.10 - In Development =====
-Oct ??, 2013 - Submit date
+===== 1.3.10 - Pending =====
+Oct 11, 2013 - Submit date
 ??? ??, ???? - App store availability
 
 * MAJOR PRIVACY ISSUE FIXED: App previously did not successfully wipe
