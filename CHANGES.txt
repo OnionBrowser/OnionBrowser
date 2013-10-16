@@ -1,9 +1,9 @@
 Onion Browser Version History (since 1.2.2)
 
 
-===== 1.3.10 - Pending =====
+===== 1.3.10 - In App Store =====
 Oct 11, 2013 - Submit date
-??? ??, ???? - App store availability
+Oct 16, 2013 - App store availability
 
 * MAJOR PRIVACY ISSUE FIXED: App previously did not successfully wipe
   HTML5 "application storage" (aka "local storage" or "app cache"), even
@@ -28,7 +28,11 @@ Oct 11, 2013 - Submit date
   and helps reduce load on the overall Tor network.
   https://github.com/mtigas/iOS-OnionBrowser/commit/68deb93eab4e99527f959297be571514f4ea6911
 
-===== 1.3.9 - In App Store =====
+
+
+PREVIOUS VERSIONS:
+
+===== 1.3.9 =====
 Oct 06, 2013 - Submit date
 Oct 10, 2013 - App store availability
 
@@ -48,10 +52,6 @@ Oct 10, 2013 - App store availability
   Build Settings -> Architectures] and then selecting "Standard architectures
   (including 64-bit)". This will require you to change Deployment Target
   to 6.0 or greater.
-
-
-
-PREVIOUS VERSIONS:
 
 ===== 1.3.8 =====
 
