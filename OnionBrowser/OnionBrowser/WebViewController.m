@@ -66,10 +66,6 @@ static const Boolean kBackwardButton = NO;
     CGSize size = [UIScreen mainScreen].bounds.size;
     UIApplication *application = [UIApplication sharedApplication];
     
-    if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
-        size = CGSizeMake(size.height, size.width);
-    }
-    
     // if iOS <7, subtract statusbar. If iOS 7.0+, statusbar is part of topbar size.
     NSString *reqSysVer = @"7.0";
     NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
