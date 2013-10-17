@@ -1,6 +1,13 @@
 Onion Browser Version History (since 1.2.2)
 
 
+===== 1.3.11 - Pending =====
+Oct 17, 2013 - Submit date
+??? ??, 2013 - App store availability
+
+* Fix issue when opening app on iPad when in Landscape mode. ("Black bar"
+  problem.)
+
 ===== 1.3.10 - In App Store =====
 Oct 11, 2013 - Submit date
 Oct 16, 2013 - App store availability

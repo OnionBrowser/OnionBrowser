@@ -29,7 +29,7 @@ and App Store links.
 
 #### Technical notes
 
-* **OnionBrowser**: 1.3.10 (20131011.1) — [See changelog][changelog]
+* **OnionBrowser**: 1.3.11 (20131017.1) — [See changelog][changelog]
 * **Tor**: 0.2.4.17-rc (Sep 05 2013)
 * **libevent**: 2.0.21-stable (Nov 18 2012)
 * **OpenSSL**: 1.0.1e (Feb 11 2013)
@@ -59,7 +59,7 @@ auto-validation of the uploaded binary. (The `_NSGetEnviron()` code does not
 even compile when using iPhoneSDK due to that function being undefined.)
 See the patch files in `build-patches/` if you are interested in the changes.
 
-[tor_changelog]: https://gitweb.torproject.org/tor.git/blob/tor-0.2.4.15-rc:/ChangeLog
+[tor_changelog]: https://gitweb.torproject.org/tor.git/blob/tor-0.2.4.17-rc:/ChangeLog
 [tor_manual]: https://www.torproject.org/docs/tor-manual-dev.html.en
 
 0.2.3.17-beta introduced compiler and linker "hardening" ([Tor ticket 5210][ticket5210]),
