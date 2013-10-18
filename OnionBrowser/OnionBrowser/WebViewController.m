@@ -66,12 +66,6 @@ static const Boolean kBackwardButton = NO;
     CGSize size = [UIScreen mainScreen].bounds.size;
     UIApplication *application = [UIApplication sharedApplication];
     
-    // if iOS <7, subtract statusbar. If iOS 7.0+, statusbar is part of topbar size.
-    NSString *reqSysVer = @"7.0";
-    NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
-    if ([currSysVer compare:reqSysVer options:NSNumericSearch] == NSOrderedAscending) {
-        size.height -= application.statusBarFrame.size.height;
-    }
     size.height -= 44; // toolbar size
     size.height -= kNavBarHeight;
 
@@ -592,12 +586,6 @@ static const Boolean kBackwardButton = NO;
                 size = CGSizeMake(size.height, size.width);
             }
 
-            // if iOS <7, subtract statusbar. If iOS 7.0+, statusbar is part of topbar size.
-            NSString *reqSysVer = @"7.0";
-            NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
-            if ([currSysVer compare:reqSysVer options:NSNumericSearch] == NSOrderedAscending) {
-                size.height -= application.statusBarFrame.size.height;
-            }
             size.height -= 44; // toolbar size
             size.height -= kNavBarHeight;
             
