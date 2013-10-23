@@ -1,35 +1,29 @@
 Onion Browser is a Tor-capable web browser that lets you access the internet privately and anonymously.
 
-Featured in: Salon, ProPublica, TechCrunch, Boing Boing, Gizmodo, Lifehacker, Macworld, The Guardian, Cult of Mac, MSNBC, Geek.com
-
-“A Mobile Browser For The Truly Paranoid” - TechCrunch
-
-”Attention dissidents, free-thinkers or just people who are plain on the run: now you can take your iPad with you and not get caught.” - Cult of Mac
-
-“…if you're going to be your freaky online-self on your phone, at least cover your tracks.” - Gizmodo
+As featured in: Salon, ProPublica, TechCrunch, Boing Boing, Gizmodo, Lifehacker, Macworld, The Guardian, Cult of Mac, MSNBC, Geek.com
 
 --------------------
 
-• Internet access tunneled over the Tor onion router network:
+• Internet access tunneled over the Tor network:
 - Websites do not see your real IP address.
-- Your connection is encrypted before it leaves your device, providing protection against snooping by ISPs or people who share a WiFi connection with you.
-- Tunnel bypasses restrictive firewalls: you can access the entire Internet from behind ISPs or corporate connections, or when inside countries that practice online censorship.
+- All browsing is encrypted before it leaves your device, protecting your data on insecure wireless networks.
+- Bypass restrictive firewalls: you can access the entire Internet from behind ISP/corporate connections that filter websites, or when inside regions that practice online censorship. (See CONNECTIVITY NOTE below.)
 - Access websites on the "dark net" of anonymous .onion web sites, only accessible in the Tor network.
 
-• User-Agent spoofing option can the fact that you are using an iPhone/iPad from websites you visit.
+• Defeat online tracking: change IP address and clear cookies/history/cache/HTML5 storage in one button.
+
+• User-Agent spoofing option can hide the fact that you are using an iPhone/iPad.
 
 • Ability to block third party cookies or all cookies.
-
-• Can change IP address and clear cookies/history/cache in one button.
 
 See onionbrowser.com for more information & privacy caveats.
 
 PERFORMANCE NOTE: web browsing through the anonymization network will be SIGNIFICANTLY SLOWER than through a non-tunneled browser.
 
-CHINA/IRAN NOTE: Due to online censorship techniques using deep-packet inspection (DPI), this app does NOT currently function in China or Iran.
+CONNECTIVITY NOTE: App does NOT function in China, Iran, and other locations known to employ Deep Packet Inspection (DPI) censorship technology to block Tor connections.
 
 --------------------
 
-Onion Browser is open-source software and relies on other projects including The Tor Project. The developer encourages users to donate to the Tor Project and the Electronic Frontier Foundation to support Tor and to the cause of online privacy rights. (See onionbrowser.com for more details on source code and how to donate to these organizations.)
+Onion Browser is open-source software and relies on other projects including The Tor Project. The developer encourages users to donate to the Tor Project and the Electronic Frontier Foundation to support Tor and to the cause of online privacy rights. See onionbrowser.com for more information.
 
 Onion Browser is not affiliated with nor endorsed by the Tor Project. Onion Browser carries no guarantee from The Tor Project about quality, suitability or anything else.
