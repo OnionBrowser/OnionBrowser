@@ -61,22 +61,23 @@ static const Boolean kBackwardButton = NO;
     UIView *contentView = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
     self.view = contentView;
 
-    
     // Initialize a new UIWebView (to clear the history of the previous one)
     CGSize size = [UIScreen mainScreen].bounds.size;
-    UIApplication *application = [UIApplication sharedApplication];
-    
-    if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
-        size = CGSizeMake(size.height, size.width);
-    }
-    
-    // if iOS <7, subtract statusbar. If iOS 7.0+, statusbar is part of topbar size.
-    NSString *reqSysVer = @"7.0";
-    NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
-    if ([currSysVer compare:reqSysVer options:NSNumericSearch] == NSOrderedAscending) {
-        size.height -= application.statusBarFrame.size.height;
-    }
-    size.height -= 44; // toolbar size
+ 
+   // Flip if we are rotated
+   //if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
+   //    size = CGSizeMake(size.height, size.width);
+   //}
+
+    //NSString *reqSysVer = @"7.0";
+    //NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
+    //if ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending) {
+        // 7.0+
+    //    size.height -= 40.0f;
+    //} else {
+        size.height -= 20.0f;
+    //}
+    size.height -= kToolBarHeight;
     size.height -= kNavBarHeight;
 
     CGRect webViewFrame = [[UIScreen mainScreen] applicationFrame];
@@ -590,19 +591,19 @@ static const Boolean kBackwardButton = NO;
             
             // Initialize a new UIWebView (to clear the history of the previous one)
             CGSize size = [UIScreen mainScreen].bounds.size;
-            UIApplication *application = [UIApplication sharedApplication];
-
+            
+            // Flip if we are rotated
             if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
                 size = CGSizeMake(size.height, size.width);
             }
-
-            // if iOS <7, subtract statusbar. If iOS 7.0+, statusbar is part of topbar size.
-            NSString *reqSysVer = @"7.0";
-            NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
-            if ([currSysVer compare:reqSysVer options:NSNumericSearch] == NSOrderedAscending) {
-                size.height -= application.statusBarFrame.size.height;
+            
+            //NSString *reqSysVer = @"7.0";
+            //NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
+            if (YES) {//([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending) {
+                // 7.0+
+                size.height -= 20.0f;
             }
-            size.height -= 44; // toolbar size
+            size.height -= kToolBarHeight;
             size.height -= kNavBarHeight;
             
             CGRect webViewFrame = [[UIScreen mainScreen] applicationFrame];

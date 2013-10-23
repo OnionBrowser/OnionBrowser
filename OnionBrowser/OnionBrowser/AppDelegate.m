@@ -118,15 +118,28 @@
     /* Delete all Caches, Cookies, Preferences in app's "Library" data dir. (Connection settings
      * & etc end up in "Documents", not "Library".) */
     NSArray *dataPaths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
-    NSString *dataDir = ([dataPaths count] > 0) ? [dataPaths objectAtIndex:0] : nil;
-    if (dataDir != nil) {
-        NSString *cookiesDir = [NSString stringWithFormat:@"%@/Cookies", dataDir];
-        NSString *cachesDir = [NSString stringWithFormat:@"%@/Caches", dataDir];
-        NSString *prefsDir = [NSString stringWithFormat:@"%@/Preferences", dataDir];
-        [[NSFileManager defaultManager] removeItemAtPath:cookiesDir error:nil];
-        [[NSFileManager defaultManager] removeItemAtPath:cachesDir error:nil];
-        [[NSFileManager defaultManager] removeItemAtPath:prefsDir error:nil];
-    }
+    if ((dataPaths != nil) && ([dataPaths count] > 0)) {
+        NSString *dataDir = [dataPaths objectAtIndex:0];
+        NSFileManager *fm = [NSFileManager defaultManager];
+        
+        if ((dataDir != nil) && [fm fileExistsAtPath:dataDir isDirectory:nil]){
+            NSString *cookiesDir = [NSString stringWithFormat:@"%@/Cookies", dataDir];
+            if ([fm fileExistsAtPath:cookiesDir isDirectory:nil]){
+                //NSLog(@"COOKIES DIR");
+                [fm removeItemAtPath:cookiesDir error:nil];
+            }
+            NSString *cachesDir = [NSString stringWithFormat:@"%@/Caches", dataDir];
+            if ([fm fileExistsAtPath:cachesDir isDirectory:nil]){
+                //NSLog(@"CACHES DIR");
+                [fm removeItemAtPath:cachesDir error:nil];
+            }
+            NSString *prefsDir = [NSString stringWithFormat:@"%@/Preferences", dataDir];
+            if ([fm fileExistsAtPath:prefsDir isDirectory:nil]){
+                //NSLog(@"PREFS DIR");
+                [fm removeItemAtPath:prefsDir error:nil];
+            }
+        }
+    } // TODO: otherwise, WTF
 }
 
 #pragma mark - Core Data stack
