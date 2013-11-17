@@ -8,6 +8,8 @@
 #import "AppDelegate.h"
 #include <Openssl/sha.h>
 #import "Bridge.h"
+#include <sys/types.h>
+#include <sys/sysctl.h>
 
 @implementation AppDelegate
 
@@ -236,5 +238,25 @@
     // Wipe all cookies & caches on the way out.
     [self wipeAppData];
 }
+
+- (NSUInteger) deviceType{
+    size_t size;
+    sysctlbyname("hw.machine", NULL, &size, NULL, 0);
+    char *machine = malloc(size);
+    sysctlbyname("hw.machine", machine, &size, NULL, 0);
+    NSString *platform = [NSString stringWithUTF8String:machine];
+    free(machine);
+
+    //NSLog(@"%@", platform);
+
+    if (([platform rangeOfString:@"iPhone"].location != NSNotFound)||([platform rangeOfString:@"iPod"].location != NSNotFound)) {
+        return 0;
+    } else if ([platform rangeOfString:@"iPad"].location != NSNotFound) {
+        return 1;
+    } else {
+        return 2;
+    }
+}
+
 
 @end

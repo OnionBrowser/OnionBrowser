@@ -58,40 +58,7 @@ static const Boolean kBackwardButton = NO;
 }
 
 -(void)loadView {
-    UIView *contentView = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
-    self.view = contentView;
-
-    // Initialize a new UIWebView (to clear the history of the previous one)
-    CGSize size = [UIScreen mainScreen].bounds.size;
- 
-   // Flip if we are rotated
-   //if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
-   //    size = CGSizeMake(size.height, size.width);
-   //}
-
-    //NSString *reqSysVer = @"7.0";
-    //NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
-    //if ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending) {
-        // 7.0+
-    //    size.height -= 40.0f;
-    //} else {
-        size.height -= 20.0f;
-    //}
-    size.height -= kToolBarHeight;
-    size.height -= kNavBarHeight;
-
-    CGRect webViewFrame = [[UIScreen mainScreen] applicationFrame];
-    webViewFrame.origin.y = kNavBarHeight;
-    webViewFrame.origin.x = 0;
-    webViewFrame.size = size;
-
-    _myWebView = [[UIWebView alloc] initWithFrame:webViewFrame];
-    _myWebView.backgroundColor = [UIColor whiteColor];
-    _myWebView.scalesPageToFit = YES;
-    _myWebView.contentScaleFactor = 3;
-    _myWebView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
-    _myWebView.delegate = self;
-    [self.view addSubview: _myWebView];
+    self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
 }
 
 - (void)renderTorStatus: (NSString *)statusLine {
@@ -185,6 +152,44 @@ static const Boolean kBackwardButton = NO;
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    /********** Initialize UIWebView **********/
+    // Initialize a new UIWebView (to clear the history of the previous one)
+    CGSize size = [UIScreen mainScreen].bounds.size;
+    
+    // Flip if we are rotated
+    //if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
+    //    size = CGSizeMake(size.height, size.width);
+    //}
+    
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSString *reqSysVer = @"7.0";
+    NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
+    if (
+        ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending) &&
+        ([appDelegate deviceType] == X_DEVICE_IS_IPAD)
+    ){
+        // 7.0+, iPad
+    } else {
+        size.height -= 20.0f;
+    }
+    size.height -= kToolBarHeight;
+    size.height -= kNavBarHeight;
+    
+    CGRect webViewFrame = [[UIScreen mainScreen] applicationFrame];
+    webViewFrame.origin.y = kNavBarHeight;
+    webViewFrame.origin.x = 0;
+    webViewFrame.size = size;
+    
+    _myWebView = [[UIWebView alloc] initWithFrame:webViewFrame];
+    _myWebView.backgroundColor = [UIColor whiteColor];
+    _myWebView.scalesPageToFit = YES;
+    _myWebView.contentScaleFactor = 3;
+    _myWebView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
+    _myWebView.delegate = self;
+    [self.view addSubview: _myWebView];
+
+    
+    /********** Create Toolbars **********/
     // Set up toolbar.
     _toolbar = [[UIToolbar alloc] init];
     [_toolbar setTintColor:[UIColor blackColor]];
@@ -247,7 +252,7 @@ static const Boolean kBackwardButton = NO;
     // (/actionsheets)
     
     
-    // Set up navbar
+    /********** Set Up Navbar **********/
     CGRect navBarFrame = self.view.bounds;
     navBarFrame.size.height = kNavBarHeight;
     UINavigationBar *navBar = [[UINavigationBar alloc] initWithFrame:navBarFrame];
@@ -258,8 +263,6 @@ static const Boolean kBackwardButton = NO;
                                    navBar.bounds.size.width - 2*kMargin, kLabelHeight);
 
     /* if iOS < 7.0 */
-    NSString *reqSysVer = @"7.0";
-    NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
     if ([currSysVer compare:reqSysVer options:NSNumericSearch] == NSOrderedAscending) {
         UILabel *label = [[UILabel alloc] initWithFrame:labelFrame];
         label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -319,7 +322,6 @@ static const Boolean kBackwardButton = NO;
     loadingStatus.text = @"Connecting...\n\n\n\n\n";
     [self.view addSubview:loadingStatus];
     
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     if (appDelegate.doPrepopulateBookmarks){
         [self prePopulateBookmarks];
     }
@@ -597,10 +599,14 @@ static const Boolean kBackwardButton = NO;
                 size = CGSizeMake(size.height, size.width);
             }
             
-            //NSString *reqSysVer = @"7.0";
-            //NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
-            if (YES) {//([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending) {
-                // 7.0+
+            NSString *reqSysVer = @"7.0";
+            NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
+            if (
+                ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending) &&
+                ([appDelegate deviceType] == X_DEVICE_IS_IPAD)
+            ){
+                // 7.0+, iPad, do nothing
+            } else {
                 size.height -= 20.0f;
             }
             size.height -= kToolBarHeight;

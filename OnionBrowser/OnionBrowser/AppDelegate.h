@@ -17,6 +17,10 @@
 #define UA_SPOOF_WIN7_TORBROWSER 1
 #define UA_SPOOF_SAFARI_MAC 2
 
+#define X_DEVICE_IS_IPHONE 0
+#define X_DEVICE_IS_IPAD 1
+#define X_DEVICE_IS_SIM 2
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) TorController *tor;
@@ -40,5 +44,7 @@
 - (void)updateTorrc;
 - (NSURL *)applicationDocumentsDirectory;
 - (void)wipeAppData;
+- (NSUInteger) deviceType;
+
 
 @end
