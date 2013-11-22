@@ -8,11 +8,20 @@ A minimal, open-source web browser for iOS that tunnels web traffic through
 the [Tor network][tor]. See the [official site][official] for more details
 and App Store links.
 
+* **OnionBrowser**: 1.3.13 (20131117.1) — [See changelog][changelog]
+* **[Tor][tor]**: 0.2.4.18-rc (Nov 16 2013)
+* **[libevent][libevent]**: 2.0.21-stable (Nov 18 2012)
+* **[OpenSSL][openssl]**: 1.0.1e (Feb 11 2013)
+
+
 [official]: http://onionbrowser.com/
 [help]: http://onionbrowser.com/help/
 [changelog]: https://raw.github.com/mtigas/iOS-OnionBrowser/master/CHANGES.txt
 [miketigas]: https://mike.tig.as/
 [license]: https://github.com/mtigas/iOS-OnionBrowser/blob/master/LICENSE
+[tor]: https://www.torproject.org/
+[libevent]: http://libevent.org/
+[openssl]: https://www.openssl.org/
 
 ---
 
@@ -27,21 +36,44 @@ and App Store links.
 
 ---
 
-#### Technical notes
+#### Integration notes
 
-* **OnionBrowser**: 1.3.13 (20131117.1) — [See changelog][changelog]
-* **Tor**: 0.2.4.18-rc (Nov 16 2013)
-* **libevent**: 2.0.21-stable (Nov 18 2012)
-* **OpenSSL**: 1.0.1e (Feb 11 2013)
+As of version 1.3.14 (to be released in December 2013),
+Onion Browser responds to two URL schemes: `onionbrowser://` and
+`onionbrowsers://`, representing HTTP and HTTPS URLs, respectively. These
+work like the URI schemes [in iOS Google Chrome][crios] and other popular
+third-party web browsers.
+
+* A URL of `onionbrowser://opennews.org/` will launch Onion Browser and
+  navigate the app to `http://opennews.org/`.
+* A URL of `onionbrowsers://mike.tig.as/` will launch Onion Browser and
+  navigate the app to `https://mike.tig.as/`.
+
+Allowing your own app to launch Onion Browser instead of Safari works similarly
+to [iOS Google Chrome][crios]:
+
+1. Check if Onion Browser is installed by seeing if iOS can open a
+   `onionbrowser://` URL.
+2. If so, replace the `http://` prefix with `onionbrowser://` and replace
+   the `https://` prefix with `onionbrowsers://`.
+3. Then tell iOS to open the newly defined URL (`newURL`) by executing
+   `[[UIApplication sharedApplication] openURL:newURL];`
+
+See [the Google Chrome iOS instructions][crios] for more details -- just note
+that you should replace their `googlechrome://` URL schemes with the proper
+`onionbrowser://` ones.
+
+[x-callback-url]: http://x-callback-url.com/
+[crios]: https://developers.google.com/chrome/mobile/docs/ios-links#uri_schemes
+
+---
+
+#### Compilation notes
 
 The app, when compiled, contains static library versions of [Tor][tor] and it's
 dependencies, [libevent][libevent] and [openssl][openssl].
 
-[tor]: https://www.torproject.org/
-[libevent]: http://libevent.org/
-[openssl]: https://www.openssl.org/
-
-The build scripts for Tor and these dependencies are based on
+The build scripts for Tor and other dependencies are based on
 [build-libssl.sh][build_libssl] from [x2on/OpenSSL-for-iPhone][openssliphone].
 The scripts are configured to compile universal binaries for armv7 and
 i386 (for the iOS Simulator).
@@ -137,7 +169,12 @@ containing the statically-compiled library files.
 Open `OnionBrowser/OnionBrowser.xcodeproj`. You should be
 able to compile and run the application at this point.
 
-The app and all dependencies are compiled to run against armv7s (iPhone 5's
-"A6" processor), armv7, and i386 targets, meaning that all devices since the
+The app and all dependencies are compiled to run against `armv7s` (iPhone 5's
+"A6" processor), `armv7`, and `i386` targets, meaning that all devices since the
 iPhone 4 (running at least iOS 5.0) and the iOS Simulators should be able to
 run the application.
+
+The app currently is not compiled for `arm64` (64-bit ARM processor in the
+iPhone 5S) because apps compiled for this target may only support iOS 6.1
+and later. This optimization may be revisited once support for iOS 5.X is
+dropped at a later date.
