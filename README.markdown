@@ -8,6 +8,8 @@ A minimal, open-source web browser for iOS that tunnels web traffic through
 the [Tor network][tor]. See the [official site][official] for more details
 and App Store links.
 
+---
+
 * **OnionBrowser**: 1.3.13 (20131117.1) — [See changelog][changelog]
 * **[Tor][tor]**: 0.2.4.18-rc (Nov 16 2013)
 * **[libevent][libevent]**: 2.0.21-stable (Nov 18 2012)
@@ -22,8 +24,6 @@ and App Store links.
 [tor]: https://www.torproject.org/
 [libevent]: http://libevent.org/
 [openssl]: https://www.openssl.org/
-
----
 
 <a href="https://d2p12wh0p3fo1n.cloudfront.net/files/20120918/a.png"><img src="https://d2p12wh0p3fo1n.cloudfront.net/files/20120918/a-100.jpg" width="100"/></a>
 <a href="https://d2p12wh0p3fo1n.cloudfront.net/files/20120918/b.png"><img src="https://d2p12wh0p3fo1n.cloudfront.net/files/20120918/b-100.jpg" width="100"/></a>
