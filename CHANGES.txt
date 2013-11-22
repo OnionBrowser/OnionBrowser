@@ -1,9 +1,18 @@
 Onion Browser Version History (since 1.2.2)
 
 
-===== 1.3.13 - Pending =====
+===== 1.3.14 - In Development =====
+
+* Fix broken links on start page.
+
+* Add ability for other apps to open links in Onion Browser by using
+  "onionbrowser://" (HTTP) or "onionbrowsers://" (HTTPS) URI protocol.
+  See README.
+
+
+===== 1.3.13 - In App Store =====
 Nov 17, 2013 - Submit date
-??? ??, ???? - App store availability
+Nov 20, 2013 - App store availability
 
 * More fixes to iPad "black bar" issue on iOS 7.0.
 
@@ -11,7 +20,10 @@ Nov 17, 2013 - Submit date
   security.
 
 
-===== 1.3.12 - In App Store =====
+
+PREVIOUS VERSIONS:
+
+===== 1.3.12  =====
 Oct 18, 2013 - Submit date
 Oct 23, 2013 - App store availability
 
@@ -25,10 +37,8 @@ Oct 23, 2013 - App store availability
   screen.
 
 
-PREVIOUS VERSIONS:
-
-
 ===== (No version 1.3.11) =====
+
 
 ===== 1.3.10  =====
 Oct 11, 2013 - Submit date

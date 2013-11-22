@@ -6,11 +6,11 @@
 </head><body>
 
 <!--
-<p><b><a href="https://check2.torproject.org/">Tor Check</a>:</b> In extremely rare cases, the Tor connection fails on app initialization. You should <a href="https://check2.torproject.org/">visit the official Tor Check page</a> to double-check that Onion Browser is using Tor.</p>
+<p><b><a href="https://check.torproject.org/">Tor Check</a>:</b> In extremely rare cases, the Tor connection fails on app initialization. You should <a href="https://check.torproject.org/">visit the official Tor Check page</a> to double-check that Onion Browser is using Tor.</p>
 <p>If it says you are not using Tor, <a href="onionbrowser:forcequit">force-quit the app</a> and re-launch before browsing.</p>
 -->
 
-<p><b><a href="https://check2.torproject.org/">Tor Check</a>:</b> A green onion appears below. If it appears crossed with a &#x274C; mark or does not appear at all, <a href="https://check2.torproject.org/">open the full Tor Check page</a> to double-check your connection status.</p>
+<p><b><a href="http://check.torproject.org/">Tor Check</a>:</b> A green onion appears below. If it appears crossed with a &#x274C; mark or does not appear at all, <a href="https://check.torproject.org/">open the full Tor Check page</a> to double-check your connection status.</p>
 <div style="margin:0;padding:0width:100%;height:105px;overflow:hidden">
 <iframe style="width:100%;margin:-150px 0 0 0;padding:0" seamless="seamless" src="https://check.torproject.org/"></iframe>
 </div>
@@ -31,22 +31,20 @@
     <input style="position:absolute;right:15px;width:55px;top:0" type="submit" value="Search" />
     </div>
   </form>
-    In case .onion endpoint does not work:
+    Non-.onion alternatives:
     </li>
     <li><a href="https://duckduckgo.com/lite/">DuckDuckGo Web Search (HTTPS)</a>
     <li><a href="https://startpage.com/m/">StartPage/IxQuick Search (HTTPS)</a>
 </ul>
 <ul>
-    <li><a href="https://check2.torproject.org/">Am I Using Tor? / What is my IP? (Regular HTTPS)</a></li>
+    <li><a href="https://check.torproject.org/">Am I Using Tor? / What is my IP? (Regular HTTPS)</a></li>
     <li><a href="http://ifconfig.me/">ifconfig.me IP/User-Agent Check (Regular HTTP)</a></li>
 </ul>
 <hr />
-<p><b>Disclaimer:</b> Using Onion Browser does not inherently guarantee security or privacy. Note that web browsing
-   through Tor will be significantly slower than through a non-tunneled browser connection.</p>
-<p><b>Caveats:</b></p>
-<ul><li>HTML5 &lt;video&gt; tags will leak &lt;video&gt;-related DNS queries and data transfer outside of Tor.</li>
-<li>Javascript cannot be disabled, HTML5 Geolocation
-                API cannot be disabled.</li>
+<p><b>Disclaimer:</b> Using Onion Browser does not inherently guarantee security or privacy. Browsing
+   through Tor is significantly slower than through a non-tunneled browser connection.</p>
+   <ul><li>IMPORTANT: HTML5 &lt;video&gt; tags can leak queries and data transfers outside of Tor, therefore breaking anonymity.</li>
+<li>Javascript cannot be disabled, HTML5 Geolocation API cannot be disabled.</li>
 </ul>
 <p>Technical details of caveats, usage tips, &amp; latest app information can always be found at onionbrowser.com (<a href="http://tigas3l7uusztiqu.onion/onionbrowser/">.onion access</a>; <a href="https://mike.tig.as/onionbrowser/">regular HTTPS</a>).</p>
     <hr />
