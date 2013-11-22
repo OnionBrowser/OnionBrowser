@@ -37,7 +37,12 @@
 @property (nonatomic) Byte dntHeader;
 @property (nonatomic) Boolean usePipelining;
 
-@property (nonatomic) NSMutableArray *sslWhitelistedDomains; // for self-signed
+// either nil (for standard "onionbrowser:start" ) or url given by a "onionbrowser://" (HTTP)
+// or "onionbrowsers://" (HTTPS) callback url
+@property (nonatomic) NSURL *startUrl;
+
+// list for known domains w/self-signed certs
+@property (nonatomic) NSMutableArray *sslWhitelistedDomains;
 
 @property (nonatomic) Boolean doPrepopulateBookmarks;
 

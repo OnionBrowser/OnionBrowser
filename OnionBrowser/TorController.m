@@ -270,7 +270,13 @@
             if ([msgIn rangeOfString:@"BOOTSTRAP PROGRESS=100"].location != NSNotFound) {
                 // This is our first go-around (haven't loaded page into webView yet)
                 // but we are now at 100%, so go ahead.
-                [wvc loadURL:[NSURL URLWithString:@"onionbrowser:start"]];
+                if (appDelegate.startUrl != nil) {
+                    [wvc loadURL:appDelegate.startUrl];
+                } else {
+                    // Didn't launch with a "onionbrowser://" or "onionbrowsers://" URL
+                    // so just launch regular start page.
+                    [wvc loadURL:[NSURL URLWithString:@"onionbrowser:start"]];
+                }
                 didFirstConnect = YES;
                 
                 // See "checkTor call in middle of app" a little bit below.

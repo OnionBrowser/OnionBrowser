@@ -18,6 +18,7 @@
     dntHeader,
     usePipelining,
     sslWhitelistedDomains,
+    startUrl,
     appWebView,
     tor = _tor,
     window = _window,
@@ -66,82 +67,6 @@
     }
     
     return YES;
-}
-
-- (void)updateTorrc {
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *destTorrc = [[[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"torrc"] relativePath];
-    if ([fileManager fileExistsAtPath:destTorrc]) {
-        [fileManager removeItemAtPath:destTorrc error:NULL];
-    }
-    NSString *sourceTorrc = [[NSBundle mainBundle] pathForResource:@"torrc" ofType:nil];
-    NSError *error = nil;
-    [fileManager copyItemAtPath:sourceTorrc toPath:destTorrc error:&error];
-    if (error != nil) {
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        if (![fileManager fileExistsAtPath:sourceTorrc]) {
-            NSLog(@"(Source torrc %@ doesnt exist)", sourceTorrc);
-        }
-    }
-    
-    
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Bridge" inManagedObjectContext:self.managedObjectContext];
-    [request setEntity:entity];
-    
-    error = nil;
-    NSMutableArray *mutableFetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
-    if (mutableFetchResults == nil) {
-
-    } else if ([mutableFetchResults count] > 0) {
-        NSFileHandle *myHandle = [NSFileHandle fileHandleForWritingAtPath:destTorrc];
-        [myHandle seekToEndOfFile];
-        [myHandle writeData:[@"UseBridges 1\n" dataUsingEncoding:NSUTF8StringEncoding]];
-        for (Bridge *bridge in mutableFetchResults) {
-            if ([bridge.conf isEqualToString:@"Tap Here To Edit"]||[bridge.conf isEqualToString:@""]) {
-                // skip
-            } else {
-                [myHandle writeData:[[NSString stringWithFormat:@"bridge %@\n", bridge.conf]
-                                     dataUsingEncoding:NSUTF8StringEncoding]];
-            }
-        }
-    }
-}
-
-- (void)wipeAppData {
-    /* This is probably incredibly redundant since we just delete all the files, below */
-    NSHTTPCookie *cookie;
-    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-    for (cookie in [storage cookies]) {
-        [storage deleteCookie:cookie];
-    }
-    [[NSURLCache sharedURLCache] removeAllCachedResponses];
-    
-    /* Delete all Caches, Cookies, Preferences in app's "Library" data dir. (Connection settings
-     * & etc end up in "Documents", not "Library".) */
-    NSArray *dataPaths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
-    if ((dataPaths != nil) && ([dataPaths count] > 0)) {
-        NSString *dataDir = [dataPaths objectAtIndex:0];
-        NSFileManager *fm = [NSFileManager defaultManager];
-        
-        if ((dataDir != nil) && [fm fileExistsAtPath:dataDir isDirectory:nil]){
-            NSString *cookiesDir = [NSString stringWithFormat:@"%@/Cookies", dataDir];
-            if ([fm fileExistsAtPath:cookiesDir isDirectory:nil]){
-                //NSLog(@"COOKIES DIR");
-                [fm removeItemAtPath:cookiesDir error:nil];
-            }
-            NSString *cachesDir = [NSString stringWithFormat:@"%@/Caches", dataDir];
-            if ([fm fileExistsAtPath:cachesDir isDirectory:nil]){
-                //NSLog(@"CACHES DIR");
-                [fm removeItemAtPath:cachesDir error:nil];
-            }
-            NSString *prefsDir = [NSString stringWithFormat:@"%@/Preferences", dataDir];
-            if ([fm fileExistsAtPath:prefsDir isDirectory:nil]){
-                //NSLog(@"PREFS DIR");
-                [fm removeItemAtPath:prefsDir error:nil];
-            }
-        }
-    } // TODO: otherwise, WTF
 }
 
 #pragma mark - Core Data stack
@@ -239,6 +164,49 @@
     [self wipeAppData];
 }
 
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    NSString *urlStr = [url absoluteString];
+    NSURL *newUrl = nil;
+
+    #ifdef DEBUG
+        NSLog(@"Received URL: %@", urlStr);
+    #endif
+
+    if ([urlStr hasPrefix:@"onionbrowser:/"]) {
+        // HTTP
+        urlStr = [urlStr stringByReplacingCharactersInRange:NSMakeRange(0, 14) withString:@"http:/"];
+        #ifdef DEBUG
+            NSLog(@" -> %@", urlStr);
+        #endif
+        newUrl = [NSURL URLWithString:urlStr];
+    } else if ([urlStr hasPrefix:@"onionbrowsers:/"]) {
+        // HTTPS
+        urlStr = [urlStr stringByReplacingCharactersInRange:NSMakeRange(0, 15) withString:@"https:/"];
+        #ifdef DEBUG
+            NSLog(@" -> %@", urlStr);
+        #endif
+        newUrl = [NSURL URLWithString:urlStr];
+    } else {
+        return YES;
+    }
+    if (newUrl == nil) {
+        return YES;
+    }
+
+    if ([_tor didFirstConnect]) {
+        [appWebView loadURL:newUrl];
+    } else {
+        #ifdef DEBUG
+            NSLog(@" -> have not yet connected to tor, deferring load");
+        #endif
+        startUrl = newUrl;
+    }
+	return YES;
+}
+
+#pragma mark -
+#pragma mark App helpers
+
 - (NSUInteger) deviceType{
     size_t size;
     sysctlbyname("hw.machine", NULL, &size, NULL, 0);
@@ -257,6 +225,82 @@
         return 2;
     }
 }
+
+- (void)updateTorrc {
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *destTorrc = [[[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"torrc"] relativePath];
+    if ([fileManager fileExistsAtPath:destTorrc]) {
+        [fileManager removeItemAtPath:destTorrc error:NULL];
+    }
+    NSString *sourceTorrc = [[NSBundle mainBundle] pathForResource:@"torrc" ofType:nil];
+    NSError *error = nil;
+    [fileManager copyItemAtPath:sourceTorrc toPath:destTorrc error:&error];
+    if (error != nil) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        if (![fileManager fileExistsAtPath:sourceTorrc]) {
+            NSLog(@"(Source torrc %@ doesnt exist)", sourceTorrc);
+        }
+    }
+
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Bridge" inManagedObjectContext:self.managedObjectContext];
+    [request setEntity:entity];
+
+    error = nil;
+    NSMutableArray *mutableFetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+    if (mutableFetchResults == nil) {
+
+    } else if ([mutableFetchResults count] > 0) {
+        NSFileHandle *myHandle = [NSFileHandle fileHandleForWritingAtPath:destTorrc];
+        [myHandle seekToEndOfFile];
+        [myHandle writeData:[@"UseBridges 1\n" dataUsingEncoding:NSUTF8StringEncoding]];
+        for (Bridge *bridge in mutableFetchResults) {
+            if ([bridge.conf isEqualToString:@"Tap Here To Edit"]||[bridge.conf isEqualToString:@""]) {
+                // skip
+            } else {
+                [myHandle writeData:[[NSString stringWithFormat:@"bridge %@\n", bridge.conf]
+                                     dataUsingEncoding:NSUTF8StringEncoding]];
+            }
+        }
+    }
+}
+
+- (void)wipeAppData {
+    /* This is probably incredibly redundant since we just delete all the files, below */
+    NSHTTPCookie *cookie;
+    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    for (cookie in [storage cookies]) {
+        [storage deleteCookie:cookie];
+    }
+    [[NSURLCache sharedURLCache] removeAllCachedResponses];
+
+    /* Delete all Caches, Cookies, Preferences in app's "Library" data dir. (Connection settings
+     * & etc end up in "Documents", not "Library".) */
+    NSArray *dataPaths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+    if ((dataPaths != nil) && ([dataPaths count] > 0)) {
+        NSString *dataDir = [dataPaths objectAtIndex:0];
+        NSFileManager *fm = [NSFileManager defaultManager];
+
+        if ((dataDir != nil) && [fm fileExistsAtPath:dataDir isDirectory:nil]){
+            NSString *cookiesDir = [NSString stringWithFormat:@"%@/Cookies", dataDir];
+            if ([fm fileExistsAtPath:cookiesDir isDirectory:nil]){
+                //NSLog(@"COOKIES DIR");
+                [fm removeItemAtPath:cookiesDir error:nil];
+            }
+            NSString *cachesDir = [NSString stringWithFormat:@"%@/Caches", dataDir];
+            if ([fm fileExistsAtPath:cachesDir isDirectory:nil]){
+                //NSLog(@"CACHES DIR");
+                [fm removeItemAtPath:cachesDir error:nil];
+            }
+            NSString *prefsDir = [NSString stringWithFormat:@"%@/Preferences", dataDir];
+            if ([fm fileExistsAtPath:prefsDir isDirectory:nil]){
+                //NSLog(@"PREFS DIR");
+                [fm removeItemAtPath:prefsDir error:nil];
+            }
+        }
+    } // TODO: otherwise, WTF
+}
+
 
 
 @end
