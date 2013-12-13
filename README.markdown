@@ -152,6 +152,14 @@ For the newer Xcode 4.3+ installed via the App Store, the directory should be
 
 ### Building dependencies
 
+**Optional** PGP key verification. (Currently in testing.) The build script
+for OpenSSL verifies that the package downloaded is signed by one of the keys
+belonging to [an OpenSSl core developer](https://www.openssl.org/about/).
+You'll need to import these keys to your keychain to allow this to work.
+Support for key verification for the other two dependencies will be added in
+the future. (If you don't need PGP key verification, you should change
+`VERIFYGPG` to `false` in the `build-libssl.sh` script before continuing.)
+
 `cd` to the root directory of this repository and then run these commands in
 the following order to build the dependencies. (This can take anywhere between
 five and thirty minutes depending on your system speed.)
