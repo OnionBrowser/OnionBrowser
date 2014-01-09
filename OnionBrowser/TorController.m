@@ -23,7 +23,8 @@
     torCheckLoopTimer = _torCheckLoopTimer,
     torStatusTimeoutTimer = _torStatusTimeoutTimer,
     mSocket = _mSocket,
-    controllerIsAuthenticated = _controllerIsAuthenticated
+    controllerIsAuthenticated = _controllerIsAuthenticated,
+    connectionStatus = _connectionStatus
 ;
 
 -(id)init {
@@ -32,6 +33,7 @@
         _torSocksPort = (arc4random() % (65534-57344)) + 57344;
         
         _controllerIsAuthenticated = NO;
+        _connectionStatus = CONN_STATUS_NONE;
         
         // listen to changes in connection state
         // (tor has auto detection when external IP changes, but if we went
@@ -265,6 +267,11 @@
     } else if ([msgIn rangeOfString:@"-status/bootstrap-phase="].location != NSNotFound) {
         // Response to "getinfo status/bootstrap-phase"
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        
+        if ([msgIn rangeOfString:@"BOOTSTRAP PROGRESS=100"].location != NSNotFound) {
+            _connectionStatus = CONN_STATUS_CONNECTED;
+        }
+        
         WebViewController *wvc = appDelegate.appWebView;
         if (!didFirstConnect) {
             if ([msgIn rangeOfString:@"BOOTSTRAP PROGRESS=100"].location != NSNotFound) {

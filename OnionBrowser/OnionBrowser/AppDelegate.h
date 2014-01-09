@@ -50,6 +50,7 @@
 - (NSURL *)applicationDocumentsDirectory;
 - (void)wipeAppData;
 - (NSUInteger) deviceType;
+- (Boolean) isRunningTests;
 
 
 @end

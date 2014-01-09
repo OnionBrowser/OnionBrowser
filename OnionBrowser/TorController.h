@@ -12,8 +12,12 @@
 
 @interface TorController : NSObject
 
+#define CONN_STATUS_NONE 0
+#define CONN_STATUS_CONNECTED 1
+
 @property (nonatomic) NSUInteger controllerIsAuthenticated;
 @property (nonatomic) Boolean didFirstConnect;
+@property (nonatomic) NSUInteger connectionStatus;
 
 @property (nonatomic) TorWrapper *torThread;
 @property (nonatomic) NSTimer *torCheckLoopTimer;

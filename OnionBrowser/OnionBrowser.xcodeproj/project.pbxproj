@@ -47,6 +47,11 @@
 		696F9EB014F8DA6900BC5FDC /* torrc in Resources */ = {isa = PBXBuildFile; fileRef = 696F9EAF14F8DA6900BC5FDC /* torrc */; };
 		696F9EB414F8DD6D00BC5FDC /* ULINetSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 696F9EB314F8DD6D00BC5FDC /* ULINetSocket.m */; };
 		696F9EB614F8E21200BC5FDC /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696F9EB514F8E21200BC5FDC /* CFNetwork.framework */; };
+		697AB10A1866567400A6F3EE /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 697AB1091866567400A6F3EE /* XCTest.framework */; };
+		697AB10B1866567400A6F3EE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696EBD7914F7877900B81BC9 /* Foundation.framework */; };
+		697AB10C1866567400A6F3EE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696EBD7714F7877900B81BC9 /* UIKit.framework */; };
+		697AB1121866567400A6F3EE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 697AB1101866567400A6F3EE /* InfoPlist.strings */; };
+		697AB1141866567400A6F3EE /* OnionBrowserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 697AB1131866567400A6F3EE /* OnionBrowserTests.m */; };
 		697ABCD414FA036E00E1678C /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 697ABCD314FA036E00E1678C /* WebViewController.m */; };
 		697ABCD614FA042C00E1678C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 697ABCD514FA042C00E1678C /* SystemConfiguration.framework */; };
 		697ABCD814FA043300E1678C /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 697ABCD714FA043300E1678C /* MobileCoreServices.framework */; };
@@ -80,6 +85,16 @@
 		69F3C5FD14FC8739008274C3 /* CKHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F3C5F814FC8739008274C3 /* CKHTTPConnection.m */; };
 		69F88FCC1500A9D900C7BE98 /* geoip in Resources */ = {isa = PBXBuildFile; fileRef = 69F88FCB1500A9D900C7BE98 /* geoip */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		697AB1161866567400A6F3EE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 696EBD6A14F7877900B81BC9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 696EBD7214F7877900B81BC9;
+			remoteInfo = OnionBrowser;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		69156B5215FD4C6400BC560A /* BridgeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgeTableViewController.h; sourceTree = "<group>"; };
@@ -140,6 +155,12 @@
 		696F9EB214F8DD6D00BC5FDC /* ULINetSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ULINetSocket.h; sourceTree = "<group>"; };
 		696F9EB314F8DD6D00BC5FDC /* ULINetSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ULINetSocket.m; sourceTree = "<group>"; };
 		696F9EB514F8E21200BC5FDC /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		697AB1081866567400A6F3EE /* OnionBrowserTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OnionBrowserTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		697AB1091866567400A6F3EE /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		697AB10F1866567400A6F3EE /* OnionBrowserTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OnionBrowserTests-Info.plist"; sourceTree = "<group>"; };
+		697AB1111866567400A6F3EE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		697AB1131866567400A6F3EE /* OnionBrowserTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OnionBrowserTests.m; sourceTree = "<group>"; };
+		697AB1151866567400A6F3EE /* OnionBrowserTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OnionBrowserTests-Prefix.pch"; sourceTree = "<group>"; };
 		697ABCD214FA036E00E1678C /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		697ABCD314FA036E00E1678C /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		697ABCD514FA042C00E1678C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -206,6 +227,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		697AB1051866567400A6F3EE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				697AB10A1866567400A6F3EE /* XCTest.framework in Frameworks */,
+				697AB10C1866567400A6F3EE /* UIKit.framework in Frameworks */,
+				697AB10B1866567400A6F3EE /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -239,6 +270,7 @@
 				696F9EB114F8DD5300BC5FDC /* ThirdParty */,
 				69BB0A4C14F8D31800E7E909 /* Tor */,
 				696EBD7D14F7877900B81BC9 /* OnionBrowser */,
+				697AB10D1866567400A6F3EE /* OnionBrowserTests */,
 				696EBD7614F7877900B81BC9 /* Frameworks */,
 				69737A9B14FCD20600775275 /* Resources */,
 				696EBD7414F7877900B81BC9 /* Products */,
@@ -249,6 +281,7 @@
 			isa = PBXGroup;
 			children = (
 				696EBD7314F7877900B81BC9 /* OnionBrowser.app */,
+				697AB1081866567400A6F3EE /* OnionBrowserTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -265,6 +298,7 @@
 				696EBD7914F7877900B81BC9 /* Foundation.framework */,
 				696EBD7B14F7877900B81BC9 /* CoreGraphics.framework */,
 				696F9EB514F8E21200BC5FDC /* CFNetwork.framework */,
+				697AB1091866567400A6F3EE /* XCTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -358,6 +392,25 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		697AB10D1866567400A6F3EE /* OnionBrowserTests */ = {
+			isa = PBXGroup;
+			children = (
+				697AB1131866567400A6F3EE /* OnionBrowserTests.m */,
+				697AB10E1866567400A6F3EE /* Supporting Files */,
+			);
+			path = OnionBrowserTests;
+			sourceTree = "<group>";
+		};
+		697AB10E1866567400A6F3EE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				697AB10F1866567400A6F3EE /* OnionBrowserTests-Info.plist */,
+				697AB1101866567400A6F3EE /* InfoPlist.strings */,
+				697AB1151866567400A6F3EE /* OnionBrowserTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		69847C5514F788F600288277 /* External */ = {
 			isa = PBXGroup;
 			children = (
@@ -424,6 +477,24 @@
 			productReference = 696EBD7314F7877900B81BC9 /* OnionBrowser.app */;
 			productType = "com.apple.product-type.application";
 		};
+		697AB1071866567400A6F3EE /* OnionBrowserTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 697AB11B1866567400A6F3EE /* Build configuration list for PBXNativeTarget "OnionBrowserTests" */;
+			buildPhases = (
+				697AB1041866567400A6F3EE /* Sources */,
+				697AB1051866567400A6F3EE /* Frameworks */,
+				697AB1061866567400A6F3EE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				697AB1171866567400A6F3EE /* PBXTargetDependency */,
+			);
+			name = OnionBrowserTests;
+			productName = OnionBrowserTests;
+			productReference = 697AB1081866567400A6F3EE /* OnionBrowserTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -434,6 +505,9 @@
 				TargetAttributes = {
 					696EBD7214F7877900B81BC9 = {
 						DevelopmentTeam = 68QUP6KP2C;
+					};
+					697AB1071866567400A6F3EE = {
+						TestTargetID = 696EBD7214F7877900B81BC9;
 					};
 				};
 			};
@@ -450,6 +524,7 @@
 			projectRoot = "";
 			targets = (
 				696EBD7214F7877900B81BC9 /* OnionBrowser */,
+				697AB1071866567400A6F3EE /* OnionBrowserTests */,
 			);
 		};
 /* End PBXProject section */
@@ -492,6 +567,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		697AB1061866567400A6F3EE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				697AB1121866567400A6F3EE /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -523,13 +606,37 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		697AB1041866567400A6F3EE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				697AB1141866567400A6F3EE /* OnionBrowserTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		697AB1171866567400A6F3EE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 696EBD7214F7877900B81BC9 /* OnionBrowser */;
+			targetProxy = 697AB1161866567400A6F3EE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		696EBD8014F7877900B81BC9 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				696EBD8114F7877900B81BC9 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		697AB1101866567400A6F3EE /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				697AB1111866567400A6F3EE /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -705,6 +812,93 @@
 			};
 			name = Release;
 		};
+		697AB1181866567400A6F3EE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/OnionBrowser.app/OnionBrowser";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OnionBrowserTests/OnionBrowserTests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				INFOPLIST_FILE = "OnionBrowserTests/OnionBrowserTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		697AB1191866567400A6F3EE /* TestBuilds */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/OnionBrowser.app/OnionBrowser";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OnionBrowserTests/OnionBrowserTests-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				INFOPLIST_FILE = "OnionBrowserTests/OnionBrowserTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = TestBuilds;
+		};
+		697AB11A1866567400A6F3EE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/OnionBrowser.app/OnionBrowser";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OnionBrowserTests/OnionBrowserTests-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				INFOPLIST_FILE = "OnionBrowserTests/OnionBrowserTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -727,6 +921,15 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		697AB11B1866567400A6F3EE /* Build configuration list for PBXNativeTarget "OnionBrowserTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				697AB1181866567400A6F3EE /* Debug */,
+				697AB1191866567400A6F3EE /* TestBuilds */,
+				697AB11A1866567400A6F3EE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 

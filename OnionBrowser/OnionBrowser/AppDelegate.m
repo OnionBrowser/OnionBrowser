@@ -301,6 +301,12 @@
     } // TODO: otherwise, WTF
 }
 
+- (Boolean)isRunningTests {
+    NSDictionary* environment = [[NSProcessInfo processInfo] environment];
+    NSString* injectBundle = environment[@"XCInjectBundle"];
+    return [[injectBundle pathExtension] isEqualToString:@"xctest"];
+}
+
 
 
 @end
