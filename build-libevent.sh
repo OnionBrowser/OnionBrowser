@@ -25,7 +25,7 @@
 VERSION="2.0.21-stable"
 SDKVERSION="7.0"
 MINIOSVERSION="6.0"
-VERIFYGPG=true # cross-certify issue w/key. http://www.gnupg.org/faq/subkey-cross-certify.html
+VERIFYGPG=true
 
 ###########################################################################
 #
@@ -42,6 +42,10 @@ ARCHS="i386 armv7 armv7s"
 
 DEVELOPER=`xcode-select -print-path`
 #DEVELOPER="/Applications/Xcode.app/Contents/Developer"
+
+if [ "$1" == "--noverify" ]; then
+  VERIFYGPG=false
+fi
 
 cd "`dirname \"$0\"`"
 REPOROOT=$(pwd)

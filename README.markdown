@@ -170,8 +170,9 @@ work.
   0.2.4.20 is known to be signed by Roger Dingledine
   ([0x19F78451](http://pgp.mit.edu/pks/lookup?op=get&search=0x19F78451).
 
-If you don't care about PGP key verification, you'll need to change
-`VERIFYGPG` to `false` in each of the `build-*.sh` scripts before continuing.)
+If you don't care about PGP key verification, you'll need to run each of
+the scripts with the `--noverify` option or change `VERIFYGPG` to `false`
+in each of the `build-*.sh` scripts before continuing.)
 
 `cd` to the root directory of this repository and then run these commands in
 the following order to build the dependencies. (This can take anywhere between
