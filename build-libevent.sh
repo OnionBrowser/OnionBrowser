@@ -25,7 +25,7 @@
 VERSION="2.0.21-stable"
 SDKVERSION="7.0"
 MINIOSVERSION="6.0"
-VERIFYGPG=false # cross-certify issue w/key. http://www.gnupg.org/faq/subkey-cross-certify.html
+VERIFYGPG=true # cross-certify issue w/key. http://www.gnupg.org/faq/subkey-cross-certify.html
 
 ###########################################################################
 #

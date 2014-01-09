@@ -9,8 +9,9 @@ Onion Browser Version History (since 1.2.2)
   "onionbrowser://" (HTTP) or "onionbrowsers://" (HTTPS) URI protocol.
   See README.
 
-* OpenSSL updated to 1.0.1f, containing some security fixes.
+* OpenSSL updated to 1.0.1f.
 
+* Tor updated to 0.2.4.20.
 
 ===== 1.3.13 - In App Store =====
 Nov 17, 2013 - Submit date

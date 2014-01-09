@@ -152,13 +152,26 @@ For the newer Xcode 4.3+ installed via the App Store, the directory should be
 
 ### Building dependencies
 
-**Optional** PGP key verification. (Currently in testing.) The build script
-for OpenSSL verifies that the package downloaded is signed by one of the keys
-belonging to [an OpenSSl core developer](https://www.openssl.org/about/).
-You'll need to import these keys to your keychain to allow this to work.
-Support for key verification for the other two dependencies will be added in
-the future. (If you don't need PGP key verification, you should change
-`VERIFYGPG` to `false` in the `build-libssl.sh` script before continuing.)
+**Optional** PGP key verification. (Currently in testing.) The build scripts
+for OpenSSL, libevent, and tor, verify that the package downloaded is PGP
+signed by one of the useres responsible for packaging the library. You'll
+need to have GnuPG installed and import their public keys to allow this to
+work.
+
+* OpenSSL: [core developers](https://www.openssl.org/about/). 1.0.1f is known
+  to be signed by Dr Stephen Henson
+  [0xF295C759](http://pgp.mit.edu:11371/pks/lookup?op=vindex&search=0xF295C759).
+* libevent: [Nick Mathewson](http://www.wangafu.net/~nickm/)
+  ([0x165733EA](http://www.wangafu.net/~nickm/public_key.asc)) or
+  [Neils Provos](http://www.citi.umich.edu/u/provos/)
+  ([0xC2009841](http://www.citi.umich.edu/u/provos/pgp.key)). 2.0.21 is known
+  to be signed by Nick Matthewson 0x8D29319A (subkey of 0x165733EA).
+* tor: [signing key info](https://www.torproject.org/docs/signing-keys.html.en).
+  0.2.4.20 is known to be signed by Roger Dingledine
+  ([0x19F78451](http://pgp.mit.edu/pks/lookup?op=get&search=0x19F78451).
+
+If you don't care about PGP key verification, you'll need to change
+`VERIFYGPG` to `false` in each of the `build-*.sh` scripts before continuing.)
 
 `cd` to the root directory of this repository and then run these commands in
 the following order to build the dependencies. (This can take anywhere between
