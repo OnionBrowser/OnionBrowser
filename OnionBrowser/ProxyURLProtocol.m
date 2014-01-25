@@ -104,6 +104,12 @@
         if ([[[[self request] URL] absoluteString] rangeOfString:@"about"].location != NSNotFound) {
             /* onionbrowser:about */
             url = [NSURL URLWithString: [NSString stringWithFormat:@"file:/%@/about.html",resourcePath]];
+        } else if ([[[[self request] URL] absoluteString] rangeOfString:@"start2"].location != NSNotFound) {
+            /* onionbrowser:start2 */
+            url = [NSURL URLWithString: [NSString stringWithFormat:@"file:/%@/startup2.html",resourcePath]];
+        } else if ([[[[self request] URL] absoluteString] rangeOfString:@"icon"].location != NSNotFound) {
+            /* onionbrowser:icon */
+            url = [NSURL URLWithString: [NSString stringWithFormat:@"file:/%@/Icon@2x.png",resourcePath]];
         } else if ([[[[self request] URL] absoluteString] rangeOfString:@"forcequit"].location != NSNotFound) {
             /* onionbrowser:forcequit */
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Force-quitting"

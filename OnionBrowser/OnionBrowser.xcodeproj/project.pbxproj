@@ -34,6 +34,8 @@
 		694F34F7152ECFF20002BCBC /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 694F34EF152ECFF20002BCBC /* Icon-Small@2x.png */; };
 		694F34F8152ECFF20002BCBC /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 694F34F0152ECFF20002BCBC /* Icon@2x.png */; };
 		6954F8ED15FE985E00AE8658 /* NSData+CocoaDevUsersAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6954F8EC15FE985E00AE8658 /* NSData+CocoaDevUsersAdditions.m */; };
+		695BF045189444FF00C27BC1 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 695BF044189444FF00C27BC1 /* LICENSE */; };
+		695BF04718944B5500C27BC1 /* startup2.html in Resources */ = {isa = PBXBuildFile; fileRef = 695BF04618944B5500C27BC1 /* startup2.html */; };
 		6963E61615FAB2EC00310E8D /* BookmarkTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6963E61515FAB2EC00310E8D /* BookmarkTableViewController.m */; };
 		696C33AE1530D0D400990E69 /* startup.html in Resources */ = {isa = PBXBuildFile; fileRef = 696C33AD1530D0D400990E69 /* startup.html */; };
 		696EBD7814F7877900B81BC9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696EBD7714F7877900B81BC9 /* UIKit.framework */; };
@@ -135,6 +137,8 @@
 		694F34F0152ECFF20002BCBC /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "icon/Icon@2x.png"; sourceTree = "<group>"; };
 		6954F8EB15FE985E00AE8658 /* NSData+CocoaDevUsersAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+CocoaDevUsersAdditions.h"; sourceTree = "<group>"; };
 		6954F8EC15FE985E00AE8658 /* NSData+CocoaDevUsersAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+CocoaDevUsersAdditions.m"; sourceTree = "<group>"; };
+		695BF044189444FF00C27BC1 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		695BF04618944B5500C27BC1 /* startup2.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = startup2.html; sourceTree = "<group>"; };
 		6963E61415FAB2EC00310E8D /* BookmarkTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkTableViewController.h; sourceTree = "<group>"; };
 		6963E61515FAB2EC00310E8D /* BookmarkTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkTableViewController.m; sourceTree = "<group>"; };
 		696C33AD1530D0D400990E69 /* startup.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = startup.html; sourceTree = "<group>"; };
@@ -362,6 +366,7 @@
 		69737A9B14FCD20600775275 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				695BF044189444FF00C27BC1 /* LICENSE */,
 				69855E061531576800720327 /* about.html */,
 				6995CBF7153660D3000EFBE8 /* Default-Landscape.png */,
 				6995CBF8153660D3000EFBE8 /* Default-Landscape@2x.png */,
@@ -377,6 +382,7 @@
 				6993EB2A177EB43600F623CE /* Default-7-Portrait.png */,
 				6993EB2B177EB43600F623CE /* Default-7-Portrait@2x.png */,
 				696C33AD1530D0D400990E69 /* startup.html */,
+				695BF04618944B5500C27BC1 /* startup2.html */,
 				694F34E9152ECFF20002BCBC /* Icon.png */,
 				694F34EA152ECFF20002BCBC /* Icon-72.png */,
 				694F34EB152ECFF20002BCBC /* Icon-72@2x.png */,
@@ -543,6 +549,7 @@
 				694F34F3152ECFF20002BCBC /* Icon-72@2x.png in Resources */,
 				6993EB2D177EB43600F623CE /* Default-7-Landscape@2x.png in Resources */,
 				694F34F4152ECFF20002BCBC /* Icon-Small.png in Resources */,
+				695BF045189444FF00C27BC1 /* LICENSE in Resources */,
 				692E70F717EE3BB10063990F /* Icon-152.png in Resources */,
 				694F34F5152ECFF20002BCBC /* Icon-Small-50.png in Resources */,
 				694F34F6152ECFF20002BCBC /* Icon-Small-50@2x.png in Resources */,
@@ -554,6 +561,7 @@
 				692E70F917EE3BB10063990F /* Icon-76.png in Resources */,
 				6993EB2F177EB43600F623CE /* Default-7-Portrait@2x.png in Resources */,
 				69855E071531576800720327 /* about.html in Resources */,
+				695BF04718944B5500C27BC1 /* startup2.html in Resources */,
 				6995CBFD153660D3000EFBE8 /* Default-Landscape.png in Resources */,
 				6995CBFE153660D3000EFBE8 /* Default-Landscape@2x.png in Resources */,
 				6995CBFF153660D3000EFBE8 /* Default-Portrait.png in Resources */,
@@ -930,6 +938,7 @@
 				697AB11A1866567400A6F3EE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

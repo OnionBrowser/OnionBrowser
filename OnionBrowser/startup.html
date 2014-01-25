@@ -1,56 +1,7 @@
 <!doctype html><html lang="en"><head>
     <meta charset="utf-8"><title>OnionBrowser</title>
-    <style>body{font-size:13pt}</style>
-    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
-
+    <style>body{margin:0;padding:0;font-size:13pt}</style>
 </head><body>
-
-<!--
-<p><b><a href="https://check.torproject.org/">Tor Check</a>:</b> In extremely rare cases, the Tor connection fails on app initialization. You should <a href="https://check.torproject.org/">visit the official Tor Check page</a> to double-check that Onion Browser is using Tor.</p>
-<p>If it says you are not using Tor, <a href="onionbrowser:forcequit">force-quit the app</a> and re-launch before browsing.</p>
--->
-
-<p><b><a href="http://check.torproject.org/">Tor Check</a>:</b> A green onion appears below. If it appears crossed with a &#x274C; mark or does not appear at all, <a href="https://check.torproject.org/">open the full Tor Check page</a> to double-check your connection status.</p>
-<div style="margin:0;padding:0width:100%;height:105px;overflow:hidden">
-<iframe style="width:100%;margin:-150px 0 0 0;padding:0" seamless="seamless" src="https://check.torproject.org/"></iframe>
-</div>
-<p>If you are not connected to Tor, you should <a href="onionbrowser:forcequit">force-quit the app</a> and re-launch before browsing.</p>
-
-<p><b>Helpful Links:</b></p>
-<ul>
-    <!-- This is my default search engine here, because page responses tend to be
-         less than 30KB including all resources. Helpful for limited bandwidth
-         situations such as Tor and mobile, and we're doing both.
-         Note: the only reason we care about accessing the DDG .onion service
-         via HTTPS is because browsers will scrub HTTPS referers so that websites
-         we hit won't know we came from "3g2upl4pq6kufc4m.onion". -->
-    <li><a href="https://3g2upl4pq6kufc4m.onion/lite/">DuckDuckGo Web Search (.onion)</a>
-  <form action="https://3g2upl4pq6kufc4m.onion/lite/" method="POST">
-    <div style="position:relative;width:100%;height:1.5em">
-    <input style="position:absolute;left:0;right:75px;top:0" type="text" size="40" name="q" autocomplete="off" value="" />
-    <input style="position:absolute;right:15px;width:55px;top:0" type="submit" value="Search" />
-    </div>
-  </form>
-    Non-.onion alternatives:
-    </li>
-    <li><a href="https://duckduckgo.com/lite/">DuckDuckGo Web Search (HTTPS)</a>
-    <li><a href="https://startpage.com/m/">StartPage/IxQuick Search (HTTPS)</a>
-</ul>
-<ul>
-    <li><a href="https://check.torproject.org/">Am I Using Tor? / What is my IP? (Regular HTTPS)</a></li>
-    <li><a href="http://ifconfig.me/">ifconfig.me IP/User-Agent Check (Regular HTTP)</a></li>
-</ul>
-<hr />
-<p><b>Disclaimer:</b> Using Onion Browser does not inherently guarantee security or privacy. Browsing
-   through Tor is significantly slower than through a non-tunneled browser connection.</p>
-   <ul><li>IMPORTANT: HTML5 &lt;video&gt; tags can leak queries and data transfers outside of Tor, therefore breaking anonymity.</li>
-<li>Javascript cannot be disabled, HTML5 Geolocation API cannot be disabled.</li>
-</ul>
-<p>Technical details of caveats, usage tips, &amp; latest app information can always be found at onionbrowser.com (<a href="http://tigas3l7uusztiqu.onion/onionbrowser/">.onion access</a>; <a href="https://mike.tig.as/onionbrowser/">regular HTTPS</a>).</p>
-    <hr />
-<p>Enjoy Onion Browser? <a href="itms-apps://itunes.apple.com/us/app/onion-browser/id519296448">Review it in the App Store</a> &amp; let others know about it. Consider supporting the project via Bitcoin (<span style="font-size:12px;font-family:monospace">1KxxEKQCHv3GruYp3qQpQbNDLLjjV2dHPo</span>) or supporting the Tor Project or EFF. (More info: <a href="http://tigas3l7uusztiqu.onion/onionbrowser/#support-project">.onion</a>; <a href="https://mike.tig.as/onionbrowser/#support-project">regular HTTPS</a>)</p>
-<p>Having issues? See the help page (<a href="http://tigas3l7uusztiqu.onion/onionbrowser/help/">.onion</a>; <a href="https://mike.tig.as/onionbrowser/help/">regular HTTPS</a>) or try <a href="onionbrowser:forcequit">force-quitting the app</a> and re-launching.
-<p><a href="onionbrowser:about">About / License</a></p>
-
-
+    <iframe style="width:100%;margin:0;padding:0;border:none;height:72px" seamless="seamless" src="onionbrowser:start2"></iframe>
+    <iframe style="width:100%;margin:0;padding:0;border:none" seamless="seamless" src="https://check.torproject.org/"></iframe>
 </body></html>
