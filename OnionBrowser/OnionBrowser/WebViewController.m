@@ -335,30 +335,46 @@ static const Boolean kBackwardButton = NO;
     NSUInteger i = 0;
     
     Bookmark *bookmark;
+
+    bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
+    [bookmark setTitle:@"DuckDuckGo Search (.onion)"];
+    [bookmark setUrl:@"https://3g2upl4pq6kufc4m.onion/lite/"];
+    [bookmark setOrder:i++];
     
     bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
-    [bookmark setTitle:@"The Tor Project (.onion)"];
+    [bookmark setTitle:@"DuckDuckGo Search (HTTPS)"];
+    [bookmark setUrl:@"https://duckduckgo.com/lite/"];
+    [bookmark setOrder:i++];
+    
+    bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
+    [bookmark setTitle:@"StartPage Search Engine"];
+    [bookmark setUrl:@"https://startpage.com/m/"];
+    [bookmark setOrder:i++];
+    
+    bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
+    [bookmark setTitle:@"ifconfig.me Identity Check"];
+    [bookmark setUrl:@"http://ifconfig.me/"];
+    [bookmark setOrder:i++];
+    
+
+    bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
+    [bookmark setTitle:@"The Tor Project"];
     [bookmark setUrl:@"http://idnxcnkne4qt76tg.onion/"];
     [bookmark setOrder:i++];
     
     bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
-    [bookmark setTitle:@"Tor Project News (HTTPS)"];
+    [bookmark setTitle:@"Tor Project News"];
     [bookmark setUrl:@"https://blog.torproject.org/"];
     [bookmark setOrder:i++];
     
     bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
-    [bookmark setTitle:@"The Hidden Wiki Mirror (.onion)"];
-    [bookmark setUrl:@"http://wikitjerrta4qgz4.onion/"];
+    [bookmark setTitle:@"Electronic Frontier Foundation"];
+    [bookmark setUrl:@"https://www.eff.org/"];
     [bookmark setOrder:i++];
     
     bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
-    [bookmark setTitle:@"Reddit /r/onions"];
-    [bookmark setUrl:@"http://www.reddit.com/r/onions"];
-    [bookmark setOrder:i++];
-    
-    bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
-    [bookmark setTitle:@"Reddit /r/netsec"];
-    [bookmark setUrl:@"http://www.reddit.com/r/netsec"];
+    [bookmark setTitle:@"Tactical Technology Collective"];
+    [bookmark setUrl:@"https://tacticaltech.org/"];
     [bookmark setOrder:i++];
     
     NSError *error = nil;
