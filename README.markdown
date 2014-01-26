@@ -37,7 +37,7 @@ and App Store links.
 
 #### Integration notes
 
-As of version 1.3.14 (to be released in December 2013),
+As of version 1.3.14 (January 2014),
 Onion Browser responds to two URL schemes: `onionbrowser://` and
 `onionbrowsers://`, representing HTTP and HTTPS URLs, respectively. These
 work like the URI schemes [in iOS Google Chrome][crios] and other popular
