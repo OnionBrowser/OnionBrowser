@@ -3,7 +3,11 @@ Onion Browser Version History (since 1.2.2)
 
 ===== 1.3.14 - In Development =====
 
-* Fix broken links on start page.
+* Update default start page.
+
+* Update default bookmarks.
+
+* Tweak "Connecting..." info page, based on input from Wong Choon Jie.
 
 * Add ability for other apps to open links in Onion Browser by using
   "onionbrowser://" (HTTP) or "onionbrowsers://" (HTTPS) URI protocol.

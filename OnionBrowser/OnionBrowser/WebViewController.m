@@ -65,7 +65,7 @@ static const Boolean kBackwardButton = NO;
     // TODO: really needs cleanup / prettiness
     //       (turn into semi-transparent modal with spinner?)
     UILabel *loadingStatus = (UILabel *)[self.view viewWithTag:kLoadingStatusTag];
-                                                                       
+
     _torStatus = [NSString stringWithFormat:@"%@\n%@",
                   _torStatus, statusLine];
     NSRange progress_loc = [statusLine rangeOfString:@"BOOTSTRAP PROGRESS="];
@@ -85,11 +85,10 @@ static const Boolean kBackwardButton = NO;
     if (summary_loc2.location != NSNotFound)
         summary_str = [summary_str substringToIndex:summary_loc2.location];
 
-    NSString *status = [NSString stringWithFormat:@"Connecting… This may take a minute.\n\nIf this takes longer than 60 seconds, please close and re-open the app to try connecting from scratch.\n\nIf this problem persists, you can try connecting via Tor bridges by pressing the \"options\" button below. Visit http://onionbrowser.com/help/ if you need help with bridges or if you continue to have issues.\n\n%@%%\n%@",
+    NSString *status = [NSString stringWithFormat:@"Connecting… %@%%\n%@\n\nIf this takes longer than a minute, please close and re-open the app.\n\nIf problem persists, you can try connecting via Tor bridges by pressing the \"options\" button below.\n\nVisit http://onionbrowser.com/help/ if you need help with bridges or if you continue to have issues.",
                             progress_str,
                             summary_str];
     loadingStatus.text = status;
-   
 }
 
 -(void)loadURL: (NSURL *)navigationURL {
@@ -318,10 +317,9 @@ static const Boolean kBackwardButton = NO;
     loadingStatus.numberOfLines = 0;
     loadingStatus.font = [UIFont fontWithName:@"Helvetica" size:(18.0)];
     loadingStatus.lineBreakMode = NSLineBreakByWordWrapping;
-    loadingStatus.textAlignment =  NSTextAlignmentLeft;
+    loadingStatus.textAlignment =  NSTextAlignmentCenter;
     loadingStatus.text = @"Connecting...\n\n\n\n\n";
     [self.view addSubview:loadingStatus];
-    
     if (appDelegate.doPrepopulateBookmarks){
         [self prePopulateBookmarks];
     }
