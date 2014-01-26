@@ -85,7 +85,7 @@ static const Boolean kBackwardButton = NO;
     if (summary_loc2.location != NSNotFound)
         summary_str = [summary_str substringToIndex:summary_loc2.location];
 
-    NSString *status = [NSString stringWithFormat:@"Connecting… %@%%\n%@\n\nIf this takes longer than a minute, please close and re-open the app.\n\nIf problem persists, you can try connecting via Tor bridges by\npressing the middle (settings)\nbutton below.\n\nVisit the site below if you need help\nwith bridges or if you continue\nto have issues:\nhttp://onionbrowser.com/help/",
+    NSString *status = [NSString stringWithFormat:@"Connecting… %@%%\n%@\n\nIf this takes longer than a minute, please close and re-open the app.\n\nIf problem persists, you can try connecting via Tor bridges by\npressing the middle (settings)\nbutton below.\n\nVisit the site below if you need help\nwith bridges or if you continue\nto have issues:\nonionbrowser.com/help",
                             progress_str,
                             summary_str];
     loadingStatus.text = status;

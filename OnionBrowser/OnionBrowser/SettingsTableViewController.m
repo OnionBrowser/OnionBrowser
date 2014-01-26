@@ -228,12 +228,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if(indexPath.section == 0) {
-        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Home Page" message:@"Leave blank to use default\nhome page with Tor Check." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Save",nil];
-        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-        UITextField *textField = [alert textFieldAtIndex:0];
-
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         NSMutableDictionary *settings2 = appDelegate.getSettings;
+
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Home Page" message:@"Leave blank to use default\nhome page with Tor Check." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Save",nil];
+        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+        
+        UITextField *textField = [alert textFieldAtIndex:0];
+        [textField setKeyboardType:UIKeyboardTypeURL];
         textField.text = [settings2 objectForKey:@"homepage"];
         
         [alert show];
@@ -330,7 +332,10 @@
         if ([[[alertView textFieldAtIndex:0] text] length] == 0) {
             [settings setValue:@"onionbrowser:home" forKey:@"homepage"]; // DEFAULT HOMEPAGE
         } else {
-            [settings setValue:[[alertView textFieldAtIndex:0] text] forKey:@"homepage"];
+            NSString *h = [[alertView textFieldAtIndex:0] text];
+            if ( (![h hasPrefix:@"http:"]) && (![h hasPrefix:@"https:"]) && (![h hasPrefix:@"onionbrowser:"]) )
+                h = [NSString stringWithFormat:@"http://%@", h];
+            [settings setValue:h forKey:@"homepage"];
         }
         [appDelegate saveSettings:settings];
         [self.tableView reloadData];
