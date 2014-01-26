@@ -9,13 +9,20 @@
 #import "WebViewController.h"
 #import "TorController.h"
 
-#define DNT_HEADER_UNSET 0
-#define DNT_HEADER_CANTRACK 1
-#define DNT_HEADER_NOTRACK 2
+#define COOKIES_ALLOW_ALL 0
+#define COOKIES_BLOCK_THIRDPARTY 1
+#define COOKIES_BLOCK_ALL 2
 
 #define UA_SPOOF_NO 0
 #define UA_SPOOF_WIN7_TORBROWSER 1
 #define UA_SPOOF_SAFARI_MAC 2
+
+#define PIPELINING_OFF 0
+#define PIPELINING_ON 1
+
+#define DNT_HEADER_UNSET 0
+#define DNT_HEADER_CANTRACK 1
+#define DNT_HEADER_NOTRACK 2
 
 #define X_DEVICE_IS_IPHONE 0
 #define X_DEVICE_IS_IPAD 1
@@ -33,12 +40,8 @@
 
 @property (nonatomic) WebViewController *appWebView;
 
-@property (nonatomic) Byte spoofUserAgent;
-@property (nonatomic) Byte dntHeader;
-@property (nonatomic) Boolean usePipelining;
-
-// either nil (for standard "onionbrowser:start" ) or url given by a "onionbrowser://" (HTTP)
-// or "onionbrowsers://" (HTTPS) callback url
+// either nil (to load regular homepage) or url given by a "onionbrowser://" (HTTP)
+// or "onionbrowsers://" (HTTPS) callback url -- when this app is started from another app
 @property (nonatomic) NSURL *startUrl;
 
 // list for known domains w/self-signed certs
@@ -52,5 +55,9 @@
 - (NSUInteger) deviceType;
 - (Boolean) isRunningTests;
 
+- (NSString *)settingsFile;
+- (NSMutableDictionary *)getSettings;
+- (void)saveSettings:(NSMutableDictionary *)settings;
+- (NSString *)homepage;
 
 @end

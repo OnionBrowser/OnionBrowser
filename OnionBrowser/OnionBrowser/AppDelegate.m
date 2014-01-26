@@ -14,9 +14,6 @@
 @implementation AppDelegate
 
 @synthesize
-    spoofUserAgent,
-    dntHeader,
-    usePipelining,
     sslWhitelistedDomains,
     startUrl,
     appWebView,
@@ -50,9 +47,15 @@
 
     sslWhitelistedDomains = [[NSMutableArray alloc] init];
     
-    spoofUserAgent = UA_SPOOF_NO;
-    dntHeader = DNT_HEADER_UNSET;
-    usePipelining = YES;
+    NSMutableDictionary *settings = self.getSettings;
+    NSInteger cookieSetting = [[settings valueForKey:@"cookies"] integerValue];
+    if (cookieSetting == COOKIES_ALLOW_ALL) {
+        [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
+    } else if (cookieSetting == COOKIES_BLOCK_THIRDPARTY) {
+        [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyOnlyFromMainDocumentDomain];
+    } else if (cookieSetting == COOKIES_BLOCK_ALL) {
+        [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyNever];
+    }
     
     // Start the spinner for the "connecting..." phase
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
@@ -308,5 +311,52 @@
 }
 
 
+- (NSString *)settingsFile {
+    return [[[self applicationDocumentsDirectory] path] stringByAppendingPathComponent:@"Settings.plist"];
+}
+
+- (NSMutableDictionary *)getSettings {
+    NSString *errorDesc = nil;
+    NSPropertyListFormat format;
+    NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:self.settingsFile];
+    if (plistXML == nil) {
+        // We didn't have a settings file, so we'll want to initialize one now.
+        NSMutableDictionary *d = [NSMutableDictionary dictionary];
+        // SETTINGS DEFAULTS
+        [d setObject:@"onionbrowser:home" forKey:@"homepage"]; // DEFAULT HOMEPAGE
+        [d setObject:[NSNumber numberWithInteger:COOKIES_BLOCK_THIRDPARTY] forKey:@"cookies"];
+        [d setObject:[NSNumber numberWithInteger:UA_SPOOF_NO] forKey:@"uaspoof"];
+        [d setObject:[NSNumber numberWithInteger:PIPELINING_ON] forKey:@"pipelining"];
+        [d setObject:[NSNumber numberWithInteger:DNT_HEADER_UNSET] forKey:@"dnt"];
+        // END SETTINGS DEFAULTS
+        [self saveSettings:d];
+        return d;
+    } else {
+        return (NSMutableDictionary *)[NSPropertyListSerialization
+                                              propertyListFromData:plistXML
+                                              mutabilityOption:NSPropertyListMutableContainersAndLeaves
+                                              format:&format errorDescription:&errorDesc];
+    }
+}
+
+- (void)saveSettings:(NSMutableDictionary *)settings {
+    NSError *error;
+    NSData *data =
+    [NSPropertyListSerialization dataWithPropertyList:settings
+                                               format:NSPropertyListXMLFormat_v1_0
+                                              options:0
+                                                error:&error];
+    if (data == nil) {
+        NSLog (@"error serializing to xml: %@", error);
+        return;
+    } else {
+        [data writeToFile:self.settingsFile atomically:YES];
+    }
+}
+
+- (NSString *)homepage {
+    NSMutableDictionary *d = self.getSettings;
+    return [d objectForKey:@"homepage"];
+}
 
 @end

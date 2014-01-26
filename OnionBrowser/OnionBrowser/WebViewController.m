@@ -85,7 +85,7 @@ static const Boolean kBackwardButton = NO;
     if (summary_loc2.location != NSNotFound)
         summary_str = [summary_str substringToIndex:summary_loc2.location];
 
-    NSString *status = [NSString stringWithFormat:@"Connecting… %@%%\n%@\n\nIf this takes longer than a minute, please close and re-open the app.\n\nIf problem persists, you can try connecting via Tor bridges by pressing the \"options\" button below.\n\nVisit http://onionbrowser.com/help/ if you need help with bridges or if you continue to have issues.",
+    NSString *status = [NSString stringWithFormat:@"Connecting… %@%%\n%@\n\nIf this takes longer than a minute, please close and re-open the app.\n\nIf problem persists, you can try connecting via Tor bridges by\npressing the middle (settings)\nbutton below.\n\nVisit the site below if you need help\nwith bridges or if you continue\nto have issues:\nhttp://onionbrowser.com/help/",
                             progress_str,
                             summary_str];
     loadingStatus.text = status;
@@ -99,12 +99,13 @@ static const Boolean kBackwardButton = NO;
     }
 
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSMutableDictionary *settings = appDelegate.getSettings;
 
     // Build request and go.
     _myWebView.delegate = self;
     _myWebView.scalesPageToFit = YES;
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:navigationURL];
-    [req setHTTPShouldUsePipelining:appDelegate.usePipelining];
+    [req setHTTPShouldUsePipelining:[[settings valueForKey:@"pipelining"] integerValue]];
     [_myWebView loadRequest:req];
 
     _addressField.enabled = YES;
@@ -247,7 +248,7 @@ static const Boolean kBackwardButton = NO;
                                                delegate:self
                                       cancelButtonTitle:@"Close"
                                  destructiveButtonTitle:@"New Identity"
-                                      otherButtonTitles:@"Bookmark Current Page", @"Browser Settings", @"Open Start Page", @"About Onion Browser", nil];
+                                      otherButtonTitles:@"Bookmark Current Page", @"Browser Settings", @"Open Home Page", @"About Onion Browser", nil];
     // (/actionsheets)
     
     
@@ -671,7 +672,8 @@ static const Boolean kBackwardButton = NO;
             ////////////////////////////////////////////////////////
             // New Identity OR Return To Home
             ////////////////////////////////////////////////////////
-            [self loadURL:[NSURL URLWithString:@"onionbrowser:start"]];
+            AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+            [self loadURL:[NSURL URLWithString:appDelegate.homepage]];
         } else if (buttonIndex == 4) {
             ////////////////////////////////////////////////////////
             // About Page

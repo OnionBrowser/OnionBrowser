@@ -347,7 +347,9 @@
     //[NSMakeCollectable(result) autorelease];
     
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    Byte spoofUserAgent = appDelegate.spoofUserAgent;
+    NSMutableDictionary *settings = appDelegate.getSettings;
+
+    Byte spoofUserAgent = [[settings valueForKey:@"uaspoof"] integerValue];
 
     
     NSDictionary *HTTPHeaderFields = [self allHTTPHeaderFields];
@@ -375,7 +377,8 @@
                                          (__bridge CFStringRef)[HTTPHeaderFields objectForKey:aHTTPHeaderField]);
     }
     /* Do not track (DNT) header */
-    Byte dntHeader = appDelegate.dntHeader;
+    
+    Byte dntHeader = [[settings valueForKey:@"dnt"] integerValue];
     if (dntHeader != DNT_HEADER_UNSET) {
         // DNT_HEADER_CANTRACK is 0 and DNT_HEADER_NOTRACK is 1,
         // so we can pass that value in as the "DNT: X" value

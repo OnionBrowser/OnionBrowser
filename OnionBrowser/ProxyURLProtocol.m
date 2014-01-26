@@ -31,10 +31,12 @@
               client:(id <NSURLProtocolClient>)client {
 
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSMutableDictionary *settings = appDelegate.getSettings;
 
     // Modify request
     NSMutableURLRequest *myRequest = [request mutableCopy];
-    [myRequest setHTTPShouldUsePipelining:appDelegate.usePipelining];
+    
+    [myRequest setHTTPShouldUsePipelining:[[settings valueForKey:@"pipelining"] integerValue]];
     
     self = [super initWithRequest:myRequest
                    cachedResponse:cachedResponse
@@ -94,9 +96,6 @@
 
 - (void)startLoading {
     if ([[[[self request] URL] scheme] isEqualToString:@"onionbrowser"]) {
-        /*
-         This is either "onionbrowser:start" or "onionbrowser:about".
-         */
         NSURL *url;
         NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
         resourcePath = [resourcePath stringByReplacingOccurrencesOfString:@"/" withString:@"//"];
@@ -105,7 +104,7 @@
             /* onionbrowser:about */
             url = [NSURL URLWithString: [NSString stringWithFormat:@"file:/%@/about.html",resourcePath]];
         } else if ([[[[self request] URL] absoluteString] rangeOfString:@"start2"].location != NSNotFound) {
-            /* onionbrowser:start2 */
+            /* onionbrowser:start2 -- inner iframe banner */
             url = [NSURL URLWithString: [NSString stringWithFormat:@"file:/%@/startup2.html",resourcePath]];
         } else if ([[[[self request] URL] absoluteString] rangeOfString:@"icon"].location != NSNotFound) {
             /* onionbrowser:icon */
@@ -120,7 +119,7 @@
             [alert show];
             url = [NSURL URLWithString: [NSString stringWithFormat:@"file:/%@/startup.html",resourcePath]];
         } else {
-            /* onionbrowser:startup */
+            /* onionbrowser:home */
             url = [NSURL URLWithString: [NSString stringWithFormat:@"file:/%@/startup.html",resourcePath]];
         }
         NSMutableURLRequest *newRequest = [NSMutableURLRequest requestWithURL:url];
@@ -209,9 +208,10 @@
             NSLog(@"[ProxyURLProtocol] Got %d redirect from %@ to %@", response.statusCode, _request.URL, newURL);
         #endif
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        NSMutableDictionary *settings = appDelegate.getSettings;
 
         NSMutableURLRequest *newRequest = [_request mutableCopy];
-        [newRequest setHTTPShouldUsePipelining:appDelegate.usePipelining];
+        [newRequest setHTTPShouldUsePipelining:[[settings valueForKey:@"pipelining"] integerValue]];
         newRequest.URL = [NSURL URLWithString:newURL relativeToURL:_request.URL];
         _request = newRequest;
         [[self client] URLProtocol:self wasRedirectedToRequest:_request redirectResponse:response];
