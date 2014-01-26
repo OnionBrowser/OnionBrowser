@@ -41,23 +41,25 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 5;
+    return 6;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
+        return 1;
+    } else if (section == 1) {
         // Cookies
         return 3;
-    } else if (section == 1) {
+    } else if (section == 2) {
         // UA Spoofing
         return 3;
-    } else if (section == 2) {
+    } else if (section == 3) {
         // Pipelining
         return 2;
-    } else if (section == 3) {
+    } else if (section == 4) {
         // DNT header
         return 2;
-    } else if (section == 4) {
+    } else if (section == 5) {
         // Bridges
         return 1;
     }
@@ -65,15 +67,17 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    if(section == 0)
-        return @"Cookies\n(Changing Will Clear Cookies)";
+    if (section == 0)
+        return @"Home Page";
     else if (section == 1)
-        return @"User-Agent Spoofing\n* iOS Safari provides better mobile website compatibility.\n* Windows 7 string is recommended for privacy and uses the same string as the official Tor Browser Bundle.";
+        return @"Cookies\n(Changing Will Clear Cookies)";
     else if (section == 2)
-        return @"HTTP Pipelining\n(Disable if you have issues with images on some websites)";
+        return @"User-Agent Spoofing\n* iOS Safari provides better mobile website compatibility.\n* Windows 7 string is recommended for privacy and uses the same string as the official Tor Browser Bundle.";
     else if (section == 3)
-        return @"DNT (Do Not Track) Header";
+        return @"HTTP Pipelining\n(Disable if you have issues with images on some websites)";
     else if (section == 4)
+        return @"DNT (Do Not Track) Header";
+    else if (section == 5)
         return @"Tor Bridges\nSet up bridges if you have issues connecting to Tor. Remove all bridges to go back standard connection mode.\nSee http://onionbrowser.com/help/ for instructions.";
     else
         return nil;
@@ -89,6 +93,8 @@
     }
     
     if(indexPath.section == 0) {
+        cell.textLabel.text = @"https://check.torproject.org/";
+    } else if(indexPath.section == 1) {
         // Cookies
         NSHTTPCookie *cookie;
         NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
@@ -119,7 +125,7 @@
         } else if (indexPath.row == 2) {
             cell.textLabel.text = @"Block All";
         }
-    } else if (indexPath.section == 1) {
+    } else if (indexPath.section == 2) {
         // User-Agent
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         if (indexPath.row == 0) {
@@ -144,7 +150,7 @@
                 cell.accessoryType = UITableViewCellAccessoryNone;
             }
         }
-    } else if (indexPath.section == 2) {
+    } else if (indexPath.section == 3) {
         // Pipelining
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         
@@ -163,7 +169,7 @@
                 cell.accessoryType = UITableViewCellAccessoryNone;
             }
         }
-    } else if (indexPath.section == 3) {
+    } else if (indexPath.section == 4) {
         // DNT
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         
@@ -182,7 +188,7 @@
                 cell.accessoryType = UITableViewCellAccessoryNone;
             }
         }
-    } else if (indexPath.section == 4) {
+    } else if (indexPath.section == 5) {
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         
         NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -211,8 +217,19 @@
 
 #pragma mark - Table view delegate
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(indexPath.section == 0) {
+        return YES;
+    }
+    return NO;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if(indexPath.section == 0) {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Home Page" message:@"Home page URL:" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Save",nil];
+        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+        [alert show];
+    } else if(indexPath.section == 1) {
         // Cookies
         if (indexPath.row == 0) {
             [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
@@ -221,7 +238,7 @@
         } else if (indexPath.row == 2) {
             [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyNever];
         }
-    } else if (indexPath.section == 1) {
+    } else if (indexPath.section == 2) {
         // User-Agent
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         if (indexPath.row == 0) {
@@ -239,7 +256,7 @@
                                                   otherButtonTitles:nil];
             [alert show];
         }
-    } else if (indexPath.section == 2) {
+    } else if (indexPath.section == 3) {
         // Pipelining
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         if (indexPath.row == 0) {
@@ -247,7 +264,7 @@
         } else if (indexPath.row == 1) {
             appDelegate.usePipelining = NO;
         }
-    } else if (indexPath.section == 3) {
+    } else if (indexPath.section == 4) {
         // DNT
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         if (indexPath.row == 0) {
@@ -261,7 +278,7 @@
             [alert show];
             appDelegate.dntHeader = DNT_HEADER_NOTRACK;
         }
-    } else if (indexPath.section == 4) {
+    } else if (indexPath.section == 5) {
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
 
         BridgeTableViewController *bridgesVC = [[BridgeTableViewController alloc] initWithStyle:UITableViewStylePlain];
@@ -272,6 +289,13 @@
         [self presentViewController:navController animated:YES completion:nil];
     }
     [tableView reloadData];
+}
+
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 1) {
+        NSLog(@"Entered: %d %@", buttonIndex, [[alertView textFieldAtIndex:0] text]);
+    }
 }
 
 @end
