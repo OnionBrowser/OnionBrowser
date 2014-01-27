@@ -278,12 +278,18 @@
             [appDelegate saveSettings:settings];
             if ([[[UIDevice currentDevice] systemVersion] compare:@"6.0" options:NSNumericSearch] == NSOrderedAscending) {
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"iOS 5 Warning"
-                                                                message:[NSString stringWithFormat:@"You appear to be running a version of iOS earlier than 6.0. Support for blocking active content is only partially supported in iOS 5.0 and 5.1. You may have reduced security or you may encounter unusual behavior."]
+                                                                message:[NSString stringWithFormat:@"You appear to be running a version of iOS earlier than 6.0. Support for blocking active content is only partially supported in iOS 5.1. You may have reduced security or the app may crash more often."]
                                                                delegate:nil
                                                       cancelButtonTitle:@"OK"
                                                       otherButtonTitles:nil];
                 [alert show];
             }
+            UIAlertView *alert2 = [[UIAlertView alloc] initWithTitle:@"Experimental Feature"
+                                                            message:[NSString stringWithFormat:@"Active Content Blocking is an experimental feature.\n\nWhile disabling scripts makes it harder for websites to identify your device, the website may be able to tell if you are disabling scripts. This may be identifying information if you are the only user accessing a website while disabling scripts.\n\nSome websites may not work if active content is blocked.\n\nBlocking may cause Onion Browser to crash when loading script-heavy websites."]
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert2 show];
         }
     } else if(indexPath.section == 2) {
         // Cookies

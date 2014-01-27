@@ -4,14 +4,19 @@ Onion Browser Version History (since 1.2.2)
 ===== 1.3.14 - Pending App Store Review =====
 Jan 26 2014 - Submit date
 
+* MAJOR SECURITY IMPROVEMENT: Add experimental ability to turn off
+  JavaScript and other active content. See settings.
+
+  (COMPATIBILITY NOTE: Active content blocking is only partially supported
+  in iOS 5.1. Users are advised to upgrade their devices to a newer version
+  of iOS.)
+
 * Ability to set a custom home page. Revamped settings so that future
   customizations will be easier to implement.
 
 * Add ability for other apps to open links in Onion Browser. Other apps
   can use the "onionbrowser://" (HTTP) or "onionbrowsers://" (HTTPS) URI
   protocols to launch Onion Browser. See README.
-
-* Add experimental ability to turn off JavaScript.
 
 * Tweak "Connecting..." info page, based on input from Wong Choon Jie.
 
