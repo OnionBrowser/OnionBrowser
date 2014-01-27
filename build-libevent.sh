@@ -46,6 +46,9 @@ DEVELOPER=`xcode-select -print-path`
 if [ "$1" == "--noverify" ]; then
   VERIFYGPG=false
 fi
+if [ "$2" == "--i386only" ]; then
+  ARCHS="i386"
+fi
 
 cd "`dirname \"$0\"`"
 REPOROOT=$(pwd)

@@ -1,8 +1,8 @@
 language: objective-c
 install:
-  - ./build-libssl.sh --noverify
-  - ./build-libevent.sh --noverify
-  - ./build-tor.sh --noverify
+  - ./build-libssl.sh --noverify --i386only
+  - ./build-libevent.sh --noverify --i386only
+  - ./build-tor.sh --noverify --i386only
   - ./OnionBrowser/icon/install.sh
 
 xcode_project: OnionBrowser/OnionBrowser.xcodeproj
