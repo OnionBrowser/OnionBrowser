@@ -154,7 +154,7 @@ For the newer Xcode 4.3+ installed via the App Store, the directory should be
 
 **Optional** PGP key verification. (Currently in testing.) The build scripts
 for OpenSSL, libevent, and tor, verify that the package downloaded is PGP
-signed by one of the useres responsible for packaging the library. You'll
+signed by one of the users responsible for packaging the library. You'll
 need to have GnuPG installed and import their public keys to allow this to
 work.
 
