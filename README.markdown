@@ -11,7 +11,7 @@ and App Store links.
 
 ---
 
-* **OnionBrowser**: 1.3.14 (20140126.2) — [See changelog][changelog]
+* **OnionBrowser**: 1.3.14 (20140126.3) — [See changelog][changelog]
 * **[Tor][tor]**: 0.2.4.20 (Dec 23 2013)
 * **[libevent][libevent]**: 2.0.21-stable (Nov 18 2012)
 * **[OpenSSL][openssl]**: 1.0.1f (Jan 06 2014)

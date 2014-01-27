@@ -297,15 +297,15 @@
         NSMutableDictionary *settings = appDelegate.getSettings;
 
         if (indexPath.row == 0) {
-            [settings setObject:[NSNumber numberWithInteger:COOKIES_ALLOW_ALL] forKey:@"uaspoof"];
+            [settings setObject:[NSNumber numberWithInteger:COOKIES_ALLOW_ALL] forKey:@"cookies"];
             [appDelegate saveSettings:settings];
             [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
         } else if (indexPath.row == 1) {
-            [settings setObject:[NSNumber numberWithInteger:COOKIES_BLOCK_THIRDPARTY] forKey:@"uaspoof"];
+            [settings setObject:[NSNumber numberWithInteger:COOKIES_BLOCK_THIRDPARTY] forKey:@"cookies"];
             [appDelegate saveSettings:settings];
             [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyOnlyFromMainDocumentDomain];
         } else if (indexPath.row == 2) {
-            [settings setObject:[NSNumber numberWithInteger:COOKIES_BLOCK_ALL] forKey:@"uaspoof"];
+            [settings setObject:[NSNumber numberWithInteger:COOKIES_BLOCK_ALL] forKey:@"cookies"];
             [appDelegate saveSettings:settings];
             [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyNever];
         }
