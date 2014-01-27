@@ -39,6 +39,8 @@
     NSURL *url = [NSURL URLWithString:@"https://check.torproject.org/"];
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:url];
 
+    NSLog(@"Fetching https://check.torproject.org/ and looking for 'Congratulations.' text.");
+
     for (int i=0; i<6; i++) {
         [NSThread sleepForTimeInterval:2.5f];
         NSData *res = [NSURLConnection  sendSynchronousRequest:req returningResponse:NULL error:NULL];
@@ -46,6 +48,7 @@
         
         NSRange r = [result rangeOfString:@"Congratulations."];
         if (r.location != NSNotFound) {
+            NSLog(@"Found 'Congratulations.' text. Assuming we are connected to Tor. Passing test.");
             return;
         }
     }
