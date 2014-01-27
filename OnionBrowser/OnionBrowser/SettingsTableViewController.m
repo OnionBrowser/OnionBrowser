@@ -41,25 +41,28 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 6;
+    return 7;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
         return 1;
     } else if (section == 1) {
+        // Active Content
+        return 2;
+    } else if (section == 2) {
         // Cookies
         return 3;
-    } else if (section == 2) {
+    } else if (section == 3) {
         // UA Spoofing
         return 3;
-    } else if (section == 3) {
+    } else if (section == 4) {
         // Pipelining
         return 2;
-    } else if (section == 4) {
+    } else if (section == 5) {
         // DNT header
         return 2;
-    } else if (section == 5) {
+    } else if (section == 6) {
         // Bridges
         return 1;
     }
@@ -70,14 +73,16 @@
     if (section == 0)
         return @"Home Page";
     else if (section == 1)
-        return @"Cookies\n(Changing Will Clear Cookies)";
+        return @"Active Content\n(Javascript, Plugins, Multimedia, External Fonts, XHR, WebSockets)";
     else if (section == 2)
-        return @"User-Agent Spoofing\n* iOS Safari provides better mobile website compatibility.\n* Windows 7 string is recommended for privacy and uses the same string as the official Tor Browser Bundle.";
+        return @"Cookies\n(Changing Will Clear Cookies)";
     else if (section == 3)
-        return @"HTTP Pipelining\n(Disable if you have issues with images on some websites)";
+        return @"User-Agent Spoofing\n* iOS Safari provides better mobile website compatibility.\n* Windows 7 string is recommended for privacy and uses the same string as the official Tor Browser Bundle.";
     else if (section == 4)
-        return @"DNT (Do Not Track) Header";
+        return @"HTTP Pipelining\n(Disable if you have issues with images on some websites)";
     else if (section == 5)
+        return @"DNT (Do Not Track) Header";
+    else if (section == 6)
         return @"Tor Bridges\nSet up bridges if you have issues connecting to Tor. Remove all bridges to go back standard connection mode.\nSee http://onionbrowser.com/help/ for instructions.";
     else
         return nil;
@@ -96,7 +101,28 @@
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         NSMutableDictionary *settings2 = appDelegate.getSettings;
         cell.textLabel.text = [settings2 objectForKey:@"homepage"];
-    } else if(indexPath.section == 1) {
+    } else if (indexPath.section == 1) {
+        // Active Content
+        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        NSMutableDictionary *settings = appDelegate.getSettings;
+        NSInteger javascriptEnabled = [[settings valueForKey:@"javascript"] integerValue];
+
+        if (indexPath.row == 0) {
+            cell.textLabel.text = @"Allow All (Better Compatibility)";
+            if (javascriptEnabled == YES) {
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            } else {
+                cell.accessoryType = UITableViewCellAccessoryNone;
+            }
+        } else if (indexPath.row == 1) {
+            cell.textLabel.text = @"Block All (Better Security)";
+            if (javascriptEnabled == NO) {
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            } else {
+                cell.accessoryType = UITableViewCellAccessoryNone;
+            }
+        }
+    } else if(indexPath.section == 2) {
         // Cookies
         NSHTTPCookie *cookie;
         NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
@@ -127,7 +153,7 @@
         } else if (indexPath.row == 2) {
             cell.textLabel.text = @"Block All";
         }
-    } else if (indexPath.section == 2) {
+    } else if (indexPath.section == 3) {
         // User-Agent
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         NSMutableDictionary *settings = appDelegate.getSettings;
@@ -155,7 +181,7 @@
                 cell.accessoryType = UITableViewCellAccessoryNone;
             }
         }
-    } else if (indexPath.section == 3) {
+    } else if (indexPath.section == 4) {
         // Pipelining
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         NSMutableDictionary *settings = appDelegate.getSettings;
@@ -176,7 +202,7 @@
                 cell.accessoryType = UITableViewCellAccessoryNone;
             }
         }
-    } else if (indexPath.section == 4) {
+    } else if (indexPath.section == 5) {
         // DNT
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         NSMutableDictionary *settings = appDelegate.getSettings;
@@ -197,7 +223,7 @@
                 cell.accessoryType = UITableViewCellAccessoryNone;
             }
         }
-    } else if (indexPath.section == 5) {
+    } else if (indexPath.section == 6) {
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         
         NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -239,7 +265,27 @@
         textField.text = [settings2 objectForKey:@"homepage"];
         
         [alert show];
-    } else if(indexPath.section == 1) {
+    } else if (indexPath.section == 1) {
+        // Active Content
+        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        NSMutableDictionary *settings = appDelegate.getSettings;
+
+        if (indexPath.row == 0) {
+            [settings setObject:[NSNumber numberWithInteger:JAVASCRIPT_ENABLED] forKey:@"javascript"];
+            [appDelegate saveSettings:settings];
+        } else if (indexPath.row == 1) {
+            [settings setObject:[NSNumber numberWithInteger:JAVASCRIPT_DISABLED] forKey:@"javascript"];
+            [appDelegate saveSettings:settings];
+            if ([[[UIDevice currentDevice] systemVersion] compare:@"6.0" options:NSNumericSearch] == NSOrderedAscending) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"iOS 5 Warning"
+                                                                message:[NSString stringWithFormat:@"You appear to be running a version of iOS earlier than 6.0. Support for blocking active content is only partially supported in iOS 5.0 and 5.1. You may have reduced security or you may encounter unusual behavior."]
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+                [alert show];
+            }
+        }
+    } else if(indexPath.section == 2) {
         // Cookies
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         NSMutableDictionary *settings = appDelegate.getSettings;
@@ -257,7 +303,7 @@
             [appDelegate saveSettings:settings];
             [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyNever];
         }
-    } else if (indexPath.section == 2) {
+    } else if (indexPath.section == 3) {
         // User-Agent
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         NSMutableDictionary *settings = appDelegate.getSettings;
@@ -280,7 +326,7 @@
                                                   otherButtonTitles:nil];
             [alert show];
         }
-    } else if (indexPath.section == 3) {
+    } else if (indexPath.section == 4) {
         // Pipelining
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         NSMutableDictionary *settings = appDelegate.getSettings;
@@ -292,7 +338,7 @@
             [settings setObject:[NSNumber numberWithInteger:PIPELINING_OFF] forKey:@"pipelining"];
             [appDelegate saveSettings:settings];
         }
-    } else if (indexPath.section == 4) {
+    } else if (indexPath.section == 5) {
         // DNT
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         NSMutableDictionary *settings = appDelegate.getSettings;
@@ -310,7 +356,7 @@
                                                   otherButtonTitles:nil];
             [alert show];
         }
-    } else if (indexPath.section == 5) {
+    } else if (indexPath.section == 6) {
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
 
         BridgeTableViewController *bridgesVC = [[BridgeTableViewController alloc] initWithStyle:UITableViewStylePlain];

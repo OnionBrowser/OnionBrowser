@@ -202,13 +202,35 @@
     }
     _data.length = 0;
     
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSMutableDictionary *settings = appDelegate.getSettings;
+
+    /* If JAVASCRIPT_DISABLED setting is set, modify incoming headers to turn
+     * on the "content-security-policy" and "x-webkit-csp" headers accordingly. */
+    if ([[settings valueForKey:@"javascript"] integerValue] == JAVASCRIPT_DISABLED) {
+        NSMutableDictionary *mHeaders = [NSMutableDictionary dictionary];
+        for(id h in response.allHeaderFields) {
+            if(![[h lowercaseString] isEqualToString:@"content-security-policy"] && ![[h lowercaseString] isEqualToString:@"x-webkit-csp"]) {
+                // Delete existing content-security-policy headers (since we rely on writing our on strict ones)
+                [mHeaders setObject:response.allHeaderFields[h] forKey:h];
+            }
+        }
+        // http://www.html5rocks.com/en/tutorials/security/content-security-policy/#policy-applies-to-a-wide-variety-of-resources
+        [mHeaders setObject:@"script-src 'none';media-src 'none';object-src 'none';connect-src 'none';font-src 'none';sandbox allow-forms;"
+                     forKey:@"Content-Security-Policy"];
+        [mHeaders setObject:@"script-src 'none';media-src 'none';object-src 'none';connect-src 'none';font-src 'none';sandbox allow-forms;"
+                     forKey:@"X-Webkit-CSP"];
+        response = [[NSHTTPURLResponse alloc]
+                    initWithURL:response.URL statusCode:response.statusCode
+                    HTTPVersion:@"1.1" headerFields:mHeaders];
+    }
+    /* End header modification */
+
     if ((response.statusCode == 301)||(response.statusCode == 302)||(response.statusCode == 307)) {
         NSString *newURL = [[response allHeaderFields] objectForKey:@"Location"];
         #ifdef DEBUG
             NSLog(@"[ProxyURLProtocol] Got %d redirect from %@ to %@", response.statusCode, _request.URL, newURL);
         #endif
-        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-        NSMutableDictionary *settings = appDelegate.getSettings;
 
         NSMutableURLRequest *newRequest = [_request mutableCopy];
         [newRequest setHTTPShouldUsePipelining:[[settings valueForKey:@"pipelining"] integerValue]];

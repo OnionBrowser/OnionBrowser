@@ -11,6 +11,8 @@ Jan 26 2014 - Submit date
   can use the "onionbrowser://" (HTTP) or "onionbrowsers://" (HTTPS) URI
   protocols to launch Onion Browser. See README.
 
+* Add experimental ability to turn off JavaScript.
+
 * Tweak "Connecting..." info page, based on input from Wong Choon Jie.
 
 * Update default home page.

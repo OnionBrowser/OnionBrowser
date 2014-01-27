@@ -318,25 +318,53 @@
 - (NSMutableDictionary *)getSettings {
     NSString *errorDesc = nil;
     NSPropertyListFormat format;
+    NSMutableDictionary *d;
+
     NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:self.settingsFile];
     if (plistXML == nil) {
         // We didn't have a settings file, so we'll want to initialize one now.
-        NSMutableDictionary *d = [NSMutableDictionary dictionary];
-        // SETTINGS DEFAULTS
-        [d setObject:@"onionbrowser:home" forKey:@"homepage"]; // DEFAULT HOMEPAGE
-        [d setObject:[NSNumber numberWithInteger:COOKIES_BLOCK_THIRDPARTY] forKey:@"cookies"];
-        [d setObject:[NSNumber numberWithInteger:UA_SPOOF_NO] forKey:@"uaspoof"];
-        [d setObject:[NSNumber numberWithInteger:PIPELINING_ON] forKey:@"pipelining"];
-        [d setObject:[NSNumber numberWithInteger:DNT_HEADER_UNSET] forKey:@"dnt"];
-        // END SETTINGS DEFAULTS
-        [self saveSettings:d];
-        return d;
+        d = [NSMutableDictionary dictionary];
     } else {
-        return (NSMutableDictionary *)[NSPropertyListSerialization
+        d = (NSMutableDictionary *)[NSPropertyListSerialization
                                               propertyListFromData:plistXML
                                               mutabilityOption:NSPropertyListMutableContainersAndLeaves
                                               format:&format errorDescription:&errorDesc];
     }
+
+    // SETTINGS DEFAULTS
+    // we do this here in case the user has an old version of the settings file and we've
+    // added new keys to settings. (or if they have no settings file and we're initializing
+    // from a blank slate.)
+    Boolean update = NO;
+    if ([d objectForKey:@"homepage"] == nil) {
+        [d setObject:@"onionbrowser:home" forKey:@"homepage"]; // DEFAULT HOMEPAGE
+        update = YES;
+    }
+    if ([d objectForKey:@"cookies"] == nil) {
+        [d setObject:[NSNumber numberWithInteger:COOKIES_BLOCK_THIRDPARTY] forKey:@"cookies"];
+        update = YES;
+    }
+    if ([d objectForKey:@"uaspoof"] == nil) {
+        [d setObject:[NSNumber numberWithInteger:UA_SPOOF_NO] forKey:@"uaspoof"];
+        update = YES;
+    }
+    if ([d objectForKey:@"pipelining"] == nil) {
+        [d setObject:[NSNumber numberWithInteger:PIPELINING_ON] forKey:@"pipelining"];
+        update = YES;
+    }
+    if ([d objectForKey:@"dnt"] == nil) {
+        [d setObject:[NSNumber numberWithInteger:DNT_HEADER_UNSET] forKey:@"dnt"];
+        update = YES;
+    }
+    if ([d objectForKey:@"javascript"] == nil) {
+        [d setObject:[NSNumber numberWithInteger:JAVASCRIPT_ENABLED] forKey:@"javascript"];
+        update = YES;
+    }
+    if (update)
+        [self saveSettings:d];
+    // END SETTINGS DEFAULTS
+
+    return d;
 }
 
 - (void)saveSettings:(NSMutableDictionary *)settings {
