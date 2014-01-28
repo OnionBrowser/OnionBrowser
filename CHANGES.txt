@@ -5,7 +5,8 @@ Onion Browser Version History (since 1.2.2)
 Jan 26 2014 - Submit date
 
 * MAJOR SECURITY IMPROVEMENT: Add experimental ability to turn off
-  JavaScript and other active content. See settings.
+  JavaScript and other active content. See onionbrowser.com for more
+  details. Patch based on contribution by Łukasz Pilorz.
 
   (COMPATIBILITY NOTE: Active content blocking is only partially supported
   in iOS 5.1. Users are advised to upgrade their devices to a newer version
