@@ -1,8 +1,9 @@
 Onion Browser Version History (since 1.2.2)
 
 
-===== 1.3.14 - Pending App Store Review =====
+===== 1.3.14 - In App Store =====
 Jan 26 2014 - Submit date
+Jan 30 2014 - App store availability
 
 * MAJOR SECURITY IMPROVEMENT: Add experimental ability to turn off
   JavaScript and other active content. See onionbrowser.com for more
@@ -27,7 +28,11 @@ Jan 26 2014 - Submit date
 
 * Tor updated to 0.2.4.20.
 
-===== 1.3.13 - In App Store =====
+
+
+PREVIOUS VERSIONS:
+
+===== 1.3.13  =====
 Nov 17, 2013 - Submit date
 Nov 20, 2013 - App store availability
 
@@ -36,9 +41,6 @@ Nov 20, 2013 - App store availability
 * Tor updated to 0.2.4.18-rc, which enables TLS 1.1 and 1.2 for improved
   security.
 
-
-
-PREVIOUS VERSIONS:
 
 ===== 1.3.12  =====
 Oct 18, 2013 - Submit date
