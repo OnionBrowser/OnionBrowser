@@ -30,10 +30,10 @@
     NSString *base_torrc = [[[appDelegate applicationDocumentsDirectory] URLByAppendingPathComponent:@"torrc"] relativePath];
     NSString *geoip = [[NSBundle mainBundle] pathForResource:@"geoip" ofType:nil];
     
-    NSString *controlPortStr = [NSString stringWithFormat:@"%d", appDelegate.tor.torControlPort];
-    NSString *socksPortStr = [NSString stringWithFormat:@"%d", appDelegate.tor.torSocksPort];
+    NSString *controlPortStr = [NSString stringWithFormat:@"%ld", (unsigned long)appDelegate.tor.torControlPort];
+    NSString *socksPortStr = [NSString stringWithFormat:@"%ld", (unsigned long)appDelegate.tor.torSocksPort];
     
-    NSLog(@"%@ / %@", controlPortStr, socksPortStr);
+    //NSLog(@"%@ / %@", controlPortStr, socksPortStr);
     
     /**************/
     

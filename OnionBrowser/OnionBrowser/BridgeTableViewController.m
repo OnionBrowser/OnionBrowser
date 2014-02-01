@@ -200,7 +200,7 @@
                 pluralize = @"s are";
             }
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Bridges"
-                                                            message:[NSString stringWithFormat:@"%d bridge%@ configured.You may need to quit the app and restart it to change the connection method.\n\n(If you restart and the app stays stuck at \"Connecting...\", please come back and double-check your bridge configuration or remove your bridges.)", [bridgeArray count], pluralize]
+                                                            message:[NSString stringWithFormat:@"%ld bridge%@ configured.You may need to quit the app and restart it to change the connection method.\n\n(If you restart and the app stays stuck at \"Connecting...\", please come back and double-check your bridge configuration or remove your bridges.)", (unsigned long)[bridgeArray count], pluralize]
                                                            delegate:self
                                                   cancelButtonTitle:@"Continue anyway"
                                                   otherButtonTitles:@"Quit app", nil];

@@ -242,8 +242,8 @@
         if (numBridges == 0) {
             cell.textLabel.text = @"Not Using Bridges";
         } else {
-            cell.textLabel.text = [NSString stringWithFormat:@"%d Bridges Configured",
-                                   numBridges];
+            cell.textLabel.text = [NSString stringWithFormat:@"%ld Bridges Configured",
+                                   (unsigned long)numBridges];
         }
     }
     
