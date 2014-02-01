@@ -12,12 +12,14 @@
 #import "SettingsViewController.h"
 #import "Bookmark.h"
 #import "BridgeTableViewController.h"
+#import "NJKWebViewProgressView.h"
 
 static const CGFloat kNavBarHeight = 52.0f;
 static const CGFloat kToolBarHeight = 44.0f;
 static const CGFloat kLabelHeight = 14.0f;
 static const CGFloat kMargin = 10.0f;
 static const CGFloat kSpacer = 2.0f;
+static const CGFloat kSpacer7 = 3.5f;
 static const CGFloat kLabelFontSize = 12.0f;
 static const CGFloat kAddressHeight = 26.0f;
 
@@ -33,7 +35,10 @@ static const Boolean kBackwardButton = NO;
 
 @end
 
-@implementation WebViewController
+@implementation WebViewController {
+    NJKWebViewProgressView *_progressView;
+    NJKWebViewProgress *_progressProxy;
+}
 
 @synthesize myWebView = _myWebView,
             toolbar = _toolbar,
@@ -47,6 +52,7 @@ static const Boolean kBackwardButton = NO;
             addressField = _addressField,
             currentURL = _currentURL,
             torStatus = _torStatus;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -96,13 +102,23 @@ static const Boolean kBackwardButton = NO;
     UIView *loadingStatus = [self.view viewWithTag:kLoadingStatusTag];
     if (loadingStatus != nil) {
         [loadingStatus removeFromSuperview];
+        
+        // now add the "progress bar" to the view, too
+        UINavigationBar *navBar = (UINavigationBar *)[self.view viewWithTag:kNavBarTag];
+        CGRect navBarFrame = navBar.frame;
+        CGFloat progressBarHeight = 2.5f;
+        CGRect barFrame = CGRectMake(0, navBarFrame.size.height - progressBarHeight, navBarFrame.size.width, progressBarHeight);
+        _progressView = [[NJKWebViewProgressView alloc] initWithFrame:barFrame];
+        [navBar addSubview:_progressView];
     }
 
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSMutableDictionary *settings = appDelegate.getSettings;
 
     // Build request and go.
-    _myWebView.delegate = self;
+    _myWebView.delegate = _progressProxy;
+    _progressProxy.webViewProxyDelegate = self;
+    _progressProxy.progressDelegate = self;
     _myWebView.scalesPageToFit = YES;
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:navigationURL];
     [req setHTTPShouldUsePipelining:[[settings valueForKey:@"pipelining"] integerValue]];
@@ -180,14 +196,17 @@ static const Boolean kBackwardButton = NO;
     webViewFrame.origin.x = 0;
     webViewFrame.size = size;
     
+    _progressProxy = [[NJKWebViewProgress alloc] init];
+
     _myWebView = [[UIWebView alloc] initWithFrame:webViewFrame];
     _myWebView.backgroundColor = [UIColor whiteColor];
     _myWebView.scalesPageToFit = YES;
     _myWebView.contentScaleFactor = 3;
     _myWebView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
-    _myWebView.delegate = self;
+    _myWebView.delegate = _progressProxy;
+    _progressProxy.webViewProxyDelegate = self;
+    _progressProxy.progressDelegate = self;
     [self.view addSubview: _myWebView];
-
     
     /********** Create Toolbars **********/
     // Set up toolbar.
@@ -248,7 +267,7 @@ static const Boolean kBackwardButton = NO;
                                                delegate:self
                                       cancelButtonTitle:@"Close"
                                  destructiveButtonTitle:@"New Identity"
-                                      otherButtonTitles:@"Bookmark Current Page", @"Browser Settings", @"Open Home Page", @"About Onion Browser", @"Help", nil];
+                                      otherButtonTitles:@"Bookmark Current Page", @"Browser Settings", @"Open Home Page", @"About Onion Browser", @"Help / Support", nil];
     // (/actionsheets)
     
     
@@ -278,12 +297,19 @@ static const Boolean kBackwardButton = NO;
         _pageTitleLabel = label;
     }
     /* endif */
-
     
     // The address field is the same with as the label and located just below 
     // it with a gap of kSpacer
-    CGRect addressFrame = CGRectMake(kMargin, kSpacer*2.0 + kLabelHeight, 
+    CGRect addressFrame;
+    if ([currSysVer compare:reqSysVer options:NSNumericSearch] == NSOrderedAscending) {
+        /* if iOS < 7.0 */
+        addressFrame = CGRectMake(kMargin, kSpacer*2.0 + kLabelHeight,
                                      labelFrame.size.width, kAddressHeight);
+    } else {
+        /*  iOS 7.0+ */
+        addressFrame = CGRectMake(kMargin, kSpacer7*2.0 + kLabelHeight,
+                                         labelFrame.size.width, kAddressHeight);
+    }
     UITextField *address = [[UITextField alloc] initWithFrame:addressFrame];
     
     address.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -861,6 +887,13 @@ static const Boolean kBackwardButton = NO;
     bookmarksVC.managedObjectContext = context;
     
     [self presentViewController:bookmarkNavController animated:YES completion:nil];
+}
+
+#pragma mark - NJKWebViewProgressDelegate
+-(void)webViewProgress:(NJKWebViewProgress *)webViewProgress updateProgress:(float)progress
+{
+    [_progressView setProgress:progress animated:YES];
+    self.title = [_myWebView stringByEvaluatingJavaScriptFromString:@"document.title"];
 }
 
 @end

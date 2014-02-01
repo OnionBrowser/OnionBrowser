@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NJKWebViewProgress.h"
 
-@interface WebViewController : UIViewController <UIWebViewDelegate, UITextFieldDelegate, UIActionSheetDelegate, UIAlertViewDelegate> {
+@interface WebViewController : UIViewController <UIWebViewDelegate, UITextFieldDelegate, UIActionSheetDelegate, UIAlertViewDelegate, NJKWebViewProgressDelegate> {
 }
 
 @property (strong, nonatomic) UIWebView *myWebView;
