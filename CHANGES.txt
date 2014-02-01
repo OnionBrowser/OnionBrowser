@@ -1,6 +1,26 @@
 Onion Browser Version History (since 1.2.2)
 
 
+===== 1.4 - Pending App Store Review =====
+Feb 01 2014 - Submit Date
+
+* App is now being compiled with 64-bit CPU optimization (for iPhone 5S
+  and new iPads), which may improve cryptographic performance and battery
+  life. (Older devices are still supported, as long as they are using a
+  compatible version of iOS.)
+
+  COMPATIBILITY NOTE: App now requires iOS 6.0 or greater.
+
+* A progress bar / loading bar, similar to one used in Safari, has been
+  added to the app. Uses NJKWebViewProgress, by Satoshi Asano.
+  https://github.com/ninjinkun/NJKWebViewProgress
+
+* A copy of the help site has been embedded into the app, for offline
+  viewing. This should help users having trouble when encountering the
+  "Tor stops working after idle" bug.
+
+* Fix awkward navbar / address bar spacing in iOS 7.
+
 ===== 1.3.14 - In App Store =====
 Jan 26 2014 - Submit date
 Jan 30 2014 - App store availability
