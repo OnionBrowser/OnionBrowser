@@ -211,7 +211,10 @@ static const Boolean kBackwardButton = NO;
     /********** Create Toolbars **********/
     // Set up toolbar.
     _toolbar = [[UIToolbar alloc] init];
-    [_toolbar setTintColor:[UIColor blackColor]];
+    if ([currSysVer compare:@"7.0" options:NSNumericSearch] == NSOrderedAscending) {
+        // before iOS 7.0
+        [_toolbar setTintColor:[UIColor blackColor]];
+    }
     _toolbar.frame = CGRectMake(0, self.view.frame.size.height - kToolBarHeight, self.view.frame.size.width, kToolBarHeight);
     _toolbar.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
     _toolbar.contentMode = UIViewContentModeBottom;
