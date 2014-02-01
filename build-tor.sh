@@ -36,10 +36,7 @@ VERIFYGPG=true
 
 # No need to change this since xcode build will only compile in the
 # necessary bits from the libraries we create
-#   note: 12/2013: don't build 64bit until we can drop support for iOS 5,
-#                  since only iOS 6+ can support multibuilds w/64bit.
-#ARCHS="i386 x86_64 armv7 armv7s arm64"
-ARCHS="i386 armv7 armv7s"
+ARCHS="i386 x86_64 armv7 armv7s arm64"
 
 DEVELOPER=`xcode-select -print-path`
 #DEVELOPER="/Applications/Xcode.app/Contents/Developer"
