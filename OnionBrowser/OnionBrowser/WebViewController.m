@@ -248,7 +248,7 @@ static const Boolean kBackwardButton = NO;
                                                delegate:self
                                       cancelButtonTitle:@"Close"
                                  destructiveButtonTitle:@"New Identity"
-                                      otherButtonTitles:@"Bookmark Current Page", @"Browser Settings", @"Open Home Page", @"About Onion Browser", nil];
+                                      otherButtonTitles:@"Bookmark Current Page", @"Browser Settings", @"Open Home Page", @"About Onion Browser", @"Help", nil];
     // (/actionsheets)
     
     
@@ -679,6 +679,11 @@ static const Boolean kBackwardButton = NO;
             // About Page
             ////////////////////////////////////////////////////////
             [self loadURL:[NSURL URLWithString:@"onionbrowser:about"]];
+        } else if (buttonIndex == 5) {
+            ////////////////////////////////////////////////////////
+            // Help Page
+            ////////////////////////////////////////////////////////
+            [self loadURL:[NSURL URLWithString:@"onionbrowser:help"]];
         }
     }
 }

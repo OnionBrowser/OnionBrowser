@@ -109,6 +109,9 @@
         } else if ([[[[self request] URL] absoluteString] rangeOfString:@"icon"].location != NSNotFound) {
             /* onionbrowser:icon */
             url = [NSURL URLWithString: [NSString stringWithFormat:@"file:/%@/Icon@2x.png",resourcePath]];
+        } else if ([[[[self request] URL] absoluteString] rangeOfString:@"help"].location != NSNotFound) {
+            /* onionbrowser:help */
+            url = [NSURL URLWithString: [NSString stringWithFormat:@"file:/%@/help.html",resourcePath]];
         } else if ([[[[self request] URL] absoluteString] rangeOfString:@"forcequit"].location != NSNotFound) {
             /* onionbrowser:forcequit */
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Force-quitting"
@@ -117,7 +120,6 @@
                                                   cancelButtonTitle:@"Quit app"
                                                   otherButtonTitles:nil];
             [alert show];
-            url = [NSURL URLWithString: [NSString stringWithFormat:@"file:/%@/startup.html",resourcePath]];
         } else {
             /* onionbrowser:home */
             url = [NSURL URLWithString: [NSString stringWithFormat:@"file:/%@/startup.html",resourcePath]];

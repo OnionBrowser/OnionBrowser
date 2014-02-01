@@ -269,6 +269,8 @@
 }
 
 - (void)wipeAppData {
+    [[self appWebView] stopLoading];
+    
     /* This is probably incredibly redundant since we just delete all the files, below */
     NSHTTPCookie *cookie;
     NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
@@ -276,6 +278,7 @@
         [storage deleteCookie:cookie];
     }
     [[NSURLCache sharedURLCache] removeAllCachedResponses];
+    
 
     /* Delete all Caches, Cookies, Preferences in app's "Library" data dir. (Connection settings
      * & etc end up in "Documents", not "Library".) */

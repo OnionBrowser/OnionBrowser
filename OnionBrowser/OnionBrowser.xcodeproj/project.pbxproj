@@ -23,6 +23,7 @@
 		692E70F717EE3BB10063990F /* Icon-152.png in Resources */ = {isa = PBXBuildFile; fileRef = 692E70F417EE3BB10063990F /* Icon-152.png */; };
 		692E70F817EE3BB10063990F /* Icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = 692E70F517EE3BB10063990F /* Icon-120.png */; };
 		692E70F917EE3BB10063990F /* Icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = 692E70F617EE3BB10063990F /* Icon-76.png */; };
+		69374255189CBAF1002C65A0 /* help.html in Resources */ = {isa = PBXBuildFile; fileRef = 69374254189CBAF1002C65A0 /* help.html */; };
 		6940BD1F15F84C0C00FE74CB /* TorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6940BD1E15F84C0C00FE74CB /* TorController.m */; };
 		6940BD2515F8761900FE74CB /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6940BD2415F8761900FE74CB /* CoreData.framework */; };
 		694F34F1152ECFF20002BCBC /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 694F34E9152ECFF20002BCBC /* Icon.png */; };
@@ -124,6 +125,7 @@
 		692E70F417EE3BB10063990F /* Icon-152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-152.png"; path = "icon/Icon-152.png"; sourceTree = "<group>"; };
 		692E70F517EE3BB10063990F /* Icon-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-120.png"; path = "icon/Icon-120.png"; sourceTree = "<group>"; };
 		692E70F617EE3BB10063990F /* Icon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-76.png"; path = "icon/Icon-76.png"; sourceTree = "<group>"; };
+		69374254189CBAF1002C65A0 /* help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = help.html; sourceTree = "<group>"; };
 		6940BD1D15F84C0C00FE74CB /* TorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TorController.h; sourceTree = "<group>"; };
 		6940BD1E15F84C0C00FE74CB /* TorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TorController.m; sourceTree = "<group>"; };
 		6940BD2415F8761900FE74CB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -381,6 +383,7 @@
 				6993EB29177EB43600F623CE /* Default-7-Landscape@2x.png */,
 				6993EB2A177EB43600F623CE /* Default-7-Portrait.png */,
 				6993EB2B177EB43600F623CE /* Default-7-Portrait@2x.png */,
+				69374254189CBAF1002C65A0 /* help.html */,
 				696C33AD1530D0D400990E69 /* startup.html */,
 				695BF04618944B5500C27BC1 /* startup2.html */,
 				694F34E9152ECFF20002BCBC /* Icon.png */,
@@ -541,6 +544,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				696EBD8214F7877900B81BC9 /* InfoPlist.strings in Resources */,
+				69374255189CBAF1002C65A0 /* help.html in Resources */,
 				696F9EB014F8DA6900BC5FDC /* torrc in Resources */,
 				6993EB2E177EB43600F623CE /* Default-7-Portrait.png in Resources */,
 				69F88FCC1500A9D900C7BE98 /* geoip in Resources */,

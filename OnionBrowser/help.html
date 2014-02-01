@@ -1,0 +1,475 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+            <title>Onion Browser: Help/Support</title>
+            <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+            <script type="text/javascript">
+                fixScale = function(doc) {
+                    var addEvent = 'addEventListener',
+                    type = 'gesturestart',
+                    qsa = 'querySelectorAll',
+                    scales = [1, 1],
+                    meta = qsa in doc ? doc[qsa]('meta[name=viewport]') : [];
+                    function fix() {
+                        meta.content = 'width=device-width,minimum-scale=' + scales[0] + ',maximum-scale=' + scales[1];
+                        doc.removeEventListener(type, fix, true);
+                    }
+                    if ((meta = meta[meta.length - 1]) && addEvent in doc) {
+                        fix();
+                        scales = [.25, 1.6];
+                        doc[addEvent](type, fix, true);
+                    }
+                };
+            </script>
+            <style type="text/css">
+                html {
+                    background: #6C7989;
+                    background: #6c7989 -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #6c7989), color-stop(100%, #434b55)) fixed;
+                    background: #6c7989 -webkit-linear-gradient(#6c7989, #434b55) fixed;
+                    background: #6c7989 -moz-linear-gradient(#6c7989, #434b55) fixed;
+                    background: #6c7989 -o-linear-gradient(#6c7989, #434b55) fixed;
+                    background: #6c7989 -ms-linear-gradient(#6c7989, #434b55) fixed;
+                    background: #6c7989 linear-gradient(#6c7989, #434b55) fixed;
+                }
+            
+            body {
+                padding: 50px 0;
+                margin: 0;
+                font: 14px/1.5 Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
+                color: #555;
+                font-weight: 300;
+                background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAeCAYAAABNChwpAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNXG14zYAAAAUdEVYdENyZWF0aW9uIFRpbWUAMy82LzEygrTcTAAAAFRJREFUSIljfPDggZRf5RIGGNjUHsNATz6jXmSL1Kb2GLiAX+USBnrymRgGGDCORgFmoNAXjEbBaBSMRsFoFIxGwWgUjEbBaBSMRsFoFIxGwWgUAABYNujumib3wAAAAABJRU5ErkJggg==') fixed;
+            }
+            
+            .wrapper {
+                width: 640px;
+                margin: 0 auto;
+                background: #DEDEDE;
+                -moz-border-radius: 8px;
+                -webkit-border-radius: 8px;
+                -o-border-radius: 8px;
+                -ms-border-radius: 8px;
+                -khtml-border-radius: 8px;
+                border-radius: 8px;
+                -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 0 0 1px, rgba(0, 0, 0, 0.45) 0 3px 10px;
+                -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 0 0 1px, rgba(0, 0, 0, 0.45) 0 3px 10px;
+                -o-box-shadow: rgba(0, 0, 0, 0.2) 0 0 0 1px, rgba(0, 0, 0, 0.45) 0 3px 10px;
+                box-shadow: rgba(0, 0, 0, 0.2) 0 0 0 1px, rgba(0, 0, 0, 0.45) 0 3px 10px;
+            }
+            
+            header, section, footer {
+                display: block;
+            }
+            
+            a {
+                color: #069;
+                text-decoration: none;
+            }
+            
+            p {
+                margin: 0 0 20px;
+                padding: 0;
+            }
+            
+            strong {
+                color: #222;
+                font-weight: 700;
+            }
+            
+            header {
+                height: 80px;
+                -moz-border-radius: 8px 8px 0 0;
+                -webkit-border-radius: 8px 8px 0 0;
+                -o-border-radius: 8px 8px 0 0;
+                -ms-border-radius: 8px 8px 0 0;
+                -khtml-border-radius: 8px 8px 0 0;
+                border-radius: 8px 8px 0 0;
+                background: #C6EAFA;
+                background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ddfbfc), color-stop(100%, #c6eafa));
+                background: -webkit-linear-gradient(#ddfbfc, #c6eafa);
+                background: -moz-linear-gradient(#ddfbfc, #c6eafa);
+                background: -o-linear-gradient(#ddfbfc, #c6eafa);
+                background: -ms-linear-gradient(#ddfbfc, #c6eafa);
+                background: linear-gradient(#ddfbfc, #c6eafa);
+                position: relative;
+                padding: 15px 20px;
+                border-bottom: 1px solid #B2D2E1;
+            }
+            header h1 {
+                margin: 0;
+                padding: 0;
+                font-size: 24px;
+                line-height: 1.2;
+                color: #069;
+                text-shadow: rgba(255, 255, 255, 0.9) 0 1px 0;
+            }
+            header.without-description h1 {
+                margin: 10px 0;
+            }
+            header p {
+                margin: 0;
+                color: #61778B;
+                width: 300px;
+                font-size: 13px;
+            }
+            header p.view {
+                display: none;
+                font-weight: 700;
+                text-shadow: rgba(255, 255, 255, 0.9) 0 1px 0;
+                -webkit-font-smoothing: antialiased;
+            }
+            header p.view a {
+                color: #06c;
+            }
+            header p.view small {
+                font-weight: 400;
+            }
+            header ul {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+                position: absolute;
+                z-index: 1;
+                right: 20px;
+                top: 20px;
+                height: 38px;
+                padding: 1px 0;
+                background: #5198DF;
+                background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #77b9fb), color-stop(100%, #3782cd));
+                background: -webkit-linear-gradient(#77b9fb, #3782cd);
+                background: -moz-linear-gradient(#77b9fb, #3782cd);
+                background: -o-linear-gradient(#77b9fb, #3782cd);
+                background: -ms-linear-gradient(#77b9fb, #3782cd);
+                background: linear-gradient(#77b9fb, #3782cd);
+                border-radius: 5px;
+                -moz-box-shadow: inset rgba(255, 255, 255, 0.45) 0 1px 0, inset rgba(0, 0, 0, 0.2) 0 -1px 0;
+                -webkit-box-shadow: inset rgba(255, 255, 255, 0.45) 0 1px 0, inset rgba(0, 0, 0, 0.2) 0 -1px 0;
+                -o-box-shadow: inset rgba(255, 255, 255, 0.45) 0 1px 0, inset rgba(0, 0, 0, 0.2) 0 -1px 0;
+                box-shadow: inset rgba(255, 255, 255, 0.45) 0 1px 0, inset rgba(0, 0, 0, 0.2) 0 -1px 0;
+                width: 240px;
+            }
+            header ul:before {
+                content: '';
+                position: absolute;
+                z-index: -1;
+                left: -5px;
+                top: -4px;
+                right: -5px;
+                bottom: -6px;
+                background: rgba(0, 0, 0, 0.1);
+                -moz-border-radius: 8px;
+                -webkit-border-radius: 8px;
+                -o-border-radius: 8px;
+                -ms-border-radius: 8px;
+                -khtml-border-radius: 8px;
+                border-radius: 8px;
+                -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 0, inset rgba(255, 255, 255, 0.7) 0 -1px 0;
+                -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 0, inset rgba(255, 255, 255, 0.7) 0 -1px 0;
+                -o-box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 0, inset rgba(255, 255, 255, 0.7) 0 -1px 0;
+                box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 0, inset rgba(255, 255, 255, 0.7) 0 -1px 0;
+            }
+            header ul li {
+                width: 79px;
+                float: left;
+                border-right: 1px solid #3A7CBE;
+                height: 38px;
+            }
+            header ul li + li {
+                width: 78px;
+                border-left: 1px solid #8BBEF3;
+            }
+            header ul li + li + li {
+                border-right: none;
+                width: 79px;
+            }
+            header ul a {
+                line-height: 1;
+                font-size: 11px;
+                color: #fff;
+                color: rgba(255, 255, 255, 0.8);
+                display: block;
+                text-align: center;
+                font-weight: 400;
+                padding-top: 6px;
+                height: 40px;
+                text-shadow: rgba(0, 0, 0, 0.4) 0 -1px 0;
+            }
+            header ul a strong {
+                font-size: 14px;
+                display: block;
+                color: #fff;
+                -webkit-font-smoothing: antialiased;
+            }
+            
+            section {
+                padding: 15px 20px;
+                font-size: 15px;
+                border-top: 1px solid #fff;
+                background: -webkit-gradient(linear, 50% 0%, 50% 700, color-stop(0%, #fafafa), color-stop(100%, #dedede));
+                background: -webkit-linear-gradient(#fafafa, #dedede 700px);
+                background: -moz-linear-gradient(#fafafa, #dedede 700px);
+                background: -o-linear-gradient(#fafafa, #dedede 700px);
+                background: -ms-linear-gradient(#fafafa, #dedede 700px);
+                background: linear-gradient(#fafafa, #dedede 700px);
+                -moz-border-radius: 0 0 8px 8px;
+                -webkit-border-radius: 0 0 8px 8px;
+                -o-border-radius: 0 0 8px 8px;
+                -ms-border-radius: 0 0 8px 8px;
+                -khtml-border-radius: 0 0 8px 8px;
+                border-radius: 0 0 8px 8px;
+                position: relative;
+            }
+            
+            h1, h2, h3, h4, h5, h6 {
+                color: #222;
+                padding: 0;
+                margin: 0 0 20px;
+                line-height: 1.2;
+            }
+            
+            p, ul, ol, table, pre, dl {
+                margin: 0 0 20px;
+            }
+            
+            h1, h2, h3 {
+                line-height: 1.1;
+            }
+            
+            h1 {
+                font-size: 28px;
+            }
+            
+            h2 {
+                color: #393939;
+            }
+            
+            h3, h4, h5, h6 {
+                color: #494949;
+            }
+            
+            blockquote {
+                margin: 0 -20px 20px;
+                padding: 15px 20px 1px 40px;
+                font-style: italic;
+                background: #ccc;
+                background: rgba(0, 0, 0, 0.06);
+                color: #222;
+            }
+            
+            code, pre {
+                font-family: Monaco, Bitstream Vera Sans Mono, Lucida Console, Terminal;
+                color: #333;
+                font-size: 12px;
+            }
+            
+            pre {
+                padding: 20px;
+                background: #3A3C42;
+                color: #f8f8f2;
+                margin: 0 -20px 20px;
+                overflow-x:auto;
+            }
+            pre code {
+                color: #f8f8f2;
+            }
+            li pre {
+                margin-left: -60px;
+                padding-left: 60px;
+            }
+            
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+            
+            th, td {
+                text-align: left;
+                padding: 5px 10px;
+                border-bottom: 1px solid #aaa;
+            }
+            
+            dt {
+                color: #222;
+                font-weight: 700;
+            }
+            
+            th {
+                color: #222;
+            }
+            
+            small {
+                font-size: 11px;
+            }
+            
+            hr {
+                border: 0;
+                background: #aaa;
+                height: 1px;
+                margin: 0 0 20px;
+            }
+            
+            footer {
+                width: 640px;
+                margin: 0 auto;
+                padding: 20px 0 0;
+                color: #ccc;
+                overflow: hidden;
+            }
+            footer a {
+                color: #fff;
+                font-weight: bold;
+            }
+            footer p {
+                float: left;
+            }
+            footer p + p {
+                float: right;
+            }
+            
+            @media print, screen and (max-width: 740px) {
+                body {
+                    padding: 0;
+                }
+                
+                .wrapper {
+                    -moz-border-radius: 0;
+                    -webkit-border-radius: 0;
+                    -o-border-radius: 0;
+                    -ms-border-radius: 0;
+                    -khtml-border-radius: 0;
+                    border-radius: 0;
+                    -moz-box-shadow: none;
+                    -webkit-box-shadow: none;
+                    -o-box-shadow: none;
+                    box-shadow: none;
+                    width: 100%;
+                }
+                
+                footer {
+                    -moz-border-radius: 0;
+                    -webkit-border-radius: 0;
+                    -o-border-radius: 0;
+                    -ms-border-radius: 0;
+                    -khtml-border-radius: 0;
+                    border-radius: 0;
+                    padding: 20px;
+                    width: auto;
+                }
+                footer p {
+                    float: none;
+                    margin: 0;
+                }
+                footer p + p {
+                    float: none;
+                }
+            }
+            #the_icon {
+                float:left;
+                width:50px;
+                margin:5px 10px 0 0;
+            }
+            #the_icon img {
+                width:50px;
+                height:50px;
+                -moz-border-radius: 8px;
+                -webkit-border-radius: 8px;
+                -o-border-radius: 8px;
+                -ms-border-radius: 8px;
+                -khtml-border-radius: 8px;
+                border-radius: 8px;
+            }
+            @media print, screen and (max-width:580px) {
+                header ul, header #head_store_link {
+                    display: none !important;
+                }
+                
+                header p.view {
+                    display: block;
+                }
+                
+                header p {
+                    width: 100%;
+                }
+                .download_button {
+                    float:right !important;
+                }
+                #the_icon {
+                    float:right;
+                    width:80px;
+                    margin:5px 0 0 10px;
+                }
+                #the_icon img {
+                    width:80px;
+                    height:80px;
+                }
+            }
+            @media print, screen and (max-width:425px) {
+                #download_button_store {
+                    margin:0 0 0 10px !important;
+                }
+                #download_button_github {
+                    margin:0 10px 0 20px !important;
+                }
+            }
+            @media print {
+                header p.view a small:before {
+                    content: 'at http://github.com/';
+                }
+            }
+            </style>
+            </head>
+    <body>
+        <div class="wrapper">
+            <header>
+                <p id="the_icon" title="Onion Browser"><img src="onionbrowser:icon" alt="App Icon"/></p>
+                <h1>Onion Browser</h1>
+                <p style="font-size:12px">An open-source, privacy-enhancing web browser for iOS</p>
+            </header>
+            
+            <section>
+                <p><b><a href="https://mike.tig.as/onionbrowser/help/">View latest version of this Help File on the web</a></b></p>
+                <h2>Help &amp; Support</h2>
+
+          <h3>The browser is stuck: links don't work &amp; typing in an address doesn't do anything.</h3>
+          <p>Try <a href="http://support.apple.com/kb/ht5137">force-quitting the app</a> and opening it again.</p>
+            <ul>
+              <li><a href="onionbrowser:forcequit">Click here to try to force-quit</a>.</li>
+            </ul>
+          <p>(The way Tor is is implemented in this app can conflict with the way iOS handles "sleeping" apps. This problem sometimes happens when the phone goes to sleep or if you go to another app and then come back.)</p>
+          <h3>The app is stuck on &ldquo;Connecting&hellip;&rdquo;</h3>
+          <p>Try <a href="http://support.apple.com/kb/ht5137">force-quitting the app</a> and opening it again.</p>
+            <ul>
+              <li><a href="onionbrowser:forcequit">Click here to try to force-quit</a>.</li>
+            </ul>
+          <p>(Your network provider may be blocking connections to Tor. If you are an advanced Tor user and would like to try using "bridge" nodes to access Tor: {# visit <code><a href="https://mike.tig.as/onionbrowser/help/">onionbrowser.com/help</a></code> and view the "<b>Using Bridges</b>" section#} see the "<b>Using Bridges</b>" section below.)</p>
+
+                <h3 id="streaming">Can I use this to access &lt;Netflix, Pandora, BBC streaming, other streaming service, etc.&gt;?</h3>
+                <p><b>No.</b> These services generally require using a dedicated app (instead of a web browser) to access streaming content on mobile devices. Using Onion Browser to access these streams is not currently supported.</p>
+
+                <h3 id="hidserv">How do I access &lt;Silk Road, BlackMarket, other hidden service, etc.&gt;?</h3>
+                <p>Due to the secrecy of these sites and the <a href="https://trac.torproject.org/projects/tor/wiki/doc/HiddenServiceNames">semi-random &ldquo;.onion&rdquo; domain name</a>, it is often hard to know the address of the site you&rsquo;re looking for and if the site you’re going to is the real deal or if it’s a fake.</p>
+                <p>But I&rsquo;m not a qualified directory for &ldquo;.onion&rsquo; websites and likely don&rsquo;t use the hidden website you are asking about. For what it’s worth, Onion Browser does come with several built-in bookmarks that I&rsquo;ve selected and some of these do contain links to a variety of ".onion" sites, curated by folks around the internet. &ldquo;The Cleaned Hidden Wiki&rdquo; and &ldquo;Reddit /r/onions&rdquo; are both good places to start.</p>
+                <p>Searching the internet (via <a href="https://duckduckgo.com/">DuckDuckGo</a> or Google) or checking Wikipedia (for more prominent sites) will be your best bet.</p>
+                
+                <h3 id="onion_trouble">I'm having trouble accessing &lt;name of hidden service&gt;.</h3>
+                <p>First make sure your iOS device is updating it's time automatically (Settings&rarr;General&rarr;Date &amp; Time&rarr;Set Automatically), since connections to .onion sites require accurate system time.</p>
+                <p>Second, try accessing another hidden service &mdash; such as <a href="http://tigas3l7uusztiqu.onion/onionbrowser/">the hidden service for the Onion Browser website</a> (<code>tigas3l7uusztiqu.onion/onionbrowser</code>) or the <a href="http://idnxcnkne4qt76tg.onion/">hidden service for the Tor Project website</a> (<code>idnxcnkne4qt76tg.onion</code>) &mdash; to see if it's an issue with the hidden service you're trying to use. If you can connect to other services, the one you are trying to access may be down. As mentioned <a href="https://blog.torproject.org/blog/tor-weekly-news-%E2%80%94-january-29th-2014">the Tor Help Desk Roundup in this post,</a> "Hidden services are solely under the responsibility of their operators and they are the only one that can do something when a hidden service goes offline."</blockquote>
+                
+                <h3>Still having issues? Have other issues?</h3>
+                <p>A list of known issues and &ldquo;work in progress&rdquo; future features <a href="https://github.com/mtigas/iOS-OnionBrowser/issues">can be found on the GitHub bug tracker</a>. If you have a GitHub account, you can report issues over there, too.</p>
+                <p>For questions, glaring concerns, or compliments <a href="https://mike.tig.as/about/#contact">you can also contact the developer directly</a>.</p>
+                
+                <h3 id="refund">I give up. Can I get a refund?</h3>
+                <p>If you <a href="https://mike.tig.as/about/#contact">contact the developer directly</a>, it could help help solve your problem or at least bring to light a new issue in the app. If that still doesn't work out for you, you may be able to request a refund from Apple. (Refund requests must go to Apple, since your AppleID is what provides payment in the first place.)</p>
+                <p>iTunes technically states "all sales final", but <a href="http://gizmodo.com/5886683/how-to-get-a-refund-from-the-app-store">you can submit a request to Apple Support by opening iTunes on your computer and following the instructions here</a>. Alternatively, on any device:</p>
+                <ul>
+                    <li>Go to <a href="http://www.apple.com/support/itunes/contact/">http://www.apple.com/support/itunes/contact/</a> and click "Contact iTunes Store support".</li>
+                    <li>Go to "Purchases, Billing &amp; Redemption" and select "Quality of purchased content" or "The topic is not listed".</li>
+                    <li>In the message you send to Apple, state that you would like a refund for this app ("Onion Browser" by Mike Tigas), because it does not function as expected on your device.</li>
+                    <li>Follow the rest of the instructions to submit your request. Apple should eventually contact you regarding your refund request.</li>
+                </ul>
+                <p>Note that there is no guarantee that Apple will provide a refund in every case and any other AppleID-related issues should <a href="http://www.apple.com/support/itunes/contact/">go to Apple iTunes Support</a>.</p>
+            </section>
+        </div>
+           </body></html>
