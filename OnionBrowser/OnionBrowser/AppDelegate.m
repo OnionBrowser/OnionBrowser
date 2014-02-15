@@ -175,14 +175,17 @@
         NSLog(@"Received URL: %@", urlStr);
     #endif
 
-    if ([urlStr hasPrefix:@"onionbrowser:/"]) {
+    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+    BOOL appIsOnionBrowser = [bundleIdentifier isEqualToString:@"com.miketigas.OnionBrowser"];
+
+    if (appIsOnionBrowser && [urlStr hasPrefix:@"onionbrowser:/"]) {
         // HTTP
         urlStr = [urlStr stringByReplacingCharactersInRange:NSMakeRange(0, 14) withString:@"http:/"];
         #ifdef DEBUG
             NSLog(@" -> %@", urlStr);
         #endif
         newUrl = [NSURL URLWithString:urlStr];
-    } else if ([urlStr hasPrefix:@"onionbrowsers:/"]) {
+    } else if (appIsOnionBrowser && [urlStr hasPrefix:@"onionbrowsers:/"]) {
         // HTTPS
         urlStr = [urlStr stringByReplacingCharactersInRange:NSMakeRange(0, 15) withString:@"https:/"];
         #ifdef DEBUG

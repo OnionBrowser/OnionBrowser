@@ -200,3 +200,34 @@ The app currently is not compiled for `arm64` (64-bit ARM processor in the
 iPhone 5S) because apps compiled for this target may only support iOS 6.1
 and later. This optimization may be revisited once support for iOS 5.X is
 dropped at a later date.
+
+### Information for forks
+
+1. If you're distributing an app that builds off of the Onion Browser code,
+   you need to use your own app name and logo.
+
+2. If you're distributing an app that builds off of the Onion Browser code,
+   you need to cite Onion Browser within your app's credits as part of
+   the terms of the normal MIT License.
+
+   [See the LICENSE file][license] for information -- generally you need to
+   include everything from the "ONION BROWSER LICENSE" section down through
+   the rest of the file, but see the "TRADEMARK / LICENSE / FORK INFORMATION"
+   section there.
+
+3. You'll need to make sure the "Bundle identifier" (under "Info" in the
+   app's Target Properties) is set to your own identifier and not
+   "com.miketigas.OnionBrowser".
+
+4. You'll need to make sure the URL handlers for your app (see *Integration
+   notes* above) don't conflict with the ones for Onion Browser. Make sure
+   you edit your `<app>-Info.plist` file and edit values under "URL types".
+
+   Change "URL identifier" to your own' app's identifier from #3, change
+   the URL Schemes to the URL schemes your app should open if another app
+   tries to open a URL with that prefix. ("test" and "tests" will make
+   your app open if another app tries to open URLs starting with "test://"
+   and "tests://".)
+
+   You'll also need to edit code in `AppDelegate.m` that checks for your
+   bundle identifier and handles these URL protocol prefixes.
