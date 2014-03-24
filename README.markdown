@@ -191,15 +191,13 @@ containing the statically-compiled library files.
 Open `OnionBrowser/OnionBrowser.xcodeproj`. You should be
 able to compile and run the application at this point.
 
-The app and all dependencies are compiled to run against `armv7s` (iPhone 5's
-"A6" processor), `armv7`, and `i386` targets, meaning that all devices since the
-iPhone 4 (running at least iOS 5.0) and the iOS Simulators should be able to
-run the application.
+The app and all dependencies are compiled to run against `arm64` (iPhone 5S
+64-bit "A7" processor), `armv7s` (iPhone 5 "A6" processor), and `armv7`
+platforms. This means all devices since the iPhone 4 (running at least iOS
+6.0) are supported.
 
-The app currently is not compiled for `arm64` (64-bit ARM processor in the
-iPhone 5S) because apps compiled for this target may only support iOS 6.1
-and later. This optimization may be revisited once support for iOS 5.X is
-dropped at a later date.
+All dependencies are further compiled for `i386` and `x86_64` targets, so
+that both the 32-bit and 64-bit iOS Simulators are supported.
 
 ### Information for forks
 
@@ -229,5 +227,6 @@ dropped at a later date.
    your app open if another app tries to open URLs starting with "test://"
    and "tests://".)
 
-   You'll also need to edit code in `AppDelegate.m` that checks for your
-   bundle identifier and handles these URL protocol prefixes.
+   You'll also need to edit code in `AppDelegate.m`. Look for instances of
+   `"onionbrowser:"` and `"onionbrowsers:"`, as these are the portions that
+   check for your app's URL identifiers.
