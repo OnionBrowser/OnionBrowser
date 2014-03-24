@@ -13,6 +13,10 @@
 #import "Bookmark.h"
 #import "BridgeTableViewController.h"
 #import "NJKWebViewProgressView.h"
+#import <objc/runtime.h>
+
+#define ALERTVIEW_SSL_WARNING 1
+#define ALERTVIEW_EXTERN_PROTO 2
 
 static const CGFloat kNavBarHeight = 52.0f;
 static const CGFloat kToolBarHeight = 44.0f;
@@ -34,6 +38,8 @@ static const Boolean kBackwardButton = NO;
 @interface WebViewController ()
 
 @end
+
+const char AlertViewExternProtoUrl;
 
 @implementation WebViewController {
     NJKWebViewProgressView *_progressView;
@@ -98,37 +104,63 @@ static const Boolean kBackwardButton = NO;
 }
 
 -(void)loadURL: (NSURL *)navigationURL {
-    // Remove the "connecting..." (initial tor load) overlay if it still exists.
-    UIView *loadingStatus = [self.view viewWithTag:kLoadingStatusTag];
-    if (loadingStatus != nil) {
-        [loadingStatus removeFromSuperview];
+    NSString *urlProto = [navigationURL scheme];
+    if ([urlProto isEqualToString:@"onionbrowser"]||[urlProto isEqualToString:@"onionbrowsers"]||[urlProto isEqualToString:@"http"]||[urlProto isEqualToString:@"https"]) {
+        /***** One of our supported protocols *****/
         
-        // now add the "progress bar" to the view, too
-        UINavigationBar *navBar = (UINavigationBar *)[self.view viewWithTag:kNavBarTag];
-        CGRect navBarFrame = navBar.frame;
-        CGFloat progressBarHeight = 2.5f;
-        CGRect barFrame = CGRectMake(0, navBarFrame.size.height - progressBarHeight, navBarFrame.size.width, progressBarHeight);
-        _progressView = [[NJKWebViewProgressView alloc] initWithFrame:barFrame];
-        [navBar addSubview:_progressView];
+        // Remove the "connecting..." (initial tor load) overlay if it still exists.
+        UIView *loadingStatus = [self.view viewWithTag:kLoadingStatusTag];
+        if (loadingStatus != nil) {
+            [loadingStatus removeFromSuperview];
+            
+            // now add the "progress bar" to the view, too
+            UINavigationBar *navBar = (UINavigationBar *)[self.view viewWithTag:kNavBarTag];
+            CGRect navBarFrame = navBar.frame;
+            CGFloat progressBarHeight = 2.5f;
+            CGRect barFrame = CGRectMake(0, navBarFrame.size.height - progressBarHeight, navBarFrame.size.width, progressBarHeight);
+            _progressView = [[NJKWebViewProgressView alloc] initWithFrame:barFrame];
+            [navBar addSubview:_progressView];
+        }
+
+        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        NSMutableDictionary *settings = appDelegate.getSettings;
+
+        // Build request and go.
+        _myWebView.delegate = _progressProxy;
+        _progressProxy.webViewProxyDelegate = self;
+        _progressProxy.progressDelegate = self;
+        _myWebView.scalesPageToFit = YES;
+        NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:navigationURL];
+        [req setHTTPShouldUsePipelining:[[settings valueForKey:@"pipelining"] integerValue]];
+        [_myWebView loadRequest:req];
+
+        _addressField.enabled = YES;
+        _toolButton.enabled = YES;
+        _stopRefreshButton.enabled = YES;
+        _bookmarkButton.enabled = YES;
+        [self updateButtons];
+    } else {
+        /***** NOT a protocol that this app speaks, check with the OS if the user wants to *****/
+        if ([[UIApplication sharedApplication] canOpenURL:navigationURL]) {
+            //NSLog(@"can open %@", [navigationURL absoluteString]);
+            NSString *msg = [NSString stringWithFormat: @"Onion Browser cannot load a '%@' link, but another app you have installed can.\n\nNote that the other app will not load data over Tor, which could leak identifying information.\n\nDo you wish to proceed?", navigationURL.scheme, nil];
+            UIAlertView* alertView = [[UIAlertView alloc]
+                                      initWithTitle:@"Open Other App?"
+                                      message:msg
+                                      delegate:nil
+                                      cancelButtonTitle:@"Cancel"
+                                      otherButtonTitles:@"Open",nil];
+            alertView.delegate = self;
+            alertView.tag = ALERTVIEW_EXTERN_PROTO;
+            [alertView show];
+            objc_setAssociatedObject(alertView, &AlertViewExternProtoUrl, navigationURL, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+            return;
+        } else {
+            //NSLog(@"cannot open %@", [navigationURL absoluteString]);
+            [self addressBarCancel];
+            return;
+        }
     }
-
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    NSMutableDictionary *settings = appDelegate.getSettings;
-
-    // Build request and go.
-    _myWebView.delegate = _progressProxy;
-    _progressProxy.webViewProxyDelegate = self;
-    _progressProxy.progressDelegate = self;
-    _myWebView.scalesPageToFit = YES;
-    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:navigationURL];
-    [req setHTTPShouldUsePipelining:[[settings valueForKey:@"pipelining"] integerValue]];
-    [_myWebView loadRequest:req];
-
-    _addressField.enabled = YES;
-    _toolButton.enabled = YES;
-    _stopRefreshButton.enabled = YES;
-    _bookmarkButton.enabled = YES;
-    [self updateButtons];
 }
 
 
@@ -463,6 +495,7 @@ static const Boolean kBackwardButton = NO;
                                   cancelButtonTitle:@"Cancel"
                                   otherButtonTitles:@"Continue",nil];
         alertView.delegate = self;
+        alertView.tag = ALERTVIEW_SSL_WARNING;
         [alertView show];
 
     } else if ([error.domain isEqualToString:(NSString *)kCFErrorDomainCFNetwork] ||
@@ -493,7 +526,7 @@ static const Boolean kBackwardButton = NO;
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 1) {
+    if ((alertView.tag == ALERTVIEW_SSL_WARNING) && (buttonIndex == 1)) {
         // "Continue anyway" for SSL cert error
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
 
@@ -502,15 +535,24 @@ static const Boolean kBackwardButton = NO;
         NSString *hostname = url.host;
         [appDelegate.sslWhitelistedDomains addObject:hostname];
 
-        UIAlertView* alertView = [[UIAlertView alloc]
+        UIAlertView* newAlertView = [[UIAlertView alloc]
                                   initWithTitle:@"Whitelisted Domain"
                                   message:[NSString stringWithFormat:@"SSL certificate errors for '%@' will be ignored for the rest of this session.", hostname] delegate:nil 
                                   cancelButtonTitle:@"OK"
                                   otherButtonTitles:nil];
-        [alertView show];
+        [newAlertView show];
 
         // Reload (now that we have added host to whitelist)
         [self loadURL:url];
+    } else if ((alertView.tag == ALERTVIEW_EXTERN_PROTO)) {
+        if (buttonIndex == 1) {
+            // Warned user about opening URL in external app and they said it's OK.
+            NSURL *navigationURL = objc_getAssociatedObject(alertView, &AlertViewExternProtoUrl);
+            //NSLog(@"launching URL: %@", [navigationURL absoluteString]);
+            [[UIApplication sharedApplication] openURL:navigationURL];
+        } else {
+            [self addressBarCancel];
+        }
     }
 }
 

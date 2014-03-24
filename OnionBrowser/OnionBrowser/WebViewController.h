@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "NJKWebViewProgress.h"
 
+extern const char AlertViewExternProtoUrl;
+
 @interface WebViewController : UIViewController <UIWebViewDelegate, UITextFieldDelegate, UIActionSheetDelegate, UIAlertViewDelegate, NJKWebViewProgressDelegate> {
 }
 
