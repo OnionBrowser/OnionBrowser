@@ -28,9 +28,23 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Detect bookmarks file.
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Settings.sqlite"];
+    NSURL *settingsPlist = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Settings.plist"];
     NSFileManager *fileManager = [NSFileManager defaultManager];
     doPrepopulateBookmarks = (![fileManager fileExistsAtPath:[storeURL path]]);
     
+    /* Tell iOS to encrypt settings.plist (settings incl homepage, etc) and settings.sqlite (bookmarks, bridges)
+     * from earlier versions of OnionBrowser. */
+    if ([fileManager fileExistsAtPath:[storeURL path]]) {
+        NSDictionary *f_options = [NSDictionary dictionaryWithObjectsAndKeys:
+                                 [NSNumber numberWithBool:YES], NSFileProtectionComplete, nil];
+        [fileManager setAttributes:f_options ofItemAtPath:[storeURL path] error:nil];
+    }
+    if ([fileManager fileExistsAtPath:[settingsPlist path]]) {
+        NSDictionary *f_options = [NSDictionary dictionaryWithObjectsAndKeys:
+                                   [NSNumber numberWithBool:YES], NSFileProtectionComplete, nil];
+        [fileManager setAttributes:f_options ofItemAtPath:[settingsPlist path] error:nil];
+    }
+
     // Wipe all cookies & caches from previous invocations of app (in case we didn't wipe
     // cleanly upon exit last time)
     [self wipeAppData];
@@ -114,6 +128,7 @@
     
     NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
                              [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
+                             [NSNumber numberWithBool:YES], NSFileProtectionComplete,
                              [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
     
     NSError *error = nil;
@@ -269,6 +284,11 @@
             }
         }
     }
+
+    // Encrypt the new torrc (since this "running" copy of torrc may now contain bridges)
+    NSDictionary *f_options = [NSDictionary dictionaryWithObjectsAndKeys:
+                               [NSNumber numberWithBool:YES], NSFileProtectionComplete, nil];
+    [fileManager setAttributes:f_options ofItemAtPath:destTorrc error:nil];
 }
 
 - (void)wipeAppData {
@@ -384,7 +404,8 @@
         NSLog (@"error serializing to xml: %@", error);
         return;
     } else {
-        [data writeToFile:self.settingsFile atomically:YES];
+        NSUInteger fileOption = NSDataWritingAtomic | NSDataWritingFileProtectionComplete;
+        [data writeToFile:self.settingsFile options:fileOption error:nil];
     }
 }
 
@@ -392,5 +413,16 @@
     NSMutableDictionary *d = self.getSettings;
     return [d objectForKey:@"homepage"];
 }
+
+
+
+#ifdef DEBUG
+- (void)applicationProtectedDataWillBecomeUnavailable:(UIApplication *)application {
+    NSLog(@"app data encrypted");
+}
+- (void)applicationProtectedDataDidBecomeAvailable:(UIApplication *)application {
+    NSLog(@"data decrypted, now available");
+}
+#endif
 
 @end
