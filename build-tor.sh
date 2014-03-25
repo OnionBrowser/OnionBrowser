@@ -41,12 +41,19 @@ ARCHS="i386 x86_64 armv7 armv7s arm64"
 DEVELOPER=`xcode-select -print-path`
 #DEVELOPER="/Applications/Xcode.app/Contents/Developer"
 
+# for continuous integration
+# https://travis-ci.org/mtigas/iOS-OnionBrowser
 if [ "$1" == "--noverify" ]; then
   VERIFYGPG=false
 fi
 if [ "$2" == "--i386only" ]; then
   ARCHS="i386"
 fi
+if [ "$TRAVIS" == "true" ]; then
+  # Travis CI highest available version
+  SDKVERSION="7.0"
+fi
+
 
 cd "`dirname \"$0\"`"
 REPOROOT=$(pwd)
