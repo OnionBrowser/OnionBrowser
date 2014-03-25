@@ -1,30 +1,30 @@
 #!/bin/bash
-#  Builds tor for all three current iPhone targets: iPhoneSimulator-i386,
-#  iPhoneOS-armv6, iPhoneOS-armv7.
+# Builds tor for all three current iPhone targets: iPhoneSimulator-i386,
+# iPhoneOS-armv6, iPhoneOS-armv7.
 #
-#  Copyright 2012 Mike Tigas <mike@tig.as>
+# Copyright 2012 Mike Tigas <mike@tig.as>
 #
-#  Based on work by Felix Schulze on 16.12.10.
-#  Copyright 2010 Felix Schulze. All rights reserved.
+# Based on work by Felix Schulze on 16.12.10.
+# Copyright 2010 Felix Schulze. All rights reserved.
 #
-#  Licensed under the Apache License, Version 2.0 (the "License");
-#  you may not use this file except in compliance with the License.
-#  You may obtain a copy of the License at
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-#  http://www.apache.org/licenses/LICENSE-2.0
+# http://www.apache.org/licenses/LICENSE-2.0
 #
-#  Unless required by applicable law or agreed to in writing, software
-#  distributed under the License is distributed on an "AS IS" BASIS,
-#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#  See the License for the specific language governing permissions and
-#  limitations under the License.
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 #
 ###########################################################################
-#  Choose your tor version and your currently-installed iOS SDK version:
+# Choose your tor version and your currently-installed iOS SDK version:
 #
 VERSION="0.2.4.21"
 #VERSION="0.2.5.2-alpha"
-SDKVERSION="7.1"
+USERSDKVERSION="7.1"
 MINIOSVERSION="6.0"
 VERIFYGPG=true
 
@@ -44,14 +44,16 @@ DEVELOPER=`xcode-select -print-path`
 # for continuous integration
 # https://travis-ci.org/mtigas/iOS-OnionBrowser
 if [ "$1" == "--noverify" ]; then
-  VERIFYGPG=false
+	VERIFYGPG=false
 fi
 if [ "$2" == "--i386only" ]; then
-  ARCHS="i386"
+	ARCHS="i386"
 fi
 if [ "$TRAVIS" = true ]; then
-  # Travis CI highest available version
-  SDKVERSION="7.0"
+	# Travis CI highest available version
+	SDKVERSION="7.0"
+else
+	SDKVERSION="$USERSDKVERSION"
 fi
 
 cd "`dirname \"$0\"`"
@@ -161,68 +163,68 @@ cp "${SRCDIR}/tor-${VERSION}/configure" "${VANILLA_CONFIGURE}"
 for ARCH in ${ARCHS}
 do
 	if [ "${ARCH}" == "i386" ] || [ "${ARCH}" == "x86_64" ]; then
-        PLATFORM="iPhoneSimulator"
-        EXTRA_CONFIG=""
-    else
-        PLATFORM="iPhoneOS"
-        EXTRA_CONFIG="--host=arm-apple-darwin13 --target=arm-apple-darwin13 --disable-gcc-hardening --disable-linker-hardening"
-    fi
+		PLATFORM="iPhoneSimulator"
+		 EXTRA_CONFIG=""
+	else
+		PLATFORM="iPhoneOS"
+		EXTRA_CONFIG="--host=arm-apple-darwin13 --target=arm-apple-darwin13 --disable-gcc-hardening --disable-linker-hardening"
+	fi
 
-    mkdir -p "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk"
-    mkdir -p "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include"
-    mkdir -p "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/lib"
+	mkdir -p "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk"
+	mkdir -p "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include"
+	mkdir -p "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/lib"
 
 	export PATH="${DEVELOPER}/Toolchains/XcodeDefault.xctoolchain/usr/bin/:${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/usr/bin/:${DEVELOPER}/Toolchains/XcodeDefault.xctoolchain/usr/bin:${DEVELOPER}/usr/bin:${ORIGINALPATH}"
 	export CC="${CCACHE}`which gcc` -arch ${ARCH} -miphoneos-version-min=${MINIOSVERSION}"
 
-    # (since we're editing configure, make sure to start with an modified
-    # copy when building a new arch)
+	# (since we're editing configure, make sure to start with an modified
+	# copy when building a new arch)
 	cp "${VANILLA_CONFIGURE}" "${SRCDIR}/tor-${VERSION}/configure"
 
 	# explicitly disable curve25519-donna-c64, since it causes compile
 	# error under clang (Xcode 5) for ARM (non-64) archs
-    if [ "${ARCH}" == "armv7" ] || [ "${ARCH}" == "armv7s" ]; then
+	if [ "${ARCH}" == "armv7" ] || [ "${ARCH}" == "armv7s" ]; then
 		sed -ie "s/tor_cv_can_use_curve25519_donna_c64=cross/tor_cv_can_use_curve25519_donna_c64=no/g" "${SRCDIR}/tor-${VERSION}/configure"
 		sed -ie "s/tor_cv_can_use_curve25519_donna_c64=yes/tor_cv_can_use_curve25519_donna_c64=no/g" "${SRCDIR}/tor-${VERSION}/configure"
 	fi
 
-    ./configure ${EXTRA_CONFIG} \
-    --prefix="${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk" \
-    --enable-static-openssl --enable-static-libevent --enable-static-zlib \
-    --with-openssl-dir="${OUTPUTDIR}" \
-    --with-libevent-dir="${OUTPUTDIR}" \
-    --with-zlib-dir="${OUTPUTDIR}" \
-    --disable-asciidoc --disable-transparent --disable-threads \
-    LDFLAGS="$LDFLAGS -L${OUTPUTDIR}/lib" \
-    CFLAGS="$CFLAGS -O2 -I${OUTPUTDIR}/include -isysroot ${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/SDKs/${PLATFORM}${SDKVERSION}.sdk" \
-    CPPFLAGS="$CPPFLAGS -I${OUTPUTDIR}/include -isysroot ${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/SDKs/${PLATFORM}${SDKVERSION}.sdk" 
+	./configure ${EXTRA_CONFIG} \
+	--prefix="${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk" \
+	--enable-static-openssl --enable-static-libevent --enable-static-zlib \
+	--with-openssl-dir="${OUTPUTDIR}" \
+	--with-libevent-dir="${OUTPUTDIR}" \
+	--with-zlib-dir="${OUTPUTDIR}" \
+	--disable-asciidoc --disable-transparent --disable-threads \
+	LDFLAGS="$LDFLAGS -L${OUTPUTDIR}/lib" \
+	CFLAGS="$CFLAGS -O2 -I${OUTPUTDIR}/include -isysroot ${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/SDKs/${PLATFORM}${SDKVERSION}.sdk" \
+	CPPFLAGS="$CPPFLAGS -I${OUTPUTDIR}/include -isysroot ${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/SDKs/${PLATFORM}${SDKVERSION}.sdk" 
 
-    # Build the application
-    make -j4
+	# Build the application
+	make -j4
 
-    # Don't make install. We actually don't want the tor binary or the
-    # documentation, we just want the archives of the compiled sources.
-    cp src/common/libor-crypto.a "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/lib/"
-    cp src/common/libor-event.a "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/lib/"
-    cp src/common/libor.a "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/lib/"
-    cp src/common/libcurve25519_donna.a "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/lib/"
-    cp src/or/libtor.a "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/lib/"
+	# Don't make install. We actually don't want the tor binary or the
+	# documentation, we just want the archives of the compiled sources.
+	cp src/common/libor-crypto.a "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/lib/"
+	cp src/common/libor-event.a "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/lib/"
+	cp src/common/libor.a "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/lib/"
+	cp src/common/libcurve25519_donna.a "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/lib/"
+	cp src/or/libtor.a "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/lib/"
 
-    mkdir -p "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/common/"
-    mkdir -p "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/or/"
-    mkdir -p "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/tools/"
-    cp micro-revision.i "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/"
-    cp orconfig.h "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/"
-    cp src/ext/ht.h "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/"
-    set +e # dont bail on error
-    # for Tor 0.2.5.X
-    cp src/ext/tor_queue.h "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/"
-    set -e # back to regular "bail out on error" mode
-    find src/common -name "*.h" -exec cp {} "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/common/" \;
-    find src/or -name "*.h" -exec cp {} "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/or/" \;
-    find src/or -name "*.i" -exec cp {} "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/or/" \;
-    find src/tools -name "*.h" -exec cp {} "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/tools/" \;
-    make clean
+	mkdir -p "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/common/"
+	mkdir -p "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/or/"
+	mkdir -p "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/tools/"
+	cp micro-revision.i "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/"
+	cp orconfig.h "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/"
+	cp src/ext/ht.h "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/"
+	set +e # dont bail on error
+	# for Tor 0.2.5.X
+	cp src/ext/tor_queue.h "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/"
+	set -e # back to regular "bail out on error" mode
+	find src/common -name "*.h" -exec cp {} "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/common/" \;
+	find src/or -name "*.h" -exec cp {} "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/or/" \;
+	find src/or -name "*.i" -exec cp {} "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/or/" \;
+	find src/tools -name "*.h" -exec cp {} "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/tools/" \;
+	make clean
 done
 
 ########################################
@@ -246,7 +248,7 @@ for OUTPUT_LIB in ${OUTPUT_LIBS}; do
 		fi
 	done
 	# Combine the three architectures into a universal library.
-	if [ -n "$INPUT_LIBS"  ]; then
+	if [ -n "$INPUT_LIBS" ]; then
 		lipo -create $INPUT_LIBS \
 		-output "${OUTPUTDIR}/lib/${OUTPUT_LIB}"
 	else

@@ -24,7 +24,7 @@
 #
 VERSION="1.0.1f"
 #VERSION="1.0.2-beta1"
-SDKVERSION="7.1"
+USERSDKVERSION="7.1"
 MINIOSVERSION="6.0"
 VERIFYGPG=true
 
@@ -44,14 +44,16 @@ DEVELOPER=`xcode-select -print-path`
 # for continuous integration
 # https://travis-ci.org/mtigas/iOS-OnionBrowser
 if [ "$1" == "--noverify" ]; then
-  VERIFYGPG=false
+	VERIFYGPG=false
 fi
 if [ "$2" == "--i386only" ]; then
-  ARCHS="i386"
+	ARCHS="i386"
 fi
 if [ "$TRAVIS" = true ]; then
-  # Travis CI highest available version
-  SDKVERSION="7.0"
+	# Travis CI highest available version
+	SDKVERSION="7.0"
+else
+	SDKVERSION="$USERSDKVERSION"
 fi
 
 cd "`dirname \"$0\"`"
