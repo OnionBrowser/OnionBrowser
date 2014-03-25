@@ -49,7 +49,7 @@ fi
 if [ "$2" == "--i386only" ]; then
   ARCHS="i386"
 fi
-if [ "$TRAVIS" == "true" ]; then
+if [ "$TRAVIS" = true ]; then
   # Travis CI highest available version
   SDKVERSION="7.0"
 fi
