@@ -1,6 +1,6 @@
 #!/bin/bash
-# Builds tor for all three current iPhone targets: iPhoneSimulator-i386,
-# iPhoneOS-armv6, iPhoneOS-armv7.
+# Builds tor for all five current iPhone targets: iPhoneSimulator-i386,
+# iPhoneSimulator-x86_64, iPhoneOS-armv7, iPhoneOS-armv7s, iPhoneOS-arm64.
 #
 # Copyright 2012 Mike Tigas <mike@tig.as>
 #

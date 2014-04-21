@@ -1,6 +1,6 @@
 #!/bin/bash
-#  Builds openssl for all three current iPhone targets: iPhoneSimulator-i386,
-#  iPhoneOS-armv6, iPhoneOS-armv7.
+#  Builds openssl for all five current iPhone targets: iPhoneSimulator-i386,
+#  iPhoneSimulator-x86_64, iPhoneOS-armv7, iPhoneOS-armv7s, iPhoneOS-arm64.
 #
 #  Copyright 2012 Mike Tigas <mike@tig.as>
 #
@@ -22,7 +22,7 @@
 ###########################################################################
 #  Choose your openssl version and your currently-installed iOS SDK version:
 #
-VERSION="1.0.1f"
+VERSION="1.0.1g"
 #VERSION="1.0.2-beta1"
 USERSDKVERSION="7.1"
 MINIOSVERSION="6.0"
