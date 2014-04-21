@@ -1,8 +1,37 @@
 Onion Browser Version History (since 1.2.2)
 
+===== 1.4.1 - Pending App Store Review =====
+Apr 21 2014 - Submit Date
 
-===== 1.4 - Pending App Store Review =====
+* OpenSSL updated to 1.0.1g, fixing the Heartbleed bug. Note that in
+  Onion Browser, Heartbleed only affects the connection between your
+  the device and a Tor entry guard or bridge. Browser traffic is not
+  vulnerable (but speaking to affected websites is still insecure
+  regardless of which browser you use).
+
+* Tor updated to 0.2.4.21.
+
+* Compiled for iOS SDK 7.1 (XCode 5.1).
+
+* Onion Browser now encrypts locally-stored data, including browser
+  settings, bookmarks, and Tor bridges (if enabled).
+
+* Fix issue where Onion Browser was not allowing third-party apps to
+  open. When encountering a URI scheme that can open in another app,
+  Onion Browser will now ask the user if they want to open the app.
+  (Example: clicking on a "tel:" link can now open the phone app
+  rather than simply fail.)
+
+* Tweaks to content-security-policy so that even with "active content
+  blocking" enabled, some safe activity is still allowed, such as
+  using the target attribute on a link inside a frame. Fixes issues
+  with websites using frames (including default home page). Contributed
+  by Łukasz Pilorz.
+
+
+===== 1.4 - In App Store =====
 Feb 01 2014 - Submit Date
+Feb 05 2014 - App store availability
 
 * App is now being compiled with 64-bit CPU optimization (for iPhone 5S
   and new iPads), which may improve cryptographic performance and battery
@@ -21,7 +50,11 @@ Feb 01 2014 - Submit Date
 
 * Fix awkward navbar / address bar spacing in iOS 7.
 
-===== 1.3.14 - In App Store =====
+
+
+PREVIOUS VERSIONS:
+
+===== 1.3.14  =====
 Jan 26 2014 - Submit date
 Jan 30 2014 - App store availability
 
@@ -48,9 +81,6 @@ Jan 30 2014 - App store availability
 
 * Tor updated to 0.2.4.20.
 
-
-
-PREVIOUS VERSIONS:
 
 ===== 1.3.13  =====
 Nov 17, 2013 - Submit date
