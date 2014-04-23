@@ -1,7 +1,8 @@
 Onion Browser Version History (since 1.2.2)
 
-===== 1.4.1 - Pending App Store Review =====
+===== 1.4.1 - In App Store =====
 Apr 21 2014 - Submit Date
+Apr 23 2014 - App store availability
 
 * OpenSSL updated to 1.0.1g, fixing the Heartbleed bug. Note that in
   Onion Browser, Heartbleed only affects the connection between your
@@ -29,7 +30,9 @@ Apr 21 2014 - Submit Date
   by Łukasz Pilorz.
 
 
-===== 1.4 - In App Store =====
+PREVIOUS VERSIONS:
+
+===== 1.4 =====
 Feb 01 2014 - Submit Date
 Feb 05 2014 - App store availability
 
@@ -50,9 +53,6 @@ Feb 05 2014 - App store availability
 
 * Fix awkward navbar / address bar spacing in iOS 7.
 
-
-
-PREVIOUS VERSIONS:
 
 ===== 1.3.14  =====
 Jan 26 2014 - Submit date
