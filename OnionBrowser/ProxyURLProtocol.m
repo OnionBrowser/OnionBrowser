@@ -73,9 +73,7 @@
 
 + (BOOL)canInitWithRequest:(NSURLRequest *)request {
     if ( !([[[request URL] scheme] isEqualToString:@"file"] ||
-           [[[request URL] scheme] isEqualToString:@"data"] ||
-           [[[request URL] scheme] isEqualToString:@"itms"] ||
-           [[[request URL] scheme] isEqualToString:@"itms-apps"]
+           [[[request URL] scheme] isEqualToString:@"data"]
            )
     ) {
         // Previously we checked if it matched "http" or "https". Apparently
