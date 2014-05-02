@@ -77,7 +77,7 @@
     else if (section == 2)
         return @"Cookies\n(Changing Will Clear Cookies)";
     else if (section == 3)
-        return @"User-Agent Spoofing\n* iOS Safari provides better mobile website compatibility.\n* Windows 7 string is recommended for privacy and uses the same string as the official Tor Browser Bundle.";
+        return @"User-Agent Spoofing\n* iOS Safari provides better mobile website compatibility.\n* Windows string is recommended for privacy and uses the same string as the official Tor Browser Bundle.";
     else if (section == 4)
         return @"HTTP Pipelining\n(Disable if you have issues with images on some websites)";
     else if (section == 5)
@@ -167,14 +167,14 @@
                 cell.accessoryType = UITableViewCellAccessoryNone;
             }
         } else if (indexPath.row == 1) {
-            cell.textLabel.text = @"Windows 7 (NT 6.1), Firefox 17";
+            cell.textLabel.text = @"Windows 7 (NT 6.1), Firefox 24";
             if (spoofUserAgent == UA_SPOOF_WIN7_TORBROWSER) {
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             } else {
                 cell.accessoryType = UITableViewCellAccessoryNone;
             }
         } else if (indexPath.row == 2) {
-            cell.textLabel.text = @"Mac OS X 10.8.4, Safari 6.0";
+            cell.textLabel.text = @"Mac OS X 10.9.2, Safari 7.0.3";
             if (spoofUserAgent == UA_SPOOF_SAFARI_MAC) {
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             } else {

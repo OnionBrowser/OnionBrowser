@@ -353,9 +353,9 @@
             #endif
             NSString *uaString = @"";
             if (spoofUserAgent == UA_SPOOF_WIN7_TORBROWSER) {
-                uaString = @"Mozilla/5.0 (Windows NT 6.1; rv:17.0) Gecko/20100101 Firefox/17.0";
+                uaString = @"Mozilla/5.0 (Windows NT 6.1; rv:24.0) Gecko/20100101 Firefox/24.0";
             } else if (spoofUserAgent == UA_SPOOF_SAFARI_MAC) {
-                uaString = @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/536.30.1 (KHTML, like Gecko) Version/6.0.5 Safari/536.30.1";
+                uaString = @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.75.14 (KHTML, like Gecko) Version/7.0.3 Safari/537.75.14";
             }
             CFHTTPMessageSetHeaderFieldValue(result,
                                              (__bridge CFStringRef)aHTTPHeaderField,
