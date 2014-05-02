@@ -489,8 +489,8 @@ const char AlertViewExternProtoUrl;
         // Invalid certificate chain; valid cert chain, untrusted root
 
         UIAlertView* alertView = [[UIAlertView alloc]
-                                  initWithTitle:@"SSL Error"
-                                  message:@"Certificate chain is invalid. Either the site's SSL certificate is self-signed or the certificate was signed by an untrusted authority."
+                                  initWithTitle:@"Cannot Verify Website Identity"
+                                  message:@"Either the site's SSL certificate is self-signed or the certificate was signed by an untrusted authority.\n\nFor normal websites, it is generally unsafe to proceed.\n\nFor .onion websites (or sites using CACert or self-signed certificates), only proceed if you think you can trust this website's URL."
                                   delegate:nil
                                   cancelButtonTitle:@"Cancel"
                                   otherButtonTitles:@"Continue",nil];

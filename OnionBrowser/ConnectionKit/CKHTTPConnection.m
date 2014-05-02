@@ -135,26 +135,16 @@
 
     // Ignore SSL errors for domains if user has explicitly said to "continue anyway"
     // (for self-signed certs)
-    // Ignore SSL errors for .onion addresses because they will not have been
-    // signed by known authorities. (They will be self-signed or signed by alternative roots
-    // similar to CACert or they are actually the cert for the non-.onion version of that domain.)
     NSURL *URL = [_HTTPStream propertyForKey:(NSString *)kCFStreamPropertyHTTPFinalURL];
     if ([URL.absoluteString rangeOfString:@"https://"].location == 0) {
         Boolean ignoreSSLErrors = NO;
-        if ([URL.host rangeOfString:@".onion"].location != NSNotFound) {
-            #ifdef DEBUG
-                NSLog(@"loading https://*.onion/ URL, ignoring SSL certificate status (%@)", URL.absoluteString);
-            #endif
-            ignoreSSLErrors = YES;
-        } else {
-            for (NSString *whitelistHost in appDelegate.sslWhitelistedDomains) {
-                if ([whitelistHost isEqualToString:URL.host]) {
-                    #ifdef DEBUG
-                        NSLog(@"%@ in SSL host whitelist ignoring SSL certificate status", URL.host);
-                    #endif
-                    ignoreSSLErrors = YES;
-                    break;
-                }
+        for (NSString *whitelistHost in appDelegate.sslWhitelistedDomains) {
+            if ([whitelistHost isEqualToString:URL.host]) {
+                #ifdef DEBUG
+                    NSLog(@"%@ in SSL host whitelist ignoring SSL certificate status", URL.host);
+                #endif
+                ignoreSSLErrors = YES;
+                break;
             }
         }
         if (ignoreSSLErrors) {
