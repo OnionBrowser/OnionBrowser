@@ -15,17 +15,17 @@
 #define CONN_STATUS_NONE 0
 #define CONN_STATUS_CONNECTED 1
 
-@property (nonatomic) NSUInteger controllerIsAuthenticated;
+@property (nonatomic) unsigned int controllerIsAuthenticated;
 @property (nonatomic) Boolean didFirstConnect;
-@property (nonatomic) NSUInteger connectionStatus;
+@property (nonatomic) unsigned int connectionStatus;
 
 @property (nonatomic) TorWrapper *torThread;
 @property (nonatomic) NSTimer *torCheckLoopTimer;
 @property (nonatomic) NSTimer *torStatusTimeoutTimer;
 @property (nonatomic) ULINetSocket	*mSocket;
 
-@property (nonatomic) NSUInteger torSocksPort;
-@property (nonatomic) NSUInteger torControlPort;
+@property (nonatomic) unsigned int torSocksPort;
+@property (nonatomic) unsigned int torControlPort;
 
 
 - (id)init;

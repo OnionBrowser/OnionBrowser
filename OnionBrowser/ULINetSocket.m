@@ -501,7 +501,7 @@ static void _cfsocketCallback( CFSocketRef inCFSocketRef, CFSocketCallBackType i
 		return 0;
 	
 	// Determine how much to actually read
-	amountToRead = MIN( inAmount, [mIncomingBuffer length] );
+	amountToRead = MIN( inAmount, (unsigned int)[mIncomingBuffer length] );
 	
 	// Read bytes from our incoming buffer
 	[mIncomingBuffer getBytes:inBuffer length:amountToRead];
@@ -519,7 +519,7 @@ static void _cfsocketCallback( CFSocketRef inCFSocketRef, CFSocketCallBackType i
 		return 0;
 	
 	// Remember the length of our incoming buffer
-	amountRead = [mIncomingBuffer length];
+	amountRead = (unsigned int)[mIncomingBuffer length];
 	
 	// Read bytes from our incoming buffer
 	[inData appendData:mIncomingBuffer];
@@ -539,7 +539,7 @@ static void _cfsocketCallback( CFSocketRef inCFSocketRef, CFSocketCallBackType i
 		return 0;
 	
 	// Determine how much to actually read
-	amountToRead = MIN( inAmount, [mIncomingBuffer length] );
+	amountToRead = MIN( inAmount, (unsigned int)[mIncomingBuffer length] );
 	
 	// Read bytes from our incoming buffer
 	[inData appendBytes:[mIncomingBuffer bytes] length:amountToRead];
@@ -559,7 +559,7 @@ static void _cfsocketCallback( CFSocketRef inCFSocketRef, CFSocketCallBackType i
 		return 0;
 	
 	// Determine how much to actually read
-	amountToRead = MIN( inAmount, [mIncomingBuffer length] );
+	amountToRead = MIN( inAmount, (unsigned int)[mIncomingBuffer length] );
 	
 	// Reference our incoming buffer, we cut down some overhead when the requested amount is the same length as our incoming buffer
 	if( amountToRead == [mIncomingBuffer length] )
@@ -618,7 +618,7 @@ static void _cfsocketCallback( CFSocketRef inCFSocketRef, CFSocketCallBackType i
 		return nil;
 	
 	// Determine how much to actually read
-	amountToRead = MIN( inAmount, [mIncomingBuffer length] );
+	amountToRead = MIN( inAmount, (unsigned int)[mIncomingBuffer length] );
 	
 	// Read bytes from our incoming buffer
 	readData = [NSData dataWithBytes:[mIncomingBuffer bytes] length:amountToRead];
@@ -661,7 +661,7 @@ static void _cfsocketCallback( CFSocketRef inCFSocketRef, CFSocketCallBackType i
 		return nil;
 	
 	// Determine how much to actually read
-	amountToRead = MIN( inAmount, [mIncomingBuffer length] );
+	amountToRead = MIN( inAmount, (unsigned int)[mIncomingBuffer length] );
 	
 	// Reference our incoming buffer, we cut down some overhead when the requested amount is the same length as our incoming buffer
 	if( amountToRead == [mIncomingBuffer length] )
@@ -711,7 +711,7 @@ static void _cfsocketCallback( CFSocketRef inCFSocketRef, CFSocketCallBackType i
 
 - (void)writeData:(NSData*)inData
 {
-	[self write:[inData bytes] length:[inData length]];
+	[self write:[inData bytes] length:(unsigned int)[inData length]];
 }
 
 - (void)writeString:(NSString*)inString encoding:(NSStringEncoding)inEncoding
@@ -809,12 +809,12 @@ static void _cfsocketCallback( CFSocketRef inCFSocketRef, CFSocketCallBackType i
 
 - (unsigned)incomingBufferLength
 {
-	return [mIncomingBuffer length];
+	return (unsigned int)[mIncomingBuffer length];
 }
 
 - (unsigned)outgoingBufferLength
 {
-	return [mOutgoingBuffer length];
+	return (unsigned int)[mOutgoingBuffer length];
 }
 
 - (CFSocketNativeHandle)nativeSocketHandle
@@ -936,7 +936,7 @@ static void _cfsocketCallback( CFSocketRef inCFSocketRef, CFSocketCallBackType i
 	unsigned oldIncomingBufferLength;
 	
 	// Store the old incoming buffer length
-	oldIncomingBufferLength = [mIncomingBuffer length];
+	oldIncomingBufferLength = (unsigned int)[mIncomingBuffer length];
 	
 	// Read in available data
 	[self _socketReadData];
@@ -947,7 +947,7 @@ static void _cfsocketCallback( CFSocketRef inCFSocketRef, CFSocketCallBackType i
 	
 	// Notify our delegate that new data is now available
 	if( [mDelegate respondsToSelector:@selector( netsocket:dataAvailable: )] )
-		[mDelegate netsocket:self dataAvailable:[mIncomingBuffer length]];
+		[mDelegate netsocket:self dataAvailable:(unsigned int)[mIncomingBuffer length]];
 }
 
 - (void)_cfsocketWritable
@@ -1026,7 +1026,7 @@ static void _cfsocketCallback( CFSocketRef inCFSocketRef, CFSocketCallBackType i
 		return;
 	
 	// Attempt to read the available data
-	amountRead = read( nativeSocket, readBuffer, ( amountAvailable == 0 ) ? 1 : amountAvailable );
+	amountRead = (unsigned int)read( nativeSocket, readBuffer, ( amountAvailable == 0 ) ? 1 : amountAvailable );
 	if( amountRead > 0 )
 	{
 		// Append data to our incoming buffer
@@ -1064,8 +1064,8 @@ static void _cfsocketCallback( CFSocketRef inCFSocketRef, CFSocketCallBackType i
 		return;
 	
 	// Send all we can
-	amountSent = write( nativeSocket, [mOutgoingBuffer bytes], [mOutgoingBuffer length] );
-	if( amountSent == [mOutgoingBuffer length] )
+	amountSent = (unsigned int)write( nativeSocket, [mOutgoingBuffer bytes], [mOutgoingBuffer length] );
+	if( amountSent == (unsigned int)[mOutgoingBuffer length] )
 	{
 		// We managed to write the entire outgoing buffer to the socket
 		// Disable the write callback for now since we know we are writable

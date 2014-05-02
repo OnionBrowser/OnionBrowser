@@ -167,7 +167,7 @@
     // Use tor proxy server
     NSString *hostKey = (NSString *)kCFStreamPropertySOCKSProxyHost;
     NSString *portKey = (NSString *)kCFStreamPropertySOCKSProxyPort;
-    NSUInteger proxyPortNumber = appDelegate.tor.torSocksPort;
+    int proxyPortNumber = appDelegate.tor.torSocksPort;
 
     NSMutableDictionary *proxyToUse = [NSMutableDictionary
                                        dictionaryWithObjectsAndKeys:@"127.0.0.1",hostKey,
@@ -382,7 +382,7 @@
     if (dntHeader != DNT_HEADER_UNSET) {
         // DNT_HEADER_CANTRACK is 0 and DNT_HEADER_NOTRACK is 1,
         // so we can pass that value in as the "DNT: X" value
-        NSUInteger dntValue = 1;
+        unsigned int dntValue = 1;
         if (dntHeader == DNT_HEADER_CANTRACK) {
             dntValue = 0;
         }
