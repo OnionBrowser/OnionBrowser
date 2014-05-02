@@ -395,12 +395,12 @@ const char AlertViewExternProtoUrl;
 
     bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
     [bookmark setTitle:@"DuckDuckGo Search (.onion)"];
-    [bookmark setUrl:@"https://3g2upl4pq6kufc4m.onion/lite/"];
+    [bookmark setUrl:@"https://3g2upl4pq6kufc4m.onion/html/"];
     [bookmark setOrder:i++];
     
     bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
     [bookmark setTitle:@"DuckDuckGo Search (HTTPS)"];
-    [bookmark setUrl:@"https://duckduckgo.com/lite/"];
+    [bookmark setUrl:@"https://duckduckgo.com/html/"];
     [bookmark setOrder:i++];
     
     bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
