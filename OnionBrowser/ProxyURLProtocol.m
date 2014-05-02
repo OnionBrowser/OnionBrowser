@@ -206,10 +206,15 @@
     NSMutableDictionary *settings = appDelegate.getSettings;
 
 
-    /* If JAVASCRIPT_DISABLED setting is set, modify incoming headers to turn
-     * on the "content-security-policy" and "x-webkit-csp" headers accordingly. */
-    if (([[settings valueForKey:@"javascript"] integerValue] == JAVASCRIPT_DISABLED)
+    /* If content-policy ("javascript") setting is CONTENTPOLICY_STRICT or CONTENTPOLICY_BLOCK_CONNECT,
+     * modify incoming headers to turn on the "content-security-policy" and "x-webkit-csp" headers accordingly.
+     * http://www.html5rocks.com/en/tutorials/security/content-security-policy/#policy-applies-to-a-wide-variety-of-resources
+     * http://www.w3.org/TR/CSP/
+     */
+    if (([[settings valueForKey:@"javascript"] integerValue] == CONTENTPOLICY_STRICT)
         && ([response isKindOfClass: [NSHTTPURLResponse class]] == YES)) {
+        // In the STRICT case, we're going to drop any content-security-policy headers since we just want
+        // our strictest-possible header.
         NSMutableDictionary *mHeaders = [NSMutableDictionary dictionary];
         for(id h in response.allHeaderFields) {
             if(![[h lowercaseString] isEqualToString:@"content-security-policy"] && ![[h lowercaseString] isEqualToString:@"x-webkit-csp"]) {
@@ -217,11 +222,42 @@
                 [mHeaders setObject:response.allHeaderFields[h] forKey:h];
             }
         }
-        // http://www.html5rocks.com/en/tutorials/security/content-security-policy/#policy-applies-to-a-wide-variety-of-resources
         [mHeaders setObject:@"script-src 'none';media-src 'none';object-src 'none';connect-src 'none';font-src 'none';sandbox allow-forms allow-top-navigation;style-src 'unsafe-inline' *;"
                      forKey:@"Content-Security-Policy"];
         [mHeaders setObject:@"script-src 'none';media-src 'none';object-src 'none';connect-src 'none';font-src 'none';sandbox allow-forms allow-top-navigation;style-src 'unsafe-inline' *;"
                      forKey:@"X-Webkit-CSP"];
+        response = [[NSHTTPURLResponse alloc]
+                    initWithURL:response.URL statusCode:response.statusCode
+                    HTTPVersion:@"1.1" headerFields:mHeaders];
+    } else if (([[settings valueForKey:@"javascript"] integerValue] == CONTENTPOLICY_BLOCK_CONNECT)
+               && ([response isKindOfClass: [NSHTTPURLResponse class]] == YES)){
+        // In the "block XHR/WebSocket" case, we'll prepend "connect-src 'none';" to an existing CSP header
+        // OR we'll add that header if there isn't already an existing one.
+        NSMutableDictionary *mHeaders = [NSMutableDictionary dictionary];
+        Boolean editedCSP = NO;
+        Boolean editedWebkitCSP = NO;
+        for(id h in response.allHeaderFields) {
+            if([[h lowercaseString] isEqualToString:@"content-security-policy"]) {
+                NSString *newHeader = [NSString stringWithFormat:@"connect-src 'none';%@", response.allHeaderFields[h]];
+                [mHeaders setObject:newHeader forKey:h];
+                editedCSP = YES;
+            } else if ([[h lowercaseString] isEqualToString:@"x-webkit-csp"]) {
+                NSString *newHeader = [NSString stringWithFormat:@"connect-src 'none';%@", response.allHeaderFields[h]];
+                [mHeaders setObject:newHeader forKey:h];
+                editedWebkitCSP = YES;
+            } else {
+                // Non-CSP header, just pass it on.
+                [mHeaders setObject:response.allHeaderFields[h] forKey:h];
+            }
+        }
+        if (!editedCSP) {
+            [mHeaders setObject:@"connect-src 'none';"
+                         forKey:@"Content-Security-Policy"];
+        }
+        if (!editedWebkitCSP) {
+            [mHeaders setObject:@"connect-src 'none'"
+                         forKey:@"X-Webkit-CSP"];
+        }
         response = [[NSHTTPURLResponse alloc]
                     initWithURL:response.URL statusCode:response.statusCode
                     HTTPVersion:@"1.1" headerFields:mHeaders];

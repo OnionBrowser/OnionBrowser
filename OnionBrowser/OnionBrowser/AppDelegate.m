@@ -382,8 +382,8 @@
         [d setObject:[NSNumber numberWithInteger:DNT_HEADER_UNSET] forKey:@"dnt"];
         update = YES;
     }
-    if ([d objectForKey:@"javascript"] == nil) {
-        [d setObject:[NSNumber numberWithInteger:JAVASCRIPT_ENABLED] forKey:@"javascript"];
+    if ([d objectForKey:@"javascript"] == nil) { // for historical reasons, CSP setting is named "javascript"
+        [d setObject:[NSNumber numberWithInteger:CONTENTPOLICY_BLOCK_CONNECT] forKey:@"javascript"];
         update = YES;
     }
     if (update)

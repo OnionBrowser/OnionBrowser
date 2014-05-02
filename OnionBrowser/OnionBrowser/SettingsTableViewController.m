@@ -49,7 +49,7 @@
         return 1;
     } else if (section == 1) {
         // Active Content
-        return 2;
+        return 3;
     } else if (section == 2) {
         // Cookies
         return 3;
@@ -73,7 +73,7 @@
     if (section == 0)
         return @"Home Page";
     else if (section == 1)
-        return @"Active Content\n(Javascript, Plugins, Multimedia, External Fonts, XHR, WebSockets)";
+        return @"Active Content Blocking\n(Javascript, Multimedia, External Fonts, Ajax/XHR, WebSockets)\n'No Ajax…' Mode Is Recommended";
     else if (section == 2)
         return @"Cookies\n(Changing Will Clear Cookies)";
     else if (section == 3)
@@ -105,18 +105,25 @@
         // Active Content
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         NSMutableDictionary *settings = appDelegate.getSettings;
-        NSInteger javascriptEnabled = [[settings valueForKey:@"javascript"] integerValue];
+        NSInteger csp_setting = [[settings valueForKey:@"javascript"] integerValue];
 
         if (indexPath.row == 0) {
-            cell.textLabel.text = @"Allow All (Better Compatibility)";
-            if (javascriptEnabled == YES) {
+            cell.textLabel.text = @"No Ajax/XHR/WebSockets";
+            if (csp_setting == CONTENTPOLICY_BLOCK_CONNECT) {
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             } else {
                 cell.accessoryType = UITableViewCellAccessoryNone;
             }
         } else if (indexPath.row == 1) {
-            cell.textLabel.text = @"Block All (Better Security)";
-            if (javascriptEnabled == NO) {
+            cell.textLabel.text = @"Block All Active Content";
+            if (csp_setting == CONTENTPOLICY_STRICT) {
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            } else {
+                cell.accessoryType = UITableViewCellAccessoryNone;
+            }
+        } else if (indexPath.row == 2) {
+            cell.textLabel.text = @"Allow All (DANGEROUS)";
+            if (csp_setting == CONTENTPOLICY_PERMISSIVE) {
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             } else {
                 cell.accessoryType = UITableViewCellAccessoryNone;
@@ -271,25 +278,32 @@
         NSMutableDictionary *settings = appDelegate.getSettings;
 
         if (indexPath.row == 0) {
-            [settings setObject:[NSNumber numberWithInteger:JAVASCRIPT_ENABLED] forKey:@"javascript"];
+            [settings setObject:[NSNumber numberWithInteger:CONTENTPOLICY_BLOCK_CONNECT] forKey:@"javascript"];
             [appDelegate saveSettings:settings];
-        } else if (indexPath.row == 1) {
-            [settings setObject:[NSNumber numberWithInteger:JAVASCRIPT_DISABLED] forKey:@"javascript"];
-            [appDelegate saveSettings:settings];
-            if ([[[UIDevice currentDevice] systemVersion] compare:@"6.0" options:NSNumericSearch] == NSOrderedAscending) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"iOS 5 Warning"
-                                                                message:[NSString stringWithFormat:@"You appear to be running a version of iOS earlier than 6.0. Support for blocking active content is only partially supported in iOS 5.1. You may have reduced security or the app may crash more often."]
-                                                               delegate:nil
-                                                      cancelButtonTitle:@"OK"
-                                                      otherButtonTitles:nil];
-                [alert show];
-            }
-            UIAlertView *alert2 = [[UIAlertView alloc] initWithTitle:@"Experimental Feature"
-                                                            message:[NSString stringWithFormat:@"Active Content Blocking is an experimental feature.\n\nWhile disabling scripts makes it harder for websites to identify your device, the website may be able to tell if you are disabling scripts. This may be identifying information if you are the only user accessing a website while disabling scripts.\n\nSome websites may not work if active content is blocked.\n\nBlocking may cause Onion Browser to crash when loading script-heavy websites."]
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Experimental Feature"
+                                                            message:[NSString stringWithFormat:@"Blocking of Ajax/XHR/WebSocket requests is experimental. Some websites may not work if these dynamic requests are blocked. (Note that enabling these requests may leak your real IP address; therefore, this mode is recommended.)"]
                                                            delegate:nil
                                                   cancelButtonTitle:@"OK"
                                                   otherButtonTitles:nil];
-            [alert2 show];
+            [alert show];
+        } else if (indexPath.row == 1) {
+            [settings setObject:[NSNumber numberWithInteger:CONTENTPOLICY_STRICT] forKey:@"javascript"];
+            [appDelegate saveSettings:settings];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Experimental Feature"
+                                                            message:[NSString stringWithFormat:@"Blocking all active content is an experimental feature.\n\nDisabling active content makes it harder for websites to identify your device, but websites will be able to tell that you are blocking scripts. This may be identifying information if you are the only user that blocks scripts.\n\nSome websites may not work if active content is blocked.\n\nBlocking may cause Onion Browser to crash when loading script-heavy websites."]
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+        } else if (indexPath.row == 2) {
+            [settings setObject:[NSNumber numberWithInteger:CONTENTPOLICY_PERMISSIVE] forKey:@"javascript"];
+            [appDelegate saveSettings:settings];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Security Warning"
+                                                             message:[NSString stringWithFormat:@"The 'Allow All' setting is UNSAFE and only recommended if a trusted site requires Ajax or WebSockets.\n\nWebSocket requests happen outside of Tor and will unmask your real IP address."]
+                                                            delegate:nil
+                                                   cancelButtonTitle:@"OK"
+                                                   otherButtonTitles:nil];
+            [alert show];
         }
     } else if(indexPath.section == 2) {
         // Cookies

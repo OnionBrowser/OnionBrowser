@@ -13,8 +13,10 @@
 #define COOKIES_BLOCK_THIRDPARTY 1
 #define COOKIES_BLOCK_ALL 2
 
-#define JAVASCRIPT_DISABLED 0
-#define JAVASCRIPT_ENABLED 1
+// Sets "Content-Security-Policy" headers. See ProxyURLController.m
+#define CONTENTPOLICY_STRICT 0 // Blocks nearly every CSP type
+#define CONTENTPOLICY_BLOCK_CONNECT 1 // Blocks `connect-src` (XHR, CORS, WebSocket)
+#define CONTENTPOLICY_PERMISSIVE 2 // Allows all content (DANGEROUS: websockets leak outside tor)
 
 #define UA_SPOOF_NO 0
 #define UA_SPOOF_WIN7_TORBROWSER 1
