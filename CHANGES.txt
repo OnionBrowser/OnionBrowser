@@ -1,5 +1,25 @@
 Onion Browser Version History (since 1.2.2)
 
+===== 1.4.2 - In Development =====
+Onion Browser is currently receiving a security audit by Cure53.de,
+funded by the Open Technology Fund (Radio Free Asia). Security issues
+corrected due to this audit are marked with the vulnerability ID
+(i.e. "OB-01-XX").
+
+* OB-01-005: "Third-Party Cookie" blocking was not working as
+  expected. The "Block Third Party" cookie option simply allowed all
+  cookies. Fixed in e70e2fcbca. See
+  https://mike.tig.as/onionbrowser/security/ for more details.
+
+* OB-01-006: Due to improper handling of itms: and itms-app: URIs, an
+  attacker could cause the iTunes app to auto-open from Onion Browser,
+  causing iTunes to open too quickly for the Tor tunnel would close
+  properly. If Onion Browser was in the middle of loading resources
+  from the attacker's page, partial SSL traffic would be sent to the
+  attacker's website outside of Tor, exposing the user's real IP
+  address.
+
+
 ===== 1.4.1 - In App Store =====
 Apr 21 2014 - Submit Date
 Apr 23 2014 - App store availability
