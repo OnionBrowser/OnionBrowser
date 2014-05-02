@@ -205,9 +205,11 @@
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSMutableDictionary *settings = appDelegate.getSettings;
 
+
     /* If JAVASCRIPT_DISABLED setting is set, modify incoming headers to turn
      * on the "content-security-policy" and "x-webkit-csp" headers accordingly. */
-    if ([[settings valueForKey:@"javascript"] integerValue] == JAVASCRIPT_DISABLED) {
+    if (([[settings valueForKey:@"javascript"] integerValue] == JAVASCRIPT_DISABLED)
+        && ([response isKindOfClass: [NSHTTPURLResponse class]] == YES)) {
         NSMutableDictionary *mHeaders = [NSMutableDictionary dictionary];
         for(id h in response.allHeaderFields) {
             if(![[h lowercaseString] isEqualToString:@"content-security-policy"] && ![[h lowercaseString] isEqualToString:@"x-webkit-csp"]) {
@@ -226,6 +228,63 @@
     }
     /* End header modification */
 
+
+    /* We have to handle cookies manually too. (Lower in the stack -- i.e. in CKHTTPConnection -- we don't have
+     * context regarding current request, such as what the current document URL is, which is what we need to
+     * determine if something is a third-party URL or not.) Derived from original NSURLProtocol.m sources. */
+    #ifdef DEBUG
+        NSURLRequest* request = [self request];
+        NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
+        NSLog(@"beginning cookie routine for URL %@ (main document %@)\ncurrent cookies=%@", request.URL.absoluteString, request.mainDocumentURL.absoluteString, cookies);
+    #endif
+    if ([_request HTTPShouldHandleCookies] == YES
+		&& [response isKindOfClass: [NSHTTPURLResponse class]] == YES)
+    {
+        NSDictionary	*hdrs;
+        NSArray	*cookies;
+        NSURL		*url;
+
+        url = [response URL];
+        hdrs = [response allHeaderFields];
+        cookies = [NSHTTPCookie cookiesWithResponseHeaderFields: hdrs
+                                                         forURL: url];
+
+        #ifdef DEBUG
+            NSHTTPCookieAcceptPolicy currentCookieStatus = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookieAcceptPolicy];
+            if (currentCookieStatus == NSHTTPCookieAcceptPolicyAlways) {
+                NSLog(@"policy: NSHTTPCookieAcceptPolicyAlways");
+            } else if (currentCookieStatus == NSHTTPCookieAcceptPolicyOnlyFromMainDocumentDomain) {
+                NSLog(@"policy: NSHTTPCookieAcceptPolicyOnlyFromMainDocumentDomain");
+            } else {
+                NSLog(@"policy: NSHTTPCookieAcceptPolicyNever");
+            }
+            NSLog(@"attempting to set cookies\n%@", cookies);
+        #endif
+
+        [[NSHTTPCookieStorage sharedHTTPCookieStorage]
+         setCookies: cookies
+         forURL: url
+         mainDocumentURL: [_request mainDocumentURL]];
+
+        NSMutableDictionary *mHeaders = [NSMutableDictionary dictionary];
+        for(id h in response.allHeaderFields) {
+            if(![[h lowercaseString] isEqualToString:@"set-cookie"]) {
+                // Delete cookie headers now that we've scooped them up
+                [mHeaders setObject:response.allHeaderFields[h] forKey:h];
+            }
+        }
+        response = [[NSHTTPURLResponse alloc]
+                    initWithURL:response.URL statusCode:response.statusCode
+                    HTTPVersion:@"1.1" headerFields:mHeaders];
+    }
+    #ifdef DEBUG
+        NSArray *cookies_now = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
+        NSLog(@"finished cookie routine for URL %@ (main document %@)\ncurrent cookies=%@", request.URL.absoluteString, request.mainDocumentURL.absoluteString, cookies_now);
+    #endif
+    /* End cookies */
+
+
+    /* Handle redirects */
     if ((response.statusCode == 301)||(response.statusCode == 302)||(response.statusCode == 307)) {
         NSString *newURL = [[response allHeaderFields] objectForKey:@"Location"];
         #ifdef DEBUG
@@ -238,6 +297,7 @@
         _request = newRequest;
         [[self client] URLProtocol:self wasRedirectedToRequest:_request redirectResponse:response];
     }
+
     
     // For some reason, passing the response directly doesn't always properly
     // set the separate mimetype and content-encoding bits, so attempt to parse

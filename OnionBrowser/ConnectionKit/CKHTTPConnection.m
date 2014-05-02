@@ -396,7 +396,7 @@
         #endif
     }
 
-    
+    // Send cookies we have (in sharedHTTPCookieStorage) that are valid for this URL
     NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:[self URL]];
     if ([cookies count] > 0) {
         NSDictionary *cookieHeaders = [NSHTTPCookie requestHeaderFieldsWithCookies:cookies];
@@ -404,10 +404,10 @@
             CFHTTPMessageSetHeaderFieldValue(result,
                                              (__bridge CFStringRef)headerKey,
                                              (__bridge CFStringRef)[cookieHeaders objectForKey:headerKey]);
-            /*NSLog(@"%@: %@",
-                  headerKey,
-                  [cookieHeaders objectForKey:headerKey]);
-             */
+            #if DEBUG
+                NSLog(@"Sent cookie header --- %@: %@", headerKey, [cookieHeaders objectForKey:headerKey]);
+            #endif 
+
         }
     }
 
@@ -451,12 +451,6 @@
     {
         _statusCode = CFHTTPMessageGetResponseStatusCode(message);
     }
-    
-    NSArray *newCookies = [NSHTTPCookie cookiesWithResponseHeaderFields:_headerFields forURL:[self URL]];
-    [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookies:newCookies forURL:[self URL] mainDocumentURL:nil];
-    //for (NSHTTPCookie *cookie in newCookies)
-    //    NSLog(@"Name: %@ : Value: %@, Expires: %@", cookie.name, cookie.value, cookie.expiresDate);
-
     return self;
 }
     
