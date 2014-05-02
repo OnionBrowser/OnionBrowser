@@ -17,8 +17,21 @@ corrected due to this audit are marked with the vulnerability ID
   properly. If Onion Browser was in the middle of loading resources
   from the attacker's page, partial SSL traffic would be sent to the
   attacker's website outside of Tor, exposing the user's real IP
-  address.
+  address. Fixed in 89121d3271.
 
+* OB-01-009: Domain names containing ".onion" anywhere originally
+  bypassed all SSL certificate checks. Fixed in 271b2b22df.
+
+* OB-01-010: WebSockets were discovered to bypass Tor entirely and no
+  easy avenue for intercepting these requests (to pass into Tor or to
+  block) has been discovered yet. Active Content Blocking now blocks
+  these connections by default; unfortunately, this also blocks all
+  AJAX/XHR requests as well. A (dangerous) option to re-enable all
+  Javascript-based requests has been added. Fixed in 983687ed67.
+
+* User-agent strings have been updated. "Windows" spoof updated to
+  Windows 7 Firefox 24.0, same as Tor Browser Bundle. "Mac Safari"
+  updated to OS X 10.9.2 Safari 7.0.3, most up-to-date version.
 
 ===== 1.4.1 - In App Store =====
 Apr 21 2014 - Submit Date
