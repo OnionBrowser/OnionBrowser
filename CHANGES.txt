@@ -29,6 +29,13 @@ corrected due to this audit are marked with the vulnerability ID
   AJAX/XHR requests as well. A (dangerous) option to re-enable all
   Javascript-based requests has been added. Fixed in 983687ed67.
 
+* OB-01-013: The "click here to force-quit the app" function inside
+  the help page has been replaced with instructions on how to quit
+  the app manually. The "onionbrowser:forcequit" URL was previously
+  susceptible to an app-crasher attack (i.e. by inclusion in a tag
+  such as <img src="onionbrowser:forcequit">) and has been removed.
+  Fixed in c5cfb15a99.
+
 * User-agent strings have been updated. "Windows" spoof updated to
   Windows 7 Firefox 24.0, same as Tor Browser Bundle. "Mac Safari"
   updated to OS X 10.9.2 Safari 7.0.3, most up-to-date version.
