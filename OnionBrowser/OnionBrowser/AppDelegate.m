@@ -192,6 +192,7 @@
 
     NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
     BOOL appIsOnionBrowser = [bundleIdentifier isEqualToString:@"com.miketigas.OnionBrowser"];
+    BOOL srcIsOnionBrowser = (appIsOnionBrowser && [sourceApplication isEqualToString:bundleIdentifier]);
 
     if (appIsOnionBrowser && [urlStr hasPrefix:@"onionbrowser:/"]) {
         // HTTP
@@ -215,7 +216,11 @@
     }
 
     if ([_tor didFirstConnect]) {
-        [appWebView loadURL:newUrl];
+        if (srcIsOnionBrowser) {
+            [appWebView loadURL:newUrl];
+        } else {
+            [appWebView askToLoadURL:newUrl];
+        }
     } else {
         #ifdef DEBUG
             NSLog(@" -> have not yet connected to tor, deferring load");

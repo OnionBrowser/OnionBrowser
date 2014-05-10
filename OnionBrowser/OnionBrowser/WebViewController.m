@@ -17,6 +17,7 @@
 
 #define ALERTVIEW_SSL_WARNING 1
 #define ALERTVIEW_EXTERN_PROTO 2
+#define ALERTVIEW_INCOMING_URL 3
 
 static const CGFloat kNavBarHeight = 52.0f;
 static const CGFloat kToolBarHeight = 44.0f;
@@ -40,6 +41,7 @@ static const Boolean kBackwardButton = NO;
 @end
 
 const char AlertViewExternProtoUrl;
+const char AlertViewIncomingUrl;
 
 @implementation WebViewController {
     NJKWebViewProgressView *_progressView;
@@ -102,6 +104,27 @@ const char AlertViewExternProtoUrl;
                             summary_str];
     loadingStatus.text = status;
 }
+
+-(void)askToLoadURL: (NSURL *)navigationURL {
+    /* Used on startup, if we opened the app from an outside source.
+     * Will ask for user permission and display requested URL so that
+     * the user isn't tricked into visiting a URL that includes their
+     * IP address (or other info) that an attack site included when the user
+     * was on the attack site outside of Tor.
+     */
+    NSString *msg = [NSString stringWithFormat: @"Another app has requested that Onion Browser load the following link. Because the link is generated outside of Tor, please ensure that you trust the link & that the URL does not contain identifying information. Canceling will open the normal homepage.\n\n%@", navigationURL.absoluteString, nil];
+    UIAlertView* alertView = [[UIAlertView alloc]
+                              initWithTitle:@"Open This URL?"
+                              message:msg
+                              delegate:nil
+                              cancelButtonTitle:@"Cancel"
+                              otherButtonTitles:@"Open This Link",nil];
+    alertView.delegate = self;
+    alertView.tag = ALERTVIEW_INCOMING_URL;
+    [alertView show];
+    objc_setAssociatedObject(alertView, &AlertViewIncomingUrl, navigationURL, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
 
 -(void)loadURL: (NSURL *)navigationURL {
     NSString *urlProto = [navigationURL scheme];
@@ -552,6 +575,17 @@ const char AlertViewExternProtoUrl;
             [[UIApplication sharedApplication] openURL:navigationURL];
         } else {
             [self addressBarCancel];
+        }
+    } else if ((alertView.tag == ALERTVIEW_INCOMING_URL)) {
+        if (buttonIndex == 1) {
+            // Warned user about opening this incoming URL and they said it's OK.
+            NSURL *navigationURL = objc_getAssociatedObject(alertView, &AlertViewIncomingUrl);
+            //NSLog(@"launching URL: %@", [navigationURL absoluteString]);
+            [self loadURL:navigationURL];
+        } else {
+            // Otherwise, open default homepage.
+            AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+            [self loadURL:[NSURL URLWithString:appDelegate.homepage]];
         }
     }
 }

@@ -10,6 +10,7 @@
 #import "NJKWebViewProgress.h"
 
 extern const char AlertViewExternProtoUrl;
+extern const char AlertViewIncomingUrl;
 
 @interface WebViewController : UIViewController <UIWebViewDelegate, UITextFieldDelegate, UIActionSheetDelegate, UIAlertViewDelegate, NJKWebViewProgressDelegate> {
 }
@@ -31,6 +32,7 @@ extern const char AlertViewExternProtoUrl;
 @property (nonatomic) NSString *torStatus;
 
 - (void)loadURL: (NSURL *)navigationURL;
+- (void)askToLoadURL: (NSURL *)navigationURL;
 - (void)addressBarCancel;
 - (void)renderTorStatus: (NSString *)statusLine;
 

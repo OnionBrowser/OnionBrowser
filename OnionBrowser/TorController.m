@@ -278,7 +278,7 @@
                 // This is our first go-around (haven't loaded page into webView yet)
                 // but we are now at 100%, so go ahead.
                 if (appDelegate.startUrl != nil) {
-                    [wvc loadURL:appDelegate.startUrl];
+                    [wvc askToLoadURL:appDelegate.startUrl];
                 } else {
                     // Didn't launch with a "onionbrowser://" or "onionbrowsers://" URL
                     // so just launch regular start page.

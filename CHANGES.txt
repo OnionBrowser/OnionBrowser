@@ -36,6 +36,15 @@ corrected due to this audit are marked with the vulnerability ID
   such as <img src="onionbrowser:forcequit">) and has been removed.
   Fixed in c5cfb15a99.
 
+* OB-01-017: Onion Browser previously loaded "onionbrowser://" URLs
+  without prompting the user. This could create a case where an
+  attack site opened in another browser would redirect a user to
+  "onionbrowser://example.com/?ip=xxx.xxx.xxx.xxx", revealing at the
+  user at the given IP address is an Onion Browser user and then
+  identify the Onion Browser session to that particular user. Onion
+  Browser now prompts a user on incoming links, displaying the link
+  before the browser proceeds. Fixed fixed in xxxxxxxxxx.
+
 * User-agent strings have been updated. "Windows" spoof updated to
   Windows 7 Firefox 24.0, same as Tor Browser Bundle. "Mac Safari"
   updated to OS X 10.9.2 Safari 7.0.3, most up-to-date version.
