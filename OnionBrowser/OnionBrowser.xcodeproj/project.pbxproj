@@ -127,7 +127,7 @@
 		692E70F417EE3BB10063990F /* Icon-152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-152.png"; path = "icon/Icon-152.png"; sourceTree = "<group>"; };
 		692E70F517EE3BB10063990F /* Icon-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-120.png"; path = "icon/Icon-120.png"; sourceTree = "<group>"; };
 		692E70F617EE3BB10063990F /* Icon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-76.png"; path = "icon/Icon-76.png"; sourceTree = "<group>"; };
-		69374254189CBAF1002C65A0 /* help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = help.html; sourceTree = "<group>"; };
+		69374254189CBAF1002C65A0 /* help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; lineEnding = 0; path = help.html; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.html; };
 		69374256189CC514002C65A0 /* NJKWebViewProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NJKWebViewProgress.h; path = NJKWebViewProgress/NJKWebViewProgress.h; sourceTree = "<group>"; };
 		69374257189CC514002C65A0 /* NJKWebViewProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NJKWebViewProgress.m; path = NJKWebViewProgress/NJKWebViewProgress.m; sourceTree = "<group>"; };
 		69374258189CC514002C65A0 /* NJKWebViewProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NJKWebViewProgressView.h; path = NJKWebViewProgress/NJKWebViewProgressView.h; sourceTree = "<group>"; };
@@ -145,8 +145,8 @@
 		694F34F0152ECFF20002BCBC /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "icon/Icon@2x.png"; sourceTree = "<group>"; };
 		6954F8EB15FE985E00AE8658 /* NSData+CocoaDevUsersAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+CocoaDevUsersAdditions.h"; sourceTree = "<group>"; };
 		6954F8EC15FE985E00AE8658 /* NSData+CocoaDevUsersAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+CocoaDevUsersAdditions.m"; sourceTree = "<group>"; };
-		695BF044189444FF00C27BC1 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		695BF04618944B5500C27BC1 /* startup2.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = startup2.html; sourceTree = "<group>"; };
+		695BF044189444FF00C27BC1 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; lineEnding = 0; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		695BF04618944B5500C27BC1 /* startup2.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; lineEnding = 0; path = startup2.html; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.html; };
 		6963E61415FAB2EC00310E8D /* BookmarkTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkTableViewController.h; sourceTree = "<group>"; };
 		6963E61515FAB2EC00310E8D /* BookmarkTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkTableViewController.m; sourceTree = "<group>"; };
 		696C33AD1530D0D400990E69 /* startup.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = startup.html; sourceTree = "<group>"; };
@@ -189,7 +189,7 @@
 		69847C4514F788E100288277 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = ../dependencies/lib/libssl.a; sourceTree = "<group>"; };
 		69847C4614F788E100288277 /* libtor.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libtor.a; path = ../dependencies/lib/libtor.a; sourceTree = "<group>"; };
 		69847C5314F788E900288277 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		69855E061531576800720327 /* about.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about.html; sourceTree = "<group>"; };
+		69855E061531576800720327 /* about.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; lineEnding = 0; path = about.html; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.html; };
 		6993EB24177EB33800F623CE /* Default-7-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-7-568h@2x.png"; path = "art/Default-7-568h@2x.png"; sourceTree = "<group>"; };
 		6993EB25177EB33800F623CE /* Default-7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-7@2x.png"; path = "art/Default-7@2x.png"; sourceTree = "<group>"; };
 		6993EB28177EB43600F623CE /* Default-7-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-7-Landscape.png"; path = "art/Default-7-Landscape.png"; sourceTree = "<group>"; };
