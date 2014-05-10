@@ -41,7 +41,7 @@ corrected due to this audit are marked with the vulnerability ID
   crafted "data:text/html..." URI (via redirect or "meta refresh"),
   the page could load a video tag, exposing the user's IP address.
   "data:" URIs that are not image files are now blocked from being
-  loaded in the address bar or via redirect. Fixed in xxxxxxxxxx.
+  loaded in the address bar or via redirect. Fixed in 546a5434b1.
 
 * OB-01-017: Onion Browser previously loaded "onionbrowser://" URLs
   without prompting the user. This could create a case where an
