@@ -43,7 +43,7 @@ corrected due to this audit are marked with the vulnerability ID
   user at the given IP address is an Onion Browser user and then
   identify the Onion Browser session to that particular user. Onion
   Browser now prompts a user on incoming links, displaying the link
-  before the browser proceeds. Fixed fixed in xxxxxxxxxx.
+  before the browser proceeds. Fixed fixed in d7d1941d3d.
 
 * User-agent strings have been updated. "Windows" spoof updated to
   Windows 7 Firefox 24.0, same as Tor Browser Bundle. "Mac Safari"
