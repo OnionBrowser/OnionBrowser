@@ -483,12 +483,10 @@ const char AlertViewIncomingUrl;
 }
 
  - (void)webViewDidStartLoad:(UIWebView *)webView {
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [self updateButtons];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     [self updateButtons];
     [self updateTitle:webView];
     NSURLRequest* request = [webView request];
@@ -496,7 +494,6 @@ const char AlertViewIncomingUrl;
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     [self updateButtons];
     [self informError:error];
     #ifdef DEBUG
@@ -823,12 +820,14 @@ const char AlertViewIncomingUrl;
     _forwardButton.enabled = _myWebView.canGoForward;
     _backButton.enabled = _myWebView.canGoBack;
     if (_myWebView.loading) {
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
         _stopRefreshButton = nil;
         _stopRefreshButton = [[UIBarButtonItem alloc]
                               initWithBarButtonSystemItem:UIBarButtonSystemItemStop
                               target:self
                               action:@selector(stopLoading)];
     } else {
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         _stopRefreshButton = nil;
         _stopRefreshButton = [[UIBarButtonItem alloc]
                               initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
