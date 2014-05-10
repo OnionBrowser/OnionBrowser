@@ -478,6 +478,22 @@ const char AlertViewIncomingUrl;
 # pragma mark WebView behavior
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    if ([[[request URL] scheme] isEqualToString:@"data"]) {
+        NSString *url = [[request URL] absoluteString];
+        NSRegularExpression *regex = [NSRegularExpression
+                                      regularExpressionWithPattern:@"\\Adata:image/(?:jpe?g|gif|png)"
+                                      options:NSRegularExpressionCaseInsensitive
+                                      error:nil];
+        NSUInteger numberOfMatches = [regex numberOfMatchesInString:url
+                                                              options:0
+                                                                range:NSMakeRange(0, [url length])];
+        if (numberOfMatches == 0) {
+            // This is a "data:" URI that isn't an image. Since this could be an HTML page,
+            // PDF file, or other dynamic document, we should block it.
+            // TODO: for now, this is silent
+            return NO;
+        }
+    }
     [self updateAddress:request];
     return YES;
 }
