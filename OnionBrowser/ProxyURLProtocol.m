@@ -110,14 +110,6 @@
         } else if ([[[[self request] URL] absoluteString] rangeOfString:@"help"].location != NSNotFound) {
             /* onionbrowser:help */
             url = [NSURL URLWithString: [NSString stringWithFormat:@"file:/%@/help.html",resourcePath]];
-        } else if ([[[[self request] URL] absoluteString] rangeOfString:@"forcequit"].location != NSNotFound) {
-            /* onionbrowser:forcequit */
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Force-quitting"
-                                                            message:@"Onion Browser will now close. Restarting the app will try a fresh Tor connection."
-                                                           delegate:self
-                                                  cancelButtonTitle:@"Quit app"
-                                                  otherButtonTitles:nil];
-            [alert show];
         } else {
             /* onionbrowser:home */
             url = [NSURL URLWithString: [NSString stringWithFormat:@"file:/%@/startup.html",resourcePath]];
@@ -134,15 +126,6 @@
 
 -(void)stopLoading {
     [[self connection] cancel];
-}
-
-
-- (void) alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if ([actionSheet.title isEqualToString:@"Force-quitting"]) {
-        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-        [appDelegate wipeAppData];
-        exit(0);
-    }
 }
 
 
