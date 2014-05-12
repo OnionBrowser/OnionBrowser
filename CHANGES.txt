@@ -9,6 +9,10 @@ corrected due to this audit are marked with the vulnerability ID
 See https://mike.tig.as/onionbrowser/security/ for details and more
 up-to-date security information.
 
+* OB-01-001: Onion Browser now masks the current activity from
+  appearing in the "app picker" thumbnail image when the app goes to
+  background. Fixed in 535fc0c130.
+
 * OB-01-005: "Third-Party Cookie" blocking was not working as
   expected. The "Block Third Party" cookie option simply allowed all
   cookies. Fixed in e70e2fcbca.
