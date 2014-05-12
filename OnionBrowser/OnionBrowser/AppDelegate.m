@@ -321,11 +321,13 @@
                 //NSLog(@"COOKIES DIR");
                 [fm removeItemAtPath:cookiesDir error:nil];
             }
+
             NSString *cachesDir = [NSString stringWithFormat:@"%@/Caches", dataDir];
             if ([fm fileExistsAtPath:cachesDir isDirectory:nil]){
                 //NSLog(@"CACHES DIR");
                 [fm removeItemAtPath:cachesDir error:nil];
             }
+
             NSString *prefsDir = [NSString stringWithFormat:@"%@/Preferences", dataDir];
             if ([fm fileExistsAtPath:prefsDir isDirectory:nil]){
                 //NSLog(@"PREFS DIR");

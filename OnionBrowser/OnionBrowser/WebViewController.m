@@ -721,50 +721,25 @@ const char AlertViewIncomingUrl;
             
             [appDelegate wipeAppData];
             
-            // Initialize a new UIWebView (to clear the history of the previous one)
-            CGSize size = [UIScreen mainScreen].bounds.size;
-            
-            // Flip if we are rotated
-            if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
-                size = CGSizeMake(size.height, size.width);
-            }
-            
-            NSString *reqSysVer = @"7.0";
-            NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
-            if (
-                ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending) &&
-                ([appDelegate deviceType] == X_DEVICE_IS_IPAD)
-            ){
-                // 7.0+, iPad, do nothing
-            } else {
-                size.height -= 20.0f;
-            }
-            size.height -= kToolBarHeight;
-            size.height -= kNavBarHeight;
-            
-            CGRect webViewFrame = [[UIScreen mainScreen] applicationFrame];
-            webViewFrame.origin.y = kNavBarHeight;
-            webViewFrame.origin.x = 0;
-            
-            webViewFrame.size = size;
-            
-            UIWebView *newWebView = [[UIWebView alloc] initWithFrame:webViewFrame];
+            UIWebView *newWebView = [[UIWebView alloc] initWithFrame:[_myWebView frame]];
             newWebView.backgroundColor = [UIColor whiteColor];
             newWebView.scalesPageToFit = YES;
             newWebView.contentScaleFactor = 3;
             newWebView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
-            newWebView.delegate = self;
+            newWebView.delegate = _progressProxy;
+            _progressProxy.webViewProxyDelegate = self;
+            _progressProxy.progressDelegate = self;
             [_myWebView removeFromSuperview];
             _myWebView = newWebView;
             [self.view addSubview: _myWebView];
             
-            // Reset forward/back buttons.
-            [self updateButtons];
-            
             // Reset the address field
             _addressField.text = @"";
             
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
+            // Reset forward/back buttons.
+            [self updateButtons];
+
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
                                                             message:@"Requesting a new IP address from Tor. Cache, cookies, and browser history cleared.\n\nDue to an iOS limitation, visisted links still get the ':visited' CSS highlight state. iOS is resistant to script-based access to this information, but if you are still concerned about leaking history, please force-quit this app and re-launch.\n\nFor more details:\nhttp://yu8.in/M5"
                                                            delegate:nil
                                                   cancelButtonTitle:@"OK" 
