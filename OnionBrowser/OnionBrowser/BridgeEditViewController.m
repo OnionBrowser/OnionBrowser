@@ -98,6 +98,7 @@
         }
         UITextField *editField = [[UITextField alloc]
                                   initWithFrame:textFrame];
+        editField.autocorrectionType = UITextAutocorrectionTypeNo;
         editField.adjustsFontSizeToFitWidth = YES;
         editField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         
@@ -129,6 +130,7 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    textField.autocorrectionType = UITextAutocorrectionTypeNo;
     [self saveAndGoBack];
     return YES;
 }
@@ -150,6 +152,7 @@
     NSIndexPath* titlePath = [[NSIndexPath alloc] initWithIndexes:titlePathInt length:2];
     UITableViewCell *titleCell = [self.tableView cellForRowAtIndexPath:titlePath];
     UITextField *titleEditField = (UITextField*)[titleCell viewWithTag:100];
+    titleEditField.autocorrectionType = UITextAutocorrectionTypeNo;
     bridge.conf = titleEditField.text;
     
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];

@@ -613,11 +613,14 @@ const char AlertViewIncomingUrl;
     [_addressField resignFirstResponder];
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    textField.autocorrectionType = UITextAutocorrectionTypeNo;
 	[textField resignFirstResponder];
 	return YES;
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
+    textField.autocorrectionType = UITextAutocorrectionTypeNo;
+    
     // Stop loading if we are loading a page
     [_myWebView stopLoading];
     
@@ -661,6 +664,8 @@ const char AlertViewIncomingUrl;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
+    textField.autocorrectionType = UITextAutocorrectionTypeNo;
+
     UINavigationBar *navBar = (UINavigationBar *)[self.view viewWithTag:kNavBarTag];
     UIButton *cancelButton = (UIButton *)[self.view viewWithTag:kAddressCancelButtonTag];
 

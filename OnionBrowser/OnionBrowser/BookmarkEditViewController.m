@@ -99,6 +99,7 @@
         }
         UITextField *editField = [[UITextField alloc]
                                   initWithFrame:textFrame];
+        editField.autocorrectionType = UITextAutocorrectionTypeNo;
         editField.adjustsFontSizeToFitWidth = YES;
         editField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 
@@ -138,6 +139,7 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    textField.autocorrectionType = UITextAutocorrectionTypeNo;
     if (textField.tag == 100)
         [[self.view viewWithTag:101] becomeFirstResponder];
     else if (textField.tag == 101) {
@@ -165,12 +167,14 @@
     NSIndexPath* titlePath = [[NSIndexPath alloc] initWithIndexes:titlePathInt length:2];
     UITableViewCell *titleCell = [self.tableView cellForRowAtIndexPath:titlePath];
     UITextField *titleEditField = (UITextField*)[titleCell viewWithTag:100];
+    titleEditField.autocorrectionType = UITextAutocorrectionTypeNo;
     bookmark.title = titleEditField.text;
     
     NSUInteger urlPathInt[2] = {1,0};
     NSIndexPath* urlPath = [[NSIndexPath alloc] initWithIndexes:urlPathInt length:2];
     UITableViewCell *urlCell = [self.tableView cellForRowAtIndexPath:urlPath];
     UITextField *urlEditField = (UITextField*)[urlCell viewWithTag:101];
+    urlEditField.autocorrectionType = UITextAutocorrectionTypeNo;
     bookmark.url = urlEditField.text;
     
     BookmarkTableViewController *tableVC = (BookmarkTableViewController*)self.parentViewController;

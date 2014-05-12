@@ -268,6 +268,7 @@
         alert.alertViewStyle = UIAlertViewStylePlainTextInput;
         
         UITextField *textField = [alert textFieldAtIndex:0];
+        textField.autocorrectionType = UITextAutocorrectionTypeNo;
         [textField setKeyboardType:UIKeyboardTypeURL];
         textField.text = [settings2 objectForKey:@"homepage"];
         
