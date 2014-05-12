@@ -66,4 +66,8 @@
 - (void)saveSettings:(NSMutableDictionary *)settings;
 - (NSString *)homepage;
 
+- (void)updateFileEncryption;
+
+//- (void) testEncrypt;
+
 @end

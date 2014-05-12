@@ -37,6 +37,7 @@
 		694F34F7152ECFF20002BCBC /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 694F34EF152ECFF20002BCBC /* Icon-Small@2x.png */; };
 		694F34F8152ECFF20002BCBC /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 694F34F0152ECFF20002BCBC /* Icon@2x.png */; };
 		6954F8ED15FE985E00AE8658 /* NSData+CocoaDevUsersAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6954F8EC15FE985E00AE8658 /* NSData+CocoaDevUsersAdditions.m */; };
+		6959A7A819206E69002F8228 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6959A7A719206E69002F8228 /* Entitlements.plist */; };
 		695BF045189444FF00C27BC1 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 695BF044189444FF00C27BC1 /* LICENSE */; };
 		695BF04718944B5500C27BC1 /* startup2.html in Resources */ = {isa = PBXBuildFile; fileRef = 695BF04618944B5500C27BC1 /* startup2.html */; };
 		6963E61615FAB2EC00310E8D /* BookmarkTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6963E61515FAB2EC00310E8D /* BookmarkTableViewController.m */; };
@@ -145,6 +146,7 @@
 		694F34F0152ECFF20002BCBC /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "icon/Icon@2x.png"; sourceTree = "<group>"; };
 		6954F8EB15FE985E00AE8658 /* NSData+CocoaDevUsersAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+CocoaDevUsersAdditions.h"; sourceTree = "<group>"; };
 		6954F8EC15FE985E00AE8658 /* NSData+CocoaDevUsersAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+CocoaDevUsersAdditions.m"; sourceTree = "<group>"; };
+		6959A7A719206E69002F8228 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Entitlements.plist; path = ../Entitlements.plist; sourceTree = "<group>"; };
 		695BF044189444FF00C27BC1 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; lineEnding = 0; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		695BF04618944B5500C27BC1 /* startup2.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; lineEnding = 0; path = startup2.html; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.html; };
 		6963E61415FAB2EC00310E8D /* BookmarkTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkTableViewController.h; sourceTree = "<group>"; };
@@ -335,6 +337,7 @@
 		696EBD7E14F7877900B81BC9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6959A7A719206E69002F8228 /* Entitlements.plist */,
 				696EBD7F14F7877900B81BC9 /* OnionBrowser-Info.plist */,
 				696EBD8014F7877900B81BC9 /* InfoPlist.strings */,
 				696EBD8314F7877900B81BC9 /* main.m */,
@@ -524,6 +527,11 @@
 				TargetAttributes = {
 					696EBD7214F7877900B81BC9 = {
 						DevelopmentTeam = 68QUP6KP2C;
+						SystemCapabilities = {
+							com.apple.DataProtection = {
+								enabled = 1;
+							};
+						};
 					};
 					697AB1071866567400A6F3EE = {
 						TestTargetID = 696EBD7214F7877900B81BC9;
@@ -569,6 +577,7 @@
 				694F34F6152ECFF20002BCBC /* Icon-Small-50@2x.png in Resources */,
 				694F34F7152ECFF20002BCBC /* Icon-Small@2x.png in Resources */,
 				694F34F8152ECFF20002BCBC /* Icon@2x.png in Resources */,
+				6959A7A819206E69002F8228 /* Entitlements.plist in Resources */,
 				6993EB2C177EB43600F623CE /* Default-7-Landscape.png in Resources */,
 				696C33AE1530D0D400990E69 /* startup.html in Resources */,
 				692E70F817EE3BB10063990F /* Icon-120.png in Resources */,
@@ -709,6 +718,8 @@
 		6945ED4D15FB2E6000DE5EBD /* TestBuilds */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OnionBrowser/OnionBrowser-Prefix.pch";
 				INFOPLIST_FILE = "OnionBrowser/OnionBrowser-Info.plist";
@@ -717,6 +728,7 @@
 					"\"$(SRCROOT)/../dependencies/lib\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "9C636355-8615-4700-9D1F-878E88309599";
 				WRAPPER_EXTENSION = app;
 			};
 			name = TestBuilds;
@@ -809,6 +821,8 @@
 		696EBD8C14F7877900B81BC9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OnionBrowser/OnionBrowser-Prefix.pch";
 				INFOPLIST_FILE = "OnionBrowser/OnionBrowser-Info.plist";
@@ -817,6 +831,7 @@
 					"\"$(SRCROOT)/../dependencies/lib\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "9C636355-8615-4700-9D1F-878E88309599";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -824,6 +839,8 @@
 		696EBD8D14F7877900B81BC9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OnionBrowser/OnionBrowser-Prefix.pch";
 				INFOPLIST_FILE = "OnionBrowser/OnionBrowser-Info.plist";
@@ -832,6 +849,7 @@
 					"\"$(SRCROOT)/../dependencies/lib\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "9C636355-8615-4700-9D1F-878E88309599";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

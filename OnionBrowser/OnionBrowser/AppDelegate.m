@@ -29,22 +29,14 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Detect bookmarks file.
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Settings.sqlite"];
-    NSURL *settingsPlist = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Settings.plist"];
     NSFileManager *fileManager = [NSFileManager defaultManager];
     doPrepopulateBookmarks = (![fileManager fileExistsAtPath:[storeURL path]]);
     
-    /* Tell iOS to encrypt settings.plist (settings incl homepage, etc) and settings.sqlite (bookmarks, bridges)
-     * from earlier versions of OnionBrowser. */
-    if ([fileManager fileExistsAtPath:[storeURL path]]) {
-        NSDictionary *f_options = [NSDictionary dictionaryWithObjectsAndKeys:
-                                 [NSNumber numberWithBool:YES], NSFileProtectionComplete, nil];
-        [fileManager setAttributes:f_options ofItemAtPath:[storeURL path] error:nil];
-    }
-    if ([fileManager fileExistsAtPath:[settingsPlist path]]) {
-        NSDictionary *f_options = [NSDictionary dictionaryWithObjectsAndKeys:
-                                   [NSNumber numberWithBool:YES], NSFileProtectionComplete, nil];
-        [fileManager setAttributes:f_options ofItemAtPath:[settingsPlist path] error:nil];
-    }
+    /* Tell iOS to encrypt everything in the app's sandboxed storage. */
+    [self updateFileEncryption];
+    // Repeat encryption every 15 seconds, to catch new caches, cookies, etc.
+    [NSTimer scheduledTimerWithTimeInterval:15.0 target:self selector:@selector(updateFileEncryption) userInfo:nil repeats:YES];
+    //[self performSelector:@selector(testEncrypt) withObject:nil afterDelay:8];
 
     NSMutableDictionary *settings = self.getSettings;
 
@@ -176,7 +168,7 @@
     
     NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
                              [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
-                             [NSNumber numberWithBool:YES], NSFileProtectionComplete,
+                             NSFileProtectionComplete, NSFileProtectionKey,
                              [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
     
     NSError *error = nil;
@@ -358,7 +350,7 @@
 
     // Encrypt the new torrc (since this "running" copy of torrc may now contain bridges)
     NSDictionary *f_options = [NSDictionary dictionaryWithObjectsAndKeys:
-                               [NSNumber numberWithBool:YES], NSFileProtectionComplete, nil];
+                               NSFileProtectionComplete, NSFileProtectionKey, nil];
     [fileManager setAttributes:f_options ofItemAtPath:destTorrc error:nil];
 }
 
@@ -499,5 +491,63 @@
     NSLog(@"data decrypted, now available");
 }
 #endif
+
+- (void)updateFileEncryption {
+    /* This will traverse the app's sandboxed storage directory and add the NSFileProtectionComplete flag
+     * to every file encountered.
+     *
+     * NOTE: the NSFileProtectionKey setting doesn't have any effect on iOS Simulator OR if user does not
+     * have a passcode, since the OS-level encryption relies on the iOS physical device as per
+     * https://ssl.apple.com/ipad/business/docs/iOS_Security_Feb14.pdf .
+     *
+     * To test data encryption:
+     *   1 compile and run on your own device (with a passcode)
+     *   2 open app, allow app to finish loading
+     *   3 lock device (top button) without exiting app first
+     *   4 plug device in and turn screen on, but leave it at lock screen
+     *   5 open XCode organizer (command-shift-2), go to device, go to Applications, select Onion Browser app
+     *   6 click "download"
+     *   7 open the xcappdata directory you saved, look for Documents/Settings.plist, etc
+     *   - THEN: unlock device (go to regular home screen) and try steps 4-7 again with the device unlocked.
+     *   - THEN: comment out "fileManager setAttributes" line below and test steps 1-7 again.
+     *
+     * In cases where data is encrypted, the "xcappdata" download received will not contain the encrypted data files
+     * (though some lock files and sqlite journal files are kept). If data is not encrypted, the download will contain
+     * all files pertinent to the app.
+     */
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSURL *bundleURL = [[[NSBundle mainBundle] bundleURL] URLByAppendingPathComponent:@".."];
+    NSDirectoryEnumerator *enumerator = [fileManager enumeratorAtURL:bundleURL
+                                          includingPropertiesForKeys:@[NSURLNameKey, NSURLIsDirectoryKey]
+                                                             options:0
+                                                        errorHandler:nil];
+    NSDictionary *encryptAttribute = [NSDictionary dictionaryWithObjectsAndKeys:
+                               NSFileProtectionComplete, NSFileProtectionKey, nil];
+
+    for (NSURL *fileURL in enumerator) {
+        NSNumber *isDirectory;
+        [fileURL getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:nil];
+
+        if (![isDirectory boolValue]) {
+            //NSLog(@"%@", [fileURL path]);
+            [fileManager setAttributes:encryptAttribute ofItemAtPath:[fileURL path] error:nil];
+        }
+    }
+}
+/*
+- (void)testEncrypt {
+
+    NSURL *settingsPlist = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Settings.plist"];
+    //NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Settings.sqlite"];
+    NSLog(@"protected data available: %@",[[UIApplication sharedApplication] isProtectedDataAvailable] ? @"yes" : @"no");
+
+    NSError *error;
+
+    NSString *test = [NSString stringWithContentsOfFile:[settingsPlist path]
+                                                  encoding:NSUTF8StringEncoding
+                                                     error:NULL];
+    NSLog(@"file contents: %@\nerror: %@", test, error);
+}
+*/
 
 @end
