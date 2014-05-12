@@ -19,6 +19,7 @@
     appWebView,
     tor = _tor,
     window = _window,
+    windowOverlay,
     managedObjectContext = __managedObjectContext,
     managedObjectModel = __managedObjectModel,
     persistentStoreCoordinator = __persistentStoreCoordinator,
@@ -198,10 +199,20 @@
 #pragma mark App lifecycle
 
 - (void)applicationWillResignActive:(UIApplication *)application {
+    appWebView.view.hidden = YES;
+    NSURL *imgurl = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"../OnionBrowser.app/Default-7-Portrait@2x.png"];
+    if (windowOverlay == nil) {
+        windowOverlay = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:[imgurl path]]];
+    }
+    [_window addSubview:windowOverlay];
+
     [_tor disableTorCheckLoop];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
+    _window.hidden = YES;
+    appWebView.view.hidden = YES;
+
     if (!_tor.didFirstConnect) {
         // User is trying to quit app before we have finished initial
         // connection. This is basically an "abort" situation because
@@ -219,6 +230,12 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
+    _window.hidden = NO;
+    appWebView.view.hidden = NO;
+    if (windowOverlay != nil) {
+        [windowOverlay removeFromSuperview];
+    }
+
     // Don't want to call "activateTorCheckLoop" directly since we
     // want to HUP tor first.
     [_tor appDidBecomeActive];
@@ -227,6 +244,8 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Wipe all cookies & caches on the way out.
     [self wipeAppData];
+    _window.hidden = YES;
+    appWebView.view.hidden = YES;
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {

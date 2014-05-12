@@ -38,6 +38,7 @@
 @property (strong, nonatomic) TorController *tor;
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) UIImageView *windowOverlay;
 
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
