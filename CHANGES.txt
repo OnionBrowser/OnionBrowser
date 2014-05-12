@@ -1,8 +1,10 @@
 Onion Browser Version History (since 1.2.2)
 
-===== 1.4.2 - In Development =====
-Onion Browser has received security audit and pentest by Cure53.de,
-funded by the Open Technology Fund (Radio Free Asia). Security issues
+===== 1.5.0 - Pending App Store Approval =====
+May 11 2014 - Submit Date
+
+Onion Browser has received a security audit and pentest by Cure53.de,
+funded by the Open Technology Fund at Radio Free Asia. Security issues
 corrected due to this audit are marked with the vulnerability ID
 (i.e. "OB-01-XX").
 
