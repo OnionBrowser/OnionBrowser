@@ -9,9 +9,7 @@ corrected due to this audit are marked with the vulnerability ID
 See https://mike.tig.as/onionbrowser/security/ for details and more
 up-to-date security information.
 
-* OB-01-001: Onion Browser now masks the current activity from
-  appearing in the "app picker" thumbnail image when the app goes to
-  background. Fixed in 535fc0c130.
+FIXED VULNERABILITIES
 
 * OB-01-005: "Third-Party Cookie" blocking was not working as
   expected. The "Block Third Party" cookie option simply allowed all
@@ -63,6 +61,40 @@ up-to-date security information.
   identify the Onion Browser session to that particular user. Onion
   Browser now prompts a user on incoming links, displaying the link
   before the browser proceeds. Behavior changed in d7d1941d3d.
+
+OTHER FIXED ISSUES
+
+* OB-01-001: Onion Browser now masks the current activity from
+  appearing in the "app picker" thumbnail image when the app goes to
+  background. Fixed in 535fc0c130.
+
+* OB-01-002/OB-01-003/OB-01-007: Use of iOS' built-in file encryption
+  has been overhauled such that all files in the app's sandbox (app,
+  settings, cachces, cookies, etc) are all protected when the device
+  goes into a lock state. Fixed in 7ec879611b, see [AppDelegate
+  -updateFileEncryption] for more details.
+
+* OB-01-012 note: When built for debugging or the iOS Simulator, Onion
+  Browser is not compiled with ASLR (Address Space Layout
+  Randomization), which could leave the app vulnerable to memory bugs.
+  However, the app, when compiled for "Release" is ASLR/PIE compiled.
+  You may test this by executing the following command on the output
+  of the "Build" command (or against an already-compiled ".app" copy
+  that you have): `otool -hv </path/to/OnionBrowser.app>/OnionBrowser`
+  (i.e., `otool -hv ~/Downloads/OnionBrowser.app/OnionBrowser`)
+  The output should contain the "PIE" flag.
+
+* OB-01-015: Autocomplete and autocorrect have been disabled on all
+  app-controlled text fields. (This includes settings, bookmarks,
+  address bar. Fields on web pages are unfortunately not subject to
+  this restriction.) Autocorrect results in user-typed data being
+  logged in the system's keyboard cache, which could leak private
+  information out of the app. Updated in a5a409876d.
+
+OTHER UPDATES
+
+* The homepage has been changed, as the official check.torproject.org
+  domain now performs useragent checking.
 
 * User-agent strings have been updated. "Windows" spoof updated to
   Windows 7 Firefox 24.0, same as Tor Browser Bundle. "Mac Safari"
