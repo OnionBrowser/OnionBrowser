@@ -108,7 +108,7 @@
         NSInteger csp_setting = [[settings valueForKey:@"javascript"] integerValue];
 
         if (indexPath.row == 0) {
-            cell.textLabel.text = @"No Ajax/XHR/WebSockets";
+            cell.textLabel.text = @"No Ajax/Multimedia/WebSockets";
             if (csp_setting == CONTENTPOLICY_BLOCK_CONNECT) {
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             } else {
@@ -264,7 +264,7 @@
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         NSMutableDictionary *settings2 = appDelegate.getSettings;
 
-        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Home Page" message:@"Leave blank to use default\nhome page with Tor Check." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Save",nil];
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Home Page" message:@"Leave blank to use default\nOnion Browser home page." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Save",nil];
         alert.alertViewStyle = UIAlertViewStylePlainTextInput;
         
         UITextField *textField = [alert textFieldAtIndex:0];
@@ -281,7 +281,7 @@
             [settings setObject:[NSNumber numberWithInteger:CONTENTPOLICY_BLOCK_CONNECT] forKey:@"javascript"];
             [appDelegate saveSettings:settings];
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Experimental Feature"
-                                                            message:[NSString stringWithFormat:@"Blocking of Ajax/XHR/WebSocket requests is experimental. Some websites may not work if these dynamic requests are blocked. (Note that enabling these requests may leak your real IP address; therefore, this mode is recommended.)"]
+                                                            message:[NSString stringWithFormat:@"Blocking of Ajax/XHR/WebSocket requests is experimental. Some websites may not work if these dynamic requests are blocked; but these dynamic requests can leak your identity."]
                                                            delegate:nil
                                                   cancelButtonTitle:@"OK"
                                                   otherButtonTitles:nil];

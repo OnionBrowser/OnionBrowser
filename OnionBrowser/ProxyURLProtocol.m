@@ -200,8 +200,8 @@
         // our strictest-possible header.
         NSMutableDictionary *mHeaders = [NSMutableDictionary dictionary];
         for(id h in response.allHeaderFields) {
-            if(![[h lowercaseString] isEqualToString:@"content-security-policy"] && ![[h lowercaseString] isEqualToString:@"x-webkit-csp"]) {
-                // Delete existing content-security-policy headers (since we rely on writing our on strict ones)
+            if(![[h lowercaseString] isEqualToString:@"content-security-policy"] && ![[h lowercaseString] isEqualToString:@"x-webkit-csp"]  && ![[h lowercaseString] isEqualToString:@"cache-control"]) {
+                // Delete existing content-security-policy headers & cache header (since we rely on writing our on strict ones)
                 [mHeaders setObject:response.allHeaderFields[h] forKey:h];
             }
         }
@@ -209,6 +209,8 @@
                      forKey:@"Content-Security-Policy"];
         [mHeaders setObject:@"script-src 'none';media-src 'none';object-src 'none';connect-src 'none';font-src 'none';sandbox allow-forms allow-top-navigation;style-src 'unsafe-inline' *;"
                      forKey:@"X-Webkit-CSP"];
+        [mHeaders setObject:@"max-age=0, no-cache, no-store, must-revalidate"
+                     forKey:@"Cache-Control"];
         response = [[NSHTTPURLResponse alloc]
                     initWithURL:response.URL statusCode:response.statusCode
                     HTTPVersion:@"1.1" headerFields:mHeaders];
@@ -228,6 +230,8 @@
                 NSString *newHeader = [NSString stringWithFormat:@"connect-src 'none';%@", response.allHeaderFields[h]];
                 [mHeaders setObject:newHeader forKey:h];
                 editedWebkitCSP = YES;
+            } else if ([[h lowercaseString] isEqualToString:@"cache-control"]) {
+                // Don't pass along existing Cache-Control header
             } else {
                 // Non-CSP header, just pass it on.
                 [mHeaders setObject:response.allHeaderFields[h] forKey:h];
@@ -241,6 +245,21 @@
             [mHeaders setObject:@"connect-src 'none'"
                          forKey:@"X-Webkit-CSP"];
         }
+        [mHeaders setObject:@"max-age=0, no-cache, no-store, must-revalidate"
+                     forKey:@"Cache-Control"];
+        response = [[NSHTTPURLResponse alloc]
+                    initWithURL:response.URL statusCode:response.statusCode
+                    HTTPVersion:@"1.1" headerFields:mHeaders];
+    } else {
+        // Normal case: let's still disable cache
+        NSMutableDictionary *mHeaders = [NSMutableDictionary dictionary];
+        for(id h in response.allHeaderFields) {
+            if(![[h lowercaseString] isEqualToString:@"cache-control"]) {
+                [mHeaders setObject:response.allHeaderFields[h] forKey:h];
+            }
+        }
+        [mHeaders setObject:@"max-age=0, no-cache, no-store, must-revalidate"
+                     forKey:@"Cache-Control"];
         response = [[NSHTTPURLResponse alloc]
                     initWithURL:response.URL statusCode:response.statusCode
                     HTTPVersion:@"1.1" headerFields:mHeaders];

@@ -45,12 +45,60 @@
         [fileManager setAttributes:f_options ofItemAtPath:[settingsPlist path] error:nil];
     }
 
+    NSMutableDictionary *settings = self.getSettings;
+
+    /*********** WebKit options **********/
+    // http://objectiveself.com/post/84817251648/uiwebviews-hidden-properties
+    // https://git.chromium.org/gitweb/?p=external/WebKit_trimmed.git;a=blob;f=Source/WebKit/mac/WebView/WebPreferences.mm;h=2c25b05ef6a73f478df9b0b7d21563f19aa85de4;hb=9756e26ef45303401c378036dff40c447c2f9401
+    // Block JS if we are on "Block All" mode.
+    /* TODO: disabled for now, since Content-Security-Policy handles this (and this setting
+     * requires app restart to take effect)
+    NSInteger blockingSetting = [[settings valueForKey:@"javascript"] integerValue];
+    if (blockingSetting == CONTENTPOLICY_STRICT) {
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"WebKitJavaScriptEnabled"];
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"WebKitJavaScriptEnabledPreferenceKey"];
+    } else {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"WebKitJavaScriptEnabled"];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"WebKitJavaScriptEnabledPreferenceKey"];
+    }
+    */
+    // Always disable multimedia (Tor leak)
+    // TODO: These don't seem to have any effect on the QuickTime player appearing (and transfering
+    //       data outside of Tor). Work-in-progress.
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"WebKitAVFoundationEnabledKey"];
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"WebKitWebAudioEnabled"];
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"WebKitWebAudioEnabledPreferenceKey"];
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"WebKitQTKitEnabled"];
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"WebKitQTKitEnabledPreferenceKey"];
+
+    // Always disable localstorage & databases
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"WebKitDatabasesEnabled"];
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"WebKitDatabasesEnabledPreferenceKey"];
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"WebKitLocalStorageEnabled"];
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"WebKitLocalStorageEnabledPreferenceKey"];
+    [[NSUserDefaults standardUserDefaults] setObject:@"/dev/null" forKey:@"WebKitLocalStorageDatabasePath"];
+    [[NSUserDefaults standardUserDefaults] setObject:@"/dev/null" forKey:@"WebKitLocalStorageDatabasePathPreferenceKey"];
+    [[NSUserDefaults standardUserDefaults] setObject:@"/dev/null" forKey:@"WebDatabaseDirectory"];
+    [[NSUserDefaults standardUserDefaults] setInteger:2 forKey:@"WebKitStorageBlockingPolicy"];
+    [[NSUserDefaults standardUserDefaults] setInteger:2 forKey:@"WebKitStorageBlockingPolicyKey"];
+
+    // Always disable caches
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"WebKitUsesPageCache"];
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"WebKitUsesPageCachePreferenceKey"];
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"WebKitPageCacheSupportsPlugins"];
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"WebKitPageCacheSupportsPluginsPreferenceKey"];
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"WebKitOfflineWebApplicationCacheEnabled"];
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"WebKitOfflineWebApplicationCacheEnabledPreferenceKey"];
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"WebKitDiskImageCacheEnabled"];
+    [[NSUserDefaults standardUserDefaults] setObject:@"/dev/null" forKey:@"WebKitLocalCache"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    /*********** /WebKit options **********/
+
     // Wipe all cookies & caches from previous invocations of app (in case we didn't wipe
     // cleanly upon exit last time)
     [self wipeAppData];
 
     _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
     appWebView = [[WebViewController alloc] init];
     [_window setRootViewController:appWebView];
     [_window makeKeyAndVisible];
@@ -61,7 +109,6 @@
 
     sslWhitelistedDomains = [[NSMutableArray alloc] init];
     
-    NSMutableDictionary *settings = self.getSettings;
     NSInteger cookieSetting = [[settings valueForKey:@"cookies"] integerValue];
     if (cookieSetting == COOKIES_ALLOW_ALL) {
         [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
@@ -318,20 +365,22 @@
         if ((dataDir != nil) && [fm fileExistsAtPath:dataDir isDirectory:nil]){
             NSString *cookiesDir = [NSString stringWithFormat:@"%@/Cookies", dataDir];
             if ([fm fileExistsAtPath:cookiesDir isDirectory:nil]){
-                //NSLog(@"COOKIES DIR");
                 [fm removeItemAtPath:cookiesDir error:nil];
             }
 
             NSString *cachesDir = [NSString stringWithFormat:@"%@/Caches", dataDir];
             if ([fm fileExistsAtPath:cachesDir isDirectory:nil]){
-                //NSLog(@"CACHES DIR");
                 [fm removeItemAtPath:cachesDir error:nil];
             }
 
             NSString *prefsDir = [NSString stringWithFormat:@"%@/Preferences", dataDir];
             if ([fm fileExistsAtPath:prefsDir isDirectory:nil]){
-                //NSLog(@"PREFS DIR");
                 [fm removeItemAtPath:prefsDir error:nil];
+            }
+
+            NSString *wkDir = [NSString stringWithFormat:@"%@/WebKit", dataDir];
+            if ([fm fileExistsAtPath:wkDir isDirectory:nil]){
+                [fm removeItemAtPath:wkDir error:nil];
             }
         }
     } // TODO: otherwise, WTF
