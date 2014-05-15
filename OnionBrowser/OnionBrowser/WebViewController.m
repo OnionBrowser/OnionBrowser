@@ -235,14 +235,7 @@ const char AlertViewIncomingUrl;
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSString *reqSysVer = @"7.0";
     NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
-    if (
-        ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending) &&
-        ([appDelegate deviceType] == X_DEVICE_IS_IPAD)
-    ){
-        // 7.0+, iPad
-    } else {
-        size.height -= 20.0f;
-    }
+    size.height -= 20.0f;
     size.height -= kToolBarHeight;
     size.height -= kNavBarHeight;
     
