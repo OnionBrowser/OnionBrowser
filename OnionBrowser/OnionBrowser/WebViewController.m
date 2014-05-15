@@ -145,16 +145,13 @@ const char AlertViewIncomingUrl;
             [navBar addSubview:_progressView];
         }
 
-        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-        NSMutableDictionary *settings = appDelegate.getSettings;
-
         // Build request and go.
         _myWebView.delegate = _progressProxy;
         _progressProxy.webViewProxyDelegate = self;
         _progressProxy.progressDelegate = self;
         _myWebView.scalesPageToFit = YES;
         NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:navigationURL];
-        [req setHTTPShouldUsePipelining:[[settings valueForKey:@"pipelining"] integerValue]];
+        [req setHTTPShouldUsePipelining:YES];
         [_myWebView loadRequest:req];
 
         _addressField.enabled = YES;

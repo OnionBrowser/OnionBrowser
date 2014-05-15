@@ -299,7 +299,9 @@
     NSString *platform = [NSString stringWithUTF8String:machine];
     free(machine);
 
-    //NSLog(@"%@", platform);
+    #ifdef DEBUG
+    NSLog(@"%@", platform);
+    #endif
 
     if (([platform rangeOfString:@"iPhone"].location != NSNotFound)||([platform rangeOfString:@"iPod"].location != NSNotFound)) {
         return 0;
@@ -439,10 +441,6 @@
     }
     if ([d objectForKey:@"uaspoof"] == nil) {
         [d setObject:[NSNumber numberWithInteger:UA_SPOOF_NO] forKey:@"uaspoof"];
-        update = YES;
-    }
-    if ([d objectForKey:@"pipelining"] == nil) {
-        [d setObject:[NSNumber numberWithInteger:PIPELINING_ON] forKey:@"pipelining"];
         update = YES;
     }
     if ([d objectForKey:@"dnt"] == nil) {

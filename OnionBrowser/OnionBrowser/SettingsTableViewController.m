@@ -41,7 +41,7 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 7;
+    return 6;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -57,12 +57,9 @@
         // UA Spoofing
         return 3;
     } else if (section == 4) {
-        // Pipelining
-        return 2;
-    } else if (section == 5) {
         // DNT header
         return 2;
-    } else if (section == 6) {
+    } else if (section == 5) {
         // Bridges
         return 1;
     }
@@ -73,16 +70,20 @@
     if (section == 0)
         return @"Home Page";
     else if (section == 1)
-        return @"Active Content Blocking\n(Javascript, Multimedia, External Fonts, Ajax/XHR, WebSockets)\n'No Ajax…' Mode Is Recommended";
+        return @"Active Content Blocking\n(Javascript, Multimedia, External Fonts, Ajax/XHR, WebSockets)\n'Block Ajax…' Mode Recommended.";
     else if (section == 2)
-        return @"Cookies\n(Changing Will Clear Cookies)";
-    else if (section == 3)
-        return @"User-Agent Spoofing\n* iOS Safari provides better mobile website compatibility.\n* Windows string is recommended for privacy and uses the same string as the official Tor Browser Bundle.";
-    else if (section == 4)
-        return @"HTTP Pipelining\n(Disable if you have issues with images on some websites)";
+        return @"Cookies\nChanging Will Clear Cookies\n'Block All' is recommended, but prevents website logins.";
+    else if (section == 3) {
+        NSString *devicename;
+        if (IS_IPAD) {
+            devicename = @"iPad";
+        } else {
+            devicename = @"iPhone";
+        }
+        return [NSString stringWithFormat:@"User-Agent Spoofing\n'No Spoofing' acts like the normal %@ web browser.\nOther options mask that you use a iOS device, but you may have issues viewing mobile websites.", devicename];
+    } else if (section == 4)
+        return @"Do Not Track (DNT) Header\nThis does not prevent websites from tracking you: this only tells the website that you prefer not to being tracked for purposes like behavioral advertising.";
     else if (section == 5)
-        return @"DNT (Do Not Track) Header";
-    else if (section == 6)
         return @"Tor Bridges\nSet up bridges if you have issues connecting to Tor. Remove all bridges to go back standard connection mode.\nSee http://onionbrowser.com/help/ for instructions.";
     else
         return nil;
@@ -108,7 +109,7 @@
         NSInteger csp_setting = [[settings valueForKey:@"javascript"] integerValue];
 
         if (indexPath.row == 0) {
-            cell.textLabel.text = @"No Ajax/Multimedia/WebSockets";
+            cell.textLabel.text = @"Block Ajax/Media/WebSockets";
             if (csp_setting == CONTENTPOLICY_BLOCK_CONNECT) {
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             } else {
@@ -189,48 +190,27 @@
             }
         }
     } else if (indexPath.section == 4) {
-        // Pipelining
-        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-        NSMutableDictionary *settings = appDelegate.getSettings;
-        NSInteger usePipelining = [[settings valueForKey:@"pipelining"] integerValue];
-
-        if (indexPath.row == 0) {
-            cell.textLabel.text = @"Enabled (Better Performance)";
-            if (usePipelining == YES) {
-                cell.accessoryType = UITableViewCellAccessoryCheckmark;
-            } else {
-                cell.accessoryType = UITableViewCellAccessoryNone;
-            }
-        } else if (indexPath.row == 1) {
-            cell.textLabel.text = @"Disabled (Better Compatibility)";
-            if (usePipelining == NO) {
-                cell.accessoryType = UITableViewCellAccessoryCheckmark;
-            } else {
-                cell.accessoryType = UITableViewCellAccessoryNone;
-            }
-        }
-    } else if (indexPath.section == 5) {
         // DNT
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         NSMutableDictionary *settings = appDelegate.getSettings;
         NSInteger dntHeader = [[settings valueForKey:@"dnt"] integerValue];
 
         if (indexPath.row == 0) {
-            cell.textLabel.text = @"No Header";
+            cell.textLabel.text = @"No Preference Sent";
             if (dntHeader == DNT_HEADER_UNSET) {
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             } else {
                 cell.accessoryType = UITableViewCellAccessoryNone;
             }
         } else if (indexPath.row == 1) {
-            cell.textLabel.text = @"Opt Out Of Tracking";
+            cell.textLabel.text = @"Tell Websites Not To Track";
             if (dntHeader == DNT_HEADER_NOTRACK) {
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             } else {
                 cell.accessoryType = UITableViewCellAccessoryNone;
             }
         }
-    } else if (indexPath.section == 6) {
+    } else if (indexPath.section == 5) {
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         
         NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -348,18 +328,6 @@
             [alert show];
         }
     } else if (indexPath.section == 4) {
-        // Pipelining
-        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-        NSMutableDictionary *settings = appDelegate.getSettings;
-
-        if (indexPath.row == 0) {
-            [settings setObject:[NSNumber numberWithInteger:PIPELINING_ON] forKey:@"pipelining"];
-            [appDelegate saveSettings:settings];
-        } else if (indexPath.row == 1) {
-            [settings setObject:[NSNumber numberWithInteger:PIPELINING_OFF] forKey:@"pipelining"];
-            [appDelegate saveSettings:settings];
-        }
-    } else if (indexPath.section == 5) {
         // DNT
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         NSMutableDictionary *settings = appDelegate.getSettings;
@@ -371,13 +339,13 @@
             [settings setObject:[NSNumber numberWithInteger:DNT_HEADER_NOTRACK] forKey:@"dnt"];
             [appDelegate saveSettings:settings];
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
-                                                            message:[NSString stringWithFormat:@"Onion Browser will now send the 'DNT: 1' header. Note that because only very new browsers send this optional header, this opt-in feature may allow websites to uniquely identify you."]
+                                                            message:[NSString stringWithFormat:@"Onion Browser will now send the 'DNT: 1' header.\n\nNote that because only very new browsers send this preference, this signal could cause you to 'stand out'.\n\nFor more generic-looking anonymous traffic, you may wish to disable this setting."]
                                                            delegate:nil
                                                   cancelButtonTitle:@"OK" 
                                                   otherButtonTitles:nil];
             [alert show];
         }
-    } else if (indexPath.section == 6) {
+    } else if (indexPath.section == 5) {
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
 
         BridgeTableViewController *bridgesVC = [[BridgeTableViewController alloc] initWithStyle:UITableViewStylePlain];

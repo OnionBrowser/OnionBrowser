@@ -30,13 +30,8 @@
       cachedResponse:(NSCachedURLResponse *)cachedResponse
               client:(id <NSURLProtocolClient>)client {
 
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    NSMutableDictionary *settings = appDelegate.getSettings;
-
     // Modify request
     NSMutableURLRequest *myRequest = [request mutableCopy];
-    
-    [myRequest setHTTPShouldUsePipelining:[[settings valueForKey:@"pipelining"] integerValue]];
     
     self = [super initWithRequest:myRequest
                    cachedResponse:cachedResponse
@@ -330,7 +325,7 @@
         #endif
 
         NSMutableURLRequest *newRequest = [_request mutableCopy];
-        [newRequest setHTTPShouldUsePipelining:[[settings valueForKey:@"pipelining"] integerValue]];
+        [newRequest setHTTPShouldUsePipelining:YES];
         newRequest.URL = [NSURL URLWithString:newURL relativeToURL:_request.URL];
         _request = newRequest;
         [[self client] URLProtocol:self wasRedirectedToRequest:_request redirectResponse:response];
