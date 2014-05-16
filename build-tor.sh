@@ -22,11 +22,11 @@
 ###########################################################################
 # Choose your tor version and your currently-installed iOS SDK version:
 #
-VERSION="0.2.4.21"
+VERSION="0.2.4.22"
 #VERSION="0.2.5.2-alpha"
 USERSDKVERSION="7.1"
 MINIOSVERSION="6.0"
-VERIFYGPG=true
+VERIFYGPG=false
 
 ###########################################################################
 #
@@ -85,7 +85,9 @@ set -e
 if [ ! -e "${SRCDIR}/tor-${VERSION}.tar.gz" ]; then
 	echo "Downloading tor-${VERSION}.tar.gz"
 	#curl -O https://archive.torproject.org/tor-package-archive/tor-${VERSION}.tar.gz
-	curl -O https://www.torproject.org/dist/tor-${VERSION}.tar.gz
+	#curl -O https://www.torproject.org/dist/tor-${VERSION}.tar.gz
+  # TODO: temporary testing https://lists.torproject.org/pipermail/tor-talk/2014-May/032930.html
+  curl -O http://www.wangafu.net/~nickm/volatile/tor-0.2.4.22.tar.gz
 fi
 echo "Using tor-${VERSION}.tar.gz"
 
