@@ -1,7 +1,21 @@
 Onion Browser Version History (since 1.2.2)
 
-===== 1.5.0 - Pending App Store Approval =====
+===== 1.5.1 - In Development =====
+
+* Fixed rendering issue on iPads, where the browser section would
+  overlap the bottom toolbar.
+
+* Some settings text made more explicit. The "Pipelining" setting
+  has been removed and is now always enable
+
+* Tor updated to 0.2.4.22, which blacklists Tor directory keys that
+  were susceptible to Heartbleed. Also improves TLS ciphersuite
+  selection for Tor.
+
+
+===== 1.5.0 - In App Store =====
 May 11 2014 - Submit Date
+May 14 2014 - App Store Availability
 
 Onion Browser has received a security audit and pentest by Cure53.de,
 funded by the Open Technology Fund at Radio Free Asia. Security issues
@@ -96,13 +110,23 @@ OTHER FIXED ISSUES
 OTHER UPDATES
 
 * The homepage has been changed, as the official check.torproject.org
-  domain now performs useragent checking.
+  domain now performs useragent checking and was confusing users. The
+  new homepage resides on a Tor hidden service, ensuring Tor
+  connectivity and does provide a link over to the original
+  check.torproject.org site.
 
 * User-agent strings have been updated. "Windows" spoof updated to
   Windows 7 Firefox 24.0, same as Tor Browser Bundle. "Mac Safari"
   updated to OS X 10.9.2 Safari 7.0.3, most up-to-date version.
 
-===== 1.4.1 - In App Store =====
+
+
+
+
+PREVIOUS VERSIONS:
+
+
+===== 1.4.1 =====
 Apr 21 2014 - Submit Date
 Apr 23 2014 - App store availability
 
@@ -131,8 +155,6 @@ Apr 23 2014 - App store availability
   with websites using frames (including default home page). Contributed
   by Łukasz Pilorz.
 
-
-PREVIOUS VERSIONS:
 
 ===== 1.4 =====
 Feb 01 2014 - Submit Date
