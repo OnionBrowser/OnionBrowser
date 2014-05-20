@@ -1,6 +1,11 @@
 Onion Browser Version History (since 1.2.2)
 
 ===== 1.5.1 - Pending App Store Approval =====
+May 20 2014 - Submit Date
+
+* Onion Browser erroneously did not use 'gzip' compression to
+  communicate with web servers. This has been corrected, which
+  should greatly improve pageload performance.
 
 * New "normalized" user agents have been added. Users who left
   Onion Browser on the 'No Spoofing' setting are now defaulted to
