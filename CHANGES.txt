@@ -1,12 +1,24 @@
 Onion Browser Version History (since 1.2.2)
 
-===== 1.5.1 - In Development =====
+===== 1.5.1 - Pending App Store Approval =====
+
+* New "normalized" user agents have been added. Users who left
+  Onion Browser on the 'No Spoofing' setting are now defaulted to
+  the appropriate "normalized" setting for their device.
+
+* User Agent spoofing now attempts to spoof the javascript
+  "navigator.userAgent" variable that sites could previously use
+  to detect an attempted UA spoof. (Previously, this variable still
+  contained the browser's real identification.)
 
 * Fixed rendering issue on iPads, where the browser section would
   overlap the bottom toolbar.
 
+* Active Content Blocking now attempts to disable using WebSockets
+  and other dangerous activity by modifying incoming content.
+
 * Some settings text made more explicit. The "Pipelining" setting
-  has been removed and is now always enable
+  has been removed and is now always enabled.
 
 * Tor updated to 0.2.4.22, which blacklists Tor directory keys that
   were susceptible to Heartbleed. Also improves TLS ciphersuite

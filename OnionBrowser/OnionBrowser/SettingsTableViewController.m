@@ -55,7 +55,7 @@
         return 3;
     } else if (section == 3) {
         // UA Spoofing
-        return 3;
+        return 5;
     } else if (section == 4) {
         // DNT header
         return 2;
@@ -72,7 +72,7 @@
     else if (section == 1)
         return @"Active Content Blocking\n(Javascript, Multimedia, External Fonts, Ajax/XHR, WebSockets)\n'Block Ajax…' Mode Recommended.";
     else if (section == 2)
-        return @"Cookies\nChanging Will Clear Cookies\n'Block All' is recommended, but prevents website logins.";
+        return @"Cookies\n'Block All' is recommended, but prevents website logins.";
     else if (section == 3) {
         NSString *devicename;
         if (IS_IPAD) {
@@ -80,9 +80,9 @@
         } else {
             devicename = @"iPhone";
         }
-        return [NSString stringWithFormat:@"User-Agent Spoofing\n'No Spoofing' acts like the normal %@ web browser.\nOther options mask that you use a iOS device, but you may have issues viewing mobile websites.", devicename];
+        return [NSString stringWithFormat:@"User-Agent Spoofing\n'Standard' does not hide your device info (%@, iOS %@).\n'Normalized' is recommended & masks your actual device/version.\n'Desktop' options try to mask that you use a iOS device.", devicename, [[UIDevice currentDevice] systemVersion]];
     } else if (section == 4)
-        return @"Do Not Track (DNT) Header\nThis does not prevent websites from tracking you: this only tells the website that you prefer not to being tracked for purposes like behavioral advertising.";
+        return @"Do Not Track (DNT) Header\nThis does not prevent sites from tracking you: this only tells sites that you prefer not being tracked for customzied advertising.";
     else if (section == 5)
         return @"Tor Bridges\nSet up bridges if you have issues connecting to Tor. Remove all bridges to go back standard connection mode.\nSee http://onionbrowser.com/help/ for instructions.";
     else
@@ -168,20 +168,34 @@
         NSInteger spoofUserAgent = [[settings valueForKey:@"uaspoof"] integerValue];
         
         if (indexPath.row == 0) {
-            cell.textLabel.text = @"No Spoofing: iOS Safari";
+            cell.textLabel.text = @"Standard";
             if (spoofUserAgent == UA_SPOOF_NO) {
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             } else {
                 cell.accessoryType = UITableViewCellAccessoryNone;
             }
         } else if (indexPath.row == 1) {
+            cell.textLabel.text = @"Normalized iPhone (iOS Safari)";
+            if (spoofUserAgent == UA_SPOOF_IPHONE) {
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            } else {
+                cell.accessoryType = UITableViewCellAccessoryNone;
+            }
+        } else if (indexPath.row == 2) {
+            cell.textLabel.text = @"Normalized iPad (iOS Safari)";
+            if (spoofUserAgent == UA_SPOOF_IPAD) {
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            } else {
+                cell.accessoryType = UITableViewCellAccessoryNone;
+            }
+        } else if (indexPath.row == 3) {
             cell.textLabel.text = @"Windows 7 (NT 6.1), Firefox 24";
             if (spoofUserAgent == UA_SPOOF_WIN7_TORBROWSER) {
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             } else {
                 cell.accessoryType = UITableViewCellAccessoryNone;
             }
-        } else if (indexPath.row == 2) {
+        } else if (indexPath.row == 4) {
             cell.textLabel.text = @"Mac OS X 10.9.2, Safari 7.0.3";
             if (spoofUserAgent == UA_SPOOF_SAFARI_MAC) {
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -308,20 +322,29 @@
         // User-Agent
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         NSMutableDictionary *settings = appDelegate.getSettings;
+        
+        //NSString* secretAgent = [appDelegate.appWebView.myWebView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
+        //NSLog(@"%@", secretAgent);
 
         if (indexPath.row == 0) {
             [settings setObject:[NSNumber numberWithInteger:UA_SPOOF_NO] forKey:@"uaspoof"];
             [appDelegate saveSettings:settings];
         } else {
             if (indexPath.row == 1) {
-                [settings setObject:[NSNumber numberWithInteger:UA_SPOOF_WIN7_TORBROWSER] forKey:@"uaspoof"];
+                [settings setObject:[NSNumber numberWithInteger:UA_SPOOF_IPHONE] forKey:@"uaspoof"];
                 [appDelegate saveSettings:settings];
             } else if (indexPath.row == 2) {
+                [settings setObject:[NSNumber numberWithInteger:UA_SPOOF_IPAD] forKey:@"uaspoof"];
+                [appDelegate saveSettings:settings];
+            } else if (indexPath.row == 3) {
+                [settings setObject:[NSNumber numberWithInteger:UA_SPOOF_WIN7_TORBROWSER] forKey:@"uaspoof"];
+                [appDelegate saveSettings:settings];
+            } else if (indexPath.row == 4) {
                 [settings setObject:[NSNumber numberWithInteger:UA_SPOOF_SAFARI_MAC] forKey:@"uaspoof"];
                 [appDelegate saveSettings:settings];
             }
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
-                                                            message:[NSString stringWithFormat:@"User Agent spoofing enabled.\n\nNote that JavaScript cannot be disabled due to framework limitations. Scripts and other iOS features may still identify your browser.\n\nSome mobile or tablet websites may not work properly without the original mobile User Agent."]
+                                                            message:[NSString stringWithFormat:@"User Agent spoofing enabled.\n\nNote that scripts, active content, and other iOS features may still identify your browser.\n\nFor 'desktop' options, mobile or tablet websites may not work properly."]
                                                            delegate:nil
                                                   cancelButtonTitle:@"OK" 
                                                   otherButtonTitles:nil];

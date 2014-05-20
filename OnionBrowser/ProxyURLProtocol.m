@@ -30,6 +30,9 @@
       cachedResponse:(NSCachedURLResponse *)cachedResponse
               client:(id <NSURLProtocolClient>)client {
 
+    incomingContentType = PROXY_CONTENT_OTHER;
+    firstChunk = YES;
+
     // Modify request
     NSMutableURLRequest *myRequest = [request mutableCopy];
     
@@ -183,6 +186,21 @@
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSMutableDictionary *settings = appDelegate.getSettings;
 
+    /* If this incoming request is HTML or Javascript (based on content-type header),
+     * flag it for processing later. (We'll prepend some JS to try to rewrite navigator.useragent,
+     * block WebSockets), etc.)
+     */
+    for(id h in response.allHeaderFields) {
+        if([[h lowercaseString] isEqualToString:@"content-type"]) {
+            NSString *ctype = [response.allHeaderFields objectForKey:h];
+            if ([ctype hasPrefix:@"text/html"] || [ctype hasPrefix:@"application/html"] || [ctype hasPrefix:@"application/xhtml+xml"]) {
+                incomingContentType = PROXY_CONTENT_HTML;
+            } else if ([ctype hasPrefix:@"application/javascript"] || [ctype hasPrefix:@"text/javascript"] || [ctype hasPrefix:@"application/x-javascript"] || [ctype hasPrefix:@"text/x-javascript"]) {
+                incomingContentType = PROXY_CONTENT_JS;
+            }
+            break;
+        }
+    }
 
     /* If content-policy ("javascript") setting is CONTENTPOLICY_STRICT or CONTENTPOLICY_BLOCK_CONNECT,
      * modify incoming headers to turn on the "content-security-policy" and "x-webkit-csp" headers accordingly.
@@ -373,10 +391,34 @@
         // pass the ugzip'd data along and reset the buffer.
         NSData *newData = [_data gzipInflate];
         if (newData != nil) {
+            if (firstChunk) {
+                // If this is the start of the content of this (gzipped) file, inject any
+                // script-overriding code as necessary.
+                if (incomingContentType == PROXY_CONTENT_HTML) {
+                    data = [self htmlDataWithJavascriptInjection:data];
+                } else if (incomingContentType == PROXY_CONTENT_JS) {
+                    data = [self javascriptDataWithJavascriptInjection:data];
+                }
+                // Don't do this injection the next time around
+                firstChunk = NO;
+            }
+
             [self.client URLProtocol:self didLoadData:newData];
             _data = nil;
         }
     } else {
+        if (firstChunk) {
+            // If this is the start of the content of this (gzipped) file, inject any
+            // script-overriding code as necessary.
+            if (incomingContentType == PROXY_CONTENT_HTML) {
+                data = [self htmlDataWithJavascriptInjection:data];
+            } else if (incomingContentType == PROXY_CONTENT_JS) {
+                data = [self javascriptDataWithJavascriptInjection:data];
+            }
+            // Don't do this injection the next time around
+            firstChunk = NO;
+        }
+
         [self.client URLProtocol:self didLoadData:data];
     }
 }
@@ -394,4 +436,38 @@
 
 
 
+- (NSData *)htmlDataWithJavascriptInjection:incomingData {
+    /* As used in "- (void)HTTPConnection:(CKHTTPConnection *)connection didReceiveData:(NSData *)data",
+     * this takes the first chunk of raw HTML (ungizipped) and prepends a DOCTYPE and some
+     * JS overrides before the page starts.
+     *
+     * Incredibly hacky, but allows us to catch any troublesome javascript methods before anybody's
+     * script executes on-page. Currently allows rewriting `navigator.Useragent` but will eventually be
+     * used to truly ensure that sockets & other dangerous JS-based dynamic content are blocked.
+     */
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSMutableData *newData = [[NSMutableData alloc] init];
+
+    // Prepend a DOCTYPE (to force into standards mode) and throw in any javascript overrides
+    [newData appendData:[[NSString stringWithFormat:@"<!DOCTYPE html><script>%@</script>", appDelegate.javascriptInjection] dataUsingEncoding:NSUTF8StringEncoding]];
+    [newData appendData:incomingData];
+    return newData;
+}
+
+- (NSData *)javascriptDataWithJavascriptInjection:incomingData {
+    /* As used in "- (void)HTTPConnection:(CKHTTPConnection *)connection didReceiveData:(NSData *)data",
+     * this takes the first chunk of javascript (from a .js file included in a <script> tag and prepends
+     * JS overrides before the rest of this script starts.
+     *
+     * Incredibly hacky, but allows us to catch any troublesome javascript methods before anybody's
+     * script executes on-page. Currently allows rewriting `navigator.Useragent` but will eventually be
+     * used to truly ensure that sockets & other dangerous JS-based dynamic content are blocked.
+     */
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSMutableData *newData = [[NSMutableData alloc] init];
+
+    [newData appendData:[[NSString stringWithFormat:@"%@\n", appDelegate.javascriptInjection] dataUsingEncoding:NSUTF8StringEncoding]];
+    [newData appendData:incomingData];
+    return newData;
+}
 @end

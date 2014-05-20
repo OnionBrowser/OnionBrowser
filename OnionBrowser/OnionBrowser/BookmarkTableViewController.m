@@ -37,9 +37,11 @@
     if (_presetBookmarks == nil) {
         _presetBookmarks = [NSArray arrayWithObjects:
                             [NSArray arrayWithObjects:@"Onion Browser", @"http://tigas3l7uusztiqu.onion/onionbrowser/", nil],
-                            [NSArray arrayWithObjects:@"Source Code Site", @"https://github.com/mtigas/iOS-OnionBrowser/", nil],
+                            [NSArray arrayWithObjects:@"App Security Bulletins", @"http://tigas3l7uusztiqu.onion/onionbrowser/security/", nil],
                             [NSArray arrayWithObjects:@"Version History", @"https://raw.github.com/mtigas/iOS-OnionBrowser/master/CHANGES.txt", nil],
+                            [NSArray arrayWithObjects:@"Source Code", @"https://github.com/mtigas/iOS-OnionBrowser/", nil],
                             [NSArray arrayWithObjects:@"Mike Tigas, App Developer", @"http://tigas3l7uusztiqu.onion/", nil],
+                            [NSArray arrayWithObjects:@"@mtigas on Twitter", @"https://twitter.com/mtigas", nil],
                             [NSArray arrayWithObjects:@"Tor Bridges", @"https://bridges.torproject.org/", nil],
                              nil];
     }

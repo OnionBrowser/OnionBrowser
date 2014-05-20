@@ -399,54 +399,58 @@ const char AlertViewIncomingUrl;
 
 -(void) prePopulateBookmarks {
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    
+
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
 
     NSUInteger i = 0;
-    
+
     Bookmark *bookmark;
 
     bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
-    [bookmark setTitle:@"DuckDuckGo Search (.onion)"];
+    [bookmark setTitle:@"Search: DuckDuckGo"];
     [bookmark setUrl:@"https://3g2upl4pq6kufc4m.onion/html/"];
     [bookmark setOrder:i++];
-    
+
     bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
-    [bookmark setTitle:@"DuckDuckGo Search (HTTPS)"];
+    [bookmark setTitle:@"Search: DuckDuckGo (Plain HTTPS)"];
     [bookmark setUrl:@"https://duckduckgo.com/html/"];
     [bookmark setOrder:i++];
-    
+
     bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
-    [bookmark setTitle:@"StartPage Search Engine"];
+    [bookmark setTitle:@"Search: StartPage.com"];
     [bookmark setUrl:@"https://startpage.com/m/"];
     [bookmark setOrder:i++];
-    
+
     bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
     [bookmark setTitle:@"ifconfig.me Identity Check"];
     [bookmark setUrl:@"http://ifconfig.me/"];
     [bookmark setOrder:i++];
-    
 
     bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
     [bookmark setTitle:@"The Tor Project"];
-    [bookmark setUrl:@"http://idnxcnkne4qt76tg.onion/"];
+    [bookmark setUrl:@"http://www.torproject.org/"];
     [bookmark setOrder:i++];
-    
+
     bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
-    [bookmark setTitle:@"Tor Project News"];
+    [bookmark setTitle:@"Tor Project Blog"];
     [bookmark setUrl:@"https://blog.torproject.org/"];
     [bookmark setOrder:i++];
-    
+
     bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
     [bookmark setTitle:@"Electronic Frontier Foundation"];
     [bookmark setUrl:@"https://www.eff.org/"];
     [bookmark setOrder:i++];
-    
+
+    bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
+    [bookmark setTitle:@"Freedom of the Press Foundation"];
+    [bookmark setUrl:@"https://pressfreedomfoundation.org/"];
+    [bookmark setOrder:i++];
+
     bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
     [bookmark setTitle:@"Tactical Technology Collective"];
     [bookmark setUrl:@"https://tacticaltech.org/"];
     [bookmark setOrder:i++];
-    
+
     NSError *error = nil;
     if (![context save:&error]) {
         NSLog(@"Error adding bookmarks: %@", error);

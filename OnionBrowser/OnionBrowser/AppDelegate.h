@@ -18,9 +18,12 @@
 #define CONTENTPOLICY_BLOCK_CONNECT 1 // Blocks `connect-src` (XHR, CORS, WebSocket)
 #define CONTENTPOLICY_PERMISSIVE 2 // Allows all content (DANGEROUS: websockets leak outside tor)
 
-#define UA_SPOOF_NO 0
+#define UA_SPOOF_UNSET 0
 #define UA_SPOOF_WIN7_TORBROWSER 1
 #define UA_SPOOF_SAFARI_MAC 2
+#define UA_SPOOF_IPHONE 3
+#define UA_SPOOF_IPAD 4
+#define UA_SPOOF_NO 5
 
 #define DNT_HEADER_UNSET 0
 #define DNT_HEADER_CANTRACK 1
@@ -64,6 +67,9 @@
 - (NSString *)homepage;
 
 - (void)updateFileEncryption;
+
+- (NSString *)javascriptInjection;
+- (NSString *)customUserAgent;
 
 //- (void) testEncrypt;
 

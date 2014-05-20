@@ -439,8 +439,12 @@
         [d setObject:[NSNumber numberWithInteger:COOKIES_BLOCK_THIRDPARTY] forKey:@"cookies"];
         update = YES;
     }
-    if ([d objectForKey:@"uaspoof"] == nil) {
-        [d setObject:[NSNumber numberWithInteger:UA_SPOOF_NO] forKey:@"uaspoof"];
+    if (([d objectForKey:@"uaspoof"] == nil) || ([[d objectForKey:@"uaspoof"] integerValue] == UA_SPOOF_UNSET)) {
+        if (IS_IPAD) {
+            [d setObject:[NSNumber numberWithInteger:UA_SPOOF_IPAD] forKey:@"uaspoof"];
+        } else {
+            [d setObject:[NSNumber numberWithInteger:UA_SPOOF_IPHONE] forKey:@"uaspoof"];
+        }
         update = YES;
     }
     if ([d objectForKey:@"dnt"] == nil) {
@@ -547,5 +551,73 @@
     NSLog(@"file contents: %@\nerror: %@", test, error);
 }
 */
+
+
+- (NSString *)javascriptInjection {
+    NSMutableString *str = [[NSMutableString alloc] init];
+
+    Byte uaspoof = [[self.getSettings valueForKey:@"uaspoof"] integerValue];
+    if (uaspoof == UA_SPOOF_SAFARI_MAC) {
+        [str appendString:@"var __originalNavigator = navigator;"];
+        [str appendString:@"navigator = new Object();"];
+        [str appendString:@"navigator.__proto__ = __originalNavigator;"];
+        [str appendString:@"navigator.__defineGetter__('appCodeName',function(){return 'Mozilla';});"];
+        [str appendString:@"navigator.__defineGetter__('appName',function(){return 'Netscape';});"];
+        [str appendString:@"navigator.__defineGetter__('appVersion',function(){return '5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.75.14 (KHTML, like Gecko) Version/7.0.3 Safari/537.75.14';});"];
+        [str appendString:@"navigator.__defineGetter__('platform',function(){return 'MacIntel';});"];
+        [str appendString:@"navigator.__defineGetter__('userAgent',function(){return 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.75.14 (KHTML, like Gecko) Version/7.0.3 Safari/537.75.14';});"];
+    } else if (uaspoof == UA_SPOOF_WIN7_TORBROWSER) {
+        [str appendString:@"var __originalNavigator = navigator;"];
+        [str appendString:@"navigator = new Object();"];
+        [str appendString:@"navigator.__proto__ = __originalNavigator;"];
+        [str appendString:@"navigator.__defineGetter__('appCodeName',function(){return 'Mozilla';});"];
+        [str appendString:@"navigator.__defineGetter__('appName',function(){return 'Netscape';});"];
+        [str appendString:@"navigator.__defineGetter__('appVersion',function(){return '5.0 (Windows)';});"];
+        [str appendString:@"navigator.__defineGetter__('platform',function(){return 'Win32';});"];
+        [str appendString:@"navigator.__defineGetter__('language',function(){return 'en-US';});"];
+        [str appendString:@"navigator.__defineGetter__('userAgent',function(){return 'Mozilla/5.0 (Windows NT 6.1; rv:24.0) Gecko/20100101 Firefox/24.0';});"];
+    } else if (uaspoof == UA_SPOOF_IPHONE) {
+        [str appendString:@"var __originalNavigator = navigator;"];
+        [str appendString:@"navigator = new Object();"];
+        [str appendString:@"navigator.__proto__ = __originalNavigator;"];
+        [str appendString:@"navigator.__defineGetter__('appCodeName',function(){return 'Mozilla';});"];
+        [str appendString:@"navigator.__defineGetter__('appName',function(){return 'Netscape';});"];
+        [str appendString:@"navigator.__defineGetter__('appVersion',function(){return '5.0 (iPhone; CPU iPhone OS 7_1_1 like Mac OS X) AppleWebKit/537.51.2 (KHTML, like Gecko) Version/7.0 Mobile/11D201 Safari/9537.53';});"];
+        [str appendString:@"navigator.__defineGetter__('platform',function(){return 'iPhone';});"];
+        [str appendString:@"navigator.__defineGetter__('userAgent',function(){return 'Mozilla/5.0 (iPhone; CPU iPhone OS 7_1_1 like Mac OS X) AppleWebKit/537.51.2 (KHTML, like Gecko) Version/7.0 Mobile/11D201 Safari/9537.53';});"];
+    } else if (uaspoof == UA_SPOOF_IPAD) {
+        [str appendString:@"var __originalNavigator = navigator;"];
+        [str appendString:@"navigator = new Object();"];
+        [str appendString:@"navigator.__proto__ = __originalNavigator;"];
+        [str appendString:@"navigator.__defineGetter__('appCodeName',function(){return 'Mozilla';});"];
+        [str appendString:@"navigator.__defineGetter__('appName',function(){return 'Netscape';});"];
+        [str appendString:@"navigator.__defineGetter__('appVersion',function(){return '5.0 (iPad; CPU OS 7_1_1 like Mac OS X) AppleWebKit/537.51.2 (KHTML, like Gecko) Version/7.0 Mobile/11D201 Safari/9537.53';});"];
+        [str appendString:@"navigator.__defineGetter__('platform',function(){return 'iPad';});"];
+        [str appendString:@"navigator.__defineGetter__('userAgent',function(){return 'Mozilla/5.0 (iPad; CPU OS 7_1_1 like Mac OS X) AppleWebKit/537.51.2 (KHTML, like Gecko) Version/7.0 Mobile/11D201 Safari/9537.53';});"];
+    }
+
+    Byte activeContent = [[self.getSettings valueForKey:@"javascript"] integerValue];
+    if (activeContent != CONTENTPOLICY_PERMISSIVE) {
+        [str appendString:@"function WebSocket(){};"];
+        [str appendString:@"function sessionStorage(){};"];
+        [str appendString:@"function localStorage(){};"];
+        [str appendString:@"function globalStorage(){};"];
+        [str appendString:@"function openDatabase(){};"];
+    }
+    return str;
+}
+- (NSString *)customUserAgent {
+    Byte uaspoof = [[self.getSettings valueForKey:@"uaspoof"] integerValue];
+    if (uaspoof == UA_SPOOF_SAFARI_MAC) {
+        return @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.75.14 (KHTML, like Gecko) Version/7.0.3 Safari/537.75.14";
+    } else if (uaspoof == UA_SPOOF_WIN7_TORBROWSER) {
+        return @"Mozilla/5.0 (Windows NT 6.1; rv:24.0) Gecko/20100101 Firefox/24.0";
+    } else if (uaspoof == UA_SPOOF_IPHONE) {
+        return @"Mozilla/5.0 (iPhone; CPU iPhone OS 7_1_1 like Mac OS X) AppleWebKit/537.51.2 (KHTML, like Gecko) Version/7.0 Mobile/11D201 Safari/9537.53";
+    } else if (uaspoof == UA_SPOOF_IPAD) {
+        return @"Mozilla/5.0 (iPad; CPU OS 7_1_1 like Mac OS X) AppleWebKit/537.51.2 (KHTML, like Gecko) Version/7.0 Mobile/11D201 Safari/9537.53";
+    }
+    return nil;
+}
 
 @end
