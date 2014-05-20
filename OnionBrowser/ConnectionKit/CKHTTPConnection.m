@@ -395,6 +395,10 @@
         }
     }
 
+    CFHTTPMessageSetHeaderFieldValue(result,
+                                     (__bridge CFStringRef)@"Accept-Encoding",
+                                     (__bridge CFStringRef)@"gzip");
+
     NSData *body = [self HTTPBody];
     if (body)
     {
