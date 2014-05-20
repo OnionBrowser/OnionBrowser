@@ -1,8 +1,7 @@
 Onion Browser Version History (since 1.2.2)
 
-===== 1.5.1 - In App Store =====
+===== 1.5.1 - Pending App Store Approval =====
 May 20 2014 - Submit Date
-May 22 2014 - App Store Availability
 
 * Onion Browser erroneously did not use 'gzip' compression to
   communicate with web servers. This has been corrected, which
@@ -31,11 +30,7 @@ May 22 2014 - App Store Availability
   selection for Tor.
 
 
-
-
-PREVIOUS VERSIONS:
-
-===== 1.5.0  =====
+===== 1.5.0 - In App Store =====
 May 11 2014 - Submit Date
 May 14 2014 - App Store Availability
 
@@ -140,6 +135,12 @@ OTHER UPDATES
 * User-agent strings have been updated. "Windows" spoof updated to
   Windows 7 Firefox 24.0, same as Tor Browser Bundle. "Mac Safari"
   updated to OS X 10.9.2 Safari 7.0.3, most up-to-date version.
+
+
+
+
+
+PREVIOUS VERSIONS:
 
 
 ===== 1.4.1 =====
