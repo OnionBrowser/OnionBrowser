@@ -5,8 +5,11 @@ install:
   - ./build-tor.sh --noverify --i386only
   - ./OnionBrowser/icon/install.sh
 
-xcode_project: OnionBrowser/OnionBrowser.xcodeproj
-xcode_scheme: OnionBrowser
-xcode_sdk: iphonesimulator
+before_script:
+  - brew update
+  - brew upgrade xctool
+script:
+  - xctool -project OnionBrowser/OnionBrowser.xcodeproj -scheme OnionBrowser -sdk iphonesimulator7.1 -arch i386 build test -resetSimulator -freshSimulator -freshInstall
+
 notifications:
   email: false
