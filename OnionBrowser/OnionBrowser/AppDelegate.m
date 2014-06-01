@@ -523,16 +523,34 @@
                                           includingPropertiesForKeys:@[NSURLNameKey, NSURLIsDirectoryKey]
                                                              options:0
                                                         errorHandler:nil];
+
+    // NOTE: doNotEncryptAttribute is only up in here because for some versions of Onion
+    //       Browser we were encrypting even OnionBrowser.app, which possibly caused
+    //       the app to become invisible. so we'll manually set anything inside executable
+    //       app to be unencrypted (because it will never store user data, it's just
+    //       *our* bundle.)
     NSDictionary *encryptAttribute = [NSDictionary dictionaryWithObjectsAndKeys:
                                NSFileProtectionComplete, NSFileProtectionKey, nil];
+    NSDictionary *doNotEncryptAttribute = [NSDictionary dictionaryWithObjectsAndKeys:
+                                      NSFileProtectionNone, NSFileProtectionKey, nil];
 
     for (NSURL *fileURL in enumerator) {
         NSNumber *isDirectory;
         [fileURL getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:nil];
 
         if (![isDirectory boolValue]) {
-            //NSLog(@"%@", [fileURL path]);
-            [fileManager setAttributes:encryptAttribute ofItemAtPath:[fileURL path] error:nil];
+            // Directories can't be set to "encrypt"
+            if ([[fileURL path] hasPrefix:[[[NSBundle mainBundle] bundleURL] path]]) {
+                // Don't encrypt the OnionBrowser.app directory, because otherwise
+                // the system will sometimes lose visibility of the app. (We're re-setting
+                // the "NSFileProtectionNone" attribute because prev versions of Onion Browser
+                // may have screwed this up.)
+                [fileManager setAttributes:doNotEncryptAttribute ofItemAtPath:[fileURL path] error:nil];
+            } else {
+                // Encrypt. This is a file (not a directory) that was generated on the user's device
+                // (not part of our .app bundle).
+                [fileManager setAttributes:encryptAttribute ofItemAtPath:[fileURL path] error:nil];
+            }
         }
     }
 }
