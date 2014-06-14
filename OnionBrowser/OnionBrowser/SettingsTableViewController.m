@@ -70,9 +70,9 @@
     if (section == 0)
         return @"Home Page";
     else if (section == 1)
-        return @"Active Content Blocking\n(Javascript, Multimedia, External Fonts, Ajax/XHR, WebSockets)\n'Block Ajax…' Mode Recommended.";
+        return @"Active Content Blocking\n(Scripts, Media, Ajax, WebSockets, etc)\n★ 'Block Ajax…' Mode Recommended.";
     else if (section == 2)
-        return @"Cookies\n'Block All' is recommended, but prevents website logins.";
+        return @"Cookies\n★ 'Block All' recommended, but prevents website logins.";
     else if (section == 3) {
         NSString *devicename;
         if (IS_IPAD) {
@@ -80,7 +80,7 @@
         } else {
             devicename = @"iPhone";
         }
-        return [NSString stringWithFormat:@"User-Agent Spoofing\n'Standard' does not hide your device info (%@, iOS %@).\n'Normalized' is recommended & masks your actual device/version.\n'Desktop' options try to mask that you use a iOS device.", devicename, [[UIDevice currentDevice] systemVersion]];
+        return [NSString stringWithFormat:@"User-Agent Spoofing\n★ 'Standard' does not hide your device info (%@, iOS %@).\n★ 'Normalized' is recommended & masks your actual device/version.\n★ Win/Mac options try to mask that you use a iOS device.", devicename, [[UIDevice currentDevice] systemVersion]];
     } else if (section == 4)
         return @"Do Not Track (DNT) Header\nThis does not prevent sites from tracking you: this only tells sites that you prefer not being tracked for customzied advertising.";
     else if (section == 5)
