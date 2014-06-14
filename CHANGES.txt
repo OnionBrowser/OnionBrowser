@@ -1,5 +1,20 @@
 Onion Browser Version History (since 1.2.2)
 
+===== 1.5.2 - Pending App Store Approval =====
+June 14 2014 - Submit Date
+
+* Active Content Blocking now attempts to disable WebWorkers.
+  JavaScript using "Worker()" to call other scripts could previously
+  access WebSockets and other "blocked" functionality, which could
+  bypass Tor.
+
+* File encryption tweaked to attempt to fix issue where Onion Browser
+  app would disappear from home screne. In some cases, if the app
+  crashed, the app executable could be encrypted such that the OS
+  could no longer access the app.
+
+* OpenSSL updated to 1.0.1h, fixing the "Early CCS" vulnerability.
+
 ===== 1.5.1 - In App Store =====
 May 20 2014 - Submit Date
 May 22 2014 - App Store Availability
