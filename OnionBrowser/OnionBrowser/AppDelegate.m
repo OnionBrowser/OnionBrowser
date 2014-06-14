@@ -616,6 +616,7 @@
 
     Byte activeContent = [[self.getSettings valueForKey:@"javascript"] integerValue];
     if (activeContent != CONTENTPOLICY_PERMISSIVE) {
+        [str appendString:@"function Worker(){};"];
         [str appendString:@"function WebSocket(){};"];
         [str appendString:@"function sessionStorage(){};"];
         [str appendString:@"function localStorage(){};"];
