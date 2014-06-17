@@ -1,7 +1,7 @@
 Onion Browser Version History (since 1.2.2)
 
 ===== 1.5.2 - Pending App Store Approval =====
-June 14 2014 - Submit Date
+June 16 2014 - Submit Date
 
 * Active Content Blocking now attempts to disable WebWorkers.
   JavaScript using "Worker()" to call other scripts could previously
