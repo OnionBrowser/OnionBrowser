@@ -229,18 +229,20 @@
                     HTTPVersion:@"1.1" headerFields:mHeaders];
     } else if (([[settings valueForKey:@"javascript"] integerValue] == CONTENTPOLICY_BLOCK_CONNECT)
                && ([response isKindOfClass: [NSHTTPURLResponse class]] == YES)){
-        // In the "block XHR/WebSocket" case, we'll prepend "connect-src 'none';" to an existing CSP header
-        // OR we'll add that header if there isn't already an existing one.
+        // In the "block XHR/Media/WebSocket" case, we'll prepend
+        // "connect-src 'none';media-src 'none';object-src 'none';"
+        // to an existing CSP header OR we'll add that header if there isn't already an existing one.
+        // (Basically as the STRICT case, but allowing script/fonts.)
         NSMutableDictionary *mHeaders = [NSMutableDictionary dictionary];
         Boolean editedCSP = NO;
         Boolean editedWebkitCSP = NO;
         for(id h in response.allHeaderFields) {
             if([[h lowercaseString] isEqualToString:@"content-security-policy"]) {
-                NSString *newHeader = [NSString stringWithFormat:@"connect-src 'none';%@", response.allHeaderFields[h]];
+                NSString *newHeader = [NSString stringWithFormat:@"connect-src 'none';media-src 'none';object-src 'none';%@", response.allHeaderFields[h]];
                 [mHeaders setObject:newHeader forKey:h];
                 editedCSP = YES;
             } else if ([[h lowercaseString] isEqualToString:@"x-webkit-csp"]) {
-                NSString *newHeader = [NSString stringWithFormat:@"connect-src 'none';%@", response.allHeaderFields[h]];
+                NSString *newHeader = [NSString stringWithFormat:@"connect-src 'none';media-src 'none';object-src 'none';%@", response.allHeaderFields[h]];
                 [mHeaders setObject:newHeader forKey:h];
                 editedWebkitCSP = YES;
             } else if ([[h lowercaseString] isEqualToString:@"cache-control"]) {
@@ -251,11 +253,11 @@
             }
         }
         if (!editedCSP) {
-            [mHeaders setObject:@"connect-src 'none';"
+            [mHeaders setObject:@"connect-src 'none';media-src 'none';object-src 'none';"
                          forKey:@"Content-Security-Policy"];
         }
         if (!editedWebkitCSP) {
-            [mHeaders setObject:@"connect-src 'none'"
+            [mHeaders setObject:@"connect-src 'none';media-src 'none';object-src 'none';"
                          forKey:@"X-Webkit-CSP"];
         }
         [mHeaders setObject:@"max-age=0, no-cache, no-store, must-revalidate"

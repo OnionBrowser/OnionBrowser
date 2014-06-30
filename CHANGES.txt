@@ -1,5 +1,14 @@
 Onion Browser Version History (since 1.2.2)
 
+===== 1.5.3 - Pending App Store Approval =====
+June 30 2014 - Submit Date
+
+* A bug in the default "Block XHR/Media/WebSocket" active content
+  blocking mode caused iOS to allow video tags while blocking scripts.
+  An example of this was shown in the http://xordern.net/ipcheck
+  vulnerability disclosure.
+
+
 ===== 1.5.2 - In App Store =====
 June 16 2014 - Submit Date
 June 19 2014 - App Store Availability
