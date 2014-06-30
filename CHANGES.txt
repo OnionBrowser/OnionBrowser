@@ -8,6 +8,10 @@ June 30 2014 - Submit Date
   An example of this was shown in the http://xordern.net/ipcheck
   vulnerability disclosure.
 
+* In some cases, the address bar could display a forged URL when
+  a page causes certain types of errors. Reported by Łukasz Pilorz.
+  Test case: https://ios.browsr-tests.com/alt/native.abs.php
+
 
 ===== 1.5.2 - In App Store =====
 June 16 2014 - Submit Date

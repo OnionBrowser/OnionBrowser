@@ -505,6 +505,9 @@ const char AlertViewIncomingUrl;
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     [self updateButtons];
+    [self updateTitle:webView];
+    NSURLRequest* request = [webView request];
+    [self updateAddress:request];
     [self informError:error];
     #ifdef DEBUG
         NSString* errorString = [NSString stringWithFormat:@"error %@",
