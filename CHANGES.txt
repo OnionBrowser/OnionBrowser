@@ -1,5 +1,14 @@
 Onion Browser Version History (since 1.2.2)
 
+===== 1.5.4 - Under Development =====
+
+* Entering a unicode IDN (internationalized domain name) such as
+  http://·.ws/ properly gets converted to the punycode
+  representation and the browser properly navigates to the correct
+  place (i.e. http://xn--uba.ws/ ). Previously the browser would
+  do nothing with this input. Issue reported by Barend Rijn.
+
+
 ===== 1.5.3 - In App Store =====
 June 30 2014 - Submit Date
 July 02 2014 - App Store Availability
