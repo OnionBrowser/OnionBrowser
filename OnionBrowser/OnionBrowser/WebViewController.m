@@ -13,6 +13,7 @@
 #import "Bookmark.h"
 #import "BridgeTableViewController.h"
 #import "NJKWebViewProgressView.h"
+#import "NSStringPunycodeAdditions.h"
 #import <objc/runtime.h>
 
 #define ALERTVIEW_SSL_WARNING 1
@@ -887,6 +888,8 @@ const char AlertViewIncomingUrl;
 }
 
 - (void)loadAddress:(id)sender event:(UIEvent *)event {
+    _addressField.text = [_addressField.text encodedURLString];
+
     NSString* urlString = _addressField.text;
     NSURL* url = [NSURL URLWithString:urlString];
     if(!url.scheme)

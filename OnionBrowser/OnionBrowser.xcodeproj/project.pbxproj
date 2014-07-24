@@ -88,6 +88,7 @@
 		6995CC02153660D3000EFBE8 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6995CBFC153660D3000EFBE8 /* Default@2x.png */; };
 		699CCEBD14FA1939004A2F56 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 699CCEBC14FA1939004A2F56 /* libxml2.dylib */; };
 		69C6F6A514FACC3000894495 /* ProxyURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C6F6A414FACC3000894495 /* ProxyURLProtocol.m */; };
+		69E8A49D1981B59E00D84980 /* NSStringPunycodeAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E8A49C1981B59E00D84980 /* NSStringPunycodeAdditions.m */; };
 		69F3C5FD14FC8739008274C3 /* CKHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F3C5F814FC8739008274C3 /* CKHTTPConnection.m */; };
 		69F88FCC1500A9D900C7BE98 /* geoip in Resources */ = {isa = PBXBuildFile; fileRef = 69F88FCB1500A9D900C7BE98 /* geoip */; };
 /* End PBXBuildFile section */
@@ -207,6 +208,8 @@
 		699CCEBC14FA1939004A2F56 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		69C6F6A314FACC3000894495 /* ProxyURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProxyURLProtocol.h; path = ../ProxyURLProtocol.h; sourceTree = "<group>"; };
 		69C6F6A414FACC3000894495 /* ProxyURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProxyURLProtocol.m; path = ../ProxyURLProtocol.m; sourceTree = "<group>"; };
+		69E8A49B1981B59E00D84980 /* NSStringPunycodeAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringPunycodeAdditions.h; sourceTree = "<group>"; };
+		69E8A49C1981B59E00D84980 /* NSStringPunycodeAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringPunycodeAdditions.m; sourceTree = "<group>"; };
 		69F3C5F714FC8739008274C3 /* CKHTTPConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CKHTTPConnection.h; path = ../ConnectionKit/CKHTTPConnection.h; sourceTree = "<group>"; };
 		69F3C5F814FC8739008274C3 /* CKHTTPConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CKHTTPConnection.m; path = ../ConnectionKit/CKHTTPConnection.m; sourceTree = "<group>"; };
 		69F88FCB1500A9D900C7BE98 /* geoip */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = geoip; path = ../dependencies/share/geoip; sourceTree = "<group>"; };
@@ -370,6 +373,8 @@
 				692B86AE153CD4CB000806A9 /* NSData+Conversion.m */,
 				6954F8EB15FE985E00AE8658 /* NSData+CocoaDevUsersAdditions.h */,
 				6954F8EC15FE985E00AE8658 /* NSData+CocoaDevUsersAdditions.m */,
+				69E8A49B1981B59E00D84980 /* NSStringPunycodeAdditions.h */,
+				69E8A49C1981B59E00D84980 /* NSStringPunycodeAdditions.m */,
 				69374256189CC514002C65A0 /* NJKWebViewProgress.h */,
 				69374257189CC514002C65A0 /* NJKWebViewProgress.m */,
 				69374258189CC514002C65A0 /* NJKWebViewProgressView.h */,
@@ -625,6 +630,7 @@
 				69C6F6A514FACC3000894495 /* ProxyURLProtocol.m in Sources */,
 				69F3C5FD14FC8739008274C3 /* CKHTTPConnection.m in Sources */,
 				692B86AF153CD4CB000806A9 /* NSData+Conversion.m in Sources */,
+				69E8A49D1981B59E00D84980 /* NSStringPunycodeAdditions.m in Sources */,
 				6924C28C155262E2004BE7F9 /* SettingsViewController.m in Sources */,
 				6924C29015526343004BE7F9 /* SettingsTableViewController.m in Sources */,
 				6940BD1F15F84C0C00FE74CB /* TorController.m in Sources */,
@@ -727,7 +733,7 @@
 					"\"$(SRCROOT)/../dependencies/lib\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9C636355-8615-4700-9D1F-878E88309599";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = TestBuilds;
@@ -828,7 +834,7 @@
 					"\"$(SRCROOT)/../dependencies/lib\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9C636355-8615-4700-9D1F-878E88309599";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -846,7 +852,7 @@
 					"\"$(SRCROOT)/../dependencies/lib\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9C636355-8615-4700-9D1F-878E88309599";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
