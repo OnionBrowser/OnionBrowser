@@ -531,7 +531,7 @@
 				LastUpgradeCheck = 0510;
 				TargetAttributes = {
 					696EBD7214F7877900B81BC9 = {
-						DevelopmentTeam = 68QUP6KP2C;
+						DevelopmentTeam = C976B4WGKJ;
 						SystemCapabilities = {
 							com.apple.DataProtection = {
 								enabled = 1;

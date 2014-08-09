@@ -35,7 +35,7 @@
 		<string>Icon-Small@2x.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
-	<string>com.miketigas.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>info.smithdesign.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -227,7 +227,7 @@
 	<key>UIStatusBarHidden</key>
 	<false/>
 	<key>UIStatusBarStyle</key>
-	<string>UIStatusBarStyleDefault</string>
+	<string>UIStatusBarStyleBlackTranslucent</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
