@@ -1,6 +1,29 @@
 Onion Browser Version History (since 1.2.2)
 
+FUTURE:
+
+===== 2.0 - Under Development =====
+Est. Release: October 2014
+Features subject to change.
+
+* New "flat" icon for the iOS 7+ era.
+
+* Tabbed browsing.
+
+* Data encryption with an app-level password. Supplements current
+  encryption done by the iOS operating system, improving protection
+  against forensic tools.
+
 ===== 1.5.4 - Under Development =====
+Est. Release: August 2014
+
+* Tor updated to 0.2.4.23, containing several security fixes, incl
+  some mitigation of the RELAY_EARLY traffic confirmation attack.
+  https://gitweb.torproject.org/tor.git?a=blob_plain;hb=release-0.2.4;f=ReleaseNotes
+
+* OpenSSL updated to 1.0.1i, with some security fixes (mostly
+  affecting ways to crash apps which use OpenSSL).
+  http://www.openssl.org/news/secadv_20140806.txt
 
 * Entering a unicode IDN (internationalized domain name) such as
   http://·.ws/ properly gets converted to the punycode
@@ -8,6 +31,8 @@ Onion Browser Version History (since 1.2.2)
   place (i.e. http://xn--uba.ws/ ). Previously the browser would
   do nothing with this input. Issue reported by Barend Rijn.
 
+
+CURRENT VERSION:
 
 ===== 1.5.3 - In App Store =====
 June 30 2014 - Submit Date

@@ -22,7 +22,7 @@
 ###########################################################################
 #  Choose your openssl version and your currently-installed iOS SDK version:
 #
-VERSION="1.0.1h"
+VERSION="1.0.1i"
 #VERSION="1.0.2-beta1"
 USERSDKVERSION="7.1"
 MINIOSVERSION="6.0"
