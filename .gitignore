@@ -18,3 +18,7 @@ dependencies-*/*
 .LSOverride
 .DS_Store
 *.swp
+
+.ruby-version
+Gemfile
+Gemfile.lock
