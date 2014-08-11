@@ -14,8 +14,8 @@ Features subject to change.
   encryption done by the iOS operating system, improving protection
   against forensic tools.
 
-===== 1.5.4 - Under Development =====
-Est. Release: August 2014
+===== 1.5.4 - Pending App Store Approval =====
+Aug 11 2014 - Submit Date
 
 * Tor updated to 0.2.4.23, containing several security fixes, incl
   some mitigation of the RELAY_EARLY traffic confirmation attack.
