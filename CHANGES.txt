@@ -14,8 +14,22 @@ Features subject to change.
   encryption done by the iOS operating system, improving protection
   against forensic tools.
 
-===== 1.5.4 - Pending App Store Approval =====
+===== 1.5.5 - Pending App Store Approval =====
+Sep 13 2014 - Submit Date
+
+* Rebuilt with iOS 8 SDK to hopefully mitigate any issues on newly
+  released iPhones.
+
+* Minimum required iOS version is now iOS 6.1 (was iOS 6.0). This should
+  enforce the fix for CVE-2014-1266 on the oldest supported devices. iOS
+  6.X support will be dropped later this year.
+
+
+CURRENT VERSION:
+
+===== 1.5.4 - In App Store =====
 Aug 11 2014 - Submit Date
+Aug 13 2014 - App Store Availability
 
 * Tor updated to 0.2.4.23, containing several security fixes, incl
   some mitigation of the RELAY_EARLY traffic confirmation attack.
@@ -32,9 +46,9 @@ Aug 11 2014 - Submit Date
   do nothing with this input. Issue reported by Barend Rijn.
 
 
-CURRENT VERSION:
+PREVIOUS VERSIONS:
 
-===== 1.5.3 - In App Store =====
+===== 1.5.3 =====
 June 30 2014 - Submit Date
 July 02 2014 - App Store Availability
 
@@ -47,8 +61,6 @@ July 02 2014 - App Store Availability
   a page causes certain types of errors. Reported by Łukasz Pilorz.
   Test case: https://ios.browsr-tests.com/alt/native.abs.php
 
-
-PREVIOUS VERSIONS:
 
 ===== 1.5.2 =====
 June 16 2014 - Submit Date
