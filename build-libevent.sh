@@ -23,7 +23,7 @@
 # Choose your libevent version and your currently-installed iOS SDK version:
 #
 VERSION="2.0.21-stable"
-USERSDKVERSION="7.1"
+USERSDKVERSION="8.0"
 MINIOSVERSION="6.0"
 VERIFYGPG=true
 
@@ -131,7 +131,7 @@ do
 		EXTRA_CONFIG=""
 	else
 		PLATFORM="iPhoneOS"
-		EXTRA_CONFIG="--host=arm-apple-darwin11"
+		EXTRA_CONFIG="--host=arm-apple-darwin14"
 	fi
 
 	mkdir -p "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk"

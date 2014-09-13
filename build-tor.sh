@@ -23,8 +23,8 @@
 # Choose your tor version and your currently-installed iOS SDK version:
 #
 VERSION="0.2.4.23"
-#VERSION="0.2.5.2-alpha"
-USERSDKVERSION="7.1"
+#VERSION="0.2.5.7-rc"
+USERSDKVERSION="8.0"
 MINIOSVERSION="6.0"
 VERIFYGPG=true
 
@@ -167,10 +167,10 @@ for ARCH in ${ARCHS}
 do
 	if [ "${ARCH}" == "i386" ] || [ "${ARCH}" == "x86_64" ]; then
 		PLATFORM="iPhoneSimulator"
-		 EXTRA_CONFIG=""
+		EXTRA_CONFIG=""
 	else
 		PLATFORM="iPhoneOS"
-		EXTRA_CONFIG="--host=arm-apple-darwin13 --target=arm-apple-darwin13 --disable-gcc-hardening --disable-linker-hardening"
+		EXTRA_CONFIG="--disable-tool-name-check --host=arm-apple-darwin14 --target=arm-apple-darwin14 --disable-gcc-hardening --disable-linker-hardening"
 	fi
 
 	mkdir -p "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk"
@@ -218,12 +218,8 @@ do
 	mkdir -p "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/tools/"
 	cp micro-revision.i "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/"
 	cp orconfig.h "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/"
-	cp src/ext/ht.h "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/"
-	set +e # dont bail on error
-	# for Tor 0.2.5.X
-	cp src/ext/tor_queue.h "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/"
-	set -e # back to regular "bail out on error" mode
 	find src/common -name "*.h" -exec cp {} "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/common/" \;
+	find src/ext -name "*.h" -exec cp {} "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/" \;
 	find src/or -name "*.h" -exec cp {} "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/or/" \;
 	find src/or -name "*.i" -exec cp {} "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/or/" \;
 	find src/tools -name "*.h" -exec cp {} "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/tools/" \;

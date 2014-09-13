@@ -24,7 +24,7 @@
 #
 VERSION="1.0.1i"
 #VERSION="1.0.2-beta1"
-USERSDKVERSION="7.1"
+USERSDKVERSION="8.0"
 MINIOSVERSION="6.0"
 VERIFYGPG=true
 
@@ -152,7 +152,8 @@ do
 	# we have set up. Make sure to clean up afterward because we will re-use
 	# this source tree to cross-compile other targets.
 	make
-	make install
+	# docs break on Yosemite; we don't need docs but "make install" installs docs
+	make all install_sw
 	make clean
 done
 
