@@ -24,7 +24,7 @@
 #
 VERSION="2.0.21-stable"
 USERSDKVERSION="8.0"
-MINIOSVERSION="6.0"
+MINIOSVERSION="6.1"
 VERIFYGPG=true
 
 ###########################################################################

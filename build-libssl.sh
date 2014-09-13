@@ -25,7 +25,7 @@
 VERSION="1.0.1i"
 #VERSION="1.0.2-beta1"
 USERSDKVERSION="8.0"
-MINIOSVERSION="6.0"
+MINIOSVERSION="6.1"
 VERIFYGPG=true
 
 ###########################################################################
