@@ -24,7 +24,7 @@
 #
 VERSION="0.2.4.23"
 #VERSION="0.2.5.7-rc"
-USERSDKVERSION="8.0"
+SDKVERSION=`xcrun --sdk iphoneos --show-sdk-version 2> /dev/null`
 MINIOSVERSION="6.1"
 VERIFYGPG=true
 

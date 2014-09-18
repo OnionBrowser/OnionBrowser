@@ -23,7 +23,7 @@
 # Choose your libevent version and your currently-installed iOS SDK version:
 #
 VERSION="2.0.21-stable"
-USERSDKVERSION="8.0"
+SDKVERSION=`xcrun --sdk iphoneos --show-sdk-version 2> /dev/null`
 MINIOSVERSION="6.1"
 VERIFYGPG=true
 
