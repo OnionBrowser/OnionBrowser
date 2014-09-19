@@ -757,8 +757,8 @@ const char AlertViewIncomingUrl;
             ////////////////////////////////////////////////////////
             // Settings Menu
             ////////////////////////////////////////////////////////
-            SettingsViewController *settingsController = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:nil];
-            [self presentViewController:settingsController animated:YES completion:nil];
+            // (delay slightly since the popup for the menu interferes with the new view coming in)
+            [self performSelector:@selector(openSettingsView) withObject: nil afterDelay: 0];
         }
         
         if ((buttonIndex == 0) || (buttonIndex == 3)) {
@@ -779,6 +779,10 @@ const char AlertViewIncomingUrl;
             [self loadURL:[NSURL URLWithString:@"onionbrowser:help"]];
         }
     }
+}
+-(void)openSettingsView {
+    SettingsViewController *settingsController = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:nil];
+    [self presentViewController:settingsController animated:YES completion:nil];
 }
 
 # pragma mark -

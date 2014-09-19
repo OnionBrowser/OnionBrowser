@@ -37,6 +37,7 @@ extern const char AlertViewIncomingUrl;
 - (void)renderTorStatus: (NSString *)statusLine;
 
 - (void)openOptionsMenu;
+- (void)openSettingsView;
 - (void)goForward;
 - (void)goBack;
 - (void)reload;
