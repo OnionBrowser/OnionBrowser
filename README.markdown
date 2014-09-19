@@ -11,8 +11,8 @@ and App Store links.
 
 ---
 
-* **OnionBrowser**: 1.5.5 (20140913.1) — [See changelog][changelog]
-* **[Tor][tor]**: 0.2.4.23 (Jul 28 2014)
+* **OnionBrowser**: 1.5.6 (20140918.1) — [See changelog][changelog]
+* **[Tor][tor]**: 0.2.5.7-rc (Sep 11 2014)
 * **[libevent][libevent]**: 2.0.21-stable (Nov 18 2012)
 * **[OpenSSL][openssl]**: 1.0.1i (Aug 06 2014)
 
@@ -38,7 +38,6 @@ and App Store links.
 
 #### Integration notes
 
-As of version 1.3.14 (January 30 2014),
 Onion Browser responds to two URL schemes: `onionbrowser://` and
 `onionbrowsers://`, representing HTTP and HTTPS URLs, respectively. These
 work like the URI schemes [in iOS Google Chrome][crios] and other popular
@@ -94,7 +93,7 @@ See the patch files in `build-patches/` if you are interested in the changes.
 [tor_changelog]: https://gitweb.torproject.org/tor.git/blob/tor-0.2.4.18-rc:/ChangeLog
 [tor_manual]: https://www.torproject.org/docs/tor-manual-dev.html.en
 
-0.2.3.17-beta introduced compiler and linker "hardening" ([Tor ticket 5210][ticket5210]),
+Tor 0.2.3.17-beta introduced compiler and linker "hardening" ([Tor ticket 5210][ticket5210]),
 which is incompatible with the iOS Device build chain.  The app (when building
 for iOS devices) is configured with `--disable-gcc-hardening --disable-linker-hardening`
 to get around this issue. (Due to the isolation of executable code on iOS devices,
@@ -158,8 +157,8 @@ signed by one of the users responsible for packaging the library. You'll
 need to have GnuPG installed and import their public keys to allow this to
 work.
 
-* OpenSSL: [core developers](https://www.openssl.org/about/). 1.0.1f is known
-  to be signed by Dr Stephen Henson
+* OpenSSL: [core developers](https://www.openssl.org/about/). 1.0.1i is known
+  to be signed by Matt Caswell 0x0E604491
   [0xF295C759](http://pgp.mit.edu:11371/pks/lookup?op=vindex&search=0xF295C759).
 * libevent: [Nick Mathewson](http://www.wangafu.net/~nickm/)
   ([0x165733EA](http://www.wangafu.net/~nickm/public_key.asc)) or

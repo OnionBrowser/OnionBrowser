@@ -14,8 +14,25 @@ Features subject to change.
   encryption done by the iOS operating system, improving protection
   against forensic tools.
 
-===== 1.5.5 - Pending App Store Approval =====
+===== 1.5.6 - Pending App Store Approval =====
+Sep 18 2014 - Submit Date
+
+* Fix major issue where "Browser Settings" button did not open settings
+  page on iPad.
+
+* Tor updated to 0.2.5.7-rc, the first release candidate in the
+  0.2.5.X series. This update should somewhat improve connection
+  stability, as well as improve overall security.
+  https://blog.torproject.org/blog/tor-0257-rc-out
+  https://gitweb.torproject.org/tor.git?a=blob_plain;hb=release-0.2.5;f=ReleaseNotes
+
+
+
+CURRENT VERSION:
+
+===== 1.5.6 - In App Store =====
 Sep 13 2014 - Submit Date
+Sep 18 2014 - App Store Availability
 
 * Rebuilt with iOS 8 SDK to hopefully mitigate any issues on newly
   released iPhones.
@@ -25,9 +42,9 @@ Sep 13 2014 - Submit Date
   6.X support will be dropped later this year.
 
 
-CURRENT VERSION:
+PREVIOUS VERSIONS:
 
-===== 1.5.4 - In App Store =====
+===== 1.5.4 =====
 Aug 11 2014 - Submit Date
 Aug 13 2014 - App Store Availability
 
@@ -45,8 +62,6 @@ Aug 13 2014 - App Store Availability
   place (i.e. http://xn--uba.ws/ ). Previously the browser would
   do nothing with this input. Issue reported by Barend Rijn.
 
-
-PREVIOUS VERSIONS:
 
 ===== 1.5.3 =====
 June 30 2014 - Submit Date
