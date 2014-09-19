@@ -245,7 +245,7 @@ const char AlertViewIncomingUrl;
     _progressProxy = [[NJKWebViewProgress alloc] init];
 
     _myWebView = [[UIWebView alloc] initWithFrame:webViewFrame];
-    _myWebView.backgroundColor = [UIColor whiteColor];
+    //_myWebView.backgroundColor = [UIColor whiteColor];
     _myWebView.scalesPageToFit = YES;
     _myWebView.contentScaleFactor = 3;
     _myWebView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
@@ -725,7 +725,7 @@ const char AlertViewIncomingUrl;
             [appDelegate wipeAppData];
             
             UIWebView *newWebView = [[UIWebView alloc] initWithFrame:[_myWebView frame]];
-            newWebView.backgroundColor = [UIColor whiteColor];
+            //newWebView.backgroundColor = [UIColor whiteColor];
             newWebView.scalesPageToFit = YES;
             newWebView.contentScaleFactor = 3;
             newWebView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
