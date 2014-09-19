@@ -22,8 +22,8 @@
 ###########################################################################
 # Choose your tor version and your currently-installed iOS SDK version:
 #
-VERSION="0.2.4.23"
-#VERSION="0.2.5.7-rc"
+#VERSION="0.2.4.23"
+VERSION="0.2.5.7-rc"
 USERSDKVERSION="8.0"
 MINIOSVERSION="6.1"
 VERIFYGPG=true
