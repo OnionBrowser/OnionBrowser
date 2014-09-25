@@ -23,7 +23,7 @@
 # Choose your tor version and your currently-installed iOS SDK version:
 #
 #VERSION="0.2.4.23"
-VERSION="0.2.5.7-rc"
+VERSION="0.2.5.8-rc"
 USERSDKVERSION="8.0"
 MINIOSVERSION="6.1"
 VERIFYGPG=true
@@ -117,11 +117,17 @@ cd "${SRCDIR}/tor-${VERSION}"
 ####
 # Patch to remove the "DisableDebuggerAttachment" ptrace() calls
 # that are not allowed in App Store apps
+#   cp build/src/tor-0.2.5.8-rc/src/common/compat.c{,.orig}
+#   make the edit (see diff)
+#   diff -U5 build/src/tor-0.2.5.8-rc/src/common/compat.c{.orig,} > build-patches/tor-ptrace.diff
 patch -p3 < ../../../build-patches/tor-ptrace.diff
 
 # Patch to remove "_NSGetEnviron()" call not allowed in App Store
 # apps (even fails to compile under iPhoneSDK due to that function
 # being undefined)
+#   cp build/src/tor-0.2.5.8-rc/src/common/compat.c{.orig,} # after above patch
+#   make the edit (see diff)
+#   diff -U5 build/src/tor-0.2.5.8-rc/src/common/compat.c{.orig,} > build-patches/tor-nsenviron.diff
 patch -p3 < ../../../build-patches/tor-nsenviron.diff
 
 #####
