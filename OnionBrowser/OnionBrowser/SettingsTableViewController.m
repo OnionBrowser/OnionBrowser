@@ -388,7 +388,7 @@
         NSMutableDictionary *settings = appDelegate.getSettings;
         
         if ([[[alertView textFieldAtIndex:0] text] length] == 0) {
-            [settings setValue:@"onionbrowser:home" forKey:@"homepage"]; // DEFAULT HOMEPAGE
+            [settings setValue:@"https://check.torproject.org/" forKey:@"homepage"]; // DEFAULT HOMEPAGE
         } else {
             NSString *h = [[alertView textFieldAtIndex:0] text];
             if ( (![h hasPrefix:@"http:"]) && (![h hasPrefix:@"https:"]) && (![h hasPrefix:@"onionbrowser:"]) )

@@ -379,6 +379,7 @@ const char AlertViewIncomingUrl;
     
     // Since this is first load: set up the overlay "loading..." bit that
     // will display tor initialization status.
+    /*
     CGRect screenFrame = [[UIScreen mainScreen] applicationFrame];
     UILabel *loadingStatus = [[UILabel alloc] initWithFrame:CGRectMake(0,
                                                                        kNavBarHeight,
@@ -393,8 +394,17 @@ const char AlertViewIncomingUrl;
     loadingStatus.textAlignment =  NSTextAlignmentCenter;
     loadingStatus.text = @"Connecting...\n\n\n\n\n";
     [self.view addSubview:loadingStatus];
+    */
     if (appDelegate.doPrepopulateBookmarks){
         [self prePopulateBookmarks];
+    }
+
+    if (appDelegate.startUrl != nil) {
+        [self askToLoadURL:appDelegate.startUrl];
+    } else {
+        // Didn't launch with a "onionbrowser://" or "onionbrowsers://" URL
+        // so just launch regular start page.
+        [self loadURL:[NSURL URLWithString:appDelegate.homepage]];
     }
 }
 
@@ -692,8 +702,9 @@ const char AlertViewIncomingUrl;
 # pragma mark Options Menu action sheet
 
 - (void)openOptionsMenu {
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    if (![appDelegate.tor didFirstConnect]) {
+    //AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    //if (![appDelegate.tor didFirstConnect]) {
+    if (false) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Opening Bridge Configuration"
                                                         message:@"This configuration is for advanced Tor users. It *may* help if you are having trouble getting past the initial \"Connecting...\" step.\n\nPlease visit the following link in another browser for instructions:\n\nhttp://onionbrowser.com/help/"
                                                        delegate:nil

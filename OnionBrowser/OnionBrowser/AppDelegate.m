@@ -96,9 +96,11 @@
     [_window setRootViewController:appWebView];
     [_window makeKeyAndVisible];
     
+    /*
     [self updateTorrc];
     _tor = [[TorController alloc] init];
     [_tor startTor];
+    */
 
     sslWhitelistedDomains = [[NSMutableArray alloc] init];
     
@@ -205,7 +207,8 @@
     _window.hidden = YES;
     appWebView.view.hidden = YES;
 
-    if (!_tor.didFirstConnect) {
+    //if (!_tor.didFirstConnect) {
+    if (false) {
         // User is trying to quit app before we have finished initial
         // connection. This is basically an "abort" situation because
         // backgrounding while Tor is attempting to connect will almost
@@ -273,7 +276,8 @@
         return YES;
     }
 
-    if ([_tor didFirstConnect]) {
+    //if ([_tor didFirstConnect]) {
+    if (false) {
         if (srcIsOnionBrowser) {
             [appWebView loadURL:newUrl];
         } else {
@@ -432,7 +436,7 @@
     // from a blank slate.)
     Boolean update = NO;
     if ([d objectForKey:@"homepage"] == nil) {
-        [d setObject:@"onionbrowser:home" forKey:@"homepage"]; // DEFAULT HOMEPAGE
+        [d setObject:@"https://check.torproject.org/" forKey:@"homepage"]; // DEFAULT HOMEPAGE
         update = YES;
     }
     if ([d objectForKey:@"cookies"] == nil) {

@@ -70,6 +70,7 @@
 // Class methods
 
 + (BOOL)canInitWithRequest:(NSURLRequest *)request {
+    /*
     if ( !([[[request URL] scheme] isEqualToString:@"file"] ||
            [[[request URL] scheme] isEqualToString:@"data"]
            )
@@ -82,6 +83,8 @@
     } else {
         return NO;
     }
+    */
+    return NO;
 }
 
 + (NSURLRequest *)canonicalRequestForRequest:(NSURLRequest *)request {
