@@ -24,6 +24,9 @@ Sep 26 2014 - Submit Date
 * Fix major issue where "Browser Settings" button did not open settings
   page on iPad.
 
+* Change app name on home screen back to "Onion Browser" since it seems that
+  the ellipsis-causing change in iOS 7 was possibly fixed in iOS 7.1 or 8.
+
 * Tor updated to 0.2.5.8-rc, the second release candidate in the
   0.2.5.X series. The switch to 0.2.5.X should somewhat improve connection
   stability, as well as improve overall security. 0.2.5.8 in particular
