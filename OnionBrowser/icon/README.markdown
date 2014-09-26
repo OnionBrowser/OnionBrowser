@@ -1,8 +1,8 @@
-To save space (and not commit large binary files to the repository), icons are
-not stored in this repository.
-
 The full icon set (all sizes required for building) can be downloaded by
 running the "install.sh" script in this directory.
+
+Note that this does not affect the build of the app which uses resources
+located in ../OnionBrowser/Images.xcassets/
 
 If you are interested in editing the icon, the source file is available:
 
