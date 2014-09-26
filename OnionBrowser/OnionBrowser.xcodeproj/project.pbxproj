@@ -44,6 +44,7 @@
 		6962EA9819D515B100FDD0A7 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6962EA8719D515B100FDD0A7 /* Icon.png */; };
 		6962EA9919D515B100FDD0A7 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6962EA8819D515B100FDD0A7 /* Icon@2x.png */; };
 		6962EA9A19D515B100FDD0A7 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6962EA8919D515B100FDD0A7 /* iTunesArtwork@2x.png */; };
+		6962EAA319D5221300FDD0A7 /* OBMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6962EAA219D5221300FDD0A7 /* OBMainViewController.swift */; };
 		6963E61615FAB2EC00310E8D /* BookmarkTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6963E61515FAB2EC00310E8D /* BookmarkTableViewController.m */; };
 		696C33AE1530D0D400990E69 /* startup.html in Resources */ = {isa = PBXBuildFile; fileRef = 696C33AD1530D0D400990E69 /* startup.html */; };
 		696EBD7814F7877900B81BC9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696EBD7714F7877900B81BC9 /* UIKit.framework */; };
@@ -143,6 +144,8 @@
 		6962EA8719D515B100FDD0A7 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = icon/Icon.png; sourceTree = "<group>"; };
 		6962EA8819D515B100FDD0A7 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "icon/Icon@2x.png"; sourceTree = "<group>"; };
 		6962EA8919D515B100FDD0A7 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iTunesArtwork@2x.png"; path = "icon/iTunesArtwork@2x.png"; sourceTree = "<group>"; };
+		6962EA9F19D5203E00FDD0A7 /* OnionBrowser-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OnionBrowser-Bridging-Header.h"; sourceTree = "<group>"; };
+		6962EAA219D5221300FDD0A7 /* OBMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OBMainViewController.swift; sourceTree = "<group>"; };
 		6963E61415FAB2EC00310E8D /* BookmarkTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkTableViewController.h; sourceTree = "<group>"; };
 		6963E61515FAB2EC00310E8D /* BookmarkTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkTableViewController.m; sourceTree = "<group>"; };
 		696C33AD1530D0D400990E69 /* startup.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = startup.html; sourceTree = "<group>"; };
@@ -256,6 +259,23 @@
 			name = SettingsView;
 			sourceTree = "<group>";
 		};
+		6962EA9B19D51F8400FDD0A7 /* 1.X */ = {
+			isa = PBXGroup;
+			children = (
+				697ABCD214FA036E00E1678C /* WebViewController.h */,
+				697ABCD314FA036E00E1678C /* WebViewController.m */,
+			);
+			name = 1.X;
+			sourceTree = "<group>";
+		};
+		6962EA9C19D51F8B00FDD0A7 /* 2.X */ = {
+			isa = PBXGroup;
+			children = (
+				6962EAA219D5221300FDD0A7 /* OBMainViewController.swift */,
+			);
+			name = 2.X;
+			sourceTree = "<group>";
+		};
 		696EBD6814F7877900B81BC9 = {
 			isa = PBXGroup;
 			children = (
@@ -298,11 +318,12 @@
 		696EBD7D14F7877900B81BC9 /* OnionBrowser */ = {
 			isa = PBXGroup;
 			children = (
+				6962EA9B19D51F8400FDD0A7 /* 1.X */,
+				6962EA9C19D51F8B00FDD0A7 /* 2.X */,
 				696EBD8614F7877900B81BC9 /* AppDelegate.h */,
 				696EBD8714F7877900B81BC9 /* AppDelegate.m */,
+				6962EA9F19D5203E00FDD0A7 /* OnionBrowser-Bridging-Header.h */,
 				696EBD7E14F7877900B81BC9 /* Supporting Files */,
-				697ABCD214FA036E00E1678C /* WebViewController.h */,
-				697ABCD314FA036E00E1678C /* WebViewController.m */,
 				69C6F6A314FACC3000894495 /* ProxyURLProtocol.h */,
 				69C6F6A414FACC3000894495 /* ProxyURLProtocol.m */,
 				69F3C5F714FC8739008274C3 /* CKHTTPConnection.h */,
@@ -589,6 +610,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6962EAA319D5221300FDD0A7 /* OBMainViewController.swift in Sources */,
 				696EBD8414F7877900B81BC9 /* main.m in Sources */,
 				6937425B189CC514002C65A0 /* NJKWebViewProgressView.m in Sources */,
 				691958D61536BA67000423A4 /* Reachability.m in Sources */,
@@ -695,18 +717,21 @@
 					armv7s,
 					armv7,
 				);
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OnionBrowser/OnionBrowser-Prefix.pch";
 				INFOPLIST_FILE = "OnionBrowser/OnionBrowser-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../dependencies/lib\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "OnionBrowser/OnionBrowser-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
 			name = TestBuilds;
@@ -800,18 +825,22 @@
 					armv7s,
 					armv7,
 				);
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OnionBrowser/OnionBrowser-Prefix.pch";
 				INFOPLIST_FILE = "OnionBrowser/OnionBrowser-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../dependencies/lib\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "OnionBrowser/OnionBrowser-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -824,18 +853,21 @@
 					armv7s,
 					armv7,
 				);
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OnionBrowser/OnionBrowser-Prefix.pch";
 				INFOPLIST_FILE = "OnionBrowser/OnionBrowser-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../dependencies/lib\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "OnionBrowser/OnionBrowser-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
