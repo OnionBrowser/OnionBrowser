@@ -11,6 +11,7 @@
 #include <sys/types.h>
 #include <sys/sysctl.h>
 #import <sys/utsname.h>
+#import "OnionBrowser-Swift.h"
 
 @implementation AppDelegate
 
@@ -92,9 +93,17 @@
     [self wipeAppData];
 
     _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    /*
     appWebView = [[WebViewController alloc] init];
     [_window setRootViewController:appWebView];
     [_window makeKeyAndVisible];
+    */
+    appWebView = [[WebViewController alloc] init];
+    OBMainViewController *vc = [[OBMainViewController alloc] init];
+    vc.view.frame = _window.frame;
+    [_window setRootViewController:vc];
+    [_window makeKeyAndVisible];
+
     
     /*
     [self updateTorrc];

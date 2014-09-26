@@ -213,6 +213,7 @@
 		6962EA9C19D51F8B00FDD0A7 /* 2.X */ = {
 			isa = PBXGroup;
 			children = (
+				6962EA9F19D5203E00FDD0A7 /* OnionBrowser-Bridging-Header.h */,
 				6962EAA219D5221300FDD0A7 /* OBMainViewController.swift */,
 			);
 			name = 2.X;
@@ -264,7 +265,6 @@
 				6962EA9C19D51F8B00FDD0A7 /* 2.X */,
 				696EBD8614F7877900B81BC9 /* AppDelegate.h */,
 				696EBD8714F7877900B81BC9 /* AppDelegate.m */,
-				6962EA9F19D5203E00FDD0A7 /* OnionBrowser-Bridging-Header.h */,
 				696EBD7E14F7877900B81BC9 /* Supporting Files */,
 				69C6F6A314FACC3000894495 /* ProxyURLProtocol.h */,
 				69C6F6A414FACC3000894495 /* ProxyURLProtocol.m */,

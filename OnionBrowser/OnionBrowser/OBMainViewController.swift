@@ -8,51 +8,77 @@ import WebKit
 
 let TOOLBAR_HEIGHT : CGFloat = 44.0
 
+class OBTab {
+  var webView : WKWebView
+  var URL : NSURL
+  required init(webView inWebView: WKWebView, URL inURL: NSURL) {
+    self.webView = inWebView
+    self.URL = inURL
+  }
+}
+
 class OBMainViewController: UIViewController {
 
-    var tabs : NSMutableArray,
-        toolbar : UIToolbar,
-        pageTitle : UILabel,
-        addressField: UITextField,
-        currentURL : NSURL;
+  var tabs : NSMutableArray,
+    toolbar : UIToolbar,
+    pageTitle : UILabel,
+    addressField: UITextField,
+    currentTab : Int;
 
-    required init(coder aDecoder: NSCoder) {
-        self.tabs = NSMutableArray()
-        self.toolbar = UIToolbar()
-        self.pageTitle = UILabel()
-        self.addressField = UITextField()
-        self.currentURL = NSURL(string:"https://check.torproject.org/")
+  override init() {
+    self.tabs = NSMutableArray()
+    self.toolbar = UIToolbar()
+    self.pageTitle = UILabel()
+    self.addressField = UITextField()
+    self.currentTab = -1
+    super.init()
+  }
 
-        super.init()
-    }
+  required init(coder aCoder: NSCoder) {
+    self.tabs = NSMutableArray()
+    self.toolbar = UIToolbar()
+    self.pageTitle = UILabel()
+    self.addressField = UITextField()
+    self.currentTab = -1
+    super.init(coder: aCoder)
+  }
 
-    override func viewDidLoad() {
-        var config = WKWebViewConfiguration()
-        var firstWebView = WKWebView(frame:self.view.frame, configuration:config)
+  override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
+    self.tabs = NSMutableArray()
+    self.toolbar = UIToolbar()
+    self.pageTitle = UILabel()
+    self.addressField = UITextField()
+    self.currentTab = -1
+    super.init(nibName:nibNameOrNil, bundle:nibBundleOrNil)
+  }
 
-        self.toolbar.frame = CGRectMake(
-            0, self.view.frame.height - TOOLBAR_HEIGHT,
-            self.view.frame.width, TOOLBAR_HEIGHT
-        )
 
-        super.viewDidLoad()
+  // MARK: -
 
-        // Do any additional setup after loading the view.
-    }
+  override func viewDidLoad() {
+    var firstTab = OBTab(
+      webView: WKWebView(frame:self.view.frame),
+      URL: NSURL(string:"https://check.torproject.org/")
+    )
+    self.tabs.addObject(firstTab);
+    self.currentTab = 0
+    self.view.addSubview(firstTab.webView)
+    self.view.bringSubviewToFront(firstTab.webView)
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    var firstReq = NSURLRequest(URL:firstTab.URL)
+    firstTab.webView.loadRequest(firstReq)
 
-    /*
-    // MARK: - Navigation
+    self.toolbar.frame = CGRectMake(
+      0, self.view.frame.height - TOOLBAR_HEIGHT,
+      self.view.frame.width, TOOLBAR_HEIGHT
+    )
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    super.viewDidLoad()
+  }
+
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
+  }
 
 }
