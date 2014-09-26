@@ -11,7 +11,6 @@
 
 @interface OnionBrowserTests : XCTestCase
 @property (nonatomic, readwrite, weak) AppDelegate *appDelegate;
-@property (nonatomic, readwrite, weak) TorController *tor;
 @end
 
 @implementation OnionBrowserTests
@@ -20,7 +19,6 @@
 {
     [super setUp];
     self.appDelegate = [[UIApplication sharedApplication] delegate];
-    self.tor = self.appDelegate.tor;
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 

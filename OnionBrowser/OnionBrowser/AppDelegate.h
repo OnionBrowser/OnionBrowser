@@ -7,7 +7,6 @@
 
 #import <UIKit/UIKit.h>
 #import "WebViewController.h"
-#import "TorController.h"
 
 #define COOKIES_ALLOW_ALL 0
 #define COOKIES_BLOCK_THIRDPARTY 1
@@ -34,8 +33,6 @@
 #define X_DEVICE_IS_SIM 2
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) TorController *tor;
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) UIImageView *windowOverlay;

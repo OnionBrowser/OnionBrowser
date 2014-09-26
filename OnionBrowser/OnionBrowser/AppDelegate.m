@@ -17,7 +17,6 @@
     sslWhitelistedDomains,
     startUrl,
     appWebView,
-    tor = _tor,
     window = _window,
     windowOverlay,
     managedObjectContext = __managedObjectContext,
@@ -200,7 +199,7 @@
     }
     [_window addSubview:windowOverlay];
 
-    [_tor disableTorCheckLoop];
+    //[_tor disableTorCheckLoop];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
@@ -220,7 +219,7 @@
         #endif
         exit(0);
     } else {
-        [_tor disableTorCheckLoop];
+        //[_tor disableTorCheckLoop];
     }
 }
 
@@ -233,7 +232,7 @@
 
     // Don't want to call "activateTorCheckLoop" directly since we
     // want to HUP tor first.
-    [_tor appDidBecomeActive];
+    //[_tor appDidBecomeActive];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

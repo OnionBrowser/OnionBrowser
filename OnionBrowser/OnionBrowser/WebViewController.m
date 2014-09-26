@@ -731,7 +731,7 @@ const char AlertViewIncomingUrl;
             // New Identity
             ////////////////////////////////////////////////////////
             AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-            [appDelegate.tor requestNewTorIdentity];
+            //[appDelegate.tor requestNewTorIdentity];
             
             [appDelegate wipeAppData];
             

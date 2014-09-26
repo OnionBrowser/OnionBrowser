@@ -155,6 +155,7 @@
     }
 
     // Use tor proxy server
+    /*
     NSString *hostKey = (NSString *)kCFStreamPropertySOCKSProxyHost;
     NSString *portKey = (NSString *)kCFStreamPropertySOCKSProxyPort;
     int proxyPortNumber = appDelegate.tor.torSocksPort;
@@ -164,7 +165,8 @@
                                        [NSNumber numberWithInt: proxyPortNumber],portKey,
                                        nil];
     CFReadStreamSetProperty((__bridge CFReadStreamRef)_HTTPStream, kCFStreamPropertySOCKSProxy, (__bridge CFTypeRef)proxyToUse);
-    
+    */
+
     [_HTTPStream setDelegate:(id<NSStreamDelegate>)self];
     [_HTTPStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     [_HTTPStream open];
