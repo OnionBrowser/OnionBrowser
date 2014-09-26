@@ -414,7 +414,6 @@
 }
 
 - (NSMutableDictionary *)getSettings {
-    NSString *errorDesc = nil;
     NSPropertyListFormat format;
     NSMutableDictionary *d;
 
@@ -423,10 +422,12 @@
         // We didn't have a settings file, so we'll want to initialize one now.
         d = [NSMutableDictionary dictionary];
     } else {
+        //d = (NSMutableDictionary *)[NSPropertyListSerialization
+        //                                      propertyListFromData:plistXML
+        //                                      mutabilityOption:NSPropertyListMutableContainersAndLeaves
+        //                                      format:&format errorDescription:&errorDesc];
         d = (NSMutableDictionary *)[NSPropertyListSerialization
-                                              propertyListFromData:plistXML
-                                              mutabilityOption:NSPropertyListMutableContainersAndLeaves
-                                              format:&format errorDescription:&errorDesc];
+                                    propertyListWithData:plistXML options:NSPropertyListMutableContainersAndLeaves format:&format error:nil];
     }
 
     // SETTINGS DEFAULTS
