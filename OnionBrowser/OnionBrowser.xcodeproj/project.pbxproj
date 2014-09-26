@@ -40,6 +40,7 @@
 		6959A7A819206E69002F8228 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6959A7A719206E69002F8228 /* Entitlements.plist */; };
 		695BF045189444FF00C27BC1 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 695BF044189444FF00C27BC1 /* LICENSE */; };
 		695BF04718944B5500C27BC1 /* startup2.html in Resources */ = {isa = PBXBuildFile; fileRef = 695BF04618944B5500C27BC1 /* startup2.html */; };
+		6962EAAD19D534DF00FDD0A7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6962EAAC19D534DF00FDD0A7 /* Images.xcassets */; };
 		6963E61615FAB2EC00310E8D /* BookmarkTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6963E61515FAB2EC00310E8D /* BookmarkTableViewController.m */; };
 		696C33AE1530D0D400990E69 /* startup.html in Resources */ = {isa = PBXBuildFile; fileRef = 696C33AD1530D0D400990E69 /* startup.html */; };
 		696EBD7814F7877900B81BC9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696EBD7714F7877900B81BC9 /* UIKit.framework */; };
@@ -150,6 +151,7 @@
 		6959A7A719206E69002F8228 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Entitlements.plist; path = ../Entitlements.plist; sourceTree = "<group>"; };
 		695BF044189444FF00C27BC1 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; lineEnding = 0; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		695BF04618944B5500C27BC1 /* startup2.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; lineEnding = 0; path = startup2.html; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.html; };
+		6962EAAC19D534DF00FDD0A7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = OnionBrowser/Images.xcassets; sourceTree = "<group>"; };
 		6963E61415FAB2EC00310E8D /* BookmarkTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkTableViewController.h; sourceTree = "<group>"; };
 		6963E61515FAB2EC00310E8D /* BookmarkTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkTableViewController.m; sourceTree = "<group>"; };
 		696C33AD1530D0D400990E69 /* startup.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = startup.html; sourceTree = "<group>"; };
@@ -386,6 +388,7 @@
 		69737A9B14FCD20600775275 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6962EAAC19D534DF00FDD0A7 /* Images.xcassets */,
 				695BF044189444FF00C27BC1 /* LICENSE */,
 				69855E061531576800720327 /* about.html */,
 				6995CBF7153660D3000EFBE8 /* Default-Landscape.png */,
@@ -589,6 +592,7 @@
 				692E70F917EE3BB10063990F /* Icon-76.png in Resources */,
 				6993EB2F177EB43600F623CE /* Default-7-Portrait@2x.png in Resources */,
 				69855E071531576800720327 /* about.html in Resources */,
+				6962EAAD19D534DF00FDD0A7 /* Images.xcassets in Resources */,
 				695BF04718944B5500C27BC1 /* startup2.html in Resources */,
 				6995CBFD153660D3000EFBE8 /* Default-Landscape.png in Resources */,
 				6995CBFE153660D3000EFBE8 /* Default-Landscape@2x.png in Resources */,
@@ -723,11 +727,8 @@
 		6945ED4D15FB2E6000DE5EBD /* TestBuilds */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					arm64,
-					armv7s,
-					armv7,
-				);
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -829,11 +830,8 @@
 		696EBD8C14F7877900B81BC9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					arm64,
-					armv7s,
-					armv7,
-				);
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -852,11 +850,8 @@
 		696EBD8D14F7877900B81BC9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					arm64,
-					armv7s,
-					armv7,
-				);
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

@@ -14,15 +14,23 @@ Features subject to change.
   encryption done by the iOS operating system, improving protection
   against forensic tools.
 
-===== 1.5.6 - Pending App Store Approval =====
-Sep 18 2014 - Submit Date
+===== 1.5.7 - Pending App Store Approval =====
+Sep 26 2014 - Submit Date
+1.5.6 was submitted, but replaced with 1.5.7 before App Store release
+
+* App now uses the native device resolution on iPhone 6 and iPhone 6 Plus,
+  instead of going into "stretch mode".
 
 * Fix major issue where "Browser Settings" button did not open settings
   page on iPad.
 
-* Tor updated to 0.2.5.7-rc, the first release candidate in the
-  0.2.5.X series. This update should somewhat improve connection
-  stability, as well as improve overall security.
+* Change app name on home screen back to "Onion Browser" since it seems that
+  the ellipsis-causing change in iOS 7 was possibly fixed in iOS 7.1 or 8.
+
+* Tor updated to 0.2.5.8-rc, the second release candidate in the
+  0.2.5.X series. The switch to 0.2.5.X should somewhat improve connection
+  stability, as well as improve overall security. 0.2.5.8 in particular
+  improves connections to hidden services.
   https://blog.torproject.org/blog/tor-0257-rc-out
   https://gitweb.torproject.org/tor.git?a=blob_plain;hb=release-0.2.5;f=ReleaseNotes
 
