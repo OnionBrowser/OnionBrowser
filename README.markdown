@@ -189,10 +189,8 @@ containing the statically-compiled library files.
 Open `OnionBrowser/OnionBrowser.xcodeproj`. You should be
 able to compile and run the application at this point.
 
-The app and all dependencies are compiled to run against `arm64` (iPhone 5S
-64-bit "A7" processor), `armv7s` (iPhone 5 "A6" processor), and `armv7`
-platforms. This means all devices since the iPhone 4 (running at least iOS
-6.0) are supported.
+The app and all dependencies are compiled to run against `arm64` and `armv7`
+platforms (the default as of iOS 8).
 
 All dependencies are further compiled for `i386` and `x86_64` targets, so
 that both the 32-bit and 64-bit iOS Simulators are supported.
