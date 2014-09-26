@@ -11,4 +11,5 @@ curl -LO https://d2p12wh0p3fo1n.cloudfront.net/files/20120426/Icon@2x.png
 curl -LO https://d2p12wh0p3fo1n.cloudfront.net/files/20130921/Icon-120.png
 curl -LO https://d2p12wh0p3fo1n.cloudfront.net/files/20130921/Icon-152.png
 curl -LO https://d2p12wh0p3fo1n.cloudfront.net/files/20130921/Icon-76.png
+curl -LO https://cdn.tig.as/files/20140926/Icon-180.png
 popd
