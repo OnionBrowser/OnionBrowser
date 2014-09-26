@@ -58,7 +58,7 @@
     char *arg_11 = "Log";
 
     #ifndef DEBUG
-    char *arg_12 = "warn stderr";
+    char *arg_12 = "err file /dev/null";
     #endif
     #ifdef DEBUG
     char *arg_12 = "notice stderr";

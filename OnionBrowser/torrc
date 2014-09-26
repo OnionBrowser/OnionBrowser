@@ -3,9 +3,6 @@
 ClientOnly 1
 ExitPolicy reject *:*
 
-AvoidDiskWrites 1
-HardwareAccel 1
-
 # Port numbers (SocksPort, ControlPort) are randomly generated in TorController.
 # TorWrapper picks these up and executes tor with these as command-line args.
 # See TorController.m:31-32 and TorWrapper.m (main).
@@ -15,16 +12,6 @@ ControlListenAddress 127.0.0.1
 CookieAuthentication 1
 
 ConnLimit 100
-
-UseEntryGuards 1
-TunnelDirConns 1
-PreferTunneledDirConns 1
-
-# Use "ntor" connection handshake to help w/tor network congestion.
-# In theory, this is already happening since consensus is likely promoting "ntor" already.
-# It is now preferred by 0.2.4.17 relays: https://blog.torproject.org/blog/how-to-handle-millions-new-tor-clients
-# It is now on by default in 0.2.5.X: https://trac.torproject.org/projects/tor/ticket/8561
-UseNTorHandshake 1
 
 SafeLogging 1
 
