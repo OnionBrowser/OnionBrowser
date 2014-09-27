@@ -6,10 +6,12 @@
 import UIKit
 import WebKit
 
-let TOOLBAR_HEIGHT:CGFloat = 44.0
-let NAVBAR_HEIGHT:CGFloat = 60.0
+let TOOLBAR_HEIGHT:CGFloat = 44.0 // default size
+let NAVBAR_HEIGHT:CGFloat = 64.0  // default size
 let ADDRESSBAR_TAG:Int = 2001
 let ADDRESSLABEL_TAG:Int = 2002
+
+
 
 class OBTab {
   var webView : WKWebView
@@ -20,6 +22,8 @@ class OBTab {
     self.URL = inURL
   }
 }
+
+
 
 class OBMainViewController: UIViewController, UIScrollViewDelegate {
   var
@@ -81,9 +85,10 @@ class OBMainViewController: UIViewController, UIScrollViewDelegate {
     self.navbar.frame = CGRectMake(0, 0, self.view.frame.width, NAVBAR_HEIGHT)
     self.navbar.autoresizingMask = UIViewAutoresizing.FlexibleWidth
 
-    var address:UITextField = UITextField(frame: CGRectMake(10, 25, self.view.frame.width-20, NAVBAR_HEIGHT-30))
+    var address:UITextField = UITextField(frame: CGRectMake(10, 25, self.view.frame.width-20, NAVBAR_HEIGHT-35))
     address.autoresizingMask = UIViewAutoresizing.FlexibleWidth
     address.borderStyle = UITextBorderStyle.RoundedRect
+    address.backgroundColor = UIColor(white:0.9, alpha:1.0)
     address.font = UIFont.systemFontOfSize(17)
     address.keyboardType = UIKeyboardType.URL
     address.returnKeyType = UIReturnKeyType.Go
@@ -95,7 +100,7 @@ class OBMainViewController: UIViewController, UIScrollViewDelegate {
     self.navbar.addSubview(address)
     address.enabled = true
 
-    var addressLabel:UILabel = UILabel(frame: CGRectMake(10, 25, self.view.frame.width-20, NAVBAR_HEIGHT-30))
+    var addressLabel:UILabel = UILabel(frame: CGRectMake(10, 25, self.view.frame.width-20, NAVBAR_HEIGHT-35))
     addressLabel.font = UIFont.systemFontOfSize(17)
     addressLabel.tag = ADDRESSLABEL_TAG
     addressLabel.text = "check.torproject.org"
@@ -122,7 +127,7 @@ class OBMainViewController: UIViewController, UIScrollViewDelegate {
 
   // MARK: - Safari-like hiding navbar
   let STATUSBAR_SIZE:CGFloat = 20.0
-  let COLLAPSED_SIZE:CGFloat = 15.0
+  let COLLAPSED_SIZE:CGFloat = 20.0
 
   func scrollViewDidScroll(scrollView: UIScrollView) {
     var frame:CGRect = self.navbar.frame
@@ -169,11 +174,12 @@ class OBMainViewController: UIViewController, UIScrollViewDelegate {
     var addressLabel:UILabel = self.navbar.viewWithTag(ADDRESSLABEL_TAG) as UILabel
     if (scaleFactor == 1) {
       address.hidden = false
-      address.frame = CGRectMake(10, 25, self.view.frame.width-20, NAVBAR_HEIGHT-30)
+      address.enabled = true
+      address.frame = CGRectMake(10, 25, self.view.frame.width-20, NAVBAR_HEIGHT-35)
       address.alpha = 1
 
       addressLabel.hidden = false
-      addressLabel.frame = CGRectMake(10, 25, self.view.frame.width-20, NAVBAR_HEIGHT-30)
+      addressLabel.frame = CGRectMake(10, 25, self.view.frame.width-20, NAVBAR_HEIGHT-35)
     } else if (scaleFactor >= 0.5) {
       var height:CGFloat = (NAVBAR_HEIGHT-30)*scaleFactor
       var heightDiff:CGFloat = (NAVBAR_HEIGHT-30)-height
@@ -181,6 +187,7 @@ class OBMainViewController: UIViewController, UIScrollViewDelegate {
       var widthDiff:CGFloat = ((self.view.frame.width-20)-width)/2
 
       address.hidden = false
+      address.enabled = true
       address.frame = CGRectMake(10+widthDiff, 25+heightDiff, width, height)
       address.alpha = (scaleFactor-0.5)/0.5
 
@@ -194,6 +201,7 @@ class OBMainViewController: UIViewController, UIScrollViewDelegate {
       var widthDiff:CGFloat = ((self.view.frame.width-20)-width)/2
 
       address.hidden = true
+      address.enabled = false
 
       addressLabel.hidden = false
       addressLabel.frame = CGRectMake(10+widthDiff, 25+heightDiff, width, height)
