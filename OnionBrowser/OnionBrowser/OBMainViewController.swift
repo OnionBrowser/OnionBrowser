@@ -28,13 +28,14 @@ class OBTab {
 
 
 
-class OBMainViewController: UIViewController, UIScrollViewDelegate {
+class OBMainViewController: UIViewController, UIScrollViewDelegate, UITextFieldDelegate {
   var
     tabs:NSMutableArray = NSMutableArray(),
     navbar:UINavigationBar = UINavigationBar(),
     toolbar:UIToolbar = UIToolbar(),
     currentTab:Int = -1,
 
+    lastTypedAddress:String = "",
     previousScrollViewYOffset:CGFloat = 0.0
   ;
 
@@ -67,9 +68,10 @@ class OBMainViewController: UIViewController, UIScrollViewDelegate {
 
   override func viewDidLoad() {
     /********** Set up initial web view **********/
+    self.lastTypedAddress = "https://check.torproject.org/"
     var firstTab = OBTab(
       webView: WKWebView(frame:self.view.frame),
-      URL: NSURL(string:"https://check.torproject.org/")
+      URL: NSURL(string:self.lastTypedAddress)
     )
     self.tabs.addObject(firstTab)
     self.currentTab = 0
@@ -80,9 +82,7 @@ class OBMainViewController: UIViewController, UIScrollViewDelegate {
     self.view.addSubview(firstTab.webView)
 
     // Fire off request
-    var firstReq = NSURLRequest(URL:firstTab.URL)
-    firstTab.webView.loadRequest(firstReq)
-
+    firstTab.webView.loadRequest(NSURLRequest(URL:firstTab.URL))
 
     /********** Initialize Navbar **********/
     self.navbar.frame = CGRectMake(0, 0, self.view.frame.width, NAVBAR_HEIGHT)
@@ -99,15 +99,19 @@ class OBMainViewController: UIViewController, UIScrollViewDelegate {
     address.autocapitalizationType = UITextAutocapitalizationType.None
     address.clearButtonMode = UITextFieldViewMode.Never
     address.tag = ADDRESSBAR_TAG
-    // TODO: Catch address event
+    address.delegate = self
+
+    address .addTarget(self, action: "loadAddress:event:", forControlEvents: UIControlEvents.EditingDidEndOnExit|UIControlEvents.EditingDidEnd)
     self.navbar.addSubview(address)
     address.enabled = true
 
     var addressLabel:UILabel = UILabel(frame: CGRectMake(10, 25, self.view.frame.width-20, NAVBAR_HEIGHT-35))
     addressLabel.font = UIFont.systemFontOfSize(17)
     addressLabel.tag = ADDRESSLABEL_TAG
-    addressLabel.text = "check.torproject.org"
+    addressLabel.text = firstTab.URL.host
     addressLabel.textAlignment = NSTextAlignment.Center
+    addressLabel.userInteractionEnabled = true
+    addressLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "pushAddressBar"))
     self.navbar.addSubview(addressLabel)
 
 
@@ -185,6 +189,74 @@ class OBMainViewController: UIViewController, UIScrollViewDelegate {
     return UIImage(CGImage:theCGImage, scale:scale, orientation:UIImageOrientation.Up)
   }
 
+
+  // MARK: - Address bar
+  func pushAddressBar() {
+    var address:UITextField = self.navbar.viewWithTag(ADDRESSBAR_TAG) as UITextField
+    var addressLabel:UILabel = self.navbar.viewWithTag(ADDRESSLABEL_TAG) as UILabel
+
+    if ((!addressLabel.hidden) && (addressLabel.alpha == 1.0)) {
+      UIView.animateWithDuration(
+        0.1,
+        animations:{() -> Void in
+          addressLabel.alpha = 0.0},
+        completion:{(success:Bool) -> Void in
+          addressLabel.hidden = true
+      })
+    }
+    address.becomeFirstResponder()
+  }
+  func textFieldDidBeginEditing(textField: UITextField) {
+    if (textField.tag == ADDRESSBAR_TAG) {
+      var addressLabel:UILabel = self.navbar.viewWithTag(ADDRESSLABEL_TAG) as UILabel
+      if ((!addressLabel.hidden) && (addressLabel.alpha == 1.0)) {
+        UIView.animateWithDuration(
+          0.1,
+          animations:{() -> Void in
+            addressLabel.alpha = 0.0},
+          completion:{(success:Bool) -> Void in
+            addressLabel.hidden = true
+        })
+      }
+
+      var tab:OBTab = self.tabs.objectAtIndex(self.currentTab) as OBTab
+      textField.text = tab.URL.absoluteString
+      textField.selectAll(nil)
+    }
+  }
+  func textFieldShouldEndEditing(textField: UITextField) -> Bool {
+    if (textField.tag == ADDRESSBAR_TAG) {
+      var addressLabel:UILabel = self.navbar.viewWithTag(ADDRESSLABEL_TAG) as UILabel
+      self.lastTypedAddress = textField.text
+      textField.text = ""
+      addressLabel.hidden = false
+      if ((addressLabel.hidden) || (addressLabel.alpha != 1.0)) {
+        UIView.animateWithDuration(
+          0.1,
+          animations:{() -> Void in
+            addressLabel.alpha = 1.0
+        })
+      }
+    }
+    return true
+  }
+  func textFieldShouldReturn(textField: UITextField) -> Bool {
+    if (textField.tag == ADDRESSBAR_TAG) {
+      textField.autocorrectionType = UITextAutocorrectionType.No
+      textField.resignFirstResponder()
+    }
+    return true
+  }
+
+  func loadAddress(sender:AnyObject, event:UIEvent?) {
+    var address:UITextField = self.navbar.viewWithTag(ADDRESSBAR_TAG) as UITextField
+    var addressLabel:UILabel = self.navbar.viewWithTag(ADDRESSLABEL_TAG) as UILabel
+    var tab:OBTab = self.tabs.objectAtIndex(self.currentTab) as OBTab
+
+    tab.URL = NSURL.URLWithString(self.lastTypedAddress)
+    tab.webView.loadRequest(NSURLRequest(URL:tab.URL))
+    addressLabel.text = tab.URL.host
+  }
 
 
   // MARK: - Safari-like hiding navbar
