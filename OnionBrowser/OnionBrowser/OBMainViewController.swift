@@ -8,9 +8,12 @@ import WebKit
 
 let TOOLBAR_HEIGHT:CGFloat = 44.0 // default size
 let NAVBAR_HEIGHT:CGFloat = 64.0  // default size
+
+
 let ADDRESSBAR_TAG:Int = 2001
 let ADDRESSLABEL_TAG:Int = 2002
-
+let FORWARDBUTTON_TAG:Int = 2003
+let BACKWARDBUTTON_TAG:Int = 2004
 
 
 class OBTab {
@@ -118,12 +121,71 @@ class OBMainViewController: UIViewController, UIScrollViewDelegate {
       self.view.frame.width, TOOLBAR_HEIGHT
     )
     self.toolbar.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleTopMargin
+
+    var space:UIBarButtonItem          = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+    var backButton:UIBarButtonItem     = UIBarButtonItem(image: self.forwardBackButtonImage(BACKWARDBUTTON_TAG), style: UIBarButtonItemStyle.Plain, target: nil, action: nil) // TODO
+    var forwardButton:UIBarButtonItem  = UIBarButtonItem(image: self.forwardBackButtonImage(FORWARDBUTTON_TAG), style: UIBarButtonItemStyle.Plain, target: nil, action: nil) // TODO
+    var toolButton:UIBarButtonItem     = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Action, target: nil, action: nil) // TODO
+    var bookmarkButton:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Bookmarks, target: nil, action: nil) // TODO
+    var tabsButton:UIBarButtonItem     = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Organize, target: nil, action: nil) // TODO
+
+    backButton.enabled = true
+    forwardButton.enabled = true
+    toolButton.enabled = true
+    bookmarkButton.enabled = true
+    tabsButton.enabled = true
+
+    var toolbarItems:Array = [backButton, space, forwardButton, space, toolButton, space, bookmarkButton, space, tabsButton]
+    self.toolbar.setItems(toolbarItems, animated: false)
+
+    self.toolbar.alpha = 1.0
+    self.toolbar.tintColor = self.toolbar.tintColor.colorWithAlphaComponent(1.0)
+
     self.view.addSubview(self.toolbar)
     self.view.bringSubviewToFront(self.toolbar)
 
-
     super.viewDidLoad()
   }
+
+
+  func forwardBackButtonImage(whichButton:Int) -> UIImage {
+    // Draws the vector image for the forward or back button. (see kForwardButton
+    // and kBackwardButton for the "whichButton" values)
+    var scale:CGFloat = UIScreen.mainScreen().scale
+    var size:UInt = UInt(round(30.0 * Float(scale)))
+    var context:CGContextRef = CGBitmapContextCreate(
+      nil,
+      size, size,
+      8,0,
+      CGColorSpaceCreateDeviceRGB(),
+      CGBitmapInfo.AlphaInfoMask & CGBitmapInfo.fromMask(CGImageAlphaInfo.PremultipliedLast.toRaw())
+    )
+
+    var color:CGColorRef = UIColor.blackColor().CGColor
+    //CGContextSetFillColor(context, CGColorGetComponents(color))
+    CGContextSetStrokeColorWithColor(context, color);
+
+    CGContextSetLineWidth(context, 3.0);
+
+    CGContextBeginPath(context)
+    if (whichButton == FORWARDBUTTON_TAG) {
+        CGContextMoveToPoint(context, CGFloat(5.0)*scale, CGFloat(4.0)*scale)
+        CGContextAddLineToPoint(context, CGFloat(15.0)*scale, CGFloat(15.0)*scale)
+        CGContextAddLineToPoint(context, CGFloat(5.0)*scale, CGFloat(24.0)*scale)
+    } else {
+        CGContextMoveToPoint(context, CGFloat(15.0)*scale, CGFloat(4.0)*scale)
+        CGContextAddLineToPoint(context, CGFloat(5.0)*scale, CGFloat(14.0)*scale)
+        CGContextAddLineToPoint(context, CGFloat(15.0)*scale, CGFloat(24.0)*scale)
+    }
+    CGContextStrokePath(context);
+    //CGContextClosePath(context)
+    //CGContextFillPath(context)
+
+    var theCGImage:CGImageRef = CGBitmapContextCreateImage(context)
+    return UIImage(CGImage:theCGImage, scale:scale, orientation:UIImageOrientation.Up)
+  }
+
+
 
   // MARK: - Safari-like hiding navbar
   let STATUSBAR_SIZE:CGFloat = 20.0
