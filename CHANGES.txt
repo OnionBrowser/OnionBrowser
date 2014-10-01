@@ -44,7 +44,7 @@ Sep 26 2014 - Submit Date
 
 CURRENT VERSION:
 
-===== 1.5.6 - In App Store =====
+===== 1.5.5 - In App Store =====
 Sep 13 2014 - Submit Date
 Sep 18 2014 - App Store Availability
 
