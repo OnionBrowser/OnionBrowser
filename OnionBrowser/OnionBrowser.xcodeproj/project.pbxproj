@@ -51,6 +51,8 @@
 		699CCEBD14FA1939004A2F56 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 699CCEBC14FA1939004A2F56 /* libxml2.dylib */; };
 		69C6F6A514FACC3000894495 /* ProxyURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C6F6A414FACC3000894495 /* ProxyURLProtocol.m */; };
 		69E8A49D1981B59E00D84980 /* NSStringPunycodeAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E8A49C1981B59E00D84980 /* NSStringPunycodeAdditions.m */; };
+		69E9850019D723860090CFCA /* 1Password.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69E984FD19D723860090CFCA /* 1Password.xcassets */; };
+		69E9850119D723860090CFCA /* OnePasswordExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E984FF19D723860090CFCA /* OnePasswordExtension.m */; };
 		69F3C5FD14FC8739008274C3 /* CKHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F3C5F814FC8739008274C3 /* CKHTTPConnection.m */; };
 /* End PBXBuildFile section */
 
@@ -144,6 +146,9 @@
 		69C6F6A414FACC3000894495 /* ProxyURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProxyURLProtocol.m; path = ../ProxyURLProtocol.m; sourceTree = "<group>"; };
 		69E8A49B1981B59E00D84980 /* NSStringPunycodeAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringPunycodeAdditions.h; sourceTree = "<group>"; };
 		69E8A49C1981B59E00D84980 /* NSStringPunycodeAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringPunycodeAdditions.m; sourceTree = "<group>"; };
+		69E984FD19D723860090CFCA /* 1Password.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = 1Password.xcassets; path = 1Password/1Password.xcassets; sourceTree = "<group>"; };
+		69E984FE19D723860090CFCA /* OnePasswordExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OnePasswordExtension.h; path = 1Password/OnePasswordExtension.h; sourceTree = "<group>"; };
+		69E984FF19D723860090CFCA /* OnePasswordExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OnePasswordExtension.m; path = 1Password/OnePasswordExtension.m; sourceTree = "<group>"; };
 		69F3C5F714FC8739008274C3 /* CKHTTPConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CKHTTPConnection.h; path = ../ConnectionKit/CKHTTPConnection.h; sourceTree = "<group>"; };
 		69F3C5F814FC8739008274C3 /* CKHTTPConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CKHTTPConnection.m; path = ../ConnectionKit/CKHTTPConnection.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -317,6 +322,9 @@
 				69374257189CC514002C65A0 /* NJKWebViewProgress.m */,
 				69374258189CC514002C65A0 /* NJKWebViewProgressView.h */,
 				69374259189CC514002C65A0 /* NJKWebViewProgressView.m */,
+				69E984FD19D723860090CFCA /* 1Password.xcassets */,
+				69E984FE19D723860090CFCA /* OnePasswordExtension.h */,
+				69E984FF19D723860090CFCA /* OnePasswordExtension.m */,
 			);
 			name = ThirdParty;
 			sourceTree = "<group>";
@@ -467,6 +475,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69E9850019D723860090CFCA /* 1Password.xcassets in Resources */,
 				696EBD8214F7877900B81BC9 /* InfoPlist.strings in Resources */,
 				69374255189CBAF1002C65A0 /* help.html in Resources */,
 				695BF045189444FF00C27BC1 /* LICENSE in Resources */,
@@ -506,6 +515,7 @@
 				69F3C5FD14FC8739008274C3 /* CKHTTPConnection.m in Sources */,
 				692B86AF153CD4CB000806A9 /* NSData+Conversion.m in Sources */,
 				69E8A49D1981B59E00D84980 /* NSStringPunycodeAdditions.m in Sources */,
+				69E9850119D723860090CFCA /* OnePasswordExtension.m in Sources */,
 				6924C28C155262E2004BE7F9 /* SettingsViewController.m in Sources */,
 				6924C29015526343004BE7F9 /* SettingsTableViewController.m in Sources */,
 				6963E61615FAB2EC00310E8D /* BookmarkTableViewController.m in Sources */,
