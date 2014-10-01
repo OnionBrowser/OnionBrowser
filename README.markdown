@@ -1,6 +1,6 @@
 ## Onion Browser
 
-[![Build Status](https://travis-ci.org/mtigas/iOS-OnionBrowser.png)](https://travis-ci.org/mtigas/iOS-OnionBrowser)  
+[![Build Status](https://travis-ci.org/OnionBrowser/iOS-OnionBrowser.png)](https://travis-ci.org/OnionBrowser/iOS-OnionBrowser)  
 [Official Site][official] | [Support][help] | [Changelog][changelog]  
 &copy; 2012-2014 [Mike Tigas][miketigas] ([@mtigas](https://twitter.com/mtigas))  
 [MIT License][license]
@@ -16,11 +16,11 @@ and App Store links.
 * **[libevent][libevent]**: 2.0.21-stable (Nov 18 2012)
 * **[OpenSSL][openssl]**: 1.0.1i (Aug 06 2014)
 
-[official]: http://onionbrowser.com/
-[help]: http://onionbrowser.com/help/
-[changelog]: https://raw.github.com/mtigas/iOS-OnionBrowser/master/CHANGES.txt
+[official]: https://mike.tig.as/onionbrowser/
+[help]: https://mike.tig.as/onionbrowser/help/
+[changelog]: https://raw.github.com/OnionBrowser/iOS-OnionBrowser/master/CHANGES.txt
 [miketigas]: https://mike.tig.as/
-[license]: https://github.com/mtigas/iOS-OnionBrowser/blob/master/LICENSE
+[license]: https://github.com/OnionBrowser/iOS-OnionBrowser/blob/master/LICENSE
 [tor]: https://www.torproject.org/
 [libevent]: http://libevent.org/
 [openssl]: https://www.openssl.org/
