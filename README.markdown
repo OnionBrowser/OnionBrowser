@@ -18,9 +18,9 @@ and App Store links.
 
 [official]: https://mike.tig.as/onionbrowser/
 [help]: https://mike.tig.as/onionbrowser/help/
-[changelog]: https://raw.github.com/mtigas/iOS-OnionBrowser/master/CHANGES.txt
+[changelog]: https://raw.github.com/OnionBrowser/iOS-OnionBrowser/master/CHANGES.txt
 [miketigas]: https://mike.tig.as/
-[license]: https://github.com/mtigas/iOS-OnionBrowser/blob/master/LICENSE
+[license]: https://github.com/OnionBrowser/iOS-OnionBrowser/blob/master/LICENSE
 [tor]: https://www.torproject.org/
 [libevent]: http://libevent.org/
 [openssl]: https://www.openssl.org/
