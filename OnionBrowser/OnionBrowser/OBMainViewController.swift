@@ -31,42 +31,31 @@ class OBTab {
 
 
 class OBMainViewController: UIViewController, UIScrollViewDelegate, UITextFieldDelegate {
-  var
-    tabs = Array<OBTab>(),
-    navbar = UINavigationBar(),
-    toolbar = UIToolbar(),
-    currentTab = -1,
-    lastTypedAddress = "",
-    previousScrollViewYOffset:CGFloat = 0.0
-  ;
+  var tabs = Array<OBTab>()
+  var navbar = UINavigationBar()
+  var toolbar = UIToolbar()
+  var currentTab = -1
+  var lastTypedAddress = ""
+  var previousScrollViewYOffset:CGFloat = 0.0
 
-  override func supportedInterfaceOrientations() -> Int {
-    if (UIDevice.currentDevice().userInterfaceIdiom == .Pad) {
-      return Int(UIInterfaceOrientationMask.All.rawValue)
-    } else {
-      return Int(UIInterfaceOrientationMask.AllButUpsideDown.rawValue)
-    }
+  func initNewTab(tab:OBTab) {
+    self.currentTab += 1
+    tab.webView.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
+    tab.webView.scrollView.contentInset = UIEdgeInsetsMake(NAVBAR_HEIGHT, 0, TOOLBAR_HEIGHT, 0)
+    tab.webView.scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(NAVBAR_HEIGHT, 0, TOOLBAR_HEIGHT, 0)
+    tab.webView.scrollView.delegate = self
+    self.tabs.append(tab)
   }
-
-
-  // MARK: -
 
   override func viewDidLoad() {
     /********** Set up initial web view **********/
     self.lastTypedAddress = "https://check.torproject.org/"
-    var firstTab = OBTab(
+    let firstTab:OBTab = OBTab(
       webView: WKWebView(frame:self.view.frame),
       URL: NSURL(string:self.lastTypedAddress)!
     )
-    self.tabs.append(firstTab)
-    self.currentTab = 0
-    firstTab.webView.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
-    firstTab.webView.scrollView.contentInset = UIEdgeInsetsMake(NAVBAR_HEIGHT, 0, TOOLBAR_HEIGHT, 0)
-    firstTab.webView.scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(NAVBAR_HEIGHT, 0, TOOLBAR_HEIGHT, 0)
-    firstTab.webView.scrollView.delegate = self
+    initNewTab(firstTab)
     self.view.addSubview(firstTab.webView)
-
-    // Fire off request
     firstTab.webView.loadRequest(NSURLRequest(URL:firstTab.URL))
 
     /********** Initialize Navbar **********/
@@ -99,10 +88,8 @@ class OBMainViewController: UIViewController, UIScrollViewDelegate, UITextFieldD
     addressLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "pushAddressBar"))
     self.navbar.addSubview(addressLabel)
 
-
     self.view.addSubview(self.navbar)
     self.view.bringSubviewToFront(self.navbar)
-
 
     /********** Initialize Toolbar **********/
     self.toolbar.frame = CGRectMake(
@@ -134,6 +121,14 @@ class OBMainViewController: UIViewController, UIScrollViewDelegate, UITextFieldD
     self.view.bringSubviewToFront(self.toolbar)
 
     super.viewDidLoad()
+  }
+
+  override func supportedInterfaceOrientations() -> Int {
+    if (UIDevice.currentDevice().userInterfaceIdiom == .Pad) {
+      return Int(UIInterfaceOrientationMask.All.rawValue)
+    } else {
+      return Int(UIInterfaceOrientationMask.AllButUpsideDown.rawValue)
+    }
   }
 
 
