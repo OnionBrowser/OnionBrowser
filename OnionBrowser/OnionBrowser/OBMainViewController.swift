@@ -6,16 +6,18 @@
 import UIKit
 import WebKit
 
+// UI
 let TOOLBAR_HEIGHT:CGFloat = 44.0 // default size
 let NAVBAR_HEIGHT:CGFloat = 64.0  // default size
 
-
+// UI: Toolbar
 let ADDRESSBAR_TAG:Int = 2001
 let ADDRESSLABEL_TAG:Int = 2002
 let FORWARDBUTTON_TAG:Int = 2003
 let BACKWARDBUTTON_TAG:Int = 2004
 
 
+// Container for info associated with an open tab.
 class OBTab {
   var webView : WKWebView
   var URL : NSURL
@@ -30,36 +32,19 @@ class OBTab {
 
 class OBMainViewController: UIViewController, UIScrollViewDelegate, UITextFieldDelegate {
   var
-    tabs:NSMutableArray = NSMutableArray(),
-    navbar:UINavigationBar = UINavigationBar(),
-    toolbar:UIToolbar = UIToolbar(),
-    currentTab:Int = -1,
-
-    lastTypedAddress:String = "",
+    tabs = Array<OBTab>(),
+    navbar = UINavigationBar(),
+    toolbar = UIToolbar(),
+    currentTab = -1,
+    lastTypedAddress = "",
     previousScrollViewYOffset:CGFloat = 0.0
   ;
 
-  override init() {
-    super.init()
-  }
-
-  required init(coder aCoder: NSCoder) {
-    super.init(coder: aCoder)
-  }
-
-  override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
-    super.init(nibName:nibNameOrNil, bundle:nibBundleOrNil)
-  }
-
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-  }
-
   override func supportedInterfaceOrientations() -> Int {
     if (UIDevice.currentDevice().userInterfaceIdiom == .Pad) {
-      return Int(UIInterfaceOrientationMask.All.toRaw())
+      return Int(UIInterfaceOrientationMask.All.rawValue)
     } else {
-      return Int(UIInterfaceOrientationMask.AllButUpsideDown.toRaw())
+      return Int(UIInterfaceOrientationMask.AllButUpsideDown.rawValue)
     }
   }
 
@@ -71,9 +56,9 @@ class OBMainViewController: UIViewController, UIScrollViewDelegate, UITextFieldD
     self.lastTypedAddress = "https://check.torproject.org/"
     var firstTab = OBTab(
       webView: WKWebView(frame:self.view.frame),
-      URL: NSURL(string:self.lastTypedAddress)
+      URL: NSURL(string:self.lastTypedAddress)!
     )
-    self.tabs.addObject(firstTab)
+    self.tabs.append(firstTab)
     self.currentTab = 0
     firstTab.webView.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
     firstTab.webView.scrollView.contentInset = UIEdgeInsetsMake(NAVBAR_HEIGHT, 0, TOOLBAR_HEIGHT, 0)
@@ -89,15 +74,15 @@ class OBMainViewController: UIViewController, UIScrollViewDelegate, UITextFieldD
     self.navbar.autoresizingMask = UIViewAutoresizing.FlexibleWidth
 
     var address:UITextField = UITextField(frame: CGRectMake(10, 25, self.view.frame.width-20, NAVBAR_HEIGHT-35))
-    address.autoresizingMask = UIViewAutoresizing.FlexibleWidth
-    address.borderStyle = UITextBorderStyle.RoundedRect
+    address.autoresizingMask = .FlexibleWidth
+    address.borderStyle = .RoundedRect
     address.backgroundColor = UIColor(white:0.9, alpha:1.0)
-    address.font = UIFont.systemFontOfSize(17)
-    address.keyboardType = UIKeyboardType.URL
-    address.returnKeyType = UIReturnKeyType.Go
-    address.autocorrectionType = UITextAutocorrectionType.No
-    address.autocapitalizationType = UITextAutocapitalizationType.None
-    address.clearButtonMode = UITextFieldViewMode.Never
+    address.font = .systemFontOfSize(17)
+    address.keyboardType = .URL
+    address.returnKeyType = .Go
+    address.autocorrectionType = .No
+    address.autocapitalizationType = .None
+    address.clearButtonMode = .Never
     address.tag = ADDRESSBAR_TAG
     address.delegate = self
 
@@ -129,7 +114,7 @@ class OBMainViewController: UIViewController, UIScrollViewDelegate, UITextFieldD
     var space:UIBarButtonItem          = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
     var backButton:UIBarButtonItem     = UIBarButtonItem(image: self.forwardBackButtonImage(BACKWARDBUTTON_TAG), style: UIBarButtonItemStyle.Plain, target: nil, action: nil) // TODO
     var forwardButton:UIBarButtonItem  = UIBarButtonItem(image: self.forwardBackButtonImage(FORWARDBUTTON_TAG), style: UIBarButtonItemStyle.Plain, target: nil, action: nil) // TODO
-    var toolButton:UIBarButtonItem     = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Action, target: nil, action: nil) // TODO
+    var toolButton:UIBarButtonItem     = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Action, target: self, action: "openToolMenu") // TODO
     var bookmarkButton:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Bookmarks, target: nil, action: nil) // TODO
     var tabsButton:UIBarButtonItem     = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Organize, target: nil, action: nil) // TODO
 
@@ -162,8 +147,9 @@ class OBMainViewController: UIViewController, UIScrollViewDelegate, UITextFieldD
       size, size,
       8,0,
       CGColorSpaceCreateDeviceRGB(),
-      CGBitmapInfo.AlphaInfoMask & CGBitmapInfo.fromMask(CGImageAlphaInfo.PremultipliedLast.toRaw())
+      CGBitmapInfo(rawValue: CGImageAlphaInfo.PremultipliedLast.rawValue)
     )
+
 
     var color:CGColorRef = UIColor.blackColor().CGColor
     //CGContextSetFillColor(context, CGColorGetComponents(color))
@@ -186,7 +172,7 @@ class OBMainViewController: UIViewController, UIScrollViewDelegate, UITextFieldD
     //CGContextFillPath(context)
 
     var theCGImage:CGImageRef = CGBitmapContextCreateImage(context)
-    return UIImage(CGImage:theCGImage, scale:scale, orientation:UIImageOrientation.Up)
+    return UIImage(CGImage:theCGImage, scale:scale, orientation:UIImageOrientation.Up)!
   }
 
 
@@ -208,7 +194,7 @@ class OBMainViewController: UIViewController, UIScrollViewDelegate, UITextFieldD
   }
   func textFieldDidBeginEditing(textField: UITextField) {
     if (textField.tag == ADDRESSBAR_TAG) {
-      var addressLabel:UILabel = self.navbar.viewWithTag(ADDRESSLABEL_TAG) as UILabel
+      let addressLabel:UILabel = self.navbar.viewWithTag(ADDRESSLABEL_TAG) as UILabel
       if ((!addressLabel.hidden) && (addressLabel.alpha == 1.0)) {
         UIView.animateWithDuration(
           0.1,
@@ -219,7 +205,7 @@ class OBMainViewController: UIViewController, UIScrollViewDelegate, UITextFieldD
         })
       }
 
-      var tab:OBTab = self.tabs.objectAtIndex(self.currentTab) as OBTab
+      let tab:OBTab = self.tabs[self.currentTab]
       textField.text = tab.URL.absoluteString
       textField.selectAll(nil)
     }
@@ -249,14 +235,26 @@ class OBMainViewController: UIViewController, UIScrollViewDelegate, UITextFieldD
   }
 
   func loadAddress(sender:AnyObject, event:UIEvent?) {
-    var address:UITextField = self.navbar.viewWithTag(ADDRESSBAR_TAG) as UITextField
-    var addressLabel:UILabel = self.navbar.viewWithTag(ADDRESSLABEL_TAG) as UILabel
-    var tab:OBTab = self.tabs.objectAtIndex(self.currentTab) as OBTab
+    let address:UITextField = self.navbar.viewWithTag(ADDRESSBAR_TAG) as UITextField
+    let addressLabel:UILabel = self.navbar.viewWithTag(ADDRESSLABEL_TAG) as UILabel
+    let tab:OBTab = self.tabs[self.currentTab]
 
-    tab.URL = NSURL.URLWithString(self.lastTypedAddress)
+    tab.URL = NSURL(string: self.lastTypedAddress)!
     tab.webView.loadRequest(NSURLRequest(URL:tab.URL))
     addressLabel.text = tab.URL.host
   }
+
+
+  // MARK: - Menu
+  func openToolMenu() {
+    let tab:OBTab = self.tabs[self.currentTab]
+    let activityViewController:UIActivityViewController = UIActivityViewController(activityItems: [tab.URL.absoluteString!], applicationActivities: nil)
+    self.presentViewController(activityViewController, animated: true, completion: nil)
+    if (activityViewController.respondsToSelector("popoverPresentationController")) {
+      activityViewController.popoverPresentationController?.sourceView = self.view
+    }
+  }
+
 
 
   // MARK: - Safari-like hiding navbar
@@ -273,16 +271,19 @@ class OBMainViewController: UIViewController, UIScrollViewDelegate, UITextFieldD
     var scrollHeight:CGFloat = scrollView.frame.size.height
     var scrollContentSizeHeight:CGFloat = scrollView.contentSize.height + scrollView.contentInset.bottom
 
-    var tab:OBTab = self.tabs.objectAtIndex(self.currentTab) as OBTab
+    let tab:OBTab = self.tabs[self.currentTab]
     if (scrollOffset <= -scrollView.contentInset.top) {
       // we've pulled down far enough, this is the normal expanded state
+      //NSLog("a: scrollOffset:%@ -- scrollView.contentInset.top:%@ -- scrollHeight:%@ -- scrollContentSizeHeight:%@", scrollOffset, scrollView.contentInset.top, scrollHeight, scrollContentSizeHeight)
       frame.origin.y = 0
       tab.webView.scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(NAVBAR_HEIGHT, 0, TOOLBAR_HEIGHT, 0)
     } else if ((scrollOffset + scrollHeight) >= scrollContentSizeHeight) {
       // opposite: hidden state
+      //NSLog("b: scrollOffset:%@ -- scrollView.contentInset.top:%@ -- scrollHeight:%@ -- scrollContentSizeHeight:%@", scrollOffset, scrollView.contentInset.top, scrollHeight, scrollContentSizeHeight)
       frame.origin.y = -size
       tab.webView.scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(NAVBAR_HEIGHT+frame.origin.y, 0, TOOLBAR_HEIGHT, 0)
     } else {
+      //NSLog("c: scrollOffset:%@ -- scrollView.contentInset.top:%@ -- scrollHeight:%@ -- scrollContentSizeHeight:%@", scrollOffset, scrollView.contentInset.top, scrollHeight, scrollContentSizeHeight)
       frame.origin.y = min(0, max(-size, frame.origin.y - scrollDiff))
       tab.webView.scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(NAVBAR_HEIGHT+frame.origin.y, 0, TOOLBAR_HEIGHT, 0)
     }
@@ -290,12 +291,15 @@ class OBMainViewController: UIViewController, UIScrollViewDelegate, UITextFieldD
     self.navbar.frame = frame
     self.updateBarButtonItems(1 - framePercentageHidden)
     self.previousScrollViewYOffset = scrollOffset
+
   }
   func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
     self.stoppedScrolling()
   }
   func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-    if (!decelerate) { self.stoppedScrolling() }
+    if (!decelerate) {
+      self.stoppedScrolling()
+    }
   }
   func stoppedScrolling() {
     var frame:CGRect = self.navbar.frame
