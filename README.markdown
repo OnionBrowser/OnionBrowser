@@ -149,9 +149,9 @@ For the newer Xcode 4.3+ installed via the App Store, the directory should be
 
     sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer
 
-### Building dependencies
+### Optional: PGP key verification for dependencies
 
-**Optional** PGP key verification. (Currently in testing.) The build scripts
+(Currently in testing.) The build scripts
 for OpenSSL, libevent, and tor, verify that the package downloaded is PGP
 signed by one of the users responsible for packaging the library. You'll
 need to have GnuPG installed and import their public keys to allow this to
@@ -172,6 +172,8 @@ work.
 If you don't care about PGP key verification, you'll need to run each of
 the scripts with the `--noverify` option or change `VERIFYGPG` to `false`
 in each of the `build-*.sh` scripts before continuing.)
+
+### Building dependencies
 
 `cd` to the root directory of this repository and then run these commands in
 the following order to build the dependencies. (This can take anywhere between
