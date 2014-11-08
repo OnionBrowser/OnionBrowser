@@ -96,7 +96,7 @@ echo "Using tor-${VERSION}.tar.gz"
 # up to you to set up `gpg` and add keys to your keychain
 if $VERIFYGPG; then
 	if [ ! -e "${SRCDIR}/tor-${VERSION}.tar.gz.asc" ]; then
-		curl -O https://www.torproject.org/dist/tor-${VERSION}.tar.gz.asc
+		curl -O https://dist.torproject.org/tor-${VERSION}.tar.gz.asc
 	fi
 	echo "Using tor-${VERSION}.tar.gz.asc"
 	if out=$(gpg --status-fd 1 --verify "tor-${VERSION}.tar.gz.asc" "tor-${VERSION}.tar.gz" 2>/dev/null) &&
