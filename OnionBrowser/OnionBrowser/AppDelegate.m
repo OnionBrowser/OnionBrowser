@@ -488,6 +488,10 @@
         [d setObject:[NSNumber numberWithInteger:DNT_HEADER_UNSET] forKey:@"dnt"];
         update = YES;
     }
+    if ([d objectForKey:@"tlsver"] == nil) {
+        [d setObject:[NSNumber numberWithInteger:X_TLSVER_TLS1] forKey:@"tlsver"];
+        update = YES;
+    }
     if ([d objectForKey:@"javascript"] == nil) { // for historical reasons, CSP setting is named "javascript"
         [d setObject:[NSNumber numberWithInteger:CONTENTPOLICY_BLOCK_CONNECT] forKey:@"javascript"];
         update = YES;

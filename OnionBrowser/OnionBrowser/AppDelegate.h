@@ -33,6 +33,10 @@
 #define X_DEVICE_IS_IPAD 1
 #define X_DEVICE_IS_SIM 2
 
+#define X_TLSVER_ANY 0
+#define X_TLSVER_TLS1 1
+#define X_TLSVER_TLS1_2_ONLY 2
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) TorController *tor;

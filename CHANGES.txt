@@ -17,6 +17,10 @@ Features subject to change.
 ===== 1.5.9 - Pending App Store Approval =====
 Sep 26 2014 - Submit Date
 
+* SSLv3 connections to websites are now disabled by default, to avoid the
+  POODLE attack. Option added to set the minimum required SSL/TLS version,
+  set to TLSv1.0 by default.
+
 * Tor updated to 0.2.5.10, the first stable release in the 0.2.5.X series.
   https://blog.torproject.org/blog/tor-02510-released-and-tor-023x-deprecated
   https://gitweb.torproject.org/tor.git?a=blob_plain;hb=release-0.2.5;f=ReleaseNotes
