@@ -14,8 +14,24 @@ Features subject to change.
   encryption done by the iOS operating system, improving protection
   against forensic tools.
 
-===== 1.5.8 - Pending App Store Approval =====
+===== 1.5.9 - Pending App Store Approval =====
 Sep 26 2014 - Submit Date
+
+* Tor updated to 0.2.5.10, the first stable release in the 0.2.5.X series.
+  https://blog.torproject.org/blog/tor-02510-released-and-tor-023x-deprecated
+  https://gitweb.torproject.org/tor.git?a=blob_plain;hb=release-0.2.5;f=ReleaseNotes
+
+* OpenSSL updated to 1.0.1j, fixing four vulnerabilities including the
+  POODLE attack.
+  https://www.openssl.org/news/secadv_20141015.txt
+
+
+CURRENT VERSION:
+
+===== 1.5.8 - In App Store =====
+Sep 26 2014 - Submit Date
+Oct 08 2014 - App Store Availability
+
 1.5.6 was submitted, but replaced before App Store release.
 1.5.7 version number was skipped due to an issue with iTunes Connect.
 
@@ -41,10 +57,9 @@ Sep 26 2014 - Submit Date
   https://gitweb.torproject.org/tor.git?a=blob_plain;hb=release-0.2.5;f=ReleaseNotes
 
 
+PREVIOUS VERSIONS:
 
-CURRENT VERSION:
-
-===== 1.5.5 - In App Store =====
+===== 1.5.5 =====
 Sep 13 2014 - Submit Date
 Sep 18 2014 - App Store Availability
 
@@ -55,8 +70,6 @@ Sep 18 2014 - App Store Availability
   enforce the fix for CVE-2014-1266 on the oldest supported devices. iOS
   6.X support will be dropped later this year.
 
-
-PREVIOUS VERSIONS:
 
 ===== 1.5.4 =====
 Aug 11 2014 - Submit Date
