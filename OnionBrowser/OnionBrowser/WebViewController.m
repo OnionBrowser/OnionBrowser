@@ -9,7 +9,7 @@
 #import "WebViewController.h"
 #import "AppDelegate.h"
 #import "BookmarkTableViewController.h"
-#import "SettingsViewController.h"
+#import "SettingsTableViewController.h"
 #import "Bookmark.h"
 #import "BridgeTableViewController.h"
 #import "NJKWebViewProgressView.h"
@@ -817,8 +817,11 @@ const char AlertViewIncomingUrl;
     }
 }
 -(void)openSettingsView {
-    SettingsViewController *settingsController = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:nil];
-    [self presentViewController:settingsController animated:YES completion:nil];
+    SettingsTableViewController *settingsController = [[SettingsTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    UINavigationController *settingsNavController = [[UINavigationController alloc]
+                                                     initWithRootViewController:settingsController];
+    
+    [self presentViewController:settingsNavController animated:YES completion:nil];
 }
 
 # pragma mark -

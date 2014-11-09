@@ -13,8 +13,6 @@
 		69156B6315FD54BC00BC560A /* Bridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 69156B6215FD54BC00BC560A /* Bridge.m */; };
 		69156B6615FD599100BC560A /* BridgeEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69156B6515FD599100BC560A /* BridgeEditViewController.m */; };
 		691958D61536BA67000423A4 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 691958D41536B8AC000423A4 /* Reachability.m */; };
-		6924C28C155262E2004BE7F9 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6924C28A155262E2004BE7F9 /* SettingsViewController.m */; };
-		6924C28D155262E2004BE7F9 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6924C28B155262E2004BE7F9 /* SettingsViewController.xib */; };
 		6924C29015526343004BE7F9 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6924C28F15526343004BE7F9 /* SettingsTableViewController.m */; };
 		6928942116F6741000C787B2 /* libcurve25519_donna.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6928942016F6741000C787B2 /* libcurve25519_donna.a */; };
 		692B338C15FAF2E500A23DD5 /* BookmarkEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 692B338B15FAF2E400A23DD5 /* BookmarkEditViewController.m */; };
@@ -92,9 +90,6 @@
 		69156B6515FD599100BC560A /* BridgeEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BridgeEditViewController.m; sourceTree = "<group>"; };
 		691958D31536B8AC000423A4 /* Reachability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		691958D41536B8AC000423A4 /* Reachability.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
-		6924C289155262E2004BE7F9 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
-		6924C28A155262E2004BE7F9 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
-		6924C28B155262E2004BE7F9 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		6924C28E15526343004BE7F9 /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
 		6924C28F15526343004BE7F9 /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
 		6928942016F6741000C787B2 /* libcurve25519_donna.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurve25519_donna.a; path = ../dependencies/lib/libcurve25519_donna.a; sourceTree = "<group>"; };
@@ -225,9 +220,6 @@
 			isa = PBXGroup;
 			children = (
 				696ECDE315FD4A6700F17494 /* Bridges */,
-				6924C289155262E2004BE7F9 /* SettingsViewController.h */,
-				6924C28A155262E2004BE7F9 /* SettingsViewController.m */,
-				6924C28B155262E2004BE7F9 /* SettingsViewController.xib */,
 				6924C28E15526343004BE7F9 /* SettingsTableViewController.h */,
 				6924C28F15526343004BE7F9 /* SettingsTableViewController.m */,
 			);
@@ -507,7 +499,6 @@
 				69855E071531576800720327 /* about.html in Resources */,
 				6962EAAD19D534DF00FDD0A7 /* Images.xcassets in Resources */,
 				695BF04718944B5500C27BC1 /* startup2.html in Resources */,
-				6924C28D155262E2004BE7F9 /* SettingsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -539,7 +530,6 @@
 				69F3C5FD14FC8739008274C3 /* CKHTTPConnection.m in Sources */,
 				692B86AF153CD4CB000806A9 /* NSData+Conversion.m in Sources */,
 				69E8A49D1981B59E00D84980 /* NSStringPunycodeAdditions.m in Sources */,
-				6924C28C155262E2004BE7F9 /* SettingsViewController.m in Sources */,
 				6924C29015526343004BE7F9 /* SettingsTableViewController.m in Sources */,
 				6940BD1F15F84C0C00FE74CB /* TorController.m in Sources */,
 				6963E61615FAB2EC00310E8D /* BookmarkTableViewController.m in Sources */,
