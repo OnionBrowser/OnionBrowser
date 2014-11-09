@@ -104,7 +104,7 @@
             url = [NSURL URLWithString: [NSString stringWithFormat:@"file:/%@/startup2.html",resourcePath]];
         } else if ([[[[self request] URL] absoluteString] rangeOfString:@"icon"].location != NSNotFound) {
             /* onionbrowser:icon */
-            url = [NSURL URLWithString: [NSString stringWithFormat:@"file:/%@/Icon@2x.png",resourcePath]];
+            url = [NSURL URLWithString: [NSString stringWithFormat:@"file:/%@/AppIcon57x57@2x.png",resourcePath]];
         } else if ([[[[self request] URL] absoluteString] rangeOfString:@"help"].location != NSNotFound) {
             /* onionbrowser:help */
             url = [NSURL URLWithString: [NSString stringWithFormat:@"file:/%@/help.html",resourcePath]];
