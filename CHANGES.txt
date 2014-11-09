@@ -17,6 +17,10 @@ Features subject to change.
 ===== 1.5.9 - Pending App Store Approval =====
 Sep 26 2014 - Submit Date
 
+* Fixed crash when allowing Onion Browser to bypass unverified SSL
+  certificates. Affected use of DuckDuckGo .onion site over SSL. Issue
+  reported by Alex Ristich.
+
 * SSLv3 connections to websites are now disabled by default, to avoid the
   POODLE attack. Option added to set the minimum required SSL/TLS version,
   set to TLSv1.0 by default.

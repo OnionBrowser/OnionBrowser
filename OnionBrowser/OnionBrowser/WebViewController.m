@@ -37,6 +37,8 @@ static const NSInteger kLoadingStatusTag = 1003;
 static const Boolean kForwardButton = YES;
 static const Boolean kBackwardButton = NO;
 
+static char SSLWarningKey;
+
 @interface WebViewController ()
 
 @end
@@ -522,6 +524,12 @@ const char AlertViewIncomingUrl;
         (error.code == -9807 || error.code == -9812)) {
         // Invalid certificate chain; valid cert chain, untrusted root
 
+        #ifdef DEBUG
+        NSLog(@"Certificate error: %@", error.userInfo);
+        #endif
+
+        NSURL *failingURL = [error.userInfo objectForKey:@"NSErrorFailingURLKey"];
+
         UIAlertView* alertView = [[UIAlertView alloc]
                                   initWithTitle:@"Cannot Verify Website Identity"
                                   message:@"Either the site's SSL certificate is self-signed or the certificate was signed by an untrusted authority.\n\nFor normal websites, it is generally unsafe to proceed.\n\nFor .onion websites (or sites using CACert or self-signed certificates), only proceed if you think you can trust this website's URL."
@@ -530,6 +538,9 @@ const char AlertViewIncomingUrl;
                                   otherButtonTitles:@"Continue",nil];
         alertView.delegate = self;
         alertView.tag = ALERTVIEW_SSL_WARNING;
+
+        objc_setAssociatedObject(alertView, &SSLWarningKey, failingURL, OBJC_ASSOCIATION_RETAIN);
+
         [alertView show];
 
     } else if ([error.domain isEqualToString:(NSString *)kCFErrorDomainCFNetwork] ||
@@ -565,7 +576,7 @@ const char AlertViewIncomingUrl;
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
 
         // Assumung URL in address bar is the one that caused this error.
-        NSURL *url = [NSURL URLWithString:_currentURL];
+        NSURL *url = objc_getAssociatedObject(alertView, &SSLWarningKey);
         NSString *hostname = url.host;
         [appDelegate.sslWhitelistedDomains addObject:hostname];
 
