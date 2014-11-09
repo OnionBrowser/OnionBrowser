@@ -522,6 +522,7 @@ const char AlertViewIncomingUrl;
 - (void)informError:(NSError *)error {
     if ([error.domain isEqualToString:@"NSOSStatusErrorDomain"] &&
         (error.code == -9807 || error.code == -9812)) {
+        /* INVALID CERT */
         // Invalid certificate chain; valid cert chain, untrusted root
 
         #ifdef DEBUG
@@ -529,7 +530,6 @@ const char AlertViewIncomingUrl;
         #endif
 
         NSURL *failingURL = [error.userInfo objectForKey:@"NSErrorFailingURLKey"];
-
         UIAlertView* alertView = [[UIAlertView alloc]
                                   initWithTitle:@"Cannot Verify Website Identity"
                                   message:@"Either the site's SSL certificate is self-signed or the certificate was signed by an untrusted authority.\n\nFor normal websites, it is generally unsafe to proceed.\n\nFor .onion websites (or sites using CACert or self-signed certificates), only proceed if you think you can trust this website's URL."
@@ -544,7 +544,32 @@ const char AlertViewIncomingUrl;
         [alertView show];
 
     } else if ([error.domain isEqualToString:(NSString *)kCFErrorDomainCFNetwork] ||
+               ([error.domain isEqualToString:@"NSOSStatusErrorDomain"] &&
+               (error.code == -9800 || error.code == -9801 || error.code == -9809 || error.code == -9818))) {
+        /* SSL/TLS ERROR */
+        // https://www.opensource.apple.com/source/Security/Security-55179.13/libsecurity_ssl/Security/SecureTransport.h
+
+        #ifdef DEBUG
+        NSLog(@"Crypto error: %@ --- %@", error.localizedDescription, error.userInfo);
+        #endif
+
+        UIAlertView* alertView = [[UIAlertView alloc]
+                                  initWithTitle:@"HTTPS Connection Failed"
+                                  message:[NSString stringWithFormat:@"A secure connection to the website could not be made.\n Your 'minimum SSL/TLS' setting might want stronger security than the website provides, or the website may be compromised. %@",
+                                error.localizedDescription]
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+        [alertView show];
+    } else if ([error.domain isEqualToString:(NSString *)kCFErrorDomainCFNetwork] ||
                [error.domain isEqualToString:@"NSOSStatusErrorDomain"]) {
+        /* UNKNOWN / GENERIC ERROR */
+
+        #ifdef DEBUG
+        NSLog(@"NSOSStatusErrorDomain: %@ --- %@", error.localizedDescription, error.userInfo);
+        #endif
+
+
         NSString* errorDescription;
         
         if (error.code == kCFSOCKS5ErrorBadState) {
