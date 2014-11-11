@@ -133,7 +133,10 @@ const char AlertViewIncomingUrl;
     NSString *urlProto = [navigationURL scheme];
     if ([urlProto isEqualToString:@"onionbrowser"]||[urlProto isEqualToString:@"onionbrowsers"]||[urlProto isEqualToString:@"http"]||[urlProto isEqualToString:@"https"]) {
         /***** One of our supported protocols *****/
-        
+
+        // Cancel any existing nav
+        [_myWebView stopLoading];
+
         // Remove the "connecting..." (initial tor load) overlay if it still exists.
         UIView *loadingStatus = [self.view viewWithTag:kLoadingStatusTag];
         if (loadingStatus != nil) {
@@ -146,6 +149,7 @@ const char AlertViewIncomingUrl;
         [req setHTTPShouldUsePipelining:YES];
         [_myWebView loadRequest:req];
 
+        _addressField.text = @"";
         _addressField.enabled = YES;
         _toolButton.enabled = YES;
         _stopRefreshButton.enabled = YES;
@@ -374,7 +378,7 @@ const char AlertViewIncomingUrl;
     _progressView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
     [_progressView setProgress:1.0f animated:NO];
     [navBar addSubview:_progressView];
-    [navBar bringSubviewToFront:_progressView];g
+    [navBar bringSubviewToFront:_progressView];
 
     [self.view addSubview:navBar];
     // (/navbar)
@@ -835,6 +839,7 @@ const char AlertViewIncomingUrl;
             // New Identity OR Return To Home
             ////////////////////////////////////////////////////////
             AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+            _addressField.text = @"";
             [self loadURL:[NSURL URLWithString:appDelegate.homepage]];
         } else if (buttonIndex == 4) {
             ////////////////////////////////////////////////////////
@@ -861,12 +866,16 @@ const char AlertViewIncomingUrl;
 # pragma mark Toolbar/navbar behavior
 
 - (void)goForward {
+    [_myWebView stopLoading];
+    _addressField.text = @"";
     [_myWebView goForward];
     [self updateTitle:_myWebView];
     [self updateAddress:[_myWebView request]];
     [self updateButtons];
 }
 - (void)goBack {
+    [_myWebView stopLoading];
+    _addressField.text = @"";
     [_myWebView goBack];
     [self updateTitle:_myWebView];
     [self updateAddress:[_myWebView request]];
