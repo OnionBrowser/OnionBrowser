@@ -533,13 +533,21 @@ const char AlertViewIncomingUrl;
 }
 
 - (void)informError:(NSError *)error {
+
+    // Skip NSURLErrorDomain:kCFURLErrorCancelled because that's just "Cancel"
+    // (user pressing stop button)
+    if ([error.domain isEqualToString:NSURLErrorDomain] && (error.code == kCFURLErrorCancelled)) {
+      return;
+    }
+
+
     if ([error.domain isEqualToString:@"NSOSStatusErrorDomain"] &&
         (error.code == -9807 || error.code == -9812)) {
         /* INVALID CERT */
         // Invalid certificate chain; valid cert chain, untrusted root
 
         #ifdef DEBUG
-        NSLog(@"Certificate error: %@", error.userInfo);
+        NSLog(@"Certificate error: %@, %li --- %@ --- %@", error.domain, (long)error.code, error.localizedDescription, error.userInfo);
         #endif
 
         NSURL *failingURL = [error.userInfo objectForKey:@"NSErrorFailingURLKey"];
@@ -556,56 +564,63 @@ const char AlertViewIncomingUrl;
 
         [alertView show];
 
-    } else if ([error.domain isEqualToString:(NSString *)kCFErrorDomainCFNetwork] ||
+    } else {
+      // ALL other error types are just notices (so no Cancel vs Continue stuff)
+      NSString* errorTitle;
+      NSString* errorDescription;
+
+      #ifdef DEBUG
+      NSLog(@"Displayed Error: %@, %li --- %@ --- %@", error.domain, (long)error.code, error.localizedDescription, error.userInfo);
+      #endif
+
+      if ([error.domain isEqualToString:(NSString *)kCFErrorDomainCFNetwork] ||
                ([error.domain isEqualToString:@"NSOSStatusErrorDomain"] &&
                (error.code == -9800 || error.code == -9801 || error.code == -9809 || error.code == -9818))) {
         /* SSL/TLS ERROR */
         // https://www.opensource.apple.com/source/Security/Security-55179.13/libsecurity_ssl/Security/SecureTransport.h
 
-        #ifdef DEBUG
-        NSLog(@"Crypto error: %@ --- %@", error.localizedDescription, error.userInfo);
-        #endif
-
-        UIAlertView* alertView = [[UIAlertView alloc]
-                                  initWithTitle:@"HTTPS Connection Failed"
-                                  message:[NSString stringWithFormat:@"A secure connection to the website could not be made.\n Your 'minimum SSL/TLS' setting might want stronger security than the website provides, or the website may be compromised. %@",
-                                error.localizedDescription]
-                                  delegate:nil
-                                  cancelButtonTitle:@"OK"
-                                  otherButtonTitles:nil];
-        [alertView show];
-    } else if ([error.domain isEqualToString:(NSString *)kCFErrorDomainCFNetwork] ||
-               [error.domain isEqualToString:@"NSOSStatusErrorDomain"]) {
-        /* UNKNOWN / GENERIC ERROR */
-
-        #ifdef DEBUG
-        NSLog(@"NSOSStatusErrorDomain: %@ --- %@", error.localizedDescription, error.userInfo);
-        #endif
-
-
-        NSString* errorDescription;
-        
-        if (error.code == kCFSOCKS5ErrorBadState) {
-            errorDescription = @"Could not connect to the server. Either the domain name is incorrect, the server is inaccessible, or the Tor circuit was broken.";
-        } else if (error.code == kCFHostErrorHostNotFound) {
-            errorDescription = @"The server could not be found";
-        } else {
-            errorDescription = [NSString stringWithFormat:@"An error occurred: %@",
+        errorTitle = @"HTTPS Conncetion Failed";
+        errorDescription = [NSString stringWithFormat:@"A secure connection to the website could not be made.\n Your 'minimum SSL/TLS' setting might want stronger security than the website provides, or the website may be compromised. %@",
                                 error.localizedDescription];
-        }
-        UIAlertView* alertView = [[UIAlertView alloc]
-                                  initWithTitle:@"Cannot Open Page"
-                                  message:errorDescription delegate:nil
-                                  cancelButtonTitle:@"OK"
-                                  otherButtonTitles:nil];
-        [alertView show];
+
+      } else if ([error.domain isEqualToString:NSURLErrorDomain]) {
+          /* HTTP ERRORS */
+          // https://www.opensource.apple.com/source/Security/Security-55179.13/libsecurity_ssl/Security/SecureTransport.h
+
+          if (error.code == kCFURLErrorHTTPTooManyRedirects) {
+              errorDescription = @"This website is stuck in a redirect loop. The web page you tried to access redirected you to another web page, which, in turn, is redirecting you (and so on).\n\nPlease contact the site operator to fix this problem.";
+          } else if ((error.code == kCFURLErrorCannotFindHost) || (error.code == kCFURLErrorDNSLookupFailed)) {
+              errorDescription = @"The website you tried to access could not be found.";
+          } else if (error.code == kCFURLErrorResourceUnavailable) {
+              errorDescription = @"The web page you tried to access is currently unavailable.";
+          }
+      } else if ([error.domain isEqualToString:(NSString *)kCFErrorDomainCFNetwork] ||
+                 [error.domain isEqualToString:@"NSOSStatusErrorDomain"]) {
+          if (error.code == kCFSOCKS5ErrorBadState) {
+              errorDescription = @"Could not connect to the server. Either the domain name is incorrect, the server is inaccessible, or the Tor circuit was broken.";
+          } else if (error.code == kCFHostErrorHostNotFound) {
+              errorDescription = @"The website you tried to access could not be found.";
+          }
+      }
+
+      // default
+      if (errorTitle == nil) {
+        errorTitle = @"Cannot Open Page";
+      }
+      if (errorDescription == nil) {
+        errorDescription = [NSString stringWithFormat:@"An error occurred: %@\n(Error \"%@: %li)\"",
+          error.localizedDescription, error.domain, (long)error.code];
+      }
+
+      UIAlertView* alertView = [[UIAlertView alloc]
+        initWithTitle:errorTitle
+        message:errorDescription
+        delegate:nil
+        cancelButtonTitle:@"OK"
+        otherButtonTitles:nil];
+      [alertView show];
+
     }
-    #ifdef DEBUG
-    else {
-        NSLog(@"[WebViewController] uncaught error: %@", [error localizedDescription]);
-        NSLog(@"\t -> %@", error.domain);
-    }
-    #endif
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
@@ -877,6 +892,7 @@ const char AlertViewIncomingUrl;
                               action:@selector(stopLoading)];
     } else {
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        [_progressView setProgress:1.0f animated:NO];
         _stopRefreshButton = nil;
         _stopRefreshButton = [[UIBarButtonItem alloc]
                               initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
