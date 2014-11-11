@@ -140,18 +140,23 @@ const char AlertViewIncomingUrl;
             [loadingStatus removeFromSuperview];
             
             // now add the "progress bar" to the view, too
+            _progressProxy = [[NJKWebViewProgress alloc] init];
+            _myWebView.delegate = _progressProxy;
+            _progressProxy.webViewProxyDelegate = self;
+            _progressProxy.progressDelegate = self;
+
             UINavigationBar *navBar = (UINavigationBar *)[self.view viewWithTag:kNavBarTag];
-            CGRect navBarFrame = navBar.frame;
-            CGFloat progressBarHeight = 2.5f;
-            CGRect barFrame = CGRectMake(0, navBarFrame.size.height - progressBarHeight, navBarFrame.size.width, progressBarHeight);
+            CGRect navBarBounds = navBar.bounds;
+            CGFloat progressBarHeight = 2.f;
+            CGRect barFrame = CGRectMake(0, navBarBounds.size.height - progressBarHeight, navBarBounds.size.width, progressBarHeight);
             _progressView = [[NJKWebViewProgressView alloc] initWithFrame:barFrame];
+            _progressView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+            NSLog(@"%u", _progressView.hidden);
             [navBar addSubview:_progressView];
+            [navBar bringSubviewToFront:_progressView];
         }
 
         // Build request and go.
-        _myWebView.delegate = _progressProxy;
-        _progressProxy.webViewProxyDelegate = self;
-        _progressProxy.progressDelegate = self;
         _myWebView.scalesPageToFit = YES;
         NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:navigationURL];
         [req setHTTPShouldUsePipelining:YES];
@@ -244,16 +249,11 @@ const char AlertViewIncomingUrl;
     webViewFrame.origin.x = 0;
     webViewFrame.size = size;
     
-    _progressProxy = [[NJKWebViewProgress alloc] init];
-
     _myWebView = [[UIWebView alloc] initWithFrame:webViewFrame];
     //_myWebView.backgroundColor = [UIColor whiteColor];
     _myWebView.scalesPageToFit = YES;
     _myWebView.contentScaleFactor = 3;
     _myWebView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
-    _myWebView.delegate = _progressProxy;
-    _progressProxy.webViewProxyDelegate = self;
-    _progressProxy.progressDelegate = self;
     [self.view addSubview: _myWebView];
     
     /********** Create Toolbars **********/
@@ -766,8 +766,6 @@ const char AlertViewIncomingUrl;
             newWebView.contentScaleFactor = 3;
             newWebView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
             newWebView.delegate = _progressProxy;
-            _progressProxy.webViewProxyDelegate = self;
-            _progressProxy.progressDelegate = self;
             [_myWebView removeFromSuperview];
             _myWebView = newWebView;
             [self.view addSubview: _myWebView];
@@ -840,6 +838,7 @@ const char AlertViewIncomingUrl;
     [self updateButtons];
 }
 - (void)stopLoading {
+    [_progressView setProgress:1.0f animated:NO];
     [_myWebView stopLoading];
     [self updateTitle:_myWebView];
     if (!_addressField.isEditing) {

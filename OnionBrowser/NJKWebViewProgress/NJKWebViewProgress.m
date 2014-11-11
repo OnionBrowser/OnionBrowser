@@ -7,11 +7,11 @@
 
 #import "NJKWebViewProgress.h"
 
-NSString *completeRPCURL = @"webviewprogressproxy:///complete";
+NSString *completeRPCURLPath = @"/njkwebviewprogressproxy/complete";
 
-static const float initialProgressValue = 0.1;
-static const float beforeInteractiveMaxProgressValue = 0.5;
-static const float afterInteractiveMaxProgressValue = 0.9;
+const float NJKInitialProgressValue = 0.1f;
+const float NJKInteractiveProgressValue = 0.5f;
+const float NJKFinalProgressValue = 0.9f;
 
 @implementation NJKWebViewProgress
 {
@@ -33,15 +33,15 @@ static const float afterInteractiveMaxProgressValue = 0.9;
 
 - (void)startProgress
 {
-    if (_progress < initialProgressValue) {
-        [self setProgress:initialProgressValue];
+    if (_progress < NJKInitialProgressValue) {
+        [self setProgress:NJKInitialProgressValue];
     }
 }
 
 - (void)incrementProgress
 {
     float progress = self.progress;
-    float maxProgress = _interactive ? afterInteractiveMaxProgressValue : beforeInteractiveMaxProgressValue;
+    float maxProgress = _interactive ? NJKFinalProgressValue : NJKInteractiveProgressValue;
     float remainPercent = (float)_loadingCount / (float)_maxLoadCount;
     float increment = (maxProgress - progress) * remainPercent;
     progress += increment;
@@ -80,7 +80,7 @@ static const float afterInteractiveMaxProgressValue = 0.9;
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-    if ([request.URL.absoluteString isEqualToString:completeRPCURL]) {
+    if ([request.URL.path isEqualToString:completeRPCURLPath]) {
         [self completeProgress];
         return NO;
     }
@@ -132,7 +132,7 @@ static const float afterInteractiveMaxProgressValue = 0.9;
     BOOL interactive = [readyState isEqualToString:@"interactive"];
     if (interactive) {
         _interactive = YES;
-        NSString *waitForCompleteJS = [NSString stringWithFormat:@"window.addEventListener('load',function() { var iframe = document.createElement('iframe'); iframe.style.display = 'none'; iframe.src = '%@'; document.body.appendChild(iframe);  }, false);", completeRPCURL];
+        NSString *waitForCompleteJS = [NSString stringWithFormat:@"window.addEventListener('load',function() { var iframe = document.createElement('iframe'); iframe.style.display = 'none'; iframe.src = '%@://%@%@'; document.body.appendChild(iframe);  }, false);", webView.request.mainDocumentURL.scheme, webView.request.mainDocumentURL.host, completeRPCURLPath];
         [webView stringByEvaluatingJavaScriptFromString:waitForCompleteJS];
     }
     
@@ -157,7 +157,7 @@ static const float afterInteractiveMaxProgressValue = 0.9;
     BOOL interactive = [readyState isEqualToString:@"interactive"];
     if (interactive) {
         _interactive = YES;
-        NSString *waitForCompleteJS = [NSString stringWithFormat:@"window.addEventListener('load',function() { var iframe = document.createElement('iframe'); iframe.style.display = 'none'; iframe.src = '%@'; document.body.appendChild(iframe);  }, false);", completeRPCURL];
+        NSString *waitForCompleteJS = [NSString stringWithFormat:@"window.addEventListener('load',function() { var iframe = document.createElement('iframe'); iframe.style.display = 'none'; iframe.src = '%@://%@%@'; document.body.appendChild(iframe);  }, false);", webView.request.mainDocumentURL.scheme, webView.request.mainDocumentURL.host, completeRPCURLPath];
         [webView stringByEvaluatingJavaScriptFromString:waitForCompleteJS];
     }
     
@@ -171,6 +171,17 @@ static const float afterInteractiveMaxProgressValue = 0.9;
 #pragma mark - 
 #pragma mark Method Forwarding
 // for future UIWebViewDelegate impl
+
+- (BOOL)respondsToSelector:(SEL)aSelector
+{
+    if ( [super respondsToSelector:aSelector] )
+        return YES;
+    
+    if ([self.webViewProxyDelegate respondsToSelector:aSelector])
+        return YES;
+    
+    return NO;
+}
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)selector
 {
