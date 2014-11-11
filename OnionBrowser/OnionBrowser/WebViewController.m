@@ -425,8 +425,8 @@ const char AlertViewIncomingUrl;
     [bookmark setOrder:i++];
 
     bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
-    [bookmark setTitle:@"ifconfig.me Identity Check"];
-    [bookmark setUrl:@"http://ifconfig.me/"];
+    [bookmark setTitle:@"IP Address Check"];
+    [bookmark setUrl:@"https://duckduckgo.com/lite/?q=what+is+my+ip"];
     [bookmark setOrder:i++];
 
     bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
@@ -446,13 +446,26 @@ const char AlertViewIncomingUrl;
 
     bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
     [bookmark setTitle:@"Freedom of the Press Foundation"];
-    [bookmark setUrl:@"https://pressfreedomfoundation.org/"];
+    [bookmark setUrl:@"https://freedom.press/"];
     [bookmark setOrder:i++];
 
     bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
     [bookmark setTitle:@"Tactical Technology Collective"];
     [bookmark setUrl:@"https://tacticaltech.org/"];
     [bookmark setOrder:i++];
+
+    bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
+    [bookmark setTitle:@"ProPublica.org (.onion)"];
+    [bookmark setUrl:@"http://propub3r6espa33w.onion/"];
+    [bookmark setOrder:i++];
+
+    /* Not yet. (Nov 10 2014) -- Onion site gets into redirect loop due to mobile User-Agent
+       and desktop User-Agent gets redirect loop to "invalid_request.php" on login.
+    bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
+    [bookmark setTitle:@"Facebook (.onion)"];
+    [bookmark setUrl:@"https://facebookcorewwwi.onion/"];
+    [bookmark setOrder:i++];
+    */
 
     NSError *error = nil;
     if (![context save:&error]) {
