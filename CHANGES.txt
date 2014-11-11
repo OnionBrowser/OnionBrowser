@@ -14,8 +14,32 @@ Features subject to change.
   encryption done by the iOS operating system, improving protection
   against forensic tools.
 
-===== 1.5.9 - Pending App Store Approval =====
+===== 1.5.10 - Pending App Store Approval =====
+Nov 11 2014 - Submit Date
+
+* Add padlock icon to denote whether the page was delivered entirely
+  over TLS or if there was some insecure content sent along with the HTTPS
+  page. (#42)
+
+* Fix crashing if a user entered anything other than an ip_address:port
+  as a bridge. Now notifies user that the choice was invalid before trying
+  to use it in Tor.
+
+* Fix display of the progress bar in iOS 8.
+
+* Attempt to fix issue where Forward/Back/"Open Home Page" buttons
+  would simply stop the browser and not load the desired page.
+
+* Streamlined error handling so that web pages that abruptly stop
+  should provide useful error messages or error codes to users, who
+  can then report the issue.
+
+
+CURRENT VERSION:
+
+===== 1.5.9 - In App Store =====
 Nov 09 2014 - Submit Date
+Nov 10 2014 - App Store Availability
 
 * Fixed crash when allowing Onion Browser to bypass unverified SSL
   certificates. Affected use of DuckDuckGo .onion site over SSL. Issue
@@ -36,9 +60,9 @@ Nov 09 2014 - Submit Date
 * Fixed a display issue on the settings page.
 
 
-CURRENT VERSION:
+PREVIOUS VERSIONS:
 
-===== 1.5.8 - In App Store =====
+===== 1.5.8 =====
 Sep 26 2014 - Submit Date
 Oct 08 2014 - App Store Availability
 
@@ -66,8 +90,6 @@ Oct 08 2014 - App Store Availability
   https://blog.torproject.org/blog/tor-0257-rc-out
   https://gitweb.torproject.org/tor.git?a=blob_plain;hb=release-0.2.5;f=ReleaseNotes
 
-
-PREVIOUS VERSIONS:
 
 ===== 1.5.5 =====
 Sep 13 2014 - Submit Date
