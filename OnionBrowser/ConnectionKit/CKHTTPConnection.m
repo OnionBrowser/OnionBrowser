@@ -372,7 +372,7 @@
     {
         if (([aHTTPHeaderField isEqualToString:@"User-Agent"])&& (spoofUserAgent != UA_SPOOF_NO)){
             #ifdef DEBUG
-                NSLog(@"Spoofing User-Agent");
+                //NSLog(@"Spoofing User-Agent");
             #endif
             CFHTTPMessageSetHeaderFieldValue(result,
                                              (__bridge CFStringRef)aHTTPHeaderField,
@@ -549,7 +549,7 @@
     
     NSURLProtectionSpace *protectionSpace = [[NSURLProtectionSpace alloc] initWithHost:[URL host]
                                                                                   port:([URL port] ? [[URL port] intValue] : 80)
-                                                                              protocol:[URL scheme]
+                                                                              protocol:[[URL scheme] lowercaseString]
                                                                                  realm:(__bridge NSString *)realm
                                                                   authenticationMethod:authenticationMethod];
     CFRelease(realm);

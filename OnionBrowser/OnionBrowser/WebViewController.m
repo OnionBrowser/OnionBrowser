@@ -33,6 +33,8 @@ static const NSInteger kNavBarTag = 1000;
 static const NSInteger kAddressFieldTag = 1001;
 static const NSInteger kAddressCancelButtonTag = 1002;
 static const NSInteger kLoadingStatusTag = 1003;
+static const NSInteger kTLSSecurePadlockTag = 1004;
+static const NSInteger kTLSInsecurePadlockTag = 1005;
 
 static const Boolean kForwardButton = YES;
 static const Boolean kBackwardButton = NO;
@@ -62,7 +64,8 @@ const char AlertViewIncomingUrl;
             pageTitleLabel = _pageTitleLabel,
             addressField = _addressField,
             currentURL = _currentURL,
-            torStatus = _torStatus;
+            torStatus = _torStatus,
+            tlsStatus = _tlsStatus;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -130,7 +133,7 @@ const char AlertViewIncomingUrl;
 
 
 -(void)loadURL: (NSURL *)navigationURL {
-    NSString *urlProto = [navigationURL scheme];
+    NSString *urlProto = [[navigationURL scheme] lowercaseString];
     if ([urlProto isEqualToString:@"onionbrowser"]||[urlProto isEqualToString:@"onionbrowsers"]||[urlProto isEqualToString:@"http"]||[urlProto isEqualToString:@"https"]) {
         /***** One of our supported protocols *****/
 
@@ -148,6 +151,12 @@ const char AlertViewIncomingUrl;
         NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:navigationURL];
         [req setHTTPShouldUsePipelining:YES];
         [_myWebView loadRequest:req];
+
+        if ([urlProto isEqualToString:@"https"]) {
+          [self updateTLSStatus:TLSSTATUS_YES];
+        } else {
+          [self updateTLSStatus:TLSSTATUS_NO];
+        }
 
         _addressField.text = @"";
         _addressField.enabled = YES;
@@ -215,6 +224,8 @@ const char AlertViewIncomingUrl;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    _tlsStatus = TLSSTATUS_NO;
 
     /********** Initialize UIWebView **********/
     // Initialize a new UIWebView (to clear the history of the previous one)
@@ -492,7 +503,7 @@ const char AlertViewIncomingUrl;
 # pragma mark WebView behavior
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    if ([[[request URL] scheme] isEqualToString:@"data"]) {
+    if ([[[[request URL] scheme] lowercaseString] isEqualToString:@"data"]) {
         NSString *url = [[request URL] absoluteString];
         NSRegularExpression *regex = [NSRegularExpression
                                       regularExpressionWithPattern:@"\\Adata:image/(?:jpe?g|gif|png)"
@@ -693,10 +704,12 @@ const char AlertViewIncomingUrl;
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     textField.autocorrectionType = UITextAutocorrectionTypeNo;
-    
+
     // Stop loading if we are loading a page
     [_myWebView stopLoading];
     
+    [self hideTLSStatus];
+
     // Move a "cancel" button into the nav bar a la Safari.
     UINavigationBar *navBar = (UINavigationBar *)[self.view viewWithTag:kNavBarTag];
         
@@ -744,21 +757,34 @@ const char AlertViewIncomingUrl;
 
     _addressField.clearButtonMode = UITextFieldViewModeNever;
     
+    NSString *reqSysVer = @"7.0";
+    NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
+    CGRect addressFrame;
+    CGRect labelFrame = CGRectMake(kMargin, kSpacer,
+                                   navBar.bounds.size.width - 2*kMargin, kLabelHeight);
+    if ([currSysVer compare:reqSysVer options:NSNumericSearch] == NSOrderedAscending) {
+        /* if iOS < 7.0 */
+        addressFrame = CGRectMake(kMargin, kSpacer*2.0 + kLabelHeight,
+                                     labelFrame.size.width, kAddressHeight);
+    } else {
+        /*  iOS 7.0+ */
+        addressFrame = CGRectMake(kMargin, kSpacer7*2.0 + kLabelHeight,
+                                         labelFrame.size.width, kAddressHeight);
+    }
+
     [UIView setAnimationsEnabled:YES];
     [UIView animateWithDuration:0.2
                           delay:0.0
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
-                         _addressField.frame = CGRectMake(kMargin,
-                                                          kSpacer*2.0 + kLabelHeight,
-                                                          navBar.bounds.size.width - 2*kMargin,
-                                                          kAddressHeight);
+                         _addressField.frame = addressFrame;
                          [cancelButton setFrame:CGRectMake(navBar.bounds.size.width,
                                                            kSpacer*2.0 + kLabelHeight,
                                                            75 - kMargin,
                                                            kAddressHeight)];
                      }
                      completion:^(BOOL finished) {
+                         [self updateTLSStatus:TLSSTATUS_PREVIOUS];
                          [cancelButton removeFromSuperview];
                      }]; 
 }
@@ -951,7 +977,7 @@ const char AlertViewIncomingUrl;
     NSURL* url = [request mainDocumentURL];
     NSString* absoluteString;
     
-    if ((url != nil) && [[url scheme] isEqualToString:@"file"]) {
+    if ((url != nil) && [[[url scheme] lowercaseString] isEqualToString:@"file"]) {
         // Faked local URLs
         if ([[url absoluteString] rangeOfString:@"startup.html"].location != NSNotFound) {
             absoluteString = @"onionbrowser:start";
@@ -987,6 +1013,73 @@ const char AlertViewIncomingUrl;
     _currentURL = [url absoluteString];
     [self loadURL:url];
 }
+
+- (void)updateTLSStatus:(Byte)newStatus {
+    if (newStatus != TLSSTATUS_PREVIOUS) {
+      _tlsStatus = newStatus;
+    }
+
+    UIView *uivSecure = [self.view viewWithTag:kTLSSecurePadlockTag];
+    if (uivSecure == nil) {
+      NSString *imgpth = [[NSBundle mainBundle] pathForResource:@"secure.png" ofType:nil];
+      uivSecure = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:imgpth]];
+      UINavigationBar *navBar = (UINavigationBar *)[self.view viewWithTag:kNavBarTag];
+
+      uivSecure.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
+      uivSecure.tag = kTLSSecurePadlockTag;
+      uivSecure.frame = CGRectMake(kMargin + (navBar.bounds.size.width - 2*kMargin - 22), kSpacer * 2.0 + kLabelHeight*1.5, 18, 18);
+      [navBar addSubview:uivSecure];
+    }
+    UIView *uivInsecure = [self.view viewWithTag:kTLSInsecurePadlockTag];
+    if (uivInsecure == nil) {
+      NSString *imgpth = [[NSBundle mainBundle] pathForResource:@"insecure.png" ofType:nil];
+      uivInsecure = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:imgpth]];
+      UINavigationBar *navBar = (UINavigationBar *)[self.view viewWithTag:kNavBarTag];
+
+      uivInsecure.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
+      uivInsecure.tag = kTLSInsecurePadlockTag;
+      uivInsecure.frame = CGRectMake(kMargin + (navBar.bounds.size.width - 2*kMargin - 22), kSpacer * 2.0 + kLabelHeight*1.5, 18, 18);
+      [navBar addSubview:uivInsecure];
+    }
+
+    if (_tlsStatus == TLSSTATUS_NO) {
+      [uivSecure setHidden:YES];
+      [uivInsecure setHidden:YES];
+    } else if (_tlsStatus == TLSSTATUS_YES) {
+      [uivSecure setHidden:NO];
+      [uivInsecure setHidden:YES];
+    } else {
+      [uivSecure setHidden:YES];
+      [uivInsecure setHidden:NO];
+    }
+}
+
+- (void)hideTLSStatus {
+    UIView *uivSecure = [self.view viewWithTag:kTLSSecurePadlockTag];
+    if (uivSecure == nil) {
+      NSString *imgpth = [[NSBundle mainBundle] pathForResource:@"secure.png" ofType:nil];
+      uivSecure = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:imgpth]];
+      UINavigationBar *navBar = (UINavigationBar *)[self.view viewWithTag:kNavBarTag];
+
+      uivSecure.tag = kTLSSecurePadlockTag;
+      uivSecure.frame = CGRectMake(kMargin + (navBar.bounds.size.width - 2*kMargin - 22), kSpacer * 2.0 + kLabelHeight*1.5, 18, 18);
+      [navBar addSubview:uivSecure];
+    }
+    UIView *uivInsecure = [self.view viewWithTag:kTLSInsecurePadlockTag];
+    if (uivInsecure == nil) {
+      NSString *imgpth = [[NSBundle mainBundle] pathForResource:@"insecure.png" ofType:nil];
+      uivInsecure = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:imgpth]];
+      UINavigationBar *navBar = (UINavigationBar *)[self.view viewWithTag:kNavBarTag];
+
+      uivInsecure.tag = kTLSInsecurePadlockTag;
+      uivInsecure.frame = CGRectMake(kMargin + (navBar.bounds.size.width - 2*kMargin - 22), kSpacer * 2.0 + kLabelHeight*1.5, 18, 18);
+      [navBar addSubview:uivInsecure];
+    }
+
+      [uivSecure setHidden:YES];
+      [uivInsecure setHidden:YES];
+}
+
 
 - (void) addCurrentAsBookmark {
     if ((_currentURL != nil) && ![_currentURL isEqualToString:@""]) {
