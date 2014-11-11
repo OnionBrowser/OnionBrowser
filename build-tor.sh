@@ -81,14 +81,13 @@ if [ "$2" == "--i386only" ]; then
 	ARCHS="i386"
 fi
 
-#if [[ ! -z "$TRAVIS" && $TRAVIS ]]; then
-#	# Travis CI highest available version
-#	echo "==================== TRAVIS CI ===================="
-#	SDKVERSION="7.0"
-#else
-#	SDKVERSION="$USERSDKVERSION"
-#fi
-SDKVERSION="$USERSDKVERSION"
+if [[ ! -z "$TRAVIS" && $TRAVIS ]]; then
+	# Travis CI highest available version
+	echo "==================== TRAVIS CI ===================="
+	SDKVERSION="8.0"
+else
+	SDKVERSION="$USERSDKVERSION"
+fi
 
 cd "`dirname \"$0\"`"
 REPOROOT=$(pwd)

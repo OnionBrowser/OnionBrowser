@@ -1,4 +1,5 @@
 language: objective-c
+xcode_sdk: 8.0
 install:
   - ./build-libssl.sh --noverify --i386only
   - ./build-libevent.sh --noverify --i386only
