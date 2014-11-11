@@ -535,10 +535,13 @@ const char AlertViewIncomingUrl;
 - (void)informError:(NSError *)error {
 
     // Skip NSURLErrorDomain:kCFURLErrorCancelled because that's just "Cancel"
-    // (user pressing stop button)
-    if ([error.domain isEqualToString:NSURLErrorDomain] && (error.code == kCFURLErrorCancelled)) {
+    // (user pressing stop button). Likewise with WebKitErrorFrameLoadInterrupted
+    if (([error.domain isEqualToString:NSURLErrorDomain] && (error.code == kCFURLErrorCancelled))||
+        (([error.domain isEqualToString:(NSString *)@"WebKitErrorDomain"]) && (error.code == 102))
+       ){
       return;
     }
+
 
 
     if ([error.domain isEqualToString:@"NSOSStatusErrorDomain"] &&
@@ -593,6 +596,10 @@ const char AlertViewIncomingUrl;
               errorDescription = @"The website you tried to access could not be found.";
           } else if (error.code == kCFURLErrorResourceUnavailable) {
               errorDescription = @"The web page you tried to access is currently unavailable.";
+          }
+      } else if ([error.domain isEqualToString:(NSString *)@"WebKitErrorDomain"]) {
+          if ((error.code == 100) || (error.code == 101)) {
+              errorDescription = @"Onion Browser cannot display this type of content.";
           }
       } else if ([error.domain isEqualToString:(NSString *)kCFErrorDomainCFNetwork] ||
                  [error.domain isEqualToString:@"NSOSStatusErrorDomain"]) {
