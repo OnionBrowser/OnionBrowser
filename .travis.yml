@@ -1,5 +1,9 @@
 language: objective-c
 xcode_sdk: 8.0
+before_install:
+- brew update
+- brew unlink xctool
+- brew install xctool
 install:
   - ./build-libssl.sh --noverify --i386only
   - ./build-libevent.sh --noverify --i386only
