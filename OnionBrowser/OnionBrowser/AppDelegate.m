@@ -376,14 +376,34 @@
     } else if ([mutableFetchResults count] > 0) {
         NSFileHandle *myHandle = [NSFileHandle fileHandleForWritingAtPath:destTorrc];
         [myHandle seekToEndOfFile];
-        [myHandle writeData:[@"UseBridges 1\n" dataUsingEncoding:NSUTF8StringEncoding]];
+
+        Boolean deletedBridges = NO;
+        NSMutableArray *tryBridges = [[NSMutableArray alloc] initWithCapacity:8];
+        NSRegularExpression *bridgeRegex = [NSRegularExpression
+                      regularExpressionWithPattern:@"^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?):[0-9]{1,4}$"
+                      options:NSRegularExpressionCaseInsensitive
+                      error:nil];
+
         for (Bridge *bridge in mutableFetchResults) {
-            if ([bridge.conf isEqualToString:@"Tap Here To Edit"]||[bridge.conf isEqualToString:@""]) {
-                // skip
-            } else {
-                [myHandle writeData:[[NSString stringWithFormat:@"bridge %@\n", bridge.conf]
-                                     dataUsingEncoding:NSUTF8StringEncoding]];
-            }
+          NSUInteger numberOfMatches = [bridgeRegex numberOfMatchesInString:bridge.conf
+            options:0
+            range:NSMakeRange(0, [bridge.conf length])
+          ];
+
+          if (numberOfMatches == 0) {
+            deletedBridges = YES;
+            [self.managedObjectContext deleteObject:bridge];
+          } else {
+            [tryBridges addObject:bridge];
+          }
+        }
+
+        if ([tryBridges count] > 0) {
+          [myHandle writeData:[@"UseBridges 1\n" dataUsingEncoding:NSUTF8StringEncoding]];
+          for (Bridge *bridge in tryBridges) {
+            [myHandle writeData:[[NSString stringWithFormat:@"bridge %@\n", bridge.conf]
+             dataUsingEncoding:NSUTF8StringEncoding]];
+          }
         }
     }
 
