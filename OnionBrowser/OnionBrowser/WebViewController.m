@@ -138,22 +138,6 @@ const char AlertViewIncomingUrl;
         UIView *loadingStatus = [self.view viewWithTag:kLoadingStatusTag];
         if (loadingStatus != nil) {
             [loadingStatus removeFromSuperview];
-            
-            // now add the "progress bar" to the view, too
-            _progressProxy = [[NJKWebViewProgress alloc] init];
-            _myWebView.delegate = _progressProxy;
-            _progressProxy.webViewProxyDelegate = self;
-            _progressProxy.progressDelegate = self;
-
-            UINavigationBar *navBar = (UINavigationBar *)[self.view viewWithTag:kNavBarTag];
-            CGRect navBarBounds = navBar.bounds;
-            CGFloat progressBarHeight = 2.f;
-            CGRect barFrame = CGRectMake(0, navBarBounds.size.height - progressBarHeight, navBarBounds.size.width, progressBarHeight);
-            _progressView = [[NJKWebViewProgressView alloc] initWithFrame:barFrame];
-            _progressView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
-            NSLog(@"%u", _progressView.hidden);
-            [navBar addSubview:_progressView];
-            [navBar bringSubviewToFront:_progressView];
         }
 
         // Build request and go.
@@ -376,6 +360,22 @@ const char AlertViewIncomingUrl;
     [navBar addSubview:address];
     _addressField = address;
     _addressField.enabled = NO;
+
+    // add the "progress bar" to the view
+    _progressProxy = [[NJKWebViewProgress alloc] init];
+    _myWebView.delegate = _progressProxy;
+    _progressProxy.webViewProxyDelegate = self;
+    _progressProxy.progressDelegate = self;
+
+    CGRect navBarBounds = navBar.bounds;
+    CGFloat progressBarHeight = 2.f;
+    CGRect barFrame = CGRectMake(0, navBarBounds.size.height - progressBarHeight, navBarBounds.size.width, progressBarHeight);
+    _progressView = [[NJKWebViewProgressView alloc] initWithFrame:barFrame];
+    _progressView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+    [_progressView setProgress:1.0f animated:NO];
+    [navBar addSubview:_progressView];
+    [navBar bringSubviewToFront:_progressView];g
+
     [self.view addSubview:navBar];
     // (/navbar)
     
