@@ -50,6 +50,14 @@ VERIFYGPG=true
 TOR_DIST_URL="https://dist.torproject.org/"
 #TOR_DIST_URL="https://tor.eff.org/dist/"
 #TOR_DIST_URL="https://www.unicorncloud.org/public/torproject.org/dist/"
+#
+# Alternatively, you may download the Tor source ("tor-0.2.5.10.tar.gz" and
+# "tor-0.2.5.10.tar.gz.asc") from somewhere else, and place them inside
+# the "build/src" directory. Be advised that this may be unsafe, unless
+# you already have the GPG keys imported -- see README for details.
+
+
+
 
 ###########################################################################
 #
