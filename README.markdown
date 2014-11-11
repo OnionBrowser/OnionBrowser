@@ -186,6 +186,12 @@ five and thirty minutes depending on your system speed.)
 This should create a `dependencies` directory in the root of the repository,
 containing the statically-compiled library files.
 
+If you are inside a country or network that blocks connections to torproject.org,
+you may have to use [a mirror](https://www.torproject.org/getinvolved/mirrors.html.en)
+([alt](https://tor.eff.org/getinvolved/mirrors.html.en)) to successfully build
+the Tor dependency. Please see the instructions in `build-tor.sh` if you require
+this.
+
 ### Build OnionBrowser.xcodeproj in Xcode
 
 Open `OnionBrowser/OnionBrowser.xcodeproj`. You should be

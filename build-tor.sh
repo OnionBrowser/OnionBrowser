@@ -28,6 +28,29 @@ USERSDKVERSION="8.1"
 MINIOSVERSION="6.1"
 VERIFYGPG=true
 
+# If you are in a country that blocks access to "torproject.org",
+# you will likely get an "Error opening archive" message when building.
+# If this happens, delete the tor-*.tar.gz files in the "build/src" directory.
+# Then:
+#   1. Using one of these URLs, pick a site with "http dist/" or
+#      "https dist/". Several are included, in case one is blocked:
+#
+#     * https://www.torproject.org/getinvolved/mirrors.html.en
+#     * https://tor.eff.org/getinvolved/mirrors.html.en
+#     * https://www.unicorncloud.org/public/torproject.org/getinvolved/mirrors.html.en
+#     * http://beautiful-mind.sky-ip.org/getinvolved/mirrors.html.en
+#
+#   2. Try accessing the "dist" URL you picked, in your browser. If it
+#      does not work, go back to step 1 and try another "http dist/" or
+#      "https dist/".
+#
+#   3. Now paste the dist URL here, making sure that the URL starts with
+#      "http://" or "https://" and ends with "/". (The slash at the end
+#      is important.)
+TOR_DIST_URL="https://dist.torproject.org/"
+#TOR_DIST_URL="https://tor.eff.org/dist/"
+#TOR_DIST_URL="https://www.unicorncloud.org/public/torproject.org/dist/"
+
 ###########################################################################
 #
 # Don't change anything under this line!
@@ -87,7 +110,7 @@ set -e
 if [ ! -e "${SRCDIR}/tor-${VERSION}.tar.gz" ]; then
 	echo "Downloading tor-${VERSION}.tar.gz"
 	#curl -O https://archive.torproject.org/tor-package-archive/tor-${VERSION}.tar.gz
-	curl -O https://dist.torproject.org/tor-${VERSION}.tar.gz
+	curl -O ${TOR_DIST_URL}tor-${VERSION}.tar.gz
 fi
 echo "Using tor-${VERSION}.tar.gz"
 
@@ -96,7 +119,7 @@ echo "Using tor-${VERSION}.tar.gz"
 # up to you to set up `gpg` and add keys to your keychain
 if $VERIFYGPG; then
 	if [ ! -e "${SRCDIR}/tor-${VERSION}.tar.gz.asc" ]; then
-		curl -O https://dist.torproject.org/tor-${VERSION}.tar.gz.asc
+		curl -O ${TOR_DIST_URL}tor-${VERSION}.tar.gz.asc
 	fi
 	echo "Using tor-${VERSION}.tar.gz.asc"
 	if out=$(gpg --status-fd 1 --verify "tor-${VERSION}.tar.gz.asc" "tor-${VERSION}.tar.gz" 2>/dev/null) &&
