@@ -14,8 +14,12 @@ Features subject to change.
   encryption done by the iOS operating system, improving protection
   against forensic tools.
 
-===== 1.5.10 - Pending App Store Approval =====
+
+CURRENT VERSION:
+
+===== 1.5.10 - In App Store =====
 Nov 11 2014 - Submit Date
+Nov 11 2014 - App Store Availability
 
 * Add padlock icon to denote whether the page was delivered entirely
   over TLS or if there was some insecure content sent along with the HTTPS
@@ -35,9 +39,9 @@ Nov 11 2014 - Submit Date
   can then report the issue.
 
 
-CURRENT VERSION:
+PREVIOUS VERSIONS:
 
-===== 1.5.9 - In App Store =====
+===== 1.5.9  =====
 Nov 09 2014 - Submit Date
 Nov 10 2014 - App Store Availability
 
@@ -59,8 +63,6 @@ Nov 10 2014 - App Store Availability
 
 * Fixed a display issue on the settings page.
 
-
-PREVIOUS VERSIONS:
 
 ===== 1.5.8 =====
 Sep 26 2014 - Submit Date
