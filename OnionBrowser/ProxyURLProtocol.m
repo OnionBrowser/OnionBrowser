@@ -71,8 +71,8 @@
 
 + (BOOL)canInitWithRequest:(NSURLRequest *)request {
     /*
-    if ( !([[[request URL] scheme] isEqualToString:@"file"] ||
-           [[[request URL] scheme] isEqualToString:@"data"]
+    if ( !([[[[request URL] scheme] lowercaseString] isEqualToString:@"file"] ||
+           [[[[request URL] scheme] lowercaseString] isEqualToString:@"data"]
            )
     ) {
         // Previously we checked if it matched "http" or "https". Apparently
@@ -94,7 +94,7 @@
 
 
 - (void)startLoading {
-    if ([[[[self request] URL] scheme] isEqualToString:@"onionbrowser"]) {
+    if ([[[[[self request] URL] scheme] lowercaseString] isEqualToString:@"onionbrowser"]) {
         NSURL *url;
         NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
         resourcePath = [resourcePath stringByReplacingOccurrencesOfString:@"/" withString:@"//"];
@@ -107,7 +107,7 @@
             url = [NSURL URLWithString: [NSString stringWithFormat:@"file:/%@/startup2.html",resourcePath]];
         } else if ([[[[self request] URL] absoluteString] rangeOfString:@"icon"].location != NSNotFound) {
             /* onionbrowser:icon */
-            url = [NSURL URLWithString: [NSString stringWithFormat:@"file:/%@/Icon@2x.png",resourcePath]];
+            url = [NSURL URLWithString: [NSString stringWithFormat:@"file:/%@/AppIcon57x57@2x.png",resourcePath]];
         } else if ([[[[self request] URL] absoluteString] rangeOfString:@"help"].location != NSNotFound) {
             /* onionbrowser:help */
             url = [NSURL URLWithString: [NSString stringWithFormat:@"file:/%@/help.html",resourcePath]];
@@ -179,7 +179,7 @@
 - (void)HTTPConnection:(CKHTTPConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response {
     isGzippedResponse = NO;
     #ifdef DEBUG
-        NSLog(@"[ProxyURLProtocol] Got response %d: content-type: %@", [response statusCode], [response MIMEType]);
+        NSLog(@"[ProxyURLProtocol] Got response %ld: content-type: %@", (long)[response statusCode], [response MIMEType]);
     #endif
     if( _data != nil ) {
         _data = nil;
@@ -188,6 +188,10 @@
     
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     NSMutableDictionary *settings = appDelegate.getSettings;
+
+    if ([[[[_request mainDocumentURL] scheme] lowercaseString] isEqualToString:@"https"] && ![[[[response URL] scheme] lowercaseString] isEqualToString:@"https"]) {
+      [appDelegate.appWebView updateTLSStatus:TLSSTATUS_INSECURE];
+    }
 
     /* If this incoming request is HTML or Javascript (based on content-type header),
      * flag it for processing later. (We'll prepend some JS to try to rewrite navigator.useragent,
@@ -344,13 +348,28 @@
     if ((response.statusCode == 301)||(response.statusCode == 302)||(response.statusCode == 307)) {
         NSString *newURL = [[response allHeaderFields] objectForKey:@"Location"];
         #ifdef DEBUG
-            NSLog(@"[ProxyURLProtocol] Got %d redirect from %@ to %@", response.statusCode, _request.URL, newURL);
+            NSLog(@"[ProxyURLProtocol] Got %ld redirect from %@ to %@", (long)response.statusCode, _request.URL, newURL);
         #endif
 
         NSMutableURLRequest *newRequest = [_request mutableCopy];
         [newRequest setHTTPShouldUsePipelining:YES];
         newRequest.URL = [NSURL URLWithString:newURL relativeToURL:_request.URL];
+        if ([[_request mainDocumentURL] isEqual:[_request URL]]) {
+          // Previous request *was* the maindocument request.
+          newRequest.mainDocumentURL = newRequest.URL;
+        }
+
         _request = newRequest;
+
+        if ([[_request mainDocumentURL] isEqual:[_request URL]]) {
+          // Main document changed, double-check secure content status
+          if ([[[[_request mainDocumentURL] scheme] lowercaseString] isEqualToString:@"https"]) {
+            [appDelegate.appWebView updateTLSStatus:TLSSTATUS_YES];
+          } else {
+            [appDelegate.appWebView updateTLSStatus:TLSSTATUS_NO];
+          }
+        }
+
         [[self client] URLProtocol:self wasRedirectedToRequest:_request redirectResponse:response];
     }
 
@@ -379,7 +398,7 @@
             NSLog(@"[ProxyURLProtocol] parsed content-type=%@, encoding=%@, content_encoding=%@", mime, encoding, content_encoding);
         #endif
         NSURLResponse *textResponse;
-        if ([[[response URL] scheme] isEqualToString:@"http"] || [[[response URL] scheme] isEqualToString:@"https"]) {
+        if ([[[[response URL] scheme] lowercaseString] isEqualToString:@"http"] || [[[[response URL] scheme] lowercaseString] isEqualToString:@"https"]) {
             textResponse = [[NSHTTPURLResponse alloc] initWithURL:response.URL statusCode:response.statusCode HTTPVersion:@"1.1" headerFields:[response allHeaderFields]];
         } else {
             textResponse = [[NSURLResponse alloc] initWithURL:response.URL MIMEType:mime expectedContentLength:response.expectedContentLength textEncodingName:encoding];

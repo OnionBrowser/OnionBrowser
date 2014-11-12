@@ -14,8 +14,60 @@ Features subject to change.
   encryption done by the iOS operating system, improving protection
   against forensic tools.
 
-===== 1.5.8 - Pending App Store Approval =====
+
+CURRENT VERSION:
+
+===== 1.5.10 - In App Store =====
+Nov 11 2014 - Submit Date
+Nov 11 2014 - App Store Availability
+
+* Add padlock icon to denote whether the page was delivered entirely
+  over TLS or if there was some insecure content sent along with the HTTPS
+  page. (#42)
+
+* Fix crashing if a user entered anything other than an ip_address:port
+  as a bridge. Now notifies user that the choice was invalid before trying
+  to use it in Tor.
+
+* Fix display of the progress bar in iOS 8.
+
+* Attempt to fix issue where Forward/Back/"Open Home Page" buttons
+  would simply stop the browser and not load the desired page.
+
+* Streamlined error handling so that web pages that abruptly stop
+  should provide useful error messages or error codes to users, who
+  can then report the issue.
+
+
+PREVIOUS VERSIONS:
+
+===== 1.5.9  =====
+Nov 09 2014 - Submit Date
+Nov 10 2014 - App Store Availability
+
+* Fixed crash when allowing Onion Browser to bypass unverified SSL
+  certificates. Affected use of DuckDuckGo .onion site over SSL. Issue
+  reported by Alex Ristich.
+
+* SSLv3 connections to websites are now disabled by default, to avoid the
+  POODLE attack. Option added to set the minimum required SSL/TLS version,
+  set to TLSv1.0 by default.
+
+* Tor updated to 0.2.5.10, the first stable release in the 0.2.5.X series.
+  https://blog.torproject.org/blog/tor-02510-released-and-tor-023x-deprecated
+  https://gitweb.torproject.org/tor.git?a=blob_plain;hb=release-0.2.5;f=ReleaseNotes
+
+* OpenSSL updated to 1.0.1j, fixing four vulnerabilities including the
+  POODLE attack.
+  https://www.openssl.org/news/secadv_20141015.txt
+
+* Fixed a display issue on the settings page.
+
+
+===== 1.5.8 =====
 Sep 26 2014 - Submit Date
+Oct 08 2014 - App Store Availability
+
 1.5.6 was submitted, but replaced before App Store release.
 1.5.7 version number was skipped due to an issue with iTunes Connect.
 
@@ -41,10 +93,7 @@ Sep 26 2014 - Submit Date
   https://gitweb.torproject.org/tor.git?a=blob_plain;hb=release-0.2.5;f=ReleaseNotes
 
 
-
-CURRENT VERSION:
-
-===== 1.5.5 - In App Store =====
+===== 1.5.5 =====
 Sep 13 2014 - Submit Date
 Sep 18 2014 - App Store Availability
 
@@ -55,8 +104,6 @@ Sep 18 2014 - App Store Availability
   enforce the fix for CVE-2014-1266 on the oldest supported devices. iOS
   6.X support will be dropped later this year.
 
-
-PREVIOUS VERSIONS:
 
 ===== 1.5.4 =====
 Aug 11 2014 - Submit Date

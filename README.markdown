@@ -13,6 +13,9 @@ and App Store links.
 ---
 
 * **OnionBrowser**: 2.0.X-dev — [See changelog][changelog]
+* **[Tor][tor]**: 0.2.5.10 (Oct 24 2014)
+* **[libevent][libevent]**: 2.0.21-stable (Nov 18 2012)
+* **[OpenSSL][openssl]**: 1.0.1j (Oct 15 2014)
 
 [official]: https://mike.tig.as/onionbrowser/
 [help]: https://mike.tig.as/onionbrowser/help/

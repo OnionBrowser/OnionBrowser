@@ -66,7 +66,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     if(section == 0)
-        return @"Bridge IP Address\nShort instructions.\n\n1. Visit the following link to get bridge configuration lines that you can copy-and-paste here.\nhttps://bridges.torproject.org/\n\n2. Copy-and-paste everything in the \"bridge line\" after the word \"bridge\". (Should look something like \"128.30.30.25:9001\".)\n\nFull instructions w/screenshots can be found at\nhttp://onionbrowser.com/help/";
+        return @"\n\nBridge IP Address\nShort instructions.\n\n1. Visit the following link to get bridge configuration lines that you can copy-and-paste here.\nhttps://bridges.torproject.org/\n\n2. Copy-and-paste everything in the \"bridge line\" after the word \"bridge\". You only want the IP address and port number, like \"128.30.30.25:9001\".\n\nFull instructions w/screenshots can be found at\nhttp://onionbrowser.com/help/";
     else
         return nil;
 }
@@ -153,14 +153,35 @@
     UITableViewCell *titleCell = [self.tableView cellForRowAtIndexPath:titlePath];
     UITextField *titleEditField = (UITextField*)[titleCell viewWithTag:100];
     titleEditField.autocorrectionType = UITextAutocorrectionTypeNo;
-    bridge.conf = titleEditField.text;
-    
+
+    NSRegularExpression *regex = [NSRegularExpression
+                          regularExpressionWithPattern:@"^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?):[0-9]{1,4}$"
+                          options:NSRegularExpressionCaseInsensitive
+                          error:nil];
+    NSUInteger numberOfMatches = [regex numberOfMatchesInString:titleEditField.text
+                                                          options:0
+                                                            range:NSMakeRange(0, [titleEditField.text length])];
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    NSError *error = nil;
-    if (![appDelegate.managedObjectContext save:&error]) {
-        NSLog(@"Error updating bridge: %@ %@", error, [error userInfo]);
+
+    if (numberOfMatches == 0) {
+      [appDelegate.managedObjectContext deleteObject:bridge];
+      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Bridge"
+        message:@"Sorry, the bridge you entered is not a valid {IP Address}:{Port} combination (like '1.2.3.4:9000'). Please try entering this bridge again."
+        delegate:self
+        cancelButtonTitle:@"OK"
+        otherButtonTitles:nil];
+      [alert show];
+
+      [self dismissViewControllerAnimated:YES completion:nil];
+    } else {
+
+      bridge.conf = titleEditField.text;
+      NSError *error = nil;
+      if (![appDelegate.managedObjectContext save:&error]) {
+          NSLog(@"Error updating bridge: %@ %@", error, [error userInfo]);
+      }
+      [appDelegate.tor hupTor];
+      [self dismissViewControllerAnimated:YES completion:nil];
     }
-    //[appDelegate.tor hupTor];
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end

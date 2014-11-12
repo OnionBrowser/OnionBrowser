@@ -15,16 +15,15 @@
 @end
 
 @implementation SettingsTableViewController
+@synthesize backButton;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
+    backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleDone target:self action:@selector(goBack)];
+    self.navigationItem.rightBarButtonItem = backButton;
+
 }
 
 - (void)viewDidUnload
@@ -38,10 +37,15 @@
     return (IS_IPAD) || (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
+- (void)goBack {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 6;
+    return 7;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -60,6 +64,9 @@
         // DNT header
         return 2;
     } else if (section == 5) {
+        // SSL
+        return 3;
+    } else if (section == 6) {
         // Bridges
         return 1;
     }
@@ -84,6 +91,8 @@
     } else if (section == 4)
         return @"Do Not Track (DNT) Header\nThis does not prevent sites from tracking you: this only tells sites that you prefer not being tracked for customzied advertising.";
     else if (section == 5)
+        return @"Minimum SSL/TLS protocol\nNewer TLS protocols are more secure, but might not be supported by all sites.";
+    else if (section == 6)
         return @"Tor Bridges\nSet up bridges if you have issues connecting to Tor. Remove all bridges to go back standard connection mode.\nSee http://onionbrowser.com/help/ for instructions.";
     else
         return nil;
@@ -225,6 +234,34 @@
             }
         }
     } else if (indexPath.section == 5) {
+        // SSL
+        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        NSMutableDictionary *settings = appDelegate.getSettings;
+        NSInteger dntHeader = [[settings valueForKey:@"tlsver"] integerValue];
+
+        if (indexPath.row == 0) {
+            cell.textLabel.text = @"SSL v3 (INSECURE)";
+            if (dntHeader == X_TLSVER_ANY) {
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            } else {
+                cell.accessoryType = UITableViewCellAccessoryNone;
+            }
+        } else if (indexPath.row == 1) {
+            cell.textLabel.text = @"TLS 1.0+";
+            if (dntHeader == X_TLSVER_TLS1) {
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            } else {
+                cell.accessoryType = UITableViewCellAccessoryNone;
+            }
+        } else if (indexPath.row == 2) {
+            cell.textLabel.text = @"TLS 1.2 only";
+            if (dntHeader == X_TLSVER_TLS1_2_ONLY) {
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            } else {
+                cell.accessoryType = UITableViewCellAccessoryNone;
+            }
+        }
+    } else if (indexPath.section == 6) {
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         
         NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -369,6 +406,21 @@
             [alert show];
         }
     } else if (indexPath.section == 5) {
+        // TLS
+        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        NSMutableDictionary *settings = appDelegate.getSettings;
+
+        if (indexPath.row == 0) {
+            [settings setObject:[NSNumber numberWithInteger:X_TLSVER_ANY] forKey:@"tlsver"];
+            [appDelegate saveSettings:settings];
+        } else if (indexPath.row == 1) {
+            [settings setObject:[NSNumber numberWithInteger:X_TLSVER_TLS1] forKey:@"tlsver"];
+            [appDelegate saveSettings:settings];
+        } else if (indexPath.row == 2) {
+            [settings setObject:[NSNumber numberWithInteger:X_TLSVER_TLS1_2_ONLY] forKey:@"tlsver"];
+            [appDelegate saveSettings:settings];
+        }
+    } else if (indexPath.section == 6) {
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
 
         BridgeTableViewController *bridgesVC = [[BridgeTableViewController alloc] initWithStyle:UITableViewStylePlain];

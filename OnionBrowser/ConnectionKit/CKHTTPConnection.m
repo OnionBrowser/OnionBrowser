@@ -132,27 +132,50 @@
     CFReadStreamSetProperty((__bridge CFReadStreamRef)(_HTTPStream), kCFStreamPropertyHTTPAttemptPersistentConnection, kCFBooleanTrue);
 
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSMutableDictionary *settings = appDelegate.getSettings;
 
-    // Ignore SSL errors for domains if user has explicitly said to "continue anyway"
-    // (for self-signed certs)
-    NSURL *URL = [_HTTPStream propertyForKey:(NSString *)kCFStreamPropertyHTTPFinalURL];
-    if ([URL.absoluteString rangeOfString:@"https://"].location == 0) {
-        Boolean ignoreSSLErrors = NO;
-        for (NSString *whitelistHost in appDelegate.sslWhitelistedDomains) {
-            if ([whitelistHost isEqualToString:URL.host]) {
-                #ifdef DEBUG
-                    NSLog(@"%@ in SSL host whitelist ignoring SSL certificate status", URL.host);
-                #endif
-                ignoreSSLErrors = YES;
-                break;
-            }
-        }
-        if (ignoreSSLErrors) {
-            CFMutableDictionaryRef sslOption = CFDictionaryCreateMutable(kCFAllocatorDefault, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
-            CFDictionarySetValue(sslOption, kCFStreamSSLValidatesCertificateChain, kCFBooleanFalse);
-            CFReadStreamSetProperty((__bridge CFReadStreamRef)_HTTPStream, kCFStreamPropertySSLSettings, sslOption);
-        }
-    }
+    // SSL/TLS hardening -- this is a TLS request
+    NSURL *url = (__bridge NSURL *)(CFHTTPMessageCopyRequestURL([self HTTPRequest]));
+    if([[[url scheme] lowercaseString] isEqualToString:@"https"]) {
+      CFMutableDictionaryRef sslOptions = CFDictionaryCreateMutable(kCFAllocatorDefault, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
+      Boolean setSSLOption = NO;
+
+      // Enforce TLS version
+      // https://developer.apple.com/library/ios/technotes/tn2287/_index.html#//apple_ref/doc/uid/DTS40011309
+      Byte tlsVersionOption = [[settings valueForKey:@"tlsver"] integerValue];
+      if (tlsVersionOption == X_TLSVER_TLS1) {
+        CFDictionarySetValue(sslOptions, kCFStreamSSLLevel, kCFStreamSocketSecurityLevelTLSv1);
+        setSSLOption = YES;
+      } else if (tlsVersionOption == X_TLSVER_TLS1_2_ONLY) {
+        CFDictionarySetValue(sslOptions, kCFStreamSSLLevel, CFSTR("kCFStreamSocketSecurityLevelTLSv1_2"));
+        setSSLOption = YES;
+      } else {
+        //CFDictionarySetValue(sslOptions, kCFStreamSSLLevel, kCFStreamSocketSecurityLevelNegotiatedSSL);
+      }
+
+      // Ignore SSL errors for domains if user has explicitly said to "continue anyway"
+      // (for self-signed certs)
+      NSURL *URL = [_HTTPStream propertyForKey:(NSString *)kCFStreamPropertyHTTPFinalURL];
+      if ([URL.absoluteString rangeOfString:@"https://"].location == 0) {
+          Boolean ignoreSSLErrors = NO;
+          for (NSString *whitelistHost in appDelegate.sslWhitelistedDomains) {
+              if ([whitelistHost isEqualToString:URL.host]) {
+                  #ifdef DEBUG
+                      NSLog(@"%@ in SSL host whitelist ignoring SSL certificate status", URL.host);
+                  #endif
+                  ignoreSSLErrors = YES;
+                  break;
+              }
+          }
+          if (ignoreSSLErrors) {
+              CFDictionarySetValue(sslOptions, kCFStreamSSLValidatesCertificateChain, kCFBooleanFalse);
+              setSSLOption = YES;
+          }
+      }
+      if (setSSLOption) {
+        CFReadStreamSetProperty((__bridge CFReadStreamRef)_HTTPStream, kCFStreamPropertySSLSettings, sslOptions);
+      }
+    } // {/TLS hardening}
 
     // Use tor proxy server
     /*
@@ -351,7 +374,7 @@
     {
         if (([aHTTPHeaderField isEqualToString:@"User-Agent"])&& (spoofUserAgent != UA_SPOOF_NO)){
             #ifdef DEBUG
-                NSLog(@"Spoofing User-Agent");
+                //NSLog(@"Spoofing User-Agent");
             #endif
             CFHTTPMessageSetHeaderFieldValue(result,
                                              (__bridge CFStringRef)aHTTPHeaderField,
@@ -528,7 +551,7 @@
     
     NSURLProtectionSpace *protectionSpace = [[NSURLProtectionSpace alloc] initWithHost:[URL host]
                                                                                   port:([URL port] ? [[URL port] intValue] : 80)
-                                                                              protocol:[URL scheme]
+                                                                              protocol:[[URL scheme] lowercaseString]
                                                                                  realm:(__bridge NSString *)realm
                                                                   authenticationMethod:authenticationMethod];
     CFRelease(realm);

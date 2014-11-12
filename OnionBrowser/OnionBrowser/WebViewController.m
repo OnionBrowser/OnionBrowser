@@ -9,7 +9,7 @@
 #import "WebViewController.h"
 #import "AppDelegate.h"
 #import "BookmarkTableViewController.h"
-#import "SettingsViewController.h"
+#import "SettingsTableViewController.h"
 #import "Bookmark.h"
 #import "BridgeTableViewController.h"
 #import "NJKWebViewProgressView.h"
@@ -33,9 +33,13 @@ static const NSInteger kNavBarTag = 1000;
 static const NSInteger kAddressFieldTag = 1001;
 static const NSInteger kAddressCancelButtonTag = 1002;
 static const NSInteger kLoadingStatusTag = 1003;
+static const NSInteger kTLSSecurePadlockTag = 1004;
+static const NSInteger kTLSInsecurePadlockTag = 1005;
 
 static const Boolean kForwardButton = YES;
 static const Boolean kBackwardButton = NO;
+
+static char SSLWarningKey;
 
 @interface WebViewController ()
 
@@ -60,7 +64,8 @@ const char AlertViewIncomingUrl;
             pageTitleLabel = _pageTitleLabel,
             addressField = _addressField,
             currentURL = _currentURL,
-            torStatus = _torStatus;
+            torStatus = _torStatus,
+            tlsStatus = _tlsStatus;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -128,33 +133,32 @@ const char AlertViewIncomingUrl;
 
 
 -(void)loadURL: (NSURL *)navigationURL {
-    NSString *urlProto = [navigationURL scheme];
+    NSString *urlProto = [[navigationURL scheme] lowercaseString];
     if ([urlProto isEqualToString:@"onionbrowser"]||[urlProto isEqualToString:@"onionbrowsers"]||[urlProto isEqualToString:@"http"]||[urlProto isEqualToString:@"https"]) {
         /***** One of our supported protocols *****/
-        
+
+        // Cancel any existing nav
+        [_myWebView stopLoading];
+
         // Remove the "connecting..." (initial tor load) overlay if it still exists.
         UIView *loadingStatus = [self.view viewWithTag:kLoadingStatusTag];
         if (loadingStatus != nil) {
             [loadingStatus removeFromSuperview];
-            
-            // now add the "progress bar" to the view, too
-            UINavigationBar *navBar = (UINavigationBar *)[self.view viewWithTag:kNavBarTag];
-            CGRect navBarFrame = navBar.frame;
-            CGFloat progressBarHeight = 2.5f;
-            CGRect barFrame = CGRectMake(0, navBarFrame.size.height - progressBarHeight, navBarFrame.size.width, progressBarHeight);
-            _progressView = [[NJKWebViewProgressView alloc] initWithFrame:barFrame];
-            [navBar addSubview:_progressView];
         }
 
         // Build request and go.
-        _myWebView.delegate = _progressProxy;
-        _progressProxy.webViewProxyDelegate = self;
-        _progressProxy.progressDelegate = self;
         _myWebView.scalesPageToFit = YES;
         NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:navigationURL];
         [req setHTTPShouldUsePipelining:YES];
         [_myWebView loadRequest:req];
 
+        if ([urlProto isEqualToString:@"https"]) {
+          [self updateTLSStatus:TLSSTATUS_YES];
+        } else {
+          [self updateTLSStatus:TLSSTATUS_NO];
+        }
+
+        _addressField.text = @"";
         _addressField.enabled = YES;
         _toolButton.enabled = YES;
         _stopRefreshButton.enabled = YES;
@@ -221,6 +225,8 @@ const char AlertViewIncomingUrl;
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    _tlsStatus = TLSSTATUS_NO;
+
     /********** Initialize UIWebView **********/
     // Initialize a new UIWebView (to clear the history of the previous one)
     CGSize size = [UIScreen mainScreen].bounds.size;
@@ -242,16 +248,11 @@ const char AlertViewIncomingUrl;
     webViewFrame.origin.x = 0;
     webViewFrame.size = size;
     
-    _progressProxy = [[NJKWebViewProgress alloc] init];
-
     _myWebView = [[UIWebView alloc] initWithFrame:webViewFrame];
     //_myWebView.backgroundColor = [UIColor whiteColor];
     _myWebView.scalesPageToFit = YES;
     _myWebView.contentScaleFactor = 3;
     _myWebView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
-    _myWebView.delegate = _progressProxy;
-    _progressProxy.webViewProxyDelegate = self;
-    _progressProxy.progressDelegate = self;
     [self.view addSubview: _myWebView];
     
     /********** Create Toolbars **********/
@@ -374,6 +375,22 @@ const char AlertViewIncomingUrl;
     [navBar addSubview:address];
     _addressField = address;
     _addressField.enabled = NO;
+
+    // add the "progress bar" to the view
+    _progressProxy = [[NJKWebViewProgress alloc] init];
+    _myWebView.delegate = _progressProxy;
+    _progressProxy.webViewProxyDelegate = self;
+    _progressProxy.progressDelegate = self;
+
+    CGRect navBarBounds = navBar.bounds;
+    CGFloat progressBarHeight = 2.f;
+    CGRect barFrame = CGRectMake(0, navBarBounds.size.height - progressBarHeight, navBarBounds.size.width, progressBarHeight);
+    _progressView = [[NJKWebViewProgressView alloc] initWithFrame:barFrame];
+    _progressView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+    [_progressView setProgress:1.0f animated:NO];
+    [navBar addSubview:_progressView];
+    [navBar bringSubviewToFront:_progressView];
+
     [self.view addSubview:navBar];
     // (/navbar)
     
@@ -433,8 +450,8 @@ const char AlertViewIncomingUrl;
     [bookmark setOrder:i++];
 
     bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
-    [bookmark setTitle:@"ifconfig.me Identity Check"];
-    [bookmark setUrl:@"http://ifconfig.me/"];
+    [bookmark setTitle:@"IP Address Check"];
+    [bookmark setUrl:@"https://duckduckgo.com/lite/?q=what+is+my+ip"];
     [bookmark setOrder:i++];
 
     bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
@@ -454,13 +471,26 @@ const char AlertViewIncomingUrl;
 
     bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
     [bookmark setTitle:@"Freedom of the Press Foundation"];
-    [bookmark setUrl:@"https://pressfreedomfoundation.org/"];
+    [bookmark setUrl:@"https://freedom.press/"];
     [bookmark setOrder:i++];
 
     bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
     [bookmark setTitle:@"Tactical Technology Collective"];
     [bookmark setUrl:@"https://tacticaltech.org/"];
     [bookmark setOrder:i++];
+
+    bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
+    [bookmark setTitle:@"ProPublica.org (.onion)"];
+    [bookmark setUrl:@"http://propub3r6espa33w.onion/"];
+    [bookmark setOrder:i++];
+
+    /* Not yet. (Nov 10 2014) -- Onion site gets into redirect loop due to mobile User-Agent
+       and desktop User-Agent gets redirect loop to "invalid_request.php" on login.
+    bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
+    [bookmark setTitle:@"Facebook (.onion)"];
+    [bookmark setUrl:@"https://facebookcorewwwi.onion/"];
+    [bookmark setOrder:i++];
+    */
 
     NSError *error = nil;
     if (![context save:&error]) {
@@ -483,7 +513,7 @@ const char AlertViewIncomingUrl;
 # pragma mark WebView behavior
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    if ([[[request URL] scheme] isEqualToString:@"data"]) {
+    if ([[[[request URL] scheme] lowercaseString] isEqualToString:@"data"]) {
         NSString *url = [[request URL] absoluteString];
         NSRegularExpression *regex = [NSRegularExpression
                                       regularExpressionWithPattern:@"\\Adata:image/(?:jpe?g|gif|png)"
@@ -528,10 +558,27 @@ const char AlertViewIncomingUrl;
 }
 
 - (void)informError:(NSError *)error {
+
+    // Skip NSURLErrorDomain:kCFURLErrorCancelled because that's just "Cancel"
+    // (user pressing stop button). Likewise with WebKitErrorFrameLoadInterrupted
+    if (([error.domain isEqualToString:NSURLErrorDomain] && (error.code == kCFURLErrorCancelled))||
+        (([error.domain isEqualToString:(NSString *)@"WebKitErrorDomain"]) && (error.code == 102))
+       ){
+      return;
+    }
+
+
+
     if ([error.domain isEqualToString:@"NSOSStatusErrorDomain"] &&
         (error.code == -9807 || error.code == -9812)) {
+        /* INVALID CERT */
         // Invalid certificate chain; valid cert chain, untrusted root
 
+        #ifdef DEBUG
+        NSLog(@"Certificate error: %@, %li --- %@ --- %@", error.domain, (long)error.code, error.localizedDescription, error.userInfo);
+        #endif
+
+        NSURL *failingURL = [error.userInfo objectForKey:@"NSErrorFailingURLKey"];
         UIAlertView* alertView = [[UIAlertView alloc]
                                   initWithTitle:@"Cannot Verify Website Identity"
                                   message:@"Either the site's SSL certificate is self-signed or the certificate was signed by an untrusted authority.\n\nFor normal websites, it is generally unsafe to proceed.\n\nFor .onion websites (or sites using CACert or self-signed certificates), only proceed if you think you can trust this website's URL."
@@ -540,33 +587,72 @@ const char AlertViewIncomingUrl;
                                   otherButtonTitles:@"Continue",nil];
         alertView.delegate = self;
         alertView.tag = ALERTVIEW_SSL_WARNING;
+
+        objc_setAssociatedObject(alertView, &SSLWarningKey, failingURL, OBJC_ASSOCIATION_RETAIN);
+
         [alertView show];
 
-    } else if ([error.domain isEqualToString:(NSString *)kCFErrorDomainCFNetwork] ||
-               [error.domain isEqualToString:@"NSOSStatusErrorDomain"]) {
-        NSString* errorDescription;
-        
-        if (error.code == kCFSOCKS5ErrorBadState) {
-            errorDescription = @"Could not connect to the server. Either the domain name is incorrect, the server is inaccessible, or the Tor circuit was broken.";
-        } else if (error.code == kCFHostErrorHostNotFound) {
-            errorDescription = @"The server could not be found";
-        } else {
-            errorDescription = [NSString stringWithFormat:@"An error occurred: %@",
+    } else {
+      // ALL other error types are just notices (so no Cancel vs Continue stuff)
+      NSString* errorTitle;
+      NSString* errorDescription;
+
+      #ifdef DEBUG
+      NSLog(@"Displayed Error: %@, %li --- %@ --- %@", error.domain, (long)error.code, error.localizedDescription, error.userInfo);
+      #endif
+
+      if ([error.domain isEqualToString:(NSString *)kCFErrorDomainCFNetwork] ||
+               ([error.domain isEqualToString:@"NSOSStatusErrorDomain"] &&
+               (error.code == -9800 || error.code == -9801 || error.code == -9809 || error.code == -9818))) {
+        /* SSL/TLS ERROR */
+        // https://www.opensource.apple.com/source/Security/Security-55179.13/libsecurity_ssl/Security/SecureTransport.h
+
+        errorTitle = @"HTTPS Conncetion Failed";
+        errorDescription = [NSString stringWithFormat:@"A secure connection to the website could not be made.\n Your 'minimum SSL/TLS' setting might want stronger security than the website provides, or the website may be compromised. %@",
                                 error.localizedDescription];
-        }
-        UIAlertView* alertView = [[UIAlertView alloc]
-                                  initWithTitle:@"Cannot Open Page"
-                                  message:errorDescription delegate:nil
-                                  cancelButtonTitle:@"OK"
-                                  otherButtonTitles:nil];
-        [alertView show];
+
+      } else if ([error.domain isEqualToString:NSURLErrorDomain]) {
+          /* HTTP ERRORS */
+          // https://www.opensource.apple.com/source/Security/Security-55179.13/libsecurity_ssl/Security/SecureTransport.h
+
+          if (error.code == kCFURLErrorHTTPTooManyRedirects) {
+              errorDescription = @"This website is stuck in a redirect loop. The web page you tried to access redirected you to another web page, which, in turn, is redirecting you (and so on).\n\nPlease contact the site operator to fix this problem.";
+          } else if ((error.code == kCFURLErrorCannotFindHost) || (error.code == kCFURLErrorDNSLookupFailed)) {
+              errorDescription = @"The website you tried to access could not be found.";
+          } else if (error.code == kCFURLErrorResourceUnavailable) {
+              errorDescription = @"The web page you tried to access is currently unavailable.";
+          }
+      } else if ([error.domain isEqualToString:(NSString *)@"WebKitErrorDomain"]) {
+          if ((error.code == 100) || (error.code == 101)) {
+              errorDescription = @"Onion Browser cannot display this type of content.";
+          }
+      } else if ([error.domain isEqualToString:(NSString *)kCFErrorDomainCFNetwork] ||
+                 [error.domain isEqualToString:@"NSOSStatusErrorDomain"]) {
+          if (error.code == kCFSOCKS5ErrorBadState) {
+              errorDescription = @"Could not connect to the server. Either the domain name is incorrect, the server is inaccessible, or the Tor circuit was broken.";
+          } else if (error.code == kCFHostErrorHostNotFound) {
+              errorDescription = @"The website you tried to access could not be found.";
+          }
+      }
+
+      // default
+      if (errorTitle == nil) {
+        errorTitle = @"Cannot Open Page";
+      }
+      if (errorDescription == nil) {
+        errorDescription = [NSString stringWithFormat:@"An error occurred: %@\n(Error \"%@: %li)\"",
+          error.localizedDescription, error.domain, (long)error.code];
+      }
+
+      UIAlertView* alertView = [[UIAlertView alloc]
+        initWithTitle:errorTitle
+        message:errorDescription
+        delegate:nil
+        cancelButtonTitle:@"OK"
+        otherButtonTitles:nil];
+      [alertView show];
+
     }
-    #ifdef DEBUG
-    else {
-        NSLog(@"[WebViewController] uncaught error: %@", [error localizedDescription]);
-        NSLog(@"\t -> %@", error.domain);
-    }
-    #endif
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
@@ -575,7 +661,7 @@ const char AlertViewIncomingUrl;
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
 
         // Assumung URL in address bar is the one that caused this error.
-        NSURL *url = [NSURL URLWithString:_currentURL];
+        NSURL *url = objc_getAssociatedObject(alertView, &SSLWarningKey);
         NSString *hostname = url.host;
         [appDelegate.sslWhitelistedDomains addObject:hostname];
 
@@ -628,10 +714,12 @@ const char AlertViewIncomingUrl;
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     textField.autocorrectionType = UITextAutocorrectionTypeNo;
-    
+
     // Stop loading if we are loading a page
     [_myWebView stopLoading];
     
+    [self hideTLSStatus];
+
     // Move a "cancel" button into the nav bar a la Safari.
     UINavigationBar *navBar = (UINavigationBar *)[self.view viewWithTag:kNavBarTag];
         
@@ -679,21 +767,34 @@ const char AlertViewIncomingUrl;
 
     _addressField.clearButtonMode = UITextFieldViewModeNever;
     
+    NSString *reqSysVer = @"7.0";
+    NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
+    CGRect addressFrame;
+    CGRect labelFrame = CGRectMake(kMargin, kSpacer,
+                                   navBar.bounds.size.width - 2*kMargin, kLabelHeight);
+    if ([currSysVer compare:reqSysVer options:NSNumericSearch] == NSOrderedAscending) {
+        /* if iOS < 7.0 */
+        addressFrame = CGRectMake(kMargin, kSpacer*2.0 + kLabelHeight,
+                                     labelFrame.size.width, kAddressHeight);
+    } else {
+        /*  iOS 7.0+ */
+        addressFrame = CGRectMake(kMargin, kSpacer7*2.0 + kLabelHeight,
+                                         labelFrame.size.width, kAddressHeight);
+    }
+
     [UIView setAnimationsEnabled:YES];
     [UIView animateWithDuration:0.2
                           delay:0.0
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
-                         _addressField.frame = CGRectMake(kMargin,
-                                                          kSpacer*2.0 + kLabelHeight,
-                                                          navBar.bounds.size.width - 2*kMargin,
-                                                          kAddressHeight);
+                         _addressField.frame = addressFrame;
                          [cancelButton setFrame:CGRectMake(navBar.bounds.size.width,
                                                            kSpacer*2.0 + kLabelHeight,
                                                            75 - kMargin,
                                                            kAddressHeight)];
                      }
                      completion:^(BOOL finished) {
+                         [self updateTLSStatus:TLSSTATUS_PREVIOUS];
                          [cancelButton removeFromSuperview];
                      }]; 
 }
@@ -741,8 +842,6 @@ const char AlertViewIncomingUrl;
             newWebView.contentScaleFactor = 3;
             newWebView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
             newWebView.delegate = _progressProxy;
-            _progressProxy.webViewProxyDelegate = self;
-            _progressProxy.progressDelegate = self;
             [_myWebView removeFromSuperview];
             _myWebView = newWebView;
             [self.view addSubview: _myWebView];
@@ -777,6 +876,7 @@ const char AlertViewIncomingUrl;
             // New Identity OR Return To Home
             ////////////////////////////////////////////////////////
             AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+            _addressField.text = @"";
             [self loadURL:[NSURL URLWithString:appDelegate.homepage]];
         } else if (buttonIndex == 4) {
             ////////////////////////////////////////////////////////
@@ -792,26 +892,34 @@ const char AlertViewIncomingUrl;
     }
 }
 -(void)openSettingsView {
-    SettingsViewController *settingsController = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:nil];
-    [self presentViewController:settingsController animated:YES completion:nil];
+    SettingsTableViewController *settingsController = [[SettingsTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    UINavigationController *settingsNavController = [[UINavigationController alloc]
+                                                     initWithRootViewController:settingsController];
+    
+    [self presentViewController:settingsNavController animated:YES completion:nil];
 }
 
 # pragma mark -
 # pragma mark Toolbar/navbar behavior
 
 - (void)goForward {
+    [_myWebView stopLoading];
+    _addressField.text = @"";
     [_myWebView goForward];
     [self updateTitle:_myWebView];
     [self updateAddress:[_myWebView request]];
     [self updateButtons];
 }
 - (void)goBack {
+    [_myWebView stopLoading];
+    _addressField.text = @"";
     [_myWebView goBack];
     [self updateTitle:_myWebView];
     [self updateAddress:[_myWebView request]];
     [self updateButtons];
 }
 - (void)stopLoading {
+    [_progressView setProgress:1.0f animated:NO];
     [_myWebView stopLoading];
     [self updateTitle:_myWebView];
     if (!_addressField.isEditing) {
@@ -837,6 +945,7 @@ const char AlertViewIncomingUrl;
                               action:@selector(stopLoading)];
     } else {
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        [_progressView setProgress:1.0f animated:NO];
         _stopRefreshButton = nil;
         _stopRefreshButton = [[UIBarButtonItem alloc]
                               initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
@@ -879,7 +988,7 @@ const char AlertViewIncomingUrl;
     NSURL* url = [request mainDocumentURL];
     NSString* absoluteString;
     
-    if ((url != nil) && [[url scheme] isEqualToString:@"file"]) {
+    if ((url != nil) && [[[url scheme] lowercaseString] isEqualToString:@"file"]) {
         // Faked local URLs
         if ([[url absoluteString] rangeOfString:@"startup.html"].location != NSNotFound) {
             absoluteString = @"onionbrowser:start";
@@ -915,6 +1024,73 @@ const char AlertViewIncomingUrl;
     _currentURL = [url absoluteString];
     [self loadURL:url];
 }
+
+- (void)updateTLSStatus:(Byte)newStatus {
+    if (newStatus != TLSSTATUS_PREVIOUS) {
+      _tlsStatus = newStatus;
+    }
+
+    UIView *uivSecure = [self.view viewWithTag:kTLSSecurePadlockTag];
+    if (uivSecure == nil) {
+      NSString *imgpth = [[NSBundle mainBundle] pathForResource:@"secure.png" ofType:nil];
+      uivSecure = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:imgpth]];
+      UINavigationBar *navBar = (UINavigationBar *)[self.view viewWithTag:kNavBarTag];
+
+      uivSecure.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
+      uivSecure.tag = kTLSSecurePadlockTag;
+      uivSecure.frame = CGRectMake(kMargin + (navBar.bounds.size.width - 2*kMargin - 22), kSpacer * 2.0 + kLabelHeight*1.5, 18, 18);
+      [navBar addSubview:uivSecure];
+    }
+    UIView *uivInsecure = [self.view viewWithTag:kTLSInsecurePadlockTag];
+    if (uivInsecure == nil) {
+      NSString *imgpth = [[NSBundle mainBundle] pathForResource:@"insecure.png" ofType:nil];
+      uivInsecure = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:imgpth]];
+      UINavigationBar *navBar = (UINavigationBar *)[self.view viewWithTag:kNavBarTag];
+
+      uivInsecure.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
+      uivInsecure.tag = kTLSInsecurePadlockTag;
+      uivInsecure.frame = CGRectMake(kMargin + (navBar.bounds.size.width - 2*kMargin - 22), kSpacer * 2.0 + kLabelHeight*1.5, 18, 18);
+      [navBar addSubview:uivInsecure];
+    }
+
+    if (_tlsStatus == TLSSTATUS_NO) {
+      [uivSecure setHidden:YES];
+      [uivInsecure setHidden:YES];
+    } else if (_tlsStatus == TLSSTATUS_YES) {
+      [uivSecure setHidden:NO];
+      [uivInsecure setHidden:YES];
+    } else {
+      [uivSecure setHidden:YES];
+      [uivInsecure setHidden:NO];
+    }
+}
+
+- (void)hideTLSStatus {
+    UIView *uivSecure = [self.view viewWithTag:kTLSSecurePadlockTag];
+    if (uivSecure == nil) {
+      NSString *imgpth = [[NSBundle mainBundle] pathForResource:@"secure.png" ofType:nil];
+      uivSecure = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:imgpth]];
+      UINavigationBar *navBar = (UINavigationBar *)[self.view viewWithTag:kNavBarTag];
+
+      uivSecure.tag = kTLSSecurePadlockTag;
+      uivSecure.frame = CGRectMake(kMargin + (navBar.bounds.size.width - 2*kMargin - 22), kSpacer * 2.0 + kLabelHeight*1.5, 18, 18);
+      [navBar addSubview:uivSecure];
+    }
+    UIView *uivInsecure = [self.view viewWithTag:kTLSInsecurePadlockTag];
+    if (uivInsecure == nil) {
+      NSString *imgpth = [[NSBundle mainBundle] pathForResource:@"insecure.png" ofType:nil];
+      uivInsecure = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:imgpth]];
+      UINavigationBar *navBar = (UINavigationBar *)[self.view viewWithTag:kNavBarTag];
+
+      uivInsecure.tag = kTLSInsecurePadlockTag;
+      uivInsecure.frame = CGRectMake(kMargin + (navBar.bounds.size.width - 2*kMargin - 22), kSpacer * 2.0 + kLabelHeight*1.5, 18, 18);
+      [navBar addSubview:uivInsecure];
+    }
+
+      [uivSecure setHidden:YES];
+      [uivInsecure setHidden:YES];
+}
+
 
 - (void) addCurrentAsBookmark {
     if ((_currentURL != nil) && ![_currentURL isEqualToString:@""]) {

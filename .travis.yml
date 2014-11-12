@@ -1,14 +1,18 @@
 language: objective-c
+xcode_sdk: 8.0
+before_install:
+- brew update
+- brew unlink xctool
+- brew install xctool
 install:
   - ./build-libssl.sh --noverify --i386only
   - ./build-libevent.sh --noverify --i386only
   - ./build-tor.sh --noverify --i386only
-  - ./OnionBrowser/icon/install.sh
 
 before_script:
   - gem install cocoapods
 script:
-  - xctool -project OnionBrowser/OnionBrowser.xcodeproj -scheme OnionBrowser -sdk iphonesimulator7.1 -arch i386 build test
+  - xctool -project OnionBrowser/OnionBrowser.xcodeproj -scheme OnionBrowser -sdk iphonesimulator8.0 -arch i386 build test
 
 notifications:
   email: false
