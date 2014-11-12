@@ -4,3 +4,5 @@
 
 
 #import "OnePasswordExtension.h"
+#import "NJKWebViewProgress.h"
+#import "NJKWebViewProgressView.h"
