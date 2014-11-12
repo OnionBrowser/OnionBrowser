@@ -585,10 +585,11 @@ const char AlertViewIncomingUrl;
         NSLog(@"Certificate error: %@, %li --- %@ --- %@", error.domain, (long)error.code, error.localizedDescription, error.userInfo);
         #endif
 
+        NSURL *url = [error.userInfo objectForKey:NSURLErrorFailingURLErrorKey];
         NSURL *failingURL = [error.userInfo objectForKey:@"NSErrorFailingURLKey"];
         UIAlertView* alertView = [[UIAlertView alloc]
                                   initWithTitle:@"Cannot Verify Website Identity"
-                                  message:@"Either the site's SSL certificate is self-signed or the certificate was signed by an untrusted authority.\n\nFor normal websites, it is generally unsafe to proceed.\n\nFor .onion websites (or sites using CACert or self-signed certificates), only proceed if you think you can trust this website's URL."
+                                  message:[NSString stringWithFormat:@"Either the SSL certificate for '%@' is self-signed or the certificate was signed by an untrusted authority.\n\nFor normal websites, it is generally unsafe to proceed.\n\nFor .onion websites (or sites using CACert or self-signed certificates), you may proceed if you think you can trust this website's URL.", url.host]
                                   delegate:nil
                                   cancelButtonTitle:@"Cancel"
                                   otherButtonTitles:@"Continue",nil];
@@ -614,9 +615,10 @@ const char AlertViewIncomingUrl;
         /* SSL/TLS ERROR */
         // https://www.opensource.apple.com/source/Security/Security-55179.13/libsecurity_ssl/Security/SecureTransport.h
 
-        errorTitle = @"HTTPS Conncetion Failed";
-        errorDescription = [NSString stringWithFormat:@"A secure connection to the website could not be made.\n Your 'minimum SSL/TLS' setting might want stronger security than the website provides, or the website may be compromised. %@",
-                                error.localizedDescription];
+        NSURL *url = [error.userInfo objectForKey:NSURLErrorFailingURLErrorKey];
+        errorTitle = @"HTTPS Connection Failed";
+        errorDescription = [NSString stringWithFormat:@"A secure connection to '%@' could not be made.\n Your 'minimum SSL/TLS' setting might want stronger security than the website provides or the website may be compromised.\n\nFull error: '%@'",
+                                url.host, error.localizedDescription];
 
       } else if ([error.domain isEqualToString:NSURLErrorDomain]) {
           /* HTTP ERRORS */
