@@ -2,6 +2,8 @@
 
 **Warning — In-Development Branch:** This *2.0.X-dev* branch is a work-in-progress rewrite of a vast majority of Onion Browser's code. **Tor has been disabled in this branch** and many features will probably not work. You should only browse this branch if you know what you're doing.
 
+Master: [![Build Status](https://travis-ci.org/OnionBrowser/iOS-OnionBrowser.svg?branch=master)](https://travis-ci.org/OnionBrowser/iOS-OnionBrowser)  
+2.0.X: [![Build Status](https://travis-ci.org/OnionBrowser/iOS-OnionBrowser.svg?branch=2.0.X-dev)](https://travis-ci.org/OnionBrowser/iOS-OnionBrowser)  
 [Official Site][official] | [Support][help] | [Changelog][changelog]  
 &copy; 2012-2014 [Mike Tigas][miketigas] ([@mtigas](https://twitter.com/mtigas))  
 [MIT License][license]
