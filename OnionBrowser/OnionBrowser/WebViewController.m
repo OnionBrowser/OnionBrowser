@@ -19,6 +19,7 @@
 #define ALERTVIEW_SSL_WARNING 1
 #define ALERTVIEW_EXTERN_PROTO 2
 #define ALERTVIEW_INCOMING_URL 3
+#define ALERTVIEW_TORFAIL 4
 
 static const CGFloat kNavBarHeight = 52.0f;
 static const CGFloat kToolBarHeight = 44.0f;
@@ -558,8 +559,24 @@ const char AlertViewIncomingUrl;
     }
 
 
+    if ([error.domain isEqualToString:NSPOSIXErrorDomain] && (error.code == 61)) {
+        /* Tor died */
 
-    if ([error.domain isEqualToString:@"NSOSStatusErrorDomain"] &&
+        #ifdef DEBUG
+        NSLog(@"Tor socket failure: %@, %li --- %@ --- %@", error.domain, (long)error.code, error.localizedDescription, error.userInfo);
+        #endif
+
+        UIAlertView* alertView = [[UIAlertView alloc]
+                                  initWithTitle:@"Tor connection failure"
+                                  message:@"Onion Browser lost connection to the Tor anonymity network and is unable to reconnect. This may occur if Onion Browser went to the background or if device went to sleep while Onion Browser was active.\n\nPlease quit the app and try again. If you need to bookmark the current page or save information from the current page, you may press 'Cancel' to remain in the app without network capability."
+                                  delegate:nil
+                                  cancelButtonTitle:@"Cancel"
+                                  otherButtonTitles:@"Quit App",nil];
+        alertView.delegate = self;
+        alertView.tag = ALERTVIEW_TORFAIL;
+
+        [alertView show];
+    } else if ([error.domain isEqualToString:@"NSOSStatusErrorDomain"] &&
         (error.code == -9807 || error.code == -9812)) {
         /* INVALID CERT */
         // Invalid certificate chain; valid cert chain, untrusted root
@@ -646,6 +663,14 @@ const char AlertViewIncomingUrl;
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if ((alertView.tag == ALERTVIEW_TORFAIL) && (buttonIndex == 1)) {
+        // Tor failed, user says we can quit app.
+        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        [appDelegate wipeAppData];
+        exit(0);
+    }
+
+
     if ((alertView.tag == ALERTVIEW_SSL_WARNING) && (buttonIndex == 1)) {
         // "Continue anyway" for SSL cert error
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
