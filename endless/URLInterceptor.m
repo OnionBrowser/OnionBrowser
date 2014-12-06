@@ -9,7 +9,6 @@
 
 #define REWRITTEN_KEY @"_rewritten"
 
-static NSHTTPCookieStorage *cookieStorage;
 static AppDelegate *appDelegate;
 
 + (BOOL)canInitWithRequest:(NSURLRequest *)request {
@@ -17,11 +16,6 @@ static AppDelegate *appDelegate;
 		/* already mucked with this request */
 		return NO;
 
-	if (cookieStorage == nil) {
-		cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-		[cookieStorage setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyOnlyFromMainDocumentDomain];
-	}
-	
 	if (appDelegate == nil)
 		appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 
@@ -122,7 +116,7 @@ static AppDelegate *appDelegate;
 #ifdef DEBUG
 		NSLog(@"setting %lu cookie(s) for %@ (via %@)", [cookies count], [[self.request URL] host], [[appDelegate curWebView] curURL]);
 #endif
-		[cookieStorage setCookies:cookies forURL:[self.request URL] mainDocumentURL:[[appDelegate curWebView] curURL]];
+		[[appDelegate cookieStorage] setCookies:cookies forURL:[self.request URL] mainDocumentURL:[[appDelegate curWebView] curURL]];
 	}
 	
 	[self.client URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageAllowed];

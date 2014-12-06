@@ -11,6 +11,9 @@
 	// Override point for customization after application launch.
 	[NSURLProtocol registerClass:[URLInterceptor class]];
 	
+	_cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+	[_cookieStorage setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyOnlyFromMainDocumentDomain];
+
 	return YES;
 }
 

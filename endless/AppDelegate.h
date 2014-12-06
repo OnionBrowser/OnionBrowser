@@ -12,6 +12,7 @@
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 @property (strong, nonatomic) WebViewController *curWebView;
+@property (strong, nonatomic) NSHTTPCookieStorage *cookieStorage;
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
