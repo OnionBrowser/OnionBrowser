@@ -99,9 +99,11 @@
 	NSLog(@"loading progress of %@ at %f", [self.curURL absoluteString], progress);
 #endif
 
-	[progressBar setProgress:progress animated:animated];
+	[self showShortURL];
 	[self updateSearchBarIcon];
 	
+	[progressBar setProgress:progress animated:animated];
+
 	if (progress >= 1.0) {
 		[progressBar setProgress:progress animated:NO];
 
@@ -120,15 +122,17 @@
 #ifdef DEBUG
 	NSLog(@"finished loading page/iframe %@", [[[_webView request] URL] absoluteString]);
 #endif
+	[self showShortURL];
+	[self updateSearchBarIcon];
 }
 
 
-- (void)startedLoadingPage:(NSURL *)page {
+- (void)startedLoadingPage:(NSURL *)url {
 #ifdef DEBUG
-	NSLog(@"started loading page %@", page);
+	NSLog(@"started loading URL %@", url);
 #endif
 	/* just in case it redirected? */
-	self.curURL = page;
+	self.curURL = url;
 
 	[self showShortURL];
 	
@@ -156,7 +160,6 @@
 	[sbtf setTextAlignment:NSTextAlignmentCenter];
 	
 	[self showShortURL];
-	
 	[self updateSearchBarIcon];
 }
 
