@@ -3,4 +3,6 @@
 
 @interface WebViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UIWebViewDelegate, NJKWebViewProgressDelegate>
 
+@property (strong, nonatomic) NSURL *curURL;
+
 @end

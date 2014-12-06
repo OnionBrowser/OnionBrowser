@@ -1,13 +1,16 @@
 #import "AppDelegate.h"
+#import "URLInterceptor.h"
+#import "WebViewController.h"
 
 @interface AppDelegate ()
-
 @end
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	// Override point for customization after application launch.
+	[NSURLProtocol registerClass:[URLInterceptor class]];
+	
 	return YES;
 }
 
