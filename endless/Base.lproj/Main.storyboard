@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Web View Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="WebViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search or enter address" showsBookmarkButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LKF-lp-gDc">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <color key="barTintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <textInputTraits key="textInputTraits" keyboardType="URL" keyboardAppearance="alert" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="UPY-4d-M2K"/>
+                                </connections>
+                            </searchBar>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TiH-kr-qaA">
+                                <rect key="frame" x="0.0" y="62" width="150" height="2"/>
+                                <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </progressView>
+                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PXy-Cs-KLD">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                <dataDetectorType key="dataDetectorTypes"/>
+                                <connections>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="xju-N8-yla"/>
+                                </connections>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="PXy-Cs-KLD" firstAttribute="top" secondItem="LKF-lp-gDc" secondAttribute="bottom" id="5kg-df-bsC"/>
+                            <constraint firstItem="LKF-lp-gDc" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="8JQ-q4-xLF"/>
+                            <constraint firstItem="PXy-Cs-KLD" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="SYV-JK-154"/>
+                            <constraint firstItem="TiH-kr-qaA" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="VAi-xj-0E0"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="TiH-kr-qaA" secondAttribute="trailing" constant="-16" id="ZUg-ex-H8x"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="LKF-lp-gDc" secondAttribute="trailing" constant="-16" id="iiI-fb-uJJ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="PXy-Cs-KLD" secondAttribute="trailing" constant="-16" id="sgP-f4-CR6"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="PXy-Cs-KLD" secondAttribute="bottom" id="slg-8b-fAw"/>
+                            <constraint firstItem="LKF-lp-gDc" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="zCI-bC-EZx"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="progressBar" destination="TiH-kr-qaA" id="NNk-zo-18t"/>
+                        <outlet property="searchBar" destination="LKF-lp-gDc" id="zjy-mE-oFz"/>
+                        <outlet property="webView" destination="PXy-Cs-KLD" id="6Sb-m0-B20"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>

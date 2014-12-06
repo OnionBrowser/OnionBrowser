@@ -1,0 +1,9 @@
+.DS_Store
+build/*
+*.pbxuser
+!default.pbxuser
+*.xcworkspace
+!default.xcworkspace
+xcuserdata
+profile
+Pods
