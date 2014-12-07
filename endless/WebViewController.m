@@ -10,9 +10,21 @@
 	IBOutlet UISearchBar *searchBar;
 	IBOutlet UIProgressView *progressBar;
 	IBOutlet UIWebView *webView;
+	IBOutlet UIToolbar *toolbar;
 	
+	IBOutlet UIBarButtonItem *backButton;
+	IBOutlet UIBarButtonItem *forwardButton;
+	IBOutlet UIBarButtonItem *shareButton;
+	IBOutlet UIBarButtonItem *bookmarksButton;
+	IBOutlet UIBarButtonItem *tabsButton;
+
 	NJKWebViewProgress *_progressProxy;
 	AppDelegate *appDelegate;
+	
+	float lastWebViewScrollOffset;
+	CGFloat toolbarHeight;
+	BOOL webViewScrollIsDecelerating;
+	BOOL webViewScrollIsDragging;
 }
 
 - (void)viewDidLoad {
@@ -21,10 +33,21 @@
 	appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 	[appDelegate setCurWebView:self];
 	
+	toolbarHeight = toolbar.bounds.size.height;
+	[webView.scrollView setContentInset:UIEdgeInsetsMake(0, 0, toolbarHeight, 0)];
+	[webView.scrollView setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0, toolbarHeight, 0)];
+	[webView.scrollView setDelegate:self];
+	
 	_progressProxy = [[NJKWebViewProgress alloc] init];
 	webView.delegate = _progressProxy;
 	_progressProxy.webViewProxyDelegate = self;
 	_progressProxy.progressDelegate = self;
+	
+	/* hook up toolbar buttons */
+	backButton.target = self;
+	backButton.action = @selector(goBack:);
+	forwardButton.target = self;
+	forwardButton.action = @selector(goForward:);
 	
 	/* swiping goes back and forward in current webview */
 	UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self  action:@selector(swipeRightAction:)];
@@ -37,7 +60,12 @@
 	swipeLeft.delegate = self;
 	[webView addGestureRecognizer:swipeLeft];
 	
-	[self navigateTo:[NSURL URLWithString:@"https://duckduckgo.com/"]];
+	[[self searchBarTextField] setClearButtonMode:UITextFieldViewModeWhileEditing];
+	[self updateSearchBarDetails];
+	
+	[self.view.window makeKeyAndVisible];
+	
+	[self navigateTo:[NSURL URLWithString:@"https://www.duckduckgo.com/"]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -63,12 +91,14 @@
 		
 		[[self searchBarTextField] setTextAlignment:NSTextAlignmentNatural];
 		[[self searchBarTextField] setTextColor:[UIColor darkTextColor]];
+		[searchBar setShowsCancelButton:YES animated:YES];
 		[searchBar setImage:UISearchBarIconSearch forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
 	}
 	else {
 		[self.searchBarTextField setTextAlignment:NSTextAlignmentCenter];
+		[searchBar setShowsCancelButton:NO animated:YES];
 
-		if ([[self.curURL scheme] isEqualToString:@"https"]) {
+		if (self.curURL != nil && [[self.curURL scheme] isEqualToString:@"https"]) {
 			evOrg = [[appDelegate evHosts] objectForKey:[self.curURL host]];
 
 			[searchBar setImage:[UIImage imageNamed:@"lock"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
@@ -84,9 +114,14 @@
 			[searchBar setText:evOrg];
 		}
 		else {
-			NSString *host = [self.curURL host];
-			if (host == nil)
-				host = [self.curURL absoluteString];
+			NSString *host;
+			if (self.curURL == nil)
+				host = @"";
+			else {
+				host = [self.curURL host];
+				if (host == nil)
+					host = [self.curURL absoluteString];
+			}
 			
 			NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^www\\d*\\." options:NSRegularExpressionCaseInsensitive error:nil];
 			NSString *hostNoWWW = [regex stringByReplacingMatchesInString:host options:0 range:NSMakeRange(0, [host length]) withTemplate:@""];
@@ -210,6 +245,17 @@
 	[self updateSearchBarDetails];
 }
 
+- (void)searchBarCancelButtonClicked:(UISearchBar *)_searchBar {
+#ifdef TRACE
+	NSLog(@"cancel button clicked");
+#endif
+	[searchBar resignFirstResponder];
+}
+
+- (void)searchBarResultsListButtonClicked:(UISearchBar *)searchBar {
+	NSLog(@"results list button clicked");
+}
+
 - (void)searchBarSearchButtonClicked:(UISearchBar *)_searchBar {
 	NSURL *enteredURL = [NSURL URLWithString:searchBar.text];
 	if (![enteredURL scheme] || [[enteredURL scheme] isEqualToString:@""])
@@ -224,12 +270,89 @@
 	[self navigateTo:enteredURL];
 }
 
+- (void) scrollViewDidScroll:(UIScrollView *)scrollView {
+	if (scrollView != webView.scrollView)
+		return;
+	
+	if (scrollView.contentOffset.y < 0)
+		lastWebViewScrollOffset = 0;
+	
+	if (!webViewScrollIsDragging) {
+		lastWebViewScrollOffset = scrollView.contentOffset.y;
+		return;
+	}
+
+	float y = toolbar.frame.origin.y;
+	
+	if (lastWebViewScrollOffset < scrollView.contentOffset.y) {
+		/* scrolling down the page, content moving up, always start hiding bar */
+		y += (scrollView.contentOffset.y - lastWebViewScrollOffset) * 0.75;
+	}
+	/* scrolling up, require a big jump to initiate, then fully show the bar */
+	else if ((lastWebViewScrollOffset - scrollView.contentOffset.y) >= 3) {
+		[UIView animateWithDuration:0.3
+				      delay:0.0
+				    options:UIViewAnimationOptionCurveEaseOut
+				 animations:^(void) {
+					 CGRect toolbarFrame = CGRectMake(0, self.view.bounds.size.height - toolbarHeight, self.view.bounds.size.width, toolbarHeight);
+					 toolbar.frame = toolbarFrame;
+				 }
+				 completion:^(BOOL finished) {
+					 CGRect toolbarFrame = CGRectMake(0, self.view.bounds.size.height - toolbarHeight, self.view.bounds.size.width, toolbarHeight);
+					 toolbar.frame = toolbarFrame;
+					 lastWebViewScrollOffset = scrollView.contentOffset.y;
+				 }];
+	}
+	
+	y = MAX(self.view.bounds.size.height - toolbarHeight, y);
+	y = MIN(self.view.bounds.size.height, y);
+
+	CGRect toolbarFrame = CGRectMake(0, y, self.view.bounds.size.width, toolbarHeight);
+	toolbar.frame = toolbarFrame;
+	
+	if (y >= self.view.bounds.size.height - toolbarHeight) {
+		[webView.scrollView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
+		[webView.scrollView setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+	} else {
+		[webView.scrollView setContentInset:UIEdgeInsetsMake(0, 0, toolbarHeight, 0)];
+		[webView.scrollView setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0, toolbarHeight, 0)];
+	}
+	
+	lastWebViewScrollOffset = scrollView.contentOffset.y;
+}
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+	if (scrollView == webView.scrollView)
+		webViewScrollIsDragging = YES;
+}
+
+- (void) scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+	if (scrollView == webView.scrollView)
+		webViewScrollIsDragging = NO;
+}
+
+- (void) scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
+	if (scrollView == webView.scrollView)
+		webViewScrollIsDecelerating = YES;
+}
+
+- (void) scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+	if (scrollView == webView.scrollView)
+		webViewScrollIsDecelerating = NO;
+}
 
 - (void)swipeRightAction:(id)_id {
+	[self goBack:nil];
+}
+- (void)swipeLeftAction:(id)_id {
+	[self goForward:nil];
+}
+
+- (void)goBack:(id)_id {
 	if ([webView canGoBack])
 		[webView goBack];
 }
-- (void)swipeLeftAction:(id)_id {
+
+- (void)goForward:(id)_id {
 	if ([webView canGoForward])
 		[webView goForward];
 }

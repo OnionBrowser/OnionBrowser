@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search or enter address" showsBookmarkButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LKF-lp-gDc">
+                            <searchBar opaque="NO" contentMode="redraw" searchBarStyle="minimal" placeholder="Search or enter address" translatesAutoresizingMaskIntoConstraints="NO" id="LKF-lp-gDc">
                                 <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                 <color key="barTintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <textInputTraits key="textInputTraits" keyboardType="URL" keyboardAppearance="alert" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
@@ -25,41 +25,74 @@
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="UPY-4d-M2K"/>
                                 </connections>
                             </searchBar>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TiH-kr-qaA">
-                                <rect key="frame" x="0.0" y="62" width="150" height="2"/>
-                                <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <progressView contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="TiH-kr-qaA">
+                                <rect key="frame" x="0.0" y="64" width="320" height="2"/>
                             </progressView>
                             <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PXy-Cs-KLD">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="65" width="320" height="503"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <dataDetectorType key="dataDetectorTypes"/>
                                 <connections>
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="xju-N8-yla"/>
                                 </connections>
                             </webView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bxQ-EF-h0c">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <items>
+                                    <barButtonItem image="back" style="plain" id="EfG-9B-Gez"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="ub5-GA-Wkr"/>
+                                    <barButtonItem image="forward" style="plain" id="N4X-8l-n5e"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="eUB-No-f1V"/>
+                                    <barButtonItem style="plain" systemItem="action" id="keA-rM-8YW"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Nr1-t0-Y8j"/>
+                                    <barButtonItem style="plain" systemItem="bookmarks" id="rmK-pa-uwX">
+                                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-4"/>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Kex-1H-tJL"/>
+                                    <barButtonItem style="plain" systemItem="organize" id="RXJ-Te-n3L"/>
+                                </items>
+                                <connections>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="N3I-uT-v9S"/>
+                                </connections>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="PXy-Cs-KLD" firstAttribute="top" secondItem="LKF-lp-gDc" secondAttribute="bottom" id="5kg-df-bsC"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bxQ-EF-h0c" secondAttribute="trailing" constant="-16" id="2eP-gB-nuc"/>
                             <constraint firstItem="LKF-lp-gDc" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="8JQ-q4-xLF"/>
+                            <constraint firstItem="PXy-Cs-KLD" firstAttribute="top" secondItem="TiH-kr-qaA" secondAttribute="bottom" constant="-1" id="9X9-Wm-GP6"/>
+                            <constraint firstItem="bxQ-EF-h0c" firstAttribute="bottom" secondItem="kh9-bI-dsS" secondAttribute="bottomMargin" id="Qqd-TL-LAi"/>
                             <constraint firstItem="PXy-Cs-KLD" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="SYV-JK-154"/>
                             <constraint firstItem="TiH-kr-qaA" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="VAi-xj-0E0"/>
+                            <constraint firstItem="TiH-kr-qaA" firstAttribute="top" secondItem="LKF-lp-gDc" secondAttribute="bottom" id="WqW-Ch-pus"/>
                             <constraint firstAttribute="trailingMargin" secondItem="TiH-kr-qaA" secondAttribute="trailing" constant="-16" id="ZUg-ex-H8x"/>
                             <constraint firstAttribute="trailingMargin" secondItem="LKF-lp-gDc" secondAttribute="trailing" constant="-16" id="iiI-fb-uJJ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="PXy-Cs-KLD" secondAttribute="trailing" constant="-16" id="sgP-f4-CR6"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="PXy-Cs-KLD" secondAttribute="bottom" id="slg-8b-fAw"/>
+                            <constraint firstItem="bxQ-EF-h0c" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="vqy-Ax-UHi"/>
+                            <constraint firstItem="PXy-Cs-KLD" firstAttribute="bottom" secondItem="kh9-bI-dsS" secondAttribute="bottomMargin" id="xKo-g6-2U7"/>
                             <constraint firstItem="LKF-lp-gDc" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="zCI-bC-EZx"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="progressBar" destination="TiH-kr-qaA" id="NNk-zo-18t"/>
-                        <outlet property="searchBar" destination="LKF-lp-gDc" id="zjy-mE-oFz"/>
+                        <outlet property="backButton" destination="EfG-9B-Gez" id="goY-Oc-Mq9"/>
+                        <outlet property="bookmarksButton" destination="rmK-pa-uwX" id="tKk-ed-dle"/>
+                        <outlet property="forwardButton" destination="N4X-8l-n5e" id="udN-yw-er4"/>
+                        <outlet property="progressBar" destination="TiH-kr-qaA" id="eDY-rX-Zyb"/>
+                        <outlet property="searchBar" destination="LKF-lp-gDc" id="12K-js-sz2"/>
+                        <outlet property="shareButton" destination="keA-rM-8YW" id="ZQh-09-C81"/>
+                        <outlet property="tabsButton" destination="RXJ-Te-n3L" id="KLe-5O-pnt"/>
+                        <outlet property="toolbar" destination="bxQ-EF-h0c" id="1my-r4-ECR"/>
                         <outlet property="webView" destination="PXy-Cs-KLD" id="6Sb-m0-B20"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="304" y="199"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="back" width="24" height="32"/>
+        <image name="forward" width="24" height="32"/>
+    </resources>
 </document>

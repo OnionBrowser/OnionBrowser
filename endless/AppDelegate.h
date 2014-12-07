@@ -3,6 +3,8 @@
 
 #import "WebViewController.h"
 
+#define TRACE
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
