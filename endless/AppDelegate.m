@@ -14,6 +14,8 @@
 	_cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
 	[_cookieStorage setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyOnlyFromMainDocumentDomain];
 
+	self.evHosts = [[NSMutableDictionary alloc] initWithCapacity:5];
+	
 	return YES;
 }
 

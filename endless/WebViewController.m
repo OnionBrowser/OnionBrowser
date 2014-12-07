@@ -12,21 +12,30 @@
 	IBOutlet UIWebView *webView;
 	
 	NJKWebViewProgress *_progressProxy;
+	AppDelegate *appDelegate;
 }
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
-	AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-	[app setCurWebView:self];
+	appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+	[appDelegate setCurWebView:self];
 	
 	_progressProxy = [[NJKWebViewProgress alloc] init];
 	webView.delegate = _progressProxy;
 	_progressProxy.webViewProxyDelegate = self;
 	_progressProxy.progressDelegate = self;
 	
-	UITextField *sbtf = [self searchBarTextField];
-	[sbtf setTextAlignment:NSTextAlignmentCenter];
+	/* swiping goes back and forward in current webview */
+	UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self  action:@selector(swipeRightAction:)];
+	swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
+	swipeRight.delegate = self;
+	[webView addGestureRecognizer:swipeRight];
+ 
+	UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeLeftAction:)];
+	swipeLeft.direction = UISwipeGestureRecognizerDirectionLeft;
+	swipeLeft.delegate = self;
+	[webView addGestureRecognizer:swipeLeft];
 	
 	[self navigateTo:[NSURL URLWithString:@"https://duckduckgo.com/"]];
 }
@@ -44,34 +53,51 @@
 	[self startedLoadingPage:URL];
 }
 
-- (void)updateSearchBarIcon {
+- (void)updateSearchBarDetails {
+	NSString *evOrg;
+	
+	/* TODO: cache curURL and only do anything here if it changed, these changes might be expensive */
+
 	if (searchBar.isFirstResponder) {
-		/* focused, just set default */
+		/* focused, don't muck with the URL while it's being edited */
+		
+		[[self searchBarTextField] setTextAlignment:NSTextAlignmentNatural];
+		[[self searchBarTextField] setTextColor:[UIColor darkTextColor]];
 		[searchBar setImage:UISearchBarIconSearch forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
-	} else {
+	}
+	else {
+		[self.searchBarTextField setTextAlignment:NSTextAlignmentCenter];
+
 		if ([[self.curURL scheme] isEqualToString:@"https"]) {
-			/* TODO: color this green when the ssl cert is extended validation */
+			evOrg = [[appDelegate evHosts] objectForKey:[self.curURL host]];
+
 			[searchBar setImage:[UIImage imageNamed:@"lock"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
 		}
 		else {
 			/* XXX: is this legal? */
 			[searchBar setImage:[UIImage new] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
 		}
+		
+		if (evOrg != nil && ![evOrg isEqualToString:@""] && [progressBar progress] == 0) {
+			[[self searchBarTextField] setTextColor:[UIColor colorWithRed:0 green:(183.0/255.0) blue:(82.0/255.0) alpha:1.0]];
+			
+			[searchBar setText:evOrg];
+		}
+		else {
+			NSString *host = [self.curURL host];
+			if (host == nil)
+				host = [self.curURL absoluteString];
+			
+			NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^www\\d*\\." options:NSRegularExpressionCaseInsensitive error:nil];
+			NSString *hostNoWWW = [regex stringByReplacingMatchesInString:host options:0 range:NSMakeRange(0, [host length]) withTemplate:@""];
+			
+			[[self searchBarTextField] setTextColor:[UIColor darkTextColor]];
+			[searchBar setText:hostNoWWW];
+		}
 	}
 }
 
-- (void)showShortURL {
-	NSString *host = [self.curURL host];
-	if (host == nil)
-		host = [self.curURL absoluteString];
-	
-	NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^www\\d*\\." options:NSRegularExpressionCaseInsensitive error:nil];
-	NSString *hostNoWWW = [regex stringByReplacingMatchesInString:host options:0 range:NSMakeRange(0, [host length]) withTemplate:@""];
-	
-	[searchBar setText:hostNoWWW];
-}
-
--(UITextField *)searchBarTextField {
+- (UITextField *)searchBarTextField {
 	for (UIView *subView in searchBar.subviews) {
 		for(id field in subView.subviews){
 			if ([field isKindOfClass:[UITextField class]]) {
@@ -95,21 +121,23 @@
 	float fadeAnimationDuration = 0.27f;
 	float fadeOutDelay = 1.0f;
 	
-#ifdef DEBUG
+#ifdef TRACE
 	NSLog(@"loading progress of %@ at %f", [self.curURL absoluteString], progress);
 #endif
 
-	[self showShortURL];
-	[self updateSearchBarIcon];
+	[self updateSearchBarDetails];
 	
 	[progressBar setProgress:progress animated:animated];
 
-	if (progress >= 1.0) {
+	if (progress >= NJKFinalProgressValue) {
 		[progressBar setProgress:progress animated:NO];
 
 		[UIView animateWithDuration:fadeAnimationDuration delay:fadeOutDelay options:UIViewAnimationOptionCurveEaseInOut animations:^{
 			progressBar.alpha = 0.0;
-		} completion:nil];
+		} completion:^(BOOL finished) {
+			progressBar.progress = 0;
+			[self updateSearchBarDetails];
+		}];
 	}
 	else {
 		[UIView animateWithDuration:(animated ? fadeAnimationDuration : 0.0) delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
@@ -119,48 +147,67 @@
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)_webView {
-#ifdef DEBUG
+#ifdef TRACE
 	NSLog(@"finished loading page/iframe %@", [[[_webView request] URL] absoluteString]);
 #endif
-	[self showShortURL];
-	[self updateSearchBarIcon];
+	[self updateSearchBarDetails];
+	
+#ifdef DEBUG
+	NSLog(@"cookie dump:");
+#endif
+	for (NSHTTPCookie *cookie in [[appDelegate cookieStorage] cookies]) {
+#ifdef DEBUG
+		NSLog(@"  %@: \"%@\"=\"%@\"", cookie.domain, cookie.name, cookie.value);
+#endif
+		[[appDelegate cookieStorage] deleteCookie:cookie];
+	}
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+	UIAlertView *m = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:self cancelButtonTitle: @"Ok" otherButtonTitles:nil];
+	[m show];
+	
+	[self webViewProgress:_progressProxy updateProgress:NJKFinalProgressValue];
+
+	/* TODO: where do we get the correct URL from now? */
+	
+	[self updateSearchBarDetails];
 }
 
 
 - (void)startedLoadingPage:(NSURL *)url {
-#ifdef DEBUG
+#ifdef TRACE
 	NSLog(@"started loading URL %@", url);
 #endif
 	/* just in case it redirected? */
 	self.curURL = url;
 
-	[self showShortURL];
+	[self updateSearchBarDetails];
 	
 	[progressBar setProgress:NJKInitialProgressValue animated:NO];
 }
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)_searchBar {
-#ifdef DEBUG
+#ifdef TRACE
 	NSLog(@"started editing");
 #endif
 	UITextField *sbtf = [self searchBarTextField];
 	[sbtf setTextAlignment:NSTextAlignmentNatural];
 	
 	[searchBar setText:[self.curURL absoluteString]];
-	[self updateSearchBarIcon];
+	[self updateSearchBarDetails];
 	
 	[sbtf performSelector:@selector(selectAll:) withObject:nil afterDelay:0.0];
 }
 
 - (void)searchBarTextDidEndEditing:(UISearchBar *)_searchBar {
-#ifdef DEBUG
+#ifdef TRACE
 	NSLog(@"ended editing with \"%@\"", [_searchBar text]);
 #endif
 	UITextField *sbtf = [self searchBarTextField];
 	[sbtf setTextAlignment:NSTextAlignmentCenter];
 	
-	[self showShortURL];
-	[self updateSearchBarIcon];
+	[self updateSearchBarDetails];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)_searchBar {
@@ -168,13 +215,23 @@
 	if (![enteredURL scheme] || [[enteredURL scheme] isEqualToString:@""])
 		enteredURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@", searchBar.text]];
 	
-#ifdef DEBUG
+#ifdef TRACE
 	NSLog(@"search button clicked, loading %@", enteredURL);
 #endif
 	
 	[searchBar resignFirstResponder]; /* will unfocus and call searchBarTextDidEndEditing */
 
 	[self navigateTo:enteredURL];
+}
+
+
+- (void)swipeRightAction:(id)_id {
+	if ([webView canGoBack])
+		[webView goBack];
+}
+- (void)swipeLeftAction:(id)_id {
+	if ([webView canGoForward])
+		[webView goForward];
 }
 
 @end

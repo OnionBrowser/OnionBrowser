@@ -30,10 +30,11 @@ static AppDelegate *appDelegate;
 - (void)startLoading
 {
 	self.origRequest = self.request;
+	self.evOrgName = nil;
 	
 	NSMutableURLRequest *newRequest = [self.request mutableCopy];
 	
-#ifdef DEBUG
+#ifdef TRACE
 	NSLog(@"startLoading URL: %@", [[newRequest URL] absoluteString]);
 #endif
 	/* redirections can happen without us seeing them, so keep the webview chrome in the loop */
@@ -68,12 +69,12 @@ static AppDelegate *appDelegate;
 	}
 	
 	if (response == nil && !schemaRedirect) {
-#ifdef DEBUG
+#ifdef TRACE
 		NSLog(@"willSendRequest to %@", [[request URL] absoluteString]);
 #endif
 	}
 	else {
-#ifdef DEBUG
+#ifdef TRACE
 		if (schemaRedirect && response == nil)
 			NSLog(@"willSendRequest being redirected (schema-only) from %@ to %@", [[self.origRequest URL] absoluteString], [[request URL] absoluteString]);
 		else
@@ -113,10 +114,14 @@ static AppDelegate *appDelegate;
 	}
 	
 	if ([cookies count] > 0) {
-#ifdef DEBUG
+#ifdef TRACE
 		NSLog(@"setting %lu cookie(s) for %@ (via %@)", [cookies count], [[self.request URL] host], [[appDelegate curWebView] curURL]);
 #endif
 		[[appDelegate cookieStorage] setCookies:cookies forURL:[self.request URL] mainDocumentURL:[[appDelegate curWebView] curURL]];
+	}
+	
+	if (self.evOrgName != nil && ![self.evOrgName isEqualToString:@""]) {
+		NSLog(@"EV info is %@", self.evOrgName);
 	}
 	
 	[self.client URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageAllowed];
@@ -130,13 +135,48 @@ static AppDelegate *appDelegate;
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
 	[self.client URLProtocol:self didFailWithError:error];
-	self.connection = nil;
+	[self.connection cancel];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
 	[self.client URLProtocolDidFinishLoading:self];
 	self.connection = nil;
+}
+
+- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace
+{
+	return [[protectionSpace authenticationMethod] isEqualToString:NSURLAuthenticationMethodServerTrust];
+}
+
+- (void) connection:(NSURLConnection *)conn didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
+{
+	SecTrustRef trustRef = [[challenge protectionSpace] serverTrust];
+	
+	/*
+	CFIndex count = SecTrustGetCertificateCount(trustRef);
+	for (CFIndex i = 0; i < count; i++) {
+		SecCertificateRef certRef = SecTrustGetCertificateAtIndex(trustRef, i);
+		CFStringRef certSummary = SecCertificateCopySubjectSummary(certRef);
+		NSLog(@"cert: %@", certSummary);
+	}
+	*/
+	
+	NSDictionary *trust = (__bridge NSDictionary*)SecTrustCopyResult(trustRef);
+	id ev = [trust objectForKey:(__bridge NSString *)kSecTrustExtendedValidation];
+	if (ev != nil && (__bridge CFBooleanRef)ev == kCFBooleanTrue) {
+		NSString *orgname = (NSString *)[trust objectForKey:(__bridge NSString *)kSecTrustOrganizationName];
+#ifdef DEBUG
+		NSLog(@"cert for %@ has EV, registered to %@", [[self.request URL] host], orgname);
+#endif
+		if ([[[self.request URL] host] isEqualToString:[[[appDelegate curWebView] curURL] host]])
+			[[appDelegate evHosts] setValue:orgname forKey:[[self.request URL] host]];
+	}
+
+	/* TODO: check for blacklisted certs or CAs? */
+	// [[challenge sender] cancelAuthenticationChallenge:challenge];
+	
+	[[challenge sender] continueWithoutCredentialForAuthenticationChallenge:challenge];
 }
 
 @end

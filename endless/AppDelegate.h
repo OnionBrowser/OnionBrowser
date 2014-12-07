@@ -11,8 +11,9 @@
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
-@property (strong, nonatomic) WebViewController *curWebView;
-@property (strong, nonatomic) NSHTTPCookieStorage *cookieStorage;
+@property (strong, atomic) WebViewController *curWebView;
+@property (strong, atomic) NSHTTPCookieStorage *cookieStorage;
+@property (strong, atomic) NSMutableDictionary *evHosts;
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
