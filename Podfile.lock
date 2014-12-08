@@ -1,4 +1,5 @@
 PODS:
+  - InAppSettingsKit (2.3.1)
   - NJKWebViewProgress (0.2.3):
     - NJKWebViewProgress/Core (= 0.2.3)
     - NJKWebViewProgress/ProgressView (= 0.2.3)
@@ -6,9 +7,11 @@ PODS:
   - NJKWebViewProgress/ProgressView (0.2.3)
 
 DEPENDENCIES:
+  - InAppSettingsKit
   - NJKWebViewProgress
 
 SPEC CHECKSUMS:
+  InAppSettingsKit: c4eb758abf9d71a3b7847a80ceebf02ce4299113
   NJKWebViewProgress: 721b57080c840c76f70ff6c2dda4f836ee1b27c1
 
 COCOAPODS: 0.35.0
