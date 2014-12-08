@@ -123,4 +123,11 @@
 	}
 }
 
+- (void)dumpCookies {
+	NSLog(@"cookie dump:");
+	for (NSHTTPCookie *cookie in [[self cookieStorage] cookies]) {
+		NSLog(@"  %@: \"%@\"=\"%@\"", cookie.domain, cookie.name, cookie.value);
+	}
+}
+
 @end

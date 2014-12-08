@@ -1,0 +1,3 @@
+[submodule "https-everywhere"]
+	path = https-everywhere
+	url = https://github.com/EFForg/https-everywhere

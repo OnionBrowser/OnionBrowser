@@ -5,13 +5,16 @@ PODS:
     - NJKWebViewProgress/ProgressView (= 0.2.3)
   - NJKWebViewProgress/Core (0.2.3)
   - NJKWebViewProgress/ProgressView (0.2.3)
+  - OCMock (3.1.1)
 
 DEPENDENCIES:
   - InAppSettingsKit
   - NJKWebViewProgress
+  - OCMock
 
 SPEC CHECKSUMS:
   InAppSettingsKit: c4eb758abf9d71a3b7847a80ceebf02ce4299113
   NJKWebViewProgress: 721b57080c840c76f70ff6c2dda4f836ee1b27c1
+  OCMock: f6cb8c162ab9d5620dddf411282c7b2c0ee78854
 
 COCOAPODS: 0.35.0

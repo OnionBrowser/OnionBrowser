@@ -1,0 +1,14 @@
+#ifndef endless_endless_Prefix_pch
+#define endless_endless_Prefix_pch
+
+#ifdef DEBUG
+
+/* NSLog() all network activity and boring stuff */
+//# define TRACE
+
+/* be verbose about HTTPS Everywhere workings */
+//# define TRACE_HTTPS_EVERYWHERE
+
+#endif
+
+#endif

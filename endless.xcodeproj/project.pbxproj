@@ -13,11 +13,28 @@
 		01801EA11A32CA2A002B4718 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01801EA01A32CA2A002B4718 /* WebViewController.m */; };
 		01801EA41A32CA2A002B4718 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01801EA21A32CA2A002B4718 /* Main.storyboard */; };
 		01801EA61A32CA2A002B4718 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01801EA51A32CA2A002B4718 /* Images.xcassets */; };
-		01801EA91A32CA2A002B4718 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01801EA71A32CA2A002B4718 /* LaunchScreen.xib */; };
 		01801EC01A335BEC002B4718 /* URLInterceptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 01801EBF1A335BEC002B4718 /* URLInterceptor.m */; };
 		01801EC31A3360F8002B4718 /* InAppSettings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 01801EC21A3360F8002B4718 /* InAppSettings.bundle */; };
+		018333CA1A3505FB00670CD1 /* HTTPSEverywhere.m in Sources */ = {isa = PBXBuildFile; fileRef = 018333C91A3505FB00670CD1 /* HTTPSEverywhere.m */; };
+		018333D21A35291200670CD1 /* HTTPSEverywhereRule.m in Sources */ = {isa = PBXBuildFile; fileRef = 018333D11A35291200670CD1 /* HTTPSEverywhereRule.m */; };
+		018333DC1A35727C00670CD1 /* HTTPSEverywhere_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 018333DB1A35727C00670CD1 /* HTTPSEverywhere_Tests.m */; };
+		018333E41A35742E00670CD1 /* mock_rules.plist in Resources */ = {isa = PBXBuildFile; fileRef = 018333E21A35742E00670CD1 /* mock_rules.plist */; };
+		018333E51A35742E00670CD1 /* mock_targets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 018333E31A35742E00670CD1 /* mock_targets.plist */; };
+		018333E91A35746500670CD1 /* https-everywhere_rules.plist in Resources */ = {isa = PBXBuildFile; fileRef = 018333E71A35746500670CD1 /* https-everywhere_rules.plist */; };
+		018333EA1A35746500670CD1 /* https-everywhere_targets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 018333E81A35746500670CD1 /* https-everywhere_targets.plist */; };
 		0357A14A00B472D144F4F53B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F000EBDB20709D482560EE0 /* libPods.a */; };
+		BF746B2CD72A306F0316B40B /* libPods-endless Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E95B84E061F9B319EB8E8B /* libPods-endless Tests.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		018333DD1A35727C00670CD1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 01801E8A1A32CA2A002B4718 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 01801E911A32CA2A002B4718;
+			remoteInfo = endless;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		01801E921A32CA2A002B4718 /* endless.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = endless.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -30,12 +47,28 @@
 		01801EA01A32CA2A002B4718 /* WebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		01801EA31A32CA2A002B4718 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		01801EA51A32CA2A002B4718 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = endless/Images.xcassets; sourceTree = "<group>"; };
-		01801EA81A32CA2A002B4718 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		01801EBE1A335BEC002B4718 /* URLInterceptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLInterceptor.h; sourceTree = "<group>"; };
 		01801EBF1A335BEC002B4718 /* URLInterceptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLInterceptor.m; sourceTree = "<group>"; };
 		01801EC21A3360F8002B4718 /* InAppSettings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = InAppSettings.bundle; path = endless/InAppSettings.bundle; sourceTree = "<group>"; };
+		018333C41A35027E00670CD1 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		018333C81A3505FB00670CD1 /* HTTPSEverywhere.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPSEverywhere.h; sourceTree = "<group>"; };
+		018333C91A3505FB00670CD1 /* HTTPSEverywhere.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPSEverywhere.m; sourceTree = "<group>"; };
+		018333CF1A351B3B00670CD1 /* endless-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "endless-Prefix.pch"; sourceTree = "<group>"; };
+		018333D01A35291200670CD1 /* HTTPSEverywhereRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPSEverywhereRule.h; sourceTree = "<group>"; };
+		018333D11A35291200670CD1 /* HTTPSEverywhereRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPSEverywhereRule.m; sourceTree = "<group>"; };
+		018333D71A35727C00670CD1 /* endless Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "endless Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		018333DA1A35727C00670CD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		018333DB1A35727C00670CD1 /* HTTPSEverywhere_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTTPSEverywhere_Tests.m; sourceTree = "<group>"; };
+		018333E21A35742E00670CD1 /* mock_rules.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = mock_rules.plist; sourceTree = "<group>"; };
+		018333E31A35742E00670CD1 /* mock_targets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = mock_targets.plist; sourceTree = "<group>"; };
+		018333E71A35746500670CD1 /* https-everywhere_rules.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "https-everywhere_rules.plist"; sourceTree = "<group>"; };
+		018333E81A35746500670CD1 /* https-everywhere_targets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "https-everywhere_targets.plist"; sourceTree = "<group>"; };
+		018333EB1A357D8B00670CD1 /* libPods-OCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-OCMock.a"; path = "Pods/build/Debug-iphoneos/libPods-OCMock.a"; sourceTree = "<group>"; };
 		5F000EBDB20709D482560EE0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		78E95B84E061F9B319EB8E8B /* libPods-endless Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-endless Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5539BB6B9C413DCDBDB86C7 /* Pods-endless Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-endless Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-endless Tests/Pods-endless Tests.release.xcconfig"; sourceTree = "<group>"; };
 		DC10B8CFD8DB1137076245D9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		DDC76BC31EB8F9AAFB8BEE31 /* Pods-endless Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-endless Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-endless Tests/Pods-endless Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		DDD1A40F3EE6113729C69C4E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -48,6 +81,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		018333D41A35727C00670CD1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF746B2CD72A306F0316B40B /* libPods-endless Tests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -57,6 +98,7 @@
 				01801E941A32CA2A002B4718 /* endless */,
 				01801EC11A3360B1002B4718 /* Resources */,
 				01801E951A32CA2A002B4718 /* Supporting Files */,
+				018333D81A35727C00670CD1 /* endless Tests */,
 				01801E931A32CA2A002B4718 /* Products */,
 				15AD3EF085D2BF7B56887532 /* Pods */,
 				6CC21620E2AE7B4037C6401B /* Frameworks */,
@@ -67,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				01801E921A32CA2A002B4718 /* endless.app */,
+				018333D71A35727C00670CD1 /* endless Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -76,12 +119,15 @@
 			children = (
 				01801E991A32CA2A002B4718 /* AppDelegate.h */,
 				01801E9A1A32CA2A002B4718 /* AppDelegate.m */,
-				01801E9F1A32CA2A002B4718 /* WebViewController.h */,
-				01801EA01A32CA2A002B4718 /* WebViewController.m */,
 				01801EA21A32CA2A002B4718 /* Main.storyboard */,
-				01801EA71A32CA2A002B4718 /* LaunchScreen.xib */,
+				018333C81A3505FB00670CD1 /* HTTPSEverywhere.h */,
+				018333C91A3505FB00670CD1 /* HTTPSEverywhere.m */,
+				018333D01A35291200670CD1 /* HTTPSEverywhereRule.h */,
+				018333D11A35291200670CD1 /* HTTPSEverywhereRule.m */,
 				01801EBE1A335BEC002B4718 /* URLInterceptor.h */,
 				01801EBF1A335BEC002B4718 /* URLInterceptor.m */,
+				01801E9F1A32CA2A002B4718 /* WebViewController.h */,
+				01801EA01A32CA2A002B4718 /* WebViewController.m */,
 			);
 			path = endless;
 			sourceTree = "<group>";
@@ -91,6 +137,7 @@
 			children = (
 				01801E961A32CA2A002B4718 /* Info.plist */,
 				01801E971A32CA2A002B4718 /* main.m */,
+				018333CF1A351B3B00670CD1 /* endless-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			path = endless;
@@ -99,6 +146,8 @@
 		01801EC11A3360B1002B4718 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				018333E71A35746500670CD1 /* https-everywhere_rules.plist */,
+				018333E81A35746500670CD1 /* https-everywhere_targets.plist */,
 				01801EA51A32CA2A002B4718 /* Images.xcassets */,
 				01801E9C1A32CA2A002B4718 /* endless.xcdatamodeld */,
 				01801EC21A3360F8002B4718 /* InAppSettings.bundle */,
@@ -106,11 +155,32 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		018333D81A35727C00670CD1 /* endless Tests */ = {
+			isa = PBXGroup;
+			children = (
+				018333DB1A35727C00670CD1 /* HTTPSEverywhere_Tests.m */,
+				018333D91A35727C00670CD1 /* Supporting Files */,
+			);
+			path = "endless Tests";
+			sourceTree = "<group>";
+		};
+		018333D91A35727C00670CD1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				018333E21A35742E00670CD1 /* mock_rules.plist */,
+				018333E31A35742E00670CD1 /* mock_targets.plist */,
+				018333DA1A35727C00670CD1 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		15AD3EF085D2BF7B56887532 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				DC10B8CFD8DB1137076245D9 /* Pods.debug.xcconfig */,
 				DDD1A40F3EE6113729C69C4E /* Pods.release.xcconfig */,
+				DDC76BC31EB8F9AAFB8BEE31 /* Pods-endless Tests.debug.xcconfig */,
+				D5539BB6B9C413DCDBDB86C7 /* Pods-endless Tests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -118,7 +188,10 @@
 		6CC21620E2AE7B4037C6401B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				018333EB1A357D8B00670CD1 /* libPods-OCMock.a */,
+				018333C41A35027E00670CD1 /* libsqlite3.dylib */,
 				5F000EBDB20709D482560EE0 /* libPods.a */,
+				78E95B84E061F9B319EB8E8B /* libPods-endless Tests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -145,6 +218,26 @@
 			productReference = 01801E921A32CA2A002B4718 /* endless.app */;
 			productType = "com.apple.product-type.application";
 		};
+		018333D61A35727C00670CD1 /* endless Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 018333DF1A35727C00670CD1 /* Build configuration list for PBXNativeTarget "endless Tests" */;
+			buildPhases = (
+				B490F5F7A7DE676CD3B7340F /* Check Pods Manifest.lock */,
+				018333D31A35727C00670CD1 /* Sources */,
+				018333D41A35727C00670CD1 /* Frameworks */,
+				018333D51A35727C00670CD1 /* Resources */,
+				1A927D79DA43D9D14E9FB250 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				018333DE1A35727C00670CD1 /* PBXTargetDependency */,
+			);
+			name = "endless Tests";
+			productName = "endless Tests";
+			productReference = 018333D71A35727C00670CD1 /* endless Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -156,6 +249,10 @@
 				TargetAttributes = {
 					01801E911A32CA2A002B4718 = {
 						CreatedOnToolsVersion = 6.1.1;
+					};
+					018333D61A35727C00670CD1 = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = 01801E911A32CA2A002B4718;
 					};
 				};
 			};
@@ -173,6 +270,7 @@
 			projectRoot = "";
 			targets = (
 				01801E911A32CA2A002B4718 /* endless */,
+				018333D61A35727C00670CD1 /* endless Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -183,16 +281,56 @@
 			buildActionMask = 2147483647;
 			files = (
 				01801EA41A32CA2A002B4718 /* Main.storyboard in Resources */,
+				018333EA1A35746500670CD1 /* https-everywhere_targets.plist in Resources */,
 				01801EC31A3360F8002B4718 /* InAppSettings.bundle in Resources */,
-				01801EA91A32CA2A002B4718 /* LaunchScreen.xib in Resources */,
+				018333E91A35746500670CD1 /* https-everywhere_rules.plist in Resources */,
 				01801EA61A32CA2A002B4718 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		018333D51A35727C00670CD1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				018333E41A35742E00670CD1 /* mock_rules.plist in Resources */,
+				018333E51A35742E00670CD1 /* mock_targets.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1A927D79DA43D9D14E9FB250 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-endless Tests/Pods-endless Tests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		AD6CC348A4A754780C9FF2A3 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B490F5F7A7DE676CD3B7340F /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -231,13 +369,31 @@
 			files = (
 				01801E9B1A32CA2A002B4718 /* AppDelegate.m in Sources */,
 				01801E981A32CA2A002B4718 /* main.m in Sources */,
+				018333D21A35291200670CD1 /* HTTPSEverywhereRule.m in Sources */,
 				01801EA11A32CA2A002B4718 /* WebViewController.m in Sources */,
 				01801E9E1A32CA2A002B4718 /* endless.xcdatamodeld in Sources */,
 				01801EC01A335BEC002B4718 /* URLInterceptor.m in Sources */,
+				018333CA1A3505FB00670CD1 /* HTTPSEverywhere.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		018333D31A35727C00670CD1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				018333DC1A35727C00670CD1 /* HTTPSEverywhere_Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		018333DE1A35727C00670CD1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 01801E911A32CA2A002B4718 /* endless */;
+			targetProxy = 018333DD1A35727C00670CD1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		01801EA21A32CA2A002B4718 /* Main.storyboard */ = {
@@ -246,14 +402,6 @@
 				01801EA31A32CA2A002B4718 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		01801EA71A32CA2A002B4718 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				01801EA81A32CA2A002B4718 /* Base */,
-			);
-			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -282,6 +430,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREFIX_HEADER = "endless/endless-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -322,6 +471,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREFIX_HEADER = "endless/endless-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -357,6 +507,62 @@
 			};
 			name = Release;
 		};
+		018333E01A35727C00670CD1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DDC76BC31EB8F9AAFB8BEE31 /* Pods-endless Tests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "endless Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					XCTest,
+					"-ObjC",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/endless.app/endless";
+			};
+			name = Debug;
+		};
+		018333E11A35727C00670CD1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D5539BB6B9C413DCDBDB86C7 /* Pods-endless Tests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "endless Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					XCTest,
+					"-ObjC",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/endless.app/endless";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -374,6 +580,15 @@
 			buildConfigurations = (
 				01801EB91A32CA2A002B4718 /* Debug */,
 				01801EBA1A32CA2A002B4718 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		018333DF1A35727C00670CD1 /* Build configuration list for PBXNativeTarget "endless Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				018333E01A35727C00670CD1 /* Debug */,
+				018333E11A35727C00670CD1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

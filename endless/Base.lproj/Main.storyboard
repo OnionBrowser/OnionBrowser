@@ -43,11 +43,11 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="ub5-GA-Wkr"/>
                                     <barButtonItem image="forward" style="plain" id="N4X-8l-n5e"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="eUB-No-f1V"/>
-                                    <barButtonItem style="plain" systemItem="action" id="keA-rM-8YW"/>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Nr1-t0-Y8j"/>
-                                    <barButtonItem style="plain" systemItem="bookmarks" id="rmK-pa-uwX">
-                                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-4"/>
+                                    <barButtonItem style="plain" systemItem="action" id="keA-rM-8YW">
+                                        <inset key="imageInsets" minX="0.0" minY="-1" maxX="0.0" maxY="1"/>
                                     </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Nr1-t0-Y8j"/>
+                                    <barButtonItem style="plain" systemItem="bookmarks" id="rmK-pa-uwX"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Kex-1H-tJL"/>
                                     <barButtonItem style="plain" systemItem="organize" id="RXJ-Te-n3L"/>
                                 </items>

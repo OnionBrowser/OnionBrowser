@@ -3,8 +3,6 @@
 
 #import "WebViewController.h"
 
-#define TRACE
-
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
@@ -19,6 +17,7 @@
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
+- (void)dumpCookies;
 
 @end
 

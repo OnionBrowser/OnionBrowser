@@ -187,15 +187,9 @@
 #endif
 	[self updateSearchBarDetails];
 	
-#ifdef DEBUG
-	NSLog(@"cookie dump:");
+#ifdef TRACE
+	[appDelegate dumpCookies];
 #endif
-	for (NSHTTPCookie *cookie in [[appDelegate cookieStorage] cookies]) {
-#ifdef DEBUG
-		NSLog(@"  %@: \"%@\"=\"%@\"", cookie.domain, cookie.name, cookie.value);
-#endif
-		[[appDelegate cookieStorage] deleteCookie:cookie];
-	}
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {

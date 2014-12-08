@@ -1,4 +1,5 @@
 #import "AppDelegate.h"
+#import "HTTPSEverywhere.h"
 #import "URLInterceptor.h"
 
 @interface URLInterceptor ()
@@ -14,6 +15,10 @@ static AppDelegate *appDelegate;
 + (BOOL)canInitWithRequest:(NSURLRequest *)request {
 	if ([NSURLProtocol propertyForKey:REWRITTEN_KEY inRequest:request] != nil)
 		/* already mucked with this request */
+		return NO;
+	
+	if ([[[[request URL] scheme] lowercaseString] isEqualToString:@"data"])
+		/* can't really do anything for these URLs */
 		return NO;
 
 	if (appDelegate == nil)
@@ -31,25 +36,37 @@ static AppDelegate *appDelegate;
 {
 	self.origRequest = self.request;
 	self.evOrgName = nil;
-	
+
 	NSMutableURLRequest *newRequest = [self.request mutableCopy];
 	
 #ifdef TRACE
-	NSLog(@"startLoading URL: %@", [[newRequest URL] absoluteString]);
+	NSLog(@"startLoading URL (%@): %@", [newRequest HTTPMethod], [[newRequest URL] absoluteString]);
 #endif
+	
+	[newRequest setURL:[HTTPSEverywhere rewrittenURI:[[self request] URL]]];
+	
 	/* redirections can happen without us seeing them, so keep the webview chrome in the loop */
 	[[appDelegate curWebView] setCurURL:[newRequest mainDocumentURL]];
-
+	
+	/* we're handling cookies ourself */
+	[newRequest setHTTPShouldHandleCookies:NO];
+	NSArray *cookies = [[appDelegate cookieStorage] cookiesForURL:[newRequest URL]];
+	if (cookies != nil && [cookies count] > 0) {
+#ifdef TRACE
+		NSLog(@"sending %lu cookie(s) to %@", [cookies count], [newRequest URL]);
+#endif
+		NSDictionary *headers = [NSHTTPCookie requestHeaderFieldsWithCookies:cookies];
+		[newRequest setAllHTTPHeaderFields:headers];
+	}
+	
 	/* add "do not track" header */
 	if (true /* TODO: move this to a pref check */) {
 		[newRequest setValue:@"1" forHTTPHeaderField:@"DNT"];
 	}
-	
+
+	/* remember that we saw this to avoid a loop */
 	[NSURLProtocol setProperty:@YES forKey:REWRITTEN_KEY inRequest:newRequest];
-	
-	/* we're handling cookies ourself */
-	[newRequest setHTTPShouldHandleCookies:NO];
- 
+
 	self.connection = [NSURLConnection connectionWithRequest:newRequest delegate:self];
 }
 
@@ -64,16 +81,20 @@ static AppDelegate *appDelegate;
 	
 	/* we don't get a redirect response when only upgrading from http -> https on the same hostname, so we have to find it ourselves :( */
 	if (response == nil && [self.origRequest hash] != [request hash]) {
+#ifdef TRACE
 		NSLog(@"hash changed, URL went from %@ to %@", [[self.origRequest URL] absoluteString], [[request URL] absoluteString]);
+#endif
 		schemaRedirect = true;
 	}
 	
 	if (response == nil && !schemaRedirect) {
 #ifdef TRACE
-		NSLog(@"willSendRequest to %@", [[request URL] absoluteString]);
+		NSLog(@"willSendRequest %@ to %@", [request HTTPMethod], [[request URL] absoluteString]);
 #endif
 	}
 	else {
+		[self extractCookiesFromResponse:response forURL:[request URL] fromMainDocument:[[appDelegate curWebView] curURL]];
+
 #ifdef TRACE
 		if (schemaRedirect && response == nil)
 			NSLog(@"willSendRequest being redirected (schema-only) from %@ to %@", [[self.origRequest URL] absoluteString], [[request URL] absoluteString]);
@@ -98,28 +119,8 @@ static AppDelegate *appDelegate;
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
-	NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-	NSMutableArray *cookies = [[NSMutableArray alloc] initWithCapacity:5];
-	
-	for (NSHTTPCookie *cookie in [NSHTTPCookie cookiesWithResponseHeaderFields:[httpResponse allHeaderFields] forURL:[self.request URL]]) {
-		/* toggle "secure" bit */
-		NSMutableDictionary *ps = (NSMutableDictionary *)[cookie properties];
-		[ps setValue:@"TRUE" forKey:NSHTTPCookieSecure];
+	[self extractCookiesFromResponse:response forURL:[self.request URL] fromMainDocument:[[appDelegate curWebView] curURL]];
 		
-		/* and make everything a session cookie */
-		[ps setValue:@"TRUE" forKey:NSHTTPCookieDiscard];
-		
-		NSHTTPCookie *nCookie = [[NSHTTPCookie alloc] initWithProperties:ps];
-		[cookies addObject:nCookie];
-	}
-	
-	if ([cookies count] > 0) {
-#ifdef TRACE
-		NSLog(@"setting %lu cookie(s) for %@ (via %@)", [cookies count], [[self.request URL] host], [[appDelegate curWebView] curURL]);
-#endif
-		[[appDelegate cookieStorage] setCookies:cookies forURL:[self.request URL] mainDocumentURL:[[appDelegate curWebView] curURL]];
-	}
-	
 	if (self.evOrgName != nil && ![self.evOrgName isEqualToString:@""]) {
 		NSLog(@"EV info is %@", self.evOrgName);
 	}
@@ -177,6 +178,30 @@ static AppDelegate *appDelegate;
 	// [[challenge sender] cancelAuthenticationChallenge:challenge];
 	
 	[[challenge sender] continueWithoutCredentialForAuthenticationChallenge:challenge];
+}
+
+- (void)extractCookiesFromResponse:(NSURLResponse *)response forURL:(NSURL *)url fromMainDocument:(NSURL *)mainDocument {
+	NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+	NSMutableArray *cookies = [[NSMutableArray alloc] initWithCapacity:5];
+	
+	for (NSHTTPCookie *cookie in [NSHTTPCookie cookiesWithResponseHeaderFields:[httpResponse allHeaderFields] forURL:url]) {
+		/* toggle "secure" bit */
+		NSMutableDictionary *ps = (NSMutableDictionary *)[cookie properties];
+		[ps setValue:@"TRUE" forKey:NSHTTPCookieSecure];
+		
+		/* and make everything a session cookie */
+		[ps setValue:@"TRUE" forKey:NSHTTPCookieDiscard];
+		
+		NSHTTPCookie *nCookie = [[NSHTTPCookie alloc] initWithProperties:ps];
+		[cookies addObject:nCookie];
+	}
+	
+	if ([cookies count] > 0) {
+#ifdef TRACE
+		NSLog(@"storing %lu cookie(s) for %@ (via %@)", [cookies count], [url host], mainDocument);
+#endif
+		[[appDelegate cookieStorage] setCookies:cookies forURL:url mainDocumentURL:mainDocument];
+	}
 }
 
 @end
