@@ -32,7 +32,8 @@
 	BOOL webViewScrollIsDragging;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
 	[super viewDidLoad];
 
 	appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -75,20 +76,23 @@
 	[self navigateTo:[NSURL URLWithString:@"https://www.duckduckgo.com/"]];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
 	[super didReceiveMemoryWarning];
 	// Dispose of any resources that can be recreated.
 }
 
 
-- (void)navigateTo:(NSURL *)URL {
+- (void)navigateTo:(NSURL *)URL
+{
 	self.curURL = URL;
 	[webView stopLoading];
 	[webView loadRequest:[NSURLRequest requestWithURL:URL]];
 	[self startedLoadingPage:URL];
 }
 
-- (void)updateSearchBarDetails {
+- (void)updateSearchBarDetails
+{
 	NSString *evOrg;
 	
 	/* TODO: cache curURL and only do anything here if it changed, these changes might be expensive */
@@ -139,7 +143,8 @@
 	}
 }
 
-- (UITextField *)searchBarTextField {
+- (UITextField *)searchBarTextField
+{
 	for (UIView *subView in searchBar.subviews) {
 		for(id field in subView.subviews){
 			if ([field isKindOfClass:[UITextField class]]) {
@@ -152,7 +157,8 @@
 }
 
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
 	return 1;
 }
 
@@ -188,7 +194,8 @@
 	}
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)_webView {
+- (void)webViewDidFinishLoad:(UIWebView *)_webView
+{
 #ifdef TRACE
 	NSLog(@"finished loading page/iframe %@", [[[_webView request] URL] absoluteString]);
 #endif
@@ -199,7 +206,8 @@
 #endif
 }
 
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
 	UIAlertView *m = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:self cancelButtonTitle: @"Ok" otherButtonTitles:nil];
 	[m show];
 	
@@ -211,7 +219,8 @@
 }
 
 
-- (void)startedLoadingPage:(NSURL *)url {
+- (void)startedLoadingPage:(NSURL *)url
+{
 #ifdef TRACE
 	NSLog(@"started loading URL %@", url);
 #endif
@@ -223,7 +232,8 @@
 	[progressBar setProgress:NJKInitialProgressValue animated:NO];
 }
 
-- (void)searchBarTextDidBeginEditing:(UISearchBar *)_searchBar {
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)_searchBar
+{
 #ifdef TRACE
 	NSLog(@"started editing");
 #endif
@@ -236,7 +246,8 @@
 	[sbtf performSelector:@selector(selectAll:) withObject:nil afterDelay:0.0];
 }
 
-- (void)searchBarTextDidEndEditing:(UISearchBar *)_searchBar {
+- (void)searchBarTextDidEndEditing:(UISearchBar *)_searchBar
+{
 #ifdef TRACE
 	NSLog(@"ended editing with \"%@\"", [_searchBar text]);
 #endif
@@ -246,18 +257,21 @@
 	[self updateSearchBarDetails];
 }
 
-- (void)searchBarCancelButtonClicked:(UISearchBar *)_searchBar {
+- (void)searchBarCancelButtonClicked:(UISearchBar *)_searchBar
+{
 #ifdef TRACE
 	NSLog(@"cancel button clicked");
 #endif
 	[searchBar resignFirstResponder];
 }
 
-- (void)searchBarResultsListButtonClicked:(UISearchBar *)searchBar {
+- (void)searchBarResultsListButtonClicked:(UISearchBar *)searchBar
+{
 	NSLog(@"results list button clicked");
 }
 
-- (void)searchBarSearchButtonClicked:(UISearchBar *)_searchBar {
+- (void)searchBarSearchButtonClicked:(UISearchBar *)_searchBar
+{
 	NSURL *enteredURL = [NSURL URLWithString:searchBar.text];
 	if (![enteredURL scheme] || [[enteredURL scheme] isEqualToString:@""])
 		enteredURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@", searchBar.text]];
@@ -271,7 +285,8 @@
 	[self navigateTo:enteredURL];
 }
 
-- (void) scrollViewDidScroll:(UIScrollView *)scrollView {
+- (void) scrollViewDidScroll:(UIScrollView *)scrollView
+{
 	if (scrollView != webView.scrollView)
 		return;
 	
@@ -321,44 +336,53 @@
 	
 	lastWebViewScrollOffset = scrollView.contentOffset.y;
 }
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
 	if (scrollView == webView.scrollView)
 		webViewScrollIsDragging = YES;
 }
 
-- (void) scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+- (void) scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
 	if (scrollView == webView.scrollView)
 		webViewScrollIsDragging = NO;
 }
 
-- (void) scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
+- (void) scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
+{
 	if (scrollView == webView.scrollView)
 		webViewScrollIsDecelerating = YES;
 }
 
-- (void) scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+- (void) scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
 	if (scrollView == webView.scrollView)
 		webViewScrollIsDecelerating = NO;
 }
 
-- (void)swipeRightAction:(id)_id {
+- (void)swipeRightAction:(id)_id
+{
 	[self goBack:nil];
 }
-- (void)swipeLeftAction:(id)_id {
+- (void)swipeLeftAction:(id)_id
+{
 	[self goForward:nil];
 }
 
-- (void)goBack:(id)_id {
+- (void)goBack:(id)_id
+{
 	if ([webView canGoBack])
 		[webView goBack];
 }
 
-- (void)goForward:(id)_id {
+- (void)goForward:(id)_id
+{
 	if ([webView canGoForward])
 		[webView goForward];
 }
 
-- (void)showSettings:(id)_id {
+- (void)showSettings:(id)_id
+{
 	if (!appSettingsViewController) {
 		appSettingsViewController = [[IASKAppSettingsViewController alloc] init];
 		appSettingsViewController.delegate = self;
