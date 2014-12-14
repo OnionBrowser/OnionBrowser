@@ -6,6 +6,26 @@
 	<array>
 		<dict>
 			<key>DefaultValue</key>
+			<string>DuckDuckGo</string>
+			<key>Values</key>
+			<array>
+				<string>DuckDuckGo</string>
+				<string>Google</string>
+			</array>
+			<key>Titles</key>
+			<array>
+				<string>DuckDuckGo</string>
+				<string>Google</string>
+			</array>
+			<key>Key</key>
+			<string>search_engine</string>
+			<key>Title</key>
+			<string>Search Engine</string>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
 			<true/>
 			<key>Key</key>
 			<string>send_dnt</string>

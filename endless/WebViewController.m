@@ -73,7 +73,9 @@
 	
 	[self.view.window makeKeyAndVisible];
 	
-	[self navigateTo:[NSURL URLWithString:@"https://www.duckduckgo.com/"]];
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	NSDictionary *se = [[appDelegate searchEngines] objectForKey:[userDefaults stringForKey:@"search_engine"]];
+	[self navigateTo:[NSURL URLWithString:[se objectForKey:@"homepage_url"]]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -273,12 +275,22 @@
 - (void)searchBarSearchButtonClicked:(UISearchBar *)_searchBar
 {
 	NSURL *enteredURL = [NSURL URLWithString:searchBar.text];
-	if (![enteredURL scheme] || [[enteredURL scheme] isEqualToString:@""])
-		enteredURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@", searchBar.text]];
 	
+	if (![enteredURL scheme] || [[enteredURL scheme] isEqualToString:@""]) {
+		/* no scheme so if it has a space or no dots, assume it's a search query */
+		if ([searchBar.text containsString:@" "] || ![searchBar.text containsString:@"."]) {
+			NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+			NSDictionary *se = [[appDelegate searchEngines] objectForKey:[userDefaults stringForKey:@"search_engine"]];
+			
+			enteredURL = [NSURL URLWithString:[[NSString stringWithFormat:[se objectForKey:@"search_url"], searchBar.text] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+		} else {
+			enteredURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@", searchBar.text]];
+		}
+		
 #ifdef TRACE
-	NSLog(@"search button clicked, loading %@", enteredURL);
+		NSLog(@"typed URL transformed to %@", enteredURL);
 #endif
+	}
 	
 	[searchBar resignFirstResponder]; /* will unfocus and call searchBarTextDidEndEditing */
 
@@ -306,7 +318,7 @@
 	}
 	/* scrolling up, require a big jump to initiate, then fully show the bar */
 	else if ((lastWebViewScrollOffset - scrollView.contentOffset.y) >= 3) {
-		[UIView animateWithDuration:0.3
+		[UIView animateWithDuration:0.5
 				      delay:0.0
 				    options:UIViewAnimationOptionCurveEaseOut
 				 animations:^(void) {

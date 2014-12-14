@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0135F4761A3D2931005A8F16 /* SearchEngines.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0135F4751A3D2931005A8F16 /* SearchEngines.plist */; };
 		01801E981A32CA2A002B4718 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 01801E971A32CA2A002B4718 /* main.m */; };
 		01801E9B1A32CA2A002B4718 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 01801E9A1A32CA2A002B4718 /* AppDelegate.m */; };
 		01801E9E1A32CA2A002B4718 /* endless.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 01801E9C1A32CA2A002B4718 /* endless.xcdatamodeld */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0135F4751A3D2931005A8F16 /* SearchEngines.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = SearchEngines.plist; path = endless/SearchEngines.plist; sourceTree = "<group>"; };
 		01801E921A32CA2A002B4718 /* endless.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = endless.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01801E961A32CA2A002B4718 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		01801E971A32CA2A002B4718 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				018333E81A35746500670CD1 /* https-everywhere_targets.plist */,
 				01801EA51A32CA2A002B4718 /* Images.xcassets */,
 				01801E9C1A32CA2A002B4718 /* endless.xcdatamodeld */,
+				0135F4751A3D2931005A8F16 /* SearchEngines.plist */,
 				01801EC21A3360F8002B4718 /* InAppSettings.bundle */,
 			);
 			name = Resources;
@@ -280,6 +283,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0135F4761A3D2931005A8F16 /* SearchEngines.plist in Resources */,
 				01801EA41A32CA2A002B4718 /* Main.storyboard in Resources */,
 				018333EA1A35746500670CD1 /* https-everywhere_targets.plist in Resources */,
 				01801EC31A3360F8002B4718 /* InAppSettings.bundle in Resources */,

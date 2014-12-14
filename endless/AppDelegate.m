@@ -16,6 +16,8 @@
 
 	self.evHosts = [[NSMutableDictionary alloc] initWithCapacity:5];
 	
+	[self initializeDefaults];
+
 	return YES;
 }
 
@@ -128,6 +130,29 @@
 	for (NSHTTPCookie *cookie in [[self cookieStorage] cookies]) {
 		NSLog(@"  %@: \"%@\"=\"%@\"", cookie.domain, cookie.name, cookie.value);
 	}
+}
+
+- (void)initializeDefaults {
+	/* TODO: read defaults from the plist */
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	
+	NSString *plistPath = [[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"InAppSettings.bundle"] stringByAppendingPathComponent:@"Root.plist"];
+	NSDictionary *settingsDictionary = [NSDictionary dictionaryWithContentsOfFile:plistPath];
+	
+	for (NSDictionary *pref in [settingsDictionary objectForKey:@"PreferenceSpecifiers"]) {
+		NSString *key = [pref objectForKey:@"Key"];
+		if ([userDefaults objectForKey:key] == NULL) {
+			NSObject *val = [pref objectForKey:@"DefaultValue"];
+			[userDefaults setObject:val forKey:key];
+			
+			NSLog(@"initialized setting %@ to default: %@", key, val);
+		}
+	}
+	
+	[userDefaults synchronize];
+	
+	/* load search engines */
+	_searchEngines = [NSDictionary dictionaryWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"SearchEngines.plist"]];
 }
 
 @end
