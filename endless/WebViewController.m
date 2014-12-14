@@ -1,6 +1,5 @@
 #import "AppDelegate.h"
 #import "WebViewController.h"
-#import "NJKWebViewProgress.h"
 #import "IASKAppSettingsViewController.h"
 #import "URLInterceptor.h"
 
@@ -21,7 +20,6 @@
 	IBOutlet UIBarButtonItem *tabsButton;
 	IBOutlet UIBarButtonItem *settingsButton;
 
-	NJKWebViewProgress *_progressProxy;
 	AppDelegate *appDelegate;
 	
 	IASKAppSettingsViewController *appSettingsViewController;
@@ -44,10 +42,8 @@
 	[webView.scrollView setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0, toolbarHeight, 0)];
 	[webView.scrollView setDelegate:self];
 	
-	_progressProxy = [[NJKWebViewProgress alloc] init];
-	webView.delegate = _progressProxy;
-	_progressProxy.webViewProxyDelegate = self;
-	_progressProxy.progressDelegate = self;
+	[progressBar setProgress:0.0f];
+	progressBar.transform = CGAffineTransformMakeScale(1.0f, 2.0f);
 	
 	/* hook up toolbar buttons */
 	backButton.target = self;
@@ -69,6 +65,7 @@
 	[webView addGestureRecognizer:swipeLeft];
 	
 	[[self searchBarTextField] setClearButtonMode:UITextFieldViewModeWhileEditing];
+	
 	[self updateSearchBarDetails];
 	
 	[self.view.window makeKeyAndVisible];
@@ -148,7 +145,7 @@
 - (UITextField *)searchBarTextField
 {
 	for (UIView *subView in searchBar.subviews) {
-		for(id field in subView.subviews){
+		for (id field in subView.subviews) {
 			if ([field isKindOfClass:[UITextField class]]) {
 				UITextField *textField = (UITextField *)field;
 				return textField;
@@ -164,12 +161,11 @@
 	return 1;
 }
 
-
-- (void)webViewProgress:(NJKWebViewProgress *)webViewProgress updateProgress:(float)progress
+- (void)setWebViewProgress:(float)progress
 {
 	BOOL animated = YES;
-	float fadeAnimationDuration = 0.27f;
-	float fadeOutDelay = 1.0f;
+	float fadeAnimationDuration = 0.15;
+	float fadeOutDelay = 0.3;
 	
 #ifdef TRACE
 	NSLog(@"loading progress of %@ at %f", [self.curURL absoluteString], progress);
@@ -177,20 +173,20 @@
 
 	[self updateSearchBarDetails];
 	
-	[progressBar setProgress:progress animated:animated];
-
-	if (progress >= NJKFinalProgressValue) {
+	if (progress >= 1.0) {
 		[progressBar setProgress:progress animated:NO];
 
-		[UIView animateWithDuration:fadeAnimationDuration delay:fadeOutDelay options:UIViewAnimationOptionCurveEaseInOut animations:^{
+		[UIView animateWithDuration:fadeAnimationDuration delay:fadeOutDelay options:UIViewAnimationOptionCurveLinear animations:^{
 			progressBar.alpha = 0.0;
 		} completion:^(BOOL finished) {
-			progressBar.progress = 0;
+			progressBar.progress = 0.0;
 			[self updateSearchBarDetails];
 		}];
 	}
 	else {
-		[UIView animateWithDuration:(animated ? fadeAnimationDuration : 0.0) delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+		[progressBar setProgress:progress animated:animated];
+		
+		[UIView animateWithDuration:(animated ? fadeAnimationDuration : 0.0) delay:0.0 options:UIViewAnimationOptionCurveLinear animations:^{
 			progressBar.alpha = 1.0;
 		} completion:nil];
 	}
@@ -201,8 +197,8 @@
 #ifdef TRACE
 	NSLog(@"finished loading page/iframe %@", [[[_webView request] URL] absoluteString]);
 #endif
-	[self updateSearchBarDetails];
-	
+	[self setWebViewProgress:1.0];
+
 #ifdef TRACE
 	[appDelegate dumpCookies];
 #endif
@@ -213,11 +209,7 @@
 	UIAlertView *m = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:self cancelButtonTitle: @"Ok" otherButtonTitles:nil];
 	[m show];
 	
-	[self webViewProgress:_progressProxy updateProgress:NJKFinalProgressValue];
-
-	/* TODO: where do we get the correct URL from now? */
-	
-	[self updateSearchBarDetails];
+	[self setWebViewProgress:0.0];
 }
 
 
@@ -229,9 +221,7 @@
 	/* just in case it redirected? */
 	self.curURL = url;
 
-	[self updateSearchBarDetails];
-	
-	[progressBar setProgress:NJKInitialProgressValue animated:NO];
+	[self setWebViewProgress:0.1];
 }
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)_searchBar
@@ -348,6 +338,7 @@
 	
 	lastWebViewScrollOffset = scrollView.contentOffset.y;
 }
+
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
 	if (scrollView == webView.scrollView)
