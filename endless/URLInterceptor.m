@@ -11,8 +11,10 @@
 #define REWRITTEN_KEY @"_rewritten"
 
 static AppDelegate *appDelegate;
+static BOOL sendDNT = true;
 
-+ (BOOL)canInitWithRequest:(NSURLRequest *)request {
++ (BOOL)canInitWithRequest:(NSURLRequest *)request
+{
 	if ([NSURLProtocol propertyForKey:REWRITTEN_KEY inRequest:request] != nil)
 		/* already mucked with this request */
 		return NO;
@@ -30,6 +32,11 @@ static AppDelegate *appDelegate;
 + (NSURLRequest *)canonicalRequestForRequest:(NSURLRequest *)request
 {
 	return request;
+}
+
++ (void)setSendDNT:(BOOL)val
+{
+	sendDNT = val;
 }
 
 - (void)startLoading
@@ -60,9 +67,8 @@ static AppDelegate *appDelegate;
 	}
 	
 	/* add "do not track" header */
-	if (true /* TODO: move this to a pref check */) {
+	if (sendDNT)
 		[newRequest setValue:@"1" forHTTPHeaderField:@"DNT"];
-	}
 
 	/* remember that we saw this to avoid a loop */
 	[NSURLProtocol setProperty:@YES forKey:REWRITTEN_KEY inRequest:newRequest];
@@ -180,7 +186,8 @@ static AppDelegate *appDelegate;
 	[[challenge sender] continueWithoutCredentialForAuthenticationChallenge:challenge];
 }
 
-- (void)extractCookiesFromResponse:(NSURLResponse *)response forURL:(NSURL *)url fromMainDocument:(NSURL *)mainDocument {
+- (void)extractCookiesFromResponse:(NSURLResponse *)response forURL:(NSURL *)url fromMainDocument:(NSURL *)mainDocument
+{
 	NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
 	NSMutableArray *cookies = [[NSMutableArray alloc] initWithCapacity:5];
 	

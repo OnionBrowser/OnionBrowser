@@ -5,4 +5,6 @@
 @property (strong, nonatomic) NSURLRequest *origRequest;
 @property (strong, nonatomic) NSString *evOrgName;
 
++ (void)setSendDNT:(BOOL)val;
+
 @end

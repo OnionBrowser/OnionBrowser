@@ -50,6 +50,8 @@
                                     <barButtonItem style="plain" systemItem="bookmarks" id="rmK-pa-uwX"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Kex-1H-tJL"/>
                                     <barButtonItem style="plain" systemItem="organize" id="RXJ-Te-n3L"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="wWK-0y-O8H"/>
+                                    <barButtonItem image="settings" id="3kJ-3g-uun"/>
                                 </items>
                                 <connections>
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="N3I-uT-v9S"/>
@@ -80,6 +82,7 @@
                         <outlet property="forwardButton" destination="N4X-8l-n5e" id="udN-yw-er4"/>
                         <outlet property="progressBar" destination="TiH-kr-qaA" id="eDY-rX-Zyb"/>
                         <outlet property="searchBar" destination="LKF-lp-gDc" id="12K-js-sz2"/>
+                        <outlet property="settingsButton" destination="3kJ-3g-uun" id="pgM-0I-EqO"/>
                         <outlet property="shareButton" destination="keA-rM-8YW" id="ZQh-09-C81"/>
                         <outlet property="tabsButton" destination="RXJ-Te-n3L" id="KLe-5O-pnt"/>
                         <outlet property="toolbar" destination="bxQ-EF-h0c" id="1my-r4-ECR"/>
@@ -92,7 +95,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="back" width="24" height="32"/>
-        <image name="forward" width="24" height="32"/>
+        <image name="back" width="11" height="19"/>
+        <image name="forward" width="11" height="19"/>
+        <image name="settings" width="23" height="23"/>
     </resources>
 </document>

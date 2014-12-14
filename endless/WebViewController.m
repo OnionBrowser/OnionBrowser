@@ -1,6 +1,8 @@
 #import "AppDelegate.h"
 #import "WebViewController.h"
 #import "NJKWebViewProgress.h"
+#import "IASKAppSettingsViewController.h"
+#import "URLInterceptor.h"
 
 @interface WebViewController ()
 
@@ -17,9 +19,12 @@
 	IBOutlet UIBarButtonItem *shareButton;
 	IBOutlet UIBarButtonItem *bookmarksButton;
 	IBOutlet UIBarButtonItem *tabsButton;
+	IBOutlet UIBarButtonItem *settingsButton;
 
 	NJKWebViewProgress *_progressProxy;
 	AppDelegate *appDelegate;
+	
+	IASKAppSettingsViewController *appSettingsViewController;
 	
 	float lastWebViewScrollOffset;
 	CGFloat toolbarHeight;
@@ -48,6 +53,8 @@
 	backButton.action = @selector(goBack:);
 	forwardButton.target = self;
 	forwardButton.action = @selector(goForward:);
+	settingsButton.target = self;
+	settingsButton.action = @selector(showSettings:);
 	
 	/* swiping goes back and forward in current webview */
 	UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self  action:@selector(swipeRightAction:)];
@@ -349,6 +356,26 @@
 - (void)goForward:(id)_id {
 	if ([webView canGoForward])
 		[webView goForward];
+}
+
+- (void)showSettings:(id)_id {
+	if (!appSettingsViewController) {
+		appSettingsViewController = [[IASKAppSettingsViewController alloc] init];
+		appSettingsViewController.delegate = self;
+		appSettingsViewController.showDoneButton = YES;
+		appSettingsViewController.showCreditsFooter = NO;
+	}
+	
+	UINavigationController *aNavController = [[UINavigationController alloc] initWithRootViewController:appSettingsViewController];
+	[self presentViewController:aNavController animated:YES completion:nil];
+}
+
+- (void)settingsViewControllerDidEnd:(IASKAppSettingsViewController *)sender
+{
+	[self dismissViewControllerAnimated:YES completion:nil];
+	
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	[URLInterceptor setSendDNT:[userDefaults boolForKey:@"send_dnt"]];
 }
 
 @end
