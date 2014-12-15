@@ -10,7 +10,6 @@
 		0135F4761A3D2931005A8F16 /* SearchEngines.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0135F4751A3D2931005A8F16 /* SearchEngines.plist */; };
 		01801E981A32CA2A002B4718 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 01801E971A32CA2A002B4718 /* main.m */; };
 		01801E9B1A32CA2A002B4718 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 01801E9A1A32CA2A002B4718 /* AppDelegate.m */; };
-		01801E9E1A32CA2A002B4718 /* endless.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 01801E9C1A32CA2A002B4718 /* endless.xcdatamodeld */; };
 		01801EA11A32CA2A002B4718 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01801EA01A32CA2A002B4718 /* WebViewController.m */; };
 		01801EA41A32CA2A002B4718 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01801EA21A32CA2A002B4718 /* Main.storyboard */; };
 		01801EA61A32CA2A002B4718 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01801EA51A32CA2A002B4718 /* Images.xcassets */; };
@@ -44,7 +43,6 @@
 		01801E971A32CA2A002B4718 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		01801E991A32CA2A002B4718 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		01801E9A1A32CA2A002B4718 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		01801E9D1A32CA2A002B4718 /* endless.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = endless.xcdatamodel; sourceTree = "<group>"; };
 		01801E9F1A32CA2A002B4718 /* WebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		01801EA01A32CA2A002B4718 /* WebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		01801EA31A32CA2A002B4718 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -150,7 +148,6 @@
 				018333E71A35746500670CD1 /* https-everywhere_rules.plist */,
 				018333E81A35746500670CD1 /* https-everywhere_targets.plist */,
 				01801EA51A32CA2A002B4718 /* Images.xcassets */,
-				01801E9C1A32CA2A002B4718 /* endless.xcdatamodeld */,
 				0135F4751A3D2931005A8F16 /* SearchEngines.plist */,
 				01801EC21A3360F8002B4718 /* InAppSettings.bundle */,
 			);
@@ -373,7 +370,6 @@
 				01801E981A32CA2A002B4718 /* main.m in Sources */,
 				018333D21A35291200670CD1 /* HTTPSEverywhereRule.m in Sources */,
 				01801EA11A32CA2A002B4718 /* WebViewController.m in Sources */,
-				01801E9E1A32CA2A002B4718 /* endless.xcdatamodeld in Sources */,
 				01801EC01A335BEC002B4718 /* URLInterceptor.m in Sources */,
 				018333CA1A3505FB00670CD1 /* HTTPSEverywhere.m in Sources */,
 			);
@@ -596,20 +592,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		01801E9C1A32CA2A002B4718 /* endless.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				01801E9D1A32CA2A002B4718 /* endless.xcdatamodel */,
-			);
-			currentVersion = 01801E9D1A32CA2A002B4718 /* endless.xcdatamodel */;
-			name = endless.xcdatamodeld;
-			path = endless/endless.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 01801E8A1A32CA2A002B4718 /* Project object */;
 }
