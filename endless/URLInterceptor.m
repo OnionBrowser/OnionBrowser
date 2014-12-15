@@ -1,6 +1,7 @@
 #import "AppDelegate.h"
 #import "HTTPSEverywhere.h"
 #import "URLInterceptor.h"
+#import "WebViewTab.h"
 
 @interface URLInterceptor ()
 @property (nonatomic, strong) NSURLConnection *connection;
@@ -12,6 +13,8 @@
 
 static AppDelegate *appDelegate;
 static BOOL sendDNT = true;
+
+WebViewTab *wvt;
 
 + (BOOL)canInitWithRequest:(NSURLRequest *)request
 {
@@ -46,21 +49,37 @@ static BOOL sendDNT = true;
 
 	NSMutableURLRequest *newRequest = [self.request mutableCopy];
 	
+	NSString *wvthash = (NSString *)[NSURLProtocol propertyForKey:@"WebViewTab" inRequest:newRequest];
+	if (wvthash != nil && ![wvthash isEqualToString:@""]) {
+		for (WebViewTab *_wvt in [[appDelegate webViewController] webViewTabs]) {
+			if ([[NSString stringWithFormat:@"%lu", [_wvt hash]] isEqualToString:wvthash]) {
+				wvt = _wvt;
+				break;
+			}
+		}
+	}
+	
+	if (wvt == nil) {
+		NSLog(@"request for %@ with no matching WebViewTab!", [newRequest URL]);
+		return;
+	}
+	
 #ifdef TRACE
-	NSLog(@"startLoading URL (%@): %@", [newRequest HTTPMethod], [[newRequest URL] absoluteString]);
+	NSLog(@"[Tab %@] startLoading URL (%@): %@", wvt.tabNumber, [newRequest HTTPMethod], [[newRequest URL] absoluteString]);
 #endif
 	
 	[newRequest setURL:[HTTPSEverywhere rewrittenURI:[[self request] URL]]];
 	
 	/* redirections can happen without us seeing them, so keep the webview chrome in the loop */
-	[[appDelegate curWebView] setCurURL:[newRequest mainDocumentURL]];
+	[wvt setUrl:[newRequest mainDocumentURL]];
+	[[wvt controller] performSelectorOnMainThread:@selector(updateSearchBarDetails) withObject:nil waitUntilDone:NO];
 	
 	/* we're handling cookies ourself */
 	[newRequest setHTTPShouldHandleCookies:NO];
 	NSArray *cookies = [[appDelegate cookieStorage] cookiesForURL:[newRequest URL]];
 	if (cookies != nil && [cookies count] > 0) {
 #ifdef TRACE
-		NSLog(@"sending %lu cookie(s) to %@", [cookies count], [newRequest URL]);
+		NSLog(@"[Tab %@] sending %lu cookie(s) to %@", wvt.tabNumber, [cookies count], [newRequest URL]);
 #endif
 		NSDictionary *headers = [NSHTTPCookie requestHeaderFieldsWithCookies:cookies];
 		[newRequest setAllHTTPHeaderFields:headers];
@@ -88,24 +107,24 @@ static BOOL sendDNT = true;
 	/* we don't get a redirect response when only upgrading from http -> https on the same hostname, so we have to find it ourselves :( */
 	if (response == nil && [self.origRequest hash] != [request hash]) {
 #ifdef TRACE
-		NSLog(@"hash changed, URL went from %@ to %@", [[self.origRequest URL] absoluteString], [[request URL] absoluteString]);
+		NSLog(@"[Tab %@] hash changed, URL went from %@ to %@", wvt.tabNumber, [[self.origRequest URL] absoluteString], [[request URL] absoluteString]);
 #endif
 		schemaRedirect = true;
 	}
 	
 	if (response == nil && !schemaRedirect) {
 #ifdef TRACE
-		NSLog(@"willSendRequest %@ to %@", [request HTTPMethod], [[request URL] absoluteString]);
+		NSLog(@"[Tab %@] willSendRequest %@ to %@", wvt.tabNumber, [request HTTPMethod], [[request URL] absoluteString]);
 #endif
 	}
 	else {
-		[self extractCookiesFromResponse:response forURL:[request URL] fromMainDocument:[[appDelegate curWebView] curURL]];
+		[self extractCookiesFromResponse:response forURL:[request URL] fromMainDocument:[wvt url]];
 
 #ifdef TRACE
 		if (schemaRedirect && response == nil)
-			NSLog(@"willSendRequest being redirected (schema-only) from %@ to %@", [[self.origRequest URL] absoluteString], [[request URL] absoluteString]);
+			NSLog(@"[Tab %@] willSendRequest being redirected (schema-only) from %@ to %@", wvt.tabNumber, [[self.origRequest URL] absoluteString], [[request URL] absoluteString]);
 		else
-			NSLog(@"willSendRequest being redirected from %@ to %@", [[response URL] absoluteString], [[request URL] absoluteString]);
+			NSLog(@"[Tab %@] willSendRequest being redirected from %@ to %@", wvt.tabNumber, [[response URL] absoluteString], [[request URL] absoluteString]);
 #endif
 		
 		NSMutableURLRequest *redirectRequest = [request mutableCopy];
@@ -125,7 +144,7 @@ static BOOL sendDNT = true;
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
-	[self extractCookiesFromResponse:response forURL:[self.request URL] fromMainDocument:[[appDelegate curWebView] curURL]];
+	[self extractCookiesFromResponse:response forURL:[self.request URL] fromMainDocument:[wvt url]];
 		
 	if (self.evOrgName != nil && ![self.evOrgName isEqualToString:@""]) {
 		NSLog(@"EV info is %@", self.evOrgName);
@@ -174,9 +193,9 @@ static BOOL sendDNT = true;
 	if (ev != nil && (__bridge CFBooleanRef)ev == kCFBooleanTrue) {
 		NSString *orgname = (NSString *)[trust objectForKey:(__bridge NSString *)kSecTrustOrganizationName];
 #ifdef DEBUG
-		NSLog(@"cert for %@ has EV, registered to %@", [[self.request URL] host], orgname);
+		NSLog(@"[Tab %@] cert for %@ has EV, registered to %@", wvt.tabNumber, [[self.request URL] host], orgname);
 #endif
-		if ([[[self.request URL] host] isEqualToString:[[[appDelegate curWebView] curURL] host]])
+		if ([[[self.request URL] host] isEqualToString:[[wvt url] host]])
 			[[appDelegate evHosts] setValue:orgname forKey:[[self.request URL] host]];
 	}
 
@@ -205,7 +224,7 @@ static BOOL sendDNT = true;
 	
 	if ([cookies count] > 0) {
 #ifdef TRACE
-		NSLog(@"storing %lu cookie(s) for %@ (via %@)", [cookies count], [url host], mainDocument);
+		NSLog(@"[Tab %@] storing %lu cookie(s) for %@ (via %@)", wvt.tabNumber, [cookies count], [url host], mainDocument);
 #endif
 		[[appDelegate cookieStorage] setCookies:cookies forURL:url mainDocumentURL:mainDocument];
 	}

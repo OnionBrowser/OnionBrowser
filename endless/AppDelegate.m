@@ -1,6 +1,5 @@
 #import "AppDelegate.h"
 #import "URLInterceptor.h"
-#import "WebViewController.h"
 
 @interface AppDelegate ()
 @end

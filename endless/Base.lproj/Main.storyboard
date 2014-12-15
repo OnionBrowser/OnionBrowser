@@ -1,43 +1,37 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Web View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="WebViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
-                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <searchBar opaque="NO" contentMode="redraw" searchBarStyle="minimal" placeholder="Search or enter address" translatesAutoresizingMaskIntoConstraints="NO" id="LKF-lp-gDc">
-                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" id="Efe-dI-iQ6">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="568"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </scrollView>
+                            <searchBar opaque="NO" contentMode="redraw" searchBarStyle="minimal" placeholder="Search or enter address" id="LKF-lp-gDc">
+                                <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="barTintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <textInputTraits key="textInputTraits" keyboardType="URL" keyboardAppearance="alert" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="UPY-4d-M2K"/>
                                 </connections>
                             </searchBar>
-                            <progressView contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="TiH-kr-qaA">
-                                <rect key="frame" x="0.0" y="64" width="320" height="2"/>
+                            <progressView contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" id="TiH-kr-qaA">
+                                <rect key="frame" x="0.0" y="62" width="414" height="2"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </progressView>
-                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PXy-Cs-KLD">
-                                <rect key="frame" x="0.0" y="65" width="320" height="503"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
-                                <dataDetectorType key="dataDetectorTypes"/>
-                                <connections>
-                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="xju-N8-yla"/>
-                                </connections>
-                            </webView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bxQ-EF-h0c">
-                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="bxQ-EF-h0c">
+                                <rect key="frame" x="0.0" y="692" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <barButtonItem image="back" style="plain" id="EfG-9B-Gez"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="ub5-GA-Wkr"/>
@@ -47,9 +41,11 @@
                                         <inset key="imageInsets" minX="0.0" minY="-1" maxX="0.0" maxY="1"/>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Nr1-t0-Y8j"/>
-                                    <barButtonItem style="plain" systemItem="bookmarks" id="rmK-pa-uwX"/>
+                                    <barButtonItem image="tabs" style="plain" id="RXJ-Te-n3L"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Kex-1H-tJL"/>
-                                    <barButtonItem style="plain" systemItem="organize" id="RXJ-Te-n3L"/>
+                                    <barButtonItem style="plain" systemItem="bookmarks" id="rmK-pa-uwX">
+                                        <inset key="imageInsets" minX="0.0" minY="1" maxX="0.0" maxY="-1"/>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="wWK-0y-O8H"/>
                                     <barButtonItem image="settings" id="3kJ-3g-uun"/>
                                 </items>
@@ -57,25 +53,21 @@
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="N3I-uT-v9S"/>
                                 </connections>
                             </toolbar>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="0Yc-xr-bAL">
+                                <rect key="frame" x="0.0" y="692" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="6vZ-Sn-bXK"/>
+                                    <barButtonItem systemItem="add" id="lES-Ue-cgk"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="XIG-lt-ZNk"/>
+                                    <barButtonItem title="Done" style="done" id="jRC-92-lMY"/>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="bxQ-EF-h0c" secondAttribute="trailing" constant="-16" id="2eP-gB-nuc"/>
-                            <constraint firstItem="LKF-lp-gDc" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="8JQ-q4-xLF"/>
-                            <constraint firstItem="PXy-Cs-KLD" firstAttribute="top" secondItem="TiH-kr-qaA" secondAttribute="bottom" constant="-1" id="9X9-Wm-GP6"/>
-                            <constraint firstItem="bxQ-EF-h0c" firstAttribute="bottom" secondItem="kh9-bI-dsS" secondAttribute="bottomMargin" id="Qqd-TL-LAi"/>
-                            <constraint firstItem="PXy-Cs-KLD" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="SYV-JK-154"/>
-                            <constraint firstItem="TiH-kr-qaA" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="VAi-xj-0E0"/>
-                            <constraint firstItem="TiH-kr-qaA" firstAttribute="top" secondItem="LKF-lp-gDc" secondAttribute="bottom" id="WqW-Ch-pus"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="TiH-kr-qaA" secondAttribute="trailing" constant="-16" id="ZUg-ex-H8x"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="LKF-lp-gDc" secondAttribute="trailing" constant="-16" id="iiI-fb-uJJ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="PXy-Cs-KLD" secondAttribute="trailing" constant="-16" id="sgP-f4-CR6"/>
-                            <constraint firstItem="bxQ-EF-h0c" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="vqy-Ax-UHi"/>
-                            <constraint firstItem="PXy-Cs-KLD" firstAttribute="bottom" secondItem="kh9-bI-dsS" secondAttribute="bottomMargin" id="xKo-g6-2U7"/>
-                            <constraint firstItem="LKF-lp-gDc" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="zCI-bC-EZx"/>
-                        </constraints>
                     </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="backButton" destination="EfG-9B-Gez" id="goY-Oc-Mq9"/>
                         <outlet property="bookmarksButton" destination="rmK-pa-uwX" id="tKk-ed-dle"/>
@@ -84,19 +76,28 @@
                         <outlet property="searchBar" destination="LKF-lp-gDc" id="12K-js-sz2"/>
                         <outlet property="settingsButton" destination="3kJ-3g-uun" id="pgM-0I-EqO"/>
                         <outlet property="shareButton" destination="keA-rM-8YW" id="ZQh-09-C81"/>
-                        <outlet property="tabsButton" destination="RXJ-Te-n3L" id="KLe-5O-pnt"/>
+                        <outlet property="tabAddButton" destination="lES-Ue-cgk" id="BcA-YQ-Mkz"/>
+                        <outlet property="tabDoneButton" destination="jRC-92-lMY" id="5a1-xE-ZzK"/>
+                        <outlet property="tabScroller" destination="Efe-dI-iQ6" id="S6h-Ra-Kfl"/>
+                        <outlet property="tabToolbar" destination="0Yc-xr-bAL" id="gT6-mL-7uw"/>
+                        <outlet property="tabsButton" destination="RXJ-Te-n3L" id="cQS-za-9QC"/>
                         <outlet property="toolbar" destination="bxQ-EF-h0c" id="1my-r4-ECR"/>
-                        <outlet property="webView" destination="PXy-Cs-KLD" id="6Sb-m0-B20"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="304" y="199"/>
+            <point key="canvasLocation" x="162.13333333333333" y="188.38666666666666"/>
         </scene>
     </scenes>
     <resources>
         <image name="back" width="11" height="19"/>
         <image name="forward" width="11" height="19"/>
         <image name="settings" width="23" height="23"/>
+        <image name="tabs" width="22" height="22"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>

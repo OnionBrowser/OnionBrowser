@@ -1,8 +1,10 @@
 #import <UIKit/UIKit.h>
 #import "IASKAppSettingsViewController.h"
 
-@interface WebViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UIWebViewDelegate, UIGestureRecognizerDelegate, UIScrollViewDelegate, IASKSettingsDelegate>
+@interface WebViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UIGestureRecognizerDelegate, UIScrollViewDelegate, IASKSettingsDelegate>
 
-@property (strong, atomic) NSURL *curURL;
+- (NSMutableArray *)webViewTabs;
+- (void)updateProgress;
+- (void)updateSearchBarDetails;
 
 @end
