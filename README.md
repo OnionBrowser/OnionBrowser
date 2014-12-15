@@ -8,6 +8,8 @@ Basic browser functionality implemented:
 - Basics of entering URLs, following redirections, back, forward, cookie storage
 - Swipe left and right to go back and forward
 - Shows padlock for SSL-encrypted URLs
+- Multiple tabs
+- Search from URL bar with Google or DDG
 
 Security and privacy-focused features implemented:
 
@@ -15,12 +17,11 @@ Security and privacy-focused features implemented:
 - Integrates full [HTTPS Everywhere](https://www.eff.org/HTTPS-EVERYWHERE)
   ruleset (currently over 11,000 rules) to do on-the-fly URL rewriting to force
   requests over SSL where supported
-- Sending of Do-Not-Track header on all requests
+- Optional sending of Do-Not-Track header on all requests
 
 =================
 Features planned but not yet implemented:
 
-- Multiple tabs like Safari, some kind of overview navigation
 - Make default only store cookies for the session (auto-destroying *n* seconds
   after closing last tab using those cookies) and only allow permanent storage
   of whitelisted cookies
