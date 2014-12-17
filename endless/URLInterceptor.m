@@ -1,5 +1,6 @@
 #import "AppDelegate.h"
 #import "HTTPSEverywhere.h"
+#import "URLBlocker.h"
 #import "URLInterceptor.h"
 #import "WebViewTab.h"
 
@@ -8,8 +9,6 @@
 @end
 
 @implementation URLInterceptor
-
-#define REWRITTEN_KEY @"_rewritten"
 
 static AppDelegate *appDelegate;
 static BOOL sendDNT = true;
@@ -34,6 +33,11 @@ WebViewTab *wvt;
 
 + (NSURLRequest *)canonicalRequestForRequest:(NSURLRequest *)request
 {
+	if (![NSURLProtocol propertyForKey:ORIGIN_KEY inRequest:request]) {
+		if ([URLBlocker shouldBlockURL:[request URL]])
+			return nil;
+	}
+
 	return request;
 }
 
@@ -61,9 +65,18 @@ WebViewTab *wvt;
 	
 	if (wvt == nil) {
 		NSLog(@"request for %@ with no matching WebViewTab!", [newRequest URL]);
+		[self.connection cancel];
 		return;
 	}
 	
+	if (![NSURLProtocol propertyForKey:ORIGIN_KEY inRequest:newRequest]) {
+		if ([URLBlocker shouldBlockURL:[newRequest URL]]) {
+			NSLog(@"should be aborting request for %@", newRequest);
+			self.connection = nil;
+			return;
+		}
+	}
+
 #ifdef TRACE
 	NSLog(@"[Tab %@] startLoading URL (%@): %@", wvt.tabNumber, [newRequest HTTPMethod], [[newRequest URL] absoluteString]);
 #endif
@@ -85,7 +98,7 @@ WebViewTab *wvt;
 		[newRequest setAllHTTPHeaderFields:headers];
 	}
 	
-	/* add "do not track" header */
+	/* add "do not track" header if it's enabled in the settings */
 	if (sendDNT)
 		[newRequest setValue:@"1" forHTTPHeaderField:@"DNT"];
 

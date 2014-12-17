@@ -9,7 +9,8 @@ static NSCache *ruleCache;
 
 #define RULE_CACHE_SIZE 20
 
-+ (NSDictionary *)rules {
++ (NSDictionary *)rules
+{
 	if (_rules == nil) {
 		NSFileManager *fm = [NSFileManager defaultManager];
 		NSString *path = [[NSBundle mainBundle] pathForResource:@"https-everywhere_rules" ofType:@"plist"];
@@ -28,7 +29,8 @@ static NSCache *ruleCache;
 	return _rules;
 }
 
-+ (NSDictionary *)targets {
++ (NSDictionary *)targets
+{
 	if (_targets == nil) {
 		NSFileManager *fm = [NSFileManager defaultManager];
 		NSString *path = [[NSBundle mainBundle] pathForResource:@"https-everywhere_targets" ofType:@"plist"];
@@ -47,7 +49,8 @@ static NSCache *ruleCache;
 	return _targets;
 }
 
-+ (void)cacheRule:(HTTPSEverywhereRule *)rule forName:(NSString *)name {
++ (void)cacheRule:(HTTPSEverywhereRule *)rule forName:(NSString *)name
+{
 	if (!ruleCache) {
 		ruleCache = [[NSCache alloc] init];
 		[ruleCache setCountLimit:RULE_CACHE_SIZE];
@@ -60,25 +63,25 @@ static NSCache *ruleCache;
 	[ruleCache setObject:rule forKey:name];
 }
 
-+ (HTTPSEverywhereRule *)cachedRuleForName:(NSString *)name {
++ (HTTPSEverywhereRule *)cachedRuleForName:(NSString *)name
+{
 	HTTPSEverywhereRule *r;
 	
-	if (ruleCache) {
-		if ((r = [ruleCache objectForKey:name]) != nil) {
+	if (ruleCache && (r = [ruleCache objectForKey:name]) != nil) {
 #ifdef TRACE_HTTPS_EVERYWHERE
-			NSLog(@"[HTTPSEverywhere] cache hit for %@", name);
+		NSLog(@"[HTTPSEverywhere] cache hit for %@", name);
 #endif
-			return r;
-		}
+		return r;
 	}
-	
+
 	r = [[HTTPSEverywhereRule alloc] initWithDictionary:[[[self class] rules] objectForKey:name]];
 	[[self class] cacheRule:r forName:name];
 	
 	return r;
 }
 
-+ (NSArray *)potentiallyApplicableRulesFor:(NSString *)host {
++ (NSArray *)potentiallyApplicableRulesFor:(NSString *)host
+{
 	NSMutableDictionary *rs = [[NSMutableDictionary alloc] initWithCapacity:2];
 	
 	host = [host lowercaseString];
@@ -106,7 +109,8 @@ static NSCache *ruleCache;
 	return [rs allValues];
 }
 
-+ (NSURL *)rewrittenURI:(NSURL *)URL {
++ (NSURL *)rewrittenURI:(NSURL *)URL
+{
 	NSArray *rs = [[self class] potentiallyApplicableRulesFor:[URL host]];
 
 	if (rs == nil || [rs count] == 0)

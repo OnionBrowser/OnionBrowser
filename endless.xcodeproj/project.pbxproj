@@ -19,10 +19,18 @@
 		018333CA1A3505FB00670CD1 /* HTTPSEverywhere.m in Sources */ = {isa = PBXBuildFile; fileRef = 018333C91A3505FB00670CD1 /* HTTPSEverywhere.m */; };
 		018333D21A35291200670CD1 /* HTTPSEverywhereRule.m in Sources */ = {isa = PBXBuildFile; fileRef = 018333D11A35291200670CD1 /* HTTPSEverywhereRule.m */; };
 		018333DC1A35727C00670CD1 /* HTTPSEverywhere_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 018333DB1A35727C00670CD1 /* HTTPSEverywhere_Tests.m */; };
-		018333E41A35742E00670CD1 /* mock_rules.plist in Resources */ = {isa = PBXBuildFile; fileRef = 018333E21A35742E00670CD1 /* mock_rules.plist */; };
-		018333E51A35742E00670CD1 /* mock_targets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 018333E31A35742E00670CD1 /* mock_targets.plist */; };
 		018333E91A35746500670CD1 /* https-everywhere_rules.plist in Resources */ = {isa = PBXBuildFile; fileRef = 018333E71A35746500670CD1 /* https-everywhere_rules.plist */; };
 		018333EA1A35746500670CD1 /* https-everywhere_targets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 018333E81A35746500670CD1 /* https-everywhere_targets.plist */; };
+		01F8793B1A4108DD00A63654 /* URLBlocker.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F8793A1A4108DD00A63654 /* URLBlocker.m */; };
+		01F879411A4112E500A63654 /* URLBlocker_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F879401A4112E500A63654 /* URLBlocker_Tests.m */; };
+		01F879441A41140D00A63654 /* https-everywhere_mock_rules.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01F879421A41140D00A63654 /* https-everywhere_mock_rules.plist */; };
+		01F879451A41140D00A63654 /* https-everywhere_mock_targets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01F879431A41140D00A63654 /* https-everywhere_mock_targets.plist */; };
+		01F879481A41141800A63654 /* urlblocker_mock_rules.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01F879461A41141800A63654 /* urlblocker_mock_rules.plist */; };
+		01F879491A41141800A63654 /* urlblocker_mock_targets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01F879471A41141800A63654 /* urlblocker_mock_targets.plist */; };
+		01F8794B1A41232E00A63654 /* credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 01F8794A1A41232E00A63654 /* credits.html */; };
+		01F8794C1A4124FE00A63654 /* credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 01F8794A1A41232E00A63654 /* credits.html */; };
+		01F8794E1A412F8E00A63654 /* urlblocker_targets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01F8794D1A412F8E00A63654 /* urlblocker_targets.plist */; };
+		01F8794F1A412FA500A63654 /* urlblocker_targets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01F8794D1A412F8E00A63654 /* urlblocker_targets.plist */; };
 		0357A14A00B472D144F4F53B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F000EBDB20709D482560EE0 /* libPods.a */; };
 		BF746B2CD72A306F0316B40B /* libPods-endless Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E95B84E061F9B319EB8E8B /* libPods-endless Tests.a */; };
 /* End PBXBuildFile section */
@@ -38,7 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0135F4751A3D2931005A8F16 /* SearchEngines.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = SearchEngines.plist; path = endless/SearchEngines.plist; sourceTree = "<group>"; };
+		0135F4751A3D2931005A8F16 /* SearchEngines.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = SearchEngines.plist; path = endless/Resources/SearchEngines.plist; sourceTree = "<group>"; };
 		0135F47D1A3E548F005A8F16 /* WebViewTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewTab.h; sourceTree = "<group>"; };
 		0135F47E1A3E548F005A8F16 /* WebViewTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewTab.m; sourceTree = "<group>"; };
 		01801E921A32CA2A002B4718 /* endless.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = endless.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,7 +57,7 @@
 		01801E9F1A32CA2A002B4718 /* WebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		01801EA01A32CA2A002B4718 /* WebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		01801EA31A32CA2A002B4718 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		01801EA51A32CA2A002B4718 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = endless/Images.xcassets; sourceTree = "<group>"; };
+		01801EA51A32CA2A002B4718 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = endless/Resources/Images.xcassets; sourceTree = "<group>"; };
 		01801EBE1A335BEC002B4718 /* URLInterceptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLInterceptor.h; sourceTree = "<group>"; };
 		01801EBF1A335BEC002B4718 /* URLInterceptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLInterceptor.m; sourceTree = "<group>"; };
 		01801EC21A3360F8002B4718 /* InAppSettings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = InAppSettings.bundle; path = endless/InAppSettings.bundle; sourceTree = "<group>"; };
@@ -61,11 +69,18 @@
 		018333D71A35727C00670CD1 /* endless Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "endless Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		018333DA1A35727C00670CD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		018333DB1A35727C00670CD1 /* HTTPSEverywhere_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTTPSEverywhere_Tests.m; sourceTree = "<group>"; };
-		018333E21A35742E00670CD1 /* mock_rules.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = mock_rules.plist; sourceTree = "<group>"; };
-		018333E31A35742E00670CD1 /* mock_targets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = mock_targets.plist; sourceTree = "<group>"; };
-		018333E71A35746500670CD1 /* https-everywhere_rules.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "https-everywhere_rules.plist"; sourceTree = "<group>"; };
-		018333E81A35746500670CD1 /* https-everywhere_targets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "https-everywhere_targets.plist"; sourceTree = "<group>"; };
+		018333E71A35746500670CD1 /* https-everywhere_rules.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "https-everywhere_rules.plist"; path = "endless/Resources/https-everywhere_rules.plist"; sourceTree = "<group>"; };
+		018333E81A35746500670CD1 /* https-everywhere_targets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "https-everywhere_targets.plist"; path = "endless/Resources/https-everywhere_targets.plist"; sourceTree = "<group>"; };
 		018333EB1A357D8B00670CD1 /* libPods-OCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-OCMock.a"; path = "Pods/build/Debug-iphoneos/libPods-OCMock.a"; sourceTree = "<group>"; };
+		01F879391A4108DD00A63654 /* URLBlocker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLBlocker.h; sourceTree = "<group>"; };
+		01F8793A1A4108DD00A63654 /* URLBlocker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLBlocker.m; sourceTree = "<group>"; };
+		01F879401A4112E500A63654 /* URLBlocker_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLBlocker_Tests.m; sourceTree = "<group>"; };
+		01F879421A41140D00A63654 /* https-everywhere_mock_rules.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "https-everywhere_mock_rules.plist"; sourceTree = "<group>"; };
+		01F879431A41140D00A63654 /* https-everywhere_mock_targets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "https-everywhere_mock_targets.plist"; sourceTree = "<group>"; };
+		01F879461A41141800A63654 /* urlblocker_mock_rules.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = urlblocker_mock_rules.plist; sourceTree = "<group>"; };
+		01F879471A41141800A63654 /* urlblocker_mock_targets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = urlblocker_mock_targets.plist; sourceTree = "<group>"; };
+		01F8794A1A41232E00A63654 /* credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = credits.html; path = endless/Resources/credits.html; sourceTree = "<group>"; };
+		01F8794D1A412F8E00A63654 /* urlblocker_targets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = urlblocker_targets.plist; path = endless/Resources/urlblocker_targets.plist; sourceTree = "<group>"; };
 		5F000EBDB20709D482560EE0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		78E95B84E061F9B319EB8E8B /* libPods-endless Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-endless Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5539BB6B9C413DCDBDB86C7 /* Pods-endless Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-endless Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-endless Tests/Pods-endless Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -122,12 +137,14 @@
 				01801E991A32CA2A002B4718 /* AppDelegate.h */,
 				01801E9A1A32CA2A002B4718 /* AppDelegate.m */,
 				01801EA21A32CA2A002B4718 /* Main.storyboard */,
+				01801EBE1A335BEC002B4718 /* URLInterceptor.h */,
+				01801EBF1A335BEC002B4718 /* URLInterceptor.m */,
 				018333C81A3505FB00670CD1 /* HTTPSEverywhere.h */,
 				018333C91A3505FB00670CD1 /* HTTPSEverywhere.m */,
 				018333D01A35291200670CD1 /* HTTPSEverywhereRule.h */,
 				018333D11A35291200670CD1 /* HTTPSEverywhereRule.m */,
-				01801EBE1A335BEC002B4718 /* URLInterceptor.h */,
-				01801EBF1A335BEC002B4718 /* URLInterceptor.m */,
+				01F879391A4108DD00A63654 /* URLBlocker.h */,
+				01F8793A1A4108DD00A63654 /* URLBlocker.m */,
 				0135F47D1A3E548F005A8F16 /* WebViewTab.h */,
 				0135F47E1A3E548F005A8F16 /* WebViewTab.m */,
 				01801E9F1A32CA2A002B4718 /* WebViewController.h */,
@@ -152,9 +169,11 @@
 			children = (
 				018333E71A35746500670CD1 /* https-everywhere_rules.plist */,
 				018333E81A35746500670CD1 /* https-everywhere_targets.plist */,
+				01F8794D1A412F8E00A63654 /* urlblocker_targets.plist */,
 				01801EA51A32CA2A002B4718 /* Images.xcassets */,
 				0135F4751A3D2931005A8F16 /* SearchEngines.plist */,
 				01801EC21A3360F8002B4718 /* InAppSettings.bundle */,
+				01F8794A1A41232E00A63654 /* credits.html */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -163,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				018333DB1A35727C00670CD1 /* HTTPSEverywhere_Tests.m */,
+				01F879401A4112E500A63654 /* URLBlocker_Tests.m */,
 				018333D91A35727C00670CD1 /* Supporting Files */,
 			);
 			path = "endless Tests";
@@ -171,8 +191,10 @@
 		018333D91A35727C00670CD1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				018333E21A35742E00670CD1 /* mock_rules.plist */,
-				018333E31A35742E00670CD1 /* mock_targets.plist */,
+				01F879421A41140D00A63654 /* https-everywhere_mock_rules.plist */,
+				01F879431A41140D00A63654 /* https-everywhere_mock_targets.plist */,
+				01F879461A41141800A63654 /* urlblocker_mock_rules.plist */,
+				01F879471A41141800A63654 /* urlblocker_mock_targets.plist */,
 				018333DA1A35727C00670CD1 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -286,9 +308,11 @@
 				0135F4761A3D2931005A8F16 /* SearchEngines.plist in Resources */,
 				01801EA41A32CA2A002B4718 /* Main.storyboard in Resources */,
 				018333EA1A35746500670CD1 /* https-everywhere_targets.plist in Resources */,
-				01801EC31A3360F8002B4718 /* InAppSettings.bundle in Resources */,
 				018333E91A35746500670CD1 /* https-everywhere_rules.plist in Resources */,
+				01801EC31A3360F8002B4718 /* InAppSettings.bundle in Resources */,
+				01F8794F1A412FA500A63654 /* urlblocker_targets.plist in Resources */,
 				01801EA61A32CA2A002B4718 /* Images.xcassets in Resources */,
+				01F8794C1A4124FE00A63654 /* credits.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,8 +320,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				018333E41A35742E00670CD1 /* mock_rules.plist in Resources */,
-				018333E51A35742E00670CD1 /* mock_targets.plist in Resources */,
+				01F8794E1A412F8E00A63654 /* urlblocker_targets.plist in Resources */,
+				01F8794B1A41232E00A63654 /* credits.html in Resources */,
+				01F879451A41140D00A63654 /* https-everywhere_mock_targets.plist in Resources */,
+				01F879481A41141800A63654 /* urlblocker_mock_rules.plist in Resources */,
+				01F879491A41141800A63654 /* urlblocker_mock_targets.plist in Resources */,
+				01F879441A41140D00A63654 /* https-everywhere_mock_rules.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,6 +403,7 @@
 				01801E981A32CA2A002B4718 /* main.m in Sources */,
 				018333D21A35291200670CD1 /* HTTPSEverywhereRule.m in Sources */,
 				01801EA11A32CA2A002B4718 /* WebViewController.m in Sources */,
+				01F8793B1A4108DD00A63654 /* URLBlocker.m in Sources */,
 				01801EC01A335BEC002B4718 /* URLInterceptor.m in Sources */,
 				018333CA1A3505FB00670CD1 /* HTTPSEverywhere.m in Sources */,
 				0135F47F1A3E548F005A8F16 /* WebViewTab.m in Sources */,
@@ -385,6 +414,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01F879411A4112E500A63654 /* URLBlocker_Tests.m in Sources */,
 				018333DC1A35727C00670CD1 /* HTTPSEverywhere_Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

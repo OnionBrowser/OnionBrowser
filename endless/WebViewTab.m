@@ -1,4 +1,5 @@
 #import "WebViewTab.h"
+#import "URLInterceptor.h"
 
 @implementation WebViewTab
 
@@ -68,6 +69,9 @@ float progress;
 	
 	NSMutableURLRequest *ur = [NSMutableURLRequest requestWithURL:u];
 	[NSURLProtocol setProperty:[NSString stringWithFormat:@"%lu", [self hash]] forKey:@"WebViewTab" inRequest:ur];
+	
+	/* remember that this was the directly entered URL */
+	[NSURLProtocol setProperty:@YES forKey:ORIGIN_KEY inRequest:ur];
 
 	[self.webView loadRequest:ur];
 }

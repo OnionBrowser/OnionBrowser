@@ -4,6 +4,8 @@
 
 #import "HTTPSEverywhere.h"
 
+#define TRACE_HTTPS_EVERYWHERE
+
 @interface HTTPSEverywhere_Tests : XCTestCase
 @end
 
@@ -18,13 +20,13 @@ id HEMocked;
 	HEMocked = OCMClassMock([HTTPSEverywhere class]);
 	
 	NSFileManager *fm = [NSFileManager defaultManager];
-	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"mock_rules" ofType:@"plist"];
+	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"https-everywhere_mock_rules" ofType:@"plist"];
 	if (![fm fileExistsAtPath:path])
 		abort();
 	
 	OCMStub([HEMocked rules]).andReturn([NSDictionary dictionaryWithContentsOfFile:path]);
 	
-	NSString *tpath = [[NSBundle bundleForClass:[self class]] pathForResource:@"mock_targets" ofType:@"plist"];
+	NSString *tpath = [[NSBundle bundleForClass:[self class]] pathForResource:@"https-everywhere_mock_targets" ofType:@"plist"];
 	if (![fm fileExistsAtPath:tpath])
 		abort();
 
@@ -63,8 +65,6 @@ id HEMocked;
 	NSString *input = @"http://www.dc.bbb.org/";
 	NSURL *rewritten = [HTTPSEverywhere rewrittenURI:[NSURL URLWithString:input]];
 	XCTAssert([[rewritten absoluteString] isEqualToString:input]);
-
 }
-
 
 @end

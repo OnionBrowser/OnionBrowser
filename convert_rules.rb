@@ -1,12 +1,12 @@
 #!/usr/bin/ruby
-#
-# convert all HTTPS Everywhere XML rule files into one big rules hash and write
-# it out as a plist, as well as a standalone hash of target URLs -> rule names
-# to another plist
-#
 
 require "active_support/core_ext/hash/conversions"
 require "plist"
+require "json"
+
+# convert all HTTPS Everywhere XML rule files into one big rules hash and write
+# it out as a plist, as well as a standalone hash of target URLs -> rule names
+# to another plist
 
 rules = {}
 targets = {}
@@ -44,5 +44,19 @@ Dir.glob(File.dirname(__FILE__) +
   end
 end
 
-File.write("https-everywhere_targets.plist", targets.to_plist)
-File.write("https-everywhere_rules.plist", rules.to_plist)
+File.write("endless/Resources/https-everywhere_targets.plist", targets.to_plist)
+File.write("endless/Resources/https-everywhere_rules.plist", rules.to_plist)
+
+
+# do similar for URL blocking rules, converting JSON ruleset into a list of
+# target domains and a list of rulesets with information URLs
+
+targets = {}
+
+JSON.parse(File.read("urlblocker.json")).each do |company,domains|
+  domains.each do |dom|
+    targets[dom] = company
+  end
+end
+
+File.write("endless/Resources/urlblocker_targets.plist", targets.to_plist)

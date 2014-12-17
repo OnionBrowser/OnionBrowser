@@ -34,7 +34,8 @@
     };
 */
 
-- (id)initWithDictionary:(NSDictionary *)dict {
+- (id)initWithDictionary:(NSDictionary *)dict
+{
 	NSError *error;
 	NSObject *t;
 	
@@ -139,7 +140,8 @@
 }
 
 /* return nil if URL was not modified by this rule */
-- (NSURL *)apply:(NSURL *)url {
+- (NSURL *)apply:(NSURL *)url
+{
 	NSString *absURL = [url absoluteString];
 	NSArray *matches;
 

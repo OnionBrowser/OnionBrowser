@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>doubleclick.net</key>
+	<string>Google</string>
+	<key>facebook.com</key>
+	<string>Facebook</string>
+	<key>fb.com</key>
+	<string>Facebook</string>
+	<key>google-analytics.com</key>
+	<string>Google</string>
+	<key>twimg.com</key>
+	<string>Twitter</string>
+	<key>twitter.com</key>
+	<string>Twitter</string>
+</dict>
+</plist>

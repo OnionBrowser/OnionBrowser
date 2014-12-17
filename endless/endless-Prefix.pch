@@ -9,6 +9,9 @@
 /* be verbose about HTTPS Everywhere workings */
 //# define TRACE_HTTPS_EVERYWHERE
 
+/* be verbose about URL blocking */
+//# define TRACE_URL_BLOCKER
+
 #endif
 
 #endif
