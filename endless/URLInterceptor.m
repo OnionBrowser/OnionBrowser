@@ -72,7 +72,6 @@ WebViewTab *wvt;
 	
 	if (![NSURLProtocol propertyForKey:ORIGIN_KEY inRequest:newRequest]) {
 		if ([URLBlocker shouldBlockURL:[newRequest URL]]) {
-			NSLog(@"should be aborting request for %@", newRequest);
 			self.connection = nil;
 			return;
 		}
