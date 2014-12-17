@@ -44,8 +44,17 @@ Dir.glob(File.dirname(__FILE__) +
   end
 end
 
-File.write("endless/Resources/https-everywhere_targets.plist", targets.to_plist)
-File.write("endless/Resources/https-everywhere_rules.plist", rules.to_plist)
+File.write("endless/Resources/https-everywhere_targets.plist",
+  "<!-- automatically generated from HTTPS Everywhere " +
+  File.read("https-everywhere/.git/refs/heads/master").strip[0, 12] +
+  " - do not directly edit this file -->\n" +
+  targets.to_plist)
+
+File.write("endless/Resources/https-everywhere_rules.plist",
+  "<!-- generated from HTTPS Everywhere " +
+  File.read("https-everywhere/.git/refs/heads/master").strip[0, 12] +
+  " - do not directly edit this file -->\n" +
+  rules.to_plist)
 
 
 # do similar for URL blocking rules, converting JSON ruleset into a list of
@@ -59,4 +68,6 @@ JSON.parse(File.read("urlblocker.json")).each do |company,domains|
   end
 end
 
-File.write("endless/Resources/urlblocker_targets.plist", targets.to_plist)
+File.write("endless/Resources/urlblocker_targets.plist",
+  "<!-- generated from urlblocker.json - do not directly edit this file -->\n" +
+  targets.to_plist)

@@ -1,18 +1,27 @@
+<!-- generated from urlblocker.json - do not directly edit this file -->
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
 	<key>doubleclick.net</key>
-	<string>Google</string>
+	<string>Analytics - Google</string>
 	<key>facebook.com</key>
-	<string>Facebook</string>
+	<string>Social - Facebook</string>
 	<key>fb.com</key>
-	<string>Facebook</string>
+	<string>Social - Facebook</string>
 	<key>google-analytics.com</key>
-	<string>Google</string>
+	<string>Analytics - Google</string>
+	<key>linkedin.com</key>
+	<string>Social - LinkedIn</string>
+	<key>newrelic.com</key>
+	<string>Analytics - New Relic</string>
+	<key>quantserve.com</key>
+	<string>Analytics - Quantcast</string>
+	<key>scorecardresearch.com</key>
+	<string>Analytics - comScore</string>
 	<key>twimg.com</key>
-	<string>Twitter</string>
+	<string>Social - Twitter</string>
 	<key>twitter.com</key>
-	<string>Twitter</string>
+	<string>Social - Twitter</string>
 </dict>
 </plist>
