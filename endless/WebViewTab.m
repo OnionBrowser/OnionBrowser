@@ -49,6 +49,8 @@ float progress;
 	[self updateFrame:frame];
 
 	[self zoomNormal];
+	
+	[self setSecureMode:WebViewTabSecureModeInsecure];
 
 	return self;
 }
@@ -68,11 +70,13 @@ float progress;
 	[self.webView stopLoading];
 	
 	NSMutableURLRequest *ur = [NSMutableURLRequest requestWithURL:u];
-	[NSURLProtocol setProperty:[NSString stringWithFormat:@"%lu", [self hash]] forKey:@"WebViewTab" inRequest:ur];
+	[NSURLProtocol setProperty:[NSString stringWithFormat:@"%lu", (unsigned long)[self hash]] forKey:@"WebViewTab" inRequest:ur];
 	
 	/* remember that this was the directly entered URL */
 	[NSURLProtocol setProperty:@YES forKey:ORIGIN_KEY inRequest:ur];
-
+	
+	[self setSecureMode:WebViewTabSecureModeInsecure];
+	
 	[self.webView loadRequest:ur];
 }
 
@@ -91,17 +95,17 @@ float progress;
 	[self.title setText:[[self webView] stringByEvaluatingJavaScriptFromString:@"document.title"]];
 }
 
-- (void)webView:(UIWebView *)_webView didFailLoadWithError:(NSError *)error
+- (void)webView:(UIWebView *)__webView didFailLoadWithError:(NSError *)error
 {
 	if (error.code != NSURLErrorCancelled) {
 		UIAlertView *m = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:self cancelButtonTitle: @"Ok" otherButtonTitles:nil];
 		[m show];
 	}
 	
-	[self setProgress:0.0];
+	[self webViewDidFinishLoad:__webView];
 }
 
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+- (BOOL)webView:(UIWebView *)__webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
 	/* TODO: intercept javascript window.open and <a target="_blank"> to open in a new tab */
 	

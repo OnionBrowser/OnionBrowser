@@ -13,13 +13,12 @@
 
 @property (strong, atomic) WebViewController *webViewController;
 @property (strong, atomic) NSHTTPCookieStorage *cookieStorage;
-@property (strong, atomic) NSMutableDictionary *evHosts;
 
 @property (readonly, strong, nonatomic) NSDictionary *searchEngines;
 
-- (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 - (void)dumpCookies;
+- (void)saveContext;
 
 @end
 

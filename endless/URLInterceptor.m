@@ -34,11 +34,6 @@ WebViewTab *wvt;
 
 + (NSURLRequest *)canonicalRequestForRequest:(NSURLRequest *)request
 {
-	if (![NSURLProtocol propertyForKey:ORIGIN_KEY inRequest:request]) {
-		if ([URLBlocker shouldBlockURL:[request URL]])
-			return nil;
-	}
-
 	return request;
 }
 
@@ -50,14 +45,13 @@ WebViewTab *wvt;
 - (void)startLoading
 {
 	self.origRequest = self.request;
-	self.evOrgName = nil;
 
 	NSMutableURLRequest *newRequest = [self.request mutableCopy];
 	
 	NSString *wvthash = (NSString *)[NSURLProtocol propertyForKey:@"WebViewTab" inRequest:newRequest];
 	if (wvthash != nil && ![wvthash isEqualToString:@""]) {
 		for (WebViewTab *_wvt in [[appDelegate webViewController] webViewTabs]) {
-			if ([[NSString stringWithFormat:@"%lu", [_wvt hash]] isEqualToString:wvthash]) {
+			if ([[NSString stringWithFormat:@"%lu", (unsigned long)[_wvt hash]] isEqualToString:wvthash]) {
 				wvt = _wvt;
 				break;
 			}
@@ -66,15 +60,21 @@ WebViewTab *wvt;
 	
 	if (wvt == nil) {
 		NSLog(@"request for %@ with no matching WebViewTab!", [newRequest URL]);
-		[self.connection cancel];
+		self.connection = nil;
 		return;
 	}
 	
 	if (![NSURLProtocol propertyForKey:ORIGIN_KEY inRequest:newRequest]) {
 		if ([URLBlocker shouldBlockURL:[newRequest URL]]) {
-			self.connection = nil;
+			/* need to continue the chain with a blank response so downstream knows we're done */
+			[self.client URLProtocol:self didReceiveResponse:[[NSURLResponse alloc] init] cacheStoragePolicy:NSURLCacheStorageNotAllowed];
+			[self.client URLProtocolDidFinishLoading:self];
 			return;
 		}
+		
+		/* we need to catch these here in the case of http -> https redirections */
+		if ([wvt secureMode] > WebViewTabSecureModeInsecure && ![[[[self.request URL] scheme] lowercaseString] isEqualToString:@"https"])
+			[wvt setSecureMode:WebViewTabSecureModeMixed];
 	}
 
 #ifdef TRACE
@@ -158,9 +158,22 @@ WebViewTab *wvt;
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
 	[self extractCookiesFromResponse:response forURL:[self.request URL] fromMainDocument:[wvt url]];
+	
+	if ([NSURLProtocol propertyForKey:ORIGIN_KEY inRequest:self.request]) {
+		if ([[[[self.request URL] scheme] lowercaseString] isEqualToString:@"https"]) {
+			/* initial request was over https, start considering us secure */
 		
-	if (self.evOrgName != nil && ![self.evOrgName isEqualToString:@""]) {
-		NSLog(@"EV info is %@", self.evOrgName);
+			if (self.evOrgName != nil && ![self.evOrgName isEqualToString:@""]) {
+				[wvt setSecureMode:WebViewTabSecureModeSecureEV];
+				[wvt setEvOrgName:self.evOrgName];
+			} else
+				[wvt setSecureMode:WebViewTabSecureModeSecure];
+		}
+	}
+	else if ([wvt secureMode] > WebViewTabSecureModeInsecure && ![[[[self.request URL] scheme] lowercaseString] isEqualToString:@"https"]) {
+		/* an element on the page was not sent over https but the initial request was, downgrade to mixed */
+		if ([wvt secureMode] > WebViewTabSecureModeInsecure)
+			[wvt setSecureMode:WebViewTabSecureModeMixed];
 	}
 	
 	[self.client URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageAllowed];
@@ -208,8 +221,8 @@ WebViewTab *wvt;
 #ifdef DEBUG
 		NSLog(@"[Tab %@] cert for %@ has EV, registered to %@", wvt.tabNumber, [[self.request URL] host], orgname);
 #endif
-		if ([[[self.request URL] host] isEqualToString:[[wvt url] host]])
-			[[appDelegate evHosts] setValue:orgname forKey:[[self.request URL] host]];
+		if ([NSURLProtocol propertyForKey:ORIGIN_KEY inRequest:self.request] && [[[[self.request URL] host] lowercaseString] isEqualToString:[[[wvt url] host] lowercaseString]])
+			[self setEvOrgName:orgname];
 	}
 
 	/* TODO: check for blacklisted certs or CAs? */

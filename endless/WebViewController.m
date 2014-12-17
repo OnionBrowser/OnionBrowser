@@ -100,7 +100,7 @@
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	NSDictionary *se = [[appDelegate searchEngines] objectForKey:[userDefaults stringForKey:@"search_engine"]];
 	
-	WebViewTab *wvt = [self addNewTabForURL:[NSURL URLWithString:[se objectForKey:@"homepage_url"]]];
+	[self addNewTabForURL:[NSURL URLWithString:[se objectForKey:@"homepage_url"]]];
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
@@ -268,8 +268,6 @@
 
 - (void)updateSearchBarDetails
 {
-	NSString *evOrg;
-	
 	/* TODO: cache curURL and only do anything here if it changed, these changes might be expensive */
 
 	if (searchBar.isFirstResponder) {
@@ -282,24 +280,32 @@
 	}
 	else {
 		[self.searchBarTextField setTextAlignment:NSTextAlignmentCenter];
+		[[self searchBarTextField] setTextColor:[UIColor darkTextColor]];
 		[searchBar setShowsCancelButton:NO animated:YES];
+		BOOL isEV = NO;
 
-		if (self.curWebViewTab && self.curWebViewTab.url != nil && [[self.curWebViewTab.url scheme] isEqualToString:@"https"]) {
-			evOrg = [[appDelegate evHosts] objectForKey:[self.curWebViewTab.url host]];
-
+		if (self.curWebViewTab && self.curWebViewTab.secureMode >= WebViewTabSecureModeSecure) {
 			[searchBar setImage:[UIImage imageNamed:@"lock"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
+			
+			if (self.curWebViewTab.secureMode == WebViewTabSecureModeSecureEV) {
+				/* wait until the page is done loading */
+				if ([progressBar progress] == 0) {
+					[[self searchBarTextField] setTextColor:[UIColor colorWithRed:0 green:(183.0/255.0) blue:(82.0/255.0) alpha:1.0]];
+			
+					[searchBar setText:self.curWebViewTab.evOrgName];
+					isEV = YES;
+				}
+			}
+		}
+		else if (self.curWebViewTab && self.curWebViewTab.secureMode == WebViewTabSecureModeMixed) {
+			[searchBar setImage:[UIImage imageNamed:@"broken_lock"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
 		}
 		else {
 			/* XXX: is this legal? */
 			[searchBar setImage:[UIImage new] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
 		}
-		
-		if (evOrg != nil && ![evOrg isEqualToString:@""] && [progressBar progress] == 0) {
-			[[self searchBarTextField] setTextColor:[UIColor colorWithRed:0 green:(183.0/255.0) blue:(82.0/255.0) alpha:1.0]];
 			
-			[searchBar setText:evOrg];
-		}
-		else {
+		if (!isEV) {
 			NSString *host;
 			if (self.curWebViewTab.url == nil)
 				host = @"";
@@ -314,10 +320,10 @@
 			
 			[[self searchBarTextField] setTextColor:[UIColor darkTextColor]];
 			[searchBar setText:hostNoWWW];
+			
+			if ([searchBar.text isEqualToString:@""])
+				[self.searchBarTextField setTextAlignment:NSTextAlignmentLeft];
 		}
-		
-		if ([searchBar.text isEqualToString:@""])
-			[self.searchBarTextField setTextAlignment:NSTextAlignmentLeft];
 	}
 	
 	backButton.enabled = (self.curWebViewTab && self.curWebViewTab.canGoBack);
