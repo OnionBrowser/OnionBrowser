@@ -96,13 +96,10 @@
 	[self updateSearchBarDetails];
 	
 	[self.view.window makeKeyAndVisible];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
+	
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	NSDictionary *se = [[appDelegate searchEngines] objectForKey:[userDefaults stringForKey:@"search_engine"]];
-
+	
 	WebViewTab *wvt = [self addNewTabAndFocus:YES];
 	[wvt loadURL:[NSURL URLWithString:[se objectForKey:@"homepage_url"]]];
 }

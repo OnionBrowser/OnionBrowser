@@ -21,7 +21,8 @@ WebViewTab *wvt;
 		/* already mucked with this request */
 		return NO;
 	
-	if ([[[[request URL] scheme] lowercaseString] isEqualToString:@"data"])
+	NSString *scheme = [[[request URL] scheme] lowercaseString];
+	if ([scheme isEqualToString:@"data"] || [scheme isEqualToString:@"file"])
 		/* can't really do anything for these URLs */
 		return NO;
 
