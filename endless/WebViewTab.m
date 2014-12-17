@@ -93,8 +93,10 @@ float progress;
 
 - (void)webView:(UIWebView *)_webView didFailLoadWithError:(NSError *)error
 {
-	UIAlertView *m = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:self cancelButtonTitle: @"Ok" otherButtonTitles:nil];
-	[m show];
+	if (error.code != NSURLErrorCancelled) {
+		UIAlertView *m = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:self cancelButtonTitle: @"Ok" otherButtonTitles:nil];
+		[m show];
+	}
 	
 	[self setProgress:0.0];
 }
