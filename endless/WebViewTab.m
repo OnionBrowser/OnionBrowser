@@ -56,10 +56,10 @@ float progress;
 - (void)updateFrame:(CGRect)frame
 {
 	[self.viewHolder setFrame:frame];
-	[self.webView setFrame:frame];
-	[self.titleHolder setFrame:CGRectMake(frame.origin.x, frame.origin.y - 20, frame.size.width, 22)];
-	[self.title setFrame:CGRectMake(frame.origin.x + 24, frame.origin.y - 16, frame.size.width - 8 - 24, 12)];
-	[self.closer setFrame:CGRectMake(frame.origin.x + 2, frame.origin.y - 18, 18, 18)];
+	[self.webView setFrame:CGRectMake(0, frame.origin.y, frame.size.width, frame.size.height)];
+	[self.titleHolder setFrame:CGRectMake(0, frame.origin.y - 20, frame.size.width, 22)];
+	[self.title setFrame:CGRectMake(24, frame.origin.y - 16, frame.size.width - 8 - 24, 12)];
+	[self.closer setFrame:CGRectMake(2, frame.origin.y - 18, 18, 18)];
 }
 
 - (void)loadURL:(NSURL *)u

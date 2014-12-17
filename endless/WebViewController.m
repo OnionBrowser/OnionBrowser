@@ -100,8 +100,7 @@
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	NSDictionary *se = [[appDelegate searchEngines] objectForKey:[userDefaults stringForKey:@"search_engine"]];
 	
-	WebViewTab *wvt = [self addNewTabAndFocus:YES];
-	[wvt loadURL:[NSURL URLWithString:[se objectForKey:@"homepage_url"]]];
+	WebViewTab *wvt = [self addNewTabForURL:[NSURL URLWithString:[se objectForKey:@"homepage_url"]]];
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
@@ -151,7 +150,7 @@
 		return nil;
 }
 
-- (WebViewTab *)addNewTabAndFocus:(BOOL)focus
+- (WebViewTab *)addNewTabForURL:(NSURL *)url
 {
 	WebViewTab *wvt = [[WebViewTab alloc] initWithFrame:[self frameForTabIndex:webViewTabs.count] controller:self];
 	
@@ -160,39 +159,47 @@
 	[wvt.webView.scrollView setDelegate:self];
 	
 	[webViewTabs addObject:wvt];
+	[tabChooser setNumberOfPages:webViewTabs.count];
+	[wvt setTabNumber:[NSNumber numberWithLong:(webViewTabs.count - 1)]];
+	
+	[tabScroller setContentSize:CGSizeMake(wvt.viewHolder.frame.size.width * tabChooser.numberOfPages, wvt.viewHolder.frame.size.height)];
 	[tabScroller addSubview:wvt.viewHolder];
 
 	if (showingTabs)
 		[wvt zoomOut];
-	
-	[tabChooser setNumberOfPages:webViewTabs.count];
-	
-	[wvt setTabNumber:[NSNumber numberWithLong:(webViewTabs.count - 1)]];
 
-	if (focus) {
-		void (^swapToTab)(BOOL) = ^(BOOL finished) {
-			tabChooser.currentPage = webViewTabs.count - 1;
-			
-			[self slideToCurrentTab:nil withCompletionBlock:^(BOOL finished) {
-				//[self showTabs:nil];
-			}];
-		};
+	void (^swapToTab)(BOOL) = ^(BOOL finished) {
+		tabChooser.currentPage = webViewTabs.count - 1;
 		
-		/* animate zooming out (if not already), switching to the new tab, then zoom back in */
-		if (!showingTabs && webViewTabs.count > 1) {
-			[self showTabs:nil withCompletionBlock:swapToTab];
-		}
-		else if (showingTabs) {
-			swapToTab(YES);
-		}
-	}
+		[self slideToCurrentTabWithCompletionBlock:^(BOOL finished) {
+			if (url != nil)
+				[wvt loadURL:url];
+
+			[self showTabsWithCompletionBlock:^(BOOL finished) {
+				if (url == nil)
+					[searchBar becomeFirstResponder];
+			}];
+		}];
+	};
 	
+	/* animate zooming out (if not already), switching to the new tab, then zoom back in */
+	if (showingTabs)
+		swapToTab(YES);
+	else if (webViewTabs.count > 1)
+		[self showTabsWithCompletionBlock:swapToTab];
+	else {
+		if (url == nil)
+			[searchBar becomeFirstResponder];
+		else
+			[wvt loadURL:url];
+	}
+		
 	return wvt;
 }
 
 - (void)addNewTabFromToolbar:(id)_id
 {
-	[self addNewTabAndFocus:YES];
+	[self addNewTabForURL:nil];
 }
 
 - (CGRect)frameForTabIndex:(NSUInteger)number
@@ -216,7 +223,7 @@
 		}
 	}
 	
-	return CGRectMake(screenWidth * number, SEARCHBAR_HEIGHT - STATUSBAR_HEIGHT, screenWidth, screenHeight - TOOLBAR_HEIGHT);
+	return CGRectMake((screenWidth * number), SEARCHBAR_HEIGHT - STATUSBAR_HEIGHT, screenWidth, screenHeight - TOOLBAR_HEIGHT);
 }
 
 - (void)removeTab:(NSUInteger)tabNumber
@@ -239,7 +246,7 @@
 		}
 		else {
 			/* no tabs left, add one and zoom out */
-			[self addNewTabAndFocus:true];
+			[self addNewTabForURL:nil];
 			return;
 		}
 	}
@@ -551,10 +558,10 @@
 
 - (void)showTabs:(id)_id
 {
-	return [self showTabs:_id withCompletionBlock:nil];
+	return [self showTabsWithCompletionBlock:nil];
 }
 
-- (void)showTabs:(id)_id withCompletionBlock:(void(^)(BOOL))block
+- (void)showTabsWithCompletionBlock:(void(^)(BOOL))block
 {
 	if (showingTabs) {
 		[UIView animateWithDuration:0.25 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^(void) {
@@ -594,8 +601,8 @@
 			tabScroller.frame = CGRectMake(tabScroller.frame.origin.x, -(tabChooser.frame.size.height), tabScroller.frame.size.width, tabScroller.frame.size.height);
 		} completion:block];
 		
-		tabScroller.contentSize = CGSizeMake(self.view.frame.size.width * tabChooser.numberOfPages, self.view.frame.size.height);
-		tabScroller.contentOffset = CGPointMake(tabScroller.frame.size.width * tabChooser.currentPage, 0);
+		tabScroller.contentOffset = CGPointMake([self frameForTabIndex:tabChooser.currentPage].origin.x, 0);
+
 		tabScroller.scrollEnabled = YES;
 		tabScroller.pagingEnabled = YES;
 		
@@ -630,17 +637,16 @@
 		[self showTabs:nil];
 }
 
-- (void)slideToCurrentTab:(id)_id withCompletionBlock:(void(^)(BOOL))block
+- (void)slideToCurrentTabWithCompletionBlock:(void(^)(BOOL))block
 {
 	[UIView animateWithDuration:0.25 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-		CGRect destFrame = [self frameForTabIndex:tabChooser.currentPage];
-		[tabScroller setContentOffset:CGPointMake(destFrame.origin.x, 0) animated:NO];
+		[tabScroller setContentOffset:CGPointMake([self frameForTabIndex:tabChooser.currentPage].origin.x, 0) animated:NO];
 	} completion:block];
 }
 
 - (IBAction)slideToCurrentTab:(id)_id
 {
-	[self slideToCurrentTab:_id withCompletionBlock:nil];
+	[self slideToCurrentTabWithCompletionBlock:nil];
 }
 
 @end
