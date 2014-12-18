@@ -18,6 +18,9 @@
 	
 	UIView *toolbar;
 	UITextField *urlField;
+	UIImageView *lockIcon;
+	UIImageView *brokenLockIcon;
+	UIImageView *blankIcon;
 	UIProgressView *progressBar;
 	UIToolbar *tabToolbar;
 	
@@ -85,8 +88,20 @@
 	[urlField setReturnKeyType:UIReturnKeyDone];
 	[urlField setClearButtonMode:UITextFieldViewModeWhileEditing];
 	[urlField setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
+	[urlField setLeftViewMode:UITextFieldViewModeAlways];
 	[urlField setDelegate:self];
 	[toolbar addSubview:urlField];
+	
+	lockIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"lock"]];
+	[lockIcon setFrame:CGRectMake(0, 0, 24, 16)];
+	[lockIcon setContentMode:UIViewContentModeScaleAspectFit];
+	
+	brokenLockIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"broken_lock"]];
+	[brokenLockIcon setFrame:CGRectMake(0, 0, 24, 16)];
+	[brokenLockIcon setContentMode:UIViewContentModeScaleAspectFit];
+	
+	blankIcon = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 24, 16)];
+	[urlField setLeftView:blankIcon];
 	
 	tabsButton = [UIButton buttonWithType:UIButtonTypeCustom];
 	UIImage *tabsImage = [[UIImage imageNamed:@"tabs"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
@@ -353,17 +368,15 @@
 		
 		[urlField setTextAlignment:NSTextAlignmentNatural];
 		[urlField setTextColor:[UIColor darkTextColor]];
-		//[urlField setShowsCancelButton:YES animated:YES];
-		//[urlField setImage:UISearchBarIconSearch forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
+		[urlField setLeftView:nil];
 	}
 	else {
 		[urlField setTextAlignment:NSTextAlignmentCenter];
 		[urlField setTextColor:[UIColor darkTextColor]];
-		//[searchBar setShowsCancelButton:NO animated:YES];
+		
 		BOOL isEV = NO;
-
 		if (self.curWebViewTab && self.curWebViewTab.secureMode >= WebViewTabSecureModeSecure) {
-			//[searchBar setImage:[UIImage imageNamed:@"lock"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
+			[urlField setLeftView:lockIcon];
 			
 			if (self.curWebViewTab.secureMode == WebViewTabSecureModeSecureEV) {
 				/* wait until the page is done loading */
@@ -376,11 +389,10 @@
 			}
 		}
 		else if (self.curWebViewTab && self.curWebViewTab.secureMode == WebViewTabSecureModeMixed) {
-			//[searchBar setImage:[UIImage imageNamed:@"broken_lock"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
+			[urlField setLeftView:brokenLockIcon];
 		}
 		else {
-			/* XXX: is this legal? */
-			//[searchBar setImage:[UIImage new] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
+			[urlField setLeftView:blankIcon];
 		}
 			
 		if (!isEV) {
