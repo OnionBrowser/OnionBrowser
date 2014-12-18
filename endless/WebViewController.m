@@ -4,8 +4,7 @@
 #import "URLInterceptor.h"
 #import "WebViewTab.h"
 
-#define STATUSBAR_HEIGHT 16
-#define SEARCHBAR_HEIGHT 48
+#define STATUSBAR_HEIGHT 20
 #define TOOLBAR_HEIGHT 44
 
 @interface WebViewController ()
@@ -13,24 +12,22 @@
 @end
 
 @implementation WebViewController {
-	IBOutlet UIScrollView *tabScroller;
+	UIScrollView *tabScroller;
 	UIPageControl *tabChooser;
 	NSMutableArray *webViewTabs;
-
-	IBOutlet UISearchBar *searchBar;
-	IBOutlet UIProgressView *progressBar;
-	IBOutlet UIToolbar *toolbar;
-	IBOutlet UIToolbar *tabToolbar;
 	
-	IBOutlet UIBarButtonItem *backButton;
-	IBOutlet UIBarButtonItem *forwardButton;
-	IBOutlet UIBarButtonItem *shareButton;
-	IBOutlet UIBarButtonItem *bookmarksButton;
-	IBOutlet UIBarButtonItem *tabsButton;
-	IBOutlet UIBarButtonItem *settingsButton;
+	UIView *toolbar;
+	UITextField *urlField;
+	UIProgressView *progressBar;
+	UIToolbar *tabToolbar;
 	
-	IBOutlet UIBarButtonItem *tabAddButton;
-	IBOutlet UIBarButtonItem *tabDoneButton;
+	UIButton *backButton;
+	UIButton *forwardButton;
+	UIButton *tabsButton;
+	UIButton *settingsButton;
+	
+	UIBarButtonItem *tabAddButton;
+	UIBarButtonItem *tabDoneButton;
 
 	AppDelegate *appDelegate;
 	
@@ -43,19 +40,67 @@
 	BOOL webViewScrollIsDragging;
 }
 
-- (void)viewDidLoad
+- (void)loadView
 {
-	[super viewDidLoad];
-
 	appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 	[appDelegate setWebViewController:self];
 	
 	webViewTabs = [[NSMutableArray alloc] initWithCapacity:10];
+
+	self.view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].applicationFrame.size.width, [UIScreen mainScreen].applicationFrame.size.height)];
 	
-	[self adjustLayoutToSize:CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height)];
+	tabScroller = [[UIScrollView alloc] init];
+	[tabScroller setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+	[[self view] addSubview:tabScroller];
 	
-	[progressBar setTrackTintColor:[searchBar barTintColor]];
+	toolbar = [[UIView alloc] init];
+	[toolbar setClipsToBounds:YES];
+	[self.view addSubview:toolbar];
+	
+	progressBar = [[UIProgressView alloc] init];
+	[progressBar setTrackTintColor:[UIColor clearColor]];
+	[progressBar setTintColor:self.view.window.tintColor];
 	[progressBar setProgress:0.0];
+	[toolbar addSubview:progressBar];
+	
+	backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+	UIImage *backImage = [[UIImage imageNamed:@"back"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+	[backButton setImage:backImage forState:UIControlStateNormal];
+	[backButton setTintColor:[progressBar tintColor]];
+	[backButton addTarget:self action:@selector(goBack:) forControlEvents:UIControlEventTouchUpInside];
+	[toolbar addSubview:backButton];
+	
+	forwardButton = [UIButton buttonWithType:UIButtonTypeCustom];
+	UIImage *forwardImage = [[UIImage imageNamed:@"forward"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+	[forwardButton setImage:forwardImage forState:UIControlStateNormal];
+	[forwardButton setTintColor:[progressBar tintColor]];
+	[forwardButton addTarget:self action:@selector(goForward:) forControlEvents:UIControlEventTouchUpInside];
+	[toolbar addSubview:forwardButton];
+	
+	urlField = [[UITextField alloc] init];
+	[urlField setBorderStyle:UITextBorderStyleRoundedRect];
+	[urlField.layer setCornerRadius:8.0f];
+	[urlField setKeyboardType:UIKeyboardTypeURL];
+	[urlField setFont:[UIFont systemFontOfSize:15]];
+	[urlField setReturnKeyType:UIReturnKeyDone];
+	[urlField setClearButtonMode:UITextFieldViewModeWhileEditing];
+	[urlField setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
+	[urlField setDelegate:self];
+	[toolbar addSubview:urlField];
+	
+	tabsButton = [UIButton buttonWithType:UIButtonTypeCustom];
+	UIImage *tabsImage = [[UIImage imageNamed:@"tabs"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+	[tabsButton setImage:tabsImage forState:UIControlStateNormal];
+	[tabsButton setTintColor:[progressBar tintColor]];
+	[tabsButton addTarget:self action:@selector(showTabs:) forControlEvents:UIControlEventTouchUpInside];
+	[toolbar addSubview:tabsButton];
+	
+	settingsButton = [UIButton buttonWithType:UIButtonTypeCustom];
+	UIImage *settingsImage = [[UIImage imageNamed:@"settings"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+	[settingsButton setImage:settingsImage forState:UIControlStateNormal];
+	[settingsButton setTintColor:[progressBar tintColor]];
+	[settingsButton addTarget:self action:@selector(showSettings:) forControlEvents:UIControlEventTouchUpInside];
+	[toolbar addSubview:settingsButton];
 	
 	[tabScroller setAutoresizingMask:(UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight)];
 	[tabScroller setAutoresizesSubviews:NO];
@@ -64,8 +109,8 @@
 	[tabScroller setScrollsToTop:NO];
 	[tabScroller setDelaysContentTouches:NO];
 	[tabScroller setDelegate:self];
-	
-	tabChooser = [[UIPageControl alloc] initWithFrame:CGRectMake(0, toolbar.frame.origin.y - 35, self.view.frame.size.width, 35)];
+
+	tabChooser = [[UIPageControl alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - TOOLBAR_HEIGHT - 12, self.view.bounds.size.width, TOOLBAR_HEIGHT)];
 	[tabChooser setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin)];
 	[tabChooser addTarget:self action:@selector(slideToCurrentTab:) forControlEvents:UIControlEventValueChanged];
 	[tabChooser setPageIndicatorTintColor:[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0]];
@@ -74,33 +119,28 @@
 	[self.view insertSubview:tabChooser aboveSubview:toolbar];
 	[tabChooser setHidden:true];
 	
-	/* hook up toolbar buttons */
-	backButton.target = self;
-	backButton.action = @selector(goBack:);
-	forwardButton.target = self;
-	forwardButton.action = @selector(goForward:);
-	settingsButton.target = self;
-	settingsButton.action = @selector(showSettings:);
-	tabsButton.target = self;
-	tabsButton.action = @selector(showTabs:);
-	shareButton.target = self;
-	shareButton.action = @selector(showShareMenu:);
-	
-	tabAddButton.target = self;
-	tabAddButton.action = @selector(addNewTabFromToolbar:);
-	tabDoneButton.target = self;
-	tabDoneButton.action = @selector(doneWithTabsButton:);
+	tabToolbar = [[UIToolbar alloc] init];
+	[tabToolbar setClipsToBounds:YES];
+	[tabToolbar setBarTintColor:[UIColor groupTableViewBackgroundColor]];
 	[tabToolbar setHidden:true];
+	[self.view insertSubview:tabToolbar aboveSubview:toolbar];
 	
-	[[self searchBarTextField] setClearButtonMode:UITextFieldViewModeWhileEditing];
+	tabAddButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewTabFromToolbar:)];
+	tabDoneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneWithTabsButton:)];
+	tabDoneButton.title = @"Done";
+
+	tabToolbar.items = [NSArray arrayWithObjects:
+			    [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil],
+			    tabAddButton,
+			    [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil],
+			    tabDoneButton,
+			    nil];
+	
+	[self adjustLayoutToSize:CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height)];
+	
 	[self updateSearchBarDetails];
 	
 	[self.view.window makeKeyAndVisible];
-	
-	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	NSDictionary *se = [[appDelegate searchEngines] objectForKey:[userDefaults stringForKey:@"search_engine"]];
-	
-	[self addNewTabForURL:[NSURL URLWithString:[se objectForKey:@"homepage_url"]]];
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
@@ -108,15 +148,32 @@
 	[self adjustLayoutToSize:size];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+	if (webViewTabs.count == 0) {
+		NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+		NSDictionary *se = [[appDelegate searchEngines] objectForKey:[userDefaults stringForKey:@"search_engine"]];
+
+		[self addNewTabForURL:[NSURL URLWithString:[se objectForKey:@"homepage_url"]]];
+	}
+}
+
 - (void)adjustLayoutToSize:(CGSize)size
 {
 	self.view.frame = CGRectMake(0, 0, size.width, size.height);
 	
-	searchBar.frame = CGRectMake(0, STATUSBAR_HEIGHT, size.width, SEARCHBAR_HEIGHT);
-	tabScroller.frame = CGRectMake(0, 0, size.width, size.height);
-	progressBar.frame = CGRectMake(0, searchBar.frame.origin.y + searchBar.frame.size.height, searchBar.frame.size.width, 2);
+	toolbar.frame = CGRectMake(0, STATUSBAR_HEIGHT, size.width, TOOLBAR_HEIGHT);
 	
-	toolbar.frame = tabToolbar.frame = CGRectMake(0, size.height - TOOLBAR_HEIGHT, size.width, TOOLBAR_HEIGHT);
+	backButton.frame = CGRectMake(8, 8, 30, 30);
+	forwardButton.frame = CGRectMake(backButton.frame.origin.x + backButton.frame.size.width + 8, 8, backButton.frame.size.width, backButton.frame.size.height);
+	settingsButton.frame = CGRectMake(size.width - backButton.frame.size.width - 8, 8, backButton.frame.size.width, backButton.frame.size.height);
+	tabsButton.frame = CGRectMake(settingsButton.frame.origin.x - backButton.frame.size.width - 8, 8, backButton.frame.size.width, backButton.frame.size.height);
+
+	urlField.frame = [self frameForUrlField];
+	
+	tabScroller.frame = CGRectMake(0, 0, size.width, size.height);
+	progressBar.frame = CGRectMake(0, toolbar.frame.size.height - 2, toolbar.frame.size.width, 2);
+	tabToolbar.frame = toolbar.frame;
 	
 	for (int i = 0; i < webViewTabs.count; i++) {
 		WebViewTab *wvt = webViewTabs[i];
@@ -124,6 +181,10 @@
 	}
 	
 	tabScroller.contentSize = CGSizeMake(size.width * tabChooser.numberOfPages, size.height);
+	
+	tabChooser.frame = CGRectMake(0, size.height - 24, size.width, 24);
+	
+	[self.view setNeedsDisplay];
 }
 
 - (BOOL)prefersStatusBarHidden
@@ -154,8 +215,8 @@
 {
 	WebViewTab *wvt = [[WebViewTab alloc] initWithFrame:[self frameForTabIndex:webViewTabs.count] controller:self];
 	
-	[wvt.webView.scrollView setContentInset:UIEdgeInsetsMake(0, 0, TOOLBAR_HEIGHT, 0)];
-	[wvt.webView.scrollView setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0, TOOLBAR_HEIGHT, 0)];
+	[wvt.webView.scrollView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
+	[wvt.webView.scrollView setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
 	[wvt.webView.scrollView setDelegate:self];
 	
 	[webViewTabs addObject:wvt];
@@ -164,6 +225,8 @@
 	
 	[tabScroller setContentSize:CGSizeMake(wvt.viewHolder.frame.size.width * tabChooser.numberOfPages, wvt.viewHolder.frame.size.height)];
 	[tabScroller addSubview:wvt.viewHolder];
+	
+	[tabScroller bringSubviewToFront:toolbar];
 
 	if (showingTabs)
 		[wvt zoomOut];
@@ -177,7 +240,7 @@
 
 			[self showTabsWithCompletionBlock:^(BOOL finished) {
 				if (url == nil)
-					[searchBar becomeFirstResponder];
+					[urlField becomeFirstResponder];
 			}];
 		}];
 	};
@@ -189,7 +252,7 @@
 		[self showTabsWithCompletionBlock:swapToTab];
 	else {
 		if (url == nil)
-			[searchBar becomeFirstResponder];
+			[urlField becomeFirstResponder];
 		else
 			[wvt loadURL:url];
 	}
@@ -223,7 +286,22 @@
 		}
 	}
 	
-	return CGRectMake((screenWidth * number), SEARCHBAR_HEIGHT - STATUSBAR_HEIGHT, screenWidth, screenHeight - TOOLBAR_HEIGHT);
+	return CGRectMake((screenWidth * number), 32, screenWidth, screenHeight - TOOLBAR_HEIGHT);
+}
+
+- (CGRect)frameForUrlField
+{
+	float x = forwardButton.frame.origin.x + forwardButton.frame.size.width + 8;
+	float y = tabsButton.frame.origin.y;
+	float w = tabsButton.frame.origin.x - 8 - forwardButton.frame.origin.x - forwardButton.frame.size.width - 8;
+	float h = tabsButton.frame.size.height;
+	
+	if (forwardButton.hidden) {
+		x -= forwardButton.frame.size.width + 8;
+		w += forwardButton.frame.size.width + 8;
+	}
+	
+	return CGRectMake(x, y, w, h);
 }
 
 - (void)removeTab:(NSUInteger)tabNumber
@@ -270,39 +348,39 @@
 {
 	/* TODO: cache curURL and only do anything here if it changed, these changes might be expensive */
 
-	if (searchBar.isFirstResponder) {
+	if (urlField.isFirstResponder) {
 		/* focused, don't muck with the URL while it's being edited */
 		
-		[[self searchBarTextField] setTextAlignment:NSTextAlignmentNatural];
-		[[self searchBarTextField] setTextColor:[UIColor darkTextColor]];
-		[searchBar setShowsCancelButton:YES animated:YES];
-		[searchBar setImage:UISearchBarIconSearch forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
+		[urlField setTextAlignment:NSTextAlignmentNatural];
+		[urlField setTextColor:[UIColor darkTextColor]];
+		//[urlField setShowsCancelButton:YES animated:YES];
+		//[urlField setImage:UISearchBarIconSearch forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
 	}
 	else {
-		[self.searchBarTextField setTextAlignment:NSTextAlignmentCenter];
-		[[self searchBarTextField] setTextColor:[UIColor darkTextColor]];
-		[searchBar setShowsCancelButton:NO animated:YES];
+		[urlField setTextAlignment:NSTextAlignmentCenter];
+		[urlField setTextColor:[UIColor darkTextColor]];
+		//[searchBar setShowsCancelButton:NO animated:YES];
 		BOOL isEV = NO;
 
 		if (self.curWebViewTab && self.curWebViewTab.secureMode >= WebViewTabSecureModeSecure) {
-			[searchBar setImage:[UIImage imageNamed:@"lock"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
+			//[searchBar setImage:[UIImage imageNamed:@"lock"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
 			
 			if (self.curWebViewTab.secureMode == WebViewTabSecureModeSecureEV) {
 				/* wait until the page is done loading */
 				if ([progressBar progress] == 0) {
-					[[self searchBarTextField] setTextColor:[UIColor colorWithRed:0 green:(183.0/255.0) blue:(82.0/255.0) alpha:1.0]];
+					[urlField setTextColor:[UIColor colorWithRed:0 green:(183.0/255.0) blue:(82.0/255.0) alpha:1.0]];
 			
-					[searchBar setText:self.curWebViewTab.evOrgName];
+					[urlField setText:self.curWebViewTab.evOrgName];
 					isEV = YES;
 				}
 			}
 		}
 		else if (self.curWebViewTab && self.curWebViewTab.secureMode == WebViewTabSecureModeMixed) {
-			[searchBar setImage:[UIImage imageNamed:@"broken_lock"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
+			//[searchBar setImage:[UIImage imageNamed:@"broken_lock"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
 		}
 		else {
 			/* XXX: is this legal? */
-			[searchBar setImage:[UIImage new] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
+			//[searchBar setImage:[UIImage new] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
 		}
 			
 		if (!isEV) {
@@ -318,29 +396,17 @@
 			NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^www\\d*\\." options:NSRegularExpressionCaseInsensitive error:nil];
 			NSString *hostNoWWW = [regex stringByReplacingMatchesInString:host options:0 range:NSMakeRange(0, [host length]) withTemplate:@""];
 			
-			[[self searchBarTextField] setTextColor:[UIColor darkTextColor]];
-			[searchBar setText:hostNoWWW];
+			[urlField setTextColor:[UIColor darkTextColor]];
+			[urlField setText:hostNoWWW];
 			
-			if ([searchBar.text isEqualToString:@""])
-				[self.searchBarTextField setTextAlignment:NSTextAlignmentLeft];
+			if ([urlField.text isEqualToString:@""])
+				[urlField setTextAlignment:NSTextAlignmentLeft];
 		}
 	}
 	
 	backButton.enabled = (self.curWebViewTab && self.curWebViewTab.canGoBack);
-	forwardButton.enabled = (self.curWebViewTab && self.curWebViewTab.canGoForward);
-}
-
-- (__strong UITextField *)searchBarTextField
-{
-	for (UIView *subView in searchBar.subviews) {
-		for (id field in subView.subviews) {
-			if ([field isKindOfClass:[UITextField class]]) {
-				UITextField *textField = (UITextField *)field;
-				return textField;
-			}
-		}
-	}
-	return nil;
+	forwardButton.hidden = !(self.curWebViewTab && self.curWebViewTab.canGoForward);
+	[urlField setFrame:[self frameForUrlField]];
 }
 
 - (void)setWebViewProgress:(float)progress
@@ -382,67 +448,62 @@
 	[self setWebViewProgress:[[self curWebViewTab] progress]];
 }
 
-- (void)searchBarTextDidBeginEditing:(UISearchBar *)_searchBar
+- (void)textFieldDidBeginEditing:(UITextField *)textField
 {
+	if (textField != urlField)
+		return;
+
 #ifdef TRACE
 	NSLog(@"started editing");
 #endif
-	UITextField *sbtf = [self searchBarTextField];
-	[sbtf setTextAlignment:NSTextAlignmentNatural];
+	[urlField setTextAlignment:NSTextAlignmentNatural];
 	
-	[searchBar setText:[self.curWebViewTab.url absoluteString]];
+	[urlField setText:[self.curWebViewTab.url absoluteString]];
 	[self updateSearchBarDetails];
 	
-	[sbtf performSelector:@selector(selectAll:) withObject:nil afterDelay:0.0];
+	[urlField performSelector:@selector(selectAll:) withObject:nil afterDelay:0.0];
 }
 
-- (void)searchBarTextDidEndEditing:(UISearchBar *)_searchBar
+- (void)textFieldDidEndEditing:(UITextField *)textField
 {
+	if (textField != urlField)
+		return;
+
 #ifdef TRACE
-	NSLog(@"ended editing with: %@", [_searchBar text]);
+	NSLog(@"ended editing with: %@", [textField text]);
 #endif
-	UITextField *sbtf = [self searchBarTextField];
-	[sbtf setTextAlignment:NSTextAlignmentCenter];
+	[urlField setTextAlignment:NSTextAlignmentCenter];
 	
 	[self updateSearchBarDetails];
 }
 
-- (void)searchBarCancelButtonClicked:(UISearchBar *)_searchBar
-{
-#ifdef TRACE
-	NSLog(@"cancel button clicked");
-#endif
-	[searchBar resignFirstResponder];
-}
-
-- (void)searchBarResultsListButtonClicked:(UISearchBar *)searchBar
-{
-	NSLog(@"results list button clicked");
-}
-
-- (void)searchBarSearchButtonClicked:(UISearchBar *)_searchBar
-{
-	NSURL *enteredURL = [NSURL URLWithString:searchBar.text];
-	
-	if (![enteredURL scheme] || [[enteredURL scheme] isEqualToString:@""]) {
-		/* no scheme so if it has a space or no dots, assume it's a search query */
-		if ([searchBar.text containsString:@" "] || ![searchBar.text containsString:@"."]) {
-			NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-			NSDictionary *se = [[appDelegate searchEngines] objectForKey:[userDefaults stringForKey:@"search_engine"]];
-			
-			enteredURL = [NSURL URLWithString:[[NSString stringWithFormat:[se objectForKey:@"search_url"], searchBar.text] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-		}
-		else
-			enteredURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@", searchBar.text]];
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+	if (textField == urlField) {
+		NSURL *enteredURL = [NSURL URLWithString:urlField.text];
 		
+		if (![enteredURL scheme] || [[enteredURL scheme] isEqualToString:@""]) {
+			/* no scheme so if it has a space or no dots, assume it's a search query */
+			if ([urlField.text containsString:@" "] || ![urlField.text containsString:@"."]) {
+				NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+				NSDictionary *se = [[appDelegate searchEngines] objectForKey:[userDefaults stringForKey:@"search_engine"]];
+				
+				enteredURL = [NSURL URLWithString:[[NSString stringWithFormat:[se objectForKey:@"search_url"], urlField.text] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+			}
+			else
+				enteredURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@", urlField.text]];
+			
 #ifdef TRACE
-		NSLog(@"typed URL transformed to %@", enteredURL);
+			NSLog(@"typed URL transformed to %@", enteredURL);
 #endif
-	}
-	
-	[searchBar resignFirstResponder]; /* will unfocus and call searchBarTextDidEndEditing */
+		}
+		
+		[urlField resignFirstResponder]; /* will unfocus and call textFieldDidEndEditing */
 
-	[[self curWebViewTab] loadURL:enteredURL];
+		[[self curWebViewTab] loadURL:enteredURL];
+		
+		return NO;
+	}
+	return YES;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -456,74 +517,6 @@
 
 		tabChooser.currentPage = page;
 	}
-	else if (scrollView == self.curWebViewTab.webView.scrollView && !showingTabs) {
-		if (scrollView.contentOffset.y < 0)
-			lastWebViewScrollOffset = 0;
-		
-		if (!webViewScrollIsDragging) {
-			lastWebViewScrollOffset = scrollView.contentOffset.y;
-			return;
-		}
-
-		float y = toolbar.frame.origin.y;
-		
-		if (lastWebViewScrollOffset < scrollView.contentOffset.y) {
-			/* scrolling down the page, content moving up, always start hiding bar */
-			y += (scrollView.contentOffset.y - lastWebViewScrollOffset) * 0.75;
-		}
-		/* scrolling up, require a big jump to initiate, then fully show the bar */
-		else if ((lastWebViewScrollOffset - scrollView.contentOffset.y) >= 3) {
-			[UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^(void) {
-				 CGRect toolbarFrame = CGRectMake(0, self.view.frame.size.height - TOOLBAR_HEIGHT, self.view.frame.size.width, TOOLBAR_HEIGHT);
-				 toolbar.frame = toolbarFrame;
-			 }
-			 completion:^(BOOL finished) {
-				 CGRect toolbarFrame = CGRectMake(0, self.view.frame.size.height - TOOLBAR_HEIGHT, self.view.frame.size.width, TOOLBAR_HEIGHT);
-				 toolbar.frame = toolbarFrame;
-				 lastWebViewScrollOffset = scrollView.contentOffset.y;
-			 }];
-		}
-		
-		y = MAX(self.view.frame.size.height - TOOLBAR_HEIGHT, y);
-		y = MIN(self.view.frame.size.height, y);
-
-		CGRect toolbarFrame = CGRectMake(0, y, self.view.frame.size.width, TOOLBAR_HEIGHT);
-		toolbar.frame = toolbarFrame;
-		
-		if (y >= self.view.frame.size.height - TOOLBAR_HEIGHT) {
-			[self.curWebViewTab.webView.scrollView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
-			[self.curWebViewTab.webView.scrollView setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
-		} else {
-			[self.curWebViewTab.webView.scrollView setContentInset:UIEdgeInsetsMake(0, 0, TOOLBAR_HEIGHT, 0)];
-			[self.curWebViewTab.webView.scrollView setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0, TOOLBAR_HEIGHT, 0)];
-		}
-		
-		lastWebViewScrollOffset = scrollView.contentOffset.y;
-	}
-}
-
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
-{
-	if (scrollView == self.curWebViewTab.webView.scrollView)
-		webViewScrollIsDragging = YES;
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-	if (scrollView == self.curWebViewTab.webView.scrollView)
-		webViewScrollIsDragging = NO;
-}
-
-- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
-{
-	if (scrollView == self.curWebViewTab.webView.scrollView)
-		webViewScrollIsDecelerating = YES;
-}
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-	if (scrollView == self.curWebViewTab.webView.scrollView)
-		webViewScrollIsDecelerating = NO;
 }
 
 - (void)goBack:(id)_id
@@ -577,7 +570,6 @@
 			tabChooser.hidden = true;
 			toolbar.hidden = false;
 			tabToolbar.hidden = true;
-			searchBar.alpha = 1.0;
 			progressBar.alpha = 1.0;
 			
 			tabScroller.frame = origTabScrollerFrame;
@@ -590,10 +582,10 @@
 	}
 	else {
 		/* make sure no text is selected */
-		[searchBar resignFirstResponder];
+		[urlField resignFirstResponder];
 		
 		origTabScrollerFrame = tabScroller.frame;
-
+		
 		[UIView animateWithDuration:0.25 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^(void) {
 			for (int i = 0; i < webViewTabs.count; i++)
 				[(WebViewTab *)webViewTabs[i] zoomOut];
@@ -601,14 +593,12 @@
 			tabChooser.hidden = false;
 			toolbar.hidden = true;
 			tabToolbar.hidden = false;
-			searchBar.alpha = 0.0;
 			progressBar.alpha = 0.0;
 			
-			tabScroller.frame = CGRectMake(tabScroller.frame.origin.x, -(tabChooser.frame.size.height), tabScroller.frame.size.width, tabScroller.frame.size.height);
+			tabScroller.frame = CGRectMake(tabScroller.frame.origin.x, 0, tabScroller.frame.size.width, tabScroller.frame.size.height);
 		} completion:block];
 		
 		tabScroller.contentOffset = CGPointMake([self frameForTabIndex:tabChooser.currentPage].origin.x, 0);
-
 		tabScroller.scrollEnabled = YES;
 		tabScroller.pagingEnabled = YES;
 		

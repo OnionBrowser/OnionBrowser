@@ -12,7 +12,6 @@
 		01801E981A32CA2A002B4718 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 01801E971A32CA2A002B4718 /* main.m */; };
 		01801E9B1A32CA2A002B4718 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 01801E9A1A32CA2A002B4718 /* AppDelegate.m */; };
 		01801EA11A32CA2A002B4718 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01801EA01A32CA2A002B4718 /* WebViewController.m */; };
-		01801EA41A32CA2A002B4718 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01801EA21A32CA2A002B4718 /* Main.storyboard */; };
 		01801EA61A32CA2A002B4718 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01801EA51A32CA2A002B4718 /* Images.xcassets */; };
 		01801EC01A335BEC002B4718 /* URLInterceptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 01801EBF1A335BEC002B4718 /* URLInterceptor.m */; };
 		01801EC31A3360F8002B4718 /* InAppSettings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 01801EC21A3360F8002B4718 /* InAppSettings.bundle */; };
@@ -56,7 +55,6 @@
 		01801E9A1A32CA2A002B4718 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		01801E9F1A32CA2A002B4718 /* WebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		01801EA01A32CA2A002B4718 /* WebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
-		01801EA31A32CA2A002B4718 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		01801EA51A32CA2A002B4718 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = endless/Resources/Images.xcassets; sourceTree = "<group>"; };
 		01801EBE1A335BEC002B4718 /* URLInterceptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLInterceptor.h; sourceTree = "<group>"; };
 		01801EBF1A335BEC002B4718 /* URLInterceptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLInterceptor.m; sourceTree = "<group>"; };
@@ -136,7 +134,6 @@
 			children = (
 				01801E991A32CA2A002B4718 /* AppDelegate.h */,
 				01801E9A1A32CA2A002B4718 /* AppDelegate.m */,
-				01801EA21A32CA2A002B4718 /* Main.storyboard */,
 				01801EBE1A335BEC002B4718 /* URLInterceptor.h */,
 				01801EBF1A335BEC002B4718 /* URLInterceptor.m */,
 				018333C81A3505FB00670CD1 /* HTTPSEverywhere.h */,
@@ -306,7 +303,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0135F4761A3D2931005A8F16 /* SearchEngines.plist in Resources */,
-				01801EA41A32CA2A002B4718 /* Main.storyboard in Resources */,
 				018333EA1A35746500670CD1 /* https-everywhere_targets.plist in Resources */,
 				018333E91A35746500670CD1 /* https-everywhere_rules.plist in Resources */,
 				01801EC31A3360F8002B4718 /* InAppSettings.bundle in Resources */,
@@ -428,17 +424,6 @@
 			targetProxy = 018333DD1A35727C00670CD1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		01801EA21A32CA2A002B4718 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				01801EA31A32CA2A002B4718 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		01801EB61A32CA2A002B4718 /* Debug */ = {

@@ -18,7 +18,6 @@
 
 - (NSURL *)applicationDocumentsDirectory;
 - (void)dumpCookies;
-- (void)saveContext;
 
 @end
 
