@@ -319,6 +319,11 @@
 	float w = tabsButton.frame.origin.x - 8 - forwardButton.frame.origin.x - forwardButton.frame.size.width - 8;
 	float h = tabsButton.frame.size.height;
 	
+	if (backButton.hidden) {
+		x -= backButton.frame.size.width + 8;
+		w += backButton.frame.size.width + 8;
+	}
+
 	if (forwardButton.hidden) {
 		x -= forwardButton.frame.size.width + 8;
 		w += forwardButton.frame.size.width + 8;
@@ -477,12 +482,18 @@
 #ifdef TRACE
 	NSLog(@"started editing");
 #endif
-	[urlField setTextAlignment:NSTextAlignmentNatural];
-	
 	[urlField setText:[self.curWebViewTab.url absoluteString]];
-	[self updateSearchBarDetails];
 	
-	[urlField performSelector:@selector(selectAll:) withObject:nil afterDelay:0.0];
+	[UIView animateWithDuration:0.15 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+		[urlField setTextAlignment:NSTextAlignmentNatural];
+		[backButton setHidden:true];
+		[forwardButton setHidden:true];
+		urlField.frame = [self frameForUrlField];
+	} completion:^(BOOL finished) {
+		[urlField performSelector:@selector(selectAll:) withObject:nil afterDelay:0.0];
+	}];
+
+	[self updateSearchBarDetails];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
@@ -493,8 +504,15 @@
 #ifdef TRACE
 	NSLog(@"ended editing with: %@", [textField text]);
 #endif
-	[urlField setTextAlignment:NSTextAlignmentCenter];
 	
+	[UIView animateWithDuration:0.15 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+		[urlField setTextAlignment:NSTextAlignmentCenter];
+		[backButton setHidden:false];
+		[forwardButton setHidden:!(self.curWebViewTab && self.curWebViewTab.canGoForward)];
+		urlField.frame = [self frameForUrlField];
+	} completion:^(BOOL finished) {
+	}];
+
 	[self updateSearchBarDetails];
 }
 
