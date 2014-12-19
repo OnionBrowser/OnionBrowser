@@ -20,6 +20,7 @@
 	UIImageView *blankIcon;
 	UIProgressView *progressBar;
 	UIToolbar *tabToolbar;
+	UILabel *tabCount;
 	
 	UIButton *backButton;
 	UIButton *forwardButton;
@@ -79,7 +80,6 @@
 	
 	urlField = [[UITextField alloc] init];
 	[urlField setBorderStyle:UITextBorderStyleRoundedRect];
-	[urlField.layer setCornerRadius:8.0f];
 	[urlField setKeyboardType:UIKeyboardTypeURL];
 	[urlField setFont:[UIFont systemFontOfSize:15]];
 	[urlField setReturnKeyType:UIReturnKeyDone];
@@ -106,6 +106,13 @@
 	[tabsButton setTintColor:[progressBar tintColor]];
 	[tabsButton addTarget:self action:@selector(showTabs:) forControlEvents:UIControlEventTouchUpInside];
 	[toolbar addSubview:tabsButton];
+	
+	tabCount = [[UILabel alloc] init];
+	[tabCount setText:@""];
+	[tabCount setTextAlignment:NSTextAlignmentCenter];
+	[tabCount setFont:[UIFont systemFontOfSize:11]];
+	[tabCount setTextColor:[progressBar tintColor]];
+	[toolbar addSubview:tabCount];
 	
 	settingsButton = [UIButton buttonWithType:UIButtonTypeCustom];
 	UIImage *settingsImage = [[UIImage imageNamed:@"settings"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
@@ -180,6 +187,8 @@
 	forwardButton.frame = CGRectMake(backButton.frame.origin.x + backButton.frame.size.width + 8, 8, backButton.frame.size.width, backButton.frame.size.height);
 	settingsButton.frame = CGRectMake(size.width - backButton.frame.size.width - 8, 8, backButton.frame.size.width, backButton.frame.size.height);
 	tabsButton.frame = CGRectMake(settingsButton.frame.origin.x - backButton.frame.size.width - 8, 8, backButton.frame.size.width, backButton.frame.size.height);
+	
+	tabCount.frame = CGRectMake(tabsButton.frame.origin.x + 6, tabsButton.frame.origin.y + 12, 14, 10);
 
 	urlField.frame = [self frameForUrlField];
 	
@@ -235,6 +244,8 @@
 	[tabChooser setNumberOfPages:webViewTabs.count];
 	[wvt setTabNumber:[NSNumber numberWithLong:(webViewTabs.count - 1)]];
 	
+	[tabCount setText:[NSString stringWithFormat:@"%lu", tabChooser.numberOfPages]];
+
 	[tabScroller setContentSize:CGSizeMake(wvt.viewHolder.frame.size.width * tabChooser.numberOfPages, wvt.viewHolder.frame.size.height)];
 	[tabScroller addSubview:wvt.viewHolder];
 	
@@ -324,7 +335,8 @@
 	[[webViewTabs[tabNumber] viewHolder] removeFromSuperview];
 	[webViewTabs removeObjectAtIndex:tabNumber];
 
-	tabChooser.numberOfPages = webViewTabs.count;
+	[tabChooser setNumberOfPages:webViewTabs.count];
+	[tabCount setText:[NSString stringWithFormat:@"%lu", tabChooser.numberOfPages]];
 
 	if (tabChooser.currentPage == tabNumber) {
 		if (webViewTabs.count > tabNumber && webViewTabs[tabNumber]) {
