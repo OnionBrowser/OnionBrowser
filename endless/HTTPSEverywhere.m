@@ -129,4 +129,24 @@ static NSCache *ruleCache;
 	return URL;
 }
 
++ (BOOL)needsSecureCookieFromHost:(NSString *)fromHost forHost:(NSString *)forHost cookieName:(NSString *)cookie
+{
+	for (HTTPSEverywhereRule *rule in [[self class] potentiallyApplicableRulesFor:fromHost]) {
+		for (NSRegularExpression *hostreg in [rule secureCookies]) {
+			if ([hostreg matchesInString:forHost options:0 range:NSMakeRange(0, [forHost length])]) {
+				NSRegularExpression *namereg = [[rule secureCookies] objectForKey:hostreg];
+			
+				if ([namereg matchesInString:cookie options:0 range:NSMakeRange(0, [cookie length])]) {
+#ifdef TRACE_HTTPS_EVERYWHERE
+					NSLog(@"[HTTPSEverywhere] enabled securecookie for %@ from %@ for %@", cookie, fromHost, forHost);
+#endif
+					return YES;
+				}
+			}
+		}
+	}
+	
+	return NO;
+}
+
 @end

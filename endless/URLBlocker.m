@@ -3,7 +3,6 @@
 @implementation URLBlocker
 
 static NSDictionary *_targets;
-
 static NSCache *ruleCache;
 
 #define RULE_CACHE_SIZE 20

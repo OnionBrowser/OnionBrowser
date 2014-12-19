@@ -1,15 +1,12 @@
 #import "AppDelegate.h"
-#import "WebViewController.h"
+#import "CookieWhitelistController.h"
 #import "IASKAppSettingsViewController.h"
 #import "URLInterceptor.h"
+#import "WebViewController.h"
 #import "WebViewTab.h"
 
 #define STATUSBAR_HEIGHT 20
 #define TOOLBAR_HEIGHT 44
-
-@interface WebViewController ()
-
-@end
 
 @implementation WebViewController {
 	UIScrollView *tabScroller;
@@ -552,11 +549,6 @@
 	
 	UINavigationController *aNavController = [[UINavigationController alloc] initWithRootViewController:appSettingsViewController];
 	[self presentViewController:aNavController animated:YES completion:nil];
-}
-
-- (void)showShareMenu:(id)_id
-{
-	/* TODO */
 }
 
 - (void)settingsViewControllerDidEnd:(IASKAppSettingsViewController *)sender

@@ -1,12 +1,9 @@
 #import "AppDelegate.h"
+#import "CookieWhitelist.h"
 #import "HTTPSEverywhere.h"
 #import "URLBlocker.h"
 #import "URLInterceptor.h"
 #import "WebViewTab.h"
-
-@interface URLInterceptor ()
-@property (nonatomic, strong) NSURLConnection *connection;
-@end
 
 @implementation URLInterceptor
 
@@ -237,12 +234,17 @@ WebViewTab *wvt;
 	NSMutableArray *cookies = [[NSMutableArray alloc] initWithCapacity:5];
 	
 	for (NSHTTPCookie *cookie in [NSHTTPCookie cookiesWithResponseHeaderFields:[httpResponse allHeaderFields] forURL:url]) {
-		/* toggle "secure" bit */
 		NSMutableDictionary *ps = (NSMutableDictionary *)[cookie properties];
-		[ps setValue:@"TRUE" forKey:NSHTTPCookieSecure];
 		
-		/* and make everything a session cookie */
-		[ps setValue:@"TRUE" forKey:NSHTTPCookieDiscard];
+		if (![cookie isSecure] && [HTTPSEverywhere needsSecureCookieFromHost:[url host] forHost:[cookie domain] cookieName:[cookie name]]) {
+			/* toggle "secure" bit */
+			[ps setValue:@"TRUE" forKey:NSHTTPCookieSecure];
+		}
+		
+		if (![[appDelegate cookieWhitelist] isHostWhitelisted:[url host]]) {
+			/* host isn't whitelisted, force to a session cookie */
+			[ps setValue:@"TRUE" forKey:NSHTTPCookieDiscard];
+		}
 		
 		NSHTTPCookie *nCookie = [[NSHTTPCookie alloc] initWithProperties:ps];
 		[cookies addObject:nCookie];

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		010EEA661A43A536001E8B65 /* CookieWhitelistController.m in Sources */ = {isa = PBXBuildFile; fileRef = 010EEA651A43A536001E8B65 /* CookieWhitelistController.m */; };
+		010EEA691A43C8CF001E8B65 /* CookieWhitelist.m in Sources */ = {isa = PBXBuildFile; fileRef = 010EEA681A43C8CF001E8B65 /* CookieWhitelist.m */; };
 		0135F4761A3D2931005A8F16 /* SearchEngines.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0135F4751A3D2931005A8F16 /* SearchEngines.plist */; };
 		0135F47F1A3E548F005A8F16 /* WebViewTab.m in Sources */ = {isa = PBXBuildFile; fileRef = 0135F47E1A3E548F005A8F16 /* WebViewTab.m */; };
 		01801E981A32CA2A002B4718 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 01801E971A32CA2A002B4718 /* main.m */; };
@@ -45,6 +47,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		010EEA641A43A536001E8B65 /* CookieWhitelistController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CookieWhitelistController.h; sourceTree = "<group>"; };
+		010EEA651A43A536001E8B65 /* CookieWhitelistController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CookieWhitelistController.m; sourceTree = "<group>"; };
+		010EEA671A43C8CF001E8B65 /* CookieWhitelist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CookieWhitelist.h; sourceTree = "<group>"; };
+		010EEA681A43C8CF001E8B65 /* CookieWhitelist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CookieWhitelist.m; sourceTree = "<group>"; };
 		0135F4751A3D2931005A8F16 /* SearchEngines.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = SearchEngines.plist; path = endless/Resources/SearchEngines.plist; sourceTree = "<group>"; };
 		0135F47D1A3E548F005A8F16 /* WebViewTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewTab.h; sourceTree = "<group>"; };
 		0135F47E1A3E548F005A8F16 /* WebViewTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewTab.m; sourceTree = "<group>"; };
@@ -134,18 +140,22 @@
 			children = (
 				01801E991A32CA2A002B4718 /* AppDelegate.h */,
 				01801E9A1A32CA2A002B4718 /* AppDelegate.m */,
-				01801EBE1A335BEC002B4718 /* URLInterceptor.h */,
-				01801EBF1A335BEC002B4718 /* URLInterceptor.m */,
+				010EEA671A43C8CF001E8B65 /* CookieWhitelist.h */,
+				010EEA681A43C8CF001E8B65 /* CookieWhitelist.m */,
+				010EEA641A43A536001E8B65 /* CookieWhitelistController.h */,
+				010EEA651A43A536001E8B65 /* CookieWhitelistController.m */,
 				018333C81A3505FB00670CD1 /* HTTPSEverywhere.h */,
 				018333C91A3505FB00670CD1 /* HTTPSEverywhere.m */,
 				018333D01A35291200670CD1 /* HTTPSEverywhereRule.h */,
 				018333D11A35291200670CD1 /* HTTPSEverywhereRule.m */,
 				01F879391A4108DD00A63654 /* URLBlocker.h */,
 				01F8793A1A4108DD00A63654 /* URLBlocker.m */,
-				0135F47D1A3E548F005A8F16 /* WebViewTab.h */,
-				0135F47E1A3E548F005A8F16 /* WebViewTab.m */,
+				01801EBE1A335BEC002B4718 /* URLInterceptor.h */,
+				01801EBF1A335BEC002B4718 /* URLInterceptor.m */,
 				01801E9F1A32CA2A002B4718 /* WebViewController.h */,
 				01801EA01A32CA2A002B4718 /* WebViewController.m */,
+				0135F47D1A3E548F005A8F16 /* WebViewTab.h */,
+				0135F47E1A3E548F005A8F16 /* WebViewTab.m */,
 			);
 			path = endless;
 			sourceTree = "<group>";
@@ -403,6 +413,8 @@
 				01801EC01A335BEC002B4718 /* URLInterceptor.m in Sources */,
 				018333CA1A3505FB00670CD1 /* HTTPSEverywhere.m in Sources */,
 				0135F47F1A3E548F005A8F16 /* WebViewTab.m in Sources */,
+				010EEA661A43A536001E8B65 /* CookieWhitelistController.m in Sources */,
+				010EEA691A43C8CF001E8B65 /* CookieWhitelist.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

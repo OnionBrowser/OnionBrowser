@@ -35,6 +35,14 @@
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>
 		<dict>
+			<key>IASKViewControllerClass</key>
+			<string>CookieWhitelistController</string>
+			<key>Title</key>
+			<string>Cookie Whitelist</string>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+		</dict>
+		<dict>
 			<key>Title</key>
 			<string></string>
 			<key>Type</key>

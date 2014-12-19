@@ -1,6 +1,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
+#import "CookieWhitelist.h"
 #import "WebViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
@@ -13,10 +14,10 @@
 
 @property (strong, atomic) WebViewController *webViewController;
 @property (strong, atomic) NSHTTPCookieStorage *cookieStorage;
+@property (strong, atomic) CookieWhitelist *cookieWhitelist;
 
-@property (readonly, strong, nonatomic) NSDictionary *searchEngines;
+@property (readonly, strong, nonatomic) NSMutableDictionary *searchEngines;
 
-- (NSURL *)applicationDocumentsDirectory;
 - (void)dumpCookies;
 
 @end

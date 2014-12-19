@@ -5,7 +5,7 @@
 @property NSString *name;
 @property NSArray *exclusions;
 @property NSDictionary *rules;
-@property NSDictionary *securecookies;
+@property NSDictionary *secureCookies;
 @property NSString *platform;
 @property BOOL on_by_default;
 @property NSString *notes;

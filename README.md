@@ -23,22 +23,25 @@ Security and privacy-focused features implemented:
 
 - Integrated full [HTTPS Everywhere](https://www.eff.org/HTTPS-EVERYWHERE)
   ruleset (currently over 11,000 rules) to do on-the-fly URL rewriting to force
-  requests over SSL where supported
+  requests over SSL where supported, including setting the secure
+  bit on received cookies
 
 - Optional sending of Do-Not-Track header on all requests
 
 - Integrated URL blocker with a small included ruleset of behavior-tracking
-  advertising, analytics, and social networking widgets.  This list is
-  intended for enhancing privacy and not to be an AdBlock-style comprehensive
-  ad-blocking list.
+  advertising, analytics, and social networking widgets (this list is intended
+  for enhancing privacy and not to be an AdBlock-style comprehensive ad-blocking
+  list)
+
+- Default to only accepting cookies for the duration of the session with an
+  editable whitelist of hosts from which permanent cookies will be saved
 
 =================
 
 Features planned but not yet implemented:
 
-- Make default only store cookies for the session (auto-destroying *n* seconds
-  after closing last tab using those cookies) and only allow permanent storage
-  of whitelisted cookies
+- Auto-destroy session cookies *n* seconds after closing last tab using those
+  cookies
 
 - HTTP Strict Transport Security cache
 

@@ -1,9 +1,6 @@
 #import "AppDelegate.h"
 #import "URLInterceptor.h"
 
-@interface AppDelegate ()
-@end
-
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -22,6 +19,8 @@
 	
 	_cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
 	[_cookieStorage setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyOnlyFromMainDocumentDomain];
+	
+	_cookieWhitelist = [CookieWhitelist retrieve];
 
 	[self initializeDefaults];
 
@@ -52,8 +51,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-	// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-	// Saves changes in the application's managed object context before the application terminates.
+	[[self cookieWhitelist] persist];
 }
 
 - (void)dumpCookies
@@ -85,7 +83,7 @@
 	[userDefaults synchronize];
 	
 	/* load search engines */
-	_searchEngines = [NSDictionary dictionaryWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"SearchEngines.plist"]];
+	_searchEngines = [NSMutableDictionary dictionaryWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"SearchEngines.plist"]];
 }
 
 @end

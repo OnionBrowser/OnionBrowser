@@ -12,6 +12,9 @@
 /* be verbose about URL blocking */
 //# define TRACE_URL_BLOCKER
 
+/* be verbose about cookie whitelisting */
+//# define TRACE_COOKIE_WHITELIST
+
 #endif
 
 #endif

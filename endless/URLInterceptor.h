@@ -7,6 +7,7 @@
 
 @property (strong, nonatomic) NSURLRequest *origRequest;
 @property (strong, nonatomic) NSString *evOrgName;
+@property (nonatomic, strong) NSURLConnection *connection;
 
 + (void)setSendDNT:(BOOL)val;
 

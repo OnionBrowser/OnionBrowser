@@ -9,5 +9,6 @@
 + (HTTPSEverywhereRule *)cachedRuleForName:(NSString *)name;
 + (NSArray *)potentiallyApplicableRulesFor:(NSString *)host;
 + (NSURL *)rewrittenURI:(NSURL *)URL;
++ (BOOL)needsSecureCookieFromHost:(NSString *)fromHost forHost:(NSString *)forHost cookieName:(NSString *)cookie;
 
 @end

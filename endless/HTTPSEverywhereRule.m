@@ -129,7 +129,7 @@
 			[scooksd setObject:namereg forKey:hostreg];
 		}
 		
-		self.securecookies = scooksd;
+		self.secureCookies = scooksd;
 	}
 	
 #ifdef TRACE_HTTPS_EVERYWHERE
