@@ -94,8 +94,6 @@ float progress;
 	[self setProgress:1.0];
 	
 	[self.title setText:[[self webView] stringByEvaluatingJavaScriptFromString:@"document.title"]];
-	
-	[(AppDelegate *)[[UIApplication sharedApplication] delegate] dumpCookies];
 }
 
 - (void)webView:(UIWebView *)__webView didFailLoadWithError:(NSError *)error

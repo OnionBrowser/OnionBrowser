@@ -21,6 +21,7 @@
 	[_cookieStorage setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyOnlyFromMainDocumentDomain];
 	
 	_cookieWhitelist = [CookieWhitelist retrieve];
+	[_cookieWhitelist clearAllNonWhitelistedCookies];
 
 	[self initializeDefaults];
 
@@ -52,14 +53,6 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
 	[[self cookieWhitelist] persist];
-}
-
-- (void)dumpCookies
-{
-	NSLog(@"cookie dump:");
-	for (NSHTTPCookie *cookie in [[self cookieStorage] cookies]) {
-		NSLog(@"  %@: \"%@\"=\"%@\"", cookie.domain, cookie.name, cookie.value);
-	}
 }
 
 - (void)initializeDefaults

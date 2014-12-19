@@ -22,7 +22,7 @@ WebViewTab *wvt;
 	if ([scheme isEqualToString:@"data"] || [scheme isEqualToString:@"file"])
 		/* can't really do anything for these URLs */
 		return NO;
-
+	
 	if (appDelegate == nil)
 		appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 
@@ -82,7 +82,7 @@ WebViewTab *wvt;
 	
 	/* redirections can happen without us seeing them, so keep the webview chrome in the loop */
 	[wvt setUrl:[newRequest mainDocumentURL]];
-	[[wvt controller] performSelectorOnMainThread:@selector(updateSearchBarDetails) withObject:nil waitUntilDone:NO];
+	[[appDelegate webViewController] performSelectorOnMainThread:@selector(updateSearchBarDetails) withObject:nil waitUntilDone:NO];
 	
 	/* we're handling cookies ourself */
 	[newRequest setHTTPShouldHandleCookies:NO];

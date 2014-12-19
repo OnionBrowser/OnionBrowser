@@ -1,6 +1,9 @@
+#import "AppDelegate.h"
 #import "CookieWhitelist.h"
 
 @implementation CookieWhitelist
+
+AppDelegate *appDelegate;
 
 + (NSString *)cookieWhitelistPath
 {
@@ -11,7 +14,10 @@
 - (CookieWhitelist *)init
 {
 	self = [super init];
+	
 	_dict = [[NSMutableDictionary alloc] init];
+	appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+
 	return self;
 }
 
@@ -60,7 +66,7 @@
 		return YES;
 	}
 	
-	/* for a cookie host of x.y.z.example.com, try .y.z.example.com, .z.example.com, .example.com, etc. */
+	/* for a cookie host of x.y.z.example.com, try y.z.example.com, z.example.com, example.com, etc. */
 	NSArray *hostp = [host componentsSeparatedByString:@"."];
 	for (int i = 1; i < [hostp count]; i++) {
 		NSString *wc = [[hostp subarrayWithRange:NSMakeRange(i, [hostp count] - i)] componentsJoinedByString:@"."];
@@ -76,6 +82,17 @@
 	return NO;
 }
 
+- (void)clearAllNonWhitelistedCookies
+{
+	for (NSHTTPCookie *cookie in [[appDelegate cookieStorage] cookies]) {
+		if (![self isHostWhitelisted:cookie.domain]) {
+#ifdef TRACE_COOKIE_WHITELIST
+			NSLog(@"[CookieWhitelist] deleting non-whitelisted cookie: %@", cookie);
+#endif
+			[[appDelegate cookieStorage] deleteCookie:cookie];
+		}
+	}
+}
 
 /* NSMutableDictionary composition pass-throughs */
 

@@ -18,7 +18,5 @@
 
 @property (readonly, strong, nonatomic) NSMutableDictionary *searchEngines;
 
-- (void)dumpCookies;
-
 @end
 

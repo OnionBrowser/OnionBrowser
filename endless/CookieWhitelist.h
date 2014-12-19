@@ -13,6 +13,7 @@
 - (void)persist;
 - (void)updateHostsWithArray:(NSArray *)hosts;
 - (BOOL)isHostWhitelisted:(NSString *)host;
+- (void)clearAllNonWhitelistedCookies;
 
 /* NSMutableDictionary composition pass-throughs */
 - (id)objectForKey:(id)aKey;
