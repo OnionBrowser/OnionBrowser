@@ -3,6 +3,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>adzerk.net</key>
+	<string>Advertising/Analytics - Adzerk</string>
 	<key>doubleclick.net</key>
 	<string>Analytics - Google</string>
 	<key>facebook.com</key>
@@ -15,6 +17,8 @@
 	<string>Social - LinkedIn</string>
 	<key>newrelic.com</key>
 	<string>Analytics - New Relic</string>
+	<key>pixel.redditmedia.com</key>
+	<string>Analytics - Reddit</string>
 	<key>quantserve.com</key>
 	<string>Analytics - Quantcast</string>
 	<key>scorecardresearch.com</key>

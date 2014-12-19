@@ -1,5 +1,9 @@
 {
-	"Analytics - Google": [
+	"Advertising/Analytics - Adzerk": [
+		"adzerk.net"
+	]
+
+	,"Analytics - Google": [
 		"doubleclick.net"
 		,"google-analytics.com"
 	]
@@ -14,6 +18,10 @@
 
 	,"Analytics - Quantcast": [
 		"quantserve.com"
+	]
+
+	,"Analytics - Reddit": [
+		"pixel.redditmedia.com"
 	]
 
 
