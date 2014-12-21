@@ -25,6 +25,7 @@ typedef NS_ENUM(NSInteger, WebViewTabSecureMode) {
 
 /* for javascript IPC */
 @property (strong, atomic) NSString *randID;
+@property (strong, atomic) NSNumber *openedByTabHash;
 
 + (NSString *)javascriptToInject;
 + (WebViewTab *)openedWebViewTabByRandID:(NSString *)randID;

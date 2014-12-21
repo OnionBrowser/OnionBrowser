@@ -333,31 +333,52 @@
 	return CGRectMake(x, y, w, h);
 }
 
-- (void)removeTab:(NSUInteger)tabNumber
+- (void)removeTab:(NSNumber *)tabNumber
+{
+	[self removeTab:tabNumber andFocusTab:[NSNumber numberWithInt:-1]];
+}
+
+- (void)removeTab:(NSNumber *)tabNumber andFocusTab:(NSNumber *)toFocus
 {
 #ifdef TRACE
-	NSLog(@"removing tab %lu (%@)", tabNumber, ((WebViewTab *)webViewTabs[tabNumber]).title.text);
+	NSLog(@"removing tab %@ (%@)", tabNumber, ((WebViewTab *)webViewTabs[tabNumber.intValue]).title.text);
 #endif
-	[[webViewTabs[tabNumber] viewHolder] removeFromSuperview];
-	[webViewTabs removeObjectAtIndex:tabNumber];
+	int futureFocusNumber = toFocus.intValue;
+	if (futureFocusNumber > -1) {
+		if (futureFocusNumber == tabNumber.intValue)
+			futureFocusNumber = -1;
+		else if (futureFocusNumber > tabNumber.intValue)
+			futureFocusNumber--;
+	}
+
+	[[webViewTabs[tabNumber.intValue] viewHolder] removeFromSuperview];
+	[webViewTabs removeObjectAtIndex:tabNumber.intValue];
 
 	[tabChooser setNumberOfPages:webViewTabs.count];
 	[tabCount setText:[NSString stringWithFormat:@"%lu", tabChooser.numberOfPages]];
 
-	if (tabChooser.currentPage == tabNumber) {
-		if (webViewTabs.count > tabNumber && webViewTabs[tabNumber]) {
-			/* keep currentPage pointing at the page that shifted down to here */
-		}
-		else if (tabNumber > 0 && webViewTabs[tabNumber - 1]) {
-			/* removed last tab, keep the previous one */
-			tabChooser.currentPage = tabNumber - 1;
-		}
-		else {
-			/* no tabs left, add one and zoom out */
-			[self addNewTabForURL:nil];
-			return;
+	if (futureFocusNumber == -1) {
+		if (tabChooser.currentPage == tabNumber.intValue) {
+			if (webViewTabs.count > tabNumber.intValue && webViewTabs[tabNumber.intValue]) {
+				/* keep currentPage pointing at the page that shifted down to here */
+			}
+			else if (tabNumber.intValue > 0 && webViewTabs[tabNumber.intValue - 1]) {
+				/* removed last tab, keep the previous one */
+				tabChooser.currentPage = tabNumber.intValue - 1;
+			}
+			else {
+				/* no tabs left, add one and zoom out */
+				[self addNewTabForURL:nil];
+				return;
+			}
 		}
 	}
+	else {
+		tabChooser.currentPage = futureFocusNumber;
+	}
+	
+	/* UIPageControl will change this automatically when resizing, so save it */
+	long toCurrentPage = tabChooser.currentPage;
 	
 	[UIView animateWithDuration:0.25 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
 		tabScroller.contentSize = CGSizeMake(self.view.frame.size.width * tabChooser.numberOfPages, self.view.frame.size.height);
@@ -370,7 +391,12 @@
 			wvt.viewHolder.transform = CGAffineTransformMakeScale(ZOOM_OUT_SCALE, ZOOM_OUT_SCALE);
 		}
 	} completion:^(BOOL finished) {
-		[self slideToCurrentTab:nil];
+		tabChooser.currentPage = toCurrentPage;
+		
+		[self slideToCurrentTabWithCompletionBlock:^(BOOL finished) {
+			showingTabs = true;
+			[self showTabs:nil];
+		}];
 	}];
 }
 
@@ -654,8 +680,13 @@
 
 - (void)tappedOnWebViewTab:(UITapGestureRecognizer *)gesture
 {
-	if (!showingTabs)
+	if (!showingTabs) {
+		if ([urlField isFirstResponder]) {
+		    [urlField resignFirstResponder];
+		}
+		
 		return;
+	}
 	
 	CGPoint point = [gesture locationInView:self.curWebViewTab.viewHolder];
 	
@@ -663,7 +694,7 @@
 	int fuzz = 8;
 	CGRect closerFrame = CGRectMake(self.curWebViewTab.closer.frame.origin.x - fuzz, self.curWebViewTab.closer.frame.origin.y - fuzz, self.curWebViewTab.closer.frame.size.width + (fuzz * 2), self.curWebViewTab.closer.frame.size.width + (fuzz * 2));
 	if (CGRectContainsPoint(closerFrame, point))
-		[self removeTab:tabChooser.currentPage];
+		[self removeTab:[NSNumber numberWithLong:tabChooser.currentPage]];
 	else
 		[self showTabs:nil];
 }

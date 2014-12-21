@@ -163,6 +163,7 @@ float progress;
 	if ([action isEqualToString:@"window.open"]) {
 		WebViewTab *newtab = [[appDelegate webViewController] addNewTabForURL:nil];
 		newtab.randID = param;
+		newtab.openedByTabHash = [NSNumber numberWithLong:self.hash];
 		
 		[self webView:__webView callbackWith:[NSString stringWithFormat:@"__endless.openedTabs[\"%@\"].opened = true;", param]];
 	}
@@ -170,7 +171,7 @@ float progress;
 		UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Confirm" message:@"Allow this page to close its tab?" preferredStyle:UIAlertControllerStyleAlert];
 		
 		UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK action") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-			[[appDelegate webViewController] removeTab:[[self tabNumber] intValue]];
+			[[appDelegate webViewController] removeTab:[self tabNumber]];
 		}];
 		
 		UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", @"Cancel action") style:UIAlertActionStyleCancel handler:nil];
@@ -253,7 +254,7 @@ float progress;
 
 - (BOOL)canGoBack
 {
-	return !!(self.webView && [self.webView canGoBack]);
+	return ((self.webView && [self.webView canGoBack]) || self.openedByTabHash != nil);
 }
 
 - (BOOL)canGoForward
@@ -263,8 +264,19 @@ float progress;
 
 - (void)goBack
 {
-	if ([self.webView canGoBack])
+	if ([self.webView canGoBack]) {
 		[self.webView goBack];
+	}
+	else if (self.openedByTabHash) {
+		for (WebViewTab *wvt in [[appDelegate webViewController] webViewTabs]) {
+			if ([wvt hash] == [self.openedByTabHash longValue]) {
+				[[appDelegate webViewController] removeTab:self.tabNumber andFocusTab:[wvt tabNumber]];
+				return;
+			}
+		}
+		
+		[[appDelegate webViewController] removeTab:self.tabNumber];
+	}
 }
 
 - (void)goForward
