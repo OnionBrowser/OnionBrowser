@@ -200,8 +200,6 @@ float progress;
 		}
 		else if ([action isEqualToString:@"window.setLocationParam"]) {
 			/* TODO: whitelist param since we're sending it raw */
-			NSLog(@"sending %@", [NSString stringWithFormat:@"window.location.%@ = \"%@\";", param2, [value stringEscapedForJavasacript]]);
-			
 			[[wvt webView] stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"window.location.%@ = \"%@\";", param2, [value stringEscapedForJavasacript]]];
 			[self webView:__webView callbackWith:@""];
 		}

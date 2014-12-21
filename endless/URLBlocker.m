@@ -35,7 +35,7 @@ static NSCache *ruleCache;
 	}
 	
 #ifdef TRACE_URL_BLOCKER
-	NSLog(@"[URLBlocker] cache miss, blocking %@", url);
+	NSLog(@"[URLBlocker] blocking %@ (cache miss)", url);
 #endif
 	
 	[ruleCache setObject:@TRUE forKey:url];
@@ -45,7 +45,7 @@ static NSCache *ruleCache;
 {
 	if (ruleCache && [ruleCache objectForKey:url]) {
 #ifdef TRACE_URL_BLOCKER
-		NSLog(@"[URLBlocker] cache hit, blocking %@", url);
+		NSLog(@"[URLBlocker] blocking %@ (cache hit)", url);
 #endif
 		return TRUE;
 	}
@@ -66,10 +66,6 @@ static NSCache *ruleCache;
 			
 			if ([[[self class] targets] objectForKey:wc]) {
 				block = YES;
-				
-#ifdef TRACE_URL_BLOCKER
-				NSLog(@"[URLBlocker] found block for component %@ in %@", wc, host);
-#endif
 				break;
 			}
 		}
