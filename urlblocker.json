@@ -3,13 +3,23 @@
 		"adzerk.net"
 	]
 
-	,"Analytics - Google": [
+	,"Advertising/Analytics - Google": [
 		"doubleclick.net"
 		,"google-analytics.com"
+		,"googleadservices.com"
+		,"googlesyndication.com"
 	]
 
 	,"Analytics - comScore": [
 		"scorecardresearch.com"
+	]
+
+	,"Analytics - Errorception": [
+		"errorception.com"
+	]
+
+	,"Advertising/Analytics - ThoughtLeadr": [
+		"thoughtleadr.com"
 	]
 
 	,"Analytics - New Relic": [

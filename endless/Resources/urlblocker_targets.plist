@@ -6,13 +6,19 @@
 	<key>adzerk.net</key>
 	<string>Advertising/Analytics - Adzerk</string>
 	<key>doubleclick.net</key>
-	<string>Analytics - Google</string>
+	<string>Advertising/Analytics - Google</string>
+	<key>errorception.com</key>
+	<string>Analytics - Errorception</string>
 	<key>facebook.com</key>
 	<string>Social - Facebook</string>
 	<key>fb.com</key>
 	<string>Social - Facebook</string>
 	<key>google-analytics.com</key>
-	<string>Analytics - Google</string>
+	<string>Advertising/Analytics - Google</string>
+	<key>googleadservices.com</key>
+	<string>Advertising/Analytics - Google</string>
+	<key>googlesyndication.com</key>
+	<string>Advertising/Analytics - Google</string>
 	<key>linkedin.com</key>
 	<string>Social - LinkedIn</string>
 	<key>newrelic.com</key>
@@ -23,6 +29,8 @@
 	<string>Analytics - Quantcast</string>
 	<key>scorecardresearch.com</key>
 	<string>Analytics - comScore</string>
+	<key>thoughtleadr.com</key>
+	<string>Advertising/Analytics - ThoughtLeadr</string>
 	<key>twimg.com</key>
 	<string>Social - Twitter</string>
 	<key>twitter.com</key>
