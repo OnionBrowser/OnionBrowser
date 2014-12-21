@@ -1,6 +1,5 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "WebViewController.h"
 
 #define ZOOM_OUT_SCALE 0.8
 
@@ -13,8 +12,6 @@ typedef NS_ENUM(NSInteger, WebViewTabSecureMode) {
 
 @interface WebViewTab : NSObject <UIWebViewDelegate, UIGestureRecognizerDelegate>
 
-@property WebViewController *controller;
-
 @property (strong, atomic) UIView *viewHolder;
 @property (strong, atomic) UIWebView *webView;
 @property (strong, atomic) NSURL *url;
@@ -26,7 +23,13 @@ typedef NS_ENUM(NSInteger, WebViewTabSecureMode) {
 @property WebViewTabSecureMode secureMode;
 @property (strong, atomic) NSString *evOrgName;
 
-- (id)initWithFrame:(CGRect)frame controller:(WebViewController *)wvc;
+/* for javascript IPC */
+@property (strong, atomic) NSString *randID;
+
++ (NSString *)javascriptToInject;
++ (WebViewTab *)openedWebViewTabByRandID:(NSString *)randID;
+
+- (id)initWithFrame:(CGRect)frame;
 - (void)updateFrame:(CGRect)frame;
 - (float)progress;
 - (void)loadURL:(NSURL *)u;

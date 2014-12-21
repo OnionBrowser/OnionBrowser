@@ -82,10 +82,11 @@
 	[urlField setBorderStyle:UITextBorderStyleRoundedRect];
 	[urlField setKeyboardType:UIKeyboardTypeURL];
 	[urlField setFont:[UIFont systemFontOfSize:15]];
-	[urlField setReturnKeyType:UIReturnKeyDone];
+	[urlField setReturnKeyType:UIReturnKeyGo];
 	[urlField setClearButtonMode:UITextFieldViewModeWhileEditing];
 	[urlField setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
 	[urlField setLeftViewMode:UITextFieldViewModeAlways];
+	[urlField setSpellCheckingType:UITextSpellCheckingTypeNo];
 	[urlField setDelegate:self];
 	[toolbar addSubview:urlField];
 	
@@ -234,7 +235,7 @@
 
 - (WebViewTab *)addNewTabForURL:(NSURL *)url
 {
-	WebViewTab *wvt = [[WebViewTab alloc] initWithFrame:[self frameForTabIndex:webViewTabs.count] controller:self];
+	WebViewTab *wvt = [[WebViewTab alloc] initWithFrame:[self frameForTabIndex:webViewTabs.count]];
 	
 	[wvt.webView.scrollView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
 	[wvt.webView.scrollView setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0, 0, 0)];

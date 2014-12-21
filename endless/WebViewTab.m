@@ -2,20 +2,46 @@
 #import "URLInterceptor.h"
 #import "WebViewTab.h"
 
+#import "NSString+JavascriptEscape.h"
+
 @implementation WebViewTab
 
+static NSString *_javascriptToInject;
+
+AppDelegate *appDelegate;
 float progress;
 
-- (id)initWithFrame:(CGRect)frame controller:(WebViewController *)wvc
++ (NSString *)javascriptToInject
 {
+	if (!_javascriptToInject) {
+		NSString *path = [[NSBundle mainBundle] pathForResource:@"injected" ofType:@"js"];
+		_javascriptToInject = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+	}
+	
+	return _javascriptToInject;
+}
+
++ (WebViewTab *)openedWebViewTabByRandID:(NSString *)randID
+{
+	for (WebViewTab *wvt in [[appDelegate webViewController] webViewTabs]) {
+		if ([wvt randID] != nil && [[wvt randID] isEqualToString:randID]) {
+			return wvt;
+		}
+	}
+	
+	return nil;
+}
+
+- (id)initWithFrame:(CGRect)frame
+{
+	appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+
 	_viewHolder = [[UIView alloc] initWithFrame:frame];
 	
 	_webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
 	[_webView setDelegate:self];
 	[_webView setScalesPageToFit:YES];
 	[_webView setAutoresizesSubviews:YES];
-	
-	self.controller = wvc;
 	
 	/* swiping goes back and forward in current webview */
 	UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeRightAction:)];
@@ -84,6 +110,9 @@ float progress;
 - (void)webViewDidStartLoad:(UIWebView *)__webView
 {
 	[self setProgress:0.1];
+	
+	if (self.url == nil)
+		self.url = [[__webView request] URL];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)__webView
@@ -93,7 +122,10 @@ float progress;
 #endif
 	[self setProgress:1.0];
 	
+	[__webView stringByEvaluatingJavaScriptFromString:[[self class] javascriptToInject]];
+	
 	[self.title setText:[[self webView] stringByEvaluatingJavaScriptFromString:@"document.title"]];
+	self.url = [[__webView request] URL];
 }
 
 - (void)webView:(UIWebView *)__webView didFailLoadWithError:(NSError *)error
@@ -108,15 +140,102 @@ float progress;
 
 - (BOOL)webView:(UIWebView *)__webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-	/* TODO: intercept javascript window.open and <a target="_blank"> to open in a new tab */
+	if (![[[request URL] scheme] isEqualToString:@"endlessipc"]) {
+		return YES;
+	}
 	
-	return YES;
+	/* endlessipc://window.open/somerandomid?http... */
+	
+	NSString *action = [[request URL] host];
+	
+	NSString *param, *param2;
+	if ([[[request URL] pathComponents] count] >= 2)
+		param = [[request URL] pathComponents][1];
+	if ([[[request URL] pathComponents] count] >= 3)
+		param2 = [[request URL] pathComponents][2];
+	
+	NSString *value = [[[[request URL] query] stringByReplacingOccurrencesOfString:@"+" withString:@" "] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+	
+#ifdef TRACE
+	NSLog(@"[Javascript IPC]: [%@] [%@] [%@] [%@]", action, param, param2, value);
+#endif
+	
+	if ([action isEqualToString:@"window.open"]) {
+		WebViewTab *newtab = [[appDelegate webViewController] addNewTabForURL:nil];
+		newtab.randID = param;
+		
+		[self webView:__webView callbackWith:[NSString stringWithFormat:@"__endless.openedTabs[\"%@\"].opened = true;", param]];
+	}
+	else if ([action isEqualToString:@"window.close"]) {
+		UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Confirm" message:@"Allow this page to close its tab?" preferredStyle:UIAlertControllerStyleAlert];
+		
+		UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK action") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+			[[appDelegate webViewController] removeTab:[[self tabNumber] intValue]];
+		}];
+		
+		UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", @"Cancel action") style:UIAlertActionStyleCancel handler:nil];
+		[alertController addAction:cancelAction];
+		[alertController addAction:okAction];
+		
+		[[appDelegate webViewController] presentViewController:alertController animated:YES completion:nil];
+	}
+	else if ([action isEqualToString:@"console.log"]) {
+		NSString *json = [[[[request URL] query] stringByReplacingOccurrencesOfString:@"+" withString:@" "] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+		NSLog(@"[Tab %@] [console.%@] %@", [self tabNumber], param, json);
+	}
+	else {
+		WebViewTab *wvt = [[self class] openedWebViewTabByRandID:param];
+		
+		if (wvt == nil) {
+			[self webView:__webView callbackWith:[NSString stringWithFormat:@"delete __endless.openedTabs[\"%@\"];", [param stringEscapedForJavasacript]]];
+		}
+		/* setters, just write into target webview */
+		else if ([action isEqualToString:@"window.setName"]) {
+			[[wvt webView] stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"window.name = \"%@\";", [value stringEscapedForJavasacript]]];
+			[self webView:__webView callbackWith:@""];
+		}
+		else if ([action isEqualToString:@"window.setLocation"]) {
+			[[wvt webView] stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"window.location = \"%@\";", [value stringEscapedForJavasacript]]];
+			[self webView:__webView callbackWith:@""];
+		}
+		else if ([action isEqualToString:@"window.setLocationParam"]) {
+			/* TODO: whitelist param since we're sending it raw */
+			NSLog(@"sending %@", [NSString stringWithFormat:@"window.location.%@ = \"%@\";", param2, [value stringEscapedForJavasacript]]);
+			
+			[[wvt webView] stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"window.location.%@ = \"%@\";", param2, [value stringEscapedForJavasacript]]];
+			[self webView:__webView callbackWith:@""];
+		}
+
+		/* getters, pull from target webview and write back to caller internal parameters (not setters) */
+		else if ([action isEqualToString:@"window.getName"]) {
+			NSString *name = [[wvt webView] stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"window.name;"]];
+			[self webView:__webView callbackWith:[NSString stringWithFormat:@"__endless.openedTabs[\"%@\"]._name = \"%@\";", [param stringEscapedForJavasacript], [name stringEscapedForJavasacript]]];
+		}
+		else if ([action isEqualToString:@"window.getLocation"]) {
+			NSString *loc = [[wvt webView] stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"JSON.stringify(window.location);"]];
+			/* don't encode loc, it's (hopefully a safe) hash */
+			[self webView:__webView callbackWith:[NSString stringWithFormat:@"__endless.openedTabs[\"%@\"]._location = new __endless.FakeLocation(%@)", [param stringEscapedForJavasacript], loc]];
+		}
+	}
+
+	return NO;
+}
+
+- (void)webView:(UIWebView *)__webView callbackWith:(NSString *)callback
+{
+	NSString *finalcb = [NSString stringWithFormat:@"(function() { %@; __endless.ipcDone = (new Date()).getTime(); })();", callback];
+
+#ifdef TRACE_IPC
+	NSLog(@"[Javascript IPC]: calling back with: %@", finalcb);
+#endif
+	
+	[__webView stringByEvaluatingJavaScriptFromString:finalcb];
 }
 
 - (void)setProgress:(float)pr
 {
 	progress = pr;
-	[[self controller] updateProgress];
+	[[appDelegate webViewController] updateProgress];
 }
 
 - (float)progress

@@ -15,6 +15,9 @@
 /* be verbose about cookie whitelisting */
 //# define TRACE_COOKIE_WHITELIST
 
+/* be verbose about javascript IPC */
+//# define TRACE_IPC
+
 #endif
 
 #endif
