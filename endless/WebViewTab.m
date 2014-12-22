@@ -144,7 +144,7 @@ float progress;
 		return YES;
 	}
 	
-	/* endlessipc://window.open/somerandomid?http... */
+	/* endlessipc://fakeWindow.open/somerandomid?http... */
 	
 	NSString *action = [[request URL] host];
 	
@@ -156,6 +156,13 @@ float progress;
 	
 	NSString *value = [[[[request URL] query] stringByReplacingOccurrencesOfString:@"+" withString:@" "] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 	
+	if ([action isEqualToString:@"console.log"]) {
+		NSString *json = [[[[request URL] query] stringByReplacingOccurrencesOfString:@"+" withString:@" "] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+		NSLog(@"[Tab %@] [console.%@] %@", [self tabNumber], param, json);
+		/* no callback needed */
+		return NO;
+	}
+
 #ifdef TRACE
 	NSLog(@"[Javascript IPC]: [%@] [%@] [%@] [%@]", action, param, param2, value);
 #endif
@@ -179,41 +186,45 @@ float progress;
 		[alertController addAction:okAction];
 		
 		[[appDelegate webViewController] presentViewController:alertController animated:YES completion:nil];
+		
+		[self webView:__webView callbackWith:@""];
 	}
-	else if ([action isEqualToString:@"console.log"]) {
-		NSString *json = [[[[request URL] query] stringByReplacingOccurrencesOfString:@"+" withString:@" "] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-		NSLog(@"[Tab %@] [console.%@] %@", [self tabNumber], param, json);
-	}
-	else {
+	else if ([action hasPrefix:@"fakeWindow."]) {
 		WebViewTab *wvt = [[self class] openedWebViewTabByRandID:param];
 		
 		if (wvt == nil) {
 			[self webView:__webView callbackWith:[NSString stringWithFormat:@"delete __endless.openedTabs[\"%@\"];", [param stringEscapedForJavasacript]]];
 		}
 		/* setters, just write into target webview */
-		else if ([action isEqualToString:@"window.setName"]) {
+		else if ([action isEqualToString:@"fakeWindow.setName"]) {
 			[[wvt webView] stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"window.name = \"%@\";", [value stringEscapedForJavasacript]]];
 			[self webView:__webView callbackWith:@""];
 		}
-		else if ([action isEqualToString:@"window.setLocation"]) {
+		else if ([action isEqualToString:@"fakeWindow.setLocation"]) {
 			[[wvt webView] stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"window.location = \"%@\";", [value stringEscapedForJavasacript]]];
 			[self webView:__webView callbackWith:@""];
 		}
-		else if ([action isEqualToString:@"window.setLocationParam"]) {
+		else if ([action isEqualToString:@"fakeWindow.setLocationParam"]) {
 			/* TODO: whitelist param since we're sending it raw */
 			[[wvt webView] stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"window.location.%@ = \"%@\";", param2, [value stringEscapedForJavasacript]]];
 			[self webView:__webView callbackWith:@""];
 		}
 
 		/* getters, pull from target webview and write back to caller internal parameters (not setters) */
-		else if ([action isEqualToString:@"window.getName"]) {
+		else if ([action isEqualToString:@"fakeWindow.getName"]) {
 			NSString *name = [[wvt webView] stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"window.name;"]];
 			[self webView:__webView callbackWith:[NSString stringWithFormat:@"__endless.openedTabs[\"%@\"]._name = \"%@\";", [param stringEscapedForJavasacript], [name stringEscapedForJavasacript]]];
 		}
-		else if ([action isEqualToString:@"window.getLocation"]) {
+		else if ([action isEqualToString:@"fakeWindow.getLocation"]) {
 			NSString *loc = [[wvt webView] stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"JSON.stringify(window.location);"]];
 			/* don't encode loc, it's (hopefully a safe) hash */
 			[self webView:__webView callbackWith:[NSString stringWithFormat:@"__endless.openedTabs[\"%@\"]._location = new __endless.FakeLocation(%@)", [param stringEscapedForJavasacript], loc]];
+		}
+		
+		/* actions */
+		else if ([action isEqualToString:@"fakeWindow.close"]) {
+			[[appDelegate webViewController] removeTab:[wvt tabNumber]];
+			[self webView:__webView callbackWith:@""];
 		}
 	}
 
@@ -283,6 +294,12 @@ float progress;
 {
 	if ([self.webView canGoForward])
 		[self.webView goForward];
+}
+
+- (void)refresh
+{
+	//[[NSURLCache sharedURLCache] removeAllCachedResponses];
+	[self.webView reload];
 }
 
 - (void)zoomOut

@@ -39,6 +39,17 @@ var __endless = {
 			s4() + s4() + s4();
 	},
 
+	hookIntoBlankAs: function() {
+		document.body.addEventListener("click", function() {
+			if (event.target.tagName == "A" &&
+			event.target.target == "_blank") {
+				event.preventDefault();
+				window.open(event.target.href);
+				return false;
+			}
+		}, false);
+	},
+
 	FakeLocation: function(real) {
 		this.id = null;
 
@@ -71,12 +82,12 @@ var __endless = {
 		Object.defineProperty(__endless.FakeLocation.prototype, property, {
 			set: function(v) {
 				eval("this._" + property + " = null;");
-				__endless.ipcAndWaitForReply("window.setLocationParam/" +
+				__endless.ipcAndWaitForReply("fakeWindow.setLocationParam/" +
 					this.id + "/" + property + "?" + encodeURIComponent(v));
 			},
 			get: function() {
 				eval("this._" + property + " = null;");
-				__endless.ipcAndWaitForReply("window.getLocationParam/" +
+				__endless.ipcAndWaitForReply("fakeWindow.getLocationParam/" +
 					this.id + "/" + property + "?" + encodeURIComponent(v));
 			},
 		});
@@ -87,13 +98,13 @@ var __endless = {
 
 		set location(loc) {
 			this._location = new __endless.FakeLocation();
-			__endless.ipcAndWaitForReply("window.setLocation/" + this.id +
+			__endless.ipcAndWaitForReply("fakeWindow.setLocation/" + this.id +
 				"?" + encodeURIComponent(loc));
 			this._location.id = this.id;
 		},
 		set name(n) {
 			this._name = null;
-			__endless.ipcAndWaitForReply("window.setName/" + this.id + "?" +
+			__endless.ipcAndWaitForReply("fakeWindow.setName/" + this.id + "?" +
 				encodeURIComponent(n));
 		},
 		set opener(o) {
@@ -101,17 +112,20 @@ var __endless = {
 
 		get location() {
 			this._location = new __endless.FakeLocation();
-			__endless.ipcAndWaitForReply("window.getLocation/" + this.id);
+			__endless.ipcAndWaitForReply("fakeWindow.getLocation/" + this.id);
 			this._location.id = this.id;
 			return this._location;
 		},
 		get name() {
 			this._name = null;
-			__endless.ipcAndWaitForReply("window.getName/" + this.id);
+			__endless.ipcAndWaitForReply("fakeWindow.getName/" + this.id);
 			return this._name;
 		},
 		get opener() {
-			return null;
+		},
+
+		close: function() {
+			__endless.ipcAndWaitForReply("fakeWindow.close/" + this.id);
 		},
 	};
 
@@ -142,7 +156,7 @@ var __endless = {
 			if (args.length == 1)
 				args = args[0];
 
-			__endless.ipcAndWaitForReply("console.log/" + urg + "?" +
+			__endless.ipc("console.log/" + urg + "?" +
 				encodeURIComponent(JSON.stringify(args)));
 		},
 	};
@@ -152,21 +166,9 @@ var __endless = {
 	console.warn = function() { console._log("warn", arguments); };
 	console.error = function() { console._log("error", arguments); };
 
-	function __loaded() {
-		document.body.addEventListener("click", function() {
-			if (event.target.tagName == "A") {
-				if (event.target.target == "_blank") {
-					event.preventDefault();
-					__endless.ipcAndWaitForReply("window.open(" +
-						JSON.stringify(event.target.href) + ");");
-					return false;
-				}
-			}
-		}, false);
-	};
-
 	if (document.readyState == "complete")
-		__loaded();
+		__endless.hookIntoBlankAs();
 	else
-		document.addEventListener("DOMContentLoaded", __loaded(), false);
+		document.addEventListener("DOMContentLoaded",
+			__endless.hookIntoBlankAs, false);
 }());
