@@ -188,14 +188,14 @@
 		01801EC11A3360B1002B4718 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				018333E71A35746500670CD1 /* https-everywhere_rules.plist */,
-				018333E81A35746500670CD1 /* https-everywhere_targets.plist */,
-				01F8794D1A412F8E00A63654 /* urlblocker_targets.plist */,
-				01801EA51A32CA2A002B4718 /* Images.xcassets */,
-				0135F4751A3D2931005A8F16 /* SearchEngines.plist */,
 				01801EC21A3360F8002B4718 /* InAppSettings.bundle */,
 				01F8794A1A41232E00A63654 /* credits.html */,
 				01D7412B1A45F8EB007B7033 /* injected.js */,
+				018333E71A35746500670CD1 /* https-everywhere_rules.plist */,
+				018333E81A35746500670CD1 /* https-everywhere_targets.plist */,
+				0135F4751A3D2931005A8F16 /* SearchEngines.plist */,
+				01F8794D1A412F8E00A63654 /* urlblocker_targets.plist */,
+				01801EA51A32CA2A002B4718 /* Images.xcassets */,
 			);
 			name = Resources;
 			sourceTree = "<group>";

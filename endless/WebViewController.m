@@ -68,14 +68,12 @@
 	backButton = [UIButton buttonWithType:UIButtonTypeCustom];
 	UIImage *backImage = [[UIImage imageNamed:@"back"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 	[backButton setImage:backImage forState:UIControlStateNormal];
-	[backButton setTintColor:[progressBar tintColor]];
 	[backButton addTarget:self action:@selector(goBack:) forControlEvents:UIControlEventTouchUpInside];
 	[toolbar addSubview:backButton];
 	
 	forwardButton = [UIButton buttonWithType:UIButtonTypeCustom];
 	UIImage *forwardImage = [[UIImage imageNamed:@"forward"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 	[forwardButton setImage:forwardImage forState:UIControlStateNormal];
-	[forwardButton setTintColor:[progressBar tintColor]];
 	[forwardButton addTarget:self action:@selector(goForward:) forControlEvents:UIControlEventTouchUpInside];
 	[toolbar addSubview:forwardButton];
 	
@@ -457,7 +455,11 @@
 	}
 	
 	backButton.enabled = (self.curWebViewTab && self.curWebViewTab.canGoBack);
+	[backButton setTintColor:(backButton.enabled ? [progressBar tintColor] : [UIColor grayColor])];
+
 	forwardButton.hidden = !(self.curWebViewTab && self.curWebViewTab.canGoForward);
+	[forwardButton setTintColor:(forwardButton.enabled ? [progressBar tintColor] : [UIColor grayColor])];
+
 	[urlField setFrame:[self frameForUrlField]];
 }
 
@@ -514,7 +516,7 @@
 		[urlField setTextAlignment:NSTextAlignmentNatural];
 		[backButton setHidden:true];
 		[forwardButton setHidden:true];
-		urlField.frame = [self frameForUrlField];
+		[urlField setFrame:[self frameForUrlField]];
 	} completion:^(BOOL finished) {
 		[urlField performSelector:@selector(selectAll:) withObject:nil afterDelay:0.0];
 	}];
@@ -535,9 +537,8 @@
 		[urlField setTextAlignment:NSTextAlignmentCenter];
 		[backButton setHidden:false];
 		[forwardButton setHidden:!(self.curWebViewTab && self.curWebViewTab.canGoForward)];
-		urlField.frame = [self frameForUrlField];
-	} completion:^(BOOL finished) {
-	}];
+		[urlField setFrame:[self frameForUrlField]];
+	} completion:nil];
 
 	[self updateSearchBarDetails];
 }
@@ -554,8 +555,9 @@
 				
 				enteredURL = [NSURL URLWithString:[[NSString stringWithFormat:[se objectForKey:@"search_url"], urlField.text] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 			}
-			else
+			else {
 				enteredURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@", urlField.text]];
+			}
 			
 #ifdef TRACE
 			NSLog(@"typed URL transformed to %@", enteredURL);
@@ -575,11 +577,12 @@
 {
 	if (scrollView == tabScroller) {
 		int page = round(scrollView.contentOffset.x / scrollView.frame.size.width);
-		if (page < 0)
+		if (page < 0) {
 			page = 0;
-		else if (page > tabChooser.numberOfPages)
+		}
+		else if (page > tabChooser.numberOfPages) {
 			page = (int)tabChooser.numberOfPages;
-
+		}
 		tabChooser.currentPage = page;
 	}
 }
@@ -602,16 +605,19 @@
 - (void)showPopover:(id)_id
 {
 	popover = [[WYPopoverController alloc] initWithContentViewController:[[WebViewMenuController alloc] init]];
-	popover.delegate = self;
+	[popover setDelegate:self];
+	
 	[popover beginThemeUpdates];
 	[popover setTheme:[WYPopoverTheme themeForIOS7]];
+	[popover.theme setDimsBackgroundViewsTintColor:NO];
 	[popover.theme setOuterCornerRadius:4];
 	[popover.theme setOuterShadowBlurRadius:8];
 	[popover.theme setOuterShadowColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.75]];
 	[popover.theme setOuterShadowOffset:CGSizeMake(0, 2)];
+	[popover.theme setOverlayColor:[UIColor clearColor]];
 	[popover endThemeUpdates];
 	
-	[popover presentPopoverFromRect:CGRectMake(settingsButton.frame.origin.x, settingsButton.frame.origin.y + settingsButton.frame.size.height - 14, settingsButton.frame.size.width, settingsButton.frame.size.height) inView:self.view permittedArrowDirections:WYPopoverArrowDirectionAny animated:YES options:WYPopoverAnimationOptionFadeWithScale];
+	[popover presentPopoverFromRect:CGRectMake(settingsButton.frame.origin.x, settingsButton.frame.origin.y + (settingsButton.frame.size.height / 2), settingsButton.frame.size.width, settingsButton.frame.size.height) inView:self.view permittedArrowDirections:WYPopoverArrowDirectionAny animated:YES options:WYPopoverAnimationOptionFadeWithScale];
 }
 
 - (void)dismissPopover
@@ -641,8 +647,9 @@
 {
 	if (showingTabs) {
 		[UIView animateWithDuration:0.25 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^(void) {
-			for (int i = 0; i < webViewTabs.count; i++)
+			for (int i = 0; i < webViewTabs.count; i++) {
 				[(WebViewTab *)webViewTabs[i] zoomNormal];
+			}
 			
 			tabChooser.hidden = true;
 			toolbar.hidden = false;
@@ -664,8 +671,9 @@
 		origTabScrollerFrame = tabScroller.frame;
 		
 		[UIView animateWithDuration:0.25 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^(void) {
-			for (int i = 0; i < webViewTabs.count; i++)
+			for (int i = 0; i < webViewTabs.count; i++) {
 				[(WebViewTab *)webViewTabs[i] zoomOut];
+			}
 			
 			tabChooser.hidden = false;
 			toolbar.hidden = true;
@@ -709,10 +717,12 @@
 	/* fuzz a bit to make it easier to tap */
 	int fuzz = 8;
 	CGRect closerFrame = CGRectMake(self.curWebViewTab.closer.frame.origin.x - fuzz, self.curWebViewTab.closer.frame.origin.y - fuzz, self.curWebViewTab.closer.frame.size.width + (fuzz * 2), self.curWebViewTab.closer.frame.size.width + (fuzz * 2));
-	if (CGRectContainsPoint(closerFrame, point))
+	if (CGRectContainsPoint(closerFrame, point)) {
 		[self removeTab:[NSNumber numberWithLong:tabChooser.currentPage]];
-	else
+	}
+	else {
 		[self showTabs:nil];
+	}
 }
 
 - (void)slideToCurrentTabWithCompletionBlock:(void(^)(BOOL))block

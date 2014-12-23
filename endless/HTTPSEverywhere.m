@@ -101,8 +101,9 @@ static NSCache *ruleCache;
 #ifdef TRACE_HTTPS_EVERYWHERE
 			NSLog(@"[HTTPSEverywhere] found ruleset %@ for component %@ in %@", targetName, wc, host);
 #endif
-			if (![rs objectForKey:targetName])
+			if (![rs objectForKey:targetName]) {
 				[rs setValue:[[self class] cachedRuleForName:targetName] forKey:targetName];
+			}
 		}
 	}
 	
