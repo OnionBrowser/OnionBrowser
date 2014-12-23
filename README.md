@@ -13,7 +13,8 @@ Basic browser functionality implemented:
 
 - Shows padlock for SSL-encrypted URLs
 
-- Multiple tabs
+- Multiple tabs, support for `window.open` and <a target="_blank"> automatically
+  opening new tab windows
 
 - Search from URL bar with Google or DDG
 
@@ -35,8 +36,6 @@ Security and privacy-focused features implemented:
 
 - Default to only accepting cookies for the duration of the session with an
   editable whitelist of hosts from which permanent cookies will be saved
-
-=================
 
 Features planned but not yet implemented:
 
