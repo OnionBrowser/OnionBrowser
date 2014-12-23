@@ -263,23 +263,19 @@
 			if (url != nil)
 				[wvt loadURL:url];
 
-			[self showTabsWithCompletionBlock:^(BOOL finished) {
-				if (url == nil)
-					[urlField becomeFirstResponder];
-			}];
+			[self showTabs:nil];
 		}];
 	};
 	
 	/* animate zooming out (if not already), switching to the new tab, then zoom back in */
-	if (showingTabs)
+	if (showingTabs) {
 		swapToTab(YES);
-	else if (webViewTabs.count > 1)
+	}
+	else if (webViewTabs.count > 1) {
 		[self showTabsWithCompletionBlock:swapToTab];
-	else {
-		if (url == nil)
-			[urlField becomeFirstResponder];
-		else
-			[wvt loadURL:url];
+	}
+	else if (url != nil) {
+		[wvt loadURL:url];
 	}
 		
 	return wvt;
@@ -288,6 +284,7 @@
 - (void)addNewTabFromToolbar:(id)_id
 {
 	[self addNewTabForURL:nil];
+	[urlField becomeFirstResponder];
 }
 
 - (CGRect)frameForTabIndex:(NSUInteger)number
@@ -370,6 +367,7 @@
 			else {
 				/* no tabs left, add one and zoom out */
 				[self addNewTabForURL:nil];
+				[urlField becomeFirstResponder];
 				return;
 			}
 		}
