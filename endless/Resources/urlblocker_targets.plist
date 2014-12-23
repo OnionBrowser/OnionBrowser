@@ -19,6 +19,8 @@
 	<string>Advertising/Analytics - Google</string>
 	<key>googlesyndication.com</key>
 	<string>Advertising/Analytics - Google</string>
+	<key>googletagservices.com</key>
+	<string>Advertising/Analytics - Google</string>
 	<key>linkedin.com</key>
 	<string>Social - LinkedIn</string>
 	<key>newrelic.com</key>
