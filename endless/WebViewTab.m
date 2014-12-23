@@ -78,6 +78,7 @@ float progress;
 	[self zoomNormal];
 	
 	[self setSecureMode:WebViewTabSecureModeInsecure];
+	[self setApplicableHTTPSEverywhereRules:[[NSMutableDictionary alloc] initWithCapacity:6]];
 
 	return self;
 }
@@ -103,7 +104,7 @@ float progress;
 	[NSURLProtocol setProperty:@YES forKey:ORIGIN_KEY inRequest:ur];
 	
 	[self setSecureMode:WebViewTabSecureModeInsecure];
-	
+	[[self applicableHTTPSEverywhereRules] removeAllObjects];
 	[self.webView loadRequest:ur];
 }
 

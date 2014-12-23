@@ -53,17 +53,17 @@ id HEMocked;
 }
 
 - (void)testRewrittenURI {
-	NSURL *rewritten = [HTTPSEverywhere rewrittenURI:[NSURL URLWithString:@"http://www.reddit.com/test"]];
+	NSURL *rewritten = [HTTPSEverywhere rewrittenURI:[NSURL URLWithString:@"http://www.reddit.com/test"] withRules:nil];
 	XCTAssert([[rewritten absoluteString] isEqualToString:@"https://www.reddit.com/test"]);
 	
 	/* a more complex rewrite */
-	rewritten = [HTTPSEverywhere rewrittenURI:[NSURL URLWithString:@"http://bbbonline.org/cks.asp?id=1234"]];
+	rewritten = [HTTPSEverywhere rewrittenURI:[NSURL URLWithString:@"http://bbbonline.org/cks.asp?id=1234"] withRules:nil];
 	XCTAssert([[rewritten absoluteString] isEqualToString:@"https://www.bbb.org/us/bbb-online-business/?id=1234"]);
 }
 
 - (void)testRewrittenURIWithExclusion {
 	NSString *input = @"http://www.dc.bbb.org/";
-	NSURL *rewritten = [HTTPSEverywhere rewrittenURI:[NSURL URLWithString:input]];
+	NSURL *rewritten = [HTTPSEverywhere rewrittenURI:[NSURL URLWithString:input] withRules:nil];
 	XCTAssert([[rewritten absoluteString] isEqualToString:input]);
 }
 

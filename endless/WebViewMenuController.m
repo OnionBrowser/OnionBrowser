@@ -1,5 +1,6 @@
 #import "AppDelegate.h"
 #import "IASKAppSettingsViewController.h"
+#import "HTTPSEverywhereRuleController.h"
 #import "WebViewMenuController.h"
 
 @implementation WebViewMenuController
@@ -7,7 +8,15 @@
 AppDelegate *appDelegate;
 IASKAppSettingsViewController *appSettingsViewController;
 NSDictionary *buttons;
-NSArray *buttonOrder;
+
+enum WebViewMenuButton {
+	WebViewMenuButtonRefresh,
+	WebViewMenuButtonCookies,
+	WebViewMenuButtonHTTPSEverywhere,
+	WebViewMenuButtonSettings,
+	
+	WebViewMenuButtonCount,
+} WebViewMenuButton;
 
 - (void)viewDidLoad
 {
@@ -16,11 +25,12 @@ NSArray *buttonOrder;
 	appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 
 	buttons = @{
-		    @"Refresh" : @"refreshPage",
-		    @"Settings" : @"showSettings",
+		    [NSNumber numberWithInt:WebViewMenuButtonRefresh] : @"Refresh",
+		    [NSNumber numberWithInt:WebViewMenuButtonCookies] : @"Cookies",
+		    [NSNumber numberWithInt:WebViewMenuButtonHTTPSEverywhere] : @"HTTPS Everywhere",
+		    [NSNumber numberWithInt:WebViewMenuButtonSettings] : @"Settings",
 	};
-	buttonOrder = @[ @"Refresh", @"Settings" ];
-
+	
 	[self.view setBackgroundColor:[UIColor clearColor]];
 	[self.tableView setSeparatorInset:UIEdgeInsetsZero];
 }
@@ -31,14 +41,14 @@ NSArray *buttonOrder;
 
 - (CGSize)preferredContentSize
 {
-	return CGSizeMake(150, [self tableView:nil heightForRowAtIndexPath:nil] * buttonOrder.count);
+	return CGSizeMake(150, [self tableView:nil heightForRowAtIndexPath:nil] * [buttons count]);
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return [buttonOrder count];
+	return [buttons count];
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -57,14 +67,38 @@ NSArray *buttonOrder;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"button"];
-	
+	long ruleCount;
+
 	if (cell == nil) {
-		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"button"];
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"button"];
 	}
 	
 	cell.backgroundColor = [UIColor clearColor];
 	cell.textLabel.font = [UIFont systemFontOfSize:13];
-	cell.textLabel.text = [buttonOrder objectAtIndex:[indexPath row]];
+	cell.textLabel.text = [buttons objectForKey:[NSNumber numberWithLong:[indexPath row]]];
+	
+	cell.detailTextLabel.font = [UIFont systemFontOfSize:11];
+
+	switch ([indexPath row]) {
+	case WebViewMenuButtonCookies:
+		if ([[appDelegate cookieWhitelist] isHostWhitelisted:[[[[appDelegate webViewController] curWebViewTab] url] host]]) {
+			cell.detailTextLabel.text = @"Whitelisted";
+			cell.detailTextLabel.textColor = [UIColor colorWithRed:0 green:0.5 blue:0 alpha:1];
+		}
+		else {
+			cell.detailTextLabel.text = @"Session-only";
+			cell.detailTextLabel.textColor = [UIColor darkTextColor];
+		}
+		break;
+	
+	case WebViewMenuButtonHTTPSEverywhere:
+		ruleCount = [[[[appDelegate webViewController] curWebViewTab] applicableHTTPSEverywhereRules] count];
+
+		if (ruleCount > 0) {
+			cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld Rule%@ Applied", ruleCount, (ruleCount == 1 ? @"" : @"s")];
+		}
+		break;
+	}
 
 	return cell;
 }
@@ -88,7 +122,8 @@ NSArray *buttonOrder;
 {
 	[[appDelegate webViewController] dismissPopover];
 	
-	SEL action = NSSelectorFromString([buttons objectForKey:[buttonOrder objectAtIndex:[indexPath row]]]);
+	/* "Show Cookies" -> @selector(menuShowCookies) */
+	SEL action = NSSelectorFromString([NSString stringWithFormat:@"menu%@", [[buttons objectForKey:[NSNumber numberWithLong:[indexPath row]]] stringByReplacingOccurrencesOfString:@" " withString:@""]]);
 	
 	if ([self respondsToSelector:action]) {
 		[self performSelector:action];
@@ -98,12 +133,12 @@ NSArray *buttonOrder;
 	}
 }
 
-- (void)refreshPage
+- (void)menuRefresh
 {
 	[[appDelegate webViewController] refresh];
 }
 
-- (void)showSettings
+- (void)menuSettings
 {
 	if (!appSettingsViewController) {
 		appSettingsViewController = [[IASKAppSettingsViewController alloc] init];
@@ -113,6 +148,12 @@ NSArray *buttonOrder;
 	}
 	
 	UINavigationController *aNavController = [[UINavigationController alloc] initWithRootViewController:appSettingsViewController];
+	[[appDelegate webViewController] presentViewController:aNavController animated:YES completion:nil];
+}
+
+- (void)menuHTTPSEverywhere
+{
+	UINavigationController *aNavController = [[UINavigationController alloc] initWithRootViewController:[[HTTPSEverywhereRuleController alloc] init]];
 	[[appDelegate webViewController] presentViewController:aNavController animated:YES completion:nil];
 }
 

@@ -617,7 +617,7 @@
 	[popover.theme setOverlayColor:[UIColor clearColor]];
 	[popover endThemeUpdates];
 	
-	[popover presentPopoverFromRect:CGRectMake(settingsButton.frame.origin.x, settingsButton.frame.origin.y + (settingsButton.frame.size.height / 2), settingsButton.frame.size.width, settingsButton.frame.size.height) inView:self.view permittedArrowDirections:WYPopoverArrowDirectionAny animated:YES options:WYPopoverAnimationOptionFadeWithScale];
+	[popover presentPopoverFromRect:CGRectMake(settingsButton.frame.origin.x, settingsButton.frame.origin.y + settingsButton.frame.size.height - 15, settingsButton.frame.size.width, settingsButton.frame.size.height) inView:self.view permittedArrowDirections:WYPopoverArrowDirectionAny animated:YES options:WYPopoverAnimationOptionFadeWithScale];
 }
 
 - (void)dismissPopover

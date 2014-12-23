@@ -22,6 +22,7 @@ typedef NS_ENUM(NSInteger, WebViewTabSecureMode) {
 
 @property WebViewTabSecureMode secureMode;
 @property (strong, atomic) NSString *evOrgName;
+@property NSMutableDictionary *applicableHTTPSEverywhereRules;
 
 /* for javascript IPC */
 @property (strong, atomic) NSString *randID;

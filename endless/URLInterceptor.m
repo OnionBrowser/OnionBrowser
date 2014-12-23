@@ -78,8 +78,15 @@ WebViewTab *wvt;
 	NSLog(@"[Tab %@] startLoading URL (%@): %@", wvt.tabNumber, [newRequest HTTPMethod], [[newRequest URL] absoluteString]);
 #endif
 	
-	[newRequest setURL:[HTTPSEverywhere rewrittenURI:[[self request] URL]]];
-	
+	NSArray *HTErules = [HTTPSEverywhere potentiallyApplicableRulesFor:[[[self request] URL] host]];
+	if (HTErules != nil && [HTErules count] > 0) {
+		[newRequest setURL:[HTTPSEverywhere rewrittenURI:[[self request] URL] withRules:HTErules]];
+		
+		for (HTTPSEverywhereRule *HTErule in HTErules) {
+			[[wvt applicableHTTPSEverywhereRules] setObject:@YES forKey:[HTErule name]];
+		}
+	}
+
 	/* redirections can happen without us seeing them, so keep the webview chrome in the loop */
 	[wvt setUrl:[newRequest mainDocumentURL]];
 	[[appDelegate webViewController] performSelectorOnMainThread:@selector(updateSearchBarDetails) withObject:nil waitUntilDone:NO];

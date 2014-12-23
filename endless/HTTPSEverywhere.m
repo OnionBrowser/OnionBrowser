@@ -110,18 +110,19 @@ static NSCache *ruleCache;
 	return [rs allValues];
 }
 
-+ (NSURL *)rewrittenURI:(NSURL *)URL
++ (NSURL *)rewrittenURI:(NSURL *)URL withRules:(NSArray *)rules
 {
-	NSArray *rs = [[self class] potentiallyApplicableRulesFor:[URL host]];
+	if (rules == nil || [rules count] == 0)
+		rules = [[self class] potentiallyApplicableRulesFor:[URL host]];
 
-	if (rs == nil || [rs count] == 0)
+	if (rules == nil || [rules count] == 0)
 		return URL;
 	
 #ifdef TRACE_HTTPS_EVERYWHERE
-	NSLog(@"[HTTPSEverywhere] have %lu applicable ruleset(s) for %@", [rs count], [URL absoluteString]);
+	NSLog(@"[HTTPSEverywhere] have %lu applicable ruleset(s) for %@", [rules count], [URL absoluteString]);
 #endif
 	
-	for (HTTPSEverywhereRule *rule in rs) {
+	for (HTTPSEverywhereRule *rule in rules) {
 		NSURL *rurl = [rule apply:URL];
 		if (rurl != nil)
 			return rurl;
