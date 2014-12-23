@@ -1,8 +1,9 @@
 #import <UIKit/UIKit.h>
 #import "IASKAppSettingsViewController.h"
 #import "WebViewTab.h"
+#import "WYPopoverController.h"
 
-@interface WebViewController : UIViewController <UITableViewDelegate, UITextFieldDelegate, UIGestureRecognizerDelegate, UIScrollViewDelegate, IASKSettingsDelegate>
+@interface WebViewController : UIViewController <UITableViewDelegate, UITextFieldDelegate, UIGestureRecognizerDelegate, UIScrollViewDelegate, IASKSettingsDelegate, WYPopoverControllerDelegate>
 
 - (NSMutableArray *)webViewTabs;
 - (WebViewTab *)addNewTabForURL:(NSURL *)url;
@@ -10,5 +11,7 @@
 - (void)removeTab:(NSNumber *)tabNumber;
 - (void)updateProgress;
 - (void)updateSearchBarDetails;
+- (void)refresh;
+- (void)dismissPopover;
 
 @end

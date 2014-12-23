@@ -1,13 +1,25 @@
 PODS:
   - InAppSettingsKit (2.3.1)
   - OCMock (3.1.1)
+  - WYPopoverController (0.3.5)
 
 DEPENDENCIES:
   - InAppSettingsKit
   - OCMock
+  - WYPopoverController (from `https://github.com/sammcewan/WYPopoverController.git`)
+
+EXTERNAL SOURCES:
+  WYPopoverController:
+    :git: https://github.com/sammcewan/WYPopoverController.git
+
+CHECKOUT OPTIONS:
+  WYPopoverController:
+    :commit: fc3e98fce7957437e2eb9674d75ffdffd46bb934
+    :git: https://github.com/sammcewan/WYPopoverController.git
 
 SPEC CHECKSUMS:
   InAppSettingsKit: c4eb758abf9d71a3b7847a80ceebf02ce4299113
   OCMock: f6cb8c162ab9d5620dddf411282c7b2c0ee78854
+  WYPopoverController: a83d657de8791a1f46afc49de9a77cbaed88b952
 
 COCOAPODS: 0.35.0

@@ -38,6 +38,7 @@ typedef NS_ENUM(NSInteger, WebViewTabSecureMode) {
 - (BOOL)canGoForward;
 - (void)goBack;
 - (void)goForward;
+- (void)refresh;
 - (void)zoomOut;
 - (void)zoomNormal;
 

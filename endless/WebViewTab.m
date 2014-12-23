@@ -298,7 +298,7 @@ float progress;
 
 - (void)refresh
 {
-	//[[NSURLCache sharedURLCache] removeAllCachedResponses];
+	/* TODO: call [[NSURLCache sharedURLCache] removeAllCachedResponses] ? */
 	[self.webView reload];
 }
 

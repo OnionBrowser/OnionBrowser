@@ -4,7 +4,7 @@
 
 @interface CookieWhitelist : NSObject
 {
-	NSMutableDictionary *dict;
+	NSMutableDictionary *_dict;
 }
 
 @property NSMutableDictionary *dict;

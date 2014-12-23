@@ -1,14 +1,17 @@
 #import "AppDelegate.h"
 #import "CookieWhitelistController.h"
-#import "IASKAppSettingsViewController.h"
 #import "URLInterceptor.h"
 #import "WebViewController.h"
 #import "WebViewTab.h"
+#import "WebViewMenuController.h"
+#import "WYPopoverController.h"
 
 #define STATUSBAR_HEIGHT 20
 #define TOOLBAR_HEIGHT 44
 
 @implementation WebViewController {
+	AppDelegate *appDelegate;
+
 	UIScrollView *tabScroller;
 	UIPageControl *tabChooser;
 	NSMutableArray *webViewTabs;
@@ -29,16 +32,14 @@
 	
 	UIBarButtonItem *tabAddButton;
 	UIBarButtonItem *tabDoneButton;
-
-	AppDelegate *appDelegate;
-	
-	IASKAppSettingsViewController *appSettingsViewController;
 	
 	float lastWebViewScrollOffset;
 	CGRect origTabScrollerFrame;
 	BOOL showingTabs;
 	BOOL webViewScrollIsDecelerating;
 	BOOL webViewScrollIsDragging;
+	
+	WYPopoverController *popover;
 }
 
 - (void)loadView
@@ -119,7 +120,7 @@
 	UIImage *settingsImage = [[UIImage imageNamed:@"settings"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 	[settingsButton setImage:settingsImage forState:UIControlStateNormal];
 	[settingsButton setTintColor:[progressBar tintColor]];
-	[settingsButton addTarget:self action:@selector(showSettings:) forControlEvents:UIControlEventTouchUpInside];
+	[settingsButton addTarget:self action:@selector(showPopover:) forControlEvents:UIControlEventTouchUpInside];
 	[toolbar addSubview:settingsButton];
 	
 	[tabScroller setAutoresizingMask:(UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight)];
@@ -595,17 +596,34 @@
 	[self.curWebViewTab goForward];
 }
 
-- (void)showSettings:(id)_id
+- (void)refresh
 {
-	if (!appSettingsViewController) {
-		appSettingsViewController = [[IASKAppSettingsViewController alloc] init];
-		appSettingsViewController.delegate = self;
-		appSettingsViewController.showDoneButton = YES;
-		appSettingsViewController.showCreditsFooter = NO;
-	}
+	[[self curWebViewTab] refresh];
+}
+
+- (void)showPopover:(id)_id
+{
+	popover = [[WYPopoverController alloc] initWithContentViewController:[[WebViewMenuController alloc] init]];
+	popover.delegate = self;
+	[popover beginThemeUpdates];
+	[popover setTheme:[WYPopoverTheme themeForIOS7]];
+	[popover.theme setOuterCornerRadius:4];
+	[popover.theme setOuterShadowBlurRadius:8];
+	[popover.theme setOuterShadowColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.75]];
+	[popover.theme setOuterShadowOffset:CGSizeMake(0, 2)];
+	[popover endThemeUpdates];
 	
-	UINavigationController *aNavController = [[UINavigationController alloc] initWithRootViewController:appSettingsViewController];
-	[self presentViewController:aNavController animated:YES completion:nil];
+	[popover presentPopoverFromRect:CGRectMake(settingsButton.frame.origin.x, settingsButton.frame.origin.y + settingsButton.frame.size.height - 14, settingsButton.frame.size.width, settingsButton.frame.size.height) inView:self.view permittedArrowDirections:WYPopoverArrowDirectionAny animated:YES options:WYPopoverAnimationOptionFadeWithScale];
+}
+
+- (void)dismissPopover
+{
+	[popover dismissPopoverAnimated:YES];
+}
+
+- (BOOL)popoverControllerShouldDismissPopover:(WYPopoverController *)controller
+{
+	return YES;
 }
 
 - (void)settingsViewControllerDidEnd:(IASKAppSettingsViewController *)sender
