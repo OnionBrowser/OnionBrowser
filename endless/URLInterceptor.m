@@ -41,11 +41,18 @@ WebViewTab *wvt;
 
 - (void)startLoading
 {
+	wvt = nil;
 	self.origRequest = self.request;
-
+	
 	NSMutableURLRequest *newRequest = [self.request mutableCopy];
 	
-	NSString *wvthash = (NSString *)[NSURLProtocol propertyForKey:@"WebViewTab" inRequest:newRequest];
+	void (^cancelLoading)(void) = ^(void) {
+		/* need to continue the chain with a blank response so downstream knows we're done */
+		[self.client URLProtocol:self didReceiveResponse:[[NSURLResponse alloc] init] cacheStoragePolicy:NSURLCacheStorageNotAllowed];
+		[self.client URLProtocolDidFinishLoading:self];
+	};
+	
+	NSString *wvthash = [NSURLProtocol propertyForKey:@"WebViewTab" inRequest:newRequest];
 	if (wvthash != nil && ![wvthash isEqualToString:@""]) {
 		for (WebViewTab *_wvt in [[appDelegate webViewController] webViewTabs]) {
 			if ([[NSString stringWithFormat:@"%lu", (unsigned long)[_wvt hash]] isEqualToString:wvthash]) {
@@ -56,27 +63,41 @@ WebViewTab *wvt;
 	}
 	
 	if (wvt == nil) {
-		NSLog(@"request for %@ with no matching WebViewTab!", [newRequest URL]);
-		self.connection = nil;
+		/* make a best attempt at finding the tab by this request's same maindocument */
+		for (WebViewTab *_wvt in [[appDelegate webViewController] webViewTabs]) {
+			if ([[[newRequest mainDocumentURL] absoluteString] isEqualToString:[[_wvt url] absoluteString]]) {
+				if (wvt == nil) {
+					wvt = _wvt;
+				}
+				else {
+					NSLog(@"[URLInterceptor] request for %@ matched two tabs (%@ and %@)", newRequest, [wvt tabNumber], [_wvt tabNumber]);
+					wvt = nil;
+					break;
+				}
+			}
+		}
+	}
+	
+	if (wvt == nil) {
+		NSLog(@"[URLInterceptor] request for %@ with no matching WebViewTab! (main URL %@)", [newRequest URL], [newRequest mainDocumentURL]);
+		cancelLoading();
 		return;
 	}
 	
+#ifdef TRACE
+	NSLog(@"[Tab %@] initializing with %@ request: %@", wvt.tabNumber, [newRequest HTTPMethod], [[newRequest URL] absoluteString]);
+#endif
+	
 	if (![NSURLProtocol propertyForKey:ORIGIN_KEY inRequest:newRequest]) {
 		if ([URLBlocker shouldBlockURL:[newRequest URL]]) {
-			/* need to continue the chain with a blank response so downstream knows we're done */
-			[self.client URLProtocol:self didReceiveResponse:[[NSURLResponse alloc] init] cacheStoragePolicy:NSURLCacheStorageNotAllowed];
-			[self.client URLProtocolDidFinishLoading:self];
+			cancelLoading();
 			return;
 		}
-		
+
 		/* we need to catch these here in the case of http -> https redirections */
 		if ([wvt secureMode] > WebViewTabSecureModeInsecure && ![[[[self.request URL] scheme] lowercaseString] isEqualToString:@"https"])
 			[wvt setSecureMode:WebViewTabSecureModeMixed];
 	}
-
-#ifdef TRACE
-	NSLog(@"[Tab %@] startLoading URL (%@): %@", wvt.tabNumber, [newRequest HTTPMethod], [[newRequest URL] absoluteString]);
-#endif
 	
 	NSArray *HTErules = [HTTPSEverywhere potentiallyApplicableRulesFor:[[[self request] URL] host]];
 	if (HTErules != nil && [HTErules count] > 0) {
@@ -129,12 +150,7 @@ WebViewTab *wvt;
 		schemaRedirect = true;
 	}
 	
-	if (response == nil && !schemaRedirect) {
-#ifdef TRACE
-		NSLog(@"[Tab %@] willSendRequest %@ to %@", wvt.tabNumber, [request HTTPMethod], [[request URL] absoluteString]);
-#endif
-	}
-	else {
+	if (response != nil || schemaRedirect) {
 		[self extractCookiesFromResponse:response forURL:[request URL] fromMainDocument:[wvt url]];
 
 #ifdef TRACE

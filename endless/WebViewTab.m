@@ -79,7 +79,7 @@ float progress;
 	
 	[self setSecureMode:WebViewTabSecureModeInsecure];
 	[self setApplicableHTTPSEverywhereRules:[[NSMutableDictionary alloc] initWithCapacity:6]];
-
+	
 	return self;
 }
 
@@ -99,7 +99,7 @@ float progress;
 	
 	NSMutableURLRequest *ur = [NSMutableURLRequest requestWithURL:u];
 	[NSURLProtocol setProperty:[NSString stringWithFormat:@"%lu", (unsigned long)[self hash]] forKey:@"WebViewTab" inRequest:ur];
-	
+	 
 	/* remember that this was the directly entered URL */
 	[NSURLProtocol setProperty:@YES forKey:ORIGIN_KEY inRequest:ur];
 	
@@ -108,40 +108,15 @@ float progress;
 	[self.webView loadRequest:ur];
 }
 
-- (void)webViewDidStartLoad:(UIWebView *)__webView
-{
-	[self setProgress:0.1];
-	
-	if (self.url == nil)
-		self.url = [[__webView request] URL];
-}
-
-- (void)webViewDidFinishLoad:(UIWebView *)__webView
-{
-#ifdef TRACE
-	NSLog(@"[Tab %@] finished loading page/iframe %@", self.tabNumber, [[[__webView request] URL] absoluteString]);
-#endif
-	[self setProgress:1.0];
-	
-	[__webView stringByEvaluatingJavaScriptFromString:[[self class] javascriptToInject]];
-	
-	[self.title setText:[[self webView] stringByEvaluatingJavaScriptFromString:@"document.title"]];
-	self.url = [[__webView request] URL];
-}
-
-- (void)webView:(UIWebView *)__webView didFailLoadWithError:(NSError *)error
-{
-	if (error.code != NSURLErrorCancelled) {
-		UIAlertView *m = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:self cancelButtonTitle: @"Ok" otherButtonTitles:nil];
-		[m show];
-	}
-	
-	[self webViewDidFinishLoad:__webView];
-}
-
+/* this will only fire for top-level requests, not page elements */
 - (BOOL)webView:(UIWebView *)__webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
 	if (![[[request URL] scheme] isEqualToString:@"endlessipc"]) {
+		[self setUrl:[request mainDocumentURL]];
+		
+		NSMutableURLRequest *ur = [request mutableCopy];
+		[NSURLProtocol setProperty:[NSString stringWithFormat:@"%lu", (unsigned long)[__webView hash]] forKey:@"WebViewTab" inRequest:ur];
+
 		return YES;
 	}
 	
@@ -163,7 +138,7 @@ float progress;
 		/* no callback needed */
 		return NO;
 	}
-
+	
 #ifdef TRACE
 	NSLog(@"[Javascript IPC]: [%@] [%@] [%@] [%@]", action, param, param2, value);
 #endif
@@ -172,6 +147,7 @@ float progress;
 		WebViewTab *newtab = [[appDelegate webViewController] addNewTabForURL:nil];
 		newtab.randID = param;
 		newtab.openedByTabHash = [NSNumber numberWithLong:self.hash];
+		NSLog(@"opened new window %lu from %lu", newtab.hash, self.hash);
 		
 		[self webView:__webView callbackWith:[NSString stringWithFormat:@"__endless.openedTabs[\"%@\"].opened = true;", param]];
 	}
@@ -210,7 +186,7 @@ float progress;
 			[[wvt webView] stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"window.location.%@ = \"%@\";", param2, [value stringEscapedForJavasacript]]];
 			[self webView:__webView callbackWith:@""];
 		}
-
+		
 		/* getters, pull from target webview and write back to caller internal parameters (not setters) */
 		else if ([action isEqualToString:@"fakeWindow.getName"]) {
 			NSString *name = [[wvt webView] stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"window.name;"]];
@@ -228,8 +204,39 @@ float progress;
 			[self webView:__webView callbackWith:@""];
 		}
 	}
-
+	
 	return NO;
+}
+
+- (void)webViewDidStartLoad:(UIWebView *)__webView
+{
+	[self setProgress:0.1];
+	
+	if (self.url == nil)
+		self.url = [[__webView request] URL];
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)__webView
+{
+#ifdef TRACE
+	NSLog(@"[Tab %@] finished loading page/iframe %@", self.tabNumber, [[[__webView request] URL] absoluteString]);
+#endif
+	[self setProgress:1.0];
+	
+	[__webView stringByEvaluatingJavaScriptFromString:[[self class] javascriptToInject]];
+	
+	[self.title setText:[[self webView] stringByEvaluatingJavaScriptFromString:@"document.title"]];
+	self.url = [[__webView request] URL];
+}
+
+- (void)webView:(UIWebView *)__webView didFailLoadWithError:(NSError *)error
+{
+	if (error.code != NSURLErrorCancelled) {
+		UIAlertView *m = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:self cancelButtonTitle: @"Ok" otherButtonTitles:nil];
+		[m show];
+	}
+	
+	[self webViewDidFinishLoad:__webView];
 }
 
 - (void)webView:(UIWebView *)__webView callbackWith:(NSString *)callback
