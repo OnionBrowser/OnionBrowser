@@ -13,7 +13,7 @@ Basic browser functionality implemented:
 
 - Shows padlock for SSL-encrypted URLs
 
-- Multiple tabs, support for `window.open` and <a target="_blank"> automatically
+- Multiple tabs, support for `window.open` and `<a target="_blank">` automatically
   opening new tab windows
 
 - Search from URL bar with Google or DDG
@@ -25,7 +25,7 @@ Security and privacy-focused features implemented:
 - Integrated full [HTTPS Everywhere](https://www.eff.org/HTTPS-EVERYWHERE)
   ruleset (currently over 11,000 rules) to do on-the-fly URL rewriting to force
   requests over SSL where supported, including setting the secure
-  bit on received cookies
+  bit on received cookies and auto-detection of redirection loops
 
 - Optional sending of Do-Not-Track header on all requests
 
