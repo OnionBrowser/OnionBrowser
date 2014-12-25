@@ -5,7 +5,7 @@ course) with a design goal of increased security and privacy.
 
 ![https://i.imgur.com/ABftci1l.png](https://i.imgur.com/ABftci1l.png) ![https://i.imgur.com/Md7CkLYl.png](https://i.imgur.com/Md7CkLYl.png)
 
-Basic browser functionality implemented:
+#####Basic browser functionality implemented:
 
 - Basics of entering URLs, following redirections, back, forward, cookie storage
 
@@ -18,26 +18,29 @@ Basic browser functionality implemented:
 
 - Search from URL bar with Google or DDG
 
-Security and privacy-focused features implemented:
+#####Security and privacy-focused features implemented:
 
-- Shows green organization name for EV SSL certs
+- Defaults to only accepting cookies for the duration of the session with an
+  editable whitelist of hosts from which non-session cookies will be saved
 
 - Integrated full [HTTPS Everywhere](https://www.eff.org/HTTPS-EVERYWHERE)
   ruleset (currently over 11,000 rules) to do on-the-fly URL rewriting to force
   requests over SSL where supported, including setting the secure
   bit on received cookies and auto-detection of redirection loops
 
-- Optional sending of Do-Not-Track header on all requests
-
 - Integrated URL blocker with a small included ruleset of behavior-tracking
   advertising, analytics, and social networking widgets (this list is intended
   for enhancing privacy and not to be an AdBlock-style comprehensive ad-blocking
   list)
 
-- Default to only accepting cookies for the duration of the session with an
-  editable whitelist of hosts from which permanent cookies will be saved
+- Blocks mixed-content requests (http elements on an https page), shows broken
+  padlock
 
-Features planned but not yet implemented:
+- Shows organization name in URL bar for sites with EV SSL certs
+
+- Optional sending of Do-Not-Track header on all requests
+
+#####Features planned but not yet implemented:
 
 - Auto-destroy session cookies *n* seconds after closing last tab using those
   cookies
@@ -46,7 +49,7 @@ Features planned but not yet implemented:
 
 - Bookmarks, probably a home-screen table layout like Safari
 
-Some nice-to-haves:
+#####Some nice-to-haves:
 
 - Favicon loader into search bar
 

@@ -89,10 +89,6 @@ WebViewTab *wvt;
 			cancelLoading();
 			return;
 		}
-
-		/* we need to catch these here in the case of http -> https redirections */
-		if ([wvt secureMode] > WebViewTabSecureModeInsecure && ![[[[self.request URL] scheme] lowercaseString] isEqualToString:@"https"])
-			[wvt setSecureMode:WebViewTabSecureModeMixed];
 	}
 	
 #ifdef TRACE
@@ -107,7 +103,16 @@ WebViewTab *wvt;
 			[[wvt applicableHTTPSEverywhereRules] setObject:@YES forKey:[HTErule name]];
 		}
 	}
-
+	
+	if (![NSURLProtocol propertyForKey:ORIGIN_KEY inRequest:newRequest]) {
+		if ([wvt secureMode] > WebViewTabSecureModeInsecure && ![[[[newRequest URL] scheme] lowercaseString] isEqualToString:@"https"]) {
+			[wvt setSecureMode:WebViewTabSecureModeMixed];
+			NSLog(@"[Tab %@] blocking mixed-content request %@", wvt.tabNumber, [newRequest URL]);
+			cancelLoading();
+			return;
+		}
+	}
+	
 	/* redirections can happen without us seeing them, so keep the webview chrome in the loop */
 	[wvt setUrl:[newRequest mainDocumentURL]];
 	[[appDelegate webViewController] performSelectorOnMainThread:@selector(updateSearchBarDetails) withObject:nil waitUntilDone:NO];
