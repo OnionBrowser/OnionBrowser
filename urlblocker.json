@@ -3,6 +3,19 @@
 		"adzerk.net"
 	]
 
+	,"Advertising/Analytics - AppNexus": [
+		"adnxs.com"
+		,"appnexus.com"
+	]
+
+	,"Advertising/Analytics - BDEX": [
+		"bdex.com"
+	]
+
+	,"Advertising/Analytics - eXelate": [
+		"exelator.com"
+	]
+
 	,"Advertising/Analytics - Google": [
 		"doubleclick.net"
 		,"google-analytics.com"
@@ -11,8 +24,39 @@
 		,"googletagservices.com"
 	]
 
+	,"Advertising/Analytics - Lotame": [
+		"crwdcntrl.net"
+	]
+
+	,"Advertising/Analytics - Magnetic": [
+		"magnetic.com"
+		,"domdex.com"
+	]
+
+	,"Advertising/Analytics - Signal/BrightTag": [
+		"thebrighttag.com"
+		,"btstatic.com"
+		,"signal.co"
+	]
+
+	,"Advertising/Analytics - Simplifi": [
+		"simpli.fi"
+	]
+
+	,"Advertising/Analytics - Yahoo": [
+		"ads.yahoo.com"
+	]
+
+	,"Analytics - BlueCava": [
+		"bluecava.com"
+	]
+
 	,"Analytics - comScore": [
 		"scorecardresearch.com"
+	]
+
+	,"Analytics - Cross Pixel": [
+		"crsspxl.com"
 	]
 
 	,"Analytics - Errorception": [
@@ -21,6 +65,10 @@
 
 	,"Advertising/Analytics - ThoughtLeadr": [
 		"thoughtleadr.com"
+	]
+
+	,"Analytics - Intent IQ": [
+		"intentiq.com"
 	]
 
 	,"Analytics - New Relic": [
@@ -34,6 +82,28 @@
 	,"Analytics - Reddit": [
 		"pixel.redditmedia.com"
 		,"stats.redditmedia.com"
+	]
+
+	,"Analytics - Turn": [
+		"turn.com"
+	]
+
+	,"Analytics - Unruly": [
+		"unrulymedia.com"
+		,"unruly.co"
+	]
+
+	,"Analytics - WordPress": [
+		"stats.wp.com"
+		,"pixel.wp.com"
+	]
+
+
+	,"Unknown - pro-market": [
+		"pro-market.net"
+	]
+	,"Unknown - bktrx.com": [
+		"bkrtx.com"
 	]
 
 

@@ -3,12 +3,34 @@
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>adnxs.com</key>
+	<string>Advertising/Analytics - AppNexus</string>
+	<key>ads.yahoo.com</key>
+	<string>Advertising/Analytics - Yahoo</string>
 	<key>adzerk.net</key>
 	<string>Advertising/Analytics - Adzerk</string>
+	<key>appnexus.com</key>
+	<string>Advertising/Analytics - AppNexus</string>
+	<key>bdex.com</key>
+	<string>Advertising/Analytics - BDEX</string>
+	<key>bkrtx.com</key>
+	<string>Unknown - bktrx.com</string>
+	<key>bluecava.com</key>
+	<string>Analytics - BlueCava</string>
+	<key>btstatic.com</key>
+	<string>Advertising/Analytics - Signal/BrightTag</string>
+	<key>crsspxl.com</key>
+	<string>Analytics - Cross Pixel</string>
+	<key>crwdcntrl.net</key>
+	<string>Advertising/Analytics - Lotame</string>
+	<key>domdex.com</key>
+	<string>Advertising/Analytics - Magnetic</string>
 	<key>doubleclick.net</key>
 	<string>Advertising/Analytics - Google</string>
 	<key>errorception.com</key>
 	<string>Analytics - Errorception</string>
+	<key>exelator.com</key>
+	<string>Advertising/Analytics - eXelate</string>
 	<key>facebook.com</key>
 	<string>Social - Facebook</string>
 	<key>fb.com</key>
@@ -21,23 +43,45 @@
 	<string>Advertising/Analytics - Google</string>
 	<key>googletagservices.com</key>
 	<string>Advertising/Analytics - Google</string>
+	<key>intentiq.com</key>
+	<string>Analytics - Intent IQ</string>
 	<key>linkedin.com</key>
 	<string>Social - LinkedIn</string>
+	<key>magnetic.com</key>
+	<string>Advertising/Analytics - Magnetic</string>
 	<key>newrelic.com</key>
 	<string>Analytics - New Relic</string>
 	<key>pixel.redditmedia.com</key>
 	<string>Analytics - Reddit</string>
+	<key>pixel.wp.com</key>
+	<string>Analytics - WordPress</string>
+	<key>pro-market.net</key>
+	<string>Unknown - pro-market</string>
 	<key>quantserve.com</key>
 	<string>Analytics - Quantcast</string>
 	<key>scorecardresearch.com</key>
 	<string>Analytics - comScore</string>
+	<key>signal.co</key>
+	<string>Advertising/Analytics - Signal/BrightTag</string>
+	<key>simpli.fi</key>
+	<string>Advertising/Analytics - Simplifi</string>
 	<key>stats.redditmedia.com</key>
 	<string>Analytics - Reddit</string>
+	<key>stats.wp.com</key>
+	<string>Analytics - WordPress</string>
+	<key>thebrighttag.com</key>
+	<string>Advertising/Analytics - Signal/BrightTag</string>
 	<key>thoughtleadr.com</key>
 	<string>Advertising/Analytics - ThoughtLeadr</string>
+	<key>turn.com</key>
+	<string>Analytics - Turn</string>
 	<key>twimg.com</key>
 	<string>Social - Twitter</string>
 	<key>twitter.com</key>
 	<string>Social - Twitter</string>
+	<key>unruly.co</key>
+	<string>Analytics - Unruly</string>
+	<key>unrulymedia.com</key>
+	<string>Analytics - Unruly</string>
 </dict>
 </plist>
