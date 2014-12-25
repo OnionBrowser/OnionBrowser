@@ -67,7 +67,7 @@ UISearchDisplayController *searchDisplayController;
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"rule"];
 	
 	if (cell == nil) {
-		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"rule"];
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"rule"];
 	}
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	
@@ -76,6 +76,13 @@ UISearchDisplayController *searchDisplayController;
 	}
 	else {
 		cell.textLabel.text = [sortedRuleNames objectAtIndex:indexPath.row];
+	}
+	
+	NSString *disabled = [[HTTPSEverywhere disabledRules] objectForKey:cell.textLabel.text];
+	if (disabled != nil) {
+		cell.textLabel.textColor = [UIColor redColor];
+		cell.detailTextLabel.text = [NSString stringWithFormat:@"Disabled: %@", disabled];
+		cell.detailTextLabel.textColor = [UIColor redColor];
 	}
 	
 	return cell;
@@ -93,8 +100,6 @@ UISearchDisplayController *searchDisplayController;
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
-	NSLog(@"here");
-	
 	[searchResult removeAllObjects];
 	
 	for (NSString *ruleName in sortedRuleNames) {
@@ -104,8 +109,6 @@ UISearchDisplayController *searchDisplayController;
 			[searchResult addObject:ruleName];
 		}
 	}
-	
-	NSLog(@"ended with %@", searchResult);
 	
 	return YES;
 }

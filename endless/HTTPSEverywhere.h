@@ -5,6 +5,7 @@
 
 + (NSDictionary *)rules;
 + (NSDictionary *)targets;
++ (NSMutableDictionary *)disabledRules;
 + (void)saveDisabledRules;
 
 + (HTTPSEverywhereRule *)cachedRuleForName:(NSString *)name;
