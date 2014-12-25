@@ -46,7 +46,7 @@ id HEMocked;
 }
 
 - (void)testApplicableRules {
-	NSArray *results = [HTTPSEverywhere potentiallyApplicableRulesFor:@"www.reddit.com"];
+	NSArray *results = [HTTPSEverywhere potentiallyApplicableRulesForHost:@"www.reddit.com"];
 	XCTAssertEqual([results count], 1U);
 	XCTAssert([[results objectAtIndex:0] isKindOfClass:[HTTPSEverywhereRule class]]);
 	XCTAssert([[(HTTPSEverywhereRule *)[results objectAtIndex:0] name] isEqualToString:@"Reddit"]);

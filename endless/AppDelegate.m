@@ -1,4 +1,5 @@
 #import "AppDelegate.h"
+#import "HTTPSEverywhere.h"
 #import "URLInterceptor.h"
 
 @implementation AppDelegate
@@ -14,7 +15,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-	// Override point for customization after application launch.
 	[NSURLProtocol registerClass:[URLInterceptor class]];
 	
 	_cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
@@ -52,7 +52,9 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+	[[self cookieWhitelist] clearAllNonWhitelistedCookies];
 	[[self cookieWhitelist] persist];
+	[HTTPSEverywhere saveDisabledRules];
 }
 
 - (void)initializeDefaults
@@ -68,14 +70,11 @@
 		if ([userDefaults objectForKey:key] == NULL) {
 			NSObject *val = [pref objectForKey:@"DefaultValue"];
 			[userDefaults setObject:val forKey:key];
-			
-			NSLog(@"initialized setting %@ to default: %@", key, val);
 		}
 	}
 	
 	[userDefaults synchronize];
 	
-	/* load search engines */
 	_searchEngines = [NSMutableDictionary dictionaryWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"SearchEngines.plist"]];
 }
 

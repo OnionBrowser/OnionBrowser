@@ -5,10 +5,12 @@
 
 + (NSDictionary *)rules;
 + (NSDictionary *)targets;
++ (void)saveDisabledRules;
 
 + (HTTPSEverywhereRule *)cachedRuleForName:(NSString *)name;
-+ (NSArray *)potentiallyApplicableRulesFor:(NSString *)host;
++ (NSArray *)potentiallyApplicableRulesForHost:(NSString *)host;
 + (NSURL *)rewrittenURI:(NSURL *)URL withRules:(NSArray *)rules;
 + (BOOL)needsSecureCookieFromHost:(NSString *)fromHost forHost:(NSString *)forHost cookieName:(NSString *)cookie;
++ (void)noteInsecureRedirectionForURL:(NSURL *)URL;
 
 @end

@@ -4,10 +4,18 @@
 
 static NSDictionary *_rules;
 static NSDictionary *_targets;
+static NSMutableDictionary *_disabledRules;
+static NSMutableDictionary *insecureRedirections;
 
 static NSCache *ruleCache;
 
 #define RULE_CACHE_SIZE 20
+
++ (NSString *)disabledRulesPath
+{
+	NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+	return [path stringByAppendingPathComponent:@"https_everywhere_disabled.plist"];
+}
 
 + (NSDictionary *)rules
 {
@@ -27,6 +35,31 @@ static NSCache *ruleCache;
 	}
 	
 	return _rules;
+}
+
++ (NSMutableDictionary *)disabledRules
+{
+	if (_disabledRules == nil) {
+		NSFileManager *fm = [NSFileManager defaultManager];
+		NSString *path = [[self class] disabledRulesPath];
+		if ([fm fileExistsAtPath:path]) {
+			_disabledRules = [NSMutableDictionary dictionaryWithContentsOfFile:path];
+		
+#ifdef TRACE_HTTPS_EVERYWHERE
+			NSLog(@"[HTTPSEverywhere] loaded %lu disabled rules", [_disabledRules count]);
+#endif
+		}
+		else {
+			_disabledRules = [[NSMutableDictionary alloc] init];
+		}
+	}
+	
+	return _disabledRules;
+}
+
++ (void)saveDisabledRules
+{
+	[_disabledRules writeToFile:[[self class] disabledRulesPath] atomically:YES];
 }
 
 + (NSDictionary *)targets
@@ -80,14 +113,14 @@ static NSCache *ruleCache;
 	return r;
 }
 
-+ (NSArray *)potentiallyApplicableRulesFor:(NSString *)host
++ (NSArray *)potentiallyApplicableRulesForHost:(NSString *)host
 {
 	NSMutableDictionary *rs = [[NSMutableDictionary alloc] initWithCapacity:2];
 	
 	host = [host lowercaseString];
 
 	NSString *targetName = [[[self class] targets] objectForKey:host];
-	if (targetName != nil)
+	if (targetName != nil && ![[HTTPSEverywhere disabledRules] valueForKey:targetName])
 		[rs setValue:[[self class] cachedRuleForName:targetName] forKey:targetName];
 	
 	/* now for x.y.z.example.com, try *.y.z.example.com, *.z.example.com, *.example.com, etc. */
@@ -97,13 +130,12 @@ static NSCache *ruleCache;
 		NSString *wc = [[hostp subarrayWithRange:NSMakeRange(i, [hostp count] - i)] componentsJoinedByString:@"."];
 		
 		NSString *targetName = [[[self class] targets] objectForKey:wc];
-		if (targetName != nil) {
+		if (targetName != nil && ![rs objectForKey:targetName] && ![[HTTPSEverywhere disabledRules] valueForKey:targetName]) {
 #ifdef TRACE_HTTPS_EVERYWHERE
 			NSLog(@"[HTTPSEverywhere] found ruleset %@ for component %@ in %@", targetName, wc, host);
 #endif
-			if (![rs objectForKey:targetName]) {
-				[rs setValue:[[self class] cachedRuleForName:targetName] forKey:targetName];
-			}
+
+			[rs setValue:[[self class] cachedRuleForName:targetName] forKey:targetName];
 		}
 	}
 	
@@ -113,7 +145,7 @@ static NSCache *ruleCache;
 + (NSURL *)rewrittenURI:(NSURL *)URL withRules:(NSArray *)rules
 {
 	if (rules == nil || [rules count] == 0)
-		rules = [[self class] potentiallyApplicableRulesFor:[URL host]];
+		rules = [[self class] potentiallyApplicableRulesForHost:[URL host]];
 
 	if (rules == nil || [rules count] == 0)
 		return URL;
@@ -133,7 +165,7 @@ static NSCache *ruleCache;
 
 + (BOOL)needsSecureCookieFromHost:(NSString *)fromHost forHost:(NSString *)forHost cookieName:(NSString *)cookie
 {
-	for (HTTPSEverywhereRule *rule in [[self class] potentiallyApplicableRulesFor:fromHost]) {
+	for (HTTPSEverywhereRule *rule in [[self class] potentiallyApplicableRulesForHost:fromHost]) {
 		for (NSRegularExpression *hostreg in [rule secureCookies]) {
 			if ([hostreg matchesInString:forHost options:0 range:NSMakeRange(0, [forHost length])]) {
 				NSRegularExpression *namereg = [[rule secureCookies] objectForKey:hostreg];
@@ -149,6 +181,35 @@ static NSCache *ruleCache;
 	}
 	
 	return NO;
+}
+
++ (void)noteInsecureRedirectionForURL:(NSURL *)URL
+{
+	if (insecureRedirections == nil) {
+		insecureRedirections = [[NSMutableDictionary alloc] init];
+	}
+	
+	NSNumber *count = [insecureRedirections objectForKey:URL];
+	if (count != nil && [count intValue] != 0) {
+		count = [NSNumber numberWithInt:[count intValue] + 1];
+	}
+	else {
+		count = [NSNumber numberWithInt:1];
+	}
+	
+	[insecureRedirections setObject:count forKey:URL];
+	
+	if ([count intValue] < 3) {
+		return;
+	}
+	
+	for (HTTPSEverywhereRule *rule in [[self class] potentiallyApplicableRulesForHost:[URL host]]) {
+		if ([rule apply:URL] != nil) {
+			NSLog(@"[HTTPSEverywhere] insecure redirection count %@ for %@, disabling rule %@", count, URL, [rule name]);
+			[[[self class] disabledRules] setObject:@"Redirection loop" forKey:[rule name]];
+			[[self class] saveDisabledRules];
+		}
+	}
 }
 
 @end

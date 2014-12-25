@@ -1,3 +1,4 @@
+#import "HTTPSEverywhere.h"
 #import "HTTPSEverywhereRule.h"
 
 @implementation HTTPSEverywhereRule
@@ -132,10 +133,6 @@
 		self.secureCookies = scooksd;
 	}
 	
-#ifdef TRACE_HTTPS_EVERYWHERE
-	NSLog(@"[HTTPSEverywhere] parsed plist for %@", self.name);
-#endif
-
 	return self;
 }
 

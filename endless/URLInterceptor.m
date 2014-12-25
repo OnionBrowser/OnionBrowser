@@ -84,10 +84,6 @@ WebViewTab *wvt;
 		return;
 	}
 	
-#ifdef TRACE
-	NSLog(@"[Tab %@] initializing with %@ request: %@", wvt.tabNumber, [newRequest HTTPMethod], [[newRequest URL] absoluteString]);
-#endif
-	
 	if (![NSURLProtocol propertyForKey:ORIGIN_KEY inRequest:newRequest]) {
 		if ([URLBlocker shouldBlockURL:[newRequest URL]]) {
 			cancelLoading();
@@ -99,7 +95,11 @@ WebViewTab *wvt;
 			[wvt setSecureMode:WebViewTabSecureModeMixed];
 	}
 	
-	NSArray *HTErules = [HTTPSEverywhere potentiallyApplicableRulesFor:[[[self request] URL] host]];
+#ifdef TRACE
+	NSLog(@"[Tab %@] initializing with %@ request: %@", wvt.tabNumber, [newRequest HTTPMethod], [[newRequest URL] absoluteString]);
+#endif
+
+	NSArray *HTErules = [HTTPSEverywhere potentiallyApplicableRulesForHost:[[[self request] URL] host]];
 	if (HTErules != nil && [HTErules count] > 0) {
 		[newRequest setURL:[HTTPSEverywhere rewrittenURI:[[self request] URL] withRules:HTErules]];
 		
@@ -142,7 +142,7 @@ WebViewTab *wvt;
 {
 	BOOL schemaRedirect = false;
 	
-	/* we don't get a redirect response when only upgrading from http -> https on the same hostname, so we have to find it ourselves :( */
+	/* we don't get a redirectResponse when only upgrading from http -> https on the same hostname, so we have to find it ourselves :( */
 	if (response == nil && [self.origRequest hash] != [request hash]) {
 #ifdef TRACE
 		NSLog(@"[Tab %@] hash changed, URL went from %@ to %@", wvt.tabNumber, [[self.origRequest URL] absoluteString], [[request URL] absoluteString]);
@@ -153,12 +153,22 @@ WebViewTab *wvt;
 	if (response != nil || schemaRedirect) {
 		[self extractCookiesFromResponse:response forURL:[request URL] fromMainDocument:[wvt url]];
 
+		if (schemaRedirect && response == nil) {
 #ifdef TRACE
-		if (schemaRedirect && response == nil)
 			NSLog(@"[Tab %@] willSendRequest being redirected (schema-only) from %@ to %@", wvt.tabNumber, [[self.origRequest URL] absoluteString], [[request URL] absoluteString]);
-		else
+#endif
+			if ([[[self.origRequest URL] scheme] isEqualToString:@"https"] && [[[request URL] scheme] isEqualToString:@"http"]) {
+				[HTTPSEverywhere noteInsecureRedirectionForURL:[self.origRequest URL]];
+			}
+		}
+		else {
+#ifdef TRACE
 			NSLog(@"[Tab %@] willSendRequest being redirected from %@ to %@", wvt.tabNumber, [[response URL] absoluteString], [[request URL] absoluteString]);
 #endif
+			if ([[[response URL] scheme] isEqualToString:@"https"] && [[[request URL] scheme] isEqualToString:@"http"]) {
+				[HTTPSEverywhere noteInsecureRedirectionForURL:[request URL]];
+			}
+		}
 		
 		NSMutableURLRequest *redirectRequest = [request mutableCopy];
 		
