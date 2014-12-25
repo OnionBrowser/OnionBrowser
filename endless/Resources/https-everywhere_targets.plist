@@ -1,4 +1,4 @@
-<!-- automatically generated from HTTPS Everywhere 7876b06712eb - do not directly edit this file -->
+<!-- automatically generated from HTTPS Everywhere 138acab07e69 - do not directly edit this file -->
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -53,6 +53,8 @@
 	<string>1xbet.com</string>
 	<key>*.21centuryrims.com</key>
 	<string>21 Century Rims</string>
+	<key>*.23andme.com</key>
+	<string>23andMe.com (partial)</string>
 	<key>*.23systems.net</key>
 	<string>23Systems</string>
 	<key>*.247ilabs.com</key>
@@ -144,13 +146,15 @@
 	<key>*.4tulemar.com</key>
 	<string>4Tulemar</string>
 	<key>*.500px.com</key>
-	<string>500px.com (partial)</string>
+	<string>500px.com</string>
+	<key>*.500px.org</key>
+	<string>500px.org</string>
 	<key>*.512pixels.net</key>
 	<string>512 Pixels</string>
 	<key>*.53.com</key>
 	<string>Fifth Third Bank</string>
 	<key>*.5apps.com</key>
-	<string>Appache (partial)</string>
+	<string>5apps (partial)</string>
 	<key>*.5july.org</key>
 	<string>5 July.org</string>
 	<key>*.5min.com</key>
@@ -304,7 +308,7 @@
 	<key>*.acronis.com</key>
 	<string>Acronis.com (partial)</string>
 	<key>*.acs.org</key>
-	<string>American Chemical Society (partial)</string>
+	<string>ACS.org (partial)</string>
 	<key>*.actblue.com</key>
 	<string>ActBlue (partial)</string>
 	<key>*.actionallocator.com</key>
@@ -319,6 +323,8 @@
 	<string>Active Events (partial)</string>
 	<key>*.activemelody.com</key>
 	<string>Active Melody</string>
+	<key>*.activenetwork.com</key>
+	<string>Active Network.com (partial)</string>
 	<key>*.activestate.com</key>
 	<string>ActiveState Software (partial)</string>
 	<key>*.activisionblizzard.com</key>
@@ -345,12 +351,14 @@
 	<string>AdaFruit</string>
 	<key>*.adage.com</key>
 	<string>Crain Communications (partial)</string>
+	<key>*.adallom.com</key>
+	<string>Adallom.com (partial)</string>
 	<key>*.adap.tv</key>
 	<string>Adap.TV</string>
 	<key>*.adblade.com</key>
 	<string>Adblade (partial)</string>
 	<key>*.adblockplus.org</key>
-	<string>AdblockPlus</string>
+	<string>AdblockPlus.org</string>
 	<key>*.adbooth.net</key>
 	<string>Adbooth.net</string>
 	<key>*.adbrite.com</key>
@@ -414,7 +422,7 @@
 	<key>*.adnxs.com</key>
 	<string>AppNexus (partial)</string>
 	<key>*.adobe.com</key>
-	<string>Adobe</string>
+	<string>Adobe.com</string>
 	<key>*.adobeconnect.com</key>
 	<string>Adobe Connect</string>
 	<key>*.adobelogin.com</key>
@@ -540,7 +548,7 @@
 	<key>*.afsa.gov.au</key>
 	<string>Australian Financial Security Authority</string>
 	<key>*.aftenposten.no</key>
-	<string>Aftenposten</string>
+	<string>Aftenposten (partial)</string>
 	<key>*.aftonbladet-cdn.se</key>
 	<string>Aftonbladet</string>
 	<key>*.aftonbladet.se</key>
@@ -848,13 +856,15 @@
 	<key>*.andor.com</key>
 	<string>Andor.com</string>
 	<key>*.android.com</key>
-	<string>Android (partial)</string>
+	<string>Android.com</string>
 	<key>*.andyet.com</key>
 	<string>andyet.com (partial)</string>
 	<key>*.andywalsh.com</key>
 	<string>Andy Walsh.com</string>
 	<key>*.anglomedia.net</key>
 	<string>anglomedia.net</string>
+	<key>*.angular-gantt.com</key>
+	<string>Angular-Gantt.com</string>
 	<key>*.anibis.ch</key>
 	<string>anibis.ch</string>
 	<key>*.animoto.com</key>
@@ -912,7 +922,7 @@
 	<key>*.aolcdn.com</key>
 	<string>AOL (partial)</string>
 	<key>*.apache.org</key>
-	<string>Apache (partial)</string>
+	<string>Apache.com (partial)</string>
 	<key>*.apc.org</key>
 	<string>Association for Progressive Communications</string>
 	<key>*.api.del.icio.us</key>
@@ -1036,7 +1046,7 @@
 	<key>*.artskills.com</key>
 	<string>ArtSkills</string>
 	<key>*.arvixe.com</key>
-	<string>Arvixe</string>
+	<string>Arvixe.com</string>
 	<key>*.asada.gov.au</key>
 	<string>Australian Sports Anti-Doping Authority</string>
 	<key>*.asahi.com</key>
@@ -1150,7 +1160,7 @@
 	<key>*.attachmate.com</key>
 	<string>Attachmate (partial)</string>
 	<key>*.attachmategroup.com</key>
-	<string>The Attachmate Group (partial)</string>
+	<string>Attachmate Group.com (partial)</string>
 	<key>*.attictv.com</key>
 	<string>kpopstage.co</string>
 	<key>*.attracta.com</key>
@@ -1370,7 +1380,7 @@
 	<key>*.beastnode.com</key>
 	<string>BeastNode (partial)</string>
 	<key>*.beautifuldecay.com</key>
-	<string>BeautifulDecay.com (false MCB)</string>
+	<string>BeautifulDecay.com (partial)</string>
 	<key>*.beautybar.com</key>
 	<string>BeautyBar.com (partial)</string>
 	<key>*.beaverbrooks.co.uk</key>
@@ -1417,10 +1427,12 @@
 	<string>Bennetts (partial)</string>
 	<key>*.bentley.edu</key>
 	<string>Bentley Univerity (partial)</string>
+	<key>*.benzinga.com</key>
+	<string>Benzinga.com (partial)</string>
 	<key>*.bepress.com</key>
 	<string>bepress</string>
 	<key>*.berkeley.edu</key>
-	<string>University of California, Berkeley (partial)</string>
+	<string>Berkeley.edu (partial)</string>
 	<key>*.berlin-airport.de</key>
 	<string>Berlin Airport</string>
 	<key>*.berlin.de</key>
@@ -1492,7 +1504,7 @@
 	<key>*.bigbrother.se</key>
 	<string>Big Brother.se (partial)</string>
 	<key>*.bigbrotherwatch.org.uk</key>
-	<string>Big Brother Watch</string>
+	<string>Big Brother Watch.org.uk</string>
 	<key>*.bigcartel.com</key>
 	<string>Big Cartel (partial)</string>
 	<key>*.bigchangeuk.co.uk</key>
@@ -1577,6 +1589,8 @@
 	<string>BitcoinStore.com</string>
 	<key>*.bitcurex.com</key>
 	<string>Bitcurex.com</string>
+	<key>*.bitdeli.com</key>
+	<string>Bitdeli.com</string>
 	<key>*.bitinstant.com</key>
 	<string>BitInstant (partial)</string>
 	<key>*.bitlove.org</key>
@@ -1649,8 +1663,12 @@
 	<string>Blazonco.com</string>
 	<key>*.blender.org</key>
 	<string>Blender.org (partial)</string>
+	<key>*.blesk.sk</key>
+	<string>Blesk.sk (partial)</string>
 	<key>*.bleutrade.com</key>
 	<string>Bleutrade.com</string>
+	<key>*.blicko.com</key>
+	<string>Blicko.com (partial)</string>
 	<key>*.blinddesign.nl</key>
 	<string>Blinddesign.nl</string>
 	<key>*.bling4cars.com</key>
@@ -1713,6 +1731,8 @@
 	<string>BlogTalkRadio</string>
 	<key>*.blogtopsites.com</key>
 	<string>Blog Top Sites.com</string>
+	<key>*.bloo.ie</key>
+	<string>Bloo.ie</string>
 	<key>*.bloodhoundgang.com</key>
 	<string>Bloodhound Gang.com</string>
 	<key>*.bloomberg.com</key>
@@ -1761,8 +1781,6 @@
 	<string>bn-MCLP.org (partial)</string>
 	<key>*.boalt.com</key>
 	<string>BOALT</string>
-	<key>*.board.carnegiescience.edu</key>
-	<string>Carnegie Institution for Science</string>
 	<key>*.boathousecrewshop.com</key>
 	<string>Boathouse Crew Shop</string>
 	<key>*.bobafamily.com</key>
@@ -1906,7 +1924,7 @@
 	<key>*.brinkster.com</key>
 	<string>Brinkster.com</string>
 	<key>*.bris.ac.uk</key>
-	<string>University of Bristol (partial)</string>
+	<string>Bris.ac.uk (partial)</string>
 	<key>*.britannica.com</key>
 	<string>Britannica.com (partial)</string>
 	<key>*.bro.org</key>
@@ -1921,6 +1939,8 @@
 	<string>Bromley.gov.uk</string>
 	<key>*.bronto.com</key>
 	<string>Bronto Software (partial)</string>
+	<key>*.brookings.edu</key>
+	<string>Brookings.edu (partial)</string>
 	<key>*.brooklinecollege.edu</key>
 	<string>Brookline College.edu</string>
 	<key>*.brooksidefund.com</key>
@@ -1935,6 +1955,8 @@
 	<string>Booking.com</string>
 	<key>*.bt.com</key>
 	<string>BT (partial)</string>
+	<key>*.bt.no</key>
+	<string>BT.no (partial)</string>
 	<key>*.btc-e.com</key>
 	<string>BTC-E</string>
 	<key>*.btc-trade.ru</key>
@@ -2023,6 +2045,8 @@
 	<string>GOV.UK</string>
 	<key>*.businesswire.com</key>
 	<string>Berkshire-Hathaway (partial)</string>
+	<key>*.buttercoin.com</key>
+	<string>Buttercoin.com</string>
 	<key>*.butterflylabs.com</key>
 	<string>Butterfly Labs.com (partial)</string>
 	<key>*.buyboard.com</key>
@@ -2108,9 +2132,11 @@
 	<key>*.calyxinstitute.org</key>
 	<string>Calyx Institute</string>
 	<key>*.cam.ac.uk</key>
-	<string>University of Cambridge (partial)</string>
+	<string>Cam.ac.uk (partial)</string>
 	<key>*.cambridge.org</key>
 	<string>Cambridge University Press (partial)</string>
+	<key>*.campact.de</key>
+	<string>Campact.de (partial)</string>
 	<key>*.campaigneq.com</key>
 	<string>CampaignEQ.com</string>
 	<key>*.campaigner.com</key>
@@ -2153,6 +2179,8 @@
 	<string>BMW China Custom Login</string>
 	<key>*.cardiff.ac.uk</key>
 	<string>Cardiff University (partial)</string>
+	<key>*.cardsagainsthumanity.com</key>
+	<string>Cards Against Humanity.com</string>
 	<key>*.care2.com</key>
 	<string>Care2.com</string>
 	<key>*.careerbuilder.co.uk</key>
@@ -2176,7 +2204,7 @@
 	<key>*.carleton.edu</key>
 	<string>Carleton College</string>
 	<key>*.carnegiescience.edu</key>
-	<string>Carnegie Institution for Science</string>
+	<string>Carnegie Institution for Science (partial)</string>
 	<key>*.carpromods.com</key>
 	<string>CarProMods.com</string>
 	<key>*.cartercenter.org</key>
@@ -2275,6 +2303,8 @@
 	<string>Cengage (partial)</string>
 	<key>*.centos.org</key>
 	<string>CentOS.org (partial)</string>
+	<key>*.centreon.com</key>
+	<string>Centreon.com (partial)</string>
 	<key>*.centrum.cz</key>
 	<string>Centrum.sk_cz (partial)</string>
 	<key>*.centrum.sk</key>
@@ -2338,7 +2368,7 @@
 	<key>*.champssports.com</key>
 	<string>Champs Sports (partial)</string>
 	<key>*.change.org</key>
-	<string>Change.org</string>
+	<string>Change.org (partial)</string>
 	<key>*.chango.com</key>
 	<string>Chango</string>
 	<key>*.channel4.com</key>
@@ -2359,6 +2389,8 @@
 	<string>Chartbeat (partial)</string>
 	<key>*.chartbeat.net</key>
 	<string>Chartbeat (partial)</string>
+	<key>*.chartmogul.com</key>
+	<string>ChartMogul.com</string>
 	<key>*.chase.com</key>
 	<string>Chase</string>
 	<key>*.chatango.com</key>
@@ -2467,6 +2499,8 @@
 	<string>CineMovies</string>
 	<key>*.cinfu.com</key>
 	<string>Cinfu.com (partial)</string>
+	<key>*.cint.com</key>
+	<string>Cint.com (partial)</string>
 	<key>*.cio.com</key>
 	<string>CIO.com (partial)</string>
 	<key>*.ciphershed.org</key>
@@ -2516,7 +2550,7 @@
 	<key>*.civicscience.com</key>
 	<string>CivicScience (partial)</string>
 	<key>*.ciw.edu</key>
-	<string>Carnegie Institution for Science</string>
+	<string>Carnegie Institution for Science (partial)</string>
 	<key>*.cj.com</key>
 	<string>Commission Junction</string>
 	<key>*.cjs-cdkeys.com</key>
@@ -2533,6 +2567,8 @@
 	<string>Clarion-Ledger</string>
 	<key>*.clasconsultants.net</key>
 	<string>CLAS Consultants</string>
+	<key>*.clbr.tv</key>
+	<string>Clickberry</string>
 	<key>*.cld.me</key>
 	<string>Cl.ly (partial)</string>
 	<key>*.cleanenergyexperts.com</key>
@@ -2545,6 +2581,8 @@
 	<string>CleanPrint.net</string>
 	<key>*.clear-link.com</key>
 	<string>Clear-link.com</string>
+	<key>*.clever.com</key>
+	<string>Clever.com</string>
 	<key>*.cleverbridge.com</key>
 	<string>cleverbridge (partial)</string>
 	<key>*.cleverbridge.org</key>
@@ -2563,6 +2601,8 @@
 	<string>ClickBank</string>
 	<key>*.clickbank.net</key>
 	<string>ClickBank</string>
+	<key>*.clickberry.tv</key>
+	<string>Clickberry</string>
 	<key>*.clickdelivery.gr</key>
 	<string>Clickdelivery.gr</string>
 	<key>*.clickequations.net</key>
@@ -2611,6 +2651,8 @@
 	<string>Cloudfront</string>
 	<key>*.cloudhexa.com</key>
 	<string>Cloudhexa Network</string>
+	<key>*.cloudimage.io</key>
+	<string>Cloudimage.io</string>
 	<key>*.cloudinary.com</key>
 	<string>Cloudinary (partial)</string>
 	<key>*.cloudns.com.au</key>
@@ -2695,6 +2737,8 @@
 	<string>CoinAxis.com</string>
 	<key>*.coinbase.com</key>
 	<string>Coinbase (partial)</string>
+	<key>*.coinjar.com</key>
+	<string>CoinJar.com</string>
 	<key>*.cola-hotel.net</key>
 	<string>ColaHotel</string>
 	<key>*.collab.net</key>
@@ -2719,6 +2763,8 @@
 	<string>The Coloradoan</string>
 	<key>*.coloradocaptures.com</key>
 	<string>Colorado Captures</string>
+	<key>*.coloradocollege.edu</key>
+	<string>Colorado College.edu (partial)</string>
 	<key>*.colors-il.com</key>
 	<string>colors-il.com</string>
 	<key>*.colossal.com</key>
@@ -3057,6 +3103,8 @@
 	<string>cryptomilk.org (partial)</string>
 	<key>*.cryptonit.net</key>
 	<string>cryptonit</string>
+	<key>*.cryptosanta.xyz</key>
+	<string>Crypto Santa.xyz</string>
 	<key>*.cryptoseal.com</key>
 	<string>CryptoSeal.com</string>
 	<key>*.cryptothrift.com</key>
@@ -3070,6 +3118,8 @@
 	<key>*.cs.oberlin.edu</key>
 	<string>Oberlin College (partial)</string>
 	<key>*.cs.stonybrook.edu</key>
+	<string>Stony Brook University (partial)</string>
+	<key>*.cs.sunysb.edu</key>
 	<string>Stony Brook University (partial)</string>
 	<key>*.csc.com</key>
 	<string>CSC (partial)</string>
@@ -3198,11 +3248,13 @@
 	<key>*.dagbladet.no</key>
 	<string>Dagbladet.no (partial)</string>
 	<key>*.dailydot.com</key>
-	<string>DailyDot (partial)</string>
+	<string>DailyDot.com (partial)</string>
 	<key>*.dailyherald.com</key>
 	<string>Daily Herald</string>
 	<key>*.dailyhiit.com</key>
 	<string>DailyHiit.com</string>
+	<key>*.dailylife.com.au</key>
+	<string>Daily Life.com.au (partial)</string>
 	<key>*.dailymail.co.uk</key>
 	<string>Daily Mail (partial) </string>
 	<key>*.dailypix.me</key>
@@ -3461,6 +3513,8 @@
 	<string>Digium (partial)</string>
 	<key>*.diigo.com</key>
 	<string>Diigo</string>
+	<key>*.diogomonica.com</key>
+	<string>Diogo Monica.com</string>
 	<key>*.directline.com</key>
 	<string>Direct Line.com</string>
 	<key>*.directorystore.com</key>
@@ -3597,6 +3651,8 @@
 	<string>Doncaster College (partial)</string>
 	<key>*.donotcall.gov.au</key>
 	<string>Do Not Call Register</string>
+	<key>*.dot-bit.org</key>
+	<string>Dot-BIT.org (partial)</string>
 	<key>*.dot429.com</key>
 	<string>dot429 (partial)</string>
 	<key>*.dot5hosting.com</key>
@@ -3700,7 +3756,7 @@
 	<key>*.duke.edu</key>
 	<string>Duke University (partial)</string>
 	<key>*.duosecurity.com</key>
-	<string>Duo Security (partial)</string>
+	<string>Duo Security.com (partial)</string>
 	<key>*.duracellcloud.com</key>
 	<string>Duracell Cloud.com (partial)</string>
 	<key>*.duraspace.org</key>
@@ -3745,6 +3801,8 @@
 	<string>Final-Score</string>
 	<key>*.e17-stuff.org</key>
 	<string>openDesktop.org</string>
+	<key>*.e2ma.net</key>
+	<string>E2ma.net (partial)</string>
 	<key>*.ea.com</key>
 	<string>Electronic Arts (partial)</string>
 	<key>*.eager.io</key>
@@ -3977,6 +4035,8 @@
 	<string>Emcraft.com</string>
 	<key>*.emediate.dk</key>
 	<string>emediate.dk</string>
+	<key>*.emergingthreats.net</key>
+	<string>Emerging Threats.net (partial)</string>
 	<key>*.emknowledge.gov.au</key>
 	<string>Australian Emergency Management</string>
 	<key>*.employment.gov.au</key>
@@ -3991,6 +4051,8 @@
 	<string>Emulex</string>
 	<key>*.emv3.com</key>
 	<string>Emailvision (partial)</string>
+	<key>*.enalean.com</key>
+	<string>Enalean.com</string>
 	<key>*.encoding.com</key>
 	<string>Encoding.com</string>
 	<key>*.encyclopediadramatica.se</key>
@@ -4075,6 +4137,8 @@
 	<string>Epson.com (partial)</string>
 	<key>*.epson.jp</key>
 	<string>Epson.com (partial)</string>
+	<key>*.equalit.ie</key>
+	<string>eQualit.ie</string>
 	<key>*.equalitytrust.org.uk</key>
 	<string>Equality Trust.org.uk</string>
 	<key>*.equinix.com</key>
@@ -4351,6 +4415,8 @@
 	<string>Factory Expo Home Centers</string>
 	<key>*.fail0verflow.com</key>
 	<string>fail0verflow</string>
+	<key>*.fairphone.com</key>
+	<string>Fairphone.com (partial)</string>
 	<key>*.fairwork.gov.au</key>
 	<string>Fair Work Ombudsman</string>
 	<key>*.fakturownia.pl</key>
@@ -4393,6 +4459,8 @@
 	<string>Fastly</string>
 	<key>*.fastly.net</key>
 	<string>Fastly</string>
+	<key>*.fastmail.com</key>
+	<string>Fastmail (partial)</string>
 	<key>*.fastmail.fm</key>
 	<string>Fastmail (partial)</string>
 	<key>*.fastserv.com</key>
@@ -4457,6 +4525,8 @@
 	<string>Feedbackify.com</string>
 	<key>*.feedblitz.com</key>
 	<string>FeedBlitz</string>
+	<key>*.feedburner.com</key>
+	<string>FeedBurner (partial)</string>
 	<key>*.feedly.com</key>
 	<string>feedly.com (partial)</string>
 	<key>*.feide.no</key>
@@ -4544,7 +4614,7 @@
 	<key>*.findretros.com</key>
 	<string>FindRetros.com</string>
 	<key>*.findthebest.com</key>
-	<string>FindTheBest (partial)</string>
+	<string>FindTheBest.com</string>
 	<key>*.fineartamerica.com</key>
 	<string>Fine Art America</string>
 	<key>*.fineproxy.org</key>
@@ -4673,6 +4743,8 @@
 	<string>FogBugz.com</string>
 	<key>*.fogcreek.com</key>
 	<string>Fog Creek</string>
+	<key>*.fontdeck.com</key>
+	<string>Fontdeck.com (partial)</string>
 	<key>*.fonts.com</key>
 	<string>Monotype Imaging (partial)</string>
 	<key>*.fontspring.com</key>
@@ -4743,8 +4815,6 @@
 	<string>OpenVZ.org (false MCB)</string>
 	<key>*.forum.pirati.cz</key>
 	<string>Pirate Party</string>
-	<key>*.forum.suprbay.org</key>
-	<string>The Pirate Bay (partial)</string>
 	<key>*.forum.techidiots.net</key>
 	<string>Techidiots.net</string>
 	<key>*.forumatic.com</key>
@@ -4821,6 +4891,8 @@
 	<string>Freecycle (partial)</string>
 	<key>*.freedesktop.org</key>
 	<string>freedesktop.org (partial)</string>
+	<key>*.freedom.press</key>
+	<string>Freedom.Press</string>
 	<key>*.freedompop.com</key>
 	<string>FreedomPop.com (partial)</string>
 	<key>*.freefind.com</key>
@@ -4845,6 +4917,8 @@
 	<string>Freescale.com (partial)</string>
 	<key>*.freescorenation.com</key>
 	<string>FreeScoreNation.com</string>
+	<key>*.freethoughtblogs.com</key>
+	<string>Freethought Blogs.com (false MCB)</string>
 	<key>*.freeunlocks.com</key>
 	<string>FreeUnlocks.com</string>
 	<key>*.french-country-cottages.co.uk</key>
@@ -4943,6 +5017,8 @@
 	<string>FutureLearn.com</string>
 	<key>*.futurequest.net</key>
 	<string>FutureQuest (partial)</string>
+	<key>*.fuzzing-project.org</key>
+	<string>Fuzzing-Project.org</string>
 	<key>*.fvn.no</key>
 	<string>Forsiden (partial)</string>
 	<key>*.fwc.gov.au</key>
@@ -5219,8 +5295,10 @@
 	<string>Gimmickwear</string>
 	<key>*.giphy.com</key>
 	<string>Giphy.com</string>
+	<key>*.gitbook.com</key>
+	<string>GitBook.com</string>
 	<key>*.gitbook.io</key>
-	<string>GitBook.io (partial)</string>
+	<string>GitBook.IO (partial)</string>
 	<key>*.gitc.finance.gov.au</key>
 	<string>Commonwealth GITC</string>
 	<key>*.github.com</key>
@@ -5267,6 +5345,8 @@
 	<string>MSN (partial)</string>
 	<key>*.globalbersih.org</key>
 	<string>Global Bersih</string>
+	<key>*.globalcloudxchange.com</key>
+	<string>Global Cloud Xchange.com (partial)</string>
 	<key>*.globaloneteam.com</key>
 	<string>globaloneteam.com</string>
 	<key>*.globalperspectivescanada.com</key>
@@ -5307,6 +5387,8 @@
 	<string>GMX</string>
 	<key>*.gmx.net</key>
 	<string>GMX</string>
+	<key>*.gngr.info</key>
+	<string>gngr.info</string>
 	<key>*.gnome-help.org</key>
 	<string>openDesktop.org</string>
 	<key>*.gnome-look.org</key>
@@ -5441,6 +5523,8 @@
 	<string>GourmetGiftBaskets.com (partial)</string>
 	<key>*.gov.uk</key>
 	<string>GOV.UK</string>
+	<key>*.gov1.info</key>
+	<string>gov1.info</string>
 	<key>*.govdelivery.com</key>
 	<string>GovDelivery (partial)</string>
 	<key>*.govdex.gov.au</key>
@@ -5600,7 +5684,7 @@
 	<key>*.gwallet.com</key>
 	<string>RadiumOne (partial)</string>
 	<key>*.gwu.edu</key>
-	<string>George Washington University (partial)</string>
+	<string>GWU.edu (partial)</string>
 	<key>*.gyft.com</key>
 	<string>Gyft.com</string>
 	<key>*.gymglish.com</key>
@@ -5649,6 +5733,8 @@
 	<string>Halo</string>
 	<key>*.hammacher.com</key>
 	<string>Hammacher Schlemmer (partial)</string>
+	<key>*.handbrake.fr</key>
+	<string>Handbrake.fr</string>
 	<key>*.handelsblatt.com</key>
 	<string>Handelsblatt (partial)</string>
 	<key>*.hands.com</key>
@@ -5689,8 +5775,6 @@
 	<string>Hawk Host.com (partial)</string>
 	<key>*.haymarketmedia.com</key>
 	<string>Haymarket (partial)</string>
-	<key>*.hazen.gl.ciw.edu</key>
-	<string>Carnegie Institution for Science</string>
 	<key>*.hbanet.org</key>
 	<string>HBAnet.org</string>
 	<key>*.hbo.com</key>
@@ -5698,7 +5782,7 @@
 	<key>*.hboeck.de</key>
 	<string>HBoeck.de</string>
 	<key>*.hbr.org</key>
-	<string>HBR.org (partial)</string>
+	<string>HBR.org</string>
 	<key>*.hbrstatic.com</key>
 	<string>Cengage (partial)</string>
 	<key>*.hcl.com</key>
@@ -5749,6 +5833,8 @@
 	<string>Heise shop.de</string>
 	<key>*.hellobar.com</key>
 	<string>Hello Bar (partial)</string>
+	<key>*.hellosign.com</key>
+	<string>HelloSign.com (partial)</string>
 	<key>*.helmet.fi</key>
 	<string>Helmet.fi</string>
 	<key>*.help.sape.ru</key>
@@ -5831,6 +5917,10 @@
 	<string>Hızlı Saat</string>
 	<key>*.hjcms.de</key>
 	<string>HJCMS (CAcert)</string>
+	<key>*.hjr-verlag.de</key>
+	<string>HJR-Verlag.de</string>
+	<key>*.hkyantoyan.com</key>
+	<string>HK Yanto Yan.com (false MCB)</string>
 	<key>*.hlat.us</key>
 	<string>HabboLatino</string>
 	<key>*.hmv.co.jp</key>
@@ -5857,6 +5947,8 @@
 	<string>Home Depot.com (partial)</string>
 	<key>*.homeinsurance.com</key>
 	<string>HomeInsurance.com</string>
+	<key>*.homelessveterans.co.uk</key>
+	<string>Homeless Veterans.co.uk (false MCB)</string>
 	<key>*.homelessworldcup.org</key>
 	<string>Homeless World Cup</string>
 	<key>*.hometheaterreview.com</key>
@@ -5941,8 +6033,6 @@
 	<string>How To Geek.com (partial)</string>
 	<key>*.hpcloud.com</key>
 	<string>HP Cloud.com (partial)</string>
-	<key>*.hr.carnegiescience.edu</key>
-	<string>Carnegie Institution for Science</string>
 	<key>*.hrcdn.net</key>
 	<string>HackerRank.com</string>
 	<key>*.hrep.nhmrc.gov.au</key>
@@ -5967,6 +6057,8 @@
 	<string>hstor.org</string>
 	<key>*.htbridge.com</key>
 	<string>HT Bridge.com</string>
+	<key>*.html5.org</key>
+	<string>html5.org</string>
 	<key>*.htrnews.com</key>
 	<string>Herald Times Reporter</string>
 	<key>*.http.cdn.softlayer.net</key>
@@ -5986,9 +6078,9 @@
 	<key>*.hud.gov</key>
 	<string>US Department of Housing and Urban Development (partial)</string>
 	<key>*.huffingtonpost.com</key>
-	<string>Huffington Post</string>
+	<string>Huffington Post (partial)</string>
 	<key>*.huffpost.com</key>
-	<string>Huffington Post</string>
+	<string>Huffington Post (partial)</string>
 	<key>*.hugedomains.com</key>
 	<string>HugeDomains.com (partial)</string>
 	<key>*.huggies.com.au</key>
@@ -6092,7 +6184,7 @@
 	<key>*.icln.org</key>
 	<string>ICLN.org</string>
 	<key>*.iconfinder.com</key>
-	<string>Iconfinder (partial) </string>
+	<string>Iconfinder.com (partial)</string>
 	<key>*.icq.com</key>
 	<string>ICQ.com</string>
 	<key>*.icsdelivery.com</key>
@@ -6241,6 +6333,8 @@
 	<string>Inapub.co.uk</string>
 	<key>*.inaturalist.org</key>
 	<string>iNaturalist.org</string>
+	<key>*.inbox.lv</key>
+	<string>Inbox.lv</string>
 	<key>*.inc.com</key>
 	<string>Inc.com (partial)</string>
 	<key>*.incapsula.com</key>
@@ -6285,6 +6379,8 @@
 	<string>Influencers Conference</string>
 	<key>*.infnx.com</key>
 	<string>InfNX</string>
+	<key>*.infojobs.net</key>
+	<string>InfoJobs.net (partial)</string>
 	<key>*.infolinks.com</key>
 	<string>Infolinks (partial)</string>
 	<key>*.infomaniak.ch</key>
@@ -6336,7 +6432,7 @@
 	<key>*.insidecelebs.com</key>
 	<string>insidecelebs.com</string>
 	<key>*.insidehighered.com</key>
-	<string>Inside Higher Ed (partial)</string>
+	<string>Inside Higher Ed.com</string>
 	<key>*.insideygs.com</key>
 	<string>insideygs.com</string>
 	<key>*.insight.com</key>
@@ -6419,6 +6515,8 @@
 	<string>Internet Society (partial)</string>
 	<key>*.internetsuccess.at</key>
 	<string>internetsuccess.at</string>
+	<key>*.internot.info</key>
+	<string>Internot.info (partial)</string>
 	<key>*.intersango.com</key>
 	<string>Intersango.com</string>
 	<key>*.interworx.com</key>
@@ -6470,7 +6568,7 @@
 	<key>*.iomtt.com</key>
 	<string>IoMTT.com (partial)</string>
 	<key>*.iop.org</key>
-	<string>Institute of Physics (partial)</string>
+	<string>IoP.org (partial)</string>
 	<key>*.iospp.org</key>
 	<string>IOSPP</string>
 	<key>*.iovation.com</key>
@@ -6513,6 +6611,8 @@
 	<string>IRON Search</string>
 	<key>*.ironwhale.com</key>
 	<string>Ironwhale.com</string>
+	<key>*.is.gd</key>
+	<string>is.gd</string>
 	<key>*.isc.org</key>
 	<string>ISC</string>
 	<key>*.isc2.org</key>
@@ -6607,6 +6707,8 @@
 	<string>The Jackson Sun (partial)</string>
 	<key>*.jacksonville.com</key>
 	<string>Jacksonville.com (partial)</string>
+	<key>*.jacobinmag.com</key>
+	<string>Jacobin Mag.com</string>
 	<key>*.jacoblangvad.com</key>
 	<string>Jacob Langvad Nilsson</string>
 	<key>*.jamanetwork.com</key>
@@ -6726,7 +6828,7 @@
 	<key>*.joomag.com</key>
 	<string>Joomag.com (partial)</string>
 	<key>*.joomla.org</key>
-	<string>Joomla (partial)</string>
+	<string>Joomla.org (partial)</string>
 	<key>*.joomlart.com</key>
 	<string>JoomlArt.com (partial)</string>
 	<key>*.jorsika.com</key>
@@ -6801,6 +6903,8 @@
 	<string>Just Develop It (partial)</string>
 	<key>*.justia.com</key>
 	<string>Justia (partial)</string>
+	<key>*.justiceinspectorates.gov.uk</key>
+	<string>Criminal Justice Inspectorates</string>
 	<key>*.jwpcdn.com</key>
 	<string>LongTail (partial)</string>
 	<key>*.jwpltx.com</key>
@@ -6861,6 +6965,8 @@
 	<string>openDesktop.org</string>
 	<key>*.kde.org</key>
 	<string>KDE (partial)</string>
+	<key>*.keepallthethings.com</key>
+	<string>Keep all the things.com</string>
 	<key>*.kenai.com</key>
 	<string>Kenai.com</string>
 	<key>*.kensington.com</key>
@@ -7093,6 +7199,8 @@
 	<string>LayerBNC.org</string>
 	<key>*.lazykush.com</key>
 	<string>Lazy Kush</string>
+	<key>*.lbl.gov</key>
+	<string>LBL.gov (partial)</string>
 	<key>*.lboro.ac.uk</key>
 	<string>LboroAcUk</string>
 	<key>*.lchost.co.uk</key>
@@ -7149,6 +7257,8 @@
 	<string>Le Monde.fr (partial)</string>
 	<key>*.lemonde.fr</key>
 	<string>Le Monde.fr (partial)</string>
+	<key>*.lendo.se</key>
+	<string>Lendo.se (partial)</string>
 	<key>*.lenovo.com</key>
 	<string>Lenovo (partial)</string>
 	<key>*.leo.org</key>
@@ -7211,6 +7321,8 @@
 	<string>libSDL.org (partial)</string>
 	<key>*.libsyn.com</key>
 	<string>libsyn (partial)</string>
+	<key>*.licdn.com</key>
+	<string>LinkedIn (partial)</string>
 	<key>*.lifesaving.com</key>
 	<string>Lifesaving Resources</string>
 	<key>*.liftdna.com</key>
@@ -7281,8 +7393,6 @@
 	<string>openDesktop.org</string>
 	<key>*.linuxdistrocommunity.com</key>
 	<string>Linux Distro Community.com</string>
-	<key>*.linuxforums.org</key>
-	<string>Linux Forums (partial)</string>
 	<key>*.linuxfoundation.org</key>
 	<string>Linux Foundation (partial)</string>
 	<key>*.linuxfr.org</key>
@@ -7500,7 +7610,7 @@
 	<key>*.lternet.edu</key>
 	<string>LTER</string>
 	<key>*.lttng.org</key>
-	<string>LTTng Project</string>
+	<string>LTTng.org</string>
 	<key>*.ltu.se</key>
 	<string>Luleå University of Technology (partial)</string>
 	<key>*.ltvimg.com</key>
@@ -7576,7 +7686,7 @@
 	<key>*.macpaper.com</key>
 	<string>MAC Paper.com (partial)</string>
 	<key>*.macromedia.com</key>
-	<string>Adobe</string>
+	<string>Macromedia.com</string>
 	<key>*.madeinafreeworld.com</key>
 	<string>Made In a Free World.com (false MCB)</string>
 	<key>*.madisonlogic.com</key>
@@ -7624,7 +7734,7 @@
 	<key>*.main-host.de</key>
 	<string>main-host.de</string>
 	<key>*.maine.edu</key>
-	<string>University of Maine System (partial)</string>
+	<string>Maine.edu (partial)</string>
 	<key>*.makeagif.com</key>
 	<string>Make a Gif.com (false MCB)</string>
 	<key>*.makemytrip.com</key>
@@ -7923,6 +8033,8 @@
 	<string>MemberClicks.com (partial)</string>
 	<key>*.memberclicks.net</key>
 	<string>MemberClicks.net</string>
+	<key>*.memberful.com</key>
+	<string>Memberful.com</string>
 	<key>*.members.fas.org</key>
 	<string>Federation of American Scientists</string>
 	<key>*.members.nearlyfreespeech.net</key>
@@ -7955,6 +8067,8 @@
 	<string>Mercury News.com (partial)</string>
 	<key>*.mercyships.org</key>
 	<string>Mercy Ships (partial)</string>
+	<key>*.merethis.com</key>
+	<string>MereThis.com</string>
 	<key>*.meritrustcu.org</key>
 	<string>Meritrust CU.org</string>
 	<key>*.merproject.org</key>
@@ -7997,6 +8111,8 @@
 	<string>Mental health services in Australia</string>
 	<key>*.mibbit.com</key>
 	<string>Mibbit</string>
+	<key>*.mibew.org</key>
+	<string>Mibew.org</string>
 	<key>*.micgadget.com</key>
 	<string>M.I.C. Gadget (partial)</string>
 	<key>*.microad.jp</key>
@@ -8057,12 +8173,14 @@
 	<string>Miranda IM (partial)</string>
 	<key>*.mirantis.com</key>
 	<string>Mirantis.com</string>
+	<key>*.mirrorbingo.com</key>
+	<string>Mirror Bingo.com (false MCB)</string>
 	<key>*.misco.co.uk</key>
 	<string>Misco.co.uk (partial)</string>
 	<key>*.mises.org</key>
 	<string>Mises.org</string>
 	<key>*.mit.edu</key>
-	<string>Massachusetts Institute of Technology (partial)</string>
+	<string>MIT.edu (partial)</string>
 	<key>*.mitre.org</key>
 	<string>mitre.org</string>
 	<key>*.mixbit.com</key>
@@ -8282,7 +8400,7 @@
 	<key>*.mozillaignite.com</key>
 	<string>Mozilla</string>
 	<key>*.mozillalabs.com</key>
-	<string>Mozilla Labs.com</string>
+	<string>Mozilla Labs.com (partial)</string>
 	<key>*.mozillamessaging.com</key>
 	<string>Mozilla</string>
 	<key>*.mozo.co</key>
@@ -8534,7 +8652,7 @@
 	<key>*.naromax.com</key>
 	<string>Naromax</string>
 	<key>*.nasa.gov</key>
-	<string>NASA</string>
+	<string>NASA.gov (partial)</string>
 	<key>*.nasdaqomx.com</key>
 	<string>NASDAQ (partial)</string>
 	<key>*.nathnac.org</key>
@@ -8551,6 +8669,8 @@
 	<string>National Geographic (partial)</string>
 	<key>*.nationalgrid.com</key>
 	<string>National Grid</string>
+	<key>*.nationalpriorities.org</key>
+	<string>National Priorities.org</string>
 	<key>*.nationalrail.co.uk</key>
 	<string>National Rail Enquiries (partial)</string>
 	<key>*.nationbuilder.com</key>
@@ -8690,7 +8810,9 @@
 	<key>*.netgear.com</key>
 	<string>Netgear (partial)</string>
 	<key>*.netiq.com</key>
-	<string>NetIQ (partial)</string>
+	<string>NetIQ.com (partial)</string>
+	<key>*.netistrar.com</key>
+	<string>Netistrar.com</string>
 	<key>*.netload.in</key>
 	<string>Netload</string>
 	<key>*.netmarble.com</key>
@@ -8717,6 +8839,8 @@
 	<string>Jumio</string>
 	<key>*.netverify.com</key>
 	<string>Netverify</string>
+	<key>*.netvibes.com</key>
+	<string>Netvibes.com (partial)</string>
 	<key>*.networkadvertising.org</key>
 	<string>Network Advertising Initiative</string>
 	<key>*.networkdepot.com</key>
@@ -8745,6 +8869,8 @@
 	<string>New Dream Network</string>
 	<key>*.newegg.com</key>
 	<string>Newegg (partial)</string>
+	<key>*.newint.org</key>
+	<string>NewInt.org (partial)</string>
 	<key>*.newjobs.com</key>
 	<string>newjobs.com</string>
 	<key>*.newportmotorsports.com</key>
@@ -8844,7 +8970,7 @@
 	<key>*.nightlove.me</key>
 	<string>NightLove</string>
 	<key>*.nih.gov</key>
-	<string>National Institutes of Health (partial)</string>
+	<string>NIH.gov (partial)</string>
 	<key>*.nike.com</key>
 	<string>Nike.com (partial)</string>
 	<key>*.nimbushosting.co.uk</key>
@@ -8858,7 +8984,7 @@
 	<key>*.nismonline.org</key>
 	<string>National Institute for Social Media</string>
 	<key>*.nist.gov</key>
-	<string>National Institute of Standards and Technology (partial)</string>
+	<string>NIST.gov (partial)</string>
 	<key>*.nitetimetoys.com</key>
 	<string>NiteTimeToys.com</string>
 	<key>*.nitrocloud.com</key>
@@ -8915,6 +9041,8 @@
 	<string>nonexiste.net (partial)</string>
 	<key>*.nongnu.org</key>
 	<string>Free Software Foundation</string>
+	<key>*.nooelec.com</key>
+	<string>NooElec.com</string>
 	<key>*.noris.net</key>
 	<string>noris.net</string>
 	<key>*.norrgruppen.se</key>
@@ -8926,7 +9054,7 @@
 	<key>*.northerntool.com</key>
 	<string>Northern Tool.com (partial)</string>
 	<key>*.northwestern.edu</key>
-	<string>Northwestern University (partial)</string>
+	<string>Northwestern.edu (partial)</string>
 	<key>*.norton.com</key>
 	<string>Norton (partial)</string>
 	<key>*.nortoncdn.com</key>
@@ -8944,7 +9072,7 @@
 	<key>*.novainfosec.com</key>
 	<string>NoVA Infosec</string>
 	<key>*.novell.com</key>
-	<string>Novell (partial)</string>
+	<string>Novell.com (partial)</string>
 	<key>*.np-edv.at</key>
 	<string>np-Edv.at (partial)</string>
 	<key>*.npario-inc.net</key>
@@ -8963,6 +9091,8 @@
 	<string>NRAO.edu (partial)</string>
 	<key>*.nrelate.com</key>
 	<string>nrelate (partial)</string>
+	<key>*.nrk.no</key>
+	<string>Nrk.no (partial)</string>
 	<key>*.nro.net</key>
 	<string>Number Resource Organization</string>
 	<key>*.nsf.gov</key>
@@ -9032,7 +9162,7 @@
 	<key>*.nytexaminer.com</key>
 	<string>NYT eXaminer.com</string>
 	<key>*.nyu.edu</key>
-	<string>New York University (partial)</string>
+	<string>NYU.edu (partial)</string>
 	<key>*.nyx.com</key>
 	<string>NYSE Euronext</string>
 	<key>*.nzbmatrix.com</key>
@@ -9071,6 +9201,8 @@
 	<string>Torbit (partial)</string>
 	<key>*.ofb.net</key>
 	<string>OFB (partial)</string>
+	<key>*.ofcom.org.uk</key>
+	<string>Ofcom.org.uk (partial)</string>
 	<key>*.offensive-security.com</key>
 	<string>Offensive-Security.com</string>
 	<key>*.offeredby.net</key>
@@ -9181,6 +9313,8 @@
 	<string>OnLive.com (partial)</string>
 	<key>*.onorobot.org</key>
 	<string>ONOrobot.org</string>
+	<key>*.onpatient.com</key>
+	<string>onpatient.com</string>
 	<key>*.onsalesit.com</key>
 	<string>Onsalesit.com</string>
 	<key>*.onsecure.gov.au</key>
@@ -9284,7 +9418,7 @@
 	<key>*.openstreetmap.org</key>
 	<string>OpenStreetMap</string>
 	<key>*.opensuse.org</key>
-	<string>openSUSE (partial)</string>
+	<string>openSUSE.org (partial)</string>
 	<key>*.opensvc.com</key>
 	<string>OpenSVC (partial)</string>
 	<key>*.openswan.org</key>
@@ -9462,7 +9596,7 @@
 	<key>*.owneriq.net</key>
 	<string>OwnerIQ (partial)</string>
 	<key>*.ox.ac.uk</key>
-	<string>University of Oxford (partial)</string>
+	<string>Ox.ac.uk (partial)</string>
 	<key>*.ox.cx</key>
 	<string>Hynek.me</string>
 	<key>*.oxfordjournals.org</key>
@@ -9473,6 +9607,8 @@
 	<string>OzLabs (CAcert)</string>
 	<key>*.packagelab.com</key>
 	<string>Package Lab.com</string>
+	<key>*.packer.io</key>
+	<string>Packer.io</string>
 	<key>*.packtpub.com</key>
 	<string>Packt Publishing (partial)</string>
 	<key>*.paddle.com</key>
@@ -9535,6 +9671,8 @@
 	<string>ParkingEye.co.uk</string>
 	<key>*.parkmodelsdirect.com</key>
 	<string>Park Models Direct</string>
+	<key>*.parrable.com</key>
+	<string>Parrable.com</string>
 	<key>*.parse.com</key>
 	<string>Parse.com (partial)</string>
 	<key>*.parsely.com</key>
@@ -9593,6 +9731,8 @@
 	<string>PBase (partial)</string>
 	<key>*.pbgrd.com</key>
 	<string>PbGrd.com</string>
+	<key>*.pbs.org</key>
+	<string>Public Broadcasting Service (partial)</string>
 	<key>*.pbsrc.com</key>
 	<string>Photobucket (partial)</string>
 	<key>*.pbwiki.com</key>
@@ -9894,7 +10034,7 @@
 	<key>*.plone.org</key>
 	<string>Plone.org (partial)</string>
 	<key>*.plos.org</key>
-	<string>Public Library of Science (partial)</string>
+	<string>PLoS.org (partial)</string>
 	<key>*.plssl.com</key>
 	<string>PressLabs SSL</string>
 	<key>*.plug.dj</key>
@@ -9943,12 +10083,16 @@
 	<string>Police Mutual (partial)</string>
 	<key>*.policymic.com</key>
 	<string>PolicyMic</string>
+	<key>*.politicopro.com</key>
+	<string>Politico Pro.com</string>
 	<key>*.politifact.com</key>
 	<string>PolitiFact (partial)</string>
 	<key>*.politiken.dk</key>
 	<string>Politiken.dk (partial)</string>
 	<key>*.polldaddy.com</key>
 	<string>Polldaddy</string>
+	<key>*.polygon.com</key>
+	<string>Polygon.com</string>
 	<key>*.pony.fm</key>
 	<string>Pony.fm</string>
 	<key>*.pool.datamind.ru</key>
@@ -9961,6 +10105,8 @@
 	<string>FriendFinder</string>
 	<key>*.popads.net</key>
 	<string>PopAds</string>
+	<key>*.popcorntime.io</key>
+	<string>PopcornTime.io</string>
 	<key>*.popcrunch.com</key>
 	<string>PopCrunch.com (partial)</string>
 	<key>*.popin.cc</key>
@@ -10097,6 +10243,8 @@
 	<string>Priory Group.com (partial)</string>
 	<key>*.prisms.deewr.gov.au</key>
 	<string>DEEWR</string>
+	<key>*.pritunl.com</key>
+	<string>Pritunl.com</string>
 	<key>*.privacyfix.com</key>
 	<string>Privacyfix</string>
 	<key>*.privacysolutions.no</key>
@@ -10123,6 +10271,8 @@
 	<string>Domaintank</string>
 	<key>*.producthunt.com</key>
 	<string>Product Hunt</string>
+	<key>*.productsafety.gov.au</key>
+	<string>Product Safety.gov.au</string>
 	<key>*.productvisio.com</key>
 	<string>Productvisio</string>
 	<key>*.profitunion.org</key>
@@ -10131,6 +10281,8 @@
 	<string>ProgrammableWeb</string>
 	<key>*.progreso.pl</key>
 	<string>Progreso Webhosting (partial)</string>
+	<key>*.proisp.no</key>
+	<string>PRO ISP.no</string>
 	<key>*.projectmeshnet.org</key>
 	<string>Project Meshnet (partial)</string>
 	<key>*.projectplace.com</key>
@@ -10214,7 +10366,7 @@
 	<key>*.pubmatic.com</key>
 	<string>PubMatic (partial)</string>
 	<key>*.pubmed.gov</key>
-	<string>National Institutes of Health (partial)</string>
+	<string>NIH.gov (partial)</string>
 	<key>*.pubnub.com</key>
 	<string>PubNub (partial)</string>
 	<key>*.pulpcentral.com</key>
@@ -10293,6 +10445,8 @@
 	<string>QuakeNet.org</string>
 	<key>*.qualaris.com</key>
 	<string>Qualaris.com (false MCB)</string>
+	<key>*.qualcomm.com</key>
+	<string>Qualcomm.com (partial)</string>
 	<key>*.quality-channel.de</key>
 	<string>Spiegel QC (partial)</string>
 	<key>*.qualityagent.com</key>
@@ -10473,6 +10627,8 @@
 	<string>Adblade (partial)</string>
 	<key>*.reactos.org</key>
 	<string>ReactOS.org (partial)</string>
+	<key>*.readcube.com</key>
+	<string>ReadCube.com (partial)</string>
 	<key>*.readersdigest.com</key>
 	<string>Readers Digest.com (partial)</string>
 	<key>*.readme.io</key>
@@ -10498,7 +10654,7 @@
 	<key>*.realtime.co</key>
 	<string>Realtime.co</string>
 	<key>*.reason.com</key>
-	<string>Reason.com</string>
+	<string>Reason.com (false MCB)</string>
 	<key>*.rebelmouse.com</key>
 	<string>RebelMouse.com</string>
 	<key>*.rec-registry.gov.au</key>
@@ -10638,7 +10794,7 @@
 	<key>*.responsive.io</key>
 	<string>responsive.io (partial)</string>
 	<key>*.responsys.net</key>
-	<string>Responsys (partial)</string>
+	<string>Responsys.net (partial)</string>
 	<key>*.restorethefourth.net</key>
 	<string>Restore the Fourth</string>
 	<key>*.resultspage.com</key>
@@ -10749,6 +10905,8 @@
 	<string>Roddis</string>
 	<key>*.roe.ch</key>
 	<string>roe.ch</string>
+	<key>*.roffey.org</key>
+	<string>Roffey.org</string>
 	<key>*.roi.ru</key>
 	<string>ROI.ru</string>
 	<key>*.roketfiyat.com</key>
@@ -10761,6 +10919,8 @@
 	<string>Rollbar</string>
 	<key>*.rollcall.com</key>
 	<string>Roll Call.com (partial)</string>
+	<key>*.rollernet.us</key>
+	<string>Roller Net.us (partial)</string>
 	<key>*.rollingstone.com</key>
 	<string>Rolling Stone.com (partial)</string>
 	<key>*.rollingstonesubscriptions.com</key>
@@ -10865,6 +11025,8 @@
 	<string>Pivotal</string>
 	<key>*.runabove.com</key>
 	<string>RunAbove</string>
+	<key>*.runbook.io</key>
+	<string>Runbook.io</string>
 	<key>*.rushbucks.com</key>
 	<string>RushBucks.com</string>
 	<key>*.russia.ru</key>
@@ -10897,6 +11059,8 @@
 	<string>HSBC</string>
 	<key>*.sacredcrystalsingingbowls.com</key>
 	<string>Crystal Singing Bowls</string>
+	<key>*.safaribooksonline.com</key>
+	<string>Safari Books Online</string>
 	<key>*.safe-mail.net</key>
 	<string>Safe-mail.net</string>
 	<key>*.safello.com</key>
@@ -10940,7 +11104,7 @@
 	<key>*.samsung.net</key>
 	<string>Samsung mySingle</string>
 	<key>*.samsungapps.com</key>
-	<string>Samsung Apps (partial)</string>
+	<string>Samsung Apps.com (partial)</string>
 	<key>*.samsungchaton.com</key>
 	<string>ChatON</string>
 	<key>*.samsungknox.com</key>
@@ -11127,6 +11291,8 @@
 	<string>secure-donor.com</string>
 	<key>*.secure-mobiles.com</key>
 	<string>secure-mobiles.com</string>
+	<key>*.secure-payment-processing.com</key>
+	<string>secure-payment-processing.com</string>
 	<key>*.secure-secure.co.uk</key>
 	<string>secure-secure.co.uk</string>
 	<key>*.secure-zone.net</key>
@@ -11940,7 +12106,7 @@
 	<key>*.standup2cancer.org</key>
 	<string>Stand Up to Cancer (partial)</string>
 	<key>*.stanford.edu</key>
-	<string>Stanford University (partial)</string>
+	<string>Stanford.edu (partial)</string>
 	<key>*.staples.com</key>
 	<string>Staples.com</string>
 	<key>*.staradvertiser.com</key>
@@ -12145,12 +12311,16 @@
 	<string>Success Chef</string>
 	<key>*.successfactors.com</key>
 	<string>SuccessFactors</string>
+	<key>*.sueddeutsche.de</key>
+	<string>Süddeutsche Zeitung (partial)</string>
 	<key>*.sugester.pl</key>
 	<string>Sugester (partial)</string>
 	<key>*.suggester.pl</key>
 	<string>Sugester (partial)</string>
 	<key>*.suitey.com</key>
 	<string>Suitey.com</string>
+	<key>*.suma-ev.de</key>
+	<string>Suma-ev.de</string>
 	<key>*.sundancechannel.com</key>
 	<string>Sundance Channel</string>
 	<key>*.sundayworld.com</key>
@@ -12267,6 +12437,8 @@
 	<string>swordfishdc.com</string>
 	<key>*.swreg.com</key>
 	<string>SWREG</string>
+	<key>*.swt.com</key>
+	<string>SWT.com</string>
 	<key>*.swtor.com</key>
 	<string>swtor.com (partial)</string>
 	<key>*.sylvancompany.com</key>
@@ -12559,14 +12731,18 @@
 	<string>The Body Shop.co.uk (partial)</string>
 	<key>*.thebrighttag.com</key>
 	<string>BrightTag (partial)</string>
+	<key>*.thebureauinvestigates.com</key>
+	<string>The Bureau Investigates.com (false MCB)</string>
 	<key>*.thechive.com</key>
 	<string>The Chive.com</string>
 	<key>*.thecoastnews.com</key>
 	<string>The Coast News.com</string>
+	<key>*.thecthulhu.com</key>
+	<string>The Cthulhu.com</string>
 	<key>*.thecutestsiteontheblock.com</key>
 	<string>The Cutest Site on the Block</string>
 	<key>*.thedailybeast.com</key>
-	<string>The Daily Beast (partial)</string>
+	<string>The Daily Beast.com (partial)</string>
 	<key>*.thedaywefightback.org</key>
 	<string>The Day We Fight Back.org</string>
 	<key>*.thedilbertstore.com</key>
@@ -12606,13 +12782,15 @@
 	<key>*.thenewsmarket.com</key>
 	<string>The Newsmarket (partial)</string>
 	<key>*.thenextweb.com</key>
-	<string>The Next Web (partial)</string>
+	<string>The Next Web.com (partial)</string>
 	<key>*.theoutnet.com</key>
 	<string>The Outnet</string>
 	<key>*.thepermitstore.com</key>
 	<string>ThePermitStore.com</string>
 	<key>*.thephone.coop</key>
 	<string>thephone.coop (partial)</string>
+	<key>*.thepiratebay.cr</key>
+	<string>The Pirate Bay (partial)</string>
 	<key>*.thepiratebay.org</key>
 	<string>The Pirate Bay (partial)</string>
 	<key>*.thepiratebay.se</key>
@@ -12636,7 +12814,7 @@
 	<key>*.thespartaninstitute.com</key>
 	<string>The Spartan Institute (partial)</string>
 	<key>*.thestar.com</key>
-	<string>Toronto Star (partial)</string>
+	<string>The Star.com (partial)</string>
 	<key>*.thestorefront.com</key>
 	<string>The Storefront.com (partial)</string>
 	<key>*.thestranger.com</key>
@@ -12647,6 +12825,8 @@
 	<string>The Theme Foundry.com (partial)</string>
 	<key>*.thetimes.co.uk</key>
 	<string>The Times</string>
+	<key>*.theverge.com</key>
+	<string>The Verge.com (partial)</string>
 	<key>*.thewatershed.com</key>
 	<string>The Watershed</string>
 	<key>*.thewire.com</key>
@@ -12677,6 +12857,8 @@
 	<string>ThirdAge (partial)</string>
 	<key>*.this-download-would-be-faster-with-a-premium-account-at-good.net</key>
 	<string>Good.net</string>
+	<key>*.thompsonhotels.com</key>
+	<string>Thompson Hotels.com (false MCB)</string>
 	<key>*.thomson.com</key>
 	<string>Thomson.com (partial)</string>
 	<key>*.thomsonreuters.com</key>
@@ -12725,6 +12907,8 @@
 	<string>Ticketmaster (partial)</string>
 	<key>*.tictail.com</key>
 	<string>Tictail.com (partial)</string>
+	<key>*.tidalhifi.com</key>
+	<string>Tidal HiFi.com</string>
 	<key>*.tidaltv.com</key>
 	<string>tidaltv.com (partial)</string>
 	<key>*.tierra.net</key>
@@ -12819,6 +13003,8 @@
 	<string>Today.com (partial)</string>
 	<key>*.tog.ie</key>
 	<string>TOG</string>
+	<key>*.togetherjs.com</key>
+	<string>TogetherJS.com</string>
 	<key>*.togevi.com</key>
 	<string>Ive Got Kids.com (false MCB)</string>
 	<key>*.tokbox.com</key>
@@ -12973,10 +13159,14 @@
 	<string>TripHip</string>
 	<key>*.tripit.com</key>
 	<string>TripIt.com</string>
+	<key>*.tripodo.de</key>
+	<string>Tripodo.de (partial)</string>
+	<key>*.tripwell.com</key>
+	<string>Tripwell.com</string>
 	<key>*.tripwire.com</key>
 	<string>Tripwire.com (false MCB)</string>
 	<key>*.trisquel.info</key>
-	<string>Trisquel</string>
+	<string>Trisquel.info (partial)</string>
 	<key>*.trkclk.net</key>
 	<string>trkclk.net</string>
 	<key>*.tron-delta.org</key>
@@ -13043,6 +13233,8 @@
 	<string>TU-Dresden.de (partial)</string>
 	<key>*.tu-harburg.de</key>
 	<string>TUHH.de (partial)</string>
+	<key>*.tu-ilmenau.de</key>
+	<string>TU-Ilmenau.de</string>
 	<key>*.tu-muenchen.de</key>
 	<string>Technical University Munich (partial)</string>
 	<key>*.tube4.me</key>
@@ -13117,6 +13309,8 @@
 	<string>Tweakers.net</string>
 	<key>*.tweakimg.net</key>
 	<string>Tweakers.net</string>
+	<key>*.tweetreach.com</key>
+	<string>TweetReach.com (partial)</string>
 	<key>*.tweetriver.com</key>
 	<string>Mass Relevance</string>
 	<key>*.twenga.com</key>
@@ -13175,6 +13369,8 @@
 	<string>Ubisoft Entertainment (partial)</string>
 	<key>*.ubisoftgroup.com</key>
 	<string>Ubisoft Group</string>
+	<key>*.ubm-us.net</key>
+	<string>UBM-US.net</string>
 	<key>*.ubm.com</key>
 	<string>UBM (partial)</string>
 	<key>*.ubs.com</key>
@@ -13214,7 +13410,7 @@
 	<key>*.ucsb.edu</key>
 	<string>University of California (partial)</string>
 	<key>*.ucsc.edu</key>
-	<string>University of California, Santa Cruz (partial)</string>
+	<string>UCSC.edu (partial)</string>
 	<key>*.ucsd.edu</key>
 	<string>UCSD</string>
 	<key>*.ucsf.edu</key>
@@ -13323,6 +13519,8 @@
 	<string>Uni-Goettingen.de (partial)</string>
 	<key>*.uni-greifswald.de</key>
 	<string>University of Greifswald (partial)</string>
+	<key>*.uni-hamburg.de</key>
+	<string>UHH_Informatik</string>
 	<key>*.uni-hannover.de</key>
 	<string>Uni-Hannover.de (partial)</string>
 	<key>*.uni-karlsruhe.de</key>
@@ -13342,7 +13540,7 @@
 	<key>*.uni-saarland.de</key>
 	<string>Uni-Saarland.de (partial)</string>
 	<key>*.uni-stuttgart.de</key>
-	<string>University of Stuttgart (partial)</string>
+	<string>Uni-Stuttgart.de (partial)</string>
 	<key>*.uni-tuebingen.de</key>
 	<string>University of Tübingen (partial)</string>
 	<key>*.uni-weimar.de</key>
@@ -13437,6 +13635,8 @@
 	<string>University of Puerto Rico (partial)</string>
 	<key>*.uproxy.org</key>
 	<string>uProxy.org</string>
+	<key>*.ups.com</key>
+	<string>UPS.com (partial)</string>
 	<key>*.upsploit.com</key>
 	<string>upSploit.com</string>
 	<key>*.upstart.com</key>
@@ -13475,6 +13675,8 @@
 	<string>University of Southern California (partial)</string>
 	<key>*.uscis.gov</key>
 	<string>U.S. Citizenship and Immigration Services (partial)</string>
+	<key>*.usconstitution.net</key>
+	<string>USConstitution.net (partial)</string>
 	<key>*.use-enco.com</key>
 	<string>Use-Enco.com</string>
 	<key>*.usenet.nl</key>
@@ -13515,6 +13717,8 @@
 	<string>U.S. Patent and Trademark Office (partial)</string>
 	<key>*.ussco.com</key>
 	<string>United Stationers (partial)</string>
+	<key>*.ustc.edu.cn</key>
+	<string>USTC.edu.cn (partial)</string>
 	<key>*.usvisa-info.com</key>
 	<string>CSC Visa Information Service</string>
 	<key>*.ut.edu</key>
@@ -13528,7 +13732,7 @@
 	<key>*.utopia.ai</key>
 	<string>Utopia</string>
 	<key>*.utoronto.ca</key>
-	<string>University of Toronto (partial)</string>
+	<string>UToronto.ca (partial)</string>
 	<key>*.utorrent.com</key>
 	<string>µTorrent (partial)</string>
 	<key>*.utsandiego.com</key>
@@ -13557,6 +13761,8 @@
 	<string>UWinnipeg.ca (partial)</string>
 	<key>*.v-identity.com</key>
 	<string>v-identity.com</string>
+	<key>*.v.gd</key>
+	<string>v.gd</string>
 	<key>*.v2cigs.com</key>
 	<string>V2 Cigs (partial)</string>
 	<key>*.v2ex.com</key>
@@ -13671,6 +13877,8 @@
 	<string>Vessel</string>
 	<key>*.vevo.com</key>
 	<string>VEVO</string>
+	<key>*.vexatioustendencies.net</key>
+	<string>Vexatious Tendencies.net</string>
 	<key>*.vfemail.net</key>
 	<string>VFEmail.net</string>
 	<key>*.vgwort.de</key>
@@ -13739,6 +13947,8 @@
 	<string>Virgin Media.com (partial)</string>
 	<key>*.virginmobileusa.com</key>
 	<string>Virgin Mobile</string>
+	<key>*.virool.com</key>
+	<string>Virool.com (partial)</string>
 	<key>*.virtkick.io</key>
 	<string>VirtKick.io</string>
 	<key>*.virtualbox.org</key>
@@ -13827,12 +14037,18 @@
 	<string>VosCast.com</string>
 	<key>*.vox-cdn.com</key>
 	<string>Vox-CDN.com</string>
+	<key>*.vox.com</key>
+	<string>Vox.com</string>
 	<key>*.voxer.com</key>
 	<string>Voxer (partial)</string>
+	<key>*.voxmedia.com</key>
+	<string>Vox Media.com (false MCB)</string>
 	<key>*.vpn.alaska.edu</key>
 	<string>University of Alaska (partial)</string>
 	<key>*.vpnbook.com</key>
 	<string>vpnbook.com</string>
+	<key>*.vpncompare.co.uk</key>
+	<string>VPNCompare.co.uk (false MCB)</string>
 	<key>*.vpnglobe.com</key>
 	<string>VPNGlobe.com</string>
 	<key>*.vpnincome.com</key>
@@ -13983,6 +14199,10 @@
 	<string>WebCitz</string>
 	<key>*.webcontrolcenter.com</key>
 	<string>webcontrolcenter.com</string>
+	<key>*.webd.am</key>
+	<string>WebD.AM</string>
+	<key>*.webdam.com</key>
+	<string>WebDAM DB.com</string>
 	<key>*.webdesignmarketing.eu</key>
 	<string>Web Design Marketing</string>
 	<key>*.webento.com</key>
@@ -14071,6 +14291,8 @@
 	<string>Webshopapp.com</string>
 	<key>*.webshoprevolution.com</key>
 	<string>WebShop Revolution</string>
+	<key>*.website-start.de</key>
+	<string>website-start.de</string>
 	<key>*.websitealive.com</key>
 	<string>WebsiteAlive (partial)</string>
 	<key>*.websitegrowers.com</key>
@@ -14171,6 +14393,8 @@
 	<string>WhatIsMyIP</string>
 	<key>*.whatsapp.com</key>
 	<string>WhatsApp.com</string>
+	<key>*.whatwg.org</key>
+	<string>WHATWG.org</string>
 	<key>*.wheel.sk</key>
 	<string>Wheel.sk</string>
 	<key>*.where.com</key>
@@ -14285,6 +14509,8 @@
 	<string>Wimdu.co.uk</string>
 	<key>*.wimm.com</key>
 	<string>WIMM.com (partial)</string>
+	<key>*.wimpmusic.com</key>
+	<string>WiMP Music.com (partial)</string>
 	<key>*.win-rar.com</key>
 	<string>WinRAR</string>
 	<key>*.win-rd.jp</key>
@@ -14309,6 +14535,8 @@
 	<string>WinTieWin</string>
 	<key>*.winzip.com</key>
 	<string>WinZip.com (false MCB)</string>
+	<key>*.wire.com</key>
+	<string>Wire.com (partial)</string>
 	<key>*.wired.com</key>
 	<string>Wired (false MCB, partial)</string>
 	<key>*.wiredforchange.com</key>
@@ -14327,6 +14555,8 @@
 	<string>Wistia (partial)</string>
 	<key>*.withgoogle.com</key>
 	<string>With Google.com</string>
+	<key>*.withknown.com</key>
+	<string>Withknown.com</string>
 	<key>*.witopia.net</key>
 	<string>WiTopia.net</string>
 	<key>*.wix.com</key>
@@ -14348,7 +14578,7 @@
 	<key>*.wolfram.com</key>
 	<string>Wolfram.com (partial) </string>
 	<key>*.wolframalpha.com</key>
-	<string>Wolfram Alpha (experimental)</string>
+	<string>Wolfram Alpha.com (experimental)</string>
 	<key>*.woltlab.com</key>
 	<string>WoltLab.com</string>
 	<key>*.wonderlandmovies.de</key>
@@ -14425,6 +14655,8 @@
 	<string>wpmudev.org</string>
 	<key>*.wpp.com</key>
 	<string>WPP</string>
+	<key>*.wpvulndb.com</key>
+	<string>WP VulnDB.com</string>
 	<key>*.wral.com</key>
 	<string>WRAL.com</string>
 	<key>*.wrapadviser.co.uk</key>
@@ -14725,10 +14957,14 @@
 	<string>Yahoo! (partial)</string>
 	<key>*.yammer.com</key>
 	<string>Yammer</string>
+	<key>*.yandex.com</key>
+	<string>Yandex.com (partial)</string>
 	<key>*.yandex.net</key>
 	<string>Yandex</string>
 	<key>*.yandex.ru</key>
 	<string>Yandex</string>
+	<key>*.yandex.ua</key>
+	<string>Yandex.ua (partial)</string>
 	<key>*.yannick.net</key>
 	<string>Yannick.net</string>
 	<key>*.ycombinator.com</key>
@@ -15062,7 +15298,7 @@
 	<key>2.standaardcdn.be</key>
 	<string>Standaard.be (partial)</string>
 	<key>2012.guadec.org</key>
-	<string>GPUL.org (partial)</string>
+	<string>GUADEC.org (partial)</string>
 	<key>2020mobile.es</key>
 	<string>2020mobile</string>
 	<key>208.68.106.8</key>
@@ -15070,7 +15306,7 @@
 	<key>21centuryrims.com</key>
 	<string>21 Century Rims</string>
 	<key>23andme.com</key>
-	<string>23andMe.com</string>
+	<string>23andMe.com (partial)</string>
 	<key>23systems.net</key>
 	<string>23Systems</string>
 	<key>247filmz.com</key>
@@ -15190,13 +15426,13 @@
 	<key>5.*.wdfiles.com</key>
 	<string>Wikidot (partial)</string>
 	<key>500px.com</key>
-	<string>500px.com (partial)</string>
+	<string>500px.com</string>
 	<key>512pixels.net</key>
 	<string>512 Pixels</string>
 	<key>53.com</key>
 	<string>Fifth Third Bank</string>
 	<key>5apps.com</key>
-	<string>Appache (partial)</string>
+	<string>5apps (partial)</string>
 	<key>5july.org</key>
 	<string>5 July.org</string>
 	<key>5min.com</key>
@@ -15239,6 +15475,8 @@
 	<string>888173.net (partial)</string>
 	<key>888voip.com</key>
 	<string>888VoIP.com</string>
+	<key>8chan.co</key>
+	<string>8chan</string>
 	<key>8tracks.com</key>
 	<string>8tracks</string>
 	<key>8win88win.com</key>
@@ -15548,9 +15786,11 @@
 	<key>acs-webmail.ucsd.edu</key>
 	<string>UCSD</string>
 	<key>acs.org</key>
-	<string>American Chemical Society (partial)</string>
+	<string>ACS.org (partial)</string>
 	<key>acs.ucsd.edu</key>
 	<string>UCSD</string>
+	<key>acsac.org</key>
+	<string>ACSAC.org</string>
 	<key>act.demandprogress.org</key>
 	<string>Act.demandprogress.org</string>
 	<key>act.ucsd.edu</key>
@@ -15573,10 +15813,12 @@
 	<string>Active Melody</string>
 	<key>activemq.apache.org</key>
 	<string>Apache.org (false MCB)</string>
+	<key>activenetwork.com</key>
+	<string>Active Network.com (partial)</string>
 	<key>activestate.com</key>
 	<string>ActiveState Software (partial)</string>
 	<key>activestatic.net</key>
-	<string>Active.com (partial)</string>
+	<string>Active static.net</string>
 	<key>actonsoftware.com</key>
 	<string>Act-On Software (partial)</string>
 	<key>acuityplatform.com</key>
@@ -15621,6 +15863,8 @@
 	<string>AdaFruit</string>
 	<key>adage.com</key>
 	<string>Crain Communications (partial)</string>
+	<key>adallom.com</key>
+	<string>Adallom.com (partial)</string>
 	<key>adamboalt.wpengine.netdna-cdn.com</key>
 	<string>BOALT</string>
 	<key>adap.tv</key>
@@ -15632,7 +15876,7 @@
 	<key>adblade.com</key>
 	<string>Adblade (partial)</string>
 	<key>adblockplus.org</key>
-	<string>AdblockPlus</string>
+	<string>AdblockPlus.org</string>
 	<key>adbrite.com</key>
 	<string>AdBrite (partial)</string>
 	<key>adbusters.org</key>
@@ -15734,7 +15978,7 @@
 	<key>adnxs.com</key>
 	<string>AppNexus (partial)</string>
 	<key>adobe.com</key>
-	<string>Adobe</string>
+	<string>Adobe.com</string>
 	<key>adobeconnect.com</key>
 	<string>Adobe Connect</string>
 	<key>adobelogin.com</key>
@@ -15825,6 +16069,8 @@
 	<string>Adult Swim</string>
 	<key>adulttoys4u.com.au</key>
 	<string>Adult Toys 4 U.com</string>
+	<key>adultwork.com</key>
+	<string>AdultWork.com (partial)</string>
 	<key>advantagemedia.com</key>
 	<string>Advantage Business Media</string>
 	<key>advantageseoservices.com</key>
@@ -15924,7 +16170,7 @@
 	<key>afsp.org</key>
 	<string>American Foundation for Suicide Prevention</string>
 	<key>aftenposten.no</key>
-	<string>Aftenposten</string>
+	<string>Aftenposten (partial)</string>
 	<key>aftership.com</key>
 	<string>AfterShip.com</string>
 	<key>aftonbladet.se</key>
@@ -16151,6 +16397,8 @@
 	<string>Allizom.org</string>
 	<key>alljoyn.org</key>
 	<string>AllJoyn.org</string>
+	<key>allmybase.com</key>
+	<string>All My Base.com</string>
 	<key>allmyvideos.net</key>
 	<string>allmyvideos.net (partial)</string>
 	<key>allplayers.com</key>
@@ -16353,6 +16601,8 @@
 	<string>E. W. Scripps Company (partial)</string>
 	<key>andor.com</key>
 	<string>Andor.com</string>
+	<key>android.com</key>
+	<string>Android.com</string>
 	<key>androidfilehost.com</key>
 	<string>Androidfilehost.com</string>
 	<key>androidguiden.idg.se</key>
@@ -16367,6 +16617,8 @@
 	<string>AngelList (partial)</string>
 	<key>anglomedia.net</key>
 	<string>anglomedia.net</string>
+	<key>angular-gantt.com</key>
+	<string>Angular-Gantt.com</string>
 	<key>angus.gov.uk</key>
 	<string>UK Local Government</string>
 	<key>anibis.ch</key>
@@ -16409,6 +16661,8 @@
 	<string>anonymoX</string>
 	<key>anonyproz.com</key>
 	<string>Anyproz</string>
+	<key>anonysurfer.com</key>
+	<string>AnonySurfer.com</string>
 	<key>anpost.ie</key>
 	<string>An Post (partial)</string>
 	<key>anquanbao.com</key>
@@ -16458,11 +16712,11 @@
 	<key>aol.com</key>
 	<string>AOL (partial)</string>
 	<key>ap.mnocdn.no</key>
-	<string>Aftenposten</string>
+	<string>Aftenposten (partial)</string>
 	<key>apac.haymarket.com</key>
 	<string>Haymarket (partial)</string>
 	<key>apache.org</key>
-	<string>Apache (partial)</string>
+	<string>Apache.com (partial)</string>
 	<key>apc.org</key>
 	<string>Association for Progressive Communications</string>
 	<key>apcmag.com</key>
@@ -16681,6 +16935,10 @@
 	<string>ArcorCentralLogin</string>
 	<key>ardour.org</key>
 	<string>Ardour (partial)</string>
+	<key>arewecompressedyet.com</key>
+	<string>Are We Compressed Yet.com</string>
+	<key>areweslimyet.com</key>
+	<string>Are We Slim Yet.com</string>
 	<key>argeweb.nl</key>
 	<string>Argeweb.nl</string>
 	<key>argos-spain.co.uk</key>
@@ -16756,7 +17014,7 @@
 	<key>arukereso.hu</key>
 	<string>Árukereső</string>
 	<key>arvixe.com</key>
-	<string>Arvixe</string>
+	<string>Arvixe.com</string>
 	<key>as.au.edu</key>
 	<string>UA.edu (false MCB)</string>
 	<key>as112.net</key>
@@ -16907,6 +17165,8 @@
 	<string>Amazon Associates</string>
 	<key>astra.io</key>
 	<string>Astra.io</string>
+	<key>astrobotic.com</key>
+	<string>Astrobotic.com</string>
 	<key>astronomicaltours.net</key>
 	<string>AstronomicalTours</string>
 	<key>asu.edu</key>
@@ -17175,6 +17435,8 @@
 	<string>b3n.org</string>
 	<key>babymed.com</key>
 	<string>BabyMed.com (partial)</string>
+	<key>backblaze.com</key>
+	<string>Backblaze.com</string>
 	<key>backbonesecurity.com</key>
 	<string>Backbone Security</string>
 	<key>backcountry.com</key>
@@ -17441,6 +17703,8 @@
 	<string>beender.co</string>
 	<key>beenverified.com</key>
 	<string>BeenVerified (partial)</string>
+	<key>beesecure.prpa.org</key>
+	<string>Snowfly (partial)</string>
 	<key>beetailer.com</key>
 	<string>Beetailer.com</string>
 	<key>beginlinux.com</key>
@@ -17463,6 +17727,8 @@
 	<string>Bell-Labs.com</string>
 	<key>bellareed.com</key>
 	<string>MarinellaRose.com</string>
+	<key>bellingcat.com</key>
+	<string>Bellingcat.com</string>
 	<key>bellinghamschools.org</key>
 	<string>Bellingham School District (partial)</string>
 	<key>bellsouth.com</key>
@@ -17485,6 +17751,8 @@
 	<string>Bennetts (partial)</string>
 	<key>bentley.edu</key>
 	<string>Bentley Univerity (partial)</string>
+	<key>benzinga.com</key>
+	<string>Benzinga.com (partial)</string>
 	<key>beonespark.com</key>
 	<string>BE One Spark.com (partial)</string>
 	<key>bepress.com</key>
@@ -17545,8 +17813,14 @@
 	<string>Bethsoft.com (partial)</string>
 	<key>betnet.fr</key>
 	<string>Betnet.fr</string>
+	<key>betterbills.com</key>
+	<string>BetterBills.com</string>
+	<key>betterbills.com.au</key>
+	<string>BetterBills.com.au</string>
 	<key>bettercrypto.org</key>
 	<string>BetterCrypto.org</string>
+	<key>bettershopping.eu</key>
+	<string>Bettershopping.eu</string>
 	<key>betvictor.com</key>
 	<string>Victor Chandler International</string>
 	<key>beyondsecurity.com</key>
@@ -17598,7 +17872,7 @@
 	<key>bigbrotherawards.de</key>
 	<string>German BigBrotherAwards</string>
 	<key>bigbrotherwatch.org.uk</key>
-	<string>Big Brother Watch</string>
+	<string>Big Brother Watch.org.uk</string>
 	<key>bigchangeuk.co.uk</key>
 	<string>Big Change</string>
 	<key>bigcommerce.com</key>
@@ -17633,6 +17907,8 @@
 	<string>Intent Media (partial)</string>
 	<key>billetnet.dk</key>
 	<string>Ticketmaster (partial)</string>
+	<key>billetten.dk</key>
+	<string>BillettenDK</string>
 	<key>billettservice.no</key>
 	<string>Ticketmaster (partial)</string>
 	<key>billiger.de</key>
@@ -17763,6 +18039,8 @@
 	<string>BitcoinWisdom.com</string>
 	<key>bitcurex.com</key>
 	<string>Bitcurex.com</string>
+	<key>bitdeli.com</key>
+	<string>Bitdeli.com</string>
 	<key>bitfetch.com</key>
 	<string>bitfetch</string>
 	<key>bitgamer.com</key>
@@ -17871,8 +18149,12 @@
 	<string>Bleep.com</string>
 	<key>blekko.com</key>
 	<string>Blekko</string>
+	<key>blesk.sk</key>
+	<string>Blesk.sk (partial)</string>
 	<key>bleutrade.com</key>
 	<string>Bleutrade.com</string>
+	<key>blicko.com</key>
+	<string>Blicko.com (partial)</string>
 	<key>blinddesign.nl</key>
 	<string>Blinddesign.nl</string>
 	<key>bling4cars.com</key>
@@ -17887,6 +18169,8 @@
 	<string>BlockBuster UK</string>
 	<key>blockchain.info</key>
 	<string>Blockchain.info</string>
+	<key>blockchainbdgpzk.onion</key>
+	<string>Blockchainbdgpzk.onion</string>
 	<key>blocked.org.uk</key>
 	<string>Blocked.org.uk</string>
 	<key>blocket.se</key>
@@ -17901,6 +18185,8 @@
 	<string>BlockScript</string>
 	<key>blockstream.com</key>
 	<string>Blockstream.com (partial)</string>
+	<key>blocktogether.com</key>
+	<string>Block Together.com</string>
 	<key>blog.advance.net</key>
 	<string>Advance Digital (partial)</string>
 	<key>blog.codesion.com</key>
@@ -17991,6 +18277,8 @@
 	<string>London School of Hygiene &amp; Tropical Medicine</string>
 	<key>blogs.msdn.com</key>
 	<string>Microsoft (mixed content)</string>
+	<key>blogs.plos.org</key>
+	<string>PLoS.org (false MCB)</string>
 	<key>blogs.savethechildren.org.uk</key>
 	<string>Save the Children.org.uk (false MCB)</string>
 	<key>blogsmithmedia.com</key>
@@ -18003,12 +18291,16 @@
 	<string>BlogTalkRadio</string>
 	<key>blogtopsites.com</key>
 	<string>Blog Top Sites.com</string>
+	<key>bloo.ie</key>
+	<string>Bloo.ie</string>
 	<key>bloodhoundgang.com</key>
 	<string>Bloodhound Gang.com</string>
 	<key>bloomberg.com</key>
 	<string>Bloomberg (partial)</string>
 	<key>bloombergsports.com</key>
 	<string>Bloomberg Sports.com</string>
+	<key>blossom.io</key>
+	<string>Blossom.IO</string>
 	<key>blot.im</key>
 	<string>Blot.im</string>
 	<key>bluecava.com</key>
@@ -18107,6 +18399,8 @@
 	<string>Bokborgen.se</string>
 	<key>bokelskere.no</key>
 	<string>Bokelskere</string>
+	<key>bokon.se</key>
+	<string>Bokon.se</string>
 	<key>bolagsverket.se</key>
 	<string>Bolagsverket.se</string>
 	<key>boldchat.com</key>
@@ -18227,6 +18521,8 @@
 	<string>Boxwood Technology</string>
 	<key>bpa.gov</key>
 	<string>Bonneville Power Administration (partial)</string>
+	<key>bpaste.net</key>
+	<string>bpaste.net</string>
 	<key>bprbzk.nl</key>
 	<string>NL Overheid</string>
 	<key>bps.org.uk</key>
@@ -18375,6 +18671,8 @@
 	<string>Bromley.gov.uk</string>
 	<key>bronto.com</key>
 	<string>Bronto Software (partial)</string>
+	<key>brook.gs</key>
+	<string>bit.ly vanity domains</string>
 	<key>brooklinecollege.edu</key>
 	<string>Brookline College.edu</string>
 	<key>brooksidefund.com</key>
@@ -18403,6 +18701,8 @@
 	<string>Federal Office for Information Security</string>
 	<key>bt.com</key>
 	<string>BT (partial)</string>
+	<key>bt.no</key>
+	<string>BT.no (partial)</string>
 	<key>btc-e.com</key>
 	<string>BTC-E</string>
 	<key>btc-trade.ru</key>
@@ -18577,6 +18877,8 @@
 	<string>Berkshire-Hathaway (partial)</string>
 	<key>bussgods.se</key>
 	<string>Bussgods.se</string>
+	<key>buttercoin.com</key>
+	<string>Buttercoin.com</string>
 	<key>buy.yahoo.com.tw</key>
 	<string>Yahoo.com.tw (partial)</string>
 	<key>buyboard.com</key>
@@ -18627,6 +18929,8 @@
 	<string>Bytemark.co.uk (partial)</string>
 	<key>byu.edu</key>
 	<string>Brigham Young University (partial)</string>
+	<key>bzfd.it</key>
+	<string>bit.ly vanity domains</string>
 	<key>c-and-a.com</key>
 	<string>c-and-a.com</string>
 	<key>c-base.org</key>
@@ -18689,6 +18993,10 @@
 	<string>Silobreaker (partial)</string>
 	<key>cache1.neodevlda.netdna-cdn.com</key>
 	<string>NeoBux.com (partial)</string>
+	<key>cachegames.mirrorbingo.com</key>
+	<string>Mirror Bingo.com (partial)</string>
+	<key>cachewww.mirrorbingo.com</key>
+	<string>Mirror Bingo.com (partial)</string>
 	<key>cadence.com</key>
 	<string>Cadence Design Systems (partial)</string>
 	<key>cadetnet.gov.au</key>
@@ -18750,7 +19058,7 @@
 	<key>camden.gov.uk</key>
 	<string>UK Local Government</string>
 	<key>campact.de</key>
-	<string>Campact.de</string>
+	<string>Campact.de (partial)</string>
 	<key>campaign.odw.sony-europe.com</key>
 	<string>Sony-Europe.com</string>
 	<key>campaigneq.com</key>
@@ -18821,6 +19129,8 @@
 	<string>CardCash.com</string>
 	<key>cardealerstudy.com</key>
 	<string>BMW China Custom Login</string>
+	<key>cardsagainsthumanity.com</key>
+	<string>Cards Against Humanity.com</string>
 	<key>care-net.org</key>
 	<string>Care Net</string>
 	<key>care2.com</key>
@@ -18860,7 +19170,7 @@
 	<key>carlolly.co.uk</key>
 	<string>Co.uk</string>
 	<key>carnegiescience.edu</key>
-	<string>Carnegie Institution for Science</string>
+	<string>Carnegie Institution for Science (partial)</string>
 	<key>carousel.rsc.org</key>
 	<string>Royal Society of Chemistry (partial)</string>
 	<key>carpromods.com</key>
@@ -18945,6 +19255,8 @@
 	<string>Dutch Data Protection Authority</string>
 	<key>cbs.com</key>
 	<string>CBS (partial)</string>
+	<key>cbsn.ws</key>
+	<string>bit.ly vanity domains</string>
 	<key>cbsstore.com</key>
 	<string>CBS Store</string>
 	<key>ccavenue.com</key>
@@ -19045,6 +19357,8 @@
 	<string>Dueling Analogs.com (partial)</string>
 	<key>cdn.echoenabled.com</key>
 	<string>Echo Enabled</string>
+	<key>cdn.embedly.com</key>
+	<string>Embedly.com</string>
 	<key>cdn.etrade.net</key>
 	<string>Etrade.com</string>
 	<key>cdn.evbuc.com</key>
@@ -19241,6 +19555,8 @@
 	<string>CDON.COM</string>
 	<key>cdon.se</key>
 	<string>CDON.COM</string>
+	<key>cdromland.nl</key>
+	<string>CD ROM Land.nl</string>
 	<key>cds1.yospace.com</key>
 	<string>Yospace.com (partial)</string>
 	<key>cdt.org</key>
@@ -19261,6 +19577,8 @@
 	<string>Smart AdServer (partial)</string>
 	<key>cede.ch</key>
 	<string>cede</string>
+	<key>cedia.org.ec</key>
+	<string>CEDIA.org.ec (partial)</string>
 	<key>celiac.org</key>
 	<string>Celiac Disease Foundation</string>
 	<key>cengagebrain.co.uk</key>
@@ -19285,10 +19603,14 @@
 	<string>GOV.UK</string>
 	<key>centrance.com</key>
 	<string>CEntrance (partial)</string>
+	<key>centreon.com</key>
+	<string>Centreon.com (partial)</string>
 	<key>centzy.com</key>
 	<string>Centzy</string>
 	<key>ceredigion.gov.uk</key>
 	<string>UK Local Government</string>
+	<key>cereproc.com</key>
+	<string>CereProc.com</string>
 	<key>cerit-sc.cz</key>
 	<string>CERIT-SC.cz</string>
 	<key>cerit.cz</key>
@@ -19341,6 +19663,8 @@
 	<string>Swiss Federal Railways (SBB/CFF/FFS)</string>
 	<key>cfif.org</key>
 	<string>Center for Individual Freedom (partial)</string>
+	<key>cfmueller.de</key>
+	<string>C F Mueller.de</string>
 	<key>cfr.org</key>
 	<string>Council on Foreign Relations (partial)</string>
 	<key>cftc.gov</key>
@@ -19366,7 +19690,7 @@
 	<key>champssports.com</key>
 	<string>Champs Sports (partial)</string>
 	<key>change.org</key>
-	<string>Change.org</string>
+	<string>Change.org (partial)</string>
 	<key>changemakers.com</key>
 	<string>Changemakers</string>
 	<key>changetip.com</key>
@@ -19399,6 +19723,8 @@
 	<string>vwd services.com (partial)</string>
 	<key>chartio.com</key>
 	<string>Chartio.com</string>
+	<key>chartmogul.com</key>
+	<string>ChartMogul.com</string>
 	<key>chartsinfrance.net</key>
 	<string>Charts in France</string>
 	<key>chase.com</key>
@@ -19569,6 +19895,8 @@
 	<string>Banque CIC (Suisse)</string>
 	<key>cic.fr</key>
 	<string>Banque CIC</string>
+	<key>ciety.com</key>
+	<string>Ciety.com</string>
 	<key>cilkplus.org</key>
 	<string>Cilk Plus.org</string>
 	<key>cimacorp.net</key>
@@ -19589,6 +19917,8 @@
 	<string>UCSD</string>
 	<key>cinfu.com</key>
 	<string>Cinfu.com (partial)</string>
+	<key>cint.com</key>
+	<string>Cint.com (partial)</string>
 	<key>cio.com.au</key>
 	<string>CIO.com.au</string>
 	<key>cipherlawgroup.com</key>
@@ -19664,7 +19994,7 @@
 	<key>civicscience.com</key>
 	<string>CivicScience (partial)</string>
 	<key>ciw.edu</key>
-	<string>Carnegie Institution for Science</string>
+	<string>Carnegie Institution for Science (partial)</string>
 	<key>cj.com</key>
 	<string>Commission Junction</string>
 	<key>cjib.nl</key>
@@ -19689,6 +20019,8 @@
 	<string>Gannett Company (partial)</string>
 	<key>classzone.com</key>
 	<string>ClassZone.com</string>
+	<key>clbr.tv</key>
+	<string>Clickberry</string>
 	<key>cleanenergyexperts.com</key>
 	<string>Clean Energy Experts</string>
 	<key>cleanenergyfinancecorp.com.au</key>
@@ -19705,6 +20037,8 @@
 	<string>ClearChain</string>
 	<key>clearlink.com</key>
 	<string>Clearlink.com</string>
+	<key>clever.com</key>
+	<string>Clever.com</string>
 	<key>cleverbridge.com</key>
 	<string>cleverbridge (partial)</string>
 	<key>cleverbridge.org</key>
@@ -19725,6 +20059,8 @@
 	<string>ClickBank</string>
 	<key>clickbank.net</key>
 	<string>ClickBank</string>
+	<key>clickberry.tv</key>
+	<string>Clickberry</string>
 	<key>clickdelivery.gr</key>
 	<string>Clickdelivery.gr</string>
 	<key>clickequations.net</key>
@@ -19865,12 +20201,16 @@
 	<string>CloudForge (partial)</string>
 	<key>cloudfoundry.com</key>
 	<string>Cloud Foundry (partial)</string>
+	<key>cloudfront-assets.reason.com</key>
+	<string>Reason.com (partial)</string>
 	<key>cloudfront.ingenico.com</key>
 	<string>Ingenico Group (partial)</string>
 	<key>cloudfront.mediamatters.org</key>
 	<string>MediaMatters.org (partial)</string>
 	<key>cloudfront.omgubuntu.co.uk</key>
 	<string>OMG! Ubuntu! (partial)</string>
+	<key>cloudimage.io</key>
+	<string>Cloudimage.io</string>
 	<key>cloudinary.com</key>
 	<string>Cloudinary (partial)</string>
 	<key>cloudmark.com</key>
@@ -20019,6 +20359,8 @@
 	<string>Coinbase (partial)</string>
 	<key>coindl.com</key>
 	<string>CoinDL</string>
+	<key>coinjar.com</key>
+	<string>CoinJar.com</string>
 	<key>coinurl.com</key>
 	<string>CoinURL.com</string>
 	<key>cokecce.com</key>
@@ -20065,6 +20407,8 @@
 	<string>Colorado State Attorney General</string>
 	<key>coloradocaptures.com</key>
 	<string>Colorado Captures</string>
+	<key>coloradocollege.edu</key>
+	<string>Colorado College.edu (partial)</string>
 	<key>coloradonocall.com</key>
 	<string>Official Colorado No-Call List</string>
 	<key>colors-il.com</key>
@@ -20131,6 +20475,8 @@
 	<string>Artemis-IA.eu (partial)</string>
 	<key>community.bistudio.com</key>
 	<string>Bohemia Interactive (partial)</string>
+	<key>community.centminmod.com</key>
+	<string>Centmin Mod.com (partial)</string>
 	<key>community.elgg.org</key>
 	<string>Community.elgg.org</string>
 	<key>community.giffgaff.com</key>
@@ -20251,6 +20597,8 @@
 	<string>schokokeks.org</string>
 	<key>confirmit.com</key>
 	<string>Confirmit</string>
+	<key>confirmsubscription.com</key>
+	<string>confirmsubscription.com</string>
 	<key>conformal.com</key>
 	<string>Conformal Systems</string>
 	<key>confused.com</key>
@@ -20625,6 +20973,8 @@
 	<string>UCSD</string>
 	<key>cricket.redbull.in</key>
 	<string>Red Bull (partial)</string>
+	<key>cricketwireless.com</key>
+	<string>Cricket Wireless.com</string>
 	<key>crikey.com.au</key>
 	<string>Crikey (partial)</string>
 	<key>crimecommission.gov.au</key>
@@ -20709,6 +21059,8 @@
 	<string>Cryptoparty</string>
 	<key>cryptoparty.org</key>
 	<string>Cryptoparty</string>
+	<key>cryptosanta.xyz</key>
+	<string>Crypto Santa.xyz</string>
 	<key>cryptoseal.com</key>
 	<string>CryptoSeal.com</string>
 	<key>cryptosms.org</key>
@@ -20821,6 +21173,8 @@
 	<string>Cubics</string>
 	<key>cubplat.bidsystem.com</key>
 	<string>Cubics</string>
+	<key>cue.me</key>
+	<string>Cue.me</string>
 	<key>cuidadodesalud.gov</key>
 	<string>CuidadoDeSalud.gov</string>
 	<key>cultura.no</key>
@@ -20855,6 +21209,8 @@
 	<string>Curling World.com</string>
 	<key>current.com</key>
 	<string>Current TV (partial)</string>
+	<key>currents.plos.org</key>
+	<string>PLoS.org (false MCB)</string>
 	<key>curvehost.com</key>
 	<string>Curvehost</string>
 	<key>cusp.com</key>
@@ -20990,7 +21346,7 @@
 	<key>daily.co.uk</key>
 	<string>Daily</string>
 	<key>dailydot.com</key>
-	<string>DailyDot (partial)</string>
+	<string>DailyDot.com (partial)</string>
 	<key>dailyfantasyradio.com</key>
 	<string>Daily Fantasy Radio</string>
 	<key>dailyherald.com</key>
@@ -21017,6 +21373,8 @@
 	<string>Dan.me.uk</string>
 	<key>danblah.com</key>
 	<string>dan blah.com (partial)</string>
+	<key>danbooru.donmai.us</key>
+	<string>danbooru.donmai.us</string>
 	<key>danhlode.com</key>
 	<string>danhlode.com</string>
 	<key>daniweb.com</key>
@@ -21215,6 +21573,8 @@
 	<string>Debian-fr</string>
 	<key>debian.org</key>
 	<string>Debian (partial)</string>
+	<key>debuggex.com</key>
+	<string>Debuggex.com</string>
 	<key>debuggify.net</key>
 	<string>Debuggify.net</string>
 	<key>deciduouspress.com.au</key>
@@ -21403,12 +21763,16 @@
 	<string>Symbian Foundation</string>
 	<key>developerforce.com</key>
 	<string>Salesforce.com (partial)</string>
+	<key>developermail.io</key>
+	<string>DeveloperMail.io</string>
 	<key>devolo.com</key>
 	<string>Devolo.com</string>
 	<key>devon.gov.uk</key>
 	<string>UK Local Government</string>
 	<key>devstructure.com</key>
 	<string>Devstructure</string>
+	<key>devuan.org</key>
+	<string>Devuan.org</string>
 	<key>devzing.com</key>
 	<string>devZing.com</string>
 	<key>dezertdepot.com</key>
@@ -21537,6 +21901,8 @@
 	<string>Dikkenberg.net</string>
 	<key>dinclinx.com</key>
 	<string>Madison Logic (partial)</string>
+	<key>diogomonica.com</key>
+	<string>Diogo Monica.com</string>
 	<key>dionyziz.com</key>
 	<string>Greek-various</string>
 	<key>diplomaframe.com</key>
@@ -21789,6 +22155,8 @@
 	<string>Domaintank</string>
 	<key>domaintools.com</key>
 	<string>DomainTools (partial)</string>
+	<key>domcomp.com</key>
+	<string>domcomp.com</string>
 	<key>domdex.com</key>
 	<string>domdex.com</string>
 	<key>domeinenrz.nl</key>
@@ -21803,6 +22171,8 @@
 	<string>Domreg.lt</string>
 	<key>donate.greenpeace.org</key>
 	<string>greenpeace.org (very partial)</string>
+	<key>donate.homelessveterans.co.uk</key>
+	<string>Homeless Veterans.co.uk (partial)</string>
 	<key>donate.perlfoundation.org</key>
 	<string>Pearl Foundation (partial)</string>
 	<key>donate.richarddawkins.net</key>
@@ -21829,6 +22199,8 @@
 	<string>Dorian Color</string>
 	<key>dosomething.org</key>
 	<string>Dosomething.org</string>
+	<key>dot-bit.org</key>
+	<string>Dot-BIT.org (partial)</string>
 	<key>dot429.com</key>
 	<string>dot429 (partial)</string>
 	<key>dot5hosting.com</key>
@@ -21901,6 +22273,8 @@
 	<string>DrawQuest</string>
 	<key>drawquestugc.com</key>
 	<string>DrawQuest</string>
+	<key>drchrono.com</key>
+	<string>Drchrono.com</string>
 	<key>dreamhost.com</key>
 	<string>DreamHost (partial)</string>
 	<key>dreamnews.jp</key>
@@ -22016,7 +22390,7 @@
 	<key>duolingo.com</key>
 	<string>Duolingo.com</string>
 	<key>duosecurity.com</key>
-	<string>Duo Security (partial)</string>
+	<string>Duo Security.com (partial)</string>
 	<key>duracellcloud.com</key>
 	<string>Duracell Cloud.com (partial)</string>
 	<key>dustri.org</key>
@@ -22063,6 +22437,8 @@
 	<string>Dyson (partial)</string>
 	<key>dzne.de</key>
 	<string>German Center for Neurodegenerative Diseases</string>
+	<key>e-activist.com</key>
+	<string>e-activist.com</string>
 	<key>e-boks.dk</key>
 	<string>E-boks.dk (partial)</string>
 	<key>e-cegjegyzek.hu</key>
@@ -22077,6 +22453,8 @@
 	<string>ED.gov (partial)</string>
 	<key>e-junkie.com</key>
 	<string>E-junkie (partial)</string>
+	<key>e-klase.lv</key>
+	<string>E-klase.lv</string>
 	<key>e-mail-made-in-germany.de</key>
 	<string>E-Mail made in Germany</string>
 	<key>e-mielenterveys.fi</key>
@@ -22093,6 +22471,8 @@
 	<string>E14N</string>
 	<key>e17-stuff.org</key>
 	<string>openDesktop.org</string>
+	<key>e2ma.net</key>
+	<string>E2ma.net (partial)</string>
 	<key>e4ward.com</key>
 	<string>E4ward.com</string>
 	<key>e621.net</key>
@@ -22158,7 +22538,7 @@
 	<key>easywhois.com</key>
 	<string>easyWhois.com</string>
 	<key>eater.com</key>
-	<string>Eater</string>
+	<string>Eater.com (partial)</string>
 	<key>ebank.bremer.com</key>
 	<string>Bremer Bank</string>
 	<key>ebanking.indovinabank.com.vn</key>
@@ -22237,6 +22617,8 @@
 	<string>EDF Energy</string>
 	<key>edfil.es</key>
 	<string>Edfil.es</string>
+	<key>edg.com</key>
+	<string>EDG.com</string>
 	<key>edgar-online.com</key>
 	<string>EDGAR Online</string>
 	<key>edge.avangate.net</key>
@@ -22311,6 +22693,8 @@
 	<string>Electronic Frontiers Australia</string>
 	<key>efax.co.uk</key>
 	<string>efax.co.uk (partial)</string>
+	<key>efesto.eigenlab.org</key>
+	<string>eigenLab</string>
 	<key>eff.org</key>
 	<string>EFF</string>
 	<key>effi.org</key>
@@ -22375,6 +22759,8 @@
 	<string>eKomi</string>
 	<key>ekomi.co.*</key>
 	<string>eKomi</string>
+	<key>ekwb.com</key>
+	<string>EKWB Cooling Solutions</string>
 	<key>el-tramo.be</key>
 	<string>El-Tramo.be</string>
 	<key>elafnettv.com</key>
@@ -22401,6 +22787,8 @@
 	<string>Elementary OS.org (partial)</string>
 	<key>elevenpaths.com</key>
 	<string>ElevenPaths</string>
+	<key>elgiganten.dk</key>
+	<string>ElgigantenDK</string>
 	<key>elgiganten.se</key>
 	<string>Elgiganten.se</string>
 	<key>elie.im</key>
@@ -22489,6 +22877,8 @@
 	<string>Herald Media (partial)</string>
 	<key>emeraldinsight.com</key>
 	<string>Emerald</string>
+	<key>emergingthreats.net</key>
+	<string>Emerging Threats.net (partial)</string>
 	<key>emi.wpengine.com</key>
 	<string>eyeReturn Marketing.com (partial)</string>
 	<key>emknowledge.gov.au</key>
@@ -22517,6 +22907,8 @@
 	<string>MeetMe</string>
 	<key>en.spontex.org</key>
 	<string>Spontex.org</string>
+	<key>enalean.com</key>
+	<string>Enalean.com</string>
 	<key>encoding.com</key>
 	<string>Encoding.com</string>
 	<key>encosia.com</key>
@@ -22537,6 +22929,8 @@
 	<string>Endace</string>
 	<key>endora.cz</key>
 	<string>Endora.cz (partial)</string>
+	<key>energinet.dk</key>
+	<string>Energinet.net</string>
 	<key>energymadeeasy.gov.au</key>
 	<string>Energy Made Easy</string>
 	<key>energystar.gov</key>
@@ -22547,10 +22941,14 @@
 	<string>Engage Media.org</string>
 	<key>engagesciences.com</key>
 	<string>EngageSciences (partial)</string>
+	<key>engagingnetworks.net</key>
+	<string>Engaging Networks.net</string>
 	<key>engees.unistra.fr</key>
 	<string>UniStra.fr (false MCB)</string>
 	<key>engine.trklnks.com</key>
 	<string>AdSupply (partial)</string>
+	<key>engine.vliegtickets.nl</key>
+	<string>Vliegtickets.nl</string>
 	<key>engineering.com</key>
 	<string>Engineering.com (partial)</string>
 	<key>english-country-cottages.co.uk</key>
@@ -22735,6 +23133,8 @@
 	<string>ESOMAR.org</string>
 	<key>espacejeux.com</key>
 	<string>espacejeux</string>
+	<key>esper.net</key>
+	<string>Esper.net</string>
 	<key>espionageapp.com</key>
 	<string>Espionage app.com</string>
 	<key>espra.com</key>
@@ -22767,6 +23167,8 @@
 	<string>EthACK.org</string>
 	<key>ethereum.org</key>
 	<string>Ethereum.org (partial)</string>
+	<key>etherpad.fr</key>
+	<string>etherpad.fr</string>
 	<key>ethicalhacker.net</key>
 	<string>Ethical Hacker.Net (false MCB)</string>
 	<key>ethicspoint.com</key>
@@ -22883,6 +23285,8 @@
 	<string>EVGA (partial)</string>
 	<key>evga.com.tw</key>
 	<string>EVGA (partial)</string>
+	<key>evil32.com</key>
+	<string>Evil 32.com</string>
 	<key>evisa-vietnam.com</key>
 	<string>Evisa-Vietnam.Com</string>
 	<key>evo.com</key>
@@ -23043,8 +23447,6 @@
 	<string>CheetahMail</string>
 	<key>f.curbed.cc</key>
 	<string>Curbed.cc</string>
-	<key>f.fontdeck.com</key>
-	<string>Fontdeck (partial)</string>
 	<key>f35.com</key>
 	<string>F35.com</string>
 	<key>f3mimages.com</key>
@@ -23107,6 +23509,8 @@
 	<string>fagms.net</string>
 	<key>fail0verflow.com</key>
 	<string>fail0verflow</string>
+	<key>fairphone.com</key>
+	<string>Fairphone.com (partial)</string>
 	<key>fairwork.gov.au</key>
 	<string>Fair Work Ombudsman</string>
 	<key>faithinmotion.com.au</key>
@@ -23157,6 +23561,8 @@
 	<string>Fashion Dip</string>
 	<key>fass.se</key>
 	<string>Fass.se</string>
+	<key>fast.fonts.net</key>
+	<string>Fonts.net (partial)</string>
 	<key>fast.wistia.net</key>
 	<string>Wistia (partial)</string>
 	<key>fastclick.com</key>
@@ -23171,6 +23577,8 @@
 	<string>Fasthosts (partial)</string>
 	<key>fastly.com</key>
 	<string>Fastly</string>
+	<key>fastmail.com</key>
+	<string>Fastmail (partial)</string>
 	<key>fastmail.fm</key>
 	<string>Fastmail (partial)</string>
 	<key>fastserv.com</key>
@@ -23423,6 +23831,10 @@
 	<string>MediaSpan (partial)</string>
 	<key>fime.me</key>
 	<string>FIME.me</string>
+	<key>fimfiction-static.net</key>
+	<string>Fimfiction.net</string>
+	<key>fimfiction.net</key>
+	<string>Fimfiction.net</string>
 	<key>final-score.com</key>
 	<string>Final-Score</string>
 	<key>finalrewind.net</key>
@@ -23455,6 +23867,8 @@
 	<string>Find n Save (partial)</string>
 	<key>findretros.com</key>
 	<string>FindRetros.com</string>
+	<key>findthebest.com</key>
+	<string>FindTheBest.com</string>
 	<key>fineartamerica.com</key>
 	<string>Fine Art America</string>
 	<key>fineproxy.org</key>
@@ -23541,6 +23955,8 @@
 	<string>FlamingSpork.com (partial)</string>
 	<key>flashback.org</key>
 	<string>Flashback.org</string>
+	<key>flashgot.net</key>
+	<string>FlashGot.net</string>
 	<key>flashtalking.com</key>
 	<string>Flashtalking (partial)</string>
 	<key>flashtalking.net</key>
@@ -23617,6 +24033,8 @@
 	<string>FlyersRights.org</string>
 	<key>flyersrights.org</key>
 	<string>FlyersRights.org</string>
+	<key>flyertalk.com</key>
+	<string>Flyertalk.com</string>
 	<key>flyertown.ca</key>
 	<string>Flyertown</string>
 	<key>flyingcameras.ca</key>
@@ -23662,7 +24080,7 @@
 	<key>fonder.ki.se</key>
 	<string>KI.se</string>
 	<key>fontdeck.com</key>
-	<string>Fontdeck (partial)</string>
+	<string>Fontdeck.com (partial)</string>
 	<key>fontmarketplace.com</key>
 	<string>Monotype Imaging (partial)</string>
 	<key>fonts.com</key>
@@ -23943,6 +24361,8 @@
 	<string>FreeDNS.Afraid.org</string>
 	<key>freedom-to-tinker.com</key>
 	<string>Freedom to Tinker</string>
+	<key>freedom.press</key>
+	<string>Freedom.Press</string>
 	<key>freedomboxfoundation.org</key>
 	<string>Freedombox Foundation</string>
 	<key>freedomnotfear.org</key>
@@ -23987,6 +24407,8 @@
 	<string>Free Snowden.is</string>
 	<key>freespeech.org</key>
 	<string>Free Speech.org</string>
+	<key>freethoughtblogs.com</key>
+	<string>Freethought Blogs.com (partial)</string>
 	<key>freeunlocks.com</key>
 	<string>FreeUnlocks.com</string>
 	<key>freewebsitetemplates.com</key>
@@ -24119,6 +24541,8 @@
 	<string>FullTraffic (partial)</string>
 	<key>fundaciontelevisa.org</key>
 	<string>Fundacion Televisa.org (false MCB)</string>
+	<key>fundersclub.com</key>
+	<string>FundersClub.com</string>
 	<key>fundfill.com</key>
 	<string>FundFill.com</string>
 	<key>fundrazr.com</key>
@@ -24171,6 +24595,8 @@
 	<string>U.S. Fish and Wildlife Service (partial)</string>
 	<key>fxguide.com</key>
 	<string>fxguide.com (partial)</string>
+	<key>fxn.ws</key>
+	<string>bit.ly vanity domains</string>
 	<key>fxosphone.mozilla.com.tw</key>
 	<string>Mozilla.com.tw (partial)</string>
 	<key>fxphd.com</key>
@@ -24183,6 +24609,8 @@
 	<string>UK Local Government</string>
 	<key>g-ir.com</key>
 	<string>Global Investor Relations</string>
+	<key>g.denik.cz</key>
+	<string>Denik.cz (partial)</string>
 	<key>g.liveinternet.ru</key>
 	<string>LiveInternet (partial)</string>
 	<key>g.mozest.com</key>
@@ -24239,6 +24667,8 @@
 	<string>The Gameological Society (partial)</string>
 	<key>gamersfirst.com</key>
 	<string>Gamersfirst.com (partial)</string>
+	<key>games.mirrorbingo.com</key>
+	<string>Mirror Bingo.com (partial)</string>
 	<key>gamesonly.at</key>
 	<string>GamesOnly.at</string>
 	<key>gamesports.net</key>
@@ -24317,6 +24747,8 @@
 	<string>Gay180</string>
 	<key>gayromeo.com</key>
 	<string>PlanetRomeo</string>
+	<key>gayswap.com</key>
+	<string>GaySwap.com</string>
 	<key>gazellegames.net</key>
 	<string>gazellegames.net</string>
 	<key>gbatemp.net</key>
@@ -24373,6 +24805,8 @@
 	<string>Geeksphone.com</string>
 	<key>geektechlabs.com</key>
 	<string>Geek Tech Labs.com</string>
+	<key>geektimes.ru</key>
+	<string>Geektimes.ru</string>
 	<key>gefpmis.org</key>
 	<string>International Finance Corporation (partial)</string>
 	<key>geizhals.at</key>
@@ -24449,6 +24883,8 @@
 	<string>Get.It</string>
 	<key>getadblock.com</key>
 	<string>AdBlock</string>
+	<key>getaddr.bitnodes.io</key>
+	<string>Bitnodes.io (partial)</string>
 	<key>getawaygrey.com</key>
 	<string>GetAwayGrey</string>
 	<key>getbuckyballs.com</key>
@@ -24609,8 +25045,12 @@
 	<string>Girl Scouts (partial)</string>
 	<key>gistmarks.com</key>
 	<string>gistmarks.com</string>
+	<key>git.eigenlab.org</key>
+	<string>eigenLab</string>
+	<key>gitbook.com</key>
+	<string>GitBook.com</string>
 	<key>gitbook.io</key>
-	<string>GitBook.io (partial)</string>
+	<string>GitBook.IO (partial)</string>
 	<key>gitc.finance.gov.au</key>
 	<string>Commonwealth GITC</string>
 	<key>gitcafe.com</key>
@@ -24757,6 +25197,8 @@
 	<string>Google Services</string>
 	<key>gmo-registry.com</key>
 	<string>GMO-Registry.com</string>
+	<key>gmo.com</key>
+	<string>GMO.com</string>
 	<key>gmo.jp</key>
 	<string>GMO Internet (partial)</string>
 	<key>gmocloud.com</key>
@@ -24775,6 +25217,8 @@
 	<string>GMX</string>
 	<key>gna.org</key>
 	<string>Gna (partial)</string>
+	<key>gngr.info</key>
+	<string>gngr.info</string>
 	<key>gnome-help.org</key>
 	<string>openDesktop.org</string>
 	<key>gnome-look.org</key>
@@ -25121,6 +25565,8 @@
 	<string>Google Services</string>
 	<key>groupwise.boell.de</key>
 	<string>Boell.de</string>
+	<key>grove.io</key>
+	<string>Grove.io</string>
 	<key>growery.org</key>
 	<string>Growery (partial)</string>
 	<key>growhq.com</key>
@@ -25156,7 +25602,7 @@
 	<key>gu.tt</key>
 	<string>Guttmacher Institute</string>
 	<key>guadec.org</key>
-	<string>GPUL.org (partial)</string>
+	<string>GUADEC.org (partial)</string>
 	<key>guarantorusloans.co.uk</key>
 	<string>Guarantorus Loans.co.uk</string>
 	<key>guardian.co.tt</key>
@@ -25209,6 +25655,8 @@
 	<string>GNOME (partial)</string>
 	<key>guru.de</key>
 	<string>guru.de</string>
+	<key>gurulabs.com</key>
+	<string>Guru Labs.com</string>
 	<key>gust.com</key>
 	<string>Gust (partial)</string>
 	<key>gutenberg.org</key>
@@ -25261,6 +25709,8 @@
 	<string>habrastorage.org</string>
 	<key>hackable-devices.org</key>
 	<string>hackable-devices.org</string>
+	<key>hackademix.net</key>
+	<string>hackademix.net</string>
 	<key>hackerexperience.com</key>
 	<string>Hacker Experience.com</string>
 	<key>hackerone.com</key>
@@ -25315,6 +25765,8 @@
 	<string>Hammacher Schlemmer (partial)</string>
 	<key>hamradio.com</key>
 	<string>Hamradio.com</string>
+	<key>handbrake.fr</key>
+	<string>Handbrake.fr</string>
 	<key>handelsbanken.fi</key>
 	<string>handelsbanken.fi (partial)</string>
 	<key>handelsblatt.com</key>
@@ -25357,6 +25809,8 @@
 	<string>Harland Clarke</string>
 	<key>harlandforms.com</key>
 	<string>Harland Clarke</string>
+	<key>harrow.io</key>
+	<string>Harrow.io</string>
 	<key>harvardpilgrim.org</key>
 	<string>Harvard Pilgrim.org (partial)</string>
 	<key>hashcat.net</key>
@@ -25389,8 +25843,6 @@
 	<string>Hawaiian Airlines</string>
 	<key>hawkhost.com</key>
 	<string>Hawk Host.com (partial)</string>
-	<key>hazen.gl.ciw.edu</key>
-	<string>Carnegie Institution for Science</string>
 	<key>hbanet.org</key>
 	<string>HBAnet.org</string>
 	<key>hbbtv.org</key>
@@ -25400,7 +25852,7 @@
 	<key>hboeck.de</key>
 	<string>HBoeck.de</string>
 	<key>hbr.org</key>
-	<string>HBR.org (partial)</string>
+	<string>HBR.org</string>
 	<key>hc2.humanclick.com</key>
 	<string>LivePerson (partial)</string>
 	<key>hd.se</key>
@@ -25443,6 +25895,8 @@
 	<string>NHS (partial)</string>
 	<key>healthyforkids.wpengine.netdna-cdn.com</key>
 	<string>Healthy for Kids (partial)</string>
+	<key>heapanalytics.com</key>
+	<string>Heap Analytics.com</string>
 	<key>heart.org</key>
 	<string>Heart.org (partial)</string>
 	<key>hearthvod.com</key>
@@ -25477,6 +25931,8 @@
 	<string>Hello Bar (partial)</string>
 	<key>helloneighbour.com</key>
 	<string>Hello Neighbour</string>
+	<key>hellosign.com</key>
+	<string>HelloSign.com (partial)</string>
 	<key>helmholtz-berlin.de</key>
 	<string>Helmholtz-Zentrum Berlin for Materials and Energy</string>
 	<key>helmich.de</key>
@@ -25629,6 +26085,8 @@
 	<string>Hızlı Saat</string>
 	<key>hjcms.de</key>
 	<string>HJCMS (CAcert)</string>
+	<key>hjr-verlag.de</key>
+	<string>HJR-Verlag.de</string>
 	<key>hjv.dk</key>
 	<string>Hjv.dk</string>
 	<key>hjv.kursuslogin.dk</key>
@@ -25641,6 +26099,8 @@
 	<string>HKK</string>
 	<key>hkn.de</key>
 	<string>HKN (partial)</string>
+	<key>hkyantoyan.com</key>
+	<string>HK Yanto Yan.com (partial)</string>
 	<key>hlat.us</key>
 	<string>HabboLatino</string>
 	<key>hm.com</key>
@@ -25671,6 +26131,8 @@
 	<string>Holder de ord.no</string>
 	<key>holidaybreak.co.uk</key>
 	<string>Holidaybreak (partial)</string>
+	<key>holidaybullshit.com</key>
+	<string>HolidayBullshit.com</string>
 	<key>hollywoodoutlaws.com</key>
 	<string>Hollywood Outlaws.com (partial)</string>
 	<key>hollywoodreporter.com</key>
@@ -25703,6 +26165,8 @@
 	<string>HomeFinder.com (partial)</string>
 	<key>homeinsurance.com</key>
 	<string>HomeInsurance.com</string>
+	<key>homelessveterans.co.uk</key>
+	<string>Homeless Veterans.co.uk (partial)</string>
 	<key>homelessworldcup.org</key>
 	<string>Homeless World Cup</string>
 	<key>homementors.com</key>
@@ -25927,10 +26391,14 @@
 	<string>HSV.se</string>
 	<key>htbridge.com</key>
 	<string>HT Bridge.com</string>
+	<key>html5.org</key>
+	<string>html5.org</string>
 	<key>htrnews.com</key>
 	<string>Herald Times Reporter</string>
 	<key>http.cdnlayer.com</key>
 	<string>Internap Network Services (partial)</string>
+	<key>httplab.it</key>
+	<string>httpLab.it</string>
 	<key>https.openbsd.org</key>
 	<string>OpenBSD.org (partial)</string>
 	<key>httpsnow.org</key>
@@ -25944,7 +26412,7 @@
 	<key>hud.gov</key>
 	<string>US Department of Housing and Urban Development (partial)</string>
 	<key>huffingtonpost.com</key>
-	<string>Huffington Post</string>
+	<string>Huffington Post (partial)</string>
 	<key>hugedomains.com</key>
 	<string>HugeDomains.com (partial)</string>
 	<key>huggies.com.au</key>
@@ -26079,8 +26547,6 @@
 	<string>Taringa (partial)</string>
 	<key>i.techweb.com</key>
 	<string>TechWeb (partial)</string>
-	<key>i.ubm-us.net</key>
-	<string>TechWeb (partial)</string>
 	<key>i.yldbt.com</key>
 	<string>YieldBot (partial)</string>
 	<key>i0.cz</key>
@@ -26193,6 +26659,8 @@
 	<string>UK Information Commissioner&#39;s Office (partial)</string>
 	<key>icommons.org</key>
 	<string>iCommons (partial)</string>
+	<key>iconfinder.com</key>
+	<string>Iconfinder.com (partial)</string>
 	<key>icpen.org</key>
 	<string>ICPEN</string>
 	<key>icq.com</key>
@@ -26275,6 +26743,10 @@
 	<string>IFEX.org</string>
 	<key>ifightsurveillance.com</key>
 	<string>I Fight Surveillance.org</string>
+	<key>ifightsurveillance.net</key>
+	<string>I Fight Surveillance.org</string>
+	<key>ifightsurveillance.org</key>
+	<string>I Fight Surveillance.org</string>
 	<key>ifixit-meta.dozuki.net</key>
 	<string>iFixit (partial)</string>
 	<key>ifixit.com</key>
@@ -26285,6 +26757,8 @@
 	<string>Ifortuna.sk</string>
 	<key>ifrype.com</key>
 	<string>Draugiem.lv (partial)</string>
+	<key>ift.tt</key>
+	<string>bit.ly vanity domains</string>
 	<key>ifttt.com</key>
 	<string>IFTTT.com (partial)</string>
 	<key>igalia.com</key>
@@ -26337,6 +26811,8 @@
 	<string>IKK-Gesundplus</string>
 	<key>ikk-suedwest.de</key>
 	<string>IKK-Suedwest</string>
+	<key>ikvc.slovakrail.sk</key>
+	<string>Slovakrail.sk</string>
 	<key>ilivid.com</key>
 	<string>iLivid (partial)</string>
 	<key>iljmp.com</key>
@@ -26607,6 +27083,8 @@
 	<string>iNaturalist.org</string>
 	<key>inbox.influenceexplorer.com</key>
 	<string>Sunlight Foundation (partial)</string>
+	<key>inbox.lv</key>
+	<string>Inbox.lv</string>
 	<key>inboxapp.com</key>
 	<string>InboxApp.com</string>
 	<key>inc.com</key>
@@ -26629,6 +27107,8 @@
 	<string>InCommon</string>
 	<key>ind.ie</key>
 	<string>Ind.ie</string>
+	<key>ind.pn</key>
+	<string>bit.ly vanity domains</string>
 	<key>indabamusic.com</key>
 	<string>Indaba Music.com (false MCB)</string>
 	<key>independentmail.com</key>
@@ -26677,6 +27157,8 @@
 	<string>Influencers Conference</string>
 	<key>infobaselistexpress.com</key>
 	<string>Acxiom (partial)</string>
+	<key>infojobs.net</key>
+	<string>InfoJobs.net (partial)</string>
 	<key>infolinks.com</key>
 	<string>Infolinks (partial)</string>
 	<key>infomaniak.ch</key>
@@ -26699,8 +27181,6 @@
 	<string>informatick.net (partial)</string>
 	<key>informatick.net</key>
 	<string>informatick.net (partial)</string>
-	<key>informatik.uni-hamburg.de</key>
-	<string>UHH_Informatik</string>
 	<key>informationactivism.org</key>
 	<string>informationactivism.org</string>
 	<key>informationweek.com</key>
@@ -26770,7 +27250,7 @@
 	<key>insidecelebs.com</key>
 	<string>insidecelebs.com</string>
 	<key>insidehighered.com</key>
-	<string>Inside Higher Ed (partial)</string>
+	<string>Inside Higher Ed.com</string>
 	<key>insideygs.com</key>
 	<string>insideygs.com</string>
 	<key>insight.adsrvr.org</key>
@@ -26809,6 +27289,8 @@
 	<string>Instapanel.com</string>
 	<key>instapaper.com</key>
 	<string>Instapaper</string>
+	<key>instartlogic.com</key>
+	<string>Instart Logic.com (partial)</string>
 	<key>institute.lds.org</key>
 	<string>The Church of Jesus Christ of Latter-day Saints</string>
 	<key>instra.com</key>
@@ -26859,6 +27341,8 @@
 	<string>Intercom.io</string>
 	<key>interdiscount.ch</key>
 	<string>Coop</string>
+	<key>interfacelift.com</key>
+	<string>Interfacelift.com</string>
 	<key>interhyp.de</key>
 	<string>Interhyp.de</string>
 	<key>interkassa.com</key>
@@ -26905,6 +27389,8 @@
 	<string>Internet Week.jp</string>
 	<key>internews.org</key>
 	<string>Internews</string>
+	<key>internot.info</key>
+	<string>Internot.info (partial)</string>
 	<key>internt.slu.se</key>
 	<string>SLU.se</string>
 	<key>intersango.com</key>
@@ -26998,7 +27484,7 @@
 	<key>ionaudio.com</key>
 	<string>ION Audio</string>
 	<key>iop.org</key>
-	<string>Institute of Physics (partial)</string>
+	<string>IoP.org (partial)</string>
 	<key>ioplex.com</key>
 	<string>IOPLEX Software</string>
 	<key>iospp.org</key>
@@ -27059,6 +27545,8 @@
 	<string>iPwnAge.com</string>
 	<key>ipxe.org</key>
 	<string>iPXE.org (partial)</string>
+	<key>iq.intel.co.uk</key>
+	<string>Intel.co.uk (partial)</string>
 	<key>iqt.org</key>
 	<string>In-Q-Tel</string>
 	<key>iraaa.org</key>
@@ -27125,6 +27613,8 @@
 	<string>ISOC.org.br</string>
 	<key>isocket.com</key>
 	<string>isocket (partial)</string>
+	<key>isocpp.org</key>
+	<string>ISO Cpp.org</string>
 	<key>isohunt.com</key>
 	<string>IsoHunt</string>
 	<key>isohunt.to</key>
@@ -27183,6 +27673,8 @@
 	<string>Itex</string>
 	<key>ithaca.edu</key>
 	<string>Ithaca College</string>
+	<key>iti.ms</key>
+	<string>bit.ly vanity domains</string>
 	<key>itmb.nl</key>
 	<string>ITMB.nl</string>
 	<key>itriskltd.com</key>
@@ -27281,6 +27773,8 @@
 	<string>Jackson-IT.de</string>
 	<key>jacksonsun.com</key>
 	<string>The Jackson Sun (partial)</string>
+	<key>jacobinmag.com</key>
+	<string>Jacobin Mag.com</string>
 	<key>jacoblangvad.com</key>
 	<string>Jacob Langvad Nilsson</string>
 	<key>jacobsstudent.ucsd.edu</key>
@@ -27449,8 +27943,6 @@
 	<string>METRO Transit (Harris County, Houston, Texas)</string>
 	<key>jobs.urbandictionary.com</key>
 	<string>TheResumator clients (partial)</string>
-	<key>jobs.voxmedia.com</key>
-	<string>SB Nation (partial)</string>
 	<key>jobs2web.com</key>
 	<string>Jobs2Web</string>
 	<key>jobsatosu.com</key>
@@ -27527,6 +28019,8 @@
 	<string>Joyclub.de</string>
 	<key>joyent.com</key>
 	<string>Joyent (partial)</string>
+	<key>jp.8chan.co</key>
+	<string>8chan</string>
 	<key>jp.fujitsu.com</key>
 	<string>Fujitsu (partial)</string>
 	<key>jpberlin.de</key>
@@ -27541,6 +28035,10 @@
 	<string>jQuery Mobile.com (partial)</string>
 	<key>jqueryui.com</key>
 	<string>jQuery UI.com (partial)</string>
+	<key>jrnl.ie</key>
+	<string>bit.ly vanity domains</string>
+	<key>jrnl.to</key>
+	<string>bit.ly vanity domains</string>
 	<key>jrrt.org.uk</key>
 	<string>Joseph Rowntree Reform Trust (partial)</string>
 	<key>js-kit.com</key>
@@ -27609,6 +28107,8 @@
 	<string>Ministry of Justice</string>
 	<key>justice.sk</key>
 	<string>SlovakGoverment</string>
+	<key>justiceinspectorates.gov.uk</key>
+	<string>Criminal Justice Inspectorates</string>
 	<key>justin.tv</key>
 	<string>Justin.tv (partial)</string>
 	<key>justitie.nl</key>
@@ -27687,8 +28187,6 @@
 	<string>kasperskycontenthub.com</string>
 	<key>kasserver.com</key>
 	<string>KASserver.com</string>
-	<key>kastatic.com</key>
-	<string>KickassTorrents</string>
 	<key>kastatic.org</key>
 	<string>Khan Academy</string>
 	<key>kat-de-paris.fr</key>
@@ -27743,6 +28241,8 @@
 	<string>Keenot.es (partial)</string>
 	<key>keep2share.cc</key>
 	<string>K2s.cc</string>
+	<key>keepallthethings.com</key>
+	<string>Keep all the things.com</string>
 	<key>keepassx.org</key>
 	<string>Keepassx</string>
 	<key>kei.pl</key>
@@ -27821,6 +28321,8 @@
 	<string>KidsHealth/TeensHealth</string>
 	<key>kikatek.com</key>
 	<string>Kikatek</string>
+	<key>kildarestreet.com</key>
+	<string>KildareStreet.com</string>
 	<key>kimberly-clark.com</key>
 	<string>Kimberly-Clark (partial)</string>
 	<key>kimberly-clark.com.*</key>
@@ -27837,6 +28339,8 @@
 	<string>KingHost (partial)</string>
 	<key>kingsroadmerch.com</key>
 	<string>Kings Road Merch</string>
+	<key>kinklink.me</key>
+	<string>KinkLink.me</string>
 	<key>kinko.me</key>
 	<string>Kinko.me</string>
 	<key>kinotehnik.com</key>
@@ -28145,6 +28649,8 @@
 	<string>Gnumonks.org (CAcert, partial)</string>
 	<key>lagen.nu</key>
 	<string>Lagen.nu</string>
+	<key>lainchan.org</key>
+	<string>lainchan.org</string>
 	<key>lakome.com</key>
 	<string>Lakome.com</string>
 	<key>lambda-tek.com</key>
@@ -28237,6 +28743,8 @@
 	<string>Lazy Kush</string>
 	<key>lbhf.gov.uk</key>
 	<string>UK Local Government</string>
+	<key>lbl.gov</key>
+	<string>LBL.gov (partial)</string>
 	<key>lc2.lcstatic.net</key>
 	<string>Lester Chan.net</string>
 	<key>lca2014.linux.org.au</key>
@@ -28323,8 +28831,12 @@
 	<string>Legtux (cacert)</string>
 	<key>leicestershire.gov.uk</key>
 	<string>UK Local Government</string>
+	<key>lektorium.tv</key>
+	<string>Lektorium.tv</string>
 	<key>lelo.com</key>
 	<string>Lelo.com</string>
+	<key>lendo.se</key>
+	<string>Lendo.se (partial)</string>
 	<key>lenovo.co.uk</key>
 	<string>Lenovo (partial)</string>
 	<key>lenovo.com</key>
@@ -28451,6 +28963,8 @@
 	<string>Garfield.com</string>
 	<key>licenses.javacoolsoftware.com</key>
 	<string>Javacoolsoftware.com</string>
+	<key>licensing.ofcom.org.uk</key>
+	<string>Ofcom.org.uk (false MCB)</string>
 	<key>lichtblick.de</key>
 	<string>Lichtblick.de</string>
 	<key>lifeinthefastlane.ca</key>
@@ -28547,6 +29061,8 @@
 	<string>Linn Records.com (partial)</string>
 	<key>linode.com</key>
 	<string>Linode</string>
+	<key>linotype.com</key>
+	<string>Linotype.com (partial)</string>
 	<key>linphone.org</key>
 	<string>Linphone</string>
 	<key>linutronix.de</key>
@@ -28583,8 +29099,6 @@
 	<string>openDesktop.org</string>
 	<key>linuxdistrocommunity.com</key>
 	<string>Linux Distro Community.com</string>
-	<key>linuxforums.org</key>
-	<string>Linux Forums (partial)</string>
 	<key>linuxfoundation.org</key>
 	<string>Linux Foundation (partial)</string>
 	<key>linuxfr.org</key>
@@ -28737,6 +29251,8 @@
 	<string>LivingSocial (partial)</string>
 	<key>lizardtech.com</key>
 	<string>Celartem (partial)</string>
+	<key>lj.rossia.org</key>
+	<string>LJR</string>
 	<key>lkml.org</key>
 	<string>LKML</string>
 	<key>ll.*.utorrent.com</key>
@@ -28745,6 +29261,8 @@
 	<string>Lawrence Livermore National Laboratory</string>
 	<key>lloydstsb-offshore.com</key>
 	<string>Lloyds TSB Offshore</string>
+	<key>llvm.org</key>
+	<string>LLVM.org (partial)</string>
 	<key>lnkd.in</key>
 	<string>LinkedIn (partial)</string>
 	<key>loa.org</key>
@@ -28767,6 +29285,8 @@
 	<string>localbitcoins.com</string>
 	<key>localedge.com</key>
 	<string>LocalEdge (partial)</string>
+	<key>localphone.com</key>
+	<string>Localphone</string>
 	<key>localsearchassociation.org</key>
 	<string>Yellow Pages IMA (partial)</string>
 	<key>lochem.nl</key>
@@ -28988,7 +29508,7 @@
 	<key>lth.se</key>
 	<string>LTH.se (partial)</string>
 	<key>lttng.org</key>
-	<string>LTTng Project</string>
+	<string>LTTng.org</string>
 	<key>ltu.se</key>
 	<string>Luleå University of Technology (partial)</string>
 	<key>ltvimg.com</key>
@@ -29158,7 +29678,7 @@
 	<key>macports.org</key>
 	<string>MacPorts.org</string>
 	<key>macromedia.com</key>
-	<string>Adobe</string>
+	<string>Macromedia.com</string>
 	<key>macruby.org</key>
 	<string>MacRuby</string>
 	<key>macworld.idg.se</key>
@@ -29207,6 +29727,8 @@
 	<string>MAH.se</string>
 	<key>mahoneshomedecor.com</key>
 	<string>Mahones Home Decor</string>
+	<key>maidsafe.org</key>
+	<string>maidsafe.org</string>
 	<key>maidstone.gov.uk</key>
 	<string>UK Local Government</string>
 	<key>mail-archive.com</key>
@@ -29333,6 +29855,8 @@
 	<string>Maliit.org (partial)</string>
 	<key>malina.hu</key>
 	<string>Domaintank</string>
+	<key>mall.brands.com.tw</key>
+	<string>Brands.com.tw</string>
 	<key>mall.cz</key>
 	<string>Mall_sk_cz_hu_pl</string>
 	<key>mall.hu</key>
@@ -29347,6 +29871,8 @@
 	<string>Malwarebytes (partial)</string>
 	<key>malwaretracker.com</key>
 	<string>Malware Tracker.com (partial)</string>
+	<key>malwr.com</key>
+	<string>Malwr.com</string>
 	<key>mamba.ru</key>
 	<string>Mamba</string>
 	<key>mammut.ch</key>
@@ -29671,6 +30197,8 @@
 	<string>Medgadget</string>
 	<key>media.220volt.hu</key>
 	<string>220Volt.hu</string>
+	<key>media.8chan.co</key>
+	<string>8chan</string>
 	<key>media.bizj.us</key>
 	<string>The Business Journals (partial)</string>
 	<key>media.cdn.liquidweb.com</key>
@@ -29801,6 +30329,8 @@
 	<string>MedicineNet.com (partial)</string>
 	<key>medicinescomplete.com</key>
 	<string>MedicinesComplete (partial)</string>
+	<key>medienberufe-sde.kursbuero.de</key>
+	<string>Kursbuero.de (partial)</string>
 	<key>medikamente-per-klick.de</key>
 	<string>Medikamente-Per-Klick</string>
 	<key>medipreis.de</key>
@@ -29895,6 +30425,8 @@
 	<string>MemberClicks.net</string>
 	<key>memberdb.nuug.no</key>
 	<string>NUUG.no (false MCB)</string>
+	<key>memberful.com</key>
+	<string>Memberful.com</string>
 	<key>members.dukeexechealth.org</key>
 	<string>Duke University (partial)</string>
 	<key>members.easynews.com</key>
@@ -29939,6 +30471,8 @@
 	<string>Mercury News.com (partial)</string>
 	<key>mercyships.org</key>
 	<string>Mercy Ships (partial)</string>
+	<key>merethis.com</key>
+	<string>MereThis.com</string>
 	<key>meritrustcu.org</key>
 	<string>Meritrust CU.org</string>
 	<key>merton.gov.uk</key>
@@ -29955,6 +30489,8 @@
 	<string>metacode.cz</string>
 	<key>metacpan.org</key>
 	<string>MetaCPAN</string>
+	<key>metager.de</key>
+	<string>MetaGer.de</string>
 	<key>metal-detector-town.com</key>
 	<string>Metal-Detector-Town.com</string>
 	<key>metalab.at</key>
@@ -30023,6 +30559,8 @@
 	<string>Miamire.com (partial)</string>
 	<key>mibbit.com</key>
 	<string>Mibbit</string>
+	<key>mibew.org</key>
+	<string>Mibew.org</string>
 	<key>micahflee.com</key>
 	<string>Micah F Lee.com</string>
 	<key>michaelwlucas.com</key>
@@ -30083,6 +30621,8 @@
 	<string>WestlandUtrecht Bank</string>
 	<key>mijnzakelijk.ing.nl</key>
 	<string>ING</string>
+	<key>mikeash.com</key>
+	<string>Mike Ash.com</string>
 	<key>mikel.olasagasti.info</key>
 	<string>Mikel Olasagasti Uranga (partial)</string>
 	<key>mikemasin.com</key>
@@ -30169,6 +30709,10 @@
 	<string>MirBSD</string>
 	<key>mirc.com</key>
 	<string>mIRC (partial)</string>
+	<key>mirrorbingo.com</key>
+	<string>Mirror Bingo.com (partial)</string>
+	<key>mirrorreaderoffers.co.uk</key>
+	<string>Mirror Reader Offers.co.uk</string>
 	<key>misadventureswithandi.com</key>
 	<string>Misadventures with Andi (partial)</string>
 	<key>misco.co.uk</key>
@@ -30176,9 +30720,9 @@
 	<key>mises.org</key>
 	<string>Mises.org</string>
 	<key>mit.edu</key>
-	<string>Massachusetts Institute of Technology (partial)</string>
+	<string>MIT.edu (partial)</string>
 	<key>mitpressjournals.org</key>
-	<string>Massachusetts Institute of Technology (partial)</string>
+	<string>MIT Press Journals.org (partial)</string>
 	<key>mitre.org</key>
 	<string>mitre.org</string>
 	<key>mitsubishi.com</key>
@@ -30281,6 +30825,8 @@
 	<string>Vdopia</string>
 	<key>mobile.swiss.com</key>
 	<string>Swiss.com</string>
+	<key>mobile.willhaben.at</key>
+	<string>Willhaben.at (partial)</string>
 	<key>mobilecore.com</key>
 	<string>MobileCore.com</string>
 	<key>mobilepki.org</key>
@@ -30451,6 +30997,8 @@
 	<string>Museum of Science (partial)</string>
 	<key>mosaicscience.com</key>
 	<string>Mosaic Science.com (partial)</string>
+	<key>mosis.com</key>
+	<string>MOSIS.com</string>
 	<key>mosr.sk</key>
 	<string>SlovakGoverment</string>
 	<key>motherjones.com</key>
@@ -30522,7 +31070,7 @@
 	<key>mozillaignite.com</key>
 	<string>Mozilla</string>
 	<key>mozillalabs.com</key>
-	<string>Mozilla Labs.com</string>
+	<string>Mozilla Labs.com (partial)</string>
 	<key>mozo.com.au</key>
 	<string>Mozo.com.au (partial)</string>
 	<key>mozy.co.uk</key>
@@ -30703,8 +31251,6 @@
 	<string>OTE</string>
 	<key>my.ratepoint.com</key>
 	<string>RatePoint (partial)</string>
-	<key>my.safaribooksonline.com</key>
-	<string>Safari Books Online</string>
 	<key>my.segpay.com</key>
 	<string>SegPay (partial)</string>
 	<key>my.smartbear.com</key>
@@ -30947,6 +31493,8 @@
 	<string>Volunteer² (partial)</string>
 	<key>mywell-being.com</key>
 	<string>MyWell-Being.com</string>
+	<key>mywickr.com</key>
+	<string>Wickr.com</string>
 	<key>mywot.com</key>
 	<string>MyWOT (partial)</string>
 	<key>mywot.net</key>
@@ -31071,6 +31619,8 @@
 	<string>National Geographic (partial)</string>
 	<key>nationalgrid.com</key>
 	<string>National Grid</string>
+	<key>nationalpriorities.org</key>
+	<string>National Priorities.org</string>
 	<key>nationalrail.co.uk</key>
 	<string>National Rail Enquiries (partial)</string>
 	<key>nationalreview.com</key>
@@ -31117,6 +31667,8 @@
 	<string>Nawaat</string>
 	<key>nazwa.pl</key>
 	<string>nazwa.pl (partial)</string>
+	<key>nbcnews.to</key>
+	<string>bit.ly vanity domains</string>
 	<key>nbcudigitaladops.com</key>
 	<string>NBCUniversal Media (partial)</string>
 	<key>nber.org</key>
@@ -31233,6 +31785,8 @@
 	<string>neobookings</string>
 	<key>neobux.com</key>
 	<string>NeoBux.com (partial)</string>
+	<key>neocities.org</key>
+	<string>NeoCities.org</string>
 	<key>neomailbox.*</key>
 	<string>neomailbox</string>
 	<key>neonisi.com</key>
@@ -31308,7 +31862,9 @@
 	<key>netguava.com</key>
 	<string>Netguava (partial)</string>
 	<key>netiq.com</key>
-	<string>NetIQ (partial)</string>
+	<string>NetIQ.com (partial)</string>
+	<key>netistrar.com</key>
+	<string>Netistrar.com</string>
 	<key>netload.in</key>
 	<string>Netload</string>
 	<key>netlock.hu</key>
@@ -31327,6 +31883,8 @@
 	<string>NetPivotal</string>
 	<key>netpivotal.co.uk</key>
 	<string>NetPivotal</string>
+	<key>netpol.org</key>
+	<string>Netpol.org</string>
 	<key>nets-danid.dk</key>
 	<string>Nets DanID</string>
 	<key>netsale.aktiiviraha.fi</key>
@@ -31345,6 +31903,8 @@
 	<string>Nettica</string>
 	<key>netverify.com</key>
 	<string>Netverify</string>
+	<key>netvibes.com</key>
+	<string>Netvibes.com (partial)</string>
 	<key>network23.org</key>
 	<string>network23.org</string>
 	<key>networkadvertising.org</key>
@@ -31391,6 +31951,8 @@
 	<string>New Dream Network</string>
 	<key>neweb.ucsd.edu</key>
 	<string>UCSD</string>
+	<key>newint.org</key>
+	<string>NewInt.org (partial)</string>
 	<key>newit.co.uk</key>
 	<string>NewIT</string>
 	<key>newlook.com</key>
@@ -31635,6 +32197,8 @@
 	<string>NodeJS Modules.org</string>
 	<key>nodeserv.com</key>
 	<string>NodeServ.com</string>
+	<key>nodesource.com</key>
+	<string>NodeSource.com</string>
 	<key>nodpi.org</key>
 	<string>No Deep Packet Inspection campaign</string>
 	<key>noelia.fi</key>
@@ -31685,6 +32249,8 @@
 	<string>Nordu.net</string>
 	<key>nordvpn.com</key>
 	<string>Nordvpn.com</string>
+	<key>noridiansecure.snowfly.com</key>
+	<string>Snowfly (partial)</string>
 	<key>noris.net</key>
 	<string>noris.net</string>
 	<key>norman.com</key>
@@ -31756,7 +32322,7 @@
 	<key>novara.ie</key>
 	<string>Digiweb (partial)</string>
 	<key>novell.com</key>
-	<string>Novell (partial)</string>
+	<string>Novell.com (partial)</string>
 	<key>now.symassets.com</key>
 	<string>Symantec (partial)</string>
 	<key>noxa.de</key>
@@ -31795,12 +32361,16 @@
 	<string>nrelate (partial)</string>
 	<key>nrf.com</key>
 	<string>National Retail Federation (partial)</string>
+	<key>nrk.no</key>
+	<string>Nrk.no (partial)</string>
 	<key>nro.net</key>
 	<string>Number Resource Organization</string>
 	<key>nrsr.sk</key>
 	<string>SlovakGoverment</string>
 	<key>nruns.com</key>
 	<string>n.runs</string>
+	<key>nsa-observer.net</key>
+	<string>nsa-observer.net</string>
 	<key>nsa.gov</key>
 	<string>National Security Agency</string>
 	<key>nsf.gov</key>
@@ -31819,6 +32389,8 @@
 	<string>NSRC</string>
 	<key>nsslabs.com</key>
 	<string>NSS Labs.com</string>
+	<key>nsupdate.info</key>
+	<string>nsupdate.info</string>
 	<key>nswebmail.uk.clara.net</key>
 	<string>Claranet (partial)</string>
 	<key>ntacdn1.net</key>
@@ -31914,7 +32486,7 @@
 	<key>nyti.ms</key>
 	<string>bit.ly vanity domains</string>
 	<key>nyu.edu</key>
-	<string>New York University (partial)</string>
+	<string>NYU.edu (partial)</string>
 	<key>nyx.com</key>
 	<string>NYSE Euronext</string>
 	<key>nyx.cz</key>
@@ -31927,6 +32499,10 @@
 	<string>nzbmatrix</string>
 	<key>nzbplanet.net</key>
 	<string>Nzbplanet.net</string>
+	<key>o-zone.vanco-asiapac.com</key>
+	<string>Vanco-Asiapac.com (partial)</string>
+	<key>o-zone.vanco.co.uk</key>
+	<string>Vanco.co.uk (partial)</string>
 	<key>o.rmncdn.com</key>
 	<string>RetailMeNot.com (partial)</string>
 	<key>o2-tv.cz</key>
@@ -32131,6 +32707,10 @@
 	<string>bit.ly vanity domains</string>
 	<key>on.lung.ca</key>
 	<string>Ontario Lung Association</string>
+	<key>on.mash.to</key>
+	<string>bit.ly vanity domains</string>
+	<key>on.msnbc.com</key>
+	<string>bit.ly vanity domains</string>
 	<key>on.wsj.com</key>
 	<string>bit.ly vanity domains</string>
 	<key>on24.com</key>
@@ -32141,6 +32721,8 @@
 	<string>Onamae-server.com (partial)</string>
 	<key>onamae.com</key>
 	<string>Onamae.com (partial)</string>
+	<key>onarbor.com</key>
+	<string>Onarbor.com</string>
 	<key>onbeing.org</key>
 	<string>OnBeing.org</string>
 	<key>oncampus.csr.oberlin.edu</key>
@@ -32207,6 +32789,8 @@
 	<string>online-convert.com (partial)</string>
 	<key>online-emr.com</key>
 	<string>Online EMR</string>
+	<key>online-go.com</key>
+	<string>online-go.com</string>
 	<key>online-offshore.lloydstsb.com</key>
 	<string>Lloyds TSB Offshore</string>
 	<key>online.alumni.rice.edu</key>
@@ -32257,6 +32841,8 @@
 	<string>Ono</string>
 	<key>onorobot.org</key>
 	<string>ONOrobot.org</string>
+	<key>onpatient.com</key>
+	<string>onpatient.com</string>
 	<key>onsalesit.com</key>
 	<string>Onsalesit.com</string>
 	<key>onsecure.gov.au</key>
@@ -32303,8 +32889,6 @@
 	<string>openDesktop.org</string>
 	<key>open.ad.yieldmanager.net</key>
 	<string>Right Media</string>
-	<key>open.login.yahooapis.com</key>
-	<string>Yahoo APIs (partial)</string>
 	<key>openaccessbutton.org</key>
 	<string>Open Access Button.org</string>
 	<key>openadultdirectory.com</key>
@@ -32436,7 +33020,7 @@
 	<key>openstreetmap.org</key>
 	<string>OpenStreetMap</string>
 	<key>opensuse.org</key>
-	<string>openSUSE (partial)</string>
+	<string>openSUSE.org (partial)</string>
 	<key>opensvc.com</key>
 	<string>OpenSVC (partial)</string>
 	<key>openswan.org</key>
@@ -32723,6 +33307,8 @@
 	<string>Purdue OWL</string>
 	<key>owncloud.com</key>
 	<string>ownCloud.com</string>
+	<key>owncloud.eigenlab.org</key>
+	<string>eigenLab</string>
 	<key>owncloud.kairo.at</key>
 	<string>KaiRo (partial)</string>
 	<key>owncloud.org</key>
@@ -32781,6 +33367,8 @@
 	<string>Package Lab.com</string>
 	<key>packagist.org</key>
 	<string>Packagist.org</string>
+	<key>packer.io</key>
+	<string>Packer.io</string>
 	<key>packetstatic.com</key>
 	<string>Packet Storm Security.com (partial)</string>
 	<key>packetstormsecurity.com</key>
@@ -32793,6 +33381,8 @@
 	<string>PacSec.jp</string>
 	<key>pacw.org</key>
 	<string>PACW.org</string>
+	<key>pad.eigenlab.org</key>
+	<string>eigenLab</string>
 	<key>paddle.com</key>
 	<string>Paddle.com</string>
 	<key>paddleapi.com</key>
@@ -32909,6 +33499,8 @@
 	<string>ParkingEye.co.uk</string>
 	<key>parkmodelsdirect.com</key>
 	<string>Park Models Direct</string>
+	<key>parrable.com</key>
+	<string>Parrable.com</string>
 	<key>parse.com</key>
 	<string>Parse.com (partial)</string>
 	<key>parsecdn.com</key>
@@ -33137,8 +33729,6 @@
 	<string>PensionsMyndigheten.se</string>
 	<key>pentesterlab.com</key>
 	<string>PentesterLab (partial)</string>
-	<key>people.csail.mit.edu</key>
-	<string>Massachusetts Institute of Technology (partial)</string>
 	<key>peopleclick.com</key>
 	<string>Peopleclick.com (partial)</string>
 	<key>peoplefluent.com</key>
@@ -33207,6 +33797,8 @@
 	<string>Pfizer (partial)</string>
 	<key>pflag.org</key>
 	<string>PFLAG-Parents, Families, &amp; Friends of Lesbians and Gays (partial)</string>
+	<key>pform.net</key>
+	<string>pform.net</string>
 	<key>pg.com</key>
 	<string>Procter &amp; Gamble (partial)</string>
 	<key>pgbrandsampler.ca</key>
@@ -33237,6 +33829,8 @@
 	<string>Philadelphia Bar Association</string>
 	<key>philshobbyshop.com</key>
 	<string>Phils Hobby Shop.com</string>
+	<key>philzimmermann.com</key>
+	<string>Phil Zimmermann.com</string>
 	<key>phishtank.com</key>
 	<string>PhishTank</string>
 	<key>phoenix.com</key>
@@ -33335,6 +33929,8 @@
 	<string>PingOne.com</string>
 	<key>pinkbike.com</key>
 	<string>Pinkbike (partial)</string>
+	<key>pinknews.co.uk</key>
+	<string>PinkNews.co.uk</string>
 	<key>pinkpaislee.com</key>
 	<string>Pink Paislee</string>
 	<key>pinta-outlet.fi</key>
@@ -33528,7 +34124,7 @@
 	<key>plone.org</key>
 	<string>Plone.org (partial)</string>
 	<key>plos.org</key>
-	<string>Public Library of Science (partial)</string>
+	<string>PLoS.org (partial)</string>
 	<key>ploum.net</key>
 	<string>ploum.net</string>
 	<key>plsiii.plsinfo.org</key>
@@ -33615,6 +34211,10 @@
 	<string>Poliisi.fi</string>
 	<key>polisforbundet.se</key>
 	<string>Polisforbundet.se</string>
+	<key>politi.co</key>
+	<string>bit.ly vanity domains</string>
+	<key>politicopro.com</key>
+	<string>Politico Pro.com</string>
 	<key>politie.nl</key>
 	<string>NL Overheid</string>
 	<key>politiken.dk</key>
@@ -33625,10 +34225,12 @@
 	<string>Polk</string>
 	<key>polldaddy.com</key>
 	<string>Polldaddy</string>
+	<key>polpix.sueddeutsche.com</key>
+	<string>Süddeutsche Zeitung (partial)</string>
 	<key>polybrowser.com</key>
 	<string>PolyBrowser.com</string>
 	<key>polygon.com</key>
-	<string>Polygon (false MCB)</string>
+	<string>Polygon.com</string>
 	<key>polymer-project.org</key>
 	<string>Polymer-Project.org</string>
 	<key>pony.fm</key>
@@ -33653,6 +34255,8 @@
 	<string>PopAds</string>
 	<key>popatomic.org</key>
 	<string>PopAtomic</string>
+	<key>popcorntime.io</key>
+	<string>PopcornTime.io</string>
 	<key>popgoestheweek.com</key>
 	<string>Pop Goes the Week</string>
 	<key>popphoto.com</key>
@@ -33937,6 +34541,8 @@
 	<string>Prison Legal News.org</string>
 	<key>prisonphonejustice.org</key>
 	<string>Prison Phone Justice.org</string>
+	<key>pritunl.com</key>
+	<string>Pritunl.com</string>
 	<key>privacy-cd.org</key>
 	<string>privacy-cd.org</string>
 	<key>privacy-handbuch.de</key>
@@ -33949,6 +34555,8 @@
 	<string>PrivacyBox</string>
 	<key>privacychoice.org</key>
 	<string>PrivacyChoice (partial)</string>
+	<key>privacyenforcement.net</key>
+	<string>Privacy Enforcement.net</string>
 	<key>privacyfix.com</key>
 	<string>Privacyfix</string>
 	<key>privacyfoundation.de</key>
@@ -34009,6 +34617,8 @@
 	<string>Product Hunt</string>
 	<key>products.mercola.com</key>
 	<string>Mercola</string>
+	<key>productsafety.gov.au</key>
+	<string>Product Safety.gov.au</string>
 	<key>productvisio.com</key>
 	<string>Productvisio</string>
 	<key>profesia.sk</key>
@@ -34033,6 +34643,8 @@
 	<string>Wolframcloud.com</string>
 	<key>progreso.pl</key>
 	<string>Progreso Webhosting (partial)</string>
+	<key>proisp.no</key>
+	<string>PRO ISP.no</string>
 	<key>project.webplatform.org</key>
 	<string>WebPlatform</string>
 	<key>projecteuler.net</key>
@@ -34180,7 +34792,7 @@
 	<key>publishing.kalooga.com</key>
 	<string>Kalooga.com (partial)</string>
 	<key>pubmed.gov</key>
-	<string>National Institutes of Health (partial)</string>
+	<string>NIH.gov (partial)</string>
 	<key>pubs.aaas.org</key>
 	<string>AAAS.org (partial)</string>
 	<key>pubservice.com</key>
@@ -34275,8 +34887,6 @@
 	<string>Qabel</string>
 	<key>qb50.eu</key>
 	<string>QB50</string>
-	<key>qca.qualcomm.com</key>
-	<string>Qualcomm (partial)</string>
 	<key>qfxsoftware.com</key>
 	<string>QFX Software.com</string>
 	<key>qip.ru</key>
@@ -34315,6 +34925,8 @@
 	<string>QuakeNet.org</string>
 	<key>qualaris.com</key>
 	<string>Qualaris.com (partial)</string>
+	<key>qualcomm.com</key>
+	<string>Qualcomm.com (partial)</string>
 	<key>qualityagent.com</key>
 	<string>QualityAgent (partial)</string>
 	<key>qualityunit.com</key>
@@ -34569,6 +35181,8 @@
 	<string>ReactOS.org (partial)</string>
 	<key>readability.com</key>
 	<string>Readability.com (partial)</string>
+	<key>readcube.com</key>
+	<string>ReadCube.com (partial)</string>
 	<key>reading.ac.uk</key>
 	<string>University of Reading</string>
 	<key>readitlaterlist.com</key>
@@ -34610,7 +35224,7 @@
 	<key>realvnc.com</key>
 	<string>RealVNC.com</string>
 	<key>reason.com</key>
-	<string>Reason.com</string>
+	<string>Reason.com (partial)</string>
 	<key>rebelmouse.com</key>
 	<string>RebelMouse.com</string>
 	<key>rec-log.jp</key>
@@ -34677,6 +35291,8 @@
 	<string>Red Hat</string>
 	<key>rediris.es</key>
 	<string>RedIRIS.es</string>
+	<key>redmatrix.me</key>
+	<string>Red Matrix.me</string>
 	<key>redmine.digitaria.com</key>
 	<string>Digitaria (partial)</string>
 	<key>rednerd.com</key>
@@ -34703,6 +35319,8 @@
 	<string>Reethi Beach.com</string>
 	<key>reevoo.com</key>
 	<string>Reevoo (partial)</string>
+	<key>reflex.cz</key>
+	<string>Reflex.cz</string>
 	<key>refog.com</key>
 	<string>Refrog</string>
 	<key>reformal.ru</key>
@@ -34715,6 +35333,8 @@
 	<string>Reg.ru</string>
 	<key>rega.ch</key>
 	<string>Rega</string>
+	<key>regencesecure.snowfly.com</key>
+	<string>Snowfly (partial)</string>
 	<key>regi.laptop.hu</key>
 	<string>Laptop.hu</string>
 	<key>regiobank.nl</key>
@@ -34742,7 +35362,7 @@
 	<key>registryrocket.com</key>
 	<string>registryrocket.com</string>
 	<key>regonline.com</key>
-	<string>Active.com (partial)</string>
+	<string>RegOnline.com</string>
 	<key>regularish.com</key>
 	<string>Regularish.com</string>
 	<key>reichelt.de</key>
@@ -34849,6 +35469,8 @@
 	<string>Enjin</string>
 	<key>responsive.io</key>
 	<string>responsive.io (partial)</string>
+	<key>responsys.com</key>
+	<string>Responsys.com</string>
 	<key>restorethefourth.net</key>
 	<string>Restore the Fourth</string>
 	<key>result.webplatform.org</key>
@@ -35043,6 +35665,8 @@
 	<string>Roddis</string>
 	<key>roe.ch</key>
 	<string>roe.ch</string>
+	<key>roffey.org</key>
+	<string>Roffey.org</string>
 	<key>roger.ucsd.edu</key>
 	<string>UCSD</string>
 	<key>rohieb.name</key>
@@ -35221,6 +35845,8 @@
 	<string>Ruhr-Uni-Bochum.de (partial)</string>
 	<key>runabove.com</key>
 	<string>RunAbove</string>
+	<key>runbook.io</key>
+	<string>Runbook.io</string>
 	<key>runforyourlives.com</key>
 	<string>Run for Your Lives</string>
 	<key>rushbucks.com</key>
@@ -35325,6 +35951,8 @@
 	<string>Law Business Research CDN (partial)</string>
 	<key>s3.mediamatters.org</key>
 	<string>MediaMatters.org (partial)</string>
+	<key>s3.mirror.co.uk</key>
+	<string>Mirror.co.uk (partial)</string>
 	<key>s3.netdialog.se</key>
 	<string>Netdialog.se (partial)</string>
 	<key>s3.parature.com</key>
@@ -35357,6 +35985,8 @@
 	<string>Sade.com</string>
 	<key>saechsdsb.de</key>
 	<string>Der Sächsische Datenschutzbeauftragte</string>
+	<key>safaribooksonline.com</key>
+	<string>Safari Books Online</string>
 	<key>safariflow.com</key>
 	<string>Safari Flow.com (partial)</string>
 	<key>safe-in-cloud.com</key>
@@ -35377,6 +36007,8 @@
 	<string>SafeNet (partial)</string>
 	<key>safeshepherd.com</key>
 	<string>Safeshepherd.com</string>
+	<key>safesource.org.nz</key>
+	<string>SafeSource.org.nz</string>
 	<key>saga.co.uk</key>
 	<string>Saga Group</string>
 	<key>sagecell.sagemath.org</key>
@@ -35428,7 +36060,7 @@
 	<key>samsung.net</key>
 	<string>Samsung mySingle</string>
 	<key>samsungapps.com</key>
-	<string>Samsung Apps (partial)</string>
+	<string>Samsung Apps.com (partial)</string>
 	<key>samsungapps.sina.cn</key>
 	<string>Sina (partial)</string>
 	<key>samsungknox.com</key>
@@ -35501,6 +36133,8 @@
 	<string>Sauce Labs</string>
 	<key>saucenao.com</key>
 	<string>SauceNAO.com</string>
+	<key>saucytime.com</key>
+	<string>SaucyTime.com (partial)</string>
 	<key>saudi.gov.sa</key>
 	<string>Saudi Government</string>
 	<key>sav.sk</key>
@@ -35523,6 +36157,8 @@
 	<string>Swiss Federal Railways (SBB/CFF/FFS)</string>
 	<key>sbi.co.in</key>
 	<string>StateBankOfIndia</string>
+	<key>sbnation.com</key>
+	<string>SB Nation (partial)</string>
 	<key>sbrf.ru</key>
 	<string>Sberbank of Russia</string>
 	<key>sbucciami.com</key>
@@ -35880,7 +36516,7 @@
 	<key>secure.footprint.net</key>
 	<string>footprint.net (partial)</string>
 	<key>secure.gamblingcommission.gov.uk</key>
-	<string>Gambling Commission (partial)</string>
+	<string>Gambling Commission.gov.uk (partial)</string>
 	<key>secure.game.se</key>
 	<string>GAME.se (partial)</string>
 	<key>secure.getprice.com.au</key>
@@ -36205,6 +36841,8 @@
 	<string>Serato.com (partial)</string>
 	<key>serialist.net</key>
 	<string>Serialist</string>
+	<key>seroundtable.com</key>
+	<string>SE Round Table.com</string>
 	<key>sertifikatai.lt</key>
 	<string>Sertifikatai.lt</string>
 	<key>servage.*</key>
@@ -36838,7 +37476,7 @@
 	<key>slideshare.net</key>
 	<string>SlideShare.net (partial)</string>
 	<key>slo-tech.com</key>
-	<string>Slo-Tech</string>
+	<string>Slo-Tech.com</string>
 	<key>sloanconsortium.org</key>
 	<string>The Sloan Consortium (partial)</string>
 	<key>slooh.com</key>
@@ -36847,6 +37485,8 @@
 	<string>Gaminator</string>
 	<key>slough.gov.uk</key>
 	<string>UK Local Government</string>
+	<key>slovakrail.sk</key>
+	<string>Slovakrail.sk</string>
 	<key>slovensko.sk</key>
 	<string>SlovakGoverment</string>
 	<key>slsp.sk</key>
@@ -36959,6 +37599,8 @@
 	<string>SNL.com (partial)</string>
 	<key>snort.org</key>
 	<string>Snort (partial)</string>
+	<key>snowdrift.coop</key>
+	<string>Snowdrift.coop</string>
 	<key>snowmagazineonline.com</key>
 	<string>Snow Magazine</string>
 	<key>snsbank.nl</key>
@@ -37027,6 +37669,8 @@
 	<string>Soeren Hentzschel.</string>
 	<key>sofawolf.com</key>
 	<string>Sofawolf</string>
+	<key>softaculous.com</key>
+	<string>Softaculous.com (partial)</string>
 	<key>softcreatr.de</key>
 	<string>SoftCreatR.de</string>
 	<key>softether.org</key>
@@ -37127,6 +37771,8 @@
 	<string>Sounds True</string>
 	<key>soundunwound.com</key>
 	<string>SoundUnwound</string>
+	<key>soundviz.com</key>
+	<string>SoundViz.com</string>
 	<key>soup.io</key>
 	<string>Soup.io (partial)</string>
 	<key>source.opennews.org</key>
@@ -37225,6 +37871,8 @@
 	<string>Speak Your Silence</string>
 	<key>speakyweb.com</key>
 	<string>SpeakyChat.com</string>
+	<key>specc.ie</key>
+	<string>bit.ly vanity domains</string>
 	<key>special-trade.de</key>
 	<string>Special-trade.de</string>
 	<key>specialforces.com</key>
@@ -37576,7 +38224,7 @@
 	<key>standup2cancer.org</key>
 	<string>Stand Up to Cancer (partial)</string>
 	<key>stanford.edu</key>
-	<string>Stanford University (partial)</string>
+	<string>Stanford.edu (partial)</string>
 	<key>stanford.io</key>
 	<string>bit.ly vanity domains</string>
 	<key>stapi.snacktools.net</key>
@@ -37589,6 +38237,8 @@
 	<string>Duodecim.fi</string>
 	<key>staradvertiser.com</key>
 	<string>Honolulu Star Advertiser</string>
+	<key>starawardssecure.snowfly.com</key>
+	<string>Snowfly (partial)</string>
 	<key>starbucks.com</key>
 	<string>Starbucks.com (partial)</string>
 	<key>stardock.com</key>
@@ -37703,8 +38353,8 @@
 	<string>Justin.tv (partial)</string>
 	<key>static.lanyrd.net</key>
 	<string>Lanyrd</string>
-	<key>static.licdn.com</key>
-	<string>LinkedIn (partial)</string>
+	<key>static.localphone.com</key>
+	<string>Localphone</string>
 	<key>static.lovefilm.*</key>
 	<string>LoveFilm</string>
 	<key>static.mydrive.ch</key>
@@ -37742,7 +38392,7 @@
 	<key>static.slickdealz.net</key>
 	<string>Slickdeals</string>
 	<key>static.slo-tech.com</key>
-	<string>Slo-Tech</string>
+	<string>Slo-Tech.com</string>
 	<key>static.smallworldlabs.com</key>
 	<string>Small World Labs.com (partial)</string>
 	<key>static.smdg.ca</key>
@@ -37773,6 +38423,8 @@
 	<string>VG.no</string>
 	<key>static.vimention.com</key>
 	<string>Vimention.com (partial)</string>
+	<key>static.vliegtickets.nl</key>
+	<string>Vliegtickets.nl</string>
 	<key>static.weboffice.uwa.edu.au</key>
 	<string>University of Western Australia (partial)</string>
 	<key>static.webplatform.org</key>
@@ -37873,6 +38525,8 @@
 	<string>Steganos.com</string>
 	<key>stelladot.com</key>
 	<string>Stella &amp; Dot</string>
+	<key>stemformatics.org</key>
+	<string>Stemformatics.org</string>
 	<key>stemulitefitnessformula.com</key>
 	<string>Stemulite Fitness Formula</string>
 	<key>stevenroddis.com</key>
@@ -38049,6 +38703,8 @@
 	<string>Stupid.com</string>
 	<key>stuvel.eu</key>
 	<string>Stüvel photography</string>
+	<key>styles.ofcom.org.uk</key>
+	<string>Ofcom.org.uk (false MCB)</string>
 	<key>stylist.co.uk</key>
 	<string>Stylist.co.uk</string>
 	<key>suas.ie</key>
@@ -38101,8 +38757,12 @@
 	<string>Suitable Tech.com (partial)</string>
 	<key>suitey.com</key>
 	<string>Suitey.com</string>
+	<key>suma-ev.de</key>
+	<string>Suma-ev.de</string>
 	<key>summertime.fazekas.hu</key>
 	<string>Fazekas</string>
+	<key>sun-tim.es</key>
+	<string>bit.ly vanity domains</string>
 	<key>sun.edgeboss.net</key>
 	<string>edgeboss.net (partial)</string>
 	<key>sun365.me</key>
@@ -38185,8 +38845,6 @@
 	<string>AOL (partial)</string>
 	<key>support.apple.com</key>
 	<string>Apple (false MCB)</string>
-	<key>support.brookings.edu</key>
-	<string>Brookings Institution (partial</string>
 	<key>support.cape-it.de</key>
 	<string>cape-it.de (partial)</string>
 	<key>support.covad.com</key>
@@ -38313,6 +38971,8 @@
 	<string>Swin.edu.au (partial)</string>
 	<key>swinburne.edu.au</key>
 	<string>Swinburne.edu (partial, false MCB)</string>
+	<key>swingfree.co.uk</key>
+	<string>SwingFree.co.uk (partial)</string>
 	<key>swiss.com</key>
 	<string>Swiss.com</string>
 	<key>swissabroad.ch</key>
@@ -38355,6 +39015,8 @@
 	<string>swordfishdc.com</string>
 	<key>swreg.com</key>
 	<string>SWREG</string>
+	<key>swt.com</key>
+	<string>SWT.com</string>
 	<key>swtor.com</key>
 	<string>swtor.com (partial)</string>
 	<key>sxcdn.xgraph.net</key>
@@ -38555,6 +39217,8 @@
 	<string>Tapgage</string>
 	<key>tapiture.com</key>
 	<string>Tapiture.com (partial)</string>
+	<key>targetedthreats.net</key>
+	<string>Targeted Threats.net</string>
 	<key>taringa.net</key>
 	<string>Taringa (partial)</string>
 	<key>tarsnap.com</key>
@@ -38711,6 +39375,8 @@
 	<string>Telekom.sk</string>
 	<key>telefonica.cz</key>
 	<string>Telefónica (partial)</string>
+	<key>telegeography.com</key>
+	<string>TeleGeography.com (partial)</string>
 	<key>telegr.am</key>
 	<string>Telegr.am</string>
 	<key>telegram.com</key>
@@ -38889,6 +39555,8 @@
 	<string>Australian Alps National Parks</string>
 	<key>thebaffler.com</key>
 	<string>The Baffler</string>
+	<key>thebea.st</key>
+	<string>bit.ly vanity domains</string>
 	<key>thebigweddingmovie.com</key>
 	<string>The Big Wedding Movie.com</string>
 	<key>theblueskylife.com</key>
@@ -38897,8 +39565,12 @@
 	<string>The Body Shop.co.uk (partial)</string>
 	<key>thebookpeople.co.uk</key>
 	<string>The Book People</string>
+	<key>thebureauinvestigates.com</key>
+	<string>The Bureau Investigates.com (partial)</string>
 	<key>thecairopost.youm7.com</key>
 	<string>Youm7.com (partial)</string>
+	<key>thecalmzone.net</key>
+	<string>The CALMzone.net</string>
 	<key>thecanadianpress.com</key>
 	<string>The Canadian Press</string>
 	<key>thechive.com</key>
@@ -38911,12 +39583,14 @@
 	<string>The Conversation</string>
 	<key>theconversation.edu.au</key>
 	<string>The Conversation</string>
+	<key>thecthulhu.com</key>
+	<string>The Cthulhu.com</string>
 	<key>thecustomizewindows.com</key>
 	<string>The Customize Windows</string>
 	<key>thecutestsiteontheblock.com</key>
 	<string>The Cutest Site on the Block</string>
 	<key>thedailybeast.com</key>
-	<string>The Daily Beast (partial)</string>
+	<string>The Daily Beast.com (partial)</string>
 	<key>thedaywefightback.org</key>
 	<string>The Day We Fight Back.org</string>
 	<key>thedilbertstore.com</key>
@@ -38969,6 +39643,10 @@
 	<string>The Iconic.com (partial)</string>
 	<key>theiet.org</key>
 	<string>IET (partial)</string>
+	<key>theinformation.com</key>
+	<string>The Information.com</string>
+	<key>theiphonewiki.com</key>
+	<string>The iPhone Wiki.com</string>
 	<key>thejh.net</key>
 	<string>Jann Horn</string>
 	<key>thejns.org</key>
@@ -38977,6 +39655,8 @@
 	<string>TheJournal.ie</string>
 	<key>thejournalnews.com</key>
 	<string>lohud.com (partial)</string>
+	<key>thejuicemedia.com</key>
+	<string>The Juice Media.com</string>
 	<key>theme.co</key>
 	<string>Theme.co (partial)</string>
 	<key>themesandco.com</key>
@@ -38986,7 +39666,7 @@
 	<key>thenewsfunnel.com</key>
 	<string>The News Funnel (partial)</string>
 	<key>thenextweb.com</key>
-	<string>The Next Web (partial)</string>
+	<string>The Next Web.com (partial)</string>
 	<key>theoldreader.com</key>
 	<string>The Old Reader</string>
 	<key>theoutnet.com</key>
@@ -38995,6 +39675,8 @@
 	<string>ThePermitStore.com</string>
 	<key>thephone.coop</key>
 	<string>thephone.coop (partial)</string>
+	<key>thepiratebay.cr</key>
+	<string>The Pirate Bay (partial)</string>
 	<key>thepiratebay.org</key>
 	<string>The Pirate Bay (partial)</string>
 	<key>thepiratebay.se</key>
@@ -39028,7 +39710,7 @@
 	<key>thesprawl.org</key>
 	<string>The Sprawl</string>
 	<key>thestar.com</key>
-	<string>Toronto Star (partial)</string>
+	<string>The Star.com (partial)</string>
 	<key>thestorefront.com</key>
 	<string>The Storefront.com (partial)</string>
 	<key>thestranger.com</key>
@@ -39047,6 +39729,8 @@
 	<string>The Toad Fly (partial)</string>
 	<key>thetrainline.com</key>
 	<string>TheTrainLine</string>
+	<key>theverge.com</key>
+	<string>The Verge.com (partial)</string>
 	<key>thewatershed.com</key>
 	<string>The Watershed</string>
 	<key>thewatershedresidence.com</key>
@@ -39095,6 +39779,8 @@
 	<string>ThisWebHost</string>
 	<key>thompson.com</key>
 	<string>Thompson.com</string>
+	<key>thompsonhotels.com</key>
+	<string>Thompson Hotels.com (partial)</string>
 	<key>thoughtstreams.io</key>
 	<string>ThoughtStreams.io</string>
 	<key>thoughtworks.com</key>
@@ -39175,6 +39861,8 @@
 	<string>Tictail.com (partial)</string>
 	<key>tid.al</key>
 	<string>Tid.al (partial)</string>
+	<key>tidalhifi.com</key>
+	<string>Tidal HiFi.com</string>
 	<key>tidbits.com</key>
 	<string>TidBITS</string>
 	<key>tienda.astrocentro.com</key>
@@ -39233,6 +39921,8 @@
 	<string>TinyBites</string>
 	<key>tinychat.com</key>
 	<string>TinyChat</string>
+	<key>tinyjpg.com</key>
+	<string>TinyJPG.com</string>
 	<key>tinyletter.com</key>
 	<string>TinyLetter.com</string>
 	<key>tinypass.com</key>
@@ -39333,6 +40023,8 @@
 	<string>TOG</string>
 	<key>togahotels.com</key>
 	<string>Toga Hotels (partial)</string>
+	<key>togetherjs.com</key>
+	<string>TogetherJS.com</string>
 	<key>togevi.com</key>
 	<string>Ive Got Kids.com (partial)</string>
 	<key>toi.ivwbox.de</key>
@@ -39399,6 +40091,8 @@
 	<string>TorrentFreak.com</string>
 	<key>torrentfunk.com</key>
 	<string>TorrentFunk.com (partial)</string>
+	<key>torrentleech.org</key>
+	<string>torrentleechdotorg</string>
 	<key>torrentprivacy.com</key>
 	<string>TorrentPrivacy (partial)</string>
 	<key>torrentz.ch</key>
@@ -39465,8 +40159,6 @@
 	<string>Tpd.sk</string>
 	<key>tpptraining.com</key>
 	<string>TPPtraining.com</string>
-	<key>trac.handbrake.fr</key>
-	<string>Handbrake.fr (partial)</string>
 	<key>trac.macports.org</key>
 	<string>MacPorts.org</string>
 	<key>trac.pcbsd.org</key>
@@ -39501,8 +40193,6 @@
 	<string>Florida Institute of Technology (partial)</string>
 	<key>tracks.www.zazzle.com</key>
 	<string>Zazzle (partial)</string>
-	<key>traction-digital.com</key>
-	<string>Traction-Digital.com (partial)</string>
 	<key>tradeking.com</key>
 	<string>TradeKing.com (partial)</string>
 	<key>trademarkia.com</key>
@@ -39535,6 +40225,8 @@
 	<string>Transact Auto</string>
 	<key>transcend.org</key>
 	<string>Transcend.org</string>
+	<key>transferwise.com</key>
+	<string>TransferWise.com</string>
 	<key>transformationmadeeasy.com</key>
 	<string>transformationmadeeasy.com (partial)</string>
 	<key>transformativeworks.org</key>
@@ -39651,16 +40343,20 @@
 	<string>TripHip</string>
 	<key>tripit.com</key>
 	<string>TripIt.com</string>
+	<key>tripwell.com</key>
+	<string>Tripwell.com</string>
 	<key>tripwire.com</key>
 	<string>Tripwire.com (partial)</string>
 	<key>trisquel.info</key>
-	<string>Trisquel</string>
+	<string>Trisquel.info (partial)</string>
 	<key>tritonlink.ucsd.edu</key>
 	<string>UCSD</string>
 	<key>triumph-adler.de</key>
 	<string>Triumph-Adler.de</string>
 	<key>trklnks.com</key>
 	<string>AdSupply (partial)</string>
+	<key>trmm.net</key>
+	<string>Trmm.net</string>
 	<key>trollingeffects.org</key>
 	<string>Trolling Effects.org</string>
 	<key>tron-delta.org</key>
@@ -39785,6 +40481,8 @@
 	<string>Talemetry.com (partial)</string>
 	<key>tu-chemnitz.de</key>
 	<string>TU-Chemnitz.de (partial)</string>
+	<key>tu-ilmenau.de</key>
+	<string>TU-Ilmenau.de</string>
 	<key>tubbergen.nl</key>
 	<string>NL Overheid</string>
 	<key>tube4.me</key>
@@ -39803,6 +40501,10 @@
 	<string>TU I TAM</string>
 	<key>tuki.kapsi.fi</key>
 	<string>Kapsi.fi (very partial)</string>
+	<key>tuleap.net</key>
+	<string>Tuleap.net (partial)</string>
+	<key>tuleap.org</key>
+	<string>Tuleap.org</string>
 	<key>tum.de</key>
 	<string>Tum.de</string>
 	<key>tumblr.com</key>
@@ -39837,8 +40539,12 @@
 	<string>Turn Game Studios</string>
 	<key>turnonsocial.com</key>
 	<string>Turn On Social</string>
+	<key>turtl.it</key>
+	<string>Turtl.it</string>
 	<key>tuscany.apache.org</key>
 	<string>Apache.org (false MCB)</string>
+	<key>tutanota.de</key>
+	<string>Tutanota.de</string>
 	<key>tutor.com</key>
 	<string>Tutor.com (partial)</string>
 	<key>tuts4you.com</key>
@@ -39875,6 +40581,8 @@
 	<string>Tweakers.net</string>
 	<key>tweetdeck.com</key>
 	<string>Tweetdeck</string>
+	<key>tweetreach.com</key>
+	<string>TweetReach.com (partial)</string>
 	<key>tweetriver.com</key>
 	<string>Mass Relevance</string>
 	<key>twiant.com</key>
@@ -39933,6 +40641,8 @@
 	<string>Typotheque (partial)</string>
 	<key>u-blox.com</key>
 	<string>U-blox.com</string>
+	<key>ua-hosting.com.ua</key>
+	<string>ua-hosting.com.ua</string>
 	<key>ua.edu</key>
 	<string>UA.edu (partial)</string>
 	<key>ua2go.com</key>
@@ -40141,6 +40851,8 @@
 	<string>Unhosted </string>
 	<key>uni-erlangen.de</key>
 	<string>University of Erlangen-Nuremberg (partial)</string>
+	<key>uni-hannover.de</key>
+	<string>Uni-Hannover.de (partial)</string>
 	<key>uni-karlsruhe.de</key>
 	<string>Karlsruhe Institute of Technology (partial)</string>
 	<key>uni-passau.de</key>
@@ -40150,7 +40862,7 @@
 	<key>uni-saarland.de</key>
 	<string>Uni-Saarland.de (partial)</string>
 	<key>uni-stuttgart.de</key>
-	<string>University of Stuttgart (partial)</string>
+	<string>Uni-Stuttgart.de (partial)</string>
 	<key>uni-tuebingen.de</key>
 	<string>University of Tübingen (partial)</string>
 	<key>unibet.com.au</key>
@@ -40197,8 +40909,6 @@
 	<string>Univention.de</string>
 	<key>universalsubtitles.org</key>
 	<string>Universal Subtitles</string>
-	<key>university.monetate.com</key>
-	<string>Monetate (partial)</string>
 	<key>universityadmissions.se</key>
 	<string>universityadmissions.se</string>
 	<key>univie.ac.at</key>
@@ -40281,6 +40991,8 @@
 	<string>Uprotect.it</string>
 	<key>uproxy.org</key>
 	<string>uProxy.org</string>
+	<key>ups.com</key>
+	<string>UPS.com (partial)</string>
 	<key>upsploit.com</key>
 	<string>upSploit.com</string>
 	<key>upstart.com</key>
@@ -40434,7 +41146,7 @@
 	<key>utopia.ai</key>
 	<string>Utopia</string>
 	<key>utoronto.ca</key>
-	<string>University of Toronto (partial)</string>
+	<string>UToronto.ca (partial)</string>
 	<key>utrecht.nl</key>
 	<string>NL Overheid</string>
 	<key>utsandiego.com</key>
@@ -40705,6 +41417,8 @@
 	<string>Vessel</string>
 	<key>vevo.com</key>
 	<string>VEVO</string>
+	<key>vexatioustendencies.net</key>
+	<string>Vexatious Tendencies.net</string>
 	<key>vfemail.net</key>
 	<string>VFEmail.net</string>
 	<key>vg.no</key>
@@ -40725,6 +41439,8 @@
 	<string>Blipp.com</string>
 	<key>vice.com</key>
 	<string>Vice (partial)</string>
+	<key>victi.ms</key>
+	<string>Victi.ms (partial)</string>
 	<key>victoriassecret.com</key>
 	<string>Victoria&#39;s Secret (partial)</string>
 	<key>victoriassecretcanada.ca</key>
@@ -40749,8 +41465,6 @@
 	<string>Video Dean</string>
 	<key>video.eetimes.com</key>
 	<string>EE Times (mixed content)</string>
-	<key>video.pbs.org</key>
-	<string>Public Broadcasting Service (partial)</string>
 	<key>videoaidedinstruction.com</key>
 	<string>Video Aided Instruction</string>
 	<key>videodroid.org</key>
@@ -40815,6 +41529,8 @@
 	<string>Virgin Media.com (partial)</string>
 	<key>virginmobileusa.com</key>
 	<string>Virgin Mobile</string>
+	<key>virool.com</key>
+	<string>Virool.com (partial)</string>
 	<key>virt-manager.org</key>
 	<string>virt-manager.org</string>
 	<key>virtkick.io</key>
@@ -40913,8 +41629,8 @@
 	<string>openDesktop.org</string>
 	<key>vle.dmu.ac.uk</key>
 	<string>DMU</string>
-	<key>vlg.cs.nyu.edu</key>
-	<string>New York University (partial)</string>
+	<key>vliegtickets.nl</key>
+	<string>Vliegtickets.nl</string>
 	<key>vlissingen.nl</key>
 	<string>NL Overheid</string>
 	<key>vmail.me</key>
@@ -41002,11 +41718,13 @@
 	<key>vovici.com</key>
 	<string>Vovici.com (partial)</string>
 	<key>vox.com</key>
-	<string>Vox.com (false MCB)</string>
+	<string>Vox.com</string>
 	<key>voxer.com</key>
 	<string>Voxer (partial)</string>
 	<key>voxility.com</key>
 	<string>Voxility.com</string>
+	<key>voxmedia.com</key>
+	<string>Vox Media.com (false MCB)</string>
 	<key>vp1-voiceportal.megapath.com</key>
 	<string>MegaPath (partial)</string>
 	<key>vpn.aclutx.org</key>
@@ -41017,6 +41735,8 @@
 	<string>VPN4ALL</string>
 	<key>vpnbook.com</key>
 	<string>vpnbook.com</string>
+	<key>vpncompare.co.uk</key>
+	<string>VPNCompare.co.uk (partial)</string>
 	<key>vpnglobe.com</key>
 	<string>VPNGlobe.com</string>
 	<key>vpnincome.com</key>
@@ -41249,8 +41969,6 @@
 	<string>Consumer Reports (partial)</string>
 	<key>web.datemas.de</key>
 	<string>Datemas.de (partial)</string>
-	<key>web.nvd.nist.gov</key>
-	<string>National Institute of Standards and Technology (partial)</string>
 	<key>web.satd.uma.es</key>
 	<string>Uma.es</string>
 	<key>web.synch.hu</key>
@@ -41293,6 +42011,8 @@
 	<string>webcontrolcenter.com</string>
 	<key>webcruiter.no</key>
 	<string>Webcruiter (partial)</string>
+	<key>webdam.com</key>
+	<string>WebDAM DB.com</string>
 	<key>webdav.mydrive.ch</key>
 	<string>Mydrive</string>
 	<key>webdesignmarketing.eu</key>
@@ -41497,6 +42217,8 @@
 	<string>WebsiteGrowers.com</string>
 	<key>websitesettings.com</key>
 	<string>websitesettings.com</string>
+	<key>websmithing.com</key>
+	<string>websmithing.com</string>
 	<key>websocially.com</key>
 	<string>WebSocial.ly (partial)</string>
 	<key>webspace4all.eu</key>
@@ -41643,10 +42365,14 @@
 	<string>WhatIsMyIP</string>
 	<key>whatsapp.com</key>
 	<string>WhatsApp.com</string>
+	<key>whatsmychaincert.com</key>
+	<string>Whats My Chain Cert.com</string>
 	<key>whatsmydns.net</key>
 	<string>Whats My DNS.net</string>
 	<key>whatsuccesstakes.com</key>
 	<string>Global Marketing Strategies (partial)</string>
+	<key>whatwg.org</key>
+	<string>WHATWG.org</string>
 	<key>wheel.sk</key>
 	<string>Wheel.sk</string>
 	<key>where.com</key>
@@ -41715,6 +42441,10 @@
 	<string>NL Overheid</string>
 	<key>wifidb.net</key>
 	<string>Random Intervals (partial)</string>
+	<key>wifilib.com</key>
+	<string>WifiLib</string>
+	<key>wifilib.fr</key>
+	<string>WifiLib</string>
 	<key>wigan.gov.uk</key>
 	<string>UK Local Government</string>
 	<key>wiggle.co.uk</key>
@@ -41733,6 +42463,8 @@
 	<string>Crypto.is</string>
 	<key>wiki.cyanogenmod.org</key>
 	<string>CyanogenMod.org (false MCB)</string>
+	<key>wiki.eigenlab.org</key>
+	<string>eigenLab</string>
 	<key>wiki.fool.com</key>
 	<string>Fool.com (false MCB)</string>
 	<key>wiki.galaxyproject.org</key>
@@ -41825,6 +42557,10 @@
 	<string>Wimdu.co.uk</string>
 	<key>wimo.com</key>
 	<string>WiMo.com</string>
+	<key>wimp.no</key>
+	<string>WiMP.no (partial)</string>
+	<key>wimpmusic.com</key>
+	<string>WiMP Music.com (partial)</string>
 	<key>win-rar.com</key>
 	<string>WinRAR</string>
 	<key>win-sv.jp</key>
@@ -41877,6 +42613,8 @@
 	<string>WinZip.com (partial)</string>
 	<key>wipmania.com</key>
 	<string>WIPmania</string>
+	<key>wire.com</key>
+	<string>Wire.com (partial)</string>
 	<key>wired.com</key>
 	<string>Wired (false MCB, partial)</string>
 	<key>wiredforchange.com</key>
@@ -41899,6 +42637,8 @@
 	<string>Wishpot.com</string>
 	<key>withgoogle.com</key>
 	<string>With Google.com</string>
+	<key>withknown.com</key>
+	<string>Withknown.com</string>
 	<key>witopia.net</key>
 	<string>WiTopia.net</string>
 	<key>wix.com</key>
@@ -41932,7 +42672,7 @@
 	<key>wolfram.com</key>
 	<string>Wolfram.com (partial) </string>
 	<key>wolframalpha.com</key>
-	<string>Wolfram Alpha (experimental)</string>
+	<string>Wolfram Alpha.com (experimental)</string>
 	<key>wolframcloud.com</key>
 	<string>Wolframcloud.com</string>
 	<key>wolframscience.com</key>
@@ -42031,8 +42771,6 @@
 	<string>Woz.ch</string>
 	<key>wp-poc.details.com</key>
 	<string>Details.com (false MCB)</string>
-	<key>wp.me</key>
-	<string>WP.me</string>
 	<key>wp.patheos.com</key>
 	<string>Pantheos (partial)</string>
 	<key>wpacracker.com</key>
@@ -42049,6 +42787,8 @@
 	<string>WPP</string>
 	<key>wpstartbox.com</key>
 	<string>StartBox (partial)</string>
+	<key>wpvulndb.com</key>
+	<string>WP VulnDB.com</string>
 	<key>wpymedia.nhm.ac.uk</key>
 	<string>NHM.ac.uk (partial)</string>
 	<key>wral.com</key>
@@ -42147,8 +42887,6 @@
 	<string>dakko.us (partial)</string>
 	<key>www-structures.ucsd.edu</key>
 	<string>UCSD</string>
-	<key>www-tc.pbs.org</key>
-	<string>Public Broadcasting Service (partial)</string>
 	<key>www.*.alaska.edu</key>
 	<string>University of Alaska (partial)</string>
 	<key>www.*.anl.gov</key>
@@ -42171,16 +42909,12 @@
 	<string>University of Hertfordshire (partial)</string>
 	<key>www.*.inmotionhosting.com</key>
 	<string>InMotion Hosting</string>
-	<key>www.*.mit.edu</key>
-	<string>Massachusetts Institute of Technology (partial)</string>
 	<key>www.*.ncsu.edu</key>
 	<string>North Carolina State University (partial)</string>
 	<key>www.*.newsvine.com</key>
 	<string>newsvine.com (partial)</string>
 	<key>www.*.nsf.gov</key>
 	<string>National Science Foundation (partial)</string>
-	<key>www.*.nyu.edu</key>
-	<string>New York University (partial)</string>
 	<key>www.*.onsugar.com</key>
 	<string>OnSugar</string>
 	<key>www.*.psu.edu</key>
@@ -42247,8 +42981,6 @@
 	<string>2020mobile</string>
 	<key>www.220volt.hu</key>
 	<string>220Volt.hu</string>
-	<key>www.23andme.com</key>
-	<string>23andMe.com</string>
 	<key>www.247filmz.com</key>
 	<string>247filmz</string>
 	<key>www.256.com</key>
@@ -42407,6 +43139,8 @@
 	<string>Air Canada Pilot&#39;s Association (partial)</string>
 	<key>www.acromediainc.com</key>
 	<string>Acro Media (partial)</string>
+	<key>www.acsac.org</key>
+	<string>ACSAC.org</string>
 	<key>www.actel.com</key>
 	<string>Actel.com</string>
 	<key>www.action-intell.com</key>
@@ -42414,7 +43148,7 @@
 	<key>www.actionsalvage.com</key>
 	<string>Action Auto Wreckers</string>
 	<key>www.activestatic.net</key>
-	<string>Active.com (partial)</string>
+	<string>Active static.net</string>
 	<key>www.acunetix.com</key>
 	<string>Acunetix.com</string>
 	<key>www.ada.lt</key>
@@ -42475,6 +43209,8 @@
 	<string>adultcineporn.com</string>
 	<key>www.adultswim.com</key>
 	<string>Adult Swim</string>
+	<key>www.adultwork.com</key>
+	<string>AdultWork.com (partial)</string>
 	<key>www.advantagemedia.com</key>
 	<string>Advantage Business Media</string>
 	<key>www.advantageseoservices.com</key>
@@ -42517,6 +43253,8 @@
 	<string>AFRA-Berlin.de</string>
 	<key>www.afsp.org</key>
 	<string>American Foundation for Suicide Prevention</string>
+	<key>www.aftenposten.no</key>
+	<string>Aftenposten.no</string>
 	<key>www.aftership.com</key>
 	<string>AfterShip.com</string>
 	<key>www.aftontrailrun.com</key>
@@ -42605,6 +43343,8 @@
 	<string>Allingsas.se</string>
 	<key>www.allistene.fr</key>
 	<string>Allistene.fr</string>
+	<key>www.allmybase.com</key>
+	<string>All My Base.com</string>
 	<key>www.allunmanaged.com</key>
 	<string>AllUnmanaged.com</string>
 	<key>www.allybank.com</key>
@@ -42709,6 +43449,8 @@
 	<string>AnonymousSpeech.com</string>
 	<key>www.anonyproz.com</key>
 	<string>Anyproz</string>
+	<key>www.anonysurfer.com</key>
+	<string>AnonySurfer.com</string>
 	<key>www.anquanbao.com</key>
 	<string>Anquanbao.com</string>
 	<key>www.anrdoezrs.net</key>
@@ -42805,6 +43547,10 @@
 	<string>Archos.com</string>
 	<key>www.arcor.de</key>
 	<string>ArcorCentralLogin</string>
+	<key>www.arewecompressedyet.com</key>
+	<string>Are We Compressed Yet.com</string>
+	<key>www.areweslimyet.com</key>
+	<string>Are We Slim Yet.com</string>
 	<key>www.argeweb.nl</key>
 	<string>Argeweb.nl</string>
 	<key>www.argos-spain.co.uk</key>
@@ -42873,6 +43619,8 @@
 	<string>Astra.io</string>
 	<key>www.astro.rug.nl</key>
 	<string>University of Groningen (partial)</string>
+	<key>www.astrobotic.com</key>
+	<string>Astrobotic.com</string>
 	<key>www.astronomicaltours.net</key>
 	<string>AstronomicalTours</string>
 	<key>www.aswirlgirl.com</key>
@@ -42963,6 +43711,8 @@
 	<string>b3n.org</string>
 	<key>www.babymed.com</key>
 	<string>BabyMed.com (partial)</string>
+	<key>www.backblaze.com</key>
+	<string>Backblaze.com</string>
 	<key>www.backbonesecurity.com</key>
 	<string>Backbone Security</string>
 	<key>www.backpackerslucerne.ch</key>
@@ -43087,14 +43837,14 @@
 	<string>bear.im</string>
 	<key>www.beatsmedia.com</key>
 	<string>Beatsmedia</string>
-	<key>www.beautifuldecay.com</key>
-	<string>BeautifulDecay.com (partial)</string>
 	<key>www.becoquin.com</key>
 	<string>BeCoquin.com (partial)</string>
 	<key>www.beefree.io</key>
 	<string>BeeFree.io</string>
 	<key>www.beeldengeluid.nl</key>
 	<string>Beeld en Geluid.nl (partial)</string>
+	<key>www.beersofeurope.co.uk</key>
+	<string>Beers of Europe</string>
 	<key>www.beginlinux.com</key>
 	<string>BeginLinux.com</string>
 	<key>www.beginnertriathlete.com</key>
@@ -43103,6 +43853,8 @@
 	<string>Belkin (partial)</string>
 	<key>www.bell-labs.com</key>
 	<string>Bell-Labs.com</string>
+	<key>www.bellingcat.com</key>
+	<string>Bellingcat.com</string>
 	<key>www.belpino.se</key>
 	<string>Belpino.se</string>
 	<key>www.belspo.be</key>
@@ -43139,8 +43891,14 @@
 	<string>bet365 Group (partial)</string>
 	<key>www.betnet.fr</key>
 	<string>Betnet.fr</string>
+	<key>www.betterbills.com</key>
+	<string>BetterBills.com</string>
+	<key>www.betterbills.com.au</key>
+	<string>BetterBills.com.au</string>
 	<key>www.bettercrypto.org</key>
 	<string>BetterCrypto.org</string>
+	<key>www.bettershopping.eu</key>
+	<string>Bettershopping.eu</string>
 	<key>www.betvictor.com</key>
 	<string>Victor Chandler International</string>
 	<key>www.bezosexpeditions.com</key>
@@ -43169,6 +43927,8 @@
 	<string>Intent Media (partial)</string>
 	<key>www.billetnet.dk</key>
 	<string>Ticketmaster (partial)</string>
+	<key>www.billetten.dk</key>
+	<string>BillettenDK</string>
 	<key>www.billettservice.no</key>
 	<string>Ticketmaster (partial)</string>
 	<key>www.billing.helpjuice.com</key>
@@ -43291,6 +44051,8 @@
 	<string>BlockScript</string>
 	<key>www.blockstream.com</key>
 	<string>Blockstream.com (partial)</string>
+	<key>www.blocktogether.com</key>
+	<string>Block Together.com</string>
 	<key>www.blog.edoeb.admin.ch</key>
 	<string>Schweizer Regierung</string>
 	<key>www.blogcdn.com</key>
@@ -43301,6 +44063,8 @@
 	<string>Stack Exchange (partial)</string>
 	<key>www.blogsmithmedia.com</key>
 	<string>Moviefone</string>
+	<key>www.blossom.io</key>
+	<string>Blossom.IO</string>
 	<key>www.blot.im</key>
 	<string>Blot.im</string>
 	<key>www.bluechip.hu</key>
@@ -43357,6 +44121,8 @@
 	<string>Bokborgen.se</string>
 	<key>www.bokelskere.no</key>
 	<string>Bokelskere</string>
+	<key>www.bokon.se</key>
+	<string>Bokon.se</string>
 	<key>www.bolagsverket.se</key>
 	<string>Bolagsverket.se</string>
 	<key>www.boltbus.com</key>
@@ -43481,6 +44247,8 @@
 	<string>Brockman</string>
 	<key>www.brokenman.co</key>
 	<string>Brokenman</string>
+	<key>www.brook.gs</key>
+	<string>bit.ly vanity domains</string>
 	<key>www.browsealoud.com</key>
 	<string>BrowseAloud.com</string>
 	<key>www.browserid.org</key>
@@ -43503,6 +44271,8 @@
 	<string>Federal Office for Information Security</string>
 	<key>www.bsi.de</key>
 	<string>Federal Office for Information Security</string>
+	<key>www.bt.no</key>
+	<string>BT.no (false MCB)</string>
 	<key>www.btc.to</key>
 	<string>btc.to</string>
 	<key>www.btcbuy.info</key>
@@ -43597,6 +44367,8 @@
 	<string>Brew Your Own</string>
 	<key>www.byte.com</key>
 	<string>InformationWeek</string>
+	<key>www.bzfd.it</key>
+	<string>bit.ly vanity domains</string>
 	<key>www.c-base.org</key>
 	<string>C-Base</string>
 	<key>www.c-spanvideo.org</key>
@@ -43651,8 +44423,6 @@
 	<string>Cambey &amp; West (partial)</string>
 	<key>www.camden.gov.uk</key>
 	<string>UK Local Government</string>
-	<key>www.campact.de</key>
-	<string>Campact.de</string>
 	<key>www.campinaopschool.nl</key>
 	<string>Campina (partial)</string>
 	<key>www.canadahelps.org</key>
@@ -43785,6 +44555,8 @@
 	<string>CBP.net.br</string>
 	<key>www.cbpweb.nl</key>
 	<string>Dutch Data Protection Authority</string>
+	<key>www.cbsn.ws</key>
+	<string>bit.ly vanity domains</string>
 	<key>www.cccure.com</key>
 	<string>CCCure.com</string>
 	<key>www.cccure.org</key>
@@ -43813,6 +44585,8 @@
 	<string>CDON.COM</string>
 	<key>www.cdon.se</key>
 	<string>CDON.COM</string>
+	<key>www.cdromland.nl</key>
+	<string>CD ROM Land.nl</string>
 	<key>www.cdw.com</key>
 	<string>CDW and CDW-G</string>
 	<key>www.cdwg.com</key>
@@ -43823,6 +44597,8 @@
 	<string>CeBIT.de (partial)</string>
 	<key>www.cede.ch</key>
 	<string>cede</string>
+	<key>www.cedia.org.ec</key>
+	<string>CEDIA.org.ec (partial)</string>
 	<key>www.celiac.org</key>
 	<string>Celiac Disease Foundation</string>
 	<key>www.cenowarka.pl</key>
@@ -43841,6 +44617,8 @@
 	<string>CEntrance (partial)</string>
 	<key>www.ceredigion.gov.uk</key>
 	<string>UK Local Government</string>
+	<key>www.cereproc.com</key>
+	<string>CereProc.com</string>
 	<key>www.cert.fi</key>
 	<string>CERT.fi</string>
 	<key>www.cert.se</key>
@@ -43853,6 +44631,8 @@
 	<string>CFEngine</string>
 	<key>www.cff.ch</key>
 	<string>Swiss Federal Railways (SBB/CFF/FFS)</string>
+	<key>www.cfmueller.de</key>
+	<string>C F Mueller.de</string>
 	<key>www.chakasmmm.com</key>
 	<string>Chakas Mmm.com (partial)</string>
 	<key>www.challenge25.go.jp</key>
@@ -43953,6 +44733,8 @@
 	<string>Factory Expo Home Centers</string>
 	<key>www.cinestar.de</key>
 	<string>CineStar</string>
+	<key>www.cint.com</key>
+	<string>Cint.com (false MCB)</string>
 	<key>www.cio.com.au</key>
 	<string>CIO.com.au</string>
 	<key>www.cipherlawgroup.com</key>
@@ -44183,6 +44965,8 @@
 	<string>concrete5 (partial)</string>
 	<key>www.condenaststore.com</key>
 	<string>Condé Nast (partial)</string>
+	<key>www.confirmsubscription.com</key>
+	<string>confirmsubscription.com</string>
 	<key>www.confuzzled.org.uk</key>
 	<string>Confuzzled</string>
 	<key>www.connect.me</key>
@@ -44333,6 +45117,8 @@
 	<string>Credit Suisse</string>
 	<key>www.creocommunico.com</key>
 	<string>Host Creo</string>
+	<key>www.cricketwireless.com</key>
+	<string>Cricket Wireless.com</string>
 	<key>www.crm-metrix.com</key>
 	<string>CRM Metrix</string>
 	<key>www.croscill.com</key>
@@ -44369,8 +45155,6 @@
 	<string>Crystal Delights.com</string>
 	<key>www.crz.gov.sk</key>
 	<string>SlovakGoverment</string>
-	<key>www.cs.sunysb.edu</key>
-	<string>Stony Brook University (partial)</string>
 	<key>www.cs.ucsd.edu</key>
 	<string>UCSD</string>
 	<key>www.cs.utah.edu</key>
@@ -44411,6 +45195,8 @@
 	<string>CTunnel</string>
 	<key>www.cualbr.com</key>
 	<string>Commission Junction</string>
+	<key>www.cue.me</key>
+	<string>Cue.me</string>
 	<key>www.cueup.com</key>
 	<string>Cueup.com</string>
 	<key>www.cuidadodesalud.gov</key>
@@ -44585,6 +45371,8 @@
 	<string>De Bekijkerie.nl</string>
 	<key>www.debian-administration.org</key>
 	<string>Debian-Administration.org (partial)</string>
+	<key>www.debuggex.com</key>
+	<string>Debuggex.com</string>
 	<key>www.deco.proteste.pt</key>
 	<string>Deco.proteste.pt</string>
 	<key>www.decryptcryptolocker.com</key>
@@ -44663,12 +45451,16 @@
 	<string>Intent Media (partial)</string>
 	<key>www.developer.mydigipass.com</key>
 	<string>Mydigipass.com</string>
+	<key>www.developermail.io</key>
+	<string>DeveloperMail.io</string>
 	<key>www.devolo.com</key>
 	<string>Devolo.com</string>
 	<key>www.devon.gov.uk</key>
 	<string>UK Local Government</string>
 	<key>www.devstructure.com</key>
 	<string>Devstructure</string>
+	<key>www.devuan.org</key>
+	<string>Devuan.org</string>
 	<key>www.df.eu</key>
 	<string>DF.eu</string>
 	<key>www.dfranke.us</key>
@@ -44875,6 +45667,8 @@
 	<string>DomainMarket.com (partial)</string>
 	<key>www.domainsbyproxy.com</key>
 	<string>Domains By Proxy</string>
+	<key>www.domcomp.com</key>
+	<string>domcomp.com</string>
 	<key>www.domeinenrz.nl</key>
 	<string>NL Overheid</string>
 	<key>www.domena.cz</key>
@@ -44921,6 +45715,8 @@
 	<string>Draugiem.lv (partial)</string>
 	<key>www.drawquest.com</key>
 	<string>DrawQuest</string>
+	<key>www.drchrono.com</key>
+	<string>Drchrono.com</string>
 	<key>www.dreamnews.jp</key>
 	<string>Dream News.jp</string>
 	<key>www.dreamsolution.nl</key>
@@ -45003,12 +45799,16 @@
 	<string>Dyson (partial)</string>
 	<key>www.dzne.de</key>
 	<string>German Center for Neurodegenerative Diseases</string>
+	<key>www.e-activist.com</key>
+	<string>e-activist.com</string>
 	<key>www.e-cegjegyzek.hu</key>
 	<string>E-cegjegyzek.hu</string>
 	<key>www.e-food.gr</key>
 	<string>e-food.gr</string>
 	<key>www.e-gold.com</key>
 	<string>e-gold (partial)</string>
+	<key>www.e-klase.lv</key>
+	<string>E-klase.lv</string>
 	<key>www.e-magin.se</key>
 	<string>E-magin.se</string>
 	<key>www.e-mail-made-in-germany.de</key>
@@ -45054,7 +45854,7 @@
 	<key>www.easywhois.com</key>
 	<string>easyWhois.com</string>
 	<key>www.eater.com</key>
-	<string>Eater</string>
+	<string>Eater.com (partial)</string>
 	<key>www.ebenefits.va.gov</key>
 	<string>US Department of Veterans Affairs</string>
 	<key>www.ebi.ac.uk</key>
@@ -45095,6 +45895,8 @@
 	<string>Eddie Izzard (partial)</string>
 	<key>www.edfil.es</key>
 	<string>Edfil.es</string>
+	<key>www.edg.com</key>
+	<string>EDG.com</string>
 	<key>www.edigital.hu</key>
 	<string>Extreme Digital</string>
 	<key>www.edihealth.com</key>
@@ -45155,6 +45957,8 @@
 	<string>eKomi</string>
 	<key>www.ekomi.co.za</key>
 	<string>eKomi</string>
+	<key>www.ekwb.com</key>
+	<string>EKWB Cooling Solutions</string>
 	<key>www.el-tramo.be</key>
 	<string>El-Tramo.be</string>
 	<key>www.elanex.biz</key>
@@ -45165,6 +45969,8 @@
 	<string>Techidiots.net</string>
 	<key>www.elementaryos.org</key>
 	<string>Elementary OS.org (partial)</string>
+	<key>www.elgiganten.dk</key>
+	<string>ElgigantenDK</string>
 	<key>www.elie.im</key>
 	<string>Elie Bursztein</string>
 	<key>www.eliminatejunkemail.com</key>
@@ -45227,12 +46033,16 @@
 	<string>Encrypt Everything.ca</string>
 	<key>www.encryptingdata.info</key>
 	<string>EncryptingData.info</string>
+	<key>www.energinet.dk</key>
+	<string>Energinet.net</string>
 	<key>www.energystar.gov</key>
 	<string>EnergyStar</string>
 	<key>www.enfield.gov.uk</key>
 	<string>UK Local Government</string>
 	<key>www.engagemedia.org</key>
 	<string>Engage Media.org</string>
+	<key>www.engagingnetworks.net</key>
+	<string>Engaging Networks.net</string>
 	<key>www.english-heritage.org.uk</key>
 	<string>English-Heritage.org.uk (partial)</string>
 	<key>www.englishdefenceleague.net</key>
@@ -45287,8 +46097,6 @@
 	<string>Epson.com (partial)</string>
 	<key>www.epson.com.mx</key>
 	<string>Epson.com (partial)</string>
-	<key>www.equalit.ie</key>
-	<string>eQualit.ie</string>
 	<key>www.equity.org.uk</key>
 	<string>Equity</string>
 	<key>www.era.int</key>
@@ -45335,6 +46143,8 @@
 	<string>European Southern Observatory (partial)</string>
 	<key>www.espacejeux.com</key>
 	<string>espacejeux</string>
+	<key>www.esper.net</key>
+	<string>Esper.net</string>
 	<key>www.espionageapp.com</key>
 	<string>Espionage app.com</string>
 	<key>www.esr.org</key>
@@ -45355,6 +46165,8 @@
 	<string>Etarget (partial)</string>
 	<key>www.ethack.org</key>
 	<string>EthACK.org</string>
+	<key>www.etherpad.fr</key>
+	<string>etherpad.fr</string>
 	<key>www.ethlife.ethz.ch</key>
 	<string>ETH Zürich (partial)</string>
 	<key>www.ethnologue.com</key>
@@ -45403,6 +46215,8 @@
 	<string>EVGA (partial)</string>
 	<key>www.evga.com.tw</key>
 	<string>EVGA (partial)</string>
+	<key>www.evil32.com</key>
+	<string>Evil 32.com</string>
 	<key>www.evo.com</key>
 	<string>evo.com (partial)</string>
 	<key>www.evoluted.net</key>
@@ -45563,8 +46377,6 @@
 	<string>Feed2JS.org</string>
 	<key>www.feedarea.de</key>
 	<string>podcast.at (partial)</string>
-	<key>www.feedburner.com</key>
-	<string>FeedBurner (partial)</string>
 	<key>www.feedjit.com</key>
 	<string>Feedjit (partial)</string>
 	<key>www.feedmyinbox.com</key>
@@ -45617,6 +46429,10 @@
 	<string>Filter (partial)</string>
 	<key>www.fimc.net</key>
 	<string>MediaSpan (partial)</string>
+	<key>www.fimfiction-static.net</key>
+	<string>Fimfiction.net</string>
+	<key>www.fimfiction.net</key>
+	<string>Fimfiction.net</string>
 	<key>www.finance.gov.sk</key>
 	<string>SlovakGoverment</string>
 	<key>www.financialcryptography.com</key>
@@ -45673,6 +46489,8 @@
 	<string>Finanssialan Keskusliitto</string>
 	<key>www.flashback.org</key>
 	<string>Flashback.org</string>
+	<key>www.flashgot.net</key>
+	<string>FlashGot.net</string>
 	<key>www.flightglobalshop.com</key>
 	<string>Flightglobal (partial)</string>
 	<key>www.flinkster.de</key>
@@ -45701,6 +46519,8 @@
 	<string>FluxBB.org (partial)</string>
 	<key>www.flyersrights.org</key>
 	<string>FlyersRights.org</string>
+	<key>www.flyertalk.com</key>
+	<string>Flyertalk.com</string>
 	<key>www.flyertown.ca</key>
 	<string>Flyertown</string>
 	<key>www.fmv.se</key>
@@ -45715,8 +46535,6 @@
 	<string>Fokus Bank</string>
 	<key>www.folksam.se</key>
 	<string>Folksam.se</string>
-	<key>www.fontdeck.com</key>
-	<string>Fontdeck (partial)</string>
 	<key>www.fontmarketplace.com</key>
 	<string>Monotype Imaging (partial)</string>
 	<key>www.foodallergy.org</key>
@@ -45819,6 +46637,8 @@
 	<string>Free Snowden.is</string>
 	<key>www.freespeech.org</key>
 	<string>Free Speech.org</string>
+	<key>www.freethoughtblogs.com</key>
+	<string>Freethought Blogs.com (partial)</string>
 	<key>www.freewebsitetemplates.com</key>
 	<string>freewebsitetemplates.com</string>
 	<key>www.freeyourandroid.org</key>
@@ -45875,6 +46695,8 @@
 	<string>Full Circle Studies (partial)</string>
 	<key>www.fullrate.dk</key>
 	<string>Fullrate (partial)</string>
+	<key>www.fundersclub.com</key>
+	<string>FundersClub.com</string>
 	<key>www.fundfill.com</key>
 	<string>FundFill.com</string>
 	<key>www.funkyandroid.com</key>
@@ -45887,10 +46709,10 @@
 	<string>Futurity.org</string>
 	<key>www.fuzeqna.com</key>
 	<string>Authorize.Net</string>
-	<key>www.fuzzing-project.org</key>
-	<string>Fuzzing-Project.org</string>
 	<key>www.fws.gov</key>
 	<string>U.S. Fish and Wildlife Service (partial)</string>
+	<key>www.fxn.ws</key>
+	<string>bit.ly vanity domains</string>
 	<key>www.fylde.gov.uk</key>
 	<string>UK Local Government</string>
 	<key>www.g-ir.com</key>
@@ -45957,6 +46779,8 @@
 	<string>GayTorrents</string>
 	<key>www.gayromeo.com</key>
 	<string>PlanetRomeo</string>
+	<key>www.gayswap.com</key>
+	<string>GaySwap.com</string>
 	<key>www.gazellegames.net</key>
 	<string>gazellegames.net</string>
 	<key>www.gbatemp.net</key>
@@ -46177,6 +47001,8 @@
 	<string>Google Services</string>
 	<key>www.gmo-registry.com</key>
 	<string>GMO-Registry.com</string>
+	<key>www.gmo.com</key>
+	<string>GMO.com</string>
 	<key>www.gmodules.com</key>
 	<string>Google APIs</string>
 	<key>www.gmoregistry.com</key>
@@ -46323,6 +47149,8 @@
 	<string>GroupLogic (partial)</string>
 	<key>www.grouponworks.com</key>
 	<string>Groupon Works.com</string>
+	<key>www.grove.io</key>
+	<string>Grove.io</string>
 	<key>www.growery.org</key>
 	<string>Growery (partial)</string>
 	<key>www.gruen.net</key>
@@ -46338,7 +47166,7 @@
 	<key>www.gsu.edu</key>
 	<string>GSU.edu (false MCB)</string>
 	<key>www.guadec.org</key>
-	<string>GPUL.org (partial)</string>
+	<string>GUADEC.org (partial)</string>
 	<key>www.guarantorusloans.co.uk</key>
 	<string>Guarantorus Loans.co.uk</string>
 	<key>www.guardianbookshop.co.uk</key>
@@ -46359,6 +47187,8 @@
 	<string>GNOME (partial)</string>
 	<key>www.guru.de</key>
 	<string>guru.de</string>
+	<key>www.gurulabs.com</key>
+	<string>Guru Labs.com</string>
 	<key>www.gust.com</key>
 	<string>Gust (partial)</string>
 	<key>www.gvntube.com</key>
@@ -46389,6 +47219,8 @@
 	<string>habrastorage.org</string>
 	<key>www.hackable-devices.org</key>
 	<string>hackable-devices.org</string>
+	<key>www.hackademix.net</key>
+	<string>hackademix.net</string>
 	<key>www.hackerrank.com</key>
 	<string>HackerRank.com</string>
 	<key>www.hackertarget.com</key>
@@ -46437,6 +47269,8 @@
 	<string>Harland Clarke</string>
 	<key>www.harlandforms.com</key>
 	<string>Harland Clarke</string>
+	<key>www.harrow.io</key>
+	<string>Harrow.io</string>
 	<key>www.harvardpilgrim.org</key>
 	<string>Harvard Pilgrim.org (partial)</string>
 	<key>www.hashcat.net</key>
@@ -46475,6 +47309,8 @@
 	<string>HealthCheckUSA</string>
 	<key>www.healths.biz</key>
 	<string>Healths.Biz</string>
+	<key>www.heapanalytics.com</key>
+	<string>Heap Analytics.com</string>
 	<key>www.heatball.de</key>
 	<string>Heatball.de</string>
 	<key>www.heathkit.com</key>
@@ -46553,6 +47389,8 @@
 	<string>HKK</string>
 	<key>www.hkn.de</key>
 	<string>HKN (partial)</string>
+	<key>www.hkyantoyan.com</key>
+	<string>HK Yanto Yan.com (partial)</string>
 	<key>www.hm.com</key>
 	<string>Hm.com</string>
 	<key>www.hmapps.net</key>
@@ -46573,6 +47411,8 @@
 	<string>Holder de ord.no</string>
 	<key>www.holidaybreak.co.uk</key>
 	<string>Holidaybreak (partial)</string>
+	<key>www.holidaybullshit.com</key>
+	<string>HolidayBullshit.com</string>
 	<key>www.hollywoodoutlaws.com</key>
 	<string>Hollywood Outlaws.com (partial)</string>
 	<key>www.home.ch</key>
@@ -46585,6 +47425,8 @@
 	<string>HomeBello (partial)</string>
 	<key>www.homefinder.com</key>
 	<string>HomeFinder.com (partial)</string>
+	<key>www.homelessveterans.co.uk</key>
+	<string>Homeless Veterans.co.uk (partial)</string>
 	<key>www.homementors.com</key>
 	<string>Home Mentors.com</string>
 	<key>www.hometheaterreview.com</key>
@@ -46695,6 +47537,8 @@
 	<string>Home School Legal Defense Association</string>
 	<key>www.hsv.se</key>
 	<string>HSV.se</string>
+	<key>www.httplab.it</key>
+	<string>httpLab.it</string>
 	<key>www.httpsnow.org</key>
 	<string>EFF</string>
 	<key>www.hub.sciverse.com</key>
@@ -46831,10 +47675,16 @@
 	<string>IFEX.org</string>
 	<key>www.ifightsurveillance.com</key>
 	<string>I Fight Surveillance.org</string>
+	<key>www.ifightsurveillance.net</key>
+	<string>I Fight Surveillance.org</string>
+	<key>www.ifightsurveillance.org</key>
+	<string>I Fight Surveillance.org</string>
 	<key>www.iflygo.com</key>
 	<string>go!Mokulele</string>
 	<key>www.ifortuna.sk</key>
 	<string>Ifortuna.sk</string>
+	<key>www.ift.tt</key>
+	<string>bit.ly vanity domains</string>
 	<key>www.ifttt.com</key>
 	<string>IFTTT.com (partial)</string>
 	<key>www.ignum.cz</key>
@@ -46923,6 +47773,8 @@
 	<string>inCloak.com</string>
 	<key>www.incommon.org</key>
 	<string>InCommon</string>
+	<key>www.ind.pn</key>
+	<string>bit.ly vanity domains</string>
 	<key>www.indexoncensorship.org</key>
 	<string>Index on Censorship.org (partial)</string>
 	<key>www.indiemerchandising.com</key>
@@ -46963,8 +47815,6 @@
 	<string>Informa Healthcare (partial)</string>
 	<key>www.informatick.com</key>
 	<string>informatick.net (partial)</string>
-	<key>www.informatik.uni-hamburg.de</key>
-	<string>UHH_Informatik</string>
 	<key>www.informationweek.com</key>
 	<string>InformationWeek</string>
 	<key>www.informer.com</key>
@@ -47041,6 +47891,8 @@
 	<string>Interactive Online</string>
 	<key>www.interdiscount.ch</key>
 	<string>Coop</string>
+	<key>www.interfacelift.com</key>
+	<string>Interfacelift.com</string>
 	<key>www.interhyp.de</key>
 	<string>Interhyp.de</string>
 	<key>www.internap.co.jp</key>
@@ -47163,6 +48015,8 @@
 	<string>ISOC.org.br</string>
 	<key>www.isocket.com</key>
 	<string>isocket (partial)</string>
+	<key>www.isocpp.org</key>
+	<string>ISO Cpp.org</string>
 	<key>www.isohunt.to</key>
 	<string>isoHunt.to (partial)</string>
 	<key>www.isomorphic.com</key>
@@ -47193,6 +48047,8 @@
 	<string>iTerm2.org</string>
 	<key>www.ithaca.edu</key>
 	<string>Ithaca College</string>
+	<key>www.iti.ms</key>
+	<string>bit.ly vanity domains</string>
 	<key>www.itrust.org.cn</key>
 	<string>itrust.org.cn</string>
 	<key>www.itslearning.com</key>
@@ -47359,6 +48215,10 @@
 	<string>JPBerlin.de</string>
 	<key>www.jpcert.or.jp</key>
 	<string>JP-CERT</string>
+	<key>www.jrnl.ie</key>
+	<string>bit.ly vanity domains</string>
+	<key>www.jrnl.to</key>
+	<string>bit.ly vanity domains</string>
 	<key>www.jrrt.org.uk</key>
 	<string>Joseph Rowntree Reform Trust (partial)</string>
 	<key>www.js-kit.com</key>
@@ -47491,6 +48351,8 @@
 	<string>Kicktraq</string>
 	<key>www.kidshealth.org</key>
 	<string>KidsHealth/TeensHealth</string>
+	<key>www.kildarestreet.com</key>
+	<string>KildareStreet.com</string>
 	<key>www.kimberly-clark.com</key>
 	<string>Kimberly-Clark (partial)</string>
 	<key>www.kimberly-clark.com.*</key>
@@ -47499,6 +48361,8 @@
 	<string>Kinesis-Ergo.com</string>
 	<key>www.kinfolk.com</key>
 	<string>Kinfolk.com (partial)</string>
+	<key>www.kinklink.me</key>
+	<string>KinkLink.me</string>
 	<key>www.kinotehnik.com</key>
 	<string>Kinotehnik</string>
 	<key>www.kintera.com</key>
@@ -47643,6 +48507,8 @@
 	<string>University of Puerto Rico (partial)</string>
 	<key>www.lagen.nu</key>
 	<string>Lagen.nu</string>
+	<key>www.lainchan.org</key>
+	<string>lainchan.org</string>
 	<key>www.lambda-tek.com</key>
 	<string>LambdaTek</string>
 	<key>www.landal.*</key>
@@ -47741,6 +48607,8 @@
 	<string>Leibniz Supercomputing Centre</string>
 	<key>www.leicestershire.gov.uk</key>
 	<string>UK Local Government</string>
+	<key>www.lektorium.tv</key>
+	<string>Lektorium.tv</string>
 	<key>www.lenovo.co.uk</key>
 	<string>Lenovo (partial)</string>
 	<key>www.lenovoorders.com</key>
@@ -47857,6 +48725,8 @@
 	<string>Linksysbycisco.com</string>
 	<key>www.linnrecords.com</key>
 	<string>Linn Records.com (partial)</string>
+	<key>www.linotype.com</key>
+	<string>Linotype.com (partial)</string>
 	<key>www.linphone.org</key>
 	<string>Linphone</string>
 	<key>www.linutronix.de</key>
@@ -47913,12 +48783,16 @@
 	<string>LKML</string>
 	<key>www.lloydstsb-offshore.com</key>
 	<string>Lloyds TSB Offshore</string>
+	<key>www.llvm.org</key>
+	<string>LLVM.org (partial)</string>
 	<key>www.loa.org</key>
 	<string>LoA.org</string>
 	<key>www.loadimpact.com</key>
 	<string>LoadImpact.com</string>
 	<key>www.loanliner.com</key>
 	<string>Loanliner.com</string>
+	<key>www.localphone.com</key>
+	<string>Localphone</string>
 	<key>www.lochem.nl</key>
 	<string>NL Overheid</string>
 	<key>www.loctudy.fr</key>
@@ -48073,6 +48947,8 @@
 	<string>Magnet.ie</string>
 	<key>www.mah.se</key>
 	<string>MAH.se</string>
+	<key>www.maidsafe.org</key>
+	<string>maidsafe.org</string>
 	<key>www.maidstone.gov.uk</key>
 	<string>UK Local Government</string>
 	<key>www.mail-archive.com</key>
@@ -48339,6 +49215,8 @@
 	<string>Metaboli.co.uk</string>
 	<key>www.metacode.cz</key>
 	<string>metacode.cz</string>
+	<key>www.metager.de</key>
+	<string>MetaGer.de</string>
 	<key>www.metapress.org</key>
 	<string>MetaPress (partial)</string>
 	<key>www.metashop.at</key>
@@ -48413,6 +49291,8 @@
 	<string>Wyndham (partial)</string>
 	<key>www.mijnwestlandutrecht.nl</key>
 	<string>WestlandUtrecht Bank</string>
+	<key>www.mikeash.com</key>
+	<string>Mike Ash.com</string>
 	<key>www.mikrocontroller.net</key>
 	<string>Mikrocontroller.net</string>
 	<key>www.miles-and-more.com</key>
@@ -48453,10 +49333,14 @@
 	<string>MirBSD</string>
 	<key>www.mirc.com</key>
 	<string>mIRC (partial)</string>
+	<key>www.mirrorbingo.com</key>
+	<string>Mirror Bingo.com (partial)</string>
+	<key>www.mirrorreaderoffers.co.uk</key>
+	<string>Mirror Reader Offers.co.uk</string>
 	<key>www.misadventureswithandi.com</key>
 	<string>Misadventures with Andi (partial)</string>
 	<key>www.mitpressjournals.org</key>
-	<string>Massachusetts Institute of Technology (partial)</string>
+	<string>MIT Press Journals.org (partial)</string>
 	<key>www.mitsubishi.com</key>
 	<string>Mitsubishi.com</string>
 	<key>www.miun.se</key>
@@ -48567,6 +49451,8 @@
 	<string>Morningstar.co.uk (partial)</string>
 	<key>www.mosaicscience.com</key>
 	<string>Mosaic Science.com (partial)</string>
+	<key>www.mosis.com</key>
+	<string>MOSIS.com</string>
 	<key>www.mosr.sk</key>
 	<string>SlovakGoverment</string>
 	<key>www.motesplatsen.se</key>
@@ -48791,6 +49677,8 @@
 	<string>Volunteer² (partial)</string>
 	<key>www.mywell-being.com</key>
 	<string>MyWell-Being.com</string>
+	<key>www.mywickr.com</key>
+	<string>Wickr.com</string>
 	<key>www.mzl.la</key>
 	<string>bit.ly vanity domains</string>
 	<key>www.mzv.sk</key>
@@ -48877,6 +49765,8 @@
 	<string>Nawaat</string>
 	<key>www.nazwa.pl</key>
 	<string>nazwa.pl (partial)</string>
+	<key>www.nbcnews.to</key>
+	<string>bit.ly vanity domains</string>
 	<key>www.nbg.gr</key>
 	<string>Greek-banks</string>
 	<key>www.nbwn.de</key>
@@ -48923,6 +49813,8 @@
 	<string>NEO Direct</string>
 	<key>www.neobits.com</key>
 	<string>Neobits (partial)</string>
+	<key>www.neocities.org</key>
+	<string>NeoCities.org</string>
 	<key>www.neomailbox.net</key>
 	<string>neomailbox</string>
 	<key>www.neonisi.com</key>
@@ -48975,6 +49867,8 @@
 	<string>NetPivotal</string>
 	<key>www.netpivotal.eu</key>
 	<string>NetPivotal</string>
+	<key>www.netpol.org</key>
+	<string>Netpol.org</string>
 	<key>www.nets-danid.dk</key>
 	<string>Nets DanID</string>
 	<key>www.netsparker.com</key>
@@ -49099,6 +49993,8 @@
 	<string>National Optical Astronomy Observatory (partial)</string>
 	<key>www.nodejsmodules.org</key>
 	<string>NodeJS Modules.org</string>
+	<key>www.nodesource.com</key>
+	<string>NodeSource.com</string>
 	<key>www.nodpi.org</key>
 	<string>No Deep Packet Inspection campaign</string>
 	<key>www.noelia.fi</key>
@@ -49117,8 +50013,6 @@
 	<string>Nokia (partial)</string>
 	<key>www.nomachine.com</key>
 	<string>NoMachine.com</string>
-	<key>www.nooelec.com</key>
-	<string>NooElec.com</string>
 	<key>www.noordwijkerhout.nl</key>
 	<string>NL Overheid</string>
 	<key>www.nordea.*</key>
@@ -49215,6 +50109,8 @@
 	<string>SlovakGoverment</string>
 	<key>www.nruns.com</key>
 	<string>n.runs</string>
+	<key>www.nsa-observer.net</key>
+	<string>nsa-observer.net</string>
 	<key>www.nsa.gov</key>
 	<string>National Security Agency</string>
 	<key>www.nsfwcorp.com</key>
@@ -49223,6 +50119,8 @@
 	<string>ED.gov (partial)</string>
 	<key>www.nsn.com</key>
 	<string>Nokia Siemens Networks (partial)</string>
+	<key>www.nsupdate.info</key>
+	<string>nsupdate.info</string>
 	<key>www.ntchosting.com</key>
 	<string>NTC Hosting</string>
 	<key>www.nti.org</key>
@@ -49373,6 +50271,8 @@
 	<string>Omron.com</string>
 	<key>www.on.lung.ca</key>
 	<string>Ontario Lung Association</string>
+	<key>www.onarbor.com</key>
+	<string>Onarbor.com</string>
 	<key>www.one.com</key>
 	<string>one.com</string>
 	<key>www.one2buy.com</key>
@@ -49403,6 +50303,8 @@
 	<string>OnionTip.com</string>
 	<key>www.onjive.com</key>
 	<string>onJive.com</string>
+	<key>www.online-go.com</key>
+	<string>online-go.com</string>
 	<key>www.online.cyberaces.org</key>
 	<string>CyberAces (partial)</string>
 	<key>www.onlinenotebook.hu</key>
@@ -49865,6 +50767,8 @@
 	<string>Philadelphia Bar Association</string>
 	<key>www.philshobbyshop.com</key>
 	<string>Phils Hobby Shop.com</string>
+	<key>www.philzimmermann.com</key>
+	<string>Phil Zimmermann.com</string>
 	<key>www.phishtank.com</key>
 	<string>PhishTank</string>
 	<key>www.phoenix.com</key>
@@ -49895,6 +50799,8 @@
 	<string>Pingability.com</string>
 	<key>www.pingless.co.il</key>
 	<string>Pingless (partial)</string>
+	<key>www.pinknews.co.uk</key>
+	<string>PinkNews.co.uk</string>
 	<key>www.pinsentmasons.com</key>
 	<string>Out-Law.com</string>
 	<key>www.pinta-outlet.fi</key>
@@ -49975,6 +50881,8 @@
 	<string>Pledgie</string>
 	<key>www.pliktverket.se</key>
 	<string>Pliktverket.se</string>
+	<key>www.plos.org</key>
+	<string>PLoS.org (false MCB)</string>
 	<key>www.ploum.net</key>
 	<string>ploum.net</string>
 	<key>www.plugrush.com</key>
@@ -50011,14 +50919,14 @@
 	<string>Poliisi.fi</string>
 	<key>www.polisforbundet.se</key>
 	<string>Polisforbundet.se</string>
+	<key>www.politi.co</key>
+	<string>bit.ly vanity domains</string>
 	<key>www.politie.nl</key>
 	<string>NL Overheid</string>
 	<key>www.polk.com</key>
 	<string>Polk</string>
 	<key>www.polybrowser.com</key>
 	<string>PolyBrowser.com</string>
-	<key>www.polygon.com</key>
-	<string>Polygon (false MCB)</string>
 	<key>www.polymer-project.org</key>
 	<string>Polymer-Project.org</string>
 	<key>www.poodle.io</key>
@@ -50147,6 +51055,8 @@
 	<string>PrivacyBox</string>
 	<key>www.privacychoice.org</key>
 	<string>PrivacyChoice (partial)</string>
+	<key>www.privacyenforcement.net</key>
+	<string>Privacy Enforcement.net</string>
 	<key>www.privacyfoundation.de</key>
 	<string>German Privacy Foundation</string>
 	<key>www.privacyinternational.org</key>
@@ -50291,8 +51201,6 @@
 	<string>Qabel</string>
 	<key>www.qb50.eu</key>
 	<string>QB50</string>
-	<key>www.qca.qualcomm.com</key>
-	<string>Qualcomm (partial)</string>
 	<key>www.qksrv.net</key>
 	<string>Commission Junction</string>
 	<key>www.qksz.net</key>
@@ -50435,6 +51343,8 @@
 	<string>HitsLink</string>
 	<key>www.realvnc.com</key>
 	<string>RealVNC.com</string>
+	<key>www.reason.com</key>
+	<string>Reason.com (partial)</string>
 	<key>www.rec-log.jp</key>
 	<string>rec-log (partial)</string>
 	<key>www.recapthelaw.org</key>
@@ -50473,6 +51383,8 @@
 	<string>Redd Pics.com (partial)</string>
 	<key>www.rediris.net</key>
 	<string>RedIRIS.es</string>
+	<key>www.redmatrix.me</key>
+	<string>Red Matrix.me</string>
 	<key>www.rednerd.com</key>
 	<string>rednerd.com</string>
 	<key>www.redports.org</key>
@@ -50481,6 +51393,8 @@
 	<string>RedState (partial)</string>
 	<key>www.reelvidz.com</key>
 	<string>ReelVidz.com (partial)</string>
+	<key>www.reflex.cz</key>
+	<string>Reflex.cz</string>
 	<key>www.refog.com</key>
 	<string>Refrog</string>
 	<key>www.register.ie</key>
@@ -50492,7 +51406,7 @@
 	<key>www.registryrocket.com</key>
 	<string>registryrocket.com</string>
 	<key>www.regonline.com</key>
-	<string>Active.com (partial)</string>
+	<string>RegOnline.com</string>
 	<key>www.regularish.com</key>
 	<string>Regularish.com</string>
 	<key>www.reichelt.de</key>
@@ -50537,6 +51451,8 @@
 	<string>Resist Surveillance.org</string>
 	<key>www.resortquestsecure.com</key>
 	<string>Wyndham (partial)</string>
+	<key>www.responsys.com</key>
+	<string>Responsys.com</string>
 	<key>www.resurs.se</key>
 	<string>Resurs.se</string>
 	<key>www.retailhosting.fi</key>
@@ -50712,7 +51628,7 @@
 	<key>www.runforyourlives.com</key>
 	<string>Run for Your Lives</string>
 	<key>www.rus.uni-stuttgart.de</key>
-	<string>University of Stuttgart (partial)</string>
+	<string>Uni-Stuttgart.de (partial)</string>
 	<key>www.rushmypassport.com</key>
 	<string>RushMyPassport.com</string>
 	<key>www.ruskeybiz.ru</key>
@@ -50743,8 +51659,6 @@
 	<string>Sade.com</string>
 	<key>www.saechsdsb.de</key>
 	<string>Der Sächsische Datenschutzbeauftragte</string>
-	<key>www.safaribooksonline.com</key>
-	<string>Safari Books Online</string>
 	<key>www.safariflow.com</key>
 	<string>Safari Flow.com (partial)</string>
 	<key>www.safe-in-cloud.com</key>
@@ -50755,6 +51669,8 @@
 	<string>safecharge247.com</string>
 	<key>www.safelinking.net</key>
 	<string>Safelinking</string>
+	<key>www.safesource.org.nz</key>
+	<string>SafeSource.org.nz</string>
 	<key>www.sagernotebook.com</key>
 	<string>Sagernotebook.com</string>
 	<key>www.saic.com</key>
@@ -50801,6 +51717,8 @@
 	<string>Sauce Labs</string>
 	<key>www.saucenao.com</key>
 	<string>SauceNAO.com</string>
+	<key>www.saucytime.com</key>
+	<string>SaucyTime.com (partial)</string>
 	<key>www.saudi.gov.sa</key>
 	<string>Saudi Government</string>
 	<key>www.sav.sk</key>
@@ -51051,6 +51969,8 @@
 	<string>SEO.com</string>
 	<key>www.seower.com</key>
 	<string>seower.com</string>
+	<key>www.seroundtable.com</key>
+	<string>SE Round Table.com</string>
 	<key>www.sertifikatai.lt</key>
 	<string>Sertifikatai.lt</string>
 	<key>www.servage.com</key>
@@ -51286,11 +52206,13 @@
 	<key>www.slidedeck.com</key>
 	<string>SlideDeck (partial)</string>
 	<key>www.slo-tech.com</key>
-	<string>Slo-Tech</string>
+	<string>Slo-Tech.com</string>
 	<key>www.sloanconsortium.org</key>
 	<string>The Sloan Consortium (partial)</string>
 	<key>www.slough.gov.uk</key>
 	<string>UK Local Government</string>
+	<key>www.slovakrail.sk</key>
+	<string>Slovakrail.sk</string>
 	<key>www.slovensko.sk</key>
 	<string>SlovakGoverment</string>
 	<key>www.slu.se</key>
@@ -51343,6 +52265,8 @@
 	<string>Snel Internet Services</string>
 	<key>www.snl.com</key>
 	<string>SNL.com (partial)</string>
+	<key>www.snowdrift.coop</key>
+	<string>Snowdrift.coop</string>
 	<key>www.snowmagazineonline.com</key>
 	<string>Snow Magazine</string>
 	<key>www.snsbank.nl</key>
@@ -51371,6 +52295,8 @@
 	<string>SockShare (partial)</string>
 	<key>www.sofawolf.com</key>
 	<string>Sofawolf</string>
+	<key>www.softaculous.com</key>
+	<string>Softaculous.com (partial)</string>
 	<key>www.softether.org</key>
 	<string>SoftEther VPN</string>
 	<key>www.softwarefreedom.org</key>
@@ -51425,6 +52351,8 @@
 	<string>SoundKit.io</string>
 	<key>www.soundunwound.com</key>
 	<string>SoundUnwound</string>
+	<key>www.soundviz.com</key>
+	<string>SoundViz.com</string>
 	<key>www.sourcecoast.com</key>
 	<string>SourceCoast (partial)</string>
 	<key>www.sourceware.org</key>
@@ -51479,6 +52407,8 @@
 	<string>SPCA Los Angeles</string>
 	<key>www.speakerdeck.com</key>
 	<string>Speaker Deck.com</string>
+	<key>www.specc.ie</key>
+	<string>bit.ly vanity domains</string>
 	<key>www.special-trade.de</key>
 	<string>Special-trade.de</string>
 	<key>www.specialized.net</key>
@@ -51635,6 +52565,8 @@
 	<string>NL Overheid</string>
 	<key>www.steg-electronics.ch</key>
 	<string>STEG</string>
+	<key>www.stemformatics.org</key>
+	<string>Stemformatics.org</string>
 	<key>www.stirling.gov.uk</key>
 	<string>UK Local Government</string>
 	<key>www.stlbeacon.org</key>
@@ -51707,6 +52639,8 @@
 	<string>National Suicide Prevention Lifeline</string>
 	<key>www.suitabletech.com</key>
 	<string>Suitable Tech.com (partial)</string>
+	<key>www.sun-tim.es</key>
+	<string>bit.ly vanity domains</string>
 	<key>www.sun365.me</key>
 	<string>Sun365.me</string>
 	<key>www.sunbeltsoftware.com</key>
@@ -51775,6 +52709,8 @@
 	<string>Swiftype (partial)</string>
 	<key>www.swinburne.edu.au</key>
 	<string>Swinburne.edu (partial, false MCB)</string>
+	<key>www.swingfree.co.uk</key>
+	<string>SwingFree.co.uk (partial)</string>
 	<key>www.swiss.com</key>
 	<string>Swiss.com</string>
 	<key>www.swisscex.com</key>
@@ -51883,6 +52819,8 @@
 	<string>Tapatalk</string>
 	<key>www.tapgage.net</key>
 	<string>Tapgage</string>
+	<key>www.targetedthreats.net</key>
+	<string>Targeted Threats.net</string>
 	<key>www.taringa.net</key>
 	<string>Taringa (partial)</string>
 	<key>www.tarsnap.com</key>
@@ -51967,6 +52905,8 @@
 	<string>Telekom.sk</string>
 	<key>www.telefonica.cz</key>
 	<string>Telefónica (partial)</string>
+	<key>www.telegeography.com</key>
+	<string>TeleGeography.com (partial)</string>
 	<key>www.telegram.org</key>
 	<string>Telegram.org</string>
 	<key>www.telekom.at</key>
@@ -52063,12 +53003,18 @@
 	<string>The Atlantic.com (false MCB)</string>
 	<key>www.thebaffler.com</key>
 	<string>The Baffler</string>
+	<key>www.thebea.st</key>
+	<string>bit.ly vanity domains</string>
 	<key>www.thebigweddingmovie.com</key>
 	<string>The Big Wedding Movie.com</string>
 	<key>www.theblueskylife.com</key>
 	<string>The Blue Sky Life.com</string>
 	<key>www.thebookpeople.co.uk</key>
 	<string>The Book People</string>
+	<key>www.thebureauinvestigates.com</key>
+	<string>The Bureau Investigates.com (partial)</string>
+	<key>www.thecalmzone.net</key>
+	<string>The CALMzone.net</string>
 	<key>www.thecanadianpress.com</key>
 	<string>The Canadian Press</string>
 	<key>www.thecityuk.com</key>
@@ -52105,10 +53051,16 @@
 	<string>TheHut.com (partial)</string>
 	<key>www.theiabm.org</key>
 	<string>IABM</string>
+	<key>www.theinformation.com</key>
+	<string>The Information.com</string>
+	<key>www.theiphonewiki.com</key>
+	<string>The iPhone Wiki.com</string>
 	<key>www.thejh.net</key>
 	<string>Jann Horn</string>
 	<key>www.thejns.org</key>
 	<string>Journal of Neurosurgery (partial)</string>
+	<key>www.thejuicemedia.com</key>
+	<string>The Juice Media.com</string>
 	<key>www.theme.co</key>
 	<string>Theme.co (partial)</string>
 	<key>www.themesandco.com</key>
@@ -52163,6 +53115,8 @@
 	<string>ThisWebHost</string>
 	<key>www.thompson.com</key>
 	<string>Thompson.com</string>
+	<key>www.thompsonhotels.com</key>
+	<string>Thompson Hotels.com (partial)</string>
 	<key>www.thoughtworks.com</key>
 	<string>ThoughtWorks.com (partial)</string>
 	<key>www.thp.io</key>
@@ -52223,6 +53177,8 @@
 	<string>Tinkerforge.com (partial)</string>
 	<key>www.tinychat.com</key>
 	<string>TinyChat</string>
+	<key>www.tinyjpg.com</key>
+	<string>TinyJPG.com</string>
 	<key>www.tinypass.com</key>
 	<string>Tinypass.com (partial)</string>
 	<key>www.tinyteenpass.com</key>
@@ -52293,6 +53249,8 @@
 	<string>TorGuard</string>
 	<key>www.torrentfunk.com</key>
 	<string>TorrentFunk.com (partial)</string>
+	<key>www.torrentleech.org</key>
+	<string>torrentleechdotorg</string>
 	<key>www.torrentprivacy.com</key>
 	<string>TorrentPrivacy (partial)</string>
 	<key>www.torrentz.ch</key>
@@ -52335,8 +53293,6 @@
 	<string>Commission Junction</string>
 	<key>www.tracking-point.com</key>
 	<string>TrackingPoint (partial)</string>
-	<key>www.traction-digital.com</key>
-	<string>Traction-Digital.com (false MCB)</string>
 	<key>www.trademarkia.com</key>
 	<string>Trademarkia.com</string>
 	<key>www.tradepub.com</key>
@@ -52351,6 +53307,8 @@
 	<string>Transact Auto</string>
 	<key>www.transcend.org</key>
 	<string>Transcend.org</string>
+	<key>www.transferwise.com</key>
+	<string>TransferWise.com</string>
 	<key>www.transformationmadeeasy.com</key>
 	<string>transformationmadeeasy.com (partial)</string>
 	<key>www.transformativeworks.org</key>
@@ -52401,6 +53359,8 @@
 	<string>UCSD</string>
 	<key>www.triumph-adler.de</key>
 	<string>Triumph-Adler.de</string>
+	<key>www.trmm.net</key>
+	<string>Trmm.net</string>
 	<key>www.trollingeffects.org</key>
 	<string>Trolling Effects.org</string>
 	<key>www.tronixcomputers.com</key>
@@ -52465,6 +53425,10 @@
 	<string>TeX Users Group</string>
 	<key>www.tuitam.pl</key>
 	<string>TU I TAM</string>
+	<key>www.tuleap.net</key>
+	<string>Tuleap.net (partial)</string>
+	<key>www.tuleap.org</key>
+	<string>Tuleap.org</string>
 	<key>www.tum.de</key>
 	<string>Tum.de</string>
 	<key>www.tumblr.com</key>
@@ -52473,8 +53437,12 @@
 	<string>Tuning World</string>
 	<key>www.turku.fi</key>
 	<string>Turku.fi</string>
+	<key>www.turtl.it</key>
+	<string>Turtl.it</string>
 	<key>www.tus.ac.jp</key>
 	<string>Tokyo University of Science (partial)</string>
+	<key>www.tutanota.de</key>
+	<string>Tutanota.de</string>
 	<key>www.tuv.com</key>
 	<string>CONVAR (partial)</string>
 	<key>www.tuvdotcom.com</key>
@@ -52511,6 +53479,8 @@
 	<string>Twylah.com</string>
 	<key>www.typepad.com</key>
 	<string>Typepad (partial)</string>
+	<key>www.ua-hosting.com.ua</key>
+	<string>ua-hosting.com.ua</string>
 	<key>www.ua2go.com</key>
 	<string>United Airlines</string>
 	<key>www.uakjobs.com</key>
@@ -52865,6 +53835,8 @@
 	<string>Viaverio.com</string>
 	<key>www.vibrantmedia.com</key>
 	<string>Vibrant</string>
+	<key>www.victi.ms</key>
+	<string>Victi.ms (partial)</string>
 	<key>www.victoriassecretcanada.ca</key>
 	<string>Victorias Secret Canada.ca</string>
 	<key>www.vidaysalud.com</key>
@@ -52971,6 +53943,8 @@
 	<string>SlovakGoverment</string>
 	<key>www.vlagtwedde.nl</key>
 	<string>NL Overheid</string>
+	<key>www.vliegtickets.nl</key>
+	<string>Vliegtickets.nl</string>
 	<key>www.vlissingen.nl</key>
 	<string>NL Overheid</string>
 	<key>www.vmail.me</key>
@@ -53019,12 +53993,12 @@
 	<string>Hemmingway Marketing (partial)</string>
 	<key>www.vovici.com</key>
 	<string>Vovici.com (partial)</string>
-	<key>www.vox.com</key>
-	<string>Vox.com (false MCB)</string>
 	<key>www.voxility.com</key>
 	<string>Voxility.com</string>
 	<key>www.vpn4all.com</key>
 	<string>VPN4ALL</string>
+	<key>www.vpncompare.co.uk</key>
+	<string>VPNCompare.co.uk (partial)</string>
 	<key>www.vpnreviewer.com</key>
 	<string>VPN Reviewer.com</string>
 	<key>www.vpsboard.com</key>
@@ -53183,6 +54157,8 @@
 	<string>WebsiteAlive (partial)</string>
 	<key>www.websitesettings.com</key>
 	<string>websitesettings.com</string>
+	<key>www.websmithing.com</key>
+	<string>websmithing.com</string>
 	<key>www.webspace4all.eu</key>
 	<string>Webspace4All</string>
 	<key>www.webstaurantstore.com</key>
@@ -53253,6 +54229,8 @@
 	<string>WeTransfer</string>
 	<key>www.whatimg.com</key>
 	<string>Whatimg.com</string>
+	<key>www.whatsmychaincert.com</key>
+	<string>Whats My Chain Cert.com</string>
 	<key>www.whatsmydns.net</key>
 	<string>Whats My DNS.net</string>
 	<key>www.whatsuccesstakes.com</key>
@@ -53281,6 +54259,10 @@
 	<string>Wickr.com</string>
 	<key>www.wierden.nl</key>
 	<string>NL Overheid</string>
+	<key>www.wifilib.com</key>
+	<string>WifiLib</string>
+	<key>www.wifilib.fr</key>
+	<string>WifiLib</string>
 	<key>www.wigan.gov.uk</key>
 	<string>UK Local Government</string>
 	<key>www.wigglestatic.com</key>
@@ -53301,6 +54283,8 @@
 	<string>Wilmington University (partial)</string>
 	<key>www.wimo.com</key>
 	<string>WiMo.com</string>
+	<key>www.wimp.no</key>
+	<string>WiMP.no (partial)</string>
 	<key>www.winbond.com</key>
 	<string>Winbond.com</string>
 	<key>www.wincent.com</key>
@@ -53395,8 +54379,6 @@
 	<string>WorstPills.org</string>
 	<key>www.woz.ch</key>
 	<string>Woz.ch</string>
-	<key>www.wp.me</key>
-	<string>WP.me</string>
 	<key>www.wpacracker.com</key>
 	<string>CloudCracker</string>
 	<key>www.wpi.edu</key>
@@ -53503,6 +54485,8 @@
 	<string>Xumaa.com (partial)</string>
 	<key>www.yadg.cc</key>
 	<string>YADG.cc</string>
+	<key>www.yadi.sk</key>
+	<string>YaDi.sk</string>
 	<key>www.yaha.no</key>
 	<string>Yaha</string>
 	<key>www.yahoo-help.jp</key>
@@ -53539,6 +54523,8 @@
 	<string>You Have Downloaded</string>
 	<key>www.youm7.com</key>
 	<string>Youm7.com (partial)</string>
+	<key>www.youngminds.org.uk</key>
+	<string>YoungMinds.org.uk</string>
 	<key>www.youngrewiredstate.org</key>
 	<string>Young Rewired State.org</string>
 	<key>www.your-file-system.com</key>
@@ -54105,6 +55091,8 @@
 	<string>Yabumi.cc</string>
 	<key>yadg.cc</key>
 	<string>YADG.cc</string>
+	<key>yadi.sk</key>
+	<string>YaDi.sk</string>
 	<key>yagina.com</key>
 	<string>Yagina.com</string>
 	<key>yaha.no</key>
@@ -54121,12 +55109,20 @@
 	<string>Yamgo.com</string>
 	<key>yammer.com</key>
 	<string>Yammer</string>
+	<key>yandex.com</key>
+	<string>Yandex.com (partial)</string>
 	<key>yandex.net</key>
 	<string>Yandex</string>
 	<key>yandex.ru</key>
 	<string>Yandex</string>
+	<key>yandex.st</key>
+	<string>Yandex.st</string>
+	<key>yandex.ua</key>
+	<string>Yandex.ua (partial)</string>
 	<key>yannick.net</key>
 	<string>Yannick.net</string>
+	<key>yastatic.net</key>
+	<string>Yastatic.net</string>
 	<key>yeahtv.com</key>
 	<string>YEAH!</string>
 	<key>yed24hr.com</key>
@@ -54181,6 +55177,8 @@
 	<string>You Have Downloaded</string>
 	<key>youm7.com</key>
 	<string>Youm7.com (partial)</string>
+	<key>youngminds.org.uk</key>
+	<string>YoungMinds.org.uk</string>
 	<key>youngrewiredstate.org</key>
 	<string>Young Rewired State.org</string>
 	<key>younited.com</key>

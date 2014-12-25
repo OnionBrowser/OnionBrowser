@@ -31,6 +31,8 @@
 	<string>Analytics - Quantcast</string>
 	<key>scorecardresearch.com</key>
 	<string>Analytics - comScore</string>
+	<key>stats.redditmedia.com</key>
+	<string>Analytics - Reddit</string>
 	<key>thoughtleadr.com</key>
 	<string>Advertising/Analytics - ThoughtLeadr</string>
 	<key>twimg.com</key>
