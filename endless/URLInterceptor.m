@@ -39,20 +39,14 @@ WebViewTab *wvt;
 	sendDNT = val;
 }
 
-- (void)startLoading
+- (instancetype)initWithRequest:(NSURLRequest *)request cachedResponse:(NSCachedURLResponse *)cachedResponse client:(id<NSURLProtocolClient>)client
 {
+	self = [super initWithRequest:request cachedResponse:cachedResponse client:client];
+	
 	wvt = nil;
-	self.origRequest = self.request;
+	self.origRequest = request;
 	
-	NSMutableURLRequest *newRequest = [self.request mutableCopy];
-	
-	void (^cancelLoading)(void) = ^(void) {
-		/* need to continue the chain with a blank response so downstream knows we're done */
-		[self.client URLProtocol:self didReceiveResponse:[[NSURLResponse alloc] init] cacheStoragePolicy:NSURLCacheStorageNotAllowed];
-		[self.client URLProtocolDidFinishLoading:self];
-	};
-	
-	NSString *wvthash = [NSURLProtocol propertyForKey:@"WebViewTab" inRequest:newRequest];
+	NSString *wvthash = [NSURLProtocol propertyForKey:@"WebViewTab" inRequest:request];
 	if (wvthash != nil && ![wvthash isEqualToString:@""]) {
 		for (WebViewTab *_wvt in [[appDelegate webViewController] webViewTabs]) {
 			if ([[NSString stringWithFormat:@"%lu", (unsigned long)[_wvt hash]] isEqualToString:wvthash]) {
@@ -65,12 +59,12 @@ WebViewTab *wvt;
 	if (wvt == nil) {
 		/* make a best attempt at finding the tab by this request's same maindocument */
 		for (WebViewTab *_wvt in [[appDelegate webViewController] webViewTabs]) {
-			if ([[[newRequest mainDocumentURL] absoluteString] isEqualToString:[[_wvt url] absoluteString]]) {
+			if ([[[request mainDocumentURL] absoluteString] isEqualToString:[[[[_wvt webView] request] mainDocumentURL] absoluteString]]) {
 				if (wvt == nil) {
 					wvt = _wvt;
 				}
 				else {
-					NSLog(@"[URLInterceptor] request for %@ matched two tabs (%@ and %@)", newRequest, [wvt tabNumber], [_wvt tabNumber]);
+					NSLog(@"[URLInterceptor] request for %@ matched two tabs (%@ and %@)", request, [wvt tabNumber], [_wvt tabNumber]);
 					wvt = nil;
 					break;
 				}
@@ -78,11 +72,30 @@ WebViewTab *wvt;
 		}
 	}
 	
-	if (wvt == nil) {
-		NSLog(@"[URLInterceptor] request for %@ with no matching WebViewTab! (main URL %@)", [newRequest URL], [newRequest mainDocumentURL]);
-		cancelLoading();
-		return;
+	if (wvt == nil && [[[appDelegate webViewController] webViewTabs] count] == 1) {
+		wvt = [[[appDelegate webViewController] webViewTabs] objectAtIndex:0];
 	}
+	
+	if (wvt == nil) {
+		NSLog(@"[URLInterceptor] request for %@ with no matching WebViewTab! (main URL %@)", [request URL], [request mainDocumentURL]);
+	}
+	
+#ifdef TRACE
+	NSLog(@"[Tab %@] initializing with %@ request: %@", wvt.tabNumber, [request HTTPMethod], [[request URL] absoluteString]);
+#endif
+
+	return self;
+}
+
+- (void)startLoading
+{
+	NSMutableURLRequest *newRequest = [self.request mutableCopy];
+	
+	void (^cancelLoading)(void) = ^(void) {
+		/* need to continue the chain with a blank response so downstream knows we're done */
+		[self.client URLProtocol:self didReceiveResponse:[[NSURLResponse alloc] init] cacheStoragePolicy:NSURLCacheStorageNotAllowed];
+		[self.client URLProtocolDidFinishLoading:self];
+	};
 	
 	if (![NSURLProtocol propertyForKey:ORIGIN_KEY inRequest:newRequest]) {
 		if ([URLBlocker shouldBlockURL:[newRequest URL]]) {
@@ -90,23 +103,23 @@ WebViewTab *wvt;
 			return;
 		}
 	}
-	
-#ifdef TRACE
-	NSLog(@"[Tab %@] initializing with %@ request: %@", wvt.tabNumber, [newRequest HTTPMethod], [[newRequest URL] absoluteString]);
-#endif
 
 	NSArray *HTErules = [HTTPSEverywhere potentiallyApplicableRulesForHost:[[[self request] URL] host]];
 	if (HTErules != nil && [HTErules count] > 0) {
 		[newRequest setURL:[HTTPSEverywhere rewrittenURI:[[self request] URL] withRules:HTErules]];
 		
-		for (HTTPSEverywhereRule *HTErule in HTErules) {
-			[[wvt applicableHTTPSEverywhereRules] setObject:@YES forKey:[HTErule name]];
+		if (wvt != nil) {
+			for (HTTPSEverywhereRule *HTErule in HTErules) {
+				[[wvt applicableHTTPSEverywhereRules] setObject:@YES forKey:[HTErule name]];
+			}
 		}
 	}
 	
 	if (![NSURLProtocol propertyForKey:ORIGIN_KEY inRequest:newRequest]) {
 		if ([wvt secureMode] > WebViewTabSecureModeInsecure && ![[[[newRequest URL] scheme] lowercaseString] isEqualToString:@"https"]) {
-			[wvt setSecureMode:WebViewTabSecureModeMixed];
+			if (wvt != nil) {
+				[wvt setSecureMode:WebViewTabSecureModeMixed];
+			}
 			NSLog(@"[Tab %@] blocking mixed-content request %@", wvt.tabNumber, [newRequest URL]);
 			cancelLoading();
 			return;
@@ -114,7 +127,9 @@ WebViewTab *wvt;
 	}
 	
 	/* redirections can happen without us seeing them, so keep the webview chrome in the loop */
-	[wvt setUrl:[newRequest mainDocumentURL]];
+	if (wvt != nil) {
+		[wvt setUrl:[newRequest mainDocumentURL]];
+	}
 	[[appDelegate webViewController] performSelectorOnMainThread:@selector(updateSearchBarDetails) withObject:nil waitUntilDone:NO];
 	
 	/* we're handling cookies ourself */
