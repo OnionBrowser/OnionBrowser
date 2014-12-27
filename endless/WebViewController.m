@@ -316,12 +316,12 @@
 	float w = tabsButton.frame.origin.x - 8 - forwardButton.frame.origin.x - forwardButton.frame.size.width - 8;
 	float h = tabsButton.frame.size.height;
 	
-	if (backButton.hidden) {
+	if (backButton.hidden || [urlField isFirstResponder]) {
 		x -= backButton.frame.size.width + 8;
 		w += backButton.frame.size.width + 8;
 	}
 
-	if (forwardButton.hidden) {
+	if (forwardButton.hidden || [urlField isFirstResponder]) {
 		x -= forwardButton.frame.size.width + 8;
 		w += forwardButton.frame.size.width + 8;
 	}
