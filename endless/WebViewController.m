@@ -57,7 +57,7 @@
 	
 	toolbar = [[UIView alloc] init];
 	[toolbar setClipsToBounds:YES];
-	[self.view addSubview:toolbar];
+	[[self view] addSubview:toolbar];
 	
 	progressBar = [[UIProgressView alloc] init];
 	[progressBar setTrackTintColor:[UIColor clearColor]];
@@ -162,6 +162,43 @@
 	[self.view.window makeKeyAndVisible];
 }
 
+- (void)encodeRestorableStateWithCoder:(NSCoder *)coder
+{
+	[super encodeRestorableStateWithCoder:coder];
+	
+	NSMutableArray *wvtd = [[NSMutableArray alloc] initWithCapacity:webViewTabs.count - 1];
+	for (WebViewTab *wvt in webViewTabs) {
+		[wvtd addObject:wvt.url];
+		[[wvt webView] setRestorationIdentifier:[wvt.url absoluteString]];
+#ifdef TRACE
+		NSLog(@"encoded restoration state for tab %@ with %@", wvt.tabNumber, [wvt.url absoluteString]);
+#endif
+	}
+	[coder encodeObject:wvtd forKey:@"webViewTabs"];
+	[coder encodeObject:[NSNumber numberWithLong:tabChooser.currentPage] forKey:@"currentPage"];
+}
+
+- (void)decodeRestorableStateWithCoder:(NSCoder *)coder
+{
+	[super decodeRestorableStateWithCoder:coder];
+
+	NSMutableArray *wvt = [coder decodeObjectForKey:@"webViewTabs"];
+	for (int i = 0; i < wvt.count; i++) {
+#ifdef TRACE
+		NSLog(@"restoring tab %d with %@", i, wvt[i]);
+#endif
+		[self addNewTabForURL:wvt[i] forRestoration:YES];
+	}
+	
+	NSNumber *cp = [coder decodeObjectForKey:@"currentPage"];
+	if (cp != nil) {
+		tabChooser.currentPage = [cp longValue];
+		[tabScroller setContentOffset:CGPointMake([self frameForTabIndex:tabChooser.currentPage].origin.x, 0) animated:NO];
+	}
+	
+	[self updateSearchBarDetails];
+}
+
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
 {
 	[self adjustLayoutToSize:size];
@@ -234,10 +271,12 @@
 
 - (WebViewTab *)addNewTabForURL:(NSURL *)url
 {
-	WebViewTab *wvt = [[WebViewTab alloc] initWithFrame:[self frameForTabIndex:webViewTabs.count]];
-	
-	[wvt.webView.scrollView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
-	[wvt.webView.scrollView setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+	return [self addNewTabForURL:url forRestoration:NO];
+}
+
+- (WebViewTab *)addNewTabForURL:(NSURL *)url forRestoration:(BOOL)restoration
+{
+	WebViewTab *wvt = [[WebViewTab alloc] initWithFrame:[self frameForTabIndex:webViewTabs.count] withRestorationIdentifier:(restoration ? [url absoluteString] : nil)];
 	[wvt.webView.scrollView setDelegate:self];
 	
 	[webViewTabs addObject:wvt];
@@ -253,7 +292,7 @@
 
 	if (showingTabs)
 		[wvt zoomOut];
-
+	
 	void (^swapToTab)(BOOL) = ^(BOOL finished) {
 		tabChooser.currentPage = webViewTabs.count - 1;
 		
@@ -265,17 +304,26 @@
 		}];
 	};
 	
-	/* animate zooming out (if not already), switching to the new tab, then zoom back in */
-	if (showingTabs) {
-		swapToTab(YES);
-	}
-	else if (webViewTabs.count > 1) {
-		[self showTabsWithCompletionBlock:swapToTab];
-	}
-	else if (url != nil) {
-		[wvt loadURL:url];
-	}
+	if (restoration) {
+		tabChooser.currentPage = webViewTabs.count - 1;
+		[tabScroller setContentOffset:CGPointMake([self frameForTabIndex:tabChooser.currentPage].origin.x, 0) animated:NO];
 		
+		/* wait for the UI to show up */
+		[wvt performSelector:@selector(refresh) withObject:nil afterDelay:0.5];
+	}
+	else {
+		/* animate zooming out (if not already), switching to the new tab, then zoom back in */
+		if (showingTabs) {
+			swapToTab(YES);
+		}
+		else if (webViewTabs.count > 1) {
+			[self showTabsWithCompletionBlock:swapToTab];
+		}
+		else if (url != nil) {
+			[wvt loadURL:url];
+		}
+	}
+
 	return wvt;
 }
 

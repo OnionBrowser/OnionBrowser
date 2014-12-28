@@ -34,14 +34,25 @@ float progress;
 
 - (id)initWithFrame:(CGRect)frame
 {
+	return [self initWithFrame:frame withRestorationIdentifier:nil];
+}
+
+- (id)initWithFrame:(CGRect)frame withRestorationIdentifier:(NSString *)rid
+{
 	appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 
 	_viewHolder = [[UIView alloc] initWithFrame:frame];
 	
-	_webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+	_webView = [[UIWebView alloc] initWithFrame:CGRectZero];
+	if (rid != nil) {
+		[_webView setRestorationIdentifier:rid];
+	}
 	[_webView setDelegate:self];
 	[_webView setScalesPageToFit:YES];
 	[_webView setAutoresizesSubviews:YES];
+	
+	[_webView.scrollView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
+	[_webView.scrollView setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
 	
 	/* swiping goes back and forward in current webview */
 	UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeRightAction:)];

@@ -6,15 +6,6 @@
 
 - (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-	self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
-	self.window.rootViewController = [[WebViewController alloc] init];
-	[self.window makeKeyAndVisible];
-	
-	return YES;
-}
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
 	[NSURLProtocol registerClass:[URLInterceptor class]];
 	
 	_cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
@@ -22,8 +13,19 @@
 	
 	_cookieWhitelist = [CookieWhitelist retrieve];
 	[_cookieWhitelist clearAllNonWhitelistedCookies];
-
+	
 	[self initializeDefaults];
+	
+	self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+	self.window.rootViewController = [[WebViewController alloc] init];
+	self.window.rootViewController.restorationIdentifier = @"WebViewController";
+	
+	return YES;
+}
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+	[self.window makeKeyAndVisible];
 
 	return YES;
 }
@@ -57,16 +59,31 @@
 	[HTTPSEverywhere saveDisabledRules];
 }
 
+- (BOOL)application:(UIApplication *)application shouldRestoreApplicationState:(NSCoder *)coder
+{
+	NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey];
+	NSString *storedVersion = [coder decodeObjectForKey:UIApplicationStateRestorationBundleVersionKey];
+	return [version isEqualToString:storedVersion];
+}
+
+- (BOOL)application:(UIApplication *)application shouldSaveApplicationState:(NSCoder *)coder
+{
+	return YES;
+}
+
 - (void)initializeDefaults
 {
 	/* TODO: read defaults from the plist */
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	
-	NSString *plistPath = [[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"InAppSettings.bundle"] stringByAppendingPathComponent:@"Root.plist"];
+	NSString *plistPath = [[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"InAppSettings.bundle"] stringByAppendingPathComponent:@"Root.inApp.plist"];
 	NSDictionary *settingsDictionary = [NSDictionary dictionaryWithContentsOfFile:plistPath];
-	
+
 	for (NSDictionary *pref in [settingsDictionary objectForKey:@"PreferenceSpecifiers"]) {
 		NSString *key = [pref objectForKey:@"Key"];
+		if (key == nil)
+			continue;
+
 		if ([userDefaults objectForKey:key] == NULL) {
 			NSObject *val = [pref objectForKey:@"DefaultValue"];
 			[userDefaults setObject:val forKey:key];

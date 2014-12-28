@@ -59,7 +59,7 @@
 		0135F4751A3D2931005A8F16 /* SearchEngines.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = SearchEngines.plist; path = endless/Resources/SearchEngines.plist; sourceTree = "<group>"; };
 		0135F47D1A3E548F005A8F16 /* WebViewTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewTab.h; sourceTree = "<group>"; };
 		0135F47E1A3E548F005A8F16 /* WebViewTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewTab.m; sourceTree = "<group>"; };
-		01801E921A32CA2A002B4718 /* endless.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = endless.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		01801E921A32CA2A002B4718 /* Endless.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Endless.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01801E961A32CA2A002B4718 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		01801E971A32CA2A002B4718 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		01801E991A32CA2A002B4718 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -142,7 +142,7 @@
 		01801E931A32CA2A002B4718 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				01801E921A32CA2A002B4718 /* endless.app */,
+				01801E921A32CA2A002B4718 /* Endless.app */,
 				018333D71A35727C00670CD1 /* endless Tests.xctest */,
 			);
 			name = Products;
@@ -268,7 +268,7 @@
 			);
 			name = endless;
 			productName = endless;
-			productReference = 01801E921A32CA2A002B4718 /* endless.app */;
+			productReference = 01801E921A32CA2A002B4718 /* Endless.app */;
 			productType = "com.apple.product-type.application";
 		};
 		018333D61A35727C00670CD1 /* endless Tests */ = {
@@ -549,7 +549,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = endless/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Endless;
 			};
 			name = Debug;
 		};
@@ -560,7 +560,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = endless/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Endless;
 			};
 			name = Release;
 		};

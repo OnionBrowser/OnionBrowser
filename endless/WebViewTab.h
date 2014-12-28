@@ -32,6 +32,7 @@ typedef NS_ENUM(NSInteger, WebViewTabSecureMode) {
 + (WebViewTab *)openedWebViewTabByRandID:(NSString *)randID;
 
 - (id)initWithFrame:(CGRect)frame;
+- (id)initWithFrame:(CGRect)frame withRestorationIdentifier:(NSString *)rid;
 - (void)updateFrame:(CGRect)frame;
 - (float)progress;
 - (void)loadURL:(NSURL *)u;
