@@ -120,7 +120,7 @@ static NSCache *ruleCache;
 	host = [host lowercaseString];
 
 	NSString *targetName = [[[self class] targets] objectForKey:host];
-	if (targetName != nil && ![[HTTPSEverywhere disabledRules] valueForKey:targetName])
+	if (targetName != nil)
 		[rs setValue:[[self class] cachedRuleForName:targetName] forKey:targetName];
 	
 	/* now for x.y.z.example.com, try *.y.z.example.com, *.z.example.com, *.example.com, etc. */
@@ -130,7 +130,7 @@ static NSCache *ruleCache;
 		NSString *wc = [[hostp subarrayWithRange:NSMakeRange(i, [hostp count] - i)] componentsJoinedByString:@"."];
 		
 		NSString *targetName = [[[self class] targets] objectForKey:wc];
-		if (targetName != nil && ![rs objectForKey:targetName] && ![[HTTPSEverywhere disabledRules] valueForKey:targetName]) {
+		if (targetName != nil) {
 #ifdef TRACE_HTTPS_EVERYWHERE
 			NSLog(@"[HTTPSEverywhere] found ruleset %@ for component %@ in %@", targetName, wc, host);
 #endif
@@ -155,6 +155,9 @@ static NSCache *ruleCache;
 #endif
 	
 	for (HTTPSEverywhereRule *rule in rules) {
+		if ([[HTTPSEverywhere disabledRules] valueForKey:[rule name]] != nil)
+			continue;
+
 		NSURL *rurl = [rule apply:URL];
 		if (rurl != nil)
 			return rurl;
@@ -166,6 +169,9 @@ static NSCache *ruleCache;
 + (BOOL)needsSecureCookieFromHost:(NSString *)fromHost forHost:(NSString *)forHost cookieName:(NSString *)cookie
 {
 	for (HTTPSEverywhereRule *rule in [[self class] potentiallyApplicableRulesForHost:fromHost]) {
+		if ([[HTTPSEverywhere disabledRules] valueForKey:[rule name]] != nil)
+			continue;
+		
 		for (NSRegularExpression *hostreg in [rule secureCookies]) {
 			if ([hostreg matchesInString:forHost options:0 range:NSMakeRange(0, [forHost length])]) {
 				NSRegularExpression *namereg = [[rule secureCookies] objectForKey:hostreg];

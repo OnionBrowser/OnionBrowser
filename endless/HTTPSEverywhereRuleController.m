@@ -7,6 +7,7 @@
 
 AppDelegate *appDelegate;
 NSMutableArray *sortedRuleNames;
+NSMutableArray *inUseRuleNames;
 
 UISearchBar *searchBar;
 NSMutableArray *searchResult;
@@ -18,7 +19,21 @@ UISearchDisplayController *searchDisplayController;
 	if (self) {
 		appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 		
-		sortedRuleNames = [NSMutableArray arrayWithArray:[[[HTTPSEverywhere rules] allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]];
+		sortedRuleNames = [[NSMutableArray alloc] initWithCapacity:[[HTTPSEverywhere rules] count]];
+		
+		if ([[appDelegate webViewController] curWebViewTab] != nil) {
+			inUseRuleNames = [[NSMutableArray alloc] initWithArray:[[[[[appDelegate webViewController] curWebViewTab] applicableHTTPSEverywhereRules] allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]];
+		}
+		else {
+			inUseRuleNames = [[NSMutableArray alloc] init];
+		}
+	
+		for (NSString *k in [[HTTPSEverywhere rules] allKeys]) {
+			if (![inUseRuleNames containsObject:k])
+				[sortedRuleNames addObject:k];
+		}
+		
+		sortedRuleNames = [NSMutableArray arrayWithArray:[sortedRuleNames sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]];
 		
 		searchResult = [NSMutableArray arrayWithCapacity:[sortedRuleNames count]];
 	}
@@ -36,7 +51,7 @@ UISearchDisplayController *searchDisplayController;
 	searchDisplayController.searchResultsDataSource = self;
 	
 	[[self tableView] setTableHeaderView:searchBar];
-	
+
 	self.title = @"HTTPS Everywhere Rules";
 }
 
@@ -52,13 +67,31 @@ UISearchDisplayController *searchDisplayController;
 
 #pragma mark - Table view data source
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+	return 2;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+	if (section == 0)
+		return @"Rules in use on current page";
+	else
+		return @"All rules";
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	if (tableView == searchDisplayController.searchResultsTableView) {
-		return [searchResult count];
+	if (section == 0) {
+		return [inUseRuleNames count];
 	}
 	else {
-		return [sortedRuleNames count];
+		if (tableView == searchDisplayController.searchResultsTableView) {
+			return [searchResult count];
+		}
+		else {
+			return [sortedRuleNames count];
+		}
 	}
 }
 
@@ -71,11 +104,16 @@ UISearchDisplayController *searchDisplayController;
 	}
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	
-	if (tableView == searchDisplayController.searchResultsTableView) {
-		cell.textLabel.text = [searchResult objectAtIndex:indexPath.row];
+	if ([indexPath section] == 0) {
+		cell.textLabel.text = [inUseRuleNames objectAtIndex:indexPath.row];
 	}
 	else {
-		cell.textLabel.text = [sortedRuleNames objectAtIndex:indexPath.row];
+		if (tableView == searchDisplayController.searchResultsTableView) {
+			cell.textLabel.text = [searchResult objectAtIndex:indexPath.row];
+		}
+		else {
+			cell.textLabel.text = [sortedRuleNames objectAtIndex:indexPath.row];
+		}
 	}
 	
 	NSString *disabled = [[HTTPSEverywhere disabledRules] objectForKey:cell.textLabel.text];

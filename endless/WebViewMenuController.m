@@ -1,4 +1,5 @@
 #import "AppDelegate.h"
+#import "CookieWhitelistController.h"
 #import "IASKAppSettingsViewController.h"
 #import "HTTPSEverywhereRuleController.h"
 #import "WebViewMenuController.h"
@@ -147,14 +148,31 @@ enum WebViewMenuButton {
 		appSettingsViewController.showCreditsFooter = NO;
 	}
 	
-	UINavigationController *aNavController = [[UINavigationController alloc] initWithRootViewController:appSettingsViewController];
-	[[appDelegate webViewController] presentViewController:aNavController animated:YES completion:nil];
+	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:appSettingsViewController];
+	[[appDelegate webViewController] presentViewController:navController animated:YES completion:nil];
+}
+
+- (void)menuCookies
+{
+	CookieWhitelistController *cw = [[CookieWhitelistController alloc] init];
+	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:cw];
+
+	UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:navController action:@selector(dismissModalViewControllerAnimated:)];
+	cw.navigationItem.leftBarButtonItem = doneButton;
+
+	[[appDelegate webViewController] presentViewController:navController animated:YES completion:nil];
 }
 
 - (void)menuHTTPSEverywhere
 {
-	UINavigationController *aNavController = [[UINavigationController alloc] initWithRootViewController:[[HTTPSEverywhereRuleController alloc] init]];
-	[[appDelegate webViewController] presentViewController:aNavController animated:YES completion:nil];
+	HTTPSEverywhereRuleController *herc = [[HTTPSEverywhereRuleController alloc] init];
+	
+	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:herc];
+
+	UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:navController action:@selector(dismissModalViewControllerAnimated:)];
+	herc.navigationItem.leftBarButtonItem = doneButton;
+
+	[[appDelegate webViewController] presentViewController:navController animated:YES completion:nil];
 }
 
 @end
