@@ -47,8 +47,12 @@
 	appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 	[appDelegate setWebViewController:self];
 	
+	UIWebView *twv = [[UIWebView alloc] initWithFrame:CGRectZero];
+	[appDelegate setDefaultUserAgent:[twv stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"]];
+	twv = nil;
+	
 	webViewTabs = [[NSMutableArray alloc] initWithCapacity:10];
-
+	
 	self.view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].applicationFrame.size.width, [UIScreen mainScreen].applicationFrame.size.height)];
 	
 	tabScroller = [[UIScrollView alloc] init];
@@ -160,6 +164,9 @@
 	[self updateSearchBarDetails];
 	
 	[self.view.window makeKeyAndVisible];
+	
+	//[[NSUserDefaults standardUserDefaults] registerDefaults:@{ @"UserAgent": @"custom agent" }];
+
 }
 
 - (void)encodeRestorableStateWithCoder:(NSCoder *)coder
@@ -168,6 +175,9 @@
 	
 	NSMutableArray *wvtd = [[NSMutableArray alloc] initWithCapacity:webViewTabs.count - 1];
 	for (WebViewTab *wvt in webViewTabs) {
+		if (wvt.url == nil)
+			continue;
+		
 		[wvtd addObject:wvt.url];
 		[[wvt webView] setRestorationIdentifier:[wvt.url absoluteString]];
 #ifdef TRACE
@@ -192,7 +202,7 @@
 	
 	NSNumber *cp = [coder decodeObjectForKey:@"currentPage"];
 	if (cp != nil) {
-		tabChooser.currentPage = [cp longValue];
+		[self setCurrentTab:[cp longValue]];
 		[tabScroller setContentOffset:CGPointMake([self frameForTabIndex:tabChooser.currentPage].origin.x, 0) animated:NO];
 	}
 	
@@ -269,6 +279,14 @@
 		return nil;
 }
 
+- (void)setCurrentTab:(NSInteger)tab
+{
+	if (tabChooser.currentPage == tab)
+		return;
+	
+	tabChooser.currentPage = tab;
+}
+
 - (WebViewTab *)addNewTabForURL:(NSURL *)url
 {
 	return [self addNewTabForURL:url forRestoration:NO];
@@ -294,7 +312,7 @@
 		[wvt zoomOut];
 	
 	void (^swapToTab)(BOOL) = ^(BOOL finished) {
-		tabChooser.currentPage = webViewTabs.count - 1;
+		[self setCurrentTab:webViewTabs.count - 1];
 		
 		[self slideToCurrentTabWithCompletionBlock:^(BOOL finished) {
 			if (url != nil)
@@ -305,7 +323,7 @@
 	};
 	
 	if (restoration) {
-		tabChooser.currentPage = webViewTabs.count - 1;
+		[self setCurrentTab:webViewTabs.count - 1];
 		[tabScroller setContentOffset:CGPointMake([self frameForTabIndex:tabChooser.currentPage].origin.x, 0) animated:NO];
 		
 		/* wait for the UI to show up */
@@ -408,7 +426,7 @@
 			}
 			else if (tabNumber.intValue > 0 && webViewTabs[tabNumber.intValue - 1]) {
 				/* removed last tab, keep the previous one */
-				tabChooser.currentPage = tabNumber.intValue - 1;
+				[self setCurrentTab:tabNumber.intValue - 1];
 			}
 			else {
 				/* no tabs left, add one and zoom out */
@@ -419,7 +437,7 @@
 		}
 	}
 	else {
-		tabChooser.currentPage = futureFocusNumber;
+		[self setCurrentTab:futureFocusNumber];
 	}
 	
 	/* UIPageControl will change this automatically when resizing, so save it */
@@ -436,8 +454,8 @@
 			wvt.viewHolder.transform = CGAffineTransformMakeScale(ZOOM_OUT_SCALE, ZOOM_OUT_SCALE);
 		}
 	} completion:^(BOOL finished) {
-		tabChooser.currentPage = toCurrentPage;
-		
+		[self setCurrentTab:toCurrentPage];
+
 		[self slideToCurrentTabWithCompletionBlock:^(BOOL finished) {
 			showingTabs = true;
 			[self showTabs:nil];
@@ -451,7 +469,6 @@
 
 	if (urlField.isFirstResponder) {
 		/* focused, don't muck with the URL while it's being edited */
-		
 		[urlField setTextAlignment:NSTextAlignmentNatural];
 		[urlField setTextColor:[UIColor darkTextColor]];
 		[urlField setLeftView:nil];
@@ -637,7 +654,7 @@
 		else if (page > tabChooser.numberOfPages) {
 			page = (int)tabChooser.numberOfPages;
 		}
-		tabChooser.currentPage = page;
+		[self setCurrentTab:page];
 	}
 }
 
@@ -760,7 +777,7 @@
 {
 	if (!showingTabs) {
 		if ([urlField isFirstResponder]) {
-		    [urlField resignFirstResponder];
+			[urlField resignFirstResponder];
 		}
 		
 		return;

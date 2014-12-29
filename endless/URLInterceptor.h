@@ -5,9 +5,9 @@
 
 @interface URLInterceptor : NSURLProtocol <NSURLProtocolClient, NSURLConnectionDataDelegate>
 
-@property (strong, nonatomic) NSURLRequest *origRequest;
-@property (strong, nonatomic) NSString *evOrgName;
-@property (nonatomic, strong) NSURLConnection *connection;
+@property (strong) NSURLRequest *origRequest;
+@property (strong) NSString *evOrgName;
+@property (strong) NSURLConnection *connection;
 
 + (void)setSendDNT:(BOOL)val;
 

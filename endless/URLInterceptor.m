@@ -11,6 +11,7 @@ static AppDelegate *appDelegate;
 static BOOL sendDNT = true;
 
 WebViewTab *wvt;
+NSString *userAgent;
 
 + (BOOL)canInitWithRequest:(NSURLRequest *)request
 {
@@ -42,11 +43,17 @@ WebViewTab *wvt;
 - (instancetype)initWithRequest:(NSURLRequest *)request cachedResponse:(NSCachedURLResponse *)cachedResponse client:(id<NSURLProtocolClient>)client
 {
 	self = [super initWithRequest:request cachedResponse:cachedResponse client:client];
-	
-	wvt = nil;
 	self.origRequest = request;
+	wvt = nil;
+
+	/* extract tab hash from per-uiwebview user agent */
+	NSString *ua = [request valueForHTTPHeaderField:@"User-Agent"];
+	NSArray *uap = [ua componentsSeparatedByString:@"/"];
+	NSString *wvthash = uap[uap.count - 1];
 	
-	NSString *wvthash = [NSURLProtocol propertyForKey:@"WebViewTab" inRequest:request];
+	/* store it for later without the hash */
+	userAgent = [[uap subarrayWithRange:NSMakeRange(0, uap.count - 2)] componentsJoinedByString:@"/"];
+	
 	if (wvthash != nil && ![wvthash isEqualToString:@""]) {
 		for (WebViewTab *_wvt in [[appDelegate webViewController] webViewTabs]) {
 			if ([[NSString stringWithFormat:@"%lu", (unsigned long)[_wvt hash]] isEqualToString:wvthash]) {
@@ -57,27 +64,8 @@ WebViewTab *wvt;
 	}
 	
 	if (wvt == nil) {
-		/* make a best attempt at finding the tab by this request's same maindocument */
-		for (WebViewTab *_wvt in [[appDelegate webViewController] webViewTabs]) {
-			if ([[[request mainDocumentURL] absoluteString] isEqualToString:[[[[_wvt webView] request] mainDocumentURL] absoluteString]]) {
-				if (wvt == nil) {
-					wvt = _wvt;
-				}
-				else {
-					NSLog(@"[URLInterceptor] request for %@ matched two tabs (%@ and %@)", request, [wvt tabNumber], [_wvt tabNumber]);
-					wvt = nil;
-					break;
-				}
-			}
-		}
-	}
-	
-	if (wvt == nil && [[[appDelegate webViewController] webViewTabs] count] == 1) {
-		wvt = [[[appDelegate webViewController] webViewTabs] objectAtIndex:0];
-	}
-	
-	if (wvt == nil) {
 		NSLog(@"[URLInterceptor] request for %@ with no matching WebViewTab! (main URL %@)", [request URL], [request mainDocumentURL]);
+		return nil;
 	}
 	
 #ifdef TRACE
@@ -90,7 +78,8 @@ WebViewTab *wvt;
 - (void)startLoading
 {
 	NSMutableURLRequest *newRequest = [self.request mutableCopy];
-	
+	[newRequest setValue:userAgent forHTTPHeaderField:@"User-Agent"];
+
 	void (^cancelLoading)(void) = ^(void) {
 		/* need to continue the chain with a blank response so downstream knows we're done */
 		[self.client URLProtocol:self didReceiveResponse:[[NSURLResponse alloc] init] cacheStoragePolicy:NSURLCacheStorageNotAllowed];
@@ -162,7 +151,7 @@ WebViewTab *wvt;
 {
 	BOOL schemaRedirect = false;
 	
-	/* we don't get a redirectResponse when only upgrading from http -> https on the same hostname, so we have to find it ourselves :( */
+	/* we don't get a redirectRespon1se when only upgrading from http -> https on the same hostname, so we have to find it ourselves :( */
 	if (response == nil && [self.origRequest hash] != [request hash]) {
 #ifdef TRACE
 		NSLog(@"[Tab %@] hash changed, URL went from %@ to %@", wvt.tabNumber, [[self.origRequest URL] absoluteString], [[request URL] absoluteString]);

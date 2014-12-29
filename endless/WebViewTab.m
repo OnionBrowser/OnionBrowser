@@ -39,9 +39,14 @@ float progress;
 
 - (id)initWithFrame:(CGRect)frame withRestorationIdentifier:(NSString *)rid
 {
+	self = [super init];
+	
 	appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 
 	_viewHolder = [[UIView alloc] initWithFrame:frame];
+	
+	/* re-register user agent with our hash, which should only affect this UIWebView */
+	[[NSUserDefaults standardUserDefaults] registerDefaults:@{ @"UserAgent": [NSString stringWithFormat:@"%@/%lu", [appDelegate defaultUserAgent], self.hash] }];
 	
 	_webView = [[UIWebView alloc] initWithFrame:CGRectZero];
 	if (rid != nil) {
@@ -125,8 +130,7 @@ float progress;
 	[self.webView stopLoading];
 	
 	NSMutableURLRequest *ur = [NSMutableURLRequest requestWithURL:u];
-	[NSURLProtocol setProperty:[NSString stringWithFormat:@"%lu", (unsigned long)[self hash]] forKey:@"WebViewTab" inRequest:ur];
-	 
+	
 	/* remember that this was the directly entered URL */
 	[NSURLProtocol setProperty:@YES forKey:ORIGIN_KEY inRequest:ur];
 	
@@ -140,10 +144,6 @@ float progress;
 {
 	if (![[[request URL] scheme] isEqualToString:@"endlessipc"]) {
 		[self setUrl:[request mainDocumentURL]];
-		
-		NSMutableURLRequest *ur = [request mutableCopy];
-		[NSURLProtocol setProperty:[NSString stringWithFormat:@"%lu", (unsigned long)[__webView hash]] forKey:@"WebViewTab" inRequest:ur];
-
 		return YES;
 	}
 	
