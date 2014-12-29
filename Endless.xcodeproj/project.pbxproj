@@ -177,7 +177,6 @@
 				0135F47D1A3E548F005A8F16 /* WebViewTab.h */,
 				0135F47E1A3E548F005A8F16 /* WebViewTab.m */,
 			);
-			name = Endless;
 			path = Endless;
 			sourceTree = "<group>";
 		};
@@ -217,7 +216,6 @@
 				01D741291A45EDD1007B7033 /* CookieWhitelist_Tests.m */,
 				018333D91A35727C00670CD1 /* Supporting Files */,
 			);
-			name = "Endless Tests";
 			path = "Endless Tests";
 			sourceTree = "<group>";
 		};
