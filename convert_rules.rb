@@ -4,7 +4,7 @@ require "active_support/core_ext/hash/conversions"
 require "plist"
 require "json"
 
-HTTPS_E_TARGETS_PLIST = "endless/Resources/https-everywhere_targets.plist"
+HTTPS_E_TARGETS_PLIST = "Endless/Resources/https-everywhere_targets.plist"
 HTTPS_E_GIT_COMMIT = File.read("https-everywhere/.git/refs/heads/master").
   strip[0, 12]
 
@@ -63,7 +63,7 @@ if !skip_https_e
     " - do not directly edit this file -->\n" +
     targets.to_plist)
 
-  File.write("endless/Resources/https-everywhere_rules.plist",
+  File.write("Endless/Resources/https-everywhere_rules.plist",
     "<!-- generated from HTTPS Everywhere " +
     HTTPS_E_GIT_COMMIT +
     " - do not directly edit this file -->\n" +
@@ -81,6 +81,6 @@ JSON.parse(File.read("urlblocker.json")).each do |company,domains|
   end
 end
 
-File.write("endless/Resources/urlblocker_targets.plist",
+File.write("Endless/Resources/urlblocker_targets.plist",
   "<!-- generated from urlblocker.json - do not directly edit this file -->\n" +
   targets.to_plist)

@@ -1,5 +1,5 @@
-#ifndef endless_endless_Prefix_pch
-#define endless_endless_Prefix_pch
+#ifndef Endless_Endless_Prefix_pch
+#define Endless_Endless_Prefix_pch
 
 #ifdef DEBUG
 

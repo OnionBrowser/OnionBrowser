@@ -1,4 +1,4 @@
-###endless
+###Endless
 
 A (Mobile)Safari-like web browser for iOS (wrapping around UIWebView, of
 course) with a design goal of increased security and privacy.
