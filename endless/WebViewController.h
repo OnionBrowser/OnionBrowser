@@ -10,6 +10,7 @@
 - (WebViewTab *)addNewTabForURL:(NSURL *)url;
 - (void)removeTab:(NSNumber *)tabNumber andFocusTab:(NSNumber *)toFocus;
 - (void)removeTab:(NSNumber *)tabNumber;
+- (void)webViewTouched;
 - (void)updateProgress;
 - (void)updateSearchBarDetails;
 - (void)refresh;

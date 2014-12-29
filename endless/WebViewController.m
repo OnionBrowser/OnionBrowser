@@ -545,6 +545,12 @@
 	}
 }
 
+- (void)webViewTouched
+{
+	if ([urlField isFirstResponder])
+		[urlField resignFirstResponder];
+}
+
 - (void)updateProgress
 {
 	[self setWebViewProgress:[[self curWebViewTab] progress]];

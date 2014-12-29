@@ -91,7 +91,23 @@ float progress;
 	[self setSecureMode:WebViewTabSecureModeInsecure];
 	[self setApplicableHTTPSEverywhereRules:[[NSMutableDictionary alloc] initWithCapacity:6]];
 	
+	for (UIView *_view in _webView.subviews) {
+		for (UIGestureRecognizer *recognizer in _view.gestureRecognizers) {
+			[recognizer addTarget:self action:@selector(webViewTouched:)];
+		}
+		for (UIView *_sview in _view.subviews) {
+			for (UIGestureRecognizer *recognizer in _sview.gestureRecognizers) {
+				[recognizer addTarget:self action:@selector(webViewTouched:)];
+			}
+		}
+	}
+	
 	return self;
+}
+
+- (void)webViewTouched:(UIEvent *)event
+{
+	[[appDelegate webViewController] webViewTouched];
 }
 
 - (void)updateFrame:(CGRect)frame
