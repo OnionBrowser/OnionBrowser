@@ -52,7 +52,7 @@ NSString *userAgent;
 	NSString *wvthash = uap[uap.count - 1];
 	
 	/* store it for later without the hash */
-	userAgent = [[uap subarrayWithRange:NSMakeRange(0, uap.count - 2)] componentsJoinedByString:@"/"];
+	userAgent = [[uap subarrayWithRange:NSMakeRange(0, uap.count - 1)] componentsJoinedByString:@"/"];
 	
 	if (wvthash != nil && ![wvthash isEqualToString:@""]) {
 		for (WebViewTab *_wvt in [[appDelegate webViewController] webViewTabs]) {
