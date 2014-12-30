@@ -83,7 +83,7 @@
 	
 	urlField = [[UITextField alloc] init];
 	[urlField setBorderStyle:UITextBorderStyleRoundedRect];
-	[urlField setKeyboardType:UIKeyboardTypeURL];
+	[urlField setKeyboardType:UIKeyboardTypeWebSearch];
 	[urlField setFont:[UIFont systemFontOfSize:15]];
 	[urlField setReturnKeyType:UIReturnKeyGo];
 	[urlField setClearButtonMode:UITextFieldViewModeWhileEditing];
