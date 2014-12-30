@@ -74,13 +74,13 @@ AppDelegate *appDelegate;
 
 	_title = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
 	[_title setTextColor:[UIColor whiteColor]];
-	[_title setFont:[UIFont boldSystemFontOfSize:12.0]];
+	[_title setFont:[UIFont boldSystemFontOfSize:16.0]];
 	[_title setLineBreakMode:NSLineBreakByTruncatingTail];
 	[_title setTextAlignment:NSTextAlignmentCenter];
 	
 	_closer = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
 	[_closer setTextColor:[UIColor whiteColor]];
-	[_closer setFont:[UIFont systemFontOfSize:19.0]];
+	[_closer setFont:[UIFont systemFontOfSize:24.0]];
 	[_closer setText:[NSString stringWithFormat:@"%C", 0x2715]];
 
 	[_viewHolder addSubview:_titleHolder];
@@ -120,9 +120,9 @@ AppDelegate *appDelegate;
 {
 	[self.viewHolder setFrame:frame];
 	[self.webView setFrame:CGRectMake(0, frame.origin.y, frame.size.width, frame.size.height)];
-	[self.titleHolder setFrame:CGRectMake(0, frame.origin.y - 20, frame.size.width, 22)];
-	[self.title setFrame:CGRectMake(24, frame.origin.y - 16, frame.size.width - 8 - 24, 12)];
-	[self.closer setFrame:CGRectMake(2, frame.origin.y - 18, 18, 18)];
+	[self.titleHolder setFrame:CGRectMake(0, frame.origin.y - 26, frame.size.width, 32)];
+	[self.closer setFrame:CGRectMake(3, frame.origin.y - 22, 18, 18)];
+	[self.title setFrame:CGRectMake(22, frame.origin.y - 20, frame.size.width - 22 - 22, 16)];
 }
 
 - (void)loadURL:(NSURL *)u
