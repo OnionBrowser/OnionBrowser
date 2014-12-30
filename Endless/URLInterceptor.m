@@ -69,7 +69,7 @@ NSString *userAgent;
 	}
 	
 #ifdef TRACE
-	NSLog(@"[Tab %@] initializing with %@ request: %@", wvt.tabNumber, [request HTTPMethod], [[request URL] absoluteString]);
+	NSLog(@"[URLInterceptor] [Tab %@] initializing with %@ request: %@", wvt.tabNumber, [request HTTPMethod], [[request URL] absoluteString]);
 #endif
 
 	return self;
@@ -86,8 +86,18 @@ NSString *userAgent;
 		[self.client URLProtocolDidFinishLoading:self];
 	};
 	
-	if (![NSURLProtocol propertyForKey:ORIGIN_KEY inRequest:newRequest]) {
-		if ([URLBlocker shouldBlockURL:[newRequest URL]]) {
+	if ([NSURLProtocol propertyForKey:ORIGIN_KEY inRequest:newRequest]) {
+		self.isOrigin = YES;
+	}
+	else if ([[newRequest URL] isEqual:[newRequest mainDocumentURL]]) {
+#ifdef TRACE_URL_INTERCEPTOR
+		NSLog(@"[URLInterceptor] considering as origin request: %@", [newRequest URL]);
+#endif
+		self.isOrigin = YES;
+	}
+	
+	if (!self.isOrigin) {
+		if ([URLBlocker shouldBlockURL:[newRequest URL] fromMainDocumentURL:[newRequest mainDocumentURL]]) {
 			cancelLoading();
 			return;
 		}
@@ -96,29 +106,21 @@ NSString *userAgent;
 	NSArray *HTErules = [HTTPSEverywhere potentiallyApplicableRulesForHost:[[[self request] URL] host]];
 	if (HTErules != nil && [HTErules count] > 0) {
 		[newRequest setURL:[HTTPSEverywhere rewrittenURI:[[self request] URL] withRules:HTErules]];
-		
-		if (wvt != nil) {
-			for (HTTPSEverywhereRule *HTErule in HTErules) {
-				[[wvt applicableHTTPSEverywhereRules] setObject:@YES forKey:[HTErule name]];
-			}
+	
+		for (HTTPSEverywhereRule *HTErule in HTErules) {
+			[[wvt applicableHTTPSEverywhereRules] setObject:@YES forKey:[HTErule name]];
 		}
 	}
 	
-	if (![NSURLProtocol propertyForKey:ORIGIN_KEY inRequest:newRequest]) {
+	if (!self.isOrigin) {
 		if ([wvt secureMode] > WebViewTabSecureModeInsecure && ![[[[newRequest URL] scheme] lowercaseString] isEqualToString:@"https"]) {
-			if (wvt != nil) {
-				[wvt setSecureMode:WebViewTabSecureModeMixed];
-			}
+			[wvt setSecureMode:WebViewTabSecureModeMixed];
 			NSLog(@"[Tab %@] blocking mixed-content request %@", wvt.tabNumber, [newRequest URL]);
 			cancelLoading();
 			return;
 		}
 	}
 	
-	/* redirections can happen without us seeing them, so keep the webview chrome in the loop */
-	if (wvt != nil) {
-		[wvt setUrl:[newRequest mainDocumentURL]];
-	}
 	[[appDelegate webViewController] performSelectorOnMainThread:@selector(updateSearchBarDetails) withObject:nil waitUntilDone:NO];
 	
 	/* we're handling cookies ourself */
@@ -181,6 +183,11 @@ NSString *userAgent;
 		
 		NSMutableURLRequest *redirectRequest = [request mutableCopy];
 		
+		if (self.isOrigin) {
+			[wvt setUrl:[request URL]];
+			[[self class] setProperty:@YES forKey:ORIGIN_KEY inRequest:redirectRequest];
+		}
+		
 		/* so we process it again */
 		[[self class] removePropertyForKey:REWRITTEN_KEY inRequest:redirectRequest];
 		[[self client] URLProtocol:self wasRedirectedToRequest:redirectRequest redirectResponse:response];
@@ -198,21 +205,24 @@ NSString *userAgent;
 {
 	[self extractCookiesFromResponse:response forURL:[self.request URL] fromMainDocument:[wvt url]];
 	
-	if ([NSURLProtocol propertyForKey:ORIGIN_KEY inRequest:self.request]) {
+	if (self.isOrigin) {
 		if ([[[[self.request URL] scheme] lowercaseString] isEqualToString:@"https"]) {
 			/* initial request was over https, start considering us secure */
 		
 			if (self.evOrgName != nil && ![self.evOrgName isEqualToString:@""]) {
 				[wvt setSecureMode:WebViewTabSecureModeSecureEV];
 				[wvt setEvOrgName:self.evOrgName];
-			} else
+			}
+			else {
 				[wvt setSecureMode:WebViewTabSecureModeSecure];
+			}
 		}
 	}
 	else if ([wvt secureMode] > WebViewTabSecureModeInsecure && ![[[[self.request URL] scheme] lowercaseString] isEqualToString:@"https"]) {
 		/* an element on the page was not sent over https but the initial request was, downgrade to mixed */
-		if ([wvt secureMode] > WebViewTabSecureModeInsecure)
+		if ([wvt secureMode] > WebViewTabSecureModeInsecure) {
 			[wvt setSecureMode:WebViewTabSecureModeMixed];
+		}
 	}
 	
 	[self.client URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageAllowed];
@@ -251,7 +261,7 @@ NSString *userAgent;
 		CFStringRef certSummary = SecCertificateCopySubjectSummary(certRef);
 		NSLog(@"cert: %@", certSummary);
 	}
-	*/
+	 */
 	
 	NSDictionary *trust = (__bridge NSDictionary*)SecTrustCopyResult(trustRef);
 	id ev = [trust objectForKey:(__bridge NSString *)kSecTrustExtendedValidation];
@@ -260,8 +270,9 @@ NSString *userAgent;
 #ifdef DEBUG
 		NSLog(@"[Tab %@] cert for %@ has EV, registered to %@", wvt.tabNumber, [[self.request URL] host], orgname);
 #endif
-		if ([NSURLProtocol propertyForKey:ORIGIN_KEY inRequest:self.request] && [[[[self.request URL] host] lowercaseString] isEqualToString:[[[wvt url] host] lowercaseString]])
+		if ([NSURLProtocol propertyForKey:ORIGIN_KEY inRequest:self.request] && [[[[self.request URL] host] lowercaseString] isEqualToString:[[[wvt url] host] lowercaseString]]) {
 			[self setEvOrgName:orgname];
+		}
 	}
 
 	/* TODO: check for blacklisted certs or CAs? */

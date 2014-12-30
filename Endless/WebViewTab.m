@@ -9,7 +9,6 @@
 static NSString *_javascriptToInject;
 
 AppDelegate *appDelegate;
-float progress;
 
 + (NSString *)javascriptToInject
 {
@@ -89,6 +88,8 @@ float progress;
 	[_viewHolder addSubview:_closer];
 	[_viewHolder addSubview:_webView];
 	
+	_progress = @0.0;
+	
 	[self updateFrame:frame];
 
 	[self zoomNormal];
@@ -126,16 +127,16 @@ float progress;
 
 - (void)loadURL:(NSURL *)u
 {
-	[self setUrl:u];
 	[self.webView stopLoading];
+	[self setSecureMode:WebViewTabSecureModeInsecure];
+	[[self applicableHTTPSEverywhereRules] removeAllObjects];
 	
 	NSMutableURLRequest *ur = [NSMutableURLRequest requestWithURL:u];
 	
 	/* remember that this was the directly entered URL */
 	[NSURLProtocol setProperty:@YES forKey:ORIGIN_KEY inRequest:ur];
-	
-	[self setSecureMode:WebViewTabSecureModeInsecure];
-	[[self applicableHTTPSEverywhereRules] removeAllObjects];
+
+	[self setUrl:u];
 	[self.webView loadRequest:ur];
 }
 
@@ -174,7 +175,6 @@ float progress;
 		WebViewTab *newtab = [[appDelegate webViewController] addNewTabForURL:nil];
 		newtab.randID = param;
 		newtab.openedByTabHash = [NSNumber numberWithLong:self.hash];
-		NSLog(@"opened new window %lu from %lu", newtab.hash, self.hash);
 		
 		[self webView:__webView callbackWith:[NSString stringWithFormat:@"__endless.openedTabs[\"%@\"].opened = true;", param]];
 	}
@@ -237,8 +237,10 @@ float progress;
 
 - (void)webViewDidStartLoad:(UIWebView *)__webView
 {
-	[self setProgress:0.1];
-	
+	/* reset and then let WebViewController animate to our actual progress */
+	[self setProgress:@0.0];
+	[self setProgress:@0.1];
+
 	if (self.url == nil)
 		self.url = [[__webView request] URL];
 }
@@ -248,7 +250,7 @@ float progress;
 #ifdef TRACE
 	NSLog(@"[Tab %@] finished loading page/iframe %@", self.tabNumber, [[[__webView request] URL] absoluteString]);
 #endif
-	[self setProgress:1.0];
+	[self setProgress:@1.0];
 	
 	[__webView stringByEvaluatingJavaScriptFromString:[[self class] javascriptToInject]];
 	
@@ -277,15 +279,10 @@ float progress;
 	[__webView stringByEvaluatingJavaScriptFromString:finalcb];
 }
 
-- (void)setProgress:(float)pr
+- (void)setProgress:(NSNumber *)pr
 {
-	progress = pr;
+	_progress = pr;
 	[[appDelegate webViewController] updateProgress];
-}
-
-- (float)progress
-{
-	return progress;
 }
 
 - (void)swipeRightAction:(id)_id

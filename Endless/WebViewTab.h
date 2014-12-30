@@ -19,6 +19,7 @@ typedef NS_ENUM(NSInteger, WebViewTabSecureMode) {
 @property (strong, atomic) UIView *titleHolder;
 @property (strong, atomic) UILabel *title;
 @property (strong, atomic) UILabel *closer;
+@property (strong, nonatomic) NSNumber *progress;
 
 @property WebViewTabSecureMode secureMode;
 @property (strong, atomic) NSString *evOrgName;
@@ -34,7 +35,6 @@ typedef NS_ENUM(NSInteger, WebViewTabSecureMode) {
 - (id)initWithFrame:(CGRect)frame;
 - (id)initWithFrame:(CGRect)frame withRestorationIdentifier:(NSString *)rid;
 - (void)updateFrame:(CGRect)frame;
-- (float)progress;
 - (void)loadURL:(NSURL *)u;
 - (BOOL)canGoBack;
 - (BOOL)canGoForward;

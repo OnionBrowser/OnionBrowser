@@ -6,6 +6,7 @@
 @interface URLInterceptor : NSURLProtocol <NSURLProtocolClient, NSURLConnectionDataDelegate>
 
 @property (strong) NSURLRequest *origRequest;
+@property (assign) BOOL isOrigin;
 @property (strong) NSString *evOrgName;
 @property (strong) NSURLConnection *connection;
 

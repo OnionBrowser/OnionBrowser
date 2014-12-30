@@ -164,9 +164,6 @@
 	[self updateSearchBarDetails];
 	
 	[self.view.window makeKeyAndVisible];
-	
-	//[[NSUserDefaults standardUserDefaults] registerDefaults:@{ @"UserAgent": @"custom agent" }];
-
 }
 
 - (void)encodeRestorableStateWithCoder:(NSCoder *)coder
@@ -273,10 +270,12 @@
 
 - (__strong WebViewTab *)curWebViewTab
 {
-	if (webViewTabs.count > 0)
+	if (webViewTabs.count > 0) {
 		return webViewTabs[tabChooser.currentPage];
-	else
+	}
+	else {
 		return nil;
+	}
 }
 
 - (void)setCurrentTab:(NSInteger)tab
@@ -483,7 +482,7 @@
 			
 			if (self.curWebViewTab.secureMode == WebViewTabSecureModeSecureEV) {
 				/* wait until the page is done loading */
-				if ([progressBar progress] == 0) {
+				if ([progressBar progress] >= 1.0) {
 					[urlField setTextColor:[UIColor colorWithRed:0 green:(183.0/255.0) blue:(82.0/255.0) alpha:1.0]];
 			
 					[urlField setText:self.curWebViewTab.evOrgName];
@@ -495,7 +494,7 @@
 			[urlField setLeftView:brokenLockIcon];
 		}
 		else {
-			[urlField setLeftView:blankIcon];
+			[urlField setLeftView:nil];
 		}
 			
 		if (!isEV) {
@@ -528,14 +527,24 @@
 	[urlField setFrame:[self frameForUrlField]];
 }
 
-- (void)setWebViewProgress:(float)progress
+- (void)updateProgress
 {
 	BOOL animated = YES;
 	float fadeAnimationDuration = 0.15;
 	float fadeOutDelay = 0.3;
+
+	float progress = [[[self curWebViewTab] progress] floatValue];
+	if (progressBar.progress == progress) {
+		return;
+	}
+	else if (progress == 0.0) {
+		/* reset without animation, an actual update is probably coming right after this */
+		progressBar.progress = 0.0;
+		return;
+	}
 	
 #ifdef TRACE
-	NSLog(@"loading progress of %@ at %f", [self.curWebViewTab.url absoluteString], progress);
+	NSLog(@"loading progress of %@ (%@) at %f", [self.curWebViewTab.url absoluteString], self.curWebViewTab.tabNumber, progress);
 #endif
 
 	[self updateSearchBarDetails];
@@ -546,7 +555,6 @@
 		[UIView animateWithDuration:fadeAnimationDuration delay:fadeOutDelay options:UIViewAnimationOptionCurveLinear animations:^{
 			progressBar.alpha = 0.0;
 		} completion:^(BOOL finished) {
-			progressBar.progress = 0.0;
 			[self updateSearchBarDetails];
 		}];
 	}
@@ -566,11 +574,6 @@
 {
 	if ([urlField isFirstResponder])
 		[urlField resignFirstResponder];
-}
-
-- (void)updateProgress
-{
-	[self setWebViewProgress:[[self curWebViewTab] progress]];
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
@@ -725,8 +728,7 @@
 			tabChooser.hidden = true;
 			toolbar.hidden = false;
 			tabToolbar.hidden = true;
-			progressBar.alpha = 1.0;
-			
+			progressBar.alpha = (progressBar.progress > 0.0 && progressBar.progress < 1.0 ? 1.0 : 0.0);
 			tabScroller.frame = origTabScrollerFrame;
 		} completion:block];
 
