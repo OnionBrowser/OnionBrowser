@@ -8,11 +8,8 @@
 {
 	[NSURLProtocol registerClass:[URLInterceptor class]];
 	
-	_cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-	[_cookieStorage setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyOnlyFromMainDocumentDomain];
-	
-	_cookieWhitelist = [CookieWhitelist retrieve];
-	[_cookieWhitelist clearAllNonWhitelistedCookies];
+	_hstsCache = [HSTSCache retrieve];
+	_cookieJar = [[CookieJar alloc] init];
 	
 	[self initializeDefaults];
 	
@@ -38,8 +35,9 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-	// Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-	// If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+	[[self cookieJar] persist];
+	[[self hstsCache] persist];
+	[HTTPSEverywhere saveDisabledRules];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -54,9 +52,6 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-	[[self cookieWhitelist] clearAllNonWhitelistedCookies];
-	[[self cookieWhitelist] persist];
-	[HTTPSEverywhere saveDisabledRules];
 }
 
 - (BOOL)application:(UIApplication *)application shouldRestoreApplicationState:(NSCoder *)coder
@@ -93,16 +88,6 @@
 	[userDefaults synchronize];
 	
 	_searchEngines = [NSMutableDictionary dictionaryWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"SearchEngines.plist"]];
-}
-
-- (void)removeCookiesForDomain:(NSString *)domain
-{
-	for (NSHTTPCookie *cookie in [[self cookieStorage] cookies]) {
-		if ([[cookie domain] isEqualToString:domain] || [[cookie domain] isEqualToString:[NSString stringWithFormat:@".%@", domain]]) {
-			NSLog(@"deleting cookie for %@: %@", domain, cookie);
-			[[self cookieStorage] deleteCookie:cookie];
-		}
-	}
 }
 
 @end

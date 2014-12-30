@@ -1,7 +1,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
-#import "CookieWhitelist.h"
+#import "CookieJar.h"
 #import "WebViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
@@ -13,8 +13,7 @@
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 @property (strong, atomic) WebViewController *webViewController;
-@property (strong, atomic) NSHTTPCookieStorage *cookieStorage;
-@property (strong, atomic) CookieWhitelist *cookieWhitelist;
+@property (strong, atomic) CookieJar *cookieJar;
 
 @property (readonly, strong, nonatomic) NSMutableDictionary *searchEngines;
 

@@ -675,6 +675,11 @@
 	[[self curWebViewTab] refresh];
 }
 
+- (void)forceRefresh
+{
+	[[self curWebViewTab] forceRefresh];
+}
+
 - (void)showPopover:(id)_id
 {
 	popover = [[WYPopoverController alloc] initWithContentViewController:[[WebViewMenuController alloc] init]];

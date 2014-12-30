@@ -127,11 +127,19 @@ AppDelegate *appDelegate;
 
 - (void)loadURL:(NSURL *)u
 {
+	[self loadURL:u withForce:NO];
+}
+
+- (void)loadURL:(NSURL *)u withForce:(BOOL)force
+{
 	[self.webView stopLoading];
 	[self setSecureMode:WebViewTabSecureModeInsecure];
 	[[self applicableHTTPSEverywhereRules] removeAllObjects];
 	
 	NSMutableURLRequest *ur = [NSMutableURLRequest requestWithURL:u];
+	
+	if (force)
+		[ur setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
 	
 	/* remember that this was the directly entered URL */
 	[NSURLProtocol setProperty:@YES forKey:ORIGIN_KEY inRequest:ur];
@@ -330,8 +338,12 @@ AppDelegate *appDelegate;
 
 - (void)refresh
 {
-	/* TODO: call [[NSURLCache sharedURLCache] removeAllCachedResponses] ? */
 	[self.webView reload];
+}
+
+- (void)forceRefresh
+{
+	[self loadURL:self.url withForce:YES];
 }
 
 - (void)zoomOut

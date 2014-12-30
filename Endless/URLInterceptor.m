@@ -1,5 +1,4 @@
 #import "AppDelegate.h"
-#import "CookieWhitelist.h"
 #import "HTTPSEverywhere.h"
 #import "URLBlocker.h"
 #import "URLInterceptor.h"
@@ -125,9 +124,9 @@ NSString *userAgent;
 	
 	/* we're handling cookies ourself */
 	[newRequest setHTTPShouldHandleCookies:NO];
-	NSArray *cookies = [[appDelegate cookieStorage] cookiesForURL:[newRequest URL]];
+	NSArray *cookies = [[appDelegate cookieJar] cookiesForURL:[newRequest URL]];
 	if (cookies != nil && [cookies count] > 0) {
-#ifdef TRACE
+#ifdef TRACE_COOKIES
 		NSLog(@"[Tab %@] sending %lu cookie(s) to %@", wvt.tabNumber, [cookies count], [newRequest URL]);
 #endif
 		NSDictionary *headers = [NSHTTPCookie requestHeaderFieldsWithCookies:cookies];
@@ -294,7 +293,7 @@ NSString *userAgent;
 			[ps setValue:@"TRUE" forKey:NSHTTPCookieSecure];
 		}
 		
-		if (![[appDelegate cookieWhitelist] isHostWhitelisted:[url host]]) {
+		if (![[appDelegate cookieJar] isHostWhitelisted:[url host]]) {
 			/* host isn't whitelisted, force to a session cookie */
 			[ps setValue:@"TRUE" forKey:NSHTTPCookieDiscard];
 		}
@@ -304,10 +303,10 @@ NSString *userAgent;
 	}
 	
 	if ([cookies count] > 0) {
-#ifdef TRACE
+#ifdef TRACE_COOKIES
 		NSLog(@"[Tab %@] storing %lu cookie(s) for %@ (via %@)", wvt.tabNumber, [cookies count], [url host], mainDocument);
 #endif
-		[[appDelegate cookieStorage] setCookies:cookies forURL:url mainDocumentURL:mainDocument];
+		[[appDelegate cookieJar] setCookies:cookies forURL:url mainDocumentURL:mainDocument];
 	}
 }
 

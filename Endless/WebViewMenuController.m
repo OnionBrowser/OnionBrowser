@@ -14,6 +14,7 @@ enum WebViewMenuButton {
 	WebViewMenuButtonRefresh,
 	WebViewMenuButtonCookies,
 	WebViewMenuButtonHTTPSEverywhere,
+	WebViewMenuButtonClearJunk,
 	WebViewMenuButtonSettings,
 	
 	WebViewMenuButtonCount,
@@ -29,6 +30,7 @@ enum WebViewMenuButton {
 		    [NSNumber numberWithInt:WebViewMenuButtonRefresh] : @"Refresh",
 		    [NSNumber numberWithInt:WebViewMenuButtonCookies] : @"Cookies",
 		    [NSNumber numberWithInt:WebViewMenuButtonHTTPSEverywhere] : @"HTTPS Everywhere",
+		    [NSNumber numberWithInt:WebViewMenuButtonClearJunk] : @"Clear Junk",
 		    [NSNumber numberWithInt:WebViewMenuButtonSettings] : @"Settings",
 	};
 	
@@ -82,7 +84,7 @@ enum WebViewMenuButton {
 
 	switch ([indexPath row]) {
 	case WebViewMenuButtonCookies:
-		if ([[appDelegate cookieWhitelist] isHostWhitelisted:[[[[appDelegate webViewController] curWebViewTab] url] host]]) {
+		if ([[appDelegate cookieJar] isHostWhitelisted:[[[[appDelegate webViewController] curWebViewTab] url] host]]) {
 			cell.detailTextLabel.text = @"Whitelisted";
 			cell.detailTextLabel.textColor = [UIColor colorWithRed:0 green:0.5 blue:0 alpha:1];
 		}
@@ -136,7 +138,7 @@ enum WebViewMenuButton {
 
 - (void)menuRefresh
 {
-	[[appDelegate webViewController] refresh];
+	[[appDelegate webViewController] forceRefresh];
 }
 
 - (void)menuSettings
@@ -173,6 +175,12 @@ enum WebViewMenuButton {
 	herc.navigationItem.leftBarButtonItem = doneButton;
 
 	[[appDelegate webViewController] presentViewController:navController animated:YES completion:nil];
+}
+
+- (void)menuClearJunk
+{
+	[[NSURLCache sharedURLCache] removeAllCachedResponses];
+	[[appDelegate cookieJar] clearTransientData];
 }
 
 @end

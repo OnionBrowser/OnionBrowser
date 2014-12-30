@@ -5,7 +5,7 @@
 
 AppDelegate *appDelegate;
 NSMutableArray *whitelistHosts;
-NSMutableArray *sortedCookieDomains;
+NSMutableArray *sortedCookieHosts;
 
 enum {
 	CookieSectionWhitelist,
@@ -20,26 +20,9 @@ enum {
 	
 	appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 
-	whitelistHosts = [NSMutableArray arrayWithArray:[[[appDelegate cookieWhitelist] allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]];
+	whitelistHosts = [NSMutableArray arrayWithArray:[[appDelegate cookieJar] whitelistedHosts]];
 	
-	NSMutableDictionary *cDomainCount = [[NSMutableDictionary alloc] init];
-	NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^\\." options:0 error:nil];
-	
-	for (NSHTTPCookie *c in [[appDelegate cookieStorage] cookies]) {
-		/* strip off leading . */
-		NSString *cdomain = [regex stringByReplacingMatchesInString:[c domain] options:0 range:NSMakeRange(0, [[c domain] length]) withTemplate:@""];
-		
-		NSNumber *count = [cDomainCount objectForKey:cdomain];
-		if (count == nil)
-			count = [NSNumber numberWithInt:0];
-
-		[cDomainCount setObject:[NSNumber numberWithInt:[count intValue] + 1] forKey:cdomain];
-	}
-	
-	sortedCookieDomains = [[NSMutableArray alloc] initWithCapacity:[cDomainCount count]];
-	for (NSString *cdomain in [[cDomainCount allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)]) {
-		[sortedCookieDomains addObject:@{ cdomain : [cDomainCount objectForKey:cdomain] }];
-	}
+	sortedCookieHosts = [NSMutableArray arrayWithArray:[[appDelegate cookieJar] sortedHostCounts]];
 
 	self.title = @"Cookies";
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addItem:)];
@@ -47,8 +30,8 @@ enum {
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-	[[appDelegate cookieWhitelist] updateHostsWithArray:whitelistHosts];
-	[[appDelegate cookieWhitelist] persist];
+	[[appDelegate cookieJar] updateWhitelistedHostsWithArray:whitelistHosts];
+	[[appDelegate cookieJar] persist];
 }
 
 - (void)didReceiveMemoryWarning
@@ -70,7 +53,7 @@ enum {
 	case CookieSectionWhitelist:
 		return @"Whitelisted cookie domains";
 	case CookieSectionCookies:
-		return @"All cookies";
+		return @"All cookies and local storage";
 	default:
 		return @"";
 	}
@@ -83,7 +66,7 @@ enum {
 		return [whitelistHosts count];
 			
 	case CookieSectionCookies:
-		return [sortedCookieDomains count];
+		return [sortedCookieHosts count];
 			
 	default:
 		return 0;
@@ -104,11 +87,24 @@ enum {
 		break;
 	
 	case CookieSectionCookies: {
-		NSDictionary *c = [sortedCookieDomains objectAtIndex:indexPath.row];
+		NSDictionary *c = [sortedCookieHosts objectAtIndex:indexPath.row];
 		cell.textLabel.text = [c allKeys][0];
-		NSNumber *count = [c allValues][0];
-		cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ cookie%@", count, (count.intValue == 1 ? @"" : @"s")];
-	}
+		NSDictionary *ccounts = [c allValues][0];
+		int ccount = [[ccounts objectForKey:@"cookies"] intValue];
+		int lscount = [[ccounts objectForKey:@"localStorage"] intValue];
+
+		if (ccount) {
+			cell.detailTextLabel.text = [NSString stringWithFormat:@"%d cookie%@", ccount, (ccount == 1 ? @"" : @"s")];
+		}
+		if (lscount) {
+			if (ccount) {
+				cell.detailTextLabel.text = [NSString stringWithFormat:@"%@, local storage", cell.detailTextLabel.text];
+			}
+			else {
+				cell.detailTextLabel.text = [NSString stringWithFormat:@"local storage"];
+			}
+		}
+		}
 		break;
 	}
 	
@@ -134,8 +130,8 @@ enum {
 			break;
 			
 		case CookieSectionCookies:
-			[appDelegate removeCookiesForDomain:[[sortedCookieDomains objectAtIndex:[indexPath row]] allKeys][0]];
-			[sortedCookieDomains removeObjectAtIndex:[indexPath row]];
+			[[appDelegate cookieJar] clearTransientDataForHost:[[sortedCookieHosts objectAtIndex:[indexPath row]] allKeys][0]];
+			[sortedCookieHosts removeObjectAtIndex:[indexPath row]];
 			break;
 		}
 		

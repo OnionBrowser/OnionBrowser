@@ -23,6 +23,8 @@ course) with a design goal of increased security and privacy.
 - Defaults to only accepting cookies for the duration of the session with an
   editable whitelist of hosts from which non-session cookies will be saved
 
+- Cookie and localStorage database listing and deletion per-host
+
 - Integrated full [HTTPS Everywhere](https://www.eff.org/HTTPS-EVERYWHERE)
   ruleset (currently over 11,000 rules) to do on-the-fly URL rewriting to force
   requests over SSL where supported, including setting the secure

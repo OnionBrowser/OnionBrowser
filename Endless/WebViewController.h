@@ -14,6 +14,7 @@
 - (void)updateProgress;
 - (void)updateSearchBarDetails;
 - (void)refresh;
+- (void)forceRefresh;
 - (void)dismissPopover;
 
 @end

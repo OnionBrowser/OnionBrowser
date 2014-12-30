@@ -12,8 +12,8 @@
 /* be verbose about URL blocking */
 //# define TRACE_URL_BLOCKER
 
-/* be verbose about cookie whitelisting */
-//# define TRACE_COOKIE_WHITELIST
+/* be verbose about cookie management */
+//# define TRACE_COOKIES
 
 /* be verbose about javascript IPC */
 //# define TRACE_IPC
