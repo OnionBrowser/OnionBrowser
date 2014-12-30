@@ -2,6 +2,7 @@
 #import <CoreData/CoreData.h>
 
 #import "CookieJar.h"
+#import "HSTSCache.h"
 #import "WebViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
@@ -14,6 +15,7 @@
 
 @property (strong, atomic) WebViewController *webViewController;
 @property (strong, atomic) CookieJar *cookieJar;
+@property (strong, atomic) HSTSCache *hstsCache;
 
 @property (readonly, strong, nonatomic) NSMutableDictionary *searchEngines;
 

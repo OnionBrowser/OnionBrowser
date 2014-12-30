@@ -18,6 +18,9 @@
 /* be verbose about javascript IPC */
 //# define TRACE_IPC
 
+/* be verbose about HTTP Strict Transport Security */
+//# define TRACE_HSTS
+
 #endif
 
 #endif

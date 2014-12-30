@@ -20,9 +20,8 @@ static NSCache *ruleCache;
 + (NSDictionary *)rules
 {
 	if (_rules == nil) {
-		NSFileManager *fm = [NSFileManager defaultManager];
 		NSString *path = [[NSBundle mainBundle] pathForResource:@"https-everywhere_rules" ofType:@"plist"];
-		if (![fm fileExistsAtPath:path]) {
+		if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
 			NSLog(@"[HTTPSEverywhere] no rule plist at %@", path);
 			abort();
 		}
@@ -40,9 +39,8 @@ static NSCache *ruleCache;
 + (NSMutableDictionary *)disabledRules
 {
 	if (_disabledRules == nil) {
-		NSFileManager *fm = [NSFileManager defaultManager];
 		NSString *path = [[self class] disabledRulesPath];
-		if ([fm fileExistsAtPath:path]) {
+		if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
 			_disabledRules = [NSMutableDictionary dictionaryWithContentsOfFile:path];
 		
 #ifdef TRACE_HTTPS_EVERYWHERE

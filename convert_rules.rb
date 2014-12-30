@@ -3,23 +3,32 @@
 require "active_support/core_ext/hash/conversions"
 require "plist"
 require "json"
+require "net/https"
+require "uri"
 
 HTTPS_E_TARGETS_PLIST = "Endless/Resources/https-everywhere_targets.plist"
+HTTPS_E_RULES_PLIST = "Endless/Resources/https-everywhere_rules.plist"
 HTTPS_E_GIT_COMMIT = File.read("https-everywhere/.git/refs/heads/master").
   strip[0, 12]
 
-skip_https_e = false
+URLBLOCKER_JSON = "urlblocker.json"
+URLBLOCKER_TARGETS_PLIST = "Endless/Resources/urlblocker_targets.plist"
 
-if File.exists?(HTTPS_E_TARGETS_PLIST)
-  if m = File.open(HTTPS_E_TARGETS_PLIST).gets.to_s.match(/Everywhere (.+) - /)
-    skip_https_e = (m[1] == HTTPS_E_GIT_COMMIT)
+# in b64 for some reason
+HSTS_PRELOAD_LIST = "https://chromium.googlesource.com/chromium/src/net/+/master/http/transport_security_state_static.json?format=TEXT"
+HSTS_PRELOAD_HOSTS_PLIST = "Endless/Resources/hsts_preload.plist"
+
+# convert all HTTPS Everywhere XML rule files into one big rules hash and write
+# it out as a plist, as well as a standalone hash of target URLs -> rule names
+# to another plist
+def convert_https_e
+  if File.exists?(HTTPS_E_TARGETS_PLIST)
+    if m = File.open(HTTPS_E_TARGETS_PLIST).gets.to_s.match(/Everywhere (.+) - /)
+      if (m[1] == HTTPS_E_GIT_COMMIT)
+        return
+      end
+    end
   end
-end
-
-if !skip_https_e
-  # convert all HTTPS Everywhere XML rule files into one big rules hash and
-  # write it out as a plist, as well as a standalone hash of target URLs ->
-  # rule names to another plist
 
   rules = {}
   targets = {}
@@ -58,29 +67,49 @@ if !skip_https_e
   end
 
   File.write(HTTPS_E_TARGETS_PLIST,
-    "<!-- automatically generated from HTTPS Everywhere " +
-    HTTPS_E_GIT_COMMIT +
-    " - do not directly edit this file -->\n" +
+    "<!-- generated from HTTPS Everywhere #{HTTPS_E_GIT_COMMIT} - do not " +
+      "directly edit this file -->\n" +
     targets.to_plist)
 
-  File.write("Endless/Resources/https-everywhere_rules.plist",
-    "<!-- generated from HTTPS Everywhere " +
-    HTTPS_E_GIT_COMMIT +
-    " - do not directly edit this file -->\n" +
+  File.write(HTTPS_E_RULES_PLIST,
+    "<!-- generated from HTTPS Everywhere #{HTTPS_E_GIT_COMMIT} - do not " +
+      "directly edit this file -->\n" +
     rules.to_plist)
 end
 
-# do similar for URL blocking rules, converting JSON ruleset into a list of
-# target domains and a list of rulesets with information URLs
+# convert JSON ruleset into a list of target domains and a list of rulesets
+# with information URLs
+def convert_urlblocker
+  targets = {}
 
-targets = {}
-
-JSON.parse(File.read("urlblocker.json")).each do |company,domains|
-  domains.each do |dom|
-    targets[dom] = company
+  JSON.parse(File.read(URLBLOCKER_JSON)).each do |company,domains|
+    domains.each do |dom|
+      targets[dom] = company
+    end
   end
+
+  File.write(URLBLOCKER_TARGETS_PLIST,
+    "<!-- generated from #{URLBLOCKER_JSON} - do not directly edit this " +
+      "file -->\n" +
+    targets.to_plist)
 end
 
-File.write("Endless/Resources/urlblocker_targets.plist",
-  "<!-- generated from urlblocker.json - do not directly edit this file -->\n" +
-  targets.to_plist)
+def convert_hsts_preload
+  domains = {}
+
+  json = JSON.parse(Net::HTTP.get(URI(HSTS_PRELOAD_LIST)).unpack("m0").first)
+  json["entries"].each do |entry|
+    domains[entry["name"]] = {
+      "include_subdomains" => !!entry["include_subdomains"]
+    }
+  end
+
+  File.write(HSTS_PRELOAD_HOSTS_PLIST,
+    "<!-- generated from #{HSTS_PRELOAD_LIST} - do not directly edit this " +
+      "file -->\n" +
+    domains.to_plist)
+end
+
+convert_https_e
+convert_urlblocker
+convert_hsts_preload

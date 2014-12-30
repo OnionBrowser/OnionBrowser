@@ -1,4 +1,5 @@
 #import "AppDelegate.h"
+#import "HSTSCache.h"
 #import "HTTPSEverywhere.h"
 #import "URLBlocker.h"
 #import "URLInterceptor.h"
@@ -101,7 +102,11 @@ NSString *userAgent;
 			return;
 		}
 	}
+	
+	/* check HSTS cache first to see if scheme needs upgraded */
+	[newRequest setURL:[[appDelegate hstsCache] rewrittenURI:[[self request] URL]]];
 
+	/* then check HTTPS Everywhere (must pass all URLs since some rules are not just scheme changes */
 	NSArray *HTErules = [HTTPSEverywhere potentiallyApplicableRulesForHost:[[[self request] URL] host]];
 	if (HTErules != nil && [HTErules count] > 0) {
 		[newRequest setURL:[HTTPSEverywhere rewrittenURI:[[self request] URL] withRules:HTErules]];
@@ -203,6 +208,13 @@ NSString *userAgent;
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
 	[self extractCookiesFromResponse:response forURL:[self.request URL] fromMainDocument:[wvt url]];
+	
+	if ([[[self.request URL] scheme] isEqualToString:@"https"]) {
+		NSString *hsts = [[(NSHTTPURLResponse *)response allHeaderFields] objectForKey:HSTS_HEADER];
+		if (hsts != nil && ![hsts isEqualToString:@""]) {
+			[[appDelegate hstsCache] parseHSTSHeader:hsts forHost:[[self.request URL] host]];
+		}
+	}
 	
 	if (self.isOrigin) {
 		if ([[[[self.request URL] scheme] lowercaseString] isEqualToString:@"https"]) {

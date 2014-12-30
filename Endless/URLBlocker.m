@@ -10,9 +10,8 @@ static NSCache *ruleCache;
 + (NSDictionary *)targets
 {
 	if (_targets == nil) {
-		NSFileManager *fm = [NSFileManager defaultManager];
 		NSString *path = [[NSBundle mainBundle] pathForResource:@"urlblocker_targets" ofType:@"plist"];
-		if (![fm fileExistsAtPath:path]) {
+		if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
 			NSLog(@"[URLBlocker] no target plist at %@", path);
 			abort();
 		}

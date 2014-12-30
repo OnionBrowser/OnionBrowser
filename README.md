@@ -30,6 +30,9 @@ course) with a design goal of increased security and privacy.
   requests over SSL where supported, including setting the secure
   bit on received cookies and auto-detection of redirection loops
 
+- HTTP Strict Transport Security (RFC6797) implementation (in addition to
+  WebKit's mystery built-in one) with Chromium's large preload list
+
 - Integrated URL blocker with a small included ruleset of behavior-tracking
   advertising, analytics, and social networking widgets (this list is intended
   for enhancing privacy and not to be an AdBlock-style comprehensive ad-blocking
@@ -46,8 +49,6 @@ course) with a design goal of increased security and privacy.
 
 - Auto-destroy session cookies *n* seconds after closing last tab using those
   cookies
-
-- HTTP Strict Transport Security cache
 
 - Bookmarks, probably a home-screen table layout like Safari
 
