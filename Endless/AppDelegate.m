@@ -95,4 +95,14 @@
 	_searchEngines = [NSMutableDictionary dictionaryWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"SearchEngines.plist"]];
 }
 
+- (void)removeCookiesForDomain:(NSString *)domain
+{
+	for (NSHTTPCookie *cookie in [[self cookieStorage] cookies]) {
+		if ([[cookie domain] isEqualToString:domain] || [[cookie domain] isEqualToString:[NSString stringWithFormat:@".%@", domain]]) {
+			NSLog(@"deleting cookie for %@: %@", domain, cookie);
+			[[self cookieStorage] deleteCookie:cookie];
+		}
+	}
+}
+
 @end

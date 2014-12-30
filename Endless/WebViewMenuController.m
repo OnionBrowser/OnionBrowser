@@ -1,5 +1,5 @@
 #import "AppDelegate.h"
-#import "CookieWhitelistController.h"
+#import "CookieController.h"
 #import "IASKAppSettingsViewController.h"
 #import "HTTPSEverywhereRuleController.h"
 #import "WebViewMenuController.h"
@@ -154,11 +154,11 @@ enum WebViewMenuButton {
 
 - (void)menuCookies
 {
-	CookieWhitelistController *cw = [[CookieWhitelistController alloc] init];
-	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:cw];
+	CookieController *cc = [[CookieController alloc] init];
+	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:cc];
 
 	UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:navController action:@selector(dismissModalViewControllerAnimated:)];
-	cw.navigationItem.leftBarButtonItem = doneButton;
+	cc.navigationItem.leftBarButtonItem = doneButton;
 
 	[[appDelegate webViewController] presentViewController:navController animated:YES completion:nil];
 }

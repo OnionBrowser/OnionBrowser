@@ -20,5 +20,7 @@
 
 @property (strong, atomic) NSString *defaultUserAgent;
 
+- (void)removeCookiesForDomain:(NSString *)domain;
+
 @end
 

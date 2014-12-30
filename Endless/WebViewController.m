@@ -1,5 +1,4 @@
 #import "AppDelegate.h"
-#import "CookieWhitelistController.h"
 #import "URLInterceptor.h"
 #import "WebViewController.h"
 #import "WebViewTab.h"
