@@ -88,6 +88,12 @@ AppDelegate *appDelegate;
 	[_viewHolder addSubview:_closer];
 	[_viewHolder addSubview:_webView];
 	
+	/* setup shadow that will be shown when zooming out */
+	[[_viewHolder layer] setMasksToBounds:NO];
+	[[_viewHolder layer] setShadowOffset:CGSizeMake(0, 0)];
+	[[_viewHolder layer] setShadowRadius:8];
+	[[_viewHolder layer] setShadowOpacity:0];
+	
 	_progress = @0.0;
 	
 	[self updateFrame:frame];
@@ -353,6 +359,7 @@ AppDelegate *appDelegate;
 	[_titleHolder setHidden:false];
 	[_title setHidden:false];
 	[_closer setHidden:false];
+	[[[self viewHolder] layer] setShadowOpacity:0.3];
 	[[self viewHolder] setTransform:CGAffineTransformMakeScale(ZOOM_OUT_SCALE, ZOOM_OUT_SCALE)];
 }
 
@@ -363,6 +370,7 @@ AppDelegate *appDelegate;
 	[_titleHolder setHidden:true];
 	[_title setHidden:true];
 	[_closer setHidden:true];
+	[[[self viewHolder] layer] setShadowOpacity:0];
 	[[self viewHolder] setTransform:CGAffineTransformMakeScale(1.0, 1.0)];
 }
 
