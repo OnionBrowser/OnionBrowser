@@ -21,6 +21,10 @@
 	<string>Advertising/Analytics - Yahoo</string>
 	<key>btstatic.com</key>
 	<string>Advertising/Analytics - Signal/BrightTag</string>
+	<key>chartbeat.com</key>
+	<string>Analytics - Chartbeat</string>
+	<key>chartbeat.net</key>
+	<string>Analytics - Chartbeat</string>
 	<key>crsspxl.com</key>
 	<string>Analytics - Cross Pixel</string>
 	<key>crwdcntrl.net</key>
