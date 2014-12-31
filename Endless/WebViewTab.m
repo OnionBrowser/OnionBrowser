@@ -119,10 +119,10 @@ AppDelegate *appDelegate;
 - (void)updateFrame:(CGRect)frame
 {
 	[self.viewHolder setFrame:frame];
-	[self.webView setFrame:CGRectMake(0, frame.origin.y, frame.size.width, frame.size.height)];
-	[self.titleHolder setFrame:CGRectMake(0, frame.origin.y - 26, frame.size.width, 32)];
-	[self.closer setFrame:CGRectMake(3, frame.origin.y - 22, 18, 18)];
-	[self.title setFrame:CGRectMake(22, frame.origin.y - 20, frame.size.width - 22 - 22, 16)];
+	[self.webView setFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
+	[self.titleHolder setFrame:CGRectMake(0, -26, frame.size.width, 32)];
+	[self.closer setFrame:CGRectMake(3, -22, 18, 18)];
+	[self.title setFrame:CGRectMake(22, -20, frame.size.width - 22 - 22, 16)];
 }
 
 - (void)loadURL:(NSURL *)u
@@ -316,7 +316,7 @@ AppDelegate *appDelegate;
 - (void)goBack
 {
 	if ([self.webView canGoBack]) {
-		[self.webView goBack];
+		[[self webView] goBack];
 	}
 	else if (self.openedByTabHash) {
 		for (WebViewTab *wvt in [[appDelegate webViewController] webViewTabs]) {
@@ -332,25 +332,23 @@ AppDelegate *appDelegate;
 
 - (void)goForward
 {
-	if ([self.webView canGoForward])
-		[self.webView goForward];
+	if ([[self webView] canGoForward])
+		[[self webView] goForward];
 }
 
 - (void)refresh
 {
-	[self.webView reload];
+	[[self webView] reload];
 }
 
 - (void)forceRefresh
 {
-	[self loadURL:self.url withForce:YES];
+	[self loadURL:[self url] withForce:YES];
 }
 
 - (void)zoomOut
 {
-	self.webView.userInteractionEnabled = NO;
-	[[self.webView layer] setBorderColor:[[UIColor grayColor] CGColor]];
-	[[self.webView layer] setBorderWidth:0.5];
+	[[self webView] setUserInteractionEnabled:NO];
 
 	[_titleHolder setHidden:false];
 	[_title setHidden:false];
@@ -360,8 +358,7 @@ AppDelegate *appDelegate;
 
 - (void)zoomNormal
 {
-	self.webView.userInteractionEnabled = YES;
-	[[self.webView layer] setBorderWidth:0];
+	[[self webView] setUserInteractionEnabled:YES];
 
 	[_titleHolder setHidden:true];
 	[_title setHidden:true];

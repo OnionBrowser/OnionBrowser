@@ -6,7 +6,9 @@
 #import "WYPopoverController.h"
 
 #define STATUSBAR_HEIGHT 20
-#define TOOLBAR_HEIGHT 44
+#define TOOLBAR_HEIGHT 46
+#define TOOLBAR_PADDING 6
+#define TOOLBAR_BUTTON_SIZE 30
 
 @implementation WebViewController {
 	AppDelegate *appDelegate;
@@ -165,6 +167,17 @@
 	[self.view.window makeKeyAndVisible];
 }
 
+- (BOOL)prefersStatusBarHidden
+{
+	return NO;
+}
+
+- (void)didReceiveMemoryWarning
+{
+	[super didReceiveMemoryWarning];
+	// Dispose of any resources that can be recreated.
+}
+
 - (void)encodeRestorableStateWithCoder:(NSCoder *)coder
 {
 	[super encodeRestorableStateWithCoder:coder];
@@ -205,10 +218,6 @@
 	[self updateSearchBarDetails];
 }
 
-- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
-{
-	[self adjustLayoutToSize:size];
-}
 
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -220,46 +229,84 @@
 	}
 }
 
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+	[super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+	
+	[coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+		if (showingTabs) {
+			/* not sure why, but the transition looks nicer to do these linearly rather than adjusting layout in a completion block to ending tab showing */
+			[self showTabsWithCompletionBlock:nil];
+		}
+		
+		[self adjustLayoutToSize:size];
+	} completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+	}];
+}
+
 - (void)adjustLayoutToSize:(CGSize)size
 {
 	self.view.frame = CGRectMake(0, 0, size.width, size.height);
+	float y = ((TOOLBAR_HEIGHT - TOOLBAR_BUTTON_SIZE) / 2);
 	
-	toolbar.frame = CGRectMake(0, STATUSBAR_HEIGHT, size.width, TOOLBAR_HEIGHT);
+	toolbar.frame = tabToolbar.frame = CGRectMake(0, STATUSBAR_HEIGHT, size.width, TOOLBAR_HEIGHT);
+	backButton.frame = CGRectMake(TOOLBAR_PADDING, y, TOOLBAR_BUTTON_SIZE, TOOLBAR_BUTTON_SIZE);
+	forwardButton.frame = CGRectMake(backButton.frame.origin.x + backButton.frame.size.width + TOOLBAR_PADDING, y, TOOLBAR_BUTTON_SIZE, TOOLBAR_BUTTON_SIZE);
 	
-	backButton.frame = CGRectMake(8, 8, 30, 30);
-	forwardButton.frame = CGRectMake(backButton.frame.origin.x + backButton.frame.size.width + 8, 8, backButton.frame.size.width, backButton.frame.size.height);
-	settingsButton.frame = CGRectMake(size.width - backButton.frame.size.width - 8, 8, backButton.frame.size.width, backButton.frame.size.height);
-	tabsButton.frame = CGRectMake(settingsButton.frame.origin.x - backButton.frame.size.width - 8, 8, backButton.frame.size.width, backButton.frame.size.height);
-	
+	settingsButton.frame = CGRectMake(size.width - backButton.frame.size.width - TOOLBAR_PADDING, y, TOOLBAR_BUTTON_SIZE, TOOLBAR_BUTTON_SIZE);
+	tabsButton.frame = CGRectMake(settingsButton.frame.origin.x - backButton.frame.size.width - TOOLBAR_PADDING, y, TOOLBAR_BUTTON_SIZE, TOOLBAR_BUTTON_SIZE);
 	tabCount.frame = CGRectMake(tabsButton.frame.origin.x + 6, tabsButton.frame.origin.y + 12, 14, 10);
-
 	urlField.frame = [self frameForUrlField];
 	
-	tabScroller.frame = CGRectMake(0, 0, size.width, size.height);
 	progressBar.frame = CGRectMake(0, toolbar.frame.size.height - 2, toolbar.frame.size.width, 2);
-	tabToolbar.frame = toolbar.frame;
-	
+	tabChooser.frame = CGRectMake(0, size.height - 24, size.width, 24);
+	tabScroller.frame = CGRectMake(0, 0, size.width, size.height);
+
 	for (int i = 0; i < webViewTabs.count; i++) {
 		WebViewTab *wvt = webViewTabs[i];
-		[wvt updateFrame:[self frameForTabIndex:i withSize:size]];
+		[wvt updateFrame:[self frameForTabIndex:i withSize:CGSizeMake(size.width, size.height - STATUSBAR_HEIGHT)]];
 	}
 	
 	tabScroller.contentSize = CGSizeMake(size.width * tabChooser.numberOfPages, size.height);
-	
-	tabChooser.frame = CGRectMake(0, size.height - 24, size.width, 24);
+	[tabScroller setContentOffset:CGPointMake([self frameForTabIndex:tabChooser.currentPage].origin.x, 0) animated:NO];
 	
 	[self.view setNeedsDisplay];
 }
-
-- (BOOL)prefersStatusBarHidden
+- (CGRect)frameForTabIndex:(NSUInteger)number
 {
-	return NO;
+	return [self frameForTabIndex:number withSize:CGSizeMake(0, 0)];
 }
 
-- (void)didReceiveMemoryWarning
+- (CGRect)frameForTabIndex:(NSUInteger)number withSize:(CGSize)size
 {
-	[super didReceiveMemoryWarning];
-	// Dispose of any resources that can be recreated.
+	float screenWidth = size.width, screenHeight = size.height;
+ 
+	if (size.width == 0) {
+		screenWidth = [UIScreen mainScreen].applicationFrame.size.width;
+		screenHeight = [UIScreen mainScreen].applicationFrame.size.height;
+	}
+	
+	return CGRectMake((screenWidth * number), TOOLBAR_HEIGHT + STATUSBAR_HEIGHT, screenWidth, screenHeight - TOOLBAR_HEIGHT);
+}
+
+- (CGRect)frameForUrlField
+{
+	float x = forwardButton.frame.origin.x + forwardButton.frame.size.width + TOOLBAR_PADDING;
+	float y = (TOOLBAR_HEIGHT - tabsButton.frame.size.height) / 2;
+	float w = tabsButton.frame.origin.x - TOOLBAR_PADDING - forwardButton.frame.origin.x - forwardButton.frame.size.width - TOOLBAR_PADDING;
+	float h = tabsButton.frame.size.height;
+	
+	if (backButton.hidden || [urlField isFirstResponder]) {
+		x -= backButton.frame.size.width + TOOLBAR_PADDING;
+		w += backButton.frame.size.width + TOOLBAR_PADDING;
+	}
+	
+	if (forwardButton.hidden || [urlField isFirstResponder]) {
+		x -= forwardButton.frame.size.width + TOOLBAR_PADDING;
+		w += forwardButton.frame.size.width + TOOLBAR_PADDING;
+	}
+	
+	return CGRectMake(x, y, w, h);
 }
 
 - (NSMutableArray *)webViewTabs
@@ -349,50 +396,6 @@
 	[urlField becomeFirstResponder];
 }
 
-- (CGRect)frameForTabIndex:(NSUInteger)number
-{
-	return [self frameForTabIndex:number withSize:CGSizeMake(0, 0)];
-}
-
-- (CGRect)frameForTabIndex:(NSUInteger)number withSize:(CGSize)size
-{
-	float screenWidth, screenHeight;
- 
-	if (size.width == 0) {
-		screenWidth = [UIScreen mainScreen].applicationFrame.size.width;
-		screenHeight = [UIScreen mainScreen].applicationFrame.size.height;
-	
-		UIInterfaceOrientation ori = [UIApplication sharedApplication].statusBarOrientation;
-		if (ori == UIInterfaceOrientationLandscapeRight || ori == UIInterfaceOrientationLandscapeLeft) {
-			float t = screenWidth;
-			screenWidth = screenHeight;
-			screenHeight = t;
-		}
-	}
-	
-	return CGRectMake((screenWidth * number), 32, screenWidth, screenHeight - TOOLBAR_HEIGHT);
-}
-
-- (CGRect)frameForUrlField
-{
-	float x = forwardButton.frame.origin.x + forwardButton.frame.size.width + 8;
-	float y = tabsButton.frame.origin.y;
-	float w = tabsButton.frame.origin.x - 8 - forwardButton.frame.origin.x - forwardButton.frame.size.width - 8;
-	float h = tabsButton.frame.size.height;
-	
-	if (backButton.hidden || [urlField isFirstResponder]) {
-		x -= backButton.frame.size.width + 8;
-		w += backButton.frame.size.width + 8;
-	}
-
-	if (forwardButton.hidden || [urlField isFirstResponder]) {
-		x -= forwardButton.frame.size.width + 8;
-		w += forwardButton.frame.size.width + 8;
-	}
-	
-	return CGRectMake(x, y, w, h);
-}
-
 - (void)removeTab:(NSNumber *)tabNumber
 {
 	[self removeTab:tabNumber andFocusTab:[NSNumber numberWithInt:-1]];
@@ -405,10 +408,12 @@
 #endif
 	int futureFocusNumber = toFocus.intValue;
 	if (futureFocusNumber > -1) {
-		if (futureFocusNumber == tabNumber.intValue)
+		if (futureFocusNumber == tabNumber.intValue) {
 			futureFocusNumber = -1;
-		else if (futureFocusNumber > tabNumber.intValue)
+		}
+		else if (futureFocusNumber > tabNumber.intValue) {
 			futureFocusNumber--;
+		}
 	}
 
 	[[webViewTabs[tabNumber.intValue] viewHolder] removeFromSuperview];
@@ -512,8 +517,9 @@
 			[urlField setTextColor:[UIColor darkTextColor]];
 			[urlField setText:hostNoWWW];
 			
-			if ([urlField.text isEqualToString:@""])
+			if ([urlField.text isEqualToString:@""]) {
 				[urlField setTextAlignment:NSTextAlignmentLeft];
+			}
 		}
 	}
 	
@@ -723,25 +729,9 @@
 
 - (void)showTabsWithCompletionBlock:(void(^)(BOOL))block
 {
-	if (showingTabs) {
-		[UIView animateWithDuration:0.25 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^(void) {
-			for (int i = 0; i < webViewTabs.count; i++) {
-				[(WebViewTab *)webViewTabs[i] zoomNormal];
-			}
-			
-			tabChooser.hidden = true;
-			toolbar.hidden = false;
-			tabToolbar.hidden = true;
-			progressBar.alpha = (progressBar.progress > 0.0 && progressBar.progress < 1.0 ? 1.0 : 0.0);
-			tabScroller.frame = origTabScrollerFrame;
-		} completion:block];
-
-		tabScroller.scrollEnabled = NO;
-		tabScroller.pagingEnabled = NO;
+	if (showingTabs == false) {
+		/* zoom out */
 		
-		[self updateSearchBarDetails];
-	}
-	else {
 		/* make sure no text is selected */
 		[urlField resignFirstResponder];
 		
@@ -769,6 +759,24 @@
 		singleTapGestureRecognizer.enabled = YES;
 		singleTapGestureRecognizer.cancelsTouchesInView = NO;
 		[tabScroller addGestureRecognizer:singleTapGestureRecognizer];
+	}
+	else {
+		[UIView animateWithDuration:0.25 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^(void) {
+			for (int i = 0; i < webViewTabs.count; i++) {
+				[(WebViewTab *)webViewTabs[i] zoomNormal];
+			}
+			
+			tabChooser.hidden = true;
+			toolbar.hidden = false;
+			tabToolbar.hidden = true;
+			progressBar.alpha = (progressBar.progress > 0.0 && progressBar.progress < 1.0 ? 1.0 : 0.0);
+			tabScroller.frame = origTabScrollerFrame;
+		} completion:block];
+
+		tabScroller.scrollEnabled = NO;
+		tabScroller.pagingEnabled = NO;
+		
+		[self updateSearchBarDetails];
 	}
 	
 	showingTabs = !showingTabs;
