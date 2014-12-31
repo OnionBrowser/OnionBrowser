@@ -3,6 +3,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>addthis.com</key>
+	<string>Social - AddThis</string>
 	<key>adnxs.com</key>
 	<string>Advertising/Analytics - AppNexus</string>
 	<key>ads.yahoo.com</key>
@@ -29,6 +31,8 @@
 	<string>Analytics - Cross Pixel</string>
 	<key>crwdcntrl.net</key>
 	<string>Advertising/Analytics - Lotame</string>
+	<key>cxense.com</key>
+	<string>Advertising/Analytics - Cxense</string>
 	<key>domdex.com</key>
 	<string>Advertising/Analytics - Magnetic</string>
 	<key>doubleclick.net</key>
@@ -75,6 +79,8 @@
 	<string>Analytics - Reddit</string>
 	<key>stats.wp.com</key>
 	<string>Analytics - WordPress</string>
+	<key>taboola.com</key>
+	<string>Advertising/Analytics - Taboola</string>
 	<key>thebrighttag.com</key>
 	<string>Advertising/Analytics - Signal/BrightTag</string>
 	<key>thoughtleadr.com</key>
