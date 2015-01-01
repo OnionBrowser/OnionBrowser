@@ -1,3 +1,4 @@
+if (typeof __endless == "undefined") {
 var __endless = {
 	openedTabs: {},
 
@@ -41,11 +42,17 @@ var __endless = {
 
 	hookIntoBlankAs: function() {
 		document.body.addEventListener("click", function() {
-			if (event.target.tagName == "A" &&
-			event.target.target == "_blank") {
-				event.preventDefault();
-				window.open(event.target.href);
-				return false;
+			if (event.target.tagName == "A" && event.target.target == "_blank") {
+				if (event.type == "click") {
+					event.preventDefault();
+					if (window.open(event.target.href) == null)
+						window.location = event.target.href;
+					return false;
+				}
+				else {
+					console.log("not opening _blank a from " + event.type +
+						" event");
+				}
 			}
 		}, false);
 	},
@@ -129,19 +136,39 @@ var __endless = {
 		},
 	};
 
+	window.onerror = function(msg, url, line) {
+		console.error("[on " + url + ":" + line + "] " + msg);
+	}
+
 	window.open = function (url, name, specs, replace) {
 		var id = __endless.randID();
+
 		__endless.openedTabs[id] = new __endless.FakeWindow(id);
 
-		__endless.ipcAndWaitForReply("window.open/" + id);
+		/* fake a mouse event clicking on a link, so that our webview sees the
+		 * navigation type as a mouse event; this prevents popup spam since
+		 * dispatchEvent() won't do anything if we're not in a mouse event
+		 * already */
+		var l = document.createElement("a");
+		l.setAttribute("href", "endlessipc://window.open/" + id);
+		l.setAttribute("target", "_blank");
+		var e = document.createEvent("MouseEvents");
+		e.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false,
+			false, false, false, 0, null);
+		l.dispatchEvent(e);
+
+		__endless.ipcAndWaitForReply("noop");
 
 		if (!__endless.openedTabs[id].opened) {
-			console.log("window failed to open");
+			console.error("window failed to open");
+			/* TODO: send url to ipc anyway to show popup blocker notice */
 			return null;
 		}
 
-		__endless.openedTabs[id].name = name;
-		__endless.openedTabs[id].location = url;
+		if (name !== undefined && name != '')
+			__endless.openedTabs[id].name = name;
+		if (url !== undefined && url != '')
+			__endless.openedTabs[id].location = url;
 
 		return __endless.openedTabs[id];
 	};
@@ -172,3 +199,4 @@ var __endless = {
 		document.addEventListener("DOMContentLoaded",
 			__endless.hookIntoBlankAs, false);
 }());
+}

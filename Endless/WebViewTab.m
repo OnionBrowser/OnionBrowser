@@ -41,7 +41,7 @@ AppDelegate *appDelegate;
 	self = [super init];
 	
 	appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-
+	
 	_viewHolder = [[UIView alloc] initWithFrame:frame];
 	
 	/* re-register user agent with our hash, which should only affect this UIWebView */
@@ -188,12 +188,24 @@ AppDelegate *appDelegate;
 	NSLog(@"[Javascript IPC]: [%@] [%@] [%@] [%@]", action, param, param2, value);
 #endif
 	
-	if ([action isEqualToString:@"window.open"]) {
-		WebViewTab *newtab = [[appDelegate webViewController] addNewTabForURL:nil];
-		newtab.randID = param;
-		newtab.openedByTabHash = [NSNumber numberWithLong:self.hash];
-		
-		[self webView:__webView callbackWith:[NSString stringWithFormat:@"__endless.openedTabs[\"%@\"].opened = true;", param]];
+	if ([action isEqualToString:@"noop"]) {
+		[self webView:__webView callbackWith:@""];
+	}
+	else if ([action isEqualToString:@"window.open"]) {
+		/* only allow windows to be opened from mouse/touch events, like a normal browser's popup blocker */
+		if (navigationType == UIWebViewNavigationTypeLinkClicked) {
+			WebViewTab *newtab = [[appDelegate webViewController] addNewTabForURL:nil];
+			newtab.randID = param;
+			newtab.openedByTabHash = [NSNumber numberWithLong:self.hash];
+			
+			[self webView:__webView callbackWith:[NSString stringWithFormat:@"__endless.openedTabs[\"%@\"].opened = true;", param]];
+		}
+		else {
+			/* TODO: show a "popup blocked" warning? */
+			NSLog(@"[Tab %@] blocked non-touch window.open() (nav type %lu)", self.tabNumber, navigationType);
+			
+			[self webView:__webView callbackWith:[NSString stringWithFormat:@"__endless.openedTabs[\"%@\"].opened = false;", param]];
+		}
 	}
 	else if ([action isEqualToString:@"window.close"]) {
 		UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Confirm" message:@"Allow this page to close its tab?" preferredStyle:UIAlertControllerStyleAlert];
