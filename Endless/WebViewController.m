@@ -187,10 +187,11 @@
 		if (wvt.url == nil)
 			continue;
 		
-		[wvtd addObject:wvt.url];
+		[wvtd addObject:@{ @"url" : wvt.url, @"title" : wvt.title.text }];
 		[[wvt webView] setRestorationIdentifier:[wvt.url absoluteString]];
+		
 #ifdef TRACE
-		NSLog(@"encoded restoration state for tab %@ with %@", wvt.tabNumber, [wvt.url absoluteString]);
+		NSLog(@"encoded restoration state for tab %@ with %@", wvt.tabNumber, wvtd[wvtd.count - 1]);
 #endif
 	}
 	[coder encodeObject:wvtd forKey:@"webViewTabs"];
@@ -203,16 +204,21 @@
 
 	NSMutableArray *wvt = [coder decodeObjectForKey:@"webViewTabs"];
 	for (int i = 0; i < wvt.count; i++) {
+		NSDictionary *params = wvt[i];
 #ifdef TRACE
-		NSLog(@"restoring tab %d with %@", i, wvt[i]);
+		NSLog(@"restoring tab %d with %@", i, params);
 #endif
-		[self addNewTabForURL:wvt[i] forRestoration:YES];
+		WebViewTab *wvt = [self addNewTabForURL:[params objectForKey:@"url"] forRestoration:YES];
+		[[wvt title] setText:[params objectForKey:@"title"]];
 	}
 	
 	NSNumber *cp = [coder decodeObjectForKey:@"currentPage"];
 	if (cp != nil) {
 		[self setCurrentTab:[cp longValue]];
 		[tabScroller setContentOffset:CGPointMake([self frameForTabIndex:tabChooser.currentPage].origin.x, 0) animated:NO];
+		
+		/* wait for the UI to catch up */
+		[[self curWebViewTab] performSelector:@selector(refresh) withObject:nil afterDelay:0.5];
 	}
 	
 	[self updateSearchBarDetails];
@@ -330,6 +336,10 @@
 		return;
 	
 	tabChooser.currentPage = tab;
+	
+	if ([[self curWebViewTab] needsRefresh]) {
+		[[self curWebViewTab] refresh];
+	}
 }
 
 - (WebViewTab *)addNewTabForURL:(NSURL *)url
@@ -367,14 +377,7 @@
 		}];
 	};
 	
-	if (restoration) {
-		[self setCurrentTab:webViewTabs.count - 1];
-		[tabScroller setContentOffset:CGPointMake([self frameForTabIndex:tabChooser.currentPage].origin.x, 0) animated:NO];
-		
-		/* wait for the UI to show up */
-		[wvt performSelector:@selector(refresh) withObject:nil afterDelay:0.5];
-	}
-	else {
+	if (!restoration) {
 		/* animate zooming out (if not already), switching to the new tab, then zoom back in */
 		if (showingTabs) {
 			swapToTab(YES);
@@ -403,8 +406,10 @@
 
 - (void)removeTab:(NSNumber *)tabNumber andFocusTab:(NSNumber *)toFocus
 {
+	WebViewTab *wvt = (WebViewTab *)webViewTabs[tabNumber.intValue];
+	
 #ifdef TRACE
-	NSLog(@"removing tab %@ (%@)", tabNumber, ((WebViewTab *)webViewTabs[tabNumber.intValue]).title.text);
+	NSLog(@"removing tab %@ (%@)", tabNumber, wvt.title.text);
 #endif
 	int futureFocusNumber = toFocus.intValue;
 	if (futureFocusNumber > -1) {

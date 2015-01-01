@@ -48,8 +48,10 @@ AppDelegate *appDelegate;
 	[[NSUserDefaults standardUserDefaults] registerDefaults:@{ @"UserAgent": [NSString stringWithFormat:@"%@/%lu", [appDelegate defaultUserAgent], self.hash] }];
 	
 	_webView = [[UIWebView alloc] initWithFrame:CGRectZero];
+	_needsRefresh = FALSE;
 	if (rid != nil) {
 		[_webView setRestorationIdentifier:rid];
+		_needsRefresh = TRUE;
 	}
 	[_webView setDelegate:self];
 	[_webView setScalesPageToFit:YES];
@@ -77,6 +79,7 @@ AppDelegate *appDelegate;
 	[_title setFont:[UIFont boldSystemFontOfSize:16.0]];
 	[_title setLineBreakMode:NSLineBreakByTruncatingTail];
 	[_title setTextAlignment:NSTextAlignmentCenter];
+	[_title setText:@"New Tab"];
 	
 	_closer = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
 	[_closer setTextColor:[UIColor whiteColor]];
@@ -268,8 +271,8 @@ AppDelegate *appDelegate;
 	
 	[__webView stringByEvaluatingJavaScriptFromString:[[self class] javascriptToInject]];
 	
-	[self.title setText:[[self webView] stringByEvaluatingJavaScriptFromString:@"document.title"]];
-	self.url = [[__webView request] URL];
+	[self.title setText:[__webView stringByEvaluatingJavaScriptFromString:@"document.title"]];
+	self.url = [NSURL URLWithString:[__webView stringByEvaluatingJavaScriptFromString:@"window.location.href"]];
 }
 
 - (void)webView:(UIWebView *)__webView didFailLoadWithError:(NSError *)error
@@ -344,6 +347,7 @@ AppDelegate *appDelegate;
 
 - (void)refresh
 {
+	[self setNeedsRefresh:FALSE];
 	[[self webView] reload];
 }
 

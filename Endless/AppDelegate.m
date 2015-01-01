@@ -58,7 +58,14 @@
 {
 	NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey];
 	NSString *storedVersion = [coder decodeObjectForKey:UIApplicationStateRestorationBundleVersionKey];
-	return [version isEqualToString:storedVersion];
+	if (![version isEqualToString:storedVersion]) {
+#ifdef TRACE
+		NSLog(@"not restoring application state, old version %@ != %@", storedVersion, version);
+#endif
+		return NO;
+	}
+	
+	return YES;
 }
 
 - (BOOL)application:(UIApplication *)application shouldSaveApplicationState:(NSCoder *)coder
