@@ -3,6 +3,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>3lift.com</key>
+	<string>Advertising/Analytics - TripleLift</string>
 	<key>addthis.com</key>
 	<string>Social - AddThis</string>
 	<key>adnxs.com</key>
@@ -69,6 +71,10 @@
 	<string>Unknown - pro-market</string>
 	<key>quantserve.com</key>
 	<string>Analytics - Quantcast</string>
+	<key>questionmarket.com</key>
+	<string>Advertising/Analytics - Safecount</string>
+	<key>safecount.net</key>
+	<string>Advertising/Analytics - Safecount</string>
 	<key>scorecardresearch.com</key>
 	<string>Analytics - comScore</string>
 	<key>signal.co</key>
@@ -85,6 +91,8 @@
 	<string>Advertising/Analytics - Signal/BrightTag</string>
 	<key>thoughtleadr.com</key>
 	<string>Advertising/Analytics - ThoughtLeadr</string>
+	<key>triplelift.com</key>
+	<string>Advertising/Analytics - TripleLift</string>
 	<key>turn.com</key>
 	<string>Analytics - Turn</string>
 	<key>twitter.com</key>
