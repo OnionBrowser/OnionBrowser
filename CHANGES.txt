@@ -3,7 +3,7 @@ Onion Browser Version History (since 1.2.2)
 FUTURE:
 
 ===== 2.0 - Under Development =====
-Est. Release: October 2014
+Est. Release: February 2015
 Features subject to change.
 
 * New "flat" icon for the iOS 7+ era.
@@ -13,6 +13,13 @@ Features subject to change.
 * Data encryption with an app-level password. Supplements current
   encryption done by the iOS operating system, improving protection
   against forensic tools.
+
+===== 1.5.11 - Under Development =====
+Est. Release: January 2015
+Features subject to change.
+
+* Fix issue where bridges with 5-digit port numbers were not allowed
+  in the bridge configuration. Issue reported by Andrew Auerbach.
 
 
 CURRENT VERSION:
