@@ -81,6 +81,8 @@
 	<string>Advertising/Analytics - Signal/BrightTag</string>
 	<key>simpli.fi</key>
 	<string>Advertising/Analytics - Simplifi</string>
+	<key>statcounter.com</key>
+	<string>Analytics - StatCounter</string>
 	<key>stats.redditmedia.com</key>
 	<string>Analytics - Reddit</string>
 	<key>stats.wp.com</key>
