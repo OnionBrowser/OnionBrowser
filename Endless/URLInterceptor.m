@@ -69,7 +69,7 @@ NSString *userAgent;
 	}
 	
 #ifdef TRACE
-	NSLog(@"[URLInterceptor] [Tab %@] initializing with %@ request: %@", wvt.tabNumber, [request HTTPMethod], [[request URL] absoluteString]);
+	NSLog(@"[URLInterceptor] [Tab %@] initializing with %@ request: %@ (via %@)", wvt.tabNumber, [request HTTPMethod], [[request URL] absoluteString], [request mainDocumentURL]);
 #endif
 
 	return self;

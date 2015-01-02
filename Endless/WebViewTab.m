@@ -151,6 +151,13 @@ AppDelegate *appDelegate;
 	[self.title setFrame:CGRectMake(22, -20, frame.size.width - 22 - 22, 16)];
 }
 
+- (void)prepareForNewURL:(NSURL *)URL
+{
+	[self setSecureMode:WebViewTabSecureModeInsecure];
+	[[self applicableHTTPSEverywhereRules] removeAllObjects];
+	[self setUrl:URL];
+}
+
 - (void)loadURL:(NSURL *)u
 {
 	[self loadURL:u withForce:NO];
@@ -159,18 +166,12 @@ AppDelegate *appDelegate;
 - (void)loadURL:(NSURL *)u withForce:(BOOL)force
 {
 	[self.webView stopLoading];
-	[self setSecureMode:WebViewTabSecureModeInsecure];
-	[[self applicableHTTPSEverywhereRules] removeAllObjects];
+	[self prepareForNewURL:u];
 	
 	NSMutableURLRequest *ur = [NSMutableURLRequest requestWithURL:u];
-	
 	if (force)
 		[ur setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
-	
-	/* remember that this was the directly entered URL */
-	[NSURLProtocol setProperty:@YES forKey:ORIGIN_KEY inRequest:ur];
 
-	[self setUrl:u];
 	[self.webView loadRequest:ur];
 }
 
@@ -178,7 +179,8 @@ AppDelegate *appDelegate;
 - (BOOL)webView:(UIWebView *)__webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
 	if (![[[request URL] scheme] isEqualToString:@"endlessipc"]) {
-		[self setUrl:[request mainDocumentURL]];
+		[self prepareForNewURL:[request mainDocumentURL]];
+
 		return YES;
 	}
 	
