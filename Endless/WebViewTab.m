@@ -1,8 +1,9 @@
 #import "AppDelegate.h"
 #import "URLInterceptor.h"
 #import "WebViewTab.h"
-
 #import "NSString+JavascriptEscape.h"
+
+@import WebKit;
 
 @implementation WebViewTab
 
@@ -59,6 +60,9 @@ AppDelegate *appDelegate;
 	
 	[_webView.scrollView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
 	[_webView.scrollView setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+	
+	/* XXX: this may violate app store guidelines */
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(webKitprogressEstimateChanged:) name:@"WebProgressEstimateChangedNotification" object:[_webView valueForKeyPath:@"documentView.webView"]];
 	
 	/* swiping goes back and forward in current webview */
 	UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeRightAction:)];
@@ -118,6 +122,19 @@ AppDelegate *appDelegate;
 	}
 	
 	return self;
+}
+
+- (void)close
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:@"WebProgressEstimateChangedNotification" object:[_webView valueForKeyPath:@"documentView.webView"]];
+	[_webView stopLoading];
+	_webView = nil;
+}
+
+/* XXX: this may violate app store guidelines */
+- (void)webKitprogressEstimateChanged:(NSNotification*)notification
+{
+	[self setProgress:[NSNumber numberWithFloat:[[notification object] estimatedProgress]]];
 }
 
 - (void)webViewTouched:(UIEvent *)event

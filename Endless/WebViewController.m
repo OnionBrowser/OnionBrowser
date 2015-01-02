@@ -422,9 +422,10 @@
 		}
 	}
 	
+	long wvtHash = [wvt hash];
 	[[wvt viewHolder] removeFromSuperview];
 	[webViewTabs removeObjectAtIndex:tabNumber.intValue];
-	long wvtHash = [wvt hash];
+	[wvt close];
 	wvt = nil;
 	
 	[[appDelegate cookieJar] clearNonWhitelistedDataForTab:wvtHash];
@@ -559,7 +560,7 @@
 	}
 	
 #ifdef TRACE
-	NSLog(@"loading progress of %@ (%@) at %f", [self.curWebViewTab.url absoluteString], self.curWebViewTab.tabNumber, progress);
+	NSLog(@"[Tab %@] loading progress of %@ at %f", self.curWebViewTab.tabNumber, [self.curWebViewTab.url absoluteString], progress);
 #endif
 
 	[self updateSearchBarDetails];
