@@ -193,7 +193,7 @@ var __endless = {
 	console.warn = function() { console._log("warn", arguments); };
 	console.error = function() { console._log("error", arguments); };
 
-	if (document.readyState == "complete")
+	if (document.readyState == "complete" || document.readyState == "interactive")
 		__endless.hookIntoBlankAs();
 	else
 		document.addEventListener("DOMContentLoaded",
