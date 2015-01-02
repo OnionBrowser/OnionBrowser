@@ -575,9 +575,9 @@
 		}];
 	}
 	else {
-		[progressBar setProgress:progress animated:animated];
-		
 		[UIView animateWithDuration:(animated ? fadeAnimationDuration : 0.0) delay:0.0 options:UIViewAnimationOptionCurveLinear animations:^{
+			[progressBar setProgress:progress animated:YES];
+
 			if (showingTabs)
 				progressBar.alpha = 0.0;
 			else
