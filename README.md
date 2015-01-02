@@ -20,8 +20,14 @@ course) with a design goal of increased security and privacy.
 
 #####Security and privacy-focused features implemented:
 
-- Defaults to only accepting cookies for the duration of the session with an
-  editable whitelist of hosts from which non-session cookies will be saved
+- Defaults to only accepting cookies and local storage for the duration of the
+  session (until the last tab accessing that data closes) with an editable
+  whitelist of hosts from which non-session data will be saved
+
+- Auto-destroys non-whitelisted cookies and local storage (even within the same
+  tab) that has not been accessed by any other tab within a configurable amount
+  of time (defaults to 30 minutes) to improve privacy after browsing within a
+  long-running tab
 
 - Cookie and localStorage database listing and deletion per-host
 
@@ -46,9 +52,6 @@ course) with a design goal of increased security and privacy.
 - Optional sending of Do-Not-Track header on all requests
 
 #####Features planned but not yet implemented:
-
-- Auto-destroy session cookies *n* seconds after closing last tab using those
-  cookies
 
 - Bookmarks, probably a home-screen table layout like Safari
 

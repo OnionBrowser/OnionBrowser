@@ -25,20 +25,22 @@
 			<string>PSMultiValueSpecifier</string>
 		</dict>
 		<dict>
-			<key>DefaultValue</key>
-			<true/>
 			<key>Key</key>
 			<string>send_dnt</string>
 			<key>Title</key>
 			<string>Send Do-Not-Track</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
+			<key>DefaultValue</key>
+			<true/>
 		</dict>
 		<dict>
 			<key>Title</key>
 			<string></string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
+			<key>FooterText</key>
+			<string>Cookies and local storage data from non-whitelisted hosts will be cleared after not being accessed by any tabs for this many minutes</string>
 		</dict>
 		<dict>
 			<key>IASKViewControllerClass</key>
@@ -47,6 +49,20 @@
 			<string>Cookies</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
+		</dict>
+		<dict>
+			<key>Key</key>
+			<string>old_data_sweep_mins</string>
+			<key>Title</key>
+			<string>Cookie auto-sweep interval</string>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>DefaultValue</key>
+			<integer>30</integer>
+			<key>KeyboardType</key>
+			<string>NumberPad</string>
+			<key>IASKTextAlignment</key>
+			<string>IASKUITextAlignmentRight</string>
 		</dict>
 		<dict>
 			<key>Title</key>

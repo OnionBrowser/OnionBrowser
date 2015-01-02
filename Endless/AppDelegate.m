@@ -38,6 +38,8 @@
 	[[self cookieJar] persist];
 	[[self hstsCache] persist];
 	[HTTPSEverywhere saveDisabledRules];
+	
+	[[self cookieJar] clearAllOldNonWhitelistedData];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -52,6 +54,8 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+	/* this definitely ends our sessions */
+	[[self cookieJar] clearAllNonWhitelistedData];
 }
 
 - (BOOL)application:(UIApplication *)application shouldRestoreApplicationState:(NSCoder *)coder
@@ -89,6 +93,9 @@
 		if ([userDefaults objectForKey:key] == NULL) {
 			NSObject *val = [pref objectForKey:@"DefaultValue"];
 			[userDefaults setObject:val forKey:key];
+#ifdef TRACE
+			NSLog(@"initialized default preference for %@ to %@", key, val);
+#endif
 		}
 	}
 	

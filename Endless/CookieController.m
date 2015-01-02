@@ -130,7 +130,7 @@ enum {
 			break;
 			
 		case CookieSectionCookies:
-			[[appDelegate cookieJar] clearTransientDataForHost:[[sortedCookieHosts objectAtIndex:[indexPath row]] allKeys][0]];
+			[[appDelegate cookieJar] clearAllDataForHost:[[sortedCookieHosts objectAtIndex:[indexPath row]] allKeys][0]];
 			[sortedCookieHosts removeObjectAtIndex:[indexPath row]];
 			break;
 		}

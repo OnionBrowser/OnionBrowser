@@ -1,5 +1,6 @@
 #import "AppDelegate.h"
 #import "CookieJar.h"
+#import "HTTPSEverywhere.h"
 
 /*
  * local storage is found in NSCachesDirectory and can be a file or directory:
@@ -33,6 +34,8 @@ AppDelegate *appDelegate;
 	_cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
 	[_cookieStorage setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyOnlyFromMainDocumentDomain];
 
+	_dataAccesses = [[NSMutableDictionary alloc] init];
+	
 	NSFileManager *fileManager = [NSFileManager defaultManager];
 	if ([fileManager fileExistsAtPath:[[self class] cookieWhitelistPath]]) {
 		_whitelist = [NSMutableDictionary dictionaryWithContentsOfFile:[[self class] cookieWhitelistPath]];
@@ -40,6 +43,9 @@ AppDelegate *appDelegate;
 	else {
 		_whitelist = [[NSMutableDictionary alloc] initWithCapacity:20];
 	}
+	
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	[self setOldDataSweepTimeout:[NSNumber numberWithInteger:[userDefaults integerForKey:@"old_data_sweep_mins"]]];
 	
 	return self;
 }
@@ -81,65 +87,6 @@ AppDelegate *appDelegate;
 	return [NSArray arrayWithArray:[[[self whitelist] allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]];
 }
 
-- (void)clearAllNonWhitelistedCookies
-{
-	for (NSHTTPCookie *cookie in [[self cookieStorage] cookies]) {
-		if (![self isHostWhitelisted:cookie.domain]) {
-#ifdef TRACE_COOKIE_WHITELIST
-			NSLog(@"[CookieJar] deleting non-whitelisted cookie: %@", cookie);
-#endif
-			[[self cookieStorage] deleteCookie:cookie];
-		}
-	}
-}
-
-- (void)clearAllNonWhitelistedLocalStorage
-{
-	for (NSString *file in [self localStorageFiles]) {
-#ifdef TRACE_COOKIES
-		NSLog(@"[CookieJar] deleting local storage: %@", file);
-#endif
-		[[NSFileManager defaultManager] removeItemAtPath:file error:nil];
-	}
-}
-
-- (void)clearTransientData
-{
-	[self clearAllNonWhitelistedCookies];
-	[self clearAllNonWhitelistedLocalStorage];
-}
-
-- (void)clearTransientDataForHost:(NSString *)host
-{
-	for (NSHTTPCookie *cookie in [[self cookieStorage] cookies]) {
-		if ([[cookie domain] isEqualToString:host] || [[cookie domain] isEqualToString:[NSString stringWithFormat:@".%@", host]]) {
-#ifdef TRACE_COOKIES
-			NSLog(@"[CookieJar] deleting cookie for %@: %@", host, cookie);
-#endif
-			[[self cookieStorage] deleteCookie:cookie];
-		}
-	}
-	
-	NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:LOCAL_STORAGE_REGEX options:0 error:nil];
-
-	for (NSString *file in [self localStorageFiles]) {
-		NSArray *matches = [regex matchesInString:file options:0 range:NSMakeRange(0, [file length])];
-		if (!matches || ![matches count]) {
-			continue;
-		}
-		for (NSTextCheckingResult *match in matches) {
-			if ([match numberOfRanges] >= 1) {
-				if ([host isEqualToString:[file substringWithRange:[match rangeAtIndex:1]]]) {
-#ifdef TRACE_COOKIES
-					NSLog(@"[CookieJar] deleting local storage for %@: %@", host, file);
-#endif
-					[[NSFileManager defaultManager] removeItemAtPath:file error:nil];
-				}
-			}
-		}
-	}
-}
-
 - (NSArray *)sortedHostCounts
 {
 	NSMutableDictionary *cHostCount = [[NSMutableDictionary alloc] init];
@@ -172,21 +119,28 @@ AppDelegate *appDelegate;
 	return sortedCookieHosts;
 }
 
-- (NSArray *)localStorageFiles
+- (NSDictionary *)localStorageFiles
 {
 	NSFileManager *fm = [NSFileManager defaultManager];
 	NSString *cacheDir = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
 	
-	NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:LOCAL_STORAGE_REGEX options:0 error:nil];
+	NSMutableDictionary *files = [[NSMutableDictionary alloc] init];
 	
-	NSMutableArray *files = [[NSMutableArray alloc] init];
+	NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:LOCAL_STORAGE_REGEX options:0 error:nil];
 	
 	for (NSString *file in [fm contentsOfDirectoryAtPath:cacheDir error:nil]) {
 		NSString *absFile = [NSString stringWithFormat:@"%@/%@", cacheDir, file];
 		
 		NSArray *matches = [regex matchesInString:absFile options:0 range:NSMakeRange(0, [absFile length])];
-		if (matches && [matches count] > 0) {
-			[files addObject:absFile];
+		if (!matches || ![matches count]) {
+			continue;
+		}
+		
+		for (NSTextCheckingResult *match in matches) {
+			if ([match numberOfRanges] >= 1) {
+				NSString *host = [absFile substringWithRange:[match rangeAtIndex:1]];
+				[files setObject:host forKey:absFile];
+			}
 		}
 	}
 	
@@ -195,24 +149,14 @@ AppDelegate *appDelegate;
 
 - (NSArray *)localStorageHosts
 {
-	NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:LOCAL_STORAGE_REGEX options:0 error:nil];
-	
 	NSMutableArray *hosts = [[NSMutableArray alloc] init];
-
-	for (NSString *file in [self localStorageFiles]) {
-		NSArray *matches = [regex matchesInString:file options:0 range:NSMakeRange(0, [file length])];
-		if (!matches || ![matches count]) {
-			continue;
-		}
+	NSDictionary *files = [self localStorageFiles];
+	
+	for (NSString *file in [files allKeys]) {
+		NSString *host = [files objectForKey:file];
 		
-		for (NSTextCheckingResult *match in matches) {
-			if ([match numberOfRanges] >= 1) {
-				NSString *host = [file substringWithRange:[match rangeAtIndex:1]];
-				
-				if (![hosts containsObject:host]) {
-					[hosts addObject:host];
-				}
-			}
+		if (![hosts containsObject:host]) {
+			[hosts addObject:host];
 		}
 	}
 
@@ -235,15 +179,206 @@ AppDelegate *appDelegate;
 	}
 }
 
-- (NSArray *)cookiesForURL:(NSURL *)url
+- (NSArray *)cookiesForURL:(NSURL *)url forTab:(NSUInteger)tabHash
 {
-	return [[self cookieStorage] cookiesForURL:url];
+	NSArray *c = [[self cookieStorage] cookiesForURL:url];
+	
+	for (NSHTTPCookie *cookie in c) {
+		[self trackDataAccessForDomain:[cookie domain] fromTab:tabHash];
+	}
+
+	return c;
 }
 
-- (void)setCookies:(NSArray *)cookies forURL:(NSURL *)URL mainDocumentURL:(NSURL *)mainDocumentURL
+- (void)setCookies:(NSArray *)cookies forURL:(NSURL *)URL mainDocumentURL:(NSURL *)mainDocumentURL forTab:(NSUInteger)tabHash
 {
-	[[self cookieStorage] setCookies:cookies forURL:URL mainDocumentURL:mainDocumentURL];
+	NSMutableArray *newCookies = [[NSMutableArray alloc] initWithCapacity:[cookies count]];
+	
+	for (NSHTTPCookie *cookie in cookies) {
+		NSMutableDictionary *ps = (NSMutableDictionary *)[cookie properties];
+		
+		if (![cookie isSecure] && [HTTPSEverywhere needsSecureCookieFromHost:[URL host] forHost:[cookie domain] cookieName:[cookie name]]) {
+			/* toggle "secure" bit */
+			[ps setValue:@"TRUE" forKey:NSHTTPCookieSecure];
+		}
+		
+		if (![[appDelegate cookieJar] isHostWhitelisted:[URL host]]) {
+			/* host isn't whitelisted, force to a session cookie */
+			[ps setValue:@"TRUE" forKey:NSHTTPCookieDiscard];
+		}
+		
+		NSHTTPCookie *nCookie = [[NSHTTPCookie alloc] initWithProperties:ps];
+		[newCookies addObject:nCookie];
+		
+		[self trackDataAccessForDomain:[cookie domain] fromTab:tabHash];
+	}
+	
+	if ([newCookies count] > 0) {
+#ifdef TRACE_COOKIES
+		NSLog(@"[CookieJar] [Tab h%lu] storing %lu cookie(s) for %@ (via %@)", tabHash, [newCookies count], [URL host], mainDocumentURL);
+#endif
+		[[self cookieStorage] setCookies:newCookies forURL:URL mainDocumentURL:mainDocumentURL];
+	}
+}
 
+- (void)trackDataAccessForDomain:(NSString *)domain fromTab:(NSUInteger)tabHash
+{
+	NSNumber *tabHashN = [NSNumber numberWithLong:tabHash];
+	
+	if (![[self dataAccesses] objectForKey:tabHashN]) {
+		[[self dataAccesses] setObject:[[NSMutableDictionary alloc] init] forKey:tabHashN];
+	}
+	
+	[(NSMutableDictionary *)[[self dataAccesses] objectForKey:tabHashN] setObject:[NSDate date] forKey:domain];
+	
+#ifdef TRACE_COOKIES
+	NSLog(@"[CookieJar] [Tab h%lu] touched data access for %@", tabHash, domain);
+#endif
+}
+
+/* ignores whitelist, this is forced by the user */
+- (void)clearAllDataForHost:(NSString *)host
+{
+	for (NSHTTPCookie *cookie in [[self cookieStorage] cookies]) {
+		if ([[cookie domain] isEqualToString:host] || [[cookie domain] isEqualToString:[NSString stringWithFormat:@".%@", host]]) {
+#ifdef TRACE_COOKIES
+			NSLog(@"[CookieJar] deleting cookie for %@: %@", host, cookie);
+#endif
+			[[self cookieStorage] deleteCookie:cookie];
+		}
+	}
+	
+	NSDictionary *files = [self localStorageFiles];
+	for (NSString *file in [files allKeys]) {
+		NSString *fhost = [files objectForKey:file];
+		
+		if ([host isEqualToString:fhost]) {
+#ifdef TRACE_COOKIES
+			NSLog(@"[CookieJar] deleting local storage for %@: %@", host, file);
+#endif
+			[[NSFileManager defaultManager] removeItemAtPath:file error:nil];
+		}
+	}
+}
+
+- (void)clearAllNonWhitelistedCookiesOlderThan:(NSTimeInterval)secs
+{
+	for (NSHTTPCookie *cookie in [[self cookieStorage] cookies]) {
+		if ([self isHostWhitelisted:[cookie domain]]) {
+			continue;
+		}
+		
+		NSNumber *blocker;
+		
+		if (secs > 0) {
+			for (NSNumber *tabHashN in [[self dataAccesses] allKeys]) {
+				NSMutableDictionary *tabCookies = [[self dataAccesses] objectForKey:tabHashN];
+				NSDate *la = [tabCookies objectForKey:[cookie domain]];
+				if (la != nil || [[NSDate date] timeIntervalSinceDate:la] < secs) {
+					blocker = tabHashN;
+					break;
+				}
+			}
+		}
+
+		if (secs == 0 || blocker == nil) {
+#ifdef TRACE_COOKIE_WHITELIST
+			NSLog(@"[CookieJar] deleting non-whitelisted cookie: %@", cookie);
+#endif
+			[[self cookieStorage] deleteCookie:cookie];
+		}
+	}
+}
+
+- (void)clearAllNonWhitelistedLocalStorageOlderThan:(NSTimeInterval)secs
+{
+	NSDictionary *files = [self localStorageFiles];
+	for (NSString *file in [files allKeys]) {
+		NSString *fhost = [files objectForKey:file];
+		
+		if ([self isHostWhitelisted:fhost]) {
+			continue;
+		}
+
+		NSNumber *blocker;
+		
+		if (secs > 0) {
+			for (NSNumber *tabHashN in [[self dataAccesses] allKeys]) {
+				NSMutableDictionary *tabData = [[self dataAccesses] objectForKey:tabHashN];
+				NSDate *la = [tabData objectForKey:fhost];
+				if (la != nil || [[NSDate date] timeIntervalSinceDate:la] < secs) {
+					blocker = tabHashN;
+					break;
+				}
+			}
+		}
+		
+		if (secs == 0 || blocker == nil) {
+#ifdef TRACE_COOKIES
+			NSLog(@"[CookieJar] deleting local storage for %@: %@", fhost, file);
+#endif
+			[[NSFileManager defaultManager] removeItemAtPath:file error:nil];
+		}
+	}
+}
+
+- (void)clearAllNonWhitelistedData
+{
+	[self clearAllNonWhitelistedCookiesOlderThan:0];
+	[self clearAllNonWhitelistedLocalStorageOlderThan:0];
+}
+
+- (void)clearAllOldNonWhitelistedData
+{
+	int sweepmins = [[self oldDataSweepTimeout] intValue];
+	
+#ifdef TRACE_COOKIES
+	NSLog(@"[CookieJar] clearing non-whitelisted data older than %d min(s)", sweepmins);
+#endif
+	[self clearAllNonWhitelistedCookiesOlderThan:(60 * sweepmins)];
+	[self clearAllNonWhitelistedLocalStorageOlderThan:(60 * sweepmins)];
+}
+
+
+- (void)clearNonWhitelistedDataForTab:(NSUInteger)tabHash
+{
+	NSNumber *tabHashN = [NSNumber numberWithLong:tabHash];
+
+#ifdef TRACE_COOKIES
+	NSLog(@"[Tab h%@] clearing non-whitelisted data", tabHashN);
+#endif
+	
+	for (NSString *cookieDomain in [[[self dataAccesses] objectForKey:tabHashN] allKeys]) {
+		NSNumber *blocker;
+
+		for (NSNumber *otherTabHashN in [[self dataAccesses] allKeys]) {
+			if ([otherTabHashN isEqual:tabHashN]) {
+				continue;
+			}
+			
+			NSMutableDictionary *tabCookies = [[self dataAccesses] objectForKey:otherTabHashN];
+			
+			if ([tabCookies objectForKey:cookieDomain]) {
+				blocker = otherTabHashN;
+				break;
+			}
+		}
+		
+		if (blocker) {
+#ifdef TRACE_COOKIES
+			NSLog(@"[Tab h%@] data for %@ in use on tab %@, not deleting", tabHashN, cookieDomain, blocker);
+#endif
+		}
+		else if (![self isHostWhitelisted:cookieDomain]) {
+
+#ifdef TRACE_COOKIES
+			NSLog(@"[Tab h%@] deleting data for %@", tabHashN, cookieDomain);
+#endif
+			[self clearAllDataForHost:cookieDomain];
+		}
+	}
+	
+	[[self dataAccesses] removeObjectForKey:tabHashN];
 }
 
 @end

@@ -129,7 +129,7 @@ NSString *userAgent;
 	
 	/* we're handling cookies ourself */
 	[newRequest setHTTPShouldHandleCookies:NO];
-	NSArray *cookies = [[appDelegate cookieJar] cookiesForURL:[newRequest URL]];
+	NSArray *cookies = [[appDelegate cookieJar] cookiesForURL:[newRequest URL] forTab:wvt.hash];
 	if (cookies != nil && [cookies count] > 0) {
 #ifdef TRACE_COOKIES
 		NSLog(@"[Tab %@] sending %lu cookie(s) to %@", wvt.tabNumber, [cookies count], [newRequest URL]);
@@ -157,7 +157,7 @@ NSString *userAgent;
 {
 	BOOL schemaRedirect = false;
 	
-	/* we don't get a redirectRespon1se when only upgrading from http -> https on the same hostname, so we have to find it ourselves :( */
+	/* we don't get a redirectResponse when only upgrading from http -> https on the same hostname, so we have to find it ourselves :( */
 	if (response == nil && [self.origRequest hash] != [request hash]) {
 #ifdef TRACE
 		NSLog(@"[Tab %@] hash changed, URL went from %@ to %@", wvt.tabNumber, [[self.origRequest URL] absoluteString], [[request URL] absoluteString]);
@@ -166,7 +166,8 @@ NSString *userAgent;
 	}
 	
 	if (response != nil || schemaRedirect) {
-		[self extractCookiesFromResponse:response forURL:[request URL] fromMainDocument:[wvt url]];
+		NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+		[[appDelegate cookieJar] setCookies:[NSHTTPCookie cookiesWithResponseHeaderFields:[httpResponse allHeaderFields] forURL:[request URL]] forURL:[request URL] mainDocumentURL:[wvt url] forTab:wvt.hash];
 
 		if (schemaRedirect && response == nil) {
 #ifdef TRACE
@@ -207,7 +208,11 @@ NSString *userAgent;
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
-	[self extractCookiesFromResponse:response forURL:[self.request URL] fromMainDocument:[wvt url]];
+	NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+	[[appDelegate cookieJar] setCookies:[NSHTTPCookie cookiesWithResponseHeaderFields:[httpResponse allHeaderFields] forURL:[self.request URL]] forURL:[self.request URL] mainDocumentURL:[wvt url] forTab:wvt.hash];
+
+	/* in case of localStorage */
+	[[appDelegate cookieJar] trackDataAccessForDomain:[[response URL] host] fromTab:wvt.hash];
 	
 	if ([[[self.request URL] scheme] isEqualToString:@"https"]) {
 		NSString *hsts = [[(NSHTTPURLResponse *)response allHeaderFields] objectForKey:HSTS_HEADER];
@@ -290,36 +295,6 @@ NSString *userAgent;
 	// [[challenge sender] cancelAuthenticationChallenge:challenge];
 	
 	[[challenge sender] continueWithoutCredentialForAuthenticationChallenge:challenge];
-}
-
-- (void)extractCookiesFromResponse:(NSURLResponse *)response forURL:(NSURL *)url fromMainDocument:(NSURL *)mainDocument
-{
-	NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-	NSMutableArray *cookies = [[NSMutableArray alloc] initWithCapacity:5];
-	
-	for (NSHTTPCookie *cookie in [NSHTTPCookie cookiesWithResponseHeaderFields:[httpResponse allHeaderFields] forURL:url]) {
-		NSMutableDictionary *ps = (NSMutableDictionary *)[cookie properties];
-		
-		if (![cookie isSecure] && [HTTPSEverywhere needsSecureCookieFromHost:[url host] forHost:[cookie domain] cookieName:[cookie name]]) {
-			/* toggle "secure" bit */
-			[ps setValue:@"TRUE" forKey:NSHTTPCookieSecure];
-		}
-		
-		if (![[appDelegate cookieJar] isHostWhitelisted:[url host]]) {
-			/* host isn't whitelisted, force to a session cookie */
-			[ps setValue:@"TRUE" forKey:NSHTTPCookieDiscard];
-		}
-		
-		NSHTTPCookie *nCookie = [[NSHTTPCookie alloc] initWithProperties:ps];
-		[cookies addObject:nCookie];
-	}
-	
-	if ([cookies count] > 0) {
-#ifdef TRACE_COOKIES
-		NSLog(@"[Tab %@] storing %lu cookie(s) for %@ (via %@)", wvt.tabNumber, [cookies count], [url host], mainDocument);
-#endif
-		[[appDelegate cookieJar] setCookies:cookies forURL:url mainDocumentURL:mainDocument];
-	}
 }
 
 @end

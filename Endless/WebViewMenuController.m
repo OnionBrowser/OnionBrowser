@@ -14,7 +14,6 @@ enum WebViewMenuButton {
 	WebViewMenuButtonRefresh,
 	WebViewMenuButtonCookies,
 	WebViewMenuButtonHTTPSEverywhere,
-	WebViewMenuButtonClearJunk,
 	WebViewMenuButtonSettings,
 	
 	WebViewMenuButtonCount,
@@ -30,7 +29,6 @@ enum WebViewMenuButton {
 		    [NSNumber numberWithInt:WebViewMenuButtonRefresh] : @"Refresh",
 		    [NSNumber numberWithInt:WebViewMenuButtonCookies] : @"Cookies",
 		    [NSNumber numberWithInt:WebViewMenuButtonHTTPSEverywhere] : @"HTTPS Everywhere",
-		    [NSNumber numberWithInt:WebViewMenuButtonClearJunk] : @"Clear Junk",
 		    [NSNumber numberWithInt:WebViewMenuButtonSettings] : @"Settings",
 	};
 	
@@ -175,12 +173,6 @@ enum WebViewMenuButton {
 	herc.navigationItem.leftBarButtonItem = doneButton;
 
 	[[appDelegate webViewController] presentViewController:navController animated:YES completion:nil];
-}
-
-- (void)menuClearJunk
-{
-	[[NSURLCache sharedURLCache] removeAllCachedResponses];
-	[[appDelegate cookieJar] clearTransientData];
 }
 
 @end

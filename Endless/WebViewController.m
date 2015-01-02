@@ -208,7 +208,7 @@
 #ifdef TRACE
 		NSLog(@"restoring tab %d with %@", i, params);
 #endif
-		WebViewTab *wvt = [self addNewTabForURL:[params objectForKey:@"url"] forRestoration:YES];
+		WebViewTab *wvt = [self addNewTabForURL:[params objectForKey:@"url"] forRestoration:YES withCompletionBlock:nil];
 		[[wvt title] setText:[params objectForKey:@"title"]];
 	}
 	
@@ -344,10 +344,10 @@
 
 - (WebViewTab *)addNewTabForURL:(NSURL *)url
 {
-	return [self addNewTabForURL:url forRestoration:NO];
+	return [self addNewTabForURL:url forRestoration:NO withCompletionBlock:nil];
 }
 
-- (WebViewTab *)addNewTabForURL:(NSURL *)url forRestoration:(BOOL)restoration
+- (WebViewTab *)addNewTabForURL:(NSURL *)url forRestoration:(BOOL)restoration withCompletionBlock:(void(^)(BOOL))block
 {
 	WebViewTab *wvt = [[WebViewTab alloc] initWithFrame:[self frameForTabIndex:webViewTabs.count] withRestorationIdentifier:(restoration ? [url absoluteString] : nil)];
 	[wvt.webView.scrollView setDelegate:self];
@@ -373,7 +373,7 @@
 			if (url != nil)
 				[wvt loadURL:url];
 
-			[self showTabs:nil];
+			[self showTabsWithCompletionBlock:block];
 		}];
 	};
 	
@@ -395,8 +395,9 @@
 
 - (void)addNewTabFromToolbar:(id)_id
 {
-	[self addNewTabForURL:nil];
-	[urlField becomeFirstResponder];
+	[self addNewTabForURL:nil forRestoration:NO withCompletionBlock:^(BOOL finished) {
+		[urlField becomeFirstResponder];
+	}];
 }
 
 - (void)removeTab:(NSNumber *)tabNumber
@@ -420,9 +421,13 @@
 			futureFocusNumber--;
 		}
 	}
-
-	[[webViewTabs[tabNumber.intValue] viewHolder] removeFromSuperview];
+	
+	[[wvt viewHolder] removeFromSuperview];
 	[webViewTabs removeObjectAtIndex:tabNumber.intValue];
+	long wvtHash = [wvt hash];
+	wvt = nil;
+	
+	[[appDelegate cookieJar] clearNonWhitelistedDataForTab:wvtHash];
 
 	[tabChooser setNumberOfPages:webViewTabs.count];
 	[tabCount setText:[NSString stringWithFormat:@"%lu", tabChooser.numberOfPages]];
@@ -582,8 +587,9 @@
 
 - (void)webViewTouched
 {
-	if ([urlField isFirstResponder])
+	if ([urlField isFirstResponder]) {
 		[urlField resignFirstResponder];
+	}
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
@@ -628,33 +634,37 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-	if (textField == urlField) {
-		NSURL *enteredURL = [NSURL URLWithString:urlField.text];
-		
-		if (![enteredURL scheme] || [[enteredURL scheme] isEqualToString:@""]) {
-			/* no scheme so if it has a space or no dots, assume it's a search query */
-			if ([urlField.text containsString:@" "] || ![urlField.text containsString:@"."]) {
-				NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-				NSDictionary *se = [[appDelegate searchEngines] objectForKey:[userDefaults stringForKey:@"search_engine"]];
-				
-				enteredURL = [NSURL URLWithString:[[NSString stringWithFormat:[se objectForKey:@"search_url"], urlField.text] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-			}
-			else {
-				enteredURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@", urlField.text]];
-			}
+	if (textField != urlField) {
+		return YES;
+	}
+	
+	/* user is shifting to a new place, probably a good time to clear old data */
+	[[appDelegate cookieJar] clearAllOldNonWhitelistedData];
+	
+	NSURL *enteredURL = [NSURL URLWithString:urlField.text];
+	
+	if (![enteredURL scheme] || [[enteredURL scheme] isEqualToString:@""]) {
+		/* no scheme so if it has a space or no dots, assume it's a search query */
+		if ([urlField.text containsString:@" "] || ![urlField.text containsString:@"."]) {
+			NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+			NSDictionary *se = [[appDelegate searchEngines] objectForKey:[userDefaults stringForKey:@"search_engine"]];
 			
-#ifdef TRACE
-			NSLog(@"typed URL transformed to %@", enteredURL);
-#endif
+			enteredURL = [NSURL URLWithString:[[NSString stringWithFormat:[se objectForKey:@"search_url"], urlField.text] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+		}
+		else {
+			enteredURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@", urlField.text]];
 		}
 		
-		[urlField resignFirstResponder]; /* will unfocus and call textFieldDidEndEditing */
-
-		[[self curWebViewTab] loadURL:enteredURL];
-		
-		return NO;
+#ifdef TRACE
+		NSLog(@"typed URL transformed to %@", enteredURL);
+#endif
 	}
-	return YES;
+	
+	[urlField resignFirstResponder]; /* will unfocus and call textFieldDidEndEditing */
+
+	[[self curWebViewTab] loadURL:enteredURL];
+	
+	return NO;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -725,6 +735,7 @@
 	
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	[URLInterceptor setSendDNT:[userDefaults boolForKey:@"send_dnt"]];
+	[[appDelegate cookieJar] setOldDataSweepTimeout:[NSNumber numberWithInteger:[userDefaults integerForKey:@"old_data_sweep_mins"]]];
 }
 
 - (void)showTabs:(id)_id
