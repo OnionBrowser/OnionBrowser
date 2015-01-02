@@ -13,8 +13,9 @@ course) with a design goal of increased security and privacy.
 
 - Shows padlock for SSL-encrypted URLs
 
-- Multiple tabs, support for `window.open` and `<a target="_blank">` automatically
-  opening new tab windows
+- Multiple tabs with support for `window.open()` and `<a target="_blank">`
+  automatically opening new tab windows, but blocks calls not made via user
+  interaction events (similar to most desktop browser popup blockers)
 
 - Search from URL bar with Google or DDG
 
