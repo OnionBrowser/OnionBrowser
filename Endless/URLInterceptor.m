@@ -125,8 +125,6 @@ NSString *userAgent;
 		}
 	}
 	
-	[[appDelegate webViewController] performSelectorOnMainThread:@selector(updateSearchBarDetails) withObject:nil waitUntilDone:NO];
-	
 	/* we're handling cookies ourself */
 	[newRequest setHTTPShouldHandleCookies:NO];
 	NSArray *cookies = [[appDelegate cookieJar] cookiesForURL:[newRequest URL] forTab:wvt.hash];
