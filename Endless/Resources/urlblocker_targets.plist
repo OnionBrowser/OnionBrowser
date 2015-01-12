@@ -77,6 +77,8 @@
 	<string>Advertising/Analytics - Safecount</string>
 	<key>scorecardresearch.com</key>
 	<string>Analytics - comScore</string>
+	<key>sharethis.com</key>
+	<string>Social - ShareThis</string>
 	<key>signal.co</key>
 	<string>Advertising/Analytics - Signal/BrightTag</string>
 	<key>simpli.fi</key>
