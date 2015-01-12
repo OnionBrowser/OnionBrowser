@@ -210,10 +210,26 @@ static NSCache *ruleCache;
 	for (HTTPSEverywhereRule *rule in [[self class] potentiallyApplicableRulesForHost:[URL host]]) {
 		if ([rule apply:URL] != nil) {
 			NSLog(@"[HTTPSEverywhere] insecure redirection count %@ for %@, disabling rule %@", count, URL, [rule name]);
-			[[[self class] disabledRules] setObject:@"Redirection loop" forKey:[rule name]];
-			[[self class] saveDisabledRules];
+			[[self class] disableRuleByName:[rule name] withReason:@"Redirection loop"];
 		}
 	}
+}
+
++ (BOOL)ruleNameIsDisabled:(NSString *)name
+{
+	return ([[[self class] disabledRules] objectForKey:name] != nil);
+}
+
++ (void)enableRuleByName:(NSString *)name
+{
+	[[[self class] disabledRules] removeObjectForKey:name];
+	[[self class] saveDisabledRules];
+}
+
++ (void)disableRuleByName:(NSString *)name withReason:(NSString *)reason
+{
+	[[[self class] disabledRules] setObject:reason forKey:name];
+	[[self class] saveDisabledRules];
 }
 
 @end

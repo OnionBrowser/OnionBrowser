@@ -37,7 +37,6 @@
 {
 	[[self cookieJar] persist];
 	[[self hstsCache] persist];
-	[HTTPSEverywhere saveDisabledRules];
 	
 	[[self cookieJar] clearAllOldNonWhitelistedData];
 }

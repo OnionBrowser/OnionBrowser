@@ -102,7 +102,9 @@ UISearchDisplayController *searchDisplayController;
 	if (cell == nil) {
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"rule"];
 	}
-	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+	
+	/* TODO: once we have a per-rule view page, enable this */
+	//cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	
 	if ([indexPath section] == 0) {
 		cell.textLabel.text = [inUseRuleNames objectAtIndex:indexPath.row];
@@ -128,12 +130,39 @@ UISearchDisplayController *searchDisplayController;
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return NO;
+	return YES;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	return NO;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	if (editingStyle == UITableViewCellEditingStyleDelete) {
+		NSString *row;
+		if (tableView == searchDisplayController.searchResultsTableView) {
+			row = [searchResult objectAtIndex:indexPath.row];
+		}
+		else {
+			row = [sortedRuleNames objectAtIndex:indexPath.row];
+		}
+		
+		if ([HTTPSEverywhere ruleNameIsDisabled:row]) {
+			[HTTPSEverywhere enableRuleByName:row];
+		}
+		else {
+			[HTTPSEverywhere disableRuleByName:row withReason:@"User disabled"];
+		}
+	}
+	
+	[tableView reloadData];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
@@ -149,6 +178,23 @@ UISearchDisplayController *searchDisplayController;
 	}
 	
 	return YES;
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
+	NSString *row;
+	if (tableView == searchDisplayController.searchResultsTableView) {
+		row = [searchResult objectAtIndex:indexPath.row];
+	}
+	else {
+		row = [sortedRuleNames objectAtIndex:indexPath.row];
+	}
+
+	if ([HTTPSEverywhere ruleNameIsDisabled:row]) {
+		return @"Enable";
+	}
+	else {
+		return @"Disable";
+	}
 }
 
 @end
