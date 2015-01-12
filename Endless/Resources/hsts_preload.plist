@@ -3,6 +3,11 @@
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>007sascha.de</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
 	<key>0x0a.net</key>
 	<dict>
 		<key>include_subdomains</key>
@@ -33,7 +38,17 @@
 		<key>include_subdomains</key>
 		<true/>
 	</dict>
+	<key>2048game.co.uk</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
 	<key>2mdn.net</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>302.nyc</key>
 	<dict>
 		<key>include_subdomains</key>
 		<true/>
@@ -73,7 +88,17 @@
 		<key>include_subdomains</key>
 		<true/>
 	</dict>
+	<key>adorai.tk</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
 	<key>adsfund.org</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>afp548.com</key>
 	<dict>
 		<key>include_subdomains</key>
 		<true/>
@@ -353,6 +378,16 @@
 		<key>include_subdomains</key>
 		<true/>
 	</dict>
+	<key>atlassian.net</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>atte.fi</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
 	<key>au.search.yahoo.com</key>
 	<dict>
 		<key>include_subdomains</key>
@@ -513,6 +548,11 @@
 		<key>include_subdomains</key>
 		<false/>
 	</dict>
+	<key>biathloncup.ru</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
 	<key>big-andy.co.uk</key>
 	<dict>
 		<key>include_subdomains</key>
@@ -559,6 +599,16 @@
 		<true/>
 	</dict>
 	<key>bitmon.net</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>bitpod.de</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>bizon.sk</key>
 	<dict>
 		<key>include_subdomains</key>
 		<true/>
@@ -638,6 +688,11 @@
 		<key>include_subdomains</key>
 		<true/>
 	</dict>
+	<key>blogger.com</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
 	<key>blubbablasen.de</key>
 	<dict>
 		<key>include_subdomains</key>
@@ -687,6 +742,16 @@
 	<dict>
 		<key>include_subdomains</key>
 		<false/>
+	</dict>
+	<key>brakemanpro.com</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>broeselei.at</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
 	</dict>
 	<key>browserid.org</key>
 	<dict>
@@ -1073,6 +1138,11 @@
 		<key>include_subdomains</key>
 		<true/>
 	</dict>
+	<key>cordial-restaurant.com</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
 	<key>cotonea.de</key>
 	<dict>
 		<key>include_subdomains</key>
@@ -1128,6 +1198,11 @@
 		<key>include_subdomains</key>
 		<true/>
 	</dict>
+	<key>cs50.harvard.edu</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
 	<key>csawctf.poly.edu</key>
 	<dict>
 		<key>include_subdomains</key>
@@ -1159,6 +1234,11 @@
 		<true/>
 	</dict>
 	<key>cupcake.is</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>curiosity-driven.org</key>
 	<dict>
 		<key>include_subdomains</key>
 		<true/>
@@ -1219,6 +1299,11 @@
 		<false/>
 	</dict>
 	<key>datenkeks.de</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>daveoc64.co.uk</key>
 	<dict>
 		<key>include_subdomains</key>
 		<true/>
@@ -1488,6 +1573,16 @@
 		<key>include_subdomains</key>
 		<true/>
 	</dict>
+	<key>egfl.org.uk</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>eksisozluk.com</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
 	<key>electronic-ignition-system.com</key>
 	<dict>
 		<key>include_subdomains</key>
@@ -1683,6 +1778,11 @@
 		<key>include_subdomains</key>
 		<true/>
 	</dict>
+	<key>fewo-thueringer-wald.de</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
 	<key>fi.search.yahoo.com</key>
 	<dict>
 		<key>include_subdomains</key>
@@ -1698,12 +1798,27 @@
 		<key>include_subdomains</key>
 		<true/>
 	</dict>
+	<key>filip-prochazka.com</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
 	<key>finn.io</key>
 	<dict>
 		<key>include_subdomains</key>
 		<true/>
 	</dict>
+	<key>firefart.at</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
 	<key>firemail.io</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>firstlook.org</key>
 	<dict>
 		<key>include_subdomains</key>
 		<true/>
@@ -1749,6 +1864,16 @@
 		<true/>
 	</dict>
 	<key>fm83.nl</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>fonetiq.io</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>food4health.guide</key>
 	<dict>
 		<key>include_subdomains</key>
 		<true/>
@@ -3148,6 +3273,11 @@
 		<key>include_subdomains</key>
 		<true/>
 	</dict>
+	<key>groetzner.net</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
 	<key>groups.google.com</key>
 	<dict>
 		<key>include_subdomains</key>
@@ -3174,6 +3304,11 @@
 		<true/>
 	</dict>
 	<key>guthabenkarten-billiger.de</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>gw2treasures.com</key>
 	<dict>
 		<key>include_subdomains</key>
 		<true/>
@@ -3223,6 +3358,11 @@
 		<key>include_subdomains</key>
 		<true/>
 	</dict>
+	<key>heartlandrentals.com</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
 	<key>heha.co</key>
 	<dict>
 		<key>include_subdomains</key>
@@ -3249,6 +3389,11 @@
 		<false/>
 	</dict>
 	<key>helpium.de</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>hemlockhillscabinrentals.com</key>
 	<dict>
 		<key>include_subdomains</key>
 		<true/>
@@ -3363,6 +3508,11 @@
 		<key>include_subdomains</key>
 		<true/>
 	</dict>
+	<key>hstsfail.appspot.com</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
 	<key>hstspreload.appspot.com</key>
 	<dict>
 		<key>include_subdomains</key>
@@ -3377,6 +3527,11 @@
 	<dict>
 		<key>include_subdomains</key>
 		<false/>
+	</dict>
+	<key>i5y.co.uk</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
 	</dict>
 	<key>iamcarrico.com</key>
 	<dict>
@@ -3483,6 +3638,16 @@
 		<key>include_subdomains</key>
 		<true/>
 	</dict>
+	<key>innophate-security.com</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>innophate-security.nl</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
 	<key>insouciant.org</key>
 	<dict>
 		<key>include_subdomains</key>
@@ -3499,6 +3664,11 @@
 		<false/>
 	</dict>
 	<key>iop.intuit.com</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>iranianlawschool.com</key>
 	<dict>
 		<key>include_subdomains</key>
 		<true/>
@@ -3578,6 +3748,11 @@
 		<key>include_subdomains</key>
 		<true/>
 	</dict>
+	<key>jettshome.org</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
 	<key>jfreitag.de</key>
 	<dict>
 		<key>include_subdomains</key>
@@ -3589,6 +3764,11 @@
 		<false/>
 	</dict>
 	<key>jmedved.com</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>johners.me</key>
 	<dict>
 		<key>include_subdomains</key>
 		<true/>
@@ -3643,12 +3823,27 @@
 		<key>include_subdomains</key>
 		<true/>
 	</dict>
+	<key>karmaspa.se</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
 	<key>kartonmodellbau.org</key>
 	<dict>
 		<key>include_subdomains</key>
 		<true/>
 	</dict>
 	<key>kdex.de</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>kdyby.org</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>keeleysam.com</key>
 	<dict>
 		<key>include_subdomains</key>
 		<true/>
@@ -3727,6 +3922,16 @@
 	<dict>
 		<key>include_subdomains</key>
 		<false/>
+	</dict>
+	<key>kirkforcongress.com</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>kirkforsenate.com</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
 	</dict>
 	<key>kitsta.com</key>
 	<dict>
@@ -3818,6 +4023,11 @@
 		<key>include_subdomains</key>
 		<true/>
 	</dict>
+	<key>kupschke.net</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
 	<key>kura.io</key>
 	<dict>
 		<key>include_subdomains</key>
@@ -3878,7 +4088,17 @@
 		<key>include_subdomains</key>
 		<false/>
 	</dict>
+	<key>leibniz-remscheid.de</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
 	<key>leonardcamacho.me</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>les-corsaires.net</key>
 	<dict>
 		<key>include_subdomains</key>
 		<true/>
@@ -3888,15 +4108,15 @@
 		<key>include_subdomains</key>
 		<false/>
 	</dict>
-	<key>liberty.lavabit.com</key>
-	<dict>
-		<key>include_subdomains</key>
-		<true/>
-	</dict>
 	<key>library.linode.com</key>
 	<dict>
 		<key>include_subdomains</key>
 		<false/>
+	</dict>
+	<key>libraryfreedomproject.org</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
 	</dict>
 	<key>liebel.org</key>
 	<dict>
@@ -3933,6 +4153,11 @@
 		<key>include_subdomains</key>
 		<false/>
 	</dict>
+	<key>linux-admin-california.com</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
 	<key>linx.net</key>
 	<dict>
 		<key>include_subdomains</key>
@@ -3944,6 +4169,11 @@
 		<true/>
 	</dict>
 	<key>ljs.io</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>lobste.rs</key>
 	<dict>
 		<key>include_subdomains</key>
 		<true/>
@@ -4043,6 +4273,11 @@
 		<key>include_subdomains</key>
 		<true/>
 	</dict>
+	<key>luelistan.net</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
 	<key>lukonet.com</key>
 	<dict>
 		<key>include_subdomains</key>
@@ -4103,6 +4338,11 @@
 		<key>include_subdomains</key>
 		<true/>
 	</dict>
+	<key>makeitdynamic.com</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
 	<key>makeyourlaws.org</key>
 	<dict>
 		<key>include_subdomains</key>
@@ -4144,6 +4384,11 @@
 		<false/>
 	</dict>
 	<key>mandala-ausmalbilder.de</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>manicode.com</key>
 	<dict>
 		<key>include_subdomains</key>
 		<true/>
@@ -4253,11 +4498,6 @@
 		<key>include_subdomains</key>
 		<true/>
 	</dict>
-	<key>mf.cz</key>
-	<dict>
-		<key>include_subdomains</key>
-		<true/>
-	</dict>
 	<key>miasarafina.de</key>
 	<dict>
 		<key>include_subdomains</key>
@@ -4284,6 +4524,11 @@
 		<true/>
 	</dict>
 	<key>miku.hatsune.my</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>minecraftvoter.com</key>
 	<dict>
 		<key>include_subdomains</key>
 		<true/>
@@ -4324,6 +4569,11 @@
 		<true/>
 	</dict>
 	<key>mkcert.org</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>mkw.st</key>
 	<dict>
 		<key>include_subdomains</key>
 		<true/>
@@ -4424,6 +4674,11 @@
 		<false/>
 	</dict>
 	<key>mudcrab.us</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>mujadin.se</key>
 	<dict>
 		<key>include_subdomains</key>
 		<true/>
@@ -4583,6 +4838,11 @@
 		<key>include_subdomains</key>
 		<true/>
 	</dict>
+	<key>netztest.at</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
 	<key>newstarnootropics.com</key>
 	<dict>
 		<key>include_subdomains</key>
@@ -4708,6 +4968,21 @@
 		<key>include_subdomains</key>
 		<true/>
 	</dict>
+	<key>null-sec.ru</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>nutsandboltsmedia.com</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>nwgh.org</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
 	<key>nz.search.yahoo.com</key>
 	<dict>
 		<key>include_subdomains</key>
@@ -4749,6 +5024,11 @@
 		<true/>
 	</dict>
 	<key>onsitemassageco.com</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>ooonja.de</key>
 	<dict>
 		<key>include_subdomains</key>
 		<true/>
@@ -4804,6 +5084,11 @@
 		<true/>
 	</dict>
 	<key>ottospora.nl</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>ouvirmusica.com.br</key>
 	<dict>
 		<key>include_subdomains</key>
 		<true/>
@@ -4978,6 +5263,11 @@
 		<key>include_subdomains</key>
 		<true/>
 	</dict>
+	<key>personaldatabasen.no</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
 	<key>pestici.de</key>
 	<dict>
 		<key>include_subdomains</key>
@@ -4993,12 +5283,27 @@
 		<key>include_subdomains</key>
 		<false/>
 	</dict>
+	<key>pharmaboard.de</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
 	<key>phoenixlogan.com</key>
 	<dict>
 		<key>include_subdomains</key>
 		<true/>
 	</dict>
+	<key>phurl.de</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
 	<key>picksin.club</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>pieperhome.de</key>
 	<dict>
 		<key>include_subdomains</key>
 		<true/>
@@ -5108,12 +5413,22 @@
 		<key>include_subdomains</key>
 		<true/>
 	</dict>
+	<key>privategiant.com</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
 	<key>prodpad.com</key>
 	<dict>
 		<key>include_subdomains</key>
 		<true/>
 	</dict>
 	<key>profiles.google.com</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>progressiveplanning.com</key>
 	<dict>
 		<key>include_subdomains</key>
 		<true/>
@@ -5139,6 +5454,11 @@
 		<true/>
 	</dict>
 	<key>proximato.com</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>puac.de</key>
 	<dict>
 		<key>include_subdomains</key>
 		<true/>
@@ -5203,12 +5523,27 @@
 		<key>include_subdomains</key>
 		<true/>
 	</dict>
+	<key>rafaelcz.de</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
 	<key>raiseyourflag.com</key>
 	<dict>
 		<key>include_subdomains</key>
 		<true/>
 	</dict>
 	<key>rapidresearch.me</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>rasing.me</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>raspass.me</key>
 	<dict>
 		<key>include_subdomains</key>
 		<true/>
@@ -5248,6 +5583,11 @@
 		<key>include_subdomains</key>
 		<true/>
 	</dict>
+	<key>reliable-mail.de</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
 	<key>research.facebook.com</key>
 	<dict>
 		<key>include_subdomains</key>
@@ -5274,6 +5614,11 @@
 		<true/>
 	</dict>
 	<key>riesenmagnete.de</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>riftnetwork.net</key>
 	<dict>
 		<key>include_subdomains</key>
 		<true/>
@@ -5311,7 +5656,7 @@
 	<key>roddis.net</key>
 	<dict>
 		<key>include_subdomains</key>
-		<false/>
+		<true/>
 	</dict>
 	<key>roland.io</key>
 	<dict>
@@ -5319,6 +5664,16 @@
 		<true/>
 	</dict>
 	<key>romab.com</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>romans-place.me.uk</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>romulusapp.com</key>
 	<dict>
 		<key>include_subdomains</key>
 		<true/>
@@ -5347,6 +5702,11 @@
 	<dict>
 		<key>include_subdomains</key>
 		<false/>
+	</dict>
+	<key>rudloff.pro</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
 	</dict>
 	<key>ruudkoot.nl</key>
 	<dict>
@@ -5393,6 +5753,11 @@
 		<key>include_subdomains</key>
 		<true/>
 	</dict>
+	<key>samba.org</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
 	<key>samizdat.cz</key>
 	<dict>
 		<key>include_subdomains</key>
@@ -5409,6 +5774,11 @@
 		<true/>
 	</dict>
 	<key>savetheinternet.eu</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>savvytime.com</key>
 	<dict>
 		<key>include_subdomains</key>
 		<true/>
@@ -5548,12 +5918,22 @@
 		<key>include_subdomains</key>
 		<true/>
 	</dict>
+	<key>seyahatsagliksigortalari.com</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
 	<key>sg.search.yahoo.com</key>
 	<dict>
 		<key>include_subdomains</key>
 		<false/>
 	</dict>
 	<key>shaaaaaaaaaaaaa.com</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>shakepeers.org</key>
 	<dict>
 		<key>include_subdomains</key>
 		<true/>
@@ -5579,11 +5959,6 @@
 		<true/>
 	</dict>
 	<key>shodan.io</key>
-	<dict>
-		<key>include_subdomains</key>
-		<true/>
-	</dict>
-	<key>shohruh.uz</key>
 	<dict>
 		<key>include_subdomains</key>
 		<true/>
@@ -5668,6 +6043,26 @@
 		<key>include_subdomains</key>
 		<true/>
 	</dict>
+	<key>sitesten.com</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>skhosting.eu</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>skogsbruket.fi</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>skogskultur.fi</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
 	<key>skydrive.live.com</key>
 	<dict>
 		<key>include_subdomains</key>
@@ -5693,6 +6088,11 @@
 		<key>include_subdomains</key>
 		<true/>
 	</dict>
+	<key>smartcleaningcenter.nl</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
 	<key>smartcoin.com.br</key>
 	<dict>
 		<key>include_subdomains</key>
@@ -5708,7 +6108,17 @@
 		<key>include_subdomains</key>
 		<true/>
 	</dict>
+	<key>snakehosting.dk</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
 	<key>sol.io</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>sorz.org</key>
 	<dict>
 		<key>include_subdomains</key>
 		<true/>
@@ -5748,6 +6158,11 @@
 		<key>include_subdomains</key>
 		<true/>
 	</dict>
+	<key>spawn.cz</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
 	<key>spdysync.com</key>
 	<dict>
 		<key>include_subdomains</key>
@@ -5769,6 +6184,11 @@
 		<true/>
 	</dict>
 	<key>spreadsheets.google.com</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>spreed.me</key>
 	<dict>
 		<key>include_subdomains</key>
 		<true/>
@@ -5802,6 +6222,11 @@
 	<dict>
 		<key>include_subdomains</key>
 		<false/>
+	</dict>
+	<key>srevilak.net</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
 	</dict>
 	<key>sro.center</key>
 	<dict>
@@ -5858,6 +6283,11 @@
 		<key>include_subdomains</key>
 		<true/>
 	</dict>
+	<key>strasweb.fr</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
 	<key>stretchmyan.us</key>
 	<dict>
 		<key>include_subdomains</key>
@@ -5869,6 +6299,11 @@
 		<true/>
 	</dict>
 	<key>strongest-privacy.com</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>studienportal.eu</key>
 	<dict>
 		<key>include_subdomains</key>
 		<true/>
@@ -5983,6 +6418,11 @@
 		<key>include_subdomains</key>
 		<true/>
 	</dict>
+	<key>tas2580.net</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
 	<key>tatort-fanpage.de</key>
 	<dict>
 		<key>include_subdomains</key>
@@ -5994,6 +6434,11 @@
 		<true/>
 	</dict>
 	<key>taxsquirrel.com</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>tc-bonito.de</key>
 	<dict>
 		<key>include_subdomains</key>
 		<true/>
@@ -6068,6 +6513,11 @@
 		<key>include_subdomains</key>
 		<true/>
 	</dict>
+	<key>thomasgriffin.io</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
 	<key>thorncreek.net</key>
 	<dict>
 		<key>include_subdomains</key>
@@ -6078,7 +6528,17 @@
 		<key>include_subdomains</key>
 		<true/>
 	</dict>
+	<key>thyngster.com</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
 	<key>tickopa.co.uk</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>tid.jp</key>
 	<dict>
 		<key>include_subdomains</key>
 		<true/>
@@ -6124,6 +6584,11 @@
 		<true/>
 	</dict>
 	<key>tobias-kluge.de</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>todesschaf.org</key>
 	<dict>
 		<key>include_subdomains</key>
 		<true/>
@@ -6223,6 +6688,11 @@
 		<key>include_subdomains</key>
 		<true/>
 	</dict>
+	<key>tonywebster.com</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
 	<key>topodin.com</key>
 	<dict>
 		<key>include_subdomains</key>
@@ -6283,6 +6753,11 @@
 		<key>include_subdomains</key>
 		<true/>
 	</dict>
+	<key>tucuxi.org</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
 	<key>tunebitfm.de</key>
 	<dict>
 		<key>include_subdomains</key>
@@ -6304,6 +6779,11 @@
 		<true/>
 	</dict>
 	<key>twimg.com</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>twisto.cz</key>
 	<dict>
 		<key>include_subdomains</key>
 		<true/>
@@ -6398,11 +6878,6 @@
 		<key>include_subdomains</key>
 		<false/>
 	</dict>
-	<key>uzstyle.com</key>
-	<dict>
-		<key>include_subdomains</key>
-		<true/>
-	</dict>
 	<key>vaddder.com</key>
 	<dict>
 		<key>include_subdomains</key>
@@ -6494,6 +6969,11 @@
 		<true/>
 	</dict>
 	<key>webandwords.com.au</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>webassadors.com</key>
 	<dict>
 		<key>include_subdomains</key>
 		<true/>
@@ -6699,6 +7179,11 @@
 		<true/>
 	</dict>
 	<key>wunderlist.com</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>wundi.net</key>
 	<dict>
 		<key>include_subdomains</key>
 		<true/>
@@ -6929,11 +7414,6 @@
 		<true/>
 	</dict>
 	<key>www.rme.li</key>
-	<dict>
-		<key>include_subdomains</key>
-		<false/>
-	</dict>
-	<key>www.roddis.net</key>
 	<dict>
 		<key>include_subdomains</key>
 		<false/>
