@@ -64,7 +64,7 @@ NSString *userAgent;
 	}
 	
 	if (wvt == nil) {
-		NSLog(@"[URLInterceptor] request for %@ with no matching WebViewTab! (main URL %@)", [request URL], [request mainDocumentURL]);
+		NSLog(@"[URLInterceptor] request for %@ with no matching WebViewTab! (main URL %@, UA hash %@)", [request URL], [request mainDocumentURL], wvthash);
 		return nil;
 	}
 	

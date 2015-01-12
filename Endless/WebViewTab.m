@@ -121,6 +121,13 @@ AppDelegate *appDelegate;
 		}
 	}
 	
+	/* this doubles as a way to force the webview to initialize itself, otherwise the UA doesn't seem to set right before refreshing a previous restoration state */
+	NSString *ua = [_webView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
+	NSArray *uap = [ua componentsSeparatedByString:@"/"];
+	NSString *wvthash = uap[uap.count - 1];
+	if (![[NSString stringWithFormat:@"%lu", [self hash]] isEqualToString:wvthash])
+		abort();
+	
 	return self;
 }
 

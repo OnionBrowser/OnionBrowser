@@ -427,6 +427,9 @@
 		}
 	}
 	
+	/* UIPageControl will change this automatically when resizing, so save it */
+	long toCurrentPage = tabChooser.currentPage;
+	
 	long wvtHash = [wvt hash];
 	[[wvt viewHolder] removeFromSuperview];
 	[webViewTabs removeObjectAtIndex:tabNumber.intValue];
@@ -439,7 +442,7 @@
 	[tabCount setText:[NSString stringWithFormat:@"%lu", tabChooser.numberOfPages]];
 
 	if (futureFocusNumber == -1) {
-		if (tabChooser.currentPage == tabNumber.intValue) {
+		if (toCurrentPage == tabNumber.intValue) {
 			if (webViewTabs.count > tabNumber.intValue && webViewTabs[tabNumber.intValue]) {
 				/* keep currentPage pointing at the page that shifted down to here */
 			}
@@ -458,9 +461,6 @@
 	else {
 		[self setCurrentTab:futureFocusNumber];
 	}
-	
-	/* UIPageControl will change this automatically when resizing, so save it */
-	long toCurrentPage = tabChooser.currentPage;
 	
 	[UIView animateWithDuration:0.25 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
 		tabScroller.contentSize = CGSizeMake(self.view.frame.size.width * tabChooser.numberOfPages, self.view.frame.size.height);
