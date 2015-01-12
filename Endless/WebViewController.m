@@ -337,6 +337,11 @@
 	
 	tabChooser.currentPage = tab;
 	
+	for (int i = 0; i < webViewTabs.count; i++) {
+		WebViewTab *wvt = [webViewTabs objectAtIndex:i];
+		[[[wvt webView] scrollView] setScrollsToTop:(i == tab)];
+	}
+	
 	if ([[self curWebViewTab] needsRefresh]) {
 		[[self curWebViewTab] refresh];
 	}
