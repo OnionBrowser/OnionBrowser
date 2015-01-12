@@ -3,7 +3,7 @@
 A (Mobile)Safari-like web browser for iOS (wrapping around UIWebView, of
 course) with a design goal of increased security and privacy.
 
-![https://i.imgur.com/ABftci1l.png](https://i.imgur.com/ABftci1l.png) ![https://i.imgur.com/Md7CkLYl.png](https://i.imgur.com/Md7CkLYl.png)
+![https://i.imgur.com/ABftci1l.png](https://i.imgur.com/ABftci1l.png) ![https://i.imgur.com/6HsCQn3l.png](https://i.imgur.com/6HsCQn3l.png)
 
 #####Basic browser functionality implemented:
 
