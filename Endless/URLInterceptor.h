@@ -10,6 +10,7 @@
 @property (strong) NSString *evOrgName;
 @property (strong) NSURLConnection *connection;
 
++ (void)setBlockIntoLocalNets:(BOOL)val;
 + (void)setSendDNT:(BOOL)val;
 
 @end

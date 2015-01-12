@@ -29,6 +29,7 @@
 		01D7412C1A45F8EB007B7033 /* injected.js in Resources */ = {isa = PBXBuildFile; fileRef = 01D7412B1A45F8EB007B7033 /* injected.js */; };
 		01D7412F1A466AF0007B7033 /* NSString+JavascriptEscape.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D7412E1A466AF0007B7033 /* NSString+JavascriptEscape.m */; };
 		01D741321A49EA14007B7033 /* HTTPSEverywhereRuleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D741311A49EA14007B7033 /* HTTPSEverywhereRuleController.m */; };
+		01EFA7FF1A63851400688398 /* LocalNetworkChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EFA7FE1A63851400688398 /* LocalNetworkChecker.m */; };
 		01F7CB491A5253DD00F42B73 /* HSTSCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F7CB481A5253DD00F42B73 /* HSTSCache.m */; };
 		01F7CB4B1A526B9C00F42B73 /* HSTSCache_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F7CB4A1A526B9C00F42B73 /* HSTSCache_Tests.m */; };
 		01F7CB4E1A52FC4E00F42B73 /* NSString+IPAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F7CB4D1A52FC4E00F42B73 /* NSString+IPAddress.m */; };
@@ -97,6 +98,8 @@
 		01D7412E1A466AF0007B7033 /* NSString+JavascriptEscape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+JavascriptEscape.m"; sourceTree = "<group>"; };
 		01D741301A49EA14007B7033 /* HTTPSEverywhereRuleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPSEverywhereRuleController.h; sourceTree = "<group>"; };
 		01D741311A49EA14007B7033 /* HTTPSEverywhereRuleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPSEverywhereRuleController.m; sourceTree = "<group>"; };
+		01EFA7FD1A63851400688398 /* LocalNetworkChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalNetworkChecker.h; sourceTree = "<group>"; };
+		01EFA7FE1A63851400688398 /* LocalNetworkChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalNetworkChecker.m; sourceTree = "<group>"; };
 		01F7CB471A5253DD00F42B73 /* HSTSCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSTSCache.h; sourceTree = "<group>"; };
 		01F7CB481A5253DD00F42B73 /* HSTSCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSTSCache.m; sourceTree = "<group>"; };
 		01F7CB4A1A526B9C00F42B73 /* HSTSCache_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSTSCache_Tests.m; sourceTree = "<group>"; };
@@ -200,6 +203,8 @@
 			children = (
 				018333CF1A351B3B00670CD1 /* Endless-Prefix.pch */,
 				01801E961A32CA2A002B4718 /* Info.plist */,
+				01EFA7FD1A63851400688398 /* LocalNetworkChecker.h */,
+				01EFA7FE1A63851400688398 /* LocalNetworkChecker.m */,
 				01801E971A32CA2A002B4718 /* main.m */,
 				01F7CB4C1A52FC4E00F42B73 /* NSString+IPAddress.h */,
 				01F7CB4D1A52FC4E00F42B73 /* NSString+IPAddress.m */,
@@ -466,6 +471,7 @@
 				01F7CB4E1A52FC4E00F42B73 /* NSString+IPAddress.m in Sources */,
 				0135F47F1A3E548F005A8F16 /* WebViewTab.m in Sources */,
 				010EEA661A43A536001E8B65 /* CookieController.m in Sources */,
+				01EFA7FF1A63851400688398 /* LocalNetworkChecker.m in Sources */,
 				010EEA691A43C8CF001E8B65 /* CookieJar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

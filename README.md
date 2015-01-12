@@ -34,8 +34,8 @@ course) with a design goal of increased security and privacy.
 
 - Integrated full [HTTPS Everywhere](https://www.eff.org/HTTPS-EVERYWHERE)
   ruleset (currently over 11,000 rules) to do on-the-fly URL rewriting to force
-  requests over SSL where supported, including setting the secure
-  bit on received cookies and auto-detection of redirection loops
+  requests over SSL where supported, including setting the secure bit on
+  received cookies and auto-detection of redirection loops
 
 - HTTP Strict Transport Security (RFC6797) implementation (in addition to
   WebKit's mystery built-in one) with Chromium's large preload list
@@ -47,6 +47,10 @@ course) with a design goal of increased security and privacy.
 
 - Blocks mixed-content requests (http elements on an https page), shows broken
   padlock
+
+- Blocks pages loaded from non-local networks (i.e., the internet) from trying
+  to load sub-requests (e.g., images, iframes, ajax) from hosts that are on
+  local RFC3330 networks such as routers and other insecure devices
 
 - Shows organization name in URL bar for sites with EV SSL certs
 

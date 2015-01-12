@@ -1,6 +1,7 @@
 #import "AppDelegate.h"
 #import "HSTSCache.h"
 #import "HTTPSEverywhere.h"
+#import "LocalNetworkChecker.h"
 #import "URLBlocker.h"
 #import "URLInterceptor.h"
 #import "WebViewTab.h"
@@ -9,6 +10,7 @@
 
 static AppDelegate *appDelegate;
 static BOOL sendDNT = true;
+static BOOL blockIntoLocalNets = true;
 
 WebViewTab *wvt;
 NSString *userAgent;
@@ -33,6 +35,11 @@ NSString *userAgent;
 + (NSURLRequest *)canonicalRequestForRequest:(NSURLRequest *)request
 {
 	return request;
+}
+
++ (void)setBlockIntoLocalNets:(BOOL)val
+{
+	blockIntoLocalNets = val;
 }
 
 + (void)setSendDNT:(BOOL)val
@@ -96,7 +103,10 @@ NSString *userAgent;
 		self.isOrigin = YES;
 	}
 	
-	if (!self.isOrigin) {
+	if (self.isOrigin) {
+		[LocalNetworkChecker clearCache];
+	}
+	else {
 		if ([URLBlocker shouldBlockURL:[newRequest URL] fromMainDocumentURL:[newRequest mainDocumentURL]]) {
 			cancelLoading();
 			return;
@@ -122,6 +132,14 @@ NSString *userAgent;
 			NSLog(@"[Tab %@] blocking mixed-content request %@", wvt.tabNumber, [newRequest URL]);
 			cancelLoading();
 			return;
+		}
+		
+		if (blockIntoLocalNets) {
+			if (![LocalNetworkChecker isHostOnLocalNet:[[newRequest mainDocumentURL] host]] && [LocalNetworkChecker isHostOnLocalNet:[[newRequest URL] host]]) {
+				NSLog(@"[Tab %@] blocking request from origin %@ to local net host %@", wvt.tabNumber, [newRequest mainDocumentURL], [newRequest URL]);
+				cancelLoading();
+				return;
+			}
 		}
 	}
 	

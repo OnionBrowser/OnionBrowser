@@ -741,6 +741,7 @@
 	
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	[URLInterceptor setSendDNT:[userDefaults boolForKey:@"send_dnt"]];
+	[URLInterceptor setBlockIntoLocalNets:[userDefaults boolForKey:@"block_into_local_nets"]];
 	[[appDelegate cookieJar] setOldDataSweepTimeout:[NSNumber numberWithInteger:[userDefaults integerForKey:@"old_data_sweep_mins"]]];
 }
 
