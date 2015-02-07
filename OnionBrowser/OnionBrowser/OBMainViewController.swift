@@ -4,7 +4,6 @@
 //  https://github.com/mtigas/iOS-OnionBrowser
 
 import UIKit
-import WebKit
 
 // UI
 let TOOLBAR_HEIGHT:CGFloat = 44.0 // default size
@@ -18,10 +17,10 @@ let BACKWARDBUTTON_TAG:Int = 2004
 
 // Container for info associated with an open tab.
 class OBTab {
-  var webView : WKWebView
+  var webView : UIWebView
   var URL : NSURL
 
-  required init(webView inWebView: WKWebView, URL inURL: NSURL) {
+  required init(webView inWebView: UIWebView, URL inURL: NSURL) {
     self.webView = inWebView
     self.URL = inURL
   }
@@ -29,7 +28,7 @@ class OBTab {
 
 
 
-class OBMainViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegate {
+class OBMainViewController: UIViewController, UITextFieldDelegate, NJKWebViewProgressDelegate {
   var tabs = Array<OBTab>()
   var navbar = UINavigationBar()
   var toolbar = UIToolbar()
@@ -50,12 +49,12 @@ class OBMainViewController: UIViewController, UITextFieldDelegate, WKNavigationD
   override func viewDidLoad() {
     /********** Set up initial web view **********/
     let firstTab:OBTab = OBTab(
-      webView: WKWebView(frame:self.view.frame),
+      webView: UIWebView(frame:self.view.frame),
       URL: NSURL(string:"https://check.torproject.org/")!
     )
+
     initNewTab(firstTab)
     self.view.addSubview(firstTab.webView)
-    firstTab.webView.navigationDelegate = self
     firstTab.webView.loadRequest(NSURLRequest(URL:firstTab.URL))
 
     /********** Initialize Navbar **********/
@@ -79,6 +78,21 @@ class OBMainViewController: UIViewController, UITextFieldDelegate, WKNavigationD
     address.addTarget(self, action: "loadAddressBar:event:", forControlEvents: UIControlEvents.EditingDidEnd|UIControlEvents.EditingDidEndOnExit)
     self.navbar.addSubview(address)
     address.enabled = true
+
+    var progressBarHeight:CGFloat = 2.0;
+    var barFrame:CGRect = CGRectMake(0, self.navbar.bounds.size.height - progressBarHeight,
+        self.navbar.bounds.size.width, progressBarHeight);
+
+    _progressView = NJKWebViewProgressView(frame: barFrame);
+    _progressView?.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleTopMargin;
+    _progressView?.setProgress(1.0, animated: true);
+    self.navbar.addSubview(_progressView!)
+    self.navbar.bringSubviewToFront(_progressView!)
+
+    _progressProxy = NJKWebViewProgress()
+    firstTab.webView.delegate = _progressProxy;
+    //_progressProxy?.webViewProxyDelegate = self;
+    _progressProxy?.progressDelegate = self;
 
     self.view.addSubview(self.navbar)
     self.view.bringSubviewToFront(self.navbar)
@@ -216,13 +230,8 @@ class OBMainViewController: UIViewController, UITextFieldDelegate, WKNavigationD
     }
   }
 
-
-  // MARK: - WKWebView
-  func webView(webView: WKWebView, didReceiveServerRedirectForProvisionalNavigation navigation: WKNavigation!) {
-
-    let address:UITextField = self.navbar.viewWithTag(ADDRESSBAR_TAG) as UITextField
-    let tab:OBTab = self.tabs[self.currentTab]
-    tab.URL = webView.URL!
-    address.text = tab.URL.absoluteString
+  //MARK: - Progress
+  func webViewProgress(webViewProgress: NJKWebViewProgress!, updateProgress progress: Float) {
+    _progressView?.setProgress(progress, animated: false);
   }
 }

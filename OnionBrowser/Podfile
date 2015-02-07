@@ -1,0 +1,14 @@
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, "8.1"
+
+
+pod 'CPAProxy', :git => 'https://github.com/OnionBrowser/CPAProxy.git', :commit => 'cdc6be80e1a89cdf2c3409b819c7f159d8d5b878'
+
+#target "OnionBrowser" do
+#
+#end
+#
+#target "OnionBrowserTests" do
+#
+#end
+

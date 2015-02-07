@@ -6,12 +6,13 @@
 //
 
 #import "AppDelegate.h"
-#include <Openssl/sha.h>
 #import "Bridge.h"
 #include <sys/types.h>
 #include <sys/sysctl.h>
 #import <sys/utsname.h>
 #import "OnionBrowser-Swift.h"
+
+#include <CPAProxy/CPAProxy.h>
 
 @implementation AppDelegate
 
@@ -28,6 +29,27 @@
 ;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
+
+    // Get resource paths for the torrc and geoip files from the main bundle
+    NSURL *cpaProxyBundleURL = [[NSBundle mainBundle] URLForResource:@"CPAProxy" withExtension:@"bundle"];
+    NSBundle *cpaProxyBundle = [NSBundle bundleWithURL:cpaProxyBundleURL];
+    NSString *torrcPath = [cpaProxyBundle pathForResource:@"torrc" ofType:nil];
+    NSString *geoipPath = [cpaProxyBundle pathForResource:@"geoip" ofType:nil];
+
+    // Initialize a CPAProxyManager
+    NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+    NSString *torDataDir = [documentsDirectory stringByAppendingPathComponent:@"tor"];
+    NSLog(@"TOR --- %@", torDataDir);
+    CPAConfiguration *configuration = [CPAConfiguration configurationWithTorrcPath:torrcPath geoipPath:geoipPath torDataDirectoryPath:torDataDir];
+    CPAProxyManager *cpaProxyManager = [CPAProxyManager proxyWithConfiguration:configuration];
+
+    [cpaProxyManager setupWithCompletion:^(NSString *socksHost, NSUInteger socksPort, NSError *error) {
+      NSLog(@"Connected: host=%@, port=%lu", socksHost, (long)socksPort);
+    } progress:^(NSInteger progress, NSString *summaryString) {
+      NSLog(@"%li %@", (long)progress, summaryString);
+    }];
+
     // Detect bookmarks file.
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Settings.sqlite"];
     NSFileManager *fileManager = [NSFileManager defaultManager];
