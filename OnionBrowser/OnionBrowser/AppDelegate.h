@@ -56,6 +56,8 @@
 
 @property (nonatomic) Boolean doPrepopulateBookmarks;
 
+@property (nonatomic) NSUInteger socksPort;
+
 - (void)updateTorrc;
 - (NSURL *)applicationDocumentsDirectory;
 - (void)wipeAppData;
@@ -71,6 +73,7 @@
 
 - (NSString *)javascriptInjection;
 - (NSString *)customUserAgent;
+
 
 //- (void) testEncrypt;
 

@@ -178,17 +178,15 @@
     } // {/TLS hardening}
 
     // Use tor proxy server
-    /*
     NSString *hostKey = (NSString *)kCFStreamPropertySOCKSProxyHost;
     NSString *portKey = (NSString *)kCFStreamPropertySOCKSProxyPort;
-    int proxyPortNumber = appDelegate.tor.torSocksPort;
+    int proxyPortNumber = (int)appDelegate.socksPort;
 
     NSMutableDictionary *proxyToUse = [NSMutableDictionary
                                        dictionaryWithObjectsAndKeys:@"127.0.0.1",hostKey,
                                        [NSNumber numberWithInt: proxyPortNumber],portKey,
                                        nil];
     CFReadStreamSetProperty((__bridge CFReadStreamRef)_HTTPStream, kCFStreamPropertySOCKSProxy, (__bridge CFTypeRef)proxyToUse);
-    */
 
     [_HTTPStream setDelegate:(id<NSStreamDelegate>)self];
     [_HTTPStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
@@ -259,8 +257,6 @@
             [[self delegate] HTTPConnection:self didReceiveResponse:URLResponse];
         }
     }
-    
-    
     
     // Next course of action depends on what happened to the stream
     switch (streamEvent)
@@ -459,14 +455,14 @@
     NSString *MIMEType = [_headerFields objectForKey:@"Content-Type"];
     NSInteger contentLength = [[_headerFields objectForKey:@"Content-Length"] intValue];
     NSString *encoding = [_headerFields objectForKey:@"Content-Encoding"];
-    
+
     if (self = [super initWithURL:URL MIMEType:MIMEType expectedContentLength:contentLength textEncodingName:encoding])
     {
         _statusCode = CFHTTPMessageGetResponseStatusCode(message);
     }
     return self;
 }
-    
+
 - (void)dealloc {
     CFRelease((__bridge_retained CFTypeRef)_headerFields);
 }

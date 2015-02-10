@@ -20,6 +20,7 @@
     sslWhitelistedDomains,
     startUrl,
     appWebView,
+    socksPort,
     window = _window,
     windowOverlay,
     managedObjectContext = __managedObjectContext,
@@ -44,11 +45,7 @@
     CPAConfiguration *configuration = [CPAConfiguration configurationWithTorrcPath:torrcPath geoipPath:geoipPath torDataDirectoryPath:torDataDir];
     CPAProxyManager *cpaProxyManager = [CPAProxyManager proxyWithConfiguration:configuration];
 
-    [cpaProxyManager setupWithCompletion:^(NSString *socksHost, NSUInteger socksPort, NSError *error) {
-      NSLog(@"Connected: host=%@, port=%lu", socksHost, (long)socksPort);
-    } progress:^(NSInteger progress, NSString *summaryString) {
-      NSLog(@"%li %@", (long)progress, summaryString);
-    }];
+    /****** SETTINGS ******/
 
     // Detect bookmarks file.
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Settings.sqlite"];
@@ -120,13 +117,23 @@
     [_window setRootViewController:appWebView];
     [_window makeKeyAndVisible];
     */
-    appWebView = [[WebViewController alloc] init];
-    OBMainViewController *vc = [[OBMainViewController alloc] init];
-    vc.view.frame = _window.frame;
-    [_window setRootViewController:vc];
-    [_window makeKeyAndVisible];
 
-    
+    // Start connecting to Tor...
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    [cpaProxyManager setupWithCompletion:^(NSString *socksHost, NSUInteger newSocksPort, NSError *error) {
+      NSLog(@"Connected: host=%@, port=%lu", socksHost, (long)newSocksPort);
+      appWebView = [[WebViewController alloc] init];
+
+      self.socksPort = newSocksPort;
+
+      OBMainViewController *vc = [[OBMainViewController alloc] init];
+      vc.view.frame = _window.frame;
+      [_window setRootViewController:vc];
+      [_window makeKeyAndVisible];
+    } progress:^(NSInteger progress, NSString *summaryString) {
+      NSLog(@"%li %@", (long)progress, summaryString);
+    }];
+
     /*
     [self updateTorrc];
     _tor = [[TorController alloc] init];
@@ -143,9 +150,6 @@
     } else if (cookieSetting == COOKIES_BLOCK_ALL) {
         [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyNever];
     }
-    
-    // Start the spinner for the "connecting..." phase
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 
     /*******************/
     // Clear any previous caches/cookies

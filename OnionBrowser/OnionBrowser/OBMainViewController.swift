@@ -28,14 +28,14 @@ class OBTab {
 
 
 
-class OBMainViewController: UIViewController, UITextFieldDelegate, NJKWebViewProgressDelegate {
+class OBMainViewController: UIViewController, UITextFieldDelegate, UIWebViewDelegate, NJKWebViewProgressDelegate {
   var tabs = Array<OBTab>()
   var navbar = UINavigationBar()
   var toolbar = UIToolbar()
   var currentTab = -1
   var addressBarIsSubmitting = false
-  var _progressView : NJKWebViewProgressView?
-  var _progressProxy : NJKWebViewProgress?
+  var progressView : NJKWebViewProgressView?
+  var progressProxy : NJKWebViewProgress?
 
 
   func initNewTab(tab:OBTab) {
@@ -83,16 +83,16 @@ class OBMainViewController: UIViewController, UITextFieldDelegate, NJKWebViewPro
     var barFrame:CGRect = CGRectMake(0, self.navbar.bounds.size.height - progressBarHeight,
         self.navbar.bounds.size.width, progressBarHeight);
 
-    _progressView = NJKWebViewProgressView(frame: barFrame);
-    _progressView?.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleTopMargin;
-    _progressView?.setProgress(1.0, animated: true);
-    self.navbar.addSubview(_progressView!)
-    self.navbar.bringSubviewToFront(_progressView!)
+    progressView = NJKWebViewProgressView(frame: barFrame);
+    progressView?.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleTopMargin;
+    progressView?.setProgress(1.0, animated: true);
+    self.navbar.addSubview(progressView!)
+    self.navbar.bringSubviewToFront(progressView!)
 
-    _progressProxy = NJKWebViewProgress()
-    firstTab.webView.delegate = _progressProxy;
-    //_progressProxy?.webViewProxyDelegate = self;
-    _progressProxy?.progressDelegate = self;
+    progressProxy = NJKWebViewProgress()
+    firstTab.webView.delegate = progressProxy;
+    progressProxy?.webViewProxyDelegate = self;
+    progressProxy?.progressDelegate = self;
 
     self.view.addSubview(self.navbar)
     self.view.bringSubviewToFront(self.navbar)
@@ -231,7 +231,13 @@ class OBMainViewController: UIViewController, UITextFieldDelegate, NJKWebViewPro
   }
 
   //MARK: - Progress
+  func webViewDidStartLoad(webView: UIWebView) {
+    UIApplication.sharedApplication().networkActivityIndicatorVisible = true;
+  }
+  func webViewDidFinishLoad(webView: UIWebView) {
+    UIApplication.sharedApplication().networkActivityIndicatorVisible = false;
+  }
   func webViewProgress(webViewProgress: NJKWebViewProgress!, updateProgress progress: Float) {
-    _progressView?.setProgress(progress, animated: false);
+    progressView?.setProgress(progress, animated: true);
   }
 }

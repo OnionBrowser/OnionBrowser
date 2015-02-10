@@ -22,3 +22,5 @@ dependencies-*/*
 .ruby-version
 Gemfile
 Gemfile.lock
+
+Pods/

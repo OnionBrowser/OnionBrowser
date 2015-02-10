@@ -70,7 +70,6 @@
 // Class methods
 
 + (BOOL)canInitWithRequest:(NSURLRequest *)request {
-    /*
     if ( !([[[[request URL] scheme] lowercaseString] isEqualToString:@"file"] ||
            [[[[request URL] scheme] lowercaseString] isEqualToString:@"data"]
            )
@@ -83,7 +82,6 @@
     } else {
         return NO;
     }
-    */
     return NO;
 }
 
@@ -382,7 +380,7 @@
     NSString *content_type = [[response allHeaderFields] objectForKey:@"Content-Type"];
     NSArray *content_type_bits = [content_type componentsSeparatedByString:@";"];
     if ([content_type_bits count] == 0) {
-        [self.client URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageAllowedInMemoryOnly];    
+        [self.client URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageAllowedInMemoryOnly];
     } else { 
         NSString *mime = [content_type_bits objectAtIndex:0];
         NSString *encoding = @"UTF-8";
