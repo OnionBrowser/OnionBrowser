@@ -1,18 +1,18 @@
 PODS:
-  - CocoaAsyncSocket (7.3.5)
+  - CocoaAsyncSocket (7.4.1)
   - CPAProxy (1.0.0):
-    - CocoaAsyncSocket (~> 7.3)
+    - CocoaAsyncSocket
 
 DEPENDENCIES:
-  - CPAProxy (from `https://github.com/OnionBrowser/CPAProxy.git`, commit `cdc6be80e1a89cdf2c3409b819c7f159d8d5b878`)
+  - CPAProxy (from `https://github.com/OnionBrowser/CPAProxy.git`, commit `2de56b6658bd453c825e23d5dbfa7ad3c2304e11`)
 
 EXTERNAL SOURCES:
   CPAProxy:
-    :commit: cdc6be80e1a89cdf2c3409b819c7f159d8d5b878
+    :commit: 2de56b6658bd453c825e23d5dbfa7ad3c2304e11
     :git: https://github.com/OnionBrowser/CPAProxy.git
 
 SPEC CHECKSUMS:
-  CocoaAsyncSocket: 45bdbbc1c0a5ed0640ff4c42af325ba43a2f099a
-  CPAProxy: 46859765bfe23a93286ab0e86bb53897a887205f
+  CocoaAsyncSocket: b0a1a89e7ea4c1c0ea4ec83f57d55117d3cdae06
+  CPAProxy: c3df549999514de2c04633d20a79b00daf627ddb
 
 COCOAPODS: 0.34.1

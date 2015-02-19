@@ -120,11 +120,11 @@
 
     // Start connecting to Tor...
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    [cpaProxyManager setupWithCompletion:^(NSString *socksHost, NSUInteger newSocksPort, NSError *error) {
-      NSLog(@"Connected: host=%@, port=%lu", socksHost, (long)newSocksPort);
+    [cpaProxyManager setupWithCompletion:^(NSString *socksHost, NSUInteger socksPort, NSError *error) {
+      NSLog(@"Connected: host=%@, port=%lu", socksHost, (long)socksPort);
       appWebView = [[WebViewController alloc] init];
 
-      self.socksPort = newSocksPort;
+      self.socksPort = socksPort;
 
       OBMainViewController *vc = [[OBMainViewController alloc] init];
       vc.view.frame = _window.frame;
