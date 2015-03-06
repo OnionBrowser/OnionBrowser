@@ -26,6 +26,7 @@
 		,"googleadservices.com"
 		,"googlesyndication.com"
 		,"googletagservices.com"
+		,"apis.google.com"
 	]
 
 	,"Advertising/Analytics - Lotame": [
@@ -141,15 +142,28 @@
 
 	,"Social - Facebook": [
 		"facebook.com"
+		,"facebook.net"
 		,"fb.com"
+	]
+
+	,"Social - Flattr": [
+		"flattr.com"
 	]
 
 	,"Social - LinkedIn": [
 		"linkedin.com"
 	]
 
+	,"Social - Reddit": [
+		"reddit.com"
+	]
+
 	,"Social - ShareThis": [
 		"sharethis.com"
+	]
+
+	,"Social - Soundcloud": [
+		"eventlogger.soundcloud.com"
 	]
 
 	,"Social - Twitter": [

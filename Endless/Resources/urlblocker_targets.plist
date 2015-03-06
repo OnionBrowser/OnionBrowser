@@ -13,6 +13,8 @@
 	<string>Advertising/Analytics - Yahoo</string>
 	<key>adzerk.net</key>
 	<string>Advertising/Analytics - Adzerk</string>
+	<key>apis.google.com</key>
+	<string>Advertising/Analytics - Google</string>
 	<key>appnexus.com</key>
 	<string>Advertising/Analytics - AppNexus</string>
 	<key>bdex.com</key>
@@ -41,12 +43,18 @@
 	<string>Advertising/Analytics - Google</string>
 	<key>errorception.com</key>
 	<string>Analytics - Errorception</string>
+	<key>eventlogger.soundcloud.com</key>
+	<string>Social - Soundcloud</string>
 	<key>exelator.com</key>
 	<string>Advertising/Analytics - eXelate</string>
 	<key>facebook.com</key>
 	<string>Social - Facebook</string>
+	<key>facebook.net</key>
+	<string>Social - Facebook</string>
 	<key>fb.com</key>
 	<string>Social - Facebook</string>
+	<key>flattr.com</key>
+	<string>Social - Flattr</string>
 	<key>google-analytics.com</key>
 	<string>Advertising/Analytics - Google</string>
 	<key>googleadservices.com</key>
@@ -73,6 +81,8 @@
 	<string>Analytics - Quantcast</string>
 	<key>questionmarket.com</key>
 	<string>Advertising/Analytics - Safecount</string>
+	<key>reddit.com</key>
+	<string>Social - Reddit</string>
 	<key>safecount.net</key>
 	<string>Advertising/Analytics - Safecount</string>
 	<key>scorecardresearch.com</key>
