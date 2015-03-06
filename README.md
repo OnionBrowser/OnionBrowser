@@ -33,9 +33,9 @@ course) with a design goal of increased security and privacy.
 - Cookie and localStorage database listing and deletion per-host
 
 - Integrated full [HTTPS Everywhere](https://www.eff.org/HTTPS-EVERYWHERE)
-  ruleset (currently over 11,000 rules) to do on-the-fly URL rewriting to force
-  requests over SSL where supported, including setting the secure bit on
-  received cookies and auto-detection of redirection loops
+  ruleset to do on-the-fly URL rewriting to force requests over SSL where
+  supported, including setting the secure bit on received cookies and
+  auto-detection of redirection loops
 
 - HTTP Strict Transport Security (RFC6797) implementation (in addition to
   WebKit's mystery built-in one) with Chromium's large preload list
