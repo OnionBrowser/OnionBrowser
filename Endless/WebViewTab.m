@@ -205,7 +205,7 @@ AppDelegate *appDelegate;
 	
 	if ([action isEqualToString:@"console.log"]) {
 		NSString *json = [[[[request URL] query] stringByReplacingOccurrencesOfString:@"+" withString:@" "] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-		NSLog(@"[Tab %@] [console.%@] %@", [self tabNumber], param, json);
+		NSLog(@"[Tab %@] [console.%@] %@", [self tabIndex], param, json);
 		/* no callback needed */
 		return NO;
 	}
@@ -228,7 +228,7 @@ AppDelegate *appDelegate;
 		}
 		else {
 			/* TODO: show a "popup blocked" warning? */
-			NSLog(@"[Tab %@] blocked non-touch window.open() (nav type %lu)", self.tabNumber, navigationType);
+			NSLog(@"[Tab %@] blocked non-touch window.open() (nav type %lu)", self.tabIndex, navigationType);
 			
 			[self webView:__webView callbackWith:[NSString stringWithFormat:@"__endless.openedTabs[\"%@\"].opened = false;", param]];
 		}
@@ -237,7 +237,7 @@ AppDelegate *appDelegate;
 		UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Confirm" message:@"Allow this page to close its tab?" preferredStyle:UIAlertControllerStyleAlert];
 		
 		UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK action") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-			[[appDelegate webViewController] removeTab:[self tabNumber]];
+			[[appDelegate webViewController] removeTab:[self tabIndex]];
 		}];
 		
 		UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", @"Cancel action") style:UIAlertActionStyleCancel handler:nil];
@@ -282,7 +282,7 @@ AppDelegate *appDelegate;
 		
 		/* actions */
 		else if ([action isEqualToString:@"fakeWindow.close"]) {
-			[[appDelegate webViewController] removeTab:[wvt tabNumber]];
+			[[appDelegate webViewController] removeTab:[wvt tabIndex]];
 			[self webView:__webView callbackWith:@""];
 		}
 	}
@@ -303,7 +303,7 @@ AppDelegate *appDelegate;
 - (void)webViewDidFinishLoad:(UIWebView *)__webView
 {
 #ifdef TRACE
-	NSLog(@"[Tab %@] finished loading page/iframe %@", self.tabNumber, [[[__webView request] URL] absoluteString]);
+	NSLog(@"[Tab %@] finished loading page/iframe %@", self.tabIndex, [[[__webView request] URL] absoluteString]);
 #endif
 	[self setProgress:@1.0];
 	
@@ -368,12 +368,12 @@ AppDelegate *appDelegate;
 	else if (self.openedByTabHash) {
 		for (WebViewTab *wvt in [[appDelegate webViewController] webViewTabs]) {
 			if ([wvt hash] == [self.openedByTabHash longValue]) {
-				[[appDelegate webViewController] removeTab:self.tabNumber andFocusTab:[wvt tabNumber]];
+				[[appDelegate webViewController] removeTab:self.tabIndex andFocusTab:[wvt tabIndex]];
 				return;
 			}
 		}
 		
-		[[appDelegate webViewController] removeTab:self.tabNumber];
+		[[appDelegate webViewController] removeTab:self.tabIndex];
 	}
 }
 

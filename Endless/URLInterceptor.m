@@ -76,7 +76,7 @@ NSString *userAgent;
 	}
 	
 #ifdef TRACE
-	NSLog(@"[URLInterceptor] [Tab %@] initializing with %@ request: %@ (via %@)", wvt.tabNumber, [request HTTPMethod], [[request URL] absoluteString], [request mainDocumentURL]);
+	NSLog(@"[URLInterceptor] [Tab %@] initializing with %@ request: %@ (via %@)", wvt.tabIndex, [request HTTPMethod], [[request URL] absoluteString], [request mainDocumentURL]);
 #endif
 
 	return self;
@@ -129,14 +129,14 @@ NSString *userAgent;
 	if (!self.isOrigin) {
 		if ([wvt secureMode] > WebViewTabSecureModeInsecure && ![[[[newRequest URL] scheme] lowercaseString] isEqualToString:@"https"]) {
 			[wvt setSecureMode:WebViewTabSecureModeMixed];
-			NSLog(@"[Tab %@] blocking mixed-content request %@", wvt.tabNumber, [newRequest URL]);
+			NSLog(@"[Tab %@] blocking mixed-content request %@", wvt.tabIndex, [newRequest URL]);
 			cancelLoading();
 			return;
 		}
 		
 		if (blockIntoLocalNets) {
 			if (![LocalNetworkChecker isHostOnLocalNet:[[newRequest mainDocumentURL] host]] && [LocalNetworkChecker isHostOnLocalNet:[[newRequest URL] host]]) {
-				NSLog(@"[Tab %@] blocking request from origin %@ to local net host %@", wvt.tabNumber, [newRequest mainDocumentURL], [newRequest URL]);
+				NSLog(@"[Tab %@] blocking request from origin %@ to local net host %@", wvt.tabIndex, [newRequest mainDocumentURL], [newRequest URL]);
 				cancelLoading();
 				return;
 			}
@@ -148,7 +148,7 @@ NSString *userAgent;
 	NSArray *cookies = [[appDelegate cookieJar] cookiesForURL:[newRequest URL] forTab:wvt.hash];
 	if (cookies != nil && [cookies count] > 0) {
 #ifdef TRACE_COOKIES
-		NSLog(@"[Tab %@] sending %lu cookie(s) to %@", wvt.tabNumber, [cookies count], [newRequest URL]);
+		NSLog(@"[Tab %@] sending %lu cookie(s) to %@", wvt.tabIndex, [cookies count], [newRequest URL]);
 #endif
 		NSDictionary *headers = [NSHTTPCookie requestHeaderFieldsWithCookies:cookies];
 		[newRequest setAllHTTPHeaderFields:headers];
@@ -176,7 +176,7 @@ NSString *userAgent;
 	/* we don't get a redirectResponse when only upgrading from http -> https on the same hostname, so we have to find it ourselves :( */
 	if (response == nil && [self.origRequest hash] != [request hash]) {
 #ifdef TRACE
-		NSLog(@"[Tab %@] hash changed, URL went from %@ to %@", wvt.tabNumber, [[self.origRequest URL] absoluteString], [[request URL] absoluteString]);
+		NSLog(@"[Tab %@] hash changed, URL went from %@ to %@", wvt.tabIndex, [[self.origRequest URL] absoluteString], [[request URL] absoluteString]);
 #endif
 		schemaRedirect = true;
 	}
@@ -187,7 +187,7 @@ NSString *userAgent;
 
 		if (schemaRedirect && response == nil) {
 #ifdef TRACE
-			NSLog(@"[Tab %@] willSendRequest being redirected (schema-only) from %@ to %@", wvt.tabNumber, [[self.origRequest URL] absoluteString], [[request URL] absoluteString]);
+			NSLog(@"[Tab %@] willSendRequest being redirected (schema-only) from %@ to %@", wvt.tabIndex, [[self.origRequest URL] absoluteString], [[request URL] absoluteString]);
 #endif
 			if ([[[self.origRequest URL] scheme] isEqualToString:@"https"] && [[[request URL] scheme] isEqualToString:@"http"]) {
 				[HTTPSEverywhere noteInsecureRedirectionForURL:[self.origRequest URL]];
@@ -195,7 +195,7 @@ NSString *userAgent;
 		}
 		else {
 #ifdef TRACE
-			NSLog(@"[Tab %@] willSendRequest being redirected from %@ to %@", wvt.tabNumber, [[response URL] absoluteString], [[request URL] absoluteString]);
+			NSLog(@"[Tab %@] willSendRequest being redirected from %@ to %@", wvt.tabIndex, [[response URL] absoluteString], [[request URL] absoluteString]);
 #endif
 			if ([[[response URL] scheme] isEqualToString:@"https"] && [[[request URL] scheme] isEqualToString:@"http"]) {
 				[HTTPSEverywhere noteInsecureRedirectionForURL:[request URL]];
@@ -300,7 +300,7 @@ NSString *userAgent;
 	if (ev != nil && (__bridge CFBooleanRef)ev == kCFBooleanTrue) {
 		NSString *orgname = (NSString *)[trust objectForKey:(__bridge NSString *)kSecTrustOrganizationName];
 #ifdef DEBUG
-		NSLog(@"[Tab %@] cert for %@ has EV, registered to %@", wvt.tabNumber, [[self.request URL] host], orgname);
+		NSLog(@"[Tab %@] cert for %@ has EV, registered to %@", wvt.tabIndex, [[self.request URL] host], orgname);
 #endif
 		if ([NSURLProtocol propertyForKey:ORIGIN_KEY inRequest:self.request] && [[[[self.request URL] host] lowercaseString] isEqualToString:[[[wvt url] host] lowercaseString]]) {
 			[self setEvOrgName:orgname];
