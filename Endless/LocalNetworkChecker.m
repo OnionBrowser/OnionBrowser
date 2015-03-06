@@ -109,9 +109,6 @@ static NSMutableDictionary *dnsCache;
 
 		for (NSArray *net in localNets) {
 			if (uip >= [((NSNumber *)net[0]) intValue] && uip <= [((NSNumber *)net[1]) intValue]) {
-#ifdef TRACE
-				NSLog(@"ip of host %@ (%@) is between %@", host, ip, net);
-#endif
 				return YES;
 			}
 		}
