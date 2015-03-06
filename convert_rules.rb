@@ -8,8 +8,6 @@ require "uri"
 
 HTTPS_E_TARGETS_PLIST = "Endless/Resources/https-everywhere_targets.plist"
 HTTPS_E_RULES_PLIST = "Endless/Resources/https-everywhere_rules.plist"
-HTTPS_E_GIT_COMMIT = File.read("https-everywhere/.git/refs/heads/master").
-  strip[0, 12]
 
 URLBLOCKER_JSON = "urlblocker.json"
 URLBLOCKER_TARGETS_PLIST = "Endless/Resources/urlblocker_targets.plist"
@@ -22,9 +20,12 @@ HSTS_PRELOAD_HOSTS_PLIST = "Endless/Resources/hsts_preload.plist"
 # it out as a plist, as well as a standalone hash of target URLs -> rule names
 # to another plist
 def convert_https_e
+  https_e_git_commit = `cd https-everywhere && git show -s`.split("\n")[0].
+    gsub(/^commit /, "")[0, 12]
+
   if File.exists?(HTTPS_E_TARGETS_PLIST)
     if m = File.open(HTTPS_E_TARGETS_PLIST).gets.to_s.match(/Everywhere (.+) - /)
-      if (m[1] == HTTPS_E_GIT_COMMIT)
+      if (m[1] == https_e_git_commit)
         return
       end
     end
@@ -67,12 +68,12 @@ def convert_https_e
   end
 
   File.write(HTTPS_E_TARGETS_PLIST,
-    "<!-- generated from HTTPS Everywhere #{HTTPS_E_GIT_COMMIT} - do not " +
+    "<!-- generated from HTTPS Everywhere #{https_e_git_commit} - do not " +
       "directly edit this file -->\n" +
     targets.to_plist)
 
   File.write(HTTPS_E_RULES_PLIST,
-    "<!-- generated from HTTPS Everywhere #{HTTPS_E_GIT_COMMIT} - do not " +
+    "<!-- generated from HTTPS Everywhere #{https_e_git_commit} - do not " +
       "directly edit this file -->\n" +
     rules.to_plist)
 end
