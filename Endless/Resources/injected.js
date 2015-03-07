@@ -170,6 +170,8 @@ var __endless = {
 		if (url !== undefined && url != '')
 			__endless.openedTabs[id].location = url;
 
+		window.event.preventDefault();
+
 		return __endless.openedTabs[id];
 	};
 
