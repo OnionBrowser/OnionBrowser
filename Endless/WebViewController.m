@@ -197,7 +197,7 @@
 #endif
 	}
 	[coder encodeObject:wvtd forKey:@"webViewTabs"];
-	[coder encodeObject:[NSNumber numberWithLong:curTabIndex] forKey:@"curTabIndex"];
+	[coder encodeObject:[NSNumber numberWithInt:curTabIndex] forKey:@"curTabIndex"];
 }
 
 - (void)decodeRestorableStateWithCoder:(NSCoder *)coder
@@ -216,7 +216,9 @@
 	
 	NSNumber *cp = [coder decodeObjectForKey:@"curTabIndex"];
 	if (cp != nil) {
-		[self setCurTabIndex:[cp intValue]];
+		if ([cp intValue] <= [webViewTabs count] - 1)
+			[self setCurTabIndex:[cp intValue]];
+		
 		[tabScroller setContentOffset:CGPointMake([self frameForTabIndex:tabChooser.currentPage].origin.x, 0) animated:NO];
 		
 		/* wait for the UI to catch up */
