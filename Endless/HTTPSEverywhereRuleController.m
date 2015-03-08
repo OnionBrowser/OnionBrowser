@@ -119,7 +119,11 @@ UISearchDisplayController *searchDisplayController;
 	}
 	
 	NSString *disabled = [[HTTPSEverywhere disabledRules] objectForKey:cell.textLabel.text];
-	if (disabled != nil) {
+	if (disabled == nil) {
+		cell.textLabel.textColor = [UIColor darkTextColor];
+		cell.detailTextLabel.text = nil;
+	}
+	else {
 		cell.textLabel.textColor = [UIColor redColor];
 		cell.detailTextLabel.text = [NSString stringWithFormat:@"Disabled: %@", disabled];
 		cell.detailTextLabel.textColor = [UIColor redColor];
