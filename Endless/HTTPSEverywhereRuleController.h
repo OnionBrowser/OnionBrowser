@@ -1,5 +1,5 @@
-#import <UIKit/UIKit.h>
+#import "RuleEditorController.h"
 
-@interface HTTPSEverywhereRuleController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate, UITableViewDelegate>
+@interface HTTPSEverywhereRuleController : RuleEditorController
 
 @end

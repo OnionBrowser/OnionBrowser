@@ -1,8 +1,9 @@
+#import "WebViewMenuController.h"
+
 #import "AppDelegate.h"
 #import "CookieController.h"
 #import "IASKAppSettingsViewController.h"
 #import "HTTPSEverywhereRuleController.h"
-#import "WebViewMenuController.h"
 
 @implementation WebViewMenuController
 
