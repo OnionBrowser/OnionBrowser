@@ -1,8 +1,6 @@
---- build/src/tor-0.2.5.8-rc/src/common/compat.c.orig	2014-09-25 15:05:39.000000000 -0400
-+++ build/src/tor-0.2.5.8-rc/src/common/compat.c	2014-09-25 15:10:06.000000000 -0400
-@@ -2144,32 +2144,32 @@
-   }
-   return absfname;
+--- build/src/tor-0.2.6.2-alpha/src/common/compat.c.orig	2014-12-30 09:06:12.000000000 -0500
++++ build/src/tor-0.2.6.2-alpha/src/common/compat.c	2015-02-09 23:54:12.000000000 -0500
+@@ -2173,28 +2173,28 @@
  #endif
  }
  
@@ -36,6 +34,4 @@
 +//#endif
  }
  
- /** Set *addr to the IP address (in dotted-quad notation) stored in c.
-  * Return 1 on success, 0 if c is badly formatted.  (Like inet_aton(c,addr),
-  * but works on Windows and Solaris.)
+ /** Get name of current host and write it to <b>name</b> array, whose

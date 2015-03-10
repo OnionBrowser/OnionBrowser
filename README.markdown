@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/OnionBrowser/iOS-OnionBrowser.png)](https://travis-ci.org/OnionBrowser/iOS-OnionBrowser)  
 [Official Site][official] | [Support][help] | [Changelog][changelog]  
-&copy; 2012-2014 [Mike Tigas][miketigas] ([@mtigas](https://twitter.com/mtigas))  
+&copy; 2012-2015 [Mike Tigas][miketigas] ([@mtigas](https://twitter.com/mtigas))  
 [MIT License][license]
 
 A minimal, open-source web browser for iOS that tunnels web traffic through
@@ -11,10 +11,10 @@ and App Store links.
 
 ---
 
-* **OnionBrowser**: 1.5.10 (20141111.1) — [See changelog][changelog]
-* **[Tor][tor]**: 0.2.5.10 (Oct 24 2014)
-* **[libevent][libevent]**: 2.0.21-stable (Nov 18 2012)
-* **[OpenSSL][openssl]**: 1.0.1j (Oct 15 2014)
+* **OnionBrowser**: 1.5.11 (20150310.1) — [See changelog][changelog]
+* **[Tor][tor]**: 0.2.6.4-rc (Mar 10 2015)
+* **[libevent][libevent]**: 2.0.22-stable (Jan 05 2015)
+* **[OpenSSL][openssl]**: 1.0.2 (Jan 22 2015)
 
 [official]: https://mike.tig.as/onionbrowser/
 [help]: https://mike.tig.as/onionbrowser/help/
