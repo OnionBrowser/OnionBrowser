@@ -14,15 +14,36 @@ Features subject to change.
   encryption done by the iOS operating system, improving protection
   against forensic tools.
 
-===== 1.5.11 - Under Development =====
-Est. Release: January 2015
+===== 1.5.12 - Under Development =====
+Est. Release: March 2015
 Features subject to change.
+
+* Allow pasting in the bridges.torproject.org text blob to set
+  bridges, like the Tor Browser launcher. #55
+
+* Allow scanning QR code from bridges.torproject.org to set
+  bridges. #56
+
+
+CURRENT VERSION:
+
+===== 1.5.11 - Pending App Store Approval =====
+Mar 10 2015 - Submit Date
 
 * Fix issue where bridges with 5-digit port numbers were not allowed
   in the bridge configuration. Issue reported by Andrew Auerbach.
 
+* Improve connection error handling and alert user if Tor client has
+  stopped working.
 
-CURRENT VERSION:
+* Tor updated to 0.2.6.4-rc.
+  https://gitweb.torproject.org/tor.git/tree/ChangeLog?h=tor-0.2.6.4-rc
+
+* OpenSSL updated to 1.0.2.
+  https://openssl.org/news/openssl-1.0.2-notes.html
+
+* Libevent updated to 2.0.22-stable.
+  https://raw.githubusercontent.com/libevent/libevent/release-2.0.22-stable/ChangeLog
 
 ===== 1.5.10 - In App Store =====
 Nov 11 2014 - Submit Date
