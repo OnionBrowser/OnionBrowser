@@ -10,6 +10,7 @@
 
 @interface BridgeViewController : UIViewController
 
+- (void)qrscan;
 - (void)save;
 - (void)cancel;
 
