@@ -60,6 +60,10 @@
 		69847C5414F788E900288277 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 69847C5314F788E900288277 /* libz.dylib */; };
 		69855E071531576800720327 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = 69855E061531576800720327 /* about.html */; };
 		699CCEBD14FA1939004A2F56 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 699CCEBC14FA1939004A2F56 /* libxml2.dylib */; };
+		69A3758E1AAFF60F00AAE92B /* QRCameraSwitchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A375851AAFF60F00AAE92B /* QRCameraSwitchButton.m */; };
+		69A3758F1AAFF60F00AAE92B /* QRCodeReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A375871AAFF60F00AAE92B /* QRCodeReader.m */; };
+		69A375901AAFF60F00AAE92B /* QRCodeReaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A3758A1AAFF60F00AAE92B /* QRCodeReaderView.m */; };
+		69A375911AAFF60F00AAE92B /* QRCodeReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A3758C1AAFF60F00AAE92B /* QRCodeReaderViewController.m */; };
 		69C6F6A514FACC3000894495 /* ProxyURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C6F6A414FACC3000894495 /* ProxyURLProtocol.m */; };
 		69E50FF81AAFDDF900CCADE5 /* BridgeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E50FF71AAFDDF900CCADE5 /* BridgeViewController.m */; };
 		69E50FFB1AAFE03900CCADE5 /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E50FFA1AAFE03900CCADE5 /* UIPlaceHolderTextView.m */; };
@@ -151,6 +155,15 @@
 		69847C5314F788E900288277 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		69855E061531576800720327 /* about.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; lineEnding = 0; path = about.html; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.html; };
 		699CCEBC14FA1939004A2F56 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		69A375841AAFF60F00AAE92B /* QRCameraSwitchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCameraSwitchButton.h; sourceTree = "<group>"; };
+		69A375851AAFF60F00AAE92B /* QRCameraSwitchButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCameraSwitchButton.m; sourceTree = "<group>"; };
+		69A375861AAFF60F00AAE92B /* QRCodeReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeReader.h; sourceTree = "<group>"; };
+		69A375871AAFF60F00AAE92B /* QRCodeReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeReader.m; sourceTree = "<group>"; };
+		69A375881AAFF60F00AAE92B /* QRCodeReaderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeReaderDelegate.h; sourceTree = "<group>"; };
+		69A375891AAFF60F00AAE92B /* QRCodeReaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeReaderView.h; sourceTree = "<group>"; };
+		69A3758A1AAFF60F00AAE92B /* QRCodeReaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeReaderView.m; sourceTree = "<group>"; };
+		69A3758B1AAFF60F00AAE92B /* QRCodeReaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeReaderViewController.h; sourceTree = "<group>"; };
+		69A3758C1AAFF60F00AAE92B /* QRCodeReaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeReaderViewController.m; sourceTree = "<group>"; };
 		69C6F6A314FACC3000894495 /* ProxyURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProxyURLProtocol.h; path = ../ProxyURLProtocol.h; sourceTree = "<group>"; };
 		69C6F6A414FACC3000894495 /* ProxyURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProxyURLProtocol.m; path = ../ProxyURLProtocol.m; sourceTree = "<group>"; };
 		69E50FF61AAFDDF900CCADE5 /* BridgeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgeViewController.h; sourceTree = "<group>"; };
@@ -325,6 +338,7 @@
 				69374257189CC514002C65A0 /* NJKWebViewProgress.m */,
 				69374258189CC514002C65A0 /* NJKWebViewProgressView.h */,
 				69374259189CC514002C65A0 /* NJKWebViewProgressView.m */,
+				69A375821AAFF60F00AAE92B /* QRCodeReaderViewController */,
 			);
 			name = ThirdParty;
 			sourceTree = "<group>";
@@ -378,6 +392,22 @@
 				69847C4614F788E100288277 /* libtor.a */,
 			);
 			name = External;
+			sourceTree = "<group>";
+		};
+		69A375821AAFF60F00AAE92B /* QRCodeReaderViewController */ = {
+			isa = PBXGroup;
+			children = (
+				69A375841AAFF60F00AAE92B /* QRCameraSwitchButton.h */,
+				69A375851AAFF60F00AAE92B /* QRCameraSwitchButton.m */,
+				69A375861AAFF60F00AAE92B /* QRCodeReader.h */,
+				69A375871AAFF60F00AAE92B /* QRCodeReader.m */,
+				69A375881AAFF60F00AAE92B /* QRCodeReaderDelegate.h */,
+				69A375891AAFF60F00AAE92B /* QRCodeReaderView.h */,
+				69A3758A1AAFF60F00AAE92B /* QRCodeReaderView.m */,
+				69A3758B1AAFF60F00AAE92B /* QRCodeReaderViewController.h */,
+				69A3758C1AAFF60F00AAE92B /* QRCodeReaderViewController.m */,
+			);
+			path = QRCodeReaderViewController;
 			sourceTree = "<group>";
 		};
 		69A82A7D15F97553009B31F1 /* Bookmarks */ = {
@@ -522,7 +552,9 @@
 				696F9EAB14F8D5A900BC5FDC /* TorWrapper.m in Sources */,
 				691958D61536BA67000423A4 /* Reachability.m in Sources */,
 				696EBD8814F7877900B81BC9 /* AppDelegate.m in Sources */,
+				69A375901AAFF60F00AAE92B /* QRCodeReaderView.m in Sources */,
 				6937425A189CC514002C65A0 /* NJKWebViewProgress.m in Sources */,
+				69A3758F1AAFF60F00AAE92B /* QRCodeReader.m in Sources */,
 				696F9EAE14F8D6ED00BC5FDC /* tor_main.c in Sources */,
 				696F9EB414F8DD6D00BC5FDC /* ULINetSocket.m in Sources */,
 				697ABCD414FA036E00E1678C /* WebViewController.m in Sources */,
@@ -536,9 +568,11 @@
 				692B338C15FAF2E500A23DD5 /* BookmarkEditViewController.m in Sources */,
 				69E50FF81AAFDDF900CCADE5 /* BridgeViewController.m in Sources */,
 				69E50FFB1AAFE03900CCADE5 /* UIPlaceHolderTextView.m in Sources */,
+				69A3758E1AAFF60F00AAE92B /* QRCameraSwitchButton.m in Sources */,
 				69156B5D15FD544700BC560A /* Settings.xcdatamodeld in Sources */,
 				69156B6015FD54AF00BC560A /* Bookmark.m in Sources */,
 				69156B6315FD54BC00BC560A /* Bridge.m in Sources */,
+				69A375911AAFF60F00AAE92B /* QRCodeReaderViewController.m in Sources */,
 				6954F8ED15FE985E00AE8658 /* NSData+CocoaDevUsersAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

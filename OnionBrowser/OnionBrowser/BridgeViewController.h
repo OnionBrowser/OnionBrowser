@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "QRCodeReaderViewController.h"
 
-@interface BridgeViewController : UIViewController
+@interface BridgeViewController : UIViewController <QRCodeReaderDelegate>
 
 - (void)qrscan;
 - (void)save;
