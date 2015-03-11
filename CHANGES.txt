@@ -24,6 +24,10 @@ Features subject to change.
 * Allow scanning QR code from bridges.torproject.org to set
   bridges. #56
 
+* On first run, allow user to configure bridges before trying to
+  launch Tor. Once Pluggable Transports are working, this will be
+  useful for users where Tor traffic looks suspicious. #57
+
 
 CURRENT VERSION:
 
