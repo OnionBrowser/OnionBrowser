@@ -106,6 +106,9 @@
     [self dismissViewControllerAnimated:YES completion:^{
         UIPlaceHolderTextView *txtView = (UIPlaceHolderTextView *)[self.view viewWithTag:50];
         txtView.text = result;
+
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Bridges Scanned" message:@"Successfully scanned bridges. Please press 'Save' and restart the app for these changes to take effect." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
     }];
 }
 
