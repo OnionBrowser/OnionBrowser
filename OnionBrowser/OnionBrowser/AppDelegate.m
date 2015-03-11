@@ -11,6 +11,12 @@
 #include <sys/types.h>
 #include <sys/sysctl.h>
 #import <sys/utsname.h>
+#import "BridgeViewController.h"
+
+@interface AppDelegate()
+- (Boolean)torrcExists;
+- (void)afterFirstRun;
+@end
 
 @implementation AppDelegate
 
@@ -96,10 +102,17 @@
     appWebView = [[WebViewController alloc] init];
     [_window setRootViewController:appWebView];
     [_window makeKeyAndVisible];
-    
-    [self updateTorrc];
-    _tor = [[TorController alloc] init];
-    [_tor startTor];
+
+    if (![self torrcExists]) {
+      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Welcome to Onion Browser"
+                                                      message:@"If you are in a location that blocks connections to Tor, you may configure bridges before trying to connect for the first time."
+                                                     delegate:self
+                                            cancelButtonTitle:@"Connect to Tor"
+                                            otherButtonTitles:@"Configure Bridges", nil];
+      [alert show];
+    } else {
+      [self afterFirstRun];
+    }
 
     sslWhitelistedDomains = [[NSMutableArray alloc] init];
     
@@ -125,6 +138,25 @@
     }
     
     return YES;
+}
+- (void) alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if ([actionSheet.title isEqualToString:@"Bridges"]) {
+        NSLog(@"%ld", (long)buttonIndex);
+        if (buttonIndex == 1) {
+          BridgeViewController *bridgesVC = [[BridgeViewController alloc] init];
+          UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:bridgesVC];
+          navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+          [_window.rootViewController presentViewController:navController animated:YES completion:nil];
+        } else {
+          [self afterFirstRun];
+        }
+    }
+}
+
+-(void) afterFirstRun {
+    [self updateTorrc];
+    _tor = [[TorController alloc] init];
+    [_tor startTor];
 }
 
 #pragma mark - Core Data stack
@@ -347,6 +379,12 @@
     } else {
         return 2;
     }
+}
+
+- (Boolean)torrcExists {
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *destTorrc = [[[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"torrc"] relativePath];
+    return [fileManager fileExistsAtPath:destTorrc];
 }
 
 - (void)updateTorrc {
