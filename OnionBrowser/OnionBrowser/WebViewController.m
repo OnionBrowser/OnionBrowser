@@ -11,7 +11,7 @@
 #import "BookmarkTableViewController.h"
 #import "SettingsTableViewController.h"
 #import "Bookmark.h"
-#import "BridgeTableViewController.h"
+#import "BridgeViewController.h"
 #import "NJKWebViewProgressView.h"
 #import "NSStringPunycodeAdditions.h"
 #import <objc/runtime.h>
@@ -822,18 +822,14 @@ const char AlertViewIncomingUrl;
 - (void)openOptionsMenu {
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     if (![appDelegate.tor didFirstConnect]) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Opening Bridge Configuration"
-                                                        message:@"This configuration is for advanced Tor users. It *may* help if you are having trouble getting past the initial \"Connecting...\" step.\n\nPlease visit the following link in another browser for instructions:\n\nhttp://onionbrowser.com/help/"
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Bridge Configuration"
+                                                        message:@"You can configure bridges here if your ISP normally blocks access to Tor.\n\nIf you did not mean to access the Bridge configuration, press \"Cancel\", then \"Restart App\", and then re-launch Onion Browser."
                                                        delegate:nil
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
         [alert show];
         
-        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-        
-        BridgeTableViewController *bridgesVC = [[BridgeTableViewController alloc] initWithStyle:UITableViewStylePlain];
-        [bridgesVC setManagedObjectContext:[appDelegate managedObjectContext]];
-        
+        BridgeViewController *bridgesVC = [[BridgeViewController alloc] init];
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:bridgesVC];
         navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
         [self presentViewController:navController animated:YES completion:nil];

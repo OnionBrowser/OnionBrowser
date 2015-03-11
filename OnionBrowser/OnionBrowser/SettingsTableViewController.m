@@ -8,7 +8,7 @@
 
 #import "SettingsTableViewController.h"
 #import "AppDelegate.h"
-#import "BridgeTableViewController.h"
+#import "BridgeViewController.h"
 
 @interface SettingsTableViewController ()
 
@@ -93,7 +93,7 @@
     else if (section == 5)
         return @"Minimum SSL/TLS protocol\nNewer TLS protocols are more secure, but might not be supported by all sites.";
     else if (section == 6)
-        return @"Tor Bridges\nSet up bridges if you have issues connecting to Tor. Remove all bridges to go back standard connection mode.\nSee http://onionbrowser.com/help/ for instructions.";
+        return @"Tor Bridges\nYou click below to configure bridges if your ISP normally blocks connctions to Tor.";
     else
         return nil;
 }
@@ -421,11 +421,7 @@
             [appDelegate saveSettings:settings];
         }
     } else if (indexPath.section == 6) {
-        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-
-        BridgeTableViewController *bridgesVC = [[BridgeTableViewController alloc] initWithStyle:UITableViewStylePlain];
-        [bridgesVC setManagedObjectContext:[appDelegate managedObjectContext]];
-        
+        BridgeViewController *bridgesVC = [[BridgeViewController alloc] init];
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:bridgesVC];
         navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
         [self presentViewController:navController animated:YES completion:nil];

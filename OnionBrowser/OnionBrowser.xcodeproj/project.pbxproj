@@ -7,11 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		69156B5415FD4C6400BC560A /* BridgeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69156B5315FD4C6400BC560A /* BridgeTableViewController.m */; };
 		69156B5D15FD544700BC560A /* Settings.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 69156B5B15FD544600BC560A /* Settings.xcdatamodeld */; };
 		69156B6015FD54AF00BC560A /* Bookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = 69156B5F15FD54AE00BC560A /* Bookmark.m */; };
 		69156B6315FD54BC00BC560A /* Bridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 69156B6215FD54BC00BC560A /* Bridge.m */; };
-		69156B6615FD599100BC560A /* BridgeEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69156B6515FD599100BC560A /* BridgeEditViewController.m */; };
 		691958D61536BA67000423A4 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 691958D41536B8AC000423A4 /* Reachability.m */; };
 		6924C29015526343004BE7F9 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6924C28F15526343004BE7F9 /* SettingsTableViewController.m */; };
 		6928942116F6741000C787B2 /* libcurve25519_donna.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6928942016F6741000C787B2 /* libcurve25519_donna.a */; };
@@ -63,6 +61,8 @@
 		69855E071531576800720327 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = 69855E061531576800720327 /* about.html */; };
 		699CCEBD14FA1939004A2F56 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 699CCEBC14FA1939004A2F56 /* libxml2.dylib */; };
 		69C6F6A514FACC3000894495 /* ProxyURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C6F6A414FACC3000894495 /* ProxyURLProtocol.m */; };
+		69E50FF81AAFDDF900CCADE5 /* BridgeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E50FF71AAFDDF900CCADE5 /* BridgeViewController.m */; };
+		69E50FFB1AAFE03900CCADE5 /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E50FFA1AAFE03900CCADE5 /* UIPlaceHolderTextView.m */; };
 		69E8A49D1981B59E00D84980 /* NSStringPunycodeAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E8A49C1981B59E00D84980 /* NSStringPunycodeAdditions.m */; };
 		69F3C5FD14FC8739008274C3 /* CKHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F3C5F814FC8739008274C3 /* CKHTTPConnection.m */; };
 		69F88FCC1500A9D900C7BE98 /* geoip in Resources */ = {isa = PBXBuildFile; fileRef = 69F88FCB1500A9D900C7BE98 /* geoip */; };
@@ -79,15 +79,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		69156B5215FD4C6400BC560A /* BridgeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgeTableViewController.h; sourceTree = "<group>"; };
-		69156B5315FD4C6400BC560A /* BridgeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BridgeTableViewController.m; sourceTree = "<group>"; };
 		69156B5C15FD544700BC560A /* Settings.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Settings.xcdatamodel; sourceTree = "<group>"; };
 		69156B5E15FD54AE00BC560A /* Bookmark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bookmark.h; sourceTree = "<group>"; };
 		69156B5F15FD54AE00BC560A /* Bookmark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bookmark.m; sourceTree = "<group>"; };
 		69156B6115FD54BC00BC560A /* Bridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bridge.h; sourceTree = "<group>"; };
 		69156B6215FD54BC00BC560A /* Bridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bridge.m; sourceTree = "<group>"; };
-		69156B6415FD599000BC560A /* BridgeEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgeEditViewController.h; sourceTree = "<group>"; };
-		69156B6515FD599100BC560A /* BridgeEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BridgeEditViewController.m; sourceTree = "<group>"; };
 		691958D31536B8AC000423A4 /* Reachability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		691958D41536B8AC000423A4 /* Reachability.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		6924C28E15526343004BE7F9 /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
@@ -157,6 +153,10 @@
 		699CCEBC14FA1939004A2F56 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		69C6F6A314FACC3000894495 /* ProxyURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProxyURLProtocol.h; path = ../ProxyURLProtocol.h; sourceTree = "<group>"; };
 		69C6F6A414FACC3000894495 /* ProxyURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProxyURLProtocol.m; path = ../ProxyURLProtocol.m; sourceTree = "<group>"; };
+		69E50FF61AAFDDF900CCADE5 /* BridgeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgeViewController.h; sourceTree = "<group>"; };
+		69E50FF71AAFDDF900CCADE5 /* BridgeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BridgeViewController.m; sourceTree = "<group>"; };
+		69E50FF91AAFE03900CCADE5 /* UIPlaceHolderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPlaceHolderTextView.h; sourceTree = "<group>"; };
+		69E50FFA1AAFE03900CCADE5 /* UIPlaceHolderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPlaceHolderTextView.m; sourceTree = "<group>"; };
 		69E8A49B1981B59E00D84980 /* NSStringPunycodeAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringPunycodeAdditions.h; sourceTree = "<group>"; };
 		69E8A49C1981B59E00D84980 /* NSStringPunycodeAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringPunycodeAdditions.m; sourceTree = "<group>"; };
 		69F3C5F714FC8739008274C3 /* CKHTTPConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CKHTTPConnection.h; path = ../ConnectionKit/CKHTTPConnection.h; sourceTree = "<group>"; };
@@ -298,12 +298,12 @@
 		696ECDE315FD4A6700F17494 /* Bridges */ = {
 			isa = PBXGroup;
 			children = (
-				69156B5215FD4C6400BC560A /* BridgeTableViewController.h */,
-				69156B5315FD4C6400BC560A /* BridgeTableViewController.m */,
 				69156B6115FD54BC00BC560A /* Bridge.h */,
 				69156B6215FD54BC00BC560A /* Bridge.m */,
-				69156B6415FD599000BC560A /* BridgeEditViewController.h */,
-				69156B6515FD599100BC560A /* BridgeEditViewController.m */,
+				69E50FF61AAFDDF900CCADE5 /* BridgeViewController.h */,
+				69E50FF71AAFDDF900CCADE5 /* BridgeViewController.m */,
+				69E50FF91AAFE03900CCADE5 /* UIPlaceHolderTextView.h */,
+				69E50FFA1AAFE03900CCADE5 /* UIPlaceHolderTextView.m */,
 			);
 			name = Bridges;
 			sourceTree = "<group>";
@@ -534,11 +534,11 @@
 				6940BD1F15F84C0C00FE74CB /* TorController.m in Sources */,
 				6963E61615FAB2EC00310E8D /* BookmarkTableViewController.m in Sources */,
 				692B338C15FAF2E500A23DD5 /* BookmarkEditViewController.m in Sources */,
-				69156B5415FD4C6400BC560A /* BridgeTableViewController.m in Sources */,
+				69E50FF81AAFDDF900CCADE5 /* BridgeViewController.m in Sources */,
+				69E50FFB1AAFE03900CCADE5 /* UIPlaceHolderTextView.m in Sources */,
 				69156B5D15FD544700BC560A /* Settings.xcdatamodeld in Sources */,
 				69156B6015FD54AF00BC560A /* Bookmark.m in Sources */,
 				69156B6315FD54BC00BC560A /* Bridge.m in Sources */,
-				69156B6615FD599100BC560A /* BridgeEditViewController.m in Sources */,
 				6954F8ED15FE985E00AE8658 /* NSData+CocoaDevUsersAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -624,11 +624,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OnionBrowser/OnionBrowser-Prefix.pch";
 				INFOPLIST_FILE = "OnionBrowser/OnionBrowser-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../dependencies/lib\"",
@@ -729,11 +731,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OnionBrowser/OnionBrowser-Prefix.pch";
 				INFOPLIST_FILE = "OnionBrowser/OnionBrowser-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../dependencies/lib\"",
@@ -749,11 +753,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OnionBrowser/OnionBrowser-Prefix.pch";
 				INFOPLIST_FILE = "OnionBrowser/OnionBrowser-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../dependencies/lib\"",
