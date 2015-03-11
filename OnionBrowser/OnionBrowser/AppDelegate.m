@@ -140,8 +140,8 @@
     return YES;
 }
 - (void) alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if ([actionSheet.title isEqualToString:@"Bridges"]) {
-        NSLog(@"%ld", (long)buttonIndex);
+    if ([actionSheet.title isEqualToString:@"Welcome to Onion Browser"]) {
+        //NSLog(@"%ld", (long)buttonIndex);
         if (buttonIndex == 1) {
           BridgeViewController *bridgesVC = [[BridgeViewController alloc] init];
           UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:bridgesVC];
