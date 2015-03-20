@@ -83,9 +83,7 @@ const char AlertViewIncomingUrl;
 }
 
 - (void)renderTorStatus: (NSString *)statusLine {
-    // TODO: really needs cleanup / prettiness
-    //       (turn into semi-transparent modal with spinner?)
-    UILabel *loadingStatus = (UILabel *)[self.view viewWithTag:kLoadingStatusTag];
+    UIWebView *loadingStatus = (UIWebView *)[self.view viewWithTag:kLoadingStatusTag];
 
     _torStatus = [NSString stringWithFormat:@"%@\n%@",
                   _torStatus, statusLine];
@@ -106,10 +104,51 @@ const char AlertViewIncomingUrl;
     if (summary_loc2.location != NSNotFound)
         summary_str = [summary_str substringToIndex:summary_loc2.location];
 
-    NSString *status = [NSString stringWithFormat:@"Connecting… %@%%\n%@\n\nIf this takes longer than a minute, please close and re-open the app.\n\nIf problem persists, you can try connecting via Tor bridges by\npressing the middle (settings)\nbutton below.\n\nVisit the site below if you need help\nwith bridges or if you continue\nto have issues:\nonionbrowser.com/help",
-                            progress_str,
-                            summary_str];
-    loadingStatus.text = status;
+    unsigned int fontsize = 12;
+    NSString *margintop = @"1.5em";
+    if (IS_IPHONE && ((unsigned long)[[UIScreen mainScreen] bounds].size.height < 568)) {
+      //NSLog(@"iPhone 4");
+      fontsize = 11;
+    } else if (IS_IPHONE && ((unsigned long)[[UIScreen mainScreen] bounds].size.height >= 667) && ((unsigned long)[[UIScreen mainScreen] bounds].size.height < 736)) {
+      //NSLog(@"iPhone 6");
+      fontsize = 13;
+      margintop = @"50px";
+    } else if (IS_IPHONE && ((unsigned long)[[UIScreen mainScreen] bounds].size.height >= 736)) {
+      //NSLog(@"iPhone 6+");
+      fontsize = 15;
+      margintop = @"50px";
+    } else if (IS_IPAD) {
+      //NSLog(@"iPad");
+      fontsize = 20;
+      margintop = @"80px";
+    }
+    //NSLog(@"%lu", (unsigned long)[[UIScreen mainScreen] bounds].size.height);
+
+    NSString *status = [NSString stringWithFormat:@""
+      "<html lang='en-us'><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'/><meta charset='utf-8' />"
+      "<style type='text/css'>body{font:%upt Helvetica;line-height:1.35em;margin-top:%@} "
+      "progress{background:#fff;border:0;height:18px;border-radius:9px;-webkit-appearance:none;appearance:none} "
+      "p{margin-bottom:1.5em}</style>"
+      "<meta name='viewport' content='width=300'/>"
+      "</head><body><div style='margin:0 0.5em;padding:0.5em 1em;border-radius:1em;background:#fafafa;border:1px solid #000'>"
+      "<p style='margin:0;padding:0;float:right;margin-top:0.5em;line-height:2em'>%@%%</p>"
+      "<p style='margin-top:1em'><span style='font-size:2em;font-weight:bold'>Connecting…</span></p>"
+      "<p>%@<br>"
+      "<progress max='100' value='%@' style='width:100%%'></progress><br></p>"
+      "<p>If this takes longer than a minute, please close and re-open the app.</p>"
+      "<p>If your ISP blocks connections to Tor, you may configure bridges by  "
+      "pressing the middle (settings) button at the bottom of the screen.</p>"
+      "<p>If you continue to have issues, go to:<br><b>onionbrowser.com/help</b>"
+      "</div></body></html>",
+      fontsize,
+      margintop,
+      progress_str,
+      summary_str,
+      progress_str];
+
+    //NSLog(@"%@", status);
+
+    [loadingStatus loadHTMLString:[status description] baseURL:nil];
 }
 
 -(void)askToLoadURL: (NSURL *)navigationURL {
@@ -398,18 +437,16 @@ const char AlertViewIncomingUrl;
     // Since this is first load: set up the overlay "loading..." bit that
     // will display tor initialization status.
     CGRect screenFrame = [[UIScreen mainScreen] applicationFrame];
-    UILabel *loadingStatus = [[UILabel alloc] initWithFrame:CGRectMake(0,
+    UIWebView *loadingStatus = [[UIWebView alloc] initWithFrame:CGRectMake(0,
                                                                        kNavBarHeight,
                                                                        screenFrame.size.width,
-                                                                       screenFrame.size.height-kNavBarHeight*2)];
+                                                                       screenFrame.size.height-kNavBarHeight*2.0)];
+    loadingStatus.opaque = NO;
+    loadingStatus.backgroundColor = [UIColor clearColor];
+
     [loadingStatus setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleRightMargin];
 
     loadingStatus.tag = kLoadingStatusTag;
-    loadingStatus.numberOfLines = 0;
-    loadingStatus.font = [UIFont fontWithName:@"Helvetica" size:(18.0)];
-    loadingStatus.lineBreakMode = NSLineBreakByWordWrapping;
-    loadingStatus.textAlignment =  NSTextAlignmentCenter;
-    loadingStatus.text = @"Connecting...\n\n\n\n\n";
     [self.view addSubview:loadingStatus];
     if (appDelegate.doPrepopulateBookmarks){
         [self prePopulateBookmarks];
