@@ -14,9 +14,8 @@ Features subject to change.
   encryption done by the iOS operating system, improving protection
   against forensic tools.
 
-===== 1.5.12 - Under Development =====
-Est. Release: March 2015
-Features subject to change.
+===== 1.5.12 - Pending App Store Approval =====
+Mar 20 2015 - Submit Date
 
 * Allow pasting in the bridges.torproject.org text blob to set
   bridges, like the Tor Browser launcher. #55
