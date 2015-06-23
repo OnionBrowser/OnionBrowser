@@ -315,10 +315,19 @@ AppDelegate *appDelegate;
 
 - (void)webView:(UIWebView *)__webView didFailLoadWithError:(NSError *)error
 {
-	if (error.code != NSURLErrorCancelled) {
-		UIAlertView *m = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:self cancelButtonTitle: @"Ok" otherButtonTitles:nil];
-		[m show];
-	}
+	if (error.domain == NSURLErrorDomain && error.code == NSURLErrorCancelled)
+		return;
+	
+	/* "The operation couldn't be completed. (Cocoa error 3072.)" - useless */
+	if (error.domain == NSCocoaErrorDomain && error.code == 3072)
+		return;
+
+#ifdef TRACE
+	NSLog(@"[Tab %@] showing error dialog: %@", self.tabIndex, error);
+#endif
+	
+	UIAlertView *m = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:self cancelButtonTitle: @"Ok" otherButtonTitles:nil];
+	[m show];
 	
 	[self webViewDidFinishLoad:__webView];
 }
