@@ -72,6 +72,28 @@ NSString *userAgent;
 	
 	if (wvt == nil) {
 		NSLog(@"[URLInterceptor] request for %@ with no matching WebViewTab! (main URL %@, UA hash %@)", [request URL], [request mainDocumentURL], wvthash);
+		
+		[client URLProtocol:self didFailWithError:[NSError errorWithDomain:NSCocoaErrorDomain code:NSUserCancelledError userInfo:nil]];
+
+		if (![[[[request URL] scheme] lowercaseString] isEqualToString:@"http"] && ![[[[request URL] scheme] lowercaseString] isEqualToString:@"https"]) {
+			if ([[UIApplication sharedApplication] canOpenURL:[request URL]]) {
+				UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Open In External App" message:[NSString stringWithFormat:@"Allow URL to be opened by external app? This may compromise your privacy.\n\n%@", [request URL]] preferredStyle:UIAlertControllerStyleAlert];
+				
+				UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK action") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+#ifdef TRACE
+					NSLog(@"[URLInterceptor] opening in 3rd party app: %@", [request URL]);
+#endif
+					[[UIApplication sharedApplication] openURL:[request URL]];
+				}];
+				
+				UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", @"Cancel action") style:UIAlertActionStyleCancel handler:nil];
+				[alertController addAction:cancelAction];
+				[alertController addAction:okAction];
+				
+				[[appDelegate webViewController] presentViewController:alertController animated:YES completion:nil];
+			}
+		}
+		
 		return nil;
 	}
 	
@@ -113,7 +135,7 @@ NSString *userAgent;
 		}
 	}
 	
-	/* check HSTS cache first to see if scheme needs upgraded */
+	/* check HSTS cache first to see if scheme needs upgrading */
 	[newRequest setURL:[[appDelegate hstsCache] rewrittenURI:[[self request] URL]]];
 
 	/* then check HTTPS Everywhere (must pass all URLs since some rules are not just scheme changes */
