@@ -175,12 +175,13 @@ AppDelegate *appDelegate;
 		else if ([[key lowercaseString] isEqualToString:@"includesubdomains"]) {
 			[params setObject:@YES forKey:HSTS_KEY_ALLOW_SUBDOMAINS];
 		}
-		else if ([[key lowercaseString] isEqualToString:@"preload"]) {
+		else if ([[key lowercaseString] isEqualToString:@"preload"] ||
+			 [[key lowercaseString] isEqualToString:@""]) {
 			/* ignore */
 		}
 		else {
 #ifdef TRACE_HSTS
-			NSLog(@"[HSTSCache] [%@] unknown parameter %@", host, key);
+			NSLog(@"[HSTSCache] [%@] unknown parameter \"%@\"", host, key);
 #endif
 		}
 	}
