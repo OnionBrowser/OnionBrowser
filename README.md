@@ -1,9 +1,9 @@
 ###Endless
 
 A (Mobile)Safari-like web browser for iOS (wrapping around UIWebView, of
-course) with a design goal of increased security and privacy.
-
-Now available in the [App Store](https://itunes.apple.com/us/app/endless-browser/id974745755?mt=8).
+course) with a design goal of increased security and privacy.  Current builds
+are available for free in the
+[App Store](https://itunes.apple.com/us/app/endless-browser/id974745755?mt=8).
 
 ![https://i.imgur.com/ABftci1l.png](https://i.imgur.com/ABftci1l.png) ![https://i.imgur.com/6HsCQn3l.png](https://i.imgur.com/6HsCQn3l.png)
 
@@ -19,7 +19,7 @@ Now available in the [App Store](https://itunes.apple.com/us/app/endless-browser
   automatically opening new tab windows, but blocks calls not made via user
   interaction events (similar to most desktop browser popup blockers)
 
-- Search from URL bar with Google or DDG
+- Search from URL bar with DDG, Google, or Startpage
 
 #####Security and privacy-focused features implemented:
 
