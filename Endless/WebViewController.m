@@ -654,23 +654,17 @@
 	if (![enteredURL scheme] || [[enteredURL scheme] isEqualToString:@""]) {
 		/* no scheme so if it has a space or no dots, assume it's a search query */
 		if ([urlField.text containsString:@" "] || ![urlField.text containsString:@"."]) {
-			NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-			NSDictionary *se = [[appDelegate searchEngines] objectForKey:[userDefaults stringForKey:@"search_engine"]];
-			
-			enteredURL = [NSURL URLWithString:[[NSString stringWithFormat:[se objectForKey:@"search_url"], urlField.text] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+			[[self curWebViewTab] searchFor:[urlField text]];
+			enteredURL = nil;
 		}
-		else {
+		else
 			enteredURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@", urlField.text]];
-		}
-		
-#ifdef TRACE
-		NSLog(@"typed URL transformed to %@", enteredURL);
-#endif
 	}
 	
 	[urlField resignFirstResponder]; /* will unfocus and call textFieldDidEndEditing */
 
-	[[self curWebViewTab] loadURL:enteredURL];
+	if (enteredURL != nil)
+		[[self curWebViewTab] loadURL:enteredURL];
 	
 	return NO;
 }

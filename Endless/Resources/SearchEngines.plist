@@ -20,5 +20,19 @@
 		<key>autocomplete_url</key>
 		<string>https://www.google.com/complete/search?client=firefox&amp;q=%@</string>
 	</dict>
+	<key>Startpage</key>
+	<dict>
+		<key>search_url</key>
+		<string>https://startpage.com/do/search</string>
+		<key>homepage_url</key>
+		<string>https://startpage.com/</string>
+		<key>autocomplete_url</key>
+		<string>https://startpage.com/do/suggest?query=%@&amp;format=plain</string>
+		<key>post_params</key>
+		<dict>
+			<key>query</key>
+			<string>%@</string>
+		</dict>
+	</dict>
 </dict>
 </plist>

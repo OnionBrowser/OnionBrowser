@@ -182,6 +182,60 @@ AppDelegate *appDelegate;
 	[self.webView loadRequest:ur];
 }
 
+- (void)searchFor:(NSString *)query
+{
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	NSDictionary *se = [[appDelegate searchEngines] objectForKey:[userDefaults stringForKey:@"search_engine"]];
+	
+	if (se == nil)
+		/* just pick the first search engine */
+		se = [[appDelegate searchEngines] objectForKey:[[[appDelegate searchEngines] allKeys] firstObject]];
+	
+	NSDictionary *pp = [se objectForKey:@"post_params"];
+	NSString *urls;
+	if (pp == nil)
+		urls = [[NSString stringWithFormat:[se objectForKey:@"search_url"], query] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+	else
+		urls = [se objectForKey:@"search_url"];
+	
+	NSURL *url = [NSURL URLWithString:urls];
+	if (pp == nil) {
+#ifdef TRACE
+		NSLog(@"[Tab %@] searching via %@", self.tabIndex, url);
+#endif
+		[self loadURL:url];
+	}
+	else {
+		/* need to send this as a POST, so build our key val pairs */
+		NSMutableString *params = [NSMutableString stringWithFormat:@""];
+		for (NSString *key in [pp allKeys]) {
+			if (![params isEqualToString:@""])
+				[params appendString:@"&"];
+			
+			[params appendString:[key stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+			[params appendString:@"="];
+			
+			NSString *val = [pp objectForKey:key];
+			if ([val isEqualToString:@"%@"])
+				val = [query stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+			[params appendString:val];
+		}
+		
+		[self.webView stopLoading];
+		[self prepareForNewURL:url];
+		
+#ifdef TRACE
+		NSLog(@"[Tab %@] searching via POST to %@ (with params %@)", self.tabIndex, url, params);
+#endif
+
+		NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
+		[request setHTTPMethod:@"POST"];
+		[request setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
+		[self.webView loadRequest:request];
+	}
+}
+
+
 /* this will only fire for top-level requests, not page elements */
 - (BOOL)webView:(UIWebView *)__webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {

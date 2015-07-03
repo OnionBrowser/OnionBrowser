@@ -38,6 +38,7 @@ typedef NS_ENUM(NSInteger, WebViewTabSecureMode) {
 - (void)close;
 - (void)updateFrame:(CGRect)frame;
 - (void)loadURL:(NSURL *)u;
+- (void)searchFor:(NSString *)query;
 - (BOOL)canGoBack;
 - (BOOL)canGoForward;
 - (void)goBack;

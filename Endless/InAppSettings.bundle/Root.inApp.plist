@@ -11,11 +11,13 @@
 			<array>
 				<string>DuckDuckGo</string>
 				<string>Google</string>
+				<string>Startpage</string>
 			</array>
 			<key>Titles</key>
 			<array>
 				<string>DuckDuckGo</string>
 				<string>Google</string>
+				<string>Startpage</string>
 			</array>
 			<key>Key</key>
 			<string>search_engine</string>
