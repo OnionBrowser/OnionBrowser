@@ -93,6 +93,8 @@
 	[urlField setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
 	[urlField setLeftViewMode:UITextFieldViewModeAlways];
 	[urlField setSpellCheckingType:UITextSpellCheckingTypeNo];
+	[urlField setAutocorrectionType:UITextAutocorrectionTypeNo];
+	[urlField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
 	[urlField setDelegate:self];
 	[toolbar addSubview:urlField];
 	
