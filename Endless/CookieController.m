@@ -6,6 +6,7 @@
 AppDelegate *appDelegate;
 NSMutableArray *whitelistHosts;
 NSMutableArray *sortedCookieHosts;
+NSString *firstMatch;
 
 enum {
 	CookieSectionWhitelist,
@@ -26,6 +27,16 @@ enum {
 
 	self.title = @"Cookies";
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addItem:)];
+	
+	/* most likely the user is wanting to whitelist the site they are currently on, so feed that as a reasonable default the first time around */
+	if ([[appDelegate webViewController] curWebViewTab] != nil) {
+		NSURL *t = [[[appDelegate webViewController] curWebViewTab] url];
+		if (t != nil && [t host] != nil) {
+			NSRegularExpression *r = [NSRegularExpression regularExpressionWithPattern:@"^www\\." options:NSRegularExpressionCaseInsensitive error:nil];
+			
+			firstMatch = [r stringByReplacingMatchesInString:[t host] options:0 range:NSMakeRange(0, [[t host] length]) withTemplate:@""];
+		}
+	}
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -149,6 +160,9 @@ enum {
 	UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Cookie whitelist" message:@"Enter the full hostname or domain to whitelist" preferredStyle:UIAlertControllerStyleAlert];
 	[alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
 		textField.placeholder = @"example.com";
+		
+		if (firstMatch != nil)
+			textField.text = firstMatch;
 	}];
 	
 	UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK action") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
@@ -164,6 +178,8 @@ enum {
 	[alertController addAction:okAction];
 	
 	[self presentViewController:alertController animated:YES completion:nil];
+	
+	firstMatch = nil;
 }
 
 @end
