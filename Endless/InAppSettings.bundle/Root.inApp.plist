@@ -6,7 +6,13 @@
 	<array>
 		<dict>
 			<key>Title</key>
-			<string>Toolbar on Bottom</string>
+			<string>User Interface</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>Toolbar on bottom</string>
 			<key>Key</key>
 			<string>toolbar_on_bottom</string>
 			<key>Type</key>
@@ -36,7 +42,7 @@
 		</dict>
 		<dict>
 			<key>Title</key>
-			<string></string>
+			<string>Privacy</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>FooterText</key>
@@ -95,6 +101,22 @@
 		<dict>
 			<key>Title</key>
 			<string></string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>Key</key>
+			<string>clear_on_background</string>
+			<key>Title</key>
+			<string>Clear all when backgrounded</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>DefaultValue</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>Miscellaneous</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>

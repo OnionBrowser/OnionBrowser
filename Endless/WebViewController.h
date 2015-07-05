@@ -7,9 +7,14 @@
 
 - (NSMutableArray *)webViewTabs;
 - (__strong WebViewTab *)curWebViewTab;
+
+- (void)viewIsVisible;
+
 - (WebViewTab *)addNewTabForURL:(NSURL *)url;
 - (void)removeTab:(NSNumber *)tabNumber andFocusTab:(NSNumber *)toFocus;
 - (void)removeTab:(NSNumber *)tabNumber;
+- (void)removeAllTabs;
+
 - (void)webViewTouched;
 - (void)updateProgress;
 - (void)updateSearchBarDetails;

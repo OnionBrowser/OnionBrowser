@@ -37,15 +37,23 @@ NSString *const STATE_RESTORE_TRY_KEY = @"state_restore_lock";
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+
 	[[self cookieJar] persist];
 	[[self hstsCache] persist];
 	
-	[[self cookieJar] clearAllOldNonWhitelistedData];
+	if ([userDefaults boolForKey:@"clear_on_background"]) {
+		[[self webViewController] removeAllTabs];
+		[[self cookieJar] clearAllNonWhitelistedData];
+	}
+	else
+		[[self cookieJar] clearAllOldNonWhitelistedData];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
 	// Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+	[[self webViewController] viewIsVisible];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
@@ -87,6 +95,10 @@ NSString *const STATE_RESTORE_TRY_KEY = @"state_restore_lock";
 
 - (BOOL)application:(UIApplication *)application shouldSaveApplicationState:(NSCoder *)coder
 {
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	if ([userDefaults boolForKey:@"clear_on_background"])
+		return NO;
+
 	return YES;
 }
 

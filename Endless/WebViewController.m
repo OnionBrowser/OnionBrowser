@@ -246,11 +246,18 @@
 	/* we made it this far, remove lock on previous startup */
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	[userDefaults removeObjectForKey:STATE_RESTORE_TRY_KEY];
-	
+	[userDefaults synchronize];
+
+	[self viewIsVisible];
+}
+
+/* called when we've become visible (possibly again, from app delegate applicationDidBecomeActive) */
+- (void)viewIsVisible
+{
 	if (webViewTabs.count == 0) {
 		NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 		NSDictionary *se = [[appDelegate searchEngines] objectForKey:[userDefaults stringForKey:@"search_engine"]];
-
+		
 		[self addNewTabForURL:[NSURL URLWithString:[se objectForKey:@"homepage_url"]]];
 	}
 }
@@ -524,6 +531,22 @@
 			[self showTabs:nil];
 		}];
 	}];
+}
+
+- (void)removeAllTabs
+{
+	curTabIndex = 0;
+
+	for (int i = 0; i < webViewTabs.count; i++) {
+		WebViewTab *wvt = (WebViewTab *)webViewTabs[i];
+		[[wvt viewHolder] removeFromSuperview];
+		[wvt close];
+	}
+	
+	[webViewTabs removeAllObjects];
+	[tabChooser setNumberOfPages:0];
+
+	[self updateSearchBarDetails];
 }
 
 - (void)updateSearchBarDetails
