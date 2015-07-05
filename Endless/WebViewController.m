@@ -19,6 +19,7 @@
 	NSMutableArray *webViewTabs;
 	
 	UIView *toolbar;
+	BOOL toolbarOnBottom;
 	UITextField *urlField;
 	UIImageView *lockIcon;
 	UIImageView *brokenLockIcon;
@@ -26,6 +27,7 @@
 	UIProgressView *progressBar;
 	UIToolbar *tabToolbar;
 	UILabel *tabCount;
+	int keyboardHeight;
 	
 	UIButton *backButton;
 	UIButton *forwardButton;
@@ -46,6 +48,8 @@
 
 - (void)loadView
 {
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+
 	appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 	[appDelegate setWebViewController:self];
 	
@@ -63,8 +67,12 @@
 	[[self view] addSubview:tabScroller];
 	
 	toolbar = [[UIView alloc] init];
+	[toolbar setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
 	[toolbar setClipsToBounds:YES];
 	[[self view] addSubview:toolbar];
+	
+	toolbarOnBottom = [userDefaults boolForKey:@"toolbar_on_bottom"];
+	keyboardHeight = 0;
 	
 	progressBar = [[UIProgressView alloc] init];
 	[progressBar setTrackTintColor:[UIColor clearColor]];
@@ -164,8 +172,11 @@
 			    tabDoneButton,
 			    nil];
 	
-	[self adjustLayoutToSize:CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height)];
-	
+	NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+	[center addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+	[center addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+
+	[self adjustLayoutToSize:CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height + STATUSBAR_HEIGHT)];
 	[self updateSearchBarDetails];
 	
 	[self.view.window makeKeyAndVisible];
@@ -240,6 +251,18 @@
 	}
 }
 
+- (void)keyboardWillShow:(NSNotification *)notification {
+	CGRect rect = [[[notification userInfo] valueForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
+	keyboardHeight = rect.size.height;
+
+	[self adjustLayoutToSize:CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height)];
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification {
+	keyboardHeight = 0;
+	[self adjustLayoutToSize:CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height)];
+}
+
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
 {
 	[super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
@@ -259,7 +282,11 @@
 	self.view.frame = CGRectMake(0, 0, size.width, size.height);
 	float y = ((TOOLBAR_HEIGHT - TOOLBAR_BUTTON_SIZE) / 2);
 	
-	toolbar.frame = tabToolbar.frame = CGRectMake(0, STATUSBAR_HEIGHT, size.width, TOOLBAR_HEIGHT);
+	if (toolbarOnBottom)
+		toolbar.frame = tabToolbar.frame = CGRectMake(0, size.height - TOOLBAR_HEIGHT - keyboardHeight, size.width, TOOLBAR_HEIGHT + keyboardHeight);
+	else
+		toolbar.frame = tabToolbar.frame = CGRectMake(0, STATUSBAR_HEIGHT, size.width, TOOLBAR_HEIGHT);
+	
 	backButton.frame = CGRectMake(TOOLBAR_PADDING, y, TOOLBAR_BUTTON_SIZE, TOOLBAR_BUTTON_SIZE);
 	forwardButton.frame = CGRectMake(backButton.frame.origin.x + backButton.frame.size.width + TOOLBAR_PADDING, y, TOOLBAR_BUTTON_SIZE, TOOLBAR_BUTTON_SIZE);
 	
@@ -268,8 +295,15 @@
 	tabCount.frame = CGRectMake(tabsButton.frame.origin.x + 6, tabsButton.frame.origin.y + 12, 14, 10);
 	urlField.frame = [self frameForUrlField];
 	
-	progressBar.frame = CGRectMake(0, toolbar.frame.size.height - 2, toolbar.frame.size.width, 2);
-	tabChooser.frame = CGRectMake(0, size.height - 24, size.width, 24);
+	if (toolbarOnBottom) {
+		progressBar.frame = CGRectMake(0, 0, toolbar.frame.size.width, 2);
+		tabChooser.frame = CGRectMake(0, size.height - 24 - TOOLBAR_HEIGHT, size.width, 24);
+	}
+	else {
+		progressBar.frame = CGRectMake(0, toolbar.frame.size.height - 2, toolbar.frame.size.width, 2);
+		tabChooser.frame = CGRectMake(0, size.height - 24, size.width, 24);
+	}
+
 	tabScroller.frame = CGRectMake(0, 0, size.width, size.height);
 
 	for (int i = 0; i < webViewTabs.count; i++) {
@@ -282,6 +316,7 @@
 	
 	[self.view setNeedsDisplay];
 }
+
 - (CGRect)frameForTabIndex:(NSUInteger)number
 {
 	return [self frameForTabIndex:number withSize:CGSizeMake(0, 0)];
@@ -296,7 +331,10 @@
 		screenHeight = [UIScreen mainScreen].applicationFrame.size.height;
 	}
 	
-	return CGRectMake((screenWidth * number), TOOLBAR_HEIGHT + STATUSBAR_HEIGHT, screenWidth, screenHeight - TOOLBAR_HEIGHT);
+	if (toolbarOnBottom)
+		return CGRectMake((screenWidth * number), STATUSBAR_HEIGHT, screenWidth, screenHeight - TOOLBAR_HEIGHT);
+	else
+		return CGRectMake((screenWidth * number), TOOLBAR_HEIGHT + STATUSBAR_HEIGHT, screenWidth, screenHeight - TOOLBAR_HEIGHT);
 }
 
 - (CGRect)frameForUrlField
@@ -377,7 +415,7 @@
 		[wvt zoomOut];
 	
 	void (^swapToTab)(BOOL) = ^(BOOL finished) {
-		[self setCurTabIndex:webViewTabs.count - 1];
+		[self setCurTabIndex:(int)webViewTabs.count - 1];
 		
 		[self slideToCurrentTabWithCompletionBlock:^(BOOL finished) {
 			if (url != nil)
@@ -719,7 +757,7 @@
 	[popover.theme setOverlayColor:[UIColor clearColor]];
 	[popover endThemeUpdates];
 	
-	[popover presentPopoverFromRect:CGRectMake(settingsButton.frame.origin.x, settingsButton.frame.origin.y + settingsButton.frame.size.height - 15, settingsButton.frame.size.width, settingsButton.frame.size.height) inView:self.view permittedArrowDirections:WYPopoverArrowDirectionAny animated:YES options:WYPopoverAnimationOptionFadeWithScale];
+	[popover presentPopoverFromRect:CGRectMake(settingsButton.frame.origin.x, toolbar.frame.origin.y + settingsButton.frame.origin.y + settingsButton.frame.size.height - 30, settingsButton.frame.size.width, settingsButton.frame.size.height) inView:self.view permittedArrowDirections:WYPopoverArrowDirectionAny animated:YES options:WYPopoverAnimationOptionFadeWithScale];
 }
 
 - (void)dismissPopover
@@ -740,6 +778,12 @@
 	[URLInterceptor setSendDNT:[userDefaults boolForKey:@"send_dnt"]];
 	[URLInterceptor setBlockIntoLocalNets:[userDefaults boolForKey:@"block_into_local_nets"]];
 	[[appDelegate cookieJar] setOldDataSweepTimeout:[NSNumber numberWithInteger:[userDefaults integerForKey:@"old_data_sweep_mins"]]];
+	
+	BOOL oldtob = toolbarOnBottom;
+	toolbarOnBottom = [userDefaults boolForKey:@"toolbar_on_bottom"];
+	
+	if (oldtob != toolbarOnBottom)
+		[self adjustLayoutToSize:CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height)];
 }
 
 - (void)showTabs:(id)_id

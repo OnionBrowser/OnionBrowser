@@ -5,6 +5,14 @@
 	<key>PreferenceSpecifiers</key>
 	<array>
 		<dict>
+			<key>Title</key>
+			<string>Toolbar on Bottom</string>
+			<key>Key</key>
+			<string>toolbar_on_bottom</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
 			<key>DefaultValue</key>
 			<string>DuckDuckGo</string>
 			<key>Values</key>
@@ -25,16 +33,6 @@
 			<string>Search Engine</string>
 			<key>Type</key>
 			<string>PSMultiValueSpecifier</string>
-		</dict>
-		<dict>
-			<key>Key</key>
-			<string>send_dnt</string>
-			<key>Title</key>
-			<string>Send Do-Not-Track</string>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-			<key>DefaultValue</key>
-			<true/>
 		</dict>
 		<dict>
 			<key>Title</key>
@@ -73,6 +71,16 @@
 			<string>PSGroupSpecifier</string>
 			<key>FooterText</key>
 			<string>When enabled, URLs loaded from the internet will be blocked from loading page elements or making requests to LAN hosts (192.168.0.0/16, 172.16.0.0/12, etc.)</string>
+		</dict>
+		<dict>
+			<key>Key</key>
+			<string>send_dnt</string>
+			<key>Title</key>
+			<string>Send Do-Not-Track</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>DefaultValue</key>
+			<true/>
 		</dict>
 		<dict>
 			<key>Key</key>
