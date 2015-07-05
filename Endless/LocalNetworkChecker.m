@@ -51,8 +51,7 @@ static NSMutableDictionary *dnsCache;
 		if (address == nil)
 			return nil;
 		
-		getnameinfo(address, address->sa_len, ipAddress, INET6_ADDRSTRLEN, nil, 0, NI_NUMERICHOST);
-		if (ipAddress == nil)
+		if (getnameinfo(address, address->sa_len, ipAddress, INET6_ADDRSTRLEN, nil, 0, NI_NUMERICHOST) != 0)
 			return nil;
 		
 		[addresses addObject:[NSString stringWithCString:ipAddress encoding:NSASCIIStringEncoding]];
