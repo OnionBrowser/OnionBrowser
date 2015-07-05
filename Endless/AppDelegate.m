@@ -4,6 +4,8 @@
 
 @implementation AppDelegate
 
+NSString *const STATE_RESTORE_TRY_KEY = @"state_restore_lock";
+
 - (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 	[NSURLProtocol registerClass:[URLInterceptor class]];
@@ -59,6 +61,18 @@
 
 - (BOOL)application:(UIApplication *)application shouldRestoreApplicationState:(NSCoder *)coder
 {
+	/* if we tried last time and failed, the state might be corrupt */
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	if ([userDefaults objectForKey:STATE_RESTORE_TRY_KEY] != nil) {
+		NSLog(@"previous startup failed, not restoring application state");
+		[userDefaults removeObjectForKey:STATE_RESTORE_TRY_KEY];
+		return NO;
+	}
+	else
+		[userDefaults setBool:@YES forKey:STATE_RESTORE_TRY_KEY];
+	
+	[userDefaults synchronize];
+
 	NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey];
 	NSString *storedVersion = [coder decodeObjectForKey:UIApplicationStateRestorationBundleVersionKey];
 	if (![version isEqualToString:storedVersion]) {

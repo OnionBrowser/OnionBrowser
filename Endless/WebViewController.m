@@ -243,6 +243,10 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+	/* we made it this far, remove lock on previous startup */
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	[userDefaults removeObjectForKey:STATE_RESTORE_TRY_KEY];
+	
 	if (webViewTabs.count == 0) {
 		NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 		NSDictionary *se = [[appDelegate searchEngines] objectForKey:[userDefaults stringForKey:@"search_engine"]];
