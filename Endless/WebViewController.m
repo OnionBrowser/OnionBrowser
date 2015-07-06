@@ -469,7 +469,7 @@
 	WebViewTab *wvt = (WebViewTab *)webViewTabs[tabNumber.intValue];
 	
 #ifdef TRACE
-	NSLog(@"removing tab %@ (%@)", tabNumber, wvt.title.text);
+	NSLog(@"removing tab %@ (%@) and focusing %@", tabNumber, wvt.title.text, toFocus);
 #endif
 	int futureFocusNumber = toFocus.intValue;
 	if (futureFocusNumber > -1) {
@@ -503,8 +503,9 @@
 			}
 			else {
 				/* no tabs left, add one and zoom out */
-				[self addNewTabForURL:nil];
-				[urlField becomeFirstResponder];
+				[self addNewTabForURL:nil forRestoration:false withCompletionBlock:^(BOOL finished) {
+					[urlField becomeFirstResponder];
+				}];
 				return;
 			}
 		}
