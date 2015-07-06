@@ -19,7 +19,6 @@
 	NSMutableArray *webViewTabs;
 	
 	UIView *toolbar;
-	BOOL toolbarOnBottom;
 	UITextField *urlField;
 	UIImageView *lockIcon;
 	UIImageView *brokenLockIcon;
@@ -71,7 +70,7 @@
 	[toolbar setClipsToBounds:YES];
 	[[self view] addSubview:toolbar];
 	
-	toolbarOnBottom = [userDefaults boolForKey:@"toolbar_on_bottom"];
+	self.toolbarOnBottom = [userDefaults boolForKey:@"toolbar_on_bottom"];
 	keyboardHeight = 0;
 	
 	progressBar = [[UIProgressView alloc] init];
@@ -293,7 +292,7 @@
 	self.view.frame = CGRectMake(0, 0, size.width, size.height);
 	float y = ((TOOLBAR_HEIGHT - TOOLBAR_BUTTON_SIZE) / 2);
 	
-	if (toolbarOnBottom)
+	if (self.toolbarOnBottom)
 		toolbar.frame = tabToolbar.frame = CGRectMake(0, size.height - TOOLBAR_HEIGHT - keyboardHeight, size.width, TOOLBAR_HEIGHT + keyboardHeight);
 	else
 		toolbar.frame = tabToolbar.frame = CGRectMake(0, STATUSBAR_HEIGHT, size.width, TOOLBAR_HEIGHT);
@@ -306,7 +305,7 @@
 	tabCount.frame = CGRectMake(tabsButton.frame.origin.x + 6, tabsButton.frame.origin.y + 12, 14, 10);
 	urlField.frame = [self frameForUrlField];
 	
-	if (toolbarOnBottom) {
+	if (self.toolbarOnBottom) {
 		progressBar.frame = CGRectMake(0, 0, toolbar.frame.size.width, 2);
 		tabChooser.frame = CGRectMake(0, size.height - 24 - TOOLBAR_HEIGHT, size.width, 24);
 	}
@@ -342,7 +341,7 @@
 		screenHeight = [UIScreen mainScreen].applicationFrame.size.height;
 	}
 	
-	if (toolbarOnBottom)
+	if (self.toolbarOnBottom)
 		return CGRectMake((screenWidth * number), STATUSBAR_HEIGHT, screenWidth, screenHeight - TOOLBAR_HEIGHT);
 	else
 		return CGRectMake((screenWidth * number), TOOLBAR_HEIGHT + STATUSBAR_HEIGHT, screenWidth, screenHeight - TOOLBAR_HEIGHT);
@@ -807,10 +806,10 @@
 	[URLInterceptor setBlockIntoLocalNets:[userDefaults boolForKey:@"block_into_local_nets"]];
 	[[appDelegate cookieJar] setOldDataSweepTimeout:[NSNumber numberWithInteger:[userDefaults integerForKey:@"old_data_sweep_mins"]]];
 	
-	BOOL oldtob = toolbarOnBottom;
-	toolbarOnBottom = [userDefaults boolForKey:@"toolbar_on_bottom"];
+	BOOL oldtob = self.toolbarOnBottom;
+	self.toolbarOnBottom = [userDefaults boolForKey:@"toolbar_on_bottom"];
 	
-	if (oldtob != toolbarOnBottom)
+	if (self.toolbarOnBottom != oldtob)
 		[self adjustLayoutToSize:CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height)];
 }
 
