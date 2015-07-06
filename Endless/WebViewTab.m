@@ -476,7 +476,7 @@ AppDelegate *appDelegate;
 	[_title setHidden:true];
 	[_closer setHidden:true];
 	[[[self viewHolder] layer] setShadowOpacity:0];
-	[[self viewHolder] setTransform:CGAffineTransformMakeScale(1.0, 1.0)];
+	[[self viewHolder] setTransform:CGAffineTransformIdentity];
 }
 
 @end

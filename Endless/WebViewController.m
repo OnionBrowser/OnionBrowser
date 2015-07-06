@@ -519,7 +519,7 @@
 		for (int i = 0; i < webViewTabs.count; i++) {
 			WebViewTab *wvt = webViewTabs[i];
 			
-			wvt.viewHolder.transform = CGAffineTransformMakeScale(1.0, 1.0);
+			wvt.viewHolder.transform = CGAffineTransformIdentity;
 			wvt.viewHolder.frame = [self frameForTabIndex:i];
 			wvt.viewHolder.transform = CGAffineTransformMakeScale(ZOOM_OUT_SCALE, ZOOM_OUT_SCALE);
 		}
