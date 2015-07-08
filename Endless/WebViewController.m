@@ -903,6 +903,8 @@
 
 - (void)slideToCurrentTabWithCompletionBlock:(void(^)(BOOL))block
 {
+	[self updateProgress];
+
 	[UIView animateWithDuration:0.25 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
 		[tabScroller setContentOffset:CGPointMake([self frameForTabIndex:curTabIndex].origin.x, 0) animated:NO];
 	} completion:block];
