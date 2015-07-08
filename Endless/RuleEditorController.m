@@ -7,14 +7,14 @@ UISearchDisplayController *searchDisplayController;
 - (id)initWithStyle:(UITableViewStyle)style
 {
 	self = [super initWithStyle:style];
-	if (self) {
-		self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-		
-		self.sortedRuleNames = [[NSMutableArray alloc] init];
-		self.inUseRuleNames = [[NSMutableArray alloc] init];
 	
-		self.searchResult = [[NSMutableArray alloc] init];
-	}
+	self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+	
+	self.sortedRuleNames = [[NSMutableArray alloc] init];
+	self.inUseRuleNames = [[NSMutableArray alloc] init];
+
+	self.searchResult = [[NSMutableArray alloc] init];
+	
 	return self;
 }
 

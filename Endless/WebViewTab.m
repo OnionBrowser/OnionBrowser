@@ -243,7 +243,6 @@ AppDelegate *appDelegate;
 	}
 }
 
-
 /* this will only fire for top-level requests, not page elements */
 - (BOOL)webView:(UIWebView *)__webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {

@@ -71,9 +71,8 @@ enum WebViewMenuButton {
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"button"];
 	long ruleCount;
 
-	if (cell == nil) {
+	if (cell == nil)
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"button"];
-	}
 	
 	cell.backgroundColor = [UIColor clearColor];
 	cell.textLabel.font = [UIFont systemFontOfSize:13];
@@ -157,18 +156,15 @@ enum WebViewMenuButton {
 {
 	CookieController *cc = [[CookieController alloc] init];
 	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:cc];
-
-	UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:navController action:@selector(dismissModalViewControllerAnimated:)];
-	cc.navigationItem.leftBarButtonItem = doneButton;
-
 	[[appDelegate webViewController] presentViewController:navController animated:YES completion:nil];
 }
 
 - (void)menuHTTPSEverywhere
 {
 	HTTPSEverywhereRuleController *herc = [[HTTPSEverywhereRuleController alloc] init];
-	
 	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:herc];
+	[[appDelegate webViewController] presentViewController:navController animated:YES completion:nil];
+}
 
 	UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:navController action:@selector(dismissModalViewControllerAnimated:)];
 	herc.navigationItem.leftBarButtonItem = doneButton;

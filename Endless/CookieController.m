@@ -27,7 +27,8 @@ enum {
 
 	self.title = @"Cookies";
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addItem:)];
-	
+	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self.navigationController action:@selector(dismissModalViewControllerAnimated:)];
+
 	/* most likely the user is wanting to whitelist the site they are currently on, so feed that as a reasonable default the first time around */
 	if ([[appDelegate webViewController] curWebViewTab] != nil) {
 		NSURL *t = [[[appDelegate webViewController] curWebViewTab] url];
@@ -87,10 +88,8 @@ enum {
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cookie"];
-	
-	if (cell == nil) {
+	if (cell == nil)
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cookie"];
-	}
 	
 	switch (indexPath.section) {
 	case CookieSectionWhitelist:
