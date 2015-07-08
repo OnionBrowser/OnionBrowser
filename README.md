@@ -21,6 +21,8 @@ are available for free in the
 
 - Search from URL bar with DDG, Google, or Startpage
 
+- Bookmark list with management, re-ordering, and editing
+
 #####Security and privacy-focused features implemented:
 
 - Defaults to only accepting cookies and local storage for the duration of the
@@ -57,10 +59,6 @@ are available for free in the
 - Shows organization name in URL bar for sites with EV SSL certs
 
 - Optional sending of Do-Not-Track header on all requests
-
-#####Features planned but not yet implemented:
-
-- Bookmarks, probably a home-screen table layout like Safari
 
 #####Some nice-to-haves:
 

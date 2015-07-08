@@ -28,7 +28,7 @@ NSString *userAgent;
 	
 	if (appDelegate == nil)
 		appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-
+	
 	return YES;
 }
 
@@ -52,7 +52,7 @@ NSString *userAgent;
 	self = [super initWithRequest:request cachedResponse:cachedResponse client:client];
 	self.origRequest = request;
 	wvt = nil;
-
+	
 	/* extract tab hash from per-uiwebview user agent */
 	NSString *ua = [request valueForHTTPHeaderField:@"User-Agent"];
 	NSArray *uap = [ua componentsSeparatedByString:@"/"];
@@ -128,11 +128,9 @@ NSString *userAgent;
 	if (self.isOrigin) {
 		[LocalNetworkChecker clearCache];
 	}
-	else {
-		if ([URLBlocker shouldBlockURL:[newRequest URL] fromMainDocumentURL:[newRequest mainDocumentURL]]) {
-			cancelLoading();
-			return;
-		}
+	else if ([URLBlocker shouldBlockURL:[newRequest URL] fromMainDocumentURL:[newRequest mainDocumentURL]]) {
+		cancelLoading();
+		return;
 	}
 	
 	/* check HSTS cache first to see if scheme needs upgrading */

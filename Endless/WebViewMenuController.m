@@ -1,9 +1,10 @@
-#import "WebViewMenuController.h"
-
 #import "AppDelegate.h"
+#import "Bookmark.h"
+#import "BookmarkController.h"
 #import "CookieController.h"
 #import "IASKAppSettingsViewController.h"
 #import "HTTPSEverywhereRuleController.h"
+#import "WebViewMenuController.h"
 
 @implementation WebViewMenuController
 
@@ -13,8 +14,10 @@ NSDictionary *buttons;
 
 enum WebViewMenuButton {
 	WebViewMenuButtonRefresh,
+	WebViewMenuButtonAddBookmark,
 	WebViewMenuButtonCookies,
 	WebViewMenuButtonHTTPSEverywhere,
+	WebViewMenuButtonManageBookmarks,
 	WebViewMenuButtonSettings,
 	
 	WebViewMenuButtonCount,
@@ -28,8 +31,10 @@ enum WebViewMenuButton {
 
 	buttons = @{
 		    [NSNumber numberWithInt:WebViewMenuButtonRefresh] : @"Refresh",
+		    [NSNumber numberWithInt:WebViewMenuButtonAddBookmark] : @"Add Bookmark",
 		    [NSNumber numberWithInt:WebViewMenuButtonCookies] : @"Cookies",
 		    [NSNumber numberWithInt:WebViewMenuButtonHTTPSEverywhere] : @"HTTPS Everywhere",
+		    [NSNumber numberWithInt:WebViewMenuButtonManageBookmarks] : @"Manage Bookmarks",
 		    [NSNumber numberWithInt:WebViewMenuButtonSettings] : @"Settings",
 	};
 	
@@ -43,7 +48,7 @@ enum WebViewMenuButton {
 
 - (CGSize)preferredContentSize
 {
-	return CGSizeMake(150, [self tableView:nil heightForRowAtIndexPath:nil] * [buttons count]);
+	return CGSizeMake(160, [self tableView:nil heightForRowAtIndexPath:nil] * [buttons count]);
 }
 
 #pragma mark - Table view data source
@@ -55,15 +60,14 @@ enum WebViewMenuButton {
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+	if ([cell respondsToSelector:@selector(setSeparatorInset:)])
 		[cell setSeparatorInset:UIEdgeInsetsZero];
-	}
-	if ([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]) {
+
+	if ([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)])
 		[cell setPreservesSuperviewLayoutMargins:NO];
-	}
-	if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+
+	if ([cell respondsToSelector:@selector(setLayoutMargins:)])
 		[cell setLayoutMargins:UIEdgeInsetsZero];
-	}
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -77,27 +81,50 @@ enum WebViewMenuButton {
 	cell.backgroundColor = [UIColor clearColor];
 	cell.textLabel.font = [UIFont systemFontOfSize:13];
 	cell.textLabel.text = [buttons objectForKey:[NSNumber numberWithLong:[indexPath row]]];
-	
 	cell.detailTextLabel.font = [UIFont systemFontOfSize:11];
+	
+	BOOL haveURL = ([[[appDelegate webViewController] curWebViewTab] url] != nil);
 
 	switch ([indexPath row]) {
+	case WebViewMenuButtonAddBookmark:
+		if (haveURL) {
+			if ([Bookmark isURLBookmarked:[[[appDelegate webViewController] curWebViewTab] url]]) {
+				cell.textLabel.text = @"Bookmarked";
+				cell.userInteractionEnabled = cell.textLabel.enabled = NO;
+			}
+		}
+		else
+			cell.userInteractionEnabled = cell.textLabel.enabled = NO;
+			
+		break;
+
+	case WebViewMenuButtonRefresh:
+		cell.userInteractionEnabled = haveURL;
+		cell.textLabel.enabled = haveURL;
+		break;
+			
 	case WebViewMenuButtonCookies:
-		if ([[appDelegate cookieJar] isHostWhitelisted:[[[[appDelegate webViewController] curWebViewTab] url] host]]) {
-			cell.detailTextLabel.text = @"Whitelisted";
-			cell.detailTextLabel.textColor = [UIColor colorWithRed:0 green:0.5 blue:0 alpha:1];
+		if (haveURL) {
+			if ([[appDelegate cookieJar] isHostWhitelisted:[[[[appDelegate webViewController] curWebViewTab] url] host]]) {
+				cell.detailTextLabel.text = @"Whitelisted";
+				cell.detailTextLabel.textColor = [UIColor colorWithRed:0 green:0.5 blue:0 alpha:1];
+			}
+			else {
+				cell.detailTextLabel.text = @"Session-only";
+				cell.detailTextLabel.textColor = [UIColor darkTextColor];
+			}
 		}
-		else {
-			cell.detailTextLabel.text = @"Session-only";
-			cell.detailTextLabel.textColor = [UIColor darkTextColor];
-		}
+
 		break;
 	
 	case WebViewMenuButtonHTTPSEverywhere:
-		ruleCount = [[[[appDelegate webViewController] curWebViewTab] applicableHTTPSEverywhereRules] count];
+		if (haveURL) {
+			ruleCount = [[[[appDelegate webViewController] curWebViewTab] applicableHTTPSEverywhereRules] count];
 
-		if (ruleCount > 0) {
-			cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld Rule%@ Applied", ruleCount, (ruleCount == 1 ? @"" : @"s")];
+			if (ruleCount > 0)
+				cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld Rule%@ Applied", ruleCount, (ruleCount == 1 ? @"" : @"s")];
 		}
+			
 		break;
 	}
 
@@ -166,10 +193,16 @@ enum WebViewMenuButton {
 	[[appDelegate webViewController] presentViewController:navController animated:YES completion:nil];
 }
 
-	UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:navController action:@selector(dismissModalViewControllerAnimated:)];
-	herc.navigationItem.leftBarButtonItem = doneButton;
-
+- (void)menuManageBookmarks
+{
+	BookmarkController *bc = [[BookmarkController alloc] init];
+	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:bc];
 	[[appDelegate webViewController] presentViewController:navController animated:YES completion:nil];
+}
+
+- (void)menuAddBookmark
+{
+	[[appDelegate webViewController] presentViewController:[Bookmark addBookmarkDialogWithOkCallback:nil] animated:YES completion:nil];
 }
 
 @end

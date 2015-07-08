@@ -23,5 +23,6 @@
 - (void)refresh;
 - (void)forceRefresh;
 - (void)dismissPopover;
+- (void)prepareForNewURLFromString:(NSString *)url;
 
 @end

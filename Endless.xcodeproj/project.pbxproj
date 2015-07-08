@@ -25,6 +25,8 @@
 		018333DC1A35727C00670CD1 /* HTTPSEverywhere_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 018333DB1A35727C00670CD1 /* HTTPSEverywhere_Tests.m */; };
 		018333E91A35746500670CD1 /* https-everywhere_rules.plist in Resources */ = {isa = PBXBuildFile; fileRef = 018333E71A35746500670CD1 /* https-everywhere_rules.plist */; };
 		018333EA1A35746500670CD1 /* https-everywhere_targets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 018333E81A35746500670CD1 /* https-everywhere_targets.plist */; };
+		01AFEB371B4DBA8D00A02482 /* BookmarkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01AFEB361B4DBA8D00A02482 /* BookmarkController.m */; };
+		01AFEB491B4ED48000A02482 /* Bookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = 01AFEB481B4ED48000A02482 /* Bookmark.m */; };
 		01D741281A44DF1C007B7033 /* WebViewMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D741271A44DF1C007B7033 /* WebViewMenuController.m */; };
 		01D7412A1A45EDD1007B7033 /* CookieJar_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D741291A45EDD1007B7033 /* CookieJar_Tests.m */; };
 		01D7412C1A45F8EB007B7033 /* injected.js in Resources */ = {isa = PBXBuildFile; fileRef = 01D7412B1A45F8EB007B7033 /* injected.js */; };
@@ -93,6 +95,10 @@
 		018333E71A35746500670CD1 /* https-everywhere_rules.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "https-everywhere_rules.plist"; path = "Endless/Resources/https-everywhere_rules.plist"; sourceTree = "<group>"; };
 		018333E81A35746500670CD1 /* https-everywhere_targets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "https-everywhere_targets.plist"; path = "Endless/Resources/https-everywhere_targets.plist"; sourceTree = "<group>"; };
 		018333EB1A357D8B00670CD1 /* libPods-OCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-OCMock.a"; path = "Pods/build/Debug-iphoneos/libPods-OCMock.a"; sourceTree = "<group>"; };
+		01AFEB351B4DBA8D00A02482 /* BookmarkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkController.h; sourceTree = "<group>"; };
+		01AFEB361B4DBA8D00A02482 /* BookmarkController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkController.m; sourceTree = "<group>"; };
+		01AFEB471B4ED48000A02482 /* Bookmark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bookmark.h; sourceTree = "<group>"; };
+		01AFEB481B4ED48000A02482 /* Bookmark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bookmark.m; sourceTree = "<group>"; };
 		01D741261A44DF1C007B7033 /* WebViewMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewMenuController.h; sourceTree = "<group>"; };
 		01D741271A44DF1C007B7033 /* WebViewMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewMenuController.m; sourceTree = "<group>"; };
 		01D741291A45EDD1007B7033 /* CookieJar_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CookieJar_Tests.m; sourceTree = "<group>"; };
@@ -175,20 +181,24 @@
 			children = (
 				01801E991A32CA2A002B4718 /* AppDelegate.h */,
 				01801E9A1A32CA2A002B4718 /* AppDelegate.m */,
-				010EEA671A43C8CF001E8B65 /* CookieJar.h */,
-				010EEA681A43C8CF001E8B65 /* CookieJar.m */,
+				01AFEB471B4ED48000A02482 /* Bookmark.h */,
+				01AFEB481B4ED48000A02482 /* Bookmark.m */,
+				01AFEB351B4DBA8D00A02482 /* BookmarkController.h */,
+				01AFEB361B4DBA8D00A02482 /* BookmarkController.m */,
 				010EEA641A43A536001E8B65 /* CookieController.h */,
 				010EEA651A43A536001E8B65 /* CookieController.m */,
+				010EEA671A43C8CF001E8B65 /* CookieJar.h */,
+				010EEA681A43C8CF001E8B65 /* CookieJar.m */,
 				01F7CB471A5253DD00F42B73 /* HSTSCache.h */,
 				01F7CB481A5253DD00F42B73 /* HSTSCache.m */,
-				01D741301A49EA14007B7033 /* RuleEditorController.h */,
-				01D741311A49EA14007B7033 /* RuleEditorController.m */,
-				0182AD991AACC55400F3B7ED /* HTTPSEverywhereRuleController.h */,
-				0182AD9A1AACC55400F3B7ED /* HTTPSEverywhereRuleController.m */,
 				018333C81A3505FB00670CD1 /* HTTPSEverywhere.h */,
 				018333C91A3505FB00670CD1 /* HTTPSEverywhere.m */,
 				018333D01A35291200670CD1 /* HTTPSEverywhereRule.h */,
 				018333D11A35291200670CD1 /* HTTPSEverywhereRule.m */,
+				0182AD991AACC55400F3B7ED /* HTTPSEverywhereRuleController.h */,
+				0182AD9A1AACC55400F3B7ED /* HTTPSEverywhereRuleController.m */,
+				01D741301A49EA14007B7033 /* RuleEditorController.h */,
+				01D741311A49EA14007B7033 /* RuleEditorController.m */,
 				01F879391A4108DD00A63654 /* URLBlocker.h */,
 				01F8793A1A4108DD00A63654 /* URLBlocker.m */,
 				01801EBE1A335BEC002B4718 /* URLInterceptor.h */,
@@ -223,16 +233,16 @@
 		01801EC11A3360B1002B4718 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				01FC0E561B38FB6B00955D9A /* Launch Screen.xib */,
-				01801EC21A3360F8002B4718 /* InAppSettings.bundle */,
 				01F8794A1A41232E00A63654 /* credits.html */,
-				01D7412B1A45F8EB007B7033 /* injected.js */,
 				016B2FCA1A53466D002D2730 /* hsts_preload.plist */,
 				018333E71A35746500670CD1 /* https-everywhere_rules.plist */,
 				018333E81A35746500670CD1 /* https-everywhere_targets.plist */,
+				01801EA51A32CA2A002B4718 /* Images.xcassets */,
+				01801EC21A3360F8002B4718 /* InAppSettings.bundle */,
+				01D7412B1A45F8EB007B7033 /* injected.js */,
+				01FC0E561B38FB6B00955D9A /* Launch Screen.xib */,
 				0135F4751A3D2931005A8F16 /* SearchEngines.plist */,
 				01F8794D1A412F8E00A63654 /* urlblocker_targets.plist */,
-				01801EA51A32CA2A002B4718 /* Images.xcassets */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -473,6 +483,7 @@
 				01D741281A44DF1C007B7033 /* WebViewMenuController.m in Sources */,
 				01D7412F1A466AF0007B7033 /* NSString+JavascriptEscape.m in Sources */,
 				01801E9B1A32CA2A002B4718 /* AppDelegate.m in Sources */,
+				01AFEB491B4ED48000A02482 /* Bookmark.m in Sources */,
 				01801E981A32CA2A002B4718 /* main.m in Sources */,
 				01D741321A49EA14007B7033 /* RuleEditorController.m in Sources */,
 				018333D21A35291200670CD1 /* HTTPSEverywhereRule.m in Sources */,
@@ -483,6 +494,7 @@
 				01F7CB491A5253DD00F42B73 /* HSTSCache.m in Sources */,
 				01F7CB4E1A52FC4E00F42B73 /* NSString+IPAddress.m in Sources */,
 				0135F47F1A3E548F005A8F16 /* WebViewTab.m in Sources */,
+				01AFEB371B4DBA8D00A02482 /* BookmarkController.m in Sources */,
 				010EEA661A43A536001E8B65 /* CookieController.m in Sources */,
 				01EFA7FF1A63851400688398 /* LocalNetworkChecker.m in Sources */,
 				0182AD9B1AACC55400F3B7ED /* HTTPSEverywhereRuleController.m in Sources */,

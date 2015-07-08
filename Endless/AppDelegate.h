@@ -21,7 +21,7 @@
 
 @property (strong, atomic) NSString *defaultUserAgent;
 
-extern NSString *const STATE_RESTORE_TRY_KEY;
+extern NSString * const STATE_RESTORE_TRY_KEY;
 
 @end
 

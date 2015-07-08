@@ -1,4 +1,5 @@
 #import "AppDelegate.h"
+#import "Bookmark.h"
 #import "HTTPSEverywhere.h"
 #import "URLInterceptor.h"
 
@@ -10,8 +11,9 @@ NSString *const STATE_RESTORE_TRY_KEY = @"state_restore_lock";
 {
 	[NSURLProtocol registerClass:[URLInterceptor class]];
 	
-	_hstsCache = [HSTSCache retrieve];
-	_cookieJar = [[CookieJar alloc] init];
+	self.hstsCache = [HSTSCache retrieve];
+	self.cookieJar = [[CookieJar alloc] init];
+	[Bookmark retrieveList];
 	
 	[self initializeDefaults];
 	
@@ -74,7 +76,7 @@ NSString *const STATE_RESTORE_TRY_KEY = @"state_restore_lock";
 		return NO;
 	}
 	else
-		[userDefaults setBool:@YES forKey:STATE_RESTORE_TRY_KEY];
+		[userDefaults setBool:YES forKey:STATE_RESTORE_TRY_KEY];
 	
 	[userDefaults synchronize];
 

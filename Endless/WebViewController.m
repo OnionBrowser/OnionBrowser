@@ -1,4 +1,5 @@
 #import "AppDelegate.h"
+#import "BookmarkController.h"
 #import "URLInterceptor.h"
 #import "WebViewController.h"
 #import "WebViewTab.h"
@@ -43,6 +44,8 @@
 	BOOL webViewScrollIsDragging;
 	
 	WYPopoverController *popover;
+	
+	BookmarkController *bookmarks;
 }
 
 - (void)loadView
@@ -374,12 +377,10 @@
 
 - (__strong WebViewTab *)curWebViewTab
 {
-	if (webViewTabs.count > 0) {
+	if (webViewTabs.count > 0)
 		return webViewTabs[curTabIndex];
-	}
-	else {
+	else
 		return nil;
-	}
 }
 
 - (void)setCurTabIndex:(int)tab
@@ -418,7 +419,6 @@
 
 	[tabScroller setContentSize:CGSizeMake(wvt.viewHolder.frame.size.width * tabChooser.numberOfPages, wvt.viewHolder.frame.size.height)];
 	[tabScroller addSubview:wvt.viewHolder];
-	
 	[tabScroller bringSubviewToFront:toolbar];
 
 	if (showingTabs)
@@ -588,6 +588,8 @@
 			NSString *host;
 			if (self.curWebViewTab.url == nil)
 				host = @"";
+			else if ([self.curWebViewTab.url.scheme isEqualToString:@"endless"])
+				host = @"";
 			else {
 				host = [self.curWebViewTab.url host];
 				if (host == nil)
@@ -673,7 +675,20 @@
 #ifdef TRACE
 	NSLog(@"started editing");
 #endif
-	[urlField setText:[self.curWebViewTab.url absoluteString]];
+	
+	if (bookmarks == nil) {
+		bookmarks = [[BookmarkController alloc] init];
+		bookmarks.embedded = true;
+		
+		if (self.toolbarOnBottom)
+			/* we can't size according to keyboard height because we don't know it yet, so we'll just put it full height below the toolbar */
+			bookmarks.view.frame = CGRectMake(0, STATUSBAR_HEIGHT, self.view.frame.size.width, self.view.frame.size.height);
+		else
+			bookmarks.view.frame = CGRectMake(0, toolbar.frame.size.height + toolbar.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
+
+		[self addChildViewController:bookmarks];
+		[self.view insertSubview:[bookmarks view] belowSubview:toolbar];
+	}
 	
 	[UIView animateWithDuration:0.15 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
 		[urlField setTextAlignment:NSTextAlignmentNatural];
@@ -681,7 +696,7 @@
 		[forwardButton setHidden:true];
 		[urlField setFrame:[self frameForUrlField]];
 	} completion:^(BOOL finished) {
-		[urlField performSelector:@selector(selectAll:) withObject:nil afterDelay:0.0];
+		[urlField performSelector:@selector(selectAll:) withObject:nil afterDelay:0.1];
 	}];
 
 	[self updateSearchBarDetails];
@@ -689,13 +704,18 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-	if (textField != urlField)
+	if (textField != nil && textField != urlField)
 		return;
 
 #ifdef TRACE
 	NSLog(@"ended editing with: %@", [textField text]);
 #endif
-	
+	if (bookmarks != nil) {
+		[[bookmarks view] removeFromSuperview];
+		[bookmarks removeFromParentViewController];
+		bookmarks = nil;
+	}
+
 	[UIView animateWithDuration:0.15 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
 		[urlField setTextAlignment:NSTextAlignmentCenter];
 		[backButton setHidden:false];
@@ -711,27 +731,32 @@
 		return YES;
 	}
 	
+	[self prepareForNewURLFromString:urlField.text];
+	
+	return NO;
+}
+
+- (void)prepareForNewURLFromString:(NSString *)url
+{
 	/* user is shifting to a new place, probably a good time to clear old data */
 	[[appDelegate cookieJar] clearAllOldNonWhitelistedData];
 	
-	NSURL *enteredURL = [NSURL URLWithString:urlField.text];
+	NSURL *enteredURL = [NSURL URLWithString:url];
 	
 	if (![enteredURL scheme] || [[enteredURL scheme] isEqualToString:@""]) {
 		/* no scheme so if it has a space or no dots, assume it's a search query */
-		if ([urlField.text containsString:@" "] || ![urlField.text containsString:@"."]) {
-			[[self curWebViewTab] searchFor:[urlField text]];
+		if ([url containsString:@" "] || ![url containsString:@"."]) {
+			[[self curWebViewTab] searchFor:url];
 			enteredURL = nil;
 		}
 		else
-			enteredURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@", urlField.text]];
+			enteredURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@", url]];
 	}
 	
 	[urlField resignFirstResponder]; /* will unfocus and call textFieldDidEndEditing */
 
 	if (enteredURL != nil)
 		[[self curWebViewTab] loadURL:enteredURL];
-	
-	return NO;
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
