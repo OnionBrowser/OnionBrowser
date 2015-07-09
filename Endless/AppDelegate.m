@@ -80,15 +80,6 @@ NSString *const STATE_RESTORE_TRY_KEY = @"state_restore_lock";
 	
 	[userDefaults synchronize];
 
-	NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey];
-	NSString *storedVersion = [coder decodeObjectForKey:UIApplicationStateRestorationBundleVersionKey];
-	if (![version isEqualToString:storedVersion]) {
-#ifdef TRACE
-		NSLog(@"not restoring application state, old version %@ != %@", storedVersion, version);
-#endif
-		return NO;
-	}
-	
 	return YES;
 }
 
