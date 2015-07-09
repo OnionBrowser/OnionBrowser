@@ -101,7 +101,6 @@ NSString *const STATE_RESTORE_TRY_KEY = @"state_restore_lock";
 
 - (void)initializeDefaults
 {
-	/* TODO: read defaults from the plist */
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	
 	NSString *plistPath = [[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"InAppSettings.bundle"] stringByAppendingPathComponent:@"Root.inApp.plist"];
@@ -114,6 +113,9 @@ NSString *const STATE_RESTORE_TRY_KEY = @"state_restore_lock";
 
 		if ([userDefaults objectForKey:key] == NULL) {
 			NSObject *val = [pref objectForKey:@"DefaultValue"];
+			if (val == nil)
+				continue;
+			
 			[userDefaults setObject:val forKey:key];
 #ifdef TRACE
 			NSLog(@"initialized default preference for %@ to %@", key, val);

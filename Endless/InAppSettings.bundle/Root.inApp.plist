@@ -17,6 +17,8 @@
 			<string>toolbar_on_bottom</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
+			<key>DefaultValue</key>
+			<false/>
 		</dict>
 		<dict>
 			<key>DefaultValue</key>
