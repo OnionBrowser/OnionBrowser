@@ -11,17 +11,19 @@ are available for free in the
 
 - Basics of entering URLs, following redirections, back, forward, cookie storage
 
-- Swipe left and right to go back and forward
-
-- Shows padlock for SSL-encrypted URLs
-
 - Multiple tabs with support for `window.open()` and `<a target="_blank">`
   automatically opening new tab windows, but blocks calls not made via user
   interaction events (similar to most desktop browser popup blockers)
 
-- Search from URL bar with DDG, Google, or Startpage
-
 - Bookmark list with management, re-ordering, and editing
+
+- Custom long-press menu for links to open in a new tab, and to save images
+  to the device; shows image or link alt text (useful for sites like
+  [xkcd](http://xkcd.com/))
+
+- Swipe left and right to go back and forward
+
+- Search from URL bar with DDG, Google, or Startpage
 
 #####Security and privacy-focused features implemented:
 
@@ -56,13 +58,14 @@ are available for free in the
   to load sub-requests (e.g., images, iframes, ajax) from hosts that are on
   local RFC3330 networks such as routers and other insecure devices
 
-- Shows organization name in URL bar for sites with EV SSL certs
+- Shows padlock for SSL-encrypted URLs, and organization name for sites with EV
+  SSL certs
 
 - Optional sending of Do-Not-Track header on all requests
 
-- [1Password button](https://github.com/AgileBits/onepassword-app-extension)
-  to autofill logins, passwords, credit card numbers, etc.; requires the
-  1Password iOS app to be installed (and is not enabled if not installed)
+- Integrated [1Password button](https://github.com/AgileBits/onepassword-app-extension)
+  to autofill website logins, passwords, credit card numbers, etc.; requires
+  the 1Password iOS app to be installed (and is not enabled if not installed)
 
 #####Some nice-to-haves:
 

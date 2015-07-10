@@ -1,4 +1,7 @@
 if (typeof __endless == "undefined") {
+/* supress default long-press menu */
+document.body.style.webkitTouchCallout="none";
+	
 var __endless = {
 	openedTabs: {},
 
@@ -55,6 +58,22 @@ var __endless = {
 				}
 			}
 		}, false);
+	},
+	
+	elementsAtPoint: function(x, y) {
+		var tags = [];
+		var e = document.elementFromPoint(x,y);
+		while (e) {
+			if (e.tagName) {
+				var name = e.tagName.toLowerCase();
+				if (name == "a")
+					tags.push({ "a": { "href" : e.href, "title" : e.title } });
+				else if (name == "img")
+					tags.push({ "img": { "src" : e.src, "title" : e.title, "alt" : e.alt } });
+			}
+			e = e.parentNode;
+		}
+		return tags;
 	},
 
 	FakeLocation: function(real) {

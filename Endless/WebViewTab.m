@@ -1,6 +1,7 @@
 #import "AppDelegate.h"
 #import "URLInterceptor.h"
 #import "WebViewTab.h"
+
 #import "NSString+JavascriptEscape.h"
 
 @import WebKit;
@@ -61,7 +62,6 @@ AppDelegate *appDelegate;
 	[_webView.scrollView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
 	[_webView.scrollView setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
 	
-	/* XXX: this may violate app store guidelines */
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(webKitprogressEstimateChanged:) name:@"WebProgressEstimateChangedNotification" object:[_webView valueForKeyPath:@"documentView.webView"]];
 	
 	/* swiping goes back and forward in current webview */
@@ -110,6 +110,10 @@ AppDelegate *appDelegate;
 	[self setSecureMode:WebViewTabSecureModeInsecure];
 	[self setApplicableHTTPSEverywhereRules:[[NSMutableDictionary alloc] initWithCapacity:6]];
 	
+	UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressMenu:)];
+	[lpgr setDelegate:self];
+	[_webView addGestureRecognizer:lpgr];
+
 	for (UIView *_view in _webView.subviews) {
 		for (UIGestureRecognizer *recognizer in _view.gestureRecognizers) {
 			[recognizer addTarget:self action:@selector(webViewTouched:)];
@@ -131,6 +135,17 @@ AppDelegate *appDelegate;
 	return self;
 }
 
+/* for long press gesture recognizer to work properly */
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+	if ([gestureRecognizer isKindOfClass:[UILongPressGestureRecognizer class]] && [gestureRecognizer state] == UIGestureRecognizerStateBegan) {
+		/* this is enough to cancel the touch when the long press gesture fires, so that the link being held down doesn't activate as a click once the finger is let up */
+		otherGestureRecognizer.enabled = NO;
+		otherGestureRecognizer.enabled = YES;
+	}
+	
+	return YES;
+}
+
 - (void)close
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:@"WebProgressEstimateChangedNotification" object:[_webView valueForKeyPath:@"documentView.webView"]];
@@ -138,15 +153,9 @@ AppDelegate *appDelegate;
 	_webView = nil;
 }
 
-/* XXX: this may violate app store guidelines */
 - (void)webKitprogressEstimateChanged:(NSNotification*)notification
 {
 	[self setProgress:[NSNumber numberWithFloat:[[notification object] estimatedProgress]]];
-}
-
-- (void)webViewTouched:(UIEvent *)event
-{
-	[[appDelegate webViewController] webViewTouched];
 }
 
 - (void)updateFrame:(CGRect)frame
@@ -418,6 +427,123 @@ AppDelegate *appDelegate;
 - (void)swipeLeftAction:(id)_id
 {
 	[self goForward];
+}
+
+- (void)webViewTouched:(UIEvent *)event
+{
+	[[appDelegate webViewController] webViewTouched];
+}
+
+- (void)longPressMenu:(UILongPressGestureRecognizer *)sender {
+	if (sender.state != UIGestureRecognizerStateBegan)
+		return;
+	
+#ifdef TRACE
+	NSLog(@"[Tab %@] long-press gesture recognized", self.tabIndex);
+#endif
+	
+	UIAlertController *alertController;
+	NSString *href, *img, *alt;
+	
+	CGPoint tap = [sender locationInView:[self webView]];
+	tap.y -= [[[self webView] scrollView] contentInset].top;
+	
+	/* translate tap coordinates from view to scale of page */
+	CGSize windowSize = CGSizeMake(
+				       [[[self webView] stringByEvaluatingJavaScriptFromString:@"window.innerWidth"] intValue],
+				       [[[self webView] stringByEvaluatingJavaScriptFromString:@"window.innerHeight"] intValue]
+				       );
+	CGSize viewSize = [[self webView] frame].size;
+	float ratio = windowSize.width / viewSize.width;
+	CGPoint tapOnPage = CGPointMake(tap.x * ratio, tap.y * ratio);
+	
+	/* now find if there are usable elements at those coordinates and extract their attributes */
+	NSString *json = [[self webView] stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"JSON.stringify(__endless.elementsAtPoint(%li, %li));", (long)tapOnPage.x, (long)tapOnPage.y]];
+	if (json == nil) {
+		NSLog(@"[Tab %@] didn't get any JSON back from __endless.elementsAtPoint", self.tabIndex);
+		return;
+	}
+	
+	NSMutableArray *elements = [NSJSONSerialization JSONObjectWithData:[json dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:nil];
+	for (NSDictionary *element in elements) {
+		NSString *k = [element allKeys][0];
+		NSDictionary *attrs = [element objectForKey:k];
+		
+		if ([k isEqualToString:@"a"]) {
+			href = [attrs objectForKey:@"href"];
+			
+			/* only use if image alt is blank */
+			if (!alt || [alt isEqualToString:@""])
+				alt = [attrs objectForKey:@"title"];
+		}
+		else if ([k isEqualToString:@"img"]) {
+			img = [attrs objectForKey:@"src"];
+			
+			NSString *t = [attrs objectForKey:@"title"];
+			if (t && ![t isEqualToString:@""])
+				alt = t;
+			else
+				alt = [attrs objectForKey:@"alt"];
+		}
+	}
+	
+#ifdef TRACE
+	NSLog(@"[Tab %@] context menu href:%@, img:%@, alt:%@", self.tabIndex, href, img, alt);
+#endif
+	
+	if (!(href || img))
+		return;
+	
+	alertController = [UIAlertController alertControllerWithTitle:href message:alt preferredStyle:UIAlertControllerStyleActionSheet];
+	
+	UIAlertAction *openAction = [UIAlertAction actionWithTitle:@"Open" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+		[self loadURL:[NSURL URLWithString:href]];
+	}];
+	
+	UIAlertAction *openNewTabAction = [UIAlertAction actionWithTitle:@"Open in a New Tab" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+		[[appDelegate webViewController] addNewTabForURL:[NSURL URLWithString:href]];
+	}];
+	
+	UIAlertAction *saveImageAction = [UIAlertAction actionWithTitle:@"Save Image" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+		NSURL *imgurl = [NSURL URLWithString:img];
+		[URLInterceptor temporarilyAllow:imgurl];
+		NSData *imgdata = [NSData dataWithContentsOfURL:imgurl];
+		if (imgdata) {
+			UIImage *i = [UIImage imageWithData:imgdata];
+			UIImageWriteToSavedPhotosAlbum(i, self, nil, nil);
+		}
+		else {
+			UIAlertView *m = [[UIAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"An error occurred downloading image %@", img] delegate:self cancelButtonTitle: @"Ok" otherButtonTitles:nil];
+			[m show];
+		}
+	}];
+	
+	UIAlertAction *copyURLAction = [UIAlertAction actionWithTitle:@"Copy URL" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+		[[UIPasteboard generalPasteboard] setString:(href ? href : img)];
+	}];
+	
+	if (href) {
+		[alertController addAction:openAction];
+		[alertController addAction:openNewTabAction];
+	}
+	
+	if (img)
+		[alertController addAction:saveImageAction];
+	
+	[alertController addAction:copyURLAction];
+	
+	UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", @"Cancel") style:UIAlertActionStyleCancel handler:nil];
+	[alertController addAction:cancelAction];
+	
+	UIPopoverPresentationController *popover = alertController.popoverPresentationController;
+	
+	if (popover) {
+		popover.sourceView = [[appDelegate webViewController] view];
+		popover.sourceRect = [[[appDelegate webViewController] view] bounds];
+		popover.permittedArrowDirections = UIPopoverArrowDirectionAny;
+	}
+	
+	[[appDelegate webViewController] presentViewController:alertController animated:YES completion:nil];
 }
 
 - (BOOL)canGoBack

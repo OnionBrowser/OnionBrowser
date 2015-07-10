@@ -12,5 +12,6 @@
 
 + (void)setBlockIntoLocalNets:(BOOL)val;
 + (void)setSendDNT:(BOOL)val;
++ (void)temporarilyAllow:(NSURL *)url;
 
 @end

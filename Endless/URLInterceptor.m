@@ -11,6 +11,7 @@
 static AppDelegate *appDelegate;
 static BOOL sendDNT = true;
 static BOOL blockIntoLocalNets = true;
+static NSMutableArray *tmpAllowed;
 
 WebViewTab *wvt;
 NSString *userAgent;
@@ -47,6 +48,32 @@ NSString *userAgent;
 	sendDNT = val;
 }
 
++ (void)temporarilyAllow:(NSURL *)url
+{
+	if (!tmpAllowed)
+		tmpAllowed = [[NSMutableArray alloc] initWithCapacity:1];
+			      
+	[tmpAllowed addObject:url];
+}
+
++ (BOOL)isURLTemporarilyAllowed:(NSURL *)url
+{
+	int found = -1;
+	if (wvt == nil) {
+		for (int i = 0; i < [tmpAllowed count]; i++) {
+			if ([[tmpAllowed[i] absoluteString] isEqualToString:[url absoluteString]])
+				found = i;
+		}
+		
+		if (found > -1) {
+			NSLog(@"[URLInterceptor] temporarily allowing %@ from allowed list with no matching WebViewTab", url);
+			[tmpAllowed removeObjectAtIndex:found];
+		}
+	}
+	
+	return (found > -1);
+}
+
 - (instancetype)initWithRequest:(NSURLRequest *)request cachedResponse:(NSCachedURLResponse *)cachedResponse client:(id<NSURLProtocolClient>)client
 {
 	self = [super initWithRequest:request cachedResponse:cachedResponse client:client];
@@ -70,6 +97,9 @@ NSString *userAgent;
 		}
 	}
 	
+	if (wvt == nil && [[self class] isURLTemporarilyAllowed:[request URL]])
+		wvt = [[[appDelegate webViewController] webViewTabs] firstObject];
+
 	if (wvt == nil) {
 		NSLog(@"[URLInterceptor] request for %@ with no matching WebViewTab! (main URL %@, UA hash %@)", [request URL], [request mainDocumentURL], wvthash);
 		
