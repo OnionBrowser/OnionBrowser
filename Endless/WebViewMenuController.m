@@ -6,22 +6,16 @@
 #import "HTTPSEverywhereRuleController.h"
 #import "WebViewMenuController.h"
 
+#import "OnePasswordExtension.h"
+
 @implementation WebViewMenuController
 
 AppDelegate *appDelegate;
 IASKAppSettingsViewController *appSettingsViewController;
-NSDictionary *buttons;
+NSMutableArray *buttons;
 
-enum WebViewMenuButton {
-	WebViewMenuButtonRefresh,
-	WebViewMenuButtonAddBookmark,
-	WebViewMenuButtonCookies,
-	WebViewMenuButtonHTTPSEverywhere,
-	WebViewMenuButtonManageBookmarks,
-	WebViewMenuButtonSettings,
-	
-	WebViewMenuButtonCount,
-} WebViewMenuButton;
+NSString * const FUNC = @"F";
+NSString * const LABEL = @"L";
 
 - (void)viewDidLoad
 {
@@ -29,21 +23,22 @@ enum WebViewMenuButton {
 	
 	appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 
-	buttons = @{
-		    [NSNumber numberWithInt:WebViewMenuButtonRefresh] : @"Refresh",
-		    [NSNumber numberWithInt:WebViewMenuButtonAddBookmark] : @"Add Bookmark",
-		    [NSNumber numberWithInt:WebViewMenuButtonCookies] : @"Cookies",
-		    [NSNumber numberWithInt:WebViewMenuButtonHTTPSEverywhere] : @"HTTPS Everywhere",
-		    [NSNumber numberWithInt:WebViewMenuButtonManageBookmarks] : @"Manage Bookmarks",
-		    [NSNumber numberWithInt:WebViewMenuButtonSettings] : @"Settings",
-	};
+	buttons = [[NSMutableArray alloc] initWithCapacity:10];
+	
+	[buttons addObject:@{ FUNC : @"menuRefresh", LABEL : @"Refresh" }];
+	
+	/* no point in showing this if the user doesn't have 1p installed */
+	if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"onepassword://"]])
+		[buttons addObject:@{ FUNC : @"menuOnePassword", LABEL : @"Fill with 1Password" }];
+
+	[buttons addObject:@{ FUNC : @"menuAddBookmark", LABEL : @"Add Bookmark" }];
+	[buttons addObject:@{ FUNC : @"menuCookies", LABEL : @"Cookies" }];
+	[buttons addObject:@{ FUNC : @"menuHTTPSEverywhere", LABEL : @"HTTPS Everywhere" }];
+	[buttons addObject:@{ FUNC : @"menuManageBookmarks", LABEL : @"Manage Bookmarks" }];
+	[buttons addObject:@{ FUNC : @"menuSettings", LABEL : @"Settings" }];
 	
 	[self.view setBackgroundColor:[UIColor clearColor]];
 	[self.tableView setSeparatorInset:UIEdgeInsetsZero];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
 }
 
 - (CGSize)preferredContentSize
@@ -73,20 +68,20 @@ enum WebViewMenuButton {
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"button"];
-	long ruleCount;
-
 	if (cell == nil)
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"button"];
 	
+	NSDictionary *button = [buttons objectAtIndex:[indexPath row]];
+	
 	cell.backgroundColor = [UIColor clearColor];
 	cell.textLabel.font = [UIFont systemFontOfSize:13];
-	cell.textLabel.text = [buttons objectForKey:[NSNumber numberWithLong:[indexPath row]]];
+	cell.textLabel.text = [button objectForKey:LABEL];
 	cell.detailTextLabel.font = [UIFont systemFontOfSize:11];
 	
 	BOOL haveURL = ([[[appDelegate webViewController] curWebViewTab] url] != nil);
 
-	switch ([indexPath row]) {
-	case WebViewMenuButtonAddBookmark:
+	NSString *func = [button objectForKey:FUNC];
+	if ([func isEqualToString:@"menuAddBookmark"]) {
 		if (haveURL) {
 			if ([Bookmark isURLBookmarked:[[[appDelegate webViewController] curWebViewTab] url]]) {
 				cell.textLabel.text = @"Bookmarked";
@@ -95,37 +90,26 @@ enum WebViewMenuButton {
 		}
 		else
 			cell.userInteractionEnabled = cell.textLabel.enabled = NO;
-			
-		break;
-
-	case WebViewMenuButtonRefresh:
+	}
+	else if ([func isEqualToString:@"menuOnePassword"] || [func isEqualToString:@"menuRefresh"]) {
 		cell.userInteractionEnabled = haveURL;
 		cell.textLabel.enabled = haveURL;
-		break;
-			
-	case WebViewMenuButtonCookies:
-		if (haveURL) {
-			if ([[appDelegate cookieJar] isHostWhitelisted:[[[[appDelegate webViewController] curWebViewTab] url] host]]) {
-				cell.detailTextLabel.text = @"Whitelisted";
-				cell.detailTextLabel.textColor = [UIColor colorWithRed:0 green:0.5 blue:0 alpha:1];
-			}
-			else {
-				cell.detailTextLabel.text = @"Session-only";
-				cell.detailTextLabel.textColor = [UIColor darkTextColor];
-			}
+	}
+	else if ([func isEqualToString:@"menuCookies"] && haveURL) {
+		if ([[appDelegate cookieJar] isHostWhitelisted:[[[[appDelegate webViewController] curWebViewTab] url] host]]) {
+			cell.detailTextLabel.text = @"Whitelisted";
+			cell.detailTextLabel.textColor = [UIColor colorWithRed:0 green:0.5 blue:0 alpha:1];
 		}
-
-		break;
-	
-	case WebViewMenuButtonHTTPSEverywhere:
-		if (haveURL) {
-			ruleCount = [[[[appDelegate webViewController] curWebViewTab] applicableHTTPSEverywhereRules] count];
-
-			if (ruleCount > 0)
-				cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld Rule%@ Applied", ruleCount, (ruleCount == 1 ? @"" : @"s")];
+		else {
+			cell.detailTextLabel.text = @"Session-only";
+			cell.detailTextLabel.textColor = [UIColor darkTextColor];
 		}
-			
-		break;
+	}
+	else if ([func isEqualToString:@"menuHTTPSEverywhere"] && haveURL) {
+		long ruleCount = [[[[appDelegate webViewController] curWebViewTab] applicableHTTPSEverywhereRules] count];
+
+		if (ruleCount > 0)
+			cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld Rule%@ Applied", ruleCount, (ruleCount == 1 ? @"" : @"s")];
 	}
 
 	return cell;
@@ -149,16 +133,14 @@ enum WebViewMenuButton {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	[[appDelegate webViewController] dismissPopover];
+	NSDictionary *button = [buttons objectAtIndex:[indexPath row]];
+
+	SEL action = NSSelectorFromString([button objectForKey:FUNC]);
 	
-	/* "Show Cookies" -> @selector(menuShowCookies) */
-	SEL action = NSSelectorFromString([NSString stringWithFormat:@"menu%@", [[buttons objectForKey:[NSNumber numberWithLong:[indexPath row]]] stringByReplacingOccurrencesOfString:@" " withString:@""]]);
-	
-	if ([self respondsToSelector:action]) {
+	if ([self respondsToSelector:action])
 		[self performSelector:action];
-	}
-	else {
+	else
 		NSLog(@"can't call %@", NSStringFromSelector(action));
-	}
 }
 
 - (void)menuRefresh
@@ -203,6 +185,14 @@ enum WebViewMenuButton {
 - (void)menuAddBookmark
 {
 	[[appDelegate webViewController] presentViewController:[Bookmark addBookmarkDialogWithOkCallback:nil] animated:YES completion:nil];
+}
+
+- (void)menuOnePassword
+{
+	[[OnePasswordExtension sharedExtension] fillItemIntoWebView:[[[appDelegate webViewController] curWebViewTab] webView] forViewController:[appDelegate webViewController] sender:nil showOnlyLogins:NO completion:^(BOOL success, NSError *error) {
+		if (!success)
+			NSLog(@"[OnePasswordExtension] failed to fill into webview: %@", error);
+	}];
 }
 
 @end

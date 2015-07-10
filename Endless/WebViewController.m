@@ -6,8 +6,6 @@
 #import "WebViewMenuController.h"
 #import "WYPopoverController.h"
 
-#import "OnePasswordExtension.h"
-
 #define STATUSBAR_HEIGHT 20
 #define TOOLBAR_HEIGHT 46
 #define TOOLBAR_PADDING 6
@@ -33,7 +31,6 @@
 	
 	UIButton *backButton;
 	UIButton *forwardButton;
-	UIButton *onePasswordButton;
 	UIButton *tabsButton;
 	UIButton *settingsButton;
 	
@@ -77,7 +74,6 @@
 	[[self view] addSubview:toolbar];
 	
 	self.toolbarOnBottom = [userDefaults boolForKey:@"toolbar_on_bottom"];
-	self.showOnePasswordButton = [userDefaults boolForKey:@"onepassword_button"];
 	keyboardHeight = 0;
 	
 	progressBar = [[UIProgressView alloc] init];
@@ -123,13 +119,6 @@
 	blankIcon = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 24, 16)];
 	[urlField setLeftView:blankIcon];
 	
-	onePasswordButton = [UIButton buttonWithType:UIButtonTypeCustom];
-	UIImage *onePasswordIcon = [[UIImage imageNamed:@"onepassword-navbar-thin"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-	[onePasswordButton setImage:onePasswordIcon forState:UIControlStateNormal];
-	[onePasswordButton setTintColor:[progressBar tintColor]];
-	[onePasswordButton addTarget:self action:@selector(fillOnePassword:) forControlEvents:UIControlEventTouchUpInside];
-	[toolbar addSubview:onePasswordButton];
-
 	tabsButton = [UIButton buttonWithType:UIButtonTypeCustom];
 	UIImage *tabsImage = [[UIImage imageNamed:@"tabs"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 	[tabsButton setImage:tabsImage forState:UIControlStateNormal];
@@ -317,13 +306,6 @@
 	settingsButton.frame = CGRectMake(size.width - backButton.frame.size.width - TOOLBAR_PADDING, y, TOOLBAR_BUTTON_SIZE, TOOLBAR_BUTTON_SIZE);
 	tabsButton.frame = CGRectMake(settingsButton.frame.origin.x - backButton.frame.size.width - TOOLBAR_PADDING, y, TOOLBAR_BUTTON_SIZE, TOOLBAR_BUTTON_SIZE);
 	
-	if (self.showOnePasswordButton) {
-		onePasswordButton.frame = CGRectMake(tabsButton.frame.origin.x - backButton.frame.size.width - TOOLBAR_PADDING, y, TOOLBAR_BUTTON_SIZE, TOOLBAR_BUTTON_SIZE);
-		onePasswordButton.hidden = false;
-	}
-	else
-		onePasswordButton.hidden = true;
-
 	tabCount.frame = CGRectMake(tabsButton.frame.origin.x + 6, tabsButton.frame.origin.y + 12, 14, 10);
 	urlField.frame = [self frameForUrlField];
 	
@@ -371,15 +353,9 @@
 
 - (CGRect)frameForUrlField
 {
-	CGRect leftmostframe;
-	if (self.showOnePasswordButton)
-		leftmostframe = onePasswordButton.frame;
-	else
-		leftmostframe = tabsButton.frame;
-		
 	float x = forwardButton.frame.origin.x + forwardButton.frame.size.width + TOOLBAR_PADDING;
-	float y = (TOOLBAR_HEIGHT - leftmostframe.size.height) / 2;
-	float w = leftmostframe.origin.x - TOOLBAR_PADDING - forwardButton.frame.origin.x - forwardButton.frame.size.width - TOOLBAR_PADDING;
+	float y = (TOOLBAR_HEIGHT - tabsButton.frame.size.height) / 2;
+	float w = tabsButton.frame.origin.x - TOOLBAR_PADDING - forwardButton.frame.origin.x - forwardButton.frame.size.width - TOOLBAR_PADDING;
 	float h = tabsButton.frame.size.height;
 	
 	if (backButton.hidden || [urlField isFirstResponder]) {
@@ -639,9 +615,6 @@
 	forwardButton.hidden = !(self.curWebViewTab && self.curWebViewTab.canGoForward);
 	[forwardButton setTintColor:(forwardButton.enabled ? [progressBar tintColor] : [UIColor grayColor])];
 
-	onePasswordButton.enabled = (self.curWebViewTab && self.curWebViewTab.url);
-	[onePasswordButton setTintColor:(onePasswordButton.enabled ? [progressBar tintColor] : [UIColor grayColor])];
-
 	[urlField setFrame:[self frameForUrlField]];
 }
 
@@ -850,14 +823,6 @@
 	return YES;
 }
 
-- (void)fillOnePassword:(id)_id
-{
-	[[OnePasswordExtension sharedExtension] fillItemIntoWebView:[[self curWebViewTab] webView] forViewController:self sender:onePasswordButton showOnlyLogins:NO completion:^(BOOL success, NSError *error) {
-		if (!success)
-			NSLog(@"[OnePasswordExtension] failed to fill into webview: %@", error);
-	}];
-}
-
 - (void)settingsViewControllerDidEnd:(IASKAppSettingsViewController *)sender
 {
 	[self dismissViewControllerAnimated:YES completion:nil];
@@ -870,10 +835,7 @@
 	BOOL oldtob = self.toolbarOnBottom;
 	self.toolbarOnBottom = [userDefaults boolForKey:@"toolbar_on_bottom"];
 	
-	BOOL oldonep = self.showOnePasswordButton;
-	self.showOnePasswordButton = [userDefaults boolForKey:@"onepassword_button"];
-
-	if (self.toolbarOnBottom != oldtob || self.showOnePasswordButton != oldonep)
+	if (self.toolbarOnBottom != oldtob)
 		[self adjustLayoutToSize:CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height)];
 }
 

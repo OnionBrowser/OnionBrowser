@@ -28,7 +28,6 @@
 		01AFEB371B4DBA8D00A02482 /* BookmarkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01AFEB361B4DBA8D00A02482 /* BookmarkController.m */; };
 		01AFEB491B4ED48000A02482 /* Bookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = 01AFEB481B4ED48000A02482 /* Bookmark.m */; };
 		01AFEB4F1B4F2A5F00A02482 /* OnePasswordExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 01AFEB4D1B4F2A5F00A02482 /* OnePasswordExtension.m */; };
-		01AFEB511B4F3A2F00A02482 /* 1Password.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01AFEB501B4F3A2F00A02482 /* 1Password.xcassets */; };
 		01D741281A44DF1C007B7033 /* WebViewMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D741271A44DF1C007B7033 /* WebViewMenuController.m */; };
 		01D7412A1A45EDD1007B7033 /* CookieJar_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D741291A45EDD1007B7033 /* CookieJar_Tests.m */; };
 		01D7412C1A45F8EB007B7033 /* injected.js in Resources */ = {isa = PBXBuildFile; fileRef = 01D7412B1A45F8EB007B7033 /* injected.js */; };
@@ -103,7 +102,6 @@
 		01AFEB481B4ED48000A02482 /* Bookmark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bookmark.m; sourceTree = "<group>"; };
 		01AFEB4C1B4F2A5F00A02482 /* OnePasswordExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnePasswordExtension.h; sourceTree = "<group>"; };
 		01AFEB4D1B4F2A5F00A02482 /* OnePasswordExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnePasswordExtension.m; sourceTree = "<group>"; };
-		01AFEB501B4F3A2F00A02482 /* 1Password.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = 1Password.xcassets; sourceTree = "<group>"; };
 		01D741261A44DF1C007B7033 /* WebViewMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewMenuController.h; sourceTree = "<group>"; };
 		01D741271A44DF1C007B7033 /* WebViewMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewMenuController.m; sourceTree = "<group>"; };
 		01D741291A45EDD1007B7033 /* CookieJar_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CookieJar_Tests.m; sourceTree = "<group>"; };
@@ -280,7 +278,6 @@
 		01AFEB4A1B4F2A5F00A02482 /* External */ = {
 			isa = PBXGroup;
 			children = (
-				01AFEB501B4F3A2F00A02482 /* 1Password.xcassets */,
 				01AFEB4C1B4F2A5F00A02482 /* OnePasswordExtension.h */,
 				01AFEB4D1B4F2A5F00A02482 /* OnePasswordExtension.m */,
 			);
@@ -410,7 +407,6 @@
 				01F8794C1A4124FE00A63654 /* credits.html in Resources */,
 				016B2FCB1A53466D002D2730 /* hsts_preload.plist in Resources */,
 				01FC0E571B38FB6B00955D9A /* Launch Screen.xib in Resources */,
-				01AFEB511B4F3A2F00A02482 /* 1Password.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
