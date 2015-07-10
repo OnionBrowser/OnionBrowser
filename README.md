@@ -60,6 +60,10 @@ are available for free in the
 
 - Optional sending of Do-Not-Track header on all requests
 
+- Optional [1Password button](https://github.com/AgileBits/onepassword-app-extension)
+  to autofill logins, passwords, credit card numbers, etc.; requires the
+  1Password iOS app to be installed
+
 #####Some nice-to-haves:
 
 - Favicon loader into search bar
