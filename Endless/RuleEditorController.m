@@ -58,41 +58,24 @@ UISearchDisplayController *searchDisplayController;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	if (section == 0) {
+	if (section == 0)
 		return [self.inUseRuleNames count];
-	}
-	else {
-		if (tableView == self.searchDisplayController.searchResultsTableView) {
-			return [self.searchResult count];
-		}
-		else {
-			return [self.sortedRuleNames count];
-		}
-	}
+	else if (tableView == self.searchDisplayController.searchResultsTableView)
+		return [self.searchResult count];
+	else
+		return [self.sortedRuleNames count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"rule"];
-	
-	if (cell == nil) {
+	if (cell == nil)
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"rule"];
-	}
 	
 	/* TODO: once we have a per-rule view page, enable this */
 	//cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	
-	if ([indexPath section] == 0) {
-		cell.textLabel.text = [self.inUseRuleNames objectAtIndex:indexPath.row];
-	}
-	else {
-		if (tableView == self.searchDisplayController.searchResultsTableView) {
-			cell.textLabel.text = [self.searchResult objectAtIndex:indexPath.row];
-		}
-		else {
-			cell.textLabel.text = [self.sortedRuleNames objectAtIndex:indexPath.row];
-		}
-	}
+	cell.textLabel.text = [self ruleForTableView:tableView atIndexPath:indexPath];
 	
 	NSString *disabled = [self ruleDisabledReason:cell.textLabel.text];
 	if (disabled == nil) {
@@ -121,20 +104,12 @@ UISearchDisplayController *searchDisplayController;
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	if (editingStyle == UITableViewCellEditingStyleDelete) {
-		NSString *row;
-		if (tableView == self.searchDisplayController.searchResultsTableView) {
-			row = [self.searchResult objectAtIndex:indexPath.row];
-		}
-		else {
-			row = [self.sortedRuleNames objectAtIndex:indexPath.row];
-		}
+		NSString *row = [self ruleForTableView:tableView atIndexPath:indexPath];
 		
-		if ([self ruleDisabledReason:row] == nil) {
+		if ([self ruleDisabledReason:row] == nil)
 			[self disableRuleByName:row withReason:@"User disabled"];
-		}
-		else {
+		else
 			[self enableRuleByName:row];
-		}
 	}
 	
 	[tableView reloadData];
@@ -152,29 +127,37 @@ UISearchDisplayController *searchDisplayController;
 	for (NSString *ruleName in self.sortedRuleNames) {
 		NSRange range = [ruleName rangeOfString:searchString options:NSCaseInsensitiveSearch];
 			
-		if (range.length > 0) {
+		if (range.length > 0)
 			[self.searchResult addObject:ruleName];
-		}
 	}
 	
 	return YES;
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
-	NSString *row;
-	if (tableView == self.searchDisplayController.searchResultsTableView) {
-		row = [self.searchResult objectAtIndex:indexPath.row];
-	}
-	else {
-		row = [self.sortedRuleNames objectAtIndex:indexPath.row];
-	}
+	NSString *row = [self ruleForTableView:tableView atIndexPath:indexPath];
 
-	if ([self ruleDisabledReason:row] == nil) {
+	if ([self ruleDisabledReason:row] == nil)
 		return @"Disable";
-	}
-	else {
+	else
 		return @"Enable";
-	}
+}
+
+- (NSString *)ruleForTableView:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath
+{
+	NSMutableArray *group;
+	
+	if ([indexPath section] == 0)
+		group = [self inUseRuleNames];
+	else if (tableView == self.searchDisplayController.searchResultsTableView)
+		group = [self searchResult];
+	else
+		group = [self sortedRuleNames];
+			 
+	if (group && [group count] > [indexPath row])
+		return [group objectAtIndex:indexPath.row];
+	else
+		return nil;
 }
 
 - (NSString *)ruleDisabledReason:(NSString *)rule
