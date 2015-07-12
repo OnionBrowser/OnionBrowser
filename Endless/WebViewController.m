@@ -589,8 +589,6 @@
 			NSString *host;
 			if (self.curWebViewTab.url == nil)
 				host = @"";
-			else if ([self.curWebViewTab.url.scheme isEqualToString:@"endless"])
-				host = @"";
 			else {
 				host = [self.curWebViewTab.url host];
 				if (host == nil)
@@ -676,6 +674,8 @@
 #ifdef TRACE
 	NSLog(@"started editing");
 #endif
+	
+	[urlField setText:[self.curWebViewTab.url absoluteString]];
 	
 	if (bookmarks == nil) {
 		bookmarks = [[BookmarkController alloc] init];
