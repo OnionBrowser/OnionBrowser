@@ -74,7 +74,7 @@ AppDelegate *appDelegate;
 	[swipeLeft setDirection:UISwipeGestureRecognizerDirectionLeft];
 	[swipeLeft setDelegate:self];
 	[self.webView addGestureRecognizer:swipeLeft];
-
+	
 	_titleHolder = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
 	[_titleHolder setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.75]];
 
@@ -137,13 +137,17 @@ AppDelegate *appDelegate;
 
 /* for long press gesture recognizer to work properly */
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-	if ([gestureRecognizer isKindOfClass:[UILongPressGestureRecognizer class]] && [gestureRecognizer state] == UIGestureRecognizerStateBegan) {
-		/* this is enough to cancel the touch when the long press gesture fires, so that the link being held down doesn't activate as a click once the finger is let up */
-		otherGestureRecognizer.enabled = NO;
-		otherGestureRecognizer.enabled = YES;
+	if ([gestureRecognizer isKindOfClass:[UILongPressGestureRecognizer class]]) {
+		if ([gestureRecognizer state] == UIGestureRecognizerStateBegan) {
+			/* this is enough to cancel the touch when the long press gesture fires, so that the link being held down doesn't activate as a click once the finger is let up */
+			otherGestureRecognizer.enabled = NO;
+			otherGestureRecognizer.enabled = YES;
+		}
+		
+		return YES;
 	}
-	
-	return YES;
+	else
+		return NO;
 }
 
 - (void)close
@@ -419,12 +423,12 @@ AppDelegate *appDelegate;
 	[[appDelegate webViewController] updateProgress];
 }
 
-- (void)swipeRightAction:(id)_id
+- (void)swipeRightAction:(UISwipeGestureRecognizer *)gesture
 {
 	[self goBack];
 }
 
-- (void)swipeLeftAction:(id)_id
+- (void)swipeLeftAction:(UISwipeGestureRecognizer *)gesture
 {
 	[self goForward];
 }
