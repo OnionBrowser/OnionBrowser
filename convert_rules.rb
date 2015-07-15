@@ -16,6 +16,8 @@ URLBLOCKER_TARGETS_PLIST = "Endless/Resources/urlblocker_targets.plist"
 HSTS_PRELOAD_LIST = "https://chromium.googlesource.com/chromium/src/net/+/master/http/transport_security_state_static.json?format=TEXT"
 HSTS_PRELOAD_HOSTS_PLIST = "Endless/Resources/hsts_preload.plist"
 
+FORCE = (ARGV[0].to_s == "-f")
+
 # convert all HTTPS Everywhere XML rule files into one big rules hash and write
 # it out as a plist, as well as a standalone hash of target URLs -> rule names
 # to another plist
@@ -25,7 +27,7 @@ def convert_https_e
 
   if File.exists?(HTTPS_E_TARGETS_PLIST)
     if m = File.open(HTTPS_E_TARGETS_PLIST).gets.to_s.match(/Everywhere (.+) - /)
-      if (m[1] == https_e_git_commit)
+      if (m[1] == https_e_git_commit) && !FORCE
         return
       end
     end
@@ -45,6 +47,26 @@ def convert_https_e
     end
 
     raise "conflict on #{f}" if rules[hash["ruleset"]["name"]]
+
+    # validate regexps
+    begin
+      r = hash["ruleset"]["rule"]
+      r = [ r ] if !r.is_a?(Array)
+      r.each do |h|
+        Regexp.compile(h["from"])
+      end
+
+      if r = hash["ruleset"]["securecookie"]
+        r = [ r ] if !r.is_a?(Array)
+        r.each do |h|
+          Regexp.compile(h["host"])
+          Regexp.compile(h["name"])
+        end
+      end
+    rescue => e
+      STDERR.puts "error in #{f}: #{e} (#{hash.inspect})"
+      exit 1
+    end
 
     rules[hash["ruleset"]["name"]] = hash
 
