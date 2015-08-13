@@ -3,6 +3,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>3gl.net</key>
+	<string>Analytics - Catchpoint</string>
 	<key>3lift.com</key>
 	<string>Advertising/Analytics - TripleLift</string>
 	<key>addthis.com</key>
@@ -11,6 +13,8 @@
 	<string>Advertising/Analytics - AppNexus</string>
 	<key>ads.yahoo.com</key>
 	<string>Advertising/Analytics - Yahoo</string>
+	<key>adsafeprotected.com</key>
+	<string>Advertising/Analytics - Integral Ad Science</string>
 	<key>adzerk.net</key>
 	<string>Advertising/Analytics - Adzerk</string>
 	<key>apis.google.com</key>
@@ -27,10 +31,14 @@
 	<string>Advertising/Analytics - Yahoo</string>
 	<key>btstatic.com</key>
 	<string>Advertising/Analytics - Signal/BrightTag</string>
+	<key>catchpoint.com</key>
+	<string>Analytics - Catchpoint</string>
 	<key>chartbeat.com</key>
 	<string>Analytics - Chartbeat</string>
 	<key>chartbeat.net</key>
 	<string>Analytics - Chartbeat</string>
+	<key>clicktale.net</key>
+	<string>Analytics - Clicktale</string>
 	<key>clicky.com</key>
 	<string>Analytics - Clicky</string>
 	<key>crsspxl.com</key>
@@ -39,6 +47,8 @@
 	<string>Advertising/Analytics - Lotame</string>
 	<key>cxense.com</key>
 	<string>Advertising/Analytics - Cxense</string>
+	<key>demdex.net</key>
+	<string>Analytics - Adobe</string>
 	<key>domdex.com</key>
 	<string>Advertising/Analytics - Magnetic</string>
 	<key>doubleclick.net</key>
@@ -57,8 +67,12 @@
 	<string>Social - Facebook</string>
 	<key>flattr.com</key>
 	<string>Social - Flattr</string>
+	<key>fyre.co</key>
+	<string>Advertising/Analytics - Livefyre</string>
 	<key>getclicky.com</key>
 	<string>Analytics - Clicky</string>
+	<key>go-mpulse.net</key>
+	<string>Analytics - mPulse</string>
 	<key>google-analytics.com</key>
 	<string>Advertising/Analytics - Google</string>
 	<key>googleadservices.com</key>
@@ -67,18 +81,50 @@
 	<string>Advertising/Analytics - Google</string>
 	<key>googletagservices.com</key>
 	<string>Advertising/Analytics - Google</string>
+	<key>imrworldwide.com</key>
+	<string>Analytics - Nielsen</string>
+	<key>integralads.com</key>
+	<string>Advertising/Analytics - Integral Ad Science</string>
 	<key>intentiq.com</key>
 	<string>Analytics - Intent IQ</string>
+	<key>krux.com</key>
+	<string>Analytics - Krux</string>
+	<key>krxd.net</key>
+	<string>Analytics - Krux</string>
 	<key>linkedin.com</key>
 	<string>Social - LinkedIn</string>
+	<key>livefyre.com</key>
+	<string>Advertising/Analytics - Livefyre</string>
+	<key>liveramp.com</key>
+	<string>Advertising/Analytics - LiveRamp</string>
 	<key>magnetic.com</key>
 	<string>Advertising/Analytics - Magnetic</string>
+	<key>moat.com</key>
+	<string>Advertising/Analytics - Moat</string>
+	<key>moatads.com</key>
+	<string>Advertising/Analytics - Moat</string>
+	<key>mookie1.com</key>
+	<string>Advertising/Analytics - Media Innovation Group</string>
+	<key>nativo.net</key>
+	<string>Advertising/Analytics - Nativo</string>
+	<key>nbcudigitaladops.com</key>
+	<string>Advertising/Analytics - NBC</string>
 	<key>newrelic.com</key>
 	<string>Analytics - New Relic</string>
+	<key>nielsen.com</key>
+	<string>Analytics - Nielsen</string>
+	<key>nvg.msnbc.com</key>
+	<string>Advertising/Analytics - NBC</string>
+	<key>optimizely.com</key>
+	<string>Analytics - Optimizely</string>
+	<key>outbrain.com</key>
+	<string>Advertising/Analytics - Outbrain</string>
 	<key>pixel.redditmedia.com</key>
 	<string>Analytics - Reddit</string>
 	<key>pixel.wp.com</key>
 	<string>Analytics - WordPress</string>
+	<key>postrelease.com</key>
+	<string>Advertising/Analytics - Nativo</string>
 	<key>pro-market.net</key>
 	<string>Unknown - pro-market</string>
 	<key>quantserve.com</key>
@@ -87,6 +133,8 @@
 	<string>Advertising/Analytics - Safecount</string>
 	<key>reddit.com</key>
 	<string>Social - Reddit</string>
+	<key>rlcdn.com</key>
+	<string>Advertising/Analytics - LiveRamp</string>
 	<key>safecount.net</key>
 	<string>Advertising/Analytics - Safecount</string>
 	<key>scorecardresearch.com</key>
@@ -107,6 +155,8 @@
 	<string>Advertising/Analytics - Taboola</string>
 	<key>thebrighttag.com</key>
 	<string>Advertising/Analytics - Signal/BrightTag</string>
+	<key>themig.com</key>
+	<string>Advertising/Analytics - Media Innovation Group</string>
 	<key>thoughtleadr.com</key>
 	<string>Advertising/Analytics - ThoughtLeadr</string>
 	<key>triplelift.com</key>
@@ -119,5 +169,9 @@
 	<string>Analytics - Unruly</string>
 	<key>unrulymedia.com</key>
 	<string>Analytics - Unruly</string>
+	<key>usabilla.com</key>
+	<string>Analytics - Usabilla</string>
+	<key>yieldmo.com</key>
+	<string>Advertising/Analytics - YieldMo</string>
 </dict>
 </plist>

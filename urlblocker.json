@@ -29,13 +29,52 @@
 		,"apis.google.com"
 	]
 
+	,"Advertising/Analytics - Integral Ad Science": [
+		"integralads.com"
+		,"adsafeprotected.com"
+	]
+
 	,"Advertising/Analytics - Lotame": [
 		"crwdcntrl.net"
+	]
+
+	,"Advertising/Analytics - Livefyre": [
+		"livefyre.com"
+		,"fyre.co"
+	]
+
+	,"Advertising/Analytics - LiveRamp": [
+		"liveramp.com"
+		,"rlcdn.com"
 	]
 
 	,"Advertising/Analytics - Magnetic": [
 		"magnetic.com"
 		,"domdex.com"
+	]
+
+	,"Advertising/Analytics - Media Innovation Group": [
+		"themig.com"
+		,"mookie1.com"
+	]
+
+	,"Advertising/Analytics - Moat": [
+		"moat.com"
+		,"moatads.com"
+	]
+
+	,"Advertising/Analytics - Nativo": [
+		"nativo.net"
+		,"postrelease.com"
+	]
+
+	,"Advertising/Analytics - NBC": [
+		"nbcudigitaladops.com"
+		,"nvg.msnbc.com"
+	]
+
+	,"Advertising/Analytics - Outbrain": [
+		"outbrain.com"
 	]
 
 	,"Advertising/Analytics - Safecount": [
@@ -57,6 +96,10 @@
 		"taboola.com"
 	]
 
+	,"Advertising/Analytics - ThoughtLeadr": [
+		"thoughtleadr.com"
+	]
+
 	,"Advertising/Analytics - TripleLift": [
 		"triplelift.com"
 		,"3lift.com"
@@ -67,8 +110,22 @@
 		,"bluelithium.com"
 	]
 
+	,"Advertising/Analytics - YieldMo": [
+		"yieldmo.com"
+	]
+
+
+	,"Analytics - Adobe": [
+		"demdex.net"
+	]
+
 	,"Analytics - BlueCava": [
 		"bluecava.com"
+	]
+
+	,"Analytics - Catchpoint": [
+		"catchpoint.com"
+		,"3gl.net"
 	]
 
 	,"Analytics - Chartbeat": [
@@ -79,6 +136,10 @@
 	,"Analytics - Clicky": [
 		"clicky.com"
 		,"getclicky.com"
+	]
+
+	,"Analytics - Clicktale": [
+		"clicktale.net"
 	]
 
 	,"Analytics - comScore": [
@@ -93,16 +154,30 @@
 		"errorception.com"
 	]
 
-	,"Advertising/Analytics - ThoughtLeadr": [
-		"thoughtleadr.com"
-	]
-
 	,"Analytics - Intent IQ": [
 		"intentiq.com"
 	]
 
+	,"Analytics - Krux": [
+		"krxd.net"
+		,"krux.com"
+	]
+
+	,"Analytics - mPulse": [
+		"go-mpulse.net"
+	]
+
 	,"Analytics - New Relic": [
 		"newrelic.com"
+	]
+
+	,"Analytics - Nielsen": [
+		"nielsen.com"
+		,"imrworldwide.com"
+	]
+
+	,"Analytics - Optimizely": [
+		"optimizely.com"
 	]
 
 	,"Analytics - Quantcast": [
@@ -127,17 +202,13 @@
 		,"unruly.co"
 	]
 
+	,"Analytics - Usabilla": [
+		"usabilla.com"
+	]
+
 	,"Analytics - WordPress": [
 		"stats.wp.com"
 		,"pixel.wp.com"
-	]
-
-
-	,"Unknown - pro-market": [
-		"pro-market.net"
-	]
-	,"Unknown - bktrx.com": [
-		"bkrtx.com"
 	]
 
 
@@ -173,5 +244,13 @@
 
 	,"Social - Twitter": [
 		"twitter.com"
+	]
+
+
+	,"Unknown - pro-market": [
+		"pro-market.net"
+	]
+	,"Unknown - bktrx.com": [
+		"bkrtx.com"
 	]
 }
