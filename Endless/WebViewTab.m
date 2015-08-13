@@ -58,6 +58,7 @@ AppDelegate *appDelegate;
 	[_webView setDelegate:self];
 	[_webView setScalesPageToFit:YES];
 	[_webView setAutoresizesSubviews:YES];
+	[_webView setAllowsInlineMediaPlayback:YES];
 	
 	[_webView.scrollView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
 	[_webView.scrollView setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
