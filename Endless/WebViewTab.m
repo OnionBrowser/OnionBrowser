@@ -512,6 +512,10 @@ AppDelegate *appDelegate;
 		[[appDelegate webViewController] addNewTabForURL:[NSURL URLWithString:href]];
 	}];
 	
+	UIAlertAction *openSafariAction = [UIAlertAction actionWithTitle:@"Open in Safari" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:href]];
+	}];
+
 	UIAlertAction *saveImageAction = [UIAlertAction actionWithTitle:@"Save Image" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
 		NSURL *imgurl = [NSURL URLWithString:img];
 		[URLInterceptor temporarilyAllow:imgurl];
@@ -533,6 +537,7 @@ AppDelegate *appDelegate;
 	if (href) {
 		[alertController addAction:openAction];
 		[alertController addAction:openNewTabAction];
+		[alertController addAction:openSafariAction];
 	}
 	
 	if (img)
