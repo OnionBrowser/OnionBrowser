@@ -32,6 +32,7 @@ NSString * const LABEL = @"L";
 		[buttons addObject:@{ FUNC : @"menuOnePassword", LABEL : @"Fill with 1Password" }];
 
 	[buttons addObject:@{ FUNC : @"menuAddBookmark", LABEL : @"Add Bookmark" }];
+	[buttons addObject:@{ FUNC : @"menuOpenInSafari", LABEL : @"Open in Safari" }];
 	[buttons addObject:@{ FUNC : @"menuCookies", LABEL : @"Cookies" }];
 	[buttons addObject:@{ FUNC : @"menuHTTPSEverywhere", LABEL : @"HTTPS Everywhere" }];
 	[buttons addObject:@{ FUNC : @"menuManageBookmarks", LABEL : @"Manage Bookmarks" }];
@@ -91,7 +92,7 @@ NSString * const LABEL = @"L";
 		else
 			cell.userInteractionEnabled = cell.textLabel.enabled = NO;
 	}
-	else if ([func isEqualToString:@"menuOnePassword"] || [func isEqualToString:@"menuRefresh"]) {
+	else if ([func isEqualToString:@"menuOnePassword"] || [func isEqualToString:@"menuRefresh"] || [func isEqualToString:@"menuOpenInSafari"]) {
 		cell.userInteractionEnabled = haveURL;
 		cell.textLabel.enabled = haveURL;
 	}
@@ -193,6 +194,13 @@ NSString * const LABEL = @"L";
 		if (!success)
 			NSLog(@"[OnePasswordExtension] failed to fill into webview: %@", error);
 	}];
+}
+
+- (void)menuOpenInSafari
+{
+	WebViewTab *wvt = [[appDelegate webViewController] curWebViewTab];
+	if (wvt && [wvt url])
+		[[UIApplication sharedApplication] openURL:[wvt url]];
 }
 
 @end
