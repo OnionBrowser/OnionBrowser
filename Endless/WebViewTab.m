@@ -138,17 +138,36 @@ AppDelegate *appDelegate;
 
 /* for long press gesture recognizer to work properly */
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-	if ([gestureRecognizer isKindOfClass:[UILongPressGestureRecognizer class]]) {
-		if ([gestureRecognizer state] == UIGestureRecognizerStateBegan) {
-			/* this is enough to cancel the touch when the long press gesture fires, so that the link being held down doesn't activate as a click once the finger is let up */
+	
+	if (![gestureRecognizer isKindOfClass:[UILongPressGestureRecognizer class]])
+		return NO;
+	
+	if ([gestureRecognizer state] != UIGestureRecognizerStateBegan)
+		return YES;
+
+	BOOL haveLinkOrImage = NO;
+
+	NSArray *elements = [self elementsAtLocationFromGestureRecognizer:gestureRecognizer];
+	for (NSDictionary *element in elements) {
+		NSString *k = [element allKeys][0];
+		
+		if ([k isEqualToString:@"a"] || [k isEqualToString:@"img"]) {
+			haveLinkOrImage = YES;
+			break;
+		}
+	}
+	
+	if (haveLinkOrImage) {
+		/* this is enough to cancel the touch when the long press gesture fires, so that the link being held down doesn't activate as a click once the finger is let up */
+		if ([otherGestureRecognizer isKindOfClass:[UILongPressGestureRecognizer class]]) {
 			otherGestureRecognizer.enabled = NO;
 			otherGestureRecognizer.enabled = YES;
 		}
 		
 		return YES;
 	}
-	else
-		return NO;
+	
+	return NO;
 }
 
 - (void)close
@@ -440,6 +459,9 @@ AppDelegate *appDelegate;
 }
 
 - (void)longPressMenu:(UILongPressGestureRecognizer *)sender {
+	UIAlertController *alertController;
+	NSString *href, *img, *alt;
+	
 	if (sender.state != UIGestureRecognizerStateBegan)
 		return;
 	
@@ -447,29 +469,7 @@ AppDelegate *appDelegate;
 	NSLog(@"[Tab %@] long-press gesture recognized", self.tabIndex);
 #endif
 	
-	UIAlertController *alertController;
-	NSString *href, *img, *alt;
-	
-	CGPoint tap = [sender locationInView:[self webView]];
-	tap.y -= [[[self webView] scrollView] contentInset].top;
-	
-	/* translate tap coordinates from view to scale of page */
-	CGSize windowSize = CGSizeMake(
-				       [[[self webView] stringByEvaluatingJavaScriptFromString:@"window.innerWidth"] intValue],
-				       [[[self webView] stringByEvaluatingJavaScriptFromString:@"window.innerHeight"] intValue]
-				       );
-	CGSize viewSize = [[self webView] frame].size;
-	float ratio = windowSize.width / viewSize.width;
-	CGPoint tapOnPage = CGPointMake(tap.x * ratio, tap.y * ratio);
-	
-	/* now find if there are usable elements at those coordinates and extract their attributes */
-	NSString *json = [[self webView] stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"JSON.stringify(__endless.elementsAtPoint(%li, %li));", (long)tapOnPage.x, (long)tapOnPage.y]];
-	if (json == nil) {
-		NSLog(@"[Tab %@] didn't get any JSON back from __endless.elementsAtPoint", self.tabIndex);
-		return;
-	}
-	
-	NSMutableArray *elements = [NSJSONSerialization JSONObjectWithData:[json dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:nil];
+	NSArray *elements = [self elementsAtLocationFromGestureRecognizer:sender];
 	for (NSDictionary *element in elements) {
 		NSString *k = [element allKeys][0];
 		NSDictionary *attrs = [element objectForKey:k];
@@ -496,8 +496,11 @@ AppDelegate *appDelegate;
 	NSLog(@"[Tab %@] context menu href:%@, img:%@, alt:%@", self.tabIndex, href, img, alt);
 #endif
 	
-	if (!(href || img))
+	if (!(href || img)) {
+		sender.enabled = false;
+		sender.enabled = true;
 		return;
+	}
 	
 	alertController = [UIAlertController alertControllerWithTitle:href message:alt preferredStyle:UIAlertControllerStyleActionSheet];
 	
@@ -615,6 +618,30 @@ AppDelegate *appDelegate;
 	[_closer setHidden:true];
 	[[[self viewHolder] layer] setShadowOpacity:0];
 	[[self viewHolder] setTransform:CGAffineTransformIdentity];
+}
+
+- (NSArray *)elementsAtLocationFromGestureRecognizer:(UIGestureRecognizer *)uigr
+{
+	CGPoint tap = [uigr locationInView:[self webView]];
+	tap.y -= [[[self webView] scrollView] contentInset].top;
+	
+	/* translate tap coordinates from view to scale of page */
+	CGSize windowSize = CGSizeMake(
+				       [[[self webView] stringByEvaluatingJavaScriptFromString:@"window.innerWidth"] intValue],
+				       [[[self webView] stringByEvaluatingJavaScriptFromString:@"window.innerHeight"] intValue]
+				       );
+	CGSize viewSize = [[self webView] frame].size;
+	float ratio = windowSize.width / viewSize.width;
+	CGPoint tapOnPage = CGPointMake(tap.x * ratio, tap.y * ratio);
+	
+	/* now find if there are usable elements at those coordinates and extract their attributes */
+	NSString *json = [[self webView] stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"JSON.stringify(__endless.elementsAtPoint(%li, %li));", (long)tapOnPage.x, (long)tapOnPage.y]];
+	if (json == nil) {
+		NSLog(@"[Tab %@] didn't get any JSON back from __endless.elementsAtPoint", self.tabIndex);
+		return @[];
+	}
+	
+	return [NSJSONSerialization JSONObjectWithData:[json dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:nil];
 }
 
 @end
