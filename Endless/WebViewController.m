@@ -466,6 +466,9 @@
 
 - (void)removeTab:(NSNumber *)tabNumber andFocusTab:(NSNumber *)toFocus
 {
+	if (tabNumber.intValue > [webViewTabs count] - 1)
+		return;
+	
 	WebViewTab *wvt = (WebViewTab *)webViewTabs[tabNumber.intValue];
 	
 #ifdef TRACE
