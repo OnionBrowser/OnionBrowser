@@ -3553,6 +3553,16 @@
 		<key>include_subdomains</key>
 		<true/>
 	</dict>
+	<key>dropboxstatic.com</key>
+	<dict>
+		<key>include_subdomains</key>
+		<false/>
+	</dict>
+	<key>dropboxusercontent.com</key>
+	<dict>
+		<key>include_subdomains</key>
+		<false/>
+	</dict>
 	<key>dropcam.com</key>
 	<dict>
 		<key>include_subdomains</key>
