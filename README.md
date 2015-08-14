@@ -1,9 +1,12 @@
 ###Endless
 
 A (Mobile)Safari-like web browser for iOS (wrapping around UIWebView, of
-course) with a design goal of increased security and privacy.  Current builds
-are available for free in the
+course) with a design goal of increased security and privacy.
+
+Current builds are available for free in the
 [App Store](https://itunes.apple.com/us/app/endless-browser/id974745755?mt=8).
+
+#####Screenshots
 
 ![https://i.imgur.com/ABftci1l.png](https://i.imgur.com/ABftci1l.png) ![https://i.imgur.com/6HsCQn3l.png](https://i.imgur.com/6HsCQn3l.png)
 
