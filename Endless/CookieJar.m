@@ -224,12 +224,16 @@ AppDelegate *appDelegate;
 - (void)trackDataAccessForDomain:(NSString *)domain fromTab:(NSUInteger)tabHash
 {
 	NSNumber *tabHashN = [NSNumber numberWithLong:tabHash];
+	NSInteger now = (NSInteger)[[NSDate date] timeIntervalSince1970];
 	
-	if (![[self dataAccesses] objectForKey:tabHashN]) {
+	if (![[self dataAccesses] objectForKey:tabHashN])
 		[[self dataAccesses] setObject:[[NSMutableDictionary alloc] init] forKey:tabHashN];
-	}
 	
-	[(NSMutableDictionary *)[[self dataAccesses] objectForKey:tabHashN] setObject:[NSDate date] forKey:domain];
+	NSNumber *lastAccess = [[[self dataAccesses] objectForKey:tabHashN] objectForKey:domain];
+	if (lastAccess != nil && ([lastAccess longValue] == now))
+		return;
+	
+	[(NSMutableDictionary *)[[self dataAccesses] objectForKey:tabHashN] setObject:[NSNumber numberWithLong:now] forKey:domain];
 	
 #ifdef TRACE_COOKIES
 	NSLog(@"[CookieJar] [Tab h%lu] touched data access for %@", tabHash, domain);
