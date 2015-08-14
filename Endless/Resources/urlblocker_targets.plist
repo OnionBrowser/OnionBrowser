@@ -17,10 +17,14 @@
 	<string>Advertising/Analytics - Integral Ad Science</string>
 	<key>adzerk.net</key>
 	<string>Advertising/Analytics - Adzerk</string>
+	<key>amazon-adsystem.com</key>
+	<string>Advertising/Analytics - Amazon</string>
 	<key>apis.google.com</key>
 	<string>Advertising/Analytics - Google</string>
 	<key>appnexus.com</key>
 	<string>Advertising/Analytics - AppNexus</string>
+	<key>autoforums.com</key>
+	<string>Advertising/Analytics - AutoGuide</string>
 	<key>bdex.com</key>
 	<string>Advertising/Analytics - BDEX</string>
 	<key>bkrtx.com</key>
@@ -47,6 +51,8 @@
 	<string>Advertising/Analytics - Lotame</string>
 	<key>cxense.com</key>
 	<string>Advertising/Analytics - Cxense</string>
+	<key>datalogix.com</key>
+	<string>Analytics - Datalogix</string>
 	<key>demdex.net</key>
 	<string>Analytics - Adobe</string>
 	<key>domdex.com</key>
@@ -111,6 +117,8 @@
 	<string>Advertising/Analytics - NBC</string>
 	<key>newrelic.com</key>
 	<string>Analytics - New Relic</string>
+	<key>nexac.com</key>
+	<string>Analytics - Datalogix</string>
 	<key>nielsen.com</key>
 	<string>Analytics - Nielsen</string>
 	<key>nvg.msnbc.com</key>
@@ -171,6 +179,10 @@
 	<string>Analytics - Unruly</string>
 	<key>usabilla.com</key>
 	<string>Analytics - Usabilla</string>
+	<key>verticalscope.com</key>
+	<string>Advertising/Analytics - VerticalScope</string>
+	<key>viglink.com</key>
+	<string>Advertising/Analytics - VigLink</string>
 	<key>yieldmo.com</key>
 	<string>Advertising/Analytics - YieldMo</string>
 </dict>

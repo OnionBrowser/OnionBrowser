@@ -3,6 +3,14 @@
 		"adzerk.net"
 	]
 
+	,"Advertising/Analytics - AutoGuide": [
+		"autoforums.com"
+	]
+
+	,"Advertising/Analytics - Amazon": [
+		"amazon-adsystem.com"
+	]
+
 	,"Advertising/Analytics - AppNexus": [
 		"adnxs.com"
 		,"appnexus.com"
@@ -105,6 +113,14 @@
 		,"3lift.com"
 	]
 
+	,"Advertising/Analytics - VerticalScope": [
+		"verticalscope.com"
+	]
+
+	,"Advertising/Analytics - VigLink": [
+		"viglink.com"
+	]
+
 	,"Advertising/Analytics - Yahoo": [
 		"ads.yahoo.com"
 		,"bluelithium.com"
@@ -148,6 +164,11 @@
 
 	,"Analytics - Cross Pixel": [
 		"crsspxl.com"
+	]
+
+	,"Analytics - Datalogix": [
+		"datalogix.com"
+		,"nexac.com"
 	]
 
 	,"Analytics - Errorception": [
