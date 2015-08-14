@@ -225,6 +225,14 @@
 			NSURL *URL = [theStream propertyForKey:(NSString *)kCFStreamPropertyHTTPFinalURL];
 			NSHTTPURLResponse *URLResponse = [NSHTTPURLResponse responseWithURL:URL HTTPMessage:response];
 			
+			/* work around bug where CFHTTPMessageIsHeaderComplete reports true but there is no actual header data to be found */
+			if ([URLResponse statusCode] == 200 && [URLResponse expectedContentLength] == 0 && [[URLResponse allHeaderFields] count] == 0) {
+#ifdef TRACE
+				NSLog(@"[CKHTTPConnection] hit CFHTTPMessageIsHeaderComplete bug, waiting for more data");
+#endif
+				goto process;
+			}
+			
 			// If the response was an authentication failure, try to request fresh credentials.
 			if ([URLResponse statusCode] == 401 || [URLResponse statusCode] == 407) {
 				// Cancel any further loading and ask the delegate for authentication
@@ -247,7 +255,8 @@
 			[[self delegate] HTTPConnection:self didReceiveResponse:URLResponse];
 		}
 	}
-
+	
+process:
 	// Next course of action depends on what happened to the stream
 	switch (streamEvent) {
         case NSStreamEventErrorOccurred:    // Report an error in the stream as the operation failing
@@ -268,6 +277,7 @@
 		}
 
 		[[self delegate] HTTPConnection:self didReceiveData:data];
+		
 		break;
         }
 	default:

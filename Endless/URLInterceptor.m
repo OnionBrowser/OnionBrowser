@@ -274,7 +274,7 @@ static NSString *_javascriptToInject;
 - (void)HTTPConnection:(CKHTTPConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response
 {
 #ifdef TRACE
-	NSLog(@"[URLInterceptor] [Tab %@] got HTTP response %ld with content-type %@ for %@", wvt.tabIndex, (long)[response statusCode], [response MIMEType], [[[self actualRequest] URL] absoluteString]);
+	NSLog(@"[URLInterceptor] [Tab %@] got HTTP response %ld, content-type %@, length %lld for %@", wvt.tabIndex, (long)[response statusCode], [response MIMEType], [response expectedContentLength], [[[self actualRequest] URL] absoluteString]);
 #endif
 	
 	encoding = 0;
@@ -410,16 +410,21 @@ static NSString *_javascriptToInject;
 	if ((response.statusCode == 301) || (response.statusCode == 302) || (response.statusCode == 307)) {
 		NSString *newURL = [self caseInsensitiveHeader:@"location" inResponse:response];
 		if (newURL == nil || [newURL isEqualToString:@""])
-			NSLog(@"[URLInterceptor] got %ld redirect at %@ but no location header", (long)response.statusCode, [[self actualRequest] URL]);
+			NSLog(@"[URLInterceptor] [Tab %@] got %ld redirect at %@ but no location header", wvt.tabIndex, (long)response.statusCode, [[self actualRequest] URL]);
 		else {
 			NSMutableURLRequest *newRequest = [[self actualRequest] mutableCopy];
+
+			/* 307 redirects are supposed to retain the method when redirecting but others should go back to GET */
+			if (response.statusCode == 307)
+				[newRequest setHTTPMethod:@"GET"];
+			
 			[newRequest setHTTPShouldUsePipelining:YES];
 			
 			/* strangely, if we pass [NSURL URLWithString:/ relativeToURL:[NSURL https://blah/asdf/]] as the URL for the new request, it treats it as just "/" with no domain information so we have to build the relative URL, turn it into a string, then back to a URL */
 			NSString *aURL = [[NSURL URLWithString:newURL relativeToURL:[[self actualRequest] URL]] absoluteString];
 			[newRequest setURL:[NSURL URLWithString:aURL]];
 #ifdef DEBUG
-			NSLog(@"[URLInterceptor] got %ld redirect from %@ to %@", (long)response.statusCode, [[[self actualRequest] URL] absoluteString], aURL);
+			NSLog(@"[URLInterceptor] [Tab %@] got %ld redirect from %@ to %@", wvt.tabIndex, (long)response.statusCode, [[[self actualRequest] URL] absoluteString], aURL);
 #endif
 			if ([NSURLProtocol propertyForKey:ORIGIN_KEY inRequest:[self actualRequest]])
 				[newRequest setMainDocumentURL:[NSURL URLWithString:aURL]];
@@ -459,6 +464,8 @@ static NSString *_javascriptToInject;
 			encoding = ENCODING_DEFLATE;
 		else if ([content_encoding isEqualToString:@"gzip"])
 			encoding = ENCODING_GZIP;
+		else
+			NSLog(@"[URLInterceptor] [Tab %@] unknown content encoding \"%@\"", wvt.tabIndex, content_encoding);
 	}
 
 	NSString *charset = @"UTF-8";
@@ -498,10 +505,14 @@ static NSString *_javascriptToInject;
 	
 	if (newData != nil) {
 		if (firstChunk) {
-			if (contentType == CONTENT_TYPE_HTML)
-				newData = [self htmlDataWithJavascriptInjection:newData];
-			else if (contentType == CONTENT_TYPE_JAVASCRIPT)
-				newData = [self javascriptDataWithJavascriptInjection:newData];
+			/* we only need to do injection for top-level docs */
+			if (self.isOrigin) {
+				NSLog(@"origin, injecting js");
+				if (contentType == CONTENT_TYPE_HTML)
+					newData = [self htmlDataWithJavascriptInjection:newData];
+				else if (contentType == CONTENT_TYPE_JAVASCRIPT)
+					newData = [self javascriptDataWithJavascriptInjection:newData];
+			}
 
 			firstChunk = NO;
 		}
@@ -509,7 +520,7 @@ static NSString *_javascriptToInject;
 		/* clear our running buffer of data for this request */
 		_data = nil;
 	}
-
+	
 	[self.client URLProtocol:self didLoadData:newData];
 }
 
