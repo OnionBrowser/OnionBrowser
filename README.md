@@ -29,11 +29,11 @@ are available for free in the
 
 - Defaults to only accepting cookies and local storage for the duration of the
   session (until the last tab accessing that data closes) with an editable
-  whitelist of hosts from which non-session data will be saved
+  whitelist of hosts from which non-session data will be preserved
 
 - Auto-destroys non-whitelisted cookies and local storage (even within the same
   tab) that has not been accessed by any other tab within a configurable amount
-  of time (defaults to 30 minutes) to improve privacy after browsing within a
+  of time (defaults to 30 minutes) to improve privacy while browsing within a
   long-running tab
 
 - Cookie and localStorage database listing and deletion per-host
@@ -53,6 +53,9 @@ are available for free in the
 
 - Blocks mixed-content requests (http elements on an https page), shows broken
   padlock
+
+- Disables SSLv2 and SSLv3, supports a configurable minimum TLS version to
+  require (defaults to TLS 1.2)
 
 - Blocks pages loaded from non-local networks (i.e., the internet) from trying
   to load sub-requests (e.g., images, iframes, ajax) from hosts that are on
