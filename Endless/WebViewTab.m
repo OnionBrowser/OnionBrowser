@@ -8,19 +8,7 @@
 
 @implementation WebViewTab
 
-static NSString *_javascriptToInject;
-
 AppDelegate *appDelegate;
-
-+ (NSString *)javascriptToInject
-{
-	if (!_javascriptToInject) {
-		NSString *path = [[NSBundle mainBundle] pathForResource:@"injected" ofType:@"js"];
-		_javascriptToInject = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-	}
-	
-	return _javascriptToInject;
-}
 
 + (WebViewTab *)openedWebViewTabByRandID:(NSString *)randID
 {
@@ -400,8 +388,6 @@ AppDelegate *appDelegate;
 	NSLog(@"[Tab %@] finished loading page/iframe %@", self.tabIndex, [[[__webView request] URL] absoluteString]);
 #endif
 	[self setProgress:@1.0];
-	
-	[__webView stringByEvaluatingJavaScriptFromString:[[self class] javascriptToInject]];
 	
 	[self.title setText:[__webView stringByEvaluatingJavaScriptFromString:@"document.title"]];
 	self.url = [NSURL URLWithString:[__webView stringByEvaluatingJavaScriptFromString:@"window.location.href"]];

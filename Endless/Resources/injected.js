@@ -1,7 +1,4 @@
 if (typeof __endless == "undefined") {
-/* supress default long-press menu */
-document.body.style.webkitTouchCallout="none";
-	
 var __endless = {
 	openedTabs: {},
 
@@ -74,6 +71,14 @@ var __endless = {
 			e = e.parentNode;
 		}
 		return tags;
+	},
+	
+	onLoad: function() {
+		/* supress default long-press menu */
+		if (document && document.body)
+			document.body.style.webkitTouchCallout = "none";
+		
+		__endless.hookIntoBlankAs();
 	},
 
 	FakeLocation: function(real) {
@@ -215,9 +220,8 @@ var __endless = {
 	console.error = function() { console._log("error", arguments); };
 
 	if (document.readyState == "complete" || document.readyState == "interactive")
-		__endless.hookIntoBlankAs();
+		__endless.onLoad();
 	else
-		document.addEventListener("DOMContentLoaded",
-			__endless.hookIntoBlankAs, false);
+		document.addEventListener("DOMContentLoaded", __endless.onLoad, false);
 }());
 }
