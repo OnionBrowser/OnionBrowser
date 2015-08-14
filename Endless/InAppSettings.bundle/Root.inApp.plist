@@ -118,6 +118,36 @@
 		</dict>
 		<dict>
 			<key>Title</key>
+			<string>Security</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>FooterText</key>
+			<string>Minimum version of TLS supported for HTTPS connections (SSL v2 and v3 are always disabled)</string>
+		</dict>
+		<dict>
+			<key>Key</key>
+			<string>min_tls_version</string>
+			<key>Title</key>
+			<string>Minimum TLS version</string>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>DefaultValue</key>
+			<string>1.2</string>
+			<key>Values</key>
+			<array>
+				<string>1.2</string>
+				<string>1.1</string>
+				<string>1.0</string>
+			</array>
+			<key>Titles</key>
+			<array>
+				<string>TLS 1.2</string>
+				<string>TLS 1.1</string>
+				<string>TLS 1.0</string>
+			</array>
+		</dict>
+		<dict>
+			<key>Title</key>
 			<string>Miscellaneous</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>

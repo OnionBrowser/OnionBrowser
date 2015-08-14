@@ -16,10 +16,6 @@
 #import "CKHTTPConnection.h"
 #import "AppDelegate.h"
 
-#define X_TLSVER_ANY 0
-#define X_TLSVER_TLS1 1
-#define X_TLSVER_TLS1_2_ONLY 2
-
 // There is no public API for creating an NSHTTPURLResponse. The only way to create one then, is to
 // have a private subclass that others treat like a standard NSHTTPURLResponse object. Framework
 // code can instantiate a CKHTTPURLResponse object directly. Alternatively, there is a public
@@ -144,23 +140,16 @@
 	NSURL *url = (__bridge NSURL *)(CFHTTPMessageCopyRequestURL([self HTTPRequest]));
 	if ([[[url scheme] lowercaseString] isEqualToString:@"https"]) {
 		CFMutableDictionaryRef sslOptions = CFDictionaryCreateMutable(kCFAllocatorDefault, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
-		Boolean setSSLOption = NO;
-		
-		/* TODO: fetch this from a setting */
-		Byte tlsVersionOption = X_TLSVER_TLS1_2_ONLY;
 
-		// Enforce TLS version
-		// https://developer.apple.com/library/ios/technotes/tn2287/_index.html#//apple_ref/doc/uid/DTS40011309
-		if (tlsVersionOption == X_TLSVER_TLS1) {
-			CFDictionarySetValue(sslOptions, kCFStreamSSLLevel, kCFStreamSocketSecurityLevelTLSv1);
-			setSSLOption = YES;
-		}
-		else if (tlsVersionOption == X_TLSVER_TLS1_2_ONLY) {
-			CFDictionarySetValue(sslOptions, kCFStreamSSLLevel, CFSTR("kCFStreamSocketSecurityLevelTLSv1_2"));
-			setSSLOption = YES;
-		}
+		NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+		NSString *minTLS = [userDefaults stringForKey:@"min_tls_version"];
+
+		if ([minTLS isEqualToString:@"1.0"])
+			CFDictionarySetValue(sslOptions, kCFStreamSSLLevel, CFSTR("kCFStreamSocketSecurityLevelTLSv1_0"));
+		else if ([minTLS isEqualToString:@"1.1"])
+			CFDictionarySetValue(sslOptions, kCFStreamSSLLevel, CFSTR("kCFStreamSocketSecurityLevelTLSv1_1"));
 		else
-			CFDictionarySetValue(sslOptions, kCFStreamSSLLevel, kCFStreamSocketSecurityLevelNegotiatedSSL);
+			CFDictionarySetValue(sslOptions, kCFStreamSSLLevel, CFSTR("kCFStreamSocketSecurityLevelTLSv1_2"));
 		
 #if 0
 		// Ignore SSL errors for domains if user has explicitly said to "continue anyway"
@@ -185,8 +174,7 @@
 		}
 #endif
 
-		if (setSSLOption)
-			CFReadStreamSetProperty((__bridge CFReadStreamRef)_HTTPStream, kCFStreamPropertySSLSettings, sslOptions);
+		CFReadStreamSetProperty((__bridge CFReadStreamRef)_HTTPStream, kCFStreamPropertySSLSettings, sslOptions);
 	}
 
 	[_HTTPStream setDelegate:(id<NSStreamDelegate>)self];
