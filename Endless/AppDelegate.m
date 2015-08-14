@@ -66,6 +66,22 @@ NSString *const STATE_RESTORE_TRY_KEY = @"state_restore_lock";
 	[application ignoreSnapshotOnNextApplicationLaunch];
 }
 
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+#ifdef DEBUG
+	NSLog(@"request to open url \"%@\"", url);
+#endif
+	if ([[[url scheme] lowercaseString] isEqualToString:@"endlesshttp"])
+		url = [NSURL URLWithString:[[url absoluteString] stringByReplacingCharactersInRange:NSMakeRange(0, [@"endlesshttp" length]) withString:@"http"]];
+	else if ([[[url scheme] lowercaseString] isEqualToString:@"endlesshttps"])
+		url = [NSURL URLWithString:[[url absoluteString] stringByReplacingCharactersInRange:NSMakeRange(0, [@"endlesshttps" length]) withString:@"https"]];
+
+	[[self webViewController] dismissViewControllerAnimated:YES completion:nil];
+	[[self webViewController] addNewTabForURL:url];
+	
+	return YES;
+}
+
 - (BOOL)application:(UIApplication *)application shouldRestoreApplicationState:(NSCoder *)coder
 {
 	/* if we tried last time and failed, the state might be corrupt */

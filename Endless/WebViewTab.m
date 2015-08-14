@@ -267,7 +267,21 @@ AppDelegate *appDelegate;
 /* this will only fire for top-level requests, not page elements */
 - (BOOL)webView:(UIWebView *)__webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-	if (![[[request URL] scheme] isEqualToString:@"endlessipc"]) {
+	NSURL *url = [request URL];
+	
+	/* treat endlesshttps?:// links clicked inside of web pages as normal links */
+	if ([[[url scheme] lowercaseString] isEqualToString:@"endlesshttp"]) {
+		url = [NSURL URLWithString:[[url absoluteString] stringByReplacingCharactersInRange:NSMakeRange(0, [@"endlesshttp" length]) withString:@"http"]];
+		[self loadURL:url];
+		return NO;
+	}
+	else if ([[[url scheme] lowercaseString] isEqualToString:@"endlesshttps"]) {
+		url = [NSURL URLWithString:[[url absoluteString] stringByReplacingCharactersInRange:NSMakeRange(0, [@"endlesshttps" length]) withString:@"https"]];
+		[self loadURL:url];
+		return NO;
+	}
+
+	if (![[url scheme] isEqualToString:@"endlessipc"]) {
 		[self prepareForNewURL:[request mainDocumentURL]];
 
 		return YES;
@@ -275,18 +289,18 @@ AppDelegate *appDelegate;
 	
 	/* endlessipc://fakeWindow.open/somerandomid?http... */
 	
-	NSString *action = [[request URL] host];
+	NSString *action = [url host];
 	
 	NSString *param, *param2;
 	if ([[[request URL] pathComponents] count] >= 2)
-		param = [[request URL] pathComponents][1];
+		param = [url pathComponents][1];
 	if ([[[request URL] pathComponents] count] >= 3)
-		param2 = [[request URL] pathComponents][2];
+		param2 = [url pathComponents][2];
 	
-	NSString *value = [[[[request URL] query] stringByReplacingOccurrencesOfString:@"+" withString:@" "] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+	NSString *value = [[[url query] stringByReplacingOccurrencesOfString:@"+" withString:@" "] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 	
 	if ([action isEqualToString:@"console.log"]) {
-		NSString *json = [[[[request URL] query] stringByReplacingOccurrencesOfString:@"+" withString:@" "] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+		NSString *json = [[[url query] stringByReplacingOccurrencesOfString:@"+" withString:@" "] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 		NSLog(@"[Tab %@] [console.%@] %@", [self tabIndex], param, json);
 		/* no callback needed */
 		return NO;
