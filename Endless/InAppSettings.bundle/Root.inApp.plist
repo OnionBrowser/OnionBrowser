@@ -78,7 +78,23 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>FooterText</key>
-			<string>When enabled, URLs loaded from the internet will be blocked from loading page elements or making requests to LAN hosts (192.168.0.0/16, 172.16.0.0/12, etc.)</string>
+			<string>When switching to another app, close all tabs and non-whitelisted cookies</string>
+		</dict>
+		<dict>
+			<key>Key</key>
+			<string>clear_on_background</string>
+			<key>Title</key>
+			<string>Clear all when backgrounded</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>DefaultValue</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string></string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
 		</dict>
 		<dict>
 			<key>Key</key>
@@ -89,6 +105,14 @@
 			<string>PSToggleSwitchSpecifier</string>
 			<key>DefaultValue</key>
 			<true/>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>Security</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>FooterText</key>
+			<string>Resources loaded from the Internet will be blocked from loading page elements or making requests to LAN hosts (192.168.0.0/16, 172.16.0.0/12, etc.)</string>
 		</dict>
 		<dict>
 			<key>Key</key>
@@ -105,24 +129,8 @@
 			<string></string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
-		</dict>
-		<dict>
-			<key>Key</key>
-			<string>clear_on_background</string>
-			<key>Title</key>
-			<string>Clear all when backgrounded</string>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-			<key>DefaultValue</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>Title</key>
-			<string>Security</string>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
 			<key>FooterText</key>
-			<string>Minimum version of TLS supported for HTTPS connections (SSL v2 and v3 are always disabled)</string>
+			<string>Minimum version of TLS required for HTTPS connections (SSL v2 and v3 are always disabled)</string>
 		</dict>
 		<dict>
 			<key>Key</key>
@@ -153,6 +161,26 @@
 			<string>PSGroupSpecifier</string>
 		</dict>
 		<dict>
+			<key>Key</key>
+			<string>open_app_store</string>
+			<key>Type</key>
+			<string>IASKOpenURLSpecifier</string>
+			<key>Title</key>
+			<string>Rate on App Store</string>
+			<key>File</key>
+			<string>itms-apps://itunes.apple.com/app/id974745755</string>
+		</dict>
+		<dict>
+			<key>Key</key>
+			<string>open_github_issues</string>
+			<key>Type</key>
+			<string>IASKOpenURLSpecifier</string>
+			<key>Title</key>
+			<string>Report a bug</string>
+			<key>File</key>
+			<string>endlesshttps://github.com/jcs/endless/issues</string>
+		</dict>
+		<dict>
 			<key>File</key>
 			<string>credits.html</string>
 			<key>IASKViewControllerClass</key>
@@ -164,7 +192,7 @@
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 			<key>IASKChildTitle</key>
-			<string></string>
+			<string>About Endless</string>
 		</dict>
 	</array>
 	<key>StringsTable</key>
