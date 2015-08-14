@@ -377,7 +377,7 @@ AppDelegate *appDelegate;
 	/* reset and then let WebViewController animate to our actual progress */
 	[self setProgress:@0.0];
 	[self setProgress:@0.1];
-
+	
 	if (self.url == nil)
 		self.url = [[__webView request] URL];
 }
@@ -395,6 +395,9 @@ AppDelegate *appDelegate;
 
 - (void)webView:(UIWebView *)__webView didFailLoadWithError:(NSError *)error
 {
+	self.url = self.webView.request.URL;
+	[self setProgress:@0];
+	
 	if (error.domain == NSURLErrorDomain && error.code == NSURLErrorCancelled)
 		return;
 	
