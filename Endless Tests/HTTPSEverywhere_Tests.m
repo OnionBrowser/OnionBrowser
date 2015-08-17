@@ -67,4 +67,12 @@ id HEMocked;
 	XCTAssert([[rewritten absoluteString] isEqualToString:input]);
 }
 
+- (void)testWildcardInApplicableRules {
+	NSArray *results = [HTTPSEverywhere potentiallyApplicableRulesForHost:@"www.lenovo.com"];
+	XCTAssertEqual([results count], 1U);
+	
+	results = [HTTPSEverywhere potentiallyApplicableRulesForHost:@"youropinioncounts.lenovo.com"];
+	XCTAssertEqual([results count], 0);
+}
+
 @end
