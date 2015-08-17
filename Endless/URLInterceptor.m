@@ -412,10 +412,12 @@ static NSString *_javascriptToInject;
 		if (newURL == nil || [newURL isEqualToString:@""])
 			NSLog(@"[URLInterceptor] [Tab %@] got %ld redirect at %@ but no location header", wvt.tabIndex, (long)response.statusCode, [[self actualRequest] URL]);
 		else {
-			NSMutableURLRequest *newRequest = [[self actualRequest] mutableCopy];
+			NSMutableURLRequest *newRequest = [[NSMutableURLRequest alloc] init];
 
 			/* 307 redirects are supposed to retain the method when redirecting but others should go back to GET */
 			if (response.statusCode == 307)
+				[newRequest setHTTPMethod:[[self actualRequest] HTTPMethod]];
+			else
 				[newRequest setHTTPMethod:@"GET"];
 			
 			[newRequest setHTTPShouldUsePipelining:YES];
