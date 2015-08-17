@@ -190,7 +190,7 @@ NSString * const LABEL = @"L";
 
 - (void)menuOnePassword
 {
-	[[OnePasswordExtension sharedExtension] fillItemIntoWebView:[[[appDelegate webViewController] curWebViewTab] webView] forViewController:[appDelegate webViewController] sender:nil showOnlyLogins:NO completion:^(BOOL success, NSError *error) {
+	[[OnePasswordExtension sharedExtension] fillItemIntoWebView:[[[appDelegate webViewController] curWebViewTab] webView] forViewController:[appDelegate webViewController] sender:[[appDelegate webViewController] settingsButton] showOnlyLogins:NO completion:^(BOOL success, NSError *error) {
 		if (!success)
 			NSLog(@"[OnePasswordExtension] failed to fill into webview: %@", error);
 	}];

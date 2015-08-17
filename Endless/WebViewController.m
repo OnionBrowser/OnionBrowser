@@ -185,6 +185,11 @@
 	[self.view.window makeKeyAndVisible];
 }
 
+- (id)settingsButton
+{
+	return settingsButton;
+}
+
 - (BOOL)prefersStatusBarHidden
 {
 	return NO;
