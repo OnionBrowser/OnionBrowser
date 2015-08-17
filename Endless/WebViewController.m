@@ -271,8 +271,11 @@
 }
 
 - (void)keyboardWillShow:(NSNotification *)notification {
-	CGRect rect = [[[notification userInfo] valueForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
-	keyboardHeight = rect.size.height;
+	CGRect keyboardStart = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
+	CGRect keyboardEnd = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+	
+	/* on devices with a bluetooth keyboard attached, both values should be the same for a 0 height */
+	keyboardHeight = keyboardStart.origin.y - keyboardEnd.origin.y;
 
 	[self adjustLayoutToSize:CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height)];
 }
