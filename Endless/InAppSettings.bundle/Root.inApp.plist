@@ -130,13 +130,13 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>FooterText</key>
-			<string>Minimum version of TLS required for HTTPS connections (SSL v2 and v3 are always disabled)</string>
+			<string>Minimum version of SSL/TLS required for HTTPS connections; may require force closing the app to take effect</string>
 		</dict>
 		<dict>
 			<key>Key</key>
 			<string>min_tls_version</string>
 			<key>Title</key>
-			<string>Minimum TLS version</string>
+			<string>Minimum SSL/TLS version</string>
 			<key>Type</key>
 			<string>PSMultiValueSpecifier</string>
 			<key>DefaultValue</key>
@@ -146,12 +146,21 @@
 				<string>1.2</string>
 				<string>1.1</string>
 				<string>1.0</string>
+				<string>auto</string>
 			</array>
 			<key>Titles</key>
+			<array>
+				<string>TLS 1.2 only (no SSL)</string>
+				<string>TLS 1.1 or 1.2 (no SSL)</string>
+				<string>TLS 1.0, 1.1, or 1.2 (no SSL)</string>
+				<string>Auto-negotiate (SSL v2/v3, TLS 1.0/1.1/1.2)</string>
+			</array>
+			<key>ShortTitles</key>
 			<array>
 				<string>TLS 1.2</string>
 				<string>TLS 1.1</string>
 				<string>TLS 1.0</string>
+				<string>Auto-negotiate</string>
 			</array>
 		</dict>
 		<dict>

@@ -86,11 +86,6 @@
 		_HTTPRequest = [request makeHTTPMessage];
 		_HTTPBodyStream = [request HTTPBodyStream];
 
-#if 0
-		NSData *d = (__bridge NSData *)CFHTTPMessageCopySerializedMessage(_HTTPRequest);
-		NSLog(@"[CKHTTPConnection] raw request: %@", [[NSString alloc] initWithBytes:[d bytes] length:[d length] encoding:NSUTF8StringEncoding]);
-#endif
-		
 		[self start];
 	}
 
@@ -148,6 +143,8 @@
 			CFDictionarySetValue(sslOptions, kCFStreamSSLLevel, CFSTR("kCFStreamSocketSecurityLevelTLSv1_0"));
 		else if ([minTLS isEqualToString:@"1.1"])
 			CFDictionarySetValue(sslOptions, kCFStreamSSLLevel, CFSTR("kCFStreamSocketSecurityLevelTLSv1_1"));
+		else if ([minTLS isEqualToString:@"auto"])
+			CFDictionarySetValue(sslOptions, kCFStreamSSLLevel, kCFStreamSocketSecurityLevelNegotiatedSSL);
 		else
 			CFDictionarySetValue(sslOptions, kCFStreamSSLLevel, CFSTR("kCFStreamSocketSecurityLevelTLSv1_2"));
 		
@@ -208,6 +205,7 @@
 	// Handle the response as soon as it's available
 	if (!_haveReceivedResponse) {
 		CFHTTPMessageRef response = (__bridge CFHTTPMessageRef)[theStream propertyForKey:(NSString *)kCFStreamPropertyHTTPResponseHeader];
+		
 		if (response && CFHTTPMessageIsHeaderComplete(response)) {
 			// Construct a NSURLResponse object from the HTTP message
 			NSURL *URL = [theStream propertyForKey:(NSString *)kCFStreamPropertyHTTPFinalURL];
@@ -254,7 +252,7 @@ process:
         case NSStreamEventEndEncountered:   // Report the end of the stream to the delegate
 		[[self delegate] HTTPConnectionDidFinishLoading:self];
 		break;
-			
+
         case NSStreamEventHasBytesAvailable:
         {
 		NSMutableData *data = [[NSMutableData alloc] initWithCapacity:1024];    // Report any data loaded to the delegate
