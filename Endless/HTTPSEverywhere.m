@@ -125,7 +125,7 @@ static NSCache *ruleCache;
 	/* TODO: should we skip the last component for obviously non-matching things like "*.com", "*.net"? */
 	NSArray *hostp = [host componentsSeparatedByString:@"."];
 	for (int i = 1; i < [hostp count]; i++) {
-		NSString *wc = [[hostp subarrayWithRange:NSMakeRange(i, [hostp count] - i)] componentsJoinedByString:@"."];
+		NSString *wc = [NSString stringWithFormat:@"*.%@", [[hostp subarrayWithRange:NSMakeRange(i, [hostp count] - i)] componentsJoinedByString:@"."]];
 		
 		NSString *targetName = [[[self class] targets] objectForKey:wc];
 		if (targetName != nil) {

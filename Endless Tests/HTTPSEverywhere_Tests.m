@@ -65,6 +65,18 @@ id HEMocked;
 	NSString *input = @"http://www.dc.bbb.org/";
 	NSURL *rewritten = [HTTPSEverywhere rewrittenURI:[NSURL URLWithString:input] withRules:nil];
 	XCTAssert([[rewritten absoluteString] isEqualToString:input]);
+	
+	input = @"http://www.partnerinfo.lenovo.com/blah";
+	rewritten = [HTTPSEverywhere rewrittenURI:[NSURL URLWithString:input] withRules:nil];
+	XCTAssert([[rewritten absoluteString] isEqualToString:input]);
+}
+
+- (void)testRewrittenURIDowngradedWithCapture {
+	NSString *input = @"https://www.partnerinfo.lenovo.com/blah";
+	NSString *output = @"http://www.partnerinfo.lenovo.com/blah";
+
+	NSURL *rewritten = [HTTPSEverywhere rewrittenURI:[NSURL URLWithString:input] withRules:nil];
+	XCTAssert([[rewritten absoluteString] isEqualToString:output]);
 }
 
 - (void)testWildcardInApplicableRules {
