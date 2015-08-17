@@ -32,7 +32,5 @@
 + (void)temporarilyAllow:(NSURL *)url;
 
 - (NSMutableData *)data;
-- (NSData *)htmlDataWithJavascriptInjection:incomingData;
-- (NSData *)javascriptDataWithJavascriptInjection:incomingData;
 
 @end

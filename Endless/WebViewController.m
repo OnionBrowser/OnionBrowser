@@ -1,5 +1,6 @@
 #import "AppDelegate.h"
 #import "BookmarkController.h"
+#import "SSLCertificateViewController.h"
 #import "URLInterceptor.h"
 #import "WebViewController.h"
 #import "WebViewTab.h"
@@ -21,9 +22,8 @@
 	
 	UIView *toolbar;
 	UITextField *urlField;
-	UIImageView *lockIcon;
-	UIImageView *brokenLockIcon;
-	UIImageView *blankIcon;
+	UIButton *lockIcon;
+	UIButton *brokenLockIcon;
 	UIProgressView *progressBar;
 	UIToolbar *tabToolbar;
 	UILabel *tabCount;
@@ -108,17 +108,18 @@
 	[urlField setDelegate:self];
 	[toolbar addSubview:urlField];
 	
-	lockIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"lock"]];
+	lockIcon = [UIButton buttonWithType:UIButtonTypeCustom];
 	[lockIcon setFrame:CGRectMake(0, 0, 24, 16)];
-	[lockIcon setContentMode:UIViewContentModeScaleAspectFit];
+	[lockIcon setImage:[UIImage imageNamed:@"lock"] forState:UIControlStateNormal];
+	[[lockIcon imageView] setContentMode:UIViewContentModeScaleAspectFit];
+	[lockIcon addTarget:self action:@selector(showSSLCertificate) forControlEvents:UIControlEventTouchUpInside];
 	
-	brokenLockIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"broken_lock"]];
+	brokenLockIcon = [UIButton buttonWithType:UIButtonTypeCustom];
 	[brokenLockIcon setFrame:CGRectMake(0, 0, 24, 16)];
-	[brokenLockIcon setContentMode:UIViewContentModeScaleAspectFit];
-	
-	blankIcon = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 24, 16)];
-	[urlField setLeftView:blankIcon];
-	
+	[brokenLockIcon setImage:[UIImage imageNamed:@"broken_lock"] forState:UIControlStateNormal];
+	[[brokenLockIcon imageView] setContentMode:UIViewContentModeScaleAspectFit];
+	[brokenLockIcon addTarget:self action:@selector(showSSLCertificate) forControlEvents:UIControlEventTouchUpInside];
+
 	tabsButton = [UIButton buttonWithType:UIButtonTypeCustom];
 	UIImage *tabsImage = [[UIImage imageNamed:@"tabs"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 	[tabsButton setImage:tabsImage forState:UIControlStateNormal];
@@ -576,7 +577,11 @@
 				if ([progressBar progress] >= 1.0) {
 					[urlField setTextColor:[UIColor colorWithRed:0 green:(183.0/255.0) blue:(82.0/255.0) alpha:1.0]];
 			
-					[urlField setText:self.curWebViewTab.evOrgName];
+					if ([self.curWebViewTab.SSLCertificate evOrgName] == nil)
+						[urlField setText:@"Unknown Organization"];
+					else
+						[urlField setText:self.curWebViewTab.SSLCertificate.evOrgName];
+					
 					isEV = YES;
 				}
 			}
@@ -587,7 +592,7 @@
 		else {
 			[urlField setLeftView:nil];
 		}
-			
+		
 		if (!isEV) {
 			NSString *host;
 			if (self.curWebViewTab.url == nil)
@@ -905,6 +910,18 @@
 - (void)doneWithTabsButton:(id)_id
 {
 	[self showTabs:nil];
+}
+
+- (void)showSSLCertificate
+{
+	if ([[self curWebViewTab] SSLCertificate] == nil)
+		return;
+	
+	SSLCertificateViewController *scvc = [[SSLCertificateViewController alloc] initWithSSLCertificate:[[self curWebViewTab] SSLCertificate]];
+	scvc.title = [[[self curWebViewTab] url] host];
+	
+	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:scvc];
+	[self presentViewController:navController animated:YES completion:nil];
 }
 
 - (void)tappedOnWebViewTab:(UITapGestureRecognizer *)gesture

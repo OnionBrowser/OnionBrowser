@@ -219,6 +219,14 @@
 				goto process;
 			}
 			
+			if ([[[URL scheme] lowercaseString] isEqualToString:@"https"]) {
+				SecTrustRef trust = (__bridge SecTrustRef)[theStream propertyForKey:(__bridge NSString *)kCFStreamPropertySSLPeerTrust];
+				if (![[self delegate] HTTPConnection:self shouldContinueWithSecTrustRef:trust]) {
+					[self _cancelStream];
+					return;
+				}
+			}
+			
 			// If the response was an authentication failure, try to request fresh credentials.
 			if ([URLResponse statusCode] == 401 || [URLResponse statusCode] == 407) {
 				// Cancel any further loading and ask the delegate for authentication

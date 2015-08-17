@@ -1,11 +1,63 @@
 PODS:
+  - DTFoundation (1.7.7):
+    - DTFoundation/AppKit (= 1.7.7)
+    - DTFoundation/Core (= 1.7.7)
+    - DTFoundation/Debug (= 1.7.7)
+    - DTFoundation/DTAnimatedGIF (= 1.7.7)
+    - DTFoundation/DTASN1 (= 1.7.7)
+    - DTFoundation/DTAWS (= 1.7.7)
+    - DTFoundation/DTHTMLParser (= 1.7.7)
+    - DTFoundation/DTProgressHUD (= 1.7.7)
+    - DTFoundation/DTReachability (= 1.7.7)
+    - DTFoundation/DTScripting (= 1.7.7)
+    - DTFoundation/DTSidePanel (= 1.7.7)
+    - DTFoundation/DTSQLite (= 1.7.7)
+    - DTFoundation/DTUTI (= 1.7.7)
+    - DTFoundation/DTZipArchive (= 1.7.7)
+    - DTFoundation/Runtime (= 1.7.7)
+    - DTFoundation/UIKit (= 1.7.7)
+    - DTFoundation/UIKit_BlocksAdditions (= 1.7.7)
+  - DTFoundation/Core (1.7.7)
+  - DTFoundation/Debug (1.7.7):
+    - DTFoundation/Core
+    - DTFoundation/Runtime
+  - DTFoundation/DTAnimatedGIF (1.7.7)
+  - DTFoundation/DTASN1 (1.7.7):
+    - DTFoundation/Core
+  - DTFoundation/DTAWS (1.7.7):
+    - DTFoundation/Core
+  - DTFoundation/DTHTMLParser (1.7.7):
+    - DTFoundation/Core
+  - DTFoundation/DTProgressHUD (1.7.7):
+    - DTFoundation/Core
+    - DTFoundation/UIKit
+  - DTFoundation/DTReachability (1.7.7):
+    - DTFoundation/Core
+  - DTFoundation/DTScripting (1.7.7):
+    - DTFoundation/Core
+  - DTFoundation/DTSidePanel (1.7.7):
+    - DTFoundation/UIKit
+  - DTFoundation/DTSQLite (1.7.7):
+    - DTFoundation/Core
+  - DTFoundation/DTUTI (1.7.7)
+  - DTFoundation/DTZipArchive (1.7.7):
+    - DTFoundation/DTZipArchive/Minizip (= 1.7.7)
+  - DTFoundation/DTZipArchive/Minizip (1.7.7)
+  - DTFoundation/Runtime (1.7.7)
+  - DTFoundation/UIKit (1.7.7):
+    - DTFoundation/Core
+  - DTFoundation/UIKit_BlocksAdditions (1.7.7):
+    - DTFoundation/Core
   - InAppSettingsKit (2.3.1)
   - OCMock (3.1.1)
+  - OrderedDictionary (1.2)
   - WYPopoverController (0.3.5)
 
 DEPENDENCIES:
+  - DTFoundation
   - InAppSettingsKit
   - OCMock
+  - OrderedDictionary
   - WYPopoverController (from `https://github.com/sammcewan/WYPopoverController.git`)
 
 EXTERNAL SOURCES:
@@ -18,8 +70,10 @@ CHECKOUT OPTIONS:
     :git: https://github.com/sammcewan/WYPopoverController.git
 
 SPEC CHECKSUMS:
-  InAppSettingsKit: c4eb758abf9d71a3b7847a80ceebf02ce4299113
-  OCMock: f6cb8c162ab9d5620dddf411282c7b2c0ee78854
-  WYPopoverController: a83d657de8791a1f46afc49de9a77cbaed88b952
+  DTFoundation: c9b3362b83f0017389082ec067ede719826a579d
+  InAppSettingsKit: 0f46f2c6b2b55895042206aacf1894336d6a4a5a
+  OCMock: a73f69963a8a542b0b343e2617650e4dca0cbbc2
+  OrderedDictionary: 9cc5d69c5c5314ad696ed1839190724e83d534c7
+  WYPopoverController: b95f773b670b820cb386c7303c16672b80c01e82
 
-COCOAPODS: 0.35.0
+COCOAPODS: 0.38.2

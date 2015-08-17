@@ -37,6 +37,13 @@
 		01D7412F1A466AF0007B7033 /* NSString+JavascriptEscape.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D7412E1A466AF0007B7033 /* NSString+JavascriptEscape.m */; };
 		01D741321A49EA14007B7033 /* RuleEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D741311A49EA14007B7033 /* RuleEditorController.m */; };
 		01EFA7FF1A63851400688398 /* LocalNetworkChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EFA7FE1A63851400688398 /* LocalNetworkChecker.m */; };
+		01F2AE391B7FEF5E00D5651A /* SSLCertificate.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F2AE381B7FEF5E00D5651A /* SSLCertificate.m */; };
+		01F2AE401B82666900D5651A /* SSLCertificateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F2AE3F1B82666900D5651A /* SSLCertificateViewController.m */; };
+		01F2AE421B827BC200D5651A /* SSLCertificate_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F2AE411B827BC200D5651A /* SSLCertificate_Tests.m */; };
+		01F2AE451B827D3E00D5651A /* lobste.rs.crt in Resources */ = {isa = PBXBuildFile; fileRef = 01F2AE431B827D3E00D5651A /* lobste.rs.crt */; };
+		01F2AE461B827D3E00D5651A /* wildcard.pushover.net.crt in Resources */ = {isa = PBXBuildFile; fileRef = 01F2AE441B827D3E00D5651A /* wildcard.pushover.net.crt */; };
+		01F2AE481B82822600D5651A /* paypal.com.crt in Resources */ = {isa = PBXBuildFile; fileRef = 01F2AE471B82822600D5651A /* paypal.com.crt */; };
+		01F2AE4A1B82835A00D5651A /* expired.superblock.net.crt in Resources */ = {isa = PBXBuildFile; fileRef = 01F2AE491B82835A00D5651A /* expired.superblock.net.crt */; };
 		01F7CB491A5253DD00F42B73 /* HSTSCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F7CB481A5253DD00F42B73 /* HSTSCache.m */; };
 		01F7CB4B1A526B9C00F42B73 /* HSTSCache_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F7CB4A1A526B9C00F42B73 /* HSTSCache_Tests.m */; };
 		01F7CB4E1A52FC4E00F42B73 /* NSString+IPAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F7CB4D1A52FC4E00F42B73 /* NSString+IPAddress.m */; };
@@ -120,6 +127,15 @@
 		01D741311A49EA14007B7033 /* RuleEditorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RuleEditorController.m; sourceTree = "<group>"; };
 		01EFA7FD1A63851400688398 /* LocalNetworkChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalNetworkChecker.h; sourceTree = "<group>"; };
 		01EFA7FE1A63851400688398 /* LocalNetworkChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalNetworkChecker.m; sourceTree = "<group>"; };
+		01F2AE371B7FEF5E00D5651A /* SSLCertificate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSLCertificate.h; sourceTree = "<group>"; };
+		01F2AE381B7FEF5E00D5651A /* SSLCertificate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSLCertificate.m; sourceTree = "<group>"; };
+		01F2AE3E1B82666900D5651A /* SSLCertificateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSLCertificateViewController.h; sourceTree = "<group>"; };
+		01F2AE3F1B82666900D5651A /* SSLCertificateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSLCertificateViewController.m; sourceTree = "<group>"; };
+		01F2AE411B827BC200D5651A /* SSLCertificate_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSLCertificate_Tests.m; sourceTree = "<group>"; };
+		01F2AE431B827D3E00D5651A /* lobste.rs.crt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = lobste.rs.crt; path = SSLCertificates/lobste.rs.crt; sourceTree = "<group>"; };
+		01F2AE441B827D3E00D5651A /* wildcard.pushover.net.crt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = wildcard.pushover.net.crt; path = SSLCertificates/wildcard.pushover.net.crt; sourceTree = "<group>"; };
+		01F2AE471B82822600D5651A /* paypal.com.crt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = paypal.com.crt; path = SSLCertificates/paypal.com.crt; sourceTree = "<group>"; };
+		01F2AE491B82835A00D5651A /* expired.superblock.net.crt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = expired.superblock.net.crt; path = SSLCertificates/expired.superblock.net.crt; sourceTree = "<group>"; };
 		01F7CB471A5253DD00F42B73 /* HSTSCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSTSCache.h; sourceTree = "<group>"; };
 		01F7CB481A5253DD00F42B73 /* HSTSCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSTSCache.m; sourceTree = "<group>"; };
 		01F7CB4A1A526B9C00F42B73 /* HSTSCache_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSTSCache_Tests.m; sourceTree = "<group>"; };
@@ -212,6 +228,10 @@
 				0182AD9A1AACC55400F3B7ED /* HTTPSEverywhereRuleController.m */,
 				01D741301A49EA14007B7033 /* RuleEditorController.h */,
 				01D741311A49EA14007B7033 /* RuleEditorController.m */,
+				01F2AE371B7FEF5E00D5651A /* SSLCertificate.h */,
+				01F2AE381B7FEF5E00D5651A /* SSLCertificate.m */,
+				01F2AE3E1B82666900D5651A /* SSLCertificateViewController.h */,
+				01F2AE3F1B82666900D5651A /* SSLCertificateViewController.m */,
 				01F879391A4108DD00A63654 /* URLBlocker.h */,
 				01F8793A1A4108DD00A63654 /* URLBlocker.m */,
 				01801EBE1A335BEC002B4718 /* URLInterceptor.h */,
@@ -266,6 +286,7 @@
 				01D741291A45EDD1007B7033 /* CookieJar_Tests.m */,
 				01F7CB4A1A526B9C00F42B73 /* HSTSCache_Tests.m */,
 				018333DB1A35727C00670CD1 /* HTTPSEverywhere_Tests.m */,
+				01F2AE411B827BC200D5651A /* SSLCertificate_Tests.m */,
 				01F879401A4112E500A63654 /* URLBlocker_Tests.m */,
 				018333D91A35727C00670CD1 /* Supporting Files */,
 			);
@@ -275,6 +296,10 @@
 		018333D91A35727C00670CD1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				01F2AE491B82835A00D5651A /* expired.superblock.net.crt */,
+				01F2AE431B827D3E00D5651A /* lobste.rs.crt */,
+				01F2AE471B82822600D5651A /* paypal.com.crt */,
+				01F2AE441B827D3E00D5651A /* wildcard.pushover.net.crt */,
 				01F879421A41140D00A63654 /* https-everywhere_mock_rules.plist */,
 				01F879431A41140D00A63654 /* https-everywhere_mock_targets.plist */,
 				01F879461A41141800A63654 /* urlblocker_mock_rules.plist */,
@@ -429,11 +454,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				01F8794E1A412F8E00A63654 /* urlblocker_targets.plist in Resources */,
+				01F2AE461B827D3E00D5651A /* wildcard.pushover.net.crt in Resources */,
 				01F8794B1A41232E00A63654 /* credits.html in Resources */,
 				01F879451A41140D00A63654 /* https-everywhere_mock_targets.plist in Resources */,
 				01F879481A41141800A63654 /* urlblocker_mock_rules.plist in Resources */,
+				01F2AE481B82822600D5651A /* paypal.com.crt in Resources */,
 				01F879491A41141800A63654 /* urlblocker_mock_targets.plist in Resources */,
+				01F2AE451B827D3E00D5651A /* lobste.rs.crt in Resources */,
 				01F879441A41140D00A63654 /* https-everywhere_mock_rules.plist in Resources */,
+				01F2AE4A1B82835A00D5651A /* expired.superblock.net.crt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -509,6 +538,7 @@
 			files = (
 				01D741281A44DF1C007B7033 /* WebViewMenuController.m in Sources */,
 				01D7412F1A466AF0007B7033 /* NSString+JavascriptEscape.m in Sources */,
+				01F2AE391B7FEF5E00D5651A /* SSLCertificate.m in Sources */,
 				01801E9B1A32CA2A002B4718 /* AppDelegate.m in Sources */,
 				01AFEB491B4ED48000A02482 /* Bookmark.m in Sources */,
 				01801E981A32CA2A002B4718 /* main.m in Sources */,
@@ -519,6 +549,7 @@
 				019516CF1B7D8A0C0078586A /* NSData+CocoaDevUsersAdditions.m in Sources */,
 				01F8793B1A4108DD00A63654 /* URLBlocker.m in Sources */,
 				01801EC01A335BEC002B4718 /* URLInterceptor.m in Sources */,
+				01F2AE401B82666900D5651A /* SSLCertificateViewController.m in Sources */,
 				018333CA1A3505FB00670CD1 /* HTTPSEverywhere.m in Sources */,
 				01F7CB491A5253DD00F42B73 /* HSTSCache.m in Sources */,
 				01F7CB4E1A52FC4E00F42B73 /* NSString+IPAddress.m in Sources */,
@@ -540,6 +571,7 @@
 				01F879411A4112E500A63654 /* URLBlocker_Tests.m in Sources */,
 				01D7412A1A45EDD1007B7033 /* CookieJar_Tests.m in Sources */,
 				018333DC1A35727C00670CD1 /* HTTPSEverywhere_Tests.m in Sources */,
+				01F2AE421B827BC200D5651A /* SSLCertificate_Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

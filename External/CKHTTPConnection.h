@@ -55,6 +55,8 @@
 - (void)HTTPConnection:(CKHTTPConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response;
 - (void)HTTPConnection:(CKHTTPConnection *)connection didReceiveData:(NSData *)data;
 
+- (BOOL)HTTPConnection:(CKHTTPConnection *)connection shouldContinueWithSecTrustRef:(SecTrustRef)secTrustRef;
+
 - (void)HTTPConnectionDidFinishLoading:(CKHTTPConnection *)connection;
 - (void)HTTPConnection:(CKHTTPConnection *)connection didFailWithError:(NSError *)error;
 

@@ -7,6 +7,7 @@
 #import "HSTSCache.h"
 #import "HTTPSEverywhere.h"
 #import "LocalNetworkChecker.h"
+#import "SSLCertificate.h"
 #import "URLBlocker.h"
 #import "URLInterceptor.h"
 #import "WebViewTab.h"
@@ -386,20 +387,7 @@ static NSString *_javascriptToInject;
 		}
 	}
 	
-	if (self.isOrigin) {
-		if ([[[[[self actualRequest] URL] scheme] lowercaseString] isEqualToString:@"https"]) {
-			/* initial request was over https, start considering us secure */
-			
-			if (self.evOrgName != nil && ![self.evOrgName isEqualToString:@""]) {
-				[wvt setSecureMode:WebViewTabSecureModeSecureEV];
-				[wvt setEvOrgName:self.evOrgName];
-			}
-			else {
-				[wvt setSecureMode:WebViewTabSecureModeSecure];
-			}
-		}
-	}
-	else if ([wvt secureMode] > WebViewTabSecureModeInsecure && ![[[[[self actualRequest] URL] scheme] lowercaseString] isEqualToString:@"https"]) {
+	if ([wvt secureMode] > WebViewTabSecureModeInsecure && ![[[[[self actualRequest] URL] scheme] lowercaseString] isEqualToString:@"https"]) {
 		/* an element on the page was not sent over https but the initial request was, downgrade to mixed */
 		if ([wvt secureMode] > WebViewTabSecureModeInsecure) {
 			[wvt setSecureMode:WebViewTabSecureModeMixed];
@@ -428,7 +416,7 @@ static NSString *_javascriptToInject;
 #ifdef DEBUG
 			NSLog(@"[URLInterceptor] [Tab %@] got %ld redirect from %@ to %@", wvt.tabIndex, (long)response.statusCode, [[[self actualRequest] URL] absoluteString], aURL);
 #endif
-			if ([NSURLProtocol propertyForKey:ORIGIN_KEY inRequest:[self actualRequest]])
+			if (self.isOrigin)
 				[newRequest setMainDocumentURL:[NSURL URLWithString:aURL]];
 			
 			[NSURLProtocol setProperty:[NSNumber numberWithLong:wvt.hash] forKey:WVT_KEY inRequest:newRequest];
@@ -488,6 +476,14 @@ static NSString *_javascriptToInject;
 	[self.client URLProtocol:self didReceiveResponse:textResponse cacheStoragePolicy:NSURLCacheStorageAllowedInMemoryOnly];
 }
 
+- (BOOL)HTTPConnection:(CKHTTPConnection *)connection shouldContinueWithSecTrustRef:(SecTrustRef)secTrustRef
+{
+	if (self.isOrigin)
+		[wvt setSSLCertificate:[[SSLCertificate alloc] initWithSecTrustRef:secTrustRef]];
+	
+	return YES;
+}
+
 - (void)HTTPConnection:(CKHTTPConnection *)connection didReceiveData:(NSData *)data {
 	[self appendData:data];
 	
@@ -509,11 +505,15 @@ static NSString *_javascriptToInject;
 		if (firstChunk) {
 			/* we only need to do injection for top-level docs */
 			if (self.isOrigin) {
-				NSLog(@"origin, injecting js");
+				NSMutableData *tData = [[NSMutableData alloc] init];
 				if (contentType == CONTENT_TYPE_HTML)
-					newData = [self htmlDataWithJavascriptInjection:newData];
+					// prepend a doctype to force into standards mode and throw in any javascript overrides
+					[tData appendData:[[NSString stringWithFormat:@"<!DOCTYPE html><script>%@</script>", [[self class] javascriptToInject]] dataUsingEncoding:NSUTF8StringEncoding]];
 				else if (contentType == CONTENT_TYPE_JAVASCRIPT)
-					newData = [self javascriptDataWithJavascriptInjection:newData];
+					[tData appendData:[[NSString stringWithFormat:@"%@\n", [[self class] javascriptToInject]] dataUsingEncoding:NSUTF8StringEncoding]];
+				
+				[tData appendData:newData];
+				newData = tData;
 			}
 
 			firstChunk = NO;
@@ -524,40 +524,6 @@ static NSString *_javascriptToInject;
 	}
 	
 	[self.client URLProtocol:self didLoadData:newData];
-}
-
-/* TODO - this is no longer hooked up to anything */
-- (void)HTTPConnection:(CKHTTPConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
-{
-	SecTrustRef trustRef = [[challenge protectionSpace] serverTrust];
-	
-	/*
-	 CFIndex count = SecTrustGetCertificateCount(trustRef);
-	 for (CFIndex i = 0; i < count; i++) {
-		SecCertificateRef certRef = SecTrustGetCertificateAtIndex(trustRef, i);
-		CFStringRef certSummary = SecCertificateCopySubjectSummary(certRef);
-		NSLog(@"cert: %@", certSummary);
-	 }
-	 */
-	
-	NSDictionary *trust = (__bridge NSDictionary*)SecTrustCopyResult(trustRef);
-	id ev = [trust objectForKey:(__bridge NSString *)kSecTrustExtendedValidation];
-	if (ev != nil && (__bridge CFBooleanRef)ev == kCFBooleanTrue) {
-		NSString *orgname = (NSString *)[trust objectForKey:(__bridge NSString *)kSecTrustOrganizationName];
-#ifdef DEBUG
-		NSLog(@"[Tab %@] cert for %@ has EV, registered to %@", wvt.tabIndex, [[self.request URL] host], orgname);
-#endif
-		if ([NSURLProtocol propertyForKey:ORIGIN_KEY inRequest:self.request] && [[[[self.request URL] host] lowercaseString] isEqualToString:[[[wvt url] host] lowercaseString]]) {
-			[self setEvOrgName:orgname];
-		}
-	}
-	
-	/* TODO: check for blacklisted certs or CAs? */
-	// [[challenge sender] cancelAuthenticationChallenge:challenge];
-	
-	[[challenge sender] continueWithoutCredentialForAuthenticationChallenge:challenge];
-	
-	[self.client URLProtocol:self didReceiveAuthenticationChallenge:challenge];
 }
 
 - (void)HTTPConnection:(CKHTTPConnection *)connection didCancelAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
@@ -574,22 +540,6 @@ static NSString *_javascriptToInject;
 	[self.client URLProtocol:self didFailWithError:error];
 	[self setConnection:nil];
 	_data = nil;
-}
-
-- (NSData *)htmlDataWithJavascriptInjection:incomingData {
-	NSMutableData *newData = [[NSMutableData alloc] init];
-	
-	// Prepend a DOCTYPE (to force into standards mode) and throw in any javascript overrides
-	[newData appendData:[[NSString stringWithFormat:@"<!DOCTYPE html><script>%@</script>", [[self class] javascriptToInject]] dataUsingEncoding:NSUTF8StringEncoding]];
-	[newData appendData:incomingData];
-	return newData;
-}
-
-- (NSData *)javascriptDataWithJavascriptInjection:incomingData {
-	NSMutableData *newData = [[NSMutableData alloc] init];
-	[newData appendData:[[NSString stringWithFormat:@"%@\n", [[self class] javascriptToInject]] dataUsingEncoding:NSUTF8StringEncoding]];
-	[newData appendData:incomingData];
-	return newData;
 }
 
 - (NSString *)caseInsensitiveHeader:(NSString *)header inResponse:(NSHTTPURLResponse *)response

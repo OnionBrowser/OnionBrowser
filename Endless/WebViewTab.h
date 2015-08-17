@@ -1,6 +1,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "SSLCertificate.h"
+
 #define ZOOM_OUT_SCALE 0.8
 
 typedef NS_ENUM(NSInteger, WebViewTabSecureMode) {
@@ -23,7 +25,7 @@ typedef NS_ENUM(NSInteger, WebViewTabSecureMode) {
 @property (strong, nonatomic) NSNumber *progress;
 
 @property WebViewTabSecureMode secureMode;
-@property (strong, atomic) NSString *evOrgName;
+@property (strong, nonatomic) SSLCertificate *SSLCertificate;
 @property NSMutableDictionary *applicableHTTPSEverywhereRules;
 
 /* for javascript IPC */
