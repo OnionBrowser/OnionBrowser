@@ -412,18 +412,39 @@ AppDelegate *appDelegate;
 	self.url = self.webView.request.URL;
 	[self setProgress:@0];
 	
-	if (error.domain == NSURLErrorDomain && error.code == NSURLErrorCancelled)
+	if ([[error domain] isEqualToString:NSURLErrorDomain] && error.code == NSURLErrorCancelled)
 		return;
 	
 	/* "The operation couldn't be completed. (Cocoa error 3072.)" - useless */
-	if (error.domain == NSCocoaErrorDomain && error.code == 3072)
+	if ([[error domain] isEqualToString:NSCocoaErrorDomain] && error.code == NSUserCancelledError)
 		return;
 
-#ifdef TRACE
-	NSLog(@"[Tab %@] showing error dialog: %@", self.tabIndex, error);
-#endif
+	NSString *msg = [error localizedDescription];
 	
-	UIAlertView *m = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:self cancelButtonTitle: @"Ok" otherButtonTitles:nil];
+	/* https://opensource.apple.com/source/libsecurity_ssl/libsecurity_ssl-36800/lib/SecureTransport.h */
+	if ([[error domain] isEqualToString:NSOSStatusErrorDomain]) {
+		switch (error.code) {
+		case errSSLProtocol: /* -9800 */
+			msg = @"SSL protocol error";
+			break;
+		case errSSLNegotiation: /* -9801 */
+			msg = @"SSL handshake failed";
+			break;
+		case errSSLXCertChainInvalid: /* -9807 */
+			msg = @"SSL certificate chain verification error (self-signed certificate?)";
+			break;
+		}
+	}
+
+	NSString *u;
+	if ((u = [[error userInfo] objectForKey:@"NSErrorFailingURLStringKey"]) != nil)
+		msg = [NSString stringWithFormat:@"%@\n\n%@", msg, u];
+	
+#ifdef TRACE
+	NSLog(@"[Tab %@] showing error dialog: %@ (%@)", self.tabIndex, msg, error);
+#endif
+
+	UIAlertView *m = [[UIAlertView alloc] initWithTitle:@"Error" message:msg delegate:self cancelButtonTitle: @"Ok" otherButtonTitles:nil];
 	[m show];
 	
 	[self webViewDidFinishLoad:__webView];
