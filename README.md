@@ -57,24 +57,21 @@ Current builds are available for free in the
 - Blocks mixed-content requests (http elements on an https page), shows broken
   padlock
 
-- Disables SSLv2 and SSLv3, supports a configurable minimum TLS version to
-  require (defaults to TLS 1.2)
+- Shows locked padlock for fully SSL-encrypted URLs, and organization name for
+  sites with EV SSL certs
+
+- Integrated SSL certificate viewer by tapping on padlock icon, highlighting
+  weak SSL certificate signature algorithms
+
+- Disables SSLv2 and SSLv3 by default, supports a configurable minimum TLS or
+  SSL version to require (defaults to TLS 1.2)
 
 - Blocks pages loaded from non-local networks (i.e., the internet) from trying
   to load sub-requests (e.g., images, iframes, ajax) from hosts that are on
   local RFC3330 networks such as routers and other insecure devices
-
-- Shows padlock for SSL-encrypted URLs, and organization name for sites with EV
-  SSL certs
 
 - Optional sending of Do-Not-Track header on all requests
 
 - Integrated [1Password button](https://github.com/AgileBits/onepassword-app-extension)
   to autofill website logins, passwords, credit card numbers, etc.; requires
   the 1Password iOS app to be installed (and is not enabled if not installed)
-
-#####Some nice-to-haves:
-
-- Favicon loader into search bar
-
-- Integrated live auto-complete searching like Safari
