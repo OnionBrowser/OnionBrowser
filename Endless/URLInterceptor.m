@@ -30,6 +30,10 @@ static NSString *_javascriptToInject;
 	if (!_javascriptToInject) {
 		NSString *path = [[NSBundle mainBundle] pathForResource:@"injected" ofType:@"js"];
 		_javascriptToInject = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+		/* strip out license header */
+		NSError *error;
+		NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"/\\*.*?\\*/" options:NSRegularExpressionDotMatchesLineSeparators error:&error];
+		_javascriptToInject = [regex stringByReplacingMatchesInString:_javascriptToInject options:0 range:NSMakeRange(0, [_javascriptToInject length]) withTemplate:@""];
 	}
 	
 	return _javascriptToInject;
@@ -526,10 +530,6 @@ static NSString *_javascriptToInject;
 	[self.client URLProtocol:self didLoadData:newData];
 }
 
-- (void)HTTPConnection:(CKHTTPConnection *)connection didCancelAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
-	[self.client URLProtocol:self didCancelAuthenticationChallenge:challenge];
-}
-
 - (void)HTTPConnectionDidFinishLoading:(CKHTTPConnection *)connection {
 	[self.client URLProtocolDidFinishLoading:self];
 	[self setConnection:nil];
@@ -540,6 +540,76 @@ static NSString *_javascriptToInject;
 	[self.client URLProtocol:self didFailWithError:error];
 	[self setConnection:nil];
 	_data = nil;
+}
+
+- (void)HTTPConnection:(CKHTTPConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
+{
+	NSURLCredential *nsuc;
+	
+	/* if we have existing credentials for this realm, try it first */
+	if ([challenge previousFailureCount] == 0) {
+		NSDictionary *d = [[NSURLCredentialStorage sharedCredentialStorage] credentialsForProtectionSpace:[challenge protectionSpace]];
+		if (d != nil) {
+			for (id u in d) {
+				nsuc = [d objectForKey:u];
+				break;
+			}
+		}
+	}
+	
+	/* no credentials, prompt the user */
+	if (nsuc == nil) {
+		dispatch_async(dispatch_get_main_queue(), ^{
+			UIAlertController *uiac = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Authentication Required", nil) message:@"" preferredStyle:UIAlertControllerStyleAlert];
+
+			if ([[challenge protectionSpace] realm] != nil && ![[[challenge protectionSpace] realm] isEqualToString:@""])
+				[uiac setMessage:[NSString stringWithFormat:@"%@: \"%@\"", [[challenge protectionSpace] host], [[challenge protectionSpace] realm]]];
+			else
+				[uiac setMessage:[[challenge protectionSpace] host]];
+			
+			[uiac addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+				textField.placeholder = NSLocalizedString(@"Log In", nil);
+			}];
+			
+			[uiac addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+				 textField.placeholder = NSLocalizedString(@"Password", @"Password");
+				 textField.secureTextEntry = YES;
+			}];
+			
+			[uiac addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+				[[challenge sender] cancelAuthenticationChallenge:challenge];
+				[self.client URLProtocol:self didFailWithError:[NSError errorWithDomain:NSCocoaErrorDomain code:NSUserCancelledError userInfo:nil]];
+			}]];
+			
+			[uiac addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Log In", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+				UITextField *login = uiac.textFields.firstObject;
+				UITextField *password = uiac.textFields.lastObject;
+
+				NSURLCredential *nsuc = [[NSURLCredential alloc] initWithUser:[login text] password:[password text] persistence:NSURLCredentialPersistenceForSession];
+				[[NSURLCredentialStorage sharedCredentialStorage] setCredential:nsuc forProtectionSpace:[challenge protectionSpace]];
+				
+				[[challenge sender] useCredential:nsuc forAuthenticationChallenge:challenge];
+			}]];
+			
+			[[appDelegate webViewController] presentViewController:uiac animated:YES completion:nil];
+		});
+	}
+	else {
+		[[NSURLCredentialStorage sharedCredentialStorage] setCredential:nsuc forProtectionSpace:[challenge protectionSpace]];
+		[[challenge sender] useCredential:nsuc forAuthenticationChallenge:challenge];
+		
+		/* XXX: crashes in WebCore */
+		//[self.client URLProtocol:self didReceiveAuthenticationChallenge:challenge];
+	}
+}
+
+- (void)HTTPConnection:(CKHTTPConnection *)connection didCancelAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
+{
+	[self.client URLProtocol:self didCancelAuthenticationChallenge:challenge];
+}
+
+- (void)HTTPConnection:(CKHTTPConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
+{
 }
 
 - (NSString *)caseInsensitiveHeader:(NSString *)header inResponse:(NSHTTPURLResponse *)response
