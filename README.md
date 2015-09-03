@@ -12,7 +12,8 @@ Current builds are available for free in the
 
 #####Basic browser functionality implemented:
 
-- Basics of entering URLs, following redirections, back, forward, cookie storage
+- Basics of entering URLs, following redirections, back, forward, cookie
+  storage, HTTP basic authentication
 
 - Multiple tabs with support for `window.open()` and `<a target="_blank">`
   automatically opening new tab windows, but blocks calls not made via user
