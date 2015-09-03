@@ -42,7 +42,8 @@ def convert_https_e
 
     raise "no ruleset" if !hash["ruleset"]
 
-    if hash["ruleset"]["default_off"]
+    if hash["ruleset"]["default_off"] ||
+    hash["ruleset"]["platform"] == "mixedcontent"
       next # XXX: should we store these?
     end
 
