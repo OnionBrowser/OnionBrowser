@@ -55,9 +55,7 @@
 	appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 	[appDelegate setWebViewController:self];
 	
-	UIWebView *twv = [[UIWebView alloc] initWithFrame:CGRectZero];
-	[appDelegate setDefaultUserAgent:[twv stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"]];
-	twv = nil;
+	[appDelegate setDefaultUserAgent:[self buildDefaultUserAgent]];
 	
 	webViewTabs = [[NSMutableArray alloc] initWithCapacity:10];
 	curTabIndex = 0;
@@ -971,6 +969,38 @@
 - (IBAction)slideToCurrentTab:(id)_id
 {
 	[self slideToCurrentTabWithCompletionBlock:nil];
+}
+
+- (NSString *)buildDefaultUserAgent
+{
+	/*
+	 * Some sites do mobile detection by looking for Safari in the UA, so make us look like Mobile Safari
+	 *
+	 * from "Mozilla/5.0 (iPhone; CPU iPhone OS 8_4_1 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Mobile/12H321"
+	 * to   "Mozilla/5.0 (iPhone; CPU iPhone OS 8_4_1 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12H321 Safari/600.1.4"
+	 */
+
+	UIWebView *twv = [[UIWebView alloc] initWithFrame:CGRectZero];
+	NSString *ua = [twv stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
+	
+	NSMutableArray *uapieces = [[NSMutableArray alloc] initWithArray:[ua componentsSeparatedByString:@" "]];
+	NSString *uamobile = uapieces[uapieces.count - 1];
+	
+	/* assume safari major version will match ios major */
+	NSArray *osv = [[[UIDevice currentDevice] systemVersion] componentsSeparatedByString:@"."];
+	uapieces[uapieces.count - 1] = [NSString stringWithFormat:@"Version/%@.0", osv[0]];
+	
+	[uapieces addObject:uamobile];
+	
+	/* now tack on "Safari/XXX.X.X" from webkit version */
+	for (id j in uapieces) {
+		if ([(NSString *)j containsString:@"AppleWebKit/"]) {
+			[uapieces addObject:[(NSString *)j stringByReplacingOccurrencesOfString:@"AppleWebKit" withString:@"Safari"]];
+			break;
+		}
+	}
+
+	return [uapieces componentsJoinedByString:@" "];
 }
 
 @end
