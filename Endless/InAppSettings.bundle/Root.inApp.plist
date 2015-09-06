@@ -54,7 +54,7 @@
 			<key>IASKViewControllerClass</key>
 			<string>CookieController</string>
 			<key>Title</key>
-			<string>Cookies</string>
+			<string>Edit cookies and local storage</string>
 			<key>Type</key>
 			<string>PSChildPaneSpecifier</string>
 		</dict>
@@ -105,63 +105,6 @@
 			<string>PSToggleSwitchSpecifier</string>
 			<key>DefaultValue</key>
 			<true/>
-		</dict>
-		<dict>
-			<key>Title</key>
-			<string>Security</string>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
-			<key>FooterText</key>
-			<string>Resources loaded from the Internet will be blocked from loading page elements or making requests to LAN hosts (192.168.0.0/16, 172.16.0.0/12, etc.)</string>
-		</dict>
-		<dict>
-			<key>Key</key>
-			<string>block_into_local_nets</string>
-			<key>Title</key>
-			<string>Block external LAN requests</string>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-			<key>DefaultValue</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>Title</key>
-			<string></string>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
-			<key>FooterText</key>
-			<string>Minimum version of SSL/TLS required for HTTPS connections; may require force closing the app to take effect</string>
-		</dict>
-		<dict>
-			<key>Key</key>
-			<string>min_tls_version</string>
-			<key>Title</key>
-			<string>Minimum SSL/TLS version</string>
-			<key>Type</key>
-			<string>PSMultiValueSpecifier</string>
-			<key>DefaultValue</key>
-			<string>1.2</string>
-			<key>Values</key>
-			<array>
-				<string>1.2</string>
-				<string>1.1</string>
-				<string>1.0</string>
-				<string>auto</string>
-			</array>
-			<key>Titles</key>
-			<array>
-				<string>TLS 1.2 only (no SSL)</string>
-				<string>TLS 1.1 or 1.2 (no SSL)</string>
-				<string>TLS 1.0, 1.1, or 1.2 (no SSL)</string>
-				<string>Auto-negotiate (SSL v2/v3, TLS 1.0/1.1/1.2)</string>
-			</array>
-			<key>ShortTitles</key>
-			<array>
-				<string>TLS 1.2</string>
-				<string>TLS 1.1</string>
-				<string>TLS 1.0</string>
-				<string>Auto-negotiate</string>
-			</array>
 		</dict>
 		<dict>
 			<key>Title</key>

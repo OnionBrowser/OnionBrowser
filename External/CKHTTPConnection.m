@@ -14,7 +14,7 @@
 //
 
 #import "CKHTTPConnection.h"
-#import "AppDelegate.h"
+#import "HostSettings.h"
 
 // There is no public API for creating an NSHTTPURLResponse. The only way to create one then, is to
 // have a private subclass that others treat like a standard NSHTTPURLResponse object. Framework
@@ -120,7 +120,7 @@
 - (void)start
 {
 	NSAssert(!_HTTPStream, @"Connection already started");
-    
+
 	if (_HTTPBodyStream)
 		_HTTPStream = (__bridge NSInputStream *)(CFReadStreamCreateForStreamedHTTPRequest(NULL, [self HTTPRequest], (__bridge CFReadStreamRef)_HTTPBodyStream));
 	else
@@ -134,19 +134,22 @@
 
 	NSURL *url = (__bridge NSURL *)(CFHTTPMessageCopyRequestURL([self HTTPRequest]));
 	if ([[[url scheme] lowercaseString] isEqualToString:@"https"]) {
+		HostSettings *hs = [HostSettings settingsOrDefaultsForHost:[url host]];
+		
 		CFMutableDictionaryRef sslOptions = CFDictionaryCreateMutable(kCFAllocatorDefault, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
 
-		NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-		NSString *minTLS = [userDefaults stringForKey:@"min_tls_version"];
-
-		if ([minTLS isEqualToString:@"1.0"])
+		if ([[hs minTLSVersion] isEqualToString:HOST_SETTINGS_MIN_TLS_10])
 			CFDictionarySetValue(sslOptions, kCFStreamSSLLevel, CFSTR("kCFStreamSocketSecurityLevelTLSv1_0"));
-		else if ([minTLS isEqualToString:@"1.1"])
+		else if ([[hs minTLSVersion] isEqualToString:HOST_SETTINGS_MIN_TLS_11])
 			CFDictionarySetValue(sslOptions, kCFStreamSSLLevel, CFSTR("kCFStreamSocketSecurityLevelTLSv1_1"));
-		else if ([minTLS isEqualToString:@"auto"])
+		else if ([[hs minTLSVersion] isEqualToString:HOST_SETTINGS_MIN_TLS_AUTO])
 			CFDictionarySetValue(sslOptions, kCFStreamSSLLevel, kCFStreamSocketSecurityLevelNegotiatedSSL);
 		else
 			CFDictionarySetValue(sslOptions, kCFStreamSSLLevel, CFSTR("kCFStreamSocketSecurityLevelTLSv1_2"));
+	
+#ifdef TRACE_HOST_SETTINGS
+		NSLog(@"[CKHTTPConnection] set SSL kCFStreamSSLLevel for %@ to %@", [url host], CFDictionaryGetValue(sslOptions, kCFStreamSSLLevel));
+#endif
 		
 #if 0
 		// Ignore SSL errors for domains if user has explicitly said to "continue anyway"
@@ -156,7 +159,7 @@
 			Boolean ignoreSSLErrors = NO;
 			for (NSString *whitelistHost in appDelegate.sslWhitelistedDomains) {
 				if ([whitelistHost isEqualToString:URL.host]) {
-#ifdef DEBUG
+#ifdef TRACE
 					NSLog(@"%@ in SSL host whitelist ignoring SSL certificate status", URL.host);
 #endif
 					ignoreSSLErrors = YES;

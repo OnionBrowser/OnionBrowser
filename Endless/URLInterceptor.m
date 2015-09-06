@@ -18,7 +18,6 @@
 
 static AppDelegate *appDelegate;
 static BOOL sendDNT = true;
-static BOOL blockIntoLocalNets = true;
 static NSMutableArray *tmpAllowed;
 
 WebViewTab *wvt;
@@ -37,11 +36,6 @@ static NSString *_javascriptToInject;
 	}
 	
 	return _javascriptToInject;
-}
-
-+ (void)setBlockIntoLocalNets:(BOOL)val
-{
-	blockIntoLocalNets = val;
 }
 
 + (void)setSendDNT:(BOOL)val
@@ -214,6 +208,8 @@ static NSString *_javascriptToInject;
 		return;
 	}
 	
+	self.hostSettings = [HostSettings settingsOrDefaultsForHost:[[[self request] URL] host]];
+	
 	/* check HSTS cache first to see if scheme needs upgrading */
 	[newRequest setURL:[[appDelegate hstsCache] rewrittenURI:[[self request] URL]]];
 	
@@ -235,7 +231,7 @@ static NSString *_javascriptToInject;
 			return;
 		}
 		
-		if (blockIntoLocalNets) {
+		if ([[self hostSettings] blockIntoLocalNets]) {
 			if (![LocalNetworkChecker isHostOnLocalNet:[[newRequest mainDocumentURL] host]] && [LocalNetworkChecker isHostOnLocalNet:[[newRequest URL] host]]) {
 				NSLog(@"[URLInterceptor] [Tab %@] blocking request from origin %@ to local net host %@", wvt.tabIndex, [newRequest mainDocumentURL], [newRequest URL]);
 				cancelLoading();

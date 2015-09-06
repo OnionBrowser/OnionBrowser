@@ -76,6 +76,34 @@ NSMutableDictionary *_hosts;
 	return [[self hosts] objectForKey:host];
 }
 
++ (HostSettings *)settingsOrDefaultsForHost:(NSString *)host
+{
+	HostSettings *hs = [self settingsForHost:host];
+	if (!hs) {
+		/* for a host of x.y.z.example.com, try y.z.example.com, z.example.com, example.com, etc. */
+		NSArray *hostp = [host componentsSeparatedByString:@"."];
+		for (int i = 1; i < [hostp count]; i++) {
+			NSString *wc = [[hostp subarrayWithRange:NSMakeRange(i, [hostp count] - i)] componentsJoinedByString:@"."];
+			
+			if ((hs = [HostSettings settingsForHost:wc])) {
+#ifdef TRACE_HOST_SETTINGS
+				NSLog(@"[HostSettings] found entry for component %@ in %@", wc, host);
+#endif
+				break;
+			}
+		}
+	}
+	
+	if (!hs) {
+#ifdef TRACE_HOST_SETTINGS
+		NSLog(@"[HostSettings] using default settings for %@", host);
+#endif
+		hs = [self defaultHostSettings];
+	}
+
+	return hs;
+}
+
 + (BOOL)removeSettingsForHost:(NSString *)host
 {
 	HostSettings *h = [self settingsForHost:host];

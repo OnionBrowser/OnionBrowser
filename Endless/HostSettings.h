@@ -50,6 +50,7 @@
 
 + (HostSettings *)defaultHostSettings;
 + (HostSettings *)settingsForHost:(NSString *)host;
++ (HostSettings *)settingsOrDefaultsForHost:(NSString *)host;
 + (BOOL)removeSettingsForHost:(NSString *)host;
 #ifdef DEBUG
 + (void)overrideHosts:(NSMutableDictionary *)hosts;

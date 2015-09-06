@@ -1,5 +1,6 @@
 #import <Foundation/Foundation.h>
 #import "CKHTTPConnection.h"
+#import "HostSettings.h"
 
 #define REWRITTEN_KEY @"_rewritten"
 #define ORIGIN_KEY @"_origin"
@@ -25,9 +26,9 @@
 @property (assign) BOOL isOrigin;
 @property (strong) NSString *evOrgName;
 @property (strong) CKHTTPConnection *connection;
+@property (strong) HostSettings *hostSettings;
 
 + (NSString *)javascriptToInject;
-+ (void)setBlockIntoLocalNets:(BOOL)val;
 + (void)setSendDNT:(BOOL)val;
 + (void)temporarilyAllow:(NSURL *)url;
 
