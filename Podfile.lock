@@ -51,6 +51,9 @@ PODS:
   - InAppSettingsKit (2.3.1)
   - OCMock (3.1.1)
   - OrderedDictionary (1.2)
+  - QuickDialog (1.0.2):
+    - QuickDialog/Core (= 1.0.2)
+  - QuickDialog/Core (1.0.2)
   - WYPopoverController (0.3.5)
 
 DEPENDENCIES:
@@ -58,13 +61,19 @@ DEPENDENCIES:
   - InAppSettingsKit
   - OCMock
   - OrderedDictionary
+  - QuickDialog (from `https://github.com/jcs/QuickDialog.git`)
   - WYPopoverController (from `https://github.com/sammcewan/WYPopoverController.git`)
 
 EXTERNAL SOURCES:
+  QuickDialog:
+    :git: https://github.com/jcs/QuickDialog.git
   WYPopoverController:
     :git: https://github.com/sammcewan/WYPopoverController.git
 
 CHECKOUT OPTIONS:
+  QuickDialog:
+    :commit: 07258e62bbeea4d494ba392b9d065bdd6e3fb86b
+    :git: https://github.com/jcs/QuickDialog.git
   WYPopoverController:
     :commit: fc3e98fce7957437e2eb9674d75ffdffd46bb934
     :git: https://github.com/sammcewan/WYPopoverController.git
@@ -74,6 +83,7 @@ SPEC CHECKSUMS:
   InAppSettingsKit: 0f46f2c6b2b55895042206aacf1894336d6a4a5a
   OCMock: a73f69963a8a542b0b343e2617650e4dca0cbbc2
   OrderedDictionary: 9cc5d69c5c5314ad696ed1839190724e83d534c7
+  QuickDialog: f0c3e254c91182fa3f91fdb479ccac4a11b459e1
   WYPopoverController: b95f773b670b820cb386c7303c16672b80c01e82
 
 COCOAPODS: 0.38.2

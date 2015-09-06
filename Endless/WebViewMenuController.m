@@ -2,6 +2,7 @@
 #import "Bookmark.h"
 #import "BookmarkController.h"
 #import "CookieController.h"
+#import "HostSettingsController.h"
 #import "IASKAppSettingsViewController.h"
 #import "HTTPSEverywhereRuleController.h"
 #import "WebViewMenuController.h"
@@ -35,6 +36,7 @@ NSString * const LABEL = @"L";
 	[buttons addObject:@{ FUNC : @"menuOpenInSafari", LABEL : @"Open in Safari" }];
 	[buttons addObject:@{ FUNC : @"menuCookies", LABEL : @"Cookies" }];
 	[buttons addObject:@{ FUNC : @"menuHTTPSEverywhere", LABEL : @"HTTPS Everywhere" }];
+	[buttons addObject:@{ FUNC : @"menuHostSettings", LABEL : @"Host Settings" }];
 	[buttons addObject:@{ FUNC : @"menuManageBookmarks", LABEL : @"Manage Bookmarks" }];
 	[buttons addObject:@{ FUNC : @"menuSettings", LABEL : @"Settings" }];
 	
@@ -112,6 +114,9 @@ NSString * const LABEL = @"L";
 		if (ruleCount > 0)
 			cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld Rule%@ Applied", ruleCount, (ruleCount == 1 ? @"" : @"s")];
 	}
+	else if ([func isEqualToString:@"menuHostSettings"]) {
+		cell.detailTextLabel.text = @"Default host";
+	}
 
 	return cell;
 }
@@ -144,22 +149,33 @@ NSString * const LABEL = @"L";
 		NSLog(@"can't call %@", NSStringFromSelector(action));
 }
 
+
+/* individual menu item functions */
+
+
 - (void)menuRefresh
 {
 	[[appDelegate webViewController] forceRefresh];
 }
 
-- (void)menuSettings
+- (void)menuOnePassword
 {
-	if (!appSettingsViewController) {
-		appSettingsViewController = [[IASKAppSettingsViewController alloc] init];
-		appSettingsViewController.delegate = [appDelegate webViewController];
-		appSettingsViewController.showDoneButton = YES;
-		appSettingsViewController.showCreditsFooter = NO;
-	}
-	
-	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:appSettingsViewController];
-	[[appDelegate webViewController] presentViewController:navController animated:YES completion:nil];
+	[[OnePasswordExtension sharedExtension] fillItemIntoWebView:[[[appDelegate webViewController] curWebViewTab] webView] forViewController:[appDelegate webViewController] sender:[[appDelegate webViewController] settingsButton] showOnlyLogins:NO completion:^(BOOL success, NSError *error) {
+		if (!success)
+			NSLog(@"[OnePasswordExtension] failed to fill into webview: %@", error);
+	}];
+}
+
+- (void)menuAddBookmark
+{
+	[[appDelegate webViewController] presentViewController:[Bookmark addBookmarkDialogWithOkCallback:nil] animated:YES completion:nil];
+}
+
+- (void)menuOpenInSafari
+{
+	WebViewTab *wvt = [[appDelegate webViewController] curWebViewTab];
+	if (wvt && [wvt url])
+		[[UIApplication sharedApplication] openURL:[wvt url]];
 }
 
 - (void)menuCookies
@@ -176,6 +192,13 @@ NSString * const LABEL = @"L";
 	[[appDelegate webViewController] presentViewController:navController animated:YES completion:nil];
 }
 
+- (void)menuHostSettings
+{
+	HostSettingsController *hsc = [[HostSettingsController alloc] init];
+	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:hsc];
+	[[appDelegate webViewController] presentViewController:navController animated:YES completion:nil];
+}
+
 - (void)menuManageBookmarks
 {
 	BookmarkController *bc = [[BookmarkController alloc] init];
@@ -183,24 +206,17 @@ NSString * const LABEL = @"L";
 	[[appDelegate webViewController] presentViewController:navController animated:YES completion:nil];
 }
 
-- (void)menuAddBookmark
+- (void)menuSettings
 {
-	[[appDelegate webViewController] presentViewController:[Bookmark addBookmarkDialogWithOkCallback:nil] animated:YES completion:nil];
-}
-
-- (void)menuOnePassword
-{
-	[[OnePasswordExtension sharedExtension] fillItemIntoWebView:[[[appDelegate webViewController] curWebViewTab] webView] forViewController:[appDelegate webViewController] sender:[[appDelegate webViewController] settingsButton] showOnlyLogins:NO completion:^(BOOL success, NSError *error) {
-		if (!success)
-			NSLog(@"[OnePasswordExtension] failed to fill into webview: %@", error);
-	}];
-}
-
-- (void)menuOpenInSafari
-{
-	WebViewTab *wvt = [[appDelegate webViewController] curWebViewTab];
-	if (wvt && [wvt url])
-		[[UIApplication sharedApplication] openURL:[wvt url]];
+	if (!appSettingsViewController) {
+		appSettingsViewController = [[IASKAppSettingsViewController alloc] init];
+		appSettingsViewController.delegate = [appDelegate webViewController];
+		appSettingsViewController.showDoneButton = YES;
+		appSettingsViewController.showCreditsFooter = NO;
+	}
+	
+	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:appSettingsViewController];
+	[[appDelegate webViewController] presentViewController:navController animated:YES completion:nil];
 }
 
 @end
