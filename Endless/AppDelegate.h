@@ -5,6 +5,8 @@
 #import "HSTSCache.h"
 #import "WebViewController.h"
 
+#define STATE_RESTORE_TRY_KEY @"state_restore_lock"
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
@@ -20,8 +22,6 @@
 @property (readonly, strong, nonatomic) NSMutableDictionary *searchEngines;
 
 @property (strong, atomic) NSString *defaultUserAgent;
-
-extern NSString * const STATE_RESTORE_TRY_KEY;
 
 @end
 

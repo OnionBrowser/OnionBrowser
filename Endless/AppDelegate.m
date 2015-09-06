@@ -5,8 +5,6 @@
 
 @implementation AppDelegate
 
-NSString *const STATE_RESTORE_TRY_KEY = @"state_restore_lock";
-
 - (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 	[NSURLProtocol registerClass:[URLInterceptor class]];
