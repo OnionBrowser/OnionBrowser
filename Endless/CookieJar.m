@@ -1,5 +1,6 @@
 #import "AppDelegate.h"
 #import "CookieJar.h"
+#import "HostSettings.h"
 #import "HTTPSEverywhere.h"
 
 /*
@@ -19,12 +20,6 @@
 
 AppDelegate *appDelegate;
 
-+ (NSString *)cookieWhitelistPath
-{
-	NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-	return [path stringByAppendingPathComponent:@"cookie_whitelist.plist"];
-}
-
 - (CookieJar *)init
 {
 	self = [super init];
@@ -36,12 +31,27 @@ AppDelegate *appDelegate;
 
 	_dataAccesses = [[NSMutableDictionary alloc] init];
 	
-	NSFileManager *fileManager = [NSFileManager defaultManager];
-	if ([fileManager fileExistsAtPath:[[self class] cookieWhitelistPath]]) {
-		_whitelist = [NSMutableDictionary dictionaryWithContentsOfFile:[[self class] cookieWhitelistPath]];
-	}
-	else {
-		_whitelist = [[NSMutableDictionary alloc] initWithCapacity:20];
+	/* TODO: eventually remove this in a future version */
+	{
+		/* migrate old whitelist entries to new HostSettings entries */
+		NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+		NSString *whitelist = [path stringByAppendingPathComponent:@"cookie_whitelist.plist"];
+		NSFileManager *fileManager = [NSFileManager defaultManager];
+		if ([fileManager fileExistsAtPath:whitelist]) {
+			NSDictionary *list = [NSDictionary dictionaryWithContentsOfFile:whitelist];
+			
+			NSLog(@"[CookieJar] migrating old cookie whitelist to HostSettings: %@", list);
+			for (NSString *host in [list allKeys]) {
+				HostSettings *hc = [HostSettings settingsForHost:host];
+				if (hc == nil)
+					hc = [[HostSettings alloc] initForHost:host withDict:nil];
+				
+				[hc setWhitelistCookies:YES];
+				[hc save];
+			}
+			
+			[fileManager removeItemAtPath:whitelist error:nil];
+		}
 	}
 	
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -50,16 +60,12 @@ AppDelegate *appDelegate;
 	return self;
 }
 
-- (void)persist
-{
-	[[self whitelist] writeToFile:[[self class] cookieWhitelistPath] atomically:YES];
-}
-
 - (BOOL)isHostWhitelisted:(NSString *)host
 {
 	host = [host lowercaseString];
 	
-	if ([[self whitelist] objectForKey:host]) {
+	HostSettings *hs = [HostSettings settingsForHost:host];
+	if (hs && [hs whitelistCookies]) {
 #ifdef TRACE_COOKIE_WHITELIST
 		NSLog(@"[CookieJar] found entry for %@", host);
 #endif
@@ -70,8 +76,8 @@ AppDelegate *appDelegate;
 	NSArray *hostp = [host componentsSeparatedByString:@"."];
 	for (int i = 1; i < [hostp count]; i++) {
 		NSString *wc = [[hostp subarrayWithRange:NSMakeRange(i, [hostp count] - i)] componentsJoinedByString:@"."];
-		
-		if ([[self whitelist] objectForKey:wc]) {
+
+		if ((hs = [HostSettings settingsForHost:wc]) && [hs whitelistCookies]) {
 #ifdef TRACE_COOKIE_WHITELIST
 			NSLog(@"[CookieJar] found entry for component %@ in %@", wc, host);
 #endif
@@ -80,11 +86,6 @@ AppDelegate *appDelegate;
 	}
 	
 	return NO;
-}
-
-- (NSArray *)whitelistedHosts
-{
-	return [NSArray arrayWithArray:[[[self whitelist] allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]];
 }
 
 - (NSArray *)sortedHostCounts
@@ -163,22 +164,6 @@ AppDelegate *appDelegate;
 	return [hosts sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
 }
 
-/* swap out entire whitelist */
-- (void)updateWhitelistedHostsWithArray:(NSArray *)hosts
-{
-	for (NSString *host in hosts) {
-		if (![[self whitelist] objectForKey:host]) {
-			[[self whitelist] setValue:@YES forKey:[host lowercaseString]];
-		}
-	}
-	
-	for (NSString *host in [[self whitelist] allKeys]) {
-		if ([hosts indexOfObject:host] == NSNotFound) {
-			[[self whitelist] removeObjectForKey:host];
-		}
-	}
-}
-
 - (NSArray *)cookiesForURL:(NSURL *)url forTab:(NSUInteger)tabHash
 {
 	NSArray *c = [[self cookieStorage] cookiesForURL:url];
@@ -202,7 +187,7 @@ AppDelegate *appDelegate;
 			[ps setValue:@"TRUE" forKey:NSHTTPCookieSecure];
 		}
 		
-		if (![[appDelegate cookieJar] isHostWhitelisted:[URL host]]) {
+		if (![self isHostWhitelisted:[URL host]]) {
 			/* host isn't whitelisted, force to a session cookie */
 			[ps setValue:@"TRUE" forKey:NSHTTPCookieDiscard];
 		}

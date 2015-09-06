@@ -38,7 +38,6 @@
 {
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 
-	[[self cookieJar] persist];
 	[[self hstsCache] persist];
 	
 	if ([userDefaults boolForKey:@"clear_on_background"]) {

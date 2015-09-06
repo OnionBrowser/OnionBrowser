@@ -3,6 +3,7 @@
 #import <OCMock/OCMock.h>
 
 #import "CookieJar.h"
+#import "HostSettings.h"
 
 #define TRACE_COOKIES
 
@@ -18,7 +19,9 @@ CookieJar *cookieJar;
 	// Put setup code here. This method is called before the invocation of each test method in the class.
 	
 	cookieJar = [[CookieJar alloc] init];
-	[cookieJar updateWhitelistedHostsWithArray:@[ @"reddit.com" ]];
+	
+	HostSettings *hs = [[HostSettings alloc] initForHost:@"reddit.com" withDict:@{ HOST_SETTINGS_KEY_WHITELIST_COOKIES: @YES }];
+	[HostSettings overrideHosts:[[NSMutableDictionary alloc] initWithDictionary:@{ @"reddit.com": hs }]];
 }
 
 - (void)tearDown {

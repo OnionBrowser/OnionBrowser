@@ -4,16 +4,7 @@
 @implementation CookieController
 
 AppDelegate *appDelegate;
-NSMutableArray *whitelistHosts;
 NSMutableArray *sortedCookieHosts;
-NSString *firstMatch;
-
-enum {
-	CookieSectionWhitelist,
-	CookieSectionCookies,
-	
-	CookieSectionCount,
-};
 
 - (void)viewDidLoad
 {
@@ -21,29 +12,10 @@ enum {
 	
 	appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 
-	whitelistHosts = [NSMutableArray arrayWithArray:[[appDelegate cookieJar] whitelistedHosts]];
-	
 	sortedCookieHosts = [NSMutableArray arrayWithArray:[[appDelegate cookieJar] sortedHostCounts]];
 
-	self.title = @"Cookies";
-	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addItem:)];
+	self.title = @"Cookies and Local Storage";
 	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self.navigationController action:@selector(dismissModalViewControllerAnimated:)];
-
-	/* most likely the user is wanting to whitelist the site they are currently on, so feed that as a reasonable default the first time around */
-	if ([[appDelegate webViewController] curWebViewTab] != nil) {
-		NSURL *t = [[[appDelegate webViewController] curWebViewTab] url];
-		if (t != nil && [t host] != nil) {
-			NSRegularExpression *r = [NSRegularExpression regularExpressionWithPattern:@"^www\\." options:NSRegularExpressionCaseInsensitive error:nil];
-			
-			firstMatch = [r stringByReplacingMatchesInString:[t host] options:0 range:NSMakeRange(0, [[t host] length]) withTemplate:@""];
-		}
-	}
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-	[[appDelegate cookieJar] updateWhitelistedHostsWithArray:whitelistHosts];
-	[[appDelegate cookieJar] persist];
 }
 
 - (void)didReceiveMemoryWarning
@@ -56,33 +28,12 @@ enum {
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-	return CookieSectionCount;
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-	switch (section) {
-	case CookieSectionWhitelist:
-		return @"Whitelisted cookie domains";
-	case CookieSectionCookies:
-		return @"All cookies and local storage";
-	default:
-		return @"";
-	}
+	return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	switch (section) {
-	case CookieSectionWhitelist:
-		return [whitelistHosts count];
-			
-	case CookieSectionCookies:
-		return [sortedCookieHosts count];
-			
-	default:
-		return 0;
-	}
+	return [sortedCookieHosts count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -91,31 +42,22 @@ enum {
 	if (cell == nil)
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cookie"];
 	
-	switch (indexPath.section) {
-	case CookieSectionWhitelist:
-		cell.textLabel.text = [whitelistHosts objectAtIndex:indexPath.row];
-		break;
-	
-	case CookieSectionCookies: {
-		NSDictionary *c = [sortedCookieHosts objectAtIndex:indexPath.row];
-		cell.textLabel.text = [c allKeys][0];
-		NSDictionary *ccounts = [c allValues][0];
-		int ccount = [[ccounts objectForKey:@"cookies"] intValue];
-		int lscount = [[ccounts objectForKey:@"localStorage"] intValue];
+	NSDictionary *c = [sortedCookieHosts objectAtIndex:indexPath.row];
+	cell.textLabel.text = [c allKeys][0];
+	NSDictionary *ccounts = [c allValues][0];
+	int ccount = [[ccounts objectForKey:@"cookies"] intValue];
+	int lscount = [[ccounts objectForKey:@"localStorage"] intValue];
 
+	if (ccount) {
+		cell.detailTextLabel.text = [NSString stringWithFormat:@"%d cookie%@", ccount, (ccount == 1 ? @"" : @"s")];
+	}
+	if (lscount) {
 		if (ccount) {
-			cell.detailTextLabel.text = [NSString stringWithFormat:@"%d cookie%@", ccount, (ccount == 1 ? @"" : @"s")];
+			cell.detailTextLabel.text = [NSString stringWithFormat:@"%@, local storage", cell.detailTextLabel.text];
 		}
-		if (lscount) {
-			if (ccount) {
-				cell.detailTextLabel.text = [NSString stringWithFormat:@"%@, local storage", cell.detailTextLabel.text];
-			}
-			else {
-				cell.detailTextLabel.text = [NSString stringWithFormat:@"local storage"];
-			}
+		else {
+			cell.detailTextLabel.text = [NSString stringWithFormat:@"local storage"];
 		}
-		}
-		break;
 	}
 	
 	return cell;
@@ -134,16 +76,8 @@ enum {
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	if (editingStyle == UITableViewCellEditingStyleDelete) {
-		switch (indexPath.section) {
-		case CookieSectionWhitelist:
-			[whitelistHosts removeObjectAtIndex:[indexPath row]];
-			break;
-			
-		case CookieSectionCookies:
-			[[appDelegate cookieJar] clearAllDataForHost:[[sortedCookieHosts objectAtIndex:[indexPath row]] allKeys][0]];
-			[sortedCookieHosts removeObjectAtIndex:[indexPath row]];
-			break;
-		}
+		[[appDelegate cookieJar] clearAllDataForHost:[[sortedCookieHosts objectAtIndex:[indexPath row]] allKeys][0]];
+		[sortedCookieHosts removeObjectAtIndex:[indexPath row]];
 		
 		[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 	}
@@ -152,33 +86,6 @@ enum {
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	return NO;
-}
-
-- (void)addItem:sender
-{
-	UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Cookie whitelist" message:@"Enter the full hostname or domain to whitelist" preferredStyle:UIAlertControllerStyleAlert];
-	[alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-		textField.placeholder = @"example.com";
-		
-		if (firstMatch != nil)
-			textField.text = firstMatch;
-	}];
-	
-	UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK action") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-		UITextField *host = alertController.textFields.firstObject;
-		if (host && ![[host text] isEqualToString:@""]) {
-			[whitelistHosts addObject:[host text]];
-			[self.tableView reloadData];
-		}
-	}];
-	
-	UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", @"Cancel action") style:UIAlertActionStyleCancel handler:nil];
-	[alertController addAction:cancelAction];
-	[alertController addAction:okAction];
-	
-	[self presentViewController:alertController animated:YES completion:nil];
-	
-	firstMatch = nil;
 }
 
 @end

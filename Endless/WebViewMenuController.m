@@ -34,7 +34,6 @@ NSString * const LABEL = @"L";
 
 	[buttons addObject:@{ FUNC : @"menuAddBookmark", LABEL : @"Add Bookmark" }];
 	[buttons addObject:@{ FUNC : @"menuOpenInSafari", LABEL : @"Open in Safari" }];
-	[buttons addObject:@{ FUNC : @"menuCookies", LABEL : @"Cookies" }];
 	[buttons addObject:@{ FUNC : @"menuHTTPSEverywhere", LABEL : @"HTTPS Everywhere" }];
 	[buttons addObject:@{ FUNC : @"menuHostSettings", LABEL : @"Host Settings" }];
 	[buttons addObject:@{ FUNC : @"menuManageBookmarks", LABEL : @"Manage Bookmarks" }];
@@ -176,13 +175,6 @@ NSString * const LABEL = @"L";
 	WebViewTab *wvt = [[appDelegate webViewController] curWebViewTab];
 	if (wvt && [wvt url])
 		[[UIApplication sharedApplication] openURL:[wvt url]];
-}
-
-- (void)menuCookies
-{
-	CookieController *cc = [[CookieController alloc] init];
-	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:cc];
-	[[appDelegate webViewController] presentViewController:navController animated:YES completion:nil];
 }
 
 - (void)menuHTTPSEverywhere
