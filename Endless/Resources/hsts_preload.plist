@@ -3313,11 +3313,6 @@
 		<key>include_subdomains</key>
 		<true/>
 	</dict>
-	<key>delbart.se</key>
-	<dict>
-		<key>include_subdomains</key>
-		<true/>
-	</dict>
 	<key>deliverance.co.uk</key>
 	<dict>
 		<key>include_subdomains</key>
