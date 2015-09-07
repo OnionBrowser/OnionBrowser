@@ -38,6 +38,7 @@
 {
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 
+	[HostSettings persist];
 	[[self hstsCache] persist];
 	
 	if ([userDefaults boolForKey:@"clear_on_background"]) {

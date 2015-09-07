@@ -155,7 +155,8 @@ NSMutableDictionary *_hosts;
 	NSDictionary *defs = @{
 			       HOST_SETTINGS_KEY_MIN_TLS: HOST_SETTINGS_MIN_TLS_12,
 			       HOST_SETTINGS_KEY_BLOCK_LOCAL_NETS: @YES,
-			       HOST_SETTINGS_KEY_WHITELIST_COOKIES: @NO
+			       HOST_SETTINGS_KEY_WHITELIST_COOKIES: @NO,
+			       HOST_SETTINGS_KEY_ALLOW_MIXED_MODE: @NO,
 			       };
 	
 	for (NSString *k in [defs allKeys]) {
@@ -235,6 +236,15 @@ NSMutableDictionary *_hosts;
 - (void)setWhitelistCookies:(BOOL)value
 {
 	[[self dict] setObject:[NSNumber numberWithBool:value] forKey:HOST_SETTINGS_KEY_WHITELIST_COOKIES];
+}
+
+- (BOOL)allowMixedModeContent
+{
+	return [[[self dict] objectForKey:HOST_SETTINGS_KEY_ALLOW_MIXED_MODE] boolValue];
+}
+- (void)setAllowMixedModeContent:(BOOL)value
+{
+	[[self dict] setObject:[NSNumber numberWithBool:value] forKey:HOST_SETTINGS_KEY_ALLOW_MIXED_MODE];
 }
 
 @end

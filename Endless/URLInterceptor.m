@@ -224,16 +224,29 @@ static NSString *_javascriptToInject;
 	}
 	
 	if (!self.isOrigin) {
+		HostSettings *originHS = [HostSettings settingsOrDefaultsForHost:[[newRequest mainDocumentURL] host]];
+		
 		if ([wvt secureMode] > WebViewTabSecureModeInsecure && ![[[[newRequest URL] scheme] lowercaseString] isEqualToString:@"https"]) {
-			[wvt setSecureMode:WebViewTabSecureModeMixed];
-			NSLog(@"[URLInterceptor] [Tab %@] blocking mixed-content request %@", wvt.tabIndex, [newRequest URL]);
-			cancelLoading();
-			return;
+			if ([originHS allowMixedModeContent]) {
+#ifdef TRACE_HOST_SETTINGS
+				NSLog(@"[URLInterceptor] [Tab %@] allowing mixed-content request %@ from %@", wvt.tabIndex, [newRequest URL], [[newRequest mainDocumentURL] host]);
+#endif
+			}
+			else {
+				[wvt setSecureMode:WebViewTabSecureModeMixed];
+#ifdef TRACE_HOST_SETTINGS
+				NSLog(@"[URLInterceptor] [Tab %@] blocking mixed-content request %@ from %@", wvt.tabIndex, [newRequest URL], [[newRequest mainDocumentURL] host]);
+#endif
+				cancelLoading();
+				return;
+			}
 		}
 		
-		if ([[self hostSettings] blockIntoLocalNets]) {
+		if ([originHS blockIntoLocalNets]) {
 			if (![LocalNetworkChecker isHostOnLocalNet:[[newRequest mainDocumentURL] host]] && [LocalNetworkChecker isHostOnLocalNet:[[newRequest URL] host]]) {
+#ifdef TRACE_HOST_SETTINGS
 				NSLog(@"[URLInterceptor] [Tab %@] blocking request from origin %@ to local net host %@", wvt.tabIndex, [newRequest mainDocumentURL], [newRequest URL]);
+#endif
 				cancelLoading();
 				return;
 			}

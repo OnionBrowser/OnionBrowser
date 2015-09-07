@@ -119,7 +119,7 @@ NSString *firstMatch;
 	QSection *section = [[QSection alloc] init];
 	
 	QEntryElement *hostname;
-	if (indexPath.row == 0) {
+	if ([host isDefault]) {
 		QLabelElement *label = [[QLabelElement alloc] initWithTitle:@"Host/domain" Value:[host hostname]];
 		[section addElement:label];
 		[section setFooter:@"These settings will be used as defaults for all hosts without host definitions"];
@@ -144,7 +144,7 @@ NSString *firstMatch;
 	[tls setShortItems:@[ @"TLS 1.2", @"TLS 1.1", @"TLS 1.0", @"Auto" ]];
 	[tls setKey:HOST_SETTINGS_KEY_MIN_TLS];
 	[tls setSelectedValue:[host minTLSVersion]];
-	[section setFooter:@"Minimum version of SSL/TLS required by this host to negotiate HTTPS connections"];
+	[section setFooter:[NSString stringWithFormat:@"Minimum version of SSL/TLS required by %@ to negotiate HTTPS connections", ([host isDefault] ? @"hosts" : @"this host")]];
 	[section addElement:tls];
 	[root addSection:section];
 	
@@ -153,7 +153,15 @@ NSString *firstMatch;
 	[exlan setTitle:@"Block external LAN requests"];
 	[exlan setBoolValue:[host blockIntoLocalNets]];
 	[section addElement:exlan];
-	[section setFooter:@"Resources loaded from this host will be blocked from loading page elements or making requests to LAN hosts (192.168.0.0/16, 172.16.0.0/12, etc.)"];
+	[section setFooter:[NSString stringWithFormat:@"Resources loaded from %@ will be blocked from loading page elements or making requests to LAN hosts (192.168.0.0/16, 172.16.0.0/12, etc.)", ([host isDefault] ? @"hosts" : @"this host")]];
+	[root addSection:section];
+	
+	section = [[QSection alloc] init];
+	QBooleanElement *allowmixedmode = [[QBooleanElement alloc] initWithKey:HOST_SETTINGS_KEY_ALLOW_MIXED_MODE];
+	[allowmixedmode setTitle:@"Load mixed-mode resources"];
+	[allowmixedmode setBoolValue:[host allowMixedModeContent]];
+	[section addElement:allowmixedmode];
+	[section setFooter:[NSString stringWithFormat:@"Allow %@ to load page resources from non-HTTPS hosts (useful for RSS readers and other aggregators)", ([host isDefault] ? @"HTTPS hosts" : @"this HTTPS host")]];
 	[root addSection:section];
 	
 	section = [[QSection alloc] init];
@@ -175,6 +183,7 @@ NSString *firstMatch;
 		[host setMinTLSVersion:(NSString *)[tls selectedValue]];
 		[host setBlockIntoLocalNets:[exlan boolValue]];
 		[host setWhitelistCookies:[whitelistCookies boolValue]];
+		[host setAllowMixedModeContent:[allowmixedmode boolValue]];
 
 		[host save];
 	}];

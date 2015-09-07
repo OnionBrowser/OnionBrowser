@@ -42,6 +42,8 @@
 
 #define HOST_SETTINGS_KEY_WHITELIST_COOKIES @"whitelist_cookies"
 
+#define HOST_SETTINGS_KEY_ALLOW_MIXED_MODE @"allow_mixed_mode"
+
 @interface HostSettings : NSObject
 
 @property (strong) NSMutableDictionary *dict;
@@ -73,5 +75,8 @@
 
 - (BOOL)whitelistCookies;
 - (void)setWhitelistCookies:(BOOL)value;
+
+- (BOOL)allowMixedModeContent;
+- (void)setAllowMixedModeContent:(BOOL)value;
 
 @end
