@@ -117,7 +117,7 @@ NSString *firstMatch;
 {
 	if (editingStyle == UITableViewCellEditingStyleDelete) {
 		if ([HostSettings removeSettingsForHost:[[self sortedHosts] objectAtIndex:indexPath.row]]) {
-			[tableView deleteRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationFade];
+			[HostSettings persist];
 			_sortedHosts = nil;
 			[[self tableView] reloadData];
 		}
@@ -210,6 +210,12 @@ NSString *firstMatch;
 	[tls setKey:HOST_SETTINGS_KEY_MIN_TLS];
 	[tls setSelectedValue:[host minTLSVersion]];
 	[section setFooter:[NSString stringWithFormat:@"Minimum version of SSL/TLS required by %@ to negotiate HTTPS connections", ([host isDefault] ? @"hosts" : @"this host")]];
+	/* XXX TODO: https://github.com/jcs/endless/issues/17 */
+	[tls setOnValueChanged:^(QRootElement *dummy) {
+		UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Note" message:@"You may need to force-close and re-open the app to avoid getting SSL protocol errors with this host after changing its minimum TLS setting." preferredStyle:UIAlertControllerStyleAlert];
+		[alertController addAction:[UIAlertAction actionWithTitle:@"Bummer" style:UIAlertActionStyleDefault handler:nil]];
+		[self presentViewController:alertController animated:YES completion:nil];
+	}];
 	[section addElement:tls];
 	[root addSection:section];
 	
