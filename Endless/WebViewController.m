@@ -64,6 +64,7 @@
 	
 	tabScroller = [[UIScrollView alloc] init];
 	[tabScroller setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+	[tabScroller setScrollEnabled:NO];
 	[[self view] addSubview:tabScroller];
 	
 	toolbar = [[UIView alloc] init];
@@ -264,7 +265,7 @@
 		NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 		NSDictionary *se = [[appDelegate searchEngines] objectForKey:[userDefaults stringForKey:@"search_engine"]];
 		
-		[self addNewTabForURL:[NSURL URLWithString:[se objectForKey:@"homepage_url"]]];
+		[self addNewTabForURL:[NSURL URLWithString:@"https://jcs.org/tmp/test.html"]]; //[se objectForKey:@"homepage_url"]]];
 	}
 }
 
