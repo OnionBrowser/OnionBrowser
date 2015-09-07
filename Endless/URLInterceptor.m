@@ -546,6 +546,9 @@ static NSString *_javascriptToInject;
 }
 
 - (void)HTTPConnection:(CKHTTPConnection *)connection didFailWithError:(NSError *)error {
+#ifdef TRACE
+	NSLog(@"[URLInterceptor] [Tab %@] failed loading %@: %@", wvt.tabIndex, [[[self actualRequest] URL] absoluteString], error);
+#endif
 	[self.client URLProtocol:self didFailWithError:error];
 	[self setConnection:nil];
 	_data = nil;
@@ -637,3 +640,72 @@ static NSString *_javascriptToInject;
 }
 
 @end
+
+
+#ifdef USE_DUMMY_URLINTERCEPTOR
+
+/*
+ * A simple NSURLProtocol handler to swap in for URLInterceptor, which does less mucking around.
+ * Useful for troubleshooting.
+ */
+ 
+@implementation DummyURLInterceptor
+
++ (BOOL)canInitWithRequest:(NSURLRequest *)request
+{
+	if ([NSURLProtocol propertyForKey:REWRITTEN_KEY inRequest:request] != nil)
+		return NO;
+	
+	NSString *scheme = [[[request URL] scheme] lowercaseString];
+	if ([scheme isEqualToString:@"data"] || [scheme isEqualToString:@"file"])
+		return NO;
+	
+	return YES;
+}
+
++ (NSURLRequest *)canonicalRequestForRequest:(NSURLRequest *)request
+{
+	return request;
+}
+
+- (void)startLoading
+{
+	NSLog(@"[DummyURLInterceptor] [%lu] start loading %@ %@", self.hash, [self.request HTTPMethod], [self.request URL]);
+
+	NSMutableURLRequest *newRequest = [self.request mutableCopy];
+	[NSURLProtocol setProperty:@YES forKey:REWRITTEN_KEY inRequest:newRequest];
+	self.connection = [NSURLConnection connectionWithRequest:newRequest delegate:self];
+}
+
+- (void)stopLoading
+{
+	[self.connection cancel];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+	NSLog(@"[DummyURLInterceptor] [%lu] got HTTP data with size %lu for %@", self.hash, [data length], [[connection originalRequest] URL]);
+	[self.client URLProtocol:self didLoadData:data];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+	[self.client URLProtocol:self didFailWithError:error];
+	self.connection = nil;
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+	NSLog(@"[DummyURLInterceptor] [%lu] got HTTP response content-type %@, length %lld for %@", self.hash, [response MIMEType], [response expectedContentLength], [[connection originalRequest] URL]);
+	[self.client URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageAllowed];
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+	[self.client URLProtocolDidFinishLoading:self];
+	self.connection = nil;
+}
+
+@end
+
+#endif

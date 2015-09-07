@@ -24,6 +24,9 @@
 /* be verbose about URL blocking */
 # define TRACE_URL_BLOCKER
 
+/* bypass most of URLInterceptor for troubleshooting */
+# undef USE_DUMMY_URLINTERCEPTOR
+
 #endif
 
 #endif
