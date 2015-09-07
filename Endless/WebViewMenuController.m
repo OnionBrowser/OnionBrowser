@@ -2,6 +2,7 @@
 #import "Bookmark.h"
 #import "BookmarkController.h"
 #import "CookieController.h"
+#import "HostSettings.h"
 #import "HostSettingsController.h"
 #import "IASKAppSettingsViewController.h"
 #import "HTTPSEverywhereRuleController.h"
@@ -32,12 +33,11 @@ NSString * const LABEL = @"L";
 	if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"onepassword://"]])
 		[buttons addObject:@{ FUNC : @"menuOnePassword", LABEL : @"Fill with 1Password" }];
 
-	[buttons addObject:@{ FUNC : @"menuAddBookmark", LABEL : @"Add Bookmark" }];
+	[buttons addObject:@{ FUNC : @"menuAddOrManageBookmarks", LABEL : @"Add Bookmark" }];
 	[buttons addObject:@{ FUNC : @"menuOpenInSafari", LABEL : @"Open in Safari" }];
 	[buttons addObject:@{ FUNC : @"menuHTTPSEverywhere", LABEL : @"HTTPS Everywhere" }];
 	[buttons addObject:@{ FUNC : @"menuHostSettings", LABEL : @"Host Settings" }];
-	[buttons addObject:@{ FUNC : @"menuManageBookmarks", LABEL : @"Manage Bookmarks" }];
-	[buttons addObject:@{ FUNC : @"menuSettings", LABEL : @"Settings" }];
+	[buttons addObject:@{ FUNC : @"menuSettings", LABEL : @"Global Settings" }];
 	
 	[self.view setBackgroundColor:[UIColor clearColor]];
 	[self.tableView setSeparatorInset:UIEdgeInsetsZero];
@@ -78,43 +78,40 @@ NSString * const LABEL = @"L";
 	cell.backgroundColor = [UIColor clearColor];
 	cell.textLabel.font = [UIFont systemFontOfSize:13];
 	cell.textLabel.text = [button objectForKey:LABEL];
+	cell.detailTextLabel.text = nil;
 	cell.detailTextLabel.font = [UIFont systemFontOfSize:11];
 	
 	BOOL haveURL = ([[[appDelegate webViewController] curWebViewTab] url] != nil);
 
 	NSString *func = [button objectForKey:FUNC];
-	if ([func isEqualToString:@"menuAddBookmark"]) {
-		if (haveURL) {
-			if ([Bookmark isURLBookmarked:[[[appDelegate webViewController] curWebViewTab] url]]) {
-				cell.textLabel.text = @"Bookmarked";
-				cell.userInteractionEnabled = cell.textLabel.enabled = NO;
-			}
+	if ([func isEqualToString:@"menuAddOrManageBookmarks"]) {
+		if (haveURL && [Bookmark isURLBookmarked:[[[appDelegate webViewController] curWebViewTab] url]]) {
+			cell.textLabel.text = @"Manage Bookmarks";
+			cell.detailTextLabel.text = @"Page bookmarked";
 		}
-		else
-			cell.userInteractionEnabled = cell.textLabel.enabled = NO;
 	}
 	else if ([func isEqualToString:@"menuOnePassword"] || [func isEqualToString:@"menuRefresh"] || [func isEqualToString:@"menuOpenInSafari"]) {
 		cell.userInteractionEnabled = haveURL;
 		cell.textLabel.enabled = haveURL;
 	}
-	else if ([func isEqualToString:@"menuCookies"] && haveURL) {
-		if ([[appDelegate cookieJar] isHostWhitelisted:[[[[appDelegate webViewController] curWebViewTab] url] host]]) {
-			cell.detailTextLabel.text = @"Whitelisted";
-			cell.detailTextLabel.textColor = [UIColor colorWithRed:0 green:0.5 blue:0 alpha:1];
-		}
-		else {
-			cell.detailTextLabel.text = @"Session-only";
-			cell.detailTextLabel.textColor = [UIColor darkTextColor];
-		}
-	}
 	else if ([func isEqualToString:@"menuHTTPSEverywhere"] && haveURL) {
 		long ruleCount = [[[[appDelegate webViewController] curWebViewTab] applicableHTTPSEverywhereRules] count];
 
-		if (ruleCount > 0)
-			cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld Rule%@ Applied", ruleCount, (ruleCount == 1 ? @"" : @"s")];
+		if (ruleCount > 0) {
+			cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld rule%@ in use", ruleCount, (ruleCount == 1 ? @"" : @"s")];
+			cell.detailTextLabel.textColor = [UIColor colorWithRed:0 green:0.5 blue:0 alpha:1];
+		}
 	}
 	else if ([func isEqualToString:@"menuHostSettings"]) {
-		cell.detailTextLabel.text = @"Default host";
+		HostSettings *hs = [HostSettings settingsOrDefaultsForHost:[[[[appDelegate webViewController] curWebViewTab] url] host]];
+		if (hs && ![hs isDefault]) {
+			cell.detailTextLabel.text = @"Custom settings";
+			cell.detailTextLabel.textColor = [UIColor colorWithRed:0 green:0.5 blue:0 alpha:1];
+		}
+		else {
+			cell.detailTextLabel.text = @"Using defaults";
+			cell.detailTextLabel.textColor = [UIColor grayColor];
+		}
 	}
 
 	return cell;
@@ -165,11 +162,6 @@ NSString * const LABEL = @"L";
 	}];
 }
 
-- (void)menuAddBookmark
-{
-	[[appDelegate webViewController] presentViewController:[Bookmark addBookmarkDialogWithOkCallback:nil] animated:YES completion:nil];
-}
-
 - (void)menuOpenInSafari
 {
 	WebViewTab *wvt = [[appDelegate webViewController] curWebViewTab];
@@ -189,9 +181,14 @@ NSString * const LABEL = @"L";
 	HostSettingsController *hsc = [[HostSettingsController alloc] init];
 	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:hsc];
 	[[appDelegate webViewController] presentViewController:navController animated:YES completion:nil];
+	
+	/* if we have custom settings, skip directly to them */
+	HostSettings *hs = [HostSettings settingsOrDefaultsForHost:[[[[appDelegate webViewController] curWebViewTab] url] host]];
+	if (hs && ![hs isDefault])
+		[hsc showDetailsForHost:[hs hostname]];
 }
 
-- (void)menuManageBookmarks
+- (void)menuAddOrManageBookmarks
 {
 	BookmarkController *bc = [[BookmarkController alloc] init];
 	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:bc];

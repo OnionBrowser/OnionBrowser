@@ -92,6 +92,12 @@ NSString *firstMatch;
 	
 	HostSettings *hs = [HostSettings settingsForHost:[[self sortedHosts] objectAtIndex:indexPath.row]];
 	cell.textLabel.text = [hs hostname];
+	if ([hs isDefault]) {
+		cell.detailTextLabel.text = @"Settings for all hosts without host definitions";
+		cell.textLabel.font = [UIFont boldSystemFontOfSize:cell.textLabel.font.pointSize];
+	}
+	else
+		cell.detailTextLabel.text = nil;
 
 	return cell;
 }
@@ -104,92 +110,7 @@ NSString *firstMatch;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
-	
-	HostSettings *host = [HostSettings settingsForHost:[[self sortedHosts] objectAtIndex:indexPath.row]];
-	
-	QRootElement *root = [[QRootElement alloc] init];
-	root.grouped = YES;
-	root.appearance = [root.appearance copy];
-	
-	root.appearance.labelFont = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
-	root.appearance.valueColorEnabled = [UIColor darkTextColor];
-
-	root.title = [host hostname];
-	
-	QSection *section = [[QSection alloc] init];
-	
-	QEntryElement *hostname;
-	if ([host isDefault]) {
-		QLabelElement *label = [[QLabelElement alloc] initWithTitle:@"Host/domain" Value:[host hostname]];
-		[section addElement:label];
-		[section setFooter:@"These settings will be used as defaults for all hosts without host definitions"];
-	}
-	else {
-		hostname = [[QEntryElement alloc] initWithTitle:@"Host/domain" Value:[host hostname] Placeholder:@"example.com"];
-		[section addElement:hostname];
-		[section setFooter:@"These settings will apply to all hosts under this domain/host"];
-	}
-
-	[root addSection:section];
-	
-	section = [[QSection alloc] init];
-	[section setTitle:@"Security"];
-	
-	QRadioElement *tls = [[QRadioElement alloc] initWithDict:@{
-								   @"TLS 1.2 only (no SSL)" : HOST_SETTINGS_MIN_TLS_12,
-								   @"TLS 1.1 or 1.2 (no SSL)" : HOST_SETTINGS_MIN_TLS_11,
-								   @"TLS 1.0, 1.1, or 1.2 (no SSL)" : HOST_SETTINGS_MIN_TLS_10,
-								   @"Auto-negotiate (SSL v2/v3, TLS 1.0/1.1/1.2)" : HOST_SETTINGS_MIN_TLS_AUTO,
-								   } selected:0 title:@"Minimum SSL/TLS version"];
-	[tls setShortItems:@[ @"TLS 1.2", @"TLS 1.1", @"TLS 1.0", @"Auto" ]];
-	[tls setKey:HOST_SETTINGS_KEY_MIN_TLS];
-	[tls setSelectedValue:[host minTLSVersion]];
-	[section setFooter:[NSString stringWithFormat:@"Minimum version of SSL/TLS required by %@ to negotiate HTTPS connections", ([host isDefault] ? @"hosts" : @"this host")]];
-	[section addElement:tls];
-	[root addSection:section];
-	
-	section = [[QSection alloc] init];
-	QBooleanElement *exlan = [[QBooleanElement alloc] initWithKey:HOST_SETTINGS_KEY_BLOCK_LOCAL_NETS];
-	[exlan setTitle:@"Block external LAN requests"];
-	[exlan setBoolValue:[host blockIntoLocalNets]];
-	[section addElement:exlan];
-	[section setFooter:[NSString stringWithFormat:@"Resources loaded from %@ will be blocked from loading page elements or making requests to LAN hosts (192.168.0.0/16, 172.16.0.0/12, etc.)", ([host isDefault] ? @"hosts" : @"this host")]];
-	[root addSection:section];
-	
-	section = [[QSection alloc] init];
-	QBooleanElement *allowmixedmode = [[QBooleanElement alloc] initWithKey:HOST_SETTINGS_KEY_ALLOW_MIXED_MODE];
-	[allowmixedmode setTitle:@"Load mixed-mode resources"];
-	[allowmixedmode setBoolValue:[host allowMixedModeContent]];
-	[section addElement:allowmixedmode];
-	[section setFooter:[NSString stringWithFormat:@"Allow %@ to load page resources from non-HTTPS hosts (useful for RSS readers and other aggregators)", ([host isDefault] ? @"HTTPS hosts" : @"this HTTPS host")]];
-	[root addSection:section];
-	
-	section = [[QSection alloc] init];
-	[section setTitle:@"Privacy"];
-	
-	QBooleanElement *whitelistCookies = [[QBooleanElement alloc] initWithKey:HOST_SETTINGS_KEY_WHITELIST_COOKIES];
-	[whitelistCookies setTitle:@"Allow persistent cookies"];
-	[whitelistCookies setBoolValue:[host whitelistCookies]];
-	[section addElement:whitelistCookies];
-	
-	[root addSection:section];
-
-	QuickDialogController *qdc = [QuickDialogController controllerForRoot:root];
-
-	[qdc setWillDisappearCallback:^{
-		if (![host isDefault])
-			[host setHostname:[hostname textValue]];
-		
-		[host setMinTLSVersion:(NSString *)[tls selectedValue]];
-		[host setBlockIntoLocalNets:[exlan boolValue]];
-		[host setWhitelistCookies:[whitelistCookies boolValue]];
-		[host setAllowMixedModeContent:[allowmixedmode boolValue]];
-
-		[host save];
-	}];
-	
-	[[self navigationController] pushViewController:qdc animated:YES];
-	self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Hosts" style:UIBarButtonItemStylePlain target:nil action:nil];
+	[self showDetailsForHost:[[self sortedHosts] objectAtIndex:indexPath.row]];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -226,7 +147,7 @@ NSString *firstMatch;
 			_sortedHosts = nil;
 			
 			[self.tableView reloadData];
-			/* TODO: go to edit view */
+			[self showDetailsForHost:[host text]];
 		}
 	}];
 	
@@ -245,6 +166,95 @@ NSString *firstMatch;
 		_sortedHosts = [[NSMutableArray alloc] initWithArray:[HostSettings sortedHosts]];
 	
 	return _sortedHosts;
+}
+
+- (void)showDetailsForHost:(NSString *)thost
+{
+	HostSettings *host = [HostSettings settingsForHost:thost];
+	
+	QRootElement *root = [[QRootElement alloc] init];
+	root.grouped = YES;
+	root.appearance = [root.appearance copy];
+	
+	root.appearance.labelFont = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+	root.appearance.valueColorEnabled = [UIColor darkTextColor];
+	
+	root.title = [host hostname];
+	
+	QSection *section = [[QSection alloc] init];
+	
+	QEntryElement *hostname;
+	if ([host isDefault]) {
+		QLabelElement *label = [[QLabelElement alloc] initWithTitle:@"Host/domain" Value:[host hostname]];
+		[section addElement:label];
+		[section setFooter:@"These settings will be used as defaults for all hosts without host definitions"];
+	}
+	else {
+		hostname = [[QEntryElement alloc] initWithTitle:@"Host/domain" Value:[host hostname] Placeholder:@"example.com"];
+		[section addElement:hostname];
+		[section setFooter:@"These settings will apply to all hosts under this domain/host"];
+	}
+	
+	[root addSection:section];
+	
+	section = [[QSection alloc] init];
+	[section setTitle:@"Security"];
+	
+	QRadioElement *tls = [[QRadioElement alloc] initWithDict:@{
+								   @"TLS 1.2 only (no SSL)" : HOST_SETTINGS_MIN_TLS_12,
+								   @"TLS 1.1 or 1.2 (no SSL)" : HOST_SETTINGS_MIN_TLS_11,
+								   @"TLS 1.0, 1.1, or 1.2 (no SSL)" : HOST_SETTINGS_MIN_TLS_10,
+								   @"Auto-negotiate (SSL v2/v3, TLS 1.0/1.1/1.2)" : HOST_SETTINGS_MIN_TLS_AUTO,
+								   } selected:0 title:@"Minimum SSL/TLS version"];
+	[tls setShortItems:@[ @"TLS 1.2", @"TLS 1.1", @"TLS 1.0", @"Auto" ]];
+	[tls setKey:HOST_SETTINGS_KEY_MIN_TLS];
+	[tls setSelectedValue:[host minTLSVersion]];
+	[section setFooter:[NSString stringWithFormat:@"Minimum version of SSL/TLS required by %@ to negotiate HTTPS connections", ([host isDefault] ? @"hosts" : @"this host")]];
+	[section addElement:tls];
+	[root addSection:section];
+	
+	section = [[QSection alloc] init];
+	QBooleanElement *exlan = [[QBooleanElement alloc] initWithKey:HOST_SETTINGS_KEY_BLOCK_LOCAL_NETS];
+	[exlan setTitle:@"Block external LAN requests"];
+	[exlan setBoolValue:[host blockIntoLocalNets]];
+	[section addElement:exlan];
+	[section setFooter:[NSString stringWithFormat:@"Resources loaded from %@ will be blocked from loading page elements or making requests to LAN hosts (192.168.0.0/16, 172.16.0.0/12, etc.)", ([host isDefault] ? @"hosts" : @"this host")]];
+	[root addSection:section];
+	
+	section = [[QSection alloc] init];
+	QBooleanElement *allowmixedmode = [[QBooleanElement alloc] initWithKey:HOST_SETTINGS_KEY_ALLOW_MIXED_MODE];
+	[allowmixedmode setTitle:@"Allow mixed-mode resources"];
+	[allowmixedmode setBoolValue:[host allowMixedModeContent]];
+	[section addElement:allowmixedmode];
+	[section setFooter:[NSString stringWithFormat:@"Allow %@ to load page resources from non-HTTPS hosts (useful for RSS readers and other aggregators)", ([host isDefault] ? @"HTTPS hosts" : @"this HTTPS host")]];
+	[root addSection:section];
+	
+	section = [[QSection alloc] init];
+	[section setTitle:@"Privacy"];
+	
+	QBooleanElement *whitelistCookies = [[QBooleanElement alloc] initWithKey:HOST_SETTINGS_KEY_WHITELIST_COOKIES];
+	[whitelistCookies setTitle:@"Allow persistent cookies"];
+	[whitelistCookies setBoolValue:[host whitelistCookies]];
+	[section addElement:whitelistCookies];
+	
+	[root addSection:section];
+	
+	QuickDialogController *qdc = [QuickDialogController controllerForRoot:root];
+	
+	[qdc setWillDisappearCallback:^{
+		if (![host isDefault])
+			[host setHostname:[hostname textValue]];
+		
+		[host setMinTLSVersion:(NSString *)[tls selectedValue]];
+		[host setBlockIntoLocalNets:[exlan boolValue]];
+		[host setWhitelistCookies:[whitelistCookies boolValue]];
+		[host setAllowMixedModeContent:[allowmixedmode boolValue]];
+		
+		[host save];
+	}];
+	
+	[[self navigationController] pushViewController:qdc animated:YES];
+	self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Hosts" style:UIBarButtonItemStylePlain target:nil action:nil];
 }
 
 @end

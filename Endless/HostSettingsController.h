@@ -30,4 +30,6 @@
 
 @interface HostSettingsController : UITableViewController
 
+- (void)showDetailsForHost:(NSString *)thost;
+
 @end
