@@ -126,7 +126,6 @@ AppDelegate *appDelegate;
 
 /* for long press gesture recognizer to work properly */
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-	
 	if (![gestureRecognizer isKindOfClass:[UILongPressGestureRecognizer class]])
 		return NO;
 	
@@ -162,6 +161,10 @@ AppDelegate *appDelegate;
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:@"WebProgressEstimateChangedNotification" object:[_webView valueForKeyPath:@"documentView.webView"]];
 	[_webView stopLoading];
+	
+	for (id gr in [_webView gestureRecognizers])
+		[_webView removeGestureRecognizer:gr];
+
 	_webView = nil;
 }
 
