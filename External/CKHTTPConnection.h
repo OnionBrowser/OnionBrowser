@@ -24,22 +24,22 @@
 
 @interface CKHTTPConnection : NSObject
 {
-    @private
-    __weak id <CKHTTPConnectionDelegate> _delegate;       // weak ref
-    
-    CFHTTPMessageRef _HTTPRequest;
-    NSInputStream *_HTTPStream;
-    NSInputStream *_HTTPBodyStream;
-    BOOL _haveReceivedResponse;
-    CKHTTPAuthenticationChallenge *_authenticationChallenge;
-    NSInteger _authenticationAttempts;
+	@private
+	__weak id <CKHTTPConnectionDelegate> _delegate;
+
+	CFHTTPMessageRef _HTTPRequest;
+	NSInputStream *_HTTPStream;
+	NSInputStream *_HTTPBodyStream;
+	BOOL _haveReceivedResponse;
+	CKHTTPAuthenticationChallenge *_authenticationChallenge;
+	NSInteger _authenticationAttempts;
+	
+	BOOL socketReady;
+	BOOL retriedSocket;
 }
 
 + (CKHTTPConnection *)connectionWithRequest:(NSURLRequest *)request delegate:(id <CKHTTPConnectionDelegate>)delegate;
 
-/*
- * Any caching instructions will be ignored
- */
 - (id)initWithRequest:(NSURLRequest *)request delegate:(id <CKHTTPConnectionDelegate>)delegate;
 - (void)cancel;
 

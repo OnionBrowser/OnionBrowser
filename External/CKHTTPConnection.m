@@ -205,13 +205,12 @@
 {
 	NSParameterAssert(theStream == [self stream]);
 	
-	// Handle the response as soon as it's available
+	NSURL *URL = [theStream propertyForKey:(NSString *)kCFStreamPropertyHTTPFinalURL];
+
 	if (!_haveReceivedResponse) {
 		CFHTTPMessageRef response = (__bridge CFHTTPMessageRef)[theStream propertyForKey:(NSString *)kCFStreamPropertyHTTPResponseHeader];
-		
 		if (response && CFHTTPMessageIsHeaderComplete(response)) {
 			// Construct a NSURLResponse object from the HTTP message
-			NSURL *URL = [theStream propertyForKey:(NSString *)kCFStreamPropertyHTTPFinalURL];
 			NSHTTPURLResponse *URLResponse = [NSHTTPURLResponse responseWithURL:URL HTTPMessage:response];
 			
 			/* work around bug where CFHTTPMessageIsHeaderComplete reports true but there is no actual header data to be found */
@@ -254,19 +253,30 @@
 	}
 	
 process:
-	// Next course of action depends on what happened to the stream
 	switch (streamEvent) {
-        case NSStreamEventErrorOccurred:    // Report an error in the stream as the operation failing
-		[[self delegate] HTTPConnection:self didFailWithError:[theStream streamError]];
+	case NSStreamEventHasSpaceAvailable:
+		socketReady = true;
 		break;
-			
-        case NSStreamEventEndEncountered:   // Report the end of the stream to the delegate
+	case NSStreamEventErrorOccurred:
+		if (!socketReady && !retriedSocket) {
+			/* probably a dead keep-alive socket from the get go */
+			retriedSocket = true;
+			NSLog(@"[CKHTTPConnection] socket for %@ dead but never writable, retrying (%@)", [URL absoluteString], [theStream streamError]);
+			[self _cancelStream];
+			[self start];
+		}
+		else
+			[[self delegate] HTTPConnection:self didFailWithError:[theStream streamError]];
+		break;
+
+	case NSStreamEventEndEncountered:   // Report the end of the stream to the delegate
 		[[self delegate] HTTPConnectionDidFinishLoading:self];
 		break;
 
-        case NSStreamEventHasBytesAvailable:
-        {
-		NSMutableData *data = [[NSMutableData alloc] initWithCapacity:1024];    // Report any data loaded to the delegate
+	case NSStreamEventHasBytesAvailable: {
+		socketReady = true;
+		
+		NSMutableData *data = [[NSMutableData alloc] initWithCapacity:1024];
 		while ([theStream hasBytesAvailable]) {
 			uint8_t buf[1024];
 			NSUInteger len = [theStream read:buf maxLength:1024];
@@ -276,7 +286,7 @@ process:
 		[[self delegate] HTTPConnection:self didReceiveData:data];
 		
 		break;
-        }
+	}
 	default:
 		break;
 	}
@@ -343,6 +353,7 @@ process:
 	CFHTTPMessageRef result = CFHTTPMessageCreateRequest(NULL, (__bridge CFStringRef)[self HTTPMethod], (__bridge CFURLRef)[self URL], kCFHTTPVersion1_1);
 	
 	CFHTTPMessageSetHeaderFieldValue(result, (__bridge CFStringRef)@"Accept-Encoding", (__bridge CFStringRef)@"gzip, deflate");
+	CFHTTPMessageSetHeaderFieldValue(result, (__bridge CFStringRef)@"Connection", (__bridge CFStringRef)@"keep-alive");
 
 	for (NSString *hf in [self allHTTPHeaderFields]) {
 		CFHTTPMessageSetHeaderFieldValue(result, (__bridge CFStringRef)hf, (__bridge CFStringRef)[[self allHTTPHeaderFields] objectForKey:hf]);
@@ -386,7 +397,7 @@ process:
 	
 	return self;
 }
-    
+
 - (void)dealloc {
 	CFRelease((__bridge_retained CFTypeRef)_headerFields);
 }
