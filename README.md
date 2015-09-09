@@ -62,7 +62,8 @@ Current builds are available for free in the
   sites with EV SSL certs
 
 - Integrated SSL certificate viewer by tapping on padlock icon, highlighting
-  weak SSL certificate signature algorithms
+  weak SSL certificate signature algorithms and showing per-connection
+  negotiated TLS/SSL protocol version and cipher information
 
 - Disables SSL 2 and SSL 3 by default, supports a configurable TLS or SSL
   version to require, defaulting to using TLS 1.2 when the server supports it
