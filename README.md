@@ -64,8 +64,10 @@ Current builds are available for free in the
 - Integrated SSL certificate viewer by tapping on padlock icon, highlighting
   weak SSL certificate signature algorithms
 
-- Disables SSLv2 and SSLv3 by default, supports a configurable TLS or SSL
-  version to require (defaults to TLS 1.2)
+- Disables SSL 2 and SSL 3 by default, supports a configurable TLS or SSL
+  version to require, defaulting to using TLS 1.2 when the server supports it
+  but falls back to TLS 1.1 or 1.0.  Can be forced to 1.2 only, or downgraded
+  to include SSL 3 on a per-host basis for servers that require it.
 
 - Blocks pages loaded from non-local networks (i.e., the internet) from trying
   to load sub-requests (e.g., images, iframes, ajax) from hosts that are on

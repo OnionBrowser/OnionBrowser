@@ -153,7 +153,7 @@ NSMutableDictionary *_hosts;
 
 	/* ensure all defaults are set */
 	NSDictionary *defs = @{
-			       HOST_SETTINGS_KEY_TLS: HOST_SETTINGS_TLS_12,
+			       HOST_SETTINGS_KEY_TLS: HOST_SETTINGS_TLS_AUTO,
 			       HOST_SETTINGS_KEY_BLOCK_LOCAL_NETS: @YES,
 			       HOST_SETTINGS_KEY_WHITELIST_COOKIES: @NO,
 			       HOST_SETTINGS_KEY_ALLOW_MIXED_MODE: @NO,
