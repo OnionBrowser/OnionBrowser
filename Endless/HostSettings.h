@@ -32,11 +32,10 @@
 #define HOST_SETTINGS_HOST_DEFAULT @"__default__"
 #define HOST_SETTINGS_HOST_DEFAULT_LABEL @"Default Host"
 
-#define HOST_SETTINGS_KEY_MIN_TLS @"min_tls"
-#define HOST_SETTINGS_MIN_TLS_12 @"1.2"
-#define HOST_SETTINGS_MIN_TLS_11 @"1.1"
-#define HOST_SETTINGS_MIN_TLS_10 @"1.0"
-#define HOST_SETTINGS_MIN_TLS_AUTO @"auto"
+#define HOST_SETTINGS_KEY_TLS @"min_tls"
+#define HOST_SETTINGS_TLS_12 @"1.2"
+#define HOST_SETTINGS_TLS_AUTO @"1.1"
+#define HOST_SETTINGS_TLS_OR_SSL_AUTO @"auto"
 
 #define HOST_SETTINGS_KEY_BLOCK_LOCAL_NETS @"block_into_local_nets"
 
@@ -67,8 +66,8 @@
 - (NSString *)hostname;
 - (void)setHostname:(NSString *)hostname;
 
-- (NSString *)minTLSVersion;
-- (void)setMinTLSVersion:(NSString *)minVersion;
+- (NSString *)TLSVersion;
+- (void)setTLSVersion:(NSString *)version;
 
 - (BOOL)blockIntoLocalNets;
 - (void)setBlockIntoLocalNets:(BOOL)value;

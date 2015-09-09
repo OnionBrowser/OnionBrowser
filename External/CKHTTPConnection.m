@@ -120,7 +120,8 @@
 - (void)start
 {
 	NSAssert(!_HTTPStream, @"Connection already started");
-
+	HostSettings *hs;
+	
 	if (_HTTPBodyStream)
 		_HTTPStream = (__bridge NSInputStream *)(CFReadStreamCreateForStreamedHTTPRequest(NULL, [self HTTPRequest], (__bridge CFReadStreamRef)_HTTPBodyStream));
 	else
@@ -131,55 +132,59 @@
 	
 	/* pipelining */
 	CFReadStreamSetProperty((__bridge CFReadStreamRef)(_HTTPStream), kCFStreamPropertyHTTPAttemptPersistentConnection, kCFBooleanTrue);
-
-	NSURL *url = (__bridge NSURL *)(CFHTTPMessageCopyRequestURL([self HTTPRequest]));
-	if ([[[url scheme] lowercaseString] isEqualToString:@"https"]) {
-		HostSettings *hs = [HostSettings settingsOrDefaultsForHost:[url host]];
-		
-		CFMutableDictionaryRef sslOptions = CFDictionaryCreateMutable(kCFAllocatorDefault, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
-
-		if ([[hs minTLSVersion] isEqualToString:HOST_SETTINGS_MIN_TLS_10])
-			CFDictionarySetValue(sslOptions, kCFStreamSSLLevel, CFSTR("kCFStreamSocketSecurityLevelTLSv1_0"));
-		else if ([[hs minTLSVersion] isEqualToString:HOST_SETTINGS_MIN_TLS_11])
-			CFDictionarySetValue(sslOptions, kCFStreamSSLLevel, CFSTR("kCFStreamSocketSecurityLevelTLSv1_1"));
-		else if ([[hs minTLSVersion] isEqualToString:HOST_SETTINGS_MIN_TLS_AUTO])
-			CFDictionarySetValue(sslOptions, kCFStreamSSLLevel, kCFStreamSocketSecurityLevelNegotiatedSSL);
-		else
-			CFDictionarySetValue(sslOptions, kCFStreamSSLLevel, CFSTR("kCFStreamSocketSecurityLevelTLSv1_2"));
 	
-#ifdef TRACE_HOST_SETTINGS
-		NSLog(@"[CKHTTPConnection] set SSL kCFStreamSSLLevel for %@ to %@", [url host], CFDictionaryGetValue(sslOptions, kCFStreamSSLLevel));
-#endif
+	/* set SSL protocol version enforcement before opening, when using kCFStreamSSLLevel */
+	NSURL *url = (__bridge NSURL *)(CFHTTPMessageCopyRequestURL([self HTTPRequest]));
+	BOOL doLaterSSL = false;
+	if ([[[url scheme] lowercaseString] isEqualToString:@"https"]) {
+		hs = [HostSettings settingsOrDefaultsForHost:[url host]];
 		
-#if 0
-		// Ignore SSL errors for domains if user has explicitly said to "continue anyway"
-		// (for self-signed certs)
-		NSURL *URL = [_HTTPStream propertyForKey:(NSString *)kCFStreamPropertyHTTPFinalURL];
-		if ([URL.absoluteString rangeOfString:@"https://"].location == 0) {
-			Boolean ignoreSSLErrors = NO;
-			for (NSString *whitelistHost in appDelegate.sslWhitelistedDomains) {
-				if ([whitelistHost isEqualToString:URL.host]) {
-#ifdef TRACE
-					NSLog(@"%@ in SSL host whitelist ignoring SSL certificate status", URL.host);
-#endif
-					ignoreSSLErrors = YES;
-					break;
-				}
-			}
+		if ([[hs TLSVersion] isEqualToString:HOST_SETTINGS_TLS_12]) {
+			/* kTLSProtocol12 allows lower protocols, so use kCFStreamSSLLevel to force 1.2 */
 			
-			if (ignoreSSLErrors) {
-				CFDictionarySetValue(sslOptions, kCFStreamSSLValidatesCertificateChain, kCFBooleanFalse);
-				setSSLOption = YES;
-			}
-		}
+			CFMutableDictionaryRef sslOptions = CFDictionaryCreateMutable(kCFAllocatorDefault, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
+			CFDictionarySetValue(sslOptions, kCFStreamSSLLevel, CFSTR("kCFStreamSocketSecurityLevelTLSv1_2"));
+			CFReadStreamSetProperty((__bridge CFReadStreamRef)_HTTPStream, kCFStreamPropertySSLSettings, sslOptions);
+			
+#ifdef TRACE_HOST_SETTINGS
+			NSLog(@"[HostSettings] set TLS/SSL min level for %@ to TLS 1.2", [url host]);
 #endif
-
-		CFReadStreamSetProperty((__bridge CFReadStreamRef)_HTTPStream, kCFStreamPropertySSLSettings, sslOptions);
+		}
+		else
+			doLaterSSL = true;
+		
+		/* TODO: SSLSetEnabledCiphers to disable weak ciphers */
 	}
-
+	
 	[_HTTPStream setDelegate:(id<NSStreamDelegate>)self];
 	[_HTTPStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
 	[_HTTPStream open];
+	
+	/* for other SSL options, these need an SSLContextRef which doesn't exist until the stream is opened */
+	if (doLaterSSL) {
+		SSLContextRef sslContext = (__bridge SSLContextRef)[_HTTPStream propertyForKey:(__bridge NSString *)kCFStreamPropertySSLContext];
+		if (sslContext != NULL) {
+			OSStatus status;
+			
+			status = SSLSetProtocolVersionMax(sslContext, kTLSProtocol12);
+			if (status != noErr)
+				NSLog(@"[HostSettings] failed setting SSLSetProtocolVersionMax: %d", status);
+			
+			if ([[hs TLSVersion] isEqualToString:HOST_SETTINGS_TLS_AUTO])
+				status = SSLSetProtocolVersionMin(sslContext, kTLSProtocol1);
+			else if ([[hs TLSVersion] isEqualToString:HOST_SETTINGS_TLS_OR_SSL_AUTO])
+				status = SSLSetProtocolVersionMin(sslContext, kSSLProtocolAll);
+			else
+				abort();
+			
+			if (status != noErr)
+				NSLog(@"[HostSettings] failed setting SSLSetProtocolVersionMin: %d", status);
+			
+#ifdef TRACE_HOST_SETTINGS
+			NSLog(@"[HostSettings] set TLS/SSL min level for %@ to %@", [url host], [hs TLSVersion]);
+#endif
+		}
+	}
 }
 
 - (void)_cancelStream

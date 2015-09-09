@@ -153,7 +153,7 @@ NSMutableDictionary *_hosts;
 
 	/* ensure all defaults are set */
 	NSDictionary *defs = @{
-			       HOST_SETTINGS_KEY_MIN_TLS: HOST_SETTINGS_MIN_TLS_12,
+			       HOST_SETTINGS_KEY_TLS: HOST_SETTINGS_TLS_12,
 			       HOST_SETTINGS_KEY_BLOCK_LOCAL_NETS: @YES,
 			       HOST_SETTINGS_KEY_WHITELIST_COOKIES: @NO,
 			       HOST_SETTINGS_KEY_ALLOW_MIXED_MODE: @NO,
@@ -205,19 +205,19 @@ NSMutableDictionary *_hosts;
 	[[HostSettings hosts] setObject:self forKey:hostname];
 }
 
-- (NSString *)minTLSVersion
+- (NSString *)TLSVersion
 {
-	return [[self dict] objectForKey:HOST_SETTINGS_KEY_MIN_TLS];
+	return [[self dict] objectForKey:HOST_SETTINGS_KEY_TLS];
 }
-- (void)setMinTLSVersion:(NSString *)minVersion
+- (void)setTLSVersion:(NSString *)minVersion
 {
-	if (!([minVersion isEqualToString:HOST_SETTINGS_MIN_TLS_12] || [minVersion isEqualToString:HOST_SETTINGS_MIN_TLS_11] ||
-	[minVersion isEqualToString:HOST_SETTINGS_MIN_TLS_10] || [minVersion isEqualToString:HOST_SETTINGS_MIN_TLS_AUTO])) {
-		NSLog(@"invalid min tls version: %@", minVersion);
-		abort();
+	if (!([minVersion isEqualToString:HOST_SETTINGS_TLS_12] || [minVersion isEqualToString:HOST_SETTINGS_TLS_AUTO] ||
+	[minVersion isEqualToString:HOST_SETTINGS_TLS_OR_SSL_AUTO])) {
+		NSLog(@"invalid TLS version: %@", minVersion);
+		return;
 	}
 	
-	[[self dict] setObject:minVersion forKey:HOST_SETTINGS_KEY_MIN_TLS];
+	[[self dict] setObject:minVersion forKey:HOST_SETTINGS_KEY_TLS];
 }
 
 - (BOOL)blockIntoLocalNets

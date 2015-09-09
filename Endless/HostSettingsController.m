@@ -200,22 +200,13 @@ NSString *firstMatch;
 	section = [[QSection alloc] init];
 	[section setTitle:@"Security"];
 	
-	QRadioElement *tls = [[QRadioElement alloc] initWithDict:@{
-								   @"TLS 1.2 only (no SSL)" : HOST_SETTINGS_MIN_TLS_12,
-								   @"TLS 1.1 or 1.2 (no SSL)" : HOST_SETTINGS_MIN_TLS_11,
-								   @"TLS 1.0, 1.1, or 1.2 (no SSL)" : HOST_SETTINGS_MIN_TLS_10,
-								   @"Auto-negotiate (SSL v2/v3, TLS 1.0/1.1/1.2)" : HOST_SETTINGS_MIN_TLS_AUTO,
-								   } selected:0 title:@"Minimum SSL/TLS version"];
-	[tls setShortItems:@[ @"TLS 1.2", @"TLS 1.1", @"TLS 1.0", @"Auto" ]];
-	[tls setKey:HOST_SETTINGS_KEY_MIN_TLS];
-	[tls setSelectedValue:[host minTLSVersion]];
-	[section setFooter:[NSString stringWithFormat:@"Minimum version of SSL/TLS required by %@ to negotiate HTTPS connections", ([host isDefault] ? @"hosts" : @"this host")]];
-	/* XXX TODO: https://github.com/jcs/endless/issues/17 */
-	[tls setOnValueChanged:^(QRootElement *dummy) {
-		UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Note" message:@"You may need to force-close and re-open the app to avoid getting SSL protocol errors with this host after changing its minimum TLS setting." preferredStyle:UIAlertControllerStyleAlert];
-		[alertController addAction:[UIAlertAction actionWithTitle:@"Bummer" style:UIAlertActionStyleDefault handler:nil]];
-		[self presentViewController:alertController animated:YES completion:nil];
-	}];
+	QRadioElement *tls = [[QRadioElement alloc] initWithItems:@[ @"TLS 1.2 Only", @"TLS 1.2, 1.1, or 1.0", @"TLS 1.2, 1.1, 1.0, or SSL v3" ] selected:0];
+	[tls setValues:@[ HOST_SETTINGS_TLS_12, HOST_SETTINGS_TLS_AUTO, HOST_SETTINGS_TLS_OR_SSL_AUTO ]];
+	[tls setShortItems:@[ @"TLS 1.2", @"Any TLS", @"Any TLS or SSL" ]];
+	[tls setTitle:@"TLS/SSL version"];
+	[tls setKey:HOST_SETTINGS_KEY_TLS];
+	[tls setSelectedValue:[host TLSVersion]];
+	[section setFooter:[NSString stringWithFormat:@"Minimum version of TLS or SSL required by %@ to negotiate HTTPS connections", ([host isDefault] ? @"hosts" : @"this host")]];
 	[section addElement:tls];
 	[root addSection:section];
 	
@@ -251,7 +242,7 @@ NSString *firstMatch;
 		if (![host isDefault])
 			[host setHostname:[hostname textValue]];
 		
-		[host setMinTLSVersion:(NSString *)[tls selectedValue]];
+		[host setTLSVersion:(NSString *)[tls selectedValue]];
 		[host setBlockIntoLocalNets:[exlan boolValue]];
 		[host setWhitelistCookies:[whitelistCookies boolValue]];
 		[host setAllowMixedModeContent:[allowmixedmode boolValue]];
