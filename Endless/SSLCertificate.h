@@ -54,6 +54,9 @@
 @property (strong, readonly) NSDate *validityNotAfter;
 @property (strong, readonly) NSDictionary *subject;
 
+@property SSLProtocol negotiatedProtocol;
+@property SSLCipherSuite negotiatedCipher;
+
 @property (readonly) BOOL isEV;
 @property (strong, readonly) NSString *evOrgName;
 
@@ -61,5 +64,7 @@
 - (id)initWithData:(NSData *)data;
 - (BOOL)isExpired;
 - (BOOL)hasWeakSignatureAlgorithm;
+- (NSString *)negotiatedProtocolString;
+- (NSString *)negotiatedCipherString;
 
 @end

@@ -183,7 +183,7 @@ static NSString *_javascriptToInject;
 	[newRequest setHTTPShouldUsePipelining:YES];
 	
 	[self setActualRequest:newRequest];
-
+	
 	void (^cancelLoading)(void) = ^(void) {
 		/* need to continue the chain with a blank response so downstream knows we're done */
 		[self.client URLProtocol:self didReceiveResponse:[[NSURLResponse alloc] init] cacheStoragePolicy:NSURLCacheStorageNotAllowed];
@@ -489,12 +489,10 @@ static NSString *_javascriptToInject;
 	[self.client URLProtocol:self didReceiveResponse:textResponse cacheStoragePolicy:NSURLCacheStorageAllowedInMemoryOnly];
 }
 
-- (BOOL)HTTPConnection:(CKHTTPConnection *)connection shouldContinueWithSecTrustRef:(SecTrustRef)secTrustRef
+- (void)HTTPConnection:(CKHTTPConnection *)connection didReceiveSecTrust:(SecTrustRef)secTrustRef certificate:(SSLCertificate *)certificate
 {
 	if (self.isOrigin)
-		[wvt setSSLCertificate:[[SSLCertificate alloc] initWithSecTrustRef:secTrustRef]];
-	
-	return YES;
+		[wvt setSSLCertificate:certificate];
 }
 
 - (void)HTTPConnection:(CKHTTPConnection *)connection didReceiveData:(NSData *)data {

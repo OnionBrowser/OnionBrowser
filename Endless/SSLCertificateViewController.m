@@ -44,6 +44,13 @@
 	
 	MutableOrderedDictionary *i;
 	
+	if ([cert negotiatedProtocol]) {
+		i = [[MutableOrderedDictionary alloc] init];
+		[i setObject:[cert negotiatedProtocolString] forKey:@"Protocol"];
+		[i setObject:[cert negotiatedCipherString] forKey:@"Cipher"];
+		[certInfo setObject:i forKey:@"Connection Information"];
+	}
+	
 	i = [[MutableOrderedDictionary alloc] init];
 	[i setObject:[NSString stringWithFormat:@"%@", [cert version]] forKey:@"Version"];
 	[i setObject:[cert serialNumber] forKey:@"Serial Number"];

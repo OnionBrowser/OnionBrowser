@@ -15,6 +15,7 @@
 
 #import "CKHTTPConnection.h"
 #import "HostSettings.h"
+#import "SSLCertificate.h"
 
 // There is no public API for creating an NSHTTPURLResponse. The only way to create one then, is to
 // have a private subclass that others treat like a standard NSHTTPURLResponse object. Framework
@@ -226,30 +227,22 @@
 				goto process;
 			}
 			
-			if ([[[URL scheme] lowercaseString] isEqualToString:@"https"]) {
-				SecTrustRef trust = (__bridge SecTrustRef)[theStream propertyForKey:(__bridge NSString *)kCFStreamPropertySSLPeerTrust];
-				if (![[self delegate] HTTPConnection:self shouldContinueWithSecTrustRef:trust]) {
-					[self _cancelStream];
-					return;
-				}
-			}
-			
 			// If the response was an authentication failure, try to request fresh credentials.
 			if ([URLResponse statusCode] == 401 || [URLResponse statusCode] == 407) {
 				// Cancel any further loading and ask the delegate for authentication
 				[self _cancelStream];
-
+				
 				NSAssert(![self currentAuthenticationChallenge], @"Authentication challenge received while another is in progress");
-
+				
 				_authenticationChallenge = [[CKHTTPAuthenticationChallenge alloc] initWithResponse:response proposedCredential:nil previousFailureCount:_authenticationAttempts failureResponse:URLResponse sender:self];
-	
+				
 				if ([self currentAuthenticationChallenge]) {
 					_authenticationAttempts++;
 					[[self delegate] HTTPConnection:self didReceiveAuthenticationChallenge:[self currentAuthenticationChallenge]];
 					return; // Stops the delegate being sent a response received message
 				}
 			}
-            
+			
 			// By reaching this point, the response was not a valid request for authentication,
 			// so go ahead and report it
 			_haveReceivedResponse = YES;
@@ -280,6 +273,24 @@ process:
 
 	case NSStreamEventHasBytesAvailable: {
 		socketReady = true;
+		
+		if ([[[URL scheme] lowercaseString] isEqualToString:@"https"]) {
+			SecTrustRef trust = (__bridge SecTrustRef)[theStream propertyForKey:(__bridge NSString *)kCFStreamPropertySSLPeerTrust];
+			if (trust != nil) {
+				SSLCertificate *cert = [[SSLCertificate alloc] initWithSecTrustRef:trust];
+				
+				SSLContextRef sslContext = (__bridge SSLContextRef)[theStream propertyForKey:(__bridge NSString *)kCFStreamPropertySSLContext];
+				SSLProtocol proto;
+				SSLGetNegotiatedProtocolVersion(sslContext, &proto);
+				[cert setNegotiatedProtocol:proto];
+				
+				SSLCipherSuite cipher;
+				SSLGetNegotiatedCipher(sslContext, &cipher);
+				[cert setNegotiatedCipher:cipher];
+				
+				[[self delegate] HTTPConnection:self didReceiveSecTrust:trust certificate:cert];
+			}
+		}
 		
 		NSMutableData *data = [[NSMutableData alloc] initWithCapacity:1024];
 		while ([theStream hasBytesAvailable]) {

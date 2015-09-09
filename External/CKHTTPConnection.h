@@ -12,11 +12,8 @@
 //  Under Modified BSD License, as per description at
 //  http://www.opensource.utr-software.com/
 
-
-//  A sort of NSURLConnection-lite class. Deals purely with HTTP and is not multithreaded
-//  internally. Adds the ability to track upload progress.
-
 #import <Foundation/Foundation.h>
+#import "SSLCertificate.h"
 
 @protocol CKHTTPConnectionDelegate;
 
@@ -55,7 +52,7 @@
 - (void)HTTPConnection:(CKHTTPConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response;
 - (void)HTTPConnection:(CKHTTPConnection *)connection didReceiveData:(NSData *)data;
 
-- (BOOL)HTTPConnection:(CKHTTPConnection *)connection shouldContinueWithSecTrustRef:(SecTrustRef)secTrustRef;
+- (void)HTTPConnection:(CKHTTPConnection *)connection didReceiveSecTrust:(SecTrustRef)secTrustRef certificate:(SSLCertificate *)certificate;
 
 - (void)HTTPConnectionDidFinishLoading:(CKHTTPConnection *)connection;
 - (void)HTTPConnection:(CKHTTPConnection *)connection didFailWithError:(NSError *)error;
