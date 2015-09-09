@@ -254,8 +254,6 @@
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	[userDefaults removeObjectForKey:STATE_RESTORE_TRY_KEY];
 	[userDefaults synchronize];
-
-	[self viewIsVisible];
 }
 
 /* called when we've become visible (possibly again, from app delegate applicationDidBecomeActive) */
@@ -290,24 +288,20 @@
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
 {
 	[super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-	
+
 	[coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
-		if (showingTabs) {
+		if (showingTabs)
 			[self showTabsWithCompletionBlock:nil];
-		}
 		
-		[self adjustLayoutToSize:size];
+		[self dismissPopover];
+		[self adjustLayout];
 	} completion:nil];
 }
 
 - (void)adjustLayout
 {
-	[self adjustLayoutToSize:CGSizeMake([[UIScreen mainScreen] applicationFrame].size.width, [[UIScreen mainScreen] applicationFrame].size.height)];
-}
-
-- (void)adjustLayoutToSize:(CGSize)size
-{
 	float statusBarHeight = [[UIApplication sharedApplication] statusBarFrame].size.height;
+	CGSize size = [[UIScreen mainScreen] applicationFrame].size;
 
 	/* main background view starts at 0,0, but actual content starts at 0,(app frame origin y to account for status bar/location warning) */
 	self.view.frame = CGRectMake(0, 0, size.width, size.height + statusBarHeight);
