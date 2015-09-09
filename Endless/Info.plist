@@ -18,6 +18,18 @@
 	<string>0.96</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>org.jcs.endless</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>endlesshttp</string>
+				<string>endlesshttps</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>960</string>
 	<key>LSRequiresIPhoneOS</key>
@@ -40,17 +52,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>CFBundleURLTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleURLName</key>
-			<string>org.jcs.endless</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>endlesshttp</string>
-				<string>endlesshttps</string>
-			</array>
-		</dict>
-	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>

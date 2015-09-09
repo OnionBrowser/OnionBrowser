@@ -7,7 +7,6 @@
 #import "WebViewMenuController.h"
 #import "WYPopoverController.h"
 
-#define STATUSBAR_HEIGHT 20
 #define TOOLBAR_HEIGHT 46
 #define TOOLBAR_PADDING 6
 #define TOOLBAR_BUTTON_SIZE 30
@@ -38,7 +37,6 @@
 	UIBarButtonItem *tabDoneButton;
 	
 	float lastWebViewScrollOffset;
-	CGRect origTabScrollerFrame;
 	BOOL showingTabs;
 	BOOL webViewScrollIsDecelerating;
 	BOOL webViewScrollIsDragging;
@@ -61,7 +59,9 @@
 	curTabIndex = 0;
 	
 	self.view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].applicationFrame.size.width, [UIScreen mainScreen].applicationFrame.size.height)];
-	
+	self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
+	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+
 	tabScroller = [[UIScrollView alloc] init];
 	[tabScroller setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
 	[tabScroller setScrollEnabled:NO];
@@ -148,7 +148,7 @@
 	[tabScroller setDelaysContentTouches:NO];
 	[tabScroller setDelegate:self];
 
-	tabChooser = [[UIPageControl alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - TOOLBAR_HEIGHT - 12, self.view.bounds.size.width, TOOLBAR_HEIGHT)];
+	tabChooser = [[UIPageControl alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, TOOLBAR_HEIGHT)];
 	[tabChooser setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin)];
 	[tabChooser addTarget:self action:@selector(slideToCurrentTab:) forControlEvents:UIControlEventValueChanged];
 	[tabChooser setPageIndicatorTintColor:[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0]];
@@ -177,8 +177,8 @@
 	NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
 	[center addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
 	[center addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-
-	[self adjustLayoutToSize:CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height + STATUSBAR_HEIGHT)];
+	
+	[self adjustLayout];
 	[self updateSearchBarDetails];
 	
 	[self.view.window makeKeyAndVisible];
@@ -265,8 +265,11 @@
 		NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 		NSDictionary *se = [[appDelegate searchEngines] objectForKey:[userDefaults stringForKey:@"search_engine"]];
 		
-		[self addNewTabForURL:[NSURL URLWithString:@"https://jcs.org/tmp/test.html"]]; //[se objectForKey:@"homepage_url"]]];
+		[self addNewTabForURL:[NSURL URLWithString:[se objectForKey:@"homepage_url"]]];
 	}
+	
+	/* in case our orientation changed, or the status bar changed height (which can take a few millis for animation) */
+	[self performSelector:@selector(adjustLayout) withObject:nil afterDelay:0.5];
 }
 
 - (void)keyboardWillShow:(NSNotification *)notification {
@@ -276,12 +279,12 @@
 	/* on devices with a bluetooth keyboard attached, both values should be the same for a 0 height */
 	keyboardHeight = keyboardStart.origin.y - keyboardEnd.origin.y;
 
-	[self adjustLayoutToSize:CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height)];
+	[self adjustLayout];
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification {
 	keyboardHeight = 0;
-	[self adjustLayoutToSize:CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height)];
+	[self adjustLayout];
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
@@ -290,23 +293,55 @@
 	
 	[coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
 		if (showingTabs) {
-			/* not sure why, but the transition looks nicer to do these linearly rather than adjusting layout in a completion block to ending tab showing */
 			[self showTabsWithCompletionBlock:nil];
 		}
-	} completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+		
 		[self adjustLayoutToSize:size];
-	}];
+	} completion:nil];
+}
+
+- (void)adjustLayout
+{
+	[self adjustLayoutToSize:CGSizeMake([[UIScreen mainScreen] applicationFrame].size.width, [[UIScreen mainScreen] applicationFrame].size.height)];
 }
 
 - (void)adjustLayoutToSize:(CGSize)size
 {
-	self.view.frame = CGRectMake(0, 0, size.width, size.height);
-	float y = ((TOOLBAR_HEIGHT - TOOLBAR_BUTTON_SIZE) / 2);
+	float statusBarHeight = [[UIApplication sharedApplication] statusBarFrame].size.height;
+
+	/* main background view starts at 0,0, but actual content starts at 0,(app frame origin y to account for status bar/location warning) */
+	self.view.frame = CGRectMake(0, 0, size.width, size.height + statusBarHeight);
 	
-	if (self.toolbarOnBottom)
-		toolbar.frame = tabToolbar.frame = CGRectMake(0, size.height - TOOLBAR_HEIGHT - keyboardHeight, size.width, TOOLBAR_HEIGHT + keyboardHeight);
-	else
-		toolbar.frame = tabToolbar.frame = CGRectMake(0, STATUSBAR_HEIGHT, size.width, TOOLBAR_HEIGHT);
+	/* things relative to the main view */
+	if (self.toolbarOnBottom) {
+		tabChooser.frame = CGRectMake(0, statusBarHeight + 10, self.view.frame.size.width, 24);
+
+		toolbar.frame = tabToolbar.frame = CGRectMake(0, self.view.frame.size.height - TOOLBAR_HEIGHT - keyboardHeight, size.width, TOOLBAR_HEIGHT + keyboardHeight);
+		progressBar.frame = CGRectMake(0, 0, toolbar.frame.size.width, 2);
+		
+		tabScroller.frame = CGRectMake(0, self.view.frame.origin.y + statusBarHeight, toolbar.frame.size.width, self.view.frame.size.height - toolbar.frame.size.height - statusBarHeight);
+	}
+	else {
+		tabChooser.frame = CGRectMake(0, self.view.frame.size.height - 24, self.view.frame.size.width, 24);
+		
+		toolbar.frame = tabToolbar.frame = CGRectMake(0, statusBarHeight, self.view.frame.size.width, TOOLBAR_HEIGHT);
+		progressBar.frame = CGRectMake(0, toolbar.frame.size.height - 2, toolbar.frame.size.width, 2);
+		
+		tabScroller.frame = CGRectMake(0, toolbar.frame.origin.y + toolbar.frame.size.height, toolbar.frame.size.width, self.view.frame.size.height - toolbar.frame.size.height);
+	}
+	
+	/* tabScroller.frame is now our actual webview viewing area */
+
+	for (int i = 0; i < webViewTabs.count; i++) {
+		WebViewTab *wvt = webViewTabs[i];
+		[wvt updateFrame:[self frameForTabIndex:i]];
+	}
+	
+	/* things relative to the toolbar */
+	float y = ((TOOLBAR_HEIGHT - TOOLBAR_BUTTON_SIZE) / 2);
+
+	tabScroller.contentSize = CGSizeMake(size.width * tabChooser.numberOfPages, tabScroller.frame.size.height);
+	[tabScroller setContentOffset:CGPointMake([self frameForTabIndex:curTabIndex].origin.x, 0) animated:NO];
 	
 	backButton.frame = CGRectMake(TOOLBAR_PADDING, y, TOOLBAR_BUTTON_SIZE, TOOLBAR_BUTTON_SIZE);
 	forwardButton.frame = CGRectMake(backButton.frame.origin.x + backButton.frame.size.width + TOOLBAR_PADDING, y, TOOLBAR_BUTTON_SIZE, TOOLBAR_BUTTON_SIZE);
@@ -317,46 +352,12 @@
 	tabCount.frame = CGRectMake(tabsButton.frame.origin.x + 6, tabsButton.frame.origin.y + 12, 14, 10);
 	urlField.frame = [self frameForUrlField];
 	
-	if (self.toolbarOnBottom) {
-		progressBar.frame = CGRectMake(0, 0, toolbar.frame.size.width, 2);
-		tabChooser.frame = CGRectMake(0, size.height - 24 - TOOLBAR_HEIGHT, size.width, 24);
-	}
-	else {
-		progressBar.frame = CGRectMake(0, toolbar.frame.size.height - 2, toolbar.frame.size.width, 2);
-		tabChooser.frame = CGRectMake(0, size.height - 24, size.width, 24);
-	}
-
-	tabScroller.frame = CGRectMake(0, 0, size.width, size.height);
-
-	for (int i = 0; i < webViewTabs.count; i++) {
-		WebViewTab *wvt = webViewTabs[i];
-		[wvt updateFrame:[self frameForTabIndex:i withSize:CGSizeMake(size.width, size.height - STATUSBAR_HEIGHT)]];
-	}
-	
-	tabScroller.contentSize = CGSizeMake(size.width * tabChooser.numberOfPages, size.height);
-	[tabScroller setContentOffset:CGPointMake([self frameForTabIndex:curTabIndex].origin.x, 0) animated:NO];
-	
 	[self.view setNeedsDisplay];
 }
 
 - (CGRect)frameForTabIndex:(NSUInteger)number
 {
-	return [self frameForTabIndex:number withSize:CGSizeMake(0, 0)];
-}
-
-- (CGRect)frameForTabIndex:(NSUInteger)number withSize:(CGSize)size
-{
-	float screenWidth = size.width, screenHeight = size.height;
- 
-	if (size.width == 0) {
-		screenWidth = [UIScreen mainScreen].applicationFrame.size.width;
-		screenHeight = [UIScreen mainScreen].applicationFrame.size.height;
-	}
-	
-	if (self.toolbarOnBottom)
-		return CGRectMake((screenWidth * number), STATUSBAR_HEIGHT, screenWidth, screenHeight - TOOLBAR_HEIGHT);
-	else
-		return CGRectMake((screenWidth * number), TOOLBAR_HEIGHT + STATUSBAR_HEIGHT, screenWidth, screenHeight - TOOLBAR_HEIGHT);
+	return CGRectMake((self.view.frame.size.width * number), 0, self.view.frame.size.width, tabScroller.frame.size.height);
 }
 
 - (CGRect)frameForUrlField
@@ -698,7 +699,7 @@
 		
 		if (self.toolbarOnBottom)
 			/* we can't size according to keyboard height because we don't know it yet, so we'll just put it full height below the toolbar */
-			bookmarks.view.frame = CGRectMake(0, STATUSBAR_HEIGHT, self.view.frame.size.width, self.view.frame.size.height);
+			bookmarks.view.frame = CGRectMake(0, tabScroller.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
 		else
 			bookmarks.view.frame = CGRectMake(0, toolbar.frame.size.height + toolbar.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
 
@@ -854,7 +855,7 @@
 	self.toolbarOnBottom = [userDefaults boolForKey:@"toolbar_on_bottom"];
 	
 	if (self.toolbarOnBottom != oldtob)
-		[self adjustLayoutToSize:CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height)];
+		[self adjustLayout];
 }
 
 - (void)showTabs:(id)_id
@@ -870,8 +871,6 @@
 		/* make sure no text is selected */
 		[urlField resignFirstResponder];
 		
-		origTabScrollerFrame = tabScroller.frame;
-		
 		[UIView animateWithDuration:0.25 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^(void) {
 			for (int i = 0; i < webViewTabs.count; i++) {
 				[(WebViewTab *)webViewTabs[i] zoomOut];
@@ -881,8 +880,6 @@
 			toolbar.hidden = true;
 			tabToolbar.hidden = false;
 			progressBar.alpha = 0.0;
-			
-			tabScroller.frame = CGRectMake(tabScroller.frame.origin.x, 0, tabScroller.frame.size.width, tabScroller.frame.size.height);
 		} completion:block];
 		
 		tabScroller.contentOffset = CGPointMake([self frameForTabIndex:curTabIndex].origin.x, 0);
@@ -905,7 +902,6 @@
 			toolbar.hidden = false;
 			tabToolbar.hidden = true;
 			progressBar.alpha = (progressBar.progress > 0.0 && progressBar.progress < 1.0 ? 1.0 : 0.0);
-			tabScroller.frame = origTabScrollerFrame;
 		} completion:block];
 
 		tabScroller.scrollEnabled = NO;
