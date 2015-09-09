@@ -100,7 +100,7 @@
 	}
 	else
 		oidtree = (NSArray *)t;
-
+	
 	NSArray *cert = [self safeFetchFromArray:oidtree atIndex:0 withType:[NSArray class]];
 	if (cert == nil)
 		return nil;
@@ -193,9 +193,6 @@
 			[self setOid:oid toValue:val inDictionary:tissuer];
 		}
 	}
-	NSString *tissuerCN = [tissuer objectForKey:X509_KEY_CN];
-	if (tissuerCN == nil || [tissuerCN isEqualToString:@""])
-		return nil;
 	_issuer = tissuer;
 	
 	NSArray *validityPeriod = [self safeFetchFromArray:cert atIndex:4 withType:[NSArray class]];
@@ -232,9 +229,6 @@
 			[self setOid:oid toValue:val inDictionary:tsubject];
 		}
 	}
-	NSString *subjectCN = [tissuer objectForKey:X509_KEY_CN];
-	if (subjectCN == nil || [subjectCN isEqualToString:@""])
-		return nil;
 	_subject = tsubject;
 	
 #ifdef TRACE
