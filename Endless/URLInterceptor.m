@@ -448,19 +448,6 @@ static NSString *_javascriptToInject;
 		return;
 	}
 	
-	/* for some reason, passing the response directly doesn't always properly set the separate mimetype and content-encoding bits, so attempt to parse them out */
-	
-	NSString *content_type = [self caseInsensitiveHeader:@"content-type" inResponse:response];
-
-	/* "text/html; charset=UTF-8" */
-	if (content_type == nil || [content_type isEqualToString:@""])
-		content_type = @"text/plain";
-	
-	NSArray *ctparts = [content_type componentsSeparatedByString:@";"];
-	
-	/* "text/html" */
-	NSString *mime = [ctparts objectAtIndex:0];
-	
 	NSString *content_encoding = [self caseInsensitiveHeader:@"content-encoding" inResponse:response];
 	if (content_encoding != nil) {
 		if ([content_encoding isEqualToString:@"deflate"])
@@ -471,22 +458,7 @@ static NSString *_javascriptToInject;
 			NSLog(@"[URLInterceptor] [Tab %@] unknown content encoding \"%@\"", wvt.tabIndex, content_encoding);
 	}
 
-	NSString *charset = @"UTF-8";
-	NSArray *charset_bits = [content_type componentsSeparatedByString:@"charset="];
-	if ([charset_bits count] > 1)
-		charset = [[charset_bits objectAtIndex:1] componentsSeparatedByString:@";"][0];
-	
-#ifdef DEBUG
-	NSLog(@"[URLInterceptor] [Tab %@] content-type=%@, charset=%@, encoding=%@", wvt.tabIndex, mime, charset, content_encoding);
-#endif
-	
-	NSURLResponse *textResponse;
-	if ([[[[response URL] scheme] lowercaseString] isEqualToString:@"http"] || [[[[response URL] scheme] lowercaseString] isEqualToString:@"https"])
-		textResponse = [[NSHTTPURLResponse alloc] initWithURL:[response URL] statusCode:[response statusCode] HTTPVersion:@"1.1" headerFields:[response allHeaderFields]];
-	else
-		textResponse = [[NSURLResponse alloc] initWithURL:[response URL] MIMEType:mime expectedContentLength:[response expectedContentLength] textEncodingName:charset];
-	
-	[self.client URLProtocol:self didReceiveResponse:textResponse cacheStoragePolicy:NSURLCacheStorageAllowedInMemoryOnly];
+	[self.client URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageAllowedInMemoryOnly];
 }
 
 - (void)HTTPConnection:(CKHTTPConnection *)connection didReceiveSecTrust:(SecTrustRef)secTrustRef certificate:(SSLCertificate *)certificate
