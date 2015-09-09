@@ -300,6 +300,8 @@
 
 - (void)adjustLayout
 {
+	[[UIApplication sharedApplication] setStatusBarHidden:NO];
+
 	float statusBarHeight = [[UIApplication sharedApplication] statusBarFrame].size.height;
 	CGSize size = [[UIScreen mainScreen] applicationFrame].size;
 

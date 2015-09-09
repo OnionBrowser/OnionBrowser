@@ -55,7 +55,7 @@
 	[application ignoreSnapshotOnNextApplicationLaunch];
 }
 
-- (void)applicationWillEnterForeground:(UIApplication *)application
+- (void)applicationDidBecomeActive:(UIApplication *)application
 {
 	[[self webViewController] viewIsVisible];
 }
