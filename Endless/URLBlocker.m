@@ -73,12 +73,9 @@ static NSCache *ruleCache;
 
 + (BOOL)shouldBlockURL:(NSURL *)url fromMainDocumentURL:(NSURL *)mainUrl
 {
-	/* if this same rule would have blocked our main URL, allow it since the user is probably viewing this site and this isn't a sneaky tracker */
-	if (mainUrl != nil && [url isEqual:mainUrl])
-		return NO;
-	
 	NSString *blocker = [self blockRuleForURL:url];
 	if (blocker != nil && mainUrl != nil) {
+		/* if this same rule would have blocked our main URL, allow it since the user is probably viewing this site and this isn't a sneaky tracker */
 		if ([blocker isEqualToString:[self blockRuleForURL:mainUrl]]) {
 			return NO;
 		}

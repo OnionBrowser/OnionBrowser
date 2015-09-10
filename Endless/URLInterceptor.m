@@ -429,8 +429,7 @@ static NSString *_javascriptToInject;
 #ifdef DEBUG
 			NSLog(@"[URLInterceptor] [Tab %@] got %ld redirect from %@ to %@", wvt.tabIndex, (long)response.statusCode, [[[self actualRequest] URL] absoluteString], aURL);
 #endif
-			if (self.isOrigin)
-				[newRequest setMainDocumentURL:[NSURL URLWithString:aURL]];
+			[newRequest setMainDocumentURL:[[self actualRequest] mainDocumentURL]];
 			
 			[NSURLProtocol setProperty:[NSNumber numberWithLong:wvt.hash] forKey:WVT_KEY inRequest:newRequest];
 
