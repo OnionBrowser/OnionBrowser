@@ -85,7 +85,9 @@ AppDelegate *appDelegate;
 		}
 	}
 	
-	return NO;
+	/* no match for any of these hosts, use the default */
+	hs = [HostSettings defaultHostSettings];
+	return [hs boolSettingOrDefault:HOST_SETTINGS_KEY_WHITELIST_COOKIES];
 }
 
 - (NSArray *)sortedHostCounts

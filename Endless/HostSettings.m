@@ -37,9 +37,9 @@ NSMutableDictionary *_hosts;
 {
 	return @{
 	       HOST_SETTINGS_KEY_TLS: HOST_SETTINGS_TLS_AUTO,
-	       HOST_SETTINGS_KEY_BLOCK_LOCAL_NETS: @YES,
-	       HOST_SETTINGS_KEY_ALLOW_MIXED_MODE: @NO,
-	       HOST_SETTINGS_KEY_WHITELIST_COOKIES: @NO,
+	       HOST_SETTINGS_KEY_BLOCK_LOCAL_NETS: HOST_SETTINGS_VALUE_YES,
+	       HOST_SETTINGS_KEY_ALLOW_MIXED_MODE: HOST_SETTINGS_VALUE_NO,
+	       HOST_SETTINGS_KEY_WHITELIST_COOKIES: HOST_SETTINGS_VALUE_NO,
 	};
 }
 
@@ -180,8 +180,10 @@ NSMutableDictionary *_hosts;
 - (NSString *)setting:(NSString *)setting
 {
 	NSString *val = [[self dict] objectForKey:setting];
-	if (![val isKindOfClass:[NSString class]])
+	if (val != NULL && ![val isKindOfClass:[NSString class]]) {
+		NSLog(@"[HostSettings] setting %@ for %@ was %@, not NSString", setting, [self hostname], [val class]);
 		val = nil;
+	}
 
 	if (val != nil && ![val isEqualToString:@""] && ![val isEqualToString:HOST_SETTINGS_DEFAULT])
 		return val;

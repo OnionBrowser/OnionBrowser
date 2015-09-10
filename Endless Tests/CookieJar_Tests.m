@@ -12,6 +12,7 @@
 
 @implementation CookieJar_Tests
 
+id HSMocked;
 CookieJar *cookieJar;
 
 - (void)setUp {
@@ -20,8 +21,12 @@ CookieJar *cookieJar;
 	
 	cookieJar = [[CookieJar alloc] init];
 	
-	HostSettings *hs = [[HostSettings alloc] initForHost:@"reddit.com" withDict:@{ HOST_SETTINGS_KEY_WHITELIST_COOKIES: @YES }];
-	[HostSettings overrideHosts:[[NSMutableDictionary alloc] initWithDictionary:@{ @"reddit.com": hs }]];
+	HSMocked = OCMClassMock([HostSettings class]);
+	OCMStub([HostSettings persist]).andDo(nil);
+
+	[HostSettings overrideHosts:[[NSMutableDictionary alloc] init]];
+	HostSettings *hs = [[HostSettings alloc] initForHost:@"reddit.com" withDict:@{ HOST_SETTINGS_KEY_WHITELIST_COOKIES: HOST_SETTINGS_VALUE_YES }];
+	[hs save];
 }
 
 - (void)tearDown {

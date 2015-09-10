@@ -24,7 +24,7 @@ id HEMocked;
 	if (![fm fileExistsAtPath:tpath])
 		abort();
 	
-	OCMStub([HEMocked targets]).andReturn([NSDictionary dictionaryWithContentsOfFile:tpath]);
+	OCMStub([URLBlocker targets]).andReturn([NSDictionary dictionaryWithContentsOfFile:tpath]);
 }
 
 - (void)tearDown {
