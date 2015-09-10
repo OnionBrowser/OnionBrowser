@@ -29,6 +29,8 @@ Current builds are available for free in the
 
 - Search from URL bar with DDG, Google, or Startpage
 
+- Optional dark/night-time interface
+
 #####Security and privacy-focused features implemented:
 
 - Defaults to only accepting cookies and local storage for the duration of the

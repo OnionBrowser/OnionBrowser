@@ -59,20 +59,19 @@
 	curTabIndex = 0;
 	
 	self.view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].applicationFrame.size.width, [UIScreen mainScreen].applicationFrame.size.height)];
-	self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
 	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
 
 	tabScroller = [[UIScrollView alloc] init];
-	[tabScroller setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
 	[tabScroller setScrollEnabled:NO];
 	[[self view] addSubview:tabScroller];
 	
 	toolbar = [[UIView alloc] init];
-	[toolbar setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
 	[toolbar setClipsToBounds:YES];
 	[[self view] addSubview:toolbar];
 	
 	self.toolbarOnBottom = [userDefaults boolForKey:@"toolbar_on_bottom"];
+	self.darkInterface = [userDefaults boolForKey:@"dark_interface"];
+
 	keyboardHeight = 0;
 	
 	progressBar = [[UIProgressView alloc] init];
@@ -151,15 +150,12 @@
 	tabChooser = [[UIPageControl alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, TOOLBAR_HEIGHT)];
 	[tabChooser setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin)];
 	[tabChooser addTarget:self action:@selector(slideToCurrentTab:) forControlEvents:UIControlEventValueChanged];
-	[tabChooser setPageIndicatorTintColor:[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0]];
-	[tabChooser setCurrentPageIndicatorTintColor:[UIColor grayColor]];
 	[tabChooser setNumberOfPages:0];
 	[self.view insertSubview:tabChooser aboveSubview:toolbar];
 	[tabChooser setHidden:true];
 	
 	tabToolbar = [[UIToolbar alloc] init];
 	[tabToolbar setClipsToBounds:YES];
-	[tabToolbar setBarTintColor:[UIColor groupTableViewBackgroundColor]];
 	[tabToolbar setHidden:true];
 	[self.view insertSubview:tabToolbar aboveSubview:toolbar];
 	
@@ -300,8 +296,6 @@
 
 - (void)adjustLayout
 {
-	[[UIApplication sharedApplication] setStatusBarHidden:NO];
-
 	float statusBarHeight = [[UIApplication sharedApplication] statusBarFrame].size.height;
 	CGSize size = [[UIScreen mainScreen] applicationFrame].size;
 
@@ -310,7 +304,7 @@
 	
 	/* things relative to the main view */
 	if (self.toolbarOnBottom) {
-		tabChooser.frame = CGRectMake(0, statusBarHeight + 10, self.view.frame.size.width, 24);
+		tabChooser.frame = CGRectMake(0, self.view.frame.size.height - TOOLBAR_HEIGHT - 20, self.view.frame.size.width, 24);
 
 		toolbar.frame = tabToolbar.frame = CGRectMake(0, self.view.frame.size.height - TOOLBAR_HEIGHT - keyboardHeight, size.width, TOOLBAR_HEIGHT + keyboardHeight);
 		progressBar.frame = CGRectMake(0, 0, toolbar.frame.size.width, 2);
@@ -318,12 +312,49 @@
 		tabScroller.frame = CGRectMake(0, self.view.frame.origin.y + statusBarHeight, toolbar.frame.size.width, self.view.frame.size.height - toolbar.frame.size.height - statusBarHeight);
 	}
 	else {
-		tabChooser.frame = CGRectMake(0, self.view.frame.size.height - 24, self.view.frame.size.width, 24);
-		
+		tabChooser.frame = CGRectMake(0, TOOLBAR_HEIGHT + 20, self.view.frame.size.width, 24);
+
 		toolbar.frame = tabToolbar.frame = CGRectMake(0, statusBarHeight, self.view.frame.size.width, TOOLBAR_HEIGHT);
 		progressBar.frame = CGRectMake(0, toolbar.frame.size.height - 2, toolbar.frame.size.width, 2);
 		
 		tabScroller.frame = CGRectMake(0, toolbar.frame.origin.y + toolbar.frame.size.height, toolbar.frame.size.width, self.view.frame.size.height - toolbar.frame.size.height);
+	}
+
+	if (self.darkInterface) {
+		[self.view setBackgroundColor:[UIColor darkGrayColor]];
+		[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+
+		[tabScroller setBackgroundColor:[UIColor grayColor]];
+		[tabToolbar setBarTintColor:[UIColor grayColor]];
+		[toolbar setBackgroundColor:[UIColor darkGrayColor]];
+		[urlField setBackgroundColor:[UIColor grayColor]];
+		
+		[tabAddButton setTintColor:[UIColor lightTextColor]];
+		[tabDoneButton setTintColor:[UIColor lightTextColor]];
+		[settingsButton setTintColor:[UIColor lightTextColor]];
+		[tabsButton setTintColor:[UIColor lightTextColor]];
+		[tabCount setTextColor:[UIColor lightTextColor]];
+		
+		[tabChooser setPageIndicatorTintColor:[UIColor lightGrayColor]];
+		[tabChooser setCurrentPageIndicatorTintColor:[UIColor whiteColor]];
+	}
+	else {
+		[self.view setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+		[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+		
+		[tabScroller setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+		[tabToolbar setBarTintColor:[UIColor groupTableViewBackgroundColor]];
+		[toolbar setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+		[urlField setBackgroundColor:[UIColor whiteColor]];
+		
+		[tabAddButton setTintColor:[progressBar tintColor]];
+		[tabDoneButton setTintColor:[progressBar tintColor]];
+		[settingsButton setTintColor:[progressBar tintColor]];
+		[tabsButton setTintColor:[progressBar tintColor]];
+		[tabCount setTextColor:[progressBar tintColor]];
+		
+		[tabChooser setPageIndicatorTintColor:[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0]];
+		[tabChooser setCurrentPageIndicatorTintColor:[UIColor grayColor]];
 	}
 	
 	/* tabScroller.frame is now our actual webview viewing area */
@@ -348,6 +379,7 @@
 	tabCount.frame = CGRectMake(tabsButton.frame.origin.x + 6, tabsButton.frame.origin.y + 12, 14, 10);
 	urlField.frame = [self frameForUrlField];
 	
+	[self updateSearchBarDetails];
 	[self.view setNeedsDisplay];
 }
 
@@ -562,16 +594,18 @@
 {
 	/* TODO: cache curURL and only do anything here if it changed, these changes might be expensive */
 
+	if (self.darkInterface)
+		[urlField setTextColor:[UIColor lightTextColor]];
+	else
+		[urlField setTextColor:[UIColor darkTextColor]];
+
 	if (urlField.isFirstResponder) {
 		/* focused, don't muck with the URL while it's being edited */
 		[urlField setTextAlignment:NSTextAlignmentNatural];
-		[urlField setTextColor:[UIColor darkTextColor]];
 		[urlField setLeftView:nil];
 	}
 	else {
 		[urlField setTextAlignment:NSTextAlignmentCenter];
-		[urlField setTextColor:[UIColor darkTextColor]];
-		
 		BOOL isEV = NO;
 		if (self.curWebViewTab && self.curWebViewTab.secureMode >= WebViewTabSecureModeSecure) {
 			[urlField setLeftView:lockIcon];
@@ -610,7 +644,6 @@
 			NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^www\\d*\\." options:NSRegularExpressionCaseInsensitive error:nil];
 			NSString *hostNoWWW = [regex stringByReplacingMatchesInString:host options:0 range:NSMakeRange(0, [host length]) withTemplate:@""];
 			
-			[urlField setTextColor:[UIColor darkTextColor]];
 			[urlField setText:hostNoWWW];
 			
 			if ([urlField.text isEqualToString:@""]) {
@@ -620,10 +653,20 @@
 	}
 	
 	backButton.enabled = (self.curWebViewTab && self.curWebViewTab.canGoBack);
-	[backButton setTintColor:(backButton.enabled ? [progressBar tintColor] : [UIColor grayColor])];
+	if (backButton.enabled) {
+		[backButton setTintColor:(self.darkInterface ? [UIColor lightTextColor] : [progressBar tintColor])];
+	}
+	else {
+		[backButton setTintColor:[UIColor grayColor]];
+	}
 
 	forwardButton.hidden = !(self.curWebViewTab && self.curWebViewTab.canGoForward);
-	[forwardButton setTintColor:(forwardButton.enabled ? [progressBar tintColor] : [UIColor grayColor])];
+	if (forwardButton.enabled) {
+		[forwardButton setTintColor:(self.darkInterface ? [UIColor lightTextColor] : [progressBar tintColor])];
+	}
+	else {
+		[forwardButton setTintColor:[UIColor grayColor]];
+	}
 
 	[urlField setFrame:[self frameForUrlField]];
 }
@@ -847,11 +890,10 @@
 	[URLInterceptor setSendDNT:[userDefaults boolForKey:@"send_dnt"]];
 	[[appDelegate cookieJar] setOldDataSweepTimeout:[NSNumber numberWithInteger:[userDefaults integerForKey:@"old_data_sweep_mins"]]];
 	
-	BOOL oldtob = self.toolbarOnBottom;
 	self.toolbarOnBottom = [userDefaults boolForKey:@"toolbar_on_bottom"];
-	
-	if (self.toolbarOnBottom != oldtob)
-		[self adjustLayout];
+	self.darkInterface = [userDefaults boolForKey:@"dark_interface"];
+
+	[self adjustLayout];
 }
 
 - (void)showTabs:(id)_id
