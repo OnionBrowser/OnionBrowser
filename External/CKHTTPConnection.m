@@ -146,7 +146,7 @@
 	if ([[[url scheme] lowercaseString] isEqualToString:@"https"]) {
 		hs = [HostSettings settingsOrDefaultsForHost:[url host]];
 		
-		if ([[hs TLSVersion] isEqualToString:HOST_SETTINGS_TLS_12]) {
+		if ([[hs settingOrDefault:HOST_SETTINGS_KEY_TLS] isEqualToString:HOST_SETTINGS_TLS_12]) {
 			/* kTLSProtocol12 allows lower protocols, so use kCFStreamSSLLevel to force 1.2 */
 			
 			CFMutableDictionaryRef sslOptions = CFDictionaryCreateMutable(kCFAllocatorDefault, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
@@ -171,14 +171,14 @@
 			SSLSessionState sslState;
 			SSLGetSessionState(sslContext, &sslState);
 			
-			if (![[hs TLSVersion] isEqualToString:HOST_SETTINGS_TLS_12]) {
+			if (![[hs settingOrDefault:HOST_SETTINGS_KEY_TLS] isEqualToString:HOST_SETTINGS_TLS_12]) {
 				status = SSLSetProtocolVersionMax(sslContext, kTLSProtocol12);
 				if (status != noErr)
 					NSLog(@"[HostSettings] failed setting SSLSetProtocolVersionMax: %d", status);
 				
-				if ([[hs TLSVersion] isEqualToString:HOST_SETTINGS_TLS_AUTO])
+				if ([[hs settingOrDefault:HOST_SETTINGS_KEY_TLS] isEqualToString:HOST_SETTINGS_TLS_AUTO])
 					status = SSLSetProtocolVersionMin(sslContext, kTLSProtocol1);
-				else if ([[hs TLSVersion] isEqualToString:HOST_SETTINGS_TLS_OR_SSL_AUTO])
+				else if ([[hs settingOrDefault:HOST_SETTINGS_KEY_TLS] isEqualToString:HOST_SETTINGS_TLS_OR_SSL_AUTO])
 					status = SSLSetProtocolVersionMin(sslContext, kSSLProtocolAll);
 				else
 					abort();
@@ -187,12 +187,12 @@
 					NSLog(@"[HostSettings] failed setting SSLSetProtocolVersionMin: %d", status);
 				
 #ifdef TRACE_HOST_SETTINGS
-				NSLog(@"[HostSettings] set TLS/SSL min level for %@ to %@", [url host], [hs TLSVersion]);
+				NSLog(@"[HostSettings] set TLS/SSL min level for %@ to %@", [url host], [hs settingOrDefault:HOST_SETTINGS_KEY_TLS]);
 #endif
 			}
 			
 			/* when leaving SSL 3 on, just keep old crappy ciphers too */
-			if (![[hs TLSVersion] isEqualToString:HOST_SETTINGS_TLS_OR_SSL_AUTO]) {
+			if (![[hs settingOrDefault:HOST_SETTINGS_KEY_TLS] isEqualToString:HOST_SETTINGS_TLS_OR_SSL_AUTO]) {
 				if (![self disableWeakSSLCiphers:sslContext]) {
 					NSLog(@"[CKHTTPConnection] failed disabling weak ciphers, aborting connection");
 					[self _cancelStream];

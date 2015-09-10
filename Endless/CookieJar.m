@@ -42,11 +42,11 @@ AppDelegate *appDelegate;
 			
 			NSLog(@"[CookieJar] migrating old cookie whitelist to HostSettings: %@", list);
 			for (NSString *host in [list allKeys]) {
-				HostSettings *hc = [HostSettings settingsForHost:host];
+				HostSettings *hc = [HostSettings forHost:host];
 				if (hc == nil)
 					hc = [[HostSettings alloc] initForHost:host withDict:nil];
 				
-				[hc setWhitelistCookies:YES];
+				[hc setSetting:HOST_SETTINGS_KEY_WHITELIST_COOKIES toValue:HOST_SETTINGS_VALUE_YES];
 				[hc save];
 			}
 			
@@ -64,8 +64,8 @@ AppDelegate *appDelegate;
 {
 	host = [host lowercaseString];
 	
-	HostSettings *hs = [HostSettings settingsForHost:host];
-	if (hs && [hs whitelistCookies]) {
+	HostSettings *hs = [HostSettings forHost:host];
+	if (hs && [hs boolSettingOrDefault:HOST_SETTINGS_KEY_WHITELIST_COOKIES]) {
 #ifdef TRACE_COOKIE_WHITELIST
 		NSLog(@"[CookieJar] found entry for %@", host);
 #endif
@@ -77,7 +77,7 @@ AppDelegate *appDelegate;
 	for (int i = 1; i < [hostp count]; i++) {
 		NSString *wc = [[hostp subarrayWithRange:NSMakeRange(i, [hostp count] - i)] componentsJoinedByString:@"."];
 
-		if ((hs = [HostSettings settingsForHost:wc]) && [hs whitelistCookies]) {
+		if ((hs = [HostSettings forHost:wc]) && [hs boolSettingOrDefault:HOST_SETTINGS_KEY_WHITELIST_COOKIES]) {
 #ifdef TRACE_COOKIE_WHITELIST
 			NSLog(@"[CookieJar] found entry for component %@ in %@", wc, host);
 #endif

@@ -90,12 +90,10 @@ NSString *firstMatch;
 	
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	
-	HostSettings *hs = [HostSettings settingsForHost:[[self sortedHosts] objectAtIndex:indexPath.row]];
+	HostSettings *hs = [HostSettings forHost:[[self sortedHosts] objectAtIndex:indexPath.row]];
 	cell.textLabel.text = [hs hostname];
-	if ([hs isDefault]) {
-		cell.detailTextLabel.text = @"Settings for all hosts without host definitions";
+	if ([hs isDefault])
 		cell.textLabel.font = [UIFont boldSystemFontOfSize:cell.textLabel.font.pointSize];
-	}
 	else
 		cell.detailTextLabel.text = nil;
 
@@ -170,7 +168,7 @@ NSString *firstMatch;
 
 - (void)showDetailsForHost:(NSString *)thost
 {
-	HostSettings *host = [HostSettings settingsForHost:thost];
+	HostSettings *host = [HostSettings forHost:thost];
 	
 	QRootElement *root = [[QRootElement alloc] init];
 	root.grouped = YES;
@@ -185,14 +183,14 @@ NSString *firstMatch;
 	
 	QEntryElement *hostname;
 	if ([host isDefault]) {
-		QLabelElement *label = [[QLabelElement alloc] initWithTitle:@"Host/domain" Value:[host hostname]];
+		QLabelElement *label = [[QLabelElement alloc] initWithTitle:@"Host/domain" Value:HOST_SETTINGS_HOST_DEFAULT_LABEL];
 		[section addElement:label];
-		[section setFooter:@"These settings will be used as defaults for all hosts without host definitions"];
+		[section setFooter:@"These settings will be used as defaults for all hosts unless overridden"];
 	}
 	else {
 		hostname = [[QEntryElement alloc] initWithTitle:@"Host/domain" Value:[host hostname] Placeholder:@"example.com"];
 		[section addElement:hostname];
-		[section setFooter:@"These settings will apply to all hosts under this domain/host"];
+		[section setFooter:@"These settings will apply to all hosts under this domain"];
 	}
 	
 	[root addSection:section];
@@ -200,28 +198,54 @@ NSString *firstMatch;
 	section = [[QSection alloc] init];
 	[section setTitle:@"Security"];
 	
-	QRadioElement *tls = [[QRadioElement alloc] initWithItems:@[ @"TLS 1.2 Only", @"TLS 1.2, 1.1, or 1.0", @"TLS 1.2, 1.1, 1.0, or SSL v3" ] selected:0];
-	[tls setValues:@[ HOST_SETTINGS_TLS_12, HOST_SETTINGS_TLS_AUTO, HOST_SETTINGS_TLS_OR_SSL_AUTO ]];
-	[tls setShortItems:@[ @"TLS 1.2", @"Any TLS", @"Any TLS or SSL" ]];
+	NSMutableArray *i = [[NSMutableArray alloc] init];
+	if (![host isDefault])
+		[i addObject:@"Default"];
+	[i addObjectsFromArray:@[ @"TLS 1.2 Only", @"TLS 1.2, 1.1, or 1.0", @"TLS 1.2, 1.1, 1.0, or SSL v3" ]];
+
+	QRadioElement *tls = [[QRadioElement alloc] initWithItems:i selected:0];
+	
+	i = [[NSMutableArray alloc] init];
+	if (![host isDefault])
+		[i addObject:HOST_SETTINGS_DEFAULT];
+	[i addObjectsFromArray:@[ HOST_SETTINGS_TLS_12, HOST_SETTINGS_TLS_AUTO, HOST_SETTINGS_TLS_OR_SSL_AUTO ]];
+	[tls setValues:i];
+	
+	i = [[NSMutableArray alloc] init];
+	if (![host isDefault])
+		[i addObject:@"Default"];
+	[i addObjectsFromArray:@[ @"TLS 1.2", @"Any TLS", @"Any TLS or SSL" ]];
+	[tls setShortItems:i];
+	
 	[tls setTitle:@"TLS/SSL version"];
-	[tls setKey:HOST_SETTINGS_KEY_TLS];
-	[tls setSelectedValue:[host TLSVersion]];
+	NSString *tlsval = [host setting:HOST_SETTINGS_KEY_TLS];
+	if (tlsval == nil)
+		[tls setSelectedValue:HOST_SETTINGS_DEFAULT];
+	else
+		[tls setSelectedValue:tlsval];
 	[section setFooter:[NSString stringWithFormat:@"Minimum version of TLS or SSL required by %@ to negotiate HTTPS connections", ([host isDefault] ? @"hosts" : @"this host")]];
 	[section addElement:tls];
 	[root addSection:section];
 	
 	section = [[QSection alloc] init];
-	QBooleanElement *exlan = [[QBooleanElement alloc] initWithKey:HOST_SETTINGS_KEY_BLOCK_LOCAL_NETS];
+	
+	QRadioElement *exlan = [self yesNoRadioElementWithDefault:(![host isDefault])];
 	[exlan setTitle:@"Block external LAN requests"];
-	[exlan setBoolValue:[host blockIntoLocalNets]];
+	NSString *val = [host setting:HOST_SETTINGS_KEY_BLOCK_LOCAL_NETS];
+	if (val == nil)
+		val = HOST_SETTINGS_DEFAULT;
+	[exlan setSelectedValue:val];
 	[section addElement:exlan];
 	[section setFooter:[NSString stringWithFormat:@"Resources loaded from %@ will be blocked from loading page elements or making requests to LAN hosts (192.168.0.0/16, 172.16.0.0/12, etc.)", ([host isDefault] ? @"hosts" : @"this host")]];
 	[root addSection:section];
 	
 	section = [[QSection alloc] init];
-	QBooleanElement *allowmixedmode = [[QBooleanElement alloc] initWithKey:HOST_SETTINGS_KEY_ALLOW_MIXED_MODE];
+	QRadioElement *allowmixedmode = [self yesNoRadioElementWithDefault:(![host isDefault])];
 	[allowmixedmode setTitle:@"Allow mixed-mode resources"];
-	[allowmixedmode setBoolValue:[host allowMixedModeContent]];
+	val = [host setting:HOST_SETTINGS_KEY_ALLOW_MIXED_MODE];
+	if (val == nil)
+		val = HOST_SETTINGS_DEFAULT;
+	[allowmixedmode setSelectedValue:val];
 	[section addElement:allowmixedmode];
 	[section setFooter:[NSString stringWithFormat:@"Allow %@ to load page resources from non-HTTPS hosts (useful for RSS readers and other aggregators)", ([host isDefault] ? @"HTTPS hosts" : @"this HTTPS host")]];
 	[root addSection:section];
@@ -229,9 +253,12 @@ NSString *firstMatch;
 	section = [[QSection alloc] init];
 	[section setTitle:@"Privacy"];
 	
-	QBooleanElement *whitelistCookies = [[QBooleanElement alloc] initWithKey:HOST_SETTINGS_KEY_WHITELIST_COOKIES];
+	QRadioElement *whitelistCookies = [self yesNoRadioElementWithDefault:(![host isDefault])];
 	[whitelistCookies setTitle:@"Allow persistent cookies"];
-	[whitelistCookies setBoolValue:[host whitelistCookies]];
+	val = [host setting:HOST_SETTINGS_KEY_WHITELIST_COOKIES];
+	if (val == nil)
+		val = HOST_SETTINGS_DEFAULT;
+	[whitelistCookies setSelectedValue:val];
 	[section addElement:whitelistCookies];
 	
 	[root addSection:section];
@@ -242,16 +269,34 @@ NSString *firstMatch;
 		if (![host isDefault])
 			[host setHostname:[hostname textValue]];
 		
-		[host setTLSVersion:(NSString *)[tls selectedValue]];
-		[host setBlockIntoLocalNets:[exlan boolValue]];
-		[host setWhitelistCookies:[whitelistCookies boolValue]];
-		[host setAllowMixedModeContent:[allowmixedmode boolValue]];
+		[host setSetting:HOST_SETTINGS_KEY_TLS toValue:(NSString *)[tls selectedValue]];
+		[host setSetting:HOST_SETTINGS_KEY_BLOCK_LOCAL_NETS toValue:(NSString *)[exlan selectedValue]];
+		[host setSetting:HOST_SETTINGS_KEY_WHITELIST_COOKIES toValue:(NSString *)[whitelistCookies selectedValue]];
+		[host setSetting:HOST_SETTINGS_KEY_ALLOW_MIXED_MODE toValue:(NSString *)[allowmixedmode selectedValue]];
 		
 		[host save];
 	}];
 	
 	[[self navigationController] pushViewController:qdc animated:YES];
 	self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Hosts" style:UIBarButtonItemStylePlain target:nil action:nil];
+}
+
+- (QRadioElement *)yesNoRadioElementWithDefault:(BOOL)withDefault
+{
+	NSMutableArray *items = [[NSMutableArray alloc] init];
+	if (withDefault)
+		[items addObject:@"Default"];
+	[items addObjectsFromArray:@[ @"Yes", @"No" ]];
+	
+	QRadioElement *opt = [[QRadioElement alloc] initWithItems:items selected:0];
+	
+	NSMutableArray *vals = [[NSMutableArray alloc] init];
+	if (withDefault)
+		[vals addObject:HOST_SETTINGS_DEFAULT];
+	[vals addObjectsFromArray:@[ HOST_SETTINGS_VALUE_YES, HOST_SETTINGS_VALUE_NO ]];
+	[opt setValues:vals];
+	
+	return opt;
 }
 
 @end

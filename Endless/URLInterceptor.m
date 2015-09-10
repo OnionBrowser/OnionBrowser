@@ -227,7 +227,7 @@ static NSString *_javascriptToInject;
 		HostSettings *originHS = [HostSettings settingsOrDefaultsForHost:[[newRequest mainDocumentURL] host]];
 		
 		if ([wvt secureMode] > WebViewTabSecureModeInsecure && ![[[[newRequest URL] scheme] lowercaseString] isEqualToString:@"https"]) {
-			if ([originHS allowMixedModeContent]) {
+			if ([originHS settingOrDefault:HOST_SETTINGS_KEY_ALLOW_MIXED_MODE]) {
 #ifdef TRACE_HOST_SETTINGS
 				NSLog(@"[URLInterceptor] [Tab %@] allowing mixed-content request %@ from %@", wvt.tabIndex, [newRequest URL], [[newRequest mainDocumentURL] host]);
 #endif
@@ -242,7 +242,7 @@ static NSString *_javascriptToInject;
 			}
 		}
 		
-		if ([originHS blockIntoLocalNets]) {
+		if ([originHS settingOrDefault:HOST_SETTINGS_KEY_BLOCK_LOCAL_NETS]) {
 			if (![LocalNetworkChecker isHostOnLocalNet:[[newRequest mainDocumentURL] host]] && [LocalNetworkChecker isHostOnLocalNet:[[newRequest URL] host]]) {
 #ifdef TRACE_HOST_SETTINGS
 				NSLog(@"[URLInterceptor] [Tab %@] blocking request from origin %@ to local net host %@", wvt.tabIndex, [newRequest mainDocumentURL], [newRequest URL]);

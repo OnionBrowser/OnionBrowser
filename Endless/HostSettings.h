@@ -28,9 +28,12 @@
 
 #import <Foundation/Foundation.h>
 
+#define HOST_SETTINGS_DEFAULT @"__default"
+#define HOST_SETTINGS_VALUE_YES @"1"
+#define HOST_SETTINGS_VALUE_NO @"0"
+
 #define HOST_SETTINGS_KEY_HOST @"host"
-#define HOST_SETTINGS_HOST_DEFAULT @"__default__"
-#define HOST_SETTINGS_HOST_DEFAULT_LABEL @"Default Host"
+#define HOST_SETTINGS_HOST_DEFAULT_LABEL @"Default Settings"
 
 #define HOST_SETTINGS_KEY_TLS @"min_tls"
 #define HOST_SETTINGS_TLS_12 @"1.2"
@@ -50,7 +53,7 @@
 + (void)persist;
 
 + (HostSettings *)defaultHostSettings;
-+ (HostSettings *)settingsForHost:(NSString *)host;
++ (HostSettings *)forHost:(NSString *)host;
 + (HostSettings *)settingsOrDefaultsForHost:(NSString *)host;
 + (BOOL)removeSettingsForHost:(NSString *)host;
 #ifdef DEBUG
@@ -63,19 +66,12 @@
 - (void)save;
 - (BOOL)isDefault;
 
+- (NSString *)setting:(NSString *)setting;
+- (NSString *)settingOrDefault:(NSString *)setting;
+- (BOOL)boolSettingOrDefault:(NSString *)setting;
+- (void)setSetting:(NSString *)setting toValue:(NSString *)value;
+
 - (NSString *)hostname;
 - (void)setHostname:(NSString *)hostname;
-
-- (NSString *)TLSVersion;
-- (void)setTLSVersion:(NSString *)version;
-
-- (BOOL)blockIntoLocalNets;
-- (void)setBlockIntoLocalNets:(BOOL)value;
-
-- (BOOL)whitelistCookies;
-- (void)setWhitelistCookies:(BOOL)value;
-
-- (BOOL)allowMixedModeContent;
-- (void)setAllowMixedModeContent:(BOOL)value;
 
 @end

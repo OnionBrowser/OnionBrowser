@@ -33,6 +33,16 @@
 
 NSMutableDictionary *_hosts;
 
++ (NSDictionary *)defaults
+{
+	return @{
+	       HOST_SETTINGS_KEY_TLS: HOST_SETTINGS_TLS_AUTO,
+	       HOST_SETTINGS_KEY_BLOCK_LOCAL_NETS: @YES,
+	       HOST_SETTINGS_KEY_ALLOW_MIXED_MODE: @NO,
+	       HOST_SETTINGS_KEY_WHITELIST_COOKIES: @NO,
+	};
+}
+
 + (NSString *)hostSettingsPath
 {
 	NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
@@ -55,8 +65,10 @@ NSMutableDictionary *_hosts;
 			_hosts = [[NSMutableDictionary alloc] initWithCapacity:20];
 		
 		/* ensure default host exists */
-		if (![_hosts objectForKey:HOST_SETTINGS_KEY_HOST])
-			(void)[[HostSettings alloc] initForHost:HOST_SETTINGS_HOST_DEFAULT withDict:nil];
+		if (![_hosts objectForKey:HOST_SETTINGS_KEY_HOST]) {
+			HostSettings *hs = [[HostSettings alloc] initForHost:HOST_SETTINGS_DEFAULT withDict:nil];
+			[hs save];
+		}
 	}
 	
 	return _hosts;
@@ -71,21 +83,21 @@ NSMutableDictionary *_hosts;
 	[td writeToFile:[self hostSettingsPath] atomically:YES];
 }
 
-+ (HostSettings *)settingsForHost:(NSString *)host
++ (HostSettings *)forHost:(NSString *)host
 {
 	return [[self hosts] objectForKey:host];
 }
 
 + (HostSettings *)settingsOrDefaultsForHost:(NSString *)host
 {
-	HostSettings *hs = [self settingsForHost:host];
+	HostSettings *hs = [self forHost:host];
 	if (!hs) {
 		/* for a host of x.y.z.example.com, try y.z.example.com, z.example.com, example.com, etc. */
 		NSArray *hostp = [host componentsSeparatedByString:@"."];
 		for (int i = 1; i < [hostp count]; i++) {
 			NSString *wc = [[hostp subarrayWithRange:NSMakeRange(i, [hostp count] - i)] componentsJoinedByString:@"."];
 			
-			if ((hs = [HostSettings settingsForHost:wc])) {
+			if ((hs = [HostSettings forHost:wc])) {
 #ifdef TRACE_HOST_SETTINGS
 				NSLog(@"[HostSettings] found entry for component %@ in %@", wc, host);
 #endif
@@ -106,7 +118,7 @@ NSMutableDictionary *_hosts;
 
 + (BOOL)removeSettingsForHost:(NSString *)host
 {
-	HostSettings *h = [self settingsForHost:host];
+	HostSettings *h = [self forHost:host];
 	if (h && ![h isDefault]) {
 		[[self hosts] removeObjectForKey:host];
 		return YES;
@@ -117,7 +129,7 @@ NSMutableDictionary *_hosts;
 
 + (HostSettings *)defaultHostSettings
 {
-	return [self settingsForHost:HOST_SETTINGS_HOST_DEFAULT];
+	return [self forHost:HOST_SETTINGS_DEFAULT];
 }
 
 #ifdef DEBUG
@@ -131,9 +143,9 @@ NSMutableDictionary *_hosts;
 + (NSArray *)sortedHosts
 {
 	NSMutableArray *sorted = [[NSMutableArray alloc] initWithArray:[[self hosts] allKeys]];
-	[sorted removeObject:HOST_SETTINGS_HOST_DEFAULT];
+	[sorted removeObject:HOST_SETTINGS_DEFAULT];
 	[sorted sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-	[sorted insertObject:HOST_SETTINGS_HOST_DEFAULT atIndex:0];
+	[sorted insertObject:HOST_SETTINGS_DEFAULT atIndex:0];
 	
 	return [[NSArray alloc] initWithArray:sorted];
 }
@@ -151,26 +163,6 @@ NSMutableDictionary *_hosts;
 	
 	[_dict setObject:host forKey:HOST_SETTINGS_KEY_HOST];
 
-	/* ensure all defaults are set */
-	NSDictionary *defs = @{
-			       HOST_SETTINGS_KEY_TLS: HOST_SETTINGS_TLS_AUTO,
-			       HOST_SETTINGS_KEY_BLOCK_LOCAL_NETS: @YES,
-			       HOST_SETTINGS_KEY_WHITELIST_COOKIES: @NO,
-			       HOST_SETTINGS_KEY_ALLOW_MIXED_MODE: @NO,
-			       };
-	
-	for (NSString *k in [defs allKeys]) {
-		NSObject *v = [_dict objectForKey:k];
-		if (v != nil) {
-			if ([v isKindOfClass:[NSString class]] && ![(NSString *)v isEqualToString:@""])
-				continue;
-			else if ([v isKindOfClass:[NSNumber class]])
-				continue;
-		}
-		
-		[_dict setObject:[defs objectForKey:k] forKey:k];
-	}
-	
 	return self;
 }
 
@@ -182,7 +174,57 @@ NSMutableDictionary *_hosts;
 
 - (BOOL)isDefault
 {
-	return ([[[self dict] objectForKey:HOST_SETTINGS_KEY_HOST] isEqualToString:HOST_SETTINGS_HOST_DEFAULT]);
+	return ([[[self dict] objectForKey:HOST_SETTINGS_KEY_HOST] isEqualToString:HOST_SETTINGS_DEFAULT]);
+}
+
+- (NSString *)setting:(NSString *)setting
+{
+	NSString *val = [[self dict] objectForKey:setting];
+	if (![val isKindOfClass:[NSString class]])
+		val = nil;
+
+	if (val != nil && ![val isEqualToString:@""] && ![val isEqualToString:HOST_SETTINGS_DEFAULT])
+		return val;
+
+	if (val == nil && [self isDefault])
+		/* default host entries must have a value for every setting */
+		return [[HostSettings defaults] objectForKey:setting];
+
+	return nil;
+}
+
+- (NSString *)settingOrDefault:(NSString *)setting
+{
+	NSString *val = [self setting:setting];
+	if (val == nil)
+		/* try default host settings */
+		val = [[HostSettings defaultHostSettings] setting:setting];
+	
+	return val;
+}
+
+- (BOOL)boolSettingOrDefault:(NSString *)setting
+{
+	NSString *val = [self settingOrDefault:setting];
+	if (val != nil && [val isEqualToString:HOST_SETTINGS_VALUE_YES])
+		return YES;
+	else
+		return NO;
+}
+
+- (void)setSetting:(NSString *)setting toValue:(NSString *)value
+{
+	if (value == nil || [value isEqualToString:HOST_SETTINGS_DEFAULT]) {
+		[[self dict] removeObjectForKey:setting];
+		return;
+	}
+	
+	if ([setting isEqualToString:HOST_SETTINGS_KEY_TLS]) {
+		if (!([value isEqualToString:HOST_SETTINGS_TLS_12] || [value isEqualToString:HOST_SETTINGS_TLS_AUTO] || [value isEqualToString:HOST_SETTINGS_TLS_OR_SSL_AUTO]))
+			return;
+	}
+	
+	[[self dict] setObject:value forKey:setting];
 }
 
 - (NSString *)hostname
@@ -203,48 +245,6 @@ NSMutableDictionary *_hosts;
 	[[HostSettings hosts] removeObjectForKey:[[self dict] objectForKey:HOST_SETTINGS_KEY_HOST]];
 	[[self dict] setObject:hostname forKey:HOST_SETTINGS_KEY_HOST];
 	[[HostSettings hosts] setObject:self forKey:hostname];
-}
-
-- (NSString *)TLSVersion
-{
-	return [[self dict] objectForKey:HOST_SETTINGS_KEY_TLS];
-}
-- (void)setTLSVersion:(NSString *)minVersion
-{
-	if (!([minVersion isEqualToString:HOST_SETTINGS_TLS_12] || [minVersion isEqualToString:HOST_SETTINGS_TLS_AUTO] ||
-	[minVersion isEqualToString:HOST_SETTINGS_TLS_OR_SSL_AUTO])) {
-		NSLog(@"invalid TLS version: %@", minVersion);
-		return;
-	}
-	
-	[[self dict] setObject:minVersion forKey:HOST_SETTINGS_KEY_TLS];
-}
-
-- (BOOL)blockIntoLocalNets
-{
-	return [[[self dict] objectForKey:HOST_SETTINGS_KEY_BLOCK_LOCAL_NETS] boolValue];
-}
-- (void)setBlockIntoLocalNets:(BOOL)value
-{
-	[[self dict] setObject:[NSNumber numberWithBool:value] forKey:HOST_SETTINGS_KEY_BLOCK_LOCAL_NETS];
-}
-
-- (BOOL)whitelistCookies
-{
-	return [[[self dict] objectForKey:HOST_SETTINGS_KEY_WHITELIST_COOKIES] boolValue];
-}
-- (void)setWhitelistCookies:(BOOL)value
-{
-	[[self dict] setObject:[NSNumber numberWithBool:value] forKey:HOST_SETTINGS_KEY_WHITELIST_COOKIES];
-}
-
-- (BOOL)allowMixedModeContent
-{
-	return [[[self dict] objectForKey:HOST_SETTINGS_KEY_ALLOW_MIXED_MODE] boolValue];
-}
-- (void)setAllowMixedModeContent:(BOOL)value
-{
-	[[self dict] setObject:[NSNumber numberWithBool:value] forKey:HOST_SETTINGS_KEY_ALLOW_MIXED_MODE];
 }
 
 @end
