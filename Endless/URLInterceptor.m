@@ -208,8 +208,14 @@ static NSString *_javascriptToInject;
 		return;
 	}
 	
+	/* some rules act on the host we're connecting to, and some act on the origin host */
 	self.hostSettings = [HostSettings settingsOrDefaultsForHost:[[[self request] URL] host]];
-	
+	NSString *oHost = [[[self request] mainDocumentURL] host];
+	if (oHost == nil || [oHost isEqualToString:@""])
+		self.originHostSettings = self.hostSettings;
+	else
+		self.originHostSettings = [HostSettings settingsOrDefaultsForHost:oHost];
+
 	/* check HSTS cache first to see if scheme needs upgrading */
 	[newRequest setURL:[[appDelegate hstsCache] rewrittenURI:[[self request] URL]]];
 	
@@ -224,10 +230,8 @@ static NSString *_javascriptToInject;
 	}
 	
 	if (!self.isOrigin) {
-		HostSettings *originHS = [HostSettings settingsOrDefaultsForHost:[[newRequest mainDocumentURL] host]];
-		
 		if ([wvt secureMode] > WebViewTabSecureModeInsecure && ![[[[newRequest URL] scheme] lowercaseString] isEqualToString:@"https"]) {
-			if ([originHS settingOrDefault:HOST_SETTINGS_KEY_ALLOW_MIXED_MODE]) {
+			if ([self.originHostSettings settingOrDefault:HOST_SETTINGS_KEY_ALLOW_MIXED_MODE]) {
 #ifdef TRACE_HOST_SETTINGS
 				NSLog(@"[URLInterceptor] [Tab %@] allowing mixed-content request %@ from %@", wvt.tabIndex, [newRequest URL], [[newRequest mainDocumentURL] host]);
 #endif
@@ -242,7 +246,7 @@ static NSString *_javascriptToInject;
 			}
 		}
 		
-		if ([originHS settingOrDefault:HOST_SETTINGS_KEY_BLOCK_LOCAL_NETS]) {
+		if ([self.originHostSettings settingOrDefault:HOST_SETTINGS_KEY_BLOCK_LOCAL_NETS]) {
 			if (![LocalNetworkChecker isHostOnLocalNet:[[newRequest mainDocumentURL] host]] && [LocalNetworkChecker isHostOnLocalNet:[[newRequest URL] host]]) {
 #ifdef TRACE_HOST_SETTINGS
 				NSLog(@"[URLInterceptor] [Tab %@] blocking request from origin %@ to local net host %@", wvt.tabIndex, [newRequest mainDocumentURL], [newRequest URL]);
@@ -305,87 +309,53 @@ static NSString *_javascriptToInject;
 		else if ([ctype hasPrefix:@"image/"])
 			contentType = CONTENT_TYPE_IMAGE;
 	}
-
-#if 0
-	/* TODO: adapt this into a proper preference setting */
 	
-	/* If content-policy ("javascript") setting is CONTENTPOLICY_STRICT or CONTENTPOLICY_BLOCK_CONNECT,
-	 * modify incoming headers to turn on the "content-security-policy" and "x-webkit-csp" headers accordingly.
-	 * http://www.html5rocks.com/en/tutorials/security/content-security-policy/#policy-applies-to-a-wide-variety-of-resources
-	 * http://www.w3.org/TR/CSP/
-	 */
-	if (([[settings valueForKey:@"javascript"] integerValue] == CONTENTPOLICY_STRICT)
-	    && ([response isKindOfClass: [NSHTTPURLResponse class]] == YES)) {
-		// In the STRICT case, we're going to drop any content-security-policy headers since we just want
-		// our strictest-possible header.
-		NSMutableDictionary *mHeaders = [NSMutableDictionary dictionary];
-		for(id h in response.allHeaderFields) {
-			if(![[h lowercaseString] isEqualToString:@"content-security-policy"] && ![[h lowercaseString] isEqualToString:@"x-webkit-csp"]  && ![[h lowercaseString] isEqualToString:@"cache-control"]) {
-				// Delete existing content-security-policy headers & cache header (since we rely on writing our on strict ones)
-				[mHeaders setObject:response.allHeaderFields[h] forKey:h];
-			}
-		}
-		[mHeaders setObject:@"script-src 'none';media-src 'none';object-src 'none';connect-src 'none';font-src 'none';sandbox allow-forms allow-top-navigation;style-src 'unsafe-inline' *;"
-			     forKey:@"Content-Security-Policy"];
-		[mHeaders setObject:@"script-src 'none';media-src 'none';object-src 'none';connect-src 'none';font-src 'none';sandbox allow-forms allow-top-navigation;style-src 'unsafe-inline' *;"
-			     forKey:@"X-Webkit-CSP"];
-		[mHeaders setObject:@"max-age=0, no-cache, no-store, must-revalidate"
-			     forKey:@"Cache-Control"];
-		response = [[NSHTTPURLResponse alloc]
-			    initWithURL:response.URL statusCode:response.statusCode
-			    HTTPVersion:@"1.1" headerFields:mHeaders];
-	} else if (([[settings valueForKey:@"javascript"] integerValue] == CONTENTPOLICY_BLOCK_CONNECT)
-		   && ([response isKindOfClass: [NSHTTPURLResponse class]] == YES)){
-		// In the "block XHR/Media/WebSocket" case, we'll prepend
-		// "connect-src 'none';media-src 'none';object-src 'none';"
-		// to an existing CSP header OR we'll add that header if there isn't already an existing one.
-		// (Basically as the STRICT case, but allowing script/fonts.)
-		NSMutableDictionary *mHeaders = [NSMutableDictionary dictionary];
-		Boolean editedCSP = NO;
-		Boolean editedWebkitCSP = NO;
-		for (id h in response.allHeaderFields) {
-			if([[h lowercaseString] isEqualToString:@"content-security-policy"]) {
-				NSString *newHeader = [NSString stringWithFormat:@"connect-src 'none';media-src 'none';object-src 'none';%@", response.allHeaderFields[h]];
-				[mHeaders setObject:newHeader forKey:h];
-				editedCSP = YES;
-			} else if ([[h lowercaseString] isEqualToString:@"x-webkit-csp"]) {
-				NSString *newHeader = [NSString stringWithFormat:@"connect-src 'none';media-src 'none';object-src 'none';%@", response.allHeaderFields[h]];
-				[mHeaders setObject:newHeader forKey:h];
-				editedWebkitCSP = YES;
-			} else if ([[h lowercaseString] isEqualToString:@"cache-control"]) {
-				// Don't pass along existing Cache-Control header
-			} else {
-				// Non-CSP header, just pass it on.
-				[mHeaders setObject:response.allHeaderFields[h] forKey:h];
-			}
-		}
-		if (!editedCSP) {
-			[mHeaders setObject:@"connect-src 'none';media-src 'none';object-src 'none';"
-				     forKey:@"Content-Security-Policy"];
-		}
-		if (!editedWebkitCSP) {
-			[mHeaders setObject:@"connect-src 'none';media-src 'none';object-src 'none';"
-				     forKey:@"X-Webkit-CSP"];
-		}
-		[mHeaders setObject:@"max-age=0, no-cache, no-store, must-revalidate"
-			     forKey:@"Cache-Control"];
-		response = [[NSHTTPURLResponse alloc]
-			    initWithURL:response.URL statusCode:response.statusCode
-			    HTTPVersion:@"1.1" headerFields:mHeaders];
-	}
+	/* rewrite or inject Content-Security-Policy (and X-Webkit-CSP just in case) headers */
+	NSString *CSPheader;
+	NSString *CSPmode = [self.originHostSettings setting:HOST_SETTINGS_KEY_CSP];
+
+	if ([CSPmode isEqualToString:HOST_SETTINGS_CSP_STRICT])
+		CSPheader = @"script-src 'none'; media-src 'none'; object-src 'none'; connect-src 'none'; font-src 'none'; sandbox allow-forms allow-top-navigation; style-src 'unsafe-inline' *; report-uri;";
+	else if ([CSPmode isEqualToString:HOST_SETTINGS_CSP_BLOCK_CONNECT])
+		CSPheader = @"connect-src 'none'; media-src 'none'; object-src 'none'; report-uri;";
 	else
+		CSPheader = nil;
+	
+#ifdef TRACE_HOST_SETTINGS
+	NSLog(@"[HostSettings] [Tab %@] setting CSP for %@ to %@ (via %@)", wvt.tabIndex, [[[self actualRequest] URL] host], CSPmode, [[[self actualRequest] mainDocumentURL] host]);
 #endif
-	{
-		// Normal case: let's still disable cache
-		NSMutableDictionary *mHeaders = [NSMutableDictionary dictionary];
-		for (id h in response.allHeaderFields) {
-			if (![[h lowercaseString] isEqualToString:@"cache-control"]) {
-				[mHeaders setObject:response.allHeaderFields[h] forKey:h];
+	
+	NSMutableDictionary *mHeaders = [[NSMutableDictionary alloc] initWithDictionary:[response allHeaderFields]];
+	if (CSPheader != nil) {
+		BOOL foundCSP = false;
+		
+		for (id h in [mHeaders allKeys]) {
+			NSString *hv = (NSString *)[[response allHeaderFields] valueForKey:h];
+			
+			if ([[h lowercaseString] isEqualToString:@"content-security-policy"] || [[h lowercaseString] isEqualToString:@"x-webkit-csp"]) {
+				if ([CSPmode isEqualToString:HOST_SETTINGS_CSP_STRICT])
+					/* disregard the existing policy since ours will be the most strict anyway */
+					hv = CSPheader;
+				else
+					hv = [NSString stringWithFormat:@"connect-src 'none';media-src 'none';object-src 'none';%@", hv];
+				
+				[mHeaders setObject:hv forKey:h];
+				foundCSP = true;
 			}
+			else if ([[h lowercaseString] isEqualToString:@"cache-control"]) {
+				/* ignore */
+			}
+			else
+				[mHeaders setObject:hv forKey:h];
 		}
-		[mHeaders setObject:@"max-age=0, no-cache, no-store, must-revalidate" forKey:@"Cache-Control"];
-		response = [[NSHTTPURLResponse alloc] initWithURL:response.URL statusCode:response.statusCode HTTPVersion:@"1.1" headerFields:mHeaders];
+		
+		if (!foundCSP) {
+			[mHeaders setObject:CSPheader forKey:@"Content-Security-Policy"];
+			[mHeaders setObject:CSPheader forKey:@"X-WebKit-CSP"];
+		}
 	}
+		
+	response = [[NSHTTPURLResponse alloc] initWithURL:[response URL] statusCode:[response statusCode] HTTPVersion:@"1.1" headerFields:mHeaders];
 	
 	/* save any cookies we just received */
 	[[appDelegate cookieJar] setCookies:[NSHTTPCookie cookiesWithResponseHeaderFields:[response allHeaderFields] forURL:[[self actualRequest] URL]] forURL:[[self actualRequest] URL] mainDocumentURL:[wvt url] forTab:wvt.hash];

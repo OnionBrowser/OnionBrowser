@@ -191,8 +191,12 @@ NSString *firstMatch;
 	
 	[root addSection:section];
 	
+	/* security section */
+	
 	section = [[QSection alloc] init];
 	[section setTitle:@"Security"];
+	
+	/* tls version */
 	
 	NSMutableArray *i = [[NSMutableArray alloc] init];
 	if (![host isDefault])
@@ -225,6 +229,41 @@ NSString *firstMatch;
 	
 	section = [[QSection alloc] init];
 	
+	/* content policy */
+	
+	i = [[NSMutableArray alloc] init];
+	if (![host isDefault])
+		[i addObject:@"Default"];
+	[i addObjectsFromArray:@[ @"Open (normal browsing mode)", @"No XHR/WebSockets/Video connections", @"Strict (no JavaScript, video, etc.)" ]];
+	
+	QRadioElement *csp = [[QRadioElement alloc] initWithItems:i selected:0];
+	
+	i = [[NSMutableArray alloc] init];
+	if (![host isDefault])
+		[i addObject:HOST_SETTINGS_DEFAULT];
+	[i addObjectsFromArray:@[ HOST_SETTINGS_CSP_OPEN, HOST_SETTINGS_CSP_BLOCK_CONNECT, HOST_SETTINGS_CSP_STRICT ]];
+	[csp setValues:i];
+	
+	i = [[NSMutableArray alloc] init];
+	if (![host isDefault])
+		[i addObject:@"Default"];
+	[i addObjectsFromArray:@[ @"Open", @"No-Connect", @"Strict" ]];
+	[csp setShortItems:i];
+	
+	[csp setTitle:@"Content policy"];
+	NSString *cspval = [host setting:HOST_SETTINGS_KEY_CSP];
+	if (cspval == nil)
+		[csp setSelectedValue:HOST_SETTINGS_DEFAULT];
+	else
+		[csp setSelectedValue:cspval];
+	[section setFooter:[NSString stringWithFormat:@"Restrictions on resources loaded from web pages%@", ([host isDefault] ? @"" : @" at this host")]];
+	[section addElement:csp];
+	[root addSection:section];
+	
+	/* block external lan requests */
+	
+	section = [[QSection alloc] init];
+	
 	QRadioElement *exlan = [self yesNoRadioElementWithDefault:(![host isDefault])];
 	[exlan setTitle:@"Block external LAN requests"];
 	NSString *val = [host setting:HOST_SETTINGS_KEY_BLOCK_LOCAL_NETS];
@@ -234,6 +273,8 @@ NSString *firstMatch;
 	[section addElement:exlan];
 	[section setFooter:[NSString stringWithFormat:@"Resources loaded from %@ will be blocked from loading page elements or making requests to LAN hosts (192.168.0.0/16, 172.16.0.0/12, etc.)", ([host isDefault] ? @"hosts" : @"this host")]];
 	[root addSection:section];
+	
+	/* mixed-mode resources */
 	
 	section = [[QSection alloc] init];
 	QRadioElement *allowmixedmode = [self yesNoRadioElementWithDefault:(![host isDefault])];
@@ -246,8 +287,12 @@ NSString *firstMatch;
 	[section setFooter:[NSString stringWithFormat:@"Allow %@ to load page resources from non-HTTPS hosts (useful for RSS readers and other aggregators)", ([host isDefault] ? @"HTTPS hosts" : @"this HTTPS host")]];
 	[root addSection:section];
 	
+	/* privacy section */
+	
 	section = [[QSection alloc] init];
 	[section setTitle:@"Privacy"];
+	
+	/* whitelist cookies */
 	
 	QRadioElement *whitelistCookies = [self yesNoRadioElementWithDefault:(![host isDefault])];
 	[whitelistCookies setTitle:@"Allow persistent cookies"];
@@ -266,10 +311,11 @@ NSString *firstMatch;
 			[host setHostname:[hostname textValue]];
 		
 		[host setSetting:HOST_SETTINGS_KEY_TLS toValue:(NSString *)[tls selectedValue]];
+		[host setSetting:HOST_SETTINGS_KEY_CSP toValue:(NSString *)[csp selectedValue]];
 		[host setSetting:HOST_SETTINGS_KEY_BLOCK_LOCAL_NETS toValue:(NSString *)[exlan selectedValue]];
 		[host setSetting:HOST_SETTINGS_KEY_WHITELIST_COOKIES toValue:(NSString *)[whitelistCookies selectedValue]];
 		[host setSetting:HOST_SETTINGS_KEY_ALLOW_MIXED_MODE toValue:(NSString *)[allowmixedmode selectedValue]];
-		
+
 		[host save];
 		[HostSettings persist];
 	}];

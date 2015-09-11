@@ -27,6 +27,7 @@
 @property (strong) NSString *evOrgName;
 @property (strong) CKHTTPConnection *connection;
 @property (strong) HostSettings *hostSettings;
+@property (strong) HostSettings *originHostSettings;
 
 + (NSString *)javascriptToInject;
 + (void)setSendDNT:(BOOL)val;

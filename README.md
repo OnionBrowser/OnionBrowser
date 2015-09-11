@@ -33,9 +33,30 @@ Current builds are available for free in the
 
 #####Security and privacy-focused features implemented:
 
-- Defaults to only accepting cookies and local storage for the duration of the
-  session (until the last tab accessing that data closes) with an editable
-  whitelist of hosts from which non-session data will be preserved
+- Per-host/domain security and privacy settings:
+
+  - Disables SSL 2 and SSL 3 by default with a configurable minimum TLS or
+    SSL version to require from the host, such as TLS-only, or TLS 1.2-only.
+
+  - Configurable security policy:
+
+    - Open (default, normal browsing mode)
+
+    - No after-load connections (blocks XMLHTTPRequest/AJAX requests,
+      WebSockets, and \<video\> and \<audio\> elements)
+
+    - Strict (blocks all of the above plus embedded fonts and Javascript)
+
+  - Blocks mixed-content requests (http elements on an https page) unless
+    disabled (useful for RSS readers), shows broken padlock
+
+  - Blocks pages loaded from non-local networks (i.e., the internet) from
+    trying to load sub-requests (e.g., images, iframes, ajax) from hosts that
+    are on local RFC3330 networks such as routers and other insecure devices
+
+  - Defaults to only accepting cookies and local storage for the duration of
+    the session (until the last tab accessing that data closes) but allows
+    persistent storage from configured hosts
 
 - Auto-destroys non-whitelisted cookies and local storage (even within the same
   tab) that has not been accessed by any other tab within a configurable amount
@@ -57,24 +78,12 @@ Current builds are available for free in the
   for enhancing privacy and not to be an AdBlock-style comprehensive ad-blocking
   list)
 
-- Blocks mixed-content requests (http elements on an https page), shows broken
-  padlock
-
 - Shows locked padlock for fully SSL-encrypted URLs, and organization name for
   sites with EV SSL certs
 
 - Integrated SSL certificate viewer by tapping on padlock icon, highlighting
   weak SSL certificate signature algorithms and showing per-connection
   negotiated TLS/SSL protocol version and cipher information
-
-- Disables SSL 2 and SSL 3 by default, supports a configurable TLS or SSL
-  version to require, defaulting to using TLS 1.2 when the server supports it
-  but falls back to TLS 1.1 or 1.0.  Can be forced to 1.2 only, or downgraded
-  to include SSL 3 on a per-host basis for servers that require it.
-
-- Blocks pages loaded from non-local networks (i.e., the internet) from trying
-  to load sub-requests (e.g., images, iframes, ajax) from hosts that are on
-  local RFC3330 networks such as routers and other insecure devices
 
 - Optional sending of Do-Not-Track header on all requests
 

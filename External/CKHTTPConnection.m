@@ -227,6 +227,7 @@ alldone:
 	
 	enabled = (SSLCipherSuite *)malloc(numSupported * sizeof(SSLCipherSuite));
 	
+	/* XXX: should we reverse this and only ban bad ciphers and allow all others? */
 	for (int i = 0; i < numSupported; i++) {
 		switch (supported[i]) {
 		case TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256:

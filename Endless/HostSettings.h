@@ -46,6 +46,11 @@
 
 #define HOST_SETTINGS_KEY_ALLOW_MIXED_MODE @"allow_mixed_mode"
 
+#define HOST_SETTINGS_KEY_CSP @"content_policy"
+#define HOST_SETTINGS_CSP_OPEN @"open"
+#define HOST_SETTINGS_CSP_BLOCK_CONNECT @"block_connect"
+#define HOST_SETTINGS_CSP_STRICT @"strict"
+
 @interface HostSettings : NSObject
 
 @property (strong) NSMutableDictionary *dict;

@@ -407,8 +407,17 @@ AppDelegate *appDelegate;
 #endif
 	[self setProgress:@1.0];
 	
-	[self.title setText:[__webView stringByEvaluatingJavaScriptFromString:@"document.title"]];
-	self.url = [NSURL URLWithString:[__webView stringByEvaluatingJavaScriptFromString:@"window.location.href"]];
+	NSString *docTitle = [__webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+	NSString *finalURL = [__webView stringByEvaluatingJavaScriptFromString:@"window.location.href"];
+	
+	/* if we have javascript blocked, these will be empty */
+	if (finalURL == nil || [finalURL isEqualToString:@""])
+		finalURL = [[[__webView request] mainDocumentURL] absoluteString];
+	if (docTitle == nil || [docTitle isEqualToString:@""])
+		docTitle = finalURL;
+	
+	[self.title setText:docTitle];
+	self.url = [NSURL URLWithString:finalURL];
 }
 
 - (void)webView:(UIWebView *)__webView didFailLoadWithError:(NSError *)error
