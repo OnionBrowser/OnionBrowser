@@ -99,10 +99,14 @@
 	<string>Analytics - Krux</string>
 	<key>krxd.net</key>
 	<string>Analytics - Krux</string>
+	<key>liadm.com</key>
+	<string>Advertising/Analytics - Live Intent</string>
 	<key>linkedin.com</key>
 	<string>Social - LinkedIn</string>
 	<key>livefyre.com</key>
 	<string>Advertising/Analytics - Livefyre</string>
+	<key>liveintent.com</key>
+	<string>Advertising/Analytics - Live Intent</string>
 	<key>liveramp.com</key>
 	<string>Advertising/Analytics - LiveRamp</string>
 	<key>magnetic.com</key>
