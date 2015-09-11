@@ -8,7 +8,7 @@ Current builds are available for free in the
 
 #####Screenshots
 
-![https://i.imgur.com/ABftci1l.png](https://i.imgur.com/ABftci1l.png) ![https://i.imgur.com/6HsCQn3l.png](https://i.imgur.com/6HsCQn3l.png)
+![https://i.imgur.com/8FgHAWZ.png](https://i.imgur.com/8FgHAWZ.png) ![https://i.imgur.com/evQ63JX.png](https://i.imgur.com/evQ63JX.png)
 
 #####Basic browser functionality implemented:
 
