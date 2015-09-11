@@ -59,11 +59,6 @@ NSString *firstMatch;
 	}
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-	[HostSettings persist];
-}
-
 - (void)didReceiveMemoryWarning
 {
 	[super didReceiveMemoryWarning];
@@ -142,6 +137,7 @@ NSString *firstMatch;
 		if (host && ![[host text] isEqualToString:@""]) {
 			HostSettings *hs = [[HostSettings alloc] initForHost:[host text] withDict:nil];
 			[hs save];
+			[HostSettings persist];
 			_sortedHosts = nil;
 			
 			[self.tableView reloadData];
@@ -275,6 +271,7 @@ NSString *firstMatch;
 		[host setSetting:HOST_SETTINGS_KEY_ALLOW_MIXED_MODE toValue:(NSString *)[allowmixedmode selectedValue]];
 		
 		[host save];
+		[HostSettings persist];
 	}];
 	
 	[[self navigationController] pushViewController:qdc animated:YES];

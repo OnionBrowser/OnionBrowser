@@ -50,6 +50,7 @@ AppDelegate *appDelegate;
 				[hc save];
 			}
 			
+			[HostSettings persist];
 			[fileManager removeItemAtPath:whitelist error:nil];
 		}
 	}

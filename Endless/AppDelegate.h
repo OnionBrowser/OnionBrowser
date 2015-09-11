@@ -23,5 +23,7 @@
 
 @property (strong, atomic) NSString *defaultUserAgent;
 
+- (BOOL)areTesting;
+
 @end
 

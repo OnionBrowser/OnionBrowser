@@ -65,9 +65,10 @@ NSMutableDictionary *_hosts;
 			_hosts = [[NSMutableDictionary alloc] initWithCapacity:20];
 		
 		/* ensure default host exists */
-		if (![_hosts objectForKey:HOST_SETTINGS_KEY_HOST]) {
+		if (![_hosts objectForKey:HOST_SETTINGS_DEFAULT]) {
 			HostSettings *hs = [[HostSettings alloc] initForHost:HOST_SETTINGS_DEFAULT withDict:nil];
 			[hs save];
+			[HostSettings persist];
 		}
 	}
 	
@@ -76,6 +77,9 @@ NSMutableDictionary *_hosts;
 
 + (void)persist
 {
+	if ([(AppDelegate *)[[UIApplication sharedApplication] delegate] areTesting])
+		abort();
+		
 	NSMutableDictionary *td = [[NSMutableDictionary alloc] initWithCapacity:[[self hosts] count]];
 	for (NSString *k in [[self hosts] allKeys])
 		[td setObject:[[[self hosts] objectForKey:k] dict] forKey:k];
@@ -134,7 +138,7 @@ NSMutableDictionary *_hosts;
 
 #ifdef DEBUG
 /* just for testing */
-+ (void)overrideHosts:(NSMutableDictionary *)hosts;
++ (void)overrideHosts:(NSMutableDictionary *)hosts
 {
 	_hosts = hosts;
 }
@@ -169,7 +173,6 @@ NSMutableDictionary *_hosts;
 - (void)save
 {
 	[[HostSettings hosts] setObject:self forKey:[[self dict] objectForKey:HOST_SETTINGS_KEY_HOST]];
-	[HostSettings persist];
 }
 
 - (BOOL)isDefault

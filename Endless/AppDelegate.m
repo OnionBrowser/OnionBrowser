@@ -42,8 +42,10 @@
 {
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 
-	[HostSettings persist];
-	[[self hstsCache] persist];
+	if (![self areTesting]) {
+		[HostSettings persist];
+		[[self hstsCache] persist];
+	}
 	
 	if ([userDefaults boolForKey:@"clear_on_background"]) {
 		[[self webViewController] removeAllTabs];
@@ -86,6 +88,9 @@
 
 - (BOOL)application:(UIApplication *)application shouldRestoreApplicationState:(NSCoder *)coder
 {
+	if ([self areTesting])
+		return NO;
+	
 	/* if we tried last time and failed, the state might be corrupt */
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	if ([userDefaults objectForKey:STATE_RESTORE_TRY_KEY] != nil) {
@@ -103,6 +108,9 @@
 
 - (BOOL)application:(UIApplication *)application shouldSaveApplicationState:(NSCoder *)coder
 {
+	if ([self areTesting])
+		return NO;
+	
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	if ([userDefaults boolForKey:@"clear_on_background"])
 		return NO;
@@ -137,6 +145,11 @@
 	[userDefaults synchronize];
 	
 	_searchEngines = [NSMutableDictionary dictionaryWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"SearchEngines.plist"]];
+}
+
+- (BOOL)areTesting
+{
+	return (NSClassFromString(@"XCTestProbe") != nil);
 }
 
 @end
