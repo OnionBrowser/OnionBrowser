@@ -37,6 +37,7 @@ Current builds are available for free in the
 
   - Disables SSL 2 and SSL 3 by default with a configurable minimum TLS or
     SSL version to require from the host, such as TLS-only, or TLS 1.2-only.
+    Also disables weak TLS ciphers.
 
   - Configurable security policy:
 
