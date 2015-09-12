@@ -106,6 +106,12 @@ var __endless = {
 		this._location = null;
 		this._name = null;
 	},
+
+	absoluteURL: function(url) {
+	    var a = document.createElement("a");
+		a.href = url; /* browser will make this absolute for us */
+		return a.href;
+	},
 };
 
 (function () {
@@ -199,7 +205,7 @@ var __endless = {
 		if (name !== undefined && name != '')
 			__endless.openedTabs[id].name = name;
 		if (url !== undefined && url != '')
-			__endless.openedTabs[id].location = url;
+			__endless.openedTabs[id].location = __endless.absoluteURL(url);
 
 		window.event.preventDefault();
 
