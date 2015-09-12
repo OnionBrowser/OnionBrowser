@@ -57,6 +57,7 @@ AppDelegate *appDelegate;
 	
 	[_webView.scrollView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
 	[_webView.scrollView setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+	[_webView.scrollView setDecelerationRate:UIScrollViewDecelerationRateNormal];
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(webKitprogressEstimateChanged:) name:@"WebProgressEstimateChangedNotification" object:[_webView valueForKeyPath:@"documentView.webView"]];
 	
