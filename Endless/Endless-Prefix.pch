@@ -1,3 +1,10 @@
+/*
+ * Endless
+ * Copyright (c) 2014-2015 joshua stein <jcs@jcs.org>
+ *
+ * See LICENSE file for redistribution terms.
+ */
+
 #ifndef Endless_Endless_Prefix_pch
 #define Endless_Endless_Prefix_pch
 

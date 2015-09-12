@@ -1,6 +1,11 @@
 /*
+ * Endless
+ * Copyright (c) 2014-2015 joshua stein <jcs@jcs.org>
+ *
  * CKHTTP portions of this file are from Onion Browser
  * Copyright (c) 2012-2014 Mike Tigas <mike@tig.as>
+ *
+ * See LICENSE file for redistribution terms.
  */
 
 #import "AppDelegate.h"
@@ -29,10 +34,6 @@ static NSString *_javascriptToInject;
 	if (!_javascriptToInject) {
 		NSString *path = [[NSBundle mainBundle] pathForResource:@"injected" ofType:@"js"];
 		_javascriptToInject = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-		/* strip out license header */
-		NSError *error;
-		NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"/\\*.*?\\*/" options:NSRegularExpressionDotMatchesLineSeparators error:&error];
-		_javascriptToInject = [regex stringByReplacingMatchesInString:_javascriptToInject options:0 range:NSMakeRange(0, [_javascriptToInject length]) withTemplate:@""];
 	}
 	
 	return _javascriptToInject;

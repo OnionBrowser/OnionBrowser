@@ -1,4 +1,10 @@
 #!/usr/bin/ruby
+#
+# Endless
+# Copyright (c) 2014-2015 joshua stein <jcs@jcs.org>
+#
+# See LICENSE file for redistribution terms.
+#
 
 require "active_support/core_ext/hash/conversions"
 require "plist"

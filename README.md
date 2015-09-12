@@ -6,6 +6,10 @@ course) with a design goal of increased security and privacy.
 Current builds are available for free in the
 [App Store](https://itunes.apple.com/us/app/endless-browser/id974745755?mt=8).
 
+Please see the [LICENSE](https://github.com/jcs/endless/blob/master/LICENSE)
+file for redistribution terms.  Redistribution of this software in binary
+form, with or without modification, is not permitted.
+
 #####Screenshots
 
 ![https://i.imgur.com/8FgHAWZ.png](https://i.imgur.com/8FgHAWZ.png) ![https://i.imgur.com/evQ63JX.png](https://i.imgur.com/evQ63JX.png)

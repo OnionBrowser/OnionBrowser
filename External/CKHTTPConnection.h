@@ -1,16 +1,17 @@
-//
-//  CKHTTPConnection.h
-//  Connection
-//
-//  Created by Mike on 17/03/2009.
-//  Copyright 2009 Karelia Software. All rights reserved.
-//
-//  Originally from ConnectionKit 2.0 branch; source at:
-//  http://www.opensource.utr-software.com/source/connection/branches/2.0/CKHTTPConnection.h
-//  (CKHTTPConnection.m last updated rev 1242, 2009-06-16 09:40:21 -0700, by mabdullah)
-//  
-//  Under Modified BSD License, as per description at
-//  http://www.opensource.utr-software.com/
+/*
+ * Endless
+ * Copyright (c) 2014-2015 joshua stein <jcs@jcs.org>
+ *
+ * Originally created by Mike Abdullah on 17/03/2009.
+ * Copyright 2009 Karelia Software. All rights reserved.
+ *
+ * Originally from ConnectionKit 2.0 branch; source at:
+ * http://www.opensource.utr-software.com/source/connection/branches/2.0/CKHTTPConnection.m
+ * (CKHTTPConnection.m last updated rev 1242, 2009-06-16 09:40:21 -0700, by mabdullah)
+ *
+ * Under Modified BSD License, as per description at
+ * http://www.opensource.utr-software.com/
+ */
 
 #import <Foundation/Foundation.h>
 #import "SSLCertificate.h"
