@@ -180,29 +180,29 @@ NSString *firstMatch;
 	NSMutableArray *i = [[NSMutableArray alloc] init];
 	if (![host isDefault])
 		[i addObject:@"Default"];
-	[i addObjectsFromArray:@[ @"TLS 1.2 Only", @"TLS 1.2, 1.1, or 1.0", @"TLS 1.2, 1.1, 1.0, or SSL v3" ]];
+	[i addObjectsFromArray:@[ @"TLS 1.2 Only", @"TLS 1.2, 1.1, or 1.0" ]];
 
 	QRadioElement *tls = [[QRadioElement alloc] initWithItems:i selected:0];
 	
 	i = [[NSMutableArray alloc] init];
 	if (![host isDefault])
 		[i addObject:HOST_SETTINGS_DEFAULT];
-	[i addObjectsFromArray:@[ HOST_SETTINGS_TLS_12, HOST_SETTINGS_TLS_AUTO, HOST_SETTINGS_TLS_OR_SSL_AUTO ]];
+	[i addObjectsFromArray:@[ HOST_SETTINGS_TLS_12, HOST_SETTINGS_TLS_AUTO ]];
 	[tls setValues:i];
 	
 	i = [[NSMutableArray alloc] init];
 	if (![host isDefault])
 		[i addObject:@"Default"];
-	[i addObjectsFromArray:@[ @"TLS 1.2", @"Any TLS", @"Any TLS or SSL" ]];
+	[i addObjectsFromArray:@[ @"TLS 1.2", @"Any TLS" ]];
 	[tls setShortItems:i];
 	
-	[tls setTitle:@"TLS/SSL version"];
+	[tls setTitle:@"TLS version"];
 	NSString *tlsval = [host setting:HOST_SETTINGS_KEY_TLS];
 	if (tlsval == nil)
 		[tls setSelectedValue:HOST_SETTINGS_DEFAULT];
 	else
 		[tls setSelectedValue:tlsval];
-	[section setFooter:[NSString stringWithFormat:@"Minimum version of TLS or SSL required by %@ to negotiate HTTPS connections", ([host isDefault] ? @"hosts" : @"this host")]];
+	[section setFooter:[NSString stringWithFormat:@"Minimum version of TLS required by %@ to negotiate HTTPS connections", ([host isDefault] ? @"hosts" : @"this host")]];
 	[section addElement:tls];
 	[root addSection:section];
 	

@@ -174,29 +174,20 @@
 			if (![[hs settingOrDefault:HOST_SETTINGS_KEY_TLS] isEqualToString:HOST_SETTINGS_TLS_12]) {
 				status = SSLSetProtocolVersionMax(sslContext, kTLSProtocol12);
 				if (status != noErr)
-					NSLog(@"[HostSettings] failed setting SSLSetProtocolVersionMax: %d", status);
+					NSLog(@"[HostSettings] failed setting SSLSetProtocolVersionMax: %d", (int)status);
 				
-				if ([[hs settingOrDefault:HOST_SETTINGS_KEY_TLS] isEqualToString:HOST_SETTINGS_TLS_AUTO])
-					status = SSLSetProtocolVersionMin(sslContext, kTLSProtocol1);
-				else if ([[hs settingOrDefault:HOST_SETTINGS_KEY_TLS] isEqualToString:HOST_SETTINGS_TLS_OR_SSL_AUTO])
-					status = SSLSetProtocolVersionMin(sslContext, kSSLProtocolAll);
-				else
-					abort();
-				
+				status = SSLSetProtocolVersionMin(sslContext, kTLSProtocol1);
 				if (status != noErr)
-					NSLog(@"[HostSettings] failed setting SSLSetProtocolVersionMin: %d", status);
+					NSLog(@"[HostSettings] failed setting SSLSetProtocolVersionMin: %d", (int)status);
 				
 #ifdef TRACE_HOST_SETTINGS
 				NSLog(@"[HostSettings] set TLS/SSL min level for %@ to %@", [url host], [hs settingOrDefault:HOST_SETTINGS_KEY_TLS]);
 #endif
 			}
 			
-			/* when leaving SSL 3 on, just keep old crappy ciphers too */
-			if (![[hs settingOrDefault:HOST_SETTINGS_KEY_TLS] isEqualToString:HOST_SETTINGS_TLS_OR_SSL_AUTO]) {
-				if (![self disableWeakSSLCiphers:sslContext]) {
-					NSLog(@"[CKHTTPConnection] failed disabling weak ciphers, aborting connection");
-					[self _cancelStream];
-				}
+			if (![self disableWeakSSLCiphers:sslContext]) {
+				NSLog(@"[CKHTTPConnection] failed disabling weak ciphers, aborting connection");
+				[self _cancelStream];
 			}
 		}
 	}

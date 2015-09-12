@@ -205,7 +205,7 @@ NSMutableDictionary *_hosts;
 	}
 	
 	if ([setting isEqualToString:HOST_SETTINGS_KEY_TLS]) {
-		if (!([value isEqualToString:HOST_SETTINGS_TLS_12] || [value isEqualToString:HOST_SETTINGS_TLS_AUTO] || [value isEqualToString:HOST_SETTINGS_TLS_OR_SSL_AUTO]))
+		if (!([value isEqualToString:HOST_SETTINGS_TLS_12] || [value isEqualToString:HOST_SETTINGS_TLS_AUTO]))
 			return;
 	}
 	

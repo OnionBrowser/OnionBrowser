@@ -335,7 +335,7 @@ AppDelegate *appDelegate;
 		}
 		else {
 			/* TODO: show a "popup blocked" warning? */
-			NSLog(@"[Tab %@] blocked non-touch window.open() (nav type %lu)", self.tabIndex, navigationType);
+			NSLog(@"[Tab %@] blocked non-touch window.open() (nav type %ul)", self.tabIndex, navigationType);
 			
 			[self webView:__webView callbackWith:[NSString stringWithFormat:@"__endless.openedTabs[\"%@\"].opened = false;", param]];
 		}
