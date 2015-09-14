@@ -3,6 +3,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>1e100.net</key>
+	<string>Advertising/Analytics - Google</string>
+	<key>2mdn.net</key>
+	<string>Advertising/Analytics - Google</string>
 	<key>3gl.net</key>
 	<string>Analytics - Catchpoint</string>
 	<key>3lift.com</key>
@@ -15,8 +19,14 @@
 	<string>Advertising/Analytics - Adform</string>
 	<key>adform.net</key>
 	<string>Advertising/Analytics - Adform</string>
+	<key>adnexusmedia.com</key>
+	<string>Advertising/Analytics - AppNexus</string>
 	<key>adnxs.com</key>
 	<string>Advertising/Analytics - AppNexus</string>
+	<key>adobetag.com</key>
+	<string>Analytics - Adobe</string>
+	<key>adroll.com</key>
+	<string>Advertising/Analytics - AdRoll</string>
 	<key>ads.yahoo.com</key>
 	<string>Advertising/Analytics - Yahoo</string>
 	<key>adsafeprotected.com</key>
@@ -57,6 +67,12 @@
 	<string>Analytics - Clicktale</string>
 	<key>clicky.com</key>
 	<string>Analytics - Clicky</string>
+	<key>cmcore.com</key>
+	<string>Analytics - IBM Digital Analytics</string>
+	<key>criteo.com</key>
+	<string>Advertising/Analytics - Criteo</string>
+	<key>criteo.net</key>
+	<string>Advertising/Analytics - Criteo</string>
 	<key>crsspxl.com</key>
 	<string>Analytics - Cross Pixel</string>
 	<key>crwdcntrl.net</key>
@@ -71,6 +87,8 @@
 	<string>Advertising/Analytics - Magnetic</string>
 	<key>doubleclick.net</key>
 	<string>Advertising/Analytics - Google</string>
+	<key>doubleverify.com</key>
+	<string>Analytics - DoubleVerify</string>
 	<key>errorception.com</key>
 	<string>Analytics - Errorception</string>
 	<key>eventlogger.soundcloud.com</key>
@@ -123,6 +141,8 @@
 	<string>Advertising/Analytics - Live Intent</string>
 	<key>liveramp.com</key>
 	<string>Advertising/Analytics - LiveRamp</string>
+	<key>lotame.com</key>
+	<string>Advertising/Analytics - Lotame</string>
 	<key>magnetic.com</key>
 	<string>Advertising/Analytics - Magnetic</string>
 	<key>moat.com</key>
@@ -151,6 +171,10 @@
 	<string>Analytics - PageFair</string>
 	<key>pagefair.net</key>
 	<string>Analytics - PageFair</string>
+	<key>parsely.com</key>
+	<string>Analytics - Parsely</string>
+	<key>peer39.net</key>
+	<string>Advertising/Analytics - Peer39</string>
 	<key>pixel.redditmedia.com</key>
 	<string>Analytics - Reddit</string>
 	<key>pixel.wp.com</key>
@@ -167,16 +191,22 @@
 	<string>Social - Reddit</string>
 	<key>rlcdn.com</key>
 	<string>Advertising/Analytics - LiveRamp</string>
+	<key>rubiconproject.com</key>
+	<string>Advertising/Analytics - Rubicon Project</string>
 	<key>safecount.net</key>
 	<string>Advertising/Analytics - Safecount</string>
 	<key>scorecardresearch.com</key>
 	<string>Analytics - comScore</string>
+	<key>serving-sys.com</key>
+	<string>Advertising/Analytics - MediaMind</string>
 	<key>sharethis.com</key>
 	<string>Social - ShareThis</string>
 	<key>signal.co</key>
 	<string>Advertising/Analytics - Signal/BrightTag</string>
 	<key>simpli.fi</key>
 	<string>Advertising/Analytics - Simplifi</string>
+	<key>sizmek.com</key>
+	<string>Advertising/Analytics - MediaMind</string>
 	<key>statcounter.com</key>
 	<string>Analytics - StatCounter</string>
 	<key>stats.redditmedia.com</key>
