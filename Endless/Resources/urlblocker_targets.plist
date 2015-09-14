@@ -11,12 +11,20 @@
 	<string>Advertising/Analytics - Mediafed</string>
 	<key>addthis.com</key>
 	<string>Social - AddThis</string>
+	<key>adform.com</key>
+	<string>Advertising/Analytics - Adform</string>
+	<key>adform.net</key>
+	<string>Advertising/Analytics - Adform</string>
 	<key>adnxs.com</key>
 	<string>Advertising/Analytics - AppNexus</string>
 	<key>ads.yahoo.com</key>
 	<string>Advertising/Analytics - Yahoo</string>
 	<key>adsafeprotected.com</key>
 	<string>Advertising/Analytics - Integral Ad Science</string>
+	<key>adsrvr.org</key>
+	<string>Advertising/Analytics - The Trade Desk</string>
+	<key>advertisation.com</key>
+	<string>Advertising/Analytics - Advertisation</string>
 	<key>adzerk.net</key>
 	<string>Advertising/Analytics - Adzerk</string>
 	<key>amazon-adsystem.com</key>
@@ -29,6 +37,8 @@
 	<string>Advertising/Analytics - AutoGuide</string>
 	<key>bdex.com</key>
 	<string>Advertising/Analytics - BDEX</string>
+	<key>betrad.com</key>
+	<string>Advertising/Analytics - Evidon</string>
 	<key>bkrtx.com</key>
 	<string>Unknown - bktrx.com</string>
 	<key>bluecava.com</key>
@@ -65,6 +75,8 @@
 	<string>Analytics - Errorception</string>
 	<key>eventlogger.soundcloud.com</key>
 	<string>Social - Soundcloud</string>
+	<key>evidon.com</key>
+	<string>Advertising/Analytics - Evidon</string>
 	<key>exelator.com</key>
 	<string>Advertising/Analytics - eXelate</string>
 	<key>facebook.com</key>
@@ -95,6 +107,8 @@
 	<string>Advertising/Analytics - Integral Ad Science</string>
 	<key>intentiq.com</key>
 	<string>Analytics - Intent IQ</string>
+	<key>intermarkets.net</key>
+	<string>Advertising/Analytics - Intermarkets</string>
 	<key>krux.com</key>
 	<string>Analytics - Krux</string>
 	<key>krxd.net</key>
@@ -133,6 +147,10 @@
 	<string>Analytics - Optimizely</string>
 	<key>outbrain.com</key>
 	<string>Advertising/Analytics - Outbrain</string>
+	<key>pagefair.com</key>
+	<string>Analytics - PageFair</string>
+	<key>pagefair.net</key>
+	<string>Analytics - PageFair</string>
 	<key>pixel.redditmedia.com</key>
 	<string>Analytics - Reddit</string>
 	<key>pixel.wp.com</key>
@@ -171,6 +189,8 @@
 	<string>Advertising/Analytics - Signal/BrightTag</string>
 	<key>themig.com</key>
 	<string>Advertising/Analytics - Media Innovation Group</string>
+	<key>thetradedesk.com</key>
+	<string>Advertising/Analytics - The Trade Desk</string>
 	<key>thoughtleadr.com</key>
 	<string>Advertising/Analytics - ThoughtLeadr</string>
 	<key>triplelift.com</key>

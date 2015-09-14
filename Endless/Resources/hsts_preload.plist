@@ -4553,6 +4553,11 @@
 		<key>include_subdomains</key>
 		<true/>
 	</dict>
+	<key>fastmail.com</key>
+	<dict>
+		<key>include_subdomains</key>
+		<false/>
+	</dict>
 	<key>fatherhood.gov</key>
 	<dict>
 		<key>include_subdomains</key>
@@ -4619,6 +4624,11 @@
 		<true/>
 	</dict>
 	<key>ffbans.org</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>fi.google.com</key>
 	<dict>
 		<key>include_subdomains</key>
 		<true/>
@@ -6859,6 +6869,11 @@
 		<true/>
 	</dict>
 	<key>haircrazy.com</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>hana.ondemand.com</key>
 	<dict>
 		<key>include_subdomains</key>
 		<true/>
@@ -10759,11 +10774,6 @@
 		<true/>
 	</dict>
 	<key>noob-box.net</key>
-	<dict>
-		<key>include_subdomains</key>
-		<true/>
-	</dict>
-	<key>noobs-r-us.co.uk</key>
 	<dict>
 		<key>include_subdomains</key>
 		<true/>
@@ -16363,6 +16373,11 @@
 		<key>include_subdomains</key>
 		<true/>
 	</dict>
+	<key>www.fastmail.com</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
 	<key>www.gamesdepartment.co.uk</key>
 	<dict>
 		<key>include_subdomains</key>
@@ -16679,6 +16694,11 @@
 		<true/>
 	</dict>
 	<key>xn--4dbjwf8c.tk</key>
+	<dict>
+		<key>include_subdomains</key>
+		<true/>
+	</dict>
+	<key>xn--7xa.google.com</key>
 	<dict>
 		<key>include_subdomains</key>
 		<true/>
