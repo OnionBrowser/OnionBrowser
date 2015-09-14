@@ -461,6 +461,17 @@ AppDelegate *appDelegate;
 	if ((u = [[error userInfo] objectForKey:@"NSErrorFailingURLStringKey"]) != nil)
 		msg = [NSString stringWithFormat:@"%@\n\n%@", msg, u];
 	
+	if ([error userInfo] != nil) {
+		NSNumber *ok = [[error userInfo] objectForKey:ORIGIN_KEY];
+		if (ok != nil && [ok boolValue] == NO) {
+#ifdef TRACE
+			NSLog(@"[Tab %@] not showing dialog for non-origin error: %@ (%@)", self.tabIndex, msg, error);
+#endif
+			[self webViewDidFinishLoad:__webView];
+			return;
+		}
+	}
+
 #ifdef TRACE
 	NSLog(@"[Tab %@] showing error dialog: %@ (%@)", self.tabIndex, msg, error);
 #endif
