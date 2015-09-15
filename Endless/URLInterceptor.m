@@ -212,7 +212,7 @@ static NSString *_javascriptToInject;
 	/* some rules act on the host we're connecting to, and some act on the origin host */
 	self.hostSettings = [HostSettings settingsOrDefaultsForHost:[[[self request] URL] host]];
 	NSString *oHost = [[[self request] mainDocumentURL] host];
-	if (oHost == nil || [oHost isEqualToString:@""])
+	if (oHost == nil || [oHost isEqualToString:@""] || [oHost isEqualToString:[[[self request] URL] host]])
 		self.originHostSettings = self.hostSettings;
 	else
 		self.originHostSettings = [HostSettings settingsOrDefaultsForHost:oHost];
