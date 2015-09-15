@@ -562,7 +562,7 @@
 	}
 	
 	[UIView animateWithDuration:0.25 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-		tabScroller.contentSize = CGSizeMake(self.view.frame.size.width * tabChooser.numberOfPages, self.view.frame.size.height);
+		tabScroller.contentSize = CGSizeMake([self frameForTabIndex:0].size.width * tabChooser.numberOfPages, [self frameForTabIndex:0].size.height);
 
 		for (int i = 0; i < webViewTabs.count; i++) {
 			WebViewTab *wvt = webViewTabs[i];
