@@ -208,6 +208,7 @@ var __endless = {
 			__endless.openedTabs[id].location = __endless.absoluteURL(url);
 
 		window.event.preventDefault();
+		window.event.stopImmediatePropagation();
 
 		return __endless.openedTabs[id];
 	};
