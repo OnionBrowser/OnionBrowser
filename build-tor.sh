@@ -23,9 +23,9 @@
 # Choose your tor version and your currently-installed iOS SDK version:
 #
 #VERSION="0.2.5.10"
-VERSION="0.2.6.5-rc"
-USERSDKVERSION="8.2"
-MINIOSVERSION="6.1"
+VERSION="0.2.7.3-rc"
+USERSDKVERSION="9.0"
+MINIOSVERSION="7.0"
 VERIFYGPG=true
 
 # If you are in a country that blocks access to "torproject.org",
@@ -164,9 +164,9 @@ patch -p3 < ../../../build-patches/tor-nsenviron.diff
 # Collect libz.dylib from the iPhoneSimulator.sdk and iPhoneOS.sdk (already contains armv6 and armv7)
 # and compile into a single libz.a file (since that is what tor is looking for)
 
-lipo -create ${DEVELOPER}/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator${SDKVERSION}.sdk/usr/lib/libz.dylib \
-${DEVELOPER}/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS${SDKVERSION}.sdk/usr/lib/libz.dylib \
--output ${OUTPUTDIR}/lib/libz.a
+#lipo -create ${DEVELOPER}/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator${SDKVERSION}.sdk/usr/lib/libz.dylib \
+#${DEVELOPER}/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS${SDKVERSION}.sdk/usr/lib/libz.dylib \
+#-output ${OUTPUTDIR}/lib/libz.a
 
 cp -R ${DEVELOPER}/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator${SDKVERSION}.sdk/usr/include/zlib* ${OUTPUTDIR}/include/
 
@@ -229,12 +229,11 @@ do
 
 	./configure ${EXTRA_CONFIG} \
 	--prefix="${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk" \
-	--enable-static-openssl --enable-static-libevent --enable-static-zlib \
+	--enable-static-openssl --enable-static-libevent \
 	--with-openssl-dir="${OUTPUTDIR}" \
 	--with-libevent-dir="${OUTPUTDIR}" \
-	--with-zlib-dir="${OUTPUTDIR}" \
 	--disable-asciidoc --disable-transparent --disable-threads \
-	LDFLAGS="$LDFLAGS -L${OUTPUTDIR}/lib" \
+	LDFLAGS="$LDFLAGS -L${OUTPUTDIR}/lib -lz" \
 	CFLAGS="$CFLAGS -O2 -I${OUTPUTDIR}/include -isysroot ${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/SDKs/${PLATFORM}${SDKVERSION}.sdk" \
 	CPPFLAGS="$CPPFLAGS -I${OUTPUTDIR}/include -isysroot ${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/SDKs/${PLATFORM}${SDKVERSION}.sdk" 
 
