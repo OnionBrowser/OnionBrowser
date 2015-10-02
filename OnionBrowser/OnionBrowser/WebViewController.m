@@ -512,13 +512,10 @@ const char AlertViewIncomingUrl;
     [bookmark setUrl:@"http://propub3r6espa33w.onion/"];
     [bookmark setOrder:i++];
 
-    /* Not yet. (Nov 10 2014) -- Onion site gets into redirect loop due to mobile User-Agent
-       and desktop User-Agent gets redirect loop to "invalid_request.php" on login.
     bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
     [bookmark setTitle:@"Facebook (.onion)"];
-    [bookmark setUrl:@"https://facebookcorewwwi.onion/"];
+    [bookmark setUrl:@"https://m.facebookcorewwwi.onion/"];
     [bookmark setOrder:i++];
-    */
 
     NSError *error = nil;
     if (![context save:&error]) {
