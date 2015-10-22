@@ -23,8 +23,8 @@
 #  Choose your openssl version and your currently-installed iOS SDK version:
 #
 VERSION="1.0.2d"
-USERSDKVERSION="9.0"
-MINIOSVERSION="7.0"
+USERSDKVERSION="9.1"
+MINIOSVERSION="8.0"
 VERIFYGPG=true
 
 ###########################################################################
@@ -52,7 +52,7 @@ fi
 if [[ ! -z "$TRAVIS" && $TRAVIS ]]; then
 	# Travis CI highest available version
 	echo "==================== TRAVIS CI ===================="
-	SDKVERSION="8.0"
+	SDKVERSION="9.0"
 else
 	SDKVERSION="$USERSDKVERSION"
 fi
@@ -129,7 +129,7 @@ do
 		sed -ie "s!static volatile sig_atomic_t intr_signal;!static volatile intr_signal;!" "crypto/ui/ui_openssl.c"
 		PLATFORM="iPhoneOS"
 	fi
-	
+
 	mkdir -p "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk"
 
 	export PATH="${DEVELOPER}/Toolchains/XcodeDefault.xctoolchain/usr/bin/:${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/usr/bin/:${DEVELOPER}/Toolchains/XcodeDefault.xctoolchain/usr/bin:${DEVELOPER}/usr/bin:${ORIGINALPATH}"

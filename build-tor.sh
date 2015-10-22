@@ -23,9 +23,10 @@
 # Choose your tor version and your currently-installed iOS SDK version:
 #
 #VERSION="0.2.5.10"
-VERSION="0.2.7.3-rc"
-USERSDKVERSION="9.0"
-MINIOSVERSION="7.0"
+#VERSION="0.2.7.4-rc"
+VERSION="0.2.6.10"
+USERSDKVERSION="9.1"
+MINIOSVERSION="8.0"
 VERIFYGPG=true
 
 # If you are in a country that blocks access to "torproject.org",
@@ -50,6 +51,8 @@ VERIFYGPG=true
 TOR_DIST_URL="https://dist.torproject.org/"
 #TOR_DIST_URL="https://tor.eff.org/dist/"
 #TOR_DIST_URL="https://www.unicorncloud.org/public/torproject.org/dist/"
+# use this for non-latest versions:
+#TOR_DIST_URL="https://archive.torproject.org/tor-package-archive/"
 #
 # Alternatively, you may download the Tor source ("tor-0.2.5.10.tar.gz" and
 # "tor-0.2.5.10.tar.gz.asc") from somewhere else, and place them inside
@@ -84,7 +87,7 @@ fi
 if [[ ! -z "$TRAVIS" && $TRAVIS ]]; then
 	# Travis CI highest available version
 	echo "==================== TRAVIS CI ===================="
-	SDKVERSION="8.0"
+	SDKVERSION="9.0"
 else
 	SDKVERSION="$USERSDKVERSION"
 fi
@@ -235,7 +238,7 @@ do
 	--disable-asciidoc --disable-transparent --disable-threads \
 	LDFLAGS="$LDFLAGS -L${OUTPUTDIR}/lib -lz" \
 	CFLAGS="$CFLAGS -O2 -I${OUTPUTDIR}/include -isysroot ${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/SDKs/${PLATFORM}${SDKVERSION}.sdk" \
-	CPPFLAGS="$CPPFLAGS -I${OUTPUTDIR}/include -isysroot ${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/SDKs/${PLATFORM}${SDKVERSION}.sdk" 
+	CPPFLAGS="$CPPFLAGS -I${OUTPUTDIR}/include -isysroot ${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/SDKs/${PLATFORM}${SDKVERSION}.sdk"
 
 	# Build the application
 	make -j4
