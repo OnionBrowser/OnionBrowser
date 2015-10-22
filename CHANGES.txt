@@ -14,8 +14,45 @@ Features subject to change.
   encryption done by the iOS operating system, improving protection
   against forensic tools.
 
-===== 1.5.12 - Pending App Store Approval =====
+===== 1.5.13 - Pending App Store Approval =====
+Oct 22 2015 - Submit Date
+
+* Improve Tor's chances of coming back after being in background.
+  Adjusted encryption so Tor connection state can be accessed by the
+  app even if device goes to sleep. (These files are not
+  user-generated except for torrc.) Other files, such as cache and
+  user bookmarks are still protected the moment the device is locked.
+
+* Minimum required iOS version is now iOS 8.0 (was iOS 6.1). This will
+  allow extensive code cleanup for future versions of Onion Browser.
+  iOS 8.2 will be required by the end of 2015.
+
+* Users running iOS 8.0 and 8.1 will be warned about HTTPS insecurity
+  (due to FREAK exploit) on every app launch.
+
+* Update HTTP errors. The "HTTPS Connection Failed" error was displaying
+  in situations where the error had nothing to do with SSL failure.
+
+* Allow navigating to "about:blank" and allow setting the homepage to
+  that URL. (#62)
+
+* Update bridge handling to make it difficult to enter in an
+  unsupported bridge type, such as "obfs4" or "scramblesuit" via
+  text entry or the QR Code scanner.
+
+* iOS 9 code compatibility updates.
+
+* Tor updated to 0.2.6.10.
+  https://gitweb.torproject.org/tor.git/tree/ChangeLog?h=tor-0.2.6.10
+
+* OpenSSL updated to 1.0.2d.
+  https://openssl.org/news/changelog.html
+
+CURRENT VERSION:
+
+===== 1.5.12 - In App Store =====
 Mar 20 2015 - Submit Date
+Mar 31 2015 - App Store Availability
 
 * Allow pasting in the bridges.torproject.org text blob to set
   bridges, like the Tor Browser launcher. #55
@@ -37,9 +74,9 @@ Mar 20 2015 - Submit Date
 * Redesigned "Connecting..." prompt when opening the app.
 
 
-CURRENT VERSION:
+PREVIOUS VERSIONS:
 
-===== 1.5.11 - In App Store =====
+===== 1.5.11 =====
 Mar 10 2015 - Submit Date
 Mar 17 2015 - App Store Availability
 
@@ -57,9 +94,6 @@ Mar 17 2015 - App Store Availability
 
 * Libevent updated to 2.0.22-stable.
   https://raw.githubusercontent.com/libevent/libevent/release-2.0.22-stable/ChangeLog
-
-
-PREVIOUS VERSIONS:
 
 ===== 1.5.10 =====
 Nov 11 2014 - Submit Date

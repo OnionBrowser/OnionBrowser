@@ -362,9 +362,9 @@ static NSUInteger adapt(unsigned delta, unsigned numpoints, BOOL firsttime) {
 - (NSString *)encodedURLString {
 	// We can't get the parts of an URL for an international domain name, so a custom method is used instead.
 	NSDictionary *urlParts = [self URLParts];
-	NSString *path = urlParts[@"path"];
-	path = (__bridge_transfer NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (__bridge CFStringRef)path, CFSTR("%"), NULL, kCFStringEncodingUTF8);
-	
+
+	NSString *path = [urlParts[@"path"] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLPathAllowedCharacterSet]];
+
 #if !__has_feature(objc_arc)
 	[path autorelease];
 #endif
@@ -388,7 +388,7 @@ static NSUInteger adapt(unsigned delta, unsigned numpoints, BOOL firsttime) {
 - (NSString *)decodedURLString {
 	NSDictionary *urlParts = [self URLParts];
 	
-	NSString *ret = [NSString stringWithFormat:@"%@%@%@%@", urlParts[@"scheme"], urlParts[@"delim"], [urlParts[@"host"] IDNADecodedString], [urlParts[@"path"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+	NSString *ret = [NSString stringWithFormat:@"%@%@%@%@", urlParts[@"scheme"], urlParts[@"delim"], [urlParts[@"host"] IDNADecodedString], [urlParts[@"path"] stringByRemovingPercentEncoding]];
 	
 	if (urlParts[@"fragment"])
 		ret = [ret stringByAppendingFormat:@"#%@", urlParts[@"fragment"]];

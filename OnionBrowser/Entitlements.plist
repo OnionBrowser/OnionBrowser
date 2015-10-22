@@ -3,6 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>DataProtectionClass</key>
-	<string>NSFileProtectionComplete</string>
+	<string>NSFileProtectionCompleteUnlessOpen</string>
 </dict>
 </plist>

@@ -295,15 +295,33 @@
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         NSMutableDictionary *settings2 = appDelegate.getSettings;
 
-        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Home Page" message:@"Leave blank to use default\nOnion Browser home page." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Save",nil];
-        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-        
-        UITextField *textField = [alert textFieldAtIndex:0];
-        textField.autocorrectionType = UITextAutocorrectionTypeNo;
-        [textField setKeyboardType:UIKeyboardTypeURL];
-        textField.text = [settings2 objectForKey:@"homepage"];
-        
-        [alert show];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Home Page" message:@"Leave blank to use default\nOnion Browser home page." preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Save" style:UIAlertActionStyleDefault handler:^(UIAlertAction *_Nonnull action) {
+            AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+            NSMutableDictionary *settings = appDelegate.getSettings;
+
+
+
+            if ([[alert.textFields.firstObject text] length] == 0) {
+                [settings setValue:@"onionbrowser:home" forKey:@"homepage"]; // DEFAULT HOMEPAGE
+            } else {
+                NSString *h = [alert.textFields.firstObject text];
+                if ( (![h hasPrefix:@"http:"]) && (![h hasPrefix:@"https:"]) && (![h hasPrefix:@"onionbrowser:"]) && (![h hasPrefix:@"about:"]) )
+                    h = [NSString stringWithFormat:@"http://%@", h];
+                [settings setValue:h forKey:@"homepage"];
+            }
+            [appDelegate saveSettings:settings];
+            [self.tableView reloadData];
+        }]];
+        [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+          textField.autocorrectionType = UITextAutocorrectionTypeNo;
+          [textField setKeyboardType:UIKeyboardTypeURL];
+          textField.text = [settings2 objectForKey:@"homepage"];
+        }];
+
+
+        [self presentViewController:alert animated:YES completion:NULL];
     } else if (indexPath.section == 1) {
         // Active Content
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
@@ -312,30 +330,24 @@
         if (indexPath.row == 0) {
             [settings setObject:[NSNumber numberWithInteger:CONTENTPOLICY_BLOCK_CONNECT] forKey:@"javascript"];
             [appDelegate saveSettings:settings];
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Experimental Feature"
-                                                            message:[NSString stringWithFormat:@"Blocking of Ajax/XHR/WebSocket requests is experimental. Some websites may not work if these dynamic requests are blocked; but these dynamic requests can leak your identity."]
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            [alert show];
+
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Experimental Feature" message:@"Blocking of Ajax/XHR/WebSocket requests is experimental. Some websites may not work if these dynamic requests are blocked; but these dynamic requests can leak your identity." preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
+            [self presentViewController:alert animated:YES completion:NULL];
         } else if (indexPath.row == 1) {
             [settings setObject:[NSNumber numberWithInteger:CONTENTPOLICY_STRICT] forKey:@"javascript"];
             [appDelegate saveSettings:settings];
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Experimental Feature"
-                                                            message:[NSString stringWithFormat:@"Blocking all active content is an experimental feature.\n\nDisabling active content makes it harder for websites to identify your device, but websites will be able to tell that you are blocking scripts. This may be identifying information if you are the only user that blocks scripts.\n\nSome websites may not work if active content is blocked.\n\nBlocking may cause Onion Browser to crash when loading script-heavy websites."]
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-            [alert show];
+
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Experimental Feature" message:@"Blocking all active content is an experimental feature.\n\nDisabling active content makes it harder for websites to identify your device, but websites will be able to tell that you are blocking scripts. This may be identifying information if you are the only user that blocks scripts.\n\nSome websites may not work if active content is blocked.\n\nBlocking may cause Onion Browser to crash when loading script-heavy websites." preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
+            [self presentViewController:alert animated:YES completion:NULL];
         } else if (indexPath.row == 2) {
             [settings setObject:[NSNumber numberWithInteger:CONTENTPOLICY_PERMISSIVE] forKey:@"javascript"];
             [appDelegate saveSettings:settings];
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Security Warning"
-                                                             message:[NSString stringWithFormat:@"The 'Allow All' setting is UNSAFE and only recommended if a trusted site requires Ajax or WebSockets.\n\nWebSocket requests happen outside of Tor and will unmask your real IP address."]
-                                                            delegate:nil
-                                                   cancelButtonTitle:@"OK"
-                                                   otherButtonTitles:nil];
-            [alert show];
+
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Security Warning" message:@"The 'Allow All' setting is UNSAFE and only recommended if a trusted site requires Ajax or WebSockets.\n\nWebSocket requests happen outside of Tor and will unmask your real IP address." preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
+            [self presentViewController:alert animated:YES completion:NULL];
         }
     } else if(indexPath.section == 2) {
         // Cookies
@@ -380,12 +392,10 @@
                 [settings setObject:[NSNumber numberWithInteger:UA_SPOOF_SAFARI_MAC] forKey:@"uaspoof"];
                 [appDelegate saveSettings:settings];
             }
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
-                                                            message:[NSString stringWithFormat:@"User Agent spoofing enabled.\n\nNote that scripts, active content, and other iOS features may still identify your browser.\n\nFor 'desktop' options, mobile or tablet websites may not work properly."]
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK" 
-                                                  otherButtonTitles:nil];
-            [alert show];
+
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"User Agent spoofing enabled.\n\nNote that scripts, active content, and other iOS features may still identify your browser.\n\nFor 'desktop' options, mobile or tablet websites may not work properly." preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
+            [self presentViewController:alert animated:YES completion:NULL];
         }
     } else if (indexPath.section == 4) {
         // DNT
@@ -398,12 +408,6 @@
         } else if (indexPath.row == 1) {
             [settings setObject:[NSNumber numberWithInteger:DNT_HEADER_NOTRACK] forKey:@"dnt"];
             [appDelegate saveSettings:settings];
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
-                                                            message:[NSString stringWithFormat:@"Onion Browser will now send the 'DNT: 1' header.\n\nNote that because only very new browsers send this preference, this signal could cause you to 'stand out'.\n\nFor more generic-looking anonymous traffic, you may wish to disable this setting."]
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK" 
-                                                  otherButtonTitles:nil];
-            [alert show];
         }
     } else if (indexPath.section == 5) {
         // TLS
@@ -428,27 +432,6 @@
     }
     [tableView reloadData];
 }
-
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex == 1) {
-        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-        NSMutableDictionary *settings = appDelegate.getSettings;
-        
-        if ([[[alertView textFieldAtIndex:0] text] length] == 0) {
-            [settings setValue:@"onionbrowser:home" forKey:@"homepage"]; // DEFAULT HOMEPAGE
-        } else {
-            NSString *h = [[alertView textFieldAtIndex:0] text];
-            if ( (![h hasPrefix:@"http:"]) && (![h hasPrefix:@"https:"]) && (![h hasPrefix:@"onionbrowser:"]) )
-                h = [NSString stringWithFormat:@"http://%@", h];
-            [settings setValue:h forKey:@"homepage"];
-        }
-        [appDelegate saveSettings:settings];
-        [self.tableView reloadData];
-    }
-}
-
-
 
 
 

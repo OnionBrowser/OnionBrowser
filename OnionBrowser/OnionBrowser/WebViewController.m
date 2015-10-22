@@ -174,7 +174,7 @@ const char AlertViewIncomingUrl;
 
 -(void)loadURL: (NSURL *)navigationURL {
     NSString *urlProto = [[navigationURL scheme] lowercaseString];
-    if ([urlProto isEqualToString:@"onionbrowser"]||[urlProto isEqualToString:@"onionbrowsers"]||[urlProto isEqualToString:@"http"]||[urlProto isEqualToString:@"https"]) {
+    if ([urlProto isEqualToString:@"onionbrowser"]||[urlProto isEqualToString:@"onionbrowsers"]||[urlProto isEqualToString:@"about"]||[urlProto isEqualToString:@"http"]||[urlProto isEqualToString:@"https"]) {
         /***** One of our supported protocols *****/
 
         // Cancel any existing nav
@@ -350,11 +350,26 @@ const char AlertViewIncomingUrl;
     // (/toolbar)
     
     // Set up actionsheets (options menu, bookmarks menu)
-    _optionsMenu = [[UIActionSheet alloc] initWithTitle:nil
-                                               delegate:self
-                                      cancelButtonTitle:@"Close"
-                                 destructiveButtonTitle:@"New Identity"
-                                      otherButtonTitles:@"Bookmark Current Page", @"Browser Settings", @"Open Home Page", @"About Onion Browser", @"Help / Support", nil];
+    _optionsMenu = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    [_optionsMenu addAction:[UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:nil]];
+    [_optionsMenu addAction:[UIAlertAction actionWithTitle:@"New Identity" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+        [self newIdentity];
+    }]];
+    [_optionsMenu addAction:[UIAlertAction actionWithTitle:@"Bookmark Current Page" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self addCurrentAsBookmark];
+    }]];
+    [_optionsMenu addAction:[UIAlertAction actionWithTitle:@"Browser Settings" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self performSelector:@selector(openSettingsView) withObject: nil afterDelay: 0];
+    }]];
+    [_optionsMenu addAction:[UIAlertAction actionWithTitle:@"Open Home Page" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self goHome];
+    }]];
+    [_optionsMenu addAction:[UIAlertAction actionWithTitle:@"About Onion Browser" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self loadURL:[NSURL URLWithString:@"onionbrowser:about"]];
+    }]];
+    [_optionsMenu addAction:[UIAlertAction actionWithTitle:@"Help / Support" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self loadURL:[NSURL URLWithString:@"onionbrowser:help"]];
+    }]];
     // (/actionsheets)
     
     
@@ -643,7 +658,7 @@ const char AlertViewIncomingUrl;
       NSLog(@"Displayed Error: %@, %li --- %@ --- %@", error.domain, (long)error.code, error.localizedDescription, error.userInfo);
       #endif
 
-      if ([error.domain isEqualToString:(NSString *)kCFErrorDomainCFNetwork] ||
+      if ([error.domain isEqualToString:(NSString *)kCFErrorDomainCFNetwork] &&
                ([error.domain isEqualToString:@"NSOSStatusErrorDomain"] &&
                (error.code == -9800 || error.code == -9801 || error.code == -9809 || error.code == -9818))) {
         /* SSL/TLS ERROR */
@@ -651,7 +666,7 @@ const char AlertViewIncomingUrl;
 
         NSURL *url = [error.userInfo objectForKey:NSURLErrorFailingURLErrorKey];
         errorTitle = @"HTTPS Connection Failed";
-        errorDescription = [NSString stringWithFormat:@"A secure connection to '%@' could not be made.\n Your 'minimum SSL/TLS' setting might want stronger security than the website provides or the website may be compromised.\n\nFull error: '%@'",
+        errorDescription = [NSString stringWithFormat:@"A secure connection to '%@' could not be made.\nThe site might be down, there could be a Tor network outage, or your 'minimum SSL/TLS' setting might want stronger security than the website provides.\n\nFull error: '%@'",
                                 url.host, error.localizedDescription];
 
       } else if ([error.domain isEqualToString:NSURLErrorDomain]) {
@@ -868,74 +883,44 @@ const char AlertViewIncomingUrl;
         navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
         [self presentViewController:navController animated:YES completion:nil];
     } else {
-        [_optionsMenu showFromToolbar:_toolbar];
+        [self presentViewController:_optionsMenu animated:YES completion:nil];
     }
 }
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (actionSheet == _optionsMenu) {
-        if (buttonIndex == 0) {
-            ////////////////////////////////////////////////////////
-            // New Identity
-            ////////////////////////////////////////////////////////
-            AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-            [appDelegate.tor requestNewTorIdentity];
-            
-            [appDelegate wipeAppData];
-            
-            UIWebView *newWebView = [[UIWebView alloc] initWithFrame:[_myWebView frame]];
-            //newWebView.backgroundColor = [UIColor whiteColor];
-            newWebView.scalesPageToFit = YES;
-            newWebView.contentScaleFactor = 3;
-            newWebView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
-            newWebView.delegate = _progressProxy;
-            [_myWebView removeFromSuperview];
-            _myWebView = newWebView;
-            [self.view addSubview: _myWebView];
-            
-            // Reset the address field
-            _addressField.text = @"";
-            
-            // Reset forward/back buttons.
-            [self updateButtons];
 
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
-                                                            message:@"Requesting a new IP address from Tor. Cache, cookies, and browser history cleared.\n\nDue to an iOS limitation, visisted links still get the ':visited' CSS highlight state. iOS is resistant to script-based access to this information, but if you are still concerned about leaking history, please force-quit this app and re-launch.\n\nFor more details:\nhttp://yu8.in/M5"
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK" 
-                                                  otherButtonTitles:nil];
-            [alert show];
-        } else if (buttonIndex == 1) {
-            ////////////////////////////////////////////////////////
-            // Add To Bookmarks
-            ////////////////////////////////////////////////////////
-            [self addCurrentAsBookmark];
-        } else if (buttonIndex == 2) {
-            ////////////////////////////////////////////////////////
-            // Settings Menu
-            ////////////////////////////////////////////////////////
-            // (delay slightly since the popup for the menu interferes with the new view coming in)
-            [self performSelector:@selector(openSettingsView) withObject: nil afterDelay: 0];
-        }
-        
-        if ((buttonIndex == 0) || (buttonIndex == 3)) {
-            ////////////////////////////////////////////////////////
-            // New Identity OR Return To Home
-            ////////////////////////////////////////////////////////
-            AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-            _addressField.text = @"";
-            [self loadURL:[NSURL URLWithString:appDelegate.homepage]];
-        } else if (buttonIndex == 4) {
-            ////////////////////////////////////////////////////////
-            // About Page
-            ////////////////////////////////////////////////////////
-            [self loadURL:[NSURL URLWithString:@"onionbrowser:about"]];
-        } else if (buttonIndex == 5) {
-            ////////////////////////////////////////////////////////
-            // Help Page
-            ////////////////////////////////////////////////////////
-            [self loadURL:[NSURL URLWithString:@"onionbrowser:help"]];
-        }
-    }
+- (void)newIdentity {
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    [appDelegate.tor requestNewTorIdentity];
+
+    [appDelegate wipeAppData];
+
+    UIWebView *newWebView = [[UIWebView alloc] initWithFrame:[_myWebView frame]];
+    //newWebView.backgroundColor = [UIColor whiteColor];
+    newWebView.scalesPageToFit = YES;
+    newWebView.contentScaleFactor = 3;
+    newWebView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
+    newWebView.delegate = _progressProxy;
+    [_myWebView removeFromSuperview];
+    _myWebView = newWebView;
+    [self.view addSubview: _myWebView];
+
+    // Reset the address field
+    _addressField.text = @"";
+
+    // Reset forward/back buttons.
+    [self updateButtons];
+
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+                                                    message:@"Requesting a new IP address from Tor. Cache, cookies, and browser history cleared.\n\nDue to an iOS limitation, visisted links still get the ':visited' CSS highlight state. iOS is resistant to script-based access to this information, but if you are still concerned about leaking history, please force-quit this app and re-launch.\n\nFor more details:\nhttp://yu8.in/M5"
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK" 
+                                          otherButtonTitles:nil];
+    [alert show];
+    [self goHome];
+}
+- (void) goHome {
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    _addressField.text = @"";
+    [self loadURL:[NSURL URLWithString:appDelegate.homepage]];
 }
 -(void)openSettingsView {
     SettingsTableViewController *settingsController = [[SettingsTableViewController alloc] initWithStyle:UITableViewStyleGrouped];

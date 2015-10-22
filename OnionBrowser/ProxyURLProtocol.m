@@ -116,6 +116,12 @@
         [newRequest setAllHTTPHeaderFields:[[self request] allHTTPHeaderFields]];
         NSURLConnection *con = [NSURLConnection connectionWithRequest:newRequest delegate:self];
         [self setConnection:(CKHTTPConnection *)con]; // lie.
+    } else if ([[[[[self request] URL] scheme] lowercaseString] isEqualToString:@"about"]) {
+        //only support about:blank
+        NSMutableURLRequest *newRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]];
+        [newRequest setAllHTTPHeaderFields:[[self request] allHTTPHeaderFields]];
+        NSURLConnection *con = [NSURLConnection connectionWithRequest:newRequest delegate:self];
+        [self setConnection:(CKHTTPConnection *)con]; // lie.
     } else {
         CKHTTPConnection *con = [CKHTTPConnection connectionWithRequest:[self request] delegate:self];
         [self setConnection:con];

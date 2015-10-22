@@ -38,6 +38,10 @@ Forks of this project SHOULD link to the original Onion Browser source code
 at https://github.com/mtigas/iOS-OnionBrowser or otherwise provide for access
 to source code for the fork.
 
+(This document relates to legal aspects of distributing a fork. Please see
+README.markdown section "Information for forks" for technical information
+that forks should also abide by.)
+
 Licenses and permissions outside the scope of above terms and below
 license may be possible via negotiation with the author. Please contact Mike
 Tigas: https://mike.tig.as/about/#contact
@@ -46,7 +50,7 @@ Tigas: https://mike.tig.as/about/#contact
 ONION BROWSER LICENSE
 
 OnionBrowser
-Copyright (c) 2012-2014 Mike Tigas <mike@tig.as>
+Copyright (c) 2012-2015 Mike Tigas <mike@tig.as>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

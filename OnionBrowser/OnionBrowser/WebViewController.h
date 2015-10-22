@@ -17,7 +17,7 @@
 extern const char AlertViewExternProtoUrl;
 extern const char AlertViewIncomingUrl;
 
-@interface WebViewController : UIViewController <UIWebViewDelegate, UITextFieldDelegate, UIActionSheetDelegate, UIAlertViewDelegate, NJKWebViewProgressDelegate> {
+@interface WebViewController : UIViewController <UIWebViewDelegate, UITextFieldDelegate, UIAlertViewDelegate, NJKWebViewProgressDelegate> {
 }
 
 @property (strong, nonatomic) UIWebView *myWebView;
@@ -25,7 +25,7 @@ extern const char AlertViewIncomingUrl;
 @property (nonatomic) UIBarButtonItem* backButton;
 @property (nonatomic) UIBarButtonItem* forwardButton;
 @property (nonatomic) UIBarButtonItem* toolButton;
-@property (nonatomic) UIActionSheet* optionsMenu;
+@property (nonatomic) UIAlertController* optionsMenu;
 @property (nonatomic) UIBarButtonItem* bookmarkButton;
 @property (nonatomic) UIBarButtonItem* stopRefreshButton;
 @property (nonatomic) UILabel* pageTitleLabel;

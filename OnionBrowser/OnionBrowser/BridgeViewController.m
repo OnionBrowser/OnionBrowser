@@ -32,7 +32,7 @@
     }
 
     CGSize size = [UIScreen mainScreen].bounds.size;
-    CGRect txtFrame = [[UIScreen mainScreen] applicationFrame];
+    CGRect txtFrame = [UIScreen mainScreen].bounds;
     txtFrame.origin.y = 0;
     txtFrame.origin.x = 0;
     txtFrame.size = size;
@@ -41,9 +41,9 @@
     txtView.font = [UIFont systemFontOfSize:11];
     txtView.text = [self bridgesToBridgeLines];
     if ([QRCodeReader isAvailable]) {
-      txtView.placeholder = @"Visit https://bridges.torproject.org/ and Get Bridges. Tap the 'camera' icon above to scan the QR code, or manually copy-and-paste the \"bridge lines\" here:\n\ni.e.:\n172.0.0.1:1234 912ec803b2ce49e4a541068d495ab570912ec803\n172.0.0.2:4567 098f6bcd4621d373cade4e832627b4f6098f6bcd\n172.0.0.3:7890 a541068d495ab570912ec803a541068d495ab570\n\nPlease note that Onion Browser does not currently support bridges using Pluggable Transports (obfs3, scramblesuit, obfs4, etc.)\n\nIf you are in a location that uses more sophisticated methods to block Tor, you might have trouble getting a connection in Onion Browser until Pluggable Transports are supported.";
+      txtView.placeholder = @"Visit https://bridges.torproject.org/ and Get Bridges. Tap the 'camera' icon above to scan the QR code, or manually copy-and-paste the \"bridge lines\" here:\n\ni.e.:\n172.0.0.1:1234 912ec803b2ce49e4a541068d495ab570912ec803\n172.0.0.2:4567 098f6bcd4621d373cade4e832627b4f6098f6bcd\n172.0.0.3:7890 a541068d495ab570912ec803a541068d495ab570\n\nPlease note that Onion Browser does NOT currently support bridges using Pluggable Transports (obfs3, scramblesuit, obfs4, etc.)\n\nIf you are in a location that uses more sophisticated methods to block Tor, you might have trouble getting a connection in Onion Browser until Pluggable Transports are supported.";
     } else {
-      txtView.placeholder = @"Visit https://bridges.torproject.org/ and Get Bridges. Then copy-and-paste the \"bridge lines\" here:\n\ni.e.:\n172.0.0.1:1234 912ec803b2ce49e4a541068d495ab570912ec803\n172.0.0.2:4567 098f6bcd4621d373cade4e832627b4f6098f6bcd\n172.0.0.3:7890 a541068d495ab570912ec803a541068d495ab570\n\nPlease note that Onion Browser does not currently support bridges using Pluggable Transports (obfs3, scramblesuit, obfs4, etc.)\n\nIf you are in a location that uses more sophisticated methods to block Tor, you might have trouble getting a connection in Onion Browser until Pluggable Transports are supported.";
+      txtView.placeholder = @"Visit https://bridges.torproject.org/ and Get Bridges. Then copy-and-paste the \"bridge lines\" here:\n\ni.e.:\n172.0.0.1:1234 912ec803b2ce49e4a541068d495ab570912ec803\n172.0.0.2:4567 098f6bcd4621d373cade4e832627b4f6098f6bcd\n172.0.0.3:7890 a541068d495ab570912ec803a541068d495ab570\n\nPlease note that Onion Browser does NOT currently support bridges using Pluggable Transports (obfs3, scramblesuit, obfs4, etc.)\n\nIf you are in a location that uses more sophisticated methods to block Tor, you might have trouble getting a connection in Onion Browser until Pluggable Transports are supported.";
     }
     txtView.placeholderColor = [UIColor grayColor];
     txtView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
@@ -95,20 +95,51 @@
     [self presentViewController:reader animated:YES completion:NULL];
   }
   else {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"QRCode scanning is not supported by the current device" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-
-    [alert show];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Camera access was not granted or QRCode scanning is not supported by your device." preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
+    [self presentViewController:alert animated:YES completion:NULL];
   }
 }
 #pragma mark - QRCodeReader Delegate Methods
 
 - (void)reader:(QRCodeReaderViewController *)reader didScanResult:(NSString *)result {
     [self dismissViewControllerAnimated:YES completion:^{
-        UIPlaceHolderTextView *txtView = (UIPlaceHolderTextView *)[self.view viewWithTag:50];
-        txtView.text = result;
 
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Bridges Scanned" message:@"Successfully scanned bridges. Please press 'Save' and restart the app for these changes to take effect." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
+        if ([result containsString:@"obfs3"] || [result containsString:@"obfs4"] || [result containsString:@"scramblesuit"]) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Pluggable Transports Not Supported" message:@"At least one bridge line you scanned contains a pluggable transport, such as 'obfs3', 'obfs4', or 'scramblesuit'.\n\nOnion Browser does not currently support these bridges, due to an incompatibility in iOS. Please select 'none' for 'Do you need a Pluggable Transport?' when getting bridges on the Tor bridge site." preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
+            [self presentViewController:alert animated:YES completion:NULL];
+        } else {
+            NSString *realResult = result;
+
+            // I think QRCode used to return the exact string we wanted (newline delimited),
+            // but now it returns a JSON-like array ['bridge1', 'bridge2'...] so parse that out.
+            if ([result containsString:@"['"] || [result containsString:@"[\""]) {
+              // Actually, the QRCode is json-like. It uses single-quote string array, where JSON only
+              // allows double-quote.
+              realResult = [result stringByReplacingOccurrencesOfString:@"['" withString:@"[\""];
+              realResult = [result stringByReplacingOccurrencesOfString:@"', '" withString:@"\", \""];
+              realResult = [result stringByReplacingOccurrencesOfString:@"','" withString:@"\",\""];
+              realResult = [result stringByReplacingOccurrencesOfString:@"']" withString:@"\"]"];
+
+              NSError *e = nil;
+              NSArray *resultLines = [NSJSONSerialization JSONObjectWithData:[realResult dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:&e];
+
+              if (resultLines) {
+                realResult = [resultLines componentsJoinedByString:@"\n"];
+              } else {
+                NSLog(@"%@", e);
+                NSLog(@"%@", realResult);
+              }
+            }
+
+            UIPlaceHolderTextView *txtView = (UIPlaceHolderTextView *)[self.view viewWithTag:50];
+            txtView.text = realResult;
+
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Bridges Scanned" message:@"Successfully scanned bridges. Please press 'Save' and restart the app for these changes to take effect." preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
+            [self presentViewController:alert animated:YES completion:NULL];
+        }
     }];
 }
 
@@ -140,9 +171,19 @@
                                                        withString:@" "
                                                           options:NSRegularExpressionSearch
                                                             range:NSMakeRange(0, txtView.text.length)];
+
+  Boolean shouldSaveAndExit = YES;
+
   for (NSString *line in [txt componentsSeparatedByString:@"\n"]) {
     NSString *newLine = [line stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    if (![newLine isEqualToString:@""]) {
+    if ([newLine isEqualToString:@""]) {
+      // skip empty lines
+    } else if ([newLine containsString:@"obfs3"] || [newLine containsString:@"obfs4"] || [newLine containsString:@"scramblesuit"]) {
+      UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Pluggable Transports Not Supported" message:@"At least one bridge line you entered contained a pluggable transport, such as 'obfs3', 'obfs4', or 'scramblesuit'.\n\nOnion Browser does not currently support these bridges, due to an incompatibility in iOS. Please select 'none' for 'Do you need a Pluggable Transport?' when getting bridges on the Tor bridge site." preferredStyle:UIAlertControllerStyleAlert];
+      [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
+      [self presentViewController:alert animated:YES completion:NULL];
+      shouldSaveAndExit = NO;
+    } else {
       Bridge *newBridge = [NSEntityDescription insertNewObjectForEntityForName:@"Bridge" inManagedObjectContext:ctx];
       [newBridge setConf:newLine];
       NSError *err = nil;
@@ -151,8 +192,9 @@
       }
     }
   }
-
-  [self exitModal];
+  if (shouldSaveAndExit) {
+    [self exitModal];
+  }
 }
 - (void)cancel {
   [self exitModal];
@@ -165,12 +207,13 @@
   NSManagedObjectContext *ctx = appDelegate.managedObjectContext;
 
   if (![appDelegate.tor didFirstConnect]) {
-      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Please Restart App"
-                                                      message:@"Onion Browser will now close. Please start the app again to retry the Tor connection with the newly-configured bridges.\n\n(If you restart and the app stays stuck at \"Connecting...\", please come back and double-check your bridge configuration or remove your bridges.)"
-                                                     delegate:self
-                                            cancelButtonTitle:@"OK"
-                                            otherButtonTitles:nil];
-      [alert show];
+      UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Please Restart App" message:@"Onion Browser will now close. Please start the app again to retry the Tor connection with the newly-configured bridges.\n\n(If you restart and the app stays stuck at \"Connecting...\", please come back and double-check your bridge configuration or remove your bridges.)" preferredStyle:UIAlertControllerStyleAlert];
+      [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+          AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+          [appDelegate wipeAppData];
+          exit(0);
+      }]];
+      [self presentViewController:alert animated:YES completion:NULL];
   } else {
       NSFetchRequest *request = [[NSFetchRequest alloc] init];
       NSEntityDescription *entity = [NSEntityDescription entityForName:@"Bridge" inManagedObjectContext:ctx];
@@ -184,40 +227,26 @@
           if ([newResults count] > 1) {
               pluralize = @"s are";
           }
-          UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Bridges"
-                                                          message:[NSString stringWithFormat:@"%ld bridge%@ configured.You may need to quit the app and restart it to change the connection method.\n\n(If you restart and the app stays stuck at \"Connecting...\", please come back and double-check your bridge configuration or remove your bridges.)", (unsigned long)[newResults count], pluralize]
-                                                         delegate:self
-                                                cancelButtonTitle:@"Continue anyway"
-                                                otherButtonTitles:@"Restart app", nil];
-          [alert show];
+          UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Bridges" message:[NSString stringWithFormat:@"%ld bridge%@ configured.You may need to quit the app and restart it to change the connection method.\n\n(If you restart and the app stays stuck at \"Connecting...\", please come back and double-check your bridge configuration or remove your bridges.)", (unsigned long)[newResults count], pluralize] preferredStyle:UIAlertControllerStyleAlert];
+          [alert addAction:[UIAlertAction actionWithTitle:@"Continue anyway" style:UIAlertActionStyleCancel handler:nil]];
+          [alert addAction:[UIAlertAction actionWithTitle:@"Restart app" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+              AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+              [appDelegate wipeAppData];
+              exit(0);
+          }]];
+          [self presentViewController:alert animated:YES completion:NULL];
       } else {
-          UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Bridges Disabled"
-                                                          message:@"No bridges are configured, so bridge connection mode is disabled. If you previously had bridges, you may need to quit the app and restart it to change the connection method.\n\n(If you restart and the app stays stuck at \"Connecting...\", please come back and double-check your bridge configuration or remove your bridges.)"
-                                                         delegate:self
-                                                cancelButtonTitle:@"Continue anyway"
-                                                otherButtonTitles:@"Restart app", nil];
-          [alert show];
+          UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Bridges Disabled" message:@"No bridges are configured, so bridge connection mode is disabled. If you previously had bridges, you may need to quit the app and restart it to change the connection method.\n\n(If you restart and the app stays stuck at \"Connecting...\", please come back and double-check your bridge configuration or remove your bridges.)" preferredStyle:UIAlertControllerStyleAlert];
+          [alert addAction:[UIAlertAction actionWithTitle:@"Continue anyway" style:UIAlertActionStyleCancel handler:nil]];
+          [alert addAction:[UIAlertAction actionWithTitle:@"Restart app" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+              AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+              [appDelegate wipeAppData];
+              exit(0);
+          }]];
+          [self presentViewController:alert animated:YES completion:NULL];
       }
   }
 }
-- (void) alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if ([actionSheet.title isEqualToString:@"Please Restart App"]) {
-        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-        [appDelegate wipeAppData];
-        exit(0);
-    } else {
-        // One of the "Bridges Enabled" or "Bridges Disabled" prompts
-        if (buttonIndex == 0) {
-            [self dismissViewControllerAnimated:YES completion:nil];
-        } else {
-            AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-            [appDelegate wipeAppData];
-            exit(0);
-        }
-    }
-}
-
-
 
 
 - (void)didReceiveMemoryWarning {
