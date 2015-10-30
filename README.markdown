@@ -11,13 +11,14 @@ and App Store links.
 
 ---
 
-* **OnionBrowser**: 1.5.13 (20151022.3) — [See changelog][changelog]
+* **OnionBrowser**: 1.5.14-pre (20151030.1) — NOTE: this may not be the latest App Store release: see [official releases][release] and [changelog][changelog].
 * **[Tor][tor]**: 0.2.6.10 (Jul 12 2015)
 * **[libevent][libevent]**: 2.0.22-stable (Jan 05 2015)
 * **[OpenSSL][openssl]**: 1.0.2d (Jul 09 2015)
 
 [official]: https://mike.tig.as/onionbrowser/
 [help]: https://mike.tig.as/onionbrowser/help/
+[releases]: https://github.com/OnionBrowser/iOS-OnionBrowser/releases
 [changelog]: https://raw.github.com/OnionBrowser/iOS-OnionBrowser/master/CHANGES.txt
 [miketigas]: https://mike.tig.as/
 [license]: https://github.com/OnionBrowser/iOS-OnionBrowser/blob/master/LICENSE
