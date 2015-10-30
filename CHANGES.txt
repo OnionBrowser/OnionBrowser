@@ -14,8 +14,11 @@ Features subject to change.
   encryption done by the iOS operating system, improving protection
   against forensic tools.
 
-===== 1.5.13 - Pending App Store Approval =====
+CURRENT VERSION:
+
+===== 1.5.13 - In App Store =====
 Oct 22 2015 - Submit Date
+Oct 30 2015 - App Store Availability
 
 * Improve Tor's chances of coming back after being in background.
   Adjusted encryption so Tor connection state can be accessed by the
@@ -48,9 +51,10 @@ Oct 22 2015 - Submit Date
 * OpenSSL updated to 1.0.2d.
   https://openssl.org/news/changelog.html
 
-CURRENT VERSION:
 
-===== 1.5.12 - In App Store =====
+PREVIOUS VERSIONS:
+
+===== 1.5.12 =====
 Mar 20 2015 - Submit Date
 Mar 31 2015 - App Store Availability
 
@@ -72,9 +76,6 @@ Mar 31 2015 - App Store Availability
   https://openssl.org/news/openssl-1.0.2-notes.html
 
 * Redesigned "Connecting..." prompt when opening the app.
-
-
-PREVIOUS VERSIONS:
 
 ===== 1.5.11 =====
 Mar 10 2015 - Submit Date

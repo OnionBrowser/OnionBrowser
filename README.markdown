@@ -36,7 +36,7 @@ and App Store links.
 
 ---
 
-#### Integration notes
+#### Adding Onion Browser support to other iOS apps
 
 Onion Browser responds to two URL schemes: `onionbrowser://` and
 `onionbrowsers://`, representing HTTP and HTTPS URLs, respectively. These
@@ -67,7 +67,7 @@ that you should replace their `googlechrome://` URL schemes with the proper
 
 ---
 
-#### Compilation notes
+#### Implementation notes
 
 The app, when compiled, contains static library versions of [Tor][tor] and it's
 dependencies, [libevent][libevent] and [openssl][openssl].
