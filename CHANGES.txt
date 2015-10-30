@@ -14,6 +14,21 @@ Features subject to change.
   encryption done by the iOS operating system, improving protection
   against forensic tools.
 
+===== 1.5.14 - Pending App Store Approval =====
+Oct 31 2015 - Submit Date
+
+* Fix long-standing bug regarding re-connecting to the Tor instance
+  in appDidBecomeActive. This should GREATLY improve the Onion Browser
+  experience when coming back from background. BIG thanks to RustamDz
+  who pointed out the relevant code error. (#2 #59)
+
+* Tor updated to 0.2.7.4-rc. This future-proofs Onion Browser a bit
+  by supporting stronger Ed25519 encryption keys. The 0.2.7 series also
+  improves recovery when the clock jumps -- which likely also improves
+  Onion Browser's chances of continuing successfully when coming back
+  from background.
+  https://gitweb.torproject.org/tor.git/tree/ChangeLog?h=tor-0.2.7.4-rc
+
 CURRENT VERSION:
 
 ===== 1.5.13 - In App Store =====

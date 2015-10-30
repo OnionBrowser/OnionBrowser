@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		690B74801BE4212900A5A4BE /* libed25519_donna.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 690B747D1BE4212900A5A4BE /* libed25519_donna.a */; };
+		690B74811BE4212900A5A4BE /* libed25519_ref10.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 690B747E1BE4212900A5A4BE /* libed25519_ref10.a */; };
+		690B74821BE4212900A5A4BE /* libor-trunnel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 690B747F1BE4212900A5A4BE /* libor-trunnel.a */; };
 		69156B5D15FD544700BC560A /* Settings.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 69156B5B15FD544600BC560A /* Settings.xcdatamodeld */; };
 		69156B6015FD54AF00BC560A /* Bookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = 69156B5F15FD54AE00BC560A /* Bookmark.m */; };
 		69156B6315FD54BC00BC560A /* Bridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 69156B6215FD54BC00BC560A /* Bridge.m */; };
@@ -83,6 +86,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		690B747D1BE4212900A5A4BE /* libed25519_donna.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libed25519_donna.a; path = ../dependencies/lib/libed25519_donna.a; sourceTree = "<group>"; };
+		690B747E1BE4212900A5A4BE /* libed25519_ref10.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libed25519_ref10.a; path = ../dependencies/lib/libed25519_ref10.a; sourceTree = "<group>"; };
+		690B747F1BE4212900A5A4BE /* libor-trunnel.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libor-trunnel.a"; path = "../dependencies/lib/libor-trunnel.a"; sourceTree = "<group>"; };
 		69156B5C15FD544700BC560A /* Settings.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Settings.xcdatamodel; sourceTree = "<group>"; };
 		69156B5E15FD54AE00BC560A /* Bookmark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bookmark.h; sourceTree = "<group>"; };
 		69156B5F15FD54AE00BC560A /* Bookmark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bookmark.m; sourceTree = "<group>"; };
@@ -203,6 +209,9 @@
 				69847C5014F788E100288277 /* libssl.a in Frameworks */,
 				69847C5114F788E100288277 /* libtor.a in Frameworks */,
 				6928942116F6741000C787B2 /* libcurve25519_donna.a in Frameworks */,
+				690B74801BE4212900A5A4BE /* libed25519_donna.a in Frameworks */,
+				690B74811BE4212900A5A4BE /* libed25519_ref10.a in Frameworks */,
+				690B74821BE4212900A5A4BE /* libor-trunnel.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,6 +274,9 @@
 		696EBD7614F7877900B81BC9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				690B747D1BE4212900A5A4BE /* libed25519_donna.a */,
+				690B747E1BE4212900A5A4BE /* libed25519_ref10.a */,
+				690B747F1BE4212900A5A4BE /* libor-trunnel.a */,
 				69847C5514F788F600288277 /* External */,
 				69847C5314F788E900288277 /* libz.dylib */,
 				699CCEBC14FA1939004A2F56 /* libxml2.dylib */,
