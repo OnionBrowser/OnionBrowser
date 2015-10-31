@@ -236,11 +236,11 @@ do
 	--with-libevent-dir="${OUTPUTDIR}" \
 	--disable-asciidoc --disable-transparent --disable-threads \
 	LDFLAGS="$LDFLAGS -L${OUTPUTDIR}/lib -lz" \
-	CFLAGS="$CFLAGS -O2 -I${OUTPUTDIR}/include -isysroot ${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/SDKs/${PLATFORM}${SDKVERSION}.sdk" \
+	CFLAGS="$CFLAGS -Os -I${OUTPUTDIR}/include -isysroot ${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/SDKs/${PLATFORM}${SDKVERSION}.sdk" \
 	CPPFLAGS="$CPPFLAGS -I${OUTPUTDIR}/include -isysroot ${DEVELOPER}/Platforms/${PLATFORM}.platform/Developer/SDKs/${PLATFORM}${SDKVERSION}.sdk"
 
 	# Build the application
-	make -j4
+	make -j$(sysctl hw.ncpu | awk '{print $2}')
 
 	# Don't make install. We actually don't want the tor binary or the
 	# documentation, we just want the archives of the compiled sources.
