@@ -17,10 +17,13 @@ Features subject to change.
 ===== 1.5.14 - Pending App Store Approval =====
 Oct 31 2015 - Submit Date
 
-* Fix long-standing bug regarding re-connecting to the Tor instance
-  in appDidBecomeActive. This should GREATLY improve the Onion Browser
-  experience when coming back from background. BIG thanks to RustamDz
-  who pointed out the relevant code error. (#2 #59)
+* FIX: Crash when pressing menu button on iPad.
+
+* FIX: GREATLY improve the Onion Browser experience when coming back from
+  background. Despite my best efforts to fix the problem, there was a minor
+  code bug regarding "appDidBecomeActive" that went unnoticed for a very
+  long time. BIG thanks to RustamDz who pointed out the relevant code
+  error. (#2 #59)
 
 * Tor updated to 0.2.7.4-rc. This future-proofs Onion Browser a bit
   by supporting stronger Ed25519 encryption keys. The 0.2.7 series also
