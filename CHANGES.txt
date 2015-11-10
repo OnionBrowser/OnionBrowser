@@ -14,8 +14,12 @@ Features subject to change.
   encryption done by the iOS operating system, improving protection
   against forensic tools.
 
-===== 1.5.14 - Pending App Store Approval =====
+
+CURRENT VERSION:
+
+===== 1.5.14 - In App Store =====
 Oct 31 2015 - Submit Date
+Nov 08 2015 - App Store Availability
 
 * Fix long-standing bug regarding re-connecting to the Tor instance
   in appDidBecomeActive. This should GREATLY improve the Onion Browser
@@ -29,9 +33,10 @@ Oct 31 2015 - Submit Date
   from background.
   https://gitweb.torproject.org/tor.git/tree/ChangeLog?h=tor-0.2.7.4-rc
 
-CURRENT VERSION:
 
-===== 1.5.13 - In App Store =====
+PREVIOUS VERSIONS:
+
+===== 1.5.13 =====
 Oct 22 2015 - Submit Date
 Oct 30 2015 - App Store Availability
 
@@ -65,9 +70,6 @@ Oct 30 2015 - App Store Availability
 
 * OpenSSL updated to 1.0.2d.
   https://openssl.org/news/changelog.html
-
-
-PREVIOUS VERSIONS:
 
 ===== 1.5.12 =====
 Mar 20 2015 - Submit Date
