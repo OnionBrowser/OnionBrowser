@@ -14,6 +14,16 @@ Features subject to change.
   encryption done by the iOS operating system, improving protection
   against forensic tools.
 
+===== 1.5.15 - Pending App Store Availability =====
+Dec 03 2015 - Submit Date
+
+* Tor updated to 0.2.7.5, the first stable release in the new
+  Tor 0.2.7 series.
+  https://gitweb.torproject.org/tor.git/tree/ChangeLog?h=tor-0.2.7.5
+
+* OpenSSL updated to 1.0.2e, fixing several security issues.
+  https://openssl.org/news/secadv/20151203.txt
+  https://openssl.org/news/changelog.html
 
 CURRENT VERSION:
 
