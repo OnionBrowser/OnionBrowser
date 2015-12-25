@@ -16,7 +16,41 @@ Features subject to change.
 
 CURRENT VERSION:
 
-===== 1.5.13 - In App Store =====
+===== 1.5.15 - In App Store =====
+Dec 03 2015 - Submit Date
+Dec 10 2015 - App Store Availability
+
+* Tor updated to 0.2.7.5, the first stable release in the new
+  Tor 0.2.7 series.
+  https://gitweb.torproject.org/tor.git/tree/ChangeLog?h=tor-0.2.7.5
+
+* OpenSSL updated to 1.0.2e, fixing several security issues.
+  https://openssl.org/news/secadv/20151203.txt
+  https://openssl.org/news/changelog.html
+
+
+PREVIOUS VERSIONS:
+
+===== 1.5.14 =====
+Oct 31 2015 - Submit Date
+Nov 08 2015 - App Store Availability
+
+* FIX: Crash when pressing menu button on iPad.
+
+* FIX: GREATLY improve the Onion Browser experience when coming back from
+  background. Despite my best efforts to fix the problem, there was a minor
+  code bug regarding "appDidBecomeActive" that went unnoticed for a very
+  long time. BIG thanks to RustamDz who pointed out the relevant code
+  error. (#2 #59)
+
+* Tor updated to 0.2.7.4-rc. This future-proofs Onion Browser a bit
+  by supporting stronger Ed25519 encryption keys. The 0.2.7 series also
+  improves recovery when the clock jumps -- which likely also improves
+  Onion Browser's chances of continuing successfully when coming back
+  from background.
+  https://gitweb.torproject.org/tor.git/tree/ChangeLog?h=tor-0.2.7.4-rc
+
+===== 1.5.13 =====
 Oct 22 2015 - Submit Date
 Oct 30 2015 - App Store Availability
 
@@ -50,9 +84,6 @@ Oct 30 2015 - App Store Availability
 
 * OpenSSL updated to 1.0.2d.
   https://openssl.org/news/changelog.html
-
-
-PREVIOUS VERSIONS:
 
 ===== 1.5.12 =====
 Mar 20 2015 - Submit Date

@@ -883,6 +883,9 @@ const char AlertViewIncomingUrl;
         navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
         [self presentViewController:navController animated:YES completion:nil];
     } else {
+        [_optionsMenu setModalPresentationStyle:UIModalPresentationPopover];
+        _optionsMenu.popoverPresentationController.barButtonItem = _toolButton;
+        _optionsMenu.popoverPresentationController.sourceView = self.view;
         [self presentViewController:_optionsMenu animated:YES completion:nil];
     }
 }

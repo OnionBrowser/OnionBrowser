@@ -1,7 +1,7 @@
 ## Onion Browser
 
 [![Build Status](https://travis-ci.org/OnionBrowser/iOS-OnionBrowser.png)](https://travis-ci.org/OnionBrowser/iOS-OnionBrowser)  
-[Official Site][official] | [Support][help] | [Changelog][changelog]  
+[Official Site][official] | [Support][help] | [Changelog][changelog] | [Donate][donate]  
 &copy; 2012-2015 [Mike Tigas][miketigas] ([@mtigas](https://twitter.com/mtigas))  
 [MIT License][license]
 
@@ -11,14 +11,16 @@ and App Store links.
 
 ---
 
-* **OnionBrowser**: 1.5.13 (20151022.3) — [See changelog][changelog]
-* **[Tor][tor]**: 0.2.6.10 (Jul 12 2015)
+* **OnionBrowser**: 1.5.15 (20151203.1) - See [official release history][releases] and [changelog][changelog].
+* **[Tor][tor]**: 0.2.7.5 (Nov 22 2015)
 * **[libevent][libevent]**: 2.0.22-stable (Jan 05 2015)
-* **[OpenSSL][openssl]**: 1.0.2d (Jul 09 2015)
+* **[OpenSSL][openssl]**: 1.0.2e (Dec 03 2015)
 
 [official]: https://mike.tig.as/onionbrowser/
 [help]: https://mike.tig.as/onionbrowser/help/
+[releases]: https://github.com/OnionBrowser/iOS-OnionBrowser/releases
 [changelog]: https://raw.github.com/OnionBrowser/iOS-OnionBrowser/master/CHANGES.txt
+[donate]: https://mike.tig.as/onionbrowser/#support-project
 [miketigas]: https://mike.tig.as/
 [license]: https://github.com/OnionBrowser/iOS-OnionBrowser/blob/master/LICENSE
 [tor]: https://www.torproject.org/
