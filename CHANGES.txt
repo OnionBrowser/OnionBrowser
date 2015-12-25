@@ -14,8 +14,11 @@ Features subject to change.
   encryption done by the iOS operating system, improving protection
   against forensic tools.
 
-===== 1.5.15 - Pending App Store Availability =====
+CURRENT VERSION:
+
+===== 1.5.15 - In App Store =====
 Dec 03 2015 - Submit Date
+Dec 10 2015 - App Store Availability
 
 * Tor updated to 0.2.7.5, the first stable release in the new
   Tor 0.2.7 series.
@@ -25,9 +28,10 @@ Dec 03 2015 - Submit Date
   https://openssl.org/news/secadv/20151203.txt
   https://openssl.org/news/changelog.html
 
-CURRENT VERSION:
 
-===== 1.5.14 - In App Store =====
+PREVIOUS VERSIONS:
+
+===== 1.5.14 =====
 Oct 31 2015 - Submit Date
 Nov 08 2015 - App Store Availability
 
@@ -45,9 +49,6 @@ Nov 08 2015 - App Store Availability
   Onion Browser's chances of continuing successfully when coming back
   from background.
   https://gitweb.torproject.org/tor.git/tree/ChangeLog?h=tor-0.2.7.4-rc
-
-
-PREVIOUS VERSIONS:
 
 ===== 1.5.13 =====
 Oct 22 2015 - Submit Date

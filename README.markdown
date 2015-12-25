@@ -1,7 +1,7 @@
 ## Onion Browser
 
 [![Build Status](https://travis-ci.org/OnionBrowser/iOS-OnionBrowser.png)](https://travis-ci.org/OnionBrowser/iOS-OnionBrowser)  
-[Official Site][official] | [Support][help] | [Changelog][changelog]  
+[Official Site][official] | [Support][help] | [Changelog][changelog] | [Donate][donate]  
 &copy; 2012-2015 [Mike Tigas][miketigas] ([@mtigas](https://twitter.com/mtigas))  
 [MIT License][license]
 
@@ -20,6 +20,7 @@ and App Store links.
 [help]: https://mike.tig.as/onionbrowser/help/
 [releases]: https://github.com/OnionBrowser/iOS-OnionBrowser/releases
 [changelog]: https://raw.github.com/OnionBrowser/iOS-OnionBrowser/master/CHANGES.txt
+[donate]: https://mike.tig.as/onionbrowser/#support-project
 [miketigas]: https://mike.tig.as/
 [license]: https://github.com/OnionBrowser/iOS-OnionBrowser/blob/master/LICENSE
 [tor]: https://www.torproject.org/
