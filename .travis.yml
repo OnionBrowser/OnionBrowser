@@ -1,5 +1,6 @@
 language: objective-c
-xcode_sdk: 8.0
+osx_image: xcode7.2
+xcode_sdk: iphonesimulator9.2
 before_install:
 - brew update
 - brew unlink xctool
@@ -12,7 +13,7 @@ install:
 before_script:
   - gem install cocoapods
 script:
-  - xctool -project OnionBrowser/OnionBrowser.xcodeproj -scheme OnionBrowser -sdk iphonesimulator8.0 -arch i386 build test
+  - xctool -project OnionBrowser/OnionBrowser.xcodeproj -scheme OnionBrowser -sdk iphonesimulator9.2 -arch i386 build test
 
 notifications:
   email: false

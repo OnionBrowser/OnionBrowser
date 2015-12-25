@@ -24,7 +24,7 @@
 #
 VERSION="0.2.7.5"
 #VERSION="0.2.6.10"
-USERSDKVERSION="9.1"
+USERSDKVERSION="9.2"
 MINIOSVERSION="8.0"
 VERIFYGPG=true
 
@@ -86,7 +86,7 @@ fi
 if [[ ! -z "$TRAVIS" && $TRAVIS ]]; then
 	# Travis CI highest available version
 	echo "==================== TRAVIS CI ===================="
-	SDKVERSION="9.0"
+	SDKVERSION="9.2"
 else
 	SDKVERSION="$USERSDKVERSION"
 fi
