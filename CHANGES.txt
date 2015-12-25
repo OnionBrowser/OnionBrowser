@@ -2,8 +2,7 @@ Onion Browser Version History (since 1.2.2)
 
 FUTURE:
 
-===== 2.0 - Under Development =====
-Est. Release: February 2015
+===== 2.0 - Planned =====
 Features subject to change.
 
 * New "flat" icon for the iOS 7+ era.
@@ -13,6 +12,12 @@ Features subject to change.
 * Data encryption with an app-level password. Supplements current
   encryption done by the iOS operating system, improving protection
   against forensic tools.
+
+===== 1.5.16 - Under Development =====
+Features subject to change.
+
+* Tor updated to 0.2.7.6.
+  https://gitweb.torproject.org/tor.git/tree/ChangeLog?h=tor-0.2.7.6
 
 CURRENT VERSION:
 
