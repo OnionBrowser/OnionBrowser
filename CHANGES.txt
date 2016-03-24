@@ -14,18 +14,19 @@ Features subject to change.
   against forensic tools.
 
 
+CURRENT VERSION:
 
-
-===== 1.5.16 - Pending App Store Availability =====
+===== 1.5.16 - In App Store =====
 Dec 29 2015 - Submit Date
+Jan 07 2016 - App Store Availability
 
 * Tor updated to 0.2.7.6.
   https://gitweb.torproject.org/tor.git/tree/ChangeLog?h=tor-0.2.7.6
 
 
-CURRENT VERSION:
+PREVIOUS VERSIONS:
 
-===== 1.5.15 - In App Store =====
+===== 1.5.15 =====
 Dec 03 2015 - Submit Date
 Dec 10 2015 - App Store Availability
 
@@ -36,9 +37,6 @@ Dec 10 2015 - App Store Availability
 * OpenSSL updated to 1.0.2e, fixing several security issues.
   https://openssl.org/news/secadv/20151203.txt
   https://openssl.org/news/changelog.html
-
-
-PREVIOUS VERSIONS:
 
 ===== 1.5.14 =====
 Oct 31 2015 - Submit Date

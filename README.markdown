@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/OnionBrowser/iOS-OnionBrowser.png)](https://travis-ci.org/OnionBrowser/iOS-OnionBrowser)  
 [Official Site][official] | [Support][help] | [Changelog][changelog] | [Donate][donate]  
-&copy; 2012-2015 [Mike Tigas][miketigas] ([@mtigas](https://twitter.com/mtigas))  
+&copy; 2012-2016 [Mike Tigas][miketigas] ([@mtigas](https://twitter.com/mtigas))  
 [MIT License][license]
 
 A minimal, open-source web browser for iOS that tunnels web traffic through
