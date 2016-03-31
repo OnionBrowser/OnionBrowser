@@ -303,7 +303,7 @@
                                                                      repeats:NO];
             }
         }
-    } else if ([msgIn rangeOfString:@"+orconn-status="].location != NSNotFound) {
+    } else if ([msgIn rangeOfString:@"orconn-status="].location != NSNotFound) {
         [_torStatusTimeoutTimer invalidate];
         
         // Response to "getinfo orconn-status"
