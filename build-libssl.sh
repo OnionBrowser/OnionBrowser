@@ -2,9 +2,10 @@
 #  Builds openssl for all five current iPhone targets: iPhoneSimulator-i386,
 #  iPhoneSimulator-x86_64, iPhoneOS-armv7, iPhoneOS-armv7s, iPhoneOS-arm64.
 #
-#  Copyright 2012 Mike Tigas <mike@tig.as>
+#  Copyright 2012-2016 Mike Tigas <mike AT tig DOT as>
 #
-#  Based on work by Felix Schulze on 16.12.10.
+#  Based on "build-libssl.sh" in OpenSSL-for-iPhone by Felix Schulze,
+#  forked on 2012-02-24. Original license follows:
 #  Copyright 2010 Felix Schulze. All rights reserved.
 #
 #  Licensed under the Apache License, Version 2.0 (the "License");
