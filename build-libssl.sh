@@ -53,7 +53,7 @@ fi
 if [[ ! -z "$TRAVIS" && $TRAVIS ]]; then
 	# Travis CI highest available version
 	echo "==================== TRAVIS CI ===================="
-	SDKVERSION="9.2"
+	SDKVERSION="9.3"
 else
 	SDKVERSION="$USERSDKVERSION"
 fi
