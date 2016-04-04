@@ -41,6 +41,7 @@
 		696F9EB014F8DA6900BC5FDC /* torrc in Resources */ = {isa = PBXBuildFile; fileRef = 696F9EAF14F8DA6900BC5FDC /* torrc */; };
 		696F9EB414F8DD6D00BC5FDC /* ULINetSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 696F9EB314F8DD6D00BC5FDC /* ULINetSocket.m */; };
 		696F9EB614F8E21200BC5FDC /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696F9EB514F8E21200BC5FDC /* CFNetwork.framework */; };
+		6978ADBA1CB1EF9500A9DC4A /* libkeccak-tiny.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6978ADB91CB1EF9500A9DC4A /* libkeccak-tiny.a */; };
 		697AB10A1866567400A6F3EE /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 697AB1091866567400A6F3EE /* XCTest.framework */; };
 		697AB10B1866567400A6F3EE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696EBD7914F7877900B81BC9 /* Foundation.framework */; };
 		697AB10C1866567400A6F3EE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696EBD7714F7877900B81BC9 /* UIKit.framework */; };
@@ -137,6 +138,7 @@
 		696F9EB214F8DD6D00BC5FDC /* ULINetSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ULINetSocket.h; sourceTree = "<group>"; };
 		696F9EB314F8DD6D00BC5FDC /* ULINetSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ULINetSocket.m; sourceTree = "<group>"; };
 		696F9EB514F8E21200BC5FDC /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		6978ADB91CB1EF9500A9DC4A /* libkeccak-tiny.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libkeccak-tiny.a"; path = "../dependencies/lib/libkeccak-tiny.a"; sourceTree = "<group>"; };
 		697AB1081866567400A6F3EE /* OnionBrowserTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OnionBrowserTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		697AB1091866567400A6F3EE /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		697AB10F1866567400A6F3EE /* OnionBrowserTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OnionBrowserTests-Info.plist"; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				6928942116F6741000C787B2 /* libcurve25519_donna.a in Frameworks */,
 				690B74801BE4212900A5A4BE /* libed25519_donna.a in Frameworks */,
 				690B74811BE4212900A5A4BE /* libed25519_ref10.a in Frameworks */,
+				6978ADBA1CB1EF9500A9DC4A /* libkeccak-tiny.a in Frameworks */,
 				690B74821BE4212900A5A4BE /* libor-trunnel.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -274,6 +277,7 @@
 		696EBD7614F7877900B81BC9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6978ADB91CB1EF9500A9DC4A /* libkeccak-tiny.a */,
 				690B747D1BE4212900A5A4BE /* libed25519_donna.a */,
 				690B747E1BE4212900A5A4BE /* libed25519_ref10.a */,
 				690B747F1BE4212900A5A4BE /* libor-trunnel.a */,
