@@ -12,6 +12,7 @@
 #include <sys/sysctl.h>
 #import <sys/utsname.h>
 #import "BridgeViewController.h"
+#import "ObfsWrapper.h"
 
 @interface AppDelegate()
 - (Boolean)torrcExists;
@@ -30,10 +31,15 @@
     managedObjectContext = __managedObjectContext,
     managedObjectModel = __managedObjectModel,
     persistentStoreCoordinator = __persistentStoreCoordinator,
-    doPrepopulateBookmarks
+    doPrepopulateBookmarks,
+    usingObfs,
+    didLaunchObfs
 ;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    usingObfs = NO;
+    didLaunchObfs = NO;
+
     // Detect bookmarks file.
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Settings.sqlite"];
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -421,6 +427,8 @@
     } else if ([mutableFetchResults count] > 0) {
         NSFileHandle *myHandle = [NSFileHandle fileHandleForWritingAtPath:destTorrc];
         [myHandle seekToEndOfFile];
+
+        
 
         [myHandle writeData:[@"UseBridges 1\n" dataUsingEncoding:NSUTF8StringEncoding]];
         for (Bridge *bridge in mutableFetchResults) {

@@ -67,6 +67,8 @@
 		69A3758F1AAFF60F00AAE92B /* QRCodeReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A375871AAFF60F00AAE92B /* QRCodeReader.m */; };
 		69A375901AAFF60F00AAE92B /* QRCodeReaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A3758A1AAFF60F00AAE92B /* QRCodeReaderView.m */; };
 		69A375911AAFF60F00AAE92B /* QRCodeReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A3758C1AAFF60F00AAE92B /* QRCodeReaderViewController.m */; };
+		69AE086F1CB1E6D900A6B388 /* Iobfs4proxy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69AE086E1CB1E6D900A6B388 /* Iobfs4proxy.framework */; };
+		69AE08721CB1E6EB00A6B388 /* ObfsWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AE08711CB1E6EB00A6B388 /* ObfsWrapper.m */; };
 		69C6F6A514FACC3000894495 /* ProxyURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C6F6A414FACC3000894495 /* ProxyURLProtocol.m */; };
 		69E50FF81AAFDDF900CCADE5 /* BridgeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E50FF71AAFDDF900CCADE5 /* BridgeViewController.m */; };
 		69E50FFB1AAFE03900CCADE5 /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E50FFA1AAFE03900CCADE5 /* UIPlaceHolderTextView.m */; };
@@ -170,6 +172,9 @@
 		69A3758A1AAFF60F00AAE92B /* QRCodeReaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeReaderView.m; sourceTree = "<group>"; };
 		69A3758B1AAFF60F00AAE92B /* QRCodeReaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeReaderViewController.h; sourceTree = "<group>"; };
 		69A3758C1AAFF60F00AAE92B /* QRCodeReaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeReaderViewController.m; sourceTree = "<group>"; };
+		69AE086E1CB1E6D900A6B388 /* Iobfs4proxy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Iobfs4proxy.framework; path = ../Iobfs4proxy.framework; sourceTree = "<group>"; };
+		69AE08701CB1E6EB00A6B388 /* ObfsWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObfsWrapper.h; sourceTree = "<group>"; };
+		69AE08711CB1E6EB00A6B388 /* ObfsWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObfsWrapper.m; sourceTree = "<group>"; };
 		69C6F6A314FACC3000894495 /* ProxyURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProxyURLProtocol.h; path = ../ProxyURLProtocol.h; sourceTree = "<group>"; };
 		69C6F6A414FACC3000894495 /* ProxyURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProxyURLProtocol.m; path = ../ProxyURLProtocol.m; sourceTree = "<group>"; };
 		69E50FF61AAFDDF900CCADE5 /* BridgeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgeViewController.h; sourceTree = "<group>"; };
@@ -197,6 +202,7 @@
 				696EBD7C14F7877900B81BC9 /* CoreGraphics.framework in Frameworks */,
 				696F9EB614F8E21200BC5FDC /* CFNetwork.framework in Frameworks */,
 				69847C5414F788E900288277 /* libz.dylib in Frameworks */,
+				69AE086F1CB1E6D900A6B388 /* Iobfs4proxy.framework in Frameworks */,
 				69847C4714F788E100288277 /* libcrypto.a in Frameworks */,
 				69847C4814F788E100288277 /* libevent_core.a in Frameworks */,
 				69847C4914F788E100288277 /* libevent_extra.a in Frameworks */,
@@ -274,6 +280,7 @@
 		696EBD7614F7877900B81BC9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				69AE086E1CB1E6D900A6B388 /* Iobfs4proxy.framework */,
 				690B747D1BE4212900A5A4BE /* libed25519_donna.a */,
 				690B747E1BE4212900A5A4BE /* libed25519_ref10.a */,
 				690B747F1BE4212900A5A4BE /* libor-trunnel.a */,
@@ -438,6 +445,8 @@
 		69BB0A4C14F8D31800E7E909 /* Tor */ = {
 			isa = PBXGroup;
 			children = (
+				69AE08701CB1E6EB00A6B388 /* ObfsWrapper.h */,
+				69AE08711CB1E6EB00A6B388 /* ObfsWrapper.m */,
 				696F9EA814F8D51300BC5FDC /* TorWrapper.h */,
 				696F9EA914F8D51300BC5FDC /* TorWrapper.m */,
 				6940BD1D15F84C0C00FE74CB /* TorController.h */,
@@ -578,6 +587,7 @@
 				6940BD1F15F84C0C00FE74CB /* TorController.m in Sources */,
 				6963E61615FAB2EC00310E8D /* BookmarkTableViewController.m in Sources */,
 				692B338C15FAF2E500A23DD5 /* BookmarkEditViewController.m in Sources */,
+				69AE08721CB1E6EB00A6B388 /* ObfsWrapper.m in Sources */,
 				69E50FF81AAFDDF900CCADE5 /* BridgeViewController.m in Sources */,
 				69E50FFB1AAFE03900CCADE5 /* UIPlaceHolderTextView.m in Sources */,
 				69A3758E1AAFF60F00AAE92B /* QRCameraSwitchButton.m in Sources */,
@@ -669,6 +679,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../**";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OnionBrowser/OnionBrowser-Prefix.pch";
 				INFOPLIST_FILE = "OnionBrowser/OnionBrowser-Info.plist";
@@ -773,6 +784,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../**";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OnionBrowser/OnionBrowser-Prefix.pch";
 				INFOPLIST_FILE = "OnionBrowser/OnionBrowser-Info.plist";
@@ -793,6 +805,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../**";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OnionBrowser/OnionBrowser-Prefix.pch";
 				INFOPLIST_FILE = "OnionBrowser/OnionBrowser-Info.plist";

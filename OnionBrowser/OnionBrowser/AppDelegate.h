@@ -59,6 +59,9 @@
 
 @property (nonatomic) Boolean doPrepopulateBookmarks;
 
+@property (nonatomic) Boolean usingObfs;
+@property (nonatomic) Boolean didLaunchObfs;
+
 - (void)updateTorrc;
 - (NSURL *)applicationDocumentsDirectory;
 - (void)wipeAppData;
