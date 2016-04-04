@@ -23,8 +23,8 @@
 ###########################################################################
 # Choose your tor version and your currently-installed iOS SDK version:
 #
-VERSION="0.2.7.6"
-#VERSION="0.2.8.2-alpha"
+#VERSION="0.2.7.6"
+VERSION="0.2.8.2-alpha"
 USERSDKVERSION="9.3"
 MINIOSVERSION="8.0"
 VERIFYGPG=true
@@ -253,6 +253,7 @@ do
 	cp src/ext/ed25519/ref10/libed25519_ref10.a "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/lib/"
 	cp src/ext/ed25519/donna/libed25519_donna.a "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/lib/"
 	cp src/trunnel/libor-trunnel.a "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/lib/"
+	cp src/ext/keccak-tiny/libkeccak-tiny.a "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/lib/"
 
 	mkdir -p "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/common/"
 	mkdir -p "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/or/"
@@ -261,6 +262,7 @@ do
 	cp orconfig.h "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/"
 	find src/common -name "*.h" -exec cp {} "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/common/" \;
 	find src/ext -name "*.h" -exec cp {} "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/" \;
+	find src/ext/keccak-tiny -name "*.h" -exec cp {} "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/" \;
 	find src/or -name "*.h" -exec cp {} "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/or/" \;
 	find src/or -name "*.i" -exec cp {} "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/or/" \;
 	find src/tools -name "*.h" -exec cp {} "${INTERDIR}/${PLATFORM}${SDKVERSION}-${ARCH}.sdk/include/tools/" \;
@@ -272,7 +274,7 @@ done
 echo "Build library..."
 
 # These are the libs that comprise tor's internals
-OUTPUT_LIBS="libor-crypto.a libor-event.a libor.a libtor.a libcurve25519_donna.a libed25519_ref10.a libed25519_donna.a libor-trunnel.a"
+OUTPUT_LIBS="libor-crypto.a libor-event.a libor.a libtor.a libcurve25519_donna.a libed25519_ref10.a libed25519_donna.a libor-trunnel.a libkeccak-tiny.a"
 
 for OUTPUT_LIB in ${OUTPUT_LIBS}; do
 	INPUT_LIBS=""
