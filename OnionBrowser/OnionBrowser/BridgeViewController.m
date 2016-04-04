@@ -18,6 +18,9 @@
 @implementation BridgeViewController
 
 - (void)viewDidLoad {
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    [appDelegate.tor disableNetwork];
+
     [super viewDidLoad];
 
     self.title = @"Bridges";
@@ -40,11 +43,14 @@
     UIPlaceHolderTextView *txtView = [[UIPlaceHolderTextView alloc] initWithFrame:txtFrame];
     txtView.font = [UIFont systemFontOfSize:11];
     txtView.text = [self bridgesToBridgeLines];
+    NSString *placeholderText = @"In another browser, visit https://bridges.torproject.org/ and pick #2: Get Bridges. If your ISP blocks Tor, use the 'Advanced Options' section; 'obfs4' bridges are the recommended type. (Do not select IPv6.)";
     if ([QRCodeReader isAvailable]) {
-      txtView.placeholder = @"Visit https://bridges.torproject.org/ and Get Bridges. Tap the 'camera' icon above to scan the QR code, or manually copy-and-paste the \"bridge lines\" here:\n\ni.e.:\n172.0.0.1:1234 912ec803b2ce49e4a541068d495ab570912ec803\n172.0.0.2:4567 098f6bcd4621d373cade4e832627b4f6098f6bcd\n172.0.0.3:7890 a541068d495ab570912ec803a541068d495ab570\n\nPlease note that Onion Browser does NOT currently support bridges using Pluggable Transports (obfs3, scramblesuit, obfs4, etc.)\n\nIf you are in a location that uses more sophisticated methods to block Tor, you might have trouble getting a connection in Onion Browser until Pluggable Transports are supported.";
+      placeholderText = [placeholderText stringByAppendingString:@"\n\nTap the 'camera' icon above to use the QR code from the website, or manually copy-and-paste the \"bridge lines\" here:"];
     } else {
-      txtView.placeholder = @"Visit https://bridges.torproject.org/ and Get Bridges. Then copy-and-paste the \"bridge lines\" here:\n\ni.e.:\n172.0.0.1:1234 912ec803b2ce49e4a541068d495ab570912ec803\n172.0.0.2:4567 098f6bcd4621d373cade4e832627b4f6098f6bcd\n172.0.0.3:7890 a541068d495ab570912ec803a541068d495ab570\n\nPlease note that Onion Browser does NOT currently support bridges using Pluggable Transports (obfs3, scramblesuit, obfs4, etc.)\n\nIf you are in a location that uses more sophisticated methods to block Tor, you might have trouble getting a connection in Onion Browser until Pluggable Transports are supported.";
+      placeholderText = [placeholderText stringByAppendingString:@" Then copy-and-paste the \"bridge lines\" here:"];
     }
+    placeholderText = [placeholderText stringByAppendingString:@"\n\ni.e.:\nobfs4 172.0.0.1:1234 123456319E89E5C6223052AA525A192AFBC85D55 cert=GGGS1TX4R81m3r0HBl79wKy1OtPPNR2CZUIrHjkRg65Vc2VR8fOyo64f9kmT1UAFG7j0HQ iat-mode=0\n\nobfs4 172.0.0.2:4567 ABCDEF825B3B9EA6A98C83AC41F7099D67007EA5 cert=xpmQtKUqQ/6v5X7ijgYE/f03+l2/EuQ1dexjyUhh16wQlu/cpXUGalmhDIlhuiQPNEKmKw iat-mode=0\n\nobfs4 172.0.0.3:7890 098765AB960E5AC6A629C729434FF84FB5074EC2 cert=VW5f8+IBUWpPFxF+rsiVy2wXkyTQG7vEd+rHeN2jV5LIDNu8wMNEOqZXPwHdwMVEBdqXEw iat-mode=0"];
+    txtView.placeholder = placeholderText;
     txtView.placeholderColor = [UIColor grayColor];
     txtView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
     txtView.tag = 50;
@@ -105,25 +111,34 @@
 - (void)reader:(QRCodeReaderViewController *)reader didScanResult:(NSString *)result {
     [self dismissViewControllerAnimated:YES completion:^{
 
-        if ([result containsString:@"obfs3"] || [result containsString:@"obfs4"] || [result containsString:@"scramblesuit"]) {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Pluggable Transports Not Supported" message:@"At least one bridge line you scanned contains a pluggable transport, such as 'obfs3', 'obfs4', or 'scramblesuit'.\n\nOnion Browser does not currently support these bridges, due to an incompatibility in iOS. Please select 'none' for 'Do you need a Pluggable Transport?' when getting bridges on the Tor bridge site." preferredStyle:UIAlertControllerStyleAlert];
+        /* if ([result containsString:@"obfs3"] |[result containsString:@"scramblesuit"]) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Unsupported Pluggable Transport" message:@"At least one bridge line you scanned contains an 'obfs3' or 'scramblesuit' bridge.\n\nOnion Browser does not currently support these bridges. Please select 'obfs4' or 'none' for 'Do you need a Pluggable Transport?' when getting bridges on the Tor bridge site." preferredStyle:UIAlertControllerStyleAlert];
             [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
             [self presentViewController:alert animated:YES completion:NULL];
-        } else {
+        } else { */
             NSString *realResult = result;
+
 
             // I think QRCode used to return the exact string we wanted (newline delimited),
             // but now it returns a JSON-like array ['bridge1', 'bridge2'...] so parse that out.
             if ([result containsString:@"['"] || [result containsString:@"[\""]) {
               // Actually, the QRCode is json-like. It uses single-quote string array, where JSON only
               // allows double-quote.
-              realResult = [result stringByReplacingOccurrencesOfString:@"['" withString:@"[\""];
-              realResult = [result stringByReplacingOccurrencesOfString:@"', '" withString:@"\", \""];
-              realResult = [result stringByReplacingOccurrencesOfString:@"','" withString:@"\",\""];
-              realResult = [result stringByReplacingOccurrencesOfString:@"']" withString:@"\"]"];
+              realResult = [realResult stringByReplacingOccurrencesOfString:@"['" withString:@"[\""];
+              realResult = [realResult stringByReplacingOccurrencesOfString:@"', '" withString:@"\", \""];
+              realResult = [realResult stringByReplacingOccurrencesOfString:@"','" withString:@"\",\""];
+              realResult = [realResult stringByReplacingOccurrencesOfString:@"']" withString:@"\"]"];
+
+              #ifdef DEBUG
+              NSLog(@"realResult: %@", realResult);
+              #endif
 
               NSError *e = nil;
               NSArray *resultLines = [NSJSONSerialization JSONObjectWithData:[realResult dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:&e];
+
+              #ifdef DEBUG
+              NSLog(@"resultLines: %@", resultLines);
+              #endif
 
               if (resultLines) {
                 realResult = [resultLines componentsJoinedByString:@"\n"];
@@ -139,7 +154,7 @@
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Bridges Scanned" message:@"Successfully scanned bridges. Please press 'Save' and restart the app for these changes to take effect." preferredStyle:UIAlertControllerStyleAlert];
             [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
             [self presentViewController:alert animated:YES completion:NULL];
-        }
+        /* } */
     }];
 }
 
@@ -178,12 +193,12 @@
     NSString *newLine = [line stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     if ([newLine isEqualToString:@""]) {
       // skip empty lines
-    } else if ([newLine containsString:@"obfs3"] || [newLine containsString:@"obfs4"] || [newLine containsString:@"scramblesuit"]) {
-      UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Pluggable Transports Not Supported" message:@"At least one bridge line you entered contained a pluggable transport, such as 'obfs3', 'obfs4', or 'scramblesuit'.\n\nOnion Browser does not currently support these bridges, due to an incompatibility in iOS. Please select 'none' for 'Do you need a Pluggable Transport?' when getting bridges on the Tor bridge site." preferredStyle:UIAlertControllerStyleAlert];
+    } /* else if ([newLine containsString:@"obfs3"] || [newLine containsString:@"scramblesuit"]) {
+      UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Unsupported Pluggable Transport" message:@"At least one bridge line you scanned contains an 'obfs3' or 'scramblesuit' bridge.\n\nOnion Browser does not currently support these bridges. Please select 'obfs4' or 'none' for 'Do you need a Pluggable Transport?' when getting bridges on the Tor bridge site." preferredStyle:UIAlertControllerStyleAlert];
       [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
       [self presentViewController:alert animated:YES completion:NULL];
       shouldSaveAndExit = NO;
-    } else {
+    } */ else {
       Bridge *newBridge = [NSEntityDescription insertNewObjectForEntityForName:@"Bridge" inManagedObjectContext:ctx];
       [newBridge setConf:newLine];
       NSError *err = nil;
@@ -209,11 +224,11 @@
   if (![appDelegate.tor didFirstConnect]) {
       UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Please Restart App" message:@"Onion Browser will now close. Please start the app again to retry the Tor connection with the newly-configured bridges.\n\n(If you restart and the app stays stuck at \"Connecting...\", please come back and double-check your bridge configuration or remove your bridges.)" preferredStyle:UIAlertControllerStyleAlert];
       [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-          AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
           [appDelegate wipeAppData];
           exit(0);
       }]];
       [self presentViewController:alert animated:YES completion:NULL];
+      // App will die after this, so don't enable network.
   } else {
       NSFetchRequest *request = [[NSFetchRequest alloc] init];
       NSEntityDescription *entity = [NSEntityDescription entityForName:@"Bridge" inManagedObjectContext:ctx];
@@ -228,18 +243,27 @@
               pluralize = @"s are";
           }
           UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Bridges" message:[NSString stringWithFormat:@"%ld bridge%@ configured.You may need to quit the app and restart it to change the connection method.\n\n(If you restart and the app stays stuck at \"Connecting...\", please come back and double-check your bridge configuration or remove your bridges.)", (unsigned long)[newResults count], pluralize] preferredStyle:UIAlertControllerStyleAlert];
-          [alert addAction:[UIAlertAction actionWithTitle:@"Continue anyway" style:UIAlertActionStyleCancel handler:nil]];
+          [alert addAction:[UIAlertAction actionWithTitle:@"Continue anyway" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+              // User has opted to continue normally, so tell Tor to reconnect
+              [appDelegate recheckObfsproxy];
+              [appDelegate.tor enableNetwork];
+              [appDelegate.tor hupTor];
+          }]];
           [alert addAction:[UIAlertAction actionWithTitle:@"Restart app" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
-              AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
               [appDelegate wipeAppData];
               exit(0);
           }]];
           [self presentViewController:alert animated:YES completion:NULL];
+
       } else {
           UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Bridges Disabled" message:@"No bridges are configured, so bridge connection mode is disabled. If you previously had bridges, you may need to quit the app and restart it to change the connection method.\n\n(If you restart and the app stays stuck at \"Connecting...\", please come back and double-check your bridge configuration or remove your bridges.)" preferredStyle:UIAlertControllerStyleAlert];
-          [alert addAction:[UIAlertAction actionWithTitle:@"Continue anyway" style:UIAlertActionStyleCancel handler:nil]];
+          [alert addAction:[UIAlertAction actionWithTitle:@"Continue anyway" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+              // User has opted to continue normally, so tell Tor to reconnect
+              [appDelegate recheckObfsproxy];
+              [appDelegate.tor enableNetwork];
+              [appDelegate.tor hupTor];
+          }]];
           [alert addAction:[UIAlertAction actionWithTitle:@"Restart app" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
-              AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
               [appDelegate wipeAppData];
               exit(0);
           }]];

@@ -193,6 +193,21 @@
 }
 
 
+- (void) disableNetwork {
+    [_mSocket writeString:@"setconf disablenetwork=1\n" encoding:NSUTF8StringEncoding];
+}
+
+- (void) enableNetwork {
+    [_mSocket writeString:@"setconf disablenetwork=0\n" encoding:NSUTF8StringEncoding];
+}
+
+- (void)getCircuitInfo {
+    [_mSocket writeString:@"getinfo circuit-status\n" encoding:NSUTF8StringEncoding];
+}
+/*
+- (void)getCircuitInfoResponse {
+}
+*/
 
 - (void)netsocketConnected:(ULINetSocket*)inNetSocket {
     /* Authenticate on first control port connect */
@@ -329,6 +344,11 @@
                                                                  repeats:NO];
         }
     }
+    #ifdef DEBUG
+    else if ([msgIn rangeOfString:@"circuit-status"].location != NSNotFound) {
+      NSLog(@"%@", msgIn);
+    }
+    #endif
 }
 
 - (void)netsocketDataSent:(ULINetSocket*)inNetSocket { }

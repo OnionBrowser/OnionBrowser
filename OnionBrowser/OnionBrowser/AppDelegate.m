@@ -12,7 +12,6 @@
 #include <sys/sysctl.h>
 #import <sys/utsname.h>
 #import "BridgeViewController.h"
-#import "ObfsWrapper.h"
 
 @interface AppDelegate()
 - (Boolean)torrcExists;
@@ -26,6 +25,7 @@
     startUrl,
     appWebView,
     tor = _tor,
+    obfsproxy = _obfsproxy,
     window = _window,
     windowOverlay,
     managedObjectContext = __managedObjectContext,
@@ -33,12 +33,12 @@
     persistentStoreCoordinator = __persistentStoreCoordinator,
     doPrepopulateBookmarks,
     usingObfs,
-    didLaunchObfs
+    didLaunchObfsProxy
 ;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     usingObfs = NO;
-    didLaunchObfs = NO;
+    didLaunchObfsProxy = NO;
 
     // Detect bookmarks file.
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Settings.sqlite"];
@@ -164,8 +164,38 @@
     }
 }
 
--(void) afterFirstRun {
+-(void) recheckObfsproxy {
+    /* Launches obfs4proxy if it hasn't been launched yet
+     * but we have some PT bridges that we didn't have before.
+     * NOTE that this does not HUP tor. Caller should also perform
+     * that action.
+     */
     [self updateTorrc];
+    if (usingObfs && !didLaunchObfsProxy) {
+      #ifdef DEBUG
+      NSLog(@"have obfs* or meek_lite or scramblesuit bridges, will launch obfs4proxy");
+      #endif
+      [_obfsproxy start];
+      didLaunchObfsProxy = YES;
+      [NSThread sleepForTimeInterval:0.1];
+    }
+}
+-(void) afterFirstRun {
+    /* On very first run of app, we check with user if they want bridges
+     * (so we don't dangerously launch un-bridged network connections).
+     * After they are done configuring bridges, this happens.
+     * On successive runs, we simply jump straight to here on app launch.
+     */
+    _obfsproxy = [[ObfsWrapper alloc] init];
+    [self updateTorrc];
+    if (usingObfs && !didLaunchObfsProxy) {
+      #ifdef DEBUG
+      NSLog(@"have obfs* or meek_lite or scramblesuit bridges, will launch obfs4proxy");
+      #endif
+      [_obfsproxy start];
+      didLaunchObfsProxy = YES;
+      [NSThread sleepForTimeInterval:0.1];
+    }
     _tor = [[TorController alloc] init];
     [_tor startTor];
 }
@@ -432,7 +462,20 @@
 
         [myHandle writeData:[@"UseBridges 1\n" dataUsingEncoding:NSUTF8StringEncoding]];
         for (Bridge *bridge in mutableFetchResults) {
-          [myHandle writeData:[[NSString stringWithFormat:@"bridge %@\n", bridge.conf] dataUsingEncoding:NSUTF8StringEncoding]];
+          if ([bridge.conf containsString:@"obfs4"] || [bridge.conf containsString:@"meek_lite"]  || [bridge.conf containsString:@"obfs2"]  || [bridge.conf containsString:@"obfs3"]  || [bridge.conf containsString:@"scramblesuit"] ) {
+            usingObfs = YES;
+          }
+          [myHandle writeData:[[NSString stringWithFormat:@"Bridge %@\n", bridge.conf] dataUsingEncoding:NSUTF8StringEncoding]];
+        }
+
+        if (usingObfs) {
+          // TODO iObfs#1 eventually fix this so we use random ports
+          //      and communicate that from obfs4proxy to iOS
+          [myHandle writeData:[@"ClientTransportPlugin obfs4 socks5 127.0.0.1:47351\n" dataUsingEncoding:NSUTF8StringEncoding]];
+          [myHandle writeData:[@"ClientTransportPlugin meek_lite socks5 127.0.0.1:47352\n" dataUsingEncoding:NSUTF8StringEncoding]];
+          [myHandle writeData:[@"ClientTransportPlugin obfs2 socks5 127.0.0.1:47353\n" dataUsingEncoding:NSUTF8StringEncoding]];
+          [myHandle writeData:[@"ClientTransportPlugin obfs3 socks5 127.0.0.1:47354\n" dataUsingEncoding:NSUTF8StringEncoding]];
+          [myHandle writeData:[@"ClientTransportPlugin scramblesuit socks5 127.0.0.1:47355\n" dataUsingEncoding:NSUTF8StringEncoding]];
         }
     }
 
@@ -660,6 +703,7 @@
                   [fileManager setAttributes:doNotEncryptAttribute ofItemAtPath:[fileURL path] error:nil];
               } else if (
                 [filePath containsString:@"torrc"] ||
+                [filePath containsString:@"pt_state"] ||
                 [filePath hasPrefix:[NSString stringWithFormat:@"%@cached-certs", tmpDirStr]] ||
                 [filePath hasPrefix:[NSString stringWithFormat:@"%@cached-microdesc", tmpDirStr]] ||
                 [filePath hasPrefix:[NSString stringWithFormat:@"%@control_auth_cookie", tmpDirStr]] ||

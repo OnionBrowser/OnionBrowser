@@ -175,6 +175,13 @@ const char AlertViewIncomingUrl;
 -(void)loadURL: (NSURL *)navigationURL {
     NSString *urlProto = [[navigationURL scheme] lowercaseString];
     if ([urlProto isEqualToString:@"onionbrowser"]||[urlProto isEqualToString:@"onionbrowsers"]||[urlProto isEqualToString:@"about"]||[urlProto isEqualToString:@"http"]||[urlProto isEqualToString:@"https"]) {
+        /* circuit & pluggable transport debugging: */
+        /*
+        NSLog(@"DEBUG: getinfo stream-status");
+        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        [appDelegate.tor getCircuitInfo];
+        */
+
         /***** One of our supported protocols *****/
 
         // Cancel any existing nav
@@ -871,6 +878,7 @@ const char AlertViewIncomingUrl;
 - (void)openOptionsMenu {
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     if (![appDelegate.tor didFirstConnect]) {
+        [appDelegate.tor disableNetwork];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Bridge Configuration"
                                                         message:@"You can configure bridges here if your ISP normally blocks access to Tor.\n\nIf you did not mean to access the Bridge configuration, press \"Cancel\", then \"Restart App\", and then re-launch Onion Browser."
                                                        delegate:nil

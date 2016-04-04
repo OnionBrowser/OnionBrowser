@@ -10,8 +10,11 @@
 
 @interface ObfsWrapper : NSThread
 
-@property (nonatomic) unsigned int obfsSocksPort;
+@property (nonatomic) unsigned int obfs4SocksPort;
 @property (nonatomic) unsigned int meekSocksPort;
+@property (nonatomic) unsigned int obfs2SocksPort;
+@property (nonatomic) unsigned int obfs3SocksPort;
+@property (nonatomic) unsigned int scramblesuitSocksPort;
 
 
 @end

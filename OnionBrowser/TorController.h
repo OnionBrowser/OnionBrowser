@@ -34,10 +34,16 @@
 
 - (void)requestNewTorIdentity;
 
+- (void)disableNetwork;
+- (void)enableNetwork;
+
 - (void)activateTorCheckLoop;
 - (void)disableTorCheckLoop;
 - (void)checkTor;
 - (void)checkTorStatusTimeout;
+
+- (void)getCircuitInfo;
+//- (NSString *)getCircuitInfoResponse;
 
 - (void)reachabilityChanged;
 - (void)appDidEnterBackground;
