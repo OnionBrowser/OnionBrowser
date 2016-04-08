@@ -4,17 +4,17 @@ xcode_sdk: iphonesimulator9.3
 before_install:
 - brew update
 - brew unlink xctool
-- brew install xctool
+- brew uninstall xctool
+- brew install xctool --HEAD
 - brew link xctool
 install:
   - ./build-libssl.sh --noverify --simonly
   - ./build-libevent.sh --noverify --simonly
   - ./build-tor.sh --noverify --simonly
 
-before_script:
-  - gem install cocoapods
 script:
-  - xctool -project OnionBrowser/OnionBrowser.xcodeproj -scheme OnionBrowser -sdk iphonesimulator9.3 -arch x86_64 build test
+  - xctool -project OnionBrowser/OnionBrowser.xcodeproj -scheme OnionBrowser -sdk iphonesimulator9.3 -configuration Debug -destination platform='iOS Simulator',OS=9.3,name='iPhone 6s' clean test -testTimeout 90
+
 
 notifications:
   email: false
