@@ -70,7 +70,7 @@ TOR_DIST_URL="https://dist.torproject.org/"
 
 # No need to change this since xcode build will only compile in the
 # necessary bits from the libraries we create
-ARCHS="x86_64 armv7 arm64"
+ARCHS="i386 x86_64 armv7 arm64"
 
 DEVELOPER=`xcode-select -print-path`
 #DEVELOPER="/Applications/Xcode.app/Contents/Developer"
@@ -81,7 +81,7 @@ if [ "$1" == "--noverify" ]; then
 	VERIFYGPG=false
 fi
 if [ "$2" == "--simonly" ]; then
-	ARCHS="x86_64"
+	ARCHS="i386 x86_64"
 fi
 
 if [[ ! -z "$TRAVIS" && $TRAVIS ]]; then
