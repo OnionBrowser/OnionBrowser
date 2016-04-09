@@ -9,9 +9,9 @@ before_install:
 - brew install xctool --HEAD
 
 install:
-  - ./build-libssl.sh --noverify --simonly
-  - ./build-libevent.sh --noverify --simonly
-  - ./build-tor.sh --noverify --simonly
+  - ./build-libssl.sh --noverify --travis
+  - ./build-libevent.sh --noverify --travis
+  - ./build-tor.sh --noverify --travis
 
 script:
-  - xctool -project OnionBrowser/OnionBrowser.xcodeproj -scheme OnionBrowser -sdk iphonesimulator9.3 -configuration TestBuilds -destination platform='iOS Simulator',OS=9.3,name='iPhone 6s' clean test -freshInstall -testTimeout 90
+  - xctool -project OnionBrowser/OnionBrowser.xcodeproj -scheme OnionBrowser -sdk iphonesimulator9.3 -configuration TestBuilds -destination platform='iOS Simulator',OS=9.3,name='iPad Pro' clean test -freshInstall -testTimeout 90
