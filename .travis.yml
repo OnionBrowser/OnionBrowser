@@ -14,4 +14,4 @@ install:
   - ./build-tor.sh --noverify --travis
 
 script:
-  - xctool -project OnionBrowser/OnionBrowser.xcodeproj -scheme OnionBrowser -sdk iphonesimulator9.3 -configuration TestBuilds -destination platform='iOS Simulator',OS=9.3,name='iPad Pro' clean test -freshInstall -testTimeout 90
+  - ARCHS=x86_64 VALID_ARCHS=x86_64 CURRENT_ARCH=x86_64 ONLY_ACTIVE_ARCH=NO xctool -project OnionBrowser/OnionBrowser.xcodeproj -scheme OnionBrowser -sdk iphonesimulator9.3 -configuration TestBuilds -destination platform='iOS Simulator',OS=9.3,name='iPad Pro' clean test -freshInstall -testTimeout 90
