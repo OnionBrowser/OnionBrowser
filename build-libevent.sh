@@ -47,7 +47,7 @@ if [ "$1" == "--noverify" ]; then
 	VERIFYGPG=false
 fi
 if [ "$2" == "--travis" ]; then
-	ARCHS="x86_64"
+	ARCHS="i386 x86_64"
 fi
 
 if [[ ! -z "$TRAVIS" && $TRAVIS ]]; then
