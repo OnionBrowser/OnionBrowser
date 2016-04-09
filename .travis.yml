@@ -1,20 +1,17 @@
 language: objective-c
 osx_image: xcode7.3
 xcode_sdk: iphonesimulator9.3
+
+# Temporarily using xctool head due to xcode7.3 issue
 before_install:
 - brew update
-- brew unlink xctool
-- brew install xctool
-- brew link xctool
+- brew uninstall --force xctool
+- brew install xctool --HEAD
+
 install:
-  - ./build-libssl.sh --noverify --simonly
-  - ./build-libevent.sh --noverify --simonly
-  - ./build-tor.sh --noverify --simonly
+  - ./build-libssl.sh --noverify --travis
+  - ./build-libevent.sh --noverify --travis
+  - ./build-tor.sh --noverify --travis
 
-before_script:
-  - gem install cocoapods
 script:
-  - xctool -project OnionBrowser/OnionBrowser.xcodeproj -scheme OnionBrowser -sdk iphonesimulator9.3 -arch x86_64 build test
-
-notifications:
-  email: false
+  - xctool -project OnionBrowser/OnionBrowser.xcodeproj -scheme OnionBrowser -sdk iphonesimulator9.3 -configuration TestBuilds -destination platform='iOS Simulator',OS=9.3,name='iPad Pro' clean test -freshInstall -testTimeout 90

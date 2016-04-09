@@ -122,7 +122,7 @@
 }
 
 -(void) startup2 {
-    if (![self torrcExists]) {
+    if (![self torrcExists] && ![self isRunningTests]) {
       UIAlertController *alert2 = [UIAlertController alertControllerWithTitle:@"Welcome to Onion Browser" message:@"If you are in a location that blocks connections to Tor, you may configure bridges before trying to connect for the first time." preferredStyle:UIAlertControllerStyleAlert];
 
       [alert2 addAction:[UIAlertAction actionWithTitle:@"Connect to Tor" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
@@ -529,9 +529,9 @@
 }
 
 - (Boolean)isRunningTests {
-    NSDictionary* environment = [[NSProcessInfo processInfo] environment];
-    NSString* injectBundle = environment[@"XCInjectBundle"];
-    return [[injectBundle pathExtension] isEqualToString:@"xctest"];
+    NSDictionary* environment = [ [ NSProcessInfo processInfo ] environment ];
+    NSString* theTestConfigPath = environment[ @"XCTestConfigurationFilePath" ];
+    return theTestConfigPath != nil;
 }
 
 
