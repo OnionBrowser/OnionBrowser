@@ -273,7 +273,15 @@
 	[self performSelector:@selector(adjustLayout) withObject:nil afterDelay:0.5];
 }
 
-- (void)keyboardWillShow:(NSNotification *)notification {
+- (void)viewIsNoLongerVisible
+{
+	if ([urlField isFirstResponder]) {
+		[urlField resignFirstResponder];
+	}
+}
+
+- (void)keyboardWillShow:(NSNotification *)notification
+{
 	CGRect keyboardStart = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
 	CGRect keyboardEnd = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
 	

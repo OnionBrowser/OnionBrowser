@@ -21,6 +21,7 @@
 - (id)settingsButton;
 
 - (void)viewIsVisible;
+- (void)viewIsNoLongerVisible;
 
 - (WebViewTab *)addNewTabForURL:(NSURL *)url;
 - (void)removeTab:(NSNumber *)tabNumber andFocusTab:(NSNumber *)toFocus;

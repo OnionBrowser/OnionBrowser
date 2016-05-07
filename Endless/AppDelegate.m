@@ -43,6 +43,7 @@
 - (void)applicationWillResignActive:(UIApplication *)application
 {
 	[application ignoreSnapshotOnNextApplicationLaunch];
+	[[self webViewController] viewIsNoLongerVisible];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
