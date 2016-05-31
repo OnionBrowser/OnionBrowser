@@ -23,7 +23,7 @@
 ###########################################################################
 #  Choose your openssl version and your currently-installed iOS SDK version:
 #
-VERSION="1.0.2g"
+VERSION="1.0.2h"
 USERSDKVERSION="9.3"
 MINIOSVERSION="8.0"
 VERIFYGPG=true
@@ -84,7 +84,8 @@ set -e
 
 if [ ! -e "${SRCDIR}/openssl-${VERSION}.tar.gz" ]; then
 	echo "Downloading openssl-${VERSION}.tar.gz"
-	curl -O http://www.openssl.org/source/openssl-${VERSION}.tar.gz
+	#curl -O https://www.openssl.org/source/old/${VERSION:0:5}/openssl-${VERSION}.tar.gz
+	curl -O https://www.openssl.org/source/openssl-${VERSION}.tar.gz
 fi
 echo "Using openssl-${VERSION}.tar.gz"
 
@@ -92,7 +93,8 @@ echo "Using openssl-${VERSION}.tar.gz"
 # up to you to set up `gpg` and add keys to your keychain
 if $VERIFYGPG; then
 	if [ ! -e "${SRCDIR}/openssl-${VERSION}.tar.gz.asc" ]; then
-		curl -O http://www.openssl.org/source/openssl-${VERSION}.tar.gz.asc
+		#curl -O https://www.openssl.org/source/old/${VERSION:0:5}/openssl-${VERSION}.tar.gz.asc
+		curl -O https://www.openssl.org/source/openssl-${VERSION}.tar.gz.asc
 	fi
 	echo "Using openssl-${VERSION}.tar.gz.asc"
 	if out=$(gpg --status-fd 1 --verify "openssl-${VERSION}.tar.gz.asc" "openssl-${VERSION}.tar.gz" 2>/dev/null) &&
