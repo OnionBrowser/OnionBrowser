@@ -2,19 +2,15 @@
 //  BridgeViewController.h
 //  OnionBrowser
 //
-//  Created by Mike Tigas on 3/10/15.
+//  Created by Mike Tigas on 7/8/16.
 //
 //
 
 #import <UIKit/UIKit.h>
-#import "QRCodeReaderViewController.h"
 
-@interface BridgeViewController : UIViewController <QRCodeReaderDelegate>
+@interface BridgeViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 
-- (void)qrscan;
-- (void)save;
-- (void)cancel;
-
-- (void)exitModal;
+@property (nonatomic, retain) UIBarButtonItem *backButton;
+- (void)goBack;
 
 @end

@@ -886,7 +886,7 @@ const char AlertViewIncomingUrl;
                                               otherButtonTitles:nil];
         [alert show];
         
-        BridgeViewController *bridgesVC = [[BridgeViewController alloc] init];
+        BridgeViewController *bridgesVC = [[BridgeViewController alloc] initWithStyle:UITableViewStyleGrouped];
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:bridgesVC];
         navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
         [self presentViewController:navController animated:YES completion:nil];

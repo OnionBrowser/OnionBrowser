@@ -129,7 +129,7 @@
           [self afterFirstRun];
       }]];
       [alert2 addAction:[UIAlertAction actionWithTitle:@"Configure Bridges" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-          BridgeViewController *bridgesVC = [[BridgeViewController alloc] init];
+          BridgeViewController *bridgesVC = [[BridgeViewController alloc] initWithStyle:UITableViewStyleGrouped];
           UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:bridgesVC];
           navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
           [_window.rootViewController presentViewController:navController animated:YES completion:nil];
