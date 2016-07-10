@@ -66,6 +66,7 @@
 @property (nonatomic) Boolean didLaunchObfsProxy;
 
 - (void)recheckObfsproxy;
+- (NSUInteger) numBridgesConfigured;
 - (void)updateTorrc;
 - (NSURL *)applicationDocumentsDirectory;
 - (void)wipeAppData;

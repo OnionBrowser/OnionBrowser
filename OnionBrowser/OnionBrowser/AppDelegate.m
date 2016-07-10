@@ -424,6 +424,22 @@
     }
 }
 
+-(NSUInteger) numBridgesConfigured {
+
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Bridge" inManagedObjectContext:self.managedObjectContext];
+	[request setEntity:entity];
+
+	NSError *error = nil;
+	NSMutableArray *mutableFetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+	if (mutableFetchResults == nil) {
+		// Handle the error.
+	}
+	return [mutableFetchResults count];
+}
+
+
+
 - (Boolean)torrcExists {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSString *destTorrc = [[[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"torrc"] relativePath];
@@ -477,6 +493,7 @@
           [myHandle writeData:[@"ClientTransportPlugin obfs3 socks5 127.0.0.1:47354\n" dataUsingEncoding:NSUTF8StringEncoding]];
           [myHandle writeData:[@"ClientTransportPlugin scramblesuit socks5 127.0.0.1:47355\n" dataUsingEncoding:NSUTF8StringEncoding]];
         }
+		[myHandle closeFile];
     }
 
     // Encrypt the new torrc (since this "running" copy of torrc may now contain bridges)

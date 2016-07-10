@@ -124,7 +124,10 @@ const char AlertViewIncomingUrl;
     }
     //NSLog(@"%lu", (unsigned long)[[UIScreen mainScreen] bounds].size.height);
 
-    NSString *status = [NSString stringWithFormat:@""
+	AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+	NSUInteger numBridges = [appDelegate numBridgesConfigured];
+
+	NSString *status = [NSString stringWithFormat:@""
       "<html lang='en-us'><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'/><meta charset='utf-8' />"
       "<style type='text/css'>body{font:%upt Helvetica;line-height:1.35em;margin-top:%@} "
       "progress{background:#fff;border:0;height:18px;border-radius:9px;-webkit-appearance:none;appearance:none} "
@@ -136,15 +139,30 @@ const char AlertViewIncomingUrl;
       "<p>%@<br>"
       "<progress max='100' value='%@' style='width:100%%'></progress><br></p>"
       "<p>If this takes longer than a minute, please close and re-open the app.</p>"
-      "<p>If your ISP blocks connections to Tor, you may configure bridges by  "
-      "pressing the middle (settings) button at the bottom of the screen.</p>"
-      "<p>If you continue to have issues, go to:<br><b>onionbrowser.com/help</b>"
-      "</div></body></html>",
+						,
       fontsize,
       margintop,
       progress_str,
       summary_str,
       progress_str];
+
+	if (numBridges == 0) {
+		status = [status stringByAppendingString:@""
+				  "<p>No bridges configured: connecting directly to Tor. If your ISP blocks connections to Tor, you may configure bridges by  "
+				  "pressing the middle (settings) button at the bottom of the screen.</p>"];
+	} else {
+		status = [status stringByAppendingString:[NSString stringWithFormat:@""
+				  "<p>Using %ld configured bridge", (unsigned long)numBridges]];
+		if (numBridges > 1) {
+			status = [status stringByAppendingString:@"s"];
+		}
+		status = [status stringByAppendingString:@". Press the middle (settings) button at the bottom of the screen to edit bridge configuration if you have issues connecting.</p>"];
+	}
+
+	status = [status stringByAppendingString:@""
+			  "<p>If you continue to have issues, go to:<br><b>onionbrowser.com/help</b>"
+			  "</div></body></html>"];
+
 
     //NSLog(@"%@", status);
 
@@ -1199,5 +1217,4 @@ const char AlertViewIncomingUrl;
     [_progressView setProgress:progress animated:YES];
     self.title = [_myWebView stringByEvaluatingJavaScriptFromString:@"document.title"];
 }
-
 @end

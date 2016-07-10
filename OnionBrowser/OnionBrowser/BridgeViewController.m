@@ -51,9 +51,10 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
 	if (section == 0) {
-        NSString *bridgeMsg = @"\nBridges are Tor relays that help circumvent censorship. You can try bridges if Tor is blocked by your ISP.\n\nYou may use built-in (provided) bridges or obtain your own custom bridge configuration at bridges.torproject.org. Each type of bridge uses a different method to avoid censorship: if one type does not work, try using a different one.";
+        NSString *bridgeMsg = @"\nBridges are Tor relays that help circumvent censorship. You can try bridges if Tor is blocked by your ISP.\n\nYou may use built-in (provided) bridges or obtain your own custom bridge configuration at bridges.torproject.org. Each type of bridge uses a different method to avoid censorship: if one type does not work, try using a different one.\n\niOS 10 users: the provided bridges do not currently work in the iOS 10 beta; custom obfs4 bridges do not currently work in the iOS 10 beta.";
 
-		NSUInteger numBridges = [self numBridgesConfigured];
+		AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+		NSUInteger numBridges = [appDelegate numBridgesConfigured];
 
 		if (numBridges == 0) {
 			bridgeMsg = [bridgeMsg stringByAppendingString:@"\n\nNo bridges currently configured\n"];
@@ -64,7 +65,7 @@
 				bridgeMsg = [bridgeMsg stringByAppendingString:@"s"];
             }
 		}
-        bridgeMsg = [bridgeMsg stringByAppendingString:@"\n\nYou can choose one of the following to update your bridges:\n"];
+        bridgeMsg = [bridgeMsg stringByAppendingString:@"\nChoose a new config:\n"];
 		return bridgeMsg;
 	} else
 		return nil;
@@ -127,22 +128,6 @@
 
 
 
--(NSUInteger) numBridgesConfigured {
-	AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-
-	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Bridge" inManagedObjectContext:appDelegate.managedObjectContext];
-	[request setEntity:entity];
-
-	NSError *error = nil;
-	NSMutableArray *mutableFetchResults = [[appDelegate.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
-	if (mutableFetchResults == nil) {
-		// Handle the error.
-	}
-	return [mutableFetchResults count];
-}
-
-
 
 
 - (void)clearBridges {
@@ -189,16 +174,17 @@
 	}
     [self.tableView reloadData];
 
+	[appDelegate updateTorrc];
+
     [self finishSave];
 }
 
 - (void)finishSave {
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
 
-    NSUInteger numBridges = [self numBridgesConfigured];
+    NSUInteger numBridges = [appDelegate numBridgesConfigured];
 
     if (![appDelegate.tor didFirstConnect]) {
-        NSUInteger numBridges = [self numBridgesConfigured];
         NSString *msg;
         if (numBridges == 0) {
             msg = @"Onion Browser will now close so you can restart the app without bridges.";

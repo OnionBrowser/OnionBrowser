@@ -92,7 +92,8 @@
 	else if (section == 6) {
 		NSString *bridgeMsg = @"Tor Bridges\nUse bridges if your Internet Service Provider (ISP) blocks connections to Tor.";
 
-		NSUInteger numBridges = [self numBridgesConfigured];
+		AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+		NSUInteger numBridges = [appDelegate numBridgesConfigured];
 
 		if (numBridges == 0) {
 			bridgeMsg = [bridgeMsg stringByAppendingString:@"\nNo bridges currently configured."];
@@ -421,23 +422,5 @@
 		[self.navigationController pushViewController:bridgesVC animated:YES];
     }
     [tableView reloadData];
-}
-
-
-
-
--(NSUInteger) numBridgesConfigured {
-	AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-
-	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Bridge" inManagedObjectContext:appDelegate.managedObjectContext];
-	[request setEntity:entity];
-
-	NSError *error = nil;
-	NSMutableArray *mutableFetchResults = [[appDelegate.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
-	if (mutableFetchResults == nil) {
-		// Handle the error.
-	}
-	return [mutableFetchResults count];
 }
 @end
