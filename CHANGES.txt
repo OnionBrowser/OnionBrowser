@@ -5,27 +5,35 @@ FUTURE:
 ===== 2.0 - Planned =====
 Features subject to change.
 
-* New "flat" icon for the iOS 7+ era.
+* New design and new codebase, based on the Endless Browser open source
+  project by jcs, used with permission; many thanks to jcs for allowing us
+  to build off of his work. Major highlights:
 
-* Tabbed browsing.
+  - Tabbed browsing.
 
-* Data encryption with an app-level password. Supplements current
+* New "flat" icon.
+
+? Minimum required iOS version is now iOS 9.0 (was iOS 8.2).
+
+? Data encryption with an app-level password. Supplements current
   encryption done by the iOS operating system, improving protection
   against forensic tools.
 
 ===== 1.6 - In Development =====
+Features subject to change.
+Jul 10 2016 - Beta 2 (TestFlight)
 
 * iObfs integration: Onion Browser now supports several "pluggable transport"
-  bridge types, including obfs4, scramblesuit, obfs4, meek-amazon, and meek-azure,
-  meaning that Onion Browser should now work in more locations that block Tor.
-  Special thanks to The Guardian Project for helping support this work. For more
-  information about iObfs (an obfs4proxy iOS port), please visit:
+  bridge types, including obfs4, meek, and other PT bridge types,
+  meaning Onion Browser should connect more successfully in more locations
+  that block Tor. Special thanks to The Guardian Project for helping support
+  this work. For more info about iObfs (an obfs4proxy iOS port), please visit:
   https://github.com/mtigas/iObfs
 
 * Bridge user interface overhaul: Onion Browser now comes with the same default
   bridges for obfs4, meek-amazon, and meek-azure, as the Tor Browser Bundle and
-  Orbot. An easier-to-use bridge page allows users to select the defaults without
-  having to manually edit bridge config lines.
+  Orbot. An easier-to-use bridge page allows users to select the defaults with
+  "one click" and without having to manually edit bridge config lines.
 
 * Tor updated to 0.2.8.5-rc.
   https://gitweb.torproject.org/tor.git/tree/ChangeLog?h=tor-0.2.8.5-rc
@@ -33,6 +41,9 @@ Features subject to change.
 * OpenSSL updated to 1.0.2h.
   https://www.openssl.org/news/secadv/20160503.txt
   https://openssl.org/news/changelog.html
+
+? Minimum required iOS version is now iOS 8.2 (was iOS 8.0). Support for iOS
+  8.X will continue until Onion Browser 2.0 is released.
 
 CURRENT VERSION:
 
