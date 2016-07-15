@@ -105,11 +105,15 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
+            // TODO: do we want to limit to 3 random bridges only? do we notify user about that?
             [self save:[self defaultObfs4]];
+            [self finishSave:nil];
         } else if (indexPath.row == 1) {
             [self save:[self defaultMeekAmazon]];
+            [self finishSave:nil];
         } else if (indexPath.row == 2) {
             [self save:[self defaultMeekAzure]];
+            [self finishSave:nil];
         }
     } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
@@ -119,6 +123,7 @@
     } else if (indexPath.section == 2) {
         if (indexPath.row == 0) {
             [self clearBridges];
+            [self finishSave:nil];
         }
     }
 
@@ -144,8 +149,6 @@
         [ctx deleteObject:bridge];
     }
     [ctx save:nil];
-
-    [self finishSave];
 }
 
 - (void)save:(NSString *)bridgeLines {
@@ -175,11 +178,9 @@
     [self.tableView reloadData];
 
 	[appDelegate updateTorrc];
-
-    [self finishSave];
 }
 
-- (void)finishSave {
+- (void)finishSave:(NSString *)extraMsg {
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
 
     NSUInteger numBridges = [appDelegate numBridgesConfigured];
@@ -187,9 +188,17 @@
     if (![appDelegate.tor didFirstConnect]) {
         NSString *msg;
         if (numBridges == 0) {
-            msg = @"Onion Browser will now close so you can restart the app without bridges.";
+            msg = @"Bridge changes require an app restart. Onion Browser will now quit; reopen the app to connect without bridges.";
+            if (extraMsg != nil) {
+			         msg = [msg stringByAppendingString:@"\n\n"];
+			         msg = [msg stringByAppendingString:extraMsg];
+            }
         } else {
-            msg = @"Onion Browser will now close so you can restart the app using the newly-configured bridges.\n\n(If you restart and the app stays stuck at \"Connecting...\", press the \"settings\" button in the middle and try another bridge configuration.)";
+            msg = @"Bridge changes require an app restart. Onion Browser will now quit; reopen the app to use the new bridge connections.\n\n(If you restart and the app does not connect, press the \"settings\" button and try other bridges.)";
+            if (extraMsg != nil) {
+			         msg = [msg stringByAppendingString:@"\n\n"];
+			         msg = [msg stringByAppendingString:extraMsg];
+            }
         }
 
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Bridges Saved" message:msg preferredStyle:UIAlertControllerStyleAlert];
@@ -209,9 +218,9 @@
         }
         NSString *msg;
         if (numBridges == 0) {
-            msg = [NSString stringWithFormat:@"%ld bridge%@ configured. You may need to quit the app and restart it for your changes to take.\n\n(If you restart and the app stays stuck at \"Connecting...\", press the \"settings\" button in the middle and try another bridge configuration.)", (unsigned long)numBridges, pluralize];
+            msg = @"Bridges have been disabled. Bridge changes may require an app restart; press \"Quit App\" and reopen the app to connect without bridges.";
         } else {
-            msg = @"Bridges have been disabled. You may need to quit the app and restart it for your changes to take.\n\n(If you restart and the app stays stuck at \"Connecting...\", press the \"settings\" button in the middle and try another bridge configuration.)";
+            msg = [NSString stringWithFormat:@"%ld bridge%@ configured. Bridge changes may require an app restart; press \"Quit App\" and reopen the app to use the new bridge connections.\n\n(If you restart and the app does not connect, press the \"settings\" button and try other bridges.)", (unsigned long)numBridges, pluralize];
         }
 
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Bridges Saved" message:msg preferredStyle:UIAlertControllerStyleAlert];
@@ -221,7 +230,7 @@
             [appDelegate.tor enableNetwork];
             [appDelegate.tor hupTor];
         }]];
-        [alert addAction:[UIAlertAction actionWithTitle:@"Restart app" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+        [alert addAction:[UIAlertAction actionWithTitle:@"Quit app" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
             [appDelegate wipeAppData];
             exit(0);
         }]];
