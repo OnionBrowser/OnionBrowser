@@ -44,7 +44,7 @@
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Settings.sqlite"];
     NSFileManager *fileManager = [NSFileManager defaultManager];
     doPrepopulateBookmarks = (![fileManager fileExistsAtPath:[storeURL path]]);
-    
+
     /* Tell iOS to encrypt everything in the app's sandboxed storage. */
     [self updateFileEncryption];
     // Repeat encryption every 15 seconds, to catch new caches, cookies, etc.
@@ -122,6 +122,17 @@
 }
 
 -(void) startup2 {
+    UIAlertController *betaAlert = [UIAlertController alertControllerWithTitle:@"Onion Browser Beta"
+        message:@"Thank you for being an Onion Browser beta.\n\nTo report issues "
+            "with this version of the app, please open the TestFlight app, select "
+            "Onion Browser, and then click \"Send Feedback\"."
+        preferredStyle:UIAlertControllerStyleAlert];
+    [alert2 addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self real_startup2];
+    }]];
+    [_window.rootViewController presentViewController:alert2 animated:YES completion:NULL];
+}
+-(void) real_startup2 {
     if (![self torrcExists] && ![self isRunningTests]) {
       UIAlertController *alert2 = [UIAlertController alertControllerWithTitle:@"Welcome to Onion Browser" message:@"If you are in a location that blocks connections to Tor, you may configure bridges before trying to connect for the first time." preferredStyle:UIAlertControllerStyleAlert];
 
@@ -140,7 +151,7 @@
     }
 
     sslWhitelistedDomains = [[NSMutableArray alloc] init];
-    
+
     NSMutableDictionary *settings = self.getSettings;
     NSInteger cookieSetting = [[settings valueForKey:@"cookies"] integerValue];
     if (cookieSetting == COOKIES_ALLOW_ALL) {
@@ -150,7 +161,7 @@
     } else if (cookieSetting == COOKIES_BLOCK_ALL) {
         [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyNever];
     }
-    
+
     // Start the spinner for the "connecting..." phase
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 
@@ -209,7 +220,7 @@
     if (__managedObjectContext != nil) {
         return __managedObjectContext;
     }
-    
+
     NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
     if (coordinator != nil) {
         __managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
@@ -237,21 +248,21 @@
     if (__persistentStoreCoordinator != nil) {
         return __persistentStoreCoordinator;
     }
-    
+
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Settings.sqlite"];
-    
+
     NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
                              [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
                              NSFileProtectionComplete, NSFileProtectionKey,
                              [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
-    
+
     NSError *error = nil;
     __persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     if (![__persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error]) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
-    
+
     return __persistentStoreCoordinator;
 }
 
@@ -465,6 +476,7 @@
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Bridge" inManagedObjectContext:self.managedObjectContext];
     [request setEntity:entity];
+    // TODO: randomize order here
 
     error = nil;
     NSMutableArray *mutableFetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
@@ -474,7 +486,7 @@
         NSFileHandle *myHandle = [NSFileHandle fileHandleForWritingAtPath:destTorrc];
         [myHandle seekToEndOfFile];
 
-        
+
 
         [myHandle writeData:[@"UseBridges 1\n" dataUsingEncoding:NSUTF8StringEncoding]];
         for (Bridge *bridge in mutableFetchResults) {
@@ -504,7 +516,7 @@
 
 - (void)wipeAppData {
     [[self appWebView] stopLoading];
-    
+
     /* This is probably incredibly redundant since we just delete all the files, below */
     NSHTTPCookie *cookie;
     NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
@@ -512,7 +524,7 @@
         [storage deleteCookie:cookie];
     }
     [[NSURLCache sharedURLCache] removeAllCachedResponses];
-    
+
 
     /* Delete all Caches, Cookies, Preferences in app's "Library" data dir. (Connection settings
      * & etc end up in "Documents", not "Library".) */
@@ -701,7 +713,7 @@
       #ifdef DEBUG
       NSLog(@"%@", appDir);
       #endif
-      
+
       for (NSURL *fileURL in enumerator) {
           NSNumber *isDirectory;
           NSString *filePath = [[fileURL absoluteString] stringByReplacingOccurrencesOfString:@"/private/var/" withString:@"/var/"];
