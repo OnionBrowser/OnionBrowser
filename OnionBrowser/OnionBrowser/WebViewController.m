@@ -502,14 +502,16 @@ const char AlertViewIncomingUrl;
 
     Bookmark *bookmark;
 
+    // TODO: change these back to /html/ when we figure out why their server
+    //       403's on our POSTs on those versions of the site
     bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
-    [bookmark setTitle:@"Search: DuckDuckGo"];
-    [bookmark setUrl:@"https://3g2upl4pq6kufc4m.onion/html/"];
+    [bookmark setTitle:@"Search: DuckDuckGo (Tor Onion Site)"];
+    [bookmark setUrl:@"http://3g2upl4pq6kufc4m.onion/"];
     [bookmark setOrder:i++];
 
     bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
     [bookmark setTitle:@"Search: DuckDuckGo (Plain HTTPS)"];
-    [bookmark setUrl:@"https://duckduckgo.com/html/"];
+    [bookmark setUrl:@"https://duckduckgo.com/"];
     [bookmark setOrder:i++];
 
     bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
@@ -549,7 +551,7 @@ const char AlertViewIncomingUrl;
 
     bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
     [bookmark setTitle:@"ProPublica.org (.onion)"];
-    [bookmark setUrl:@"http://propub3r6espa33w.onion/"];
+    [bookmark setUrl:@"https://www.propub3r6espa33w.onion/"];
     [bookmark setOrder:i++];
 
     bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:context];
