@@ -86,15 +86,8 @@
     [[NSUserDefaults standardUserDefaults] setInteger:2 forKey:@"WebKitStorageBlockingPolicy"];
     [[NSUserDefaults standardUserDefaults] setInteger:2 forKey:@"WebKitStorageBlockingPolicyKey"];
 
-    // Always disable caches
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"WebKitUsesPageCache"];
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"WebKitUsesPageCachePreferenceKey"];
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"WebKitPageCacheSupportsPlugins"];
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"WebKitPageCacheSupportsPluginsPreferenceKey"];
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"WebKitOfflineWebApplicationCacheEnabled"];
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"WebKitOfflineWebApplicationCacheEnabledPreferenceKey"];
+    // Disable disk-based caches.
     [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"WebKitDiskImageCacheEnabled"];
-    [[NSUserDefaults standardUserDefaults] setObject:@"/dev/null" forKey:@"WebKitLocalCache"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     /*********** /WebKit options **********/
 
@@ -107,25 +100,16 @@
     [_window setRootViewController:appWebView];
     [_window makeKeyAndVisible];
 
-    // OLD IOS SECURITY WARNINGS
-    if ([[[UIDevice currentDevice] systemVersion] compare:@"8.2" options:NSNumericSearch] == NSOrderedAscending) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Outdated iOS Warning" message:@"You are running an older version of iOS that may use weak HTTPS encryption (“FREAK exploit”). iOS 8.2 contains a fix for this issue.\n\nUsing Tor cannot protect your data from system-level vulnerabilities.\n\nFor your safety, you should upate to the latest version of iOS so that you receive the latest security fixes. Future versions of Onion Browser will drop support for iOS versions older than 8.2." preferredStyle:UIAlertControllerStyleAlert];
-        [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-          [self startup2];
-        }]];
-        [_window.rootViewController presentViewController:alert animated:YES completion:NULL];
-    } else {
-      [self startup2];
-    }
+    [self startup2];
 
     return YES;
 }
 
 -(void) startup2 {
     UIAlertController *betaAlert = [UIAlertController alertControllerWithTitle:@"Onion Browser Beta"
-        message:@"Thank you for being an Onion Browser beta tester.\n\nTo report issues "
-            "with this version of the app:\n\nOpen the TestFlight app, select "
-            "Onion Browser, and then click \"Send Feedback\"."
+        message:@"Thank you for being an Onion Browser beta tester.\n\n📝 To report issues "
+            "with this version of the app: Open the TestFlight app, select "
+            "Onion Browser, and then click \"Send Feedback\".\n\n🔄 To go back to a non-beta version, uninstall the app and re-install it from the App Store."
         preferredStyle:UIAlertControllerStyleAlert];
     [betaAlert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         [self real_startup2];
@@ -833,13 +817,13 @@
 - (NSString *)customUserAgent {
     Byte uaspoof = [[self.getSettings valueForKey:@"uaspoof"] integerValue];
     if (uaspoof == UA_SPOOF_SAFARI_MAC) {
-        return @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/600.1.17 (KHTML, like Gecko) Version/7.1 Safari/537.85.10";
+        return @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/601.6.17 (KHTML, like Gecko) Version/9.1.1 Safari/601.6.17";
     } else if (uaspoof == UA_SPOOF_WIN7_TORBROWSER) {
-        return @"Mozilla/5.0 (Windows NT 6.1; rv:24.0) Gecko/20100101 Firefox/24.0";
+        return @"Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0";
     } else if (uaspoof == UA_SPOOF_IPHONE) {
-        return @"Mozilla/5.0 (iPhone; CPU iPhone OS 8_0_2 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12A405 Safari/600.1.4";
+        return @"Mozilla/5.0 (iPhone; CPU iPhone OS 9_3 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13E230 Safari/601.1";
     } else if (uaspoof == UA_SPOOF_IPAD) {
-        return @"Mozilla/5.0 (iPad; CPU OS 8_0_2 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12A405 Safari/600.1.4";
+        return @"Mozilla/5.0 (iPad; CPU OS 9_3 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13E237 Safari/601.1";
     }
     return nil;
 }

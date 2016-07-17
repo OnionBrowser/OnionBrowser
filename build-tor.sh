@@ -26,7 +26,7 @@
 #VERSION="0.2.7.6"
 VERSION="0.2.8.5-rc"
 USERSDKVERSION="9.3"
-MINIOSVERSION="8.0"
+MINIOSVERSION="8.2"
 VERIFYGPG=true
 
 # If you are in a country that blocks access to "torproject.org",

@@ -11,7 +11,7 @@ and App Store links.
 
 ---
 
-* **OnionBrowser**: 1.6.0 (20160710.1 - beta 2) - See [official release history][releases] and [changelog][changelog].
+* **OnionBrowser**: 1.6.0 (20160716.1 - beta 3) - See [official release history][releases] and [changelog][changelog].
 * **[Tor][tor]**: 0.2.8.5-rc (Jul 07 2016)
 * **[libevent][libevent]**: 2.0.22-stable (Jan 05 2015)
 * **[OpenSSL][openssl]**: 1.0.2h (May 03 2016)

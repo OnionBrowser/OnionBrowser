@@ -76,7 +76,7 @@
     else if (section == 1)
         return @"Active Content Blocking\n(Scripts, Media, Ajax, WebSockets, etc)\n★ 'Block Ajax…' Mode Recommended.";
     else if (section == 2)
-        return @"Cookies\n★ 'Block All' recommended, but prevents website logins.";
+        return @"Cookies";
     else if (section == 3) {
         NSString *devicename;
         if (IS_IPAD) {
@@ -179,7 +179,7 @@
         } else if (indexPath.row == 1) {
             cell.textLabel.text = @"Block Third-Party";
         } else if (indexPath.row == 2) {
-            cell.textLabel.text = @"Block All";
+            cell.textLabel.text = @"Disable Cookies";
         }
     } else if (indexPath.section == 3) {
         // User-Agent
