@@ -150,7 +150,7 @@
       [self afterFirstRun];
     }
 
-    sslWhitelistedDomains = [[NSMutableArray alloc] init];
+    sslWhitelistedDomains = [[NSMutableSet alloc] init];
 
     NSMutableDictionary *settings = self.getSettings;
     NSInteger cookieSetting = [[settings valueForKey:@"cookies"] integerValue];

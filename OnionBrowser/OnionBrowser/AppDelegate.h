@@ -58,7 +58,7 @@
 @property (nonatomic) NSURL *startUrl;
 
 // list for known domains w/self-signed certs
-@property (nonatomic) NSMutableArray *sslWhitelistedDomains;
+@property (nonatomic) NSMutableSet *sslWhitelistedDomains;
 
 @property (nonatomic) Boolean doPrepopulateBookmarks;
 
