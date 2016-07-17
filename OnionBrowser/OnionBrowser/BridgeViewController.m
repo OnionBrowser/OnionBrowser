@@ -51,7 +51,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
 	if (section == 0) {
-        NSString *bridgeMsg = @"\nBridges are Tor relays that help circumvent censorship. You can try bridges if Tor is blocked by your ISP.\n\nYou may use built-in (provided) bridges or obtain your own custom bridge configuration at bridges.torproject.org. Each type of bridge uses a different method to avoid censorship: if one type does not work, try using a different one.\n\niOS 10 users: the provided bridges do not currently work in the iOS 10 beta; custom obfs4 bridges do not currently work in the iOS 10 beta.";
+        NSString *bridgeMsg = @"\nBridges are Tor relays that help circumvent censorship. You can try bridges if Tor is blocked by your ISP.\n\nYou may use built-in (provided) bridges or obtain your own custom bridge configuration at bridges.torproject.org. Each type of bridge uses a different method to avoid censorship: if one type does not work, try using a different one.\n\niOS 10 users: obfs4 and meek bridges do not currently work in the iOS 10 beta.";
 
 		AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
 		NSUInteger numBridges = [appDelegate numBridgesConfigured];

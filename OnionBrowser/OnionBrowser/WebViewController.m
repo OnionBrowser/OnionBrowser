@@ -663,7 +663,7 @@ const char AlertViewIncomingUrl;
         NSURL *failingURL = [error.userInfo objectForKey:@"NSErrorFailingURLKey"];
         UIAlertView* alertView = [[UIAlertView alloc]
                                   initWithTitle:@"Cannot Verify Website Identity"
-                                  message:[NSString stringWithFormat:@"Either the SSL certificate for '%@' is self-signed or the certificate was signed by an untrusted authority.\n\nFor normal websites, it is generally unsafe to proceed.\n\nFor .onion websites (or sites using CACert or self-signed certificates), you may proceed if you think you can trust this website's URL.", url.host]
+                                  message:[NSString stringWithFormat:@"The SSL certificate for '%@' could not be verified.\n\n🔹For .onion sites, you can continue if you are sure that '%@' is the exact domain name of the onion site you are trying to visit.\n\n🔸Otherwise, it may be unsafe to proceed, since the website you are communicating with may not be legitimate.", url.host, url.host]
                                   delegate:nil
                                   cancelButtonTitle:@"Cancel"
                                   otherButtonTitles:@"Continue",nil];

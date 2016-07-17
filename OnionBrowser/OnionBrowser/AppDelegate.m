@@ -123,14 +123,14 @@
 
 -(void) startup2 {
     UIAlertController *betaAlert = [UIAlertController alertControllerWithTitle:@"Onion Browser Beta"
-        message:@"Thank you for being an Onion Browser beta.\n\nTo report issues "
-            "with this version of the app, please open the TestFlight app, select "
+        message:@"Thank you for being an Onion Browser beta tester.\n\nTo report issues "
+            "with this version of the app:\n\nOpen the TestFlight app, select "
             "Onion Browser, and then click \"Send Feedback\"."
         preferredStyle:UIAlertControllerStyleAlert];
-    [alert2 addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+    [betaAlert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         [self real_startup2];
     }]];
-    [_window.rootViewController presentViewController:alert2 animated:YES completion:NULL];
+    [_window.rootViewController presentViewController:betaAlert animated:YES completion:NULL];
 }
 -(void) real_startup2 {
     if (![self torrcExists] && ![self isRunningTests]) {
