@@ -209,14 +209,14 @@
                 cell.accessoryType = UITableViewCellAccessoryNone;
             }
         } else if (indexPath.row == 3) {
-            cell.textLabel.text = @"Windows 7 (NT 6.1), Firefox 24";
+            cell.textLabel.text = @"Windows 7 (NT 6.1), Firefox 45";
             if (spoofUserAgent == UA_SPOOF_WIN7_TORBROWSER) {
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             } else {
                 cell.accessoryType = UITableViewCellAccessoryNone;
             }
         } else if (indexPath.row == 4) {
-            cell.textLabel.text = @"Mac OS X 10.9.2, Safari 7.0.3";
+            cell.textLabel.text = @"Mac OS X 10.11.5, Safari 9.1.1";
             if (spoofUserAgent == UA_SPOOF_SAFARI_MAC) {
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             } else {

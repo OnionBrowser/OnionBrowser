@@ -785,9 +785,9 @@
         [str appendString:@"navigator.__proto__ = __originalNavigator;"];
         [str appendString:@"navigator.__defineGetter__('appCodeName',function(){return 'Mozilla';});"];
         [str appendString:@"navigator.__defineGetter__('appName',function(){return 'Netscape';});"];
-        [str appendString:@"navigator.__defineGetter__('appVersion',function(){return '5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/600.1.17 (KHTML, like Gecko) Version/7.1 Safari/537.85.10';});"];
+        [str appendString:@"navigator.__defineGetter__('appVersion',function(){return '5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/601.6.17 (KHTML, like Gecko) Version/9.1.1 Safari/601.6.17';});"];
         [str appendString:@"navigator.__defineGetter__('platform',function(){return 'MacIntel';});"];
-        [str appendString:@"navigator.__defineGetter__('userAgent',function(){return 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/600.1.17 (KHTML, like Gecko) Version/7.1 Safari/537.85.10';});"];
+        [str appendString:@"navigator.__defineGetter__('userAgent',function(){return 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/601.6.17 (KHTML, like Gecko) Version/9.1.1 Safari/601.6.17';});"];
     } else if (uaspoof == UA_SPOOF_WIN7_TORBROWSER) {
         [str appendString:@"var __originalNavigator = navigator;"];
         [str appendString:@"navigator = new Object();"];
@@ -797,25 +797,25 @@
         [str appendString:@"navigator.__defineGetter__('appVersion',function(){return '5.0 (Windows)';});"];
         [str appendString:@"navigator.__defineGetter__('platform',function(){return 'Win32';});"];
         [str appendString:@"navigator.__defineGetter__('language',function(){return 'en-US';});"];
-        [str appendString:@"navigator.__defineGetter__('userAgent',function(){return 'Mozilla/5.0 (Windows NT 6.1; rv:24.0) Gecko/20100101 Firefox/24.0';});"];
+        [str appendString:@"navigator.__defineGetter__('userAgent',function(){return 'Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0';});"];
     } else if (uaspoof == UA_SPOOF_IPHONE) {
         [str appendString:@"var __originalNavigator = navigator;"];
         [str appendString:@"navigator = new Object();"];
         [str appendString:@"navigator.__proto__ = __originalNavigator;"];
         [str appendString:@"navigator.__defineGetter__('appCodeName',function(){return 'Mozilla';});"];
         [str appendString:@"navigator.__defineGetter__('appName',function(){return 'Netscape';});"];
-        [str appendString:@"navigator.__defineGetter__('appVersion',function(){return '5.0 (iPhone; CPU iPhone OS 8_0_2 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12A405 Safari/600.1.4';});"];
+        [str appendString:@"navigator.__defineGetter__('appVersion',function(){return '5.0 (iPhone; CPU iPhone OS 9_3 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13E230 Safari/601.1';});"];
         [str appendString:@"navigator.__defineGetter__('platform',function(){return 'iPhone';});"];
-        [str appendString:@"navigator.__defineGetter__('userAgent',function(){return 'Mozilla/5.0 (iPhone; CPU iPhone OS 8_0_2 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12A405 Safari/600.1.4';});"];
+        [str appendString:@"navigator.__defineGetter__('userAgent',function(){return 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_3 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13E230 Safari/601.1';});"];
     } else if (uaspoof == UA_SPOOF_IPAD) {
         [str appendString:@"var __originalNavigator = navigator;"];
         [str appendString:@"navigator = new Object();"];
         [str appendString:@"navigator.__proto__ = __originalNavigator;"];
         [str appendString:@"navigator.__defineGetter__('appCodeName',function(){return 'Mozilla';});"];
         [str appendString:@"navigator.__defineGetter__('appName',function(){return 'Netscape';});"];
-        [str appendString:@"navigator.__defineGetter__('appVersion',function(){return '5.0 (iPad; CPU OS 8_0_2 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12A405 Safari/600.1.4';});"];
+        [str appendString:@"navigator.__defineGetter__('appVersion',function(){return '5.0 (iPad; CPU OS 9_3 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13E237 Safari/601.1';});"];
         [str appendString:@"navigator.__defineGetter__('platform',function(){return 'iPad';});"];
-        [str appendString:@"navigator.__defineGetter__('userAgent',function(){return 'Mozilla/5.0 (iPad; CPU OS 8_0_2 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12A405 Safari/600.1.4';});"];
+        [str appendString:@"navigator.__defineGetter__('userAgent',function(){return 'Mozilla/5.0 (iPad; CPU OS 9_3 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13E237 Safari/601.1';});"];
     }
     Byte activeContent = [[self.getSettings valueForKey:@"javascript"] integerValue];
     if (activeContent != CONTENTPOLICY_PERMISSIVE) {

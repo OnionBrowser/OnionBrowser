@@ -35,6 +35,10 @@ Jul 10 2016 - Beta 2 (TestFlight)
   Orbot. An easier-to-use bridge page allows users to select the defaults with
   "one click" and without having to manually edit bridge config lines.
 
+* User-agent spoofing strings updated to the latest versions: iOS 9 Safari,
+  macOS El Capitan Safari (9.1.1), Tor Browser Bundle 6.0 (Windows 7,
+  Firefox 45).
+
 * Tor updated to 0.2.8.5-rc.
   https://gitweb.torproject.org/tor.git/tree/ChangeLog?h=tor-0.2.8.5-rc
 
