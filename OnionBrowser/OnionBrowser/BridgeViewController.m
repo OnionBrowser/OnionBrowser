@@ -51,7 +51,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
 	if (section == 0) {
-        NSString *bridgeMsg = @"\nBridges are Tor relays that help circumvent censorship. You can try bridges if Tor is blocked by your ISP.\n\nYou may use built-in (provided) bridges or obtain your own custom bridge configuration at bridges.torproject.org. Each type of bridge uses a different method to avoid censorship: if one type does not work, try using a different one.\n\niOS 10 users: obfs4 and meek bridges do not currently work in the iOS 10 beta.";
+        NSString *bridgeMsg = @"Bridges are Tor relays that help circumvent censorship. You can try bridges if Tor is blocked by your ISP; each type of bridge uses a different method to avoid censorship: if one type does not work, try using a different one.\n\nYou may use the provided bridges below or obtain bridges at bridges.torproject.org.\n\n(iOS 10 users: obfs4 and meek bridges do not currently work in the iOS 10 beta.)";
 
 		AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
 		NSUInteger numBridges = [appDelegate numBridgesConfigured];
@@ -81,7 +81,7 @@
 
 	if (indexPath.section == 0) {
 		if (indexPath.row == 0) {
-			cell.textLabel.text = @"Provided Bridges: obfs4 (recommended)";
+			cell.textLabel.text = @"Provided Bridges: obfs4";
 		} else if (indexPath.row == 1) {
 			cell.textLabel.text = @"Provided Bridges: meek-amazon";
 		} else if (indexPath.row == 2) {
@@ -105,9 +105,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            // TODO: do we want to limit to 3 random bridges only? do we notify user about that?
             [self save:[self defaultObfs4]];
-            [self finishSave:nil];
+            [self finishSave:@"NOTE: Onion Browser chooses the provided obfs4 bridges in a random order. You can force the app to use other obfs4 bridges by choosing the \"Provided Bridges: obfs4\" option again."];
         } else if (indexPath.row == 1) {
             [self save:[self defaultMeekAmazon]];
             [self finishSave:nil];
@@ -244,8 +243,7 @@
 
 
 -(NSString *) defaultObfs4 {
-	return @"\
-obfs4 154.35.22.10:41835 8FB9F4319E89E5C6223052AA525A192AFBC85D55 cert=GGGS1TX4R81m3r0HBl79wKy1OtPPNR2CZUIrHjkRg65Vc2VR8fOyo64f9kmT1UAFG7j0HQ iat-mode=0\n\
+	NSString *defaultLines = @"obfs4 154.35.22.10:41835 8FB9F4319E89E5C6223052AA525A192AFBC85D55 cert=GGGS1TX4R81m3r0HBl79wKy1OtPPNR2CZUIrHjkRg65Vc2VR8fOyo64f9kmT1UAFG7j0HQ iat-mode=0\n\
 obfs4 198.245.60.50:443 752CF7825B3B9EA6A98C83AC41F7099D67007EA5 cert=xpmQtKUqQ/6v5X7ijgYE/f03+l2/EuQ1dexjyUhh16wQlu/cpXUGalmhDIlhuiQPNEKmKw iat-mode=0\n\
 obfs4 192.99.11.54:443 7B126FAB960E5AC6A629C729434FF84FB5074EC2 cert=VW5f8+IBUWpPFxF+rsiVy2wXkyTQG7vEd+rHeN2jV5LIDNu8wMNEOqZXPwHdwMVEBdqXEw iat-mode=0\n\
 obfs4 109.105.109.165:10527 8DFCD8FB3285E855F5A55EDDA35696C743ABFC4E cert=Bvg/itxeL4TWKLP6N1MaQzSOC6tcRIBv6q57DYAZc3b2AzuM+/TfB7mqTFEfXILCjEwzVA iat-mode=0\n\
@@ -262,6 +260,19 @@ obfs4 154.35.22.11:80 A832D176ECD5C7C6B58825AE22FC4C90FA249637 cert=YPbQqXPiqTUB
 obfs4 154.35.22.9:60873 C73ADBAC8ADFDBF0FC0F3F4E8091C0107D093716 cert=gEGKc5WN/bSjFa6UkG9hOcft1tuK+cV8hbZ0H6cqXiMPLqSbCh2Q3PHe5OOr6oMVORhoJA iat-mode=0\n\
 obfs4 154.35.22.9:80 C73ADBAC8ADFDBF0FC0F3F4E8091C0107D093716 cert=gEGKc5WN/bSjFa6UkG9hOcft1tuK+cV8hbZ0H6cqXiMPLqSbCh2Q3PHe5OOr6oMVORhoJA iat-mode=0\n\
 obfs4 154.35.22.9:443 C73ADBAC8ADFDBF0FC0F3F4E8091C0107D093716 cert=gEGKc5WN/bSjFa6UkG9hOcft1tuK+cV8hbZ0H6cqXiMPLqSbCh2Q3PHe5OOr6oMVORhoJA iat-mode=0";
+    NSMutableArray *lines = [NSMutableArray arrayWithArray:[defaultLines componentsSeparatedByCharactersInSet:
+        [NSCharacterSet characterSetWithCharactersInString:@"\n"]
+    ]];
+
+    // Randomize order of the bridge lines.
+    for (int x = 0; x < [lines count]; x++) {
+        int randInt = (arc4random() % ([lines count] - x)) + x;
+        [lines exchangeObjectAtIndex:x withObjectAtIndex:randInt];
+    }
+    return [lines componentsJoinedByString:@"\n"];
+    // Take a subset of the randomized lines and return it as a new string of bridge lines.
+    //NSArray *subset = [lines subarrayWithRange:(NSRange){0, 5}];
+    //return [subset componentsJoinedByString:@"\n"];
 }
 -(NSString *) defaultMeekAmazon {
 	return @"meek_lite 0.0.2.0:2 B9E7141C594AF25699E0079C1F0146F409495296 url=https://d2zfqthxsdq309.cloudfront.net/ front=a0.awsstatic.com";
