@@ -817,11 +817,12 @@
         [str appendString:@"navigator.__defineGetter__('platform',function(){return 'iPad';});"];
         [str appendString:@"navigator.__defineGetter__('userAgent',function(){return 'Mozilla/5.0 (iPad; CPU OS 8_0_2 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12A405 Safari/600.1.4';});"];
     }
-
     Byte activeContent = [[self.getSettings valueForKey:@"javascript"] integerValue];
     if (activeContent != CONTENTPOLICY_PERMISSIVE) {
         [str appendString:@"function Worker(){};"];
         [str appendString:@"function WebSocket(){};"];
+    }
+    if (activeContent == CONTENTPOLICY_STRICT) {
         [str appendString:@"function sessionStorage(){};"];
         [str appendString:@"function localStorage(){};"];
         [str appendString:@"function globalStorage(){};"];
