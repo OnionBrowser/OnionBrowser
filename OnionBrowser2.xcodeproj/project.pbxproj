@@ -61,7 +61,6 @@
 		01F8794F1A412FA500A63654 /* urlblocker_targets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01F8794D1A412F8E00A63654 /* urlblocker_targets.plist */; };
 		01FC0E571B38FB6B00955D9A /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01FC0E561B38FB6B00955D9A /* Launch Screen.xib */; };
 		18A59CFCA2B9A9AB45863F6E /* libPods-OnionBrowser2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B32982E483075D2FA2A29AD9 /* libPods-OnionBrowser2.a */; };
-		693145FC1D3EEA1700D08A6A /* TorProxyURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 693145FB1D3EEA1700D08A6A /* TorProxyURLProtocol.m */; };
 		693145FE1D3EEAE400D08A6A /* Tor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 693145FD1D3EEAE400D08A6A /* Tor.framework */; };
 		70226D726706E73F83E8D484 /* libPods-OnionBrowser2-OnionBrowser2 Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 31AE92C2C5372ECDD2019E06 /* libPods-OnionBrowser2-OnionBrowser2 Tests.a */; };
 /* End PBXBuildFile section */
@@ -165,8 +164,6 @@
 		39A27A55D6DA9DD49834FBDF /* Pods-OnionBrowser2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnionBrowser2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OnionBrowser2/Pods-OnionBrowser2.debug.xcconfig"; sourceTree = "<group>"; };
 		4C073F21B3E3F553DEAF9F1A /* Pods-Endless-Endless Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Endless-Endless Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Endless-Endless Tests/Pods-Endless-Endless Tests.release.xcconfig"; sourceTree = "<group>"; };
 		5F000EBDB20709D482560EE0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		693145FA1D3EEA1700D08A6A /* TorProxyURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TorProxyURLProtocol.h; sourceTree = "<group>"; };
-		693145FB1D3EEA1700D08A6A /* TorProxyURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TorProxyURLProtocol.m; sourceTree = "<group>"; };
 		693145FD1D3EEAE400D08A6A /* Tor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tor.framework; path = Carthage/Build/iOS/Tor.framework; sourceTree = "<group>"; };
 		78E95B84E061F9B319EB8E8B /* libPods-Endless Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Endless Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AEAAB5FB3DD36FB9E0C034B /* Pods-OnionBrowser2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnionBrowser2.release.xcconfig"; path = "Pods/Target Support Files/Pods-OnionBrowser2/Pods-OnionBrowser2.release.xcconfig"; sourceTree = "<group>"; };
@@ -342,8 +339,6 @@
 			children = (
 				019516CA1B7D858C0078586A /* CKHTTPConnection.h */,
 				019516CB1B7D858C0078586A /* CKHTTPConnection.m */,
-				693145FA1D3EEA1700D08A6A /* TorProxyURLProtocol.h */,
-				693145FB1D3EEA1700D08A6A /* TorProxyURLProtocol.m */,
 				019516CD1B7D8A0C0078586A /* NSData+CocoaDevUsersAdditions.h */,
 				019516CE1B7D8A0C0078586A /* NSData+CocoaDevUsersAdditions.m */,
 				01AFEB4C1B4F2A5F00A02482 /* OnePasswordExtension.h */,
@@ -639,7 +634,6 @@
 				01801EA11A32CA2A002B4718 /* WebViewController.m in Sources */,
 				019516CF1B7D8A0C0078586A /* NSData+CocoaDevUsersAdditions.m in Sources */,
 				01F8793B1A4108DD00A63654 /* URLBlocker.m in Sources */,
-				693145FC1D3EEA1700D08A6A /* TorProxyURLProtocol.m in Sources */,
 				01801EC01A335BEC002B4718 /* URLInterceptor.m in Sources */,
 				01F2AE401B82666900D5651A /* SSLCertificateViewController.m in Sources */,
 				018333CA1A3505FB00670CD1 /* HTTPSEverywhere.m in Sources */,

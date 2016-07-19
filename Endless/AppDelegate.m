@@ -9,7 +9,6 @@
 #import "Bookmark.h"
 #import "HTTPSEverywhere.h"
 #import <Tor/Tor.h>
-#import "TorProxyURLProtocol.h"
 #import "URLInterceptor.h"
 
 @implementation AppDelegate
@@ -39,7 +38,6 @@
 {
 	[self.window makeKeyAndVisible];
 
-	[NSURLProtocol registerClass:[TorProxyURLProtocol class]];
 	TORConfiguration *conf = [[TORConfiguration alloc] init];
 	conf.cookieAuthentication = [NSNumber numberWithBool:YES];
 	conf.dataDirectory = [NSURL fileURLWithPath:NSTemporaryDirectory()];
