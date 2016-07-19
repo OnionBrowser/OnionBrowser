@@ -8,6 +8,8 @@
 #import "AppDelegate.h"
 #import "Bookmark.h"
 #import "HTTPSEverywhere.h"
+#import <Tor/Tor.h>
+#import "TorProxyURLProtocol.h"
 #import "URLInterceptor.h"
 
 @implementation AppDelegate
@@ -36,6 +38,15 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 	[self.window makeKeyAndVisible];
+
+	[NSURLProtocol registerClass:[TorProxyURLProtocol class]];
+	TORConfiguration *conf = [[TORConfiguration alloc] init];
+	conf.cookieAuthentication = [NSNumber numberWithBool:YES];
+	conf.dataDirectory = [NSURL fileURLWithPath:NSTemporaryDirectory()];
+	conf.arguments = [NSArray arrayWithObjects: @"--socksport", @"39050", @"--ignore-missing-torrc", @"--controlport", @"127.0.0.1:39060", nil];
+
+	TORThread *torThread = [[TORThread alloc] initWithConfiguration:conf];
+	[torThread start];
 
 	return YES;
 }

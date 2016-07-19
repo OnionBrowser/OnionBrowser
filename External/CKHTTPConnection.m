@@ -130,7 +130,17 @@
 		_HTTPStream = (__bridge NSInputStream *)(CFReadStreamCreateForStreamedHTTPRequest(NULL, [self HTTPRequest], (__bridge CFReadStreamRef)_HTTPBodyStream));
 	else
 		_HTTPStream = (__bridge_transfer NSInputStream *)CFReadStreamCreateForHTTPRequest(NULL, [self HTTPRequest]);
-	
+
+	/* tor */
+	NSString *hostKey = (NSString *)kCFStreamPropertySOCKSProxyHost;
+	NSString *portKey = (NSString *)kCFStreamPropertySOCKSProxyPort;
+	int proxyPortNumber = 39050;
+	NSMutableDictionary *proxyToUse = [NSMutableDictionary
+									   dictionaryWithObjectsAndKeys:@"127.0.0.1",hostKey,
+									   [NSNumber numberWithInt: proxyPortNumber],portKey,
+									   nil];
+	CFReadStreamSetProperty((__bridge CFReadStreamRef)_HTTPStream, kCFStreamPropertySOCKSProxy, (__bridge CFTypeRef)proxyToUse);
+
 	/* we're handling redirects ourselves */
 	CFReadStreamSetProperty((__bridge CFReadStreamRef)(_HTTPStream), kCFStreamPropertyHTTPShouldAutoredirect, kCFBooleanFalse);
 
