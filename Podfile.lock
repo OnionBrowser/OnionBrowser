@@ -61,19 +61,19 @@ DEPENDENCIES:
   - InAppSettingsKit
   - OCMock
   - OrderedDictionary
-  - QuickDialog (from `https://github.com/jcs/QuickDialog.git`)
+  - QuickDialog (from `https://github.com/mtigas/QuickDialog.git`)
   - WYPopoverController (from `https://github.com/sammcewan/WYPopoverController.git`)
 
 EXTERNAL SOURCES:
   QuickDialog:
-    :git: https://github.com/jcs/QuickDialog.git
+    :git: https://github.com/mtigas/QuickDialog.git
   WYPopoverController:
     :git: https://github.com/sammcewan/WYPopoverController.git
 
 CHECKOUT OPTIONS:
   QuickDialog:
-    :commit: 07258e62bbeea4d494ba392b9d065bdd6e3fb86b
-    :git: https://github.com/jcs/QuickDialog.git
+    :commit: 5c37d0349761b0018bfa0670d2d2704437bd6786
+    :git: https://github.com/mtigas/QuickDialog.git
   WYPopoverController:
     :commit: fc3e98fce7957437e2eb9674d75ffdffd46bb934
     :git: https://github.com/sammcewan/WYPopoverController.git
@@ -86,6 +86,6 @@ SPEC CHECKSUMS:
   QuickDialog: f0c3e254c91182fa3f91fdb479ccac4a11b459e1
   WYPopoverController: b95f773b670b820cb386c7303c16672b80c01e82
 
-PODFILE CHECKSUM: b8e1527b8901823dfe21e47fac712888c6347ea0
+PODFILE CHECKSUM: 7df4f8ad48a9146babdd13cb82cd91a22fcb89d8
 
 COCOAPODS: 1.0.1
