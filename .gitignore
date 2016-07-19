@@ -7,3 +7,4 @@ build/*
 xcuserdata
 profile
 Pods
+.ruby-version

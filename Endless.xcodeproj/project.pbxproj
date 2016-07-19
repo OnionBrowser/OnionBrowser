@@ -60,8 +60,9 @@
 		01F8794E1A412F8E00A63654 /* urlblocker_targets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01F8794D1A412F8E00A63654 /* urlblocker_targets.plist */; };
 		01F8794F1A412FA500A63654 /* urlblocker_targets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01F8794D1A412F8E00A63654 /* urlblocker_targets.plist */; };
 		01FC0E571B38FB6B00955D9A /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01FC0E561B38FB6B00955D9A /* Launch Screen.xib */; };
-		0357A14A00B472D144F4F53B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F000EBDB20709D482560EE0 /* libPods.a */; };
 		BF746B2CD72A306F0316B40B /* libPods-Endless Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E95B84E061F9B319EB8E8B /* libPods-Endless Tests.a */; };
+		C053A2916D33D819196718A8 /* libPods-Endless-Endless Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E053CB6BAA329873AB3D08D9 /* libPods-Endless-Endless Tests.a */; };
+		C6BD699EB95A13F40071D337 /* libPods-Endless.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15D8E5588D8EFA97BA3B7BB7 /* libPods-Endless.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -157,13 +158,19 @@
 		01F8794A1A41232E00A63654 /* credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = credits.html; path = Endless/Resources/credits.html; sourceTree = "<group>"; };
 		01F8794D1A412F8E00A63654 /* urlblocker_targets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = urlblocker_targets.plist; path = Endless/Resources/urlblocker_targets.plist; sourceTree = "<group>"; };
 		01FC0E561B38FB6B00955D9A /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "Launch Screen.xib"; path = "Endless/Resources/Launch Screen.xib"; sourceTree = "<group>"; };
+		15D8E5588D8EFA97BA3B7BB7 /* libPods-Endless.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Endless.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1748602788FBFAF0C0C435AF /* Pods-Endless.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Endless.release.xcconfig"; path = "Pods/Target Support Files/Pods-Endless/Pods-Endless.release.xcconfig"; sourceTree = "<group>"; };
+		4C073F21B3E3F553DEAF9F1A /* Pods-Endless-Endless Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Endless-Endless Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Endless-Endless Tests/Pods-Endless-Endless Tests.release.xcconfig"; sourceTree = "<group>"; };
 		5F000EBDB20709D482560EE0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		78E95B84E061F9B319EB8E8B /* libPods-Endless Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Endless Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C148194A51760B930A369C0 /* libPods-Endless Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Endless Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CCDD8180431B00FC487DC188 /* Pods-Endless.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Endless.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Endless/Pods-Endless.debug.xcconfig"; sourceTree = "<group>"; };
 		D5539BB6B9C413DCDBDB86C7 /* Pods-Endless Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Endless Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Endless Tests/Pods-Endless Tests.release.xcconfig"; sourceTree = "<group>"; };
 		DC10B8CFD8DB1137076245D9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		DDC76BC31EB8F9AAFB8BEE31 /* Pods-Endless Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Endless Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Endless Tests/Pods-Endless Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		DDD1A40F3EE6113729C69C4E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		E053CB6BAA329873AB3D08D9 /* libPods-Endless-Endless Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Endless-Endless Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA94ABA909797B59CF547872 /* Pods-Endless-Endless Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Endless-Endless Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Endless-Endless Tests/Pods-Endless-Endless Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,9 +178,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6BD699EB95A13F40071D337 /* libPods-Endless.a in Frameworks */,
 				019516D11B7D8B400078586A /* libz.dylib in Frameworks */,
 				016B2FCD1A5648AE002D2730 /* WebKit.framework in Frameworks */,
-				0357A14A00B472D144F4F53B /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,6 +189,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF746B2CD72A306F0316B40B /* libPods-Endless Tests.a in Frameworks */,
+				C053A2916D33D819196718A8 /* libPods-Endless-Endless Tests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +347,10 @@
 				DDD1A40F3EE6113729C69C4E /* Pods.release.xcconfig */,
 				DDC76BC31EB8F9AAFB8BEE31 /* Pods-Endless Tests.debug.xcconfig */,
 				D5539BB6B9C413DCDBDB86C7 /* Pods-Endless Tests.release.xcconfig */,
+				CCDD8180431B00FC487DC188 /* Pods-Endless.debug.xcconfig */,
+				1748602788FBFAF0C0C435AF /* Pods-Endless.release.xcconfig */,
+				EA94ABA909797B59CF547872 /* Pods-Endless-Endless Tests.debug.xcconfig */,
+				4C073F21B3E3F553DEAF9F1A /* Pods-Endless-Endless Tests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -352,6 +364,8 @@
 				5F000EBDB20709D482560EE0 /* libPods.a */,
 				78E95B84E061F9B319EB8E8B /* libPods-Endless Tests.a */,
 				7C148194A51760B930A369C0 /* libPods-Endless Tests.a */,
+				15D8E5588D8EFA97BA3B7BB7 /* libPods-Endless.a */,
+				E053CB6BAA329873AB3D08D9 /* libPods-Endless-Endless Tests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -363,11 +377,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 01801EB81A32CA2A002B4718 /* Build configuration list for PBXNativeTarget "Endless" */;
 			buildPhases = (
-				AD6CC348A4A754780C9FF2A3 /* Check Pods Manifest.lock */,
+				AD6CC348A4A754780C9FF2A3 /* [CP] Check Pods Manifest.lock */,
 				01801E8E1A32CA2A002B4718 /* Sources */,
 				01801E8F1A32CA2A002B4718 /* Frameworks */,
 				01801E901A32CA2A002B4718 /* Resources */,
-				F1123B8772DD1017FF7AD4C0 /* Copy Pods Resources */,
+				F1123B8772DD1017FF7AD4C0 /* [CP] Copy Pods Resources */,
+				D9D2B5E6A65523EAC8C5C337 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -382,11 +397,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 018333DF1A35727C00670CD1 /* Build configuration list for PBXNativeTarget "Endless Tests" */;
 			buildPhases = (
-				B490F5F7A7DE676CD3B7340F /* Check Pods Manifest.lock */,
+				B490F5F7A7DE676CD3B7340F /* [CP] Check Pods Manifest.lock */,
 				018333D31A35727C00670CD1 /* Sources */,
 				018333D41A35727C00670CD1 /* Frameworks */,
 				018333D51A35727C00670CD1 /* Resources */,
-				1A927D79DA43D9D14E9FB250 /* Copy Pods Resources */,
+				1A927D79DA43D9D14E9FB250 /* [CP] Copy Pods Resources */,
+				A4492F15EAFED6F712F46020 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -479,29 +495,44 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1A927D79DA43D9D14E9FB250 /* Copy Pods Resources */ = {
+		1A927D79DA43D9D14E9FB250 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Endless Tests/Pods-Endless Tests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Endless-Endless Tests/Pods-Endless-Endless Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AD6CC348A4A754780C9FF2A3 /* Check Pods Manifest.lock */ = {
+		A4492F15EAFED6F712F46020 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Endless-Endless Tests/Pods-Endless-Endless Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AD6CC348A4A754780C9FF2A3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -509,14 +540,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		B490F5F7A7DE676CD3B7340F /* Check Pods Manifest.lock */ = {
+		B490F5F7A7DE676CD3B7340F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -524,19 +555,34 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		F1123B8772DD1017FF7AD4C0 /* Copy Pods Resources */ = {
+		D9D2B5E6A65523EAC8C5C337 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Endless/Pods-Endless-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F1123B8772DD1017FF7AD4C0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Endless/Pods-Endless-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -633,7 +679,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -669,7 +715,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -678,7 +724,7 @@
 		};
 		01801EB91A32CA2A002B4718 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DC10B8CFD8DB1137076245D9 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = CCDD8180431B00FC487DC188 /* Pods-Endless.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -694,7 +740,7 @@
 		};
 		01801EBA1A32CA2A002B4718 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DDD1A40F3EE6113729C69C4E /* Pods.release.xcconfig */;
+			baseConfigurationReference = 1748602788FBFAF0C0C435AF /* Pods-Endless.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -710,7 +756,7 @@
 		};
 		018333E01A35727C00670CD1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DDC76BC31EB8F9AAFB8BEE31 /* Pods-Endless Tests.debug.xcconfig */;
+			baseConfigurationReference = EA94ABA909797B59CF547872 /* Pods-Endless-Endless Tests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -740,7 +786,7 @@
 		};
 		018333E11A35727C00670CD1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D5539BB6B9C413DCDBDB86C7 /* Pods-Endless Tests.release.xcconfig */;
+			baseConfigurationReference = 4C073F21B3E3F553DEAF9F1A /* Pods-Endless-Endless Tests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
