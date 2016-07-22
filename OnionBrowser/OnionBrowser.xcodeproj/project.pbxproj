@@ -675,7 +675,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = ../dependencies/lib;
 				LLVM_LTO = YES;
-				PROVISIONING_PROFILE = "f6d11226-3ea5-4f5c-b400-8d3685836c7a";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
