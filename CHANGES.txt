@@ -19,9 +19,8 @@ Features subject to change.
   encryption done by the iOS operating system, improving protection
   against forensic tools.
 
-===== 1.6 - In Development =====
-Features subject to change.
-Jul 10 2016 - Beta 2 (TestFlight)
+===== 1.6 - Pending App Store Availability =====
+August 04 2016 - Submit Date
 
 * iObfs integration: Onion Browser now supports several "pluggable transport"
   bridge types, including obfs4, meek, and other PT bridge types,
@@ -39,7 +38,9 @@ Jul 10 2016 - Beta 2 (TestFlight)
   macOS El Capitan Safari (9.1.1), Tor Browser Bundle 6.0 (Windows 7,
   Firefox 45).
 
-* Tor updated to 0.2.8.5-rc.
+* Tor updated to 0.2.8.6, the first stable release in the 0.2.8 series.
+  This version contains several performance and security improvements.
+  https://blog.torproject.org/blog/tor-0286-released
   https://gitweb.torproject.org/tor.git/tree/ChangeLog?h=tor-0.2.8.5-rc
 
 * OpenSSL updated to 1.0.2h.

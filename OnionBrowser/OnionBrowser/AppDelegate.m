@@ -106,6 +106,7 @@
 }
 
 -(void) startup2 {
+/*
     UIAlertController *betaAlert = [UIAlertController alertControllerWithTitle:@"Onion Browser Beta"
         message:@"Thank you for being an Onion Browser beta tester.\n\n📝 To report issues "
             "with this version of the app: Open the TestFlight app, select "
@@ -117,6 +118,7 @@
     [_window.rootViewController presentViewController:betaAlert animated:YES completion:NULL];
 }
 -(void) real_startup2 {
+*/
     if (![self torrcExists] && ![self isRunningTests]) {
       UIAlertController *alert2 = [UIAlertController alertControllerWithTitle:@"Welcome to Onion Browser" message:@"If you are in a location that blocks connections to Tor, you may configure bridges before trying to connect for the first time." preferredStyle:UIAlertControllerStyleAlert];
 
@@ -769,9 +771,9 @@
         [str appendString:@"navigator.__proto__ = __originalNavigator;"];
         [str appendString:@"navigator.__defineGetter__('appCodeName',function(){return 'Mozilla';});"];
         [str appendString:@"navigator.__defineGetter__('appName',function(){return 'Netscape';});"];
-        [str appendString:@"navigator.__defineGetter__('appVersion',function(){return '5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/601.6.17 (KHTML, like Gecko) Version/9.1.1 Safari/601.6.17';});"];
+        [str appendString:@"navigator.__defineGetter__('appVersion',function(){return '5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/601.7.7 (KHTML, like Gecko) Version/9.1.2 Safari/601.7.7';});"];
         [str appendString:@"navigator.__defineGetter__('platform',function(){return 'MacIntel';});"];
-        [str appendString:@"navigator.__defineGetter__('userAgent',function(){return 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/601.6.17 (KHTML, like Gecko) Version/9.1.1 Safari/601.6.17';});"];
+        [str appendString:@"navigator.__defineGetter__('userAgent',function(){return 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/601.7.7 (KHTML, like Gecko) Version/9.1.2 Safari/601.7.7';});"];
     } else if (uaspoof == UA_SPOOF_WIN7_TORBROWSER) {
         [str appendString:@"var __originalNavigator = navigator;"];
         [str appendString:@"navigator = new Object();"];
@@ -817,7 +819,7 @@
 - (NSString *)customUserAgent {
     Byte uaspoof = [[self.getSettings valueForKey:@"uaspoof"] integerValue];
     if (uaspoof == UA_SPOOF_SAFARI_MAC) {
-        return @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/601.6.17 (KHTML, like Gecko) Version/9.1.1 Safari/601.6.17";
+        return @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/601.7.7 (KHTML, like Gecko) Version/9.1.2 Safari/601.7.7";
     } else if (uaspoof == UA_SPOOF_WIN7_TORBROWSER) {
         return @"Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0";
     } else if (uaspoof == UA_SPOOF_IPHONE) {
