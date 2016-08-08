@@ -19,8 +19,12 @@ Features subject to change.
   encryption done by the iOS operating system, improving protection
   against forensic tools.
 
-===== 1.6 - Pending App Store Availability =====
+
+CURRENT VERSION:
+
+===== 1.6 - In App Store =====
 August 04 2016 - Submit Date
+August 07 2016 - App Store Availability
 
 * iObfs integration: Onion Browser now supports several "pluggable transport"
   bridge types, including obfs4, meek, and other PT bridge types,
@@ -47,20 +51,18 @@ August 04 2016 - Submit Date
   https://www.openssl.org/news/secadv/20160503.txt
   https://openssl.org/news/changelog.html
 
-? Minimum required iOS version is now iOS 8.2 (was iOS 8.0). Support for iOS
+* Minimum required iOS version is now iOS 8.2 (was iOS 8.0). Support for iOS
   8.X will continue until Onion Browser 2.0 is released.
 
-CURRENT VERSION:
 
-===== 1.5.16 - In App Store =====
+PREVIOUS VERSIONS:
+
+===== 1.5.16 =====
 Dec 29 2015 - Submit Date
 Jan 07 2016 - App Store Availability
 
 * Tor updated to 0.2.7.6.
-  https://gitweb.torproject.org/tor.git/tree/ChangeLog?h=tor-0.2.7.6
-
-
-PREVIOUS VERSIONS:
+https://gitweb.torproject.org/tor.git/tree/ChangeLog?h=tor-0.2.7.6
 
 ===== 1.5.15 =====
 Dec 03 2015 - Submit Date
