@@ -19,12 +19,18 @@ Features subject to change.
   encryption done by the iOS operating system, improving protection
   against forensic tools.
 
+===== 1.6.1 - Pending App Store Availability =====
+Aug 18 2016 - Submit Date
+
+* iObfs rebuilt with golang 1.7 (was 1.7rc3). Fixes crash-on-start when using
+  iOS 10 Beta.
+
 
 CURRENT VERSION:
 
 ===== 1.6 - In App Store =====
-August 04 2016 - Submit Date
-August 07 2016 - App Store Availability
+Aug 04 2016 - Submit Date
+Aug 07 2016 - App Store Availability
 
 * iObfs integration: Onion Browser now supports several "pluggable transport"
   bridge types, including obfs4, meek, and other PT bridge types,
