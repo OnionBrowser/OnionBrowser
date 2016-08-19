@@ -19,16 +19,22 @@ Features subject to change.
   encryption done by the iOS operating system, improving protection
   against forensic tools.
 
-===== 1.6.1 - Pending App Store Availability =====
+
+
+CURRENT VERSION:
+
+===== 1.6.1 - In App Store =====
 Aug 18 2016 - Submit Date
+Aug 19 2016 - App Store Availability
 
 * iObfs rebuilt with golang 1.7 (was 1.7rc3). Fixes crash-on-start when using
   iOS 10 Beta.
 
 
-CURRENT VERSION:
 
-===== 1.6 - In App Store =====
+PREVIOUS VERSIONS:
+
+===== 1.6.0 =====
 Aug 04 2016 - Submit Date
 Aug 07 2016 - App Store Availability
 
@@ -59,9 +65,6 @@ Aug 07 2016 - App Store Availability
 
 * Minimum required iOS version is now iOS 8.2 (was iOS 8.0). Support for iOS
   8.X will continue until Onion Browser 2.0 is released.
-
-
-PREVIOUS VERSIONS:
 
 ===== 1.5.16 =====
 Dec 29 2015 - Submit Date
