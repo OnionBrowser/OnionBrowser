@@ -20,6 +20,13 @@ Features subject to change.
   against forensic tools.
 
 
+===== 1.6.2 - Pending App Store Approval =====
+Aug 24 2016 - Submit Date
+
+* Tor updated to 0.2.8.7, containing several important security fixes:
+  https://blog.torproject.org/blog/tor-0287-released-important-fixes
+
+
 
 CURRENT VERSION:
 

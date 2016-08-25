@@ -11,8 +11,8 @@ and App Store links.
 
 ---
 
-* **OnionBrowser**: 1.6.1 (20160818.1) - See [official release history][releases] and [changelog][changelog].
-* **[Tor][tor]**: 0.2.8.6 (Aug 02 2016)
+* **OnionBrowser**: 1.6.2 (20160824.1) - See [official release history][releases] and [changelog][changelog].
+* **[Tor][tor]**: 0.2.8.7 (Aug 24 2016)
 * **[iObfs][iobfs]**: 26463e2 (Jul 15 2016)
   * **obfs4proxy**: 0.0.7-dev, upstream 6205762 (Jul 10 2016)
   * **golang**: 1.7 (Aug 15 2016)
