@@ -29,9 +29,9 @@
     //NSString *base_torrc = [[NSBundle mainBundle] pathForResource:@"torrc" ofType:nil];
     NSString *base_torrc = [[[appDelegate applicationDocumentsDirectory] URLByAppendingPathComponent:@"torrc"] relativePath];
     NSString *geoip = [[NSBundle mainBundle] pathForResource:@"geoip" ofType:nil];
-    
-    NSString *controlPortStr = [NSString stringWithFormat:@"%ld", (unsigned long)appDelegate.tor.torControlPort];
-    NSString *socksPortStr = [NSString stringWithFormat:@"%ld", (unsigned long)appDelegate.tor.torSocksPort];
+
+    NSString *controlPortStr = [NSString stringWithFormat:@"127.0.0.1:%ld", (unsigned long)appDelegate.tor.torControlPort];
+    NSString *socksPortStr = [NSString stringWithFormat:@"127.0.0.1:%ld IPv6Traffic", (unsigned long)appDelegate.tor.torSocksPort];
     
     //NSLog(@"%@ / %@", controlPortStr, socksPortStr);
     

@@ -1,13 +1,12 @@
 # See https://www.torproject.org/docs/tor-manual.html
 
-ClientOnly 1
-ExitPolicy reject *:*
+ClientUseIPv4 1
+ClientUseIPv6 1
+#ClientPreferIPv6DirPort 1
+#ClientPreferIPv6ORPort 1
 
-# Port numbers (SocksPort, ControlPort) are randomly generated in TorController.
-# TorWrapper picks these up and executes tor with these as command-line args.
-# See TorController.m:31-32 and TorWrapper.m (main).
-SocksListenAddress 127.0.0.1
-ControlListenAddress 127.0.0.1
+ClientOnly 1
+ExitRelay 0
 
 CookieAuthentication 1
 

@@ -25,7 +25,7 @@
 #
 #VERSION="0.2.7.6"
 VERSION="0.2.8.7"
-USERSDKVERSION="9.3"
+USERSDKVERSION="10.0"
 MINIOSVERSION="8.2"
 VERIFYGPG=true
 
@@ -316,6 +316,7 @@ done
 
 mkdir -p ${OUTPUTDIR}/share
 cp "${SRCDIR}/tor-${VERSION}/src/config/geoip" ${OUTPUTDIR}/share
+cp "${SRCDIR}/tor-${VERSION}/src/config/geoip6" ${OUTPUTDIR}/share
 
 ####################
 
