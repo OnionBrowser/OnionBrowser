@@ -1,4 +1,4 @@
-platform :ios, "9.0"
+platform :ios, "10.1"
 
 target "OnionBrowser2" do
 	pod "InAppSettingsKit"
