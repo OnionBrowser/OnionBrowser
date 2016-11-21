@@ -10,7 +10,7 @@
 @implementation BridgeCustomViewController
 
 - (void)viewDidLoad {
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [appDelegate.tor disableNetwork];
 
     [super viewDidLoad];
@@ -54,7 +54,7 @@
 }
 
 - (NSString *)bridgesToBridgeLines {
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *ctx = appDelegate.managedObjectContext;
 
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -162,7 +162,7 @@
 
 
 - (void)save {
-  AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+  AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
   NSManagedObjectContext *ctx = appDelegate.managedObjectContext;
 
   NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -214,7 +214,7 @@
 
 
 - (void)exitModal {
-  AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+  AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
   NSManagedObjectContext *ctx = appDelegate.managedObjectContext;
 
   if (![appDelegate.tor didFirstConnect]) {

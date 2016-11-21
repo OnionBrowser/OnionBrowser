@@ -53,7 +53,7 @@
 	if (section == 0) {
         NSString *bridgeMsg = @"Bridges are Tor relays that help circumvent censorship. You can try bridges if Tor is blocked by your ISP; each type of bridge uses a different method to avoid censorship: if one type does not work, try using a different one.\n\nYou may use the provided bridges below or obtain bridges at bridges.torproject.org.\n\n(NOTE: obfs4 and meek bridges may not work in beta versions of iOS.)";
 
-		AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+		AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 		NSUInteger numBridges = [appDelegate numBridgesConfigured];
 
 		if (numBridges == 0) {
@@ -135,7 +135,7 @@
 
 
 - (void)clearBridges {
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *ctx = appDelegate.managedObjectContext;
 
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -153,7 +153,7 @@
 - (void)save:(NSString *)bridgeLines {
     [self clearBridges];
 
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *ctx = appDelegate.managedObjectContext;
 
 	NSString *txt = [bridgeLines stringByReplacingOccurrencesOfString:@"[ ]+"
@@ -180,7 +180,7 @@
 }
 
 - (void)finishSave:(NSString *)extraMsg {
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 
     NSUInteger numBridges = [appDelegate numBridgesConfigured];
 

@@ -124,7 +124,7 @@ const char AlertViewIncomingUrl;
     }
     //NSLog(@"%lu", (unsigned long)[[UIScreen mainScreen] bounds].size.height);
 
-	AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+	AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 	NSUInteger numBridges = [appDelegate numBridgesConfigured];
 
 	NSString *status = [NSString stringWithFormat:@""
@@ -196,7 +196,7 @@ const char AlertViewIncomingUrl;
         /* circuit & pluggable transport debugging: */
         /*
         NSLog(@"DEBUG: getinfo stream-status");
-        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         [appDelegate.tor getCircuitInfo];
         */
 
@@ -301,7 +301,7 @@ const char AlertViewIncomingUrl;
     //    size = CGSizeMake(size.height, size.width);
     //}
     
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     NSString *reqSysVer = @"7.0";
     NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
     size.height -= 20.0f;
@@ -488,13 +488,14 @@ const char AlertViewIncomingUrl;
 
     loadingStatus.tag = kLoadingStatusTag;
     [self.view addSubview:loadingStatus];
+	[self.view bringSubviewToFront:loadingStatus];
     if (appDelegate.doPrepopulateBookmarks){
         [self prePopulateBookmarks];
     }
 }
 
 -(void) prePopulateBookmarks {
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
 
@@ -743,7 +744,7 @@ const char AlertViewIncomingUrl;
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if ((alertView.tag == ALERTVIEW_TORFAIL) && (buttonIndex == 1)) {
         // Tor failed, user says we can quit app.
-        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         [appDelegate wipeAppData];
         exit(0);
     }
@@ -751,7 +752,7 @@ const char AlertViewIncomingUrl;
 
     if ((alertView.tag == ALERTVIEW_SSL_WARNING) && (buttonIndex == 1)) {
         // "Continue anyway" for SSL cert error
-        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 
         // Assumung URL in address bar is the one that caused this error.
         NSURL *url = objc_getAssociatedObject(alertView, &SSLWarningKey);
@@ -784,7 +785,7 @@ const char AlertViewIncomingUrl;
             [self loadURL:navigationURL];
         } else {
             // Otherwise, open default homepage.
-            AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+            AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
             [self loadURL:[NSURL URLWithString:appDelegate.homepage]];
         }
     }
@@ -896,7 +897,7 @@ const char AlertViewIncomingUrl;
 # pragma mark Options Menu action sheet
 
 - (void)openOptionsMenu {
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     if (![appDelegate.tor didFirstConnect]) {
         [appDelegate.tor disableNetwork];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Bridge Configuration"
@@ -919,7 +920,7 @@ const char AlertViewIncomingUrl;
 }
 
 - (void)newIdentity {
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [appDelegate.tor requestNewTorIdentity];
 
     [appDelegate wipeAppData];
@@ -949,7 +950,7 @@ const char AlertViewIncomingUrl;
     [self goHome];
 }
 - (void) goHome {
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     _addressField.text = @"";
     [self loadURL:[NSURL URLWithString:appDelegate.homepage]];
 }
@@ -1156,7 +1157,7 @@ const char AlertViewIncomingUrl;
 
 - (void) addCurrentAsBookmark {
     if ((_currentURL != nil) && ![_currentURL isEqualToString:@""]) {
-        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         NSFetchRequest *request = [[NSFetchRequest alloc] init];
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Bookmark" inManagedObjectContext:appDelegate.managedObjectContext];
         [request setEntity:entity];
@@ -1204,7 +1205,7 @@ const char AlertViewIncomingUrl;
     UINavigationController *bookmarkNavController = [[UINavigationController alloc]
                                                      initWithRootViewController:bookmarksVC];
     
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     

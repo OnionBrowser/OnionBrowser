@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#include "or/or.h"
-#include "or/main.h"
+#import <Tor/Tor.h>
 
-@interface TorWrapper : NSThread
+@interface TorWrapper : NSObject
+@property (nonatomic, retain) TORThread *tor;
 
--(NSData *)readTorCookie;
+//-(NSData *)readTorCookie;
+-(void)start;
 @end

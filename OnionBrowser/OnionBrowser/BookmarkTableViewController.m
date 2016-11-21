@@ -209,7 +209,7 @@
             NSArray *item = [[self presetBookmarks] objectAtIndex:indexPath.row];
             urlString = [item objectAtIndex:1];
         }
-        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         url = [NSURL URLWithString:urlString];
         [appDelegate.appWebView loadURL:url];
         [appDelegate.appWebView.addressField setText:urlString];

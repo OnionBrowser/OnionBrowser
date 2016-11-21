@@ -92,7 +92,7 @@
 	else if (section == 6) {
 		NSString *bridgeMsg = @"Tor Bridges\nUse bridges if your Internet Service Provider (ISP) blocks connections to Tor.";
 
-		AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+		AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 		NSUInteger numBridges = [appDelegate numBridgesConfigured];
 
 		if (numBridges == 0) {
@@ -119,12 +119,12 @@
     }
     
     if(indexPath.section == 0) {
-        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         NSMutableDictionary *settings2 = appDelegate.getSettings;
         cell.textLabel.text = [settings2 objectForKey:@"homepage"];
     } else if (indexPath.section == 1) {
         // Active Content
-        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         NSMutableDictionary *settings = appDelegate.getSettings;
         NSInteger csp_setting = [[settings valueForKey:@"javascript"] integerValue];
 
@@ -183,7 +183,7 @@
         }
     } else if (indexPath.section == 3) {
         // User-Agent
-        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         NSMutableDictionary *settings = appDelegate.getSettings;
         NSInteger spoofUserAgent = [[settings valueForKey:@"uaspoof"] integerValue];
         
@@ -225,7 +225,7 @@
         }
     } else if (indexPath.section == 4) {
         // DNT
-        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         NSMutableDictionary *settings = appDelegate.getSettings;
         NSInteger dntHeader = [[settings valueForKey:@"dnt"] integerValue];
 
@@ -246,7 +246,7 @@
         }
     } else if (indexPath.section == 5) {
         // SSL
-        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         NSMutableDictionary *settings = appDelegate.getSettings;
         NSInteger dntHeader = [[settings valueForKey:@"tlsver"] integerValue];
 
@@ -285,13 +285,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if(indexPath.section == 0) {
-        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         NSMutableDictionary *settings2 = appDelegate.getSettings;
 
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Home Page" message:@"Leave blank to use default\nOnion Browser home page." preferredStyle:UIAlertControllerStyleAlert];
         [alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
         [alert addAction:[UIAlertAction actionWithTitle:@"Save" style:UIAlertActionStyleDefault handler:^(UIAlertAction *_Nonnull action) {
-            AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+            AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
             NSMutableDictionary *settings = appDelegate.getSettings;
 
 
@@ -317,7 +317,7 @@
         [self presentViewController:alert animated:YES completion:NULL];
     } else if (indexPath.section == 1) {
         // Active Content
-        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         NSMutableDictionary *settings = appDelegate.getSettings;
 
         if (indexPath.row == 0) {
@@ -344,7 +344,7 @@
         }
     } else if(indexPath.section == 2) {
         // Cookies
-        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         NSMutableDictionary *settings = appDelegate.getSettings;
 
         if (indexPath.row == 0) {
@@ -362,7 +362,7 @@
         }
     } else if (indexPath.section == 3) {
         // User-Agent
-        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         NSMutableDictionary *settings = appDelegate.getSettings;
         
         //NSString* secretAgent = [appDelegate.appWebView.myWebView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
@@ -392,7 +392,7 @@
         }
     } else if (indexPath.section == 4) {
         // DNT
-        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         NSMutableDictionary *settings = appDelegate.getSettings;
 
         if (indexPath.row == 0) {
@@ -404,7 +404,7 @@
         }
     } else if (indexPath.section == 5) {
         // TLS
-        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         NSMutableDictionary *settings = appDelegate.getSettings;
 
         if (indexPath.row == 0) {

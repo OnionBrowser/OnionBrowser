@@ -19,7 +19,7 @@
 - (void)setUp
 {
     [super setUp];
-    self.appDelegate = [[UIApplication sharedApplication] delegate];
+    self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     self.tor = self.appDelegate.tor;
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }

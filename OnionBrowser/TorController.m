@@ -59,7 +59,7 @@
         [_torStatusTimeoutTimer invalidate];
     }
     if (_torThread != nil) {
-        [_torThread cancel];
+        [_torThread.tor cancel];
         _torThread = nil;
     }
     
@@ -214,10 +214,10 @@
     #ifdef DEBUG
     NSLog(@"[tor] Control Port Connected" );
     #endif
-    NSData *torCookie = [_torThread readTorCookie];
-    
-    NSString *authMsg = [NSString stringWithFormat:@"authenticate %@\n",
-                         [torCookie hexadecimalString]];
+    //NSData *torCookie = [_torThread readTorCookie];
+    //NSString *authMsg = [NSString stringWithFormat:@"authenticate %@\n",
+    //                     [torCookie hexadecimalString]];
+	NSString *authMsg = [NSString stringWithFormat:@"authenticate \"onionbrowser\"\n"];
     [_mSocket writeString:authMsg encoding:NSUTF8StringEncoding];
     
     _controllerIsAuthenticated = NO;
@@ -236,7 +236,7 @@
 
 - (void)netsocket:(ULINetSocket*)inNetSocket dataAvailable:(unsigned)inAmount {
     NSString *msgIn = [_mSocket readString:NSUTF8StringEncoding];
-    
+
     if (!_controllerIsAuthenticated) {
         // Response to AUTHENTICATE
         if ([msgIn hasPrefix:@"250"]) {
@@ -280,8 +280,9 @@
             }
         }
     } else if ([msgIn rangeOfString:@"-status/bootstrap-phase="].location != NSNotFound) {
+
         // Response to "getinfo status/bootstrap-phase"
-        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         
         if ([msgIn rangeOfString:@"BOOTSTRAP PROGRESS=100"].location != NSNotFound) {
             _connectionStatus = CONN_STATUS_CONNECTED;

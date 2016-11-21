@@ -4,9 +4,6 @@
  */
 #import "NSData+CocoaDevUsersAdditions.h"
 #include <zlib.h>
-#include <openssl/md5.h>
-#include <openssl/sha.h>
-#include <openssl/ripemd.h>
 
 
 @implementation NSData (NSDataExtension)

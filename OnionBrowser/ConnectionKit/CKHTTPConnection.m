@@ -131,7 +131,7 @@
     
     CFReadStreamSetProperty((__bridge CFReadStreamRef)(_HTTPStream), kCFStreamPropertyHTTPAttemptPersistentConnection, kCFBooleanTrue);
 
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     NSMutableDictionary *settings = appDelegate.getSettings;
 
     // SSL/TLS hardening -- this is a TLS request
@@ -359,7 +359,7 @@
                                                          kCFHTTPVersion1_1);
     //[NSMakeCollectable(result) autorelease];
     
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     NSMutableDictionary *settings = appDelegate.getSettings;
 
     Byte spoofUserAgent = [[settings valueForKey:@"uaspoof"] integerValue];

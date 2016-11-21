@@ -1,22 +1,17 @@
 # See https://www.torproject.org/docs/tor-manual.html
 
+ClientUseIPv4 1
+#ClientUseIPv6 1
+
 ClientOnly 1
 ExitPolicy reject *:*
 
-# Port numbers (SocksPort, ControlPort) are randomly generated in TorController.
-# TorWrapper picks these up and executes tor with these as command-line args.
-# See TorController.m:31-32 and TorWrapper.m (main).
-SocksListenAddress 127.0.0.1
-ControlListenAddress 127.0.0.1
+CookieAuthentication 0
 
-CookieAuthentication 1
-
-ConnLimit 100
+# "onionbrowser"
+HashedControlPassword 16:3BC82646B9E77E50606294B257F28D8D99EDFE088908DFCF2F522355A2
 
 SafeLogging 1
-
-TestSocks 0
-WarnUnsafeSocks 0 # default 1 (we don't care on iOS)
 
 # We actually disabled this by removing ptrace() calls when building tor.
 # See "build-tor-ptrace-patch.diff" and "build-tor.sh" in the OnionBrowser

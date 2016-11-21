@@ -6,7 +6,6 @@
 //
 
 #import "AppDelegate.h"
-#include <Openssl/sha.h>
 #import "Bridge.h"
 #include <sys/types.h>
 #include <sys/sysctl.h>

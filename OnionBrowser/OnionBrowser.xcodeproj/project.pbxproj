@@ -7,15 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		690B74801BE4212900A5A4BE /* libed25519_donna.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 690B747D1BE4212900A5A4BE /* libed25519_donna.a */; };
-		690B74811BE4212900A5A4BE /* libed25519_ref10.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 690B747E1BE4212900A5A4BE /* libed25519_ref10.a */; };
-		690B74821BE4212900A5A4BE /* libor-trunnel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 690B747F1BE4212900A5A4BE /* libor-trunnel.a */; };
 		69156B5D15FD544700BC560A /* Settings.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 69156B5B15FD544600BC560A /* Settings.xcdatamodeld */; };
 		69156B6015FD54AF00BC560A /* Bookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = 69156B5F15FD54AE00BC560A /* Bookmark.m */; };
 		69156B6315FD54BC00BC560A /* Bridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 69156B6215FD54BC00BC560A /* Bridge.m */; };
 		691958D61536BA67000423A4 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 691958D41536B8AC000423A4 /* Reachability.m */; };
 		6924C29015526343004BE7F9 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6924C28F15526343004BE7F9 /* SettingsTableViewController.m */; };
-		6928942116F6741000C787B2 /* libcurve25519_donna.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6928942016F6741000C787B2 /* libcurve25519_donna.a */; };
+		6926D4B31DE39846000C4F45 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6926D4B21DE39846000C4F45 /* libxml2.tbd */; };
+		6926D4B51DE3984F000C4F45 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6926D4B41DE3984F000C4F45 /* libz.tbd */; };
+		6926D4B71DE3988A000C4F45 /* Tor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6926D4B61DE3988A000C4F45 /* Tor.framework */; };
+		6926D4BA1DE399ED000C4F45 /* geoip6 in Resources */ = {isa = PBXBuildFile; fileRef = 6926D4B91DE399ED000C4F45 /* geoip6 */; };
+		6926D4BF1DE39EA7000C4F45 /* Tor.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = 6926D4BE1DE39EA7000C4F45 /* Tor.framework.dSYM */; };
 		692B338C15FAF2E500A23DD5 /* BookmarkEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 692B338B15FAF2E400A23DD5 /* BookmarkEditViewController.m */; };
 		692B86AF153CD4CB000806A9 /* NSData+Conversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 692B86AE153CD4CB000806A9 /* NSData+Conversion.m */; };
 		69374255189CBAF1002C65A0 /* help.html in Resources */ = {isa = PBXBuildFile; fileRef = 69374254189CBAF1002C65A0 /* help.html */; };
@@ -43,7 +44,6 @@
 		696F9EB014F8DA6900BC5FDC /* torrc in Resources */ = {isa = PBXBuildFile; fileRef = 696F9EAF14F8DA6900BC5FDC /* torrc */; };
 		696F9EB414F8DD6D00BC5FDC /* ULINetSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 696F9EB314F8DD6D00BC5FDC /* ULINetSocket.m */; };
 		696F9EB614F8E21200BC5FDC /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696F9EB514F8E21200BC5FDC /* CFNetwork.framework */; };
-		6978ADBA1CB1EF9500A9DC4A /* libkeccak-tiny.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6978ADB91CB1EF9500A9DC4A /* libkeccak-tiny.a */; };
 		697AB10A1866567400A6F3EE /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 697AB1091866567400A6F3EE /* XCTest.framework */; };
 		697AB10B1866567400A6F3EE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696EBD7914F7877900B81BC9 /* Foundation.framework */; };
 		697AB10C1866567400A6F3EE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 696EBD7714F7877900B81BC9 /* UIKit.framework */; };
@@ -52,20 +52,7 @@
 		697ABCD414FA036E00E1678C /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 697ABCD314FA036E00E1678C /* WebViewController.m */; };
 		697ABCD614FA042C00E1678C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 697ABCD514FA042C00E1678C /* SystemConfiguration.framework */; };
 		697ABCD814FA043300E1678C /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 697ABCD714FA043300E1678C /* MobileCoreServices.framework */; };
-		69847C4714F788E100288277 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69847C3C14F788E100288277 /* libcrypto.a */; };
-		69847C4814F788E100288277 /* libevent_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69847C3D14F788E100288277 /* libevent_core.a */; };
-		69847C4914F788E100288277 /* libevent_extra.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69847C3E14F788E100288277 /* libevent_extra.a */; };
-		69847C4A14F788E100288277 /* libevent_openssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69847C3F14F788E100288277 /* libevent_openssl.a */; };
-		69847C4B14F788E100288277 /* libevent_pthreads.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69847C4014F788E100288277 /* libevent_pthreads.a */; };
-		69847C4C14F788E100288277 /* libevent.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69847C4114F788E100288277 /* libevent.a */; };
-		69847C4D14F788E100288277 /* libor-crypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69847C4214F788E100288277 /* libor-crypto.a */; };
-		69847C4E14F788E100288277 /* libor-event.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69847C4314F788E100288277 /* libor-event.a */; };
-		69847C4F14F788E100288277 /* libor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69847C4414F788E100288277 /* libor.a */; };
-		69847C5014F788E100288277 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69847C4514F788E100288277 /* libssl.a */; };
-		69847C5114F788E100288277 /* libtor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69847C4614F788E100288277 /* libtor.a */; };
-		69847C5414F788E900288277 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 69847C5314F788E900288277 /* libz.dylib */; };
 		69855E071531576800720327 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = 69855E061531576800720327 /* about.html */; };
-		699CCEBD14FA1939004A2F56 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 699CCEBC14FA1939004A2F56 /* libxml2.dylib */; };
 		69A3758E1AAFF60F00AAE92B /* QRCameraSwitchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A375851AAFF60F00AAE92B /* QRCameraSwitchButton.m */; };
 		69A3758F1AAFF60F00AAE92B /* QRCodeReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A375871AAFF60F00AAE92B /* QRCodeReader.m */; };
 		69A375901AAFF60F00AAE92B /* QRCodeReaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A3758A1AAFF60F00AAE92B /* QRCodeReaderView.m */; };
@@ -90,9 +77,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		690B747D1BE4212900A5A4BE /* libed25519_donna.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libed25519_donna.a; path = ../dependencies/lib/libed25519_donna.a; sourceTree = "<group>"; };
-		690B747E1BE4212900A5A4BE /* libed25519_ref10.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libed25519_ref10.a; path = ../dependencies/lib/libed25519_ref10.a; sourceTree = "<group>"; };
-		690B747F1BE4212900A5A4BE /* libor-trunnel.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libor-trunnel.a"; path = "../dependencies/lib/libor-trunnel.a"; sourceTree = "<group>"; };
 		69156B5C15FD544700BC560A /* Settings.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Settings.xcdatamodel; sourceTree = "<group>"; };
 		69156B5E15FD54AE00BC560A /* Bookmark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bookmark.h; sourceTree = "<group>"; };
 		69156B5F15FD54AE00BC560A /* Bookmark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bookmark.m; sourceTree = "<group>"; };
@@ -102,6 +86,12 @@
 		691958D41536B8AC000423A4 /* Reachability.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		6924C28E15526343004BE7F9 /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
 		6924C28F15526343004BE7F9 /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
+		6926D4B21DE39846000C4F45 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
+		6926D4B41DE3984F000C4F45 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		6926D4B61DE3988A000C4F45 /* Tor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tor.framework; path = ../Carthage/Build/iOS/Tor.framework; sourceTree = "<group>"; };
+		6926D4B91DE399ED000C4F45 /* geoip6 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = geoip6; path = ../Carthage/Checkouts/Tor.framework/Tor/tor/src/config/geoip6; sourceTree = "<group>"; };
+		6926D4BC1DE39AB5000C4F45 /* orconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = orconfig.h; sourceTree = "<group>"; };
+		6926D4BE1DE39EA7000C4F45 /* Tor.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Tor.framework.dSYM; path = ../Carthage/Build/iOS/Tor.framework.dSYM; sourceTree = "<group>"; };
 		6928942016F6741000C787B2 /* libcurve25519_donna.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurve25519_donna.a; path = ../dependencies/lib/libcurve25519_donna.a; sourceTree = "<group>"; };
 		692B338A15FAF2E400A23DD5 /* BookmarkEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkEditViewController.h; sourceTree = "<group>"; };
 		692B338B15FAF2E400A23DD5 /* BookmarkEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkEditViewController.m; sourceTree = "<group>"; };
@@ -145,7 +135,6 @@
 		696F9EB214F8DD6D00BC5FDC /* ULINetSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ULINetSocket.h; sourceTree = "<group>"; };
 		696F9EB314F8DD6D00BC5FDC /* ULINetSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ULINetSocket.m; sourceTree = "<group>"; };
 		696F9EB514F8E21200BC5FDC /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		6978ADB91CB1EF9500A9DC4A /* libkeccak-tiny.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libkeccak-tiny.a"; path = "../dependencies/lib/libkeccak-tiny.a"; sourceTree = "<group>"; };
 		697AB1081866567400A6F3EE /* OnionBrowserTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OnionBrowserTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		697AB1091866567400A6F3EE /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		697AB10F1866567400A6F3EE /* OnionBrowserTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OnionBrowserTests-Info.plist"; sourceTree = "<group>"; };
@@ -167,9 +156,7 @@
 		69847C4414F788E100288277 /* libor.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libor.a; path = ../dependencies/lib/libor.a; sourceTree = "<group>"; };
 		69847C4514F788E100288277 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = ../dependencies/lib/libssl.a; sourceTree = "<group>"; };
 		69847C4614F788E100288277 /* libtor.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libtor.a; path = ../dependencies/lib/libtor.a; sourceTree = "<group>"; };
-		69847C5314F788E900288277 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		69855E061531576800720327 /* about.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; lineEnding = 0; path = about.html; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.html; };
-		699CCEBC14FA1939004A2F56 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		69A375841AAFF60F00AAE92B /* QRCameraSwitchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCameraSwitchButton.h; sourceTree = "<group>"; };
 		69A375851AAFF60F00AAE92B /* QRCameraSwitchButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCameraSwitchButton.m; sourceTree = "<group>"; };
 		69A375861AAFF60F00AAE92B /* QRCodeReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeReader.h; sourceTree = "<group>"; };
@@ -190,7 +177,7 @@
 		69E8A49C1981B59E00D84980 /* NSStringPunycodeAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringPunycodeAdditions.m; sourceTree = "<group>"; };
 		69F3C5F714FC8739008274C3 /* CKHTTPConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CKHTTPConnection.h; path = ../ConnectionKit/CKHTTPConnection.h; sourceTree = "<group>"; };
 		69F3C5F814FC8739008274C3 /* CKHTTPConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CKHTTPConnection.m; path = ../ConnectionKit/CKHTTPConnection.m; sourceTree = "<group>"; };
-		69F88FCB1500A9D900C7BE98 /* geoip */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = geoip; path = ../dependencies/share/geoip; sourceTree = "<group>"; };
+		69F88FCB1500A9D900C7BE98 /* geoip */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = geoip; path = ../Carthage/Checkouts/Tor.framework/Tor/tor/src/config/geoip; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,32 +185,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6926D4B71DE3988A000C4F45 /* Tor.framework in Frameworks */,
 				6940BD2515F8761900FE74CB /* CoreData.framework in Frameworks */,
-				699CCEBD14FA1939004A2F56 /* libxml2.dylib in Frameworks */,
+				6926D4B31DE39846000C4F45 /* libxml2.tbd in Frameworks */,
 				697ABCD814FA043300E1678C /* MobileCoreServices.framework in Frameworks */,
 				697ABCD614FA042C00E1678C /* SystemConfiguration.framework in Frameworks */,
 				696EBD7814F7877900B81BC9 /* UIKit.framework in Frameworks */,
 				696EBD7A14F7877900B81BC9 /* Foundation.framework in Frameworks */,
 				696EBD7C14F7877900B81BC9 /* CoreGraphics.framework in Frameworks */,
 				696F9EB614F8E21200BC5FDC /* CFNetwork.framework in Frameworks */,
-				69847C5414F788E900288277 /* libz.dylib in Frameworks */,
+				6926D4B51DE3984F000C4F45 /* libz.tbd in Frameworks */,
 				69AE086F1CB1E6D900A6B388 /* Iobfs4proxy.framework in Frameworks */,
-				69847C4714F788E100288277 /* libcrypto.a in Frameworks */,
-				69847C4814F788E100288277 /* libevent_core.a in Frameworks */,
-				69847C4914F788E100288277 /* libevent_extra.a in Frameworks */,
-				69847C4A14F788E100288277 /* libevent_openssl.a in Frameworks */,
-				69847C4B14F788E100288277 /* libevent_pthreads.a in Frameworks */,
-				69847C4C14F788E100288277 /* libevent.a in Frameworks */,
-				69847C4D14F788E100288277 /* libor-crypto.a in Frameworks */,
-				69847C4E14F788E100288277 /* libor-event.a in Frameworks */,
-				69847C4F14F788E100288277 /* libor.a in Frameworks */,
-				69847C5014F788E100288277 /* libssl.a in Frameworks */,
-				69847C5114F788E100288277 /* libtor.a in Frameworks */,
-				6928942116F6741000C787B2 /* libcurve25519_donna.a in Frameworks */,
-				690B74801BE4212900A5A4BE /* libed25519_donna.a in Frameworks */,
-				690B74811BE4212900A5A4BE /* libed25519_ref10.a in Frameworks */,
-				6978ADBA1CB1EF9500A9DC4A /* libkeccak-tiny.a in Frameworks */,
-				690B74821BE4212900A5A4BE /* libor-trunnel.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,14 +258,12 @@
 		696EBD7614F7877900B81BC9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6926D4BE1DE39EA7000C4F45 /* Tor.framework.dSYM */,
+				6926D4B61DE3988A000C4F45 /* Tor.framework */,
+				6926D4B41DE3984F000C4F45 /* libz.tbd */,
+				6926D4B21DE39846000C4F45 /* libxml2.tbd */,
 				69AE086E1CB1E6D900A6B388 /* Iobfs4proxy.framework */,
-				6978ADB91CB1EF9500A9DC4A /* libkeccak-tiny.a */,
-				690B747D1BE4212900A5A4BE /* libed25519_donna.a */,
-				690B747E1BE4212900A5A4BE /* libed25519_ref10.a */,
-				690B747F1BE4212900A5A4BE /* libor-trunnel.a */,
 				69847C5514F788F600288277 /* External */,
-				69847C5314F788E900288277 /* libz.dylib */,
-				699CCEBC14FA1939004A2F56 /* libxml2.dylib */,
 				697ABCD714FA043300E1678C /* MobileCoreServices.framework */,
 				697ABCD514FA042C00E1678C /* SystemConfiguration.framework */,
 				696EBD7714F7877900B81BC9 /* UIKit.framework */,
@@ -463,6 +433,8 @@
 				696F9EAD14F8D6ED00BC5FDC /* tor_main.c */,
 				696F9EAF14F8DA6900BC5FDC /* torrc */,
 				69F88FCB1500A9D900C7BE98 /* geoip */,
+				6926D4B91DE399ED000C4F45 /* geoip6 */,
+				6926D4BC1DE39AB5000C4F45 /* orconfig.h */,
 			);
 			name = Tor;
 			sourceTree = "<group>";
@@ -474,6 +446,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 696EBD8B14F7877900B81BC9 /* Build configuration list for PBXNativeTarget "OnionBrowser" */;
 			buildPhases = (
+				6926D4B81DE3989F000C4F45 /* ShellScript */,
 				696EBD6F14F7877900B81BC9 /* Sources */,
 				696EBD7014F7877900B81BC9 /* Frameworks */,
 				696EBD7114F7877900B81BC9 /* Resources */,
@@ -511,7 +484,7 @@
 		696EBD6A14F7877900B81BC9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0810;
 				TargetAttributes = {
 					696EBD7214F7877900B81BC9 = {
 						DevelopmentTeam = 68QUP6KP2C;
@@ -551,11 +524,13 @@
 			files = (
 				696EBD8214F7877900B81BC9 /* InfoPlist.strings in Resources */,
 				69374255189CBAF1002C65A0 /* help.html in Resources */,
+				6926D4BF1DE39EA7000C4F45 /* Tor.framework.dSYM in Resources */,
 				696F9EB014F8DA6900BC5FDC /* torrc in Resources */,
 				69F88FCC1500A9D900C7BE98 /* geoip in Resources */,
 				695BF045189444FF00C27BC1 /* LICENSE in Resources */,
 				6959A7A819206E69002F8228 /* Entitlements.plist in Resources */,
 				696C33AE1530D0D400990E69 /* startup.html in Resources */,
+				6926D4BA1DE399ED000C4F45 /* geoip6 in Resources */,
 				69855E071531576800720327 /* about.html in Resources */,
 				6962EAAD19D534DF00FDD0A7 /* Images.xcassets in Resources */,
 				695BF04718944B5500C27BC1 /* startup2.html in Resources */,
@@ -571,6 +546,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6926D4B81DE3989F000C4F45 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/../Carthage/Build/iOS/Tor.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		696EBD6F14F7877900B81BC9 /* Sources */ = {
@@ -656,27 +648,30 @@
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
 				DEPLOYMENT_POSTPROCESSING = YES;
 				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/..";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../dependencies/include,
-					../dependencies/include/common,
-					../dependencies/include/or,
-					"${SDK_DIR}/usr/include/libxml2",
-				);
-				LIBRARY_SEARCH_PATHS = ../dependencies/lib;
+				HEADER_SEARCH_PATHS = $SRCROOT/../Carthage/Build/iOS/Tor.framework/Headers/;
 				LLVM_LTO = YES;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
+				STRIP_INSTALLED_PRODUCT = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = TestBuilds;
@@ -687,16 +682,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../**";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SRCROOT)/..",
+					"$(inherited)",
+					"$(PROJECT_DIR)/../Carthage/Build/iOS",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OnionBrowser/OnionBrowser-Prefix.pch";
 				INFOPLIST_FILE = "OnionBrowser/OnionBrowser-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../dependencies/lib\"",
-				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.miketigas.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -712,30 +707,31 @@
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/..";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../dependencies/include,
-					../dependencies/include/common,
-					../dependencies/include/or,
-					"${SDK_DIR}/usr/include/libxml2",
-				);
-				LIBRARY_SEARCH_PATHS = ../dependencies/lib;
+				HEADER_SEARCH_PATHS = $SRCROOT/../Carthage/Build/iOS/Tor.framework/Headers/;
 				LLVM_LTO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "";
@@ -754,28 +750,31 @@
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = NO;
 				DEPLOYMENT_POSTPROCESSING = YES;
 				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/..";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					../dependencies/include,
-					../dependencies/include/common,
-					../dependencies/include/or,
-					"${SDK_DIR}/usr/include/libxml2",
-				);
-				LIBRARY_SEARCH_PATHS = ../dependencies/lib;
+				HEADER_SEARCH_PATHS = $SRCROOT/../Carthage/Build/iOS/Tor.framework/Headers/;
 				LLVM_LTO = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "cec315b3-f9ec-47c2-b1ce-063b9cded3f6";
 				SDKROOT = iphoneos;
+				STRIP_INSTALLED_PRODUCT = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -787,16 +786,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../**";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SRCROOT)/..",
+					"$(inherited)",
+					"$(PROJECT_DIR)/../Carthage/Build/iOS",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OnionBrowser/OnionBrowser-Prefix.pch";
 				INFOPLIST_FILE = "OnionBrowser/OnionBrowser-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../dependencies/lib\"",
-				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.miketigas.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -809,16 +808,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../**";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SRCROOT)/..",
+					"$(inherited)",
+					"$(PROJECT_DIR)/../Carthage/Build/iOS",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OnionBrowser/OnionBrowser-Prefix.pch";
 				INFOPLIST_FILE = "OnionBrowser/OnionBrowser-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../dependencies/lib\"",
-				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.miketigas.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -848,7 +847,7 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				INFOPLIST_FILE = "OnionBrowserTests/OnionBrowserTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.miketigas.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -876,7 +875,7 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				INFOPLIST_FILE = "OnionBrowserTests/OnionBrowserTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.miketigas.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -904,7 +903,7 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				INFOPLIST_FILE = "OnionBrowserTests/OnionBrowserTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.miketigas.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
