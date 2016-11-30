@@ -11,13 +11,14 @@ and App Store links.
 
 ---
 
-* **OnionBrowser**: 1.6.2 (20160824.1) - See [official release history][releases] and [changelog][changelog].
-* **[Tor][tor]**: 0.2.8.7 (Aug 24 2016)
+* **OnionBrowser**: 1.7.0-beta1 (20161130.1) - See [official release history][releases] and [changelog][changelog].
+* **[Tor.framework][Tor.framework]**: 57c9064 (Nov 30 2016)
+  * **[Tor][tor]**: 0.2.9.5-alpha (Nov 08 2016)
+  * **[libevent][libevent]**: 2.1.7-rc (Nov 11 2016)
+  * **[OpenSSL][openssl]**: 1.1.0c (Nov 10 2016)
 * **[iObfs][iobfs]**: 26463e2 (Jul 15 2016)
-  * **obfs4proxy**: 0.0.7-dev, upstream 6205762 (Jul 10 2016)
-  * **golang**: 1.7 (Aug 15 2016)
-* **[libevent][libevent]**: 2.0.22-stable (Jan 05 2015)
-* **[OpenSSL][openssl]**: 1.0.2h (May 03 2016)
+  * **obfs4proxy**: 0.0.8-dev, upstream 97a875e (Nov 15 2016)
+  * **golang**: 1.7.3 (Oct 19 2016)
 
 [official]: https://mike.tig.as/onionbrowser/
 [help]: https://mike.tig.as/onionbrowser/help/
@@ -26,6 +27,7 @@ and App Store links.
 [donate]: https://mike.tig.as/onionbrowser/#support-project
 [miketigas]: https://mike.tig.as/
 [license]: https://github.com/OnionBrowser/iOS-OnionBrowser/blob/master/LICENSE
+[Tor.framework]: https://github.com/iCepa/Tor.framework
 [tor]: https://www.torproject.org/
 [libevent]: http://libevent.org/
 [openssl]: https://www.openssl.org/
