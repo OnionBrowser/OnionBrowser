@@ -38,6 +38,12 @@
 #define X_TLSVER_TLS1 1
 #define X_TLSVER_TLS1_2_ONLY 2
 
+#define TOR_BRIDGES_NONE 0
+#define TOR_BRIDGES_OBFS4 1
+#define TOR_BRIDGES_MEEKAMAZON 2
+#define TOR_BRIDGES_MEEKAZURE 3
+#define TOR_BRIDGES_CUSTOM 99
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) TorController *tor;

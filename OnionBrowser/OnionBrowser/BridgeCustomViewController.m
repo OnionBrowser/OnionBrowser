@@ -217,6 +217,10 @@
   AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
   NSManagedObjectContext *ctx = appDelegate.managedObjectContext;
 
+  NSMutableDictionary *settings = appDelegate.getSettings;
+  [settings setObject:[NSNumber numberWithInteger:TOR_BRIDGES_CUSTOM] forKey:@"bridges"];
+  [appDelegate saveSettings:settings];
+
   if (![appDelegate.tor didFirstConnect]) {
       UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Please Restart App" message:@"Onion Browser will now close. Please start the app again to retry the Tor connection with the newly-configured bridges.\n\n(If you restart and the app stays stuck at \"Connecting...\", please come back and double-check your bridge configuration or remove your bridges.)" preferredStyle:UIAlertControllerStyleAlert];
       [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
@@ -226,7 +230,9 @@
       [self presentViewController:alert animated:YES completion:NULL];
       // App will die after this, so don't enable network.
   } else {
-      NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	  [appDelegate updateTorrc];
+
+	  NSFetchRequest *request = [[NSFetchRequest alloc] init];
       NSEntityDescription *entity = [NSEntityDescription entityForName:@"Bridge" inManagedObjectContext:ctx];
       [request setEntity:entity];
 

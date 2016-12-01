@@ -13,5 +13,9 @@
 @interface Bridge : NSManagedObject
 
 @property (nonatomic, retain) NSString * conf;
-
++(NSString *) defaultObfs4;
++(NSString *) defaultMeekAmazon;
++(NSString *) defaultMeekAzure;
++(void) clearBridges;
++(void) updateBridgeLines: (NSString *)bridgeLines;
 @end

@@ -146,13 +146,24 @@ const char AlertViewIncomingUrl;
       summary_str,
       progress_str];
 
-	if (numBridges == 0) {
+	NSMutableDictionary *settings = appDelegate.getSettings;
+	NSInteger bridgeSetting = [[settings valueForKey:@"bridges"] integerValue];
+	if (bridgeSetting == TOR_BRIDGES_OBFS4) {
+		status = [status stringByAppendingString:@""
+				  "<p>Using provided obfs4 bridges. Press the middle (settings) button at the bottom of the screen to edit bridge configuration if you have issues connecting.</p>"];
+	} else if (bridgeSetting == TOR_BRIDGES_MEEKAMAZON) {
+		status = [status stringByAppendingString:@""
+				  "<p>Using meek (Amazon) bridge. Press the middle (settings) button at the bottom of the screen to edit bridge configuration if you have issues connecting.</p>"];
+	} else if (bridgeSetting == TOR_BRIDGES_MEEKAZURE) {
+		status = [status stringByAppendingString:@""
+				  "<p>Using meek (Azure) bridge. Press the middle (settings) button at the bottom of the screen to edit bridge configuration if you have issues connecting.</p>"];
+	} else if (numBridges == 0) {
 		status = [status stringByAppendingString:@""
 				  "<p>No bridges configured: connecting directly to Tor. If your ISP blocks connections to Tor, you may configure bridges by  "
 				  "pressing the middle (settings) button at the bottom of the screen.</p>"];
 	} else {
 		status = [status stringByAppendingString:[NSString stringWithFormat:@""
-				  "<p>Using %ld configured bridge", (unsigned long)numBridges]];
+				  "<p>Using %ld custom configured bridge", (unsigned long)numBridges]];
 		if (numBridges > 1) {
 			status = [status stringByAppendingString:@"s"];
 		}
