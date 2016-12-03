@@ -1,6 +1,6 @@
 ## Onion Browser
 
-[![Build Status](https://travis-ci.org/mtigas/iOS-OnionBrowser.svg?branch=master)](https://travis-ci.org/mtigas/iOS-OnionBrowser)  
+[![Build Status](https://travis-ci.org/mtigas/OnionBrowser.svg?branch=master)](https://travis-ci.org/mtigas/OnionBrowser)  
 [Official Site][official] | [Support][help] | [Changelog][changelog] | [Donate][donate]  
 &copy; 2012-2016 [Mike Tigas][miketigas] ([@mtigas](https://twitter.com/mtigas))  
 [MIT License][license]
