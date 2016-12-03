@@ -1,17 +1,17 @@
 language: objective-c
-osx_image: xcode7.3
-xcode_sdk: iphonesimulator9.3
+osx_image: xcode8.1
+xcode_sdk: iphonesimulator10.1
 
 # Temporarily using xctool head due to xcode7.3 issue
 before_install:
 - brew update
 - brew uninstall --force xctool
 - brew install xctool --HEAD
+- curl -LO https://cdn.tig.as/files/20161202/Iobfs4proxy.framework.tar.xz
+- tar -xf Iobfs4proxy.framework.tar.xz
 
 install:
-  - ./build-libssl.sh --noverify --travis
-  - ./build-libevent.sh --noverify --travis
-  - ./build-tor.sh --noverify --travis
+  - https://cdn.tig.as/files/20161202/Iobfs4proxy.framework.tar.xz
 
 script:
-  - xctool -project OnionBrowser/OnionBrowser.xcodeproj -scheme OnionBrowser -sdk iphonesimulator9.3 -configuration TestBuilds -destination platform='iOS Simulator',OS=9.3,name='iPhone 6s' clean test -freshInstall -testTimeout 90
+  - xctool -project OnionBrowser/OnionBrowser.xcodeproj -scheme OnionBrowser -sdk iphonesimulator10.1 -configuration TestBuilds -destination platform='iOS Simulator',OS=10.1,name='iPhone 7' clean test -freshInstall -testTimeout 100
