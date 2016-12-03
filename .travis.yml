@@ -9,9 +9,7 @@ before_install:
 - brew install xctool --HEAD
 - curl -LO https://cdn.tig.as/files/20161202/Iobfs4proxy.framework.tar.xz
 - tar -xf Iobfs4proxy.framework.tar.xz
-
-install:
-  - https://cdn.tig.as/files/20161202/Iobfs4proxy.framework.tar.xz
+- rm -f Iobfs4proxy.framework.tar.xz
 
 script:
-  - xctool -project OnionBrowser/OnionBrowser.xcodeproj -scheme OnionBrowser -sdk iphonesimulator10.1 -configuration TestBuilds -destination platform='iOS Simulator',OS=10.1,name='iPhone 7' clean test -freshInstall -testTimeout 100
+  - xctool -project OnionBrowser/OnionBrowser.xcodeproj -scheme OnionBrowser -sdk iphonesimulator10.1 -configuration TestBuilds -destination platform='iOS Simulator',OS=10.1,name='iPhone 7' run-tests -freshInstall -testTimeout 100
