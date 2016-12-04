@@ -1,3 +1,4 @@
+OnionBrowser/
 .DS_Store
 build/*
 *.pbxuser
@@ -9,3 +10,8 @@ profile
 Pods
 .ruby-version
 Carthage/Build/
+.LSOverride
+.DS_Store
+*.swp
+Iobfs4proxy.framework/
+Iobfs4proxy.framework.tar.xz
