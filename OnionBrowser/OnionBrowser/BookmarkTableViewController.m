@@ -1,10 +1,9 @@
+// This file is part of Onion Browser 1.7 - https://mike.tig.as/onionbrowser/
+// Copyright © 2012-2016 Mike Tigas
 //
-//  BookmarkListViewController.m
-//  OnionBrowser
-//
-//  Created by Mike Tigas on 9/7/12.
-//
-//
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #import "BookmarkTableViewController.h"
 #import "Bookmark.h"
@@ -54,9 +53,9 @@
     [self.tableView setAllowsSelectionDuringEditing:YES];
 
     self.title = @"Bookmarks";
-    
+
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
-    
+
     addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                               target:self action:@selector(addBookmark)];
     editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit
@@ -79,7 +78,7 @@
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"order" ascending:YES];
     NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
     [request setSortDescriptors:sortDescriptors];
-    
+
     NSError *error = nil;
     NSMutableArray *mutableFetchResults = [[managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
     if (mutableFetchResults == nil) {
@@ -129,14 +128,14 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"Cell";
-    
+
     // Dequeue or create a new cell.
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
         [cell setEditingAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     }
-    
+
     if (indexPath.section == 0) {
         Bookmark *bookmark = (Bookmark *)[bookmarksArray objectAtIndex:indexPath.row];
         cell.textLabel.text = bookmark.title;
@@ -152,11 +151,11 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        
+
         // Delete the managed object at the given index path.
         NSManagedObject *bookmarkToDelete = [bookmarksArray objectAtIndex:indexPath.row];
         [managedObjectContext deleteObject:bookmarkToDelete];
-        
+
         // Update the array and table view.
         [bookmarksArray removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
@@ -184,7 +183,7 @@
 
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-    
+
 }
 
 #pragma mark - Table view delegate
@@ -197,7 +196,7 @@
             BookmarkEditViewController *editController = [[BookmarkEditViewController alloc] initWithBookmark:bookmark];
             [self presentViewController:editController animated:YES completion:nil];
         } else {
-            
+
         }
     } else {
         NSURL *url;
@@ -219,13 +218,13 @@
 
 - (void)addBookmark {
     Bookmark *bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:managedObjectContext];
-    
+
     [bookmark setTitle:@"Title"];
     [bookmark setUrl:@"http://example.com/"];
-    
+
     int16_t order = [bookmarksArray count];
     [bookmark setOrder:order];
-    
+
     NSError *error = nil;
     if (![managedObjectContext save:&error]) {
         NSLog(@"Error adding bookmark: %@", error);

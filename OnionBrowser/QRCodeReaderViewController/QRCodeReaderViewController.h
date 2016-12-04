@@ -1,28 +1,12 @@
-/*
- * QRCodeReaderViewController
- *
- * Copyright 2014-present Yannick Loriot.
- * http://yannickloriot.com
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- *
- */
+// This file is part of Onion Browser 1.7 - https://mike.tig.as/onionbrowser/
+// Copyright © 2012-2016 Mike Tigas
+//
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+//
+// This file is derived from QRCodeReaderViewController, under the MIT License.
+// Copyright (c) 2014-present Yannick Loriot
 
 #import <UIKit/UIKit.h>
 #import "QRCodeReaderDelegate.h"
@@ -30,7 +14,7 @@
 
 /**
  * Convenient controller to display a view to scan/read 1D or 2D bar codes like
- * the QRCodes. It is based on the `AVFoundation` framework from Apple. It aims 
+ * the QRCodes. It is based on the `AVFoundation` framework from Apple. It aims
  * to replace ZXing or ZBar for iOS 7 and over.
  */
 @interface QRCodeReaderViewController : UIViewController
@@ -39,7 +23,7 @@
 /** @name Creating and Inializing QRCode Reader Controllers */
 
 /**
- * @abstract Initializes a view controller to read QRCodes from a displayed 
+ * @abstract Initializes a view controller to read QRCodes from a displayed
  * video preview and a cancel button to be go back.
  * @param cancelTitle The title of the cancel button.
  * @discussion This convenient method is used to instanciate a reader with
@@ -59,7 +43,7 @@
 + (instancetype)readerWithCancelButtonTitle:(NSString *)cancelTitle;
 
 /**
- * @abstract Initializes a reader view controller with a list of metadata 
+ * @abstract Initializes a reader view controller with a list of metadata
  * object types.
  * @param metadataObjectTypes An array of strings identifying the types of
  * metadata objects to process.
@@ -128,9 +112,9 @@
 @property (nonatomic, weak) id<QRCodeReaderDelegate> delegate;
 
 /**
- * @abstract Sets the completion with a block that executes when a QRCode 
+ * @abstract Sets the completion with a block that executes when a QRCode
  * or when the user did stopped the scan.
- * @param completionBlock The block to be executed. This block has no 
+ * @param completionBlock The block to be executed. This block has no
  * return value and takes one argument: the `resultAsString`. If the user
  * stop the scan and that there is no response the `resultAsString` argument
  * is nil.

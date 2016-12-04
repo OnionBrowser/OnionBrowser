@@ -1,10 +1,9 @@
+// This file is part of Onion Browser 1.7 - https://mike.tig.as/onionbrowser/
+// Copyright © 2012-2016 Mike Tigas
 //
-//  TorWrapper.m
-//  wut
-//
-//  Created by Mike Tigas on 2/22/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
-//
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #import "TorWrapper.h"
 #import "AppDelegate.h"
@@ -33,9 +32,9 @@
 
     NSString *controlPortStr = [NSString stringWithFormat:@"%ld", (unsigned long)appDelegate.tor.torControlPort];
     NSString *socksPortStr = [NSString stringWithFormat:@"%ld", (unsigned long)appDelegate.tor.torSocksPort];
-    
+
     //NSLog(@"%@ / %@", controlPortStr, socksPortStr);
-    
+
     /**************/
 
 	TORConfiguration *conf = [[TORConfiguration alloc] init];

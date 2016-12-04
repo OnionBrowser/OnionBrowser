@@ -1,9 +1,12 @@
+// This file is part of Onion Browser 1.7 - https://mike.tig.as/onionbrowser/
+// Copyright © 2012-2016 Mike Tigas
 //
-//  NJKWebViewProgressView.m
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
 //
-//  Created by Satoshi Aasanoon 11/16/13.
-//  Copyright (c) 2013 Satoshi Asano. All rights reserved.
-//
+// This file is derived from NJKWebViewProgress, under the MIT License.
+// Copyright (c) 2013 Satoshi Asano. All rights reserved.
 
 #import "NJKWebViewProgressView.h"
 
@@ -36,7 +39,7 @@
     }
     _progressBarView.backgroundColor = tintColor;
     [self addSubview:_progressBarView];
-    
+
     _barAnimationDuration = 0.27f;
     _fadeAnimationDuration = 0.27f;
     _fadeOutDelay = 0.1f;

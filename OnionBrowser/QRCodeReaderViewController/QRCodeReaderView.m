@@ -1,28 +1,12 @@
-/*
- * QRCodeReaderViewController
- *
- * Copyright 2014-present Yannick Loriot.
- * http://yannickloriot.com
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- *
- */
+// This file is part of Onion Browser 1.7 - https://mike.tig.as/onionbrowser/
+// Copyright © 2012-2016 Mike Tigas
+//
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+//
+// This file is derived from QRCodeReaderViewController, under the MIT License.
+// Copyright (c) 2014-present Yannick Loriot
 
 #import "QRCodeReaderView.h"
 
@@ -38,14 +22,14 @@
   if ((self = [super initWithFrame:frame])) {
     [self addOverlay];
   }
-  
+
   return self;
 }
 
 - (void)drawRect:(CGRect)rect
 {
   CGRect innerRect = CGRectInset(rect, 50, 50);
-  
+
   CGFloat minSize = MIN(innerRect.size.width, innerRect.size.height);
   if (innerRect.size.width != minSize) {
     innerRect.origin.x   += (innerRect.size.width - minSize) / 2;
@@ -55,10 +39,10 @@
     innerRect.origin.y    += (innerRect.size.height - minSize) / 2;
     innerRect.size.height = minSize;
   }
-  
+
   CGRect offsetRect = CGRectOffset(innerRect, 0, 15);
-  
-  
+
+
   _overlay.path = [UIBezierPath bezierPathWithRoundedRect:offsetRect cornerRadius:5].CGPath;
 }
 
@@ -73,7 +57,7 @@
   _overlay.lineWidth       = 3;
   _overlay.lineDashPattern = @[@7.0, @7.0];
   _overlay.lineDashPhase   = 0;
-  
+
   [self.layer addSublayer:_overlay];
 }
 

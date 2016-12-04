@@ -1,12 +1,9 @@
+// This file is part of Onion Browser 1.7 - https://mike.tig.as/onionbrowser/
+// Copyright © 2012-2016 Mike Tigas
 //
-//  ProxyURLProtocol.h
-//  PandoraBoy
-//
-//  Created by Rob Napier on 11/30/07.
-//  Copyright 2007 __MyCompanyName__. All rights reserved.
-//
-// Special NSURLProtocol to capture information out of the stream.
-// It does very little; most work is done by subclasses
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #import "CKHTTPConnection.h"
 

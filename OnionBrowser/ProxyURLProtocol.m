@@ -1,10 +1,9 @@
+// This file is part of Onion Browser 1.7 - https://mike.tig.as/onionbrowser/
+// Copyright © 2012-2016 Mike Tigas
 //
-//  ProxyURLProtocol.m
-//  PandoraBoy
-//
-//  Created by Rob Napier on 11/30/07.
-//  Copyright 2007 __MyCompanyName__. All rights reserved.
-//
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #import "ProxyURLProtocol.h"
 #import <Foundation/NSURLProtocol.h>
@@ -35,7 +34,7 @@
 
     // Modify request
     NSMutableURLRequest *myRequest = [request mutableCopy];
-    
+
     self = [super initWithRequest:myRequest
                    cachedResponse:cachedResponse
                            client:client];
@@ -159,7 +158,7 @@
     }
     _data.length = 0;
 
-    [self.client URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageAllowedInMemoryOnly];    
+    [self.client URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageAllowedInMemoryOnly];
 }
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection {
@@ -177,7 +176,7 @@
     [self.client URLProtocol:self didReceiveAuthenticationChallenge:challenge];
 }
 - (void)HTTPConnection:(CKHTTPConnection *)connection didCancelAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
-    [self.client URLProtocol:self didCancelAuthenticationChallenge:challenge];    
+    [self.client URLProtocol:self didCancelAuthenticationChallenge:challenge];
 }
 - (void)HTTPConnection:(CKHTTPConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response {
     isGzippedResponse = NO;
@@ -188,7 +187,7 @@
         _data = nil;
     }
     _data.length = 0;
-    
+
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     NSMutableDictionary *settings = appDelegate.getSettings;
 
@@ -357,7 +356,7 @@
         [[self client] URLProtocol:self wasRedirectedToRequest:_request redirectResponse:response];
     }
 
-    
+
     // For some reason, passing the response directly doesn't always properly
     // set the separate mimetype and content-encoding bits, so attempt to parse
     // these out. (We'll basically always get Content-Type unless something is
@@ -366,8 +365,8 @@
     NSString *content_type = [[response allHeaderFields] objectForKey:@"Content-Type"];
     NSArray *content_type_bits = [content_type componentsSeparatedByString:@";"];
     if ([content_type_bits count] == 0) {
-        [self.client URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageAllowedInMemoryOnly];    
-    } else { 
+        [self.client URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageAllowedInMemoryOnly];
+    } else {
         NSString *mime = [content_type_bits objectAtIndex:0];
         NSString *encoding = @"UTF-8";
         NSString *content_encoding = [[response allHeaderFields] objectForKey:@"Content-Encoding"];

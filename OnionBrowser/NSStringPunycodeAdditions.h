@@ -1,14 +1,13 @@
+// This file is part of Onion Browser 1.7 - https://mike.tig.as/onionbrowser/
+// Copyright © 2012-2016 Mike Tigas
 //
-//  NSStringPunycodeAdditions.h
-//  Punycode
-//  https://github.com/Wevah/Punycode-Cocoa
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
 //
-//  Created by Wevah on 2005.11.02.
-//  Copyright 2005-2012 Derailer. All rights reserved.
-//
-//  Distributed under an MIT-style license.
-//  See https://github.com/Wevah/Punycode-Cocoa/blob/master/LICENSE
-//
+// This file is derived from Punycode-Cocoa, under an MIT-style License.
+// Copyright 2005-2012 Derailer. All rights reserved.
+// See https://github.com/Wevah/Punycode-Cocoa/blob/master/LICENSE
 
 #import <Foundation/Foundation.h>
 

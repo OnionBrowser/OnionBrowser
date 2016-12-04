@@ -1,10 +1,9 @@
+// This file is part of Onion Browser 1.7 - https://mike.tig.as/onionbrowser/
+// Copyright © 2012-2016 Mike Tigas
 //
-//  SettingsTableViewController.m
-//  OnionBrowser
-//
-//  Created by Mike Tigas on 5/2/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
-//
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #import "SettingsTableViewController.h"
 #import "AppDelegate.h"
@@ -113,11 +112,11 @@
 {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
+
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithFrame:CGRectZero];
     }
-    
+
     if(indexPath.section == 0) {
         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         NSMutableDictionary *settings2 = appDelegate.getSettings;
@@ -173,7 +172,7 @@
         } else {
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
-        
+
         if (indexPath.row == 0) {
             cell.textLabel.text = @"Allow All";
         } else if (indexPath.row == 1) {
@@ -186,7 +185,7 @@
         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         NSMutableDictionary *settings = appDelegate.getSettings;
         NSInteger spoofUserAgent = [[settings valueForKey:@"uaspoof"] integerValue];
-        
+
         if (indexPath.row == 0) {
             cell.textLabel.text = @"Standard";
             if (spoofUserAgent == UA_SPOOF_NO) {
@@ -277,7 +276,7 @@
         cell.textLabel.textAlignment = NSTextAlignmentCenter;
         cell.textLabel.text = @"Configure Bridges";
     }
-    
+
     return cell;
 }
 
@@ -364,7 +363,7 @@
         // User-Agent
         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         NSMutableDictionary *settings = appDelegate.getSettings;
-        
+
         //NSString* secretAgent = [appDelegate.appWebView.myWebView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
         //NSLog(@"%@", secretAgent);
 

@@ -1,9 +1,12 @@
+// This file is part of Onion Browser 1.7 - https://mike.tig.as/onionbrowser/
+// Copyright © 2012-2016 Mike Tigas
 //
-//  NJKWebViewProgress.m
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
 //
-//  Created by Satoshi Aasano on 4/20/13.
-//  Copyright (c) 2013 Satoshi Asano. All rights reserved.
-//
+// This file is derived from NJKWebViewProgress, under the MIT License.
+// Copyright (c) 2013 Satoshi Asano. All rights reserved.
 
 #import "NJKWebViewProgress.h"
 
@@ -84,12 +87,12 @@ const float NJKFinalProgressValue = 0.9f;
         [self completeProgress];
         return NO;
     }
-    
+
     BOOL ret = YES;
     if ([_webViewProxyDelegate respondsToSelector:@selector(webView:shouldStartLoadWithRequest:navigationType:)]) {
         ret = [_webViewProxyDelegate webView:webView shouldStartLoadWithRequest:request navigationType:navigationType];
     }
-    
+
     BOOL isFragmentJump = NO;
     if (request.URL.fragment) {
         NSString *nonFragmentURL = [request.URL.absoluteString stringByReplacingOccurrencesOfString:[@"#" stringByAppendingString:request.URL.fragment] withString:@""];
@@ -123,10 +126,10 @@ const float NJKFinalProgressValue = 0.9f;
     if ([_webViewProxyDelegate respondsToSelector:@selector(webViewDidFinishLoad:)]) {
         [_webViewProxyDelegate webViewDidFinishLoad:webView];
     }
-    
+
     _loadingCount--;
     [self incrementProgress];
-    
+
     NSString *readyState = [webView stringByEvaluatingJavaScriptFromString:@"document.readyState"];
 
     BOOL interactive = [readyState isEqualToString:@"interactive"];
@@ -135,7 +138,7 @@ const float NJKFinalProgressValue = 0.9f;
         NSString *waitForCompleteJS = [NSString stringWithFormat:@"window.addEventListener('load',function() { var iframe = document.createElement('iframe'); iframe.style.display = 'none'; iframe.src = '%@://%@%@'; document.body.appendChild(iframe);  }, false);", webView.request.mainDocumentURL.scheme, webView.request.mainDocumentURL.host, completeRPCURLPath];
         [webView stringByEvaluatingJavaScriptFromString:waitForCompleteJS];
     }
-    
+
     BOOL isNotRedirect = _currentURL && [_currentURL isEqual:webView.request.mainDocumentURL];
     BOOL complete = [readyState isEqualToString:@"complete"];
     if (complete && isNotRedirect) {
@@ -148,7 +151,7 @@ const float NJKFinalProgressValue = 0.9f;
     if ([_webViewProxyDelegate respondsToSelector:@selector(webView:didFailLoadWithError:)]) {
         [_webViewProxyDelegate webView:webView didFailLoadWithError:error];
     }
-    
+
     _loadingCount--;
     [self incrementProgress];
 
@@ -160,7 +163,7 @@ const float NJKFinalProgressValue = 0.9f;
         NSString *waitForCompleteJS = [NSString stringWithFormat:@"window.addEventListener('load',function() { var iframe = document.createElement('iframe'); iframe.style.display = 'none'; iframe.src = '%@://%@%@'; document.body.appendChild(iframe);  }, false);", webView.request.mainDocumentURL.scheme, webView.request.mainDocumentURL.host, completeRPCURLPath];
         [webView stringByEvaluatingJavaScriptFromString:waitForCompleteJS];
     }
-    
+
     BOOL isNotRedirect = _currentURL && [_currentURL isEqual:webView.request.mainDocumentURL];
     BOOL complete = [readyState isEqualToString:@"complete"];
     if (complete && isNotRedirect) {
@@ -168,7 +171,7 @@ const float NJKFinalProgressValue = 0.9f;
     }
 }
 
-#pragma mark - 
+#pragma mark -
 #pragma mark Method Forwarding
 // for future UIWebViewDelegate impl
 
@@ -176,10 +179,10 @@ const float NJKFinalProgressValue = 0.9f;
 {
     if ( [super respondsToSelector:aSelector] )
         return YES;
-    
+
     if ([self.webViewProxyDelegate respondsToSelector:aSelector])
         return YES;
-    
+
     return NO;
 }
 

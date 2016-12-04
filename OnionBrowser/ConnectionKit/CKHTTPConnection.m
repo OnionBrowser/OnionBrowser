@@ -1,17 +1,13 @@
+// This file is part of Onion Browser 1.7 - https://mike.tig.as/onionbrowser/
+// Copyright © 2012-2016 Mike Tigas
 //
-//  CKHTTPConnection.m
-//  Connection
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
 //
-//  Created by Mike on 17/03/2009.
-//  Copyright 2009 Karelia Software. All rights reserved.
-//
-//  Originally from ConnectionKit 2.0 branch; source at:
-//  http://www.opensource.utr-software.com/source/connection/branches/2.0/CKHTTPConnection.m
-//  (CKHTTPConnection.m last updated rev 1242, 2009-06-16 09:40:21 -0700, by mabdullah)
-//  
-//  Under Modified BSD License, as per description at
-//  http://www.opensource.utr-software.com/
-//
+// This file is derived from "Connection Framework" (ConnectionKit 2.0
+// branch), under the Modified BSD License.
+// Copyright 2009 Karelia Software. All rights reserved.
 
 #import "CKHTTPConnection.h"
 #import "AppDelegate.h"
@@ -79,18 +75,18 @@
 - (id)initWithRequest:(NSURLRequest *)request delegate:(id <CKHTTPConnectionDelegate>)delegate;
 {
     NSParameterAssert(request);
-    
+
     if (self = [super init])
     {
         _delegate = delegate;
-        
+
         // Kick off the connection
         _HTTPRequest = [request makeHTTPMessage];
         _HTTPBodyStream = [request HTTPBodyStream];
 
         [self start];
     }
-    
+
     return self;
 }
 
@@ -123,12 +119,12 @@
 - (void)start
 {
     NSAssert(!_HTTPStream, @"Connection already started");
-    
+
     if (_HTTPBodyStream)
         _HTTPStream = (__bridge NSInputStream *)(CFReadStreamCreateForStreamedHTTPRequest(NULL, [self HTTPRequest], (__bridge CFReadStreamRef)_HTTPBodyStream));
     else
         _HTTPStream = (__bridge_transfer NSInputStream *)CFReadStreamCreateForHTTPRequest(NULL, [self HTTPRequest]);
-    
+
     CFReadStreamSetProperty((__bridge CFReadStreamRef)(_HTTPStream), kCFStreamPropertyHTTPAttemptPersistentConnection, kCFBooleanTrue);
 
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -187,7 +183,7 @@
                                        [NSNumber numberWithInt: proxyPortNumber],portKey,
                                        nil];
     CFReadStreamSetProperty((__bridge CFReadStreamRef)_HTTPStream, kCFStreamPropertySOCKSProxy, (__bridge CFTypeRef)proxyToUse);
-    
+
     [_HTTPStream setDelegate:(id<NSStreamDelegate>)self];
     [_HTTPStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     [_HTTPStream open];
@@ -201,7 +197,7 @@
     //  C) Restarting the connection after an HTTP redirect
     [_HTTPStream close];
     CFBridgingRelease((__bridge_retained CFTypeRef)(_HTTPStream));
-    //[_HTTPStream release]; 
+    //[_HTTPStream release];
     _HTTPStream = nil;
 }
 
@@ -215,7 +211,7 @@
 - (void)stream:(NSInputStream *)theStream handleEvent:(NSStreamEvent)streamEvent
 {
     NSParameterAssert(theStream == [self stream]);
-    
+
     // Handle the response as soon as it's available
     if (!_haveReceivedResponse)
     {
@@ -225,56 +221,56 @@
             // Construct a NSURLResponse object from the HTTP message
             NSURL *URL = [theStream propertyForKey:(NSString *)kCFStreamPropertyHTTPFinalURL];
             NSHTTPURLResponse *URLResponse = [NSHTTPURLResponse responseWithURL:URL HTTPMessage:response];
-            
+
             // If the response was an authentication failure, try to request fresh credentials.
             if ([URLResponse statusCode] == 401 || [URLResponse statusCode] == 407)
             {
                 // Cancel any further loading and ask the delegate for authentication
                 [self _cancelStream];
-                
+
                 NSAssert(![self currentAuthenticationChallenge],
                          @"Authentication challenge received while another is in progress");
-                
+
                 _authenticationChallenge = [[CKHTTPAuthenticationChallenge alloc] initWithResponse:response
                                                                                 proposedCredential:nil
                                                                               previousFailureCount:_authenticationAttempts
                                                                                    failureResponse:URLResponse
                                                                                             sender:self];
-                
+
                 if ([self currentAuthenticationChallenge])
                 {
                     _authenticationAttempts++;
                     [[self delegate] HTTPConnection:self didReceiveAuthenticationChallenge:[self currentAuthenticationChallenge]];
-                    
+
                     return; // Stops the delegate being sent a response received message
                 }
             }
-            
-            
+
+
             // By reaching this point, the response was not a valid request for authentication,
             // so go ahead and report it
             _haveReceivedResponse = YES;
             [[self delegate] HTTPConnection:self didReceiveResponse:URLResponse];
         }
     }
-    
-    
-    
+
+
+
     // Next course of action depends on what happened to the stream
     switch (streamEvent)
     {
-            
+
         case NSStreamEventErrorOccurred:    // Report an error in the stream as the operation failing
             [[self delegate] HTTPConnection:self didFailWithError:[theStream streamError]];
             break;
-            
-            
-            
+
+
+
         case NSStreamEventEndEncountered:   // Report the end of the stream to the delegate
             [[self delegate] HTTPConnectionDidFinishLoading:self];
             break;
-    
-        
+
+
         case NSStreamEventHasBytesAvailable:
         {
             NSMutableData *data = [[NSMutableData alloc] initWithCapacity:1024];    // Report any data loaded to the delegate
@@ -288,7 +284,7 @@
             [[self delegate] HTTPConnection:self didReceiveData:data];
             break;
         }
-            
+
         default:
             break;
     }
@@ -313,7 +309,7 @@
 {
     NSParameterAssert(challenge == [self currentAuthenticationChallenge]);
     [self _finishCurrentAuthenticationChallenge];
-    
+
     // Retry the request, this time with authentication // TODO: What if this function fails?
     CFHTTPAuthenticationRef HTTPAuthentication = [(CKHTTPAuthenticationChallenge *)challenge CFHTTPAuthentication];
     CFHTTPMessageApplyCredentials([self HTTPRequest],
@@ -328,7 +324,7 @@
 {
     NSParameterAssert(challenge == [self currentAuthenticationChallenge]);
     [self _finishCurrentAuthenticationChallenge];
-    
+
     // Just return the authentication response to the delegate
     [[self delegate] HTTPConnection:self didReceiveResponse:(NSHTTPURLResponse *)[challenge failureResponse]];
     [[self delegate] HTTPConnectionDidFinishLoading:self];
@@ -338,7 +334,7 @@
 {
     NSParameterAssert(challenge == [self currentAuthenticationChallenge]);
     [self _finishCurrentAuthenticationChallenge];
-    
+
     // Treat like a -cancel message
     [self cancel];
 }
@@ -358,13 +354,13 @@
                                                          (__bridge CFURLRef)[self URL],
                                                          kCFHTTPVersion1_1);
     //[NSMakeCollectable(result) autorelease];
-    
+
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     NSMutableDictionary *settings = appDelegate.getSettings;
 
     Byte spoofUserAgent = [[settings valueForKey:@"uaspoof"] integerValue];
 
-    
+
     NSDictionary *HTTPHeaderFields = [self allHTTPHeaderFields];
     NSEnumerator *HTTPHeaderFieldsEnumerator = [HTTPHeaderFields keyEnumerator];
     NSString *aHTTPHeaderField;
@@ -384,7 +380,7 @@
                                          (__bridge CFStringRef)[HTTPHeaderFields objectForKey:aHTTPHeaderField]);
     }
     /* Do not track (DNT) header */
-    
+
     Byte dntHeader = [[settings valueForKey:@"dnt"] integerValue];
     if (dntHeader != DNT_HEADER_UNSET) {
         // DNT_HEADER_CANTRACK is 0 and DNT_HEADER_NOTRACK is 1,
@@ -413,7 +409,7 @@
                                              (__bridge CFStringRef)[cookieHeaders objectForKey:headerKey]);
             #if DEBUG
                 NSLog(@"Sent cookie header --- %@: %@", headerKey, [cookieHeaders objectForKey:headerKey]);
-            #endif 
+            #endif
 
         }
     }
@@ -427,7 +423,7 @@
     {
         CFHTTPMessageSetBody(result, (__bridge_retained CFDataRef)body);
     }
-    
+
     return result;  // NOT autoreleased/collectable
 }
 
@@ -453,18 +449,18 @@
 {
     //_headerFields = NSMakeCollectable(CFHTTPMessageCopyAllHeaderFields(message));
     _headerFields = (__bridge_transfer NSDictionary *)CFHTTPMessageCopyAllHeaderFields(message);
-    
+
     NSString *MIMEType = [_headerFields objectForKey:@"Content-Type"];
     NSInteger contentLength = [[_headerFields objectForKey:@"Content-Length"] intValue];
     NSString *encoding = [_headerFields objectForKey:@"Content-Encoding"];
-    
+
     if (self = [super initWithURL:URL MIMEType:MIMEType expectedContentLength:contentLength textEncodingName:encoding])
     {
         _statusCode = CFHTTPMessageGetResponseStatusCode(message);
     }
     return self;
 }
-    
+
 - (void)dealloc {
     CFRelease((__bridge_retained CFTypeRef)_headerFields);
 }
@@ -490,8 +486,8 @@
                 sender:(id <NSURLAuthenticationChallengeSender>)sender
 {
     NSParameterAssert(response);
-    
-    
+
+
     // Try to create an authentication object from the response
     _HTTPAuthentication = CFHTTPAuthenticationCreateFromResponse(NULL, response);
     if (![self CFHTTPAuthentication])
@@ -499,31 +495,31 @@
         return nil;
     }
     //CFMakeCollectable(_HTTPAuthentication);
-    
-    
+
+
     // NSURLAuthenticationChallenge only handles user and password
     if (!CFHTTPAuthenticationIsValid([self CFHTTPAuthentication], NULL))
     {
         return nil;
     }
-    
+
     if (!CFHTTPAuthenticationRequiresUserNameAndPassword([self CFHTTPAuthentication]))
     {
         return nil;
     }
-    
-    
+
+
     // Fail if we can't retrieve decent protection space info
     CFArrayRef authenticationDomains = CFHTTPAuthenticationCopyDomains([self CFHTTPAuthentication]);
     NSURL *URL = [(__bridge NSArray *)authenticationDomains lastObject];
     CFRelease(authenticationDomains);
-    
+
     if (!URL || ![URL host])
     {
         return nil;
     }
-    
-    
+
+
     // Fail for an unsupported authentication method
     CFStringRef authMethod = CFHTTPAuthenticationCopyMethod([self CFHTTPAuthentication]);
     NSString *authenticationMethod;
@@ -542,26 +538,26 @@
         return nil;
     }
     CFRelease(authMethod);
-    
-    
+
+
     // Initialise
     CFStringRef realm = CFHTTPAuthenticationCopyRealm([self CFHTTPAuthentication]);
-    
+
     NSURLProtectionSpace *protectionSpace = [[NSURLProtectionSpace alloc] initWithHost:[URL host]
                                                                                   port:([URL port] ? [[URL port] intValue] : 80)
                                                                               protocol:[[URL scheme] lowercaseString]
                                                                                  realm:(__bridge NSString *)realm
                                                                   authenticationMethod:authenticationMethod];
     CFRelease(realm);
-    
+
     self = [self initWithProtectionSpace:protectionSpace
                       proposedCredential:credential
                     previousFailureCount:failureCount
                          failureResponse:URLResponse
                                    error:nil
                                   sender:sender];
-    
-    
+
+
     // Tidy up
     return self;
 }
@@ -574,5 +570,3 @@
 - (CFHTTPAuthenticationRef)CFHTTPAuthentication { return _HTTPAuthentication; }
 
 @end
-
-            
