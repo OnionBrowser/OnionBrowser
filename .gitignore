@@ -1,4 +1,5 @@
 Iobfs4proxy.framework/
+Iobfs4proxy.framework.tar.xz
 iobfs/
 
 # Xcode
@@ -26,3 +27,4 @@ dependencies-*/*
 Gemfile
 Gemfile.lock
 Carthage/build/
+Pods/
