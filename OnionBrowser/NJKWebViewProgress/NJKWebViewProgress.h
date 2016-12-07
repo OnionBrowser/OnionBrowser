@@ -1,9 +1,12 @@
+// This file is part of Onion Browser 1.7 - https://mike.tig.as/onionbrowser/
+// Copyright © 2012-2016 Mike Tigas
 //
-//  NJKWebViewProgress.h
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
 //
-//  Created by Satoshi Aasano on 4/20/13.
-//  Copyright (c) 2013 Satoshi Asano. All rights reserved.
-//
+// This file is derived from NJKWebViewProgress, under the MIT License.
+// Copyright (c) 2013 Satoshi Asano. All rights reserved.
 
 #import <Foundation/Foundation.h>
 
@@ -32,4 +35,3 @@ typedef void (^NJKWebViewProgressBlock)(float progress);
 @protocol NJKWebViewProgressDelegate <NSObject>
 - (void)webViewProgress:(NJKWebViewProgress *)webViewProgress updateProgress:(float)progress;
 @end
-

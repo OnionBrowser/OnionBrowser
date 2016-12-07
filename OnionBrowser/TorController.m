@@ -1,10 +1,9 @@
+// This file is part of Onion Browser 1.7 - https://mike.tig.as/onionbrowser/
+// Copyright © 2012-2016 Mike Tigas
 //
-//  TorController.m
-//  OnionBrowser
-//
-//  Created by Mike Tigas on 9/5/12.
-//
-//
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #import "TorController.h"
 #import "NSData+Conversion.h"
@@ -31,10 +30,10 @@
     if (self=[super init]) {
         _torControlPort = (arc4random() % (57343-49153)) + 49153;
         _torSocksPort = (arc4random() % (65534-57344)) + 57344;
-        
+
         _controllerIsAuthenticated = NO;
         _connectionStatus = CONN_STATUS_NONE;
-        
+
         // listen to changes in connection state
         // (tor has auto detection when external IP changes, but if we went
         //  offline, tor might not handle coming back gracefully -- we will SIGHUP
@@ -51,7 +50,7 @@
 
 -(void)startTor {
     // Starts or restarts tor thread.
-    
+
     if (_torCheckLoopTimer != nil) {
         [_torCheckLoopTimer invalidate];
     }
@@ -62,10 +61,10 @@
         [_torThread.tor cancel];
         _torThread = nil;
     }
-    
+
     _torThread = [[TorWrapper alloc] init];
     [_torThread start];
-    
+
     _torCheckLoopTimer = [NSTimer scheduledTimerWithTimeInterval:0.15f
                                                           target:self
                                                         selector:@selector(activateTorCheckLoop)
@@ -139,15 +138,15 @@
     #endif
 
     _controllerIsAuthenticated = NO;
-    
+
     [ULINetSocket ignoreBrokenPipes];
     // Create a new ULINetSocket connected to the host. Since ULINetSocket is asynchronous, the socket is not
     // connected to the host until the delegate method is called.
     _mSocket = [ULINetSocket netsocketConnectedToHost:@"127.0.0.1" port:_torControlPort];
-    
+
     // Schedule the ULINetSocket on the current runloop
     [_mSocket scheduleOnCurrentRunLoop];
-    
+
     // Set the ULINetSocket's delegate to ourself
     [_mSocket setDelegate:self];
 }
@@ -157,7 +156,7 @@
     [ULINetSocket ignoreBrokenPipes];
     [_mSocket close];
     _mSocket = nil;
-    
+
     [_torCheckLoopTimer invalidate];
 }
 
@@ -219,7 +218,7 @@
     //                     [torCookie hexadecimalString]];
 	NSString *authMsg = [NSString stringWithFormat:@"authenticate \"onionbrowser\"\n"];
     [_mSocket writeString:authMsg encoding:NSUTF8StringEncoding];
-    
+
     _controllerIsAuthenticated = NO;
 }
 
@@ -228,7 +227,7 @@
     #ifdef DEBUG
     NSLog(@"[tor] Control Port Disconnected" );
     #endif
-    
+
     // Attempt to reconnect the netsocket
     [self disableTorCheckLoop];
     [self activateTorCheckLoop];
@@ -283,11 +282,11 @@
 
         // Response to "getinfo status/bootstrap-phase"
         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-        
+
         if ([msgIn rangeOfString:@"BOOTSTRAP PROGRESS=100"].location != NSNotFound) {
             _connectionStatus = CONN_STATUS_CONNECTED;
         }
-        
+
         WebViewController *wvc = appDelegate.appWebView;
         if (!didFirstConnect) {
             if ([msgIn rangeOfString:@"BOOTSTRAP PROGRESS=100"].location != NSNotFound) {
@@ -301,7 +300,7 @@
                     [wvc loadURL:[NSURL URLWithString:appDelegate.homepage]];
                 }
                 didFirstConnect = YES;
-                
+
                 // See "checkTor call in middle of app" a little bit below.
                  _torCheckLoopTimer = [NSTimer scheduledTimerWithTimeInterval:5.0f
                  target:self
@@ -321,7 +320,7 @@
         }
     } else if ([msgIn rangeOfString:@"orconn-status="].location != NSNotFound) {
         [_torStatusTimeoutTimer invalidate];
-        
+
         // Response to "getinfo orconn-status"
         // This is a response to a "checkTor" call in the middle of our app.
         if ([msgIn rangeOfString:@"250 OK"].location == NSNotFound) {
@@ -332,7 +331,7 @@
                    stringByReplacingOccurrencesOfString:@"\n"
                    withString:@"\n    "]
                   );
-            
+
             [self hupTor];
         } else {
             #ifdef DEBUG

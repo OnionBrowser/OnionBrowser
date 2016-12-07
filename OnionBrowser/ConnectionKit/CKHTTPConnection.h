@@ -1,16 +1,13 @@
+// This file is part of Onion Browser 1.7 - https://mike.tig.as/onionbrowser/
+// Copyright © 2012-2016 Mike Tigas
 //
-//  CKHTTPConnection.h
-//  Connection
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
 //
-//  Created by Mike on 17/03/2009.
-//  Copyright 2009 Karelia Software. All rights reserved.
-//
-//  Originally from ConnectionKit 2.0 branch; source at:
-//  http://www.opensource.utr-software.com/source/connection/branches/2.0/CKHTTPConnection.h
-//  (CKHTTPConnection.m last updated rev 1242, 2009-06-16 09:40:21 -0700, by mabdullah)
-//  
-//  Under Modified BSD License, as per description at
-//  http://www.opensource.utr-software.com/
+// This file is derived from "Connection Framework" (ConnectionKit 2.0
+// branch), under the Modified BSD License.
+// Copyright 2009 Karelia Software. All rights reserved.
 
 
 //  A sort of NSURLConnection-lite class. Deals purely with HTTP and is not multithreaded
@@ -28,7 +25,7 @@
 {
     @private
     __weak id <CKHTTPConnectionDelegate>   _delegate;       // weak ref
-    
+
     CFHTTPMessageRef       _HTTPRequest;
     NSInputStream                   *_HTTPStream;
     NSInputStream                   *_HTTPBodyStream;
@@ -71,4 +68,3 @@
 @interface NSHTTPURLResponse (CKHTTPConnectionAdditions)
 + (NSHTTPURLResponse *)responseWithURL:(NSURL *)URL HTTPMessage:(CFHTTPMessageRef)message;
 @end
-

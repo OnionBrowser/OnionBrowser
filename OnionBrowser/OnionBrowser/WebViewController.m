@@ -1,10 +1,9 @@
+// This file is part of Onion Browser 1.7 - https://mike.tig.as/onionbrowser/
+// Copyright © 2012-2016 Mike Tigas
 //
-//  WebViewController.m
-//  OnionBrowser
-//
-//  Created by Mike Tigas on 2/25/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
-//
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #import "WebViewController.h"
 #import "AppDelegate.h"
@@ -275,7 +274,7 @@ const char AlertViewIncomingUrl;
     CFRelease(colorSpace);
     CGColorRef fillColor = [[UIColor blackColor] CGColor];
     CGContextSetFillColor(context, CGColorGetComponents(fillColor));
-    
+
     CGContextBeginPath(context);
     if (whichButton == kForwardButton) {
         CGContextMoveToPoint(context, 20.0f*scale, 12.0f*scale);
@@ -288,7 +287,7 @@ const char AlertViewIncomingUrl;
     }
     CGContextClosePath(context);
     CGContextFillPath(context);
-    
+
     CGImageRef theCGImage = CGBitmapContextCreateImage(context);
     CGContextRelease(context);
     UIImage *buttonImage = [[UIImage alloc] initWithCGImage:theCGImage
@@ -306,31 +305,31 @@ const char AlertViewIncomingUrl;
     /********** Initialize UIWebView **********/
     // Initialize a new UIWebView (to clear the history of the previous one)
     CGSize size = [UIScreen mainScreen].bounds.size;
-    
+
     // Flip if we are rotated
     //if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
     //    size = CGSizeMake(size.height, size.width);
     //}
-    
+
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     NSString *reqSysVer = @"7.0";
     NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
     size.height -= 20.0f;
     size.height -= kToolBarHeight;
     size.height -= kNavBarHeight;
-    
+
     CGRect webViewFrame = [[UIScreen mainScreen] applicationFrame];
     webViewFrame.origin.y = kNavBarHeight;
     webViewFrame.origin.x = 0;
     webViewFrame.size = size;
-    
+
     _myWebView = [[UIWebView alloc] initWithFrame:webViewFrame];
     //_myWebView.backgroundColor = [UIColor whiteColor];
     _myWebView.scalesPageToFit = YES;
     _myWebView.contentScaleFactor = 3;
     _myWebView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
     [self.view addSubview: _myWebView];
-    
+
     /********** Create Toolbars **********/
     // Set up toolbar.
     _toolbar = [[UIToolbar alloc] init];
@@ -342,7 +341,7 @@ const char AlertViewIncomingUrl;
                                initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                target:nil
                                action:nil];
-        
+
     _backButton = [[UIBarButtonItem alloc] initWithImage:[self makeForwardBackButtonImage:kBackwardButton]
                     style:UIBarButtonItemStylePlain
                     target:self
@@ -381,10 +380,10 @@ const char AlertViewIncomingUrl;
     [items addObject:space];
     [items addObject:_stopRefreshButton];
     [_toolbar setItems:items animated:NO];
-    
+
     [self.view addSubview:_toolbar];
     // (/toolbar)
-    
+
     // Set up actionsheets (options menu, bookmarks menu)
     _optionsMenu = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     [_optionsMenu addAction:[UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:nil]];
@@ -407,15 +406,15 @@ const char AlertViewIncomingUrl;
         [self loadURL:[NSURL URLWithString:@"onionbrowser:help"]];
     }]];
     // (/actionsheets)
-    
-    
+
+
     /********** Set Up Navbar **********/
     CGRect navBarFrame = self.view.bounds;
     navBarFrame.size.height = kNavBarHeight;
     UINavigationBar *navBar = [[UINavigationBar alloc] initWithFrame:navBarFrame];
     navBar.tag = kNavBarTag;
     navBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    
+
     CGRect labelFrame = CGRectMake(kMargin, kSpacer,
                                    navBar.bounds.size.width - 2*kMargin, kLabelHeight);
 
@@ -427,16 +426,16 @@ const char AlertViewIncomingUrl;
         label.backgroundColor = [UIColor clearColor];
         label.font = [UIFont systemFontOfSize:12];
         label.textAlignment = NSTextAlignmentCenter;
-        
+
         [navBar setTintColor:[UIColor blackColor]];
         [label setTextColor:[UIColor whiteColor]];
-        
+
         [navBar addSubview:label];
         _pageTitleLabel = label;
     }
     /* endif */
-    
-    // The address field is the same with as the label and located just below 
+
+    // The address field is the same with as the label and located just below
     // it with a gap of kSpacer
     CGRect addressFrame;
     if ([currSysVer compare:reqSysVer options:NSNumericSearch] == NSOrderedAscending) {
@@ -449,7 +448,7 @@ const char AlertViewIncomingUrl;
                                          labelFrame.size.width, kAddressHeight);
     }
     UITextField *address = [[UITextField alloc] initWithFrame:addressFrame];
-    
+
     address.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     address.borderStyle = UITextBorderStyleRoundedRect;
     address.font = [UIFont systemFontOfSize:17];
@@ -460,8 +459,8 @@ const char AlertViewIncomingUrl;
     address.clearButtonMode = UITextFieldViewModeNever;
     address.delegate = self;
     address.tag = kAddressFieldTag;
-    [address addTarget:self 
-                action:@selector(loadAddress:event:) 
+    [address addTarget:self
+                action:@selector(loadAddress:event:)
       forControlEvents:UIControlEventEditingDidEndOnExit|UIControlEventEditingDidEnd];
     [navBar addSubview:address];
     _addressField = address;
@@ -484,7 +483,7 @@ const char AlertViewIncomingUrl;
 
     [self.view addSubview:navBar];
     // (/navbar)
-    
+
     // Since this is first load: set up the overlay "loading..." bit that
     // will display tor initialization status.
     CGRect screenFrame = [[UIScreen mainScreen] applicationFrame];
@@ -772,7 +771,7 @@ const char AlertViewIncomingUrl;
 
         UIAlertView* newAlertView = [[UIAlertView alloc]
                                   initWithTitle:@"Whitelisted Domain"
-                                  message:[NSString stringWithFormat:@"SSL certificate errors for '%@' will be ignored for the rest of this session.", hostname] delegate:nil 
+                                  message:[NSString stringWithFormat:@"SSL certificate errors for '%@' will be ignored for the rest of this session.", hostname] delegate:nil
                                   cancelButtonTitle:@"OK"
                                   otherButtonTitles:nil];
         [newAlertView show];
@@ -822,12 +821,12 @@ const char AlertViewIncomingUrl;
 
     // Stop loading if we are loading a page
     [_myWebView stopLoading];
-    
+
     [self hideTLSStatus];
 
     // Move a "cancel" button into the nav bar a la Safari.
     UINavigationBar *navBar = (UINavigationBar *)[self.view viewWithTag:kNavBarTag];
-        
+
     UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
     [cancelButton setTitle:@"Cancel" forState:UIControlStateHighlighted];
@@ -840,8 +839,8 @@ const char AlertViewIncomingUrl;
     [cancelButton addTarget:self action:@selector(addressBarCancel) forControlEvents:UIControlEventTouchUpInside];
     cancelButton.tag = kAddressCancelButtonTag;
 
-    
-    
+
+
     [UIView setAnimationsEnabled:YES];
     [UIView animateWithDuration:0.2
                           delay:0.0
@@ -851,7 +850,7 @@ const char AlertViewIncomingUrl;
                                                           kSpacer*2.0 + kLabelHeight,
                                                           navBar.bounds.size.width - 2*kMargin - 75,
                                                           kAddressHeight);
-                         
+
                          [cancelButton setFrame:CGRectMake(navBar.bounds.size.width - 75,
                                                            kSpacer*2.0 + kLabelHeight,
                                                            75 - kMargin,
@@ -861,7 +860,7 @@ const char AlertViewIncomingUrl;
                      }
                      completion:^(BOOL finished) {
                          _addressField.clearButtonMode = UITextFieldViewModeAlways;
-                     }]; 
+                     }];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
@@ -871,7 +870,7 @@ const char AlertViewIncomingUrl;
     UIButton *cancelButton = (UIButton *)[self.view viewWithTag:kAddressCancelButtonTag];
 
     _addressField.clearButtonMode = UITextFieldViewModeNever;
-    
+
     NSString *reqSysVer = @"7.0";
     NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
     CGRect addressFrame;
@@ -901,7 +900,7 @@ const char AlertViewIncomingUrl;
                      completion:^(BOOL finished) {
                          [self updateTLSStatus:TLSSTATUS_PREVIOUS];
                          [cancelButton removeFromSuperview];
-                     }]; 
+                     }];
 }
 
 # pragma mark -
@@ -917,7 +916,7 @@ const char AlertViewIncomingUrl;
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
         [alert show];
-        
+
         BridgeViewController *bridgesVC = [[BridgeViewController alloc] initWithStyle:UITableViewStyleGrouped];
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:bridgesVC];
         navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
@@ -955,7 +954,7 @@ const char AlertViewIncomingUrl;
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
                                                     message:@"Requesting a new IP address from Tor. Cache, cookies, and browser history cleared.\n\nDue to an iOS limitation, visisted links still get the ':visited' CSS highlight state. iOS is resistant to script-based access to this information, but if you are still concerned about leaking history, please force-quit this app and re-launch.\n\nFor more details:\nhttp://yu8.in/M5"
                                                    delegate:nil
-                                          cancelButtonTitle:@"OK" 
+                                          cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
     [alert show];
     [self goHome];
@@ -969,7 +968,7 @@ const char AlertViewIncomingUrl;
     SettingsTableViewController *settingsController = [[SettingsTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     UINavigationController *settingsNavController = [[UINavigationController alloc]
                                                      initWithRootViewController:settingsController];
-    
+
     [self presentViewController:settingsNavController animated:YES completion:nil];
 }
 
@@ -1048,7 +1047,7 @@ const char AlertViewIncomingUrl;
 - (void)updateTitle:(UIWebView*)aWebView
 {
     NSString* pageTitle = [aWebView stringByEvaluatingJavaScriptFromString:@"document.title"];
-    
+
     /* if iOS < 7.0 */
     NSString *reqSysVer = @"7.0";
     NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
@@ -1061,7 +1060,7 @@ const char AlertViewIncomingUrl;
 - (void)updateAddress:(NSURLRequest*)request {
     NSURL* url = [request mainDocumentURL];
     NSString* absoluteString;
-    
+
     if ((url != nil) && [[[url scheme] lowercaseString] isEqualToString:@"file"]) {
         // Faked local URLs
         if ([[url absoluteString] rangeOfString:@"startup.html"].location != NSNotFound) {
@@ -1076,7 +1075,7 @@ const char AlertViewIncomingUrl;
         // Regular ol' web URL.
         absoluteString = [url absoluteString];
     }
-    
+
     if (![absoluteString isEqualToString:_currentURL]){
         _currentURL = absoluteString;
         if (!_addressField.isEditing) {
@@ -1172,19 +1171,19 @@ const char AlertViewIncomingUrl;
         NSFetchRequest *request = [[NSFetchRequest alloc] init];
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Bookmark" inManagedObjectContext:appDelegate.managedObjectContext];
         [request setEntity:entity];
-        
+
         NSError *error = nil;
         NSUInteger numBookmarks = [appDelegate.managedObjectContext countForFetchRequest:request error:&error];
         if (error) {
             // error state?
         }
         Bookmark *bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:appDelegate.managedObjectContext];
-        
+
         NSString *pageTitle = [_myWebView stringByEvaluatingJavaScriptFromString:@"document.title"];
         [bookmark setTitle:pageTitle];
         [bookmark setUrl:_currentURL];
         [bookmark setOrder:numBookmarks];
-        
+
         NSError *saveError = nil;
         if (![appDelegate.managedObjectContext save:&saveError]) {
             NSLog(@"Error saving bookmark: %@", saveError);
@@ -1215,13 +1214,13 @@ const char AlertViewIncomingUrl;
     BookmarkTableViewController *bookmarksVC = [[BookmarkTableViewController alloc] initWithStyle:UITableViewStylePlain];
     UINavigationController *bookmarkNavController = [[UINavigationController alloc]
                                                      initWithRootViewController:bookmarksVC];
-    
+
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    
+
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
-    
+
     bookmarksVC.managedObjectContext = context;
-    
+
     [self presentViewController:bookmarkNavController animated:YES completion:nil];
 }
 

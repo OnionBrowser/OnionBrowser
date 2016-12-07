@@ -1,7 +1,11 @@
+// This file is part of Onion Browser 1.7 - https://mike.tig.as/onionbrowser/
+// Copyright © 2012-2016 Mike Tigas
 //
-//  ULINetSocket.h
-//  Version 0.9
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
 //
+// This file is derived from ULINetSocket
 //  Copyright (c) 2001 Dustin Mierau.
 //	With modifications by Uli Kusterer.
 //
@@ -33,7 +37,7 @@
 #import <Foundation/Foundation.h>
 #import <netinet/in.h>
 
-@interface ULINetSocket : NSObject 
+@interface ULINetSocket : NSObject
 {
 	CFSocketRef				mCFSocketRef;
 	CFRunLoopSourceRef		mCFSocketRunLoopSourceRef;
@@ -125,7 +129,7 @@
  @param inAmount	the desired number of bytes to read. */
 -(unsigned)		read: (void*)inBuffer amount: (unsigned)inAmount;
 
-/*! Reads all the available data from the socket. That data that is read is appended to the specified mutable data object. 
+/*! Reads all the available data from the socket. That data that is read is appended to the specified mutable data object.
  @result	the amount of data read in bytes.
  @param inData	the mutable data object to which the read data will be appended. */
 -(unsigned)		readOntoData: (NSMutableData*)inData;

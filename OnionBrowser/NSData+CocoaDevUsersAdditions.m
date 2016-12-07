@@ -1,7 +1,13 @@
-/*
- * Based on public domain example and information on the CocoaDev Wiki:
- * http://cocoadev.com/wiki/NSDataCategory
- */
+// This file is part of Onion Browser 1.7 - https://mike.tig.as/onionbrowser/
+// Copyright © 2012-2016 Mike Tigas
+//
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+//
+// Based on public domain example and information on the CocoaDev Wiki:
+// http://cocoadev.com/wiki/NSDataCategory
+
 #import "NSData+CocoaDevUsersAdditions.h"
 #include <zlib.h>
 
@@ -25,7 +31,7 @@
 {
 	/* First valid character that can be indexed in decode lookup table */
 	static int charDigitsBase = '2';
-    
+
 	/* Lookup table used to decode() characters in encoded strings */
 	static int charDigits[] =
 	{	26,27,28,29,30,31,-1,-1,-1,-1,-1,-1,-1,-1 //   23456789:;<=>?
@@ -34,11 +40,11 @@
 		,-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13,14 // `abcdefghijklmno
 		,15,16,17,18,19,20,21,22,23,24,25                // pqrstuvwxyz
 	};
-    
+
 	if (! [encoded canBeConvertedToEncoding:NSASCIIStringEncoding]) return nil;
 	const char *chars = [encoded cStringUsingEncoding:NSASCIIStringEncoding]; // avoids using characterAtIndex.
 	unsigned int charsLen = (unsigned int)[encoded lengthOfBytesUsingEncoding:NSASCIIStringEncoding];
-	
+
 	// Note that the code below could detect non canonical Base32 length within the loop. However canonical Base32 length can be tested before entering the loop.
 	// A canonical Base32 length modulo 8 cannot be:
 	// 1 (aborts discarding 5 bits at STEP n=0 which produces no byte),
@@ -189,30 +195,30 @@
 		bytesLen -= 5;
 	}
 	return [NSString stringWithUTF8String:chars];
-    
+
 }
 
 
 - (NSData *)zlibInflate
 {
 	if ([self length] == 0) return self;
-    
+
 	unsigned int full_length = (unsigned int)[self length];
 	unsigned int half_length = (unsigned int)([self length] / 2);
-    
+
 	NSMutableData *decompressed = [NSMutableData dataWithLength: full_length + half_length];
 	BOOL done = NO;
 	int status;
-    
+
 	z_stream strm;
 	strm.next_in = (Bytef *)[self bytes];
 	strm.avail_in = (unsigned int)[self length];
 	strm.total_out = 0;
 	strm.zalloc = Z_NULL;
 	strm.zfree = Z_NULL;
-    
+
 	if (inflateInit (&strm) != Z_OK) return nil;
-    
+
 	while (!done)
 	{
 		// Make sure we have enough room and reset the lengths.
@@ -220,14 +226,14 @@
 			[decompressed increaseLengthBy: half_length];
 		strm.next_out = [decompressed mutableBytes] + strm.total_out;
 		strm.avail_out = (unsigned int)([decompressed length] - strm.total_out);
-        
+
 		// Inflate another chunk.
 		status = inflate (&strm, Z_SYNC_FLUSH);
 		if (status == Z_STREAM_END) done = YES;
 		else if (status != Z_OK) break;
 	}
 	if (inflateEnd (&strm) != Z_OK) return nil;
-    
+
 	// Set real length.
 	if (done)
 	{
@@ -240,21 +246,21 @@
 - (NSData *)gzipInflate
 {
 	if ([self length] == 0) return self;
-	
+
 	unsigned int full_length = (unsigned int)[self length];
 	unsigned int half_length = (unsigned int)([self length] / 2);
-	
+
 	NSMutableData *decompressed = [NSMutableData dataWithLength: full_length + half_length];
 	BOOL done = NO;
 	int status;
-	
+
 	z_stream strm;
 	strm.next_in = (Bytef *)[self bytes];
 	strm.avail_in = (unsigned int)[self length];
 	strm.total_out = 0;
 	strm.zalloc = Z_NULL;
 	strm.zfree = Z_NULL;
-	
+
 	if (inflateInit2(&strm, (15+32)) != Z_OK) return nil;
 	while (!done)
 	{
@@ -263,14 +269,14 @@
 			[decompressed increaseLengthBy: half_length];
 		strm.next_out = [decompressed mutableBytes] + strm.total_out;
 		strm.avail_out = (unsigned int)([decompressed length] - strm.total_out);
-		
+
 		// Inflate another chunk.
 		status = inflate (&strm, Z_SYNC_FLUSH);
 		if (status == Z_STREAM_END) done = YES;
 		else if (status != Z_OK) break;
 	}
 	if (inflateEnd (&strm) != Z_OK) return nil;
-	
+
 	// Set real length.
 	if (done)
 	{

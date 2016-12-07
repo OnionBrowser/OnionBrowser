@@ -1,10 +1,9 @@
+// This file is part of Onion Browser 1.7 - https://mike.tig.as/onionbrowser/
+// Copyright © 2012-2016 Mike Tigas
 //
-//  OnionBrowserTests.m
-//  OnionBrowserTests
-//
-//  Created by Mike Tigas on 12/21/13.
-//
-//
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #import <XCTest/XCTest.h>
 #import "AppDelegate.h"
@@ -45,7 +44,7 @@
         [NSThread sleepForTimeInterval:2.5f];
         NSData *res = [NSURLConnection  sendSynchronousRequest:req returningResponse:NULL error:NULL];
         NSString *result = [[NSString alloc] initWithData:res encoding:NSUTF8StringEncoding];
-        
+
         NSRange r = [result rangeOfString:@"Congratulations."];
         if (r.location != NSNotFound) {
             NSLog(@"Found 'Congratulations.' text. Assuming we are connected to Tor. Passing test.");

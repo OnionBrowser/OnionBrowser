@@ -1,28 +1,12 @@
-/*
- * QRCodeReaderViewController
- *
- * Copyright 2014-present Yannick Loriot.
- * http://yannickloriot.com
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- *
- */
+// This file is part of Onion Browser 1.7 - https://mike.tig.as/onionbrowser/
+// Copyright © 2012-2016 Mike Tigas
+//
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+//
+// This file is derived from QRCodeReaderViewController, under the MIT License.
+// Copyright (c) 2014-present Yannick Loriot
 
 #import "QRCodeReaderViewController.h"
 #import "QRCameraSwitchButton.h"
@@ -43,7 +27,7 @@
 - (void)dealloc
 {
   [_codeReader stopScanning];
-  
+
   [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -65,7 +49,7 @@
 - (id)initWithCancelButtonTitle:(NSString *)cancelTitle metadataObjectTypes:(NSArray *)metadataObjectTypes
 {
   QRCodeReader *reader = [QRCodeReader readerWithMetadataObjectTypes:metadataObjectTypes];
-  
+
   return [self initWithCancelButtonTitle:cancelTitle codeReader:reader];
 }
 
@@ -74,20 +58,20 @@
   if ((self = [super init])) {
     self.view.backgroundColor = [UIColor blackColor];
     self.codeReader           = codeReader;
-    
+
     if (cancelTitle == nil) {
       cancelTitle = NSLocalizedString(@"Cancel", @"Cancel");
     }
-    
+
     [self setupUIComponentsWithCancelButtonTitle:cancelTitle];
     [self setupAutoLayoutConstraints];
-    
+
     [_cameraView.layer insertSublayer:_codeReader.previewLayer atIndex:0];
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:UIDeviceOrientationDidChangeNotification object:nil];
-    
+
     __weak typeof(self) weakSelf = self;
-    
+
     [codeReader setCompletionWithBlock:^(NSString *resultAsString) {
       if (weakSelf.completionBlock != nil) {
         weakSelf.completionBlock(resultAsString);
@@ -124,21 +108,21 @@
 - (void)viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
-  
+
   [_codeReader startScanning];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
   [_codeReader stopScanning];
-  
+
   [super viewWillDisappear:animated];
 }
 
 - (void)viewWillLayoutSubviews
 {
   [super viewWillLayoutSubviews];
-  
+
   _codeReader.previewLayer.frame = self.view.bounds;
 }
 
@@ -152,10 +136,10 @@
 - (void)orientationChanged:(NSNotification *)notification
 {
   [_cameraView setNeedsDisplay];
-  
+
   if (_codeReader.previewLayer.connection.isVideoOrientationSupported) {
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-    
+
     _codeReader.previewLayer.connection.videoOrientation = [QRCodeReader videoOrientationFromInterfaceOrientation:
                                                             orientation];
   }
@@ -176,22 +160,22 @@
   _cameraView.translatesAutoresizingMaskIntoConstraints = NO;
   _cameraView.clipsToBounds                             = YES;
   [self.view addSubview:_cameraView];
-  
+
   [_codeReader.previewLayer setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-  
+
   if ([_codeReader.previewLayer.connection isVideoOrientationSupported]) {
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-    
+
     _codeReader.previewLayer.connection.videoOrientation = [QRCodeReader videoOrientationFromInterfaceOrientation:orientation];
   }
-  
+
   if ([_codeReader hasFrontDevice]) {
     _switchCameraButton = [[QRCameraSwitchButton alloc] init];
     [_switchCameraButton setTranslatesAutoresizingMaskIntoConstraints:false];
     [_switchCameraButton addTarget:self action:@selector(switchCameraAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_switchCameraButton];
   }
-  
+
   self.cancelButton                                       = [[UIButton alloc] init];
   _cancelButton.translatesAutoresizingMaskIntoConstraints = NO;
   [_cancelButton setTitle:cancelButtonTitle forState:UIControlStateNormal];
@@ -203,17 +187,17 @@
 - (void)setupAutoLayoutConstraints
 {
   NSDictionary *views = NSDictionaryOfVariableBindings(_cameraView, _cancelButton);
-  
+
   [self.view addConstraints:
    [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_cameraView][_cancelButton(40)]|" options:0 metrics:nil views:views]];
   [self.view addConstraints:
    [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_cameraView]|" options:0 metrics:nil views:views]];
   [self.view addConstraints:
    [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_cancelButton]-|" options:0 metrics:nil views:views]];
-  
+
   if (_switchCameraButton) {
     NSDictionary *switchViews = NSDictionaryOfVariableBindings(_switchCameraButton);
-    
+
     [self.view addConstraints:
      [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_switchCameraButton(50)]" options:0 metrics:nil views:switchViews]];
     [self.view addConstraints:
@@ -231,11 +215,11 @@
 - (void)cancelAction:(UIButton *)button
 {
   [_codeReader stopScanning];
-  
+
   if (_completionBlock) {
     _completionBlock(nil);
   }
-  
+
   if (_delegate && [_delegate respondsToSelector:@selector(readerDidCancel:)]) {
     [_delegate readerDidCancel:self];
   }
