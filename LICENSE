@@ -60,7 +60,8 @@ See http://www.wassenaar.org/ for more information.
 Note that while this source package does not directly contain encryption
 software source code, encryption software such as OpenSSL and Tor are
 integrated into this software when compiling dependencies. Please see THIRD
-PARTY LICENSES for more information.
+PARTY LICENSES for more information; note that other third party license
+information may be located in OnionBrowser/about.html .
 
 
 ###########################################################################

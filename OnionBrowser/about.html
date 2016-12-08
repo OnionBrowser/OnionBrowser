@@ -11,12 +11,14 @@
 <head>
     <meta charset="utf-8" />
 	<style type="text/css">
+  html {width: 100%; margin: 0}
+  body {width: 100%; margin: 0 3em}
 	body, pre {
-		font-family: helvetica neue; font-size: 11pt;
+		font-family: helvetica neue; font-size: 12pt;
 	}
-  h1 { font-size: 14pt }
-  h2 { font-size: 12pt }
-  h3 { font-size: 10pt }
+  h1 { font-size: 18pt }
+  h2 { font-size: 15pt }
+  h3 { font-size: 12pt }
 	pre {
 		white-space: pre-wrap
 	}
@@ -24,24 +26,45 @@
 		margin: 0;
 		margin-left: 1em;
 	}
+	#patrons {
+		width:100%; -webkit-column-count: 2; column-count:2;
+    list-style-type:circle;
+		list-style-position: inside;
+	}
 	</style>
 </head>
 <body>
 <h1>Onion Browser</h1>
 	<ul style="padding-left:0">
-		<li><b>OnionBrowser</b>: 1.7.0 (20161207.1)
+		<li style="list-style-type:none"><b>Version 1.7.0</b> (20161207.2)
 		<ul><li><b>Tor</b>: 0.2.9.6-rc (Dec 02 2016)</li>
 		<li><b>obfs4proxy</b>: 0.0.8-dev 97a875e (Nov 15 2016)</li>
 		<li><b>libevent</b>: 2.1.7-rc (Nov 11 2016)</li>
 		<li><b>OpenSSL</b>: 1.1.0c (Nov 10 2016)</li></ul>
 		</li>
 	</ul>
-  <p><strong>Official Site</strong><br><a href="https://mike.tig.as/onionbrowser/">https://mike.tig.as/onionbrowser/</a> (<a href="http://tigas3l7uusztiqu.onion/onionbrowser/">.onion</a>)<br>
-  <strong>Support:</strong><br><a href="https://mike.tig.as/onionbrowser/help/">https://mike.tig.as/onionbrowser/help/</a> (<a href="http://tigas3l7uusztiqu.onion/onionbrowser/help/">.onion</a>)</p>
+  <p><strong>Official Site</strong><br><a href="http://tigas3l7uusztiqu.onion/onionbrowser/">http://tigas3l7uusztiqu.onion/onionbrowser/</a><br>
+  <strong>Support / Help Site</strong><br><a href="http://tigas3l7uusztiqu.onion/onionbrowser/help/">http://tigas3l7uusztiqu.onion/onionbrowser/help/</a></p>
   <p>Onion Browser is developed by Mike Tigas (<a href="https://mike.tig.as/">https://mike.tig.as/</a> | <a href="http://tigas3l7uusztiqu.onion/">tigas3l7uusztiqu.onion</a>).</p>
   <p>Work on Onion Browser is supported by individual donors and organizations
-  committed to furthering free speech and digital privacy. Please consider donating to support continued development of Onion Browser and other Tor iOS initiatives:<br><a href="https://mike.tig.as/onionbrowser/#support-project">https://mike.tig.as/onionbrowser/#support-project</a></p>
+  committed to furthering free speech and digital privacy. Please consider donating to support continued development of Onion Browser and other Tor iOS initiatives:<br><a href="http://tigas3l7uusztiqu.onion/onionbrowser/#support-project">Click here to donate or learn more.</a></p>
+  <p><a href="http://tigas3l7uusztiqu.onion/onionbrowser/#support-project"><img src="onionbrowser:patreon.png"></a></p>
+
   <p>Use of the app is under the terms of the <a href="https://www.apple.com/legal/internet-services/itunes/appstore/dev/stdeula/">standard iOS App Store End User License Agreement</a> and the below licenses and disclaimers. Onion Browser is provided as-is and use of the app is at your own risk. Remember: sensitive data does not always belong on a mobile device.</p>
+  <p>
+  <hr>
+  </p>
+  <h1>Special Thanks</h1>
+  <p>Onion Browser is supported by a wide community of users and organizations that believe in the importance of improving Tor access on mobile platforms.</p>
+  <p>Special thanks to the Guardian Project for providing financial support toward the development of iObfs, Onion Browser 2, and other improvements.</p>
+  <p>Thanks to all of the Patreon supporters, and those who’ve donated via PayPal or Bitcoin!</p>
+  <!--
+  <p>Thanks to the following Patreon supporters:</p>
+  <ul id="patrons">
+    <li>aaaa _ slifty</li>
+  </ul>
+  -->
+
   <p>
   <hr>
   </p>
@@ -56,13 +79,13 @@ This app has been made available to you in binary form under the Mozilla Public 
 
 All of the source code to this project is available under licenses which are both free and open source. Most of the source code to this project is available under the Mozilla Public License 2.0 (MPL); the remainder are available under other open source licenses. You can <a href="https://www.mozilla.org/MPL/2.0/FAQ.html">read more about the MPL here</a>.
 
-You may <a href="https://mike.tig.as/onionbrowser/">visit the Onion Browser official site</a> to learn more about how to acquire the source code to this project.
+You may <a href="http://tigas3l7uusztiqu.onion/onionbrowser/">visit the Onion Browser official site</a> to learn more about how to acquire the source code to this project.
 </pre>
 <hr>
 <p>The Onion Browser app icon a trademark (™) of Mike Tigas. It is available under the Creative Commons CC-BY-SA 3.0 license.
 The app icon is a remix of the following Creative Commons-licensed works:</p>
 
-<ul style="padding-left:0"><li style="margin-bottom: 1em">"Compass - Baltimore National Aquarium" by voobie (CC-BY-SA 2.0 License)<br />
+<ul style="padding-left:0;list-style-type:none"><li style="margin-bottom: 1em">"Compass - Baltimore National Aquarium" by voobie (CC-BY-SA 2.0 License)<br />
 <a href="https://secure.flickr.com/photos/84421355@N00/4468611274/">https://secure.flickr.com/photos/84421355@N00/4468611274/</a></li>
 
 <li style="margin-bottom: 1em">"black leather texture" by kitkatscrapper (CC-BY 2.0 License)<br />

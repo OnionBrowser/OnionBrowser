@@ -1065,9 +1065,10 @@ const char AlertViewIncomingUrl;
         // Faked local URLs
         if ([[url absoluteString] rangeOfString:@"startup.html"].location != NSNotFound) {
             absoluteString = @"onionbrowser:start";
-        }
-        else if ([[url absoluteString] rangeOfString:@"about.html"].location != NSNotFound) {
+        } else if ([[url absoluteString] rangeOfString:@"about.html"].location != NSNotFound) {
             absoluteString = @"onionbrowser:about";
+        } else if ([[url absoluteString] rangeOfString:@"patreon.png"].location != NSNotFound) {
+            absoluteString = @"onionbrowser:patreon.png";
         } else {
             absoluteString = @"";
         }

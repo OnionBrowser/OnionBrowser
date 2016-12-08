@@ -2,7 +2,8 @@ Onion Browser Version History (since 1.2.2)
 
 FUTURE:
 
-===== 2.0 - Planned =====
+===== 2.0 - In Development =====
+Testing to begin by the end of December 2016.
 Features subject to change.
 
 * New design and new codebase, based on the Endless Browser open source
@@ -19,27 +20,50 @@ Features subject to change.
   encryption done by the iOS operating system, improving protection
   against forensic tools.
 
+===== 1.7.0 - Pending App Store Approval =====
+Dec 07 2016 - Submit Date
 
-===== 1.6.2 - Pending App Store Approval =====
+* Bridge handling code revised so that the built-in obfs4 bridges get
+  updated when Onion Browser updates. Previously you had to re-select
+  the built-in bridges to receive new ones.
+
+* Tor, libevent, and OpenSSL are now built using the Tor.framework
+  toolkit. See github.com/icepa for more information. Using the
+  framework to provide dependencies should improve maintainability
+  of the app going forward.
+
+* LICENSE file has been greatly simplified. The Onion Browser 1.7
+  series is now made available under the Mozilla Public License 2.0;
+  certain unmodified source files may continue to be licensed under
+  their original licenses.
+
+* Tor updated to 0.2.9.6-rc
+
+* libevent updated to 2.1.7-rc
+
+* OpenSSL updated to 1.1.0c
+
+
+
+CURRENT VERSION:
+
+===== 1.6.2 - In App Store =====
 Aug 24 2016 - Submit Date
+Aug 25 2016 - App Store Availability
 
 * Tor updated to 0.2.8.7, containing several important security fixes:
   https://blog.torproject.org/blog/tor-0287-released-important-fixes
 
 
 
-CURRENT VERSION:
+PREVIOUS VERSIONS:
 
-===== 1.6.1 - In App Store =====
+===== 1.6.1 =====
 Aug 18 2016 - Submit Date
 Aug 19 2016 - App Store Availability
 
 * iObfs rebuilt with golang 1.7 (was 1.7rc3). Fixes crash-on-start when using
   iOS 10 Beta.
-
-
-
-PREVIOUS VERSIONS:
 
 ===== 1.6.0 =====
 Aug 04 2016 - Submit Date

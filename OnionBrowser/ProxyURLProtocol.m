@@ -107,6 +107,9 @@
         } else if ([[[[self request] URL] absoluteString] rangeOfString:@"help"].location != NSNotFound) {
             /* onionbrowser:help */
             url = [NSURL URLWithString: [NSString stringWithFormat:@"file:/%@/help.html",resourcePath]];
+        } else if ([[[[self request] URL] absoluteString] rangeOfString:@"patreon.png"].location != NSNotFound) {
+            /* onionbrowser:patreon.png -- inner iframe banner */
+            url = [NSURL URLWithString: [NSString stringWithFormat:@"file:/%@/patreon.png",resourcePath]];
         } else {
             /* onionbrowser:home */
             url = [NSURL URLWithString: [NSString stringWithFormat:@"file:/%@/startup.html",resourcePath]];

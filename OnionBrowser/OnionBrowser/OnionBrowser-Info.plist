@@ -33,9 +33,11 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>20161130.1</string>
+	<string>20161207.2</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>You can use the camera to import bridges via QR code rather than manual entry. Optional.</string>
 	<key>UIPrerenderedIcon</key>
 	<true/>
 	<key>UIRequiredDeviceCapabilities</key>
