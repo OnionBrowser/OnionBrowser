@@ -14,7 +14,6 @@
 		6924C29015526343004BE7F9 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6924C28F15526343004BE7F9 /* SettingsTableViewController.m */; };
 		6926D4B31DE39846000C4F45 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6926D4B21DE39846000C4F45 /* libxml2.tbd */; };
 		6926D4B51DE3984F000C4F45 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6926D4B41DE3984F000C4F45 /* libz.tbd */; };
-		6926D4B71DE3988A000C4F45 /* Tor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6926D4B61DE3988A000C4F45 /* Tor.framework */; };
 		6926D4BA1DE399ED000C4F45 /* geoip6 in Resources */ = {isa = PBXBuildFile; fileRef = 6926D4B91DE399ED000C4F45 /* geoip6 */; };
 		692B338C15FAF2E500A23DD5 /* BookmarkEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 692B338B15FAF2E400A23DD5 /* BookmarkEditViewController.m */; };
 		692B86AF153CD4CB000806A9 /* NSData+Conversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 692B86AE153CD4CB000806A9 /* NSData+Conversion.m */; };
@@ -52,12 +51,13 @@
 		697ABCD414FA036E00E1678C /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 697ABCD314FA036E00E1678C /* WebViewController.m */; };
 		697ABCD614FA042C00E1678C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 697ABCD514FA042C00E1678C /* SystemConfiguration.framework */; };
 		697ABCD814FA043300E1678C /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 697ABCD714FA043300E1678C /* MobileCoreServices.framework */; };
+		6981427D1DFDD3720070D908 /* Iobfs4proxy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6981427C1DFDD3720070D908 /* Iobfs4proxy.framework */; };
+		6981427F1DFDD3800070D908 /* Tor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6981427E1DFDD3800070D908 /* Tor.framework */; };
 		69855E071531576800720327 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = 69855E061531576800720327 /* about.html */; };
 		69A3758E1AAFF60F00AAE92B /* QRCameraSwitchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A375851AAFF60F00AAE92B /* QRCameraSwitchButton.m */; };
 		69A3758F1AAFF60F00AAE92B /* QRCodeReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A375871AAFF60F00AAE92B /* QRCodeReader.m */; };
 		69A375901AAFF60F00AAE92B /* QRCodeReaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A3758A1AAFF60F00AAE92B /* QRCodeReaderView.m */; };
 		69A375911AAFF60F00AAE92B /* QRCodeReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A3758C1AAFF60F00AAE92B /* QRCodeReaderViewController.m */; };
-		69AE086F1CB1E6D900A6B388 /* Iobfs4proxy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69AE086E1CB1E6D900A6B388 /* Iobfs4proxy.framework */; };
 		69AE08721CB1E6EB00A6B388 /* ObfsWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 69AE08711CB1E6EB00A6B388 /* ObfsWrapper.m */; };
 		69C6F6A514FACC3000894495 /* ProxyURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C6F6A414FACC3000894495 /* ProxyURLProtocol.m */; };
 		69E50FFB1AAFE03900CCADE5 /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E50FFA1AAFE03900CCADE5 /* UIPlaceHolderTextView.m */; };
@@ -88,10 +88,8 @@
 		6924C28F15526343004BE7F9 /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
 		6926D4B21DE39846000C4F45 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		6926D4B41DE3984F000C4F45 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
-		6926D4B61DE3988A000C4F45 /* Tor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tor.framework; path = ../Carthage/Build/iOS/Tor.framework; sourceTree = "<group>"; };
 		6926D4B91DE399ED000C4F45 /* geoip6 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = geoip6; path = ../Carthage/Checkouts/Tor.framework/Tor/tor/src/config/geoip6; sourceTree = "<group>"; };
 		6926D4BC1DE39AB5000C4F45 /* orconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = orconfig.h; sourceTree = "<group>"; };
-		6926D4BE1DE39EA7000C4F45 /* Tor.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Tor.framework.dSYM; path = ../Carthage/Build/iOS/Tor.framework.dSYM; sourceTree = "<group>"; };
 		6928942016F6741000C787B2 /* libcurve25519_donna.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurve25519_donna.a; path = ../dependencies/lib/libcurve25519_donna.a; sourceTree = "<group>"; };
 		692B338A15FAF2E400A23DD5 /* BookmarkEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkEditViewController.h; sourceTree = "<group>"; };
 		692B338B15FAF2E400A23DD5 /* BookmarkEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkEditViewController.m; sourceTree = "<group>"; };
@@ -146,6 +144,8 @@
 		697ABCD314FA036E00E1678C /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		697ABCD514FA042C00E1678C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		697ABCD714FA043300E1678C /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		6981427C1DFDD3720070D908 /* Iobfs4proxy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Iobfs4proxy.framework; path = ../Iobfs4proxy.framework; sourceTree = "<group>"; };
+		6981427E1DFDD3800070D908 /* Tor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tor.framework; path = ../Carthage/Build/iOS/Tor.framework; sourceTree = "<group>"; };
 		69847C3C14F788E100288277 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = ../dependencies/lib/libcrypto.a; sourceTree = "<group>"; };
 		69847C3D14F788E100288277 /* libevent_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libevent_core.a; path = ../dependencies/lib/libevent_core.a; sourceTree = "<group>"; };
 		69847C3E14F788E100288277 /* libevent_extra.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libevent_extra.a; path = ../dependencies/lib/libevent_extra.a; sourceTree = "<group>"; };
@@ -167,7 +167,6 @@
 		69A3758A1AAFF60F00AAE92B /* QRCodeReaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeReaderView.m; sourceTree = "<group>"; };
 		69A3758B1AAFF60F00AAE92B /* QRCodeReaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeReaderViewController.h; sourceTree = "<group>"; };
 		69A3758C1AAFF60F00AAE92B /* QRCodeReaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeReaderViewController.m; sourceTree = "<group>"; };
-		69AE086E1CB1E6D900A6B388 /* Iobfs4proxy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Iobfs4proxy.framework; path = ../Iobfs4proxy.framework; sourceTree = "<group>"; };
 		69AE08701CB1E6EB00A6B388 /* ObfsWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObfsWrapper.h; sourceTree = "<group>"; };
 		69AE08711CB1E6EB00A6B388 /* ObfsWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObfsWrapper.m; sourceTree = "<group>"; };
 		69C6F6A314FACC3000894495 /* ProxyURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProxyURLProtocol.h; path = ../ProxyURLProtocol.h; sourceTree = "<group>"; };
@@ -186,7 +185,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6926D4B71DE3988A000C4F45 /* Tor.framework in Frameworks */,
+				6981427F1DFDD3800070D908 /* Tor.framework in Frameworks */,
+				6981427D1DFDD3720070D908 /* Iobfs4proxy.framework in Frameworks */,
 				6940BD2515F8761900FE74CB /* CoreData.framework in Frameworks */,
 				6926D4B31DE39846000C4F45 /* libxml2.tbd in Frameworks */,
 				697ABCD814FA043300E1678C /* MobileCoreServices.framework in Frameworks */,
@@ -196,7 +196,6 @@
 				696EBD7C14F7877900B81BC9 /* CoreGraphics.framework in Frameworks */,
 				696F9EB614F8E21200BC5FDC /* CFNetwork.framework in Frameworks */,
 				6926D4B51DE3984F000C4F45 /* libz.tbd in Frameworks */,
-				69AE086F1CB1E6D900A6B388 /* Iobfs4proxy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,11 +258,10 @@
 		696EBD7614F7877900B81BC9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6926D4BE1DE39EA7000C4F45 /* Tor.framework.dSYM */,
-				6926D4B61DE3988A000C4F45 /* Tor.framework */,
+				6981427E1DFDD3800070D908 /* Tor.framework */,
+				6981427C1DFDD3720070D908 /* Iobfs4proxy.framework */,
 				6926D4B41DE3984F000C4F45 /* libz.tbd */,
 				6926D4B21DE39846000C4F45 /* libxml2.tbd */,
-				69AE086E1CB1E6D900A6B388 /* Iobfs4proxy.framework */,
 				69847C5514F788F600288277 /* External */,
 				697ABCD714FA043300E1678C /* MobileCoreServices.framework */,
 				697ABCD514FA042C00E1678C /* SystemConfiguration.framework */,
@@ -490,6 +488,7 @@
 				TargetAttributes = {
 					696EBD7214F7877900B81BC9 = {
 						DevelopmentTeam = 68QUP6KP2C;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.DataProtection = {
 								enabled = 1;
@@ -673,7 +672,7 @@
 				LLVM_LTO = YES;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
-				STRIP_INSTALLED_PRODUCT = NO;
+				STRIP_INSTALLED_PRODUCT = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = TestBuilds;
@@ -776,7 +775,7 @@
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "cec315b3-f9ec-47c2-b1ce-063b9cded3f6";
 				SDKROOT = iphoneos;
-				STRIP_INSTALLED_PRODUCT = NO;
+				STRIP_INSTALLED_PRODUCT = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
