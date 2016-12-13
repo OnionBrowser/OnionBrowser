@@ -20,8 +20,21 @@ Features subject to change.
   encryption done by the iOS operating system, improving protection
   against forensic tools.
 
-===== 1.7.0 - Pending App Store Approval =====
+===== 1.7.1 - Pending App Store Approval =====
+Dec 13 2016 - Submit Date
+
+* Adjusted build config to try to fix crash-on-launch issue affecting
+  certain devices due to a linking issue.
+
+* Tor updated to 0.2.9.7-rc
+
+
+
+CURRENT VERSION:
+
+===== 1.7.0 - In App Store =====
 Dec 07 2016 - Submit Date
+Dec 09 2016 - App Store Availability
 
 * Bridge handling code revised so that the built-in obfs4 bridges get
   updated when Onion Browser updates. Previously you had to re-select
@@ -45,7 +58,7 @@ Dec 07 2016 - Submit Date
 
 
 
-CURRENT VERSION:
+PREVIOUS VERSIONS:
 
 ===== 1.6.2 - In App Store =====
 Aug 24 2016 - Submit Date
@@ -53,10 +66,6 @@ Aug 25 2016 - App Store Availability
 
 * Tor updated to 0.2.8.7, containing several important security fixes:
   https://blog.torproject.org/blog/tor-0287-released-important-fixes
-
-
-
-PREVIOUS VERSIONS:
 
 ===== 1.6.1 =====
 Aug 18 2016 - Submit Date

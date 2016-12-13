@@ -10,6 +10,8 @@
 		69156B5D15FD544700BC560A /* Settings.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 69156B5B15FD544600BC560A /* Settings.xcdatamodeld */; };
 		69156B6015FD54AF00BC560A /* Bookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = 69156B5F15FD54AE00BC560A /* Bookmark.m */; };
 		69156B6315FD54BC00BC560A /* Bridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 69156B6215FD54BC00BC560A /* Bridge.m */; };
+		691938DA1E0072A400244F0D /* Tor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6981427E1DFDD3800070D908 /* Tor.framework */; };
+		691938DC1E0072A400244F0D /* Iobfs4proxy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6981427C1DFDD3720070D908 /* Iobfs4proxy.framework */; };
 		691958D61536BA67000423A4 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 691958D41536B8AC000423A4 /* Reachability.m */; };
 		6924C29015526343004BE7F9 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6924C28F15526343004BE7F9 /* SettingsTableViewController.m */; };
 		6926D4B31DE39846000C4F45 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6926D4B21DE39846000C4F45 /* libxml2.tbd */; };
@@ -51,8 +53,6 @@
 		697ABCD414FA036E00E1678C /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 697ABCD314FA036E00E1678C /* WebViewController.m */; };
 		697ABCD614FA042C00E1678C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 697ABCD514FA042C00E1678C /* SystemConfiguration.framework */; };
 		697ABCD814FA043300E1678C /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 697ABCD714FA043300E1678C /* MobileCoreServices.framework */; };
-		6981427D1DFDD3720070D908 /* Iobfs4proxy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6981427C1DFDD3720070D908 /* Iobfs4proxy.framework */; };
-		6981427F1DFDD3800070D908 /* Tor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6981427E1DFDD3800070D908 /* Tor.framework */; };
 		69855E071531576800720327 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = 69855E061531576800720327 /* about.html */; };
 		69A3758E1AAFF60F00AAE92B /* QRCameraSwitchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A375851AAFF60F00AAE92B /* QRCameraSwitchButton.m */; };
 		69A3758F1AAFF60F00AAE92B /* QRCodeReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A375871AAFF60F00AAE92B /* QRCodeReader.m */; };
@@ -75,6 +75,19 @@
 			remoteInfo = OnionBrowser;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		691938DE1E0072A400244F0D /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		69156B5C15FD544700BC560A /* Settings.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Settings.xcdatamodel; sourceTree = "<group>"; };
@@ -185,12 +198,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6981427F1DFDD3800070D908 /* Tor.framework in Frameworks */,
-				6981427D1DFDD3720070D908 /* Iobfs4proxy.framework in Frameworks */,
 				6940BD2515F8761900FE74CB /* CoreData.framework in Frameworks */,
 				6926D4B31DE39846000C4F45 /* libxml2.tbd in Frameworks */,
+				691938DC1E0072A400244F0D /* Iobfs4proxy.framework in Frameworks */,
 				697ABCD814FA043300E1678C /* MobileCoreServices.framework in Frameworks */,
 				697ABCD614FA042C00E1678C /* SystemConfiguration.framework in Frameworks */,
+				691938DA1E0072A400244F0D /* Tor.framework in Frameworks */,
 				696EBD7814F7877900B81BC9 /* UIKit.framework in Frameworks */,
 				696EBD7A14F7877900B81BC9 /* Foundation.framework in Frameworks */,
 				696EBD7C14F7877900B81BC9 /* CoreGraphics.framework in Frameworks */,
@@ -450,6 +463,7 @@
 				696EBD6F14F7877900B81BC9 /* Sources */,
 				696EBD7014F7877900B81BC9 /* Frameworks */,
 				696EBD7114F7877900B81BC9 /* Resources */,
+				691938DE1E0072A400244F0D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -654,8 +668,6 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
 				DEPLOYMENT_POSTPROCESSING = YES;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -670,9 +682,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = $SRCROOT/../Carthage/Build/iOS/Tor.framework/Headers/;
 				LLVM_LTO = YES;
-				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
+				SEPARATE_STRIP = YES;
 				STRIP_INSTALLED_PRODUCT = YES;
+				STRIP_STYLE = debugging;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = TestBuilds;
@@ -683,6 +696,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 68QUP6KP2C;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/..",
 					"$(inherited)",
@@ -695,6 +710,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.miketigas.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Onion Browser Dev 2016";
 				WRAPPER_EXTENSION = app;
 			};
 			name = TestBuilds;
@@ -713,8 +729,6 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -735,9 +749,9 @@
 				HEADER_SEARCH_PATHS = $SRCROOT/../Carthage/Build/iOS/Tor.framework/Headers/;
 				LLVM_LTO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				STRIP_INSTALLED_PRODUCT = NO;
+				STRIP_STYLE = debugging;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -756,8 +770,6 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				COPY_PHASE_STRIP = NO;
 				DEPLOYMENT_POSTPROCESSING = YES;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -773,9 +785,10 @@
 				HEADER_SEARCH_PATHS = $SRCROOT/../Carthage/Build/iOS/Tor.framework/Headers/;
 				LLVM_LTO = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "cec315b3-f9ec-47c2-b1ce-063b9cded3f6";
 				SDKROOT = iphoneos;
+				SEPARATE_STRIP = YES;
 				STRIP_INSTALLED_PRODUCT = YES;
+				STRIP_STYLE = debugging;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -787,6 +800,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 68QUP6KP2C;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/..",
 					"$(inherited)",
@@ -799,6 +814,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.miketigas.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Onion Browser Dev 2016";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -809,6 +825,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = 68QUP6KP2C;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/..",
 					"$(inherited)",
@@ -821,6 +839,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.miketigas.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Onion Browser 201612 Prod";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
