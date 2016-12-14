@@ -6,10 +6,12 @@ xcode_sdk: iphonesimulator10.1
 before_install:
 - brew update
 - brew uninstall --force xctool
+- brew install carthage
 - brew install xctool --HEAD
 - curl -LO https://cdn.tig.as/files/20161202/Iobfs4proxy.framework.tar.xz
 - tar -xf Iobfs4proxy.framework.tar.xz
 - rm -f Iobfs4proxy.framework.tar.xz
 
 script:
+  - carthage update --platform iOS --verbose --use-submodules
   - xctool -project OnionBrowser/OnionBrowser.xcodeproj -scheme OnionBrowser -sdk iphonesimulator10.1 -configuration TestBuilds -destination platform='iOS Simulator',OS=10.1,name='iPhone 7' run-tests -freshInstall -testTimeout 100

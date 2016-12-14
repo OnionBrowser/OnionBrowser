@@ -20,8 +20,22 @@ Features subject to change.
   encryption done by the iOS operating system, improving protection
   against forensic tools.
 
-===== 1.7.1 - Pending App Store Approval =====
+
+===== 1.7.2 - Pending App Store Approval =====
+Dec 14 2016 - Submit Date
+
+* OpenSSL downgraded to 1.0.2j.
+
+* The OpenSSL version change fixes severe crash issue on all 32bit iOS
+  devices. This affected all users of iPhone 5C, iPhone 5, iPhone 4S, iPad
+  Mini 1, iPad 4, iPod Touch, and other older iOS devices.
+
+
+CURRENT VERSION:
+
+===== 1.7.1 - In App Store =====
 Dec 13 2016 - Submit Date
+Dec 13 2016 - App Store Availability
 
 * Adjusted build config to try to fix crash-on-launch issue affecting
   certain devices due to a linking issue.
@@ -29,8 +43,7 @@ Dec 13 2016 - Submit Date
 * Tor updated to 0.2.9.7-rc
 
 
-
-CURRENT VERSION:
+PREVIOUS VERSIONS:
 
 ===== 1.7.0 - In App Store =====
 Dec 07 2016 - Submit Date
@@ -55,10 +68,6 @@ Dec 09 2016 - App Store Availability
 * libevent updated to 2.1.7-rc
 
 * OpenSSL updated to 1.1.0c
-
-
-
-PREVIOUS VERSIONS:
 
 ===== 1.6.2 - In App Store =====
 Aug 24 2016 - Submit Date
