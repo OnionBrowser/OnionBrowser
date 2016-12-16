@@ -21,8 +21,17 @@ Features subject to change.
   against forensic tools.
 
 
-===== 1.7.2 - Pending App Store Approval =====
+===== 1.7.3 - In Development =====
+
+* Initial support for IPv6-only networks.
+
+
+
+CURRENT VERSION:
+
+===== 1.7.2 - In App Store =====
 Dec 14 2016 - Submit Date
+Dec 15 2016 - App Store Availability
 
 * OpenSSL downgraded to 1.0.2j.
 
@@ -31,7 +40,7 @@ Dec 14 2016 - Submit Date
   Mini 1, iPad 4, iPod Touch, and other older iOS devices.
 
 
-CURRENT VERSION:
+PREVIOUS VERSIONS:
 
 ===== 1.7.1 - In App Store =====
 Dec 13 2016 - Submit Date
@@ -42,10 +51,7 @@ Dec 13 2016 - App Store Availability
 
 * Tor updated to 0.2.9.7-rc
 
-
-PREVIOUS VERSIONS:
-
-===== 1.7.0 - In App Store =====
+===== 1.7.0 =====
 Dec 07 2016 - Submit Date
 Dec 09 2016 - App Store Availability
 

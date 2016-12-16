@@ -1,6 +1,6 @@
 ## Onion Browser
 
-[![Build Status](https://travis-ci.org/mtigas/OnionBrowser.svg?branch=master)](https://travis-ci.org/mtigas/OnionBrowser)  
+[![Build Status](https://travis-ci.org/mtigas/OnionBrowser.svg?branch=1.X)](https://travis-ci.org/mtigas/OnionBrowser)  
 [Official Site][official] | [Support][help] | [Changelog][changelog] | [Donate][donate]  
 &copy; 2012-2016 [Mike Tigas][miketigas] ([@mtigas](https://twitter.com/mtigas))  
 [Mozilla Public License 2.0][license]
@@ -10,8 +10,8 @@ and App Store links.
 
 ---
 
-* **OnionBrowser**: 1.7.2 (20161214.3) - See [official release history][releases] and [changelog][changelog].
-* **[Tor.framework][Tor.framework]**: 9833bf5 (Dec 14 2016)
+* **OnionBrowser**: 1.7.3-beta.1 (20161216.1) - See [official release history][releases] and [changelog][changelog].
+* **[Tor.framework][Tor.framework]**: a1b2928 (Dec 14 2016)
   * **[Tor][tor]**: 0.2.9.7-rc (Dec 12 2016)
   * **[libevent][libevent]**: 2.1.7-rc (Nov 11 2016)
   * **[OpenSSL][openssl]**: 1.0.2j (Sep 26 2016)
@@ -22,10 +22,10 @@ and App Store links.
 [official]: https://mike.tig.as/onionbrowser/
 [help]: https://mike.tig.as/onionbrowser/help/
 [releases]: https://github.com/mtigas/OnionBrowser/releases
-[changelog]: https://raw.github.com/mtigas/OnionBrowser/master/CHANGES.txt
+[changelog]: https://raw.github.com/mtigas/OnionBrowser/1.X/CHANGES.txt
 [donate]: https://mike.tig.as/onionbrowser/#support-project
 [miketigas]: https://mike.tig.as/
-[license]: https://github.com/mtigas/OnionBrowser/blob/master/LICENSE
+[license]: https://github.com/mtigas/OnionBrowser/blob/1.X/LICENSE
 [Tor.framework]: https://github.com/iCepa/Tor.framework
 [tor]: https://www.torproject.org/
 [libevent]: http://libevent.org/
