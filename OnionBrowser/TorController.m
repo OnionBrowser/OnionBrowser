@@ -9,6 +9,7 @@
 #import "NSData+Conversion.h"
 #import "AppDelegate.h"
 #import "Reachability.h"
+#import "Ipv6Tester.h"
 
 @implementation TorController
 
@@ -23,7 +24,8 @@
     torStatusTimeoutTimer = _torStatusTimeoutTimer,
     mSocket = _mSocket,
     controllerIsAuthenticated = _controllerIsAuthenticated,
-    connectionStatus = _connectionStatus
+    connectionStatus = _connectionStatus,
+    connLastAutoIPStack = _connLastAutoIPStack
 ;
 
 -(id)init {
@@ -33,6 +35,21 @@
 
         _controllerIsAuthenticated = NO;
         _connectionStatus = CONN_STATUS_NONE;
+
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        NSInteger ipSetting = [[appDelegate.getSettings valueForKey:@"tor_ipv4v6"] integerValue];
+        if (ipSetting == OB_IPV4V6_AUTO) {
+          NSInteger ipv6_status = [Ipv6Tester ipv6_status];
+          if (ipv6_status == TOR_IPV6_CONN_ONLY) {
+            _connLastAutoIPStack = CONN_LAST_AUTO_IPV4V6_IPV6;
+          } else if (ipv6_status == TOR_IPV6_CONN_DUAL) {
+            _connLastAutoIPStack = CONN_LAST_AUTO_IPV4V6_DUAL;
+          } else {
+            _connLastAutoIPStack = CONN_LAST_AUTO_IPV4V6_IPV4;
+          }
+        } else {
+          _connLastAutoIPStack = CONN_LAST_AUTO_IPV4V6_MANUAL;
+        }
 
         // listen to changes in connection state
         // (tor has auto detection when external IP changes, but if we went
@@ -106,6 +123,27 @@
         #ifdef DEBUG
         NSLog(@"[tor] Reachability changed (now online), sending HUP" );
         #endif
+        // TODO: we only do this to catch a changed IPv4/IPv6 stack state.
+        //       we can probably handle this more elegantly than rewriting torrc.
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        NSInteger ipSetting = [[appDelegate.getSettings valueForKey:@"tor_ipv4v6"] integerValue];
+        if (ipSetting == OB_IPV4V6_AUTO) {
+          NSInteger ipv6_status = [Ipv6Tester ipv6_status];
+          if ( ((ipv6_status == TOR_IPV6_CONN_ONLY) && (_connLastAutoIPStack != CONN_LAST_AUTO_IPV4V6_IPV6)) ||
+               ((ipv6_status == TOR_IPV6_CONN_DUAL) && (_connLastAutoIPStack != CONN_LAST_AUTO_IPV4V6_DUAL)) ||
+               ((ipv6_status == TOR_IPV6_CONN_FALSE) && (_connLastAutoIPStack != CONN_LAST_AUTO_IPV4V6_IPV4)) ) {
+            // The IP stack changed; update our conn settings.
+            [appDelegate updateTorrc];
+            // Stash new state so we know if we change next time around..
+            if (ipv6_status == TOR_IPV6_CONN_ONLY) {
+              _connLastAutoIPStack = CONN_LAST_AUTO_IPV4V6_IPV6;
+            } else if (ipv6_status == TOR_IPV6_CONN_DUAL) {
+              _connLastAutoIPStack = CONN_LAST_AUTO_IPV4V6_DUAL;
+            } else {
+              _connLastAutoIPStack = CONN_LAST_AUTO_IPV4V6_IPV4;
+            }
+          }
+        }
         [self hupTor];
     }
 }

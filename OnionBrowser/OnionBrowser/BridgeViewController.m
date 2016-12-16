@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "BridgeCustomViewController.h"
 #import "Bridge.h"
+#import "Ipv6Tester.h"
 
 @interface BridgeViewController ()
 
@@ -20,7 +21,7 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
-	self.title = @"Bridge Configuration";
+	self.title = @"Network Configuration";
 	//backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleDone target:self action:@selector(goBack)];
 	//self.navigationItem.rightBarButtonItem = backButton;
 }
@@ -46,11 +47,9 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	if (section == 0) {
 		// configure custom bridges, obfs4, meek-azure, meek-amazon, disable bridges
-		return 3;
+		return 5;
     } else if (section == 1) {
-        return 1;
-    } else if (section == 2) {
-        return 1;
+        return 3;
     } else {
         return 0;
     }
@@ -58,61 +57,109 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
 	if (section == 0) {
-        NSString *bridgeMsg = @"Bridges are Tor relays that help circumvent censorship. You can try bridges if Tor is blocked by your ISP; each type of bridge uses a different method to avoid censorship: if one type does not work, try using a different one.\n\nYou may use the provided bridges below or obtain bridges at bridges.torproject.org.";
+    NSString *bridgeMsg = @"Bridges\n\nBridges are Tor relays that help circumvent censorship. You can try bridges if Tor is blocked by your ISP; each type of bridge uses a different method to avoid censorship: if one type does not work, try using a different one.\n\nYou may use the provided bridges below or obtain bridges at bridges.torproject.org.";
 
 		AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 		NSUInteger numBridges = [appDelegate numBridgesConfigured];
 
 		NSMutableDictionary *settings = appDelegate.getSettings;
 		NSInteger bridgeSetting = [[settings valueForKey:@"bridges"] integerValue];
-		if (bridgeSetting == TOR_BRIDGES_OBFS4) {
-			bridgeMsg = [bridgeMsg stringByAppendingString:@"\n\nCurrently Using Provided obfs4 Bridges"];
-		} else if (bridgeSetting == TOR_BRIDGES_MEEKAMAZON) {
-			bridgeMsg = [bridgeMsg stringByAppendingString:@"\n\nCurrently Using Provided Meek (Amazon) Bridge"];
-		} else if (bridgeSetting == TOR_BRIDGES_MEEKAZURE) {
-			bridgeMsg = [bridgeMsg stringByAppendingString:@"\n\nCurrently Using Provided Meek (Azure) Bridge"];
-		} else if (numBridges == 0) {
-			bridgeMsg = [bridgeMsg stringByAppendingString:@"\n\nNo bridges currently configured\n"];
-		} else {
+		if ((bridgeSetting == TOR_BRIDGES_CUSTOM) && numBridges > 0) {
 			bridgeMsg = [bridgeMsg stringByAppendingString:[NSString stringWithFormat:@"\n\nCurrently Using %ld Custom Bridge",
 															(unsigned long)numBridges]];
 			if (numBridges > 1) {
 				bridgeMsg = [bridgeMsg stringByAppendingString:@"s"];
 			}
 		}
-
-
-        bridgeMsg = [bridgeMsg stringByAppendingString:@"\nChoose a new config:\n"];
 		return bridgeMsg;
-	} else
+	} else if (section == 1) {
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSMutableDictionary *settings = appDelegate.getSettings;
+    NSInteger ipv4v6Setting = [[settings valueForKey:@"tor_ipv4v6"] integerValue];
+
+    NSString *msg = @"IPv4 / IPv6 Connection Settings\n\nThis is an advanced setting and should only be modified if you know what you are doing and if you have unusual network needs.";
+
+		if (ipv4v6Setting == OB_IPV4V6_AUTO) {
+      NSInteger ipv6_status = [Ipv6Tester ipv6_status];
+      msg = [msg stringByAppendingString:@"\n\nCurrent autodetect state: "];
+			if (ipv6_status == TOR_IPV6_CONN_ONLY) {
+				msg = [msg stringByAppendingString:@"IPv6-only detected"];
+			} else if (ipv6_status == TOR_IPV6_CONN_DUAL) {
+				msg = [msg stringByAppendingString:@"Dual-stack IPv4+IPv6 detected"];
+			} else if (ipv6_status == TOR_IPV6_CONN_FALSE) {
+				msg = [msg stringByAppendingString:@"IPv4-only detected"];
+			} else {
+				msg = [msg stringByAppendingString:@"Could not detect IP stack state. Using IPv4-only."];
+			}
+		}
+
+    return msg;
+  } else {
 		return nil;
+  }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	static NSString *CellIdentifier = @"Cell";
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
+  AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+  NSUInteger numBridges = [appDelegate numBridgesConfigured];
+  NSMutableDictionary *settings = appDelegate.getSettings;
+  NSInteger bridgeSetting = [[settings valueForKey:@"bridges"] integerValue];
+  NSInteger ipv4v6Setting = [[settings valueForKey:@"tor_ipv4v6"] integerValue];
+
 	if (cell == nil) {
 		cell = [[UITableViewCell alloc] initWithFrame:CGRectZero];
 	}
 
+  cell.accessoryType = UITableViewCellAccessoryNone;
+
 	if (indexPath.section == 0) {
 		if (indexPath.row == 0) {
-			cell.textLabel.text = @"Provided Bridges: obfs4";
+			cell.textLabel.text = @"No Bridges: Directly Connect to Tor";
+      if (bridgeSetting == TOR_BRIDGES_NONE || ((bridgeSetting == TOR_BRIDGES_CUSTOM) && numBridges == 0)) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+      }
 		} else if (indexPath.row == 1) {
-			cell.textLabel.text = @"Provided Bridges: meek-amazon";
+			cell.textLabel.text = @"Provided Bridges: obfs4";
+      if (bridgeSetting == TOR_BRIDGES_OBFS4) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+      }
 		} else if (indexPath.row == 2) {
+			cell.textLabel.text = @"Provided Bridges: meek-amazon";
+      if (bridgeSetting == TOR_BRIDGES_MEEKAMAZON) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+      }
+		} else if (indexPath.row == 3) {
 			cell.textLabel.text = @"Provided Bridges: meek-azure";
+      if (bridgeSetting == TOR_BRIDGES_MEEKAZURE) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+      }
+		} else if (indexPath.row == 4) {
+			cell.textLabel.text = @"Custom Bridges";
+      if ((bridgeSetting == TOR_BRIDGES_CUSTOM) && numBridges > 0) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+      }
 		}
-    } else if (indexPath.section == 1) {
-        if (indexPath.row == 0) {
-            cell.textLabel.text = @"Enter Custom Bridges";
-        }
-    } else if (indexPath.section == 2) {
-        if (indexPath.row == 0) {
-            cell.textLabel.text = @"Disable Bridges";
-        }
-    }
+  } else if (indexPath.section == 1) {
+		if (indexPath.row == 0) {
+			cell.textLabel.text = @"Automatic IPv4/IPv6";
+      if (ipv4v6Setting == OB_IPV4V6_AUTO) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+      }
+		} else if (indexPath.row == 1) {
+			cell.textLabel.text = @"Always Use IPv4";
+      if (ipv4v6Setting == OB_IPV4V6_V4ONLY) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+      }
+		} else if (indexPath.row == 2) {
+			cell.textLabel.text = @"Always Use IPv6";
+      if (ipv4v6Setting == OB_IPV4V6_V6ONLY) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+      }
+		}
+  }
 
 	return cell;
 }
@@ -124,40 +171,47 @@
 	NSMutableDictionary *settings = appDelegate.getSettings;
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            [self save:[Bridge defaultObfs4]];
-			[settings setObject:[NSNumber numberWithInteger:TOR_BRIDGES_OBFS4] forKey:@"bridges"];
-			[appDelegate saveSettings:settings];
-
-            [self finishSave:@"NOTE: Onion Browser chooses the provided obfs4 bridges in a random order. You can force the app to use other obfs4 bridges by choosing the \"Provided Bridges: obfs4\" option again."];
-        } else if (indexPath.row == 1) {
-            [self save:[Bridge defaultMeekAmazon]];
-			[settings setObject:[NSNumber numberWithInteger:TOR_BRIDGES_MEEKAMAZON] forKey:@"bridges"];
-			[appDelegate saveSettings:settings];
+            [Bridge clearBridges];
+            [settings setObject:[NSNumber numberWithInteger:TOR_BRIDGES_NONE] forKey:@"bridges"];
+            [appDelegate saveSettings:settings];
 
             [self finishSave:nil];
-        } else if (indexPath.row == 2) {
-            [self save:[Bridge defaultMeekAzure]];
-			[settings setObject:[NSNumber numberWithInteger:TOR_BRIDGES_MEEKAZURE] forKey:@"bridges"];
-			[appDelegate saveSettings:settings];
+        } else if (indexPath.row == 1) {
+            [self save:[Bridge defaultObfs4]];
+            [settings setObject:[NSNumber numberWithInteger:TOR_BRIDGES_OBFS4] forKey:@"bridges"];
+            [appDelegate saveSettings:settings];
 
-			[self finishSave:nil];
-        }
-    } else if (indexPath.section == 1) {
-        if (indexPath.row == 0) {
+            [self finishSave:@"NOTE: Onion Browser chooses the provided obfs4 bridges in a random order. You can force the app to use other obfs4 bridges by choosing the \"Provided Bridges: obfs4\" option again."];
+        } else if (indexPath.row == 2) {
+            [self save:[Bridge defaultMeekAmazon]];
+            [settings setObject:[NSNumber numberWithInteger:TOR_BRIDGES_MEEKAMAZON] forKey:@"bridges"];
+            [appDelegate saveSettings:settings];
+
+            [self finishSave:nil];
+        } else if (indexPath.row == 3) {
+            [self save:[Bridge defaultMeekAzure]];
+            [settings setObject:[NSNumber numberWithInteger:TOR_BRIDGES_MEEKAZURE] forKey:@"bridges"];
+            [appDelegate saveSettings:settings];
+
+            [self finishSave:nil];
+        } else if (indexPath.row == 4) {
             BridgeCustomViewController *customBridgeVC = [[BridgeCustomViewController alloc] init];
             [self.navigationController pushViewController:customBridgeVC animated:YES];
         }
-    } else if (indexPath.section == 2) {
-        if (indexPath.row == 0) {
-            [Bridge clearBridges];
-			[settings setObject:[NSNumber numberWithInteger:TOR_BRIDGES_NONE] forKey:@"bridges"];
-			[appDelegate saveSettings:settings];
-
-			[self finishSave:nil];
-        }
+    } else if (indexPath.section == 1) {
+      if (indexPath.row == 0) {
+            [settings setObject:[NSNumber numberWithInteger:OB_IPV4V6_AUTO] forKey:@"tor_ipv4v6"];
+            [appDelegate saveSettings:settings];
+      } else if (indexPath.row == 1) {
+            [settings setObject:[NSNumber numberWithInteger:OB_IPV4V6_V4ONLY] forKey:@"tor_ipv4v6"];
+            [appDelegate saveSettings:settings];
+      } else if (indexPath.row == 2) {
+            [settings setObject:[NSNumber numberWithInteger:OB_IPV4V6_V6ONLY] forKey:@"tor_ipv4v6"];
+            [appDelegate saveSettings:settings];
+      }
     }
 
-	[tableView reloadData];
+    [tableView reloadData];
 }
 
 

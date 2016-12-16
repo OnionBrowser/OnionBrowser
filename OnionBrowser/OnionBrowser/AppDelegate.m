@@ -473,16 +473,26 @@
 		[Bridge updateBridgeLines:[Bridge defaultMeekAmazon]];
 	} else if (bridgeSetting == TOR_BRIDGES_MEEKAZURE) {
 		[Bridge updateBridgeLines:[Bridge defaultMeekAzure]];
-	} else if (bridgeSetting == TOR_BRIDGES_NONE) {
-		NSInteger ipv6_status = [Ipv6Tester ipv6_status];
+	}
+	NSInteger ipSetting = [[settings valueForKey:@"tor_ipv4v6"] integerValue];
+  if (ipSetting == OB_IPV4V6_AUTO) {
+    NSInteger ipv6_status = [Ipv6Tester ipv6_status];
 		if (ipv6_status == TOR_IPV6_CONN_ONLY) {
-			[myHandle writeData:[@"\nClientUseIPv4 0\nClientUseIPv6 1\n" dataUsingEncoding:NSUTF8StringEncoding]];
+      // TODO: eventually get rid of "UseMicrodescriptors 0" workaround
+      //       (because it is very slow) pending this ticket:
+      //       https://trac.torproject.org/projects/tor/ticket/20996
+			[myHandle writeData:[@"\nClientUseIPv4 0\nClientUseIPv6 1\nUseMicrodescriptors 0\n" dataUsingEncoding:NSUTF8StringEncoding]];
 		} else if (ipv6_status == TOR_IPV6_CONN_DUAL) {
 			[myHandle writeData:[@"\nClientUseIPv4 1\nClientUseIPv6 1\n" dataUsingEncoding:NSUTF8StringEncoding]];
 		} else {
 			[myHandle writeData:[@"\nClientUseIPv4 1\n" dataUsingEncoding:NSUTF8StringEncoding]];
 		}
-	}
+  } else if (ipSetting == OB_IPV4V6_V6ONLY) {
+    [myHandle writeData:[@"\nClientUseIPv4 0\nClientUseIPv6 1\n" dataUsingEncoding:NSUTF8StringEncoding]];
+  } else {
+    [myHandle writeData:[@"\nClientUseIPv4 1\n" dataUsingEncoding:NSUTF8StringEncoding]];
+  }
+
 
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Bridge" inManagedObjectContext:self.managedObjectContext];
@@ -621,50 +631,53 @@
         [d setObject:[NSNumber numberWithInteger:CONTENTPOLICY_BLOCK_CONNECT] forKey:@"javascript"];
         update = YES;
     }
-	if ([d objectForKey:@"bridges"] == nil) {
-		// previous versions of onion browser didn't set this option, instead scanning the stored Bridge config.
-		NSFetchRequest *request = [[NSFetchRequest alloc] init];
-		NSEntityDescription *entity = [NSEntityDescription entityForName:@"Bridge" inManagedObjectContext:self.managedObjectContext];
-		[request setEntity:entity];
+    if ([d objectForKey:@"bridges"] == nil) {
+      // previous versions of onion browser didn't set this option, instead scanning the stored Bridge config.
+      NSFetchRequest *request = [[NSFetchRequest alloc] init];
+      NSEntityDescription *entity = [NSEntityDescription entityForName:@"Bridge" inManagedObjectContext:self.managedObjectContext];
+      [request setEntity:entity];
 
-		NSError *error = nil;
-		NSMutableArray *mutableFetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
-		NSUInteger bridgeConf = TOR_BRIDGES_NONE;
-		if ((mutableFetchResults != nil) && ([mutableFetchResults count] > 0)) {
-			if (([mutableFetchResults count] == 1)) {
-				// previous onion browser: it's built-in meek-lite if there's exactly 1 bridge
-				// and it contains one of the two known front domains
-				Bridge *bridge = (Bridge *)[mutableFetchResults firstObject];
-				if ([bridge.conf containsString:@"front=a0.awsstatic.com"]) {
-					bridgeConf = TOR_BRIDGES_MEEKAMAZON;
-				} else if ([bridge.conf containsString:@"front=ajax.aspnetcdn.com"]) {
-					bridgeConf = TOR_BRIDGES_MEEKAZURE;
-				} else {
-					bridgeConf = TOR_BRIDGES_CUSTOM;
-				}
-			} else if (([mutableFetchResults count] == 16)) {
-				// previous onion browser: it's built-in obfs4 list if there are exactly 16 bridges
-				// and they all are obfs4 bridges
-				Boolean allObfs4 = YES;
-				for (Bridge *bridge in mutableFetchResults) {
-					if (![bridge.conf containsString:@"obfs4"]) {
-						allObfs4 = NO;
-						break;
-					}
-				}
-				if (allObfs4) {
-					bridgeConf = TOR_BRIDGES_OBFS4;
-				} else {
-					bridgeConf = TOR_BRIDGES_CUSTOM;
-				}
-			} else {
-				bridgeConf = TOR_BRIDGES_CUSTOM;
-			}
-		}
-
-		[d setObject:[NSNumber numberWithInteger:bridgeConf] forKey:@"bridges"];
-		update = YES;
-	}
+      NSError *error = nil;
+      NSMutableArray *mutableFetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+      NSUInteger bridgeConf = TOR_BRIDGES_NONE;
+      if ((mutableFetchResults != nil) && ([mutableFetchResults count] > 0)) {
+        if (([mutableFetchResults count] == 1)) {
+          // previous onion browser: it's built-in meek-lite if there's exactly 1 bridge
+          // and it contains one of the two known front domains
+          Bridge *bridge = (Bridge *)[mutableFetchResults firstObject];
+          if ([bridge.conf containsString:@"front=a0.awsstatic.com"]) {
+            bridgeConf = TOR_BRIDGES_MEEKAMAZON;
+          } else if ([bridge.conf containsString:@"front=ajax.aspnetcdn.com"]) {
+            bridgeConf = TOR_BRIDGES_MEEKAZURE;
+          } else {
+            bridgeConf = TOR_BRIDGES_CUSTOM;
+          }
+        } else if (([mutableFetchResults count] == 16)) {
+          // previous onion browser: it's built-in obfs4 list if there are exactly 16 bridges
+          // and they all are obfs4 bridges
+          Boolean allObfs4 = YES;
+          for (Bridge *bridge in mutableFetchResults) {
+            if (![bridge.conf containsString:@"obfs4"]) {
+              allObfs4 = NO;
+              break;
+            }
+          }
+          if (allObfs4) {
+            bridgeConf = TOR_BRIDGES_OBFS4;
+          } else {
+            bridgeConf = TOR_BRIDGES_CUSTOM;
+          }
+        } else {
+          bridgeConf = TOR_BRIDGES_CUSTOM;
+        }
+      }
+      [d setObject:[NSNumber numberWithInteger:bridgeConf] forKey:@"bridges"];
+      update = YES;
+    }
+    if ([d objectForKey:@"tor_ipv4v6"] == nil) {
+        [d setObject:[NSNumber numberWithInteger:OB_IPV4V6_AUTO] forKey:@"tor_ipv4v6"];
+        update = YES;
+    }
     if (update)
         [self saveSettings:d];
     // END SETTINGS DEFAULTS

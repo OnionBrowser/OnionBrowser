@@ -44,6 +44,11 @@
 #define TOR_BRIDGES_MEEKAZURE 3
 #define TOR_BRIDGES_CUSTOM 99
 
+#define OB_IPV4V6_AUTO 0
+#define OB_IPV4V6_V4ONLY 1
+#define OB_IPV4V6_V6ONLY 2
+
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) TorController *tor;

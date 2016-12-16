@@ -8,6 +8,7 @@
 #import "SettingsTableViewController.h"
 #import "AppDelegate.h"
 #import "BridgeViewController.h"
+#import "Ipv6Tester.h"
 
 @interface SettingsTableViewController ()
 
@@ -89,20 +90,48 @@
     else if (section == 5)
         return @"Minimum SSL/TLS protocol\nNewer TLS protocols are more secure, but might not be supported by all sites.";
 	else if (section == 6) {
-		NSString *bridgeMsg = @"Tor Bridges\nUse bridges if your Internet Service Provider (ISP) blocks connections to Tor.";
+		NSString *bridgeMsg = @"Network settings:\nUse bridges if your Internet Service Provider (ISP) blocks connections to Tor. Adjust IPv4/IPV6 settings for unusual network configurations.\n";
 
 		AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 		NSUInteger numBridges = [appDelegate numBridgesConfigured];
+		NSMutableDictionary *settings = appDelegate.getSettings;
+		NSInteger bridgeSetting = [[settings valueForKey:@"bridges"] integerValue];
+    NSInteger ipv4v6Setting = [[settings valueForKey:@"tor_ipv4v6"] integerValue];
 
-		if (numBridges == 0) {
-			bridgeMsg = [bridgeMsg stringByAppendingString:@"\nNo bridges currently configured."];
-		} else {
-			bridgeMsg = [bridgeMsg stringByAppendingString:[NSString stringWithFormat:@"\nCurrently Using %ld Bridge",
-								   (unsigned long)numBridges]];
+		if (bridgeSetting == TOR_BRIDGES_OBFS4) {
+			bridgeMsg = [bridgeMsg stringByAppendingString:@"\nCurrently Using Provided obfs4 Bridges"];
+		} else if (bridgeSetting == TOR_BRIDGES_MEEKAMAZON) {
+			bridgeMsg = [bridgeMsg stringByAppendingString:@"\nCurrently Using Provided Meek (Amazon) Bridge"];
+		} else if (bridgeSetting == TOR_BRIDGES_MEEKAZURE) {
+			bridgeMsg = [bridgeMsg stringByAppendingString:@"\nCurrently Using Provided Meek (Azure) Bridge"];
+		} else if (numBridges > 0) {
+			bridgeMsg = [bridgeMsg stringByAppendingString:[NSString stringWithFormat:@"\nCurrently Using %ld Custom Bridge",
+															(unsigned long)numBridges]];
 			if (numBridges > 1) {
 				bridgeMsg = [bridgeMsg stringByAppendingString:@"s"];
 			}
-		}
+		} else {
+			bridgeMsg = [bridgeMsg stringByAppendingString:@"\nNo Bridges: Directly Connecting to Tor"];
+    }
+
+		if (ipv4v6Setting == OB_IPV4V6_AUTO) {
+      bridgeMsg = [bridgeMsg stringByAppendingString:@"\nAutodetecting IP stack: "];
+			NSInteger ipv6_status = [Ipv6Tester ipv6_status];
+      if (ipv6_status == TOR_IPV6_CONN_ONLY) {
+				bridgeMsg = [bridgeMsg stringByAppendingString:@"IPv6-only detected"];
+			} else if (ipv6_status == TOR_IPV6_CONN_DUAL) {
+				bridgeMsg = [bridgeMsg stringByAppendingString:@"Dual-stack IPv4+IPv6 detected"];
+			} else if (ipv6_status == TOR_IPV6_CONN_FALSE) {
+				bridgeMsg = [bridgeMsg stringByAppendingString:@"IPv4-only detected"];
+			} else {
+				bridgeMsg = [bridgeMsg stringByAppendingString:@"Could not detect IP stack state. Using IPv4-only."];
+			}
+		} else if (ipv4v6Setting == OB_IPV4V6_V4ONLY) {
+      bridgeMsg = [bridgeMsg stringByAppendingString:@"\nForcing IPv4-only."];
+    } else if (ipv4v6Setting == OB_IPV4V6_V6ONLY) {
+      bridgeMsg = [bridgeMsg stringByAppendingString:@"\nForcing IPv6-only."];
+    }
+
 		return bridgeMsg;
 	} else
         return nil;
@@ -274,7 +303,8 @@
     } else if (indexPath.section == 6) {
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
         cell.textLabel.textAlignment = NSTextAlignmentCenter;
-        cell.textLabel.text = @"Configure Bridges";
+        cell.textLabel.text = @"Bridges & Network Connection";
+        cell.accessoryType = UITableViewCellAccessoryNone;
     }
 
     return cell;

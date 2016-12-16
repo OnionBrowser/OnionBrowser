@@ -1,9 +1,5 @@
 # See https://www.torproject.org/docs/tor-manual.html
 
-# Handled at runtime in AppDelegate (since IPv6-only network needs IPv4 0 / IPv6 1)
-#ClientUseIPv4 1
-#ClientUseIPv6 1
-
 ClientOnly 1
 ExitPolicy reject *:*
 
@@ -14,11 +10,10 @@ HashedControlPassword 16:3BC82646B9E77E50606294B257F28D8D99EDFE088908DFCF2F52235
 
 SafeLogging 1
 
-# We actually disabled this by removing ptrace() calls when building tor.
-# See "build-tor-ptrace-patch.diff" and "build-tor.sh" in the OnionBrowser
-# repo root. This technically results in "less security", but iOS
-# restrictions do not allow ptrace() calls. See README.
+# Disable ptrace() since it is not allowed in App Store builds. This setting
+# possibly redundant since we now get rid of the offending call at build-time.
 DisableDebuggerAttachment 0
 
-# "UseBridges" and "bridge" lines get appended automatically if there
-# are bridges enabled in settings.
+##########
+# Runtime-generated lines are appended below. (UseBridges, Bridge,
+# ClientUseIPv4, ClientUseIPv6, and other related.)

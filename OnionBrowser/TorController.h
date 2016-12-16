@@ -14,9 +14,15 @@
 #define CONN_STATUS_NONE 0
 #define CONN_STATUS_CONNECTED 1
 
+#define CONN_LAST_AUTO_IPV4V6_IPV4 0
+#define CONN_LAST_AUTO_IPV4V6_IPV6 1
+#define CONN_LAST_AUTO_IPV4V6_DUAL 2
+#define CONN_LAST_AUTO_IPV4V6_MANUAL 99
+
 @property (nonatomic) unsigned int controllerIsAuthenticated;
 @property (nonatomic) Boolean didFirstConnect;
 @property (nonatomic) unsigned int connectionStatus;
+@property (nonatomic) unsigned int connLastAutoIPStack;
 
 @property (nonatomic) TorWrapper *torThread;
 @property (nonatomic) NSTimer *torCheckLoopTimer;
