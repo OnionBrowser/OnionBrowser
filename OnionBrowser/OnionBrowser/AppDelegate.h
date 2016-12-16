@@ -79,6 +79,7 @@
 - (void)recheckObfsproxy;
 - (NSUInteger) numBridgesConfigured;
 - (void)updateTorrc;
+- (NSURL *)applicationLibraryDirectory;
 - (NSURL *)applicationDocumentsDirectory;
 - (void)wipeAppData;
 - (NSUInteger) deviceType;

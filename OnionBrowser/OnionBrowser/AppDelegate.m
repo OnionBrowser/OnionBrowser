@@ -255,6 +255,9 @@
 - (NSURL *)applicationDocumentsDirectory {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
+- (NSURL *)applicationLibraryDirectory {
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSLibraryDirectory inDomains:NSUserDomainMask] lastObject];
+}
 
 
 
@@ -535,7 +538,7 @@
 - (void)wipeAppData {
     [[self appWebView] stopLoading];
 
-    /* This is probably incredibly redundant since we just delete all the files, below */
+    // This is probably incredibly redundant since we just delete all the files, below
     NSHTTPCookie *cookie;
     NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     for (cookie in [storage cookies]) {
@@ -544,8 +547,8 @@
     [[NSURLCache sharedURLCache] removeAllCachedResponses];
 
 
-    /* Delete all Caches, Cookies, Preferences in app's "Library" data dir. (Connection settings
-     * & etc end up in "Documents", not "Library".) */
+    // Delete all Caches, Cookies, Preferences in app's "Library" data dir. (Connection settings
+    // & etc end up in "Documents", not "Library".)
     NSArray *dataPaths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
     if ((dataPaths != nil) && ([dataPaths count] > 0)) {
         NSString *dataDir = [dataPaths objectAtIndex:0];
@@ -557,7 +560,7 @@
                 [fm removeItemAtPath:cookiesDir error:nil];
             }
 
-            NSString *cachesDir = [NSString stringWithFormat:@"%@/Caches", dataDir];
+            NSString *cachesDir = [NSString stringWithFormat:@"%@/Caches/com.miketigas.OnionBrowser", dataDir];
             if ([fm fileExistsAtPath:cachesDir isDirectory:nil]){
                 [fm removeItemAtPath:cachesDir error:nil];
             }

@@ -39,10 +39,10 @@
 
 	TORConfiguration *conf = [[TORConfiguration alloc] init];
 	conf.cookieAuthentication = [NSNumber numberWithBool:YES];
-	conf.dataDirectory = [NSURL fileURLWithPath:NSTemporaryDirectory()];
+	//conf.dataDirectory = [NSURL fileURLWithPath:NSTemporaryDirectory()];
+  conf.dataDirectory = [[[appDelegate applicationLibraryDirectory] URLByAppendingPathComponent:@"Caches" isDirectory:YES] URLByAppendingPathComponent:@"tor" isDirectory:YES];
 
 	conf.arguments = [NSArray arrayWithObjects:
-					  @"--datadirectory", NSTemporaryDirectory(),
 					  @"--controlport", controlPortStr,
 					  @"--socksport", socksPortStr,
 					  @"--geoipfile", geoip,
