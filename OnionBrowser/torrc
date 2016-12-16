@@ -1,6 +1,7 @@
 # See https://www.torproject.org/docs/tor-manual.html
 
-ClientUseIPv4 1
+# Handled at runtime in AppDelegate (since IPv6-only network needs IPv4 0 / IPv6 1)
+#ClientUseIPv4 1
 #ClientUseIPv6 1
 
 ClientOnly 1

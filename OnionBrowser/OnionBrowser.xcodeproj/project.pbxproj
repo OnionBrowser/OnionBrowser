@@ -54,6 +54,7 @@
 		697ABCD614FA042C00E1678C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 697ABCD514FA042C00E1678C /* SystemConfiguration.framework */; };
 		697ABCD814FA043300E1678C /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 697ABCD714FA043300E1678C /* MobileCoreServices.framework */; };
 		69855E071531576800720327 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = 69855E061531576800720327 /* about.html */; };
+		698DCED31E034E6D004CBCAC /* Ipv6Tester.m in Sources */ = {isa = PBXBuildFile; fileRef = 698DCED21E034E6D004CBCAC /* Ipv6Tester.m */; };
 		69A3758E1AAFF60F00AAE92B /* QRCameraSwitchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A375851AAFF60F00AAE92B /* QRCameraSwitchButton.m */; };
 		69A3758F1AAFF60F00AAE92B /* QRCodeReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A375871AAFF60F00AAE92B /* QRCodeReader.m */; };
 		69A375901AAFF60F00AAE92B /* QRCodeReaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69A3758A1AAFF60F00AAE92B /* QRCodeReaderView.m */; };
@@ -171,6 +172,8 @@
 		69847C4514F788E100288277 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = ../dependencies/lib/libssl.a; sourceTree = "<group>"; };
 		69847C4614F788E100288277 /* libtor.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libtor.a; path = ../dependencies/lib/libtor.a; sourceTree = "<group>"; };
 		69855E061531576800720327 /* about.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; lineEnding = 0; path = about.html; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.html; };
+		698DCED11E034E6D004CBCAC /* Ipv6Tester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Ipv6Tester.h; path = OnionBrowser/Ipv6Tester.h; sourceTree = "<group>"; };
+		698DCED21E034E6D004CBCAC /* Ipv6Tester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Ipv6Tester.m; path = OnionBrowser/Ipv6Tester.m; sourceTree = "<group>"; };
 		69A375841AAFF60F00AAE92B /* QRCameraSwitchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCameraSwitchButton.h; sourceTree = "<group>"; };
 		69A375851AAFF60F00AAE92B /* QRCameraSwitchButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCameraSwitchButton.m; sourceTree = "<group>"; };
 		69A375861AAFF60F00AAE92B /* QRCodeReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeReader.h; sourceTree = "<group>"; };
@@ -437,6 +440,8 @@
 		69BB0A4C14F8D31800E7E909 /* Tor */ = {
 			isa = PBXGroup;
 			children = (
+				698DCED11E034E6D004CBCAC /* Ipv6Tester.h */,
+				698DCED21E034E6D004CBCAC /* Ipv6Tester.m */,
 				69AE08701CB1E6EB00A6B388 /* ObfsWrapper.h */,
 				69AE08711CB1E6EB00A6B388 /* ObfsWrapper.m */,
 				696F9EA814F8D51300BC5FDC /* TorWrapper.h */,
@@ -613,6 +618,7 @@
 				69156B6315FD54BC00BC560A /* Bridge.m in Sources */,
 				69A375911AAFF60F00AAE92B /* QRCodeReaderViewController.m in Sources */,
 				6954F8ED15FE985E00AE8658 /* NSData+CocoaDevUsersAdditions.m in Sources */,
+				698DCED31E034E6D004CBCAC /* Ipv6Tester.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

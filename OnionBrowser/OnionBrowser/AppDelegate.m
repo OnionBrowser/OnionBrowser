@@ -11,6 +11,7 @@
 #include <sys/sysctl.h>
 #import <sys/utsname.h>
 #import "BridgeViewController.h"
+#import "Ipv6Tester.h"
 
 @interface AppDelegate()
 - (Boolean)torrcExists;
@@ -458,6 +459,9 @@
         }
     }
 
+	NSFileHandle *myHandle = [NSFileHandle fileHandleForWritingAtPath:destTorrc];
+	[myHandle seekToEndOfFile];
+
 	// If the bridge setting is set to one of the "built-in" sets, make sure
 	// we use fresh values as provided by the app. This allows us to update the
 	// built-in confs.
@@ -469,6 +473,15 @@
 		[Bridge updateBridgeLines:[Bridge defaultMeekAmazon]];
 	} else if (bridgeSetting == TOR_BRIDGES_MEEKAZURE) {
 		[Bridge updateBridgeLines:[Bridge defaultMeekAzure]];
+	} else if (bridgeSetting == TOR_BRIDGES_NONE) {
+		NSInteger ipv6_status = [Ipv6Tester ipv6_status];
+		if (ipv6_status == TOR_IPV6_CONN_ONLY) {
+			[myHandle writeData:[@"\nClientUseIPv4 0\nClientUseIPv6 1\n" dataUsingEncoding:NSUTF8StringEncoding]];
+		} else if (ipv6_status == TOR_IPV6_CONN_DUAL) {
+			[myHandle writeData:[@"\nClientUseIPv4 1\nClientUseIPv6 1\n" dataUsingEncoding:NSUTF8StringEncoding]];
+		} else {
+			[myHandle writeData:[@"\nClientUseIPv4 1\n" dataUsingEncoding:NSUTF8StringEncoding]];
+		}
 	}
 
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -480,8 +493,6 @@
     if (mutableFetchResults == nil) {
 
     } else if ([mutableFetchResults count] > 0) {
-        NSFileHandle *myHandle = [NSFileHandle fileHandleForWritingAtPath:destTorrc];
-        [myHandle seekToEndOfFile];
 
         [myHandle writeData:[@"UseBridges 1\n" dataUsingEncoding:NSUTF8StringEncoding]];
         for (Bridge *bridge in mutableFetchResults) {
@@ -501,8 +512,9 @@
           [myHandle writeData:[@"ClientTransportPlugin obfs3 socks5 127.0.0.1:47354\n" dataUsingEncoding:NSUTF8StringEncoding]];
           [myHandle writeData:[@"ClientTransportPlugin scramblesuit socks5 127.0.0.1:47355\n" dataUsingEncoding:NSUTF8StringEncoding]];
         }
-		[myHandle closeFile];
     }
+	[myHandle closeFile];
+
 
     // Encrypt the new torrc (since this "running" copy of torrc may now contain bridges)
     NSDictionary *f_options = [NSDictionary dictionaryWithObjectsAndKeys:
