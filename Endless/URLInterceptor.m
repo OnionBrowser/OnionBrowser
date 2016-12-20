@@ -378,7 +378,7 @@ static NSString *_javascriptToInject;
 	}
 	
 	/* handle HTTP-level redirects */
-	if ((response.statusCode == 301) || (response.statusCode == 302) || (response.statusCode == 307)) {
+	if ((response.statusCode == 301) || (response.statusCode == 302) || (response.statusCode == 303) || (response.statusCode == 307)) {
 		NSString *newURL = [self caseInsensitiveHeader:@"location" inResponse:response];
 		if (newURL == nil || [newURL isEqualToString:@""])
 			NSLog(@"[URLInterceptor] [Tab %@] got %ld redirect at %@ but no location header", wvt.tabIndex, (long)response.statusCode, [[self actualRequest] URL]);
