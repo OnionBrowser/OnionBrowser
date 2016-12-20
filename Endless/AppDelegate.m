@@ -26,7 +26,8 @@
 	
 	[self initializeDefaults];
 	
-	self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+	self.window.backgroundColor = [UIColor groupTableViewBackgroundColor];
 	self.window.rootViewController = [[WebViewController alloc] init];
 	self.window.rootViewController.restorationIdentifier = @"WebViewController";
 	
@@ -81,7 +82,7 @@
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
 #ifdef DEBUG
-	NSLog(@"request to open url \"%@\"", url);
+	NSLog(@"[AppDelegate] request to open url \"%@\"", url);
 #endif
 	if ([[[url scheme] lowercaseString] isEqualToString:@"endlesshttp"])
 		url = [NSURL URLWithString:[[url absoluteString] stringByReplacingCharactersInRange:NSMakeRange(0, [@"endlesshttp" length]) withString:@"http"]];
@@ -102,7 +103,7 @@
 	/* if we tried last time and failed, the state might be corrupt */
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	if ([userDefaults objectForKey:STATE_RESTORE_TRY_KEY] != nil) {
-		NSLog(@"previous startup failed, not restoring application state");
+		NSLog(@"[AppDelegate] previous startup failed, not restoring application state");
 		[userDefaults removeObjectForKey:STATE_RESTORE_TRY_KEY];
 		return NO;
 	}
@@ -145,12 +146,13 @@
 			
 			[userDefaults setObject:val forKey:key];
 #ifdef TRACE
-			NSLog(@"initialized default preference for %@ to %@", key, val);
+			NSLog(@"[AppDelegate] initialized default preference for %@ to %@", key, val);
 #endif
 		}
 	}
 	
-	[userDefaults synchronize];
+	if (![userDefaults synchronize])
+		NSLog(@"[AppDelegate] failed saving preferences");
 	
 	_searchEngines = [NSMutableDictionary dictionaryWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"SearchEngines.plist"]];
 }

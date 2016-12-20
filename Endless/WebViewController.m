@@ -223,7 +223,7 @@
 		[[wvt webView] setRestorationIdentifier:[wvt.url absoluteString]];
 		
 #ifdef TRACE
-		NSLog(@"encoded restoration state for tab %@ with %@", wvt.tabIndex, wvtd[wvtd.count - 1]);
+		NSLog(@"[WebViewController] encoded restoration state for tab %@ with %@", wvt.tabIndex, wvtd[wvtd.count - 1]);
 #endif
 	}
 	[coder encodeObject:wvtd forKey:@"webViewTabs"];
@@ -238,7 +238,7 @@
 	for (int i = 0; i < wvt.count; i++) {
 		NSDictionary *params = wvt[i];
 #ifdef TRACE
-		NSLog(@"restoring tab %d with %@", i, params);
+		NSLog(@"[WebViewController] restoring tab %d with %@", i, params);
 #endif
 		WebViewTab *wvt = [self addNewTabForURL:[params objectForKey:@"url"] forRestoration:YES withCompletionBlock:nil];
 		[[wvt title] setText:[params objectForKey:@"title"]];
@@ -536,7 +536,7 @@
 	WebViewTab *wvt = (WebViewTab *)webViewTabs[tabNumber.intValue];
 	
 #ifdef TRACE
-	NSLog(@"removing tab %@ (%@) and focusing %@", tabNumber, wvt.title.text, toFocus);
+	NSLog(@"[WebViewController] removing tab %@ (%@) and focusing %@", tabNumber, wvt.title.text, toFocus);
 #endif
 	int futureFocusNumber = toFocus.intValue;
 	if (futureFocusNumber > -1) {
@@ -754,7 +754,7 @@
 		return;
 
 #ifdef TRACE
-	NSLog(@"started editing");
+	NSLog(@"[WebViewController] started editing");
 #endif
 	
 	[urlField setText:[self.curWebViewTab.url absoluteString]];
@@ -791,7 +791,7 @@
 		return;
 
 #ifdef TRACE
-	NSLog(@"ended editing with: %@", [textField text]);
+	NSLog(@"[WebViewController] ended editing with: %@", [textField text]);
 #endif
 	if (bookmarks != nil) {
 		[[bookmarks view] removeFromSuperview];
