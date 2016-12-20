@@ -9,6 +9,8 @@
 			<string>User Interface</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
+			<key>FooterText</key>
+			<string>If blank, the search engine page will be used</string>
 		</dict>
 		<dict>
 			<key>Title</key>
@@ -51,6 +53,16 @@
 			<string>Search engine</string>
 			<key>Type</key>
 			<string>PSMultiValueSpecifier</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>Custom home page</string>
+			<key>Key</key>
+			<string>homepage</string>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>DefaultValue</key>
+			<string></string>
 		</dict>
 		<dict>
 			<key>Title</key>

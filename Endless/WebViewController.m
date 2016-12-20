@@ -271,9 +271,14 @@
 {
 	if (webViewTabs.count == 0 && ![appDelegate areTesting]) {
 		NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-		NSDictionary *se = [[appDelegate searchEngines] objectForKey:[userDefaults stringForKey:@"search_engine"]];
+		NSString *homepage = [userDefaults stringForKey:@"homepage"];
 		
-		[self addNewTabForURL:[NSURL URLWithString:[se objectForKey:@"homepage_url"]]];
+		if (homepage == nil || [homepage isEqualToString:@""]) {
+			NSDictionary *se = [[appDelegate searchEngines] objectForKey:[userDefaults stringForKey:@"search_engine"]];
+			homepage = [se objectForKey:@"homepage_url"];
+		}
+		
+		[self addNewTabForURL:[NSURL URLWithString:homepage]];
 	}
 	
 	/* in case our orientation changed, or the status bar changed height (which can take a few millis for animation) */
