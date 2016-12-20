@@ -52,7 +52,7 @@ NSString * const LABEL = @"L";
 
 - (CGSize)preferredContentSize
 {
-	return CGSizeMake(160, [self tableView:nil heightForRowAtIndexPath:nil] * [buttons count]);
+	return CGSizeMake(160, [self tableView:self.tableView heightForRowAtIndexPath:[[NSIndexPath alloc] init]] * [buttons count]);
 }
 
 #pragma mark - Table view data source
@@ -173,7 +173,7 @@ NSString * const LABEL = @"L";
 {
 	WebViewTab *wvt = [[appDelegate webViewController] curWebViewTab];
 	if (wvt && [wvt url])
-		[[UIApplication sharedApplication] openURL:[wvt url]];
+		[[UIApplication sharedApplication] openURL:[wvt url] options:@{} completionHandler:nil];
 }
 
 - (void)menuHTTPSEverywhere

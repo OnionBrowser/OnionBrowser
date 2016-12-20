@@ -65,8 +65,7 @@
 	webViewTabs = [[NSMutableArray alloc] initWithCapacity:10];
 	curTabIndex = 0;
 	
-	self.view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].applicationFrame.size.width, [UIScreen mainScreen].applicationFrame.size.height)];
-	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+	self.view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
 
 	tabScroller = [[UIScrollView alloc] init];
 	[tabScroller setScrollEnabled:NO];
@@ -197,6 +196,14 @@
 	return NO;
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+	if (self.darkInterface)
+		return UIStatusBarStyleLightContent;
+	else
+		return UIStatusBarStyleDefault;
+}
+
 - (void)didReceiveMemoryWarning
 {
 	[super didReceiveMemoryWarning];
@@ -312,7 +319,7 @@
 - (void)adjustLayout
 {
 	float statusBarHeight = [[UIApplication sharedApplication] statusBarFrame].size.height;
-	CGSize size = [[UIScreen mainScreen] applicationFrame].size;
+	CGSize size = [[UIScreen mainScreen] bounds].size;
 
 	/* main background view starts at 0,0, but actual content starts at 0,(app frame origin y to account for status bar/location warning) */
 	self.view.frame = CGRectMake(0, 0, size.width, size.height + statusBarHeight);
@@ -337,8 +344,8 @@
 
 	if (self.darkInterface) {
 		[self.view setBackgroundColor:[UIColor darkGrayColor]];
-		[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-
+		[self setNeedsStatusBarAppearanceUpdate];
+		
 		[tabScroller setBackgroundColor:[UIColor grayColor]];
 		[tabToolbar setBarTintColor:[UIColor grayColor]];
 		[toolbar setBackgroundColor:[UIColor darkGrayColor]];
@@ -355,7 +362,7 @@
 	}
 	else {
 		[self.view setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
-		[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+		[self setNeedsStatusBarAppearanceUpdate];
 		
 		[tabScroller setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
 		[tabToolbar setBarTintColor:[UIColor groupTableViewBackgroundColor]];

@@ -152,7 +152,7 @@ static NSString *_javascriptToInject;
 #ifdef TRACE
 					NSLog(@"[URLInterceptor] opening in 3rd party app: %@", [request URL]);
 #endif
-					[[UIApplication sharedApplication] openURL:[request URL]];
+					[[UIApplication sharedApplication] openURL:[request URL] options:@{} completionHandler:nil];
 				}];
 				
 				UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", @"Cancel action") style:UIAlertActionStyleCancel handler:nil];
