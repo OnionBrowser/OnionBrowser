@@ -21,7 +21,7 @@
  * ./AppData/Library/Caches/http_samy.pl_0.localstorage
  */
 
-#define LOCAL_STORAGE_REGEX @"/https?_(.+)_\\d+(\\.localstorage)?$"
+#define LOCAL_STORAGE_REGEX @"/(https?_(.+)_\\d+|_*IndexedDB)"
 
 @implementation CookieJar {
 	AppDelegate *appDelegate;
