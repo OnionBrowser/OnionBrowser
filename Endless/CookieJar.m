@@ -23,9 +23,9 @@
 
 #define LOCAL_STORAGE_REGEX @"/https?_(.+)_\\d+(\\.localstorage)?$"
 
-@implementation CookieJar
-
-AppDelegate *appDelegate;
+@implementation CookieJar {
+	AppDelegate *appDelegate;
+}
 
 - (CookieJar *)init
 {

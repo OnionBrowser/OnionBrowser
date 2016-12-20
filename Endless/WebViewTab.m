@@ -13,13 +13,13 @@
 
 @import WebKit;
 
-@implementation WebViewTab
-
-AppDelegate *appDelegate;
+@implementation WebViewTab {
+	AppDelegate *appDelegate;
+}
 
 + (WebViewTab *)openedWebViewTabByRandID:(NSString *)randID
 {
-	for (WebViewTab *wvt in [[appDelegate webViewController] webViewTabs]) {
+	for (WebViewTab *wvt in [[(AppDelegate *)[[UIApplication sharedApplication] delegate] webViewController] webViewTabs]) {
 		if ([wvt randID] != nil && [[wvt randID] isEqualToString:randID]) {
 			return wvt;
 		}

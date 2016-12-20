@@ -9,11 +9,11 @@
 #import "Bookmark.h"
 #import "BookmarkController.h"
 
-@implementation BookmarkController
-
-AppDelegate *appDelegate;
-UIBarButtonItem *addItem;
-UIBarButtonItem *leftItem;
+@implementation BookmarkController {
+	AppDelegate *appDelegate;
+	UIBarButtonItem *addItem;
+	UIBarButtonItem *leftItem;
+}
 
 - (void)viewDidLoad
 {

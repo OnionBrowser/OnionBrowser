@@ -19,14 +19,14 @@
 
 #import "NSData+CocoaDevUsersAdditions.h"
 
-@implementation URLInterceptor
+@implementation URLInterceptor {
+	WebViewTab *wvt;
+	NSString *userAgent;
+}
 
 static AppDelegate *appDelegate;
 static BOOL sendDNT = true;
 static NSMutableArray *tmpAllowed;
-
-WebViewTab *wvt;
-NSString *userAgent;
 
 static NSString *_javascriptToInject;
 + (NSString *)javascriptToInject
@@ -55,16 +55,15 @@ static NSString *_javascriptToInject;
 + (BOOL)isURLTemporarilyAllowed:(NSURL *)url
 {
 	int found = -1;
-	if (wvt == nil) {
-		for (int i = 0; i < [tmpAllowed count]; i++) {
-			if ([[tmpAllowed[i] absoluteString] isEqualToString:[url absoluteString]])
-				found = i;
-		}
-		
-		if (found > -1) {
-			NSLog(@"[URLInterceptor] temporarily allowing %@ from allowed list with no matching WebViewTab", url);
-			[tmpAllowed removeObjectAtIndex:found];
-		}
+	
+	for (int i = 0; i < [tmpAllowed count]; i++) {
+		if ([[tmpAllowed[i] absoluteString] isEqualToString:[url absoluteString]])
+			found = i;
+	}
+	
+	if (found > -1) {
+		NSLog(@"[URLInterceptor] temporarily allowing %@ from allowed list with no matching WebViewTab", url);
+		[tmpAllowed removeObjectAtIndex:found];
 	}
 	
 	return (found > -1);

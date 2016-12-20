@@ -11,11 +11,11 @@
 
 #import "QuickDialog.h"
 
-@implementation HostSettingsController
-
-AppDelegate *appDelegate;
-NSMutableArray *_sortedHosts;
-NSString *firstMatch;
+@implementation HostSettingsController {
+	AppDelegate *appDelegate;
+	NSMutableArray *_sortedHosts;
+	NSString *firstMatch;
+}
 
 - (void)viewDidLoad
 {

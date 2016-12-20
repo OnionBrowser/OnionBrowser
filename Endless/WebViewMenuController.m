@@ -17,11 +17,11 @@
 
 #import "OnePasswordExtension.h"
 
-@implementation WebViewMenuController
-
-AppDelegate *appDelegate;
-IASKAppSettingsViewController *appSettingsViewController;
-NSMutableArray *buttons;
+@implementation WebViewMenuController {
+	AppDelegate *appDelegate;
+	IASKAppSettingsViewController *appSettingsViewController;
+	NSMutableArray *buttons;
+}
 
 NSString * const FUNC = @"F";
 NSString * const LABEL = @"L";
