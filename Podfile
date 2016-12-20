@@ -1,11 +1,13 @@
-platform :ios, "7.0"
+platform :ios, "10.0"
 
-pod "InAppSettingsKit"
-pod "WYPopoverController", :git => "https://github.com/sammcewan/WYPopoverController.git"
-pod "DTFoundation"
-pod "OrderedDictionary"
-pod "QuickDialog", :git => "https://github.com/jcs/QuickDialog.git"
+target "Endless" do
+  pod "InAppSettingsKit"
+  pod "WYPopoverController", :git => "https://github.com/sammcewan/WYPopoverController.git"
+  pod "DTFoundation"
+  pod "OrderedDictionary"
+  pod "QuickDialog", :git => "https://github.com/jcs/QuickDialog.git"
+end
 
-target "Endless Tests", :exclusive => true do
+target "Endless Tests" do
 	pod "OCMock"
 end
