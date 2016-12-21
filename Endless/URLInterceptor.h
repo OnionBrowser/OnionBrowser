@@ -35,6 +35,7 @@
 @property (strong) CKHTTPConnection *connection;
 @property (strong) HostSettings *hostSettings;
 @property (strong) HostSettings *originHostSettings;
+@property (strong, nonatomic) NSString *cspNonce;
 
 + (NSString *)javascriptToInject;
 + (void)setSendDNT:(BOOL)val;

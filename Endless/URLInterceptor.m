@@ -361,9 +361,9 @@ static NSString *_javascriptToInject;
 	NSString *CSPmode = [self.originHostSettings setting:HOST_SETTINGS_KEY_CSP];
 
 	if ([CSPmode isEqualToString:HOST_SETTINGS_CSP_STRICT])
-		CSPheader = @"child-src endlessipc:; frame-src endlessipc:; script-src 'none'; media-src 'none'; object-src 'none'; connect-src 'none'; font-src 'none'; sandbox allow-forms allow-top-navigation; style-src 'unsafe-inline' *; report-uri;";
+		CSPheader = @"media-src 'none'; object-src 'none'; connect-src 'none'; font-src 'none'; sandbox allow-forms allow-top-navigation; style-src 'unsafe-inline' *; report-uri;";
 	else if ([CSPmode isEqualToString:HOST_SETTINGS_CSP_BLOCK_CONNECT])
-		CSPheader = @"child-src endlessipc:; frame-src endlessipc:; connect-src 'none'; media-src 'none'; object-src 'none'; report-uri;";
+		CSPheader = @"connect-src 'none'; media-src 'none'; object-src 'none'; report-uri;";
 	else
 		CSPheader = nil;
 	
@@ -385,13 +385,9 @@ static NSString *_javascriptToInject;
 				if ([CSPmode isEqualToString:HOST_SETTINGS_CSP_STRICT])
 					/* disregard the existing policy since ours will be the most strict anyway */
 					hv = CSPheader;
-				else if ([CSPmode isEqualToString:HOST_SETTINGS_CSP_BLOCK_CONNECT])
-					/* prepend our 'none's to the existing policy */
-					hv = [NSString stringWithFormat:@"%@ %@", CSPheader, hv];
-				else {
-					/* edit this existing policy just to allow our ipc URLs */
-					hv = [URLInterceptor prependDirectives:@{ @"child-src": @"endlessipc:", @"frame-src": @"endlessipc:" } inCSPHeader:hv];
-				}
+				
+				/* merge in the things we require for any policy */
+				hv = [URLInterceptor prependDirectives:@{ @"child-src": @"endlessipc:", @"frame-src": @"endlessipc:", @"script-src" : [NSString stringWithFormat:@"'nonce-%@'", [self cspNonce]] } inCSPHeader:hv];
 				
 				[mHeaders setObject:hv forKey:h];
 				foundCSP = true;
@@ -517,9 +513,11 @@ static NSString *_javascriptToInject;
 				NSMutableData *tData = [[NSMutableData alloc] init];
 				if (contentType == CONTENT_TYPE_HTML)
 					// prepend a doctype to force into standards mode and throw in any javascript overrides
-					[tData appendData:[[NSString stringWithFormat:@"<!DOCTYPE html><script>%@</script>", [[self class] javascriptToInject]] dataUsingEncoding:NSUTF8StringEncoding]];
-				else if (contentType == CONTENT_TYPE_JAVASCRIPT)
+					[tData appendData:[[NSString stringWithFormat:@"<!DOCTYPE html><script type=\"text/javascript\" nonce=\"%@\">%@</script>", [self cspNonce], [[self class] javascriptToInject]] dataUsingEncoding:NSUTF8StringEncoding]];
+				/*
+				 else if (contentType == CONTENT_TYPE_JAVASCRIPT)
 					[tData appendData:[[NSString stringWithFormat:@"%@\n", [[self class] javascriptToInject]] dataUsingEncoding:NSUTF8StringEncoding]];
+				 */
 				
 				[tData appendData:newData];
 				newData = tData;
@@ -637,6 +635,27 @@ static NSString *_javascriptToInject;
 	}
 	
 	return o;
+}
+
+- (NSString *)cspNonce
+{
+	if (!_cspNonce) {
+		/*
+		 * from https://w3c.github.io/webappsec-csp/#security-nonces:
+		 *
+		 * "The generated value SHOULD be at least 128 bits long (before encoding), and SHOULD
+		 * "be generated via a cryptographically secure random number generator in order to
+		 * "ensure that the value is difficult for an attacker to predict.
+		 */
+		
+		NSMutableData *data = [NSMutableData dataWithLength:16];
+		if (SecRandomCopyBytes(kSecRandomDefault, 16, data.mutableBytes) != 0)
+			abort();
+		
+		_cspNonce = [data base64EncodedStringWithOptions:0];
+	}
+	
+	return _cspNonce;
 }
 
 @end
