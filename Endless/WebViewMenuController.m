@@ -42,6 +42,7 @@ NSString * const LABEL = @"L";
 
 	[buttons addObject:@{ FUNC : @"menuAddOrManageBookmarks", LABEL : @"Bookmarks" }];
 	[buttons addObject:@{ FUNC : @"menuOpenInSafari", LABEL : @"Open in Safari" }];
+	[buttons addObject:@{ FUNC : @"menuShare", LABEL : @"Share URL" }];
 	[buttons addObject:@{ FUNC : @"menuHTTPSEverywhere", LABEL : @"HTTPS Everywhere" }];
 	[buttons addObject:@{ FUNC : @"menuHostSettings", LABEL : @"Host Settings" }];
 	[buttons addObject:@{ FUNC : @"menuSettings", LABEL : @"Global Settings" }];
@@ -97,7 +98,7 @@ NSString * const LABEL = @"L";
 			cell.detailTextLabel.text = @"Page bookmarked";
 		}
 	}
-	else if ([func isEqualToString:@"menuOnePassword"] || [func isEqualToString:@"menuRefresh"] || [func isEqualToString:@"menuOpenInSafari"]) {
+	else if ([func isEqualToString:@"menuOnePassword"] || [func isEqualToString:@"menuRefresh"] || [func isEqualToString:@"menuOpenInSafari"] || [func isEqualToString:@"menuShare"]) {
 		cell.userInteractionEnabled = haveURL;
 		cell.textLabel.enabled = haveURL;
 	}
@@ -213,6 +214,12 @@ NSString * const LABEL = @"L";
 	
 	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:appSettingsViewController];
 	[[appDelegate webViewController] presentViewController:navController animated:YES completion:nil];
+}
+
+- (void)menuShare
+{
+	UIActivityViewController *avc = [[UIActivityViewController alloc] initWithActivityItems:@[ [[[appDelegate webViewController] curWebViewTab] url] ] applicationActivities:nil];
+	[[appDelegate webViewController] presentViewController:avc animated:YES completion:nil];
 }
 
 @end
