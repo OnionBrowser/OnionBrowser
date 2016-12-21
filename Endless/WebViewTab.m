@@ -589,11 +589,12 @@
 	}];
 	
 	UIAlertAction *openNewTabAction = [UIAlertAction actionWithTitle:@"Open in a New Tab" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-		[[appDelegate webViewController] addNewTabForURL:[NSURL URLWithString:href]];
+		WebViewTab *newtab = [[appDelegate webViewController] addNewTabForURL:[NSURL URLWithString:href]];
+		newtab.openedByTabHash = [NSNumber numberWithLong:self.hash];
 	}];
 	
 	UIAlertAction *openSafariAction = [UIAlertAction actionWithTitle:@"Open in Safari" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:href]];
+		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:href] options:@{} completionHandler:nil];
 	}];
 
 	UIAlertAction *saveImageAction = [UIAlertAction actionWithTitle:@"Save Image" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
