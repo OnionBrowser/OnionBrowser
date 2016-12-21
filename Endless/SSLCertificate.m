@@ -7,15 +7,25 @@
 
 #import "SSLCertificate.h"
 
+#import "NSData+DTCrypto.h"
 #import "DTASN1Serialization.h"
 
 @implementation SSLCertificate
+
+static NSMutableDictionary <NSData *, NSMutableDictionary *> *certCache = nil;
+
+#define CERT_CACHE_SIZE 25
+#define CERT_CACHE_KEY_CERT @"key"
+#define CERT_CACHE_KEY_TIME @"time"
 
 - (id)init {
 	if (!(self = [super init]))
 		return nil;
 	
 	_isEV = false;
+	
+	if (!certCache)
+		certCache = [[NSMutableDictionary alloc] initWithCapacity:CERT_CACHE_SIZE];
 	
 	return self;
 }
@@ -68,8 +78,20 @@
 
 	*/
 	
-	if (!(self = [super init]))
+	if (!(self = [self init]))
 		return nil;
+	
+	NSData *certHash = [data dataWithSHA1Hash];
+	
+	NSMutableDictionary *ocdef = [certCache objectForKey:certHash];
+	if (ocdef) {
+		SSLCertificate *oc = [ocdef objectForKey:CERT_CACHE_KEY_CERT];
+#ifdef TRACE
+		NSLog(@"[SSLCertificate] certificate for %@ cached", [[oc subject] objectForKey:X509_KEY_CN]);
+#endif
+		[ocdef setValue:[NSDate date] forKey:CERT_CACHE_KEY_TIME];
+		return oc;
+	}
 
 	NSArray *oidtree;
 	NSObject *t = [DTASN1Serialization objectWithData:data];
@@ -213,6 +235,20 @@
 #ifdef TRACE
 	NSLog(@"[SSLCertificate] parsed certificate for %@: version=%@, serial=%@, sigalg=%@, issuer=%@, valid=%@ to %@", [_subject objectForKey:X509_KEY_CN], _version, _serialNumber, _signatureAlgorithm, [_issuer objectForKey:X509_KEY_CN], _validityNotBefore, _validityNotAfter);
 #endif
+	
+	if ([certCache count] >= CERT_CACHE_SIZE) {
+		NSArray *sortedCerts = [[certCache allKeys] sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+			NSDate *da = [[certCache objectForKey:a] objectForKey:CERT_CACHE_KEY_TIME];
+			NSDate *db = [[certCache objectForKey:b] objectForKey:CERT_CACHE_KEY_TIME];
+			return [da compare:db];
+		}];
+		
+		for (int i = 0; i < ([certCache count] - (CERT_CACHE_SIZE / 2)); i++)
+			[certCache removeObjectForKey:[sortedCerts objectAtIndex:i]];
+	}
+
+	ocdef = [[NSMutableDictionary alloc] initWithObjectsAndKeys:self, CERT_CACHE_KEY_CERT, [NSDate date], CERT_CACHE_KEY_TIME, nil];
+	[certCache setObject:ocdef forKey:certHash];
 	
 	return self;
 }
