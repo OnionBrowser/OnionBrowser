@@ -40,7 +40,7 @@ NSString * const LABEL = @"L";
 	if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"onepassword://"]])
 		[buttons addObject:@{ FUNC : @"menuOnePassword", LABEL : @"Fill with 1Password" }];
 
-	[buttons addObject:@{ FUNC : @"menuAddOrManageBookmarks", LABEL : @"Add Bookmark" }];
+	[buttons addObject:@{ FUNC : @"menuAddOrManageBookmarks", LABEL : @"Bookmarks" }];
 	[buttons addObject:@{ FUNC : @"menuOpenInSafari", LABEL : @"Open in Safari" }];
 	[buttons addObject:@{ FUNC : @"menuHTTPSEverywhere", LABEL : @"HTTPS Everywhere" }];
 	[buttons addObject:@{ FUNC : @"menuHostSettings", LABEL : @"Host Settings" }];
@@ -93,7 +93,7 @@ NSString * const LABEL = @"L";
 	NSString *func = [button objectForKey:FUNC];
 	if ([func isEqualToString:@"menuAddOrManageBookmarks"]) {
 		if (haveURL && [Bookmark isURLBookmarked:[[[appDelegate webViewController] curWebViewTab] url]]) {
-			cell.textLabel.text = @"Manage Bookmarks";
+			cell.textLabel.text = @"Bookmarks";
 			cell.detailTextLabel.text = @"Page bookmarked";
 		}
 	}
