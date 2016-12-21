@@ -74,17 +74,6 @@ static NSString *_javascriptToInject;
 	return request;
 }
 
-- (NSMutableData *)data {
-	return _data;
-}
-
-- (void)appendData:(NSData *)newData {
-	if (_data == nil)
-		_data = [[NSMutableData alloc] initWithData:newData];
-	else
-		[_data appendData:newData];
-}
-
 /*
  * Start the show: WebView will ask NSURLConnection if it can handle this request, and will eventually hit this registered handler.
  * We will intercept all requests except for data: and file:// URLs.  WebView will then call our initWithRequest.
@@ -104,6 +93,50 @@ static NSString *_javascriptToInject;
 		appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 	
 	return YES;
+}
+
++ (NSString *)prependDirectives:(NSDictionary *)directives inCSPHeader:(NSString *)header
+{
+	/*
+	 * CSP guide says apostrophe can't be in a bare string, so it should be safe to assume
+	 * splitting on ; will not catch any ; inside of an apostrophe-enclosed value, since those
+	 * can only be constant things like 'self', 'unsafe-inline', etc.
+	 *
+	 * https://www.w3.org/TR/CSP2/#source-list-parsing
+	 */
+ 
+	NSMutableDictionary *curDirectives = [[NSMutableDictionary alloc] init];
+	NSArray *td = [header componentsSeparatedByString:@";"];
+	for (int i = 0; i < [td count]; i++) {
+		NSString *t = [(NSString *)[td objectAtIndex:i] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+		NSRange r = [t rangeOfString:@" "];
+		if (r.length > 0) {
+			NSString *dir = [[t substringToIndex:r.location] lowercaseString];
+			NSString *val = [[t substringFromIndex:r.location] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+			[curDirectives setObject:val forKey:dir];
+		}
+	}
+	
+	for (NSString *newDir in [directives allKeys]) {
+		NSString *newval = [directives objectForKey:newDir];
+		NSString *curval = [curDirectives objectForKey:newDir];
+		if (curval) {
+			/*
+			 * CSP spec says if 'none' is encountered to ignore anything else, so if
+			 * 'none' is there, just replace it with newval rather than prepending
+			 */
+			if (![curval containsString:@"'none'"])
+				newval = [NSString stringWithFormat:@"%@ %@", newval, curval];
+		}
+		
+		[curDirectives setObject:newval forKey:newDir];
+	}
+	
+	NSMutableString *ret = [[NSMutableString alloc] init];
+	for (NSString *dir in [[curDirectives allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)])
+		[ret appendString:[NSString stringWithFormat:@"%@%@ %@;", ([ret length] > 0 ? @" " : @""), dir, [curDirectives objectForKey:dir]]];
+	
+	return [NSString stringWithString:ret];
 }
 
 /*
@@ -169,6 +202,19 @@ static NSString *_javascriptToInject;
 	NSLog(@"[URLInterceptor] [Tab %@] initializing %@ to %@ (via %@)", wvt.tabIndex, [request HTTPMethod], [[request URL] absoluteString], [request mainDocumentURL]);
 #endif
 	return self;
+}
+
+- (NSMutableData *)data
+{
+	return _data;
+}
+
+- (void)appendData:(NSData *)newData
+{
+	if (_data == nil)
+		_data = [[NSMutableData alloc] initWithData:newData];
+	else
+		[_data appendData:newData];
 }
 
 /*
@@ -300,7 +346,7 @@ static NSString *_javascriptToInject;
 	firstChunk = YES;
 
 	contentType = CONTENT_TYPE_OTHER;
-	NSString *ctype = [self caseInsensitiveHeader:@"content-type" inResponse:response];
+	NSString *ctype = [[self caseInsensitiveHeader:@"content-type" inResponse:response] lowercaseString];
 	if (ctype != nil) {
 		if ([ctype hasPrefix:@"text/html"] || [ctype hasPrefix:@"application/html"] || [ctype hasPrefix:@"application/xhtml+xml"])
 			contentType = CONTENT_TYPE_HTML;
@@ -315,18 +361,21 @@ static NSString *_javascriptToInject;
 	NSString *CSPmode = [self.originHostSettings setting:HOST_SETTINGS_KEY_CSP];
 
 	if ([CSPmode isEqualToString:HOST_SETTINGS_CSP_STRICT])
-		CSPheader = @"script-src 'none'; media-src 'none'; object-src 'none'; connect-src 'none'; font-src 'none'; sandbox allow-forms allow-top-navigation; style-src 'unsafe-inline' *; report-uri;";
+		CSPheader = @"child-src endlessipc:; frame-src endlessipc:; script-src 'none'; media-src 'none'; object-src 'none'; connect-src 'none'; font-src 'none'; sandbox allow-forms allow-top-navigation; style-src 'unsafe-inline' *; report-uri;";
 	else if ([CSPmode isEqualToString:HOST_SETTINGS_CSP_BLOCK_CONNECT])
-		CSPheader = @"connect-src 'none'; media-src 'none'; object-src 'none'; report-uri;";
+		CSPheader = @"child-src endlessipc:; frame-src endlessipc:; connect-src 'none'; media-src 'none'; object-src 'none'; report-uri;";
 	else
 		CSPheader = nil;
 	
-#ifdef TRACE_HOST_SETTINGS
-	NSLog(@"[HostSettings] [Tab %@] setting CSP for %@ to %@ (via %@)", wvt.tabIndex, [[[self actualRequest] URL] host], CSPmode, [[[self actualRequest] mainDocumentURL] host]);
-#endif
+	NSString *curCSP = [self caseInsensitiveHeader:@"content-security-policy" inResponse:response];
 	
+#ifdef TRACE_HOST_SETTINGS
+	NSLog(@"[HostSettings] [Tab %@] setting CSP for %@ to %@ (via %@) (currently %@)", wvt.tabIndex, [[[self actualRequest] URL] host], CSPmode, [[[self actualRequest] mainDocumentURL] host], curCSP);
+#endif
+
 	NSMutableDictionary *mHeaders = [[NSMutableDictionary alloc] initWithDictionary:[response allHeaderFields]];
-	if (CSPheader != nil) {
+	
+	if (CSPheader != nil || curCSP != nil) {
 		BOOL foundCSP = false;
 		
 		for (id h in [mHeaders allKeys]) {
@@ -336,11 +385,19 @@ static NSString *_javascriptToInject;
 				if ([CSPmode isEqualToString:HOST_SETTINGS_CSP_STRICT])
 					/* disregard the existing policy since ours will be the most strict anyway */
 					hv = CSPheader;
-				else
-					hv = [NSString stringWithFormat:@"connect-src 'none';media-src 'none';object-src 'none';%@", hv];
+				else if ([CSPmode isEqualToString:HOST_SETTINGS_CSP_BLOCK_CONNECT])
+					/* prepend our 'none's to the existing policy */
+					hv = [NSString stringWithFormat:@"%@ %@", CSPheader, hv];
+				else {
+					/* edit this existing policy just to allow our ipc URLs */
+					hv = [URLInterceptor prependDirectives:@{ @"child-src": @"endlessipc:", @"frame-src": @"endlessipc:" } inCSPHeader:hv];
+				}
 				
 				[mHeaders setObject:hv forKey:h];
 				foundCSP = true;
+#ifdef TRACE_HOST_SETTINGS
+				NSLog(@"[HostSettings] [Tab %@] CSP header is now %@", wvt.tabIndex, hv);
+#endif
 			}
 			else if ([[h lowercaseString] isEqualToString:@"cache-control"]) {
 				/* ignore */
@@ -349,12 +406,12 @@ static NSString *_javascriptToInject;
 				[mHeaders setObject:hv forKey:h];
 		}
 		
-		if (!foundCSP) {
+		if (!foundCSP && CSPheader) {
 			[mHeaders setObject:CSPheader forKey:@"Content-Security-Policy"];
 			[mHeaders setObject:CSPheader forKey:@"X-WebKit-CSP"];
 		}
 	}
-		
+
 	response = [[NSHTTPURLResponse alloc] initWithURL:[response URL] statusCode:[response statusCode] HTTPVersion:@"1.1" headerFields:mHeaders];
 	
 	/* save any cookies we just received */

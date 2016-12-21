@@ -9,9 +9,9 @@
 @interface URLBlocker_Tests : XCTestCase
 @end
 
-@implementation URLBlocker_Tests
-
-id HEMocked;
+@implementation URLBlocker_Tests {
+	id HEMocked;
+}
 
 - (void)setUp {
 	[super setUp];

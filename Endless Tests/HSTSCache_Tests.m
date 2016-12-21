@@ -9,9 +9,9 @@
 @interface HSTSCache_Tests : XCTestCase
 @end
 
-@implementation HSTSCache_Tests
-
-HSTSCache *hstsCache;
+@implementation HSTSCache_Tests {
+	HSTSCache *hstsCache;
+}
 
 - (void)setUp {
 	[super setUp];

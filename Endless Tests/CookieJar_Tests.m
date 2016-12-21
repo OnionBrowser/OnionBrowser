@@ -10,9 +10,9 @@
 @interface CookieJar_Tests : XCTestCase
 @end
 
-@implementation CookieJar_Tests
-
-CookieJar *cookieJar;
+@implementation CookieJar_Tests {
+	CookieJar *cookieJar;
+}
 
 - (void)setUp {
 	[super setUp];
