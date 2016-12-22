@@ -14,6 +14,20 @@
 
 - (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+	@try {
+		NSURL *resourceURL = [[NSBundle mainBundle] URLForResource:@"fabric.apikey" withExtension:nil];
+		if (resourceURL) {
+			NSString *fabricAPIKey = [[NSString stringWithContentsOfURL:resourceURL usedEncoding:nil error:nil] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+			CrashlyticsKit.delegate = self;
+			[Crashlytics startWithAPIKey:fabricAPIKey];
+		} else {
+			NSLog(@"no fabric.apikey found, not enabling fabric");
+		}
+	}
+	@catch (NSException *e) {
+		NSLog(@"[AppDelegate] failed setting up fabric: %@", e);
+	}
+
 #ifdef USE_DUMMY_URLINTERCEPTOR
 	[NSURLProtocol registerClass:[DummyURLInterceptor class]];
 #else
@@ -125,6 +139,17 @@
 		return NO;
 
 	return YES;
+}
+
+- (void)crashlyticsDidDetectReportForLastExecution:(CLSReport *)report completionHandler:(void (^)(BOOL))completionHandler
+{
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	
+#ifdef TRACE
+	NSLog(@"crashlytics report found, %@sending to crashlytics: %@", ([userDefaults boolForKey:@"crash_reporting"] ? @"" : @"NOT "), report);
+#endif
+
+	completionHandler([userDefaults boolForKey:@"crash_reporting"]);
 }
 
 - (void)initializeDefaults

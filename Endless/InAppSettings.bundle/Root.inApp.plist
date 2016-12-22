@@ -70,7 +70,17 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>FooterText</key>
-			<string>Cookies and local storage data from non-whitelisted hosts will be cleared after not being accessed by any tabs for this many minutes</string>
+			<string>Cookies and local storage data from non-whitelisted hosts will be cleared even from open tabs after not being accessed for this many minutes</string>
+		</dict>
+		<dict>
+			<key>Key</key>
+			<string>send_dnt</string>
+			<key>Title</key>
+			<string>Send Do-Not-Track header</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>DefaultValue</key>
+			<true/>
 		</dict>
 		<dict>
 			<key>IASKViewControllerClass</key>
@@ -113,20 +123,32 @@
 			<false/>
 		</dict>
 		<dict>
+			<key>FooterText</key>
+			<string>Automatically report crash information to the developer through Crashlytics (no URLs, cookies, device IDs, etc. will be sent)</string>
 			<key>Title</key>
-			<string></string>
+			<string>Support</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>
 		<dict>
 			<key>Key</key>
-			<string>send_dnt</string>
+			<string>open_github_issues</string>
+			<key>Type</key>
+			<string>IASKOpenURLSpecifier</string>
 			<key>Title</key>
-			<string>Send Do-Not-Track</string>
+			<string>Report a bug</string>
+			<key>File</key>
+			<string>endlesshttps://github.com/jcs/endless/issues</string>
+		</dict>
+		<dict>
+			<key>Key</key>
+			<string>crash_reporting</string>
+			<key>Title</key>
+			<string>Enable crash reporting</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>DefaultValue</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>Title</key>
@@ -143,16 +165,6 @@
 			<string>Rate on App Store</string>
 			<key>File</key>
 			<string>itms-apps://itunes.apple.com/app/id974745755</string>
-		</dict>
-		<dict>
-			<key>Key</key>
-			<string>open_github_issues</string>
-			<key>Type</key>
-			<string>IASKOpenURLSpecifier</string>
-			<key>Title</key>
-			<string>Report a bug</string>
-			<key>File</key>
-			<string>endlesshttps://github.com/jcs/endless/issues</string>
 		</dict>
 		<dict>
 			<key>File</key>

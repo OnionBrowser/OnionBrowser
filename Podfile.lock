@@ -1,4 +1,6 @@
 PODS:
+  - Crashlytics (3.8.3):
+    - Fabric (~> 1.6.3)
   - DTFoundation (1.7.11):
     - DTFoundation/AppKit (= 1.7.11)
     - DTFoundation/Core (= 1.7.11)
@@ -51,6 +53,7 @@ PODS:
     - DTFoundation/Core
   - DTFoundation/UIKit_BlocksAdditions (1.7.11):
     - DTFoundation/Core
+  - Fabric (1.6.11)
   - InAppSettingsKit (2.8.1)
   - OCMock (3.3.1)
   - OrderedDictionary (1.4)
@@ -60,7 +63,9 @@ PODS:
   - WYPopoverController (0.3.9)
 
 DEPENDENCIES:
+  - Crashlytics
   - DTFoundation
+  - Fabric
   - InAppSettingsKit
   - OCMock
   - OrderedDictionary
@@ -82,13 +87,15 @@ CHECKOUT OPTIONS:
     :git: https://github.com/sammcewan/WYPopoverController.git
 
 SPEC CHECKSUMS:
+  Crashlytics: 2b6dbe138a42395577cfa73dfa1aa7248cadf39e
   DTFoundation: 0ef29c70a9814e15518694862bd739347abe2a50
+  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   InAppSettingsKit: 94d2fba3ccd700fc4e32c6d09fabcc0af2426744
   OCMock: f3f61e6eaa16038c30caa5798c5e49d3307b6f22
   OrderedDictionary: 138c8d2e358d3a0c9adda15c6c7db24e8e3b09e6
   QuickDialog: f0c3e254c91182fa3f91fdb479ccac4a11b459e1
   WYPopoverController: a9db25ac2841a686acdc0f3a99bdb21545db32f4
 
-PODFILE CHECKSUM: 7a35ea19e702448cf9ea9222aa608dd7644f7940
+PODFILE CHECKSUM: f923ff96b8feb8c8bf6536c0d2307b8dfa98b2b5
 
 COCOAPODS: 1.1.1

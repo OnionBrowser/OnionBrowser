@@ -7,3 +7,5 @@ build/*
 xcuserdata
 profile
 Pods
+fabric.apikey
+fabric.buildsecret

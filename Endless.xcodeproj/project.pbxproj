@@ -12,6 +12,8 @@
 		0135F4761A3D2931005A8F16 /* SearchEngines.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0135F4751A3D2931005A8F16 /* SearchEngines.plist */; };
 		0135F47F1A3E548F005A8F16 /* WebViewTab.m in Sources */ = {isa = PBXBuildFile; fileRef = 0135F47E1A3E548F005A8F16 /* WebViewTab.m */; };
 		0141D96A1E0C66F1003472BC /* LocalNetworkChecker_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0141D9691E0C66F1003472BC /* LocalNetworkChecker_Tests.m */; };
+		0141D9701E0C9127003472BC /* fabric.apikey in Resources */ = {isa = PBXBuildFile; fileRef = 0141D96E1E0C9127003472BC /* fabric.apikey */; };
+		0141D9711E0C9127003472BC /* fabric.buildsecret in Resources */ = {isa = PBXBuildFile; fileRef = 0141D96F1E0C9127003472BC /* fabric.buildsecret */; };
 		014E68A51B9BED3300D98A0A /* HostSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 014E68A41B9BED3300D98A0A /* HostSettingsController.m */; };
 		014E68A81B9BEDDC00D98A0A /* HostSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 014E68A71B9BEDDC00D98A0A /* HostSettings.m */; };
 		016B2FCB1A53466D002D2730 /* hsts_preload.plist in Resources */ = {isa = PBXBuildFile; fileRef = 016B2FCA1A53466D002D2730 /* hsts_preload.plist */; };
@@ -85,6 +87,8 @@
 		0135F47D1A3E548F005A8F16 /* WebViewTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewTab.h; sourceTree = "<group>"; };
 		0135F47E1A3E548F005A8F16 /* WebViewTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewTab.m; sourceTree = "<group>"; };
 		0141D9691E0C66F1003472BC /* LocalNetworkChecker_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalNetworkChecker_Tests.m; sourceTree = "<group>"; };
+		0141D96E1E0C9127003472BC /* fabric.apikey */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fabric.apikey; sourceTree = "<group>"; };
+		0141D96F1E0C9127003472BC /* fabric.buildsecret */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fabric.buildsecret; sourceTree = "<group>"; };
 		014E68A31B9BED3300D98A0A /* HostSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HostSettingsController.h; sourceTree = "<group>"; };
 		014E68A41B9BED3300D98A0A /* HostSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HostSettingsController.m; sourceTree = "<group>"; };
 		014E68A61B9BEDDC00D98A0A /* HostSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HostSettings.h; sourceTree = "<group>"; };
@@ -273,6 +277,8 @@
 				01D7412E1A466AF0007B7033 /* NSString+JavascriptEscape.m */,
 				01D741301A49EA14007B7033 /* RuleEditorController.h */,
 				01D741311A49EA14007B7033 /* RuleEditorController.m */,
+				0141D96E1E0C9127003472BC /* fabric.apikey */,
+				0141D96F1E0C9127003472BC /* fabric.buildsecret */,
 			);
 			name = "Supporting Files";
 			path = Endless;
@@ -375,6 +381,7 @@
 				01801E901A32CA2A002B4718 /* Resources */,
 				F52C9B85FC42EA46D19EBE17 /* [CP] Embed Pods Frameworks */,
 				82F555D0CE165063CE93824B /* [CP] Copy Pods Resources */,
+				0141D9681E0C44A1003472BC /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -455,12 +462,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				0135F4761A3D2931005A8F16 /* SearchEngines.plist in Resources */,
+				0141D9711E0C9127003472BC /* fabric.buildsecret in Resources */,
 				018333EA1A35746500670CD1 /* https-everywhere_targets.plist in Resources */,
 				018333E91A35746500670CD1 /* https-everywhere_rules.plist in Resources */,
 				01801EC31A3360F8002B4718 /* InAppSettings.bundle in Resources */,
 				01D7412C1A45F8EB007B7033 /* injected.js in Resources */,
 				01F8794F1A412FA500A63654 /* urlblocker_targets.plist in Resources */,
 				01801EA61A32CA2A002B4718 /* Images.xcassets in Resources */,
+				0141D9701E0C9127003472BC /* fabric.apikey in Resources */,
 				01F8794C1A4124FE00A63654 /* credits.html in Resources */,
 				016B2FCB1A53466D002D2730 /* hsts_preload.plist in Resources */,
 				01FC0E571B38FB6B00955D9A /* Launch Screen.xib in Resources */,
@@ -487,6 +496,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0141D9681E0C44A1003472BC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "FABRIC_APIKEY_FILE=\"${SRCROOT}/fabric.apikey\"\nFABRIC_BUILDSECRET_FILE=\"${SRCROOT}/fabric.buildsecret\"\n\nFABRIC_APIKEY=$(cat \"$FABRIC_APIKEY_FILE\")\nif test $? -ne 0; then\n  echo \"fabric api key not found at $FABRIC_APIKEY_FILE\"\n  exit 1\nfi\n\nFABRIC_BUILDSECRET=$(cat \"$FABRIC_BUILDSECRET_FILE\")\nif test $? -ne 0; then\n  echo \"fabric build secret not found at $FABRIC_BUILDSECRET_FILE\"\n  exit 1\nfi\n\n\"${PODS_ROOT}/Fabric/run\" \"$FABRIC_APIKEY\" \"$FABRIC_BUILDSECRET\"";
+		};
 		073DA046F186ADB95D7CE9DD /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
