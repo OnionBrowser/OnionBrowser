@@ -16,17 +16,8 @@
 
 @implementation URLInterceptor_Tests
 
-- (void)setUp {
-    [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
-}
-
-- (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
-}
-
-- (void)testCSPHeaderInjection {
+- (void)testCSPHeaderInjection
+{
 	NSString *inp = @"default-src 'self'; connect-src 'self'; font-src 'self' data:; frame-src https://twitter.com https://*.twitter.com https://*.twimg.com twitter: https://www.google.com https://5415703.fls.doubleclick.net; frame-ancestors https://*.twitter.com; img-src https://twitter.com https://*.twitter.com https://*.twimg.com https://maps.google.com https://www.google-analytics.com https://stats.g.doubleclick.net https://www.google.com https://ad.doubleclick.net data:; media-src https://*.twitter.com https://*.twimg.com https://*.cdn.vine.co; object-src 'self'; script-src 'unsafe-inline' 'unsafe-eval' https://*.twitter.com https://*.twimg.com https://www.google.com https://www.google-analytics.com https://stats.g.doubleclick.net; style-src 'unsafe-inline' https://*.twitter.com https://*.twimg.com; report-uri https://twitter.com/i/csp_report?a=O5SWEZTPOJQWY3A%3D&ro=false;";
 	
 	NSString *outp = [URLInterceptor prependDirectives:@{ @"frame-src": @"endless:", @"child-src": @"endless:"} inCSPHeader:inp];

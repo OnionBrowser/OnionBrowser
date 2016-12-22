@@ -13,13 +13,15 @@
 	HSTSCache *hstsCache;
 }
 
-- (void)setUp {
+- (void)setUp
+{
 	[super setUp];
 	
 	hstsCache = [[HSTSCache alloc] init];
 }
 
-- (void)testParseHSTSHeader {
+- (void)testParseHSTSHeader
+{
 	[hstsCache parseHSTSHeader:@"max-age=12345; includeSubDomains" forHost:@"example.com"];
 	
 	NSDictionary *params = [hstsCache objectForKey:@"example.com"];
@@ -30,14 +32,16 @@
 	XCTAssertTrue([(NSDate *)[params objectForKey:HSTS_KEY_EXPIRATION] timeIntervalSince1970] - [[NSDate date] timeIntervalSince1970] >= 12340);
 }
 
-- (void)testIgnoreIPAddresses {
+- (void)testIgnoreIPAddresses
+{
 	[hstsCache parseHSTSHeader:@"max-age=12345; includeSubDomains" forHost:@"127.0.0.1"];
 	
 	NSDictionary *params = [hstsCache objectForKey:@"127.0.0.1"];
 	XCTAssertNil(params);
 }
 
-- (void)testParseUpdatedHSTSHeader {
+- (void)testParseUpdatedHSTSHeader
+{
 	[hstsCache parseHSTSHeader:@"max-age=12345; includeSubDomains" forHost:@"example.com"];
 	
 	NSDictionary *params = [hstsCache objectForKey:@"example.com"];
@@ -52,7 +56,8 @@
 	XCTAssertNil([params objectForKey:HSTS_KEY_ALLOW_SUBDOMAINS]);
 }
 
-- (void)testParseEFFHSTSHeader {
+- (void)testParseEFFHSTSHeader
+{
 	/* weirdo header that eff sends (to cover old spec?) */
 	[hstsCache parseHSTSHeader:@"max-age=31536000; includeSubdomains, max-age=31536000; includeSubdomains" forHost:@"www.EFF.org"];
 	
@@ -62,7 +67,8 @@
 	XCTAssertNotNil([params objectForKey:HSTS_KEY_EXPIRATION]);
 }
 
-- (void)testURLRewriting {
+- (void)testURLRewriting
+{
 	[hstsCache parseHSTSHeader:@"max-age=31536000; includeSubdomains, max-age=31536000; includeSubdomains" forHost:@"www.EFF.org"];
 	
 	NSURL *output = [hstsCache rewrittenURI:[NSURL URLWithString:@"http://www.eff.org/test"]];
@@ -82,7 +88,8 @@
 	XCTAssertTrue([[output absoluteString] isEqualToString:@"https://www.eff.org/?what#hi"]);
 }
 
-- (void)testExpiring {
+- (void)testExpiring
+{
 	[hstsCache parseHSTSHeader:@"max-age=2; includeSubDomains" forHost:@"example.com"];
 	
 	NSURL *output = [hstsCache rewrittenURI:[NSURL URLWithString:@"http://www.example.com/"]];
