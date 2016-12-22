@@ -14,7 +14,7 @@
 #import "WebViewMenuController.h"
 #import "WYPopoverController.h"
 
-#define TOOLBAR_HEIGHT 46
+#define TOOLBAR_HEIGHT 47
 #define TOOLBAR_PADDING 6
 #define TOOLBAR_BUTTON_SIZE 30
 
@@ -31,6 +31,7 @@
 	UIButton *lockIcon;
 	UIButton *brokenLockIcon;
 	UIProgressView *progressBar;
+	UIView *tabToolbarHairline;
 	UIToolbar *tabToolbar;
 	UILabel *tabCount;
 	int keyboardHeight;
@@ -78,6 +79,9 @@
 	self.darkInterface = [userDefaults boolForKey:@"dark_interface"];
 
 	keyboardHeight = 0;
+	
+	tabToolbarHairline = [[UIView alloc] init];
+	[toolbar addSubview:tabToolbarHairline];
 	
 	progressBar = [[UIProgressView alloc] init];
 	[progressBar setTrackTintColor:[UIColor clearColor]];
@@ -337,6 +341,7 @@
 	if (self.toolbarOnBottom) {
 		toolbar.frame = tabToolbar.frame = CGRectMake(0, self.view.bounds.size.height - TOOLBAR_HEIGHT - keyboardHeight, self.view.bounds.size.width, TOOLBAR_HEIGHT + keyboardHeight);
 		progressBar.frame = CGRectMake(0, 0, toolbar.bounds.size.width, 2);
+		tabToolbarHairline.frame = CGRectMake(0, 0, toolbar.bounds.size.width, 1);
 
 		tabScroller.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - TOOLBAR_HEIGHT);
 
@@ -346,6 +351,7 @@
 	{
 		toolbar.frame = tabToolbar.frame = CGRectMake(0, 0, self.view.bounds.size.width, TOOLBAR_HEIGHT);
 		progressBar.frame = CGRectMake(0, TOOLBAR_HEIGHT - 2, toolbar.frame.size.width, 2);
+		tabToolbarHairline.frame = CGRectMake(0, TOOLBAR_HEIGHT - 0.5, toolbar.frame.size.width, 0.5);
 
 		tabScroller.frame = CGRectMake(0, TOOLBAR_HEIGHT, self.view.bounds.size.width, self.view.bounds.size.height - TOOLBAR_HEIGHT);
 
@@ -360,7 +366,8 @@
 		[tabToolbar setBarTintColor:[UIColor grayColor]];
 		[toolbar setBackgroundColor:[UIColor darkGrayColor]];
 		[urlField setBackgroundColor:[UIColor grayColor]];
-		
+		[tabToolbarHairline setBackgroundColor:[UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:1.0]];
+
 		[tabAddButton setTintColor:[UIColor lightTextColor]];
 		[tabDoneButton setTintColor:[UIColor lightTextColor]];
 		[settingsButton setTintColor:[UIColor lightTextColor]];
@@ -378,7 +385,8 @@
 		[tabToolbar setBarTintColor:[UIColor groupTableViewBackgroundColor]];
 		[toolbar setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
 		[urlField setBackgroundColor:[UIColor whiteColor]];
-		
+		[tabToolbarHairline setBackgroundColor:[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0]];
+
 		[tabAddButton setTintColor:[progressBar tintColor]];
 		[tabDoneButton setTintColor:[progressBar tintColor]];
 		[settingsButton setTintColor:[progressBar tintColor]];
@@ -397,7 +405,7 @@
 	}
 
 	/* things relative to the toolbar */
-	float y = ((TOOLBAR_HEIGHT - TOOLBAR_BUTTON_SIZE) / 2);
+	float y = ((TOOLBAR_HEIGHT - 1 - TOOLBAR_BUTTON_SIZE) / 2);
 
 	tabScroller.contentSize = CGSizeMake(tabScroller.frame.size.width * tabChooser.numberOfPages, tabScroller.frame.size.height);
 	[tabScroller setContentOffset:CGPointMake([self frameForTabIndex:curTabIndex].origin.x, 0) animated:NO];
@@ -429,7 +437,7 @@
 - (CGRect)frameForUrlField
 {
 	float x = forwardButton.frame.origin.x + forwardButton.frame.size.width + TOOLBAR_PADDING;
-	float y = (TOOLBAR_HEIGHT - tabsButton.frame.size.height) / 2;
+	float y = (TOOLBAR_HEIGHT - 1 - tabsButton.frame.size.height) / 2;
 	float w = tabsButton.frame.origin.x - TOOLBAR_PADDING - forwardButton.frame.origin.x - forwardButton.frame.size.width - TOOLBAR_PADDING;
 	float h = tabsButton.frame.size.height;
 	
