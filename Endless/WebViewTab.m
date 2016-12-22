@@ -234,7 +234,7 @@
 	NSDictionary *pp = [se objectForKey:@"post_params"];
 	NSString *urls;
 	if (pp == nil)
-		urls = [[NSString stringWithFormat:[se objectForKey:@"search_url"], query] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+		urls = [[NSString stringWithFormat:[se objectForKey:@"search_url"], query] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
 	else
 		urls = [se objectForKey:@"search_url"];
 	
@@ -252,12 +252,12 @@
 			if (![params isEqualToString:@""])
 				[params appendString:@"&"];
 			
-			[params appendString:[key stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+			[params appendString:[key stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
 			[params appendString:@"="];
 			
 			NSString *val = [pp objectForKey:key];
 			if ([val isEqualToString:@"%@"])
-				val = [query stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+				val = [query stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
 			[params appendString:val];
 		}
 		
@@ -309,10 +309,10 @@
 	if ([[[request URL] pathComponents] count] >= 3)
 		param2 = [url pathComponents][2];
 	
-	NSString *value = [[[url query] stringByReplacingOccurrencesOfString:@"+" withString:@" "] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+	NSString *value = [[[url query] stringByReplacingOccurrencesOfString:@"+" withString:@" "] stringByRemovingPercentEncoding];
 	
 	if ([action isEqualToString:@"console.log"]) {
-		NSString *json = [[[url query] stringByReplacingOccurrencesOfString:@"+" withString:@" "] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+		NSString *json = [[[url query] stringByReplacingOccurrencesOfString:@"+" withString:@" "] stringByRemovingPercentEncoding];
 		NSLog(@"[Tab %@] [console.%@] %@", [self tabIndex], param, json);
 		/* no callback needed */
 		return NO;
