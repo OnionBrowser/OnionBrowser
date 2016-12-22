@@ -202,7 +202,7 @@
 
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
-	if (self.darkInterface)
+	if ([self darkInterface] || [self toolbarOnBottom])
 		return UIStatusBarStyleLightContent;
 	else
 		return UIStatusBarStyleDefault;
@@ -264,6 +264,8 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+	[super viewDidAppear:animated];
+	
 	/* we made it this far, remove lock on previous startup */
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	[userDefaults removeObjectForKey:STATE_RESTORE_TRY_KEY];
@@ -360,10 +362,10 @@
 
 	if (self.darkInterface) {
 		[[appDelegate window] setBackgroundColor:[UIColor darkGrayColor]];
-		[self setNeedsStatusBarAppearanceUpdate];
 		
 		[tabScroller setBackgroundColor:[UIColor grayColor]];
 		[tabToolbar setBarTintColor:[UIColor grayColor]];
+		[tabToolbar setBackgroundColor:[UIColor grayColor]];
 		[toolbar setBackgroundColor:[UIColor darkGrayColor]];
 		[urlField setBackgroundColor:[UIColor grayColor]];
 		[tabToolbarHairline setBackgroundColor:[UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:1.0]];
@@ -378,11 +380,14 @@
 		[tabChooser setCurrentPageIndicatorTintColor:[UIColor whiteColor]];
 	}
 	else {
-		[[appDelegate window] setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
-		[self setNeedsStatusBarAppearanceUpdate];
+		if ([self toolbarOnBottom])
+			[[appDelegate window] setBackgroundColor:[UIColor blackColor]];
+		else
+			[[appDelegate window] setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
 		
 		[tabScroller setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
 		[tabToolbar setBarTintColor:[UIColor groupTableViewBackgroundColor]];
+		[tabToolbar setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
 		[toolbar setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
 		[urlField setBackgroundColor:[UIColor whiteColor]];
 		[tabToolbarHairline setBackgroundColor:[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0]];
@@ -397,6 +402,8 @@
 		[tabChooser setCurrentPageIndicatorTintColor:[UIColor grayColor]];
 	}
 	
+	[self setNeedsStatusBarAppearanceUpdate];
+
 	/* tabScroller.frame is now our actual webview viewing area */
 
 	for (int i = 0; i < webViewTabs.count; i++) {
