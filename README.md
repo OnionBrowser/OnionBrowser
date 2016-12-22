@@ -57,7 +57,8 @@ form, with or without modification, is not permitted.
 
   - Blocks pages loaded from non-local networks (i.e., the internet) from
     trying to load sub-requests (e.g., images, iframes, ajax) from hosts that
-    are on local RFC6890 networks such as routers and other insecure devices
+    are on local IPv4 and IPv6 networks such as routers and other insecure
+    devices
 
   - Defaults to only accepting cookies and local storage for the duration of
     the session (until the last tab accessing that data closes) but allows

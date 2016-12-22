@@ -11,6 +11,7 @@
 		010EEA691A43C8CF001E8B65 /* CookieJar.m in Sources */ = {isa = PBXBuildFile; fileRef = 010EEA681A43C8CF001E8B65 /* CookieJar.m */; };
 		0135F4761A3D2931005A8F16 /* SearchEngines.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0135F4751A3D2931005A8F16 /* SearchEngines.plist */; };
 		0135F47F1A3E548F005A8F16 /* WebViewTab.m in Sources */ = {isa = PBXBuildFile; fileRef = 0135F47E1A3E548F005A8F16 /* WebViewTab.m */; };
+		0141D96A1E0C66F1003472BC /* LocalNetworkChecker_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0141D9691E0C66F1003472BC /* LocalNetworkChecker_Tests.m */; };
 		014E68A51B9BED3300D98A0A /* HostSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 014E68A41B9BED3300D98A0A /* HostSettingsController.m */; };
 		014E68A81B9BEDDC00D98A0A /* HostSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 014E68A71B9BEDDC00D98A0A /* HostSettings.m */; };
 		016B2FCB1A53466D002D2730 /* hsts_preload.plist in Resources */ = {isa = PBXBuildFile; fileRef = 016B2FCA1A53466D002D2730 /* hsts_preload.plist */; };
@@ -83,6 +84,7 @@
 		0135F4751A3D2931005A8F16 /* SearchEngines.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = SearchEngines.plist; path = Endless/Resources/SearchEngines.plist; sourceTree = "<group>"; };
 		0135F47D1A3E548F005A8F16 /* WebViewTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewTab.h; sourceTree = "<group>"; };
 		0135F47E1A3E548F005A8F16 /* WebViewTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewTab.m; sourceTree = "<group>"; };
+		0141D9691E0C66F1003472BC /* LocalNetworkChecker_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalNetworkChecker_Tests.m; sourceTree = "<group>"; };
 		014E68A31B9BED3300D98A0A /* HostSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HostSettingsController.h; sourceTree = "<group>"; };
 		014E68A41B9BED3300D98A0A /* HostSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HostSettingsController.m; sourceTree = "<group>"; };
 		014E68A61B9BEDDC00D98A0A /* HostSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HostSettings.h; sourceTree = "<group>"; };
@@ -239,6 +241,8 @@
 				018333D11A35291200670CD1 /* HTTPSEverywhereRule.m */,
 				0182AD991AACC55400F3B7ED /* HTTPSEverywhereRuleController.h */,
 				0182AD9A1AACC55400F3B7ED /* HTTPSEverywhereRuleController.m */,
+				01EFA7FD1A63851400688398 /* LocalNetworkChecker.h */,
+				01EFA7FE1A63851400688398 /* LocalNetworkChecker.m */,
 				01F2AE371B7FEF5E00D5651A /* SSLCertificate.h */,
 				01F2AE381B7FEF5E00D5651A /* SSLCertificate.m */,
 				01F2AE3E1B82666900D5651A /* SSLCertificateViewController.h */,
@@ -262,8 +266,6 @@
 			children = (
 				018333CF1A351B3B00670CD1 /* Endless-Prefix.pch */,
 				01801E961A32CA2A002B4718 /* Info.plist */,
-				01EFA7FD1A63851400688398 /* LocalNetworkChecker.h */,
-				01EFA7FE1A63851400688398 /* LocalNetworkChecker.m */,
 				01801E971A32CA2A002B4718 /* main.m */,
 				01F7CB4C1A52FC4E00F42B73 /* NSString+IPAddress.h */,
 				01F7CB4D1A52FC4E00F42B73 /* NSString+IPAddress.m */,
@@ -300,6 +302,7 @@
 				01D42C3C1E0A4FE400566022 /* URLInterceptor_Tests.m */,
 				01F7CB4A1A526B9C00F42B73 /* HSTSCache_Tests.m */,
 				018333DB1A35727C00670CD1 /* HTTPSEverywhere_Tests.m */,
+				0141D9691E0C66F1003472BC /* LocalNetworkChecker_Tests.m */,
 				01F2AE411B827BC200D5651A /* SSLCertificate_Tests.m */,
 				01F879401A4112E500A63654 /* URLBlocker_Tests.m */,
 				018333D91A35727C00670CD1 /* Supporting Files */,
@@ -614,6 +617,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0141D96A1E0C66F1003472BC /* LocalNetworkChecker_Tests.m in Sources */,
 				01F7CB4B1A526B9C00F42B73 /* HSTSCache_Tests.m in Sources */,
 				01D42C3D1E0A4FE400566022 /* URLInterceptor_Tests.m in Sources */,
 				01F879411A4112E500A63654 /* URLBlocker_Tests.m in Sources */,
