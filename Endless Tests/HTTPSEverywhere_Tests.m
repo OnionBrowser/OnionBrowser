@@ -31,6 +31,8 @@
 		abort();
 
 	OCMStub([HEMocked targets]).andReturn([NSDictionary dictionaryWithContentsOfFile:tpath]);
+	
+	OCMStub([HEMocked disabledRules]).andReturn([[NSMutableDictionary alloc] init]);
 }
 
 - (void)testMock
