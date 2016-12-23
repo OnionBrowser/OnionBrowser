@@ -42,7 +42,7 @@ static NSMutableDictionary <NSData *, NSMutableDictionary *> *certCache = nil;
 	 * Detecting EV means checking for a whole bunch of OIDs, since each vendor uses a different one.
 	 * iOS already knows this and is updated with new ones, so just let it determine EV for us.
 	 */
-	NSDictionary *trust = (__bridge NSDictionary*)SecTrustCopyResult(secTrustRef);
+	NSDictionary *trust = (__bridge_transfer NSDictionary *)SecTrustCopyResult(secTrustRef);
 	id ev = [trust objectForKey:(__bridge NSString *)kSecTrustExtendedValidation];
 	if (ev != nil && (__bridge CFBooleanRef)ev == kCFBooleanTrue) {
 		_isEV = true;
