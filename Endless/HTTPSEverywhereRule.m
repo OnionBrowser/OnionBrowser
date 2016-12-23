@@ -53,6 +53,10 @@
 		return nil;
 	}
 	
+	self = [super init];
+	if (!self)
+		return nil;
+	
 	self.name = (NSString *)[ruleset objectForKey:@"name"];
 	
 	NSString *doff = [ruleset objectForKey:@"default_off"];
