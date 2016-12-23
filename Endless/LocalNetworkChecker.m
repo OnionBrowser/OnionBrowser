@@ -44,27 +44,36 @@ static NSMutableDictionary *dnsCache;
 	}
 	
 	CFHostRef hostRef = CFHostCreateWithName(kCFAllocatorDefault, (__bridge CFStringRef)host);
-	if (!CFHostStartInfoResolution(hostRef, kCFHostAddresses, nil))
+	if (!CFHostStartInfoResolution(hostRef, kCFHostAddresses, nil)) {
+		CFRelease(hostRef);
 		return nil;
-	
+	}
+
 	CFArrayRef addressesRef = CFHostGetAddressing(hostRef, nil);
-	if (addressesRef == nil)
+	if (addressesRef == nil) {
+		CFRelease(hostRef);
 		return nil;
+	}
 	
 	char ipAddress[INET6_ADDRSTRLEN];
 	NSMutableArray *addresses = [NSMutableArray array];
 	CFIndex numAddresses = CFArrayGetCount(addressesRef);
 	for (CFIndex currentIndex = 0; currentIndex < numAddresses; currentIndex++) {
 		struct sockaddr *address = (struct sockaddr *)CFDataGetBytePtr(CFArrayGetValueAtIndex(addressesRef, currentIndex));
-		if (address == nil)
+		if (address == nil) {
+			CFRelease(hostRef);
 			return nil;
+		}
 		
-		if (getnameinfo(address, address->sa_len, ipAddress, INET6_ADDRSTRLEN, nil, 0, NI_NUMERICHOST) != 0)
+		if (getnameinfo(address, address->sa_len, ipAddress, INET6_ADDRSTRLEN, nil, 0, NI_NUMERICHOST) != 0) {
+			CFRelease(hostRef);
 			return nil;
+		}
 		
 		[addresses addObject:[NSString stringWithCString:ipAddress encoding:NSASCIIStringEncoding]];
 	}
-	
+	CFRelease(hostRef);
+
 	[dnsCache setValue:@{ @"addresses" : addresses, @"time" : [NSDate date] } forKey:[host lowercaseString]];
 	
 	return addresses;
