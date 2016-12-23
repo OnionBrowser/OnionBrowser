@@ -211,7 +211,10 @@
 - (void)didReceiveMemoryWarning
 {
 	[super didReceiveMemoryWarning];
-	// Dispose of any resources that can be recreated.
+	
+	NSLog(@"=============================");
+	NSLog(@"didReceiveMemoryWarning");
+	NSLog(@"=============================");
 }
 
 - (void)encodeRestorableStateWithCoder:(NSCoder *)coder
@@ -275,16 +278,20 @@
 /* called when we've become visible (possibly again, from app delegate applicationDidBecomeActive) */
 - (void)viewIsVisible
 {
-	if (webViewTabs.count == 0 && ![appDelegate areTesting]) {
-		NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-		NSString *homepage = [userDefaults stringForKey:@"homepage"];
-		
-		if (homepage == nil || [homepage isEqualToString:@""]) {
-			NSDictionary *se = [[appDelegate searchEngines] objectForKey:[userDefaults stringForKey:@"search_engine"]];
-			homepage = [se objectForKey:@"homepage_url"];
+	if (webViewTabs.count == 0) {
+		if ([appDelegate areTesting]) {
+			[self addNewTabForURL:nil];
+		} else {
+			NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+			NSString *homepage = [userDefaults stringForKey:@"homepage"];
+			
+			if (homepage == nil || [homepage isEqualToString:@""]) {
+				NSDictionary *se = [[appDelegate searchEngines] objectForKey:[userDefaults stringForKey:@"search_engine"]];
+				homepage = [se objectForKey:@"homepage_url"];
+			}
+			
+			[self addNewTabForURL:[NSURL URLWithString:homepage]];
 		}
-		
-		[self addNewTabForURL:[NSURL URLWithString:homepage]];
 	}
 #if 0
 	/* in case our orientation changed, or the status bar changed height (which can take a few millis for animation) */

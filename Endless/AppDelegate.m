@@ -176,15 +176,29 @@
 		}
 	}
 	
-	if (![userDefaults synchronize])
+	if (![userDefaults synchronize]) {
 		NSLog(@"[AppDelegate] failed saving preferences");
+		abort();
+	}
 	
 	_searchEngines = [NSMutableDictionary dictionaryWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"SearchEngines.plist"]];
 }
 
 - (BOOL)areTesting
 {
-	return (NSClassFromString(@"XCTestProbe") != nil);
+	if (NSClassFromString(@"XCTestProbe") != nil) {
+		NSLog(@"we are testing");
+		return YES;
+	}
+	else {
+		NSDictionary *environment = [[NSProcessInfo processInfo] environment];
+		if (environment[@"ARE_UI_TESTING"]) {
+			NSLog(@"we are UI testing");
+			return YES;
+		}
+	}
+	
+	return NO;
 }
 
 @end
