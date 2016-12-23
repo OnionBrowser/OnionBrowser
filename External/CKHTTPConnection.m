@@ -142,7 +142,7 @@
 #endif
 	
 	/* set SSL protocol version enforcement before opening, when using kCFStreamSSLLevel */
-	NSURL *url = (__bridge NSURL *)(CFHTTPMessageCopyRequestURL([self HTTPRequest]));
+	NSURL *url = (__bridge_transfer NSURL *)(CFHTTPMessageCopyRequestURL([self HTTPRequest]));
 	if ([[[url scheme] lowercaseString] isEqualToString:@"https"]) {
 		hs = [HostSettings settingsOrDefaultsForHost:[url host]];
 		
@@ -191,8 +191,6 @@
 			}
 		}
 	}
-alldone:
-	;
 }
 
 - (BOOL)disableWeakSSLCiphers:(SSLContextRef)sslContext
@@ -213,6 +211,7 @@ alldone:
 	status = SSLGetSupportedCiphers(sslContext, supported, &numSupported);
 	if (status != noErr) {
 		NSLog(@"failed getting supported ciphers");
+		free(supported);
 		return NO;
 	}
 	
@@ -236,8 +235,10 @@ alldone:
 			break;
 		}
 	}
-	
+	free(supported);
+
 	status = SSLSetEnabledCiphers(sslContext, enabled, numEnabled);
+	free(enabled);
 	if (status != noErr) {
 		NSLog(@"[CKHTTPConnection] failed setting enabled ciphers on %@: %d", sslContext, status);
 		return NO;
@@ -437,7 +438,7 @@ process:
 
 	NSData *body = [self HTTPBody];
 	if (body)
-		CFHTTPMessageSetBody(result, (__bridge_retained CFDataRef)body);
+		CFHTTPMessageSetBody(result, (__bridge CFDataRef)body);
 	
 	return result;
 }
@@ -504,6 +505,8 @@ process:
 {
 	NSParameterAssert(response);
 	
+#warning "Instance variable used while 'self' is not set to the result of [self init]"
+	 
 	// Try to create an authentication object from the response
 	_HTTPAuthentication = CFHTTPAuthenticationCreateFromResponse(NULL, response);
 	if (![self CFHTTPAuthentication])
