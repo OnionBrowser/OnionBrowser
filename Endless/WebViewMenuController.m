@@ -16,6 +16,7 @@
 #import "WebViewMenuController.h"
 
 #import "OnePasswordExtension.h"
+#import "TUSafariActivity.h"
 
 @implementation WebViewMenuController {
 	AppDelegate *appDelegate;
@@ -41,7 +42,6 @@ NSString * const LABEL = @"L";
 		[buttons addObject:@{ FUNC : @"menuOnePassword", LABEL : @"Fill with 1Password" }];
 
 	[buttons addObject:@{ FUNC : @"menuAddOrManageBookmarks", LABEL : @"Bookmarks" }];
-	[buttons addObject:@{ FUNC : @"menuOpenInSafari", LABEL : @"Open in Safari" }];
 	[buttons addObject:@{ FUNC : @"menuShare", LABEL : @"Share URL" }];
 	[buttons addObject:@{ FUNC : @"menuHTTPSEverywhere", LABEL : @"HTTPS Everywhere" }];
 	[buttons addObject:@{ FUNC : @"menuHostSettings", LABEL : @"Host Settings" }];
@@ -98,7 +98,7 @@ NSString * const LABEL = @"L";
 			cell.detailTextLabel.text = @"Page bookmarked";
 		}
 	}
-	else if ([func isEqualToString:@"menuOnePassword"] || [func isEqualToString:@"menuRefresh"] || [func isEqualToString:@"menuOpenInSafari"] || [func isEqualToString:@"menuShare"]) {
+	else if ([func isEqualToString:@"menuOnePassword"] || [func isEqualToString:@"menuRefresh"] || [func isEqualToString:@"menuShare"]) {
 		cell.userInteractionEnabled = haveURL;
 		cell.textLabel.enabled = haveURL;
 	}
@@ -170,13 +170,6 @@ NSString * const LABEL = @"L";
 	}];
 }
 
-- (void)menuOpenInSafari
-{
-	WebViewTab *wvt = [[appDelegate webViewController] curWebViewTab];
-	if (wvt && [wvt url])
-		[[UIApplication sharedApplication] openURL:[wvt url] options:@{} completionHandler:nil];
-}
-
 - (void)menuHTTPSEverywhere
 {
 	HTTPSEverywhereRuleController *herc = [[HTTPSEverywhereRuleController alloc] init];
@@ -218,7 +211,8 @@ NSString * const LABEL = @"L";
 
 - (void)menuShare
 {
-	UIActivityViewController *avc = [[UIActivityViewController alloc] initWithActivityItems:@[ [[[appDelegate webViewController] curWebViewTab] url] ] applicationActivities:nil];
+	TUSafariActivity *activity = [[TUSafariActivity alloc] init];
+	UIActivityViewController *avc = [[UIActivityViewController alloc] initWithActivityItems:@[ [[[appDelegate webViewController] curWebViewTab] url] ] applicationActivities:@[ activity ]];
 	[[appDelegate webViewController] presentViewController:avc animated:YES completion:nil];
 }
 

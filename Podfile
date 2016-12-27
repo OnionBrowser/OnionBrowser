@@ -6,6 +6,7 @@ target "Endless" do
   pod "DTFoundation"
   pod "OrderedDictionary"
   pod "QuickDialog", :git => "https://github.com/jcs/QuickDialog.git"
+  pod "TUSafariActivity"
 
   pod "Fabric"
   pod "Crashlytics"
