@@ -132,6 +132,20 @@
 	return self;
 }
 
+- (void)dealloc
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:@"WebProgressEstimateChangedNotification" object:[_webView valueForKeyPath:@"documentView.webView"]];
+	[_webView setDelegate:nil];
+	[_webView stopLoading];
+	
+	for (id gr in [_webView gestureRecognizers])
+		[_webView removeGestureRecognizer:gr];
+	
+	_webView = nil;
+	
+	[[self viewHolder] removeFromSuperview];
+}
+
 /* for long press gesture recognizer to work properly */
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
 	if (![gestureRecognizer isKindOfClass:[UILongPressGestureRecognizer class]])
@@ -163,17 +177,6 @@
 	}
 	
 	return NO;
-}
-
-- (void)close
-{
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:@"WebProgressEstimateChangedNotification" object:[_webView valueForKeyPath:@"documentView.webView"]];
-	[_webView stopLoading];
-	
-	for (id gr in [_webView gestureRecognizers])
-		[_webView removeGestureRecognizer:gr];
-
-	_webView = nil;
 }
 
 - (void)webKitprogressEstimateChanged:(NSNotification*)notification
@@ -642,7 +645,7 @@
 
 - (BOOL)canGoBack
 {
-	return ((self.webView && [self.webView canGoBack]) || self.openedByTabHash != nil);
+	return (self.openedByTabHash != nil || (self.webView && [self.webView canGoBack]));
 }
 
 - (BOOL)canGoForward

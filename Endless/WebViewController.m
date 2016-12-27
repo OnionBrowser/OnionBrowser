@@ -228,10 +228,6 @@
 		
 		[wvtd addObject:@{ @"url" : wvt.url, @"title" : wvt.title.text }];
 		[[wvt webView] setRestorationIdentifier:[wvt.url absoluteString]];
-		
-#ifdef TRACE
-		NSLog(@"[WebViewController] encoded restoration state for tab %@ with %@", wvt.tabIndex, wvtd[wvtd.count - 1]);
-#endif
 	}
 	[coder encodeObject:wvtd forKey:@"webViewTabs"];
 	[coder encodeObject:[NSNumber numberWithInt:curTabIndex] forKey:@"curTabIndex"];
@@ -584,7 +580,6 @@
 	long wvtHash = [wvt hash];
 	[[wvt viewHolder] removeFromSuperview];
 	[webViewTabs removeObjectAtIndex:tabNumber.intValue];
-	[wvt close];
 	wvt = nil;
 	
 	[[appDelegate cookieJar] clearNonWhitelistedDataForTab:wvtHash];
@@ -638,12 +633,6 @@
 {
 	curTabIndex = 0;
 
-	for (int i = 0; i < webViewTabs.count; i++) {
-		WebViewTab *wvt = (WebViewTab *)webViewTabs[i];
-		[[wvt viewHolder] removeFromSuperview];
-		[wvt close];
-	}
-	
 	[webViewTabs removeAllObjects];
 	[tabChooser setNumberOfPages:0];
 
