@@ -509,7 +509,7 @@
 	[tabChooser setNumberOfPages:webViewTabs.count];
 	[wvt setTabIndex:[NSNumber numberWithLong:(webViewTabs.count - 1)]];
 	
-	[tabCount setText:[NSString stringWithFormat:@"%lu", tabChooser.numberOfPages]];
+	[tabCount setText:[NSString stringWithFormat:@"%lu", (long)tabChooser.numberOfPages]];
 
 	[tabScroller setContentSize:CGSizeMake(wvt.viewHolder.frame.size.width * tabChooser.numberOfPages, wvt.viewHolder.frame.size.height)];
 	[tabScroller addSubview:wvt.viewHolder];
@@ -585,7 +585,7 @@
 	[[appDelegate cookieJar] clearNonWhitelistedDataForTab:wvtHash];
 
 	[tabChooser setNumberOfPages:webViewTabs.count];
-	[tabCount setText:[NSString stringWithFormat:@"%lu", tabChooser.numberOfPages]];
+	[tabCount setText:[NSString stringWithFormat:@"%lu", (long)tabChooser.numberOfPages]];
 
 	if (futureFocusNumber == -1) {
 		if (curTabIndex == tabNumber.intValue) {

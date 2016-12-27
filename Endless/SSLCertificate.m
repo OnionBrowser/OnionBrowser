@@ -271,18 +271,18 @@ static NSMutableDictionary <NSData *, NSMutableDictionary *> *certCache = nil;
 	}
 	
 	if (index > ([arr count] - 1)) {
-		NSLog(@"[SSLCertificate] array count is %lu, need index %lu", [arr count], index);
+		NSLog(@"[SSLCertificate] array count is %lu, need index %lu", (unsigned long)[arr count], (long)index);
 		return nil;
 	}
 	
 	NSObject *ret = [arr objectAtIndex:index];
 	if (ret == nil) {
-		NSLog(@"[SSLCertificate] array object at index %lu is nil", index);
+		NSLog(@"[SSLCertificate] array object at index %lu is nil", (long)index);
 		return nil;
 	}
 	
 	if (cType != nil && ![ret isKindOfClass:cType]) {
-		NSLog(@"[SSLCertificate] array object at index %lu is type %@, not %@", index, NSStringFromClass([ret class]), cType);
+		NSLog(@"[SSLCertificate] array object at index %lu is type %@, not %@", (long)index, NSStringFromClass([ret class]), cType);
 		return nil;
 	}
 

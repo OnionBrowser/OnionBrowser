@@ -42,7 +42,7 @@
 	_viewHolder = [[UIView alloc] initWithFrame:frame];
 	
 	/* re-register user agent with our hash, which should only affect this UIWebView */
-	[[NSUserDefaults standardUserDefaults] registerDefaults:@{ @"UserAgent": [NSString stringWithFormat:@"%@/%lu", [appDelegate defaultUserAgent], self.hash] }];
+	[[NSUserDefaults standardUserDefaults] registerDefaults:@{ @"UserAgent": [NSString stringWithFormat:@"%@/%lu", [appDelegate defaultUserAgent], (unsigned long)self.hash] }];
 	
 	_webView = [[UIWebView alloc] initWithFrame:CGRectZero];
 	_needsRefresh = FALSE;
@@ -126,7 +126,7 @@
 	NSString *ua = [_webView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
 	NSArray *uap = [ua componentsSeparatedByString:@"/"];
 	NSString *wvthash = uap[uap.count - 1];
-	if (![[NSString stringWithFormat:@"%lu", [self hash]] isEqualToString:wvthash])
+	if (![[NSString stringWithFormat:@"%lu", (unsigned long)[self hash]] isEqualToString:wvthash])
 		abort();
 	
 	return self;
@@ -339,7 +339,7 @@
 		}
 		else {
 			/* TODO: show a "popup blocked" warning? */
-			NSLog(@"[Tab %@] blocked non-touch window.open() (nav type %ul)", self.tabIndex, navigationType);
+			NSLog(@"[Tab %@] blocked non-touch window.open() (nav type %ldl)", self.tabIndex, (long)navigationType);
 			
 			[self webView:__webView callbackWith:[NSString stringWithFormat:@"__endless.openedTabs[\"%@\"].opened = false;", param]];
 		}

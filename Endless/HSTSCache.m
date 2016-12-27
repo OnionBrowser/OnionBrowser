@@ -164,7 +164,7 @@ static NSDictionary *_preloadedHosts;
 		}
 		
 		if ([[key lowercaseString] isEqualToString:@"max-age"]) {
-			long age = [value longLongValue];
+			long long age = [value longLongValue];
 
 			if (age == 0) {
 #ifdef TRACE_HSTS

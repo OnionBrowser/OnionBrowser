@@ -240,7 +240,7 @@
 	status = SSLSetEnabledCiphers(sslContext, enabled, numEnabled);
 	free(enabled);
 	if (status != noErr) {
-		NSLog(@"[CKHTTPConnection] failed setting enabled ciphers on %@: %d", sslContext, status);
+		NSLog(@"[CKHTTPConnection] failed setting enabled ciphers on %@: %d", sslContext, (int)status);
 		return NO;
 	}
 	
