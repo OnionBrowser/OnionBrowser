@@ -57,7 +57,7 @@
 	if (self.embedded)
 		return @"Bookmarks";
 	else
-		return nil;
+		return @"(Tap to edit, hold to re-order)";
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
