@@ -1,6 +1,6 @@
 /*
  * Endless
- * Copyright (c) 2014-2015 joshua stein <jcs@jcs.org>
+ * Copyright (c) 2014-2016 joshua stein <jcs@jcs.org>
  *
  * See LICENSE file for redistribution terms.
  */
@@ -13,6 +13,10 @@
 #import "WebViewTab.h"
 #import "WebViewMenuController.h"
 #import "WYPopoverController.h"
+
+#ifdef SHOW_DONATION_CONTROLLER
+#import "DonationViewController.h"
+#endif
 
 #define TOOLBAR_HEIGHT 47
 #define TOOLBAR_PADDING 6
@@ -929,6 +933,16 @@
 - (BOOL)popoverControllerShouldDismissPopover:(WYPopoverController *)controller
 {
 	return YES;
+}
+
+- (void)settingsViewController:(IASKAppSettingsViewController *)sender buttonTappedForSpecifier:(IASKSpecifier *)specifier
+{
+	if ([[specifier key] isEqualToString:@"open_donation"]) {
+#ifdef SHOW_DONATION_CONTROLLER
+		DonationViewController *dvc = [[DonationViewController alloc] initWithNibName:nil bundle:nil];
+		[[sender navigationController] pushViewController:dvc animated:YES];
+#endif
+	}
 }
 
 - (void)settingsViewControllerDidEnd:(IASKAppSettingsViewController *)sender

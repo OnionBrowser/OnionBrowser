@@ -7,5 +7,8 @@ build/*
 xcuserdata
 profile
 Pods
+
 fabric.apikey
 fabric.buildsecret
+Endless/DonationViewController.h
+Endless/DonationViewController.m

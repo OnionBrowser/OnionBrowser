@@ -36,6 +36,8 @@
 		01AFEB371B4DBA8D00A02482 /* BookmarkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01AFEB361B4DBA8D00A02482 /* BookmarkController.m */; };
 		01AFEB491B4ED48000A02482 /* Bookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = 01AFEB481B4ED48000A02482 /* Bookmark.m */; };
 		01AFEB4F1B4F2A5F00A02482 /* OnePasswordExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 01AFEB4D1B4F2A5F00A02482 /* OnePasswordExtension.m */; };
+		01B834921E12DC8D0050EAB5 /* DonationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B834901E12DC8D0050EAB5 /* DonationViewController.m */; };
+		01B834951E12F4E70050EAB5 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01B834941E12F4E70050EAB5 /* StoreKit.framework */; };
 		01D42C3D1E0A4FE400566022 /* URLInterceptor_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D42C3C1E0A4FE400566022 /* URLInterceptor_Tests.m */; };
 		01D741281A44DF1C007B7033 /* WebViewMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D741271A44DF1C007B7033 /* WebViewMenuController.m */; };
 		01D7412A1A45EDD1007B7033 /* CookieJar_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D741291A45EDD1007B7033 /* CookieJar_Tests.m */; };
@@ -89,8 +91,8 @@
 		0135F47D1A3E548F005A8F16 /* WebViewTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewTab.h; sourceTree = "<group>"; };
 		0135F47E1A3E548F005A8F16 /* WebViewTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewTab.m; sourceTree = "<group>"; };
 		0141D9691E0C66F1003472BC /* LocalNetworkChecker_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalNetworkChecker_Tests.m; sourceTree = "<group>"; };
-		0141D96E1E0C9127003472BC /* fabric.apikey */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fabric.apikey; sourceTree = "<group>"; };
-		0141D96F1E0C9127003472BC /* fabric.buildsecret */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fabric.buildsecret; sourceTree = "<group>"; };
+		0141D96E1E0C9127003472BC /* fabric.apikey */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = fabric.apikey; path = Endless/fabric.apikey; sourceTree = "<group>"; };
+		0141D96F1E0C9127003472BC /* fabric.buildsecret */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = fabric.buildsecret; path = Endless/fabric.buildsecret; sourceTree = "<group>"; };
 		014E68A31B9BED3300D98A0A /* HostSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HostSettingsController.h; sourceTree = "<group>"; };
 		014E68A41B9BED3300D98A0A /* HostSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HostSettingsController.m; sourceTree = "<group>"; };
 		014E68A61B9BEDDC00D98A0A /* HostSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HostSettings.h; sourceTree = "<group>"; };
@@ -132,6 +134,9 @@
 		01AFEB481B4ED48000A02482 /* Bookmark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bookmark.m; sourceTree = "<group>"; };
 		01AFEB4C1B4F2A5F00A02482 /* OnePasswordExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnePasswordExtension.h; sourceTree = "<group>"; };
 		01AFEB4D1B4F2A5F00A02482 /* OnePasswordExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnePasswordExtension.m; sourceTree = "<group>"; };
+		01B8348F1E12DC8D0050EAB5 /* DonationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DonationViewController.h; path = Endless/DonationViewController.h; sourceTree = "<group>"; };
+		01B834901E12DC8D0050EAB5 /* DonationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DonationViewController.m; path = Endless/DonationViewController.m; sourceTree = "<group>"; };
+		01B834941E12F4E70050EAB5 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		01D42C3B1E0A37DB00566022 /* Endless.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Endless.entitlements; sourceTree = "<group>"; };
 		01D42C3C1E0A4FE400566022 /* URLInterceptor_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLInterceptor_Tests.m; sourceTree = "<group>"; };
 		01D741261A44DF1C007B7033 /* WebViewMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewMenuController.h; sourceTree = "<group>"; };
@@ -186,6 +191,7 @@
 				019516D11B7D8B400078586A /* libz.dylib in Frameworks */,
 				016B2FCD1A5648AE002D2730 /* WebKit.framework in Frameworks */,
 				16DA8DE184C0091F18536F20 /* libPods-Endless.a in Frameworks */,
+				01B834951E12F4E70050EAB5 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,6 +213,7 @@
 				01801EC11A3360B1002B4718 /* Resources */,
 				01AFEB4A1B4F2A5F00A02482 /* External */,
 				01801E951A32CA2A002B4718 /* Supporting Files */,
+				01B834961E145D3E0050EAB5 /* App-Store-only Files */,
 				018333D81A35727C00670CD1 /* Endless Tests */,
 				01801E931A32CA2A002B4718 /* Products */,
 				6CC21620E2AE7B4037C6401B /* Frameworks */,
@@ -281,8 +288,6 @@
 				01D7412E1A466AF0007B7033 /* NSString+JavascriptEscape.m */,
 				01D741301A49EA14007B7033 /* RuleEditorController.h */,
 				01D741311A49EA14007B7033 /* RuleEditorController.m */,
-				0141D96E1E0C9127003472BC /* fabric.apikey */,
-				0141D96F1E0C9127003472BC /* fabric.buildsecret */,
 			);
 			name = "Supporting Files";
 			path = Endless;
@@ -351,9 +356,21 @@
 			path = External;
 			sourceTree = "<group>";
 		};
+		01B834961E145D3E0050EAB5 /* App-Store-only Files */ = {
+			isa = PBXGroup;
+			children = (
+				0141D96E1E0C9127003472BC /* fabric.apikey */,
+				0141D96F1E0C9127003472BC /* fabric.buildsecret */,
+				01B8348F1E12DC8D0050EAB5 /* DonationViewController.h */,
+				01B834901E12DC8D0050EAB5 /* DonationViewController.m */,
+			);
+			name = "App-Store-only Files";
+			sourceTree = "<group>";
+		};
 		6CC21620E2AE7B4037C6401B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				01B834941E12F4E70050EAB5 /* StoreKit.framework */,
 				019516D01B7D8B400078586A /* libz.dylib */,
 				016B2FCC1A5648AE002D2730 /* WebKit.framework */,
 				018333EB1A357D8B00670CD1 /* libPods-OCMock.a */,
@@ -433,6 +450,9 @@
 						DevelopmentTeam = J9PM5B7FE7;
 						SystemCapabilities = {
 							com.apple.DataProtection = {
+								enabled = 1;
+							};
+							com.apple.InAppPurchase = {
 								enabled = 1;
 							};
 						};
@@ -615,6 +635,7 @@
 			files = (
 				01D741281A44DF1C007B7033 /* WebViewMenuController.m in Sources */,
 				01D7412F1A466AF0007B7033 /* NSString+JavascriptEscape.m in Sources */,
+				01B834921E12DC8D0050EAB5 /* DonationViewController.m in Sources */,
 				014E68A51B9BED3300D98A0A /* HostSettingsController.m in Sources */,
 				01F2AE391B7FEF5E00D5651A /* SSLCertificate.m in Sources */,
 				01801E9B1A32CA2A002B4718 /* AppDelegate.m in Sources */,
