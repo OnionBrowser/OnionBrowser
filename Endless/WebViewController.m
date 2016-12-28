@@ -18,13 +18,10 @@
 #import "DonationViewController.h"
 #endif
 
-#define TOOLBAR_HEIGHT 47
-#define TOOLBAR_PADDING 6
-#define TOOLBAR_BUTTON_SIZE 30
-
 @implementation WebViewController {
 	AppDelegate *appDelegate;
-
+	UIView *wrapper;
+	
 	UIScrollView *tabScroller;
 	UIPageControl *tabChooser;
 	int curTabIndex;
@@ -71,9 +68,12 @@
 	
 	self.view = [[UIView alloc] initWithFrame:[[appDelegate window] frame]];
 	
+	wrapper = [[UIView alloc] initWithFrame:self.view.frame];
+	[[self view] addSubview:wrapper];
+
 	tabScroller = [[UIScrollView alloc] init];
 	[tabScroller setScrollEnabled:NO];
-	[[self view] addSubview:tabScroller];
+	[wrapper addSubview:tabScroller];
 	
 	toolbar = [[UIView alloc] init];
 	[toolbar setClipsToBounds:YES];
@@ -170,6 +170,9 @@
 	tabToolbar = [[UIToolbar alloc] init];
 	[tabToolbar setClipsToBounds:YES];
 	[tabToolbar setHidden:true];
+	/* make completely transparent */
+	[tabToolbar setBackgroundImage:[UIImage new] forToolbarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
+	[tabToolbar setShadowImage:[UIImage new] forToolbarPosition:UIBarPositionAny];
 	[self.view insertSubview:tabToolbar aboveSubview:toolbar];
 	
 	tabAddButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewTabFromToolbar:)];
@@ -332,7 +335,10 @@
 			[self showTabsWithCompletionBlock:nil];
 		
 		[self dismissPopover];
-	} completion:nil];
+	} completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+		/* in case this doesn't get called automatically for some reason */
+		[self viewDidLayoutSubviews];
+	}];
 }
 
 - (void)viewDidLayoutSubviews
@@ -345,6 +351,7 @@
 	
 	/* keep the root view the size of the window minus the statusbar */
 	self.view.frame = CGRectMake(0, statusBarHeight, [appDelegate window].bounds.size.width, [appDelegate window].bounds.size.height - statusBarHeight);
+	wrapper.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
 	
 	/* keep tabScroller the size of the root frame minus the toolbar */
 	if (self.toolbarOnBottom) {
@@ -369,10 +376,10 @@
 
 	if (self.darkInterface) {
 		[[appDelegate window] setBackgroundColor:[UIColor darkGrayColor]];
+		[wrapper setBackgroundColor:[UIColor darkGrayColor]];
 		
-		[tabScroller setBackgroundColor:[UIColor grayColor]];
-		[tabToolbar setBarTintColor:[UIColor grayColor]];
-		[tabToolbar setBackgroundColor:[UIColor grayColor]];
+		[tabScroller setBackgroundColor:[UIColor darkGrayColor]];
+		
 		[toolbar setBackgroundColor:[UIColor darkGrayColor]];
 		[urlField setBackgroundColor:[UIColor grayColor]];
 		[tabToolbarHairline setBackgroundColor:[UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:1.0]];
@@ -392,9 +399,9 @@
 		else
 			[[appDelegate window] setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
 		
+		[wrapper setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+
 		[tabScroller setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
-		[tabToolbar setBarTintColor:[UIColor groupTableViewBackgroundColor]];
-		[tabToolbar setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
 		[toolbar setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
 		[urlField setBackgroundColor:[UIColor whiteColor]];
 		[tabToolbarHairline setBackgroundColor:[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0]];
@@ -1002,7 +1009,7 @@
 			tabToolbar.hidden = true;
 			progressBar.alpha = (progressBar.progress > 0.0 && progressBar.progress < 1.0 ? 1.0 : 0.0);
 		} completion:block];
-
+		
 		tabScroller.scrollEnabled = NO;
 		tabScroller.pagingEnabled = NO;
 		

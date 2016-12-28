@@ -10,6 +10,10 @@
 #import "WebViewTab.h"
 #import "WYPopoverController.h"
 
+#define TOOLBAR_HEIGHT 47
+#define TOOLBAR_PADDING 6
+#define TOOLBAR_BUTTON_SIZE 30
+
 @interface WebViewController : UIViewController <UITableViewDelegate, UITextFieldDelegate, UIGestureRecognizerDelegate, UIScrollViewDelegate, IASKSettingsDelegate, WYPopoverControllerDelegate>
 
 @property BOOL toolbarOnBottom;
