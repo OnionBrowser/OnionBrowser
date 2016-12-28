@@ -11,6 +11,7 @@
 #import "SSLCertificate.h"
 
 #define ZOOM_OUT_SCALE 0.8
+#define ZOOM_OUT_SCALE_ROTATED 0.7
 
 typedef NS_ENUM(NSInteger, WebViewTabSecureMode) {
 	WebViewTabSecureModeInsecure,

@@ -626,9 +626,11 @@
 		for (int i = 0; i < webViewTabs.count; i++) {
 			WebViewTab *wvt = webViewTabs[i];
 			
-			wvt.viewHolder.transform = CGAffineTransformIdentity;
-			wvt.viewHolder.frame = [self frameForTabIndex:i];
-			wvt.viewHolder.transform = CGAffineTransformMakeScale(ZOOM_OUT_SCALE, ZOOM_OUT_SCALE);
+			[[wvt viewHolder] setTransform:CGAffineTransformIdentity];
+			[[wvt viewHolder] setFrame:[self frameForTabIndex:i]];
+			
+			BOOL rotated = (wvt.viewHolder.frame.size.width > wvt.viewHolder.frame.size.height);
+			[wvt.viewHolder setTransform:CGAffineTransformMakeScale(rotated ? ZOOM_OUT_SCALE_ROTATED : ZOOM_OUT_SCALE, rotated ? ZOOM_OUT_SCALE_ROTATED : ZOOM_OUT_SCALE)];
 		}
 	} completion:^(BOOL finished) {
 		[self setCurTabIndex:curTabIndex];
@@ -978,9 +980,11 @@
 		[urlField resignFirstResponder];
 		
 		[UIView animateWithDuration:0.25 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^(void) {
-			for (int i = 0; i < webViewTabs.count; i++) {
+			if (!self.toolbarOnBottom)
+				tabScroller.frame = CGRectMake(tabScroller.frame.origin.x, (TOOLBAR_HEIGHT / 2), tabScroller.frame.size.width, tabScroller.frame.size.height);
+			
+			for (int i = 0; i < webViewTabs.count; i++)
 				[(WebViewTab *)webViewTabs[i] zoomOut];
-			}
 			
 			tabChooser.hidden = false;
 			toolbar.hidden = true;
@@ -1000,9 +1004,11 @@
 	}
 	else {
 		[UIView animateWithDuration:0.25 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^(void) {
-			for (int i = 0; i < webViewTabs.count; i++) {
+			if (!self.toolbarOnBottom)
+				tabScroller.frame = CGRectMake(tabScroller.frame.origin.x, TOOLBAR_HEIGHT, tabScroller.frame.size.width, tabScroller.frame.size.height);
+
+			for (int i = 0; i < webViewTabs.count; i++)
 				[(WebViewTab *)webViewTabs[i] zoomNormal];
-			}
 			
 			tabChooser.hidden = true;
 			toolbar.hidden = false;

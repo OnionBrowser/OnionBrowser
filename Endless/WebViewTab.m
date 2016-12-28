@@ -695,7 +695,9 @@
 	[_title setHidden:false];
 	[_closer setHidden:false];
 	[[[self viewHolder] layer] setShadowOpacity:0.3];
-	[[self viewHolder] setTransform:CGAffineTransformMakeScale(ZOOM_OUT_SCALE, ZOOM_OUT_SCALE)];
+	
+	BOOL rotated = (self.viewHolder.frame.size.width > self.viewHolder.frame.size.height);
+	[[self viewHolder] setTransform:CGAffineTransformMakeScale(rotated ? ZOOM_OUT_SCALE_ROTATED : ZOOM_OUT_SCALE, rotated ? ZOOM_OUT_SCALE_ROTATED : ZOOM_OUT_SCALE)];
 }
 
 - (void)zoomNormal
