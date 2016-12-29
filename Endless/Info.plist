@@ -33,7 +33,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1000</string>
+	<string>1002</string>
 	<key>Fabric</key>
 	<dict>
 		<key>Kits</key>

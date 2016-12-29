@@ -82,7 +82,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   QuickDialog:
-    :commit: 88e7c0e5c0444b428fe2d2f6e0ba635125584fcd
+    :commit: 738ef982c45cfa45d07aafb85fa8830f94216fb5
     :git: https://github.com/jcs/QuickDialog.git
   WYPopoverController:
     :commit: 9b8011bd95bd95f6fca6a0afa78965fbf645a062
