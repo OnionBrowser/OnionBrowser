@@ -39,7 +39,7 @@
 + (HostSettings *)forHost:(NSString *)host;
 + (HostSettings *)settingsOrDefaultsForHost:(NSString *)host;
 + (BOOL)removeSettingsForHost:(NSString *)host;
-#ifdef DEBUG
+#if DEBUG
 + (void)overrideHosts:(NSMutableDictionary *)hosts;
 #endif
 

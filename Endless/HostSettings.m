@@ -116,7 +116,7 @@ static NSMutableDictionary *_hosts;
 	return [self forHost:HOST_SETTINGS_DEFAULT];
 }
 
-#ifdef DEBUG
+#if DEBUG
 /* just for testing */
 + (void)overrideHosts:(NSMutableDictionary *)hosts
 {

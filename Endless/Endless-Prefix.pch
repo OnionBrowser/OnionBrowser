@@ -8,7 +8,7 @@
 #ifndef Endless_Endless_Prefix_pch
 #define Endless_Endless_Prefix_pch
 
-#ifdef DEBUG
+#if DEBUG
 
 /* NSLog() all network activity and boring stuff */
 #define TRACE
