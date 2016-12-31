@@ -95,7 +95,7 @@
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-#ifdef DEBUG
+#ifdef TRACE
 	NSLog(@"[AppDelegate] request to open url \"%@\"", url);
 #endif
 	if ([[[url scheme] lowercaseString] isEqualToString:@"endlesshttp"])
