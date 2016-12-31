@@ -143,6 +143,8 @@
 
 - (void)showDetailsForHost:(NSString *)thost
 {
+	NSString *val;
+	
 	HostSettings *host = [HostSettings forHost:thost];
 	
 	QRootElement *root = [[QRootElement alloc] init];
@@ -167,6 +169,24 @@
 		[section addElement:hostname];
 		[section setFooter:@"These settings will apply to all hosts under this domain"];
 	}
+	
+	[root addSection:section];
+	
+	/* privacy section */
+	
+	section = [[QSection alloc] init];
+	[section setTitle:@"Privacy"];
+	
+	/* whitelist cookies */
+	
+	QRadioElement *whitelistCookies = [self yesNoRadioElementWithDefault:(![host isDefault])];
+	[whitelistCookies setTitle:@"Allow persistent cookies"];
+	val = [host setting:HOST_SETTINGS_KEY_WHITELIST_COOKIES];
+	if (val == nil)
+		val = HOST_SETTINGS_DEFAULT;
+	[whitelistCookies setSelectedValue:val];
+	[section setFooter:[NSString stringWithFormat:@"Allow %@ to permanently store cookies and local storage databases", ([host isDefault] ? @"hosts" : @"this host")]];
+	[section addElement:whitelistCookies];
 	
 	[root addSection:section];
 	
@@ -239,20 +259,6 @@
 	[section addElement:csp];
 	[root addSection:section];
 	
-	/* block external lan requests */
-	
-	section = [[QSection alloc] init];
-	
-	QRadioElement *exlan = [self yesNoRadioElementWithDefault:(![host isDefault])];
-	[exlan setTitle:@"Block external LAN requests"];
-	NSString *val = [host setting:HOST_SETTINGS_KEY_BLOCK_LOCAL_NETS];
-	if (val == nil)
-		val = HOST_SETTINGS_DEFAULT;
-	[exlan setSelectedValue:val];
-	[section addElement:exlan];
-	[section setFooter:[NSString stringWithFormat:@"Resources loaded from %@ will be blocked from loading page elements or making requests to LAN hosts (192.168.0.0/16, 172.16.0.0/12, etc.)", ([host isDefault] ? @"hosts" : @"this host")]];
-	[root addSection:section];
-	
 	/* mixed-mode resources */
 	
 	section = [[QSection alloc] init];
@@ -265,22 +271,19 @@
 	[section addElement:allowmixedmode];
 	[section setFooter:[NSString stringWithFormat:@"Allow %@ to load page resources from non-HTTPS hosts (useful for RSS readers and other aggregators)", ([host isDefault] ? @"HTTPS hosts" : @"this HTTPS host")]];
 	[root addSection:section];
-	
-	/* privacy section */
+
+	/* block external lan requests */
 	
 	section = [[QSection alloc] init];
-	[section setTitle:@"Privacy"];
 	
-	/* whitelist cookies */
-	
-	QRadioElement *whitelistCookies = [self yesNoRadioElementWithDefault:(![host isDefault])];
-	[whitelistCookies setTitle:@"Allow persistent cookies"];
-	val = [host setting:HOST_SETTINGS_KEY_WHITELIST_COOKIES];
+	QRadioElement *exlan = [self yesNoRadioElementWithDefault:(![host isDefault])];
+	[exlan setTitle:@"Block external LAN requests"];
+	val = [host setting:HOST_SETTINGS_KEY_BLOCK_LOCAL_NETS];
 	if (val == nil)
 		val = HOST_SETTINGS_DEFAULT;
-	[whitelistCookies setSelectedValue:val];
-	[section addElement:whitelistCookies];
-	
+	[exlan setSelectedValue:val];
+	[section addElement:exlan];
+	[section setFooter:[NSString stringWithFormat:@"Resources loaded from %@ will be blocked from loading page elements or making requests to LAN hosts (192.168.0.0/16, 172.16.0.0/12, etc.)", ([host isDefault] ? @"hosts" : @"this host")]];
 	[root addSection:section];
 	
 	QuickDialogController *qdc = [QuickDialogController controllerForRoot:root];
