@@ -95,7 +95,7 @@ static NSString *_javascriptToInject;
 	return YES;
 }
 
-+ (NSString *)prependDirectives:(NSDictionary *)directives inCSPHeader:(NSString *)header
++ (NSString *)prependDirectivesIfExisting:(NSDictionary *)directives inCSPHeader:(NSString *)header
 {
 	/*
 	 * CSP guide says apostrophe can't be in a bare string, so it should be safe to assume
@@ -127,9 +127,9 @@ static NSString *_javascriptToInject;
 			 */
 			if (![curval containsString:@"'none'"])
 				newval = [NSString stringWithFormat:@"%@ %@", newval, curval];
+			
+			[curDirectives setObject:newval forKey:newDir];
 		}
-		
-		[curDirectives setObject:newval forKey:newDir];
 	}
 	
 	NSMutableString *ret = [[NSMutableString alloc] init];
@@ -386,14 +386,11 @@ static NSString *_javascriptToInject;
 					/* disregard the existing policy since ours will be the most strict anyway */
 					hv = CSPheader;
 				
-				/* merge in the things we require for any policy */
-				hv = [URLInterceptor prependDirectives:@{ @"child-src": @"endlessipc:", @"frame-src": @"endlessipc:", @"script-src" : [NSString stringWithFormat:@"'nonce-%@'", [self cspNonce]] } inCSPHeader:hv];
+				/* merge in the things we require for any policy in case exiting policies would block them */
+				hv = [URLInterceptor prependDirectivesIfExisting:@{ @"child-src": @"endlessipc:", @"frame-src": @"endlessipc:", @"script-src" : [NSString stringWithFormat:@"'nonce-%@'", [self cspNonce]] } inCSPHeader:hv];
 				
 				[mHeaders setObject:hv forKey:h];
 				foundCSP = true;
-#ifdef TRACE_HOST_SETTINGS
-				NSLog(@"[HostSettings] [Tab %@] CSP header is now %@", wvt.tabIndex, hv);
-#endif
 			}
 			else if ([[h lowercaseString] isEqualToString:@"cache-control"]) {
 				/* ignore */
@@ -406,6 +403,10 @@ static NSString *_javascriptToInject;
 			[mHeaders setObject:CSPheader forKey:@"Content-Security-Policy"];
 			[mHeaders setObject:CSPheader forKey:@"X-WebKit-CSP"];
 		}
+		
+#ifdef TRACE_HOST_SETTINGS
+		NSLog(@"[HostSettings] [Tab %@] CSP header is now %@", wvt.tabIndex, [mHeaders objectForKey:@"Content-Security-Policy"]);
+#endif
 	}
 
 	response = [[NSHTTPURLResponse alloc] initWithURL:[response URL] statusCode:[response statusCode] HTTPVersion:@"1.1" headerFields:mHeaders];

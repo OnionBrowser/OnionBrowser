@@ -40,7 +40,7 @@
 + (NSString *)javascriptToInject;
 + (void)setSendDNT:(BOOL)val;
 + (void)temporarilyAllow:(NSURL *)url;
-+ (NSString *)prependDirectives:(NSDictionary *)directives inCSPHeader:(NSString *)header;
++ (NSString *)prependDirectivesIfExisting:(NSDictionary *)directives inCSPHeader:(NSString *)header;
 
 - (NSMutableData *)data;
 
