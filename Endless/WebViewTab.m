@@ -479,8 +479,9 @@
 	NSLog(@"[Tab %@] showing error dialog: %@ (%@)", self.tabIndex, msg, error);
 #endif
 
-	UIAlertView *m = [[UIAlertView alloc] initWithTitle:@"Error" message:msg delegate:self cancelButtonTitle: @"Ok" otherButtonTitles:nil];
-	[m show];
+	UIAlertController *uiac = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", nil) message:msg preferredStyle:UIAlertControllerStyleAlert];
+	[uiac addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Ok", nil) style:UIAlertActionStyleDefault handler:nil]];
+	[[appDelegate webViewController] presentViewController:uiac animated:YES completion:nil];
 	
 	[self webViewDidFinishLoad:__webView];
 }
@@ -609,8 +610,9 @@
 			UIImageWriteToSavedPhotosAlbum(i, self, nil, nil);
 		}
 		else {
-			UIAlertView *m = [[UIAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"An error occurred downloading image %@", img] delegate:self cancelButtonTitle: @"Ok" otherButtonTitles:nil];
-			[m show];
+			UIAlertController *uiac = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", nil) message:[NSString stringWithFormat:@"An error occurred downloading image %@", img] preferredStyle:UIAlertControllerStyleAlert];
+			[uiac addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Ok", nil) style:UIAlertActionStyleDefault handler:nil]];
+			[[appDelegate webViewController] presentViewController:uiac animated:YES completion:nil];
 		}
 	}];
 	
