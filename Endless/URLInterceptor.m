@@ -378,6 +378,13 @@ static NSString *_javascriptToInject;
 	if (CSPheader != nil || curCSP != nil) {
 		BOOL foundCSP = false;
 		
+		NSDictionary *wantedDirectives = @{
+			@"child-src": @"endlessipc:",
+			@"default-src" : [NSString stringWithFormat:@"'nonce-%@' endlessipc:", [self cspNonce]],
+			@"frame-src": @"endlessipc:",
+			@"script-src" : [NSString stringWithFormat:@"'nonce-%@'", [self cspNonce]],
+		};
+
 		for (id h in [mHeaders allKeys]) {
 			NSString *hv = (NSString *)[[response allHeaderFields] valueForKey:h];
 			
@@ -387,7 +394,7 @@ static NSString *_javascriptToInject;
 					hv = CSPheader;
 				
 				/* merge in the things we require for any policy in case exiting policies would block them */
-				hv = [URLInterceptor prependDirectivesIfExisting:@{ @"child-src": @"endlessipc:", @"frame-src": @"endlessipc:", @"script-src" : [NSString stringWithFormat:@"'nonce-%@'", [self cspNonce]] } inCSPHeader:hv];
+				hv = [URLInterceptor prependDirectivesIfExisting:wantedDirectives inCSPHeader:hv];
 				
 				[mHeaders setObject:hv forKey:h];
 				foundCSP = true;
