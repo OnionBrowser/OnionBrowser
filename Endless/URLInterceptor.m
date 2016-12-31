@@ -275,6 +275,15 @@ static NSString *_javascriptToInject;
 		}
 	}
 	
+	/* in case our URL changed/upgraded, send back to the webview so it knows what our protocol is for "//" assets */
+	if (self.isOrigin && ![[[newRequest URL] absoluteString] isEqualToString:[[self.request URL] absoluteString]]) {
+#ifdef TRACE_HOST_SETTINGS
+		NSLog(@"[URLInterceptor] [Tab %@] canceling origin request to redirect %@ rewritten to %@", wvt.tabIndex, [[self.request URL] absoluteString], [[newRequest URL] absoluteString]);
+#endif
+		[wvt loadURL:[newRequest URL]];
+		return;
+	}
+	
 	if (!self.isOrigin) {
 		if ([wvt secureMode] > WebViewTabSecureModeInsecure && ![[[[newRequest URL] scheme] lowercaseString] isEqualToString:@"https"]) {
 			if ([self.originHostSettings settingOrDefault:HOST_SETTINGS_KEY_ALLOW_MIXED_MODE]) {
