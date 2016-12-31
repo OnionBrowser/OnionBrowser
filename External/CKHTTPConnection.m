@@ -88,7 +88,6 @@
 
 		// Kick off the connection
 		_HTTPRequest = [request makeHTTPMessage];
-		_HTTPBodyStream = [request HTTPBodyStream];
 
 		[self start];
 	}
@@ -126,10 +125,7 @@
 	NSAssert(!_HTTPStream, @"Connection already started");
 	HostSettings *hs;
 	
-	if (_HTTPBodyStream)
-		_HTTPStream = (__bridge NSInputStream *)(CFReadStreamCreateForStreamedHTTPRequest(NULL, [self HTTPRequest], (__bridge CFReadStreamRef)_HTTPBodyStream));
-	else
-		_HTTPStream = (__bridge_transfer NSInputStream *)CFReadStreamCreateForHTTPRequest(NULL, [self HTTPRequest]);
+	_HTTPStream = (__bridge_transfer NSInputStream *)CFReadStreamCreateForHTTPRequest(NULL, [self HTTPRequest]);
 	
 	/* we're handling redirects ourselves */
 	CFReadStreamSetProperty((__bridge CFReadStreamRef)(_HTTPStream), kCFStreamPropertyHTTPShouldAutoredirect, kCFBooleanFalse);
