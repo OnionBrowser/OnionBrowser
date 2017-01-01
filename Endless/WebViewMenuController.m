@@ -52,6 +52,9 @@ NSString * const LABEL = @"L";
 	
 	[self.view setBackgroundColor:[UIColor clearColor]];
 	[self.tableView setSeparatorInset:UIEdgeInsetsZero];
+	
+	if ([[appDelegate webViewController] darkInterface])
+		[self.tableView setSeparatorColor:[UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:0.75]];
 }
 
 - (CGSize)preferredContentSize
@@ -92,6 +95,11 @@ NSString * const LABEL = @"L";
 	cell.detailTextLabel.text = nil;
 	cell.detailTextLabel.font = [UIFont systemFontOfSize:11];
 	
+	if ([[appDelegate webViewController] darkInterface]) {
+		cell.textLabel.textColor = [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0];
+		cell.detailTextLabel.textColor = [UIColor grayColor];
+	}
+	
 	BOOL haveURL = ([[[appDelegate webViewController] curWebViewTab] url] != nil);
 
 	NSString *func = [button objectForKey:FUNC];
@@ -110,14 +118,14 @@ NSString * const LABEL = @"L";
 
 		if (ruleCount > 0) {
 			cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld rule%@ in use", ruleCount, (ruleCount == 1 ? @"" : @"s")];
-			cell.detailTextLabel.textColor = [UIColor colorWithRed:0 green:0.5 blue:0 alpha:1];
+			cell.detailTextLabel.textColor = [self colorForMenuTextHighlight];
 		}
 	}
 	else if ([func isEqualToString:@"menuHostSettings"]) {
 		HostSettings *hs = [HostSettings settingsOrDefaultsForHost:[[[[appDelegate webViewController] curWebViewTab] url] host]];
 		if (hs && ![hs isDefault]) {
 			cell.detailTextLabel.text = @"Custom settings";
-			cell.detailTextLabel.textColor = [UIColor colorWithRed:0 green:0.5 blue:0 alpha:1];
+			cell.detailTextLabel.textColor = [self colorForMenuTextHighlight];
 		}
 		else {
 			cell.detailTextLabel.text = @"Using defaults";
@@ -222,6 +230,14 @@ NSString * const LABEL = @"L";
 	TUSafariActivity *activity = [[TUSafariActivity alloc] init];
 	UIActivityViewController *avc = [[UIActivityViewController alloc] initWithActivityItems:@[ [[[appDelegate webViewController] curWebViewTab] url] ] applicationActivities:@[ activity ]];
 	[[appDelegate webViewController] presentViewController:avc animated:YES completion:nil];
+}
+
+- (UIColor *)colorForMenuTextHighlight
+{
+	if ([[appDelegate webViewController] darkInterface])
+		return [UIColor yellowColor];
+	else
+		return [UIColor colorWithRed:0 green:0.5 blue:0 alpha:1];
 }
 
 @end

@@ -31,7 +31,7 @@
 	[[self tableView] addGestureRecognizer:lpgr];
 	
 	if ([[appDelegate webViewController] darkInterface])
-		[[self tableView] setBackgroundColor:[UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1.0]];
+		[[self tableView] setBackgroundColor:[UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:1.0]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
