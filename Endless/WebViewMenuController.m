@@ -7,7 +7,6 @@
 
 #import "AppDelegate.h"
 #import "Bookmark.h"
-#import "BookmarkController.h"
 #import "CookieController.h"
 #import "HostSettings.h"
 #import "HostSettingsController.h"
@@ -45,7 +44,7 @@ NSString * const LABEL = @"L";
 	if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"onepassword://"]])
 		[buttons addObject:@{ FUNC : @"menuOnePassword", LABEL : @"Fill with 1Password" }];
 
-	[buttons addObject:@{ FUNC : @"menuAddOrManageBookmarks", LABEL : @"Bookmarks" }];
+	[buttons addObject:@{ FUNC : @"menuAddOrManageBookmarks", LABEL : @"Manage Bookmarks" }];
 	[buttons addObject:@{ FUNC : @"menuShare", LABEL : @"Share URL" }];
 	[buttons addObject:@{ FUNC : @"menuHTTPSEverywhere", LABEL : @"HTTPS Everywhere" }];
 	[buttons addObject:@{ FUNC : @"menuHostSettings", LABEL : @"Host Settings" }];
@@ -195,9 +194,7 @@ NSString * const LABEL = @"L";
 
 - (void)menuAddOrManageBookmarks
 {
-	BookmarkController *bc = [[BookmarkController alloc] init];
-	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:bc];
-	[[appDelegate webViewController] presentViewController:navController animated:YES completion:nil];
+	[[appDelegate webViewController] showBookmarksForEditing:YES];
 }
 
 - (void)menuSettings

@@ -475,6 +475,11 @@
 	return CGRectMake(x, y, w, h);
 }
 
+- (void)focusUrlField
+{
+	[urlField becomeFirstResponder];
+}
+
 - (NSMutableArray *)webViewTabs
 {
 	return webViewTabs;
@@ -526,9 +531,6 @@
 	[tabScroller addSubview:wvt.viewHolder];
 	[tabScroller bringSubviewToFront:toolbar];
 
-	if (showingTabs)
-		[wvt zoomOut];
-	
 	void (^swapToTab)(BOOL) = ^(BOOL finished) {
 		[self setCurTabIndex:(int)webViewTabs.count - 1];
 		
@@ -551,6 +553,8 @@
 		else if (url != nil) {
 			[wvt loadURL:url];
 		}
+		else if (block != nil)
+			block(YES);
 	}
 
 	return wvt;
@@ -563,6 +567,48 @@
 	}];
 }
 
+- (void)switchToTab:(NSNumber *)tabNumber
+{
+	if ([tabNumber intValue] >= [[self webViewTabs] count])
+		return;
+	
+	if ([tabNumber intValue] == curTabIndex)
+		return;
+	
+	WebViewTab *t = [[self webViewTabs] objectAtIndex:[tabNumber intValue]];
+	void (^swapToTab)(BOOL) = ^(BOOL finished) {
+		[self setCurTabIndex:[[t tabIndex] intValue]];
+		
+		[self slideToCurrentTabWithCompletionBlock:^(BOOL finished) {
+			[self showTabsWithCompletionBlock:nil];
+		}];
+	};
+
+	if (showingTabs) {
+		swapToTab(YES);
+	}
+	else if (webViewTabs.count > 1) {
+		[self showTabsWithCompletionBlock:swapToTab];
+	}
+}
+
+- (void)reindexTabs
+{
+	int i = 0;
+	BOOL seencur = NO;
+	
+	for (WebViewTab *wvt in [self webViewTabs]) {
+		if (!seencur && [[wvt tabIndex] intValue] == curTabIndex) {
+			curTabIndex = i;
+			seencur = YES;
+		}
+	
+		[wvt setTabIndex:[NSNumber numberWithInt:i]];
+	
+		i++;
+	}
+}
+
 - (void)removeTab:(NSNumber *)tabNumber
 {
 	[self removeTab:tabNumber andFocusTab:[NSNumber numberWithInt:-1]];
@@ -572,6 +618,11 @@
 {
 	if (tabNumber.intValue > [webViewTabs count] - 1)
 		return;
+	
+	if ([urlField isFirstResponder]) {
+		[urlField resignFirstResponder];
+		return;
+	}
 	
 	WebViewTab *wvt = (WebViewTab *)webViewTabs[tabNumber.intValue];
 	
@@ -609,6 +660,7 @@
 			}
 			else {
 				/* no tabs left, add one and zoom out */
+				[self reindexTabs];
 				[self addNewTabForURL:nil forRestoration:false withCompletionBlock:^(BOOL finished) {
 					[urlField becomeFirstResponder];
 				}];
@@ -619,6 +671,8 @@
 	else {
 		[self setCurTabIndex:futureFocusNumber];
 	}
+	
+	[self reindexTabs];
 	
 	[UIView animateWithDuration:0.25 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
 		tabScroller.contentSize = CGSizeMake([self frameForTabIndex:0].size.width * tabChooser.numberOfPages, [self frameForTabIndex:0].size.height);
@@ -794,19 +848,8 @@
 	
 	[urlField setText:[self.curWebViewTab.url absoluteString]];
 	
-	if (bookmarks == nil) {
-		bookmarks = [[BookmarkController alloc] init];
-		bookmarks.embedded = true;
-		
-		if (self.toolbarOnBottom)
-			/* we can't size according to keyboard height because we don't know it yet, so we'll just put it full height below the toolbar and we'll update it when the keyboard shows up */
-			bookmarks.view.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
-		else
-			bookmarks.view.frame = CGRectMake(0, toolbar.frame.size.height + toolbar.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
-
-		[self addChildViewController:bookmarks];
-		[self.view insertSubview:[bookmarks view] belowSubview:toolbar];
-	}
+	if (bookmarks == nil)
+		[self showBookmarksForEditing:NO];
 	
 	[UIView animateWithDuration:0.15 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
 		[urlField setTextAlignment:NSTextAlignmentNatural];
@@ -828,11 +871,7 @@
 #ifdef TRACE
 	NSLog(@"[WebViewController] ended editing with: %@", [textField text]);
 #endif
-	if (bookmarks != nil) {
-		[[bookmarks view] removeFromSuperview];
-		[bookmarks removeFromParentViewController];
-		bookmarks = nil;
-	}
+	[self hideBookmarks];
 
 	[UIView animateWithDuration:0.15 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
 		[urlField setTextAlignment:NSTextAlignmentCenter];
@@ -979,7 +1018,7 @@
 		/* make sure no text is selected */
 		[urlField resignFirstResponder];
 		
-		[UIView animateWithDuration:0.25 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^(void) {
+		[UIView animateWithDuration:0.15 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^(void) {
 			if (!self.toolbarOnBottom)
 				tabScroller.frame = CGRectMake(tabScroller.frame.origin.x, (TOOLBAR_HEIGHT / 2), tabScroller.frame.size.width, tabScroller.frame.size.height);
 			
@@ -1003,7 +1042,7 @@
 		[tabScroller addGestureRecognizer:singleTapGestureRecognizer];
 	}
 	else {
-		[UIView animateWithDuration:0.25 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^(void) {
+		[UIView animateWithDuration:0.15 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^(void) {
 			if (!self.toolbarOnBottom)
 				tabScroller.frame = CGRectMake(tabScroller.frame.origin.x, TOOLBAR_HEIGHT, tabScroller.frame.size.width, tabScroller.frame.size.height);
 
@@ -1109,6 +1148,40 @@
 	}
 
 	return [uapieces componentsJoinedByString:@" "];
+}
+
+- (void)showBookmarksForEditing:(BOOL)editing
+{
+	if (bookmarks)
+		return;
+	
+	bookmarks = [[BookmarkController alloc] init];
+
+	if (editing) {
+		UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:bookmarks];
+		[self presentViewController:navController animated:YES completion:nil];
+	} else {
+		bookmarks.embedded = true;
+
+		if (self.toolbarOnBottom)
+			/* we can't size according to keyboard height because we don't know it yet, so we'll just put it full height below the toolbar and we'll update it when the keyboard shows up */
+			bookmarks.view.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
+		else
+			bookmarks.view.frame = CGRectMake(0, toolbar.frame.size.height + toolbar.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
+		
+		[self addChildViewController:bookmarks];
+		[self.view insertSubview:[bookmarks view] belowSubview:toolbar];
+	}
+}
+
+- (void)hideBookmarks
+{
+	if (!bookmarks)
+		return;
+	
+	[[bookmarks view] removeFromSuperview];
+	[bookmarks removeFromParentViewController];
+	bookmarks = nil;
 }
 
 @end

@@ -11,6 +11,9 @@
 #import "URLInterceptor.h"
 
 @implementation AppDelegate
+{
+	NSMutableArray *_keyCommands;
+}
 
 - (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -150,6 +153,101 @@
 #endif
 
 	completionHandler([userDefaults boolForKey:@"crash_reporting"]);
+}
+
+- (NSArray<UIKeyCommand *> *)keyCommands
+{
+	if (!_keyCommands) {
+		_keyCommands = [[NSMutableArray alloc] init];
+		
+		[_keyCommands addObject:[UIKeyCommand keyCommandWithInput:UIKeyInputLeftArrow modifierFlags:UIKeyModifierCommand action:@selector(handleKeyboardShortcut:) discoverabilityTitle:@"Go Back"]];
+		[_keyCommands addObject:[UIKeyCommand keyCommandWithInput:UIKeyInputRightArrow modifierFlags:UIKeyModifierCommand action:@selector(handleKeyboardShortcut:) discoverabilityTitle:@"Go Forward"]];
+
+		[_keyCommands addObject:[UIKeyCommand keyCommandWithInput:@"b" modifierFlags:UIKeyModifierCommand action:@selector(handleKeyboardShortcut:) discoverabilityTitle:@"Show Bookmarks"]];
+
+		[_keyCommands addObject:[UIKeyCommand keyCommandWithInput:@"l" modifierFlags:UIKeyModifierCommand action:@selector(handleKeyboardShortcut:) discoverabilityTitle:@"Focus URL Field"]];
+
+		[_keyCommands addObject:[UIKeyCommand keyCommandWithInput:@"t" modifierFlags:UIKeyModifierCommand action:@selector(handleKeyboardShortcut:) discoverabilityTitle:@"Create New Tab"]];
+		[_keyCommands addObject:[UIKeyCommand keyCommandWithInput:@"w" modifierFlags:UIKeyModifierCommand action:@selector(handleKeyboardShortcut:) discoverabilityTitle:@"Close Tab"]];
+
+		for (int i = 1; i <= 10; i++)
+			[_keyCommands addObject:[UIKeyCommand keyCommandWithInput:[NSString stringWithFormat:@"%d", (i == 10 ? 0 : i)] modifierFlags:UIKeyModifierCommand action:@selector(handleKeyboardShortcut:) discoverabilityTitle:[NSString stringWithFormat:@"Switch to Tab %d", i]]];
+	}
+	
+	return _keyCommands;
+}
+
+- (void)handleKeyboardShortcut:(UIKeyCommand *)keyCommand
+{
+	if ([keyCommand modifierFlags] != UIKeyModifierCommand)
+		return;
+	
+	/* if settings are up or something else, ignore it */
+	if (![[self topViewController] isKindOfClass:[WebViewController class]])
+		return;
+	
+	if ([[keyCommand input] isEqualToString:@"b"]) {
+		[[self webViewController] showBookmarksForEditing:NO];
+		return;
+	}
+
+	if ([[keyCommand input] isEqualToString:@"l"]) {
+		[[self webViewController] focusUrlField];
+		return;
+	}
+	
+	if ([[keyCommand input] isEqualToString:@"t"]) {
+		[[self webViewController] addNewTabForURL:nil forRestoration:NO withCompletionBlock:^(BOOL finished) {
+			[[self webViewController] focusUrlField];
+		}];
+		return;
+	}
+	
+	if ([[keyCommand input] isEqualToString:@"w"]) {
+		[[self webViewController] removeTab:[[[self webViewController] curWebViewTab] tabIndex]];
+		return;
+	}
+	
+	if ([[keyCommand input] isEqualToString:UIKeyInputLeftArrow]) {
+		[[[self webViewController] curWebViewTab] goBack];
+		return;
+	}
+	
+	if ([[keyCommand input] isEqualToString:UIKeyInputRightArrow]) {
+		[[[self webViewController] curWebViewTab] goForward];
+		return;
+	}
+
+	for (int i = 0; i <= 9; i++) {
+		if ([[keyCommand input] isEqualToString:[NSString stringWithFormat:@"%d", i]]) {
+			[[self webViewController] switchToTab:[NSNumber numberWithInt:(i == 0 ? 9 : i - 1)]];
+			return;
+		}
+	}
+	
+#ifdef TRACE
+	NSLog(@"unrecognized key command: %@", [keyCommand input]);
+#endif
+}
+
+- (UIViewController *)topViewController
+{
+	return [self topViewController:[UIApplication sharedApplication].keyWindow.rootViewController];
+}
+
+- (UIViewController *)topViewController:(UIViewController *)rootViewController
+{
+	if (rootViewController.presentedViewController == nil)
+		return rootViewController;
+	
+	if ([rootViewController.presentedViewController isMemberOfClass:[UINavigationController class]]) {
+		UINavigationController *navigationController = (UINavigationController *)rootViewController.presentedViewController;
+		UIViewController *lastViewController = [[navigationController viewControllers] lastObject];
+		return [self topViewController:lastViewController];
+	}
+	
+	UIViewController *presentedViewController = (UIViewController *)rootViewController.presentedViewController;
+	return [self topViewController:presentedViewController];
 }
 
 - (void)initializeDefaults

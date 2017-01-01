@@ -107,8 +107,10 @@
 {
 	Bookmark *bookmark = [Bookmark list][[indexPath row]];
 	
-	if (self.embedded)
+	if (self.embedded) {
 		[[appDelegate webViewController] prepareForNewURLFromString:[bookmark urlString]];
+		[[appDelegate webViewController] hideBookmarks];
+	}
 	else {
 		[tableView deselectRowAtIndexPath:indexPath animated:YES];
 		

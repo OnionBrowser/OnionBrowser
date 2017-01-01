@@ -19,6 +19,8 @@
 @property BOOL toolbarOnBottom;
 @property BOOL darkInterface;
 
+- (void)focusUrlField;
+
 - (NSMutableArray *)webViewTabs;
 - (__strong WebViewTab *)curWebViewTab;
 
@@ -28,6 +30,8 @@
 - (void)viewIsNoLongerVisible;
 
 - (WebViewTab *)addNewTabForURL:(NSURL *)url;
+- (WebViewTab *)addNewTabForURL:(NSURL *)url forRestoration:(BOOL)restoration withCompletionBlock:(void(^)(BOOL))block;
+- (void)switchToTab:(NSNumber *)tabNumber;
 - (void)removeTab:(NSNumber *)tabNumber andFocusTab:(NSNumber *)toFocus;
 - (void)removeTab:(NSNumber *)tabNumber;
 - (void)removeAllTabs;
@@ -39,5 +43,7 @@
 - (void)forceRefresh;
 - (void)dismissPopover;
 - (void)prepareForNewURLFromString:(NSString *)url;
+- (void)showBookmarksForEditing:(BOOL)editing;
+- (void)hideBookmarks;
 
 @end

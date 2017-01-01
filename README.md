@@ -35,6 +35,9 @@ form, with or without modification, is not permitted.
 
 - Optional dark/night-time interface
 
+- Keyboard shortcuts for common functions like Command+T for new tab,
+  Command+W to close, Command+L to focus URL field, etc.
+
 #####Security and privacy-focused features implemented:
 
 - Per-host/domain security and privacy settings:
