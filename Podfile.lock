@@ -57,11 +57,9 @@ PODS:
   - InAppSettingsKit (2.8.1)
   - OCMock (3.3.1)
   - OrderedDictionary (1.4)
-  - QuickDialog (1.0.2):
-    - QuickDialog/Core (= 1.0.2)
-  - QuickDialog/Core (1.0.2)
   - TUSafariActivity (1.0.4)
   - WYPopoverController (0.3.9)
+  - XLForm (3.3.0)
 
 DEPENDENCIES:
   - Crashlytics
@@ -70,23 +68,23 @@ DEPENDENCIES:
   - InAppSettingsKit
   - OCMock
   - OrderedDictionary
-  - QuickDialog (from `https://github.com/jcs/QuickDialog.git`)
   - TUSafariActivity
   - WYPopoverController (from `https://github.com/sammcewan/WYPopoverController.git`)
+  - XLForm (from `https://github.com/jcs/XLForm.git`)
 
 EXTERNAL SOURCES:
-  QuickDialog:
-    :git: https://github.com/jcs/QuickDialog.git
   WYPopoverController:
     :git: https://github.com/sammcewan/WYPopoverController.git
+  XLForm:
+    :git: https://github.com/jcs/XLForm.git
 
 CHECKOUT OPTIONS:
-  QuickDialog:
-    :commit: 738ef982c45cfa45d07aafb85fa8830f94216fb5
-    :git: https://github.com/jcs/QuickDialog.git
   WYPopoverController:
     :commit: 9b8011bd95bd95f6fca6a0afa78965fbf645a062
     :git: https://github.com/sammcewan/WYPopoverController.git
+  XLForm:
+    :commit: 03bab2d19c94366ea993bf0b3983820cc1f45cf8
+    :git: https://github.com/jcs/XLForm.git
 
 SPEC CHECKSUMS:
   Crashlytics: 2b6dbe138a42395577cfa73dfa1aa7248cadf39e
@@ -95,10 +93,10 @@ SPEC CHECKSUMS:
   InAppSettingsKit: 94d2fba3ccd700fc4e32c6d09fabcc0af2426744
   OCMock: f3f61e6eaa16038c30caa5798c5e49d3307b6f22
   OrderedDictionary: 138c8d2e358d3a0c9adda15c6c7db24e8e3b09e6
-  QuickDialog: f0c3e254c91182fa3f91fdb479ccac4a11b459e1
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
   WYPopoverController: a9db25ac2841a686acdc0f3a99bdb21545db32f4
+  XLForm: d5c391dfc62865927b5bcab0a5a0dbfb3e02b0ec
 
-PODFILE CHECKSUM: 846b7f5c8d63537ad6420d22a7f0775735a1b3f9
+PODFILE CHECKSUM: 7c340b3779da311674a460917726187bbe2faa18
 
 COCOAPODS: 1.1.1

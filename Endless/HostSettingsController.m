@@ -1,6 +1,6 @@
 /*
  * Endless
- * Copyright (c) 2015 joshua stein <jcs@jcs.org>
+ * Copyright (c) 2015-2017 joshua stein <jcs@jcs.org>
  *
  * See LICENSE file for redistribution terms.
  */
@@ -9,7 +9,23 @@
 #import "HostSettings.h"
 #import "HostSettingsController.h"
 
-#import "QuickDialog.h"
+#import "XLForm.h"
+
+@interface HostSettingsXLFormViewController : XLFormViewController
+@property (copy, nonatomic) void (^disappearCallback)(HostSettingsXLFormViewController *);
+@end
+
+@implementation HostSettingsXLFormViewController
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+	if (self.disappearCallback)
+		self.disappearCallback(self);
+	
+	[super viewWillDisappear:animated];
+}
+@end
+
 
 @implementation HostSettingsController {
 	AppDelegate *appDelegate;
@@ -143,185 +159,170 @@
 
 - (void)showDetailsForHost:(NSString *)thost
 {
-	NSString *val;
-	
 	HostSettings *host = [HostSettings forHost:thost];
 	
-	QRootElement *root = [[QRootElement alloc] init];
-	root.grouped = YES;
-	root.appearance = [root.appearance copy];
-	
-	root.appearance.labelFont = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
-	root.appearance.valueColorEnabled = [UIColor darkTextColor];
-	
-	root.title = [host hostname];
-	
-	QSection *section = [[QSection alloc] init];
-	
-	QEntryElement *hostname;
-	if ([host isDefault]) {
-		QLabelElement *label = [[QLabelElement alloc] initWithTitle:@"Host/domain" Value:HOST_SETTINGS_HOST_DEFAULT_LABEL];
-		[section addElement:label];
-		[section setFooter:@"These settings will be used as defaults for all hosts unless overridden"];
+	XLFormDescriptor *form = [XLFormDescriptor formDescriptorWithTitle:[host hostname]];
+
+	/* hostname */
+	{
+		XLFormSectionDescriptor *section = [XLFormSectionDescriptor formSection];
+		[form addFormSection:section];
+		
+		if ([host isDefault]) {
+			XLFormRowDescriptor *row = [XLFormRowDescriptor formRowDescriptorWithTag:HOST_SETTINGS_KEY_HOST rowType:XLFormRowDescriptorTypeInfo title:@"Host/domain"];
+			[row setValue:HOST_SETTINGS_HOST_DEFAULT_LABEL];
+			[section setFooterTitle:@"These settings will be used as defaults for all hosts unless overridden"];
+			[section addFormRow:row];
+		}
+		else {
+			XLFormRowDescriptor *row = [XLFormRowDescriptor formRowDescriptorWithTag:HOST_SETTINGS_KEY_HOST rowType:XLFormRowDescriptorTypeText title:@"Host/domain"];
+			[row setValue:[host hostname]];
+			[row.cellConfigAtConfigure setObject:@"example.com" forKey:@"textField.placeholder"];
+			[row.cellConfigAtConfigure setObject:@(NSTextAlignmentRight) forKey:@"textField.textAlignment"];
+			[section setFooterTitle:@"These settings will apply to this host and all hosts under it (e.g., \"example.com\" will apply to example.com and www.example.com)"];
+			[section addFormRow:row];
+		}
 	}
-	else {
-		hostname = [[QEntryElement alloc] initWithTitle:@"Host/domain" Value:[host hostname] Placeholder:@"example.com"];
-		[section addElement:hostname];
-		[section setFooter:@"These settings will apply to all hosts under this domain"];
-	}
-	
-	[root addSection:section];
 	
 	/* privacy section */
-	
-	section = [[QSection alloc] init];
-	[section setTitle:@"Privacy"];
-	
-	/* whitelist cookies */
-	
-	QRadioElement *whitelistCookies = [self yesNoRadioElementWithDefault:(![host isDefault])];
-	[whitelistCookies setTitle:@"Allow persistent cookies"];
-	val = [host setting:HOST_SETTINGS_KEY_WHITELIST_COOKIES];
-	if (val == nil)
-		val = HOST_SETTINGS_DEFAULT;
-	[whitelistCookies setSelectedValue:val];
-	[section setFooter:[NSString stringWithFormat:@"Allow %@ to permanently store cookies and local storage databases", ([host isDefault] ? @"hosts" : @"this host")]];
-	[section addElement:whitelistCookies];
-	
-	[root addSection:section];
+	{
+		XLFormSectionDescriptor *section = [XLFormSectionDescriptor formSection];
+		[section setTitle:@"Privacy"];
+		[form addFormSection:section];
+
+		/* whitelist cookies */
+		{
+			XLFormRowDescriptor *row = [XLFormRowDescriptor formRowDescriptorWithTag:HOST_SETTINGS_KEY_WHITELIST_COOKIES rowType:XLFormRowDescriptorTypeSelectorActionSheet title:@"Allow persistent cookies"];
+			[self setYesNoSelectorOptionsForSetting:HOST_SETTINGS_KEY_WHITELIST_COOKIES host:host row:row withDefault:(![host isDefault])];
+			
+			[section setFooterTitle:[NSString stringWithFormat:@"Allow %@ to permanently store cookies and local storage databases", ([host isDefault] ? @"hosts" : @"this host")]];
+			[section addFormRow:row];
+		}
+	}
 	
 	/* security section */
-	
-	section = [[QSection alloc] init];
-	[section setTitle:@"Security"];
-	
-	/* tls version */
-	
-	NSMutableArray *i = [[NSMutableArray alloc] init];
-	if (![host isDefault])
-		[i addObject:@"Default"];
-	[i addObjectsFromArray:@[ @"TLS 1.2 Only", @"TLS 1.2, 1.1, or 1.0" ]];
-
-	QRadioElement *tls = [[QRadioElement alloc] initWithItems:i selected:0];
-	
-	i = [[NSMutableArray alloc] init];
-	if (![host isDefault])
-		[i addObject:HOST_SETTINGS_DEFAULT];
-	[i addObjectsFromArray:@[ HOST_SETTINGS_TLS_12, HOST_SETTINGS_TLS_AUTO ]];
-	[tls setValues:i];
-	
-	i = [[NSMutableArray alloc] init];
-	if (![host isDefault])
-		[i addObject:@"Default"];
-	[i addObjectsFromArray:@[ @"TLS 1.2", @"Any TLS" ]];
-	[tls setShortItems:i];
-	
-	[tls setTitle:@"TLS version"];
-	NSString *tlsval = [host setting:HOST_SETTINGS_KEY_TLS];
-	if (tlsval == nil)
-		[tls setSelectedValue:HOST_SETTINGS_DEFAULT];
-	else
-		[tls setSelectedValue:tlsval];
-	[section setFooter:[NSString stringWithFormat:@"Minimum version of TLS required by %@ to negotiate HTTPS connections", ([host isDefault] ? @"hosts" : @"this host")]];
-	[section addElement:tls];
-	[root addSection:section];
-	
-	section = [[QSection alloc] init];
-	
-	/* content policy */
-	
-	i = [[NSMutableArray alloc] init];
-	if (![host isDefault])
-		[i addObject:@"Default"];
-	[i addObjectsFromArray:@[ @"Open (normal browsing mode)", @"No XHR/WebSockets/Video connections", @"Strict (no JavaScript, video, etc.)" ]];
-	
-	QRadioElement *csp = [[QRadioElement alloc] initWithItems:i selected:0];
-	
-	i = [[NSMutableArray alloc] init];
-	if (![host isDefault])
-		[i addObject:HOST_SETTINGS_DEFAULT];
-	[i addObjectsFromArray:@[ HOST_SETTINGS_CSP_OPEN, HOST_SETTINGS_CSP_BLOCK_CONNECT, HOST_SETTINGS_CSP_STRICT ]];
-	[csp setValues:i];
-	
-	i = [[NSMutableArray alloc] init];
-	if (![host isDefault])
-		[i addObject:@"Default"];
-	[i addObjectsFromArray:@[ @"Open", @"No-Connect", @"Strict" ]];
-	[csp setShortItems:i];
-	
-	[csp setTitle:@"Content policy"];
-	NSString *cspval = [host setting:HOST_SETTINGS_KEY_CSP];
-	if (cspval == nil)
-		[csp setSelectedValue:HOST_SETTINGS_DEFAULT];
-	else
-		[csp setSelectedValue:cspval];
-	[section setFooter:[NSString stringWithFormat:@"Restrictions on resources loaded from web pages%@", ([host isDefault] ? @"" : @" at this host")]];
-	[section addElement:csp];
-	[root addSection:section];
-	
-	/* mixed-mode resources */
-	
-	section = [[QSection alloc] init];
-	QRadioElement *allowmixedmode = [self yesNoRadioElementWithDefault:(![host isDefault])];
-	[allowmixedmode setTitle:@"Allow mixed-mode resources"];
-	val = [host setting:HOST_SETTINGS_KEY_ALLOW_MIXED_MODE];
-	if (val == nil)
-		val = HOST_SETTINGS_DEFAULT;
-	[allowmixedmode setSelectedValue:val];
-	[section addElement:allowmixedmode];
-	[section setFooter:[NSString stringWithFormat:@"Allow %@ to load page resources from non-HTTPS hosts (useful for RSS readers and other aggregators)", ([host isDefault] ? @"HTTPS hosts" : @"this HTTPS host")]];
-	[root addSection:section];
-
-	/* block external lan requests */
-	
-	section = [[QSection alloc] init];
-	
-	QRadioElement *exlan = [self yesNoRadioElementWithDefault:(![host isDefault])];
-	[exlan setTitle:@"Block external LAN requests"];
-	val = [host setting:HOST_SETTINGS_KEY_BLOCK_LOCAL_NETS];
-	if (val == nil)
-		val = HOST_SETTINGS_DEFAULT;
-	[exlan setSelectedValue:val];
-	[section addElement:exlan];
-	[section setFooter:[NSString stringWithFormat:@"Resources loaded from %@ will be blocked from loading page elements or making requests to LAN hosts (192.168.0.0/16, 172.16.0.0/12, etc.)", ([host isDefault] ? @"hosts" : @"this host")]];
-	[root addSection:section];
-	
-	QuickDialogController *qdc = [QuickDialogController controllerForRoot:root];
-	
-	[qdc setWillDisappearCallback:^{
-		if (![host isDefault])
-			[host setHostname:[hostname textValue]];
+	{
+		XLFormSectionDescriptor *section = [XLFormSectionDescriptor formSection];
+		[section setTitle:@"Security"];
+		[form addFormSection:section];
 		
-		[host setSetting:HOST_SETTINGS_KEY_TLS toValue:(NSString *)[tls selectedValue]];
-		[host setSetting:HOST_SETTINGS_KEY_CSP toValue:(NSString *)[csp selectedValue]];
-		[host setSetting:HOST_SETTINGS_KEY_BLOCK_LOCAL_NETS toValue:(NSString *)[exlan selectedValue]];
-		[host setSetting:HOST_SETTINGS_KEY_WHITELIST_COOKIES toValue:(NSString *)[whitelistCookies selectedValue]];
-		[host setSetting:HOST_SETTINGS_KEY_ALLOW_MIXED_MODE toValue:(NSString *)[allowmixedmode selectedValue]];
+		/* tls version */
+		{
+			XLFormRowDescriptor *row = [XLFormRowDescriptor formRowDescriptorWithTag:HOST_SETTINGS_KEY_TLS rowType:XLFormRowDescriptorTypeSelectorActionSheet title:@"TLS version"];
+			
+			NSMutableArray *opts = [[NSMutableArray alloc] init];
+			if (![host isDefault])
+				[opts addObject:[XLFormOptionsObject formOptionsObjectWithValue:HOST_SETTINGS_DEFAULT displayText:@"(Use Default)"]];
+			[opts addObject:[XLFormOptionsObject formOptionsObjectWithValue:HOST_SETTINGS_TLS_12 displayText:@"TLS 1.2 Only"]];
+			[opts addObject:[XLFormOptionsObject formOptionsObjectWithValue:HOST_SETTINGS_TLS_AUTO displayText:@"TLS 1.2, 1.1, or 1.0"]];
+			[row setSelectorOptions:opts];
+			
+			NSString *val = [host setting:HOST_SETTINGS_KEY_TLS];
+			if (val == nil)
+				val = HOST_SETTINGS_DEFAULT;
+			
+			for (XLFormOptionsObject *opt in opts)
+				if ([[opt valueData] isEqualToString:val])
+					[row setValue:opt];
+			
+			[section setFooterTitle:[NSString stringWithFormat:@"Minimum version of TLS required by %@ to negotiate HTTPS connections", ([host isDefault] ? @"hosts" : @"this host")]];
+			[section addFormRow:row];
+		}
+		
+		/* content policy */
+		{
+			XLFormRowDescriptor *row = [XLFormRowDescriptor formRowDescriptorWithTag:HOST_SETTINGS_KEY_CSP rowType:XLFormRowDescriptorTypeSelectorActionSheet title:@"Content policy"];
+			
+			NSMutableArray *opts = [[NSMutableArray alloc] init];
+			if (![host isDefault])
+				[opts addObject:[XLFormOptionsObject formOptionsObjectWithValue:HOST_SETTINGS_DEFAULT displayText:@"(Use Default)"]];
+			[opts addObject:[XLFormOptionsObject formOptionsObjectWithValue:HOST_SETTINGS_CSP_OPEN displayText:@"Open (normal browsing mode)"]];
+			[opts addObject:[XLFormOptionsObject formOptionsObjectWithValue:HOST_SETTINGS_CSP_BLOCK_CONNECT displayText:@"No XHR/WebSockets/Video connections"]];
+			[opts addObject:[XLFormOptionsObject formOptionsObjectWithValue:HOST_SETTINGS_CSP_STRICT displayText:@"Strict (no JavaScript, video, etc.)"]];
+			[row setSelectorOptions:opts];
+			
+			NSString *val = [host setting:HOST_SETTINGS_KEY_CSP];
+			if (val == nil)
+				val = HOST_SETTINGS_DEFAULT;
+			
+			for (XLFormOptionsObject *opt in opts)
+				if ([[opt valueData] isEqualToString:val])
+					[row setValue:opt];
+			
+			section = [XLFormSectionDescriptor formSection];
+			[section setTitle:@""];
+			[section setFooterTitle:[NSString stringWithFormat:@"Restrictions on resources loaded from web pages%@", ([host isDefault] ? @"" : @" at this host")]];
+			[form addFormSection:section];
+			[section addFormRow:row];
+		}
+		
+		/* whitelist cookies */
+		{
+			XLFormRowDescriptor *row = [XLFormRowDescriptor formRowDescriptorWithTag:HOST_SETTINGS_KEY_ALLOW_MIXED_MODE rowType:XLFormRowDescriptorTypeSelectorActionSheet title:@"Allow mixed-mode resources"];
+			[self setYesNoSelectorOptionsForSetting:HOST_SETTINGS_KEY_ALLOW_MIXED_MODE host:host row:row withDefault:(![host isDefault])];
+			
+			section = [XLFormSectionDescriptor formSection];
+			[section setTitle:@""];
+			[section setFooterTitle:[NSString stringWithFormat:@"Allow %@ to load page resources from non-HTTPS hosts (useful for RSS readers and other aggregators)", ([host isDefault] ? @"HTTPS hosts" : @"this HTTPS host")]];
+			[form addFormSection:section];
+			[section addFormRow:row];
+		}
 
+		/* block external lan requests */
+		{
+			XLFormRowDescriptor *row = [XLFormRowDescriptor formRowDescriptorWithTag:HOST_SETTINGS_KEY_BLOCK_LOCAL_NETS rowType:XLFormRowDescriptorTypeSelectorActionSheet title:@"Block external LAN requests"];
+			[self setYesNoSelectorOptionsForSetting:HOST_SETTINGS_KEY_BLOCK_LOCAL_NETS host:host row:row withDefault:(![host isDefault])];
+			
+			section = [XLFormSectionDescriptor formSection];
+			[section setTitle:@""];
+			[section setFooterTitle:[NSString stringWithFormat:@"Resources loaded from %@ will be blocked from loading page elements or making requests to LAN hosts (192.168.0.0/16, 172.16.0.0/12, etc.)", ([host isDefault] ? @"external hosts" : @"this host")]];
+			[form addFormSection:section];
+			[section addFormRow:row];
+		}
+	}
+
+	HostSettingsXLFormViewController *formController = [[HostSettingsXLFormViewController alloc] initWithForm:form];
+	[formController setDisappearCallback:^(HostSettingsXLFormViewController *form) {
+		if (![host isDefault])
+			[host setHostname:[[form formValues] objectForKey:HOST_SETTINGS_KEY_HOST]];
+		
+		NSArray *keys = @[
+			HOST_SETTINGS_KEY_TLS,
+			HOST_SETTINGS_KEY_ALLOW_MIXED_MODE,
+			HOST_SETTINGS_KEY_BLOCK_LOCAL_NETS,
+			HOST_SETTINGS_KEY_WHITELIST_COOKIES,
+		];
+		
+		for (NSString *key in keys) {
+			XLFormOptionsObject *opt = [[form formValues] objectForKey:key];
+			if (opt)
+				[host setSetting:key toValue:(NSString *)[opt valueData]];
+		}
+		
 		[host save];
 		[HostSettings persist];
 	}];
-	
-	[[self navigationController] pushViewController:qdc animated:YES];
+
+	[[self navigationController] pushViewController:formController animated:YES];
 	self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Hosts" style:UIBarButtonItemStylePlain target:nil action:nil];
 }
 
-- (QRadioElement *)yesNoRadioElementWithDefault:(BOOL)withDefault
+- (void)setYesNoSelectorOptionsForSetting:(NSString *)key host:(HostSettings *)host row:(XLFormRowDescriptor *)row withDefault:(BOOL)withDefault
 {
-	NSMutableArray *items = [[NSMutableArray alloc] init];
+	NSMutableArray *opts = [[NSMutableArray alloc] init];
 	if (withDefault)
-		[items addObject:@"Default"];
-	[items addObjectsFromArray:@[ @"Yes", @"No" ]];
-	
-	QRadioElement *opt = [[QRadioElement alloc] initWithItems:items selected:0];
-	
-	NSMutableArray *vals = [[NSMutableArray alloc] init];
-	if (withDefault)
-		[vals addObject:HOST_SETTINGS_DEFAULT];
-	[vals addObjectsFromArray:@[ HOST_SETTINGS_VALUE_YES, HOST_SETTINGS_VALUE_NO ]];
-	[opt setValues:vals];
-	
-	return opt;
+		[opts addObject:[XLFormOptionsObject formOptionsObjectWithValue:HOST_SETTINGS_DEFAULT displayText:@"(Use Default)"]];
+	[opts addObject:[XLFormOptionsObject formOptionsObjectWithValue:HOST_SETTINGS_VALUE_YES displayText:@"Yes"]];
+	[opts addObject:[XLFormOptionsObject formOptionsObjectWithValue:HOST_SETTINGS_VALUE_NO displayText:@"No"]];
+	[row setSelectorOptions:opts];
+
+	NSString *val = [host setting:key];
+	if (val == nil)
+		val = HOST_SETTINGS_DEFAULT;
+
+	for (XLFormOptionsObject *opt in opts)
+		if ([[opt valueData] isEqualToString:val])
+			[row setValue:opt];
 }
 
 @end

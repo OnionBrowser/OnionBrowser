@@ -5,7 +5,7 @@ target "Endless" do
   pod "WYPopoverController", :git => "https://github.com/sammcewan/WYPopoverController.git"
   pod "DTFoundation"
   pod "OrderedDictionary"
-  pod "QuickDialog", :git => "https://github.com/jcs/QuickDialog.git"
+  pod "XLForm", :git => "https://github.com/jcs/XLForm.git"
   pod "TUSafariActivity"
 
   pod "Fabric"
