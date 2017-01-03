@@ -634,11 +634,12 @@
 	UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", @"Cancel") style:UIAlertActionStyleCancel handler:nil];
 	[alertController addAction:cancelAction];
 	
-	UIPopoverPresentationController *popover = alertController.popoverPresentationController;
-	
+	UIPopoverPresentationController *popover = [alertController popoverPresentationController];
 	if (popover) {
-		popover.sourceView = [[appDelegate webViewController] view];
-		popover.sourceRect = [[[appDelegate webViewController] view] bounds];
+		popover.sourceView = [sender view];
+		CGPoint loc = [sender locationInView:[sender view]];
+		/* offset for width of the finger */
+		popover.sourceRect = CGRectMake(loc.x + 35, loc.y, 1, 1);
 		popover.permittedArrowDirections = UIPopoverArrowDirectionAny;
 	}
 	
