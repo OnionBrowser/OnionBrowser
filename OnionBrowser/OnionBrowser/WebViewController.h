@@ -42,6 +42,7 @@ extern const char AlertViewIncomingUrl;
 - (void)askToLoadURL: (NSURL *)navigationURL;
 - (void)addressBarCancel;
 - (void)renderTorStatus: (NSString *)statusLine;
+- (void)removeTorProgressView;
 
 - (void)openOptionsMenu;
 - (void)openSettingsView;
@@ -54,7 +55,6 @@ extern const char AlertViewIncomingUrl;
 - (void)showBookmarks;
 - (void)addCurrentAsBookmark;
 - (void)updateButtons;
-- (void)updateTitle:(UIWebView*)aWebView;
 - (void)updateAddress:(NSURLRequest*)request;
 - (void)loadAddress:(id)sender event:(UIEvent*)event;
 - (void)informError:(NSError*)error;

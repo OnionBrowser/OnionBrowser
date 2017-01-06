@@ -328,6 +328,7 @@
         WebViewController *wvc = appDelegate.appWebView;
         if (!didFirstConnect) {
             if ([msgIn rangeOfString:@"BOOTSTRAP PROGRESS=100"].location != NSNotFound) {
+				[wvc removeTorProgressView];
                 // This is our first go-around (haven't loaded page into webView yet)
                 // but we are now at 100%, so go ahead.
                 if (appDelegate.startUrl != nil) {

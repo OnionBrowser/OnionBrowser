@@ -20,6 +20,9 @@
 #define ALERTVIEW_INCOMING_URL 3
 #define ALERTVIEW_TORFAIL 4
 
+#define SCREEN_HEIGHT [[UIScreen mainScreen] bounds].size.height
+#define SCREEN_WIDTH [[UIScreen mainScreen] bounds].size.width
+
 static const CGFloat kNavBarHeight = 52.0f;
 static const CGFloat kToolBarHeight = 44.0f;
 static const CGFloat kLabelHeight = 14.0f;
@@ -51,6 +54,10 @@ const char AlertViewIncomingUrl;
 @implementation WebViewController {
     NJKWebViewProgressView *_progressView;
     NJKWebViewProgress *_progressProxy;
+	UIProgressView *_torProgressView;
+	UIView *_torLoadingView;
+	UIView *_torDarkBackgroundView;
+	UILabel *_torProgressDescription;
 }
 
 @synthesize myWebView = _myWebView,
@@ -81,102 +88,45 @@ const char AlertViewIncomingUrl;
     self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
 }
 
+
+- (void)updateTorProgress:(NSNumber *)progress {
+	[_torProgressView setProgress:[progress floatValue] animated:YES];
+}
+
+- (void)removeTorProgressView {
+	[_torLoadingView removeFromSuperview];
+	[_torDarkBackgroundView removeFromSuperview];
+	_torLoadingView = nil;
+	_torDarkBackgroundView = nil;
+}
+
 - (void)renderTorStatus: (NSString *)statusLine {
-    UIWebView *loadingStatus = (UIWebView *)[self.view viewWithTag:kLoadingStatusTag];
+	NSRange progress_loc = [statusLine rangeOfString:@"BOOTSTRAP PROGRESS="];
+	NSRange progress_r = {
+		progress_loc.location+progress_loc.length,
+		3
+	};
+	NSString *progress_str = @"";
+	if (progress_loc.location != NSNotFound)
+		progress_str = [statusLine substringWithRange:progress_r];
 
-    _torStatus = [NSString stringWithFormat:@"%@\n%@",
-                  _torStatus, statusLine];
-    NSRange progress_loc = [statusLine rangeOfString:@"BOOTSTRAP PROGRESS="];
-    NSRange progress_r = {
-        progress_loc.location+progress_loc.length,
-        2
-    };
-    NSString *progress_str = @"";
-    if (progress_loc.location != NSNotFound)
-        progress_str = [statusLine substringWithRange:progress_r];
+	progress_str = [progress_str stringByReplacingOccurrencesOfString:@"%%" withString:@""];
+	progress_str = [progress_str stringByReplacingOccurrencesOfString:@" T" withString:@""]; // Remove a T which sometimes appears
 
-    NSRange summary_loc = [statusLine rangeOfString:@" SUMMARY="];
-    NSString *summary_str = @"";
-    if (summary_loc.location != NSNotFound)
-        summary_str = [statusLine substringFromIndex:summary_loc.location+summary_loc.length+1];
-    NSRange summary_loc2 = [summary_str rangeOfString:@"\""];
-    if (summary_loc2.location != NSNotFound)
-        summary_str = [summary_str substringToIndex:summary_loc2.location];
+	NSRange summary_loc = [statusLine rangeOfString:@" SUMMARY="];
+	NSString *summary_str = @"";
+	if (summary_loc.location != NSNotFound)
+		summary_str = [statusLine substringFromIndex:summary_loc.location+summary_loc.length+1];
+	NSRange summary_loc2 = [summary_str rangeOfString:@"\""];
+	if (summary_loc2.location != NSNotFound)
+		summary_str = [summary_str substringToIndex:summary_loc2.location];
 
-    unsigned int fontsize = 12;
-    NSString *margintop = @"1.5em";
-    if (IS_IPHONE && ((unsigned long)[[UIScreen mainScreen] bounds].size.height < 568)) {
-      //NSLog(@"iPhone 4");
-      fontsize = 11;
-    } else if (IS_IPHONE && ((unsigned long)[[UIScreen mainScreen] bounds].size.height >= 667) && ((unsigned long)[[UIScreen mainScreen] bounds].size.height < 736)) {
-      //NSLog(@"iPhone 6");
-      fontsize = 13;
-      margintop = @"50px";
-    } else if (IS_IPHONE && ((unsigned long)[[UIScreen mainScreen] bounds].size.height >= 736)) {
-      //NSLog(@"iPhone 6+");
-      fontsize = 15;
-      margintop = @"50px";
-    } else if (IS_IPAD) {
-      //NSLog(@"iPad");
-      fontsize = 20;
-      margintop = @"80px";
-    }
-    //NSLog(@"%lu", (unsigned long)[[UIScreen mainScreen] bounds].size.height);
+	[self performSelectorOnMainThread:@selector(updateTorProgress:) withObject:[NSNumber numberWithFloat:[progress_str intValue]/100.0] waitUntilDone:NO];
+	_torProgressDescription.text = [NSString stringWithFormat:@"%@%% - %@", progress_str, summary_str];
 
-	AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-	NSUInteger numBridges = [appDelegate numBridgesConfigured];
-
-	NSString *status = [NSString stringWithFormat:@""
-      "<html lang='en-us'><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'/><meta charset='utf-8' />"
-      "<style type='text/css'>body{font:%upt Helvetica;line-height:1.35em;margin-top:%@} "
-      "progress{background:#fff;border:0;height:18px;border-radius:9px;-webkit-appearance:none;appearance:none} "
-      "p{margin-bottom:1.5em}</style>"
-      "<meta name='viewport' content='width=300'/>"
-      "</head><body><div style='margin:0 0.5em;padding:0.5em 1em;border-radius:1em;background:#fafafa;border:1px solid #000'>"
-      "<p style='margin:0;padding:0;float:right;margin-top:0.5em;line-height:2em'>%@%%</p>"
-      "<p style='margin-top:1em'><span style='font-size:2em;font-weight:bold'>Connecting…</span></p>"
-      "<p>%@<br>"
-      "<progress max='100' value='%@' style='width:100%%'></progress><br></p>"
-      "<p>If this takes longer than a minute, please close and re-open the app.</p>"
-						,
-      fontsize,
-      margintop,
-      progress_str,
-      summary_str,
-      progress_str];
-
-	NSMutableDictionary *settings = appDelegate.getSettings;
-	NSInteger bridgeSetting = [[settings valueForKey:@"bridges"] integerValue];
-	if (bridgeSetting == TOR_BRIDGES_OBFS4) {
-		status = [status stringByAppendingString:@""
-				  "<p>Using provided obfs4 bridges. Press the middle (settings) button at the bottom of the screen to edit bridge configuration if you have issues connecting.</p>"];
-	} else if (bridgeSetting == TOR_BRIDGES_MEEKAMAZON) {
-		status = [status stringByAppendingString:@""
-				  "<p>Using meek (Amazon) bridge. Press the middle (settings) button at the bottom of the screen to edit bridge configuration if you have issues connecting.</p>"];
-	} else if (bridgeSetting == TOR_BRIDGES_MEEKAZURE) {
-		status = [status stringByAppendingString:@""
-				  "<p>Using meek (Azure) bridge. Press the middle (settings) button at the bottom of the screen to edit bridge configuration if you have issues connecting.</p>"];
-	} else if (numBridges == 0) {
-		status = [status stringByAppendingString:@""
-				  "<p>No bridges configured: connecting directly to Tor. If your ISP blocks connections to Tor, you may configure bridges by  "
-				  "pressing the middle (settings) button at the bottom of the screen.</p>"];
-	} else {
-		status = [status stringByAppendingString:[NSString stringWithFormat:@""
-				  "<p>Using %ld custom configured bridge", (unsigned long)numBridges]];
-		if (numBridges > 1) {
-			status = [status stringByAppendingString:@"s"];
-		}
-		status = [status stringByAppendingString:@". Press the middle (settings) button at the bottom of the screen to edit bridge configuration if you have issues connecting.</p>"];
+	if ([progress_str isEqualToString:@"100"]) {
+		[self performSelectorOnMainThread:@selector(removeTorProgressView) withObject:nil waitUntilDone:NO];
 	}
-
-	status = [status stringByAppendingString:@""
-			  "<p>If you continue to have issues, go to:<br><b>onionbrowser.com/help</b>"
-			  "</div></body></html>"];
-
-
-    //NSLog(@"%@", status);
-
-    [loadingStatus loadHTMLString:[status description] baseURL:nil];
 }
 
 -(void)askToLoadURL: (NSURL *)navigationURL {
@@ -312,8 +262,6 @@ const char AlertViewIncomingUrl;
     //}
 
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSString *reqSysVer = @"7.0";
-    NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
     size.height -= 20.0f;
     size.height -= kToolBarHeight;
     size.height -= kNavBarHeight;
@@ -418,35 +366,11 @@ const char AlertViewIncomingUrl;
     CGRect labelFrame = CGRectMake(kMargin, kSpacer,
                                    navBar.bounds.size.width - 2*kMargin, kLabelHeight);
 
-    /* if iOS < 7.0 */
-    if ([currSysVer compare:reqSysVer options:NSNumericSearch] == NSOrderedAscending) {
-        UILabel *label = [[UILabel alloc] initWithFrame:labelFrame];
-        label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        label.text = @"";
-        label.backgroundColor = [UIColor clearColor];
-        label.font = [UIFont systemFontOfSize:12];
-        label.textAlignment = NSTextAlignmentCenter;
-
-        [navBar setTintColor:[UIColor blackColor]];
-        [label setTextColor:[UIColor whiteColor]];
-
-        [navBar addSubview:label];
-        _pageTitleLabel = label;
-    }
-    /* endif */
-
     // The address field is the same with as the label and located just below
     // it with a gap of kSpacer
     CGRect addressFrame;
-    if ([currSysVer compare:reqSysVer options:NSNumericSearch] == NSOrderedAscending) {
-        /* if iOS < 7.0 */
-        addressFrame = CGRectMake(kMargin, kSpacer*2.0 + kLabelHeight,
-                                     labelFrame.size.width, kAddressHeight);
-    } else {
-        /*  iOS 7.0+ */
-        addressFrame = CGRectMake(kMargin, kSpacer7*2.0 + kLabelHeight,
-                                         labelFrame.size.width, kAddressHeight);
-    }
+    addressFrame = CGRectMake(kMargin, kSpacer7*2.0 + kLabelHeight,
+							  labelFrame.size.width, kAddressHeight);
     UITextField *address = [[UITextField alloc] initWithFrame:addressFrame];
 
     address.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -486,20 +410,53 @@ const char AlertViewIncomingUrl;
 
     // Since this is first load: set up the overlay "loading..." bit that
     // will display tor initialization status.
-    CGRect screenFrame = [[UIScreen mainScreen] applicationFrame];
-    UIWebView *loadingStatus = [[UIWebView alloc] initWithFrame:CGRectMake(0,
-                                                                       kNavBarHeight,
-                                                                       screenFrame.size.width,
-                                                                       screenFrame.size.height-kNavBarHeight*2.0)];
-    loadingStatus.opaque = NO;
-    loadingStatus.backgroundColor = [UIColor clearColor];
+	_torDarkBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+	_torDarkBackgroundView.backgroundColor = [UIColor blackColor];
+	_torDarkBackgroundView.alpha = 0.5;
+	[self.view addSubview:_torDarkBackgroundView];
 
-    [loadingStatus setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleRightMargin];
+	_torLoadingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 100)];
+	_torLoadingView.center = self.view.center;
+	_torLoadingView.layer.cornerRadius = 5.0f;
+	_torLoadingView.layer.masksToBounds = YES;
 
-    loadingStatus.tag = kLoadingStatusTag;
-    [self.view addSubview:loadingStatus];
-	[self.view bringSubviewToFront:loadingStatus];
-    if (appDelegate.doPrepopulateBookmarks){
+
+	UILabel *titleProgressLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, _torLoadingView.frame.size.width, 30)];
+	titleProgressLabel.text = NSLocalizedString(@"Initializing Tor…", nil);
+	titleProgressLabel.textAlignment = NSTextAlignmentCenter;
+	[_torLoadingView addSubview:titleProgressLabel];
+
+	UIButton *settingsButton = [[UIButton alloc] initWithFrame:CGRectMake(_torLoadingView.frame.size.width - 40, 10, 30, 30)];
+	[settingsButton setImage:[[UIImage imageNamed:@"Settings"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+	[settingsButton addTarget:self action:@selector(openOptionsMenu) forControlEvents:UIControlEventTouchUpInside];
+	[_torLoadingView addSubview:settingsButton];
+
+	_torProgressView = [[UIProgressView alloc] initWithFrame:CGRectMake(10, 50, _torLoadingView.frame.size.width - 20, 10)];
+	[_torLoadingView addSubview:_torProgressView];
+
+	_torProgressDescription = [[UILabel alloc] initWithFrame:CGRectMake(10, 60, _torLoadingView.frame.size.width - 20, 30)];
+	_torProgressDescription.numberOfLines = 1;
+	_torProgressDescription.textAlignment = NSTextAlignmentCenter;
+	_torProgressDescription.adjustsFontSizeToFitWidth = YES;
+	_torProgressDescription.text = @"0% - Starting";
+	[_torLoadingView addSubview:_torProgressDescription];
+
+	[self.view addSubview:_torLoadingView];
+
+	_torLoadingView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+	_torProgressDescription.textColor = [UIColor blackColor];
+	for (UIView *subview in [_torLoadingView subviews]) {
+		if ([subview class] == [UILabel class])
+			[(UILabel *)subview setTextColor:[UIColor blackColor]];
+		else if ([subview class] == [UIButton class])
+			[(UIButton *) subview setTintColor:self.view.tintColor];
+	}
+
+	[self.view bringSubviewToFront:_torDarkBackgroundView];
+	[self.view bringSubviewToFront:_torLoadingView];
+
+
+	if (appDelegate.doPrepopulateBookmarks){
         [self prePopulateBookmarks];
     }
 }
@@ -617,14 +574,12 @@ const char AlertViewIncomingUrl;
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     [self updateButtons];
-    [self updateTitle:webView];
     NSURLRequest* request = [webView request];
     [self updateAddress:request];
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     [self updateButtons];
-    [self updateTitle:webView];
     NSURLRequest* request = [webView request];
     [self updateAddress:request];
     [self informError:error];
@@ -871,20 +826,11 @@ const char AlertViewIncomingUrl;
 
     _addressField.clearButtonMode = UITextFieldViewModeNever;
 
-    NSString *reqSysVer = @"7.0";
-    NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
     CGRect addressFrame;
     CGRect labelFrame = CGRectMake(kMargin, kSpacer,
                                    navBar.bounds.size.width - 2*kMargin, kLabelHeight);
-    if ([currSysVer compare:reqSysVer options:NSNumericSearch] == NSOrderedAscending) {
-        /* if iOS < 7.0 */
-        addressFrame = CGRectMake(kMargin, kSpacer*2.0 + kLabelHeight,
-                                     labelFrame.size.width, kAddressHeight);
-    } else {
-        /*  iOS 7.0+ */
-        addressFrame = CGRectMake(kMargin, kSpacer7*2.0 + kLabelHeight,
-                                         labelFrame.size.width, kAddressHeight);
-    }
+	addressFrame = CGRectMake(kMargin, kSpacer7*2.0 + kLabelHeight,
+									 labelFrame.size.width, kAddressHeight);
 
     [UIView setAnimationsEnabled:YES];
     [UIView animateWithDuration:0.2
@@ -979,7 +925,6 @@ const char AlertViewIncomingUrl;
     [_myWebView stopLoading];
     _addressField.text = @"";
     [_myWebView goForward];
-    [self updateTitle:_myWebView];
     [self updateAddress:[_myWebView request]];
     [self updateButtons];
 }
@@ -987,14 +932,12 @@ const char AlertViewIncomingUrl;
     [_myWebView stopLoading];
     _addressField.text = @"";
     [_myWebView goBack];
-    [self updateTitle:_myWebView];
     [self updateAddress:[_myWebView request]];
     [self updateButtons];
 }
 - (void)stopLoading {
     [_progressView setProgress:1.0f animated:NO];
     [_myWebView stopLoading];
-    [self updateTitle:_myWebView];
     if (!_addressField.isEditing) {
         _addressField.text = _currentURL;
     }
@@ -1042,19 +985,6 @@ const char AlertViewIncomingUrl;
     [items addObject:_stopRefreshButton];
     [_toolbar setItems:items animated:NO];
 
-}
-
-- (void)updateTitle:(UIWebView*)aWebView
-{
-    NSString* pageTitle = [aWebView stringByEvaluatingJavaScriptFromString:@"document.title"];
-
-    /* if iOS < 7.0 */
-    NSString *reqSysVer = @"7.0";
-    NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
-    if ([currSysVer compare:reqSysVer options:NSNumericSearch] == NSOrderedAscending) {
-        _pageTitleLabel.text = pageTitle;
-    }
-    /* endif */
 }
 
 - (void)updateAddress:(NSURLRequest*)request {

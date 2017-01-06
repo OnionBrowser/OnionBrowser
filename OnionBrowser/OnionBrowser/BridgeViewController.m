@@ -77,7 +77,7 @@
     NSMutableDictionary *settings = appDelegate.getSettings;
     NSInteger ipv4v6Setting = [[settings valueForKey:@"tor_ipv4v6"] integerValue];
 
-    NSString *msg = @"IPv4 / IPv6 Connection Settings\n\nThis is an advanced setting and should only be modified if you know what you are doing and if you have unusual network needs.";
+    NSString *msg = @"IPv4 / IPv6 Connection Settings\n\nThis is an advanced setting and can result in connection issues.\n\nIf you are using a VPN and have issues connecting, try changing this to IPv4.";
 
 		if (ipv4v6Setting == OB_IPV4V6_AUTO) {
       NSInteger ipv6_status = [Ipv6Tester ipv6_status];
@@ -202,12 +202,15 @@
       if (indexPath.row == 0) {
             [settings setObject:[NSNumber numberWithInteger:OB_IPV4V6_AUTO] forKey:@"tor_ipv4v6"];
             [appDelegate saveSettings:settings];
+		  [self finishSave:nil];
       } else if (indexPath.row == 1) {
             [settings setObject:[NSNumber numberWithInteger:OB_IPV4V6_V4ONLY] forKey:@"tor_ipv4v6"];
             [appDelegate saveSettings:settings];
+		  [self finishSave:nil];
       } else if (indexPath.row == 2) {
             [settings setObject:[NSNumber numberWithInteger:OB_IPV4V6_V6ONLY] forKey:@"tor_ipv4v6"];
             [appDelegate saveSettings:settings];
+		  [self finishSave:nil];
       }
     }
 
@@ -235,19 +238,11 @@
 
     if (![appDelegate.tor didFirstConnect]) {
         NSString *msg;
-        if (numBridges == 0) {
-            msg = @"Bridge changes require an app restart. Onion Browser will now quit; reopen the app to connect without bridges.";
-            if (extraMsg != nil) {
-			         msg = [msg stringByAppendingString:@"\n\n"];
-			         msg = [msg stringByAppendingString:extraMsg];
-            }
-        } else {
-            msg = @"Bridge changes require an app restart. Onion Browser will now quit; reopen the app to use the new bridge connections.\n\n(If you restart and the app does not connect, press the \"settings\" button and try other bridges.)";
-            if (extraMsg != nil) {
-			         msg = [msg stringByAppendingString:@"\n\n"];
-			         msg = [msg stringByAppendingString:extraMsg];
-            }
-        }
+		msg = @"Network changes require an app restart. Onion Browser will now quit; reopen the app to use the new connection settings.";
+		if (extraMsg != nil) {
+				 msg = [msg stringByAppendingString:@"\n\n"];
+				 msg = [msg stringByAppendingString:extraMsg];
+		}
 
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Bridges Saved" message:msg preferredStyle:UIAlertControllerStyleAlert];
         [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
@@ -256,8 +251,6 @@
         }]];
         [self presentViewController:alert animated:YES completion:NULL];
 
-
-
     } else {
 
         NSString *pluralize = @" is";
@@ -265,11 +258,7 @@
             pluralize = @"s are";
         }
         NSString *msg;
-        if (numBridges == 0) {
-            msg = @"Bridges have been disabled. Bridge changes may require an app restart; press \"Quit App\" and reopen the app to connect without bridges.";
-        } else {
-            msg = [NSString stringWithFormat:@"%ld bridge%@ configured. Bridge changes may require an app restart; press \"Quit App\" and reopen the app to use the new bridge connections.\n\n(If you restart and the app does not connect, press the \"settings\" button and try other bridges.)", (unsigned long)numBridges, pluralize];
-        }
+        msg = @"Bridge changes may require an app restart; press \"Quit App\" and reopen the app to use the new connection settings.";
 
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Bridges Saved" message:msg preferredStyle:UIAlertControllerStyleAlert];
         [alert addAction:[UIAlertAction actionWithTitle:@"Continue anyway" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
