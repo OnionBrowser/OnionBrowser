@@ -1,6 +1,6 @@
 /*
  * Endless
- * Copyright (c) 2014-2015 joshua stein <jcs@jcs.org>
+ * Copyright (c) 2014-2017 joshua stein <jcs@jcs.org>
  *
  * See LICENSE file for redistribution terms.
  */
@@ -10,9 +10,13 @@
 #import "HTTPSEverywhere.h"
 #import "URLInterceptor.h"
 
+#import "UIResponder+FirstResponder.h"
+
 @implementation AppDelegate
 {
 	NSMutableArray *_keyCommands;
+	NSMutableArray *_allKeyBindings;
+	NSArray *_allCommandsAndKeyBindings;
 }
 
 - (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -24,7 +28,7 @@
 			CrashlyticsKit.delegate = self;
 			[Crashlytics startWithAPIKey:fabricAPIKey];
 		} else {
-			NSLog(@"no fabric.apikey found, not enabling fabric");
+			NSLog(@"[AppDelegate] no fabric.apikey found, not enabling fabric");
 		}
 	}
 	@catch (NSException *e) {
@@ -174,60 +178,100 @@
 			[_keyCommands addObject:[UIKeyCommand keyCommandWithInput:[NSString stringWithFormat:@"%d", (i == 10 ? 0 : i)] modifierFlags:UIKeyModifierCommand action:@selector(handleKeyboardShortcut:) discoverabilityTitle:[NSString stringWithFormat:@"Switch to Tab %d", i]]];
 	}
 	
-	return _keyCommands;
+	if (!_allKeyBindings) {
+		_allKeyBindings = [[NSMutableArray alloc] init];
+		const long modPermutations[] = {
+					     UIKeyModifierAlphaShift,
+					     UIKeyModifierShift,
+					     UIKeyModifierControl,
+					     UIKeyModifierAlternate,
+					     UIKeyModifierCommand,
+					     UIKeyModifierCommand | UIKeyModifierAlternate,
+					     UIKeyModifierCommand | UIKeyModifierControl,
+					     UIKeyModifierControl | UIKeyModifierAlternate,
+					     UIKeyModifierControl | UIKeyModifierCommand,
+					     UIKeyModifierControl | UIKeyModifierAlternate | UIKeyModifierCommand,
+					     kNilOptions,
+		};
+
+		NSString *chars = @"`1234567890-=\b\tqwertyuiop[]\\asdfghjkl;'\rzxcvbnm,./ ";
+		for (int j = 0; j < sizeof(modPermutations); j++) {
+			for (int i = 0; i < [chars length]; i++) {
+				NSString *c = [chars substringWithRange:NSMakeRange(i, 1)];
+
+				[_allKeyBindings addObject:[UIKeyCommand keyCommandWithInput:c modifierFlags:modPermutations[j] action:@selector(handleKeyboardShortcut:)]];
+			}
+		
+			[_allKeyBindings addObject:[UIKeyCommand keyCommandWithInput:UIKeyInputUpArrow modifierFlags:modPermutations[j] action:@selector(handleKeyboardShortcut:)]];
+			[_allKeyBindings addObject:[UIKeyCommand keyCommandWithInput:UIKeyInputDownArrow modifierFlags:modPermutations[j] action:@selector(handleKeyboardShortcut:)]];
+			[_allKeyBindings addObject:[UIKeyCommand keyCommandWithInput:UIKeyInputLeftArrow modifierFlags:modPermutations[j] action:@selector(handleKeyboardShortcut:)]];
+			[_allKeyBindings addObject:[UIKeyCommand keyCommandWithInput:UIKeyInputRightArrow modifierFlags:modPermutations[j] action:@selector(handleKeyboardShortcut:)]];
+			[_allKeyBindings addObject:[UIKeyCommand keyCommandWithInput:UIKeyInputEscape modifierFlags:modPermutations[j] action:@selector(handleKeyboardShortcut:)]];
+		}
+		
+		_allCommandsAndKeyBindings = [_keyCommands arrayByAddingObjectsFromArray:_allKeyBindings];
+	}
+	
+	/* if settings are up or something else, ignore shortcuts */
+	if (![[self topViewController] isKindOfClass:[WebViewController class]])
+		return nil;
+	
+	id cur = [UIResponder currentFirstResponder];
+	if (cur == nil || [NSStringFromClass([cur class]) isEqualToString:@"UIWebView"])
+		return _allCommandsAndKeyBindings;
+	else {
+#ifdef TRACE_KEYBOARD_INPUT
+		NSLog(@"[AppDelegate] current first responder is a %@, only passing shortcuts", NSStringFromClass([cur class]));
+#endif
+		return _keyCommands;
+	}
 }
 
 - (void)handleKeyboardShortcut:(UIKeyCommand *)keyCommand
 {
-	if ([keyCommand modifierFlags] != UIKeyModifierCommand)
-		return;
-	
-	/* if settings are up or something else, ignore it */
-	if (![[self topViewController] isKindOfClass:[WebViewController class]])
-		return;
-	
-	if ([[keyCommand input] isEqualToString:@"b"]) {
-		[[self webViewController] showBookmarksForEditing:NO];
-		return;
-	}
-
-	if ([[keyCommand input] isEqualToString:@"l"]) {
-		[[self webViewController] focusUrlField];
-		return;
-	}
-	
-	if ([[keyCommand input] isEqualToString:@"t"]) {
-		[[self webViewController] addNewTabForURL:nil forRestoration:NO withCompletionBlock:^(BOOL finished) {
-			[[self webViewController] focusUrlField];
-		}];
-		return;
-	}
-	
-	if ([[keyCommand input] isEqualToString:@"w"]) {
-		[[self webViewController] removeTab:[[[self webViewController] curWebViewTab] tabIndex]];
-		return;
-	}
-	
-	if ([[keyCommand input] isEqualToString:UIKeyInputLeftArrow]) {
-		[[[self webViewController] curWebViewTab] goBack];
-		return;
-	}
-	
-	if ([[keyCommand input] isEqualToString:UIKeyInputRightArrow]) {
-		[[[self webViewController] curWebViewTab] goForward];
-		return;
-	}
-
-	for (int i = 0; i <= 9; i++) {
-		if ([[keyCommand input] isEqualToString:[NSString stringWithFormat:@"%d", i]]) {
-			[[self webViewController] switchToTab:[NSNumber numberWithInt:(i == 0 ? 9 : i - 1)]];
+	if ([keyCommand modifierFlags] == UIKeyModifierCommand) {
+		if ([[keyCommand input] isEqualToString:@"b"]) {
+			[[self webViewController] showBookmarksForEditing:NO];
 			return;
+		}
+
+		if ([[keyCommand input] isEqualToString:@"l"]) {
+			[[self webViewController] focusUrlField];
+			return;
+		}
+		
+		if ([[keyCommand input] isEqualToString:@"t"]) {
+			[[self webViewController] addNewTabForURL:nil forRestoration:NO withCompletionBlock:^(BOOL finished) {
+				[[self webViewController] focusUrlField];
+			}];
+			return;
+		}
+		
+		if ([[keyCommand input] isEqualToString:@"w"]) {
+			[[self webViewController] removeTab:[[[self webViewController] curWebViewTab] tabIndex]];
+			return;
+		}
+		
+		if ([[keyCommand input] isEqualToString:UIKeyInputLeftArrow]) {
+			[[[self webViewController] curWebViewTab] goBack];
+			return;
+		}
+		
+		if ([[keyCommand input] isEqualToString:UIKeyInputRightArrow]) {
+			[[[self webViewController] curWebViewTab] goForward];
+			return;
+		}
+
+		for (int i = 0; i <= 9; i++) {
+			if ([[keyCommand input] isEqualToString:[NSString stringWithFormat:@"%d", i]]) {
+				[[self webViewController] switchToTab:[NSNumber numberWithInt:(i == 0 ? 9 : i - 1)]];
+				return;
+			}
 		}
 	}
 	
-#ifdef TRACE
-	NSLog(@"unrecognized key command: %@", [keyCommand input]);
-#endif
+	if ([self webViewController] && [[self webViewController] curWebViewTab])
+		[[[self webViewController] curWebViewTab] handleKeyCommand:keyCommand];
 }
 
 - (UIViewController *)topViewController

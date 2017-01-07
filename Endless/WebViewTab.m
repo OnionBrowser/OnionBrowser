@@ -1,6 +1,6 @@
 /*
  * Endless
- * Copyright (c) 2014-2015 joshua stein <jcs@jcs.org>
+ * Copyright (c) 2014-2017 joshua stein <jcs@jcs.org>
  *
  * See LICENSE file for redistribution terms.
  */
@@ -10,6 +10,7 @@
 #import "WebViewTab.h"
 
 #import "NSString+JavascriptEscape.h"
+#import "UIResponder+FirstResponder.h"
 
 @import WebKit;
 
@@ -736,6 +737,84 @@
 	}
 	
 	return [NSJSONSerialization JSONObjectWithData:[json dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:nil];
+}
+
+- (void)handleKeyCommand:(UIKeyCommand *)keyCommand
+{
+	BOOL ctrlKey = NO;
+	BOOL shiftKey = NO;
+	BOOL altKey = NO;
+	BOOL metaKey = NO;
+	
+	int keycode = 0;
+	int keypress_keycode = 0;
+
+	NSString *keyAction = nil;
+	
+	if ([keyCommand modifierFlags] & UIKeyModifierShift)
+		shiftKey = YES;
+	if ([keyCommand modifierFlags] & UIKeyModifierControl)
+		ctrlKey = YES;
+	if ([keyCommand modifierFlags] & UIKeyModifierAlternate)
+		altKey = YES;
+	if ([keyCommand modifierFlags] & UIKeyModifierCommand)
+		metaKey = YES;
+	
+	for (int i = 0; i < sizeof(keyboard_map); i++) {
+		struct keyboard_map_entry kme = keyboard_map[i];
+		
+		if ([[keyCommand input] isEqualToString:@(kme.input)]) {
+			keycode = kme.keycode;
+			
+			if (shiftKey)
+				keypress_keycode = kme.shift_keycode;
+			else
+				keypress_keycode = kme.keypress_keycode;
+			
+			break;
+		}
+	}
+	
+	if (!keycode) {
+		NSLog(@"[Tab %@] unknown hardware keyboard input: \"%@\"", self.tabIndex, [keyCommand input]);
+		return;
+	}
+	
+	if ([[keyCommand input] isEqualToString:@" "])
+		keyAction = @"__endless.smoothScroll(0, window.innerHeight * 0.75, 0, 0);";
+	else if ([[keyCommand input] isEqualToString:@"UIKeyInputLeftArrow"])
+		keyAction = @"__endless.smoothScroll(-75, 0, 0, 0);";
+	else if ([[keyCommand input] isEqualToString:@"UIKeyInputRightArrow"])
+		keyAction = @"__endless.smoothScroll(75, 0, 0, 0);";
+	else if ([[keyCommand input] isEqualToString:@"UIKeyInputUpArrow"]) {
+		if (metaKey)
+			keyAction = @"__endless.smoothScroll(0, 0, 1, 0);";
+		else
+			keyAction = @"__endless.smoothScroll(0, -75, 0, 0);";
+	}
+	else if ([[keyCommand input] isEqualToString:@"UIKeyInputDownArrow"]) {
+		if (metaKey)
+			keyAction = @"__endless.smoothScroll(0, 0, 0, 1);";
+		else
+			keyAction = @"__endless.smoothScroll(0, 75, 0, 0);";
+	}
+	
+	NSString *js = [NSString stringWithFormat:@"__endless.injectKey(%d, %d, %@, %@, %@, %@, %@);",
+		keycode,
+		keypress_keycode,
+		(ctrlKey ? @"true" : @"false"),
+		(altKey ? @"true" : @"false"),
+		(shiftKey ? @"true" : @"false"),
+		(metaKey ? @"true" : @"false"),
+		(keyAction ? [NSString stringWithFormat:@"function() { %@ }", keyAction] : @"null")
+	];
+	
+#ifdef TRACE_KEYBOARD_INPUT
+	NSLog(@"[Tab %@] hardware keyboard input: \"%@\", keycode %d, keypress keycode %d, modifiers (%ld): ctrl:%@, shift:%@, alt:%@, meta:%@", self.tabIndex, [keyCommand input], keycode, keypress_keycode, (long)[keyCommand modifierFlags], ctrlKey ? @"YES" : @"NO", shiftKey ? @"YES" : @"NO", altKey ? @"YES" : @"NO", metaKey ? @"YES" : @"NO");
+	NSLog(@"%@", js);
+#endif
+	
+	[[self webView] stringByEvaluatingJavaScriptFromString:js];
 }
 
 @end

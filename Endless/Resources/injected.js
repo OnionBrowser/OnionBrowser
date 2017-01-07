@@ -1,6 +1,6 @@
 /*
  * Endless
- * Copyright (c) 2014-2015 joshua stein <jcs@jcs.org>
+ * Copyright (c) 2014-2017 joshua stein <jcs@jcs.org>
  *
  * See LICENSE file for redistribution terms.
  */
@@ -80,6 +80,78 @@ var __endless = {
 		return tags;
 	},
 	
+	scrollingLoop: null,
+	scrollingDistanceX: 0,
+	scrollingDistanceY: 0,
+	scrollingPercent: 0,
+	scrollingStart: 0,
+	scrollingDuration: 0,
+	scrollingStartX: 0,
+	scrollingStartY: 0,
+	smoothScroll: function(x, y, top, bottom) {
+		var duration = 250; /* ms */
+		
+		if (this.scrollingStart && !top && !bottom) {
+			/* extend scroll */
+			this.scrollingDistanceX += x / 2;
+			this.scrollingDistanceY += y / 2;
+			duration *= 2;
+		} else {
+			this.scrollingStartX = window.scrollX;
+			this.scrollingStartY = window.scrollY;
+		
+			this.scrollingDistanceX = 0;
+			this.scrollingDistanceY = 0;
+
+			if (top)
+				this.scrollingDistanceY = -this.scrollingStartY;
+			else if (bottom)
+				this.scrollingDistanceY = document.documentElement.scrollHeight - this.scrollingStartY;
+			else {
+				this.scrollingDistanceX = x;
+				this.scrollingDistanceY = y;
+			}
+			
+			this.scrollingStart = new Date().getTime();
+		}
+
+		if (!this.scrollingDistanceX && !this.scrollingDistanceY)
+			return;
+		
+		var _this = this;
+		this.scrollingLoop = function loopScroll() {
+			_this.scrollingPercent = Math.min((new Date().getTime() - _this.scrollingStart) / duration, 1);
+			var x = Math.max(Math.floor(_this.scrollingStartX + (_this.scrollingDistanceX * (_this.scrollingPercent < 0.5 ? (2 * _this.scrollingPercent * _this.scrollingPercent) : (_this.scrollingPercent * (4 - (_this.scrollingPercent * 2)) - 1)))), 0);
+			var y = Math.max(Math.floor(_this.scrollingStartY + (_this.scrollingDistanceY * (_this.scrollingPercent < 0.5 ? (2 * _this.scrollingPercent * _this.scrollingPercent) : (_this.scrollingPercent * (4 - (_this.scrollingPercent * 2)) - 1)))), 0);
+			window.scrollTo(x, y);
+			if (_this.scrollingPercent < 1 && _this.scrollingLoop)
+				requestAnimationFrame(_this.scrollingLoop);
+			else {
+				_this.scrollingLoop = null;
+				_this.scrollingStart = 0;
+			}
+		};
+		this.scrollingLoop();
+	},
+	
+	injectKey: function(keycode, keypress_keycode, ctrl, alt, shift, meta, action) {
+		[ "keydown", "keypress", "keyup" ].forEach(function(kind) {
+			if (kind == "keypress" && !keypress_keycode)
+				return;
+							   
+			var e = document.createEvent("KeyboardEvent");
+			e.initKeyboardEvent(kind, false, true, document.body, "", 0, !!ctrl, !!alt, !!shift, !!meta, false);
+			Object.defineProperty(e, "keyCode", { writable: false, value: (kind == "keypress" ? keypress_keycode : keycode) } );
+			Object.defineProperty(e, "which", { writable: false, value: (kind == "keypress" ? keypress_keycode : keycode) } );
+			Object.defineProperty(e, "charCode", { writable: false, value: (kind == "keypress" ? keypress_keycode : 0) } );
+			Object.defineProperty(e, "target", { writable: false, value: document.body } );
+			var ret = document.dispatchEvent(e);
+			
+			if ((kind == "keypress" || (kind == "keydown" && !keypress_keycode)) && ret && action)
+				action();
+		});
+	},
+
 	onLoad: function() {
 		/* supress default long-press menu */
 		if (document && document.body)
@@ -222,7 +294,6 @@ var __endless = {
 		_log: function(urg, args) {
 			if (args.length == 1)
 				args = args[0];
-
 			__endless.ipc("console.log/" + urg + "?" +
 				encodeURIComponent(JSON.stringify(args)));
 		},
@@ -232,7 +303,7 @@ var __endless = {
 	console.info = function() { console._log("info", arguments); };
 	console.warn = function() { console._log("warn", arguments); };
 	console.error = function() { console._log("error", arguments); };
-
+ 
 	if (document.readyState == "complete" || document.readyState == "interactive")
 		__endless.onLoad();
 	else

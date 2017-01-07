@@ -16,6 +16,7 @@
 		0141D9711E0C9127003472BC /* fabric.buildsecret in Resources */ = {isa = PBXBuildFile; fileRef = 0141D96F1E0C9127003472BC /* fabric.buildsecret */; };
 		014E68A51B9BED3300D98A0A /* HostSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 014E68A41B9BED3300D98A0A /* HostSettingsController.m */; };
 		014E68A81B9BEDDC00D98A0A /* HostSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 014E68A71B9BEDDC00D98A0A /* HostSettings.m */; };
+		015748051E208C5000DB2044 /* UIResponder+FirstResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = 015748041E208C5000DB2044 /* UIResponder+FirstResponder.m */; };
 		016B2FCB1A53466D002D2730 /* hsts_preload.plist in Resources */ = {isa = PBXBuildFile; fileRef = 016B2FCA1A53466D002D2730 /* hsts_preload.plist */; };
 		016B2FCD1A5648AE002D2730 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016B2FCC1A5648AE002D2730 /* WebKit.framework */; };
 		01801E981A32CA2A002B4718 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 01801E971A32CA2A002B4718 /* main.m */; };
@@ -68,8 +69,8 @@
 		01F8794E1A412F8E00A63654 /* urlblocker_targets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01F8794D1A412F8E00A63654 /* urlblocker_targets.plist */; };
 		01F8794F1A412FA500A63654 /* urlblocker_targets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01F8794D1A412F8E00A63654 /* urlblocker_targets.plist */; };
 		01FC0E571B38FB6B00955D9A /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01FC0E561B38FB6B00955D9A /* Launch Screen.xib */; };
-		16DA8DE184C0091F18536F20 /* libPods-Endless.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 315CF2BFA8936E92311899A0 /* libPods-Endless.a */; };
-		CE368914C32E40C2F037D0C5 /* libPods-Endless Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D01DE4DD313261ECDBB8CEE8 /* libPods-Endless Tests.a */; };
+		AA9A5FECA2E668F834FDECD9 /* libPods-Endless.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 095BC7BD685DE17FADDBF166 /* libPods-Endless.a */; };
+		D919EA71FF999D55CCC96334 /* libPods-Endless Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FC10255E5E506A0C25D6276B /* libPods-Endless Tests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +98,8 @@
 		014E68A41B9BED3300D98A0A /* HostSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HostSettingsController.m; sourceTree = "<group>"; };
 		014E68A61B9BEDDC00D98A0A /* HostSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HostSettings.h; sourceTree = "<group>"; };
 		014E68A71B9BEDDC00D98A0A /* HostSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HostSettings.m; sourceTree = "<group>"; };
+		015748031E208C5000DB2044 /* UIResponder+FirstResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIResponder+FirstResponder.h"; sourceTree = "<group>"; };
+		015748041E208C5000DB2044 /* UIResponder+FirstResponder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+FirstResponder.m"; sourceTree = "<group>"; };
 		016B2FCA1A53466D002D2730 /* hsts_preload.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = hsts_preload.plist; path = Endless/Resources/hsts_preload.plist; sourceTree = "<group>"; };
 		016B2FCC1A5648AE002D2730 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		01801E921A32CA2A002B4718 /* Endless.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Endless.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -175,11 +178,11 @@
 		01F8794A1A41232E00A63654 /* credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = credits.html; path = Endless/Resources/credits.html; sourceTree = "<group>"; };
 		01F8794D1A412F8E00A63654 /* urlblocker_targets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = urlblocker_targets.plist; path = Endless/Resources/urlblocker_targets.plist; sourceTree = "<group>"; };
 		01FC0E561B38FB6B00955D9A /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "Launch Screen.xib"; path = "Endless/Resources/Launch Screen.xib"; sourceTree = "<group>"; };
-		315CF2BFA8936E92311899A0 /* libPods-Endless.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Endless.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		095BC7BD685DE17FADDBF166 /* libPods-Endless.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Endless.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BC57F74FB0E2BC3CDAB5D1D /* Pods-Endless Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Endless Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Endless Tests/Pods-Endless Tests.release.xcconfig"; sourceTree = "<group>"; };
 		7AD1EFF778D745256E109B84 /* Pods-Endless.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Endless.release.xcconfig"; path = "Pods/Target Support Files/Pods-Endless/Pods-Endless.release.xcconfig"; sourceTree = "<group>"; };
 		9E6A896A76F4F163B49219DB /* Pods-Endless.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Endless.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Endless/Pods-Endless.debug.xcconfig"; sourceTree = "<group>"; };
-		D01DE4DD313261ECDBB8CEE8 /* libPods-Endless Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Endless Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC10255E5E506A0C25D6276B /* libPods-Endless Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Endless Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDEC322B35C8D861612E24E3 /* Pods-Endless Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Endless Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Endless Tests/Pods-Endless Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -190,8 +193,8 @@
 			files = (
 				019516D11B7D8B400078586A /* libz.dylib in Frameworks */,
 				016B2FCD1A5648AE002D2730 /* WebKit.framework in Frameworks */,
-				16DA8DE184C0091F18536F20 /* libPods-Endless.a in Frameworks */,
 				01B834951E12F4E70050EAB5 /* StoreKit.framework in Frameworks */,
+				AA9A5FECA2E668F834FDECD9 /* libPods-Endless.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,7 +202,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE368914C32E40C2F037D0C5 /* libPods-Endless Tests.a in Frameworks */,
+				D919EA71FF999D55CCC96334 /* libPods-Endless Tests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,7 +236,6 @@
 		01801E941A32CA2A002B4718 /* Endless */ = {
 			isa = PBXGroup;
 			children = (
-				01D42C3B1E0A37DB00566022 /* Endless.entitlements */,
 				01801E991A32CA2A002B4718 /* AppDelegate.h */,
 				01801E9A1A32CA2A002B4718 /* AppDelegate.m */,
 				01AFEB471B4ED48000A02482 /* Bookmark.h */,
@@ -279,6 +281,7 @@
 		01801E951A32CA2A002B4718 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				01D42C3B1E0A37DB00566022 /* Endless.entitlements */,
 				018333CF1A351B3B00670CD1 /* Endless-Prefix.pch */,
 				01801E961A32CA2A002B4718 /* Info.plist */,
 				01801E971A32CA2A002B4718 /* main.m */,
@@ -288,6 +291,8 @@
 				01D7412E1A466AF0007B7033 /* NSString+JavascriptEscape.m */,
 				01D741301A49EA14007B7033 /* RuleEditorController.h */,
 				01D741311A49EA14007B7033 /* RuleEditorController.m */,
+				015748031E208C5000DB2044 /* UIResponder+FirstResponder.h */,
+				015748041E208C5000DB2044 /* UIResponder+FirstResponder.m */,
 			);
 			name = "Supporting Files";
 			path = Endless;
@@ -374,8 +379,8 @@
 				019516D01B7D8B400078586A /* libz.dylib */,
 				016B2FCC1A5648AE002D2730 /* WebKit.framework */,
 				018333EB1A357D8B00670CD1 /* libPods-OCMock.a */,
-				D01DE4DD313261ECDBB8CEE8 /* libPods-Endless Tests.a */,
-				315CF2BFA8936E92311899A0 /* libPods-Endless.a */,
+				095BC7BD685DE17FADDBF166 /* libPods-Endless.a */,
+				FC10255E5E506A0C25D6276B /* libPods-Endless Tests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -658,6 +663,7 @@
 				01AFEB371B4DBA8D00A02482 /* BookmarkController.m in Sources */,
 				010EEA661A43A536001E8B65 /* CookieController.m in Sources */,
 				01EFA7FF1A63851400688398 /* LocalNetworkChecker.m in Sources */,
+				015748051E208C5000DB2044 /* UIResponder+FirstResponder.m in Sources */,
 				019516CC1B7D858C0078586A /* CKHTTPConnection.m in Sources */,
 				0182AD9B1AACC55400F3B7ED /* HTTPSEverywhereRuleController.m in Sources */,
 				010EEA691A43C8CF001E8B65 /* CookieJar.m in Sources */,
