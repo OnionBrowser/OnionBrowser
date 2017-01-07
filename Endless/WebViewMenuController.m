@@ -229,6 +229,14 @@ NSString * const LABEL = @"L";
 {
 	TUSafariActivity *activity = [[TUSafariActivity alloc] init];
 	UIActivityViewController *avc = [[UIActivityViewController alloc] initWithActivityItems:@[ [[[appDelegate webViewController] curWebViewTab] url] ] applicationActivities:@[ activity ]];
+	
+	UIPopoverPresentationController *popover = [avc popoverPresentationController];
+	if (popover) {
+		popover.sourceView = [[appDelegate webViewController] settingsButton];
+		popover.sourceRect = CGRectMake(1, popover.sourceView.frame.size.height / 2, 1, 1);
+		popover.permittedArrowDirections = UIPopoverArrowDirectionAny;
+	}
+
 	[[appDelegate webViewController] presentViewController:avc animated:YES completion:nil];
 }
 

@@ -197,7 +197,7 @@
 	[self.view.window makeKeyAndVisible];
 }
 
-- (id)settingsButton
+- (UIButton *)settingsButton
 {
 	return settingsButton;
 }

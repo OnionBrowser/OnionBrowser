@@ -24,7 +24,7 @@
 - (NSMutableArray *)webViewTabs;
 - (__strong WebViewTab *)curWebViewTab;
 
-- (id)settingsButton;
+- (UIButton *)settingsButton;
 
 - (void)viewIsVisible;
 - (void)viewIsNoLongerVisible;
