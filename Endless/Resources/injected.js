@@ -43,8 +43,7 @@ var __endless = {
 			return Math.floor((1 + Math.random()) * 0x10000).toString(16)
 				.substring(1);
 		}
-		return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' +
-			s4() + s4() + s4();
+		return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
 	},
 
 	hookIntoBlankAs: function() {
@@ -60,8 +59,7 @@ var __endless = {
 					return false;
 				}
 				else {
-					console.log("not opening _blank a from " + event.type +
-						" event");
+					console.log("not opening _blank a from " + event.type + " event");
 				}
 			}
 		}, false);
@@ -196,18 +194,15 @@ var __endless = {
 		constructor: __endless.FakeLocation,
 	};
 
-	[ "hash", "hostname", "href", "pathname", "port", "protocol", "search",
-	"username", "password", "origin" ].forEach(function(property) {
+	[ "hash", "hostname", "href", "pathname", "port", "protocol", "search", "username", "password", "origin" ].forEach(function(property) {
 		Object.defineProperty(__endless.FakeLocation.prototype, property, {
 			set: function(v) {
 				eval("this._" + property + " = null;");
-				__endless.ipcAndWaitForReply("fakeWindow.setLocationParam/" +
-					this.id + "/" + property + "?" + encodeURIComponent(v));
+				__endless.ipcAndWaitForReply("fakeWindow.setLocationParam/" + this.id + "/" + property + "?" + encodeURIComponent(v));
 			},
 			get: function() {
 				eval("this._" + property + " = null;");
-				__endless.ipcAndWaitForReply("fakeWindow.getLocationParam/" +
-					this.id + "/" + property + "?" + encodeURIComponent(v));
+				__endless.ipcAndWaitForReply("fakeWindow.getLocationParam/" + this.id + "/" + property + "?" + encodeURIComponent(v));
 			},
 		});
 	});
@@ -217,14 +212,12 @@ var __endless = {
 
 		set location(loc) {
 			this._location = new __endless.FakeLocation();
-			__endless.ipcAndWaitForReply("fakeWindow.setLocation/" + this.id +
-				"?" + encodeURIComponent(loc));
+			__endless.ipcAndWaitForReply("fakeWindow.setLocation/" + this.id + "?" + encodeURIComponent(loc));
 			this._location.id = this.id;
 		},
 		set name(n) {
 			this._name = null;
-			__endless.ipcAndWaitForReply("fakeWindow.setName/" + this.id + "?" +
-				encodeURIComponent(n));
+			__endless.ipcAndWaitForReply("fakeWindow.setName/" + this.id + "?" + encodeURIComponent(n));
 		},
 		set opener(o) {
 		},
