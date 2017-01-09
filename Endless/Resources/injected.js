@@ -48,6 +48,9 @@ var __endless = {
 	},
 
 	hookIntoBlankAs: function() {
+		if (!document.body)
+			return;
+		
 		document.body.addEventListener("click", function() {
 			if (event.target.tagName == "A" && event.target.target == "_blank") {
 				if (event.type == "click") {
