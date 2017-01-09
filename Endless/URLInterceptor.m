@@ -118,15 +118,35 @@ static NSString *_javascriptToInject;
 	}
 	
 	for (NSString *newDir in [directives allKeys]) {
-		NSString *newval = [directives objectForKey:newDir];
+		NSArray *newvals = [directives objectForKey:newDir];
 		NSString *curval = [curDirectives objectForKey:newDir];
 		if (curval) {
+			NSString *newval = [newvals objectAtIndex:0];
+			
 			/*
-			 * CSP spec says if 'none' is encountered to ignore anything else, so if
-			 * 'none' is there, just replace it with newval rather than prepending
+			 * If none of the existing values for this directive have a nonce or hash,
+			 * then inserting our value with a nonce will cause the directive to become
+			 * strict, so "'nonce-abcd' 'self' 'unsafe-inline'" causes the browser to
+			 * ignore 'self' and 'unsafe-inline', requiring that all scripts have a
+			 * nonce or hash.  Since the site would probably only ever have nonce values
+			 * in its <script> tags if it was in the CSP policy, only include our nonce
+			 * value if the CSP policy already has them.
 			 */
-			if (![curval containsString:@"'none'"])
-				newval = [NSString stringWithFormat:@"%@ %@", newval, curval];
+			if ([curval containsString:@"'nonce-"] || [curval containsString:@"'sha"])
+				newval = [newvals objectAtIndex:1];
+			 
+			if ([curval containsString:@"'none'"]) {
+				/*
+				 * CSP spec says if 'none' is encountered to ignore anything else,
+				 * so if 'none' is there, just replace it with newval rather than
+				 * prepending.
+				 */
+			} else {
+				if ([newval isEqualToString:@""])
+					newval = curval;
+				else
+					newval = [NSString stringWithFormat:@"%@ %@", newval, curval];
+			}
 			
 			[curDirectives setObject:newval forKey:newDir];
 		}
@@ -366,15 +386,13 @@ static NSString *_javascriptToInject;
 	}
 	
 	/* rewrite or inject Content-Security-Policy (and X-Webkit-CSP just in case) headers */
-	NSString *CSPheader;
+	NSString *CSPheader = nil;
 	NSString *CSPmode = [self.originHostSettings setting:HOST_SETTINGS_KEY_CSP];
 
 	if ([CSPmode isEqualToString:HOST_SETTINGS_CSP_STRICT])
 		CSPheader = @"media-src 'none'; object-src 'none'; connect-src 'none'; font-src 'none'; sandbox allow-forms allow-top-navigation; style-src 'unsafe-inline' *; report-uri;";
 	else if ([CSPmode isEqualToString:HOST_SETTINGS_CSP_BLOCK_CONNECT])
 		CSPheader = @"connect-src 'none'; media-src 'none'; object-src 'none'; report-uri;";
-	else
-		CSPheader = nil;
 	
 	NSString *curCSP = [self caseInsensitiveHeader:@"content-security-policy" inResponse:response];
 	
@@ -384,14 +402,16 @@ static NSString *_javascriptToInject;
 
 	NSMutableDictionary *mHeaders = [[NSMutableDictionary alloc] initWithDictionary:[response allHeaderFields]];
 	
+	/* don't bother rewriting with the header if we don't want a restrictive one (CSPheader) and the site doesn't have one (curCSP) */
 	if (CSPheader != nil || curCSP != nil) {
 		BOOL foundCSP = false;
 		
+		/* directives and their values (normal and nonced versions) to prepend */
 		NSDictionary *wantedDirectives = @{
-			@"child-src": @"endlessipc:",
-			@"default-src" : [NSString stringWithFormat:@"'nonce-%@' endlessipc:", [self cspNonce]],
-			@"frame-src": @"endlessipc:",
-			@"script-src" : [NSString stringWithFormat:@"'nonce-%@'", [self cspNonce]],
+			@"child-src": @[ @"endlessipc:", @"endlessipc:" ],
+			@"default-src" : @[ @"endlessipc:", [NSString stringWithFormat:@"'nonce-%@' endlessipc:", [self cspNonce]] ],
+			@"frame-src": @[ @"endlessipc:", @"endlessipc:" ],
+			@"script-src" : @[ @"", [NSString stringWithFormat:@"'nonce-%@'", [self cspNonce]] ],
 		};
 
 		for (id h in [mHeaders allKeys]) {

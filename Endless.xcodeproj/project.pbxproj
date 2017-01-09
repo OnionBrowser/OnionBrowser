@@ -321,12 +321,12 @@
 			isa = PBXGroup;
 			children = (
 				01D741291A45EDD1007B7033 /* CookieJar_Tests.m */,
-				01D42C3C1E0A4FE400566022 /* URLInterceptor_Tests.m */,
 				01F7CB4A1A526B9C00F42B73 /* HSTSCache_Tests.m */,
 				018333DB1A35727C00670CD1 /* HTTPSEverywhere_Tests.m */,
 				0141D9691E0C66F1003472BC /* LocalNetworkChecker_Tests.m */,
 				01F2AE411B827BC200D5651A /* SSLCertificate_Tests.m */,
 				01F879401A4112E500A63654 /* URLBlocker_Tests.m */,
+				01D42C3C1E0A4FE400566022 /* URLInterceptor_Tests.m */,
 				018333D91A35727C00670CD1 /* Supporting Files */,
 			);
 			path = "Endless Tests";
