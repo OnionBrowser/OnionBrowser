@@ -1,7 +1,9 @@
 /*
+ * Note: This block of Javascript has been injected via the Endless browser and is
+ * not a part of this website.
+ *
  * Endless
  * Copyright (c) 2014-2017 joshua stein <jcs@jcs.org>
- *
  * See LICENSE file for redistribution terms.
  */
 
@@ -250,10 +252,12 @@ var __endless = {
 
 		__endless.openedTabs[id] = new __endless.FakeWindow(id);
 
-		/* fake a mouse event clicking on a link, so that our webview sees the
-		 * navigation type as a mouse event; this prevents popup spam since
+		/*
+		 * Fake a mouse event clicking on a link, so that our webview sees the
+		 * navigation type as a mouse event.  This prevents popup spam since
 		 * dispatchEvent() won't do anything if we're not in a mouse event
-		 * already */
+		 * already.
+		 */
 		var l = document.createElement("a");
 		l.setAttribute("href", "endlessipc://window.open/" + id);
 		l.setAttribute("target", "_blank");
