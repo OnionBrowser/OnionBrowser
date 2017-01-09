@@ -76,16 +76,16 @@
 	
 	/* we didn't see the header for "eff.org", so subdomains have to be of www */
 	output = [hstsCache rewrittenURI:[NSURL URLWithString:@"http://subdomain.eff.org/test"]];
-	XCTAssertFalse([[output absoluteString] isEqualToString:@"https://subdomain.eff.org/test"]);
+	XCTAssertNotEqualObjects([output absoluteString], @"https://subdomain.eff.org/test");
 	
 	output = [hstsCache rewrittenURI:[NSURL URLWithString:@"http://subdomain.www.eff.org/test"]];
-	XCTAssertTrue([[output absoluteString] isEqualToString:@"https://subdomain.www.eff.org/test"]);
+	XCTAssertEqualObjects([output absoluteString], @"https://subdomain.www.eff.org/test");
 
 	output = [hstsCache rewrittenURI:[NSURL URLWithString:@"http://www.eff.org:1234/?what#hi"]];
-	XCTAssertTrue([[output absoluteString] isEqualToString:@"https://www.eff.org:1234/?what#hi"]);
+	XCTAssertEqualObjects([output absoluteString], @"https://www.eff.org:1234/?what#hi");
 	
 	output = [hstsCache rewrittenURI:[NSURL URLWithString:@"http://www.eff.org:80/?what#hi"]];
-	XCTAssertTrue([[output absoluteString] isEqualToString:@"https://www.eff.org/?what#hi"]);
+	XCTAssertEqualObjects([output absoluteString], @"https://www.eff.org/?what#hi");
 }
 
 - (void)testExpiring
@@ -93,7 +93,7 @@
 	[hstsCache parseHSTSHeader:@"max-age=2; includeSubDomains" forHost:@"example.com"];
 	
 	NSURL *output = [hstsCache rewrittenURI:[NSURL URLWithString:@"http://www.example.com/"]];
-	XCTAssertTrue([[output absoluteString] isEqualToString:@"https://www.example.com/"]);
+	XCTAssertEqualObjects([output absoluteString], @"https://www.example.com/");
 	
 	NSDate *timeoutDate = [NSDate dateWithTimeIntervalSinceNow:4];
 	
@@ -105,7 +105,7 @@
 	
 	/* expired */
 	output = [hstsCache rewrittenURI:[NSURL URLWithString:@"http://www.example.com/"]];
-	XCTAssertTrue([[output absoluteString] isEqualToString:@"http://www.example.com/"]);
+	XCTAssertEqualObjects([output absoluteString], @"http://www.example.com/");
 }
 
 @end
