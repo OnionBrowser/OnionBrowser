@@ -286,20 +286,17 @@ var __endless = {
 	};
 
 	/* pipe back to app */
-	console = {
-		_log: function(urg, args) {
-			if (args.length == 1)
-				args = args[0];
-			__endless.ipc("console.log/" + urg + "?" +
-				encodeURIComponent(JSON.stringify(args)));
-		},
+	console._log = function(urg, args) {
+		if (args.length == 1)
+			args = args[0];
+		__endless.ipc("console.log/" + urg + "?" + encodeURIComponent(JSON.stringify(args)));
 	};
 	console.log = function() { console._log("log", arguments); };
 	console.debug = function() { console._log("debug", arguments); };
 	console.info = function() { console._log("info", arguments); };
 	console.warn = function() { console._log("warn", arguments); };
 	console.error = function() { console._log("error", arguments); };
- 
+
 	if (document.readyState == "complete" || document.readyState == "interactive")
 		__endless.onLoad();
 	else
