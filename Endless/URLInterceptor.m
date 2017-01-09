@@ -511,10 +511,11 @@ static NSString *_javascriptToInject;
 	
 	NSData *newData;
 	if (encoding) {
-		// Try to un-gzip the data we've received so far.
-		// If we get nil (it's incomplete gzip data), continue to
-		// buffer it before passing it along. If we *can* ungzip it,
-		// pass the ugzip'd data along and reset the buffer.
+		/*
+		 * Try to un-gzip the data we've received so far.  If we get nil (it's incomplete gzip data),
+		 * continue to buffer it before passing it along. If we *can* ungzip it, pass the ugzip'd data
+		 * along and reset the buffer.
+		 */
 		if (encoding == ENCODING_DEFLATE)
 			newData = [_data zlibInflate];
 		else if (encoding == ENCODING_GZIP)
@@ -529,12 +530,8 @@ static NSString *_javascriptToInject;
 			if (self.isOrigin) {
 				NSMutableData *tData = [[NSMutableData alloc] init];
 				if (contentType == CONTENT_TYPE_HTML)
-					// prepend a doctype to force into standards mode and throw in any javascript overrides
+					/* prepend a doctype to force into standards mode and throw in any javascript overrides */
 					[tData appendData:[[NSString stringWithFormat:@"<!DOCTYPE html><script type=\"text/javascript\" nonce=\"%@\">%@</script>", [self cspNonce], [[self class] javascriptToInject]] dataUsingEncoding:NSUTF8StringEncoding]];
-				/*
-				 else if (contentType == CONTENT_TYPE_JAVASCRIPT)
-					[tData appendData:[[NSString stringWithFormat:@"%@\n", [[self class] javascriptToInject]] dataUsingEncoding:NSUTF8StringEncoding]];
-				 */
 				
 				[tData appendData:newData];
 				newData = tData;
