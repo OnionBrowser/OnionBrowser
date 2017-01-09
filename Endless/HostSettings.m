@@ -90,12 +90,8 @@ static NSMutableDictionary *_hosts;
 		}
 	}
 	
-	if (!hs) {
-#ifdef TRACE_HOST_SETTINGS
-		NSLog(@"[HostSettings] using default settings for %@", host);
-#endif
+	if (!hs)
 		hs = [self defaultHostSettings];
-	}
 
 	return hs;
 }
