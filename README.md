@@ -1,20 +1,28 @@
 ###Endless
 
-A (Mobile)Safari-like web browser for iOS (wrapping around UIWebView, of
-course) with a design goal of increased security and privacy.
+[![https://endl.es/appstore.svg](https://endl.es/appstore.svg)](https://itunes.apple.com/us/app/endless-browser/id974745755?mt=8)
+
+An open-source MobileSafari-like web browser for iOS ([wrapping around
+UIWebView](#infrequently-asked-questions)) with a design goal of increased security and privacy.
 
 Current builds are available for free in the
-[App Store](https://itunes.apple.com/us/app/endless-browser/id974745755?mt=8).
+[App Store](https://itunes.apple.com/us/app/endless-browser/id974745755?mt=8)
+and include (completely optional) in-app purchases to contribute to the funding
+of continued development.
 
-Please see the [LICENSE](https://github.com/jcs/endless/blob/master/LICENSE)
-file for redistribution terms.  Redistribution of this software in binary
+While this software is open source and you are free to modify it and use
+it on your own devices, redistribution of this software in binary
 form, with or without modification, is not permitted.
+Please see the [LICENSE](https://github.com/jcs/endless/blob/master/LICENSE)
+for redistribution terms.
+Commercial redistribution license exclusions are available; please
+[contact me](https://jcs.org/about) for more information.
 
-#####Screenshots
+####Screenshots
 
 ![https://i.imgur.com/8FgHAWZ.png](https://i.imgur.com/8FgHAWZ.png) ![https://i.imgur.com/evQ63JX.png](https://i.imgur.com/evQ63JX.png)
 
-#####Basic browser functionality implemented:
+####Basic browser functionality implemented:
 
 - Basics of entering URLs, following redirections, back, forward, cookie
   storage, HTTP basic authentication
@@ -35,7 +43,8 @@ form, with or without modification, is not permitted.
 
 - Optional dark/night-time interface
 
-- Keyboard shortcuts for common functions like Command+T for new tab,
+- Full hardware keyboard support for websites that support keyboard shortcuts,
+  as well as global shortcuts for common functions like Command+T for new tab,
   Command+W to close, Command+L to focus URL field, etc.
 
 #####Security and privacy-focused features implemented:
@@ -99,3 +108,17 @@ form, with or without modification, is not permitted.
 - Integrated [1Password button](https://github.com/AgileBits/onepassword-app-extension)
   to autofill website logins, passwords, credit card numbers, etc.; requires
   the 1Password iOS app to be installed (and is not enabled if not installed)
+
+####Infrequently Asked Questions
+
+1. Why does this software still use UIWebView instead of the newer WKWebView?
+
+WKWebView was introduced in iOS 8 to replace UIWebView and it brought about a bunch of
+new features that are useful when creating a web browser (Firefox and Chrome for iOS
+both use WKWebView) such as page loading progress callbacks and a newer, faster
+Javascript engine.  Unfortunately Apple [removed the ability](https://github.com/brave/browser-ios/issues/96)
+to use a custom NSURLProtocol class, which can intercept each request and response
+between the browser engine and the web server.
+
+This is a critical component to Endless and is how it does things like change TLS
+ciphers, block tracking scripts, and do restrictive CSP header manipulation.
