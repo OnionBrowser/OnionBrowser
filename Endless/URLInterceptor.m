@@ -404,7 +404,7 @@ static NSString *_javascriptToInject;
 	
 	/* don't bother rewriting with the header if we don't want a restrictive one (CSPheader) and the site doesn't have one (curCSP) */
 	if (CSPheader != nil || curCSP != nil) {
-		BOOL foundCSP = false;
+		id foundCSP = nil;
 		
 		/* directives and their values (normal and nonced versions) to prepend */
 		NSDictionary *wantedDirectives = @{
@@ -426,7 +426,7 @@ static NSString *_javascriptToInject;
 				hv = [URLInterceptor prependDirectivesIfExisting:wantedDirectives inCSPHeader:hv];
 				
 				[mHeaders setObject:hv forKey:h];
-				foundCSP = true;
+				foundCSP = hv;
 			}
 			else if ([[h lowercaseString] isEqualToString:@"cache-control"]) {
 				/* ignore */
@@ -438,10 +438,11 @@ static NSString *_javascriptToInject;
 		if (!foundCSP && CSPheader) {
 			[mHeaders setObject:CSPheader forKey:@"Content-Security-Policy"];
 			[mHeaders setObject:CSPheader forKey:@"X-WebKit-CSP"];
+			foundCSP = CSPheader;
 		}
 		
 #ifdef TRACE_HOST_SETTINGS
-		NSLog(@"[HostSettings] [Tab %@] CSP header is now %@", wvt.tabIndex, [mHeaders objectForKey:@"Content-Security-Policy"]);
+		NSLog(@"[HostSettings] [Tab %@] CSP header is now %@", wvt.tabIndex, foundCSP);
 #endif
 	}
 
