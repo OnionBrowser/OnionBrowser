@@ -296,10 +296,6 @@
 			[self addNewTabForURL:[NSURL URLWithString:homepage]];
 		}
 	}
-#if 0
-	/* in case our orientation changed, or the status bar changed height (which can take a few millis for animation) */
-	[self performSelector:@selector(viewDidLayoutSubviews) withObject:nil afterDelay:0.5];
-#endif
 }
 
 - (void)viewIsNoLongerVisible
