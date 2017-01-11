@@ -1,2 +1,2 @@
-#github "iCepa/Tor.framework" "bce57fc7e48939ee9870125612724d0b5764ecf4"
-github "mtigas/Tor.framework" "7a322b1d82a22511f6cd2986fcbd3c786c52182a"
+#github "iCepa/Tor.framework" "e89aa869097688f3bb173f02106d1b19b468bbf7"
+github "mtigas/Tor.framework" "tor-0.2.9.8-openssl-1.0.2j"
