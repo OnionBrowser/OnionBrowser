@@ -233,6 +233,11 @@
 		if (response && CFHTTPMessageIsHeaderComplete(response)) {
 			NSHTTPURLResponse *URLResponse = [[NSHTTPURLResponse alloc] initWithURL:URL statusCode:CFHTTPMessageGetResponseStatusCode(response) HTTPVersion:(__bridge NSString * _Nullable)(CFHTTPMessageCopyVersion(response)) headerFields:(__bridge NSDictionary<NSString *,NSString *> * _Nullable)(CFHTTPMessageCopyAllHeaderFields(response))];
 			
+#ifdef TRACE_RAW_HTTP
+			NSData *d = (__bridge NSData *)CFHTTPMessageCopySerializedMessage((__bridge CFHTTPMessageRef _Nonnull)([_HTTPStream propertyForKey:(NSString *)kCFStreamPropertyHTTPResponseHeader]));
+			NSLog(@"[CKHTTPConnection] final response for %@\n%@", URL, [[[NSString alloc] initWithBytes:[d bytes] length:[d length] encoding:NSUTF8StringEncoding] stringByReplacingOccurrencesOfString:@"\r" withString:@""]);
+#endif
+			
 			/* work around bug where CFHTTPMessageIsHeaderComplete reports true but there is no actual header data to be found */
 			if ([URLResponse statusCode] == 200 && [URLResponse expectedContentLength] == 0 && [[URLResponse allHeaderFields] count] == 0) {
 #ifdef TRACE
