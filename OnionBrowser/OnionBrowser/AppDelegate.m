@@ -486,12 +486,14 @@
       //       https://trac.torproject.org/projects/tor/ticket/20996
 			[myHandle writeData:[@"\nClientUseIPv4 0\nClientUseIPv6 1\nUseMicrodescriptors 0\n" dataUsingEncoding:NSUTF8StringEncoding]];
 		} else if (ipv6_status == TOR_IPV6_CONN_DUAL) {
-			[myHandle writeData:[@"\nClientUseIPv4 1\nClientUseIPv6 1\n" dataUsingEncoding:NSUTF8StringEncoding]];
+			[myHandle writeData:[@"\nClientUseIPv4 1\nClientUseIPv6 1\nUseMicrodescriptors 0\n" dataUsingEncoding:NSUTF8StringEncoding]];
 		} else {
 			[myHandle writeData:[@"\nClientUseIPv4 1\n" dataUsingEncoding:NSUTF8StringEncoding]];
 		}
   } else if (ipSetting == OB_IPV4V6_V6ONLY) {
-    [myHandle writeData:[@"\nClientUseIPv4 0\nClientUseIPv6 1\n" dataUsingEncoding:NSUTF8StringEncoding]];
+	  [myHandle writeData:[@"\nClientUseIPv4 0\nClientUseIPv6 1\nUseMicrodescriptors 0\n" dataUsingEncoding:NSUTF8StringEncoding]];
+  } else if (ipSetting == OB_IPV4V6_FORCEDUAL) {
+	  [myHandle writeData:[@"\nClientUseIPv4 1\nClientUseIPv6 1\nUseMicrodescriptors 0\n" dataUsingEncoding:NSUTF8StringEncoding]];
   } else {
     [myHandle writeData:[@"\nClientUseIPv4 1\n" dataUsingEncoding:NSUTF8StringEncoding]];
   }

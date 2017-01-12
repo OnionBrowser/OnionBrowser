@@ -130,8 +130,9 @@
       bridgeMsg = [bridgeMsg stringByAppendingString:@"\nForcing IPv4-only."];
     } else if (ipv4v6Setting == OB_IPV4V6_V6ONLY) {
       bridgeMsg = [bridgeMsg stringByAppendingString:@"\nForcing IPv6-only."];
-    }
-
+	} else if (ipv4v6Setting == OB_IPV4V6_FORCEDUAL) {
+		bridgeMsg = [bridgeMsg stringByAppendingString:@"\nForcing dual-stack (prefer IPv4)"];
+	}
 		return bridgeMsg;
 	} else
         return nil;

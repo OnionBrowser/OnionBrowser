@@ -53,7 +53,7 @@
 		// configure custom bridges, obfs4, meek-azure, meek-amazon, disable bridges
 		return 5;
     } else if (section == 1) {
-        return 3;
+        return 4;
     } else {
         return 0;
     }
@@ -147,22 +147,27 @@
       }
 		}
   } else if (indexPath.section == 1) {
-		if (indexPath.row == 0) {
-			cell.textLabel.text = @"Automatic IPv4/IPv6";
-      if (ipv4v6Setting == OB_IPV4V6_AUTO) {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-      }
-		} else if (indexPath.row == 1) {
-			cell.textLabel.text = @"Always Use IPv4";
-      if (ipv4v6Setting == OB_IPV4V6_V4ONLY) {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-      }
-		} else if (indexPath.row == 2) {
-			cell.textLabel.text = @"Always Use IPv6";
-      if (ipv4v6Setting == OB_IPV4V6_V6ONLY) {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-      }
-		}
+	  if (indexPath.row == 0) {
+		  cell.textLabel.text = @"Automatic IPv4/IPv6";
+		  if (ipv4v6Setting == OB_IPV4V6_AUTO) {
+			  cell.accessoryType = UITableViewCellAccessoryCheckmark;
+		  }
+	  } else if (indexPath.row == 1) {
+		  cell.textLabel.text = @"Always Use IPv4";
+		  if (ipv4v6Setting == OB_IPV4V6_V4ONLY) {
+			  cell.accessoryType = UITableViewCellAccessoryCheckmark;
+		  }
+	  } else if (indexPath.row == 2) {
+		  cell.textLabel.text = @"Always Use IPv6";
+		  if (ipv4v6Setting == OB_IPV4V6_V6ONLY) {
+			  cell.accessoryType = UITableViewCellAccessoryCheckmark;
+		  }
+	  } else if (indexPath.row == 3) {
+		  cell.textLabel.text = @"Force Dual Stack (Prefer IPv4)";
+		  if (ipv4v6Setting == OB_IPV4V6_FORCEDUAL) {
+			  cell.accessoryType = UITableViewCellAccessoryCheckmark;
+		  }
+	  }
   }
 
 	return cell;
@@ -215,7 +220,11 @@
             [settings setObject:[NSNumber numberWithInteger:OB_IPV4V6_V6ONLY] forKey:@"tor_ipv4v6"];
             [appDelegate saveSettings:settings];
 		  [self finishSave:nil final:NO];
-      }
+	  } else if (indexPath.row == 3) {
+		  [settings setObject:[NSNumber numberWithInteger:OB_IPV4V6_FORCEDUAL] forKey:@"tor_ipv4v6"];
+		  [appDelegate saveSettings:settings];
+		  [self finishSave:nil final:NO];
+	  }
     }
 
     [tableView reloadData];

@@ -47,6 +47,7 @@
 #define OB_IPV4V6_AUTO 0
 #define OB_IPV4V6_V4ONLY 1
 #define OB_IPV4V6_V6ONLY 2
+#define OB_IPV4V6_FORCEDUAL 3
 
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
