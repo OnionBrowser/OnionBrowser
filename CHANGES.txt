@@ -21,10 +21,14 @@ Features subject to change.
   against forensic tools.
 
 
-===== 1.7.3 - In Development =====
+===== 1.7.3 - Pending App Store Approval =====
+Jan 12 2017 - Submit Date
 
 * Initial support for IPv6-only networks.
 
+* Simplified the initial "Loading..." progress screen.
+
+* Tor updated to 0.2.9.8.
 
 
 CURRENT VERSION:
@@ -42,7 +46,7 @@ Dec 15 2016 - App Store Availability
 
 PREVIOUS VERSIONS:
 
-===== 1.7.1 - In App Store =====
+===== 1.7.1 =====
 Dec 13 2016 - Submit Date
 Dec 13 2016 - App Store Availability
 
@@ -75,7 +79,7 @@ Dec 09 2016 - App Store Availability
 
 * OpenSSL updated to 1.1.0c
 
-===== 1.6.2 - In App Store =====
+===== 1.6.2 =====
 Aug 24 2016 - Submit Date
 Aug 25 2016 - App Store Availability
 

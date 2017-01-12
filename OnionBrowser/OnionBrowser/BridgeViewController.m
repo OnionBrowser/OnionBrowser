@@ -22,8 +22,12 @@
 	[super viewDidLoad];
 
 	self.title = @"Network Configuration";
-	//backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleDone target:self action:@selector(goBack)];
-	//self.navigationItem.rightBarButtonItem = backButton;
+
+	AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+	if (![appDelegate.tor didFirstConnect]) {
+		backButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleDone target:self action:@selector(finishSaveClose)];
+		self.navigationItem.rightBarButtonItem = backButton;
+	}
 }
 
 - (void)viewDidUnload {
@@ -175,25 +179,25 @@
             [settings setObject:[NSNumber numberWithInteger:TOR_BRIDGES_NONE] forKey:@"bridges"];
             [appDelegate saveSettings:settings];
 
-            [self finishSave:nil];
+			[self finishSave:nil final:NO];
         } else if (indexPath.row == 1) {
             [self save:[Bridge defaultObfs4]];
             [settings setObject:[NSNumber numberWithInteger:TOR_BRIDGES_OBFS4] forKey:@"bridges"];
             [appDelegate saveSettings:settings];
 
-            [self finishSave:@"NOTE: Onion Browser chooses the provided obfs4 bridges in a random order. You can force the app to use other obfs4 bridges by choosing the \"Provided Bridges: obfs4\" option again."];
+            [self finishSave:@"NOTE: Onion Browser chooses the provided obfs4 bridges in a random order. You can force the app to use other obfs4 bridges by choosing the \"Provided Bridges: obfs4\" option again." final:NO];
         } else if (indexPath.row == 2) {
             [self save:[Bridge defaultMeekAmazon]];
             [settings setObject:[NSNumber numberWithInteger:TOR_BRIDGES_MEEKAMAZON] forKey:@"bridges"];
             [appDelegate saveSettings:settings];
 
-            [self finishSave:nil];
+            [self finishSave:nil final:NO];
         } else if (indexPath.row == 3) {
             [self save:[Bridge defaultMeekAzure]];
             [settings setObject:[NSNumber numberWithInteger:TOR_BRIDGES_MEEKAZURE] forKey:@"bridges"];
             [appDelegate saveSettings:settings];
 
-            [self finishSave:nil];
+            [self finishSave:nil final:NO];
         } else if (indexPath.row == 4) {
             BridgeCustomViewController *customBridgeVC = [[BridgeCustomViewController alloc] init];
             [self.navigationController pushViewController:customBridgeVC animated:YES];
@@ -202,15 +206,15 @@
       if (indexPath.row == 0) {
             [settings setObject:[NSNumber numberWithInteger:OB_IPV4V6_AUTO] forKey:@"tor_ipv4v6"];
             [appDelegate saveSettings:settings];
-		  [self finishSave:nil];
+		  [self finishSave:nil final:NO];
       } else if (indexPath.row == 1) {
             [settings setObject:[NSNumber numberWithInteger:OB_IPV4V6_V4ONLY] forKey:@"tor_ipv4v6"];
             [appDelegate saveSettings:settings];
-		  [self finishSave:nil];
+		  [self finishSave:nil final:NO];
       } else if (indexPath.row == 2) {
             [settings setObject:[NSNumber numberWithInteger:OB_IPV4V6_V6ONLY] forKey:@"tor_ipv4v6"];
             [appDelegate saveSettings:settings];
-		  [self finishSave:nil];
+		  [self finishSave:nil final:NO];
       }
     }
 
@@ -231,12 +235,16 @@
 	[appDelegate updateTorrc];
 }
 
-- (void)finishSave:(NSString *)extraMsg {
+- (void)finishSaveClose{
+	[self finishSave:nil final:YES];
+
+}
+- (void)finishSave:(NSString *)extraMsg final:(Boolean)isFinal {
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 
     NSUInteger numBridges = [appDelegate numBridgesConfigured];
 
-    if (![appDelegate.tor didFirstConnect]) {
+    if ((![appDelegate.tor didFirstConnect]) && isFinal) {
         NSString *msg;
 		msg = @"Network changes require an app restart. Onion Browser will now quit; reopen the app to use the new connection settings.";
 		if (extraMsg != nil) {
@@ -251,7 +259,7 @@
         }]];
         [self presentViewController:alert animated:YES completion:NULL];
 
-    } else {
+    } else if ([appDelegate.tor didFirstConnect]) {
 
         NSString *pluralize = @" is";
         if (numBridges > 1) {
@@ -273,7 +281,12 @@
         }]];
         [self presentViewController:alert animated:YES completion:NULL];
 
-    }
+	} else if (extraMsg != nil) {
+		UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Updated" message:extraMsg preferredStyle:UIAlertControllerStyleAlert];
+		[alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {}]];
+		[self presentViewController:alert animated:YES completion:NULL];
+
+	}
 }
 
 @end

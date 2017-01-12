@@ -10,7 +10,7 @@ and App Store links.
 
 ---
 
-* **OnionBrowser**: 1.7.3-beta.2 (20170106.1) - See [official release history][releases] and [changelog][changelog].
+* **OnionBrowser**: 1.7.3 (20170112.1) - See [official release history][releases] and [changelog][changelog].
 * **[Tor.framework][Tor.framework]**: a1b2928 (Dec 14 2016)
   * **[Tor][tor]**: 0.2.9.8 (Dec 19 2016)
   * **[libevent][libevent]**: 2.1.7-rc (Nov 11 2016)
