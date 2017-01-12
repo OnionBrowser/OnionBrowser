@@ -197,11 +197,6 @@
 			[ps setValue:@"TRUE" forKey:NSHTTPCookieSecure];
 		}
 		
-		if (![self isHostWhitelisted:[URL host]]) {
-			/* host isn't whitelisted, force to a session cookie */
-			[ps setValue:@"TRUE" forKey:NSHTTPCookieDiscard];
-		}
-		
 		NSHTTPCookie *nCookie = [[NSHTTPCookie alloc] initWithProperties:ps];
 		[newCookies addObject:nCookie];
 		
