@@ -20,7 +20,7 @@
 @interface CKHTTPConnection ()
 - (CFHTTPMessageRef)HTTPRequest;
 - (NSInputStream *)HTTPStream;
-
+- (NSInputStream *)HTTPBodyStream;
 - (void)start;
 - (id <CKHTTPConnectionDelegate>)delegate;
 @end
@@ -56,6 +56,7 @@
 	
 	_delegate = delegate;
 	_HTTPRequest = [request makeHTTPMessage];
+	_HTTPBodyStream = [request HTTPBodyStream];
 
 	[self start];
 	
@@ -92,7 +93,10 @@
 	NSAssert(!_HTTPStream, @"Connection already started");
 	HostSettings *hs;
 	
-	_HTTPStream = (__bridge_transfer NSInputStream *)CFReadStreamCreateForHTTPRequest(NULL, [self HTTPRequest]);
+	if (_HTTPBodyStream)
+		_HTTPStream = (__bridge_transfer NSInputStream *)(CFReadStreamCreateForStreamedHTTPRequest(NULL, [self HTTPRequest], (__bridge CFReadStreamRef)_HTTPBodyStream));
+	else
+		_HTTPStream = (__bridge_transfer NSInputStream *)CFReadStreamCreateForHTTPRequest(NULL, [self HTTPRequest]);
 	
 	/* we're handling redirects ourselves */
 	CFReadStreamSetProperty((__bridge CFReadStreamRef)(_HTTPStream), kCFStreamPropertyHTTPShouldAutoredirect, kCFBooleanFalse);
