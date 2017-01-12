@@ -31,6 +31,9 @@
 /* be verbose about URL blocking */
 #define TRACE_URL_BLOCKER
 
+/* log raw HTTP requests and responses */
+#undef TRACE_RAW_HTTP
+
 /* be verbose about hardware keyboard processing */
 #undef TRACE_KEYBOARD_INPUT
 

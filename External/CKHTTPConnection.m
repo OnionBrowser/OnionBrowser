@@ -17,40 +17,6 @@
 #import "HostSettings.h"
 #import "SSLCertificate.h"
 
-// There is no public API for creating an NSHTTPURLResponse. The only way to create one then, is to
-// have a private subclass that others treat like a standard NSHTTPURLResponse object. Framework
-// code can instantiate a CKHTTPURLResponse object directly. Alternatively, there is a public
-// convenience method +[NSHTTPURLResponse responseWithURL:HTTPMessage:]
-
-
-@interface CKHTTPURLResponse : NSHTTPURLResponse
-{
-	@private
-	NSInteger _statusCode;
-	NSDictionary *_headerFields;
-}
-
-- (id)initWithURL:(NSURL *)URL HTTPMessage:(CFHTTPMessageRef)message;
-
-@end
-
-
-@interface CKHTTPAuthenticationChallenge : NSURLAuthenticationChallenge
-{
-	CFHTTPAuthenticationRef _HTTPAuthentication;
-}
-
-- (id)initWithResponse:(CFHTTPMessageRef)response
-    proposedCredential:(NSURLCredential *)credential
-  previousFailureCount:(NSInteger)failureCount
-       failureResponse:(NSHTTPURLResponse *)URLResponse
-                sender:(id <NSURLAuthenticationChallengeSender>)sender;
-
-- (CFHTTPAuthenticationRef)CFHTTPAuthentication;
-
-@end
-
-
 @interface CKHTTPConnection ()
 - (CFHTTPMessageRef)HTTPRequest;
 - (NSInputStream *)HTTPStream;
@@ -59,17 +25,22 @@
 - (id <CKHTTPConnectionDelegate>)delegate;
 @end
 
-
 @interface CKHTTPConnection (Authentication) <NSURLAuthenticationChallengeSender>
 - (CKHTTPAuthenticationChallenge *)currentAuthenticationChallenge;
 @end
 
+@interface CKHTTPAuthenticationChallenge : NSURLAuthenticationChallenge
+{
+	CFHTTPAuthenticationRef _HTTPAuthentication;
+}
 
-#pragma mark -
+- (id)initWithResponse:(CFHTTPMessageRef)response proposedCredential:(NSURLCredential *)credential previousFailureCount:(NSInteger)failureCount failureResponse:(NSHTTPURLResponse *)URLResponse sender:(id <NSURLAuthenticationChallengeSender>)sender;
+- (CFHTTPAuthenticationRef)CFHTTPAuthentication;
+
+@end
+
 
 @implementation CKHTTPConnection
-
-#pragma mark  Init & Dealloc
 
 + (CKHTTPConnection *)connectionWithRequest:(NSURLRequest *)request delegate:(id <CKHTTPConnectionDelegate>)delegate
 {
@@ -80,15 +51,14 @@
 {
 	NSParameterAssert(request);
 
-	if (self = [super init]) {
-		_delegate = delegate;
+	if (!(self = [super init]))
+		return nil;
+	
+	_delegate = delegate;
+	_HTTPRequest = [request makeHTTPMessage];
 
-		// Kick off the connection
-		_HTTPRequest = [request makeHTTPMessage];
-
-		[self start];
-	}
-
+	[self start];
+	
 	return self;
 }
 
@@ -155,6 +125,11 @@
 	[_HTTPStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
 	[_HTTPStream open];
 
+#ifdef TRACE_RAW_HTTP
+	NSData *d = (__bridge NSData *)CFHTTPMessageCopySerializedMessage((__bridge CFHTTPMessageRef _Nonnull)([_HTTPStream propertyForKey:(NSString *)kCFStreamPropertyHTTPFinalRequest]));
+	NSLog(@"[CKHTTPConnection] final request for %@\n%@", url, [[[NSString alloc] initWithBytes:[d bytes] length:[d length] encoding:NSUTF8StringEncoding] stringByReplacingOccurrencesOfString:@"\r" withString:@""]);
+#endif
+	
 	/* for other SSL options, these need an SSLContextRef which doesn't exist until the stream is opened */
 	if ([[[url scheme] lowercaseString] isEqualToString:@"https"]) {
 		SSLContextRef sslContext = (__bridge SSLContextRef)[_HTTPStream propertyForKey:(__bridge NSString *)kCFStreamPropertySSLContext];
@@ -256,7 +231,7 @@
 	if (!_haveReceivedResponse) {
 		CFHTTPMessageRef response = (__bridge CFHTTPMessageRef)[theStream propertyForKey:(NSString *)kCFStreamPropertyHTTPResponseHeader];
 		if (response && CFHTTPMessageIsHeaderComplete(response)) {
-			NSHTTPURLResponse *URLResponse = [NSHTTPURLResponse responseWithURL:URL HTTPMessage:response];
+			NSHTTPURLResponse *URLResponse = [[NSHTTPURLResponse alloc] initWithURL:URL statusCode:CFHTTPMessageGetResponseStatusCode(response) HTTPVersion:(__bridge NSString * _Nullable)(CFHTTPMessageCopyVersion(response)) headerFields:(__bridge NSDictionary<NSString *,NSString *> * _Nullable)(CFHTTPMessageCopyAllHeaderFields(response))];
 			
 			/* work around bug where CFHTTPMessageIsHeaderComplete reports true but there is no actual header data to be found */
 			if ([URLResponse statusCode] == 200 && [URLResponse expectedContentLength] == 0 && [[URLResponse allHeaderFields] count] == 0) {
@@ -425,53 +400,6 @@ process:
 }
 
 @end
-
-
-#pragma mark -
-
-
-@implementation NSHTTPURLResponse (CKHTTPConnectionAdditions)
-
-+ (NSHTTPURLResponse *)responseWithURL:(NSURL *)URL HTTPMessage:(CFHTTPMessageRef)message
-{
-	return [[CKHTTPURLResponse alloc] initWithURL:URL HTTPMessage:message];
-}
-
-@end
-
-
-@implementation CKHTTPURLResponse
-
-- (id)initWithURL:(NSURL *)URL HTTPMessage:(CFHTTPMessageRef)message
-{
-	_headerFields = (__bridge_transfer NSDictionary *)CFHTTPMessageCopyAllHeaderFields(message);
-
-	NSString *MIMEType = [_headerFields objectForKey:@"Content-Type"];
-	NSInteger contentLength = [[_headerFields objectForKey:@"Content-Length"] intValue];
-	NSString *encoding = [_headerFields objectForKey:@"Content-Encoding"];
-
-	if (self = [super initWithURL:URL MIMEType:MIMEType expectedContentLength:contentLength textEncodingName:encoding])
-		_statusCode = CFHTTPMessageGetResponseStatusCode(message);
-	
-	return self;
-}
-
-- (void)dealloc {
-	CFRelease((__bridge_retained CFTypeRef)_headerFields);
-}
-
-- (NSDictionary *)allHeaderFields {
-	return _headerFields;
-}
-
-- (NSInteger)statusCode {
-	return _statusCode;
-}
-
-@end
-
-
-#pragma mark -
 
 
 @implementation CKHTTPAuthenticationChallenge
