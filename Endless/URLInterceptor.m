@@ -383,14 +383,8 @@ static NSString *_javascriptToInject;
 
 	contentType = CONTENT_TYPE_OTHER;
 	NSString *ctype = [[self caseInsensitiveHeader:@"content-type" inResponse:response] lowercaseString];
-	if (ctype != nil) {
-		if ([ctype hasPrefix:@"text/html"] || [ctype hasPrefix:@"application/html"] || [ctype hasPrefix:@"application/xhtml+xml"])
-			contentType = CONTENT_TYPE_HTML;
-		else if ([ctype hasPrefix:@"application/javascript"] || [ctype hasPrefix:@"text/javascript"] || [ctype hasPrefix:@"application/x-javascript"] || [ctype hasPrefix:@"text/x-javascript"])
-			contentType = CONTENT_TYPE_JAVASCRIPT;
-		else if ([ctype hasPrefix:@"image/"])
-			contentType = CONTENT_TYPE_IMAGE;
-	}
+	if (ctype != nil && ([ctype hasPrefix:@"text/html"] || [ctype hasPrefix:@"application/html"] || [ctype hasPrefix:@"application/xhtml+xml"]))
+		contentType = CONTENT_TYPE_HTML;
 	
 	/* rewrite or inject Content-Security-Policy (and X-Webkit-CSP just in case) headers */
 	NSString *CSPheader = nil;
@@ -452,8 +446,6 @@ static NSString *_javascriptToInject;
 		NSLog(@"[HostSettings] [Tab %@] CSP header is now %@", wvt.tabIndex, foundCSP);
 #endif
 	}
-
-	response = [[NSHTTPURLResponse alloc] initWithURL:[response URL] statusCode:[response statusCode] HTTPVersion:@"1.1" headerFields:mHeaders];
 	
 	/* save any cookies we just received */
 	[[appDelegate cookieJar] setCookies:[NSHTTPCookie cookiesWithResponseHeaderFields:[response allHeaderFields] forURL:[[self actualRequest] URL]] forURL:[[self actualRequest] URL] mainDocumentURL:[wvt url] forTab:wvt.hash];
@@ -476,7 +468,7 @@ static NSString *_javascriptToInject;
 	}
 	
 	/* handle HTTP-level redirects */
-	if ((response.statusCode == 301) || (response.statusCode == 302) || (response.statusCode == 303) || (response.statusCode == 307)) {
+	if (response.statusCode == 301 || response.statusCode == 302 || response.statusCode == 303 || response.statusCode == 307) {
 		NSString *newURL = [self caseInsensitiveHeader:@"location" inResponse:response];
 		if (newURL == nil || [newURL isEqualToString:@""])
 			NSLog(@"[URLInterceptor] [Tab %@] got %ld redirect at %@ but no location header", wvt.tabIndex, (long)response.statusCode, [[self actualRequest] URL]);
@@ -489,12 +481,10 @@ static NSString *_javascriptToInject;
 			else
 				[newRequest setHTTPMethod:@"GET"];
 			
-			[newRequest setHTTPShouldUsePipelining:YES];
-			
 			/* strangely, if we pass [NSURL URLWithString:/ relativeToURL:[NSURL https://blah/asdf/]] as the URL for the new request, it treats it as just "/" with no domain information so we have to build the relative URL, turn it into a string, then back to a URL */
 			NSString *aURL = [[NSURL URLWithString:newURL relativeToURL:[[self actualRequest] URL]] absoluteString];
 			[newRequest setURL:[NSURL URLWithString:aURL]];
-#ifdef DEBUG
+#ifdef TRACE
 			NSLog(@"[URLInterceptor] [Tab %@] got %ld redirect from %@ to %@", wvt.tabIndex, (long)response.statusCode, [[[self actualRequest] URL] absoluteString], aURL);
 #endif
 			[newRequest setMainDocumentURL:[[self actualRequest] mainDocumentURL]];
@@ -524,7 +514,7 @@ static NSString *_javascriptToInject;
 		else
 			NSLog(@"[URLInterceptor] [Tab %@] unknown content encoding \"%@\"", wvt.tabIndex, content_encoding);
 	}
-
+	
 	[self.client URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageAllowedInMemoryOnly];
 }
 
@@ -534,7 +524,8 @@ static NSString *_javascriptToInject;
 		[wvt setSSLCertificate:certificate];
 }
 
-- (void)HTTPConnection:(CKHTTPConnection *)connection didReceiveData:(NSData *)data {
+- (void)HTTPConnection:(CKHTTPConnection *)connection didReceiveData:(NSData *)data
+{
 	[self appendData:data];
 	
 	NSData *newData;
@@ -571,7 +562,6 @@ static NSString *_javascriptToInject;
 		/* clear our running buffer of data for this request */
 		_data = nil;
 	}
-	
 	[self.client URLProtocol:self didLoadData:newData];
 }
 

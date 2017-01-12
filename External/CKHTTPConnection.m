@@ -233,18 +233,19 @@
 		if (response && CFHTTPMessageIsHeaderComplete(response)) {
 			NSHTTPURLResponse *URLResponse = [[NSHTTPURLResponse alloc] initWithURL:URL statusCode:CFHTTPMessageGetResponseStatusCode(response) HTTPVersion:(__bridge NSString * _Nullable)(CFHTTPMessageCopyVersion(response)) headerFields:(__bridge NSDictionary<NSString *,NSString *> * _Nullable)(CFHTTPMessageCopyAllHeaderFields(response))];
 			
-#ifdef TRACE_RAW_HTTP
 			NSData *d = (__bridge NSData *)CFHTTPMessageCopySerializedMessage((__bridge CFHTTPMessageRef _Nonnull)([_HTTPStream propertyForKey:(NSString *)kCFStreamPropertyHTTPResponseHeader]));
-			NSLog(@"[CKHTTPConnection] final response for %@\n%@", URL, [[[NSString alloc] initWithBytes:[d bytes] length:[d length] encoding:NSUTF8StringEncoding] stringByReplacingOccurrencesOfString:@"\r" withString:@""]);
-#endif
 			
 			/* work around bug where CFHTTPMessageIsHeaderComplete reports true but there is no actual header data to be found */
-			if ([URLResponse statusCode] == 200 && [URLResponse expectedContentLength] == 0 && [[URLResponse allHeaderFields] count] == 0) {
+			if ([d length] < 5) {
 #ifdef TRACE
 				NSLog(@"[CKHTTPConnection] hit CFHTTPMessageIsHeaderComplete bug, waiting for more data");
 #endif
 				goto process;
 			}
+			
+#ifdef TRACE_RAW_HTTP
+			NSLog(@"[CKHTTPConnection] final response for %@\n%@", URL, [[[NSString alloc] initWithBytes:[d bytes] length:[d length] encoding:NSUTF8StringEncoding] stringByReplacingOccurrencesOfString:@"\r" withString:@""]);
+#endif
 			
 			// If the response was an authentication failure, try to request fresh credentials.
 			if ([URLResponse statusCode] == 401 || [URLResponse statusCode] == 407) {
@@ -271,6 +272,8 @@
 	
 process:
 	switch (streamEvent) {
+	case NSStreamEventOpenCompleted:
+		break;
 	case NSStreamEventHasSpaceAvailable:
 		socketReady = true;
 		break;
@@ -278,7 +281,9 @@ process:
 		if (!socketReady && !retriedSocket) {
 			/* probably a dead keep-alive socket from the get go */
 			retriedSocket = true;
+#ifdef TRACE
 			NSLog(@"[CKHTTPConnection] socket for %@ dead but never writable, retrying (%@)", [URL absoluteString], [theStream streamError]);
+#endif
 			[self _cancelStream];
 			[self start];
 		}
