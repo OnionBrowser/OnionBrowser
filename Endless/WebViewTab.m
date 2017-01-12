@@ -221,8 +221,8 @@
 	
 	NSMutableURLRequest *ur = [NSMutableURLRequest requestWithURL:u];
 	if (force)
-		[ur setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
-
+		[self setForcingRefresh:YES];
+ 
 	[self.webView loadRequest:ur];
 }
 
@@ -418,7 +418,8 @@
 	NSLog(@"[Tab %@] finished loading page/iframe %@, security level is %lu", self.tabIndex, [[[__webView request] URL] absoluteString], self.secureMode);
 #endif
 	[self setProgress:@1.0];
-	
+	[self setForcingRefresh:NO];
+
 	NSString *docTitle = [__webView stringByEvaluatingJavaScriptFromString:@"document.title"];
 	NSString *finalURL = [__webView stringByEvaluatingJavaScriptFromString:@"window.location.href"];
 	

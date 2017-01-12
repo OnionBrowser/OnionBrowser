@@ -103,6 +103,7 @@ static const struct keyboard_map_entry {
 @property (strong, atomic) UILabel *title;
 @property (strong, atomic) UILabel *closer;
 @property (strong, nonatomic) NSNumber *progress;
+@property BOOL forcingRefresh;
 
 @property WebViewTabSecureMode secureMode;
 @property (strong, nonatomic) SSLCertificate *SSLCertificate;

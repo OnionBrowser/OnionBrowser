@@ -342,16 +342,23 @@ static NSString *_javascriptToInject;
 		NSDictionary *headers = [NSHTTPCookie requestHeaderFieldsWithCookies:cookies];
 		[newRequest setAllHTTPHeaderFields:headers];
 	}
-	
+
 	/* add "do not track" header if it's enabled in the settings */
 	if (sendDNT)
 		[newRequest setValue:@"1" forHTTPHeaderField:@"DNT"];
 	
+	/* if we're trying to bypass the cache (forced reload), kill the If-None-Match header that gets put here automatically */
+	if ([wvt forcingRefresh]) {
+#ifdef TRACE
+		NSLog(@"[URLInterceptor] [Tab %@] forcing refresh", wvt.tabIndex);
+#endif
+		[newRequest setValue:nil forHTTPHeaderField:@"If-None-Match"];
+	}
+	
 	/* remember that we saw this to avoid a loop */
 	[NSURLProtocol setProperty:@YES forKey:REWRITTEN_KEY inRequest:newRequest];
 	
-	CKHTTPConnection *con = [CKHTTPConnection connectionWithRequest:newRequest delegate:self];
-	[self setConnection:con];
+	[self setConnection:[CKHTTPConnection connectionWithRequest:newRequest delegate:self]];
 }
 
 - (void)stopLoading
