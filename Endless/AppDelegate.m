@@ -41,10 +41,62 @@
 	TORConfiguration *conf = [[TORConfiguration alloc] init];
 	conf.cookieAuthentication = [NSNumber numberWithBool:YES];
 	conf.dataDirectory = [NSURL fileURLWithPath:NSTemporaryDirectory()];
-	conf.arguments = [NSArray arrayWithObjects: @"--socksport", @"39050", @"--ignore-missing-torrc", @"--controlport", @"127.0.0.1:39060", nil];
+	conf.arguments = [NSArray arrayWithObjects:
+		@"--ignore-missing-torrc",
+		@"--clientonly", @"1",
+		@"--socksport", @"39050",
+		@"--controlport", @"127.0.0.1:39060",
+		@"--log", @"notice stdout",
+		nil];
 
 	TORThread *torThread = [[TORThread alloc] initWithConfiguration:conf];
 	[torThread start];
+
+
+
+	double delayInSeconds = 1.0;
+	dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+	dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+
+		NSURL *cookieURL = [[NSURL fileURLWithPath:NSTemporaryDirectory()] URLByAppendingPathComponent:@"control_auth_cookie"];
+		NSData *cookie = [NSData dataWithContentsOfURL:cookieURL];
+		TORController *controller = [[TORController alloc] initWithSocketHost:@"127.0.0.1" port:39060];
+
+		NSError *connErr;
+		[controller connect:&connErr];
+
+		// TODO: retry connection if we failed
+
+		[controller authenticateWithData:cookie completion:^(BOOL success, NSError *error) {
+
+			if (success) {
+				/*********************/
+				[controller addObserverForCircuitEstablished:^(BOOL established) {
+					if (established) {
+						NSLog(@"ZZZZ established!");
+						return;
+					} else {
+						NSLog(@"ZZZZ NOT ESTABLISHED");
+
+						[controller getInfoForKeys:@[@"status/circuit-established"] completion:nil];
+						return;
+					}
+				}];
+				/*********************/
+				/*
+				[controller addObserverForStatusEvents:^BOOL(NSString * _Nonnull type, NSString * _Nonnull severity, NSString * _Nonnull action, NSDictionary<NSString *,NSString *> * _Nullable arguments) {
+						NSLog(@"ZZZZ: %@ - %@ - %@", type, severity, action);
+						return YES;
+				}];
+				*/
+				/*********************/
+
+			} else {
+				NSLog(@"ZZZZ control port error: %@", error);
+			}
+		}];
+
+	});
 
 	return YES;
 }
