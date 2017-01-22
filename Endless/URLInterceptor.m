@@ -391,7 +391,7 @@ static NSString *_javascriptToInject;
 	NSString *CSPmode = [self.originHostSettings setting:HOST_SETTINGS_KEY_CSP];
 
 	if ([CSPmode isEqualToString:HOST_SETTINGS_CSP_STRICT])
-		CSPheader = @"media-src 'none'; object-src 'none'; connect-src 'none'; font-src 'none'; sandbox allow-forms allow-top-navigation; style-src 'unsafe-inline' *; report-uri;";
+		CSPheader = @"connect-src 'none'; default-src 'none'; font-src 'none'; media-src 'none'; object-src 'none'; sandbox allow-forms allow-top-navigation; script-src 'none'; style-src 'unsafe-inline' *; report-uri;";
 	else if ([CSPmode isEqualToString:HOST_SETTINGS_CSP_BLOCK_CONNECT])
 		CSPheader = @"connect-src 'none'; media-src 'none'; object-src 'none'; report-uri;";
 	
@@ -429,9 +429,6 @@ static NSString *_javascriptToInject;
 				[mHeaders setObject:hv forKey:h];
 				foundCSP = hv;
 			}
-			else if ([[h lowercaseString] isEqualToString:@"cache-control"]) {
-				/* ignore */
-			}
 			else
 				[mHeaders setObject:hv forKey:h];
 		}
@@ -447,6 +444,9 @@ static NSString *_javascriptToInject;
 #endif
 	}
 	
+	/* rebuild our response with any modified headers */
+	response = [[NSHTTPURLResponse alloc] initWithURL:[response URL] statusCode:[response statusCode] HTTPVersion:@"1.1" headerFields:mHeaders];
+
 	/* save any cookies we just received */
 	[[appDelegate cookieJar] setCookies:[NSHTTPCookie cookiesWithResponseHeaderFields:[response allHeaderFields] forURL:[[self actualRequest] URL]] forURL:[[self actualRequest] URL] mainDocumentURL:[wvt url] forTab:wvt.hash];
 	
