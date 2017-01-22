@@ -116,6 +116,14 @@
 	return YES;
 }
 
+- (BOOL)application:(UIApplication *)application shouldAllowExtensionPointIdentifier:(NSString *)extensionPointIdentifier {
+	if ([extensionPointIdentifier isEqualToString:UIApplicationKeyboardExtensionPointIdentifier]) {
+		NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+		return [userDefaults boolForKey:@"third_party_keyboards"];
+	}
+	return YES;
+}
+
 - (BOOL)application:(UIApplication *)application shouldRestoreApplicationState:(NSCoder *)coder
 {
 	if ([self areTesting])

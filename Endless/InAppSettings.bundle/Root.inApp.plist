@@ -123,6 +123,24 @@
 			<false/>
 		</dict>
 		<dict>
+			<key>Title</key>
+			<string></string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>FooterText</key>
+			<string>Changing this option requires restarting the app</string>
+		</dict>
+		<dict>
+			<key>Key</key>
+			<string>third_party_keyboards</string>
+			<key>Title</key>
+			<string>Allow 3rd party keyboards</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>DefaultValue</key>
+			<false/>
+		</dict>
+		<dict>
 			<key>FooterText</key>
 			<string>Automatically report crash information to the developer through Crashlytics (no URLs, cookies, device IDs, etc. will be sent)</string>
 			<key>Title</key>
