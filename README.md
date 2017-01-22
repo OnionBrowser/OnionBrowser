@@ -105,6 +105,8 @@ Commercial redistribution license exclusions are available; please
 
 - Optional sending of Do-Not-Track header on all requests
 
+- Disables 3rd party keyboards by default with option to enable
+
 - Integrated [1Password button](https://github.com/AgileBits/onepassword-app-extension)
   to autofill website logins, passwords, credit card numbers, etc.; requires
   the 1Password iOS app to be installed (and is not enabled if not installed)
