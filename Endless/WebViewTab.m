@@ -73,6 +73,11 @@
 	[swipeLeft setDelegate:self];
 	[self.webView addGestureRecognizer:swipeLeft];
 	
+	self.refresher = [[UIRefreshControl alloc] init];
+	[self.refresher setAttributedTitle:[[NSAttributedString alloc] initWithString:@"Pull to Refresh Page"]];
+	[self.refresher addTarget:self action:@selector(forceRefreshFromRefresher) forControlEvents:UIControlEventValueChanged];
+	[self.webView.scrollView addSubview:self.refresher];
+	
 	_titleHolder = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
 	[_titleHolder setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.75]];
 
@@ -690,6 +695,16 @@
 - (void)forceRefresh
 {
 	[self loadURL:[self url] withForce:YES];
+}
+
+- (void)forceRefreshFromRefresher
+{
+	[self forceRefresh];
+	
+	/* delay just so it confirms to the user that something happened */
+	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^(void) {
+		[self.refresher endRefreshing];
+	});
 }
 
 - (void)zoomOut
