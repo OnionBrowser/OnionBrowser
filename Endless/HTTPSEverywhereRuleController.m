@@ -1,6 +1,6 @@
 /*
  * Endless
- * Copyright (c) 2014-2015 joshua stein <jcs@jcs.org>
+ * Copyright (c) 2014-2017 joshua stein <jcs@jcs.org>
  *
  * See LICENSE file for redistribution terms.
  */
@@ -17,41 +17,46 @@
 	
 	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self.navigationController action:@selector(dismissModalViewControllerAnimated:)];
 
-	self.sortedRuleNames = [[NSMutableArray alloc] initWithCapacity:[[HTTPSEverywhere rules] count]];
+	self.sortedRuleRows = [[NSMutableArray alloc] initWithCapacity:[[HTTPSEverywhere rules] count]];
+	self.inUseRuleRows = [[NSMutableArray alloc] init];
 	
-	if ([[self.appDelegate webViewController] curWebViewTab] != nil) {
-		self.inUseRuleNames = [[NSMutableArray alloc] initWithArray:[[[[[self.appDelegate webViewController] curWebViewTab] applicableHTTPSEverywhereRules] allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]];
+	NSDictionary *inUse = nil;
+	if ([[self.appDelegate webViewController] curWebViewTab] != nil)
+		inUse = [[[self.appDelegate webViewController] curWebViewTab] applicableHTTPSEverywhereRules];
+
+	for (NSString *k in [[[HTTPSEverywhere rules] allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]) {
+		RuleEditorRow *row = [[RuleEditorRow alloc] init];
+		row.key = k;
+		row.textLabel = k;
+		
+		if (inUse && [inUse objectForKey:k])
+			[self.inUseRuleRows addObject:row];
+		else
+			[self.sortedRuleRows addObject:row];
 	}
-	else {
-		self.inUseRuleNames = [[NSMutableArray alloc] init];
-	}
-	
-	for (NSString *k in [[HTTPSEverywhere rules] allKeys]) {
-		if (![self.inUseRuleNames containsObject:k])
-			[self.sortedRuleNames addObject:k];
-	}
-	
-	self.sortedRuleNames = [NSMutableArray arrayWithArray:[self.sortedRuleNames sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]];
-	self.searchResult = [NSMutableArray arrayWithCapacity:[self.sortedRuleNames count]];
+
+	self.inUseRuleRows = [NSMutableArray arrayWithArray:self.inUseRuleRows];
+	self.sortedRuleRows = [NSMutableArray arrayWithArray:self.sortedRuleRows];
 	
 	self.title = @"HTTPS Everywhere Rules";
 	
 	return self;
 }
 
-- (NSString *)ruleDisabledReason:(NSString *)rule
+
+- (NSString *)ruleDisabledReason:(RuleEditorRow *)row
 {
-	return [[HTTPSEverywhere disabledRules] objectForKey:rule];
+	return [[HTTPSEverywhere disabledRules] objectForKey:[row key]];
 }
 
-- (void)disableRuleByName:(NSString *)rule withReason:(NSString *)reason
+- (void)disableRuleForRow:(RuleEditorRow *)row withReason:(NSString *)reason
 {
-	[HTTPSEverywhere disableRuleByName:rule withReason:reason];
+	[HTTPSEverywhere disableRuleByName:[row key] withReason:reason];
 }
 
-- (void)enableRuleByName:(NSString *)rule
+- (void)enableRuleForRow:(RuleEditorRow *)row
 {
-	[HTTPSEverywhere enableRuleByName:rule];
+	[HTTPSEverywhere enableRuleByName:[row key]];
 }
 
 @end
