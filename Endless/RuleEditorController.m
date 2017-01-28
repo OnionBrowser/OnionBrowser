@@ -80,6 +80,7 @@ UISearchDisplayController *searchDisplayController;
 	if (disabled == nil) {
 		cell.textLabel.textColor = [UIColor darkTextColor];
 		cell.detailTextLabel.text = [row detailTextLabel];
+		cell.detailTextLabel.textColor = [UIColor darkGrayColor];
 	}
 	else {
 		cell.textLabel.textColor = [UIColor redColor];

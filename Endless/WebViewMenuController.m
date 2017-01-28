@@ -12,6 +12,7 @@
 #import "HostSettingsController.h"
 #import "IASKAppSettingsViewController.h"
 #import "HTTPSEverywhereRuleController.h"
+#import "URLBlockerRuleController.h"
 #import "WebViewMenuController.h"
 
 #import "OnePasswordExtension.h"
@@ -46,6 +47,7 @@ NSString * const LABEL = @"L";
 
 	[buttons addObject:@{ FUNC : @"menuAddOrManageBookmarks", LABEL : @"Manage Bookmarks" }];
 	[buttons addObject:@{ FUNC : @"menuShare", LABEL : @"Share URL" }];
+	[buttons addObject:@{ FUNC : @"menuURLBlocker", LABEL : @"URL Blocker" }];
 	[buttons addObject:@{ FUNC : @"menuHTTPSEverywhere", LABEL : @"HTTPS Everywhere" }];
 	[buttons addObject:@{ FUNC : @"menuHostSettings", LABEL : @"Host Settings" }];
 	[buttons addObject:@{ FUNC : @"menuSettings", LABEL : @"Global Settings" }];
@@ -113,6 +115,14 @@ NSString * const LABEL = @"L";
 		cell.userInteractionEnabled = haveURL;
 		cell.textLabel.enabled = haveURL;
 	}
+	else if ([func isEqualToString:@"menuURLBlocker"] && haveURL) {
+		long ruleCount = [[[[appDelegate webViewController] curWebViewTab] applicableURLBlockerTargets] count];
+		
+		if (ruleCount > 0) {
+			cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld host%@ blocked", ruleCount, (ruleCount == 1 ? @"" : @"s")];
+			cell.detailTextLabel.textColor = [self colorForMenuTextHighlight];
+		}
+	}
 	else if ([func isEqualToString:@"menuHTTPSEverywhere"] && haveURL) {
 		long ruleCount = [[[[appDelegate webViewController] curWebViewTab] applicableHTTPSEverywhereRules] count];
 
@@ -179,6 +189,13 @@ NSString * const LABEL = @"L";
 		if (!success)
 			NSLog(@"[OnePasswordExtension] failed to fill into webview: %@", error);
 	}];
+}
+
+- (void)menuURLBlocker
+{
+	URLBlockerRuleController *ubrc = [[URLBlockerRuleController alloc] init];
+	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:ubrc];
+	[[appDelegate webViewController] presentViewController:navController animated:YES completion:nil];
 }
 
 - (void)menuHTTPSEverywhere

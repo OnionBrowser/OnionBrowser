@@ -111,8 +111,9 @@
 	[self zoomNormal];
 	
 	[self setSecureMode:WebViewTabSecureModeInsecure];
-	[self setApplicableHTTPSEverywhereRules:[[NSMutableDictionary alloc] initWithCapacity:6]];
-	
+	[self setApplicableHTTPSEverywhereRules:[[NSMutableDictionary alloc] init]];
+	[self setApplicableURLBlockerTargets:[[NSMutableDictionary alloc] init]];
+
 	UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressMenu:)];
 	[lpgr setDelegate:self];
 	[_webView addGestureRecognizer:lpgr];
@@ -210,6 +211,7 @@
 - (void)prepareForNewURL:(NSURL *)URL
 {
 	[[self applicableHTTPSEverywhereRules] removeAllObjects];
+	[[self applicableURLBlockerTargets] removeAllObjects];
 	[self setSSLCertificate:nil];
 	[self setUrl:URL];
 }

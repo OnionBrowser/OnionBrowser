@@ -269,9 +269,13 @@ static NSString *_javascriptToInject;
 	if (self.isOrigin) {
 		[LocalNetworkChecker clearCache];
 	}
-	else if ([URLBlocker shouldBlockURL:[newRequest URL] fromMainDocumentURL:[newRequest mainDocumentURL]]) {
-		cancelLoading();
-		return;
+	else {
+		NSString *blocker = [URLBlocker blockingTargetForURL:[newRequest URL] fromMainDocumentURL:[newRequest mainDocumentURL]];
+		if (blocker != nil) {
+			[[wvt applicableURLBlockerTargets] setObject:@YES forKey:blocker];
+			cancelLoading();
+			return;
+		}
 	}
 	
 	/* some rules act on the host we're connecting to, and some act on the origin host */

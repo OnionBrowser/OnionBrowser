@@ -109,6 +109,7 @@ static const struct keyboard_map_entry {
 @property WebViewTabSecureMode secureMode;
 @property (strong, nonatomic) SSLCertificate *SSLCertificate;
 @property NSMutableDictionary *applicableHTTPSEverywhereRules;
+@property NSMutableDictionary *applicableURLBlockerTargets;
 
 /* for javascript IPC */
 @property (strong, atomic) NSString *randID;
