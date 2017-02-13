@@ -197,22 +197,21 @@ static NSString *_javascriptToInject;
 		[client URLProtocol:self didFailWithError:[NSError errorWithDomain:NSCocoaErrorDomain code:NSUserCancelledError userInfo:@{ ORIGIN_KEY: @YES }]];
 		
 		if (![[[[request URL] scheme] lowercaseString] isEqualToString:@"http"] && ![[[[request URL] scheme] lowercaseString] isEqualToString:@"https"]) {
-			if ([[UIApplication sharedApplication] canOpenURL:[request URL]]) {
-				UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Open In External App" message:[NSString stringWithFormat:@"Allow URL to be opened by external app? This may compromise your privacy.\n\n%@", [request URL]] preferredStyle:UIAlertControllerStyleAlert];
-				
-				UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK action") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+			/* iOS 10 blocks canOpenURL: requests, so we just have to assume these go somewhere */
+			UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Open In External App" message:[NSString stringWithFormat:@"Allow URL to be opened by external app? This may compromise your privacy.\n\n%@", [request URL]] preferredStyle:UIAlertControllerStyleAlert];
+			
+			UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK action") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
 #ifdef TRACE
-					NSLog(@"[URLInterceptor] opening in 3rd party app: %@", [request URL]);
+				NSLog(@"[URLInterceptor] opening in 3rd party app: %@", [request URL]);
 #endif
-					[[UIApplication sharedApplication] openURL:[request URL] options:@{} completionHandler:nil];
-				}];
-				
-				UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", @"Cancel action") style:UIAlertActionStyleCancel handler:nil];
-				[alertController addAction:cancelAction];
-				[alertController addAction:okAction];
-				
-				[[appDelegate webViewController] presentViewController:alertController animated:YES completion:nil];
-			}
+				[[UIApplication sharedApplication] openURL:[request URL] options:@{} completionHandler:nil];
+			}];
+			
+			UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", @"Cancel action") style:UIAlertActionStyleCancel handler:nil];
+			[alertController addAction:cancelAction];
+			[alertController addAction:okAction];
+			
+			[[appDelegate webViewController] presentViewController:alertController animated:YES completion:nil];
 		}
 		
 		return nil;
