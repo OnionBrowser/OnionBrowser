@@ -13,6 +13,8 @@
 #define ZOOM_OUT_SCALE 0.8
 #define ZOOM_OUT_SCALE_ROTATED 0.7
 
+#define UNIVERSAL_LINKS_WORKAROUND_KEY @"yayprivacy"
+
 typedef NS_ENUM(NSInteger, WebViewTabSecureMode) {
 	WebViewTabSecureModeInsecure,
 	WebViewTabSecureModeMixed,

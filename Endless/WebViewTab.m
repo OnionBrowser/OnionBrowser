@@ -297,18 +297,37 @@
 	
 	/* treat endlesshttps?:// links clicked inside of web pages as normal links */
 	if ([[[url scheme] lowercaseString] isEqualToString:@"endlesshttp"]) {
-		url = [NSURL URLWithString:[[url absoluteString] stringByReplacingCharactersInRange:NSMakeRange(0, [@"endlesshttp" length]) withString:@"http"]];
-		[self loadURL:url];
+		NSMutableURLRequest *tr = [request mutableCopy];
+		[tr setURL:[NSURL URLWithString:[[url absoluteString] stringByReplacingCharactersInRange:NSMakeRange(0, [@"endlesshttp" length]) withString:@"http"]]];
+		[self loadRequest:tr withForce:NO];
 		return NO;
 	}
 	else if ([[[url scheme] lowercaseString] isEqualToString:@"endlesshttps"]) {
-		url = [NSURL URLWithString:[[url absoluteString] stringByReplacingCharactersInRange:NSMakeRange(0, [@"endlesshttps" length]) withString:@"https"]];
-		[self loadURL:url];
+		NSMutableURLRequest *tr = [request mutableCopy];
+		[tr setURL:[NSURL URLWithString:[[url absoluteString] stringByReplacingCharactersInRange:NSMakeRange(0, [@"endlesshttps" length]) withString:@"https"]]];
+		[self loadRequest:tr withForce:NO];
 		return NO;
 	}
-
-	if (![[url scheme] isEqualToString:@"endlessipc"]) {
-		if ([[[request mainDocumentURL] absoluteString] isEqualToString:[[request URL] absoluteString]])
+	
+	/* regular http/https urls */
+	else if (![[url scheme] isEqualToString:@"endlessipc"]) {
+		/* try to prevent universal links from triggering by refusing the initial request and starting a new one */
+		BOOL iframe = ![[[request URL] absoluteString] isEqualToString:[[request mainDocumentURL] absoluteString]];
+		if (iframe) {
+#ifdef TRACE
+			NSLog(@"[Tab %@] not doing universal link workaround for iframe %@", [self tabIndex], url);
+#endif
+		} else if ([[[url scheme] lowercaseString] hasPrefix:@"http"] && ![NSURLProtocol propertyForKey:UNIVERSAL_LINKS_WORKAROUND_KEY inRequest:request]) {
+			NSMutableURLRequest *tr = [request mutableCopy];
+			[NSURLProtocol setProperty:@YES forKey:UNIVERSAL_LINKS_WORKAROUND_KEY inRequest:tr];
+#ifdef TRACE
+			NSLog(@"[Tab %@] doing universal link workaround for %@", [self tabIndex], url);
+#endif
+			[self loadRequest:tr withForce:NO];
+			return NO;
+		}
+		
+		if (!iframe)
 			[self prepareForNewURL:[request mainDocumentURL]];
 
 		return YES;
@@ -454,6 +473,10 @@
 	
 	/* "The operation couldn't be completed. (Cocoa error 3072.)" - useless */
 	if ([[error domain] isEqualToString:NSCocoaErrorDomain] && error.code == NSUserCancelledError)
+		return;
+	
+	/* "Frame load interrupted" - not very helpful */
+	if ([[error domain] isEqualToString:@"WebKitErrorDomain"] && error.code == 102)
 		return;
 
 	NSString *msg = [error localizedDescription];
