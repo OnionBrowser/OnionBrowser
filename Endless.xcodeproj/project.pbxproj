@@ -11,6 +11,7 @@
 		010EEA691A43C8CF001E8B65 /* CookieJar.m in Sources */ = {isa = PBXBuildFile; fileRef = 010EEA681A43C8CF001E8B65 /* CookieJar.m */; };
 		0135F4761A3D2931005A8F16 /* SearchEngines.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0135F4751A3D2931005A8F16 /* SearchEngines.plist */; };
 		0135F47F1A3E548F005A8F16 /* WebViewTab.m in Sources */ = {isa = PBXBuildFile; fileRef = 0135F47E1A3E548F005A8F16 /* WebViewTab.m */; };
+		013E71D01E5150C000BB0572 /* urlblocker.json in Resources */ = {isa = PBXBuildFile; fileRef = 013E71CF1E5150C000BB0572 /* urlblocker.json */; };
 		0141D96A1E0C66F1003472BC /* LocalNetworkChecker_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0141D9691E0C66F1003472BC /* LocalNetworkChecker_Tests.m */; };
 		0141D9701E0C9127003472BC /* fabric.apikey in Resources */ = {isa = PBXBuildFile; fileRef = 0141D96E1E0C9127003472BC /* fabric.apikey */; };
 		0141D9711E0C9127003472BC /* fabric.buildsecret in Resources */ = {isa = PBXBuildFile; fileRef = 0141D96F1E0C9127003472BC /* fabric.buildsecret */; };
@@ -92,6 +93,7 @@
 		0135F4751A3D2931005A8F16 /* SearchEngines.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = SearchEngines.plist; path = Endless/Resources/SearchEngines.plist; sourceTree = "<group>"; };
 		0135F47D1A3E548F005A8F16 /* WebViewTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewTab.h; sourceTree = "<group>"; };
 		0135F47E1A3E548F005A8F16 /* WebViewTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewTab.m; sourceTree = "<group>"; };
+		013E71CF1E5150C000BB0572 /* urlblocker.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = urlblocker.json; path = Resources/urlblocker.json; sourceTree = "<group>"; };
 		0141D9691E0C66F1003472BC /* LocalNetworkChecker_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalNetworkChecker_Tests.m; sourceTree = "<group>"; };
 		0141D96E1E0C9127003472BC /* fabric.apikey */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = fabric.apikey; path = Endless/fabric.apikey; sourceTree = "<group>"; };
 		0141D96F1E0C9127003472BC /* fabric.buildsecret */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = fabric.buildsecret; path = Endless/fabric.buildsecret; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 				01D741311A49EA14007B7033 /* RuleEditorController.m */,
 				01BFEE441E3BE1820069AC83 /* RuleEditorRow.h */,
 				01BFEE451E3BE1820069AC83 /* RuleEditorRow.m */,
+				013E71CF1E5150C000BB0572 /* urlblocker.json */,
 				015748031E208C5000DB2044 /* UIResponder+FirstResponder.h */,
 				015748041E208C5000DB2044 /* UIResponder+FirstResponder.m */,
 			);
@@ -469,6 +472,9 @@
 							com.apple.InAppPurchase = {
 								enabled = 1;
 							};
+							com.apple.SafariKeychain = {
+								enabled = 0;
+							};
 						};
 					};
 					018333D61A35727C00670CD1 = {
@@ -513,6 +519,7 @@
 				01BFEE4A1E3D3CD60069AC83 /* urlblocker.json in Resources */,
 				01F8794C1A4124FE00A63654 /* credits.html in Resources */,
 				016B2FCB1A53466D002D2730 /* hsts_preload.plist in Resources */,
+				013E71D01E5150C000BB0572 /* urlblocker.json in Resources */,
 				01FC0E571B38FB6B00955D9A /* Launch Screen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
