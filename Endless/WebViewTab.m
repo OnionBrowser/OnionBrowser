@@ -223,14 +223,18 @@
 
 - (void)loadURL:(NSURL *)u withForce:(BOOL)force
 {
+	[self loadRequest:[NSURLRequest requestWithURL:u] withForce:force];
+}
+
+- (void)loadRequest:(NSURLRequest *)req withForce:(BOOL)force
+{
 	[self.webView stopLoading];
-	[self prepareForNewURL:u];
+	[self prepareForNewURL:[req URL]];
 	
-	NSMutableURLRequest *ur = [NSMutableURLRequest requestWithURL:u];
 	if (force)
 		[self setForcingRefresh:YES];
  
-	[self.webView loadRequest:ur];
+	[self.webView loadRequest:req];
 }
 
 - (void)searchFor:(NSString *)query
@@ -442,7 +446,7 @@
 
 - (void)webView:(UIWebView *)__webView didFailLoadWithError:(NSError *)error
 {
-	self.url = self.webView.request.URL;
+	self.url = __webView.request.URL;
 	[self setProgress:@0];
 	
 	if ([[error domain] isEqualToString:NSURLErrorDomain] && error.code == NSURLErrorCancelled)
