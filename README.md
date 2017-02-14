@@ -1,97 +1,55 @@
-###Endless
+## Onion Browser
 
-A (Mobile)Safari-like web browser for iOS (wrapping around UIWebView, of
-course) with a design goal of increased security and privacy.
+[![Build Status](https://travis-ci.org/mtigas/OnionBrowser.svg?branch=2.X)](https://travis-ci.org/mtigas/OnionBrowser)  
+[Official Site][official] | [Support][help] | [Changelog][changelog] | [Donate][donate]  
+&copy; 2012-2017 [Mike Tigas][miketigas] ([@mtigas](https://twitter.com/mtigas))
 
-Current builds are available for free in the
-[App Store](https://itunes.apple.com/us/app/endless-browser/id974745755?mt=8).
+*This is the Onion Browser <strong>2.X branch</strong>, based on [Endless][endless]. This branch is in active development and is probably completely broken from time to time. This version has not yet been released in the App Store.*
 
-Please see the [LICENSE](https://github.com/jcs/endless/blob/master/LICENSE)
-file for redistribution terms.  Redistribution of this software in binary
-form, with or without modification, is not permitted.
+**Onion Browser** is a free web browser for iPhone and iPad that encrypts and tunnels web traffic through the [Tor network][tor]. See the [official site][official] for more details and App Store links.
 
-#####Screenshots
+Please see the [LICENSE][license] file for usage and redistribution terms. As of the 2.X (Endless-based) tree, redistribution of this software in binary form, with or without modification, is not permitted. (The previous [1.X tree][1.X] of Onion Browser was available under [a different license](https://github.com/mtigas/OnionBrowser/blob/1.X/LICENSE).)
 
-![https://i.imgur.com/8FgHAWZ.png](https://i.imgur.com/8FgHAWZ.png) ![https://i.imgur.com/evQ63JX.png](https://i.imgur.com/evQ63JX.png)
+---
 
-#####Basic browser functionality implemented:
+* **OnionBrowser**: 2.0.0-dev (XXXXXXXX.X) - See [official release history][releases] and [changelog][changelog].
+* **[Tor.framework][Tor.framework]**: a1b2928 (Dec 14 2016)
+  * **[Tor][tor]**: 0.2.9.8 (Dec 19 2016)
+  * **[libevent][libevent]**: 2.1.7-rc (Nov 11 2016)
+  * **[OpenSSL][openssl]**: 1.0.2j (Sep 26 2016)
 
-- Basics of entering URLs, following redirections, back, forward, cookie
-  storage, HTTP basic authentication
+[official]: https://mike.tig.as/onionbrowser/
+[help]: https://mike.tig.as/onionbrowser/help/
+[releases]: https://github.com/mtigas/OnionBrowser/releases
+[changelog]: https://raw.github.com/mtigas/OnionBrowser/2.X/CHANGES.txt
+[donate]: https://mike.tig.as/onionbrowser/#support-project
+[miketigas]: https://mike.tig.as/
+[license]: https://github.com/mtigas/OnionBrowser/blob/2.X/LICENSE
+[Tor.framework]: https://github.com/iCepa/Tor.framework
+[tor]: https://www.torproject.org/
+[libevent]: http://libevent.org/
+[openssl]: https://www.openssl.org/
+[iobfs]: https://github.com/mtigas/iObfs
+[endless]: https://github.com/jcs/endless
+[1.X]: https://github.com/mtigas/OnionBrowser/tree/1.X
 
-- Multiple tabs with support for `window.open()` and `<a target="_blank">`
-  automatically opening new tab windows, but blocks calls not made via user
-  interaction events (similar to most desktop browser popup blockers)
+### Notable 2.X Features
 
-- Bookmark list with management, re-ordering, and editing
+The following features are new to Onion Browser, by way of the upstream work on [Endless][endless]:
 
-- Custom long-press menu for links to open in a new tab, and to save images
-  to the device; shows image or link alt text (useful for sites like
-  [xkcd](http://xkcd.com/))
+- Multiple tab support
 
-- Swipe left and right to go back and forward
+- Search from URL bar
 
-- Search from URL bar with DDG, Google, or Startpage
+- Ability to configure security and privacy settings (script blocking, etc) on a per-site basis
 
-- Optional dark/night-time interface
+- Per-site cookie handling
 
-#####Security and privacy-focused features implemented:
+- [HTTPS Everywhere](https://www.eff.org/HTTPS-EVERYWHERE) support
 
-- Per-host/domain security and privacy settings:
+- HTTP Strict Transport Security (HSTS) support, pre-loaded with the [Chromium ruleset](https://hstspreload.org/)
 
-  - Disables SSL 2 and SSL 3 by default with a configurable minimum TLS
-    version to require from the host, such as TLS 1.2-only.  Also disables
-    weak TLS ciphers.
+- Ability to view SSL certificate information, to allow manual verification of SSL certificates
 
-  - Configurable security policy:
-
-    - Open (default, normal browsing mode)
-
-    - No after-load connections (blocks XMLHTTPRequest/AJAX requests,
-      WebSockets, and \<video\> and \<audio\> elements)
-
-    - Strict (blocks all of the above plus embedded fonts and Javascript)
-
-  - Blocks mixed-content requests (http elements on an https page) unless
-    disabled (useful for RSS readers), shows broken padlock
-
-  - Blocks pages loaded from non-local networks (i.e., the internet) from
-    trying to load sub-requests (e.g., images, iframes, ajax) from hosts that
-    are on local RFC3330 networks such as routers and other insecure devices
-
-  - Defaults to only accepting cookies and local storage for the duration of
-    the session (until the last tab accessing that data closes) but allows
-    persistent storage from configured hosts
-
-- Auto-destroys non-whitelisted cookies and local storage (even within the same
-  tab) that has not been accessed by any other tab within a configurable amount
-  of time (defaults to 30 minutes) to improve privacy while browsing within a
-  long-running tab
-
-- Cookie and localStorage database listing and deletion per-host
-
-- Integrated full [HTTPS Everywhere](https://www.eff.org/HTTPS-EVERYWHERE)
-  ruleset to do on-the-fly URL rewriting to force requests over SSL where
-  supported, including setting the secure bit on received cookies and
-  auto-detection of redirection loops
-
-- HTTP Strict Transport Security (RFC6797) implementation (in addition to
-  WebKit's mystery built-in one) with Chromium's large preload list
-
-- Integrated URL blocker with a small included ruleset of behavior-tracking
-  advertising, analytics, and social networking widgets (this list is intended
-  for enhancing privacy and not to be an AdBlock-style comprehensive ad-blocking
-  list)
-
-- Shows locked padlock for fully SSL-encrypted URLs, and organization name for
-  sites with EV SSL certs
-
-- Integrated SSL certificate viewer by tapping on padlock icon, highlighting
-  weak SSL certificate signature algorithms and showing per-connection
-  negotiated TLS/SSL protocol version and cipher information
-
-- Optional sending of Do-Not-Track header on all requests
-
-- Integrated [1Password button](https://github.com/AgileBits/onepassword-app-extension)
-  to autofill website logins, passwords, credit card numbers, etc.; requires
-  the 1Password iOS app to be installed (and is not enabled if not installed)
+- [1Password extension](https://github.com/AgileBits/onepassword-app-extension)
+  support (if 1Password app is installed)
