@@ -317,6 +317,10 @@
 #ifdef TRACE
 			NSLog(@"[Tab %@] not doing universal link workaround for iframe %@", [self tabIndex], url);
 #endif
+		} else if (navigationType == UIWebViewNavigationTypeBackForward) {
+#ifdef TRACE
+			NSLog(@"[Tab %@] not doing universal link workaround for back/forward navigation to %@", [self tabIndex], url);
+#endif
 		} else if ([[[url scheme] lowercaseString] hasPrefix:@"http"] && ![NSURLProtocol propertyForKey:UNIVERSAL_LINKS_WORKAROUND_KEY inRequest:request]) {
 			NSMutableURLRequest *tr = [request mutableCopy];
 			[NSURLProtocol setProperty:@YES forKey:UNIVERSAL_LINKS_WORKAROUND_KEY inRequest:tr];
