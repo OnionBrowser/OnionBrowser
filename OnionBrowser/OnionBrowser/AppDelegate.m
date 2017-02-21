@@ -481,19 +481,16 @@
   if (ipSetting == OB_IPV4V6_AUTO) {
     NSInteger ipv6_status = [Ipv6Tester ipv6_status];
 		if (ipv6_status == TOR_IPV6_CONN_ONLY) {
-      // TODO: eventually get rid of "UseMicrodescriptors 0" workaround
-      //       (because it is very slow) pending this ticket:
-      //       https://trac.torproject.org/projects/tor/ticket/20996
-			[myHandle writeData:[@"\nClientUseIPv4 0\nClientUseIPv6 1\nUseMicrodescriptors 0\n" dataUsingEncoding:NSUTF8StringEncoding]];
+			[myHandle writeData:[@"\nClientUseIPv4 0\nClientUseIPv6 1\n" dataUsingEncoding:NSUTF8StringEncoding]];
 		} else if (ipv6_status == TOR_IPV6_CONN_DUAL) {
-			[myHandle writeData:[@"\nClientUseIPv4 1\nClientUseIPv6 1\nUseMicrodescriptors 0\n" dataUsingEncoding:NSUTF8StringEncoding]];
+			[myHandle writeData:[@"\nClientUseIPv4 1\nClientUseIPv6 1\n" dataUsingEncoding:NSUTF8StringEncoding]];
 		} else {
 			[myHandle writeData:[@"\nClientUseIPv4 1\n" dataUsingEncoding:NSUTF8StringEncoding]];
 		}
   } else if (ipSetting == OB_IPV4V6_V6ONLY) {
-	  [myHandle writeData:[@"\nClientUseIPv4 0\nClientUseIPv6 1\nUseMicrodescriptors 0\n" dataUsingEncoding:NSUTF8StringEncoding]];
+	  [myHandle writeData:[@"\nClientUseIPv4 0\nClientUseIPv6 1\n" dataUsingEncoding:NSUTF8StringEncoding]];
   } else if (ipSetting == OB_IPV4V6_FORCEDUAL) {
-	  [myHandle writeData:[@"\nClientUseIPv4 1\nClientUseIPv6 1\nUseMicrodescriptors 0\n" dataUsingEncoding:NSUTF8StringEncoding]];
+	  [myHandle writeData:[@"\nClientUseIPv4 1\nClientUseIPv6 1\n" dataUsingEncoding:NSUTF8StringEncoding]];
   } else {
     [myHandle writeData:[@"\nClientUseIPv4 1\n" dataUsingEncoding:NSUTF8StringEncoding]];
   }

@@ -22,13 +22,13 @@ Features subject to change.
 
 
 ===== 1.7.3 - Pending App Store Approval =====
-Jan 12 2017 - Submit Date
+Feb 21 2017 - Submit Date
 
 * Initial support for IPv6-only networks.
 
 * Simplified the initial "Loading..." progress screen.
 
-* Tor updated to 0.2.9.8.
+* Tor updated to 0.3.0.3-alpha.
 
 
 CURRENT VERSION:

@@ -10,11 +10,11 @@ and App Store links.
 
 ---
 
-* **OnionBrowser**: 1.7.3 (20170112.3) - See [official release history][releases] and [changelog][changelog].
-* **[Tor.framework][Tor.framework]**: a1b2928 (Dec 14 2016)
-  * **[Tor][tor]**: 0.2.9.8 (Dec 19 2016)
-  * **[libevent][libevent]**: 2.1.7-rc (Nov 11 2016)
-  * **[OpenSSL][openssl]**: 1.0.2j (Sep 26 2016)
+* **OnionBrowser**: 1.7.3 (20170221.1) - See [official release history][releases] and [changelog][changelog].
+* **[Tor.framework][Tor.framework]**: 5899d67 (Feb 21 2017)
+  * **[Tor][tor]**: 0.3.0.3-alpha
+  * **[libevent][libevent]**: 2.1.8
+  * **[OpenSSL][openssl]**: 1.0.2k
 * **[iObfs][iobfs]**: 26463e2 (Jul 15 2016)
   * **obfs4proxy**: 0.0.8-dev, upstream 97a875e (Nov 15 2016)
   * **golang**: 1.7.4 (Dec 01 2016)
