@@ -415,17 +415,6 @@
 			[self webView:__webView callbackWith:@""];
 		}
 		
-		/* getters, pull from target webview and write back to caller internal parameters (not setters) */
-		else if ([action isEqualToString:@"fakeWindow.getName"]) {
-			NSString *name = [[wvt webView] stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"window.name;"]];
-			[self webView:__webView callbackWith:[NSString stringWithFormat:@"__endless.openedTabs[\"%@\"]._name = \"%@\";", [param stringEscapedForJavasacript], [name stringEscapedForJavasacript]]];
-		}
-		else if ([action isEqualToString:@"fakeWindow.getLocation"]) {
-			NSString *loc = [[wvt webView] stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"JSON.stringify(window.location);"]];
-			/* don't encode loc, it's (hopefully a safe) hash */
-			[self webView:__webView callbackWith:[NSString stringWithFormat:@"__endless.openedTabs[\"%@\"]._location = new __endless.FakeLocation(%@)", [param stringEscapedForJavasacript], loc]];
-		}
-		
 		/* actions */
 		else if ([action isEqualToString:@"fakeWindow.close"]) {
 			[[appDelegate webViewController] removeTab:[wvt tabIndex]];

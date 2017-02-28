@@ -201,15 +201,14 @@ var __endless = {
 				__endless.ipcAndWaitForReply("fakeWindow.setLocationParam/" + this.id + "/" + property + "?" + encodeURIComponent(v));
 			},
 			get: function() {
-				eval("this._" + property + " = null;");
-				__endless.ipcAndWaitForReply("fakeWindow.getLocationParam/" + this.id + "/" + property + "?" + encodeURIComponent(v));
+				throw "security error trying to access location." + property + " of other window";
 			},
 		});
 	});
 
 	__endless.FakeWindow.prototype = {
 		constructor: __endless.FakeWindow,
-
+ 
 		set location(loc) {
 			this._location = new __endless.FakeLocation();
 			__endless.ipcAndWaitForReply("fakeWindow.setLocation/" + this.id + "?" + encodeURIComponent(loc));
@@ -223,21 +222,23 @@ var __endless = {
 		},
 
 		get location() {
-			this._location = new __endless.FakeLocation();
-			__endless.ipcAndWaitForReply("fakeWindow.getLocation/" + this.id);
-			this._location.id = this.id;
-			return this._location;
+			throw "security error trying to access window.location of other window";
 		},
 		get name() {
-			this._name = null;
-			__endless.ipcAndWaitForReply("fakeWindow.getName/" + this.id);
-			return this._name;
+			throw "security error trying to access window.name of other window";
+		},
+		get title() {
+			throw "security error trying to access window.title of other window";
 		},
 		get opener() {
 		},
 
 		close: function() {
 			__endless.ipcAndWaitForReply("fakeWindow.close/" + this.id);
+		},
+ 
+		toString: function() {
+			return "[object FakeWindow]";
 		},
 	};
 
