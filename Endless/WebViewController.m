@@ -897,7 +897,7 @@
 	NSURL *enteredURL = [NSURL URLWithString:url];
 	
 	/* for some reason NSURL thinks "example.com:9091" should be "example.com" as the scheme with no host, so fix up first */
-	if ([enteredURL host] == nil && [enteredURL scheme] != nil && [enteredURL resourceSpecifier] != nil)
+	if ([enteredURL host] == nil && [enteredURL scheme] != nil && ![[enteredURL scheme] isEqualToString:@"about"] && [enteredURL resourceSpecifier] != nil)
 		enteredURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@", url]];
 	
 	if (![enteredURL scheme] || [[enteredURL scheme] isEqualToString:@""]) {

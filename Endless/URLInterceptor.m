@@ -198,6 +198,11 @@ static NSString *_javascriptToInject;
 		
 		if (![[[[request URL] scheme] lowercaseString] isEqualToString:@"http"] && ![[[[request URL] scheme] lowercaseString] isEqualToString:@"https"]) {
 			/* iOS 10 blocks canOpenURL: requests, so we just have to assume these go somewhere */
+			
+			/* about: URLs should just return nothing */
+			if ([[[request URL] scheme] isEqualToString:@"about"])
+				return nil;
+
 			UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Open In External App" message:[NSString stringWithFormat:@"Allow URL to be opened by external app? This may compromise your privacy.\n\n%@", [request URL]] preferredStyle:UIAlertControllerStyleAlert];
 			
 			UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK action") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
