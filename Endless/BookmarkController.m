@@ -38,6 +38,7 @@
 {
 	[super viewWillDisappear:animated];
 	[Bookmark persistList];
+	[[appDelegate webViewController] hideBookmarks];
 }
 
 #pragma mark - Table view data source
@@ -109,7 +110,7 @@
 	
 	if (self.embedded) {
 		[[appDelegate webViewController] prepareForNewURLFromString:[bookmark urlString]];
-		[[appDelegate webViewController] hideBookmarks];
+		[self dismissViewControllerAnimated:YES completion:nil];
 	}
 	else {
 		[tableView deselectRowAtIndexPath:indexPath animated:YES];
