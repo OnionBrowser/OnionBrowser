@@ -47,6 +47,22 @@
 	
 	[self initializeDefaults];
 	
+	/* handle per-version upgrades or migrations */
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	long lastBuild = [userDefaults integerForKey:@"last_build"];
+	
+	NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+	f.numberStyle = NSNumberFormatterDecimalStyle;
+	long thisBuild = [[f numberFromString:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]] longValue];
+	
+	if (lastBuild != thisBuild) {
+		NSLog(@"migrating from build %ld -> %ld", lastBuild, thisBuild);
+		[HostSettings migrateFromBuild:lastBuild toBuild:thisBuild];
+		
+		[userDefaults setInteger:thisBuild forKey:@"last_build"];
+		[userDefaults synchronize];
+	}
+	
 	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	self.window.backgroundColor = [UIColor groupTableViewBackgroundColor];
 	self.window.rootViewController = [[WebViewController alloc] init];

@@ -24,6 +24,10 @@ static NSMutableDictionary *_hosts;
 	};
 }
 
++ (void)migrateFromBuild:(long)lastBuild toBuild:(long)thisBuild
+{
+}
+
 + (NSString *)hostSettingsPath
 {
 	NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];

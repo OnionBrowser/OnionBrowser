@@ -44,8 +44,8 @@
 #if DEBUG
 + (void)overrideHosts:(NSMutableDictionary *)hosts;
 #endif
-
 + (NSArray *)sortedHosts;
++ (void)migrateFromBuild:(long)lastBuild toBuild:(long)thisBuild;
 
 - (HostSettings *)initForHost:(NSString *)host withDict:(NSDictionary *)vals;
 - (void)save;
