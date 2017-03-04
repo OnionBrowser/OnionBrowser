@@ -249,7 +249,7 @@ static NSString *_javascriptToInject;
 - (void)startLoading
 {
 	NSMutableURLRequest *newRequest = [self.request mutableCopy];
-	[newRequest setValue:userAgent forHTTPHeaderField:@"User-Agent"];
+
 	[newRequest setHTTPShouldUsePipelining:YES];
 	
 	[self setActualRequest:newRequest];
@@ -289,6 +289,17 @@ static NSString *_javascriptToInject;
 		self.originHostSettings = self.hostSettings;
 	else
 		self.originHostSettings = [HostSettings settingsOrDefaultsForHost:oHost];
+
+	/* set our proper UA, or use this host's version */
+	NSString *customUA = [self.originHostSettings settingOrDefault:HOST_SETTINGS_KEY_USER_AGENT];
+	if (customUA == nil || [customUA isEqualToString:@""])
+		[newRequest setValue:userAgent forHTTPHeaderField:@"User-Agent"];
+	else {
+#ifdef TRACE
+		NSLog(@"[URLInterceptor] [Tab %@] setting custom UA: %@", wvt.tabIndex, customUA);
+#endif
+		[newRequest setValue:customUA forHTTPHeaderField:@"User-Agent"];
+	}
 
 	/* check HSTS cache first to see if scheme needs upgrading */
 	[newRequest setURL:[[appDelegate hstsCache] rewrittenURI:[[self request] URL]]];

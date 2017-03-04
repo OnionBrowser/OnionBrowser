@@ -280,6 +280,21 @@
 			[section addFormRow:row];
 		}
 	}
+	
+	/* misc section */
+	{
+		XLFormSectionDescriptor *section = [XLFormSectionDescriptor formSection];
+		[section setTitle:@"Other"];
+		[form addFormSection:section];
+		
+		/* user agent */
+		{
+			XLFormRowDescriptor *row = [XLFormRowDescriptor formRowDescriptorWithTag:HOST_SETTINGS_KEY_USER_AGENT rowType:XLFormRowDescriptorTypeText title:@"User Agent"];
+			[row setValue:[host setting:HOST_SETTINGS_KEY_USER_AGENT]];
+			[section setFooterTitle:[NSString stringWithFormat:@"Custom user-agent string, or blank to use the default"]];
+			[section addFormRow:row];
+		}
+	}
 
 	HostSettingsXLFormViewController *formController = [[HostSettingsXLFormViewController alloc] initWithForm:form];
 	[formController setDisappearCallback:^(HostSettingsXLFormViewController *form) {
@@ -292,6 +307,7 @@
 			HOST_SETTINGS_KEY_CSP,
 			HOST_SETTINGS_KEY_TLS,
 			HOST_SETTINGS_KEY_WHITELIST_COOKIES,
+			HOST_SETTINGS_KEY_USER_AGENT,
 		];
 		
 		for (NSString *key in keys) {

@@ -20,6 +20,7 @@ static NSMutableDictionary *_hosts;
 	       HOST_SETTINGS_KEY_BLOCK_LOCAL_NETS: HOST_SETTINGS_VALUE_YES,
 	       HOST_SETTINGS_KEY_ALLOW_MIXED_MODE: HOST_SETTINGS_VALUE_NO,
 	       HOST_SETTINGS_KEY_WHITELIST_COOKIES: HOST_SETTINGS_VALUE_NO,
+	       HOST_SETTINGS_KEY_USER_AGENT: @"",
 	};
 }
 
@@ -177,7 +178,7 @@ static NSMutableDictionary *_hosts;
 - (NSString *)settingOrDefault:(NSString *)setting
 {
 	NSString *val = [self setting:setting];
-	if (val == nil)
+	if (val == nil || [val isEqualToString:@""])
 		/* try default host settings */
 		val = [[HostSettings defaultHostSettings] setting:setting];
 	
