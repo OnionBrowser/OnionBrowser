@@ -26,6 +26,18 @@ static NSMutableDictionary *_hosts;
 
 + (void)migrateFromBuild:(long)lastBuild toBuild:(long)thisBuild
 {
+	if (lastBuild <= 1401) {
+		/*
+		 * t.co does redirections using a text/html page with a 0-delay <meta refresh> tag,
+		 * but when the UA is something non-safari, it will send a proper 301 redirect, preserving
+		 * the back button navigation.
+		 */
+		HostSettings *hs = [HostSettings forHost:@"t.co"];
+		if (!hs)
+			hs = [[HostSettings alloc] initForHost:@"t.co" withDict:nil];
+		[hs setSetting:HOST_SETTINGS_KEY_USER_AGENT toValue:@"curl (to force a 301 redirect)"];
+		[hs save];
+	}
 }
 
 + (NSString *)hostSettingsPath
