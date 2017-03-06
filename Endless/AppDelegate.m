@@ -34,18 +34,18 @@
 	@catch (NSException *e) {
 		NSLog(@"[AppDelegate] failed setting up fabric: %@", e);
 	}
+	
+	[self initializeDefaults];
 
 #ifdef USE_DUMMY_URLINTERCEPTOR
 	[NSURLProtocol registerClass:[DummyURLInterceptor class]];
 #else
 	[NSURLProtocol registerClass:[URLInterceptor class]];
 #endif
-	
+
 	self.hstsCache = [HSTSCache retrieve];
 	self.cookieJar = [[CookieJar alloc] init];
 	[Bookmark retrieveList];
-	
-	[self initializeDefaults];
 	
 	/* handle per-version upgrades or migrations */
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
