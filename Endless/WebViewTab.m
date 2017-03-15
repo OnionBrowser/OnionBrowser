@@ -350,8 +350,7 @@
 	NSString *value = [[[url query] stringByReplacingOccurrencesOfString:@"+" withString:@" "] stringByRemovingPercentEncoding];
 	
 	if ([action isEqualToString:@"console.log"]) {
-		NSString *json = [[[url query] stringByReplacingOccurrencesOfString:@"+" withString:@" "] stringByRemovingPercentEncoding];
-		NSLog(@"[Tab %@] [console.%@] %@", [self tabIndex], param, json);
+		NSLog(@"[Tab %@] [console.%@] %@", [self tabIndex], param, value);
 		/* no callback needed */
 		return NO;
 	}
@@ -370,13 +369,13 @@
 			newtab.randID = param;
 			newtab.openedByTabHash = [NSNumber numberWithLong:self.hash];
 			
-			[self webView:__webView callbackWith:[NSString stringWithFormat:@"__endless.openedTabs[\"%@\"].opened = true;", param]];
+			[self webView:__webView callbackWith:[NSString stringWithFormat:@"__endless.openedTabs[\"%@\"].opened = true;", [param stringEscapedForJavasacript]]];
 		}
 		else {
 			/* TODO: show a "popup blocked" warning? */
 			NSLog(@"[Tab %@] blocked non-touch window.open() (nav type %ldl)", self.tabIndex, (long)navigationType);
 			
-			[self webView:__webView callbackWith:[NSString stringWithFormat:@"__endless.openedTabs[\"%@\"].opened = false;", param]];
+			[self webView:__webView callbackWith:[NSString stringWithFormat:@"__endless.openedTabs[\"%@\"].opened = false;", [param stringEscapedForJavasacript]]];
 		}
 	}
 	else if ([action isEqualToString:@"window.close"]) {
