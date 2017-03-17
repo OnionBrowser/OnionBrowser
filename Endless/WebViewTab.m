@@ -409,8 +409,14 @@
 			[self webView:__webView callbackWith:@""];
 		}
 		else if ([action isEqualToString:@"fakeWindow.setLocationParam"]) {
-			/* TODO: whitelist param since we're sending it raw */
-			[[wvt webView] stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"window.location.%@ = \"%@\";", param2, [value stringEscapedForJavasacript]]];
+			/* must match injected.js */
+			NSArray *validParams = @[ @"hash", @"hostname", @"href", @"pathname", @"port", @"protocol", @"search", @"username", @"password", @"origin" ];
+			
+			if (param2 != nil && [validParams containsObject:param2])
+				[[wvt webView] stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"window.location.%@ = \"%@\";", param2, [value stringEscapedForJavasacript]]];
+			else
+				NSLog(@"[Tab %@] window.%@ not implemented", self.tabIndex, param2);
+			
 			[self webView:__webView callbackWith:@""];
 		}
 		
