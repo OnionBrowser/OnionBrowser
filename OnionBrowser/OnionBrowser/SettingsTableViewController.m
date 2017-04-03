@@ -245,7 +245,7 @@
                 cell.accessoryType = UITableViewCellAccessoryNone;
             }
         } else if (indexPath.row == 4) {
-            cell.textLabel.text = @"Mac OS X 10.11.6, Safari 9.1.2";
+            cell.textLabel.text = @"Mac OS X 10.12.4, Safari 10.1";
             if (spoofUserAgent == UA_SPOOF_SAFARI_MAC) {
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             } else {

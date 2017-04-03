@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/mtigas/OnionBrowser.svg?branch=1.X)](https://travis-ci.org/mtigas/OnionBrowser)  
 [Official Site][official] | [Support][help] | [Changelog][changelog] | [Donate][donate]  
-&copy; 2012-2016 [Mike Tigas][miketigas] ([@mtigas](https://twitter.com/mtigas))  
+&copy; 2012-2017 [Mike Tigas][miketigas] ([@mtigas](https://twitter.com/mtigas))  
 [Mozilla Public License 2.0][license]
 
 Onion Browser is a free web browser for iPhone and iPad that encrypts and tunnels web traffic through the [Tor network][tor]. See the [official site][official] for more details
@@ -10,9 +10,9 @@ and App Store links.
 
 ---
 
-* **OnionBrowser**: 1.7.3 (20170221.1) - See [official release history][releases] and [changelog][changelog].
-* **[Tor.framework][Tor.framework]**: 5899d67 (Feb 21 2017)
-  * **[Tor][tor]**: 0.3.0.3-alpha
+* **OnionBrowser**: 1.7.4 (20170402.3) - See [official release history][releases] and [changelog][changelog].
+* **[Tor.framework][Tor.framework]**: b0af677 (Apr 02 2017)
+  * **[Tor][tor]**: 0.3.0.4-rc
   * **[libevent][libevent]**: 2.1.8
   * **[OpenSSL][openssl]**: 1.0.2k
 * **[iObfs][iobfs]**: 26463e2 (Jul 15 2016)

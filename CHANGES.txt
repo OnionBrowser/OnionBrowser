@@ -3,7 +3,6 @@ Onion Browser Version History (since 1.2.2)
 FUTURE:
 
 ===== 2.0 - In Development =====
-Testing to begin by the end of December 2016.
 Features subject to change.
 
 * New design and new codebase, based on the Endless Browser open source
@@ -21,8 +20,22 @@ Features subject to change.
   against forensic tools.
 
 
-===== 1.7.3 - Pending App Store Approval =====
+===== 1.7.4 - Pending App Store Approval =====
+Apr 02 2017 - Submit Date
+
+* Built-in bridges updated to latest Tor Browser Bundle configuration.
+  (Fixes non-working meek-azure.)
+
+* Tor updated to 0.3.0.4-rc.
+
+* Updated user-agent spoofing strings.
+
+
+CURRENT VERSION:
+
+===== 1.7.3 - In App Store =====
 Feb 21 2017 - Submit Date
+Feb 24 2017 - App Store Availability
 
 * Initial support for IPv6-only networks.
 
@@ -31,9 +44,9 @@ Feb 21 2017 - Submit Date
 * Tor updated to 0.3.0.3-alpha.
 
 
-CURRENT VERSION:
+PREVIOUS VERSIONS:
 
-===== 1.7.2 - In App Store =====
+===== 1.7.2 =====
 Dec 14 2016 - Submit Date
 Dec 15 2016 - App Store Availability
 
@@ -42,9 +55,6 @@ Dec 15 2016 - App Store Availability
 * The OpenSSL version change fixes severe crash issue on all 32bit iOS
   devices. This affected all users of iPhone 5C, iPhone 5, iPhone 4S, iPad
   Mini 1, iPad 4, iPod Touch, and other older iOS devices.
-
-
-PREVIOUS VERSIONS:
 
 ===== 1.7.1 =====
 Dec 13 2016 - Submit Date
