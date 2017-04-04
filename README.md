@@ -1,4 +1,4 @@
-###Endless
+### Endless
 
 [![https://endl.es/appstore.svg](https://endl.es/appstore.svg)](https://itunes.apple.com/us/app/endless-browser/id974745755?mt=8)
 
@@ -18,11 +18,11 @@ for redistribution terms.
 Commercial redistribution license exclusions are available; please
 [contact me](https://jcs.org/about) for more information.
 
-####Screenshots
+#### Screenshots
 
 ![https://i.imgur.com/8FgHAWZ.png](https://i.imgur.com/8FgHAWZ.png) ![https://i.imgur.com/evQ63JX.png](https://i.imgur.com/evQ63JX.png)
 
-####Basic browser functionality implemented:
+#### Basic browser functionality implemented:
 
 - Basics of entering URLs, following redirections, back, forward, cookie
   storage, HTTP basic authentication
@@ -47,7 +47,7 @@ Commercial redistribution license exclusions are available; please
   as well as global shortcuts for common functions like Command+T for new tab,
   Command+W to close, Command+L to focus URL field, etc.
 
-#####Security and privacy-focused features implemented:
+##### Security and privacy-focused features implemented:
 
 - Per-host/domain security and privacy settings:
 
@@ -111,7 +111,7 @@ Commercial redistribution license exclusions are available; please
   to autofill website logins, passwords, credit card numbers, etc.; requires
   the 1Password iOS app to be installed (and is not enabled if not installed)
 
-####Infrequently Asked Questions
+#### Infrequently Asked Questions
 
 1. Why does this software still use UIWebView instead of the newer WKWebView?
 
