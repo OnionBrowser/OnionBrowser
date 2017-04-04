@@ -13,10 +13,10 @@ Please see the [LICENSE][license] file for usage and redistribution terms. As of
 ---
 
 * **OnionBrowser**: 2.0.0-dev (XXXXXXXX.X) - See [official release history][releases] and [changelog][changelog].
-* **[Tor.framework][Tor.framework]**: a1b2928 (Dec 14 2016)
-  * **[Tor][tor]**: 0.2.9.8 (Dec 19 2016)
-  * **[libevent][libevent]**: 2.1.7-rc (Nov 11 2016)
-  * **[OpenSSL][openssl]**: 1.0.2j (Sep 26 2016)
+* **[Tor.framework][Tor.framework]**: b0af677 (Apr 02 2017)
+  * **[Tor][tor]**: 0.3.0.4-rc
+  * **[libevent][libevent]**: 2.1.8
+  * **[OpenSSL][openssl]**: 1.0.2k
 
 [official]: https://mike.tig.as/onionbrowser/
 [help]: https://mike.tig.as/onionbrowser/help/
