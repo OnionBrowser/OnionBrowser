@@ -29,6 +29,8 @@
 #define HOST_SETTINGS_CSP_BLOCK_CONNECT @"block_connect"
 #define HOST_SETTINGS_CSP_STRICT @"strict"
 
+#define HOST_SETTINGS_KEY_USER_AGENT @"user_agent"
+
 @interface HostSettings : NSObject
 
 @property (strong) NSMutableDictionary *dict;
@@ -39,11 +41,11 @@
 + (HostSettings *)forHost:(NSString *)host;
 + (HostSettings *)settingsOrDefaultsForHost:(NSString *)host;
 + (BOOL)removeSettingsForHost:(NSString *)host;
-#ifdef DEBUG
+#if DEBUG
 + (void)overrideHosts:(NSMutableDictionary *)hosts;
 #endif
-
 + (NSArray *)sortedHosts;
++ (void)migrateFromBuild:(long)lastBuild toBuild:(long)thisBuild;
 
 - (HostSettings *)initForHost:(NSString *)host withDict:(NSDictionary *)vals;
 - (void)save;

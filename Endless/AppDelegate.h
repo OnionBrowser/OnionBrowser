@@ -1,6 +1,6 @@
 /*
  * Endless
- * Copyright (c) 2014-2015 joshua stein <jcs@jcs.org>
+ * Copyright (c) 2014-2017 joshua stein <jcs@jcs.org>
  *
  * See LICENSE file for redistribution terms.
  */
@@ -8,13 +8,16 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
+
 #import "CookieJar.h"
 #import "HSTSCache.h"
 #import "WebViewController.h"
 
 #define STATE_RESTORE_TRY_KEY @"state_restore_lock"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, CrashlyticsDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 

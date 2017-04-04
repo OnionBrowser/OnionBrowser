@@ -1,6 +1,6 @@
 /*
  * Endless
- * Copyright (c) 2014-2015 joshua stein <jcs@jcs.org>
+ * Copyright (c) 2014-2017 joshua stein <jcs@jcs.org>
  *
  * See LICENSE file for redistribution terms.
  */
@@ -10,8 +10,12 @@
 @interface URLBlocker : NSObject
 
 + (NSDictionary *)targets;
++ (NSMutableDictionary *)disabledTargets;
++ (void)saveDisabledTargets;
 
 + (BOOL)shouldBlockURL:(NSURL *)url;
-+ (BOOL)shouldBlockURL:(NSURL *)url fromMainDocumentURL:(NSURL *)mainUrl;
++ (NSString *)blockingTargetForURL:(NSURL *)url fromMainDocumentURL:(NSURL *)mainUrl;
++ (void)enableTargetByHost:(NSString *)target;
++ (void)disableTargetByHost:(NSString *)target withReason:(NSString *)reason;
 
 @end

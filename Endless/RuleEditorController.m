@@ -1,6 +1,6 @@
 /*
  * Endless
- * Copyright (c) 2014-2015 joshua stein <jcs@jcs.org>
+ * Copyright (c) 2014-2017 joshua stein <jcs@jcs.org>
  *
  * See LICENSE file for redistribution terms.
  */
@@ -17,8 +17,8 @@ UISearchDisplayController *searchDisplayController;
 	
 	self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 	
-	self.sortedRuleNames = [[NSMutableArray alloc] init];
-	self.inUseRuleNames = [[NSMutableArray alloc] init];
+	self.sortedRuleRows = [[NSMutableArray alloc] init];
+	self.inUseRuleRows = [[NSMutableArray alloc] init];
 
 	self.searchResult = [[NSMutableArray alloc] init];
 	
@@ -36,16 +36,6 @@ UISearchDisplayController *searchDisplayController;
 	searchDisplayController.searchResultsDataSource = self;
 	
 	[[self tableView] setTableHeaderView:self.searchBar];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-}
-
-- (void)didReceiveMemoryWarning
-{
-	[super didReceiveMemoryWarning];
-	// Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
@@ -66,11 +56,11 @@ UISearchDisplayController *searchDisplayController;
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 	if (section == 0)
-		return [self.inUseRuleNames count];
+		return [self.inUseRuleRows count];
 	else if (tableView == self.searchDisplayController.searchResultsTableView)
 		return [self.searchResult count];
 	else
-		return [self.sortedRuleNames count];
+		return [self.sortedRuleRows count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -82,16 +72,22 @@ UISearchDisplayController *searchDisplayController;
 	/* TODO: once we have a per-rule view page, enable this */
 	//cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	
-	cell.textLabel.text = [self ruleForTableView:tableView atIndexPath:indexPath];
+	RuleEditorRow *row = [self ruleForTableView:tableView atIndexPath:indexPath];
+
+	cell.textLabel.text = [row textLabel];
 	
-	NSString *disabled = [self ruleDisabledReason:cell.textLabel.text];
+	NSString *disabled = [self ruleDisabledReason:row];
 	if (disabled == nil) {
 		cell.textLabel.textColor = [UIColor darkTextColor];
-		cell.detailTextLabel.text = nil;
+		cell.detailTextLabel.text = [row detailTextLabel];
+		cell.detailTextLabel.textColor = [UIColor darkGrayColor];
 	}
 	else {
 		cell.textLabel.textColor = [UIColor redColor];
-		cell.detailTextLabel.text = [NSString stringWithFormat:@"Disabled: %@", disabled];
+		if ([row detailTextLabel] == nil || [[row detailTextLabel] isEqualToString:@""])
+			cell.detailTextLabel.text = [NSString stringWithFormat:@"Disabled: %@", disabled];
+		else
+			cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ (Disabled: %@)", [row detailTextLabel], disabled];
 		cell.detailTextLabel.textColor = [UIColor redColor];
 	}
 	
@@ -111,12 +107,12 @@ UISearchDisplayController *searchDisplayController;
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	if (editingStyle == UITableViewCellEditingStyleDelete) {
-		NSString *row = [self ruleForTableView:tableView atIndexPath:indexPath];
+		RuleEditorRow *row = [self ruleForTableView:tableView atIndexPath:indexPath];
 		
 		if ([self ruleDisabledReason:row] == nil)
-			[self disableRuleByName:row withReason:@"User disabled"];
+			[self disableRuleForRow:row withReason:@"User disabled"];
 		else
-			[self enableRuleByName:row];
+			[self enableRuleForRow:row];
 	}
 	
 	[tableView reloadData];
@@ -131,18 +127,31 @@ UISearchDisplayController *searchDisplayController;
 {
 	[self.searchResult removeAllObjects];
 	
-	for (NSString *ruleName in self.sortedRuleNames) {
-		NSRange range = [ruleName rangeOfString:searchString options:NSCaseInsensitiveSearch];
+	for (RuleEditorRow *row in self.sortedRuleRows) {
+		if ([row textLabel] != nil) {
+			NSRange range = [[row textLabel] rangeOfString:searchString options:NSCaseInsensitiveSearch];
+
+			if (range.length > 0) {
+				[self.searchResult addObject:row];
+				continue;
+			}
+		}
+		if ([row detailTextLabel] != nil) {
+			NSRange range = [[row detailTextLabel] rangeOfString:searchString options:NSCaseInsensitiveSearch];
 			
-		if (range.length > 0)
-			[self.searchResult addObject:ruleName];
+			if (range.length > 0) {
+				[self.searchResult addObject:row];
+				continue;
+			}
+		}
 	}
 	
 	return YES;
 }
 
--(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
-	NSString *row = [self ruleForTableView:tableView atIndexPath:indexPath];
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
+{
+	RuleEditorRow *row = [self ruleForTableView:tableView atIndexPath:indexPath];
 
 	if ([self ruleDisabledReason:row] == nil)
 		return @"Disable";
@@ -150,16 +159,16 @@ UISearchDisplayController *searchDisplayController;
 		return @"Enable";
 }
 
-- (NSString *)ruleForTableView:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath
+- (RuleEditorRow *)ruleForTableView:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath
 {
 	NSMutableArray *group;
 	
 	if ([indexPath section] == 0)
-		group = [self inUseRuleNames];
+		group = [self inUseRuleRows];
 	else if (tableView == self.searchDisplayController.searchResultsTableView)
 		group = [self searchResult];
 	else
-		group = [self sortedRuleNames];
+		group = [self sortedRuleRows];
 			 
 	if (group && [group count] > [indexPath row])
 		return [group objectAtIndex:indexPath.row];
@@ -167,17 +176,17 @@ UISearchDisplayController *searchDisplayController;
 		return nil;
 }
 
-- (NSString *)ruleDisabledReason:(NSString *)rule
+- (NSString *)ruleDisabledReason:(RuleEditorRow *)row
 {
 	return nil;
 }
 
-- (void)disableRuleByName:(NSString *)rule withReason:(NSString *)reason
+- (void)disableRuleForRow:(RuleEditorRow *)row withReason:(NSString *)reason
 {
 	abort();
 }
 
-- (void)enableRuleByName:(NSString *)rule
+- (void)enableRuleForRow:(RuleEditorRow *)row
 {
 	abort();
 }

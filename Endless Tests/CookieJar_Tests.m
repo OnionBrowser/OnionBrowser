@@ -10,13 +10,13 @@
 @interface CookieJar_Tests : XCTestCase
 @end
 
-@implementation CookieJar_Tests
+@implementation CookieJar_Tests {
+	CookieJar *cookieJar;
+}
 
-CookieJar *cookieJar;
-
-- (void)setUp {
+- (void)setUp
+{
 	[super setUp];
-	// Put setup code here. This method is called before the invocation of each test method in the class.
 
 	cookieJar = [[CookieJar alloc] init];
 
@@ -25,12 +25,8 @@ CookieJar *cookieJar;
 	[hs save];
 }
 
-- (void)tearDown {
-	// Put teardown code here. This method is called after the invocation of each test method in the class.
-	[super tearDown];
-}
-
-- (void)testIsHostWhitelisted {
+- (void)testIsHostWhitelisted
+{
 	XCTAssertTrue([cookieJar isHostWhitelisted:@"reddit.com"]);
 	XCTAssertTrue([cookieJar isHostWhitelisted:@"assets.reddit.com"]);
 	

@@ -8,10 +8,10 @@
 #import "AppDelegate.h"
 #import "CookieController.h"
 
-@implementation CookieController
-
-AppDelegate *appDelegate;
-NSMutableArray *sortedCookieHosts;
+@implementation CookieController {
+	AppDelegate *appDelegate;
+	NSMutableArray *sortedCookieHosts;
+}
 
 - (void)viewDidLoad
 {

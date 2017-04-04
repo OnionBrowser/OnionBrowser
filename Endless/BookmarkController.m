@@ -9,11 +9,11 @@
 #import "Bookmark.h"
 #import "BookmarkController.h"
 
-@implementation BookmarkController
-
-AppDelegate *appDelegate;
-UIBarButtonItem *addItem;
-UIBarButtonItem *leftItem;
+@implementation BookmarkController {
+	AppDelegate *appDelegate;
+	UIBarButtonItem *addItem;
+	UIBarButtonItem *leftItem;
+}
 
 - (void)viewDidLoad
 {
@@ -31,18 +31,14 @@ UIBarButtonItem *leftItem;
 	[[self tableView] addGestureRecognizer:lpgr];
 	
 	if ([[appDelegate webViewController] darkInterface])
-		[[self tableView] setBackgroundColor:[UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1.0]];
+		[[self tableView] setBackgroundColor:[UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:1.0]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+	[super viewWillDisappear:animated];
 	[Bookmark persistList];
-}
-
-- (void)didReceiveMemoryWarning
-{
-	[super didReceiveMemoryWarning];
-	// Dispose of any resources that can be recreated.
+	[[appDelegate webViewController] hideBookmarks];
 }
 
 #pragma mark - Table view data source
@@ -62,7 +58,7 @@ UIBarButtonItem *leftItem;
 	if (self.embedded)
 		return @"Bookmarks";
 	else
-		return nil;
+		return @"(Tap to edit, hold to re-order)";
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
@@ -112,8 +108,10 @@ UIBarButtonItem *leftItem;
 {
 	Bookmark *bookmark = [Bookmark list][[indexPath row]];
 	
-	if (self.embedded)
+	if (self.embedded) {
 		[[appDelegate webViewController] prepareForNewURLFromString:[bookmark urlString]];
+		[self dismissViewControllerAnimated:YES completion:nil];
+	}
 	else {
 		[tableView deselectRowAtIndexPath:indexPath animated:YES];
 		

@@ -21,11 +21,11 @@
  * ./AppData/Library/Caches/http_samy.pl_0.localstorage
  */
 
-#define LOCAL_STORAGE_REGEX @"/https?_(.+)_\\d+(\\.localstorage)?$"
+#define LOCAL_STORAGE_REGEX @"/(https?_(.+)_\\d+|_*IndexedDB)"
 
-@implementation CookieJar
-
-AppDelegate *appDelegate;
+@implementation CookieJar {
+	AppDelegate *appDelegate;
+}
 
 - (CookieJar *)init
 {
@@ -195,11 +195,6 @@ AppDelegate *appDelegate;
 		if (![cookie isSecure] && [HTTPSEverywhere needsSecureCookieFromHost:[URL host] forHost:[cookie domain] cookieName:[cookie name]]) {
 			/* toggle "secure" bit */
 			[ps setValue:@"TRUE" forKey:NSHTTPCookieSecure];
-		}
-		
-		if (![self isHostWhitelisted:[URL host]]) {
-			/* host isn't whitelisted, force to a session cookie */
-			[ps setValue:@"TRUE" forKey:NSHTTPCookieDiscard];
 		}
 		
 		NSHTTPCookie *nCookie = [[NSHTTPCookie alloc] initWithProperties:ps];

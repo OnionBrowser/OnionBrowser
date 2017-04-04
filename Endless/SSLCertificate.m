@@ -7,15 +7,25 @@
 
 #import "SSLCertificate.h"
 
+#import "NSData+DTCrypto.h"
 #import "DTASN1Serialization.h"
 
 @implementation SSLCertificate
+
+static NSMutableDictionary <NSData *, NSMutableDictionary *> *certCache = nil;
+
+#define CERT_CACHE_SIZE 25
+#define CERT_CACHE_KEY_CERT @"key"
+#define CERT_CACHE_KEY_TIME @"time"
 
 - (id)init {
 	if (!(self = [super init]))
 		return nil;
 	
 	_isEV = false;
+	
+	if (!certCache)
+		certCache = [[NSMutableDictionary alloc] initWithCapacity:CERT_CACHE_SIZE];
 	
 	return self;
 }
@@ -32,7 +42,7 @@
 	 * Detecting EV means checking for a whole bunch of OIDs, since each vendor uses a different one.
 	 * iOS already knows this and is updated with new ones, so just let it determine EV for us.
 	 */
-	NSDictionary *trust = (__bridge NSDictionary*)SecTrustCopyResult(secTrustRef);
+	NSDictionary *trust = (__bridge_transfer NSDictionary *)SecTrustCopyResult(secTrustRef);
 	id ev = [trust objectForKey:(__bridge NSString *)kSecTrustExtendedValidation];
 	if (ev != nil && (__bridge CFBooleanRef)ev == kCFBooleanTrue) {
 		_isEV = true;
@@ -68,8 +78,20 @@
 
 	*/
 	
-	if (!(self = [super init]))
+	if (!(self = [self init]))
 		return nil;
+	
+	NSData *certHash = [data dataWithSHA1Hash];
+	
+	NSMutableDictionary *ocdef = [certCache objectForKey:certHash];
+	if (ocdef) {
+		SSLCertificate *oc = [ocdef objectForKey:CERT_CACHE_KEY_CERT];
+#ifdef TRACE
+		NSLog(@"[SSLCertificate] certificate for %@ cached", [[oc subject] objectForKey:X509_KEY_CN]);
+#endif
+		[ocdef setValue:[NSDate date] forKey:CERT_CACHE_KEY_TIME];
+		return oc;
+	}
 
 	NSArray *oidtree;
 	NSObject *t = [DTASN1Serialization objectWithData:data];
@@ -214,6 +236,20 @@
 	NSLog(@"[SSLCertificate] parsed certificate for %@: version=%@, serial=%@, sigalg=%@, issuer=%@, valid=%@ to %@", [_subject objectForKey:X509_KEY_CN], _version, _serialNumber, _signatureAlgorithm, [_issuer objectForKey:X509_KEY_CN], _validityNotBefore, _validityNotAfter);
 #endif
 	
+	if ([certCache count] >= CERT_CACHE_SIZE) {
+		NSArray *sortedCerts = [[certCache allKeys] sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+			NSDate *da = [[certCache objectForKey:a] objectForKey:CERT_CACHE_KEY_TIME];
+			NSDate *db = [[certCache objectForKey:b] objectForKey:CERT_CACHE_KEY_TIME];
+			return [da compare:db];
+		}];
+		
+		for (int i = 0; i < ([certCache count] - (CERT_CACHE_SIZE / 2)); i++)
+			[certCache removeObjectForKey:[sortedCerts objectAtIndex:i]];
+	}
+
+	ocdef = [[NSMutableDictionary alloc] initWithObjectsAndKeys:self, CERT_CACHE_KEY_CERT, [NSDate date], CERT_CACHE_KEY_TIME, nil];
+	[certCache setObject:ocdef forKey:certHash];
+	
 	return self;
 }
 
@@ -235,18 +271,18 @@
 	}
 	
 	if (index > ([arr count] - 1)) {
-		NSLog(@"[SSLCertificate] array count is %lu, need index %lu", [arr count], index);
+		NSLog(@"[SSLCertificate] array count is %lu, need index %lu", (unsigned long)[arr count], (long)index);
 		return nil;
 	}
 	
 	NSObject *ret = [arr objectAtIndex:index];
 	if (ret == nil) {
-		NSLog(@"[SSLCertificate] array object at index %lu is nil", index);
+		NSLog(@"[SSLCertificate] array object at index %lu is nil", (long)index);
 		return nil;
 	}
 	
 	if (cType != nil && ![ret isKindOfClass:cType]) {
-		NSLog(@"[SSLCertificate] array object at index %lu is type %@, not %@", index, NSStringFromClass([ret class]), cType);
+		NSLog(@"[SSLCertificate] array object at index %lu is type %@, not %@", (long)index, NSStringFromClass([ret class]), cType);
 		return nil;
 	}
 

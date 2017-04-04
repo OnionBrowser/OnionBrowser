@@ -8,7 +8,7 @@
 #ifndef Endless_Endless_Prefix_pch
 #define Endless_Endless_Prefix_pch
 
-#ifdef DEBUG
+#if DEBUG
 
 /* NSLog() all network activity and boring stuff */
 #define TRACE
@@ -31,11 +31,17 @@
 /* be verbose about URL blocking */
 #define TRACE_URL_BLOCKER
 
+/* log raw HTTP requests and responses */
+#undef TRACE_RAW_HTTP
+
+/* be verbose about hardware keyboard processing */
+#undef TRACE_KEYBOARD_INPUT
+
 /* bypass most of URLInterceptor for troubleshooting */
 #undef USE_DUMMY_URLINTERCEPTOR
 
-/* bypass most of URLInterceptor for troubleshooting */
-# undef USE_DUMMY_URLINTERCEPTOR
+/* only enable donation controller in production builds */
+#undef SHOW_DONATION_CONTROLLER
 
 #endif
 

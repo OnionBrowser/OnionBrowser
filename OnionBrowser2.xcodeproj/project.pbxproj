@@ -57,11 +57,13 @@
 		01F879491A41141800A63654 /* urlblocker_mock_targets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01F879471A41141800A63654 /* urlblocker_mock_targets.plist */; };
 		01F8794B1A41232E00A63654 /* credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 01F8794A1A41232E00A63654 /* credits.html */; };
 		01F8794C1A4124FE00A63654 /* credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 01F8794A1A41232E00A63654 /* credits.html */; };
-		01F8794E1A412F8E00A63654 /* urlblocker_targets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01F8794D1A412F8E00A63654 /* urlblocker_targets.plist */; };
-		01F8794F1A412FA500A63654 /* urlblocker_targets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01F8794D1A412F8E00A63654 /* urlblocker_targets.plist */; };
 		01FC0E571B38FB6B00955D9A /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01FC0E561B38FB6B00955D9A /* Launch Screen.xib */; };
 		18A59CFCA2B9A9AB45863F6E /* libPods-OnionBrowser2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B32982E483075D2FA2A29AD9 /* libPods-OnionBrowser2.a */; };
 		693145FE1D3EEAE400D08A6A /* Tor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 693145FD1D3EEAE400D08A6A /* Tor.framework */; };
+		69CBCD471E934228009D5352 /* URLBlockerRuleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CBCD461E934228009D5352 /* URLBlockerRuleController.m */; };
+		69CBCD4D1E934249009D5352 /* RuleEditorRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CBCD4B1E934249009D5352 /* RuleEditorRow.m */; };
+		69CBCD4F1E93451C009D5352 /* urlblocker.json in Resources */ = {isa = PBXBuildFile; fileRef = 69CBCD4E1E93451C009D5352 /* urlblocker.json */; };
+		69CBCD521E9347B8009D5352 /* UIResponder+FirstResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CBCD511E9347B8009D5352 /* UIResponder+FirstResponder.m */; };
 		70226D726706E73F83E8D484 /* libPods-OnionBrowser2-OnionBrowser2 Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 31AE92C2C5372ECDD2019E06 /* libPods-OnionBrowser2-OnionBrowser2 Tests.a */; };
 /* End PBXBuildFile section */
 
@@ -156,7 +158,6 @@
 		01F879461A41141800A63654 /* urlblocker_mock_rules.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = urlblocker_mock_rules.plist; sourceTree = "<group>"; };
 		01F879471A41141800A63654 /* urlblocker_mock_targets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = urlblocker_mock_targets.plist; sourceTree = "<group>"; };
 		01F8794A1A41232E00A63654 /* credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = credits.html; path = Endless/Resources/credits.html; sourceTree = "<group>"; };
-		01F8794D1A412F8E00A63654 /* urlblocker_targets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = urlblocker_targets.plist; path = Endless/Resources/urlblocker_targets.plist; sourceTree = "<group>"; };
 		01FC0E561B38FB6B00955D9A /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "Launch Screen.xib"; path = "Endless/Resources/Launch Screen.xib"; sourceTree = "<group>"; };
 		15D8E5588D8EFA97BA3B7BB7 /* libPods-Endless.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Endless.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1748602788FBFAF0C0C435AF /* Pods-Endless.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Endless.release.xcconfig"; path = "Pods/Target Support Files/Pods-Endless/Pods-Endless.release.xcconfig"; sourceTree = "<group>"; };
@@ -165,6 +166,15 @@
 		4C073F21B3E3F553DEAF9F1A /* Pods-Endless-Endless Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Endless-Endless Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Endless-Endless Tests/Pods-Endless-Endless Tests.release.xcconfig"; sourceTree = "<group>"; };
 		5F000EBDB20709D482560EE0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		693145FD1D3EEAE400D08A6A /* Tor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tor.framework; path = Carthage/Build/iOS/Tor.framework; sourceTree = "<group>"; };
+		69CBCD451E934228009D5352 /* URLBlockerRuleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLBlockerRuleController.h; sourceTree = "<group>"; };
+		69CBCD461E934228009D5352 /* URLBlockerRuleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLBlockerRuleController.m; sourceTree = "<group>"; };
+		69CBCD481E934249009D5352 /* RuleEditorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RuleEditorController.h; sourceTree = "<group>"; };
+		69CBCD491E934249009D5352 /* RuleEditorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RuleEditorController.m; sourceTree = "<group>"; };
+		69CBCD4A1E934249009D5352 /* RuleEditorRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RuleEditorRow.h; sourceTree = "<group>"; };
+		69CBCD4B1E934249009D5352 /* RuleEditorRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RuleEditorRow.m; sourceTree = "<group>"; };
+		69CBCD4E1E93451C009D5352 /* urlblocker.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = urlblocker.json; path = Endless/Resources/urlblocker.json; sourceTree = "<group>"; };
+		69CBCD501E9347B8009D5352 /* UIResponder+FirstResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIResponder+FirstResponder.h"; sourceTree = "<group>"; };
+		69CBCD511E9347B8009D5352 /* UIResponder+FirstResponder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+FirstResponder.m"; sourceTree = "<group>"; };
 		78E95B84E061F9B319EB8E8B /* libPods-Endless Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Endless Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AEAAB5FB3DD36FB9E0C034B /* Pods-OnionBrowser2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnionBrowser2.release.xcconfig"; path = "Pods/Target Support Files/Pods-OnionBrowser2/Pods-OnionBrowser2.release.xcconfig"; sourceTree = "<group>"; };
 		7C148194A51760B930A369C0 /* libPods-Endless Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Endless Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -261,12 +271,18 @@
 				018333D11A35291200670CD1 /* HTTPSEverywhereRule.m */,
 				0182AD991AACC55400F3B7ED /* HTTPSEverywhereRuleController.h */,
 				0182AD9A1AACC55400F3B7ED /* HTTPSEverywhereRuleController.m */,
+				69CBCD481E934249009D5352 /* RuleEditorController.h */,
+				69CBCD491E934249009D5352 /* RuleEditorController.m */,
+				69CBCD4A1E934249009D5352 /* RuleEditorRow.h */,
+				69CBCD4B1E934249009D5352 /* RuleEditorRow.m */,
 				01F2AE371B7FEF5E00D5651A /* SSLCertificate.h */,
 				01F2AE381B7FEF5E00D5651A /* SSLCertificate.m */,
 				01F2AE3E1B82666900D5651A /* SSLCertificateViewController.h */,
 				01F2AE3F1B82666900D5651A /* SSLCertificateViewController.m */,
 				01F879391A4108DD00A63654 /* URLBlocker.h */,
 				01F8793A1A4108DD00A63654 /* URLBlocker.m */,
+				69CBCD451E934228009D5352 /* URLBlockerRuleController.h */,
+				69CBCD461E934228009D5352 /* URLBlockerRuleController.m */,
 				01801EBE1A335BEC002B4718 /* URLInterceptor.h */,
 				01801EBF1A335BEC002B4718 /* URLInterceptor.m */,
 				01801E9F1A32CA2A002B4718 /* WebViewController.h */,
@@ -293,6 +309,8 @@
 				01D7412E1A466AF0007B7033 /* NSString+JavascriptEscape.m */,
 				01D741301A49EA14007B7033 /* RuleEditorController.h */,
 				01D741311A49EA14007B7033 /* RuleEditorController.m */,
+				69CBCD501E9347B8009D5352 /* UIResponder+FirstResponder.h */,
+				69CBCD511E9347B8009D5352 /* UIResponder+FirstResponder.m */,
 			);
 			name = "Supporting Files";
 			path = Endless;
@@ -310,7 +328,7 @@
 				01D7412B1A45F8EB007B7033 /* injected.js */,
 				01FC0E561B38FB6B00955D9A /* Launch Screen.xib */,
 				0135F4751A3D2931005A8F16 /* SearchEngines.plist */,
-				01F8794D1A412F8E00A63654 /* urlblocker_targets.plist */,
+				69CBCD4E1E93451C009D5352 /* urlblocker.json */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -464,7 +482,7 @@
 				TargetAttributes = {
 					01801E911A32CA2A002B4718 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = 7H5BAPWU52;
+						DevelopmentTeam = 68QUP6KP2C;
 						SystemCapabilities = {
 							com.apple.DataProtection = {
 								enabled = 1;
@@ -505,8 +523,8 @@
 				018333EA1A35746500670CD1 /* https-everywhere_targets.plist in Resources */,
 				018333E91A35746500670CD1 /* https-everywhere_rules.plist in Resources */,
 				01801EC31A3360F8002B4718 /* InAppSettings.bundle in Resources */,
+				69CBCD4F1E93451C009D5352 /* urlblocker.json in Resources */,
 				01D7412C1A45F8EB007B7033 /* injected.js in Resources */,
-				01F8794F1A412FA500A63654 /* urlblocker_targets.plist in Resources */,
 				01801EA61A32CA2A002B4718 /* Images.xcassets in Resources */,
 				01F8794C1A4124FE00A63654 /* credits.html in Resources */,
 				016B2FCB1A53466D002D2730 /* hsts_preload.plist in Resources */,
@@ -518,7 +536,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				01F8794E1A412F8E00A63654 /* urlblocker_targets.plist in Resources */,
 				01F2AE461B827D3E00D5651A /* wildcard.pushover.net.crt in Resources */,
 				01F8794B1A41232E00A63654 /* credits.html in Resources */,
 				01F879451A41140D00A63654 /* https-everywhere_mock_targets.plist in Resources */,
@@ -648,8 +665,10 @@
 				01D741281A44DF1C007B7033 /* WebViewMenuController.m in Sources */,
 				01D7412F1A466AF0007B7033 /* NSString+JavascriptEscape.m in Sources */,
 				014E68A51B9BED3300D98A0A /* HostSettingsController.m in Sources */,
+				69CBCD521E9347B8009D5352 /* UIResponder+FirstResponder.m in Sources */,
 				01F2AE391B7FEF5E00D5651A /* SSLCertificate.m in Sources */,
 				01801E9B1A32CA2A002B4718 /* AppDelegate.m in Sources */,
+				69CBCD4D1E934249009D5352 /* RuleEditorRow.m in Sources */,
 				01AFEB491B4ED48000A02482 /* Bookmark.m in Sources */,
 				01801E981A32CA2A002B4718 /* main.m in Sources */,
 				01D741321A49EA14007B7033 /* RuleEditorController.m in Sources */,
@@ -662,6 +681,7 @@
 				01F2AE401B82666900D5651A /* SSLCertificateViewController.m in Sources */,
 				018333CA1A3505FB00670CD1 /* HTTPSEverywhere.m in Sources */,
 				01F7CB491A5253DD00F42B73 /* HSTSCache.m in Sources */,
+				69CBCD471E934228009D5352 /* URLBlockerRuleController.m in Sources */,
 				01F7CB4E1A52FC4E00F42B73 /* NSString+IPAddress.m in Sources */,
 				014E68A81B9BEDDC00D98A0A /* HostSettings.m in Sources */,
 				0135F47F1A3E548F005A8F16 /* WebViewTab.m in Sources */,
@@ -789,7 +809,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 7H5BAPWU52;
+				DEVELOPMENT_TEAM = 68QUP6KP2C;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -812,7 +832,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 7H5BAPWU52;
+				DEVELOPMENT_TEAM = 68QUP6KP2C;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",

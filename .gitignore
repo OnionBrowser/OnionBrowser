@@ -15,3 +15,8 @@ Carthage/Build/
 *.swp
 Iobfs4proxy.framework/
 Iobfs4proxy.framework.tar.xz
+
+fabric.apikey
+fabric.buildsecret
+Endless/DonationViewController.h
+Endless/DonationViewController.m

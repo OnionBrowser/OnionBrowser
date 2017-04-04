@@ -7,21 +7,26 @@
 
 #import "AppDelegate.h"
 #import "Bookmark.h"
-#import "BookmarkController.h"
 #import "CookieController.h"
 #import "HostSettings.h"
 #import "HostSettingsController.h"
 #import "IASKAppSettingsViewController.h"
 #import "HTTPSEverywhereRuleController.h"
+#import "URLBlockerRuleController.h"
 #import "WebViewMenuController.h"
 
 #import "OnePasswordExtension.h"
+#import "TUSafariActivity.h"
 
-@implementation WebViewMenuController
+#ifdef SHOW_DONATION_CONTROLLER
+#include "DonationViewController.h"
+#endif
 
-AppDelegate *appDelegate;
-IASKAppSettingsViewController *appSettingsViewController;
-NSMutableArray *buttons;
+@implementation WebViewMenuController {
+	AppDelegate *appDelegate;
+	IASKAppSettingsViewController *appSettingsViewController;
+	NSMutableArray *buttons;
+}
 
 NSString * const FUNC = @"F";
 NSString * const LABEL = @"L";
@@ -40,19 +45,23 @@ NSString * const LABEL = @"L";
 	if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"onepassword://"]])
 		[buttons addObject:@{ FUNC : @"menuOnePassword", LABEL : @"Fill with 1Password" }];
 
-	[buttons addObject:@{ FUNC : @"menuAddOrManageBookmarks", LABEL : @"Add Bookmark" }];
-	[buttons addObject:@{ FUNC : @"menuOpenInSafari", LABEL : @"Open in Safari" }];
+	[buttons addObject:@{ FUNC : @"menuAddOrManageBookmarks", LABEL : @"Manage Bookmarks" }];
+	[buttons addObject:@{ FUNC : @"menuShare", LABEL : @"Share URL" }];
+	[buttons addObject:@{ FUNC : @"menuURLBlocker", LABEL : @"URL Blocker" }];
 	[buttons addObject:@{ FUNC : @"menuHTTPSEverywhere", LABEL : @"HTTPS Everywhere" }];
 	[buttons addObject:@{ FUNC : @"menuHostSettings", LABEL : @"Host Settings" }];
 	[buttons addObject:@{ FUNC : @"menuSettings", LABEL : @"Global Settings" }];
 	
 	[self.view setBackgroundColor:[UIColor clearColor]];
 	[self.tableView setSeparatorInset:UIEdgeInsetsZero];
+	
+	if ([[appDelegate webViewController] darkInterface])
+		[self.tableView setSeparatorColor:[UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:0.75]];
 }
 
 - (CGSize)preferredContentSize
 {
-	return CGSizeMake(160, [self tableView:nil heightForRowAtIndexPath:nil] * [buttons count]);
+	return CGSizeMake(160, [self tableView:self.tableView heightForRowAtIndexPath:[[NSIndexPath alloc] init]] * [buttons count]);
 }
 
 #pragma mark - Table view data source
@@ -88,32 +97,45 @@ NSString * const LABEL = @"L";
 	cell.detailTextLabel.text = nil;
 	cell.detailTextLabel.font = [UIFont systemFontOfSize:11];
 	
+	if ([[appDelegate webViewController] darkInterface]) {
+		cell.textLabel.textColor = [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0];
+		cell.detailTextLabel.textColor = [UIColor grayColor];
+	}
+	
 	BOOL haveURL = ([[[appDelegate webViewController] curWebViewTab] url] != nil);
 
 	NSString *func = [button objectForKey:FUNC];
 	if ([func isEqualToString:@"menuAddOrManageBookmarks"]) {
 		if (haveURL && [Bookmark isURLBookmarked:[[[appDelegate webViewController] curWebViewTab] url]]) {
-			cell.textLabel.text = @"Manage Bookmarks";
+			cell.textLabel.text = @"Bookmarks";
 			cell.detailTextLabel.text = @"Page bookmarked";
 		}
 	}
-	else if ([func isEqualToString:@"menuOnePassword"] || [func isEqualToString:@"menuRefresh"] || [func isEqualToString:@"menuOpenInSafari"]) {
+	else if ([func isEqualToString:@"menuOnePassword"] || [func isEqualToString:@"menuRefresh"] || [func isEqualToString:@"menuShare"]) {
 		cell.userInteractionEnabled = haveURL;
 		cell.textLabel.enabled = haveURL;
+	}
+	else if ([func isEqualToString:@"menuURLBlocker"] && haveURL) {
+		long ruleCount = [[[[appDelegate webViewController] curWebViewTab] applicableURLBlockerTargets] count];
+		
+		if (ruleCount > 0) {
+			cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld host%@ blocked", ruleCount, (ruleCount == 1 ? @"" : @"s")];
+			cell.detailTextLabel.textColor = [self colorForMenuTextHighlight];
+		}
 	}
 	else if ([func isEqualToString:@"menuHTTPSEverywhere"] && haveURL) {
 		long ruleCount = [[[[appDelegate webViewController] curWebViewTab] applicableHTTPSEverywhereRules] count];
 
 		if (ruleCount > 0) {
 			cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld rule%@ in use", ruleCount, (ruleCount == 1 ? @"" : @"s")];
-			cell.detailTextLabel.textColor = [UIColor colorWithRed:0 green:0.5 blue:0 alpha:1];
+			cell.detailTextLabel.textColor = [self colorForMenuTextHighlight];
 		}
 	}
 	else if ([func isEqualToString:@"menuHostSettings"]) {
 		HostSettings *hs = [HostSettings settingsOrDefaultsForHost:[[[[appDelegate webViewController] curWebViewTab] url] host]];
 		if (hs && ![hs isDefault]) {
 			cell.detailTextLabel.text = @"Custom settings";
-			cell.detailTextLabel.textColor = [UIColor colorWithRed:0 green:0.5 blue:0 alpha:1];
+			cell.detailTextLabel.textColor = [self colorForMenuTextHighlight];
 		}
 		else {
 			cell.detailTextLabel.text = @"Using defaults";
@@ -169,11 +191,11 @@ NSString * const LABEL = @"L";
 	}];
 }
 
-- (void)menuOpenInSafari
+- (void)menuURLBlocker
 {
-	WebViewTab *wvt = [[appDelegate webViewController] curWebViewTab];
-	if (wvt && [wvt url])
-		[[UIApplication sharedApplication] openURL:[wvt url]];
+	URLBlockerRuleController *ubrc = [[URLBlockerRuleController alloc] init];
+	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:ubrc];
+	[[appDelegate webViewController] presentViewController:navController animated:YES completion:nil];
 }
 
 - (void)menuHTTPSEverywhere
@@ -197,9 +219,7 @@ NSString * const LABEL = @"L";
 
 - (void)menuAddOrManageBookmarks
 {
-	BookmarkController *bc = [[BookmarkController alloc] init];
-	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:bc];
-	[[appDelegate webViewController] presentViewController:navController animated:YES completion:nil];
+	[[appDelegate webViewController] showBookmarksForEditing:YES];
 }
 
 - (void)menuSettings
@@ -209,10 +229,40 @@ NSString * const LABEL = @"L";
 		appSettingsViewController.delegate = [appDelegate webViewController];
 		appSettingsViewController.showDoneButton = YES;
 		appSettingsViewController.showCreditsFooter = NO;
+		
+#ifdef SHOW_DONATION_CONTROLLER
+		if (![DonationViewController canMakeDonation])
+			[appSettingsViewController setHiddenKeys:[NSSet setWithArray:@[ @"open_donation" ]]];
+#else
+		[appSettingsViewController setHiddenKeys:[NSSet setWithArray:@[ @"open_donation" ]]];
+#endif
 	}
 	
 	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:appSettingsViewController];
 	[[appDelegate webViewController] presentViewController:navController animated:YES completion:nil];
+}
+
+- (void)menuShare
+{
+	TUSafariActivity *activity = [[TUSafariActivity alloc] init];
+	UIActivityViewController *avc = [[UIActivityViewController alloc] initWithActivityItems:@[ [[[appDelegate webViewController] curWebViewTab] url] ] applicationActivities:@[ activity ]];
+	
+	UIPopoverPresentationController *popover = [avc popoverPresentationController];
+	if (popover) {
+		popover.sourceView = [[appDelegate webViewController] settingsButton];
+		popover.sourceRect = CGRectMake(1, popover.sourceView.frame.size.height / 2, 1, 1);
+		popover.permittedArrowDirections = UIPopoverArrowDirectionAny;
+	}
+
+	[[appDelegate webViewController] presentViewController:avc animated:YES completion:nil];
+}
+
+- (UIColor *)colorForMenuTextHighlight
+{
+	if ([[appDelegate webViewController] darkInterface])
+		return [UIColor yellowColor];
+	else
+		return [UIColor colorWithRed:0 green:0.5 blue:0 alpha:1];
 }
 
 @end

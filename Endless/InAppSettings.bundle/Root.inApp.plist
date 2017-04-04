@@ -9,6 +9,8 @@
 			<string>User Interface</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
+			<key>FooterText</key>
+			<string>If blank, the search engine page will be used</string>
 		</dict>
 		<dict>
 			<key>Title</key>
@@ -54,11 +56,31 @@
 		</dict>
 		<dict>
 			<key>Title</key>
+			<string>Custom home page</string>
+			<key>Key</key>
+			<string>homepage</string>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>DefaultValue</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>Title</key>
 			<string>Privacy</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>FooterText</key>
-			<string>Cookies and local storage data from non-whitelisted hosts will be cleared after not being accessed by any tabs for this many minutes</string>
+			<string>Cookies and local storage data from non-whitelisted hosts will be cleared even from open tabs after not being accessed for this many minutes</string>
+		</dict>
+		<dict>
+			<key>Key</key>
+			<string>send_dnt</string>
+			<key>Title</key>
+			<string>Send Do-Not-Track header</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>DefaultValue</key>
+			<true/>
 		</dict>
 		<dict>
 			<key>IASKViewControllerClass</key>
@@ -105,32 +127,26 @@
 			<string></string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
+			<key>FooterText</key>
+			<string>Changing this option requires restarting the app</string>
 		</dict>
 		<dict>
 			<key>Key</key>
-			<string>send_dnt</string>
+			<string>third_party_keyboards</string>
 			<key>Title</key>
-			<string>Send Do-Not-Track</string>
+			<string>Allow 3rd party keyboards</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>DefaultValue</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
+			<key>FooterText</key>
+			<string>Automatically report crash information to the developer through Crashlytics (no URLs, cookies, device IDs, etc. will be sent)</string>
 			<key>Title</key>
-			<string>Miscellaneous</string>
+			<string>Support</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
-		</dict>
-		<dict>
-			<key>Key</key>
-			<string>open_app_store</string>
-			<key>Type</key>
-			<string>IASKOpenURLSpecifier</string>
-			<key>Title</key>
-			<string>Rate on App Store</string>
-			<key>File</key>
-			<string>itms-apps://itunes.apple.com/app/id974745755</string>
 		</dict>
 		<dict>
 			<key>Key</key>
@@ -141,6 +157,42 @@
 			<string>Report a bug</string>
 			<key>File</key>
 			<string>endlesshttps://github.com/jcs/endless/issues</string>
+		</dict>
+		<dict>
+			<key>Key</key>
+			<string>crash_reporting</string>
+			<key>Title</key>
+			<string>Enable crash reporting</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>DefaultValue</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>Miscellaneous</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>Key</key>
+			<string>open_donation</string>
+			<key>Title</key>
+			<string>Fund Endless development</string>
+			<key>Type</key>
+			<string>IASKButtonSpecifier</string>
+			<key>IASKTextAlignment</key>
+			<string>IASKUITextAlignmentLeft</string>
+		</dict>
+		<dict>
+			<key>Key</key>
+			<string>open_app_store</string>
+			<key>Type</key>
+			<string>IASKOpenURLSpecifier</string>
+			<key>Title</key>
+			<string>Rate on App Store</string>
+			<key>File</key>
+			<string>itms-apps://itunes.apple.com/app/id974745755</string>
 		</dict>
 		<dict>
 			<key>File</key>

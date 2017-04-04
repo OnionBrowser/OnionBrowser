@@ -1,7 +1,9 @@
 /*
- * Endless
- * Copyright (c) 2014-2015 joshua stein <jcs@jcs.org>
+ * Note: This block of Javascript has been injected via the Endless browser and is
+ * not a part of this website.
  *
+ * Endless
+ * Copyright (c) 2014-2017 joshua stein <jcs@jcs.org>
  * See LICENSE file for redistribution terms.
  */
 
@@ -39,15 +41,15 @@ var __endless = {
 	},
 
 	randID: function() {
-		function s4() {
-			return Math.floor((1 + Math.random()) * 0x10000).toString(16)
-				.substring(1);
-		}
-		return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' +
-			s4() + s4() + s4();
+		var a = new Uint32Array(5);
+		window.crypto.getRandomValues(a);
+		return a.join("-");
 	},
 
 	hookIntoBlankAs: function() {
+		if (!document.body)
+			return;
+		
 		document.body.addEventListener("click", function() {
 			if (event.target.tagName == "A" && event.target.target == "_blank") {
 				if (event.type == "click") {
@@ -57,8 +59,7 @@ var __endless = {
 					return false;
 				}
 				else {
-					console.log("not opening _blank a from " + event.type +
-						" event");
+					console.log("not opening _blank a from " + event.type + " event");
 				}
 			}
 		}, false);
@@ -80,6 +81,78 @@ var __endless = {
 		return tags;
 	},
 	
+	scrollingLoop: null,
+	scrollingDistanceX: 0,
+	scrollingDistanceY: 0,
+	scrollingPercent: 0,
+	scrollingStart: 0,
+	scrollingDuration: 0,
+	scrollingStartX: 0,
+	scrollingStartY: 0,
+	smoothScroll: function(x, y, top, bottom) {
+		var duration = 250; /* ms */
+		
+		if (this.scrollingStart && !top && !bottom) {
+			/* extend scroll */
+			this.scrollingDistanceX += x / 2;
+			this.scrollingDistanceY += y / 2;
+			duration *= 2;
+		} else {
+			this.scrollingStartX = window.scrollX;
+			this.scrollingStartY = window.scrollY;
+		
+			this.scrollingDistanceX = 0;
+			this.scrollingDistanceY = 0;
+
+			if (top)
+				this.scrollingDistanceY = -this.scrollingStartY;
+			else if (bottom)
+				this.scrollingDistanceY = document.documentElement.scrollHeight - this.scrollingStartY;
+			else {
+				this.scrollingDistanceX = x;
+				this.scrollingDistanceY = y;
+			}
+			
+			this.scrollingStart = new Date().getTime();
+		}
+
+		if (!this.scrollingDistanceX && !this.scrollingDistanceY)
+			return;
+		
+		var _this = this;
+		this.scrollingLoop = function loopScroll() {
+			_this.scrollingPercent = Math.min((new Date().getTime() - _this.scrollingStart) / duration, 1);
+			var x = Math.max(Math.floor(_this.scrollingStartX + (_this.scrollingDistanceX * (_this.scrollingPercent < 0.5 ? (2 * _this.scrollingPercent * _this.scrollingPercent) : (_this.scrollingPercent * (4 - (_this.scrollingPercent * 2)) - 1)))), 0);
+			var y = Math.max(Math.floor(_this.scrollingStartY + (_this.scrollingDistanceY * (_this.scrollingPercent < 0.5 ? (2 * _this.scrollingPercent * _this.scrollingPercent) : (_this.scrollingPercent * (4 - (_this.scrollingPercent * 2)) - 1)))), 0);
+			window.scrollTo(x, y);
+			if (_this.scrollingPercent < 1 && _this.scrollingLoop)
+				requestAnimationFrame(_this.scrollingLoop);
+			else {
+				_this.scrollingLoop = null;
+				_this.scrollingStart = 0;
+			}
+		};
+		this.scrollingLoop();
+	},
+	
+	injectKey: function(keycode, keypress_keycode, ctrl, alt, shift, meta, action) {
+		[ "keydown", "keypress", "keyup" ].forEach(function(kind) {
+			if (kind == "keypress" && !keypress_keycode)
+				return;
+							   
+			var e = document.createEvent("KeyboardEvent");
+			e.initKeyboardEvent(kind, false, true, document.body, "", 0, !!ctrl, !!alt, !!shift, !!meta, false);
+			Object.defineProperty(e, "keyCode", { writable: false, value: (kind == "keypress" ? keypress_keycode : keycode) } );
+			Object.defineProperty(e, "which", { writable: false, value: (kind == "keypress" ? keypress_keycode : keycode) } );
+			Object.defineProperty(e, "charCode", { writable: false, value: (kind == "keypress" ? keypress_keycode : 0) } );
+			Object.defineProperty(e, "target", { writable: false, value: document.body } );
+			var ret = document.dispatchEvent(e);
+			
+			if ((kind == "keypress" || (kind == "keydown" && !keypress_keycode)) && ret && action)
+				action();
+		});
+	},
+
 	onLoad: function() {
 		/* supress default long-press menu */
 		if (document && document.body)
@@ -121,55 +194,51 @@ var __endless = {
 		constructor: __endless.FakeLocation,
 	};
 
-	[ "hash", "hostname", "href", "pathname", "port", "protocol", "search",
-	"username", "password", "origin" ].forEach(function(property) {
+	[ "hash", "hostname", "href", "pathname", "port", "protocol", "search", "username", "password", "origin" ].forEach(function(property) {
 		Object.defineProperty(__endless.FakeLocation.prototype, property, {
 			set: function(v) {
 				eval("this._" + property + " = null;");
-				__endless.ipcAndWaitForReply("fakeWindow.setLocationParam/" +
-					this.id + "/" + property + "?" + encodeURIComponent(v));
+				__endless.ipcAndWaitForReply("fakeWindow.setLocationParam/" + this.id + "/" + property + "?" + encodeURIComponent(v));
 			},
 			get: function() {
-				eval("this._" + property + " = null;");
-				__endless.ipcAndWaitForReply("fakeWindow.getLocationParam/" +
-					this.id + "/" + property + "?" + encodeURIComponent(v));
+				throw "security error trying to access location." + property + " of other window";
 			},
 		});
 	});
 
 	__endless.FakeWindow.prototype = {
 		constructor: __endless.FakeWindow,
-
+ 
 		set location(loc) {
 			this._location = new __endless.FakeLocation();
-			__endless.ipcAndWaitForReply("fakeWindow.setLocation/" + this.id +
-				"?" + encodeURIComponent(loc));
+			__endless.ipcAndWaitForReply("fakeWindow.setLocation/" + this.id + "?" + encodeURIComponent(loc));
 			this._location.id = this.id;
 		},
 		set name(n) {
 			this._name = null;
-			__endless.ipcAndWaitForReply("fakeWindow.setName/" + this.id + "?" +
-				encodeURIComponent(n));
+			__endless.ipcAndWaitForReply("fakeWindow.setName/" + this.id + "?" + encodeURIComponent(n));
 		},
 		set opener(o) {
 		},
 
 		get location() {
-			this._location = new __endless.FakeLocation();
-			__endless.ipcAndWaitForReply("fakeWindow.getLocation/" + this.id);
-			this._location.id = this.id;
-			return this._location;
+			throw "security error trying to access window.location of other window";
 		},
 		get name() {
-			this._name = null;
-			__endless.ipcAndWaitForReply("fakeWindow.getName/" + this.id);
-			return this._name;
+			throw "security error trying to access window.name of other window";
+		},
+		get title() {
+			throw "security error trying to access window.title of other window";
 		},
 		get opener() {
 		},
 
 		close: function() {
 			__endless.ipcAndWaitForReply("fakeWindow.close/" + this.id);
+		},
+ 
+		toString: function() {
+			return "[object FakeWindow]";
 		},
 	};
 
@@ -182,10 +251,12 @@ var __endless = {
 
 		__endless.openedTabs[id] = new __endless.FakeWindow(id);
 
-		/* fake a mouse event clicking on a link, so that our webview sees the
-		 * navigation type as a mouse event; this prevents popup spam since
+		/*
+		 * Fake a mouse event clicking on a link, so that our webview sees the
+		 * navigation type as a mouse event.  This prevents popup spam since
 		 * dispatchEvent() won't do anything if we're not in a mouse event
-		 * already */
+		 * already.
+		 */
 		var l = document.createElement("a");
 		l.setAttribute("href", "endlessipc://window.open/" + id);
 		l.setAttribute("target", "_blank");
@@ -208,6 +279,7 @@ var __endless = {
 			__endless.openedTabs[id].location = __endless.absoluteURL(url);
 
 		window.event.preventDefault();
+		window.event.stopImmediatePropagation();
 
 		return __endless.openedTabs[id];
 	};
@@ -217,14 +289,10 @@ var __endless = {
 	};
 
 	/* pipe back to app */
-	console = {
-		_log: function(urg, args) {
-			if (args.length == 1)
-				args = args[0];
-
-			__endless.ipc("console.log/" + urg + "?" +
-				encodeURIComponent(JSON.stringify(args)));
-		},
+	console._log = function(urg, args) {
+		if (args.length == 1)
+			args = args[0];
+		__endless.ipc("console.log/" + urg + "?" + encodeURIComponent(JSON.stringify(args)));
 	};
 	console.log = function() { console._log("log", arguments); };
 	console.debug = function() { console._log("debug", arguments); };

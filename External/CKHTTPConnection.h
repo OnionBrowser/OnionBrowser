@@ -37,14 +37,13 @@
 }
 
 + (CKHTTPConnection *)connectionWithRequest:(NSURLRequest *)request delegate:(id <CKHTTPConnectionDelegate>)delegate;
-
 - (id)initWithRequest:(NSURLRequest *)request delegate:(id <CKHTTPConnectionDelegate>)delegate;
 - (void)cancel;
 
 @end
 
 
-@protocol CKHTTPConnectionDelegate  // Formal protocol for now
+@protocol CKHTTPConnectionDelegate
 
 - (void)HTTPConnection:(CKHTTPConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge;
 - (void)HTTPConnection:(CKHTTPConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge;
@@ -63,9 +62,4 @@
 
 @interface NSURLRequest (CKHTTPURLRequest)
 - (CFHTTPMessageRef)makeHTTPMessage;
-@end
-
-
-@interface NSHTTPURLResponse (CKHTTPConnectionAdditions)
-+ (NSHTTPURLResponse *)responseWithURL:(NSURL *)URL HTTPMessage:(CFHTTPMessageRef)message;
 @end

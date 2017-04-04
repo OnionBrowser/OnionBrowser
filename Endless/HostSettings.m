@@ -10,7 +10,7 @@
 
 @implementation HostSettings
 
-NSMutableDictionary *_hosts;
+static NSMutableDictionary *_hosts;
 
 + (NSDictionary *)defaults
 {
@@ -20,7 +20,24 @@ NSMutableDictionary *_hosts;
 	       HOST_SETTINGS_KEY_BLOCK_LOCAL_NETS: HOST_SETTINGS_VALUE_YES,
 	       HOST_SETTINGS_KEY_ALLOW_MIXED_MODE: HOST_SETTINGS_VALUE_NO,
 	       HOST_SETTINGS_KEY_WHITELIST_COOKIES: HOST_SETTINGS_VALUE_NO,
+	       HOST_SETTINGS_KEY_USER_AGENT: @"",
 	};
+}
+
++ (void)migrateFromBuild:(long)lastBuild toBuild:(long)thisBuild
+{
+	if (lastBuild <= 1401) {
+		/*
+		 * t.co does redirections using a text/html page with a 0-delay <meta refresh> tag,
+		 * but when the UA is something non-safari, it will send a proper 301 redirect, preserving
+		 * the back button navigation.
+		 */
+		HostSettings *hs = [HostSettings forHost:@"t.co"];
+		if (!hs)
+			hs = [[HostSettings alloc] initForHost:@"t.co" withDict:nil];
+		[hs setSetting:HOST_SETTINGS_KEY_USER_AGENT toValue:@"curl (to force a 301 redirect)"];
+		[hs save];
+	}
 }
 
 + (NSString *)hostSettingsPath
@@ -90,12 +107,8 @@ NSMutableDictionary *_hosts;
 		}
 	}
 	
-	if (!hs) {
-#ifdef TRACE_HOST_SETTINGS
-		NSLog(@"[HostSettings] using default settings for %@", host);
-#endif
+	if (!hs)
 		hs = [self defaultHostSettings];
-	}
 
 	return hs;
 }
@@ -116,7 +129,7 @@ NSMutableDictionary *_hosts;
 	return [self forHost:HOST_SETTINGS_DEFAULT];
 }
 
-#ifdef DEBUG
+#if DEBUG
 /* just for testing */
 + (void)overrideHosts:(NSMutableDictionary *)hosts
 {
@@ -181,7 +194,7 @@ NSMutableDictionary *_hosts;
 - (NSString *)settingOrDefault:(NSString *)setting
 {
 	NSString *val = [self setting:setting];
-	if (val == nil)
+	if (val == nil || [val isEqualToString:@""])
 		/* try default host settings */
 		val = [[HostSettings defaultHostSettings] setting:setting];
 	

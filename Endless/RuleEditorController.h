@@ -1,24 +1,25 @@
 /*
  * Endless
- * Copyright (c) 2014-2015 joshua stein <jcs@jcs.org>
+ * Copyright (c) 2014-2017 joshua stein <jcs@jcs.org>
  *
  * See LICENSE file for redistribution terms.
  */
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
+#import "RuleEditorRow.h"
 
 @interface RuleEditorController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate, UITableViewDelegate>
 
 @property AppDelegate *appDelegate;
-@property NSMutableArray *sortedRuleNames;
-@property NSMutableArray *inUseRuleNames;
+@property NSMutableArray<RuleEditorRow *> *sortedRuleRows;
+@property NSMutableArray<RuleEditorRow *> *inUseRuleRows;
 
 @property UISearchBar *searchBar;
-@property NSMutableArray *searchResult;
+@property NSMutableArray<RuleEditorRow *> *searchResult;
 
-- (NSString *)ruleDisabledReason:(NSString *)rule;
-- (void)disableRuleByName:(NSString *)rule withReason:(NSString *)reason;
-- (void)enableRuleByName:(NSString *)rule;
+- (NSString *)ruleDisabledReason:(RuleEditorRow *)row;
+- (void)disableRuleForRow:(RuleEditorRow *)row withReason:(NSString *)reason;
+- (void)enableRuleForRow:(RuleEditorRow *)row;
 
 @end

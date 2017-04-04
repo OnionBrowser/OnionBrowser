@@ -13,10 +13,10 @@
 
 /* note that UIWebView has its own HSTS cache that comes preloaded with a big plist of hosts, but we can't change it or manually add to it */
 
-@implementation HSTSCache
-
+@implementation HSTSCache {
+	AppDelegate *appDelegate;
+}
 static NSDictionary *_preloadedHosts;
-AppDelegate *appDelegate;
 
 + (NSString *)hstsCachePath
 {
@@ -164,7 +164,7 @@ AppDelegate *appDelegate;
 		}
 		
 		if ([[key lowercaseString] isEqualToString:@"max-age"]) {
-			long age = [value longLongValue];
+			long long age = [value longLongValue];
 
 			if (age == 0) {
 #ifdef TRACE_HSTS

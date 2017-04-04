@@ -15,9 +15,6 @@ require "uri"
 HTTPS_E_TARGETS_PLIST = "Endless/Resources/https-everywhere_targets.plist"
 HTTPS_E_RULES_PLIST = "Endless/Resources/https-everywhere_rules.plist"
 
-URLBLOCKER_JSON = "urlblocker.json"
-URLBLOCKER_TARGETS_PLIST = "Endless/Resources/urlblocker_targets.plist"
-
 # in b64 for some reason
 HSTS_PRELOAD_LIST = "https://chromium.googlesource.com/chromium/src/net/+/master/http/transport_security_state_static.json?format=TEXT"
 HSTS_PRELOAD_HOSTS_PLIST = "Endless/Resources/hsts_preload.plist"
@@ -107,23 +104,6 @@ def convert_https_e
     rules.to_plist)
 end
 
-# convert JSON ruleset into a list of target domains and a list of rulesets
-# with information URLs
-def convert_urlblocker
-  targets = {}
-
-  JSON.parse(File.read(URLBLOCKER_JSON)).each do |company,domains|
-    domains.each do |dom|
-      targets[dom] = company
-    end
-  end
-
-  File.write(URLBLOCKER_TARGETS_PLIST,
-    "<!-- generated from #{URLBLOCKER_JSON} - do not directly edit this " +
-      "file -->\n" +
-    targets.to_plist)
-end
-
 def convert_hsts_preload
   domains = {}
 
@@ -141,5 +121,4 @@ def convert_hsts_preload
 end
 
 convert_https_e
-convert_urlblocker
 convert_hsts_preload

@@ -9,13 +9,13 @@
 @interface URLBlocker_Tests : XCTestCase
 @end
 
-@implementation URLBlocker_Tests
+@implementation URLBlocker_Tests {
+	id HEMocked;
+}
 
-id HEMocked;
-
-- (void)setUp {
+- (void)setUp
+{
 	[super setUp];
-	// Put setup code here. This method is called before the invocation of each test method in the class.
 	
 	HEMocked = OCMClassMock([URLBlocker class]);
 	
@@ -27,12 +27,8 @@ id HEMocked;
 	OCMStub([URLBlocker targets]).andReturn([NSDictionary dictionaryWithContentsOfFile:tpath]);
 }
 
-- (void)tearDown {
-	// Put teardown code here. This method is called after the invocation of each test method in the class.
-	[super tearDown];
-}
-
-- (void)testShouldBlockURL {
+- (void)testShouldBlockURL
+{
 	BOOL block = [URLBlocker shouldBlockURL:[NSURL URLWithString:@"https://twitter.com/"]];
 	XCTAssert(block == YES);
 
@@ -43,7 +39,8 @@ id HEMocked;
 	XCTAssert(block3 == NO);
 }
 
-- (void)testNotBlockingFromSameSite {
+- (void)testNotBlockingFromSameSite
+{
 	BOOL block = [URLBlocker shouldBlockURL:[NSURL URLWithString:@"https://twitter.com/"] fromMainDocumentURL:[NSURL URLWithString:@"https://www.twitter.com/"]];
 	XCTAssert(block == NO);
 

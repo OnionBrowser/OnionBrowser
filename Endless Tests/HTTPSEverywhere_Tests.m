@@ -9,13 +9,13 @@
 @interface HTTPSEverywhere_Tests : XCTestCase
 @end
 
-@implementation HTTPSEverywhere_Tests
+@implementation HTTPSEverywhere_Tests {
+	id HEMocked;
+}
 
-id HEMocked;
-
-- (void)setUp {
+- (void)setUp
+{
 	[super setUp];
-	// Put setup code here. This method is called before the invocation of each test method in the class.
 	
 	HEMocked = OCMClassMock([HTTPSEverywhere class]);
 	
@@ -31,55 +31,58 @@ id HEMocked;
 		abort();
 
 	OCMStub([HEMocked targets]).andReturn([NSDictionary dictionaryWithContentsOfFile:tpath]);
+	
+	OCMStub([HEMocked disabledRules]).andReturn([[NSMutableDictionary alloc] init]);
 }
 
-- (void)tearDown {
-	// Put teardown code here. This method is called after the invocation of each test method in the class.
-	[super tearDown];
-}
-
-- (void)testMock {
+- (void)testMock
+{
 	XCTAssertNotNil([[HTTPSEverywhere rules] objectForKey:@"Reddit"]);
 	XCTAssertNotNil([[HTTPSEverywhere rules] objectForKey:@"Better Business Bureau (partial)"]);
 	// make sure the big list didn't get loaded
 	XCTAssertNil([[HTTPSEverywhere rules] objectForKey:@"EFF"]);
 }
 
-- (void)testApplicableRules {
+- (void)testApplicableRules
+{
 	NSArray *results = [HTTPSEverywhere potentiallyApplicableRulesForHost:@"www.reddit.com"];
 	XCTAssertEqual([results count], 1U);
 	XCTAssert([[results objectAtIndex:0] isKindOfClass:[HTTPSEverywhereRule class]]);
-	XCTAssert([[(HTTPSEverywhereRule *)[results objectAtIndex:0] name] isEqualToString:@"Reddit"]);
+	XCTAssertEqualObjects([(HTTPSEverywhereRule *)[results objectAtIndex:0] name], @"Reddit");
 }
 
-- (void)testRewrittenURI {
+- (void)testRewrittenURI
+{
 	NSURL *rewritten = [HTTPSEverywhere rewrittenURI:[NSURL URLWithString:@"http://www.reddit.com/test"] withRules:nil];
-	XCTAssert([[rewritten absoluteString] isEqualToString:@"https://www.reddit.com/test"]);
+	XCTAssertEqualObjects([rewritten absoluteString], @"https://www.reddit.com/test");
 	
 	/* a more complex rewrite */
 	rewritten = [HTTPSEverywhere rewrittenURI:[NSURL URLWithString:@"http://bbbonline.org/cks.asp?id=1234"] withRules:nil];
-	XCTAssert([[rewritten absoluteString] isEqualToString:@"https://www.bbb.org/us/bbb-online-business/?id=1234"]);
+	XCTAssertEqualObjects([rewritten absoluteString], @"https://www.bbb.org/us/bbb-online-business/?id=1234");
 }
 
-- (void)testRewrittenURIWithExclusion {
+- (void)testRewrittenURIWithExclusion
+{
 	NSString *input = @"http://www.dc.bbb.org/";
 	NSURL *rewritten = [HTTPSEverywhere rewrittenURI:[NSURL URLWithString:input] withRules:nil];
 	XCTAssert([[rewritten absoluteString] isEqualToString:input]);
 	
 	input = @"http://www.partnerinfo.lenovo.com/blah";
 	rewritten = [HTTPSEverywhere rewrittenURI:[NSURL URLWithString:input] withRules:nil];
-	XCTAssert([[rewritten absoluteString] isEqualToString:input]);
+	XCTAssertEqualObjects([rewritten absoluteString], input);
 }
 
-- (void)testRewrittenURIDowngradedWithCapture {
+- (void)testRewrittenURIDowngradedWithCapture
+{
 	NSString *input = @"https://www.partnerinfo.lenovo.com/blah";
 	NSString *output = @"http://www.partnerinfo.lenovo.com/blah";
 
 	NSURL *rewritten = [HTTPSEverywhere rewrittenURI:[NSURL URLWithString:input] withRules:nil];
-	XCTAssert([[rewritten absoluteString] isEqualToString:output]);
+	XCTAssertEqualObjects([rewritten absoluteString], output);
 }
 
-- (void)testWildcardInApplicableRules {
+- (void)testWildcardInApplicableRules
+{
 	NSArray *results = [HTTPSEverywhere potentiallyApplicableRulesForHost:@"www.lenovo.com"];
 	XCTAssertEqual([results count], 1U);
 	

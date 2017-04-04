@@ -8,6 +8,14 @@
 		,"adform.net"
 	]
 
+	,"Advertising/Analytics - AdRoll": [
+		"adroll.com"
+	]
+
+	,"Advertising/Analytics - Advertisation": [
+		"advertisation.com"
+	]
+
 	,"Advertising/Analytics - AutoGuide": [
 		"autoforums.com"
 	]
@@ -17,16 +25,27 @@
 	]
 
 	,"Advertising/Analytics - AppNexus": [
-		"adnxs.com"
-		,"appnexus.com"
+		"appnexus.com"
+		,"adnexusmedia.com"
+		,"adnxs.com"
 	]
 
 	,"Advertising/Analytics - BDEX": [
 		"bdex.com"
 	]
 
+	,"Advertising/Analytics - Criteo": [
+		"criteo.com"
+		,"criteo.net"
+	]
+
 	,"Advertising/Analytics - Cxense": [
 		"cxense.com"
+	]
+
+	,"Advertising/Analytics - Evidon": [
+		"evidon.com"
+		,"betrad.com"
 	]
 
 	,"Advertising/Analytics - eXelate": [
@@ -35,11 +54,13 @@
 
 	,"Advertising/Analytics - Google": [
 		"doubleclick.net"
+		,"1e100.net"
+		,"2mdn.net"
+		,"apis.google.com"
 		,"google-analytics.com"
 		,"googleadservices.com"
 		,"googlesyndication.com"
 		,"googletagservices.com"
-		,"apis.google.com"
 	]
 
 	,"Advertising/Analytics - Integral Ad Science": [
@@ -47,8 +68,13 @@
 		,"adsafeprotected.com"
 	]
 
+	,"Advertising/Analytics - Intermarkets": [
+		"intermarkets.net"
+	]
+
 	,"Advertising/Analytics - Lotame": [
-		"crwdcntrl.net"
+		"lotame.com"
+		,"crwdcntrl.net"
 	]
 
 	,"Advertising/Analytics - Live Intent": [
@@ -80,6 +106,11 @@
 		"adchoice.feedsportal.com"
 	]
 
+	,"Advertising/Analytics - MediaMind": [
+		"sizmek.com"
+		,"serving-sys.com"
+	]
+
 	,"Advertising/Analytics - Moat": [
 		"moat.com"
 		,"moatads.com"
@@ -97,6 +128,14 @@
 
 	,"Advertising/Analytics - Outbrain": [
 		"outbrain.com"
+	]
+
+	,"Advertising/Analytics - Peer39": [
+		"peer39.net"
+	]
+
+	,"Advertising/Analytics - Rubicon Project": [
+		"rubiconproject.com"
 	]
 
 	,"Advertising/Analytics - Safecount": [
@@ -120,6 +159,11 @@
 
 	,"Advertising/Analytics - ThoughtLeadr": [
 		"thoughtleadr.com"
+	]
+
+	,"Advertising/Analytics - The Trade Desk": [
+		"thetradedesk.com"
+		,"adsrvr.org"
 	]
 
 	,"Advertising/Analytics - TripleLift": [
@@ -147,6 +191,7 @@
 
 	,"Analytics - Adobe": [
 		"demdex.net"
+		,"adobetag.com"
 	]
 
 	,"Analytics - BlueCava": [
@@ -185,8 +230,16 @@
 		,"nexac.com"
 	]
 
+	,"Analytics - DoubleVerify": [
+		"doubleverify.com"
+	]
+
 	,"Analytics - Errorception": [
 		"errorception.com"
+	]
+
+	,"Analytics - IBM Digital Analytics": [
+		"cmcore.com"
 	]
 
 	,"Analytics - Intent IQ": [
@@ -209,6 +262,15 @@
 	,"Analytics - Nielsen": [
 		"nielsen.com"
 		,"imrworldwide.com"
+	]
+
+	,"Analytics - PageFair": [
+		"pagefair.com"
+		,"pagefair.net"
+	]
+
+	,"Analytics - Parsely": [
+		"parsely.com"
 	]
 
 	,"Analytics - Optimizely": [
@@ -287,5 +349,9 @@
 	]
 	,"Unknown - bktrx.com": [
 		"bkrtx.com"
+	]
+
+	,"Testing - Endless": [
+		"blocked.endl.es"
 	]
 }

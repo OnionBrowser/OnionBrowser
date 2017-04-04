@@ -15,8 +15,6 @@
 
 #define CONTENT_TYPE_OTHER	0
 #define CONTENT_TYPE_HTML	1
-#define CONTENT_TYPE_JAVASCRIPT	2
-#define CONTENT_TYPE_IMAGE	3
 
 #define ENCODING_DEFLATE	1
 #define ENCODING_GZIP		2
@@ -35,10 +33,12 @@
 @property (strong) CKHTTPConnection *connection;
 @property (strong) HostSettings *hostSettings;
 @property (strong) HostSettings *originHostSettings;
+@property (strong, nonatomic) NSString *cspNonce;
 
 + (NSString *)javascriptToInject;
 + (void)setSendDNT:(BOOL)val;
 + (void)temporarilyAllow:(NSURL *)url;
++ (NSString *)prependDirectivesIfExisting:(NSDictionary *)directives inCSPHeader:(NSString *)header;
 
 - (NSMutableData *)data;
 
@@ -47,5 +47,6 @@
 #ifdef USE_DUMMY_URLINTERCEPTOR
 @interface DummyURLInterceptor : NSURLProtocol
 @property (nonatomic, strong) NSURLConnection *connection;
+@property (assign) BOOL isOrigin;
 @end
 #endif
