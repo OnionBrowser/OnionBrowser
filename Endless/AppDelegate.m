@@ -108,19 +108,25 @@
 		[controller authenticateWithData:cookie completion:^(BOOL success, NSError *error) {
 
 			if (success) {
-				/*********************/
-				[controller addObserverForCircuitEstablished:^(BOOL established) {
-					if (established) {
-						NSLog(@"ZZZZ established!");
-						return;
-					} else {
-						NSLog(@"ZZZZ NOT ESTABLISHED");
+				id boostrapObserver = [controller addObserverForStatusEvents:^BOOL(NSString * _Nonnull type, NSString * _Nonnull severity, NSString * _Nonnull action, NSDictionary<NSString *,NSString *> * _Nullable arguments) {
+						if ([type isEqualToString:@"STATUS_CLIENT"] && [action isEqualToString:@"BOOTSTRAP"]) {
+							NSInteger progress = [[arguments valueForKey:@"PROGRESS"] integerValue];
+							NSLog(@"PROGRESS: %ld", progress);
 
-						[controller getInfoForKeys:@[@"status/circuit-established"] completion:^(NSArray<NSString *> * _Nonnull values) {
-							for (id s in values) {
-								NSLog(@"%@", (NSString *)s);
+							if (progress == 100) {
+								// Clean up.
+								[controller removeObserver:boostrapObserver];
 							}
-						}];
+							return YES;
+						}
+						return NO;
+				}];
+
+				/*********************/
+				id observer = [controller addObserverForCircuitEstablished:^(BOOL established) {
+					if (established) {
+						// Clean up.
+						[controller removeObserver:observer];
 						return;
 					}
 				}];
