@@ -1,4 +1,5 @@
-platform :ios, "10.1"
+platform :ios, "10.3"
+use_frameworks!
 
 target "OnionBrowser2" do
 	pod "InAppSettingsKit"
@@ -10,6 +11,8 @@ target "OnionBrowser2" do
 
 	pod "Fabric"
 	pod "Crashlytics"
+
+	pod "POE", :git => "https://github.com/GuardianProject/POE.git"
 
 	target "OnionBrowser2 Tests" do
 		pod "OCMock"

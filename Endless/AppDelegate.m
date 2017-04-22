@@ -8,10 +8,11 @@
 #import "AppDelegate.h"
 #import "Bookmark.h"
 #import "HTTPSEverywhere.h"
-#import <Tor/Tor.h>
 #import "URLInterceptor.h"
 
 #import "UIResponder+FirstResponder.h"
+
+#import "OCRootViewController.h"
 
 @implementation AppDelegate
 {
@@ -66,9 +67,9 @@
 	
 	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	self.window.backgroundColor = [UIColor groupTableViewBackgroundColor];
-	self.window.rootViewController = [[WebViewController alloc] init];
-	self.window.rootViewController.restorationIdentifier = @"WebViewController";
-	
+	self.window.rootViewController = [[OCRootViewController alloc] init];
+	self.window.rootViewController.restorationIdentifier = @"OCRootViewController";
+
 	return YES;
 }
 
@@ -76,75 +77,6 @@
 {
 	[self.window makeKeyAndVisible];
 
-	TORConfiguration *conf = [[TORConfiguration alloc] init];
-	conf.cookieAuthentication = [NSNumber numberWithBool:YES];
-	conf.dataDirectory = [NSURL fileURLWithPath:NSTemporaryDirectory()];
-	conf.arguments = [NSArray arrayWithObjects:
-		@"--ignore-missing-torrc",
-		@"--clientonly", @"1",
-		@"--socksport", @"39050",
-		@"--controlport", @"127.0.0.1:39060",
-		@"--log", @"notice stdout",
-		nil];
-
-	TORThread *torThread = [[TORThread alloc] initWithConfiguration:conf];
-	[torThread start];
-
-
-
-	double delayInSeconds = 1.0;
-	dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-	dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-
-		NSURL *cookieURL = [[NSURL fileURLWithPath:NSTemporaryDirectory()] URLByAppendingPathComponent:@"control_auth_cookie"];
-		NSData *cookie = [NSData dataWithContentsOfURL:cookieURL];
-		TORController *controller = [[TORController alloc] initWithSocketHost:@"127.0.0.1" port:39060];
-
-		NSError *connErr;
-		[controller connect:&connErr];
-
-		// TODO: retry connection if we failed
-
-		[controller authenticateWithData:cookie completion:^(BOOL success, NSError *error) {
-
-			if (success) {
-				id boostrapObserver = [controller addObserverForStatusEvents:^BOOL(NSString * _Nonnull type, NSString * _Nonnull severity, NSString * _Nonnull action, NSDictionary<NSString *,NSString *> * _Nullable arguments) {
-						if ([type isEqualToString:@"STATUS_CLIENT"] && [action isEqualToString:@"BOOTSTRAP"]) {
-							NSInteger progress = [[arguments valueForKey:@"PROGRESS"] integerValue];
-							NSLog(@"PROGRESS: %ld", progress);
-
-							if (progress == 100) {
-								// Clean up.
-								[controller removeObserver:boostrapObserver];
-							}
-							return YES;
-						}
-						return NO;
-				}];
-
-				/*********************/
-				id observer = [controller addObserverForCircuitEstablished:^(BOOL established) {
-					if (established) {
-						// Clean up.
-						[controller removeObserver:observer];
-						return;
-					}
-				}];
-				/*********************/
-				/*
-				[controller addObserverForStatusEvents:^BOOL(NSString * _Nonnull type, NSString * _Nonnull severity, NSString * _Nonnull action, NSDictionary<NSString *,NSString *> * _Nullable arguments) {
-						NSLog(@"ZZZZ: %@ - %@ - %@", type, severity, action);
-						return YES;
-				}];
-				*/
-				/*********************/
-
-			} else {
-				NSLog(@"ZZZZ control port error: %@", error);
-			}
-		}];
-
-	});
 
 	return YES;
 }

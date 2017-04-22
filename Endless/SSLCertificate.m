@@ -7,8 +7,9 @@
 
 #import "SSLCertificate.h"
 
-#import "NSData+DTCrypto.h"
-#import "DTASN1Serialization.h"
+#import <DTFoundation/NSData+DTCrypto.h>
+#import <DTFoundation/DTASN1Serialization.h>
+
 
 @implementation SSLCertificate
 

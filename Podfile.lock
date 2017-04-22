@@ -57,6 +57,7 @@ PODS:
   - InAppSettingsKit (2.8.1)
   - OCMock (3.4)
   - OrderedDictionary (1.4)
+  - POE (0.1.0)
   - TUSafariActivity (1.0.4)
   - WYPopoverController (0.3.9)
   - XLForm (3.3.0)
@@ -68,17 +69,23 @@ DEPENDENCIES:
   - InAppSettingsKit
   - OCMock
   - OrderedDictionary
+  - POE (from `https://github.com/GuardianProject/POE.git`)
   - TUSafariActivity
   - WYPopoverController (from `https://github.com/sammcewan/WYPopoverController.git`)
   - XLForm (from `https://github.com/jcs/XLForm.git`)
 
 EXTERNAL SOURCES:
+  POE:
+    :git: https://github.com/GuardianProject/POE.git
   WYPopoverController:
     :git: https://github.com/sammcewan/WYPopoverController.git
   XLForm:
     :git: https://github.com/jcs/XLForm.git
 
 CHECKOUT OPTIONS:
+  POE:
+    :commit: 4fdfa703a6554fcb392338d21dec8cffee77f5fe
+    :git: https://github.com/GuardianProject/POE.git
   WYPopoverController:
     :commit: 9b8011bd95bd95f6fca6a0afa78965fbf645a062
     :git: https://github.com/sammcewan/WYPopoverController.git
@@ -93,10 +100,11 @@ SPEC CHECKSUMS:
   InAppSettingsKit: 94d2fba3ccd700fc4e32c6d09fabcc0af2426744
   OCMock: 35ae71d6a8fcc1b59434d561d1520b9dd4f15765
   OrderedDictionary: 138c8d2e358d3a0c9adda15c6c7db24e8e3b09e6
+  POE: e979f9d7e08fcd15f1da34c8095993c6a97fd2f3
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
   WYPopoverController: a9db25ac2841a686acdc0f3a99bdb21545db32f4
   XLForm: d5c391dfc62865927b5bcab0a5a0dbfb3e02b0ec
 
-PODFILE CHECKSUM: e36efc01b019b626b73a5a97c25e7f616eddf17e
+PODFILE CHECKSUM: 0eb34c4dffe652bc3d4d92007882fbdfb9baff79
 
 COCOAPODS: 1.2.1

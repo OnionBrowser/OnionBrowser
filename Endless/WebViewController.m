@@ -289,8 +289,9 @@
 			NSString *homepage = [userDefaults stringForKey:@"homepage"];
 			
 			if (homepage == nil || [homepage isEqualToString:@""]) {
-				NSDictionary *se = [[appDelegate searchEngines] objectForKey:[userDefaults stringForKey:@"search_engine"]];
-				homepage = [se objectForKey:@"homepage_url"];
+				//NSDictionary *se = [[appDelegate searchEngines] objectForKey:[userDefaults stringForKey:@"search_engine"]];
+				//homepage = [se objectForKey:@"homepage_url"];
+				homepage = @"https://check.torproject.org/";
 			}
 			
 			[self addNewTabForURL:[NSURL URLWithString:homepage]];
