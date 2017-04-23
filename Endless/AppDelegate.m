@@ -12,7 +12,7 @@
 
 #import "UIResponder+FirstResponder.h"
 
-#import "OCRootViewController.h"
+#import "OBRootViewController.h"
 
 @implementation AppDelegate
 {
@@ -67,8 +67,8 @@
 	
 	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	self.window.backgroundColor = [UIColor groupTableViewBackgroundColor];
-	self.window.rootViewController = [[OCRootViewController alloc] init];
-	self.window.rootViewController.restorationIdentifier = @"OCRootViewController";
+	self.window.rootViewController = [[OBRootViewController alloc] init];
+	self.window.rootViewController.restorationIdentifier = @"OBRootViewController";
 
 	return YES;
 }

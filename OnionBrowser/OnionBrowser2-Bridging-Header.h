@@ -3,3 +3,4 @@
 //
 
 #import <Tor/Tor.h>
+#import "OnionManagerDelegate.h"

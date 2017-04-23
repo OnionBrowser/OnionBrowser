@@ -12,7 +12,8 @@ target "OnionBrowser2" do
 	pod "Fabric"
 	pod "Crashlytics"
 
-	pod "POE", :git => "https://github.com/GuardianProject/POE.git"
+	#pod "POE", :git => "https://github.com/GuardianProject/POE.git"
+	pod "POE", :git => "https://github.com/mtigas/POE.git"
 
 	target "OnionBrowser2 Tests" do
 		pod "OCMock"
