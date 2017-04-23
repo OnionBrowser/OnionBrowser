@@ -1,4 +1,2 @@
-#github "iCepa/Tor.framework" "e89aa869097688f3bb173f02106d1b19b468bbf7"
 #github "iCepa/Tor.framework" "master"
-#github "mtigas/Tor.framework" "openssl-1.0.X-compat"
-github "mtigas/Tor.framework" "07ed12f28923bc36d733019d217de87dbb0af677"
+github "mtigas/Tor.framework" "tor0.3.0.5-libevent2.1.8-openssl1.0.2k"
