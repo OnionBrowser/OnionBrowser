@@ -20,8 +20,11 @@
     if (self = [super initWithNibName: @"LaunchScreen" bundle: [NSBundle bundleForClass: [OBRootViewController classForCoder]]])
     {
         self.introVC = [[IntroViewController alloc] init];
+        self.introVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
         self.conctVC = [[ConnectingViewController alloc] init];
+        self.conctVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
         self.errorVC = [[ErrorViewController alloc] init];
+        self.errorVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     }
 
     return self;
@@ -31,28 +34,21 @@
 {
     [super viewDidAppear: animated];
 
-    if (!self.nextVC)
-    {
-        self.nextVC = self.introVC;
-    }
-
-    [self presentViewController: self.nextVC animated: animated completion: nil];
+    [self presentViewController: self.introVC animated: animated completion: nil];
 }
 
 - (void)introFinished:(BOOL)useBridge
 {
-    self.nextVC = self.conctVC;
-
     [[OnionManager singleton] startTorWithDelegate:self];
 
     // Tor doesn't always come up right away, so put a tiny delay.
     // TODO: actually find a solution for race condition
     [NSTimer scheduledTimerWithTimeInterval:1.0f repeats:NO block:^(NSTimer * _Nonnull timer) {
-        [_conctVC connectionStarted];
+        [_conctVC connectingStarted];
     }];
 
 
-    [self dismissViewControllerAnimated: true completion: nil];
+    [self.introVC presentViewController:self.conctVC animated:YES completion:nil];
 }
 
 // MARK: - OnionManagerDelegate callbacks
@@ -61,15 +57,19 @@
 // passing the info along to `conctVC`.
 
 -(void) torConnProgress: (NSInteger)progress {
-    if (self.nextVC == self.conctVC) {
-        NSLog(@"OBROOTVIEWCONTROLLER received tor progress callback: %ld", (long)progress);
-        [self.conctVC connectionProgressWithProgress:progress];
-    }
+    NSLog(@"OBROOTVIEWCONTROLLER received tor progress callback: %ld", (long)progress);
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.conctVC updateProgress:(float)progress / 100];
+    });
 }
 
 -(void) torConnFinished {
     NSLog(@"OBROOTVIEWCONTROLLER received tor connection completion callback");
-    [self.conctVC connectionFinished];
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.conctVC connectingFinished];
+    });
 }
 
 
@@ -81,7 +81,6 @@
     // This is probably not the right way to do this.
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     appDelegate.webViewController =[[WebViewController alloc] init];
-    self.nextVC = appDelegate.webViewController;
 
     [self dismissViewControllerAnimated: true completion: nil];
     [appDelegate.webViewController viewIsVisible];

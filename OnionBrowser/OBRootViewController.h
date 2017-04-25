@@ -15,7 +15,6 @@
 @property IntroViewController *introVC;
 @property ConnectingViewController *conctVC;
 @property ErrorViewController *errorVC;
-@property UIViewController *nextVC;
 
 @property OnionManager *onionMgr;
 
