@@ -34,7 +34,9 @@ import Foundation
             "--clientonly", "1",
             "--socksport", "39050",
             "--controlport", "127.0.0.1:39060",
-            "--log", "notice stdout"
+            "--log", "notice stdout",
+            "--clientuseipv4", "1",
+            "--clientuseipv6", "1"
         ]
         return configuration
     }()
