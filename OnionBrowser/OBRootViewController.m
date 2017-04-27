@@ -15,6 +15,9 @@
 
 @implementation OBRootViewController
 
+NSString *const DID_INTRO = @"did_intro";
+NSString *const USE_BRIDGE = @"use_bridge";
+
 - (id)init
 {
     if (self = [super initWithNibName: @"LaunchScreen" bundle: [NSBundle bundleForClass: [OBRootViewController classForCoder]]])
@@ -25,6 +28,10 @@
         self.conctVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
         self.errorVC = [[ErrorViewController alloc] init];
         self.errorVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+
+        self.settings = [NSUserDefaults standardUserDefaults];
+
+        self.isStartup = YES;
     }
 
     return self;
@@ -34,31 +41,21 @@
 {
     [super viewDidAppear: animated];
 
-    [self presentViewController: self.introVC animated: animated completion: nil];
-}
+    // Need this check, otherwise, #viewDidAppear will be called again just before we switch to
+    // the Endless browser.
+    if (self.isStartup)
+    {
+        self.isStartup = NO;
 
-- (void)introFinished:(BOOL)useBridge
-{
-    [[OnionManager singleton] startTorWithDelegate:self];
-
-    // Tor doesn't always come up right away, so put a tiny delay.
-    // TODO: actually find a solution for race condition
-    [NSTimer scheduledTimerWithTimeInterval:1.0f repeats:NO block:^(NSTimer * _Nonnull timer) {
-        [_conctVC connectingStarted];
-    }];
-
-
-    [self.introVC presentViewController:self.conctVC animated:YES completion:nil];
-
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(30 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        NSLog(@"OBROOTVIEWCONTROLLER Tor fail guard - has it started? %d", self.torStarted);
-
-        if (!self.torStarted)
+        if ([self.settings boolForKey:DID_INTRO])
         {
-            [self.errorVC updateProgress:self.progress];
-            [self.conctVC presentViewController:self.errorVC animated:YES completion:nil];
+            [self presentViewController: self.conctVC animated: animated completion: nil];
+            [self startTor];
         }
-    });
+        else {
+            [self presentViewController: self.introVC animated: animated completion: nil];
+        }
+    }
 }
 
 // MARK: - OnionManagerDelegate callbacks
@@ -87,9 +84,27 @@
 }
 
 
-// MARK: - POEDelegate callbacks
+// MARK: - POEDelegate
 
-// POEDelegate callback when user clicks "Continue"
+/**
+    Callback, after the user finished the intro and selected, if she wants to
+    use a bridge or not.
+
+    - parameter useBridge: true, if user selected to use a bridge, false, if not.
+ */
+- (void)introFinished:(BOOL)useBridge
+{
+    [self.settings setBool:YES forKey:DID_INTRO];
+    [self.settings setBool:useBridge forKey:USE_BRIDGE];
+
+    [self.introVC presentViewController:self.conctVC animated:YES completion:nil];
+
+    [self startTor];
+}
+
+/**
+    Callback, after the user pressed the "Start Browsing" button.
+ */
 - (void)userFinishedConnecting
 {
     // This is probably not the right way to do this.
@@ -99,5 +114,38 @@
     [self dismissViewControllerAnimated: true completion: nil];
     [appDelegate.webViewController viewIsVisible];
 }
+
+// MARK: - Private methods
+
+/**
+    Start OnionManager, tell ConnectingViewController, that connecting is now started,
+    start a guard thread, which shows an ErrorViewController, when Tor doesn't come up after 30
+    seconds.
+ */
+- (void) startTor
+{
+    [[OnionManager singleton] startTorWithDelegate:self];
+
+    // Tor doesn't always come up right away, so put a tiny delay.
+    // TODO: actually find a solution for race condition
+    [NSTimer scheduledTimerWithTimeInterval:1.0f repeats:NO block:^(NSTimer * _Nonnull timer) {
+        [self.conctVC connectingStarted];
+    }];
+
+    // Show error to user, when, after 30 seconds, Tor has still not started.
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(30 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        NSLog(@"OBROOTVIEWCONTROLLER Tor fail guard - has it started? %d", self.torStarted);
+
+        if (!self.torStarted)
+        {
+            // Show intro again, next time, so user can choose a bridge.
+            [self.settings setBool:NO forKey:DID_INTRO];
+
+            [self.errorVC updateProgress:self.progress];
+            [self.conctVC presentViewController:self.errorVC animated:YES completion:nil];
+        }
+    });
+}
+
 
 @end
