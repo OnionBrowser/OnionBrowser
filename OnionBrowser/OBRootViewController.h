@@ -18,4 +18,7 @@
 
 @property OnionManager *onionMgr;
 
+@property BOOL torStarted;
+@property float progress;
+
 @end

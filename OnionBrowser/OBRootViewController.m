@@ -49,6 +49,16 @@
 
 
     [self.introVC presentViewController:self.conctVC animated:YES completion:nil];
+
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(30 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        NSLog(@"OBROOTVIEWCONTROLLER Tor fail guard - has it started? %d", self.torStarted);
+
+        if (!self.torStarted)
+        {
+            [self.errorVC updateProgress:self.progress];
+            [self.conctVC presentViewController:self.errorVC animated:YES completion:nil];
+        }
+    });
 }
 
 // MARK: - OnionManagerDelegate callbacks
@@ -59,12 +69,16 @@
 -(void) torConnProgress: (NSInteger)progress {
     NSLog(@"OBROOTVIEWCONTROLLER received tor progress callback: %ld", (long)progress);
 
+    self.progress = (float)progress / 100;
+
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.conctVC updateProgress:(float)progress / 100];
+        [self.conctVC updateProgress:self.progress];
     });
 }
 
 -(void) torConnFinished {
+    self.torStarted = YES;
+
     NSLog(@"OBROOTVIEWCONTROLLER received tor connection completion callback");
 
     dispatch_async(dispatch_get_main_queue(), ^{
