@@ -109,12 +109,13 @@ NSString *const LOCALE = @"locale";
  */
 - (void)userFinishedConnecting
 {
-    // This is probably not the right way to do this.
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    appDelegate.webViewController =[[WebViewController alloc] init];
+    appDelegate.webViewController = [[WebViewController alloc] init];
 
-    [self dismissViewControllerAnimated: true completion: nil];
-    [appDelegate.webViewController viewIsVisible];
+    [self dismissViewControllerAnimated: true completion: ^{
+        appDelegate.window.rootViewController = appDelegate.webViewController;
+        [appDelegate.webViewController viewIsVisible];
+    }];
 }
 
 /**
