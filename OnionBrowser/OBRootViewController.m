@@ -17,6 +17,7 @@
 
 NSString *const DID_INTRO = @"did_intro";
 NSString *const USE_BRIDGE = @"use_bridge";
+NSString *const LOCALE = @"locale";
 
 - (id)init
 {
@@ -49,6 +50,7 @@ NSString *const USE_BRIDGE = @"use_bridge";
 
         if ([self.settings boolForKey:DID_INTRO])
         {
+            self.conctVC.autoClose = YES;
             [self presentViewController: self.conctVC animated: animated completion: nil];
             [self startTor];
         }
@@ -113,6 +115,14 @@ NSString *const USE_BRIDGE = @"use_bridge";
 
     [self dismissViewControllerAnimated: true completion: nil];
     [appDelegate.webViewController viewIsVisible];
+}
+
+/**
+ Callback, when the user changed the locale.
+ */
+- (void)localeUpdated:(NSString *)localeId
+{
+    [self.settings setObject:localeId forKey:LOCALE];
 }
 
 // MARK: - Private methods
