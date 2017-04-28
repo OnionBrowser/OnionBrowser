@@ -16,6 +16,10 @@
 @property ConnectingViewController *conctVC;
 @property ErrorViewController *errorVC;
 
-@property OnionManager *onionMgr;
+@property NSUserDefaults *settings;
+
+@property BOOL isStartup;
+@property BOOL torStarted;
+@property float progress;
 
 @end
