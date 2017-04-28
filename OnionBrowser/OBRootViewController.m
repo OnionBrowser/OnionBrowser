@@ -10,6 +10,7 @@
 
 #ifdef __OBJC__
 #import "OnionBrowser-Swift.h"
+#import <Tor/Tor.h>
 #endif
 
 
@@ -39,7 +40,17 @@
 
 - (void)introFinished:(BOOL)useBridge
 {
-    [[OnionManager singleton] startTorWithDelegate:self];
+    OnionManager *onion = [OnionManager singleton];
+    
+    if (useBridge) {
+        // Take default config, add the built-in obfs4 bridges, and turn on "usebridges 1"
+        NSArray<NSString *> *args = [[onion torConf] arguments];
+        args = [args arrayByAddingObjectsFromArray:[OnionManager bridgeBuiltInObfs4Args]];
+        args = [args arrayByAddingObjectsFromArray:[NSArray arrayWithObjects:@"--usebridges", @"1", nil]];
+        [[onion torConf] setArguments:args];
+    }
+    
+    [onion startTorWithDelegate:self];
 
     // Tor doesn't always come up right away, so put a tiny delay.
     // TODO: actually find a solution for race condition

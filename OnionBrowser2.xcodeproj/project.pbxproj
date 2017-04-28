@@ -68,6 +68,8 @@
 		69CBCD4F1E93451C009D5352 /* urlblocker.json in Resources */ = {isa = PBXBuildFile; fileRef = 69CBCD4E1E93451C009D5352 /* urlblocker.json */; };
 		69CBCD521E9347B8009D5352 /* UIResponder+FirstResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CBCD511E9347B8009D5352 /* UIResponder+FirstResponder.m */; };
 		69EFCCA21EAD20CB00280747 /* OBRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69EFCCA11EAD20CB00280747 /* OBRootViewController.m */; };
+		8AD5FFBA1EB3DFE30066E7E3 /* ObfsThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD5FFB91EB3DFE30066E7E3 /* ObfsThread.m */; };
+		8AD5FFBC1EB3DFEB0066E7E3 /* Iobfs4proxy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD5FFBB1EB3DFEB0066E7E3 /* Iobfs4proxy.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -181,6 +183,9 @@
 		69EFCCA11EAD20CB00280747 /* OBRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OBRootViewController.m; path = OnionBrowser/OBRootViewController.m; sourceTree = "<group>"; };
 		69EFCCA51EAD297700280747 /* OnionManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OnionManagerDelegate.h; path = OnionBrowser/OnionManagerDelegate.h; sourceTree = "<group>"; };
 		88C2CD881DEDC30A008ABA3F /* Pods_OnionBrowser2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OnionBrowser2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8AD5FFB81EB3DFE30066E7E3 /* ObfsThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ObfsThread.h; path = OnionBrowser/ObfsThread.h; sourceTree = "<group>"; };
+		8AD5FFB91EB3DFE30066E7E3 /* ObfsThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ObfsThread.m; path = OnionBrowser/ObfsThread.m; sourceTree = "<group>"; };
+		8AD5FFBB1EB3DFEB0066E7E3 /* Iobfs4proxy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Iobfs4proxy.framework; sourceTree = "<group>"; };
 		A00436091E81856F0067652D /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		A004360A1E81856F0067652D /* Cartfile.resolved */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile.resolved; sourceTree = "<group>"; };
 		A004360B1E81856F0067652D /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -203,6 +208,7 @@
 				019516D11B7D8B400078586A /* libz.tbd in Frameworks */,
 				016B2FCD1A5648AE002D2730 /* WebKit.framework in Frameworks */,
 				2A89EDEAD544E48335C05E61 /* Pods_OnionBrowser2.framework in Frameworks */,
+				8AD5FFBC1EB3DFEB0066E7E3 /* Iobfs4proxy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,6 +398,9 @@
 				69EFCCA51EAD297700280747 /* OnionManagerDelegate.h */,
 				69EFCCA01EAD20CB00280747 /* OBRootViewController.h */,
 				69EFCCA11EAD20CB00280747 /* OBRootViewController.m */,
+				8AD5FFB81EB3DFE30066E7E3 /* ObfsThread.h */,
+				8AD5FFB91EB3DFE30066E7E3 /* ObfsThread.m */,
+				8AD5FFBB1EB3DFEB0066E7E3 /* Iobfs4proxy.framework */,
 			);
 			name = OnionBrowser;
 			sourceTree = "<group>";
@@ -670,6 +679,7 @@
 				69CBCD4D1E934249009D5352 /* RuleEditorRow.m in Sources */,
 				01AFEB491B4ED48000A02482 /* Bookmark.m in Sources */,
 				01801E981A32CA2A002B4718 /* main.m in Sources */,
+				8AD5FFBA1EB3DFE30066E7E3 /* ObfsThread.m in Sources */,
 				01D741321A49EA14007B7033 /* RuleEditorController.m in Sources */,
 				018333D21A35291200670CD1 /* HTTPSEverywhereRule.m in Sources */,
 				01AFEB4F1B4F2A5F00A02482 /* OnePasswordExtension.m in Sources */,
@@ -812,9 +822,11 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 68QUP6KP2C;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
 				);
 				GCC_NO_COMMON_BLOCKS = NO;
 				INFOPLIST_FILE = Endless/Info.plist;
@@ -839,9 +851,11 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 68QUP6KP2C;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
 				);
 				GCC_NO_COMMON_BLOCKS = NO;
 				INFOPLIST_FILE = Endless/Info.plist;

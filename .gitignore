@@ -14,6 +14,7 @@ Carthage/Build/
 *.swp
 Iobfs4proxy.framework/
 Iobfs4proxy.framework.tar.xz
+Iobfs4proxy.framework.tar.gz
 
 fabric.apikey
 fabric.buildsecret

@@ -14,8 +14,8 @@ Please see the [LICENSE][license] file for usage and redistribution terms. As of
 
 * **OnionBrowser**: 2.0.0-dev (XXXXXXXX.X) - See [official release history][releases] and [changelog][changelog].
 * **[Endless][endless]** upstream: 1.6.1
-* **[Tor.framework][Tor.framework]**: b0af677 (Apr 02 2017)
-  * **[Tor][tor]**: 0.3.0.5-rc
+* **[Tor.framework][Tor.framework]**: f4cae85 (Apr 28 2017)
+  * **[Tor][tor]**: 0.3.0.6
   * **[libevent][libevent]**: 2.1.8
   * **[OpenSSL][openssl]**: 1.0.2k
 
