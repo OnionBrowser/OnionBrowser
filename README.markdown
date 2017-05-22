@@ -10,9 +10,9 @@ and App Store links.
 
 ---
 
-* **OnionBrowser**: 1.7.4 (20170402.3) - See [official release history][releases] and [changelog][changelog].
-* **[Tor.framework][Tor.framework]**: b0af677 (Apr 02 2017)
-  * **[Tor][tor]**: 0.3.0.4-rc
+* **OnionBrowser**: 1.7.5 (20170521.1) - See [official release history][releases] and [changelog][changelog].
+* **[Tor.framework][Tor.framework]**: [mtigas/tor0.3.0.7-libevent2.1.8-openssl1.0.2k-v2][tor_framework_tags] / 69ca6f1 (May 21 2017)
+  * **[Tor][tor]**: 0.3.0.7
   * **[libevent][libevent]**: 2.1.8
   * **[OpenSSL][openssl]**: 1.0.2k
 * **[iObfs][iobfs]**: 26463e2 (Jul 15 2016)
@@ -27,6 +27,7 @@ and App Store links.
 [miketigas]: https://mike.tig.as/
 [license]: https://github.com/mtigas/OnionBrowser/blob/1.X/LICENSE
 [Tor.framework]: https://github.com/iCepa/Tor.framework
+[tor_framework_tags]: https://github.com/mtigas/Tor.framework/tags
 [tor]: https://www.torproject.org/
 [libevent]: http://libevent.org/
 [openssl]: https://www.openssl.org/

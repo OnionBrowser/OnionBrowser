@@ -9,7 +9,19 @@ Features subject to change.
   project by jcs, used with permission; many thanks to jcs for allowing us
   to build off of his work. Major highlights:
 
-  - Tabbed browsing.
+  - Tabbed browsing
+
+  - Built-in HTTPS Everywhere ruleset
+
+  - Built-in tracking prevention and ad blocking
+
+  - HTTP Strict Transport Security (HSTS) support
+
+  - SSL certificate viewer
+
+  - Ability to set privacy on a per-site basis
+
+  - 1Password extension support
 
 * New "flat" icon.
 
@@ -19,9 +31,21 @@ Features subject to change.
   encryption done by the iOS operating system, improving protection
   against forensic tools.
 
+===== 1.7.5 - Pending App Store Approval =====
+May 21 2017 - Submit Date
 
-===== 1.7.4 - Pending App Store Approval =====
+* Built-in obfs4 and meek-amazon bridges updated to latest Tor Browser
+  Bundle configuration.
+
+* Tor updated to 0.3.0.7, fixing several Tor networking bugs.
+
+
+
+CURRENT VERSION:
+
+===== 1.7.4 - In App Store =====
 Apr 02 2017 - Submit Date
+Apr 04 2017 - App Store Availability
 
 * Built-in bridges updated to latest Tor Browser Bundle configuration.
   (Fixes non-working meek-azure.)
@@ -31,9 +55,9 @@ Apr 02 2017 - Submit Date
 * Updated user-agent spoofing strings.
 
 
-CURRENT VERSION:
+PREVIOUS VERSIONS:
 
-===== 1.7.3 - In App Store =====
+===== 1.7.3 =====
 Feb 21 2017 - Submit Date
 Feb 24 2017 - App Store Availability
 
@@ -42,9 +66,6 @@ Feb 24 2017 - App Store Availability
 * Simplified the initial "Loading..." progress screen.
 
 * Tor updated to 0.3.0.3-alpha.
-
-
-PREVIOUS VERSIONS:
 
 ===== 1.7.2 =====
 Dec 14 2016 - Submit Date
