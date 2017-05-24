@@ -14,6 +14,7 @@
 #import "HTTPSEverywhereRuleController.h"
 #import "URLBlockerRuleController.h"
 #import "WebViewMenuController.h"
+#import "BridgeViewController.h"
 
 #import "OnePasswordExtension.h"
 #import "TUSafariActivity.h"
@@ -51,6 +52,7 @@ NSString * const LABEL = @"L";
 	[buttons addObject:@{ FUNC : @"menuHTTPSEverywhere", LABEL : @"HTTPS Everywhere" }];
 	[buttons addObject:@{ FUNC : @"menuHostSettings", LABEL : @"Host Settings" }];
 	[buttons addObject:@{ FUNC : @"menuSettings", LABEL : @"Global Settings" }];
+	[buttons addObject:@{ FUNC : @"bridgeSettings", LABEL : @"Tor Connection Settings" }];
 	
 	[self.view setBackgroundColor:[UIColor clearColor]];
 	[self.tableView setSeparatorInset:UIEdgeInsetsZero];
@@ -240,6 +242,14 @@ NSString * const LABEL = @"L";
 	
 	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:appSettingsViewController];
 	[[appDelegate webViewController] presentViewController:navController animated:YES completion:nil];
+}
+
+- (void)bridgeSettings
+{
+    BridgeViewController *bridgesVC = [[BridgeViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:bridgesVC];
+
+    [[appDelegate webViewController] presentViewController:navController animated:YES completion:nil];
 }
 
 - (void)menuShare

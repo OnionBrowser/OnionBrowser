@@ -1,6 +1,9 @@
-//
-//  Use this file to import your target's public headers that you would like to expose to Swift.
-//
+/*
+ * Onion Browser
+ * Copyright (c) 2012-2017 Mike Tigas
+ *
+ * This file is part of Onion Browser. See LICENSE file for redistribution terms.
+ */
 
 #import <Tor/Tor.h>
 #import "OnionManagerDelegate.h"

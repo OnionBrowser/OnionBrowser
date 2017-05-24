@@ -7,18 +7,15 @@
 
 #import "OBRootViewController.h"
 #import "AppDelegate.h"
+#import "BridgeViewController.h"
+#import "OBSettingsConstants.h"
 
 #ifdef __OBJC__
 #import "OnionBrowser-Swift.h"
 #import <Tor/Tor.h>
 #endif
 
-
 @implementation OBRootViewController
-
-NSString *const DID_INTRO = @"did_intro";
-NSString *const USE_BRIDGE = @"use_bridge";
-NSString *const LOCALE = @"locale";
 
 - (id)init
 {
@@ -49,6 +46,7 @@ NSString *const LOCALE = @"locale";
     {
         self.isStartup = NO;
 
+        [self.settings setBool:NO forKey:DID_INTRO];
         if ([self.settings boolForKey:DID_INTRO])
         {
             self.conctVC.autoClose = YES;
@@ -58,6 +56,7 @@ NSString *const LOCALE = @"locale";
         else {
             [self presentViewController: self.introVC animated: animated completion: nil];
         }
+        [self.settings synchronize];
     }
 }
 
@@ -97,13 +96,20 @@ NSString *const LOCALE = @"locale";
  */
 - (void)introFinished:(BOOL)useBridge
 {
-    [self.settings setBool:YES forKey:DID_INTRO];
-    [self.settings setBool:useBridge forKey:USE_BRIDGE];
+    //[self.settings setBool:YES forKey:DID_INTRO];
+    if (useBridge) {
+        BridgeViewController *bridgesVC = [[BridgeViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:bridgesVC];
+        navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+        
+        [self.introVC presentViewController:navController animated:YES completion:nil];
+    } else {
+        //[self.settings setBool:[NSNumber numberWithInt:USE_BRIDGES_NONE] forKey:USE_BRIDGES];
 
-    
-    [self.introVC presentViewController:self.conctVC animated:YES completion:nil];
-
-    [self startTor];
+        // Jump straight to startTor
+        [self.introVC presentViewController:self.conctVC animated:YES completion:nil];
+        [self startTor];
+    }
 }
 
 /**
@@ -126,6 +132,7 @@ NSString *const LOCALE = @"locale";
 - (void)localeUpdated:(NSString *)localeId
 {
     [self.settings setObject:localeId forKey:LOCALE];
+    [self.settings synchronize];
 }
 
 // MARK: - Private methods
@@ -137,13 +144,27 @@ NSString *const LOCALE = @"locale";
  */
 - (void) startTor
 {
+    [self.settings synchronize];
+    
     OnionManager *onion = [OnionManager singleton];
     
-    if ([self.settings boolForKey:USE_BRIDGE]) {
+    if ([self.settings integerForKey:USE_BRIDGES] != USE_BRIDGES_NONE) {
         // Take default config, add the built-in obfs4 bridges, and turn on "usebridges 1"
         NSArray<NSString *> *args = [[onion torConf] arguments];
-        args = [args arrayByAddingObjectsFromArray:[OnionManager bridgeBuiltInObfs4Args]];
         args = [args arrayByAddingObjectsFromArray:[NSArray arrayWithObjects:@"--usebridges", @"1", nil]];
+        
+        NSLog(@"use_bridges = %ld", [self.settings integerForKey:USE_BRIDGES]);
+        
+        if ([self.settings integerForKey:USE_BRIDGES] == USE_BRIDGES_OBFS4) {
+            args = [args arrayByAddingObjectsFromArray:[OnionManager bridgeLinesToArgsWithBridgeLines:[OnionManager bridgeBuiltInObfs4Bridges]]];
+        } else if ([self.settings integerForKey:USE_BRIDGES] == USE_BRIDGES_MEEKAMAZON) {
+            args = [args arrayByAddingObjectsFromArray:[OnionManager bridgeLinesToArgsWithBridgeLines:[OnionManager bridgeBuiltInMeekAmazonBridges]]];
+        } else if ([self.settings integerForKey:USE_BRIDGES] == USE_BRIDGES_MEEKAZURE) {
+            args = [args arrayByAddingObjectsFromArray:[OnionManager bridgeLinesToArgsWithBridgeLines:[OnionManager bridgeBuiltInMeekAzureBridges]]];
+        } else if ([self.settings integerForKey:USE_BRIDGES] == USE_BRIDGES_CUSTOM) {
+            args = [args arrayByAddingObjectsFromArray:[OnionManager bridgeLinesToArgsWithBridgeLines:[self.settings arrayForKey:CUSTOM_BRIDGES]]];
+        }
+        NSLog(@"\n\n%@\n\n",args);
         [[onion torConf] setArguments:args];
     }
     
@@ -169,6 +190,7 @@ NSString *const LOCALE = @"locale";
         {
             // Show intro again, next time, so user can choose a bridge.
             [self.settings setBool:NO forKey:DID_INTRO];
+            [self.settings synchronize];
 
             [self.errorVC updateProgress:self.progress];
             [self.conctVC presentViewController:self.errorVC animated:YES completion:nil];

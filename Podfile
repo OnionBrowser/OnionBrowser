@@ -1,4 +1,4 @@
-platform :ios, "10.3"
+platform :ios, "9.3"
 use_frameworks!
 
 target "OnionBrowser2" do

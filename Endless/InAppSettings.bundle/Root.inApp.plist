@@ -10,7 +10,7 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>FooterText</key>
-			<string>If blank, the search engine page will be used</string>
+			<string>If blank, the default Onion Browser page will be used</string>
 		</dict>
 		<dict>
 			<key>Title</key>

@@ -33,7 +33,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>20170428.10</string>
+	<string>20170524.12</string>
 	<key>Fabric</key>
 	<dict>
 		<key>Kits</key>
@@ -80,5 +80,7 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Used to import bridges via QR code. Optional.</string>
 </dict>
 </plist>

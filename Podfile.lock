@@ -92,7 +92,7 @@ CHECKOUT OPTIONS:
     :commit: 0871e1dc4a11ff684a961ecf86b36351f82e0c7d
     :git: https://github.com/Kekiiwaa/Localize.git
   POE:
-    :commit: 8c76e3127c7bb344f1093b5216b54bfcc462aa34
+    :commit: af4bdcd4d830ca4f606bdabd90b4adfce1066873
     :git: https://github.com/GuardianProject/POE.git
   WYPopoverController:
     :commit: 9b8011bd95bd95f6fca6a0afa78965fbf645a062
@@ -114,6 +114,6 @@ SPEC CHECKSUMS:
   WYPopoverController: a9db25ac2841a686acdc0f3a99bdb21545db32f4
   XLForm: d5c391dfc62865927b5bcab0a5a0dbfb3e02b0ec
 
-PODFILE CHECKSUM: b2b9ed547498a9e2c69bf46d3302bec2b3299311
+PODFILE CHECKSUM: dc65614a1b132e6f8540896be974f79cb9906cbe
 
 COCOAPODS: 1.2.1

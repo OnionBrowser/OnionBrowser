@@ -1,9 +1,9 @@
-//
-//  ObfsThread.h
-//  iObfs
-//  Copyright © 2016 Mike Tigas. All rights reserved. Available under
-//  BSD license; see https://github.com/mtigas/iObfs/blob/master/LICENSE
-//
+/*
+ * Onion Browser
+ * Copyright (c) 2012-2017 Mike Tigas
+ *
+ * This file is part of Onion Browser. See LICENSE file for redistribution terms.
+ */
 
 #import <Foundation/Foundation.h>
 
