@@ -33,7 +33,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>20170524.12</string>
+	<string>20170524.13</string>
 	<key>Fabric</key>
 	<dict>
 		<key>Kits</key>
@@ -59,6 +59,8 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Used to import bridges via QR code. Optional.</string>
 	<key>NSMainNibFile</key>
 	<string>Launch Screen</string>
 	<key>UIFileSharingEnabled</key>
@@ -80,7 +82,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
-	<key>NSCameraUsageDescription</key>
-	<string>Used to import bridges via QR code. Optional.</string>
 </dict>
 </plist>

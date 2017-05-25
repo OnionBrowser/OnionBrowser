@@ -19,10 +19,17 @@ import Foundation
         let filemgr = FileManager.default
         let dirPaths = filemgr.urls(for: .cachesDirectory, in: .userDomainMask)
         let docsDir = dirPaths[0].path
-        
+
         let dataDir = URL(fileURLWithPath: docsDir, isDirectory: true).appendingPathComponent("tor", isDirectory: true)
-        
+
         print(dataDir);
+
+        // Create tor data directory if it does not yet exist
+        do {
+            try FileManager.default.createDirectory(atPath: dataDir.absoluteString, withIntermediateDirectories: true, attributes: nil)
+        } catch let error as NSError {
+            print(error.localizedDescription);
+        }
         
         // Configure tor and return the configuration object
         let configuration = TorConfiguration()
@@ -98,8 +105,10 @@ import Foundation
 
         print("STARTING TOR");
 
-        // Wait long enough for tor itself to have started
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute:{
+        // Wait long enough for tor itself to have started. It's OK to wait for this
+        // because Tor is already trying to connect; this is just the part that polls for
+        // progress.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.75, execute:{
             do {
                 try self.torController.connect()
             } catch {

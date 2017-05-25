@@ -153,7 +153,7 @@
         NSArray<NSString *> *args = [[onion torConf] arguments];
         args = [args arrayByAddingObjectsFromArray:[NSArray arrayWithObjects:@"--usebridges", @"1", nil]];
         
-        NSLog(@"use_bridges = %ld", [self.settings integerForKey:USE_BRIDGES]);
+        NSLog(@"use_bridges = %ld", (long)[self.settings integerForKey:USE_BRIDGES]);
         
         if ([self.settings integerForKey:USE_BRIDGES] == USE_BRIDGES_OBFS4) {
             args = [args arrayByAddingObjectsFromArray:[OnionManager bridgeLinesToArgsWithBridgeLines:[OnionManager bridgeBuiltInObfs4Bridges]]];
