@@ -35,4 +35,4 @@ rm -rf Carthage/
 brew install automake libtool
 ```
 
-Of course, you need Home`brew` for that. Check out https://brew.sh/index_de.html for this.
+Of course, you need Home`brew` for that. Check out https://brew.sh/ for this.
