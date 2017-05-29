@@ -16,13 +16,23 @@ Therefor it is highly recommended to install carthage via the officially documen
 
 ## Steps to build OnionBrowser 2.X
 ```bash
-$ git clone git@github.com:mtigas/OnionBrowser.git
-$ cd OnionBrowser
-$ git checkout 2.X
-$ pod repo update
-$ pod install
-$ carthage update --platform iOS --use-submodules
-$ curl -LO https://cdn.tig.as/files/20170428/Iobfs4proxy.framework.tar.gz
-$ tar -xzf Iobfs4proxy.framework.tar.gz
-$ open OnionBrowser2.xcworkspace
+git clone git@github.com:mtigas/OnionBrowser.git
+cd OnionBrowser
+git checkout 2.X
+pod repo update
+pod install
+carthage update --platform iOS --use-submodules
+curl -LO https://cdn.tig.as/files/20170428/Iobfs4proxy.framework.tar.gz
+tar -xzf Iobfs4proxy.framework.tar.gz
+rm Iobfs4proxy.framework.tar.gz
+open OnionBrowser2.xcworkspace
 ```
+
+If the Carthage dependencies don't build, this could eventually help:
+
+```bash
+rm -rf Carthage/
+brew install automake libtool
+```
+
+Of course, you need Home`brew` for that. Check out https://brew.sh/index_de.html for this.
