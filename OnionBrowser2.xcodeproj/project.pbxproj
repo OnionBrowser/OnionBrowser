@@ -81,6 +81,8 @@
 		8AD128441ED6314A005C43E4 /* OBSettingsConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD128431ED6314A005C43E4 /* OBSettingsConstants.m */; };
 		8AD5FFBA1EB3DFE30066E7E3 /* ObfsThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD5FFB91EB3DFE30066E7E3 /* ObfsThread.m */; };
 		8AD5FFBC1EB3DFEB0066E7E3 /* Iobfs4proxy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD5FFBB1EB3DFEB0066E7E3 /* Iobfs4proxy.framework */; };
+		A045E5E51EDC5C1700BC8A92 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A045E5E11EDC5C1700BC8A92 /* Localizable.strings */; };
+		A045E5E61EDC5C1700BC8A92 /* OnePasswordExtension.strings in Resources */ = {isa = PBXBuildFile; fileRef = A045E5E31EDC5C1700BC8A92 /* OnePasswordExtension.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -227,6 +229,10 @@
 		A00436131E8187800067652D /* urlblocker.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = urlblocker.json; path = Endless/Resources/urlblocker.json; sourceTree = "<group>"; };
 		A010FA171E7986DE00E04222 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		A010FA191E798C0400E04222 /* BUILD.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = BUILD.md; sourceTree = "<group>"; };
+		A045E5E21EDC5C1700BC8A92 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Endless/Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A045E5E41EDC5C1700BC8A92 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Endless/Base.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
+		A045E5E71EDC5C2200BC8A92 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = Endless/de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A045E5E81EDC5C2200BC8A92 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = Endless/de.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
 		B939C78DF3B8CD69639FF3B7 /* Pods-OnionBrowser2-OnionBrowser2 Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnionBrowser2-OnionBrowser2 Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OnionBrowser2-OnionBrowser2 Tests/Pods-OnionBrowser2-OnionBrowser2 Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		E7CC312F97D82C609CB70043 /* Pods-OnionBrowser2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnionBrowser2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OnionBrowser2/Pods-OnionBrowser2.debug.xcconfig"; sourceTree = "<group>"; };
 		EF8A13CB193E79B9BE443762 /* Pods-OnionBrowser2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnionBrowser2.release.xcconfig"; path = "Pods/Target Support Files/Pods-OnionBrowser2/Pods-OnionBrowser2.release.xcconfig"; sourceTree = "<group>"; };
@@ -355,6 +361,8 @@
 		01801EC11A3360B1002B4718 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A045E5E11EDC5C1700BC8A92 /* Localizable.strings */,
+				A045E5E31EDC5C1700BC8A92 /* OnePasswordExtension.strings */,
 				01F8794A1A41232E00A63654 /* credits.html */,
 				016B2FCA1A53466D002D2730 /* hsts_preload.plist */,
 				018333E71A35746500670CD1 /* https-everywhere_rules.plist */,
@@ -581,6 +589,7 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
 			);
 			mainGroup = 01801E891A32CA2A002B4718;
 			productRefGroup = 01801E931A32CA2A002B4718 /* Products */;
@@ -607,8 +616,10 @@
 				8AD128331ED616B6005C43E4 /* LICENSE in Resources */,
 				01801EA61A32CA2A002B4718 /* Images.xcassets in Resources */,
 				01F8794C1A4124FE00A63654 /* credits.html in Resources */,
+				A045E5E51EDC5C1700BC8A92 /* Localizable.strings in Resources */,
 				016B2FCB1A53466D002D2730 /* hsts_preload.plist in Resources */,
 				691286EA1EABEE6900CEC414 /* LaunchScreen.xib in Resources */,
+				A045E5E61EDC5C1700BC8A92 /* OnePasswordExtension.strings in Resources */,
 				01FC0E571B38FB6B00955D9A /* Launch Screen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -809,6 +820,27 @@
 			targetProxy = 018333DD1A35727C00670CD1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A045E5E11EDC5C1700BC8A92 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A045E5E21EDC5C1700BC8A92 /* Base */,
+				A045E5E71EDC5C2200BC8A92 /* de */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		A045E5E31EDC5C1700BC8A92 /* OnePasswordExtension.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A045E5E41EDC5C1700BC8A92 /* Base */,
+				A045E5E81EDC5C2200BC8A92 /* de */,
+			);
+			name = OnePasswordExtension.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		01801EB61A32CA2A002B4718 /* Debug */ = {

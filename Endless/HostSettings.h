@@ -12,7 +12,7 @@
 #define HOST_SETTINGS_VALUE_NO @"0"
 
 #define HOST_SETTINGS_KEY_HOST @"host"
-#define HOST_SETTINGS_HOST_DEFAULT_LABEL @"Default Settings"
+#define HOST_SETTINGS_HOST_DEFAULT_LABEL NSLocalizedString(@"Default Settings", nil)
 
 #define HOST_SETTINGS_KEY_TLS @"min_tls"
 #define HOST_SETTINGS_TLS_12 @"1.2"

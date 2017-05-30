@@ -118,15 +118,15 @@ const int BOOKMARK_FILE_VERSION = 1;
 {
 	WebViewTab *wvt = [[appDelegate webViewController] curWebViewTab];
 
-	UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Add Bookmark" message:@"Enter the details of the URL to bookmark:" preferredStyle:UIAlertControllerStyleAlert];
+	UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Add Bookmark", nil) message:NSLocalizedString(@"Enter the details of the URL to bookmark:", nil) preferredStyle:UIAlertControllerStyleAlert];
 	[alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-		textField.placeholder = @"URL";
+		textField.placeholder = NSLocalizedString(@"URL", nil);
 		
 		if (wvt && [wvt url])
 			textField.text = [[wvt url] absoluteString];
 	}];
 	[alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-		textField.placeholder = @"Page Name (leave blank to use URL)";
+		textField.placeholder = NSLocalizedString(@"Page Name (leave blank to use URL)", nil);
 		
 		if (wvt && [wvt url])
 			textField.text = [[wvt title] text];

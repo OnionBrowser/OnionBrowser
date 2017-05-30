@@ -74,7 +74,7 @@
 	[self.webView addGestureRecognizer:swipeLeft];
 	
 	self.refresher = [[UIRefreshControl alloc] init];
-	[self.refresher setAttributedTitle:[[NSAttributedString alloc] initWithString:@"Pull to Refresh Page"]];
+	[self.refresher setAttributedTitle:[[NSAttributedString alloc] initWithString:NSLocalizedString(@"Pull to Refresh Page", nil)]];
 	[self.refresher addTarget:self action:@selector(forceRefreshFromRefresher) forControlEvents:UIControlEventValueChanged];
 	[self.webView.scrollView addSubview:self.refresher];
 	
@@ -379,7 +379,7 @@
 		}
 	}
 	else if ([action isEqualToString:@"window.close"]) {
-		UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Confirm" message:@"Allow this page to close its tab?" preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Confirm", nil) message:NSLocalizedString(@"Allow this page to close its tab?", nil) preferredStyle:UIAlertControllerStyleAlert];
 		
 		UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK action") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
 			[[appDelegate webViewController] removeTab:[self tabIndex]];
@@ -622,20 +622,20 @@
 	
 	alertController = [UIAlertController alertControllerWithTitle:href message:alt preferredStyle:UIAlertControllerStyleActionSheet];
 	
-	UIAlertAction *openAction = [UIAlertAction actionWithTitle:@"Open" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+	UIAlertAction *openAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Open", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
 		[self loadURL:[NSURL URLWithString:href]];
 	}];
 	
-	UIAlertAction *openNewTabAction = [UIAlertAction actionWithTitle:@"Open in a New Tab" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+	UIAlertAction *openNewTabAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Open in a New Tab", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
 		WebViewTab *newtab = [[appDelegate webViewController] addNewTabForURL:[NSURL URLWithString:href]];
 		newtab.openedByTabHash = [NSNumber numberWithLong:self.hash];
 	}];
 	
-	UIAlertAction *openSafariAction = [UIAlertAction actionWithTitle:@"Open in Safari" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+	UIAlertAction *openSafariAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Open in Safari", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
 		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:href] options:@{} completionHandler:nil];
 	}];
 
-	UIAlertAction *saveImageAction = [UIAlertAction actionWithTitle:@"Save Image" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+	UIAlertAction *saveImageAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Save Image", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
 		NSURL *imgurl = [NSURL URLWithString:img];
 		[URLInterceptor temporarilyAllow:imgurl];
 		NSData *imgdata = [NSData dataWithContentsOfURL:imgurl];
@@ -644,13 +644,13 @@
 			UIImageWriteToSavedPhotosAlbum(i, self, nil, nil);
 		}
 		else {
-			UIAlertController *uiac = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", nil) message:[NSString stringWithFormat:@"An error occurred downloading image %@", img] preferredStyle:UIAlertControllerStyleAlert];
+			UIAlertController *uiac = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", nil) message:[NSString stringWithFormat:NSLocalizedString(@"An error occurred downloading image %@", nil), img] preferredStyle:UIAlertControllerStyleAlert];
 			[uiac addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Ok", nil) style:UIAlertActionStyleDefault handler:nil]];
 			[[appDelegate webViewController] presentViewController:uiac animated:YES completion:nil];
 		}
 	}];
 	
-	UIAlertAction *copyURLAction = [UIAlertAction actionWithTitle:@"Copy URL" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+	UIAlertAction *copyURLAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Copy URL", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
 		[[UIPasteboard generalPasteboard] setString:(href ? href : img)];
 	}];
 	

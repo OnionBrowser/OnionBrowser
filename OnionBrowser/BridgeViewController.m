@@ -27,11 +27,14 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
-	self.title = @"Network Configuration";
+	self.title = NSLocalizedString(@"Network Configuration", nil);
 
 	//AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 	//if (![appDelegate.tor didFirstConnect]) {
-		backButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleDone target:self action:@selector(finishSaveClose)];
+		backButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Save", nil)
+                                                      style:UIBarButtonItemStyleDone
+                                                     target:self
+                                                     action:@selector(finishSaveClose)];
 		self.navigationItem.rightBarButtonItem = backButton;
 	//}
 }
@@ -68,9 +71,10 @@
     }
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
 	if (section == 0) {
-        return @"Bridges\n\nBridges are Tor relays that help circumvent censorship. You can try bridges if Tor is blocked by your ISP; each type of bridge uses a different method to avoid censorship: if one type does not work, try using a different one.\n\nYou may use the provided bridges below or obtain bridges at bridges.torproject.org.";
+        return [NSString stringWithFormat:NSLocalizedString(@"__BRIDGE_EXPLANATION__", @"bridges.torproject.org"), @"bridges.torproject.org"];
     // TODO re-enable ipv4/ipv6?
 	//} else if (section == 1) {
     //    return @"IPv4 / IPv6 Connection Settings\n\nThis is an advanced setting and can result in connection issues.\n\nIf you are using a VPN and have issues connecting, try changing this to IPv4.";
@@ -78,6 +82,16 @@
 		return nil;
     }
 }
+
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+    if (section == 0 && [view isKindOfClass:[UITableViewHeaderFooterView class]])
+    {
+        UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
+        header.textLabel.text = [NSString stringWithFormat:NSLocalizedString(@"__BRIDGE_EXPLANATION__", @"bridges.torproject.org"), @"bridges.torproject.org"];
+    }
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"Cell";
@@ -97,27 +111,27 @@
 
 	if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            cell.textLabel.text = @"No Bridges: Directly Connect to Tor";
+            cell.textLabel.text = NSLocalizedString(@"No Bridges: Directly Connect to Tor", nil);
             if (bridgeSetting == USE_BRIDGES_NONE || ((bridgeSetting == USE_BRIDGES_CUSTOM) && numCustomBridges == 0)) {
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
         } else if (indexPath.row == 1) {
-            cell.textLabel.text = @"Provided Bridges: obfs4";
+            cell.textLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Provided Bridges: %@", nil), @"obfs4"];
             if (bridgeSetting == USE_BRIDGES_OBFS4) {
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
         } else if (indexPath.row == 2) {
-            cell.textLabel.text = @"Provided Bridges: meek-amazon";
+            cell.textLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Provided Bridges: %@", nil), @"meek-amazon"];
             if (bridgeSetting == USE_BRIDGES_MEEKAMAZON) {
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
 		} else if (indexPath.row == 3) {
-			cell.textLabel.text = @"Provided Bridges: meek-azure";
+			cell.textLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Provided Bridges: %@", nil), @"meek-azure"];
             if (bridgeSetting == USE_BRIDGES_MEEKAZURE) {
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
 		} else if (indexPath.row == 4) {
-			cell.textLabel.text = @"Custom Bridges";
+			cell.textLabel.text = NSLocalizedString(@"Custom Bridges", nil);
             if ((bridgeSetting == USE_BRIDGES_CUSTOM) && numCustomBridges > 0) {
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
@@ -208,11 +222,11 @@
     OnionManager *onion = [OnionManager singleton];
     
     if (onion.torHasConnected) {
-        NSString *msg = @"Bridge changes require an app restart; press \"Quit App\" and reopen the app to use the new connection settings.\n\nPressing 'Continue Anyway' will use your previous settings until you restart the app.";
+        NSString *msg = NSLocalizedString(@"__RESTART_EXPLANATION__", nil);
         
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Bridges Saved" message:msg preferredStyle:UIAlertControllerStyleAlert];
-        [alert addAction:[UIAlertAction actionWithTitle:@"Continue anyway" style:UIAlertActionStyleCancel handler:nil]];
-        [alert addAction:[UIAlertAction actionWithTitle:@"Quit app" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Bridges Saved", nil) message:msg preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Continue anyway", nil) style:UIAlertActionStyleCancel handler:nil]];
+        [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Quit app", nil) style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
             exit(0);
         }]];
         [self presentViewController:alert animated:YES completion:NULL];

@@ -15,7 +15,7 @@
 {
 	self = [super initWithStyle:style];
 	
-	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self.navigationController action:@selector(dismissModalViewControllerAnimated:)];
+	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", nil) style:UIBarButtonItemStyleDone target:self.navigationController action:@selector(dismissModalViewControllerAnimated:)];
 
 	self.sortedRuleRows = [[NSMutableArray alloc] initWithCapacity:[[HTTPSEverywhere rules] count]];
 	self.inUseRuleRows = [[NSMutableArray alloc] init];
@@ -38,7 +38,7 @@
 	self.inUseRuleRows = [NSMutableArray arrayWithArray:self.inUseRuleRows];
 	self.sortedRuleRows = [NSMutableArray arrayWithArray:self.sortedRuleRows];
 	
-	self.title = @"HTTPS Everywhere Rules";
+	self.title = NSLocalizedString(@"HTTPS Everywhere Rules", nil);
 	
 	return self;
 }

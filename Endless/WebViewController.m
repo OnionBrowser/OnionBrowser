@@ -177,7 +177,7 @@
 	
 	tabAddButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewTabFromToolbar:)];
 	tabDoneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneWithTabsButton:)];
-	tabDoneButton.title = @"Done";
+	tabDoneButton.title = NSLocalizedString(@"Done", nil);
 
 	tabToolbar.items = [NSArray arrayWithObjects:
 			    [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil],
@@ -729,7 +729,7 @@
 					[urlField setTextColor:[UIColor colorWithRed:0 green:(183.0/255.0) blue:(82.0/255.0) alpha:1.0]];
 			
 					if ([self.curWebViewTab.SSLCertificate evOrgName] == nil)
-						[urlField setText:@"Unknown Organization"];
+						[urlField setText:NSLocalizedString(@"Unknown Organization", nil)];
 					else
 						[urlField setText:self.curWebViewTab.SSLCertificate.evOrgName];
 					

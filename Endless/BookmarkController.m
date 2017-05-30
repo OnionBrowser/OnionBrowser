@@ -21,9 +21,9 @@
 	
 	appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 	
-	self.title = @"Bookmarks";
+	self.title = NSLocalizedString(@"Bookmarks", nil);
 	self.navigationItem.rightBarButtonItem = addItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addItem:)];
-	self.navigationItem.leftBarButtonItem = leftItem = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self.navigationController action:@selector(dismissModalViewControllerAnimated:)];
+	self.navigationItem.leftBarButtonItem = leftItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", nil) style:UIBarButtonItemStyleDone target:self.navigationController action:@selector(dismissModalViewControllerAnimated:)];
 	
 	UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(didLongPress:)];
 	lpgr.minimumPressDuration = 0.75f;
@@ -56,9 +56,9 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
 	if (self.embedded)
-		return @"Bookmarks";
+		return NSLocalizedString(@"Bookmarks", nil);
 	else
-		return @"(Tap to edit, hold to re-order)";
+		return NSLocalizedString(@"(Tap to edit, hold to re-order)", nil);
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
@@ -115,13 +115,13 @@
 	else {
 		[tableView deselectRowAtIndexPath:indexPath animated:YES];
 		
-		UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Edit Bookmark" message:@"Enter the details of the URL to bookmark:" preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Edit Bookmark", nil) message:NSLocalizedString(@"Enter the details of the URL to bookmark:", nil) preferredStyle:UIAlertControllerStyleAlert];
 		[alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-			textField.placeholder = @"URL";
+			textField.placeholder = NSLocalizedString(@"URL", nil);
 			textField.text = bookmark.urlString;
 		}];
 		[alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-			textField.placeholder = @"Page Name (leave blank to use URL)";
+			textField.placeholder = NSLocalizedString(@"Page Name (leave blank to use URL)", nil);
 			textField.text = bookmark.name;
 		}];
 		

@@ -48,9 +48,9 @@ UISearchDisplayController *searchDisplayController;
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
 	if (section == 0)
-		return @"Rules in use on current page";
+		return NSLocalizedString(@"Rules in use on current page", nil);
 	else
-		return @"All rules";
+		return NSLocalizedString(@"All rules", nil);
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -85,9 +85,9 @@ UISearchDisplayController *searchDisplayController;
 	else {
 		cell.textLabel.textColor = [UIColor redColor];
 		if ([row detailTextLabel] == nil || [[row detailTextLabel] isEqualToString:@""])
-			cell.detailTextLabel.text = [NSString stringWithFormat:@"Disabled: %@", disabled];
+			cell.detailTextLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Disabled: %@", nil), disabled];
 		else
-			cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ (Disabled: %@)", [row detailTextLabel], disabled];
+			cell.detailTextLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%@ (Disabled: %@)", nil), [row detailTextLabel], disabled];
 		cell.detailTextLabel.textColor = [UIColor redColor];
 	}
 	
@@ -110,7 +110,7 @@ UISearchDisplayController *searchDisplayController;
 		RuleEditorRow *row = [self ruleForTableView:tableView atIndexPath:indexPath];
 		
 		if ([self ruleDisabledReason:row] == nil)
-			[self disableRuleForRow:row withReason:@"User disabled"];
+			[self disableRuleForRow:row withReason:NSLocalizedString(@"User disabled", nil)];
 		else
 			[self enableRuleForRow:row];
 	}
@@ -154,9 +154,9 @@ UISearchDisplayController *searchDisplayController;
 	RuleEditorRow *row = [self ruleForTableView:tableView atIndexPath:indexPath];
 
 	if ([self ruleDisabledReason:row] == nil)
-		return @"Disable";
+		return NSLocalizedString(@"Disable", nil);
 	else
-		return @"Enable";
+		return NSLocalizedString(@"Enable", nil);
 }
 
 - (RuleEditorRow *)ruleForTableView:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath

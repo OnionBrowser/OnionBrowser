@@ -11,16 +11,12 @@
 #import "OBSettingsConstants.h"
 
 
-@interface BridgeCustomViewController ()
-
-@end
-
 @implementation BridgeCustomViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-	self.title = @"Custom Bridges";
+	self.title = NSLocalizedString(@"Custom Bridges", nil);
 
     UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)];
     UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
@@ -44,13 +40,13 @@
     UIPlaceHolderTextView *txtView = [[UIPlaceHolderTextView alloc] initWithFrame:txtFrame];
     txtView.font = [UIFont systemFontOfSize:11];
     txtView.text = [self bridgesToBridgeLines];
-    NSString *placeholderText = @"In another browser, visit https://bridges.torproject.org/ and pick \"Get Bridges\". Use the 'Advanced Options' section; 'obfs4' Pluggable Transports are recommended. (Do not select IPv6.)";
+    NSString *placeholderText = [NSString stringWithFormat:NSLocalizedString(@"__CUSTOM_BRIDGE_EXPLANATION_1__", @"https://bridges.torproject.org/"), @"https://bridges.torproject.org/"];
     if ([QRCodeReader isAvailable]) {
-      placeholderText = [placeholderText stringByAppendingString:@"\n\nYou can tap the 'camera' icon below to use the QR code from the website, or manually copy-and-paste the \"bridge lines\" here:"];
+      placeholderText = [placeholderText stringByAppendingString:NSLocalizedString(@"__CUSTOM_BRIDGE_EXPLANATION_2__", nil)];
     } else {
-      placeholderText = [placeholderText stringByAppendingString:@" Then copy-and-paste the \"bridge lines\" here:"];
+      placeholderText = [placeholderText stringByAppendingString:NSLocalizedString(@"__CUSTOM_BRIDGE_EXPLANATION_3__", nil)];
     }
-    placeholderText = [placeholderText stringByAppendingString:@"\n\ni.e.:\nobfs4 172.0.0.1:1234 123456319E89E5C6223052AA525A192AFBC85D55 cert=GGGS1TX4R81m3r0HBl79wKy1OtPPNR2CZUIrHjkRg65Vc2VR8fOyo64f9kmT1UAFG7j0HQ iat-mode=0\n\nobfs4 172.0.0.2:4567 ABCDEF825B3B9EA6A98C83AC41F7099D67007EA5 cert=xpmQtKUqQ/6v5X7ijgYE/f03+l2/EuQ1dexjyUhh16wQlu/cpXUGalmhDIlhuiQPNEKmKw iat-mode=0\n\nobfs4 172.0.0.3:7890 098765AB960E5AC6A629C729434FF84FB5074EC2 cert=VW5f8+IBUWpPFxF+rsiVy2wXkyTQG7vEd+rHeN2jV5LIDNu8wMNEOqZXPwHdwMVEBdqXEw iat-mode=0"];
+    placeholderText = [placeholderText stringByAppendingString:[NSString stringWithFormat:NSLocalizedString(@"__CUSTOM_BRIDGE_EXPLANATION_4__", nil), @"obfs4 172.0.0.1:1234 123456319E89E5C6223052AA525A192AFBC85D55 cert=GGGS1TX4R81m3r0HBl79wKy1OtPPNR2CZUIrHjkRg65Vc2VR8fOyo64f9kmT1UAFG7j0HQ iat-mode=0\n\nobfs4 172.0.0.2:4567 ABCDEF825B3B9EA6A98C83AC41F7099D67007EA5 cert=xpmQtKUqQ/6v5X7ijgYE/f03+l2/EuQ1dexjyUhh16wQlu/cpXUGalmhDIlhuiQPNEKmKw iat-mode=0\n\nobfs4 172.0.0.3:7890 098765AB960E5AC6A629C729434FF84FB5074EC2 cert=VW5f8+IBUWpPFxF+rsiVy2wXkyTQG7vEd+rHeN2jV5LIDNu8wMNEOqZXPwHdwMVEBdqXEw iat-mode=0"]];
     txtView.placeholder = placeholderText;
     txtView.placeholderColor = [UIColor grayColor];
     txtView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
@@ -91,8 +87,8 @@
     [self presentViewController:reader animated:YES completion:NULL];
   }
   else {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Camera access was not granted or QRCode scanning is not supported by your device." preferredStyle:UIAlertControllerStyleAlert];
-    [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", nil) message:NSLocalizedString(@"Camera access was not granted or QRCode scanning is not supported by your device.", nil) preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleCancel handler:nil]];
     [self presentViewController:alert animated:YES completion:NULL];
   }
 }
@@ -141,8 +137,8 @@
             UIPlaceHolderTextView *txtView = (UIPlaceHolderTextView *)[self.view viewWithTag:50];
             txtView.text = realResult;
 
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Bridges Scanned" message:@"Successfully scanned bridges. Please press 'Save' and restart the app for these changes to take effect." preferredStyle:UIAlertControllerStyleAlert];
-            [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Bridges Scanned", nil) message:NSLocalizedString(@"Successfully scanned bridges. Please press 'Save' and restart the app for these changes to take effect.", nil) preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleCancel handler:nil]];
             [self presentViewController:alert animated:YES completion:NULL];
         /* } */
     }];
@@ -259,9 +255,5 @@
   }*/
 }
 
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
 
 @end

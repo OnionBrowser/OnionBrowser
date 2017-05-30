@@ -16,7 +16,7 @@
 {
 	self = [super initWithStyle:style];
 	
-	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self.navigationController action:@selector(dismissModalViewControllerAnimated:)];
+	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", nil) style:UIBarButtonItemStyleDone target:self.navigationController action:@selector(dismissModalViewControllerAnimated:)];
 	
 	self.sortedRuleRows = [[NSMutableArray alloc] initWithCapacity:[[URLBlocker targets] count]];
 	self.inUseRuleRows = [[NSMutableArray alloc] init];
@@ -40,7 +40,7 @@
 	self.inUseRuleRows = [NSMutableArray arrayWithArray:self.inUseRuleRows];
 	self.sortedRuleRows = [NSMutableArray arrayWithArray:self.sortedRuleRows];
 	
-	self.title = @"Blocked 3rd-Party Hosts";
+	self.title = NSLocalizedString(@"Blocked 3rd-Party Hosts", nil);
 	
 	return self;
 }

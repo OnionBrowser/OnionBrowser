@@ -1,0 +1,25 @@
+/* A single strings file, whose title is specified in your preferences schema. The strings files provide the localized content to display to the user for each of your preferences. */
+"User Interface" = "Benutzeroberfläche";
+"Toolbar on bottom" = "Werkzeugleiste unten";
+"Dark interface" = "Dunkle Benutzeroberfläche";
+"Search engine" = "Suchmaschine";
+"Custom home page" = "Eigene Startseite";
+"If blank, the default Onion Browser page will be used" = "Leer lassen, um die Standard-Onion-Browser-Seite zu benutzen.";
+"Privacy" = "Privatsphäre";
+"Send Do-Not-Track header" = "Do-Not-Track-Signal senden";
+"Edit cookies and local storage" = "Cookies und lokale Speicherung";
+"Cookie auto-sweep interval" = "Cookie Selbstreinigungsinterval";
+"Cookies and local storage data from non-whitelisted hosts will be cleared even from open tabs after not being accessed for this many minutes" = "Cookies und lokal gespeicherte Daten von nicht positiv gelisteten Servern werden auch von offenen Seiten nach dieser Anzahl Minuten gelöscht.";
+"Clear all when backgrounded" = "Alles löschen wenn im Hintergrund";
+"When switching to another app, close all tabs and non-whitelisted cookies" = "Schließe alle Reiter und lösche alle nicht positiv gelisteten Cookies, wenn zu einer anderen App gewechselt wird.";
+"Allow 3rd party keyboards" = "Erlaube Tastaturen anderer Anbieter";
+"Changing this option requires restarting the app" = "Die App muß neu gestartet werden, wenn diese Einstellung geändert wird.";
+"Support" = "Unterstützung";
+"Report a bug" = "Fehler melden";
+"Enable crash reporting" = "Absturzreports aktivieren";
+"Automatically report crash information to the developer through Crashlytics (no URLs, cookies, device IDs, etc. will be sent)" = "Automatisch Absturzinformationen an den Entwickler mit Hilfe von Crashlytics melden. (URLs, Cookies, Geräte-IDs, etc. werden nicht gesendet.)";
+"Miscellaneous" = "Vermischtes";
+"Rate on App Store" = "Im App Store bewerten";
+"About" = "Über";
+"About Endless" = "Über Endless";
+"Fund Endless development" = "Entwicklung von Endless unterstützen";

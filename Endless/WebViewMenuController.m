@@ -40,20 +40,20 @@ NSString * const LABEL = @"L";
 
 	buttons = [[NSMutableArray alloc] initWithCapacity:10];
 	
-	[buttons addObject:@{ FUNC : @"menuRefresh", LABEL : @"Refresh" }];
-	
-	/* no point in showing this if the user doesn't have 1p installed */
-	if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"onepassword://"]])
-		[buttons addObject:@{ FUNC : @"menuOnePassword", LABEL : @"Fill with 1Password" }];
+    [buttons addObject:@{ FUNC : @"menuRefresh", LABEL : NSLocalizedString(@"Refresh", nil) }];
 
-	[buttons addObject:@{ FUNC : @"menuAddOrManageBookmarks", LABEL : @"Manage Bookmarks" }];
-	[buttons addObject:@{ FUNC : @"menuShare", LABEL : @"Share URL" }];
-	[buttons addObject:@{ FUNC : @"menuURLBlocker", LABEL : @"URL Blocker" }];
-	[buttons addObject:@{ FUNC : @"menuHTTPSEverywhere", LABEL : @"HTTPS Everywhere" }];
-	[buttons addObject:@{ FUNC : @"menuHostSettings", LABEL : @"Host Settings" }];
-	[buttons addObject:@{ FUNC : @"menuSettings", LABEL : @"Global Settings" }];
-	[buttons addObject:@{ FUNC : @"bridgeSettings", LABEL : @"Tor Connection Settings" }];
-	
+    /* no point in showing this if the user doesn't have 1p installed */
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"onepassword://"]])
+    [buttons addObject:@{ FUNC : @"menuOnePassword", LABEL : NSLocalizedString(@"Fill with 1Password", nil) }];
+
+    [buttons addObject:@{ FUNC : @"menuAddOrManageBookmarks", LABEL : NSLocalizedString(@"Manage Bookmarks", nil) }];
+    [buttons addObject:@{ FUNC : @"menuShare", LABEL : NSLocalizedString(@"Share URL", nil) }];
+    [buttons addObject:@{ FUNC : @"menuURLBlocker", LABEL : NSLocalizedString(@"URL Blocker", nil) }];
+    [buttons addObject:@{ FUNC : @"menuHTTPSEverywhere", LABEL : NSLocalizedString(@"HTTPS Everywhere", nil) }];
+    [buttons addObject:@{ FUNC : @"menuHostSettings", LABEL : NSLocalizedString(@"Host Settings", nil) }];
+    [buttons addObject:@{ FUNC : @"menuSettings", LABEL : NSLocalizedString(@"Global Settings", nil) }];
+    [buttons addObject:@{ FUNC : @"bridgeSettings", LABEL : NSLocalizedString(@"Tor Connection Settings", nil) }];
+
 	[self.view setBackgroundColor:[UIColor clearColor]];
 	[self.tableView setSeparatorInset:UIEdgeInsetsZero];
 	
@@ -109,8 +109,8 @@ NSString * const LABEL = @"L";
 	NSString *func = [button objectForKey:FUNC];
 	if ([func isEqualToString:@"menuAddOrManageBookmarks"]) {
 		if (haveURL && [Bookmark isURLBookmarked:[[[appDelegate webViewController] curWebViewTab] url]]) {
-			cell.textLabel.text = @"Bookmarks";
-			cell.detailTextLabel.text = @"Page bookmarked";
+            cell.textLabel.text = NSLocalizedString(@"Bookmarks", nil);
+            cell.detailTextLabel.text = NSLocalizedString(@"Page bookmarked", nil);
 		}
 	}
 	else if ([func isEqualToString:@"menuOnePassword"] || [func isEqualToString:@"menuRefresh"] || [func isEqualToString:@"menuShare"]) {
@@ -136,11 +136,11 @@ NSString * const LABEL = @"L";
 	else if ([func isEqualToString:@"menuHostSettings"]) {
 		HostSettings *hs = [HostSettings settingsOrDefaultsForHost:[[[[appDelegate webViewController] curWebViewTab] url] host]];
 		if (hs && ![hs isDefault]) {
-			cell.detailTextLabel.text = @"Custom settings";
+            cell.detailTextLabel.text = NSLocalizedString(@"Custom settings", nil);
 			cell.detailTextLabel.textColor = [self colorForMenuTextHighlight];
 		}
 		else {
-			cell.detailTextLabel.text = @"Using defaults";
+            cell.detailTextLabel.text = NSLocalizedString(@"Using defaults", nil);
 			cell.detailTextLabel.textColor = [UIColor grayColor];
 		}
 	}
