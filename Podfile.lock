@@ -69,7 +69,7 @@ DEPENDENCIES:
   - DTFoundation
   - Fabric
   - InAppSettingsKit
-  - Localize (from `https://github.com/Kekiiwaa/Localize.git`)
+  - Localize (from `https://github.com/tladesignz/Localize.git`)
   - OCMock
   - OrderedDictionary
   - POE (from `https://github.com/GuardianProject/POE.git`)
@@ -79,7 +79,7 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   Localize:
-    :git: https://github.com/Kekiiwaa/Localize.git
+    :git: https://github.com/tladesignz/Localize.git
   POE:
     :git: https://github.com/GuardianProject/POE.git
   WYPopoverController:
@@ -89,10 +89,10 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Localize:
-    :commit: 0871e1dc4a11ff684a961ecf86b36351f82e0c7d
-    :git: https://github.com/Kekiiwaa/Localize.git
+    :commit: e3670927c1892d085d64b106404a0ead51ddfce8
+    :git: https://github.com/tladesignz/Localize.git
   POE:
-    :commit: ca7c9cfd22f13194dacd619a0b7b808711acc977
+    :commit: 87ecbeaf13e7a0e41dc5af2895476114eb233dd2
     :git: https://github.com/GuardianProject/POE.git
   WYPopoverController:
     :commit: 9b8011bd95bd95f6fca6a0afa78965fbf645a062
@@ -109,11 +109,11 @@ SPEC CHECKSUMS:
   Localize: eb2c8f13b06b162ccf3f6d63b8419921c166d2b1
   OCMock: 35ae71d6a8fcc1b59434d561d1520b9dd4f15765
   OrderedDictionary: 138c8d2e358d3a0c9adda15c6c7db24e8e3b09e6
-  POE: 3aae71f72df8ee111abfb34318b6e3fca85d463a
+  POE: 185637ad886545a753cb2bf63a35ed46ce947a4c
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
   WYPopoverController: a9db25ac2841a686acdc0f3a99bdb21545db32f4
   XLForm: d5c391dfc62865927b5bcab0a5a0dbfb3e02b0ec
 
-PODFILE CHECKSUM: dc65614a1b132e6f8540896be974f79cb9906cbe
+PODFILE CHECKSUM: 28bb5592f80379d0de1df82483f8482330beeb57
 
 COCOAPODS: 1.2.1

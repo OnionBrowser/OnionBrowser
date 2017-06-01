@@ -12,7 +12,7 @@ target "OnionBrowser2" do
 	pod "Fabric"
 	pod "Crashlytics"
 
-    pod 'Localize', :git => 'https://github.com/Kekiiwaa/Localize.git'
+    pod 'Localize', :git => 'https://github.com/tladesignz/Localize.git'
     pod "POE", :git => "https://github.com/GuardianProject/POE.git"
     #pod "POE", :git => "https://github.com/mtigas/POE.git"
 
