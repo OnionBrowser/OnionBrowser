@@ -198,27 +198,8 @@
     [self.settings synchronize];
     
     OnionManager *onion = [OnionManager singleton];
-    
-    if ([self.settings integerForKey:USE_BRIDGES] != USE_BRIDGES_NONE) {
-        // Take default config, add the built-in obfs4 bridges, and turn on "usebridges 1"
-        NSArray<NSString *> *args = [[onion torConf] arguments];
-        args = [args arrayByAddingObjectsFromArray:[NSArray arrayWithObjects:@"--usebridges", @"1", nil]];
-        
-        NSLog(@"use_bridges = %ld", (long)[self.settings integerForKey:USE_BRIDGES]);
-        
-        if ([self.settings integerForKey:USE_BRIDGES] == USE_BRIDGES_OBFS4) {
-            args = [args arrayByAddingObjectsFromArray:[OnionManager bridgeLinesToArgsWithBridgeLines:[OnionManager bridgeBuiltInObfs4Bridges]]];
-        } else if ([self.settings integerForKey:USE_BRIDGES] == USE_BRIDGES_MEEKAMAZON) {
-            args = [args arrayByAddingObjectsFromArray:[OnionManager bridgeLinesToArgsWithBridgeLines:[OnionManager bridgeBuiltInMeekAmazonBridges]]];
-        } else if ([self.settings integerForKey:USE_BRIDGES] == USE_BRIDGES_MEEKAZURE) {
-            args = [args arrayByAddingObjectsFromArray:[OnionManager bridgeLinesToArgsWithBridgeLines:[OnionManager bridgeBuiltInMeekAzureBridges]]];
-        } else if ([self.settings integerForKey:USE_BRIDGES] == USE_BRIDGES_CUSTOM) {
-            args = [args arrayByAddingObjectsFromArray:[OnionManager bridgeLinesToArgsWithBridgeLines:[self.settings arrayForKey:CUSTOM_BRIDGES]]];
-        }
-        NSLog(@"\n\n%@\n\n",args);
-        [[onion torConf] setArguments:args];
-    }
-    
+    [onion setBridgeConfigurationWithBridgesId:[self.settings integerForKey:USE_BRIDGES]
+                                 customBridges:[self.settings arrayForKey:CUSTOM_BRIDGES]];
     [onion startTorWithDelegate:self];
     
     // Tor doesn't always come up right away, so put a tiny delay.

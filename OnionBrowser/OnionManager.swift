@@ -51,7 +51,7 @@ import Foundation
     
     // MARK: - Built-in configuration options
     
-    public static let bridgeBuiltInObfs4Bridges = [
+    private static let obfs4Bridges = [
         "obfs4 154.35.22.10:15937 8FB9F4319E89E5C6223052AA525A192AFBC85D55 cert=GGGS1TX4R81m3r0HBl79wKy1OtPPNR2CZUIrHjkRg65Vc2VR8fOyo64f9kmT1UAFG7j0HQ iat-mode=0",
         "obfs4 198.245.60.50:443 752CF7825B3B9EA6A98C83AC41F7099D67007EA5 cert=xpmQtKUqQ/6v5X7ijgYE/f03+l2/EuQ1dexjyUhh16wQlu/cpXUGalmhDIlhuiQPNEKmKw iat-mode=0",
         "obfs4 192.99.11.54:443 7B126FAB960E5AC6A629C729434FF84FB5074EC2 cert=VW5f8+IBUWpPFxF+rsiVy2wXkyTQG7vEd+rHeN2jV5LIDNu8wMNEOqZXPwHdwMVEBdqXEw iat-mode=0",
@@ -73,13 +73,13 @@ import Foundation
         "obfs4 192.95.36.142:443 CDF2E852BF539B82BD10E27E9115A31734E378C2 cert=qUVQ0srL1JI/vO6V6m/24anYXiJD3QP2HgzUKQtQ7GRqqUvs7P+tG43RtAqdhLOALP7DJQ iat-mode=1",
         "obfs4 85.17.30.79:443 FC259A04A328A07FED1413E9FC6526530D9FD87A cert=RutxZlu8BtyP+y0NX7bAVD41+J/qXNhHUrKjFkRSdiBAhIHIQLhKQ2HxESAKZprn/lR3KA iat-mode=0",
         "obfs4 38.229.1.78:80 C8CBDB2464FC9804A69531437BCF2BE31FDD2EE4 cert=Hmyfd2ev46gGY7NoVxA9ngrPF2zCZtzskRTzoWXbxNkzeVnGFPWmrTtILRyqCTjHR+s9dg iat-mode=1"
-    ];
-    public static let bridgeBuiltInMeekAmazonBridges = [
+    ]
+    private static let meekAmazonBridges = [
         "meek_lite 0.0.2.0:2 B9E7141C594AF25699E0079C1F0146F409495296 url=https://d2cly7j4zqgua7.cloudfront.net/ front=a0.awsstatic.com"
-    ];
-    public static let bridgeBuiltInMeekAzureBridges = [
+    ]
+    private static let meekAzureBridges = [
         "meek_lite 0.0.2.0:3 97700DFE9F483596DDA6264C4D7DF7641E1E39CE url=https://meek.azureedge.net/ front=ajax.aspnetcdn.com"
-    ];
+    ]
 
     // MARK: - OnionManager instance
 
@@ -88,18 +88,47 @@ import Foundation
 
     
     private var torThread: TorThread?
-    public var torConf: TorConfiguration
-    
+
     public var torHasConnected: Bool = false
 
-    override init() {
-        torConf = OnionManager.torBaseConf
-        super.init()
+    private var bridgesId: Int?
+    private var customBridges: [String]?
+
+    func setBridgeConfiguration(bridgesId: Int, customBridges: [String]?) {
+        self.bridgesId = bridgesId
+        self.customBridges = customBridges
     }
 
     func startTor(delegate: OnionManagerDelegate) {
         if self.torThread == nil {
-            self.torThread = TorThread(configuration: self.torConf)
+            let torConf = OnionManager.torBaseConf
+
+            if bridgesId != nil && bridgesId != USE_BRIDGES_NONE {
+                // Take default config, add the bridges, and turn on "usebridges 1"
+                var args = torConf.arguments!
+                args.append("--usebridges")
+                args.append("1")
+
+                print("use_bridges = \(String(describing: bridgesId))")
+
+                switch bridgesId! {
+                    case USE_BRIDGES_OBFS4:
+                        args += bridgeLinesToArgs(OnionManager.obfs4Bridges)
+                    case USE_BRIDGES_MEEKAMAZON:
+                        args += bridgeLinesToArgs(OnionManager.meekAmazonBridges)
+                    case USE_BRIDGES_MEEKAZURE:
+                        args += bridgeLinesToArgs(OnionManager.meekAzureBridges)
+                    default:
+                        if customBridges != nil {
+                            args += bridgeLinesToArgs(customBridges!)
+                        }
+                }
+                
+                print("\n\n\(String(describing: args))\n\n");
+                torConf.arguments = args
+            }
+
+            self.torThread = TorThread(configuration: torConf)
             
             self.torThread!.start()
             self.obfsproxy.start()
@@ -122,7 +151,7 @@ import Foundation
                 }
             }
 
-            let cookieURL = self.torConf.dataDirectory!.appendingPathComponent("control_auth_cookie")
+            let cookieURL = OnionManager.torBaseConf.dataDirectory!.appendingPathComponent("control_auth_cookie")
             let cookie = try? Data(contentsOf: cookieURL)
 
             print("cookieURL: ", cookieURL as Any)
@@ -164,15 +193,13 @@ import Foundation
         }) //delay
     }// startTor
 
-
-    // MARK: - OnionManager instance
-    static func bridgeLinesToArgs(bridgeLines: Array<String>) -> Array<String> {
-        var bridgeArr:Array<String> = Array();
+    private func bridgeLinesToArgs(_ bridgeLines: [String]) -> [String] {
+        var bridges: [String] = []
         for (_, element) in bridgeLines.enumerated() {
-            bridgeArr.append("--bridge")
-            bridgeArr.append(element)
+            bridges.append("--bridge")
+            bridges.append(element)
         }
-        //print(bridgeArr)
-        return bridgeArr
+
+        return bridges
     }
 }
