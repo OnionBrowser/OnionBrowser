@@ -13,13 +13,15 @@
 @interface OBRootViewController : UIViewController <POEDelegate, OnionManagerDelegate>
 
 @property IntroViewController *introVC;
+@property UINavigationController *bridgeVC;
 @property ConnectingViewController *conctVC;
 @property ErrorViewController *errorVC;
 
 @property NSUserDefaults *settings;
 
 @property BOOL isStartup;
-@property BOOL torStarted;
+@property BOOL ignoreTor;
 @property float progress;
+@property dispatch_block_t failGuard;
 
 @end

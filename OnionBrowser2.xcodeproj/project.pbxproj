@@ -68,14 +68,6 @@
 		69CBCD4F1E93451C009D5352 /* urlblocker.json in Resources */ = {isa = PBXBuildFile; fileRef = 69CBCD4E1E93451C009D5352 /* urlblocker.json */; };
 		69CBCD521E9347B8009D5352 /* UIResponder+FirstResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CBCD511E9347B8009D5352 /* UIResponder+FirstResponder.m */; };
 		69EFCCA21EAD20CB00280747 /* OBRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69EFCCA11EAD20CB00280747 /* OBRootViewController.m */; };
-		8AD128221ED6162B005C43E4 /* BridgeCustomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD1281E1ED6162B005C43E4 /* BridgeCustomViewController.m */; };
-		8AD128231ED6162B005C43E4 /* BridgeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD128201ED6162B005C43E4 /* BridgeViewController.m */; };
-		8AD128331ED616B6005C43E4 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 8AD128291ED616B6005C43E4 /* LICENSE */; };
-		8AD128341ED616B6005C43E4 /* QRCameraSwitchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD1282B1ED616B6005C43E4 /* QRCameraSwitchButton.m */; };
-		8AD128351ED616B6005C43E4 /* QRCodeReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD1282D1ED616B6005C43E4 /* QRCodeReader.m */; };
-		8AD128361ED616B6005C43E4 /* QRCodeReaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD128301ED616B6005C43E4 /* QRCodeReaderView.m */; };
-		8AD128371ED616B6005C43E4 /* QRCodeReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD128321ED616B6005C43E4 /* QRCodeReaderViewController.m */; };
-		8AD1283A1ED617E2005C43E4 /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD128391ED617E2005C43E4 /* UIPlaceHolderTextView.m */; };
 		8AD1283D1ED61812005C43E4 /* Ipv6Tester.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD1283C1ED61812005C43E4 /* Ipv6Tester.m */; };
 		8AD128401ED61822005C43E4 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD1283F1ED61822005C43E4 /* Reachability.m */; };
 		8AD128441ED6314A005C43E4 /* OBSettingsConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD128431ED6314A005C43E4 /* OBSettingsConstants.m */; };
@@ -196,22 +188,6 @@
 		69EFCCA11EAD20CB00280747 /* OBRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OBRootViewController.m; path = OnionBrowser/OBRootViewController.m; sourceTree = "<group>"; };
 		69EFCCA51EAD297700280747 /* OnionManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OnionManagerDelegate.h; path = OnionBrowser/OnionManagerDelegate.h; sourceTree = "<group>"; };
 		88C2CD881DEDC30A008ABA3F /* Pods_OnionBrowser2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OnionBrowser2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8AD1281D1ED6162B005C43E4 /* BridgeCustomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BridgeCustomViewController.h; path = OnionBrowser/BridgeCustomViewController.h; sourceTree = "<group>"; };
-		8AD1281E1ED6162B005C43E4 /* BridgeCustomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BridgeCustomViewController.m; path = OnionBrowser/BridgeCustomViewController.m; sourceTree = "<group>"; };
-		8AD1281F1ED6162B005C43E4 /* BridgeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BridgeViewController.h; path = OnionBrowser/BridgeViewController.h; sourceTree = "<group>"; };
-		8AD128201ED6162B005C43E4 /* BridgeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BridgeViewController.m; path = OnionBrowser/BridgeViewController.m; sourceTree = "<group>"; };
-		8AD128291ED616B6005C43E4 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		8AD1282A1ED616B6005C43E4 /* QRCameraSwitchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCameraSwitchButton.h; sourceTree = "<group>"; };
-		8AD1282B1ED616B6005C43E4 /* QRCameraSwitchButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCameraSwitchButton.m; sourceTree = "<group>"; };
-		8AD1282C1ED616B6005C43E4 /* QRCodeReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeReader.h; sourceTree = "<group>"; };
-		8AD1282D1ED616B6005C43E4 /* QRCodeReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeReader.m; sourceTree = "<group>"; };
-		8AD1282E1ED616B6005C43E4 /* QRCodeReaderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeReaderDelegate.h; sourceTree = "<group>"; };
-		8AD1282F1ED616B6005C43E4 /* QRCodeReaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeReaderView.h; sourceTree = "<group>"; };
-		8AD128301ED616B6005C43E4 /* QRCodeReaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeReaderView.m; sourceTree = "<group>"; };
-		8AD128311ED616B6005C43E4 /* QRCodeReaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeReaderViewController.h; sourceTree = "<group>"; };
-		8AD128321ED616B6005C43E4 /* QRCodeReaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeReaderViewController.m; sourceTree = "<group>"; };
-		8AD128381ED617E2005C43E4 /* UIPlaceHolderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIPlaceHolderTextView.h; path = OnionBrowser/UIPlaceHolderTextView.h; sourceTree = "<group>"; };
-		8AD128391ED617E2005C43E4 /* UIPlaceHolderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIPlaceHolderTextView.m; path = OnionBrowser/UIPlaceHolderTextView.m; sourceTree = "<group>"; };
 		8AD1283B1ED61812005C43E4 /* Ipv6Tester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Ipv6Tester.h; path = OnionBrowser/Ipv6Tester.h; sourceTree = "<group>"; };
 		8AD1283C1ED61812005C43E4 /* Ipv6Tester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Ipv6Tester.m; path = OnionBrowser/Ipv6Tester.m; sourceTree = "<group>"; };
 		8AD1283E1ED61822005C43E4 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = OnionBrowser/Reachability.h; sourceTree = "<group>"; };
@@ -441,16 +417,10 @@
 				69EFCCA51EAD297700280747 /* OnionManagerDelegate.h */,
 				69EFCCA01EAD20CB00280747 /* OBRootViewController.h */,
 				69EFCCA11EAD20CB00280747 /* OBRootViewController.m */,
-				8AD1281D1ED6162B005C43E4 /* BridgeCustomViewController.h */,
-				8AD1281E1ED6162B005C43E4 /* BridgeCustomViewController.m */,
-				8AD1281F1ED6162B005C43E4 /* BridgeViewController.h */,
-				8AD128201ED6162B005C43E4 /* BridgeViewController.m */,
 				8AD5FFB81EB3DFE30066E7E3 /* ObfsThread.h */,
 				8AD5FFB91EB3DFE30066E7E3 /* ObfsThread.m */,
 				8AD1283B1ED61812005C43E4 /* Ipv6Tester.h */,
 				8AD1283C1ED61812005C43E4 /* Ipv6Tester.m */,
-				8AD128381ED617E2005C43E4 /* UIPlaceHolderTextView.h */,
-				8AD128391ED617E2005C43E4 /* UIPlaceHolderTextView.m */,
 				8AD128411ED6182A005C43E4 /* ThirdParty */,
 				8AD5FFBB1EB3DFEB0066E7E3 /* Iobfs4proxy.framework */,
 			);
@@ -470,30 +440,11 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		8AD128281ED616B6005C43E4 /* QRCodeReaderViewController */ = {
-			isa = PBXGroup;
-			children = (
-				8AD128291ED616B6005C43E4 /* LICENSE */,
-				8AD1282A1ED616B6005C43E4 /* QRCameraSwitchButton.h */,
-				8AD1282B1ED616B6005C43E4 /* QRCameraSwitchButton.m */,
-				8AD1282C1ED616B6005C43E4 /* QRCodeReader.h */,
-				8AD1282D1ED616B6005C43E4 /* QRCodeReader.m */,
-				8AD1282E1ED616B6005C43E4 /* QRCodeReaderDelegate.h */,
-				8AD1282F1ED616B6005C43E4 /* QRCodeReaderView.h */,
-				8AD128301ED616B6005C43E4 /* QRCodeReaderView.m */,
-				8AD128311ED616B6005C43E4 /* QRCodeReaderViewController.h */,
-				8AD128321ED616B6005C43E4 /* QRCodeReaderViewController.m */,
-			);
-			name = QRCodeReaderViewController;
-			path = OnionBrowser/QRCodeReaderViewController;
-			sourceTree = "<group>";
-		};
 		8AD128411ED6182A005C43E4 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
 				8AD1283E1ED61822005C43E4 /* Reachability.h */,
 				8AD1283F1ED61822005C43E4 /* Reachability.m */,
-				8AD128281ED616B6005C43E4 /* QRCodeReaderViewController */,
 			);
 			name = ThirdParty;
 			sourceTree = "<group>";
@@ -563,7 +514,7 @@
 		01801E8A1A32CA2A002B4718 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = jcs;
 				TargetAttributes = {
 					01801E911A32CA2A002B4718 = {
@@ -613,7 +564,6 @@
 				01801EC31A3360F8002B4718 /* InAppSettings.bundle in Resources */,
 				69CBCD4F1E93451C009D5352 /* urlblocker.json in Resources */,
 				01D7412C1A45F8EB007B7033 /* injected.js in Resources */,
-				8AD128331ED616B6005C43E4 /* LICENSE in Resources */,
 				01801EA61A32CA2A002B4718 /* Images.xcassets in Resources */,
 				01F8794C1A4124FE00A63654 /* credits.html in Resources */,
 				A045E5E51EDC5C1700BC8A92 /* Localizable.strings in Resources */,
@@ -758,10 +708,8 @@
 				01D7412F1A466AF0007B7033 /* NSString+JavascriptEscape.m in Sources */,
 				014E68A51B9BED3300D98A0A /* HostSettingsController.m in Sources */,
 				69CBCD521E9347B8009D5352 /* UIResponder+FirstResponder.m in Sources */,
-				8AD128371ED616B6005C43E4 /* QRCodeReaderViewController.m in Sources */,
 				01F2AE391B7FEF5E00D5651A /* SSLCertificate.m in Sources */,
 				01801E9B1A32CA2A002B4718 /* AppDelegate.m in Sources */,
-				8AD128341ED616B6005C43E4 /* QRCameraSwitchButton.m in Sources */,
 				69CBCD4D1E934249009D5352 /* RuleEditorRow.m in Sources */,
 				8AD128401ED61822005C43E4 /* Reachability.m in Sources */,
 				01AFEB491B4ED48000A02482 /* Bookmark.m in Sources */,
@@ -776,15 +724,11 @@
 				01801EC01A335BEC002B4718 /* URLInterceptor.m in Sources */,
 				01F2AE401B82666900D5651A /* SSLCertificateViewController.m in Sources */,
 				69EFCCA21EAD20CB00280747 /* OBRootViewController.m in Sources */,
-				8AD128221ED6162B005C43E4 /* BridgeCustomViewController.m in Sources */,
 				018333CA1A3505FB00670CD1 /* HTTPSEverywhere.m in Sources */,
 				01F7CB491A5253DD00F42B73 /* HSTSCache.m in Sources */,
 				69CBCD471E934228009D5352 /* URLBlockerRuleController.m in Sources */,
-				8AD128351ED616B6005C43E4 /* QRCodeReader.m in Sources */,
-				8AD1283A1ED617E2005C43E4 /* UIPlaceHolderTextView.m in Sources */,
 				8AD128441ED6314A005C43E4 /* OBSettingsConstants.m in Sources */,
 				691286ED1EABF2B400CEC414 /* OnionManager.swift in Sources */,
-				8AD128361ED616B6005C43E4 /* QRCodeReaderView.m in Sources */,
 				01F7CB4E1A52FC4E00F42B73 /* NSString+IPAddress.m in Sources */,
 				014E68A81B9BEDDC00D98A0A /* HostSettings.m in Sources */,
 				0135F47F1A3E548F005A8F16 /* WebViewTab.m in Sources */,
@@ -794,7 +738,6 @@
 				01EFA7FF1A63851400688398 /* LocalNetworkChecker.m in Sources */,
 				019516CC1B7D858C0078586A /* CKHTTPConnection.m in Sources */,
 				0182AD9B1AACC55400F3B7ED /* HTTPSEverywhereRuleController.m in Sources */,
-				8AD128231ED6162B005C43E4 /* BridgeViewController.m in Sources */,
 				010EEA691A43C8CF001E8B65 /* CookieJar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -847,6 +790,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -893,6 +837,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -924,6 +869,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

@@ -90,29 +90,36 @@ import Foundation
     private var torThread: TorThread?
     public var torConf: TorConfiguration
     
-    public var torHasConnected:Bool = false
-    
+    public var torHasConnected: Bool = false
+
     override init() {
         torConf = OnionManager.torBaseConf
         super.init()
     }
 
     func startTor(delegate: OnionManagerDelegate) {
-        self.torThread = TorThread(configuration: self.torConf)
-        
-        self.torThread!.start()
-        self.obfsproxy.start()
+        if self.torThread == nil {
+            self.torThread = TorThread(configuration: self.torConf)
+            
+            self.torThread!.start()
+            self.obfsproxy.start()
 
-        print("STARTING TOR");
+            print("STARTING TOR");
+        }
+        else {
+            // TODO @mtigas: Add reconfiguration of self.torThread here
+        }
 
         // Wait long enough for tor itself to have started. It's OK to wait for this
         // because Tor is already trying to connect; this is just the part that polls for
         // progress.
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.75, execute:{
-            do {
-                try self.torController.connect()
-            } catch {
-                print("Error info: \(error)")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.75, execute: {
+            if !self.torController.isConnected {
+                do {
+                    try self.torController.connect()
+                } catch {
+                    print("Error info: \(error)")
+                }
             }
 
             let cookieURL = self.torConf.dataDirectory!.appendingPathComponent("control_auth_cookie")
@@ -122,38 +129,35 @@ import Foundation
             print("cookie: ", cookie!)
 
             self.torController.authenticate(with: cookie!, completion: { (success, error) in
-                if (success) {
-
-
-                    var completeObs:Any? = nil
+                if success {
+                    var completeObs: Any?
                     completeObs = self.torController.addObserver(forCircuitEstablished: { (established) in
-                        if (established) {
-                            print("ESTABLISHED")
+                        if established {
+                            self.torHasConnected = true
                             self.torController.removeObserver(completeObs)
+                            print("ESTABLISHED")
+                            delegate.torConnFinished()
                         }
                     }) // torController.addObserver
 
+                    var progressObs: Any?
+                    progressObs = self.torController.addObserver(forStatusEvents: {
+                        (type: String, severity: String, action: String, arguments: [String : String]?) -> Bool in
 
-                    var progressObs:Any? = nil
-                    progressObs = self.torController.addObserver(forStatusEvents: { (type:String, severity:String, action:String, arguments:[String : String]?) -> Bool in
-                        if (type == "STATUS_CLIENT" && action == "BOOTSTRAP") {
+                        if type == "STATUS_CLIENT" && action == "BOOTSTRAP" {
+                            let progress = Int(arguments!["PROGRESS"]!)!
 
-                            let progress = arguments!["PROGRESS"]
+                            delegate.torConnProgress(progress)
 
-                            delegate.torConnProgress(Int(progress!)!)
-
-                            if (Int(progress!) == 100) {
-                                self.torHasConnected = true
+                            if progress >= 100 {
                                 self.torController.removeObserver(progressObs)
-                                delegate.torConnFinished()
                             }
+
                             return true;
                         }
+
                         return false;
                     }) // torController.addObserver
-
-
-
                 } // if success (authenticate)
                 else { print("didn't connect to control port") }
             }) // controller authenticate

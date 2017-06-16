@@ -14,7 +14,8 @@
 #import "HTTPSEverywhereRuleController.h"
 #import "URLBlockerRuleController.h"
 #import "WebViewMenuController.h"
-#import "BridgeViewController.h"
+#import "OBSettingsConstants.h"
+#import "OBRootViewController.h"
 
 #import "OnePasswordExtension.h"
 #import "TUSafariActivity.h"
@@ -246,10 +247,17 @@ NSString * const LABEL = @"L";
 
 - (void)bridgeSettings
 {
-    BridgeViewController *bridgesVC = [[BridgeViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:bridgesVC];
+    UINavigationController *bridgeVC = [BridgeSelectViewController
+                     initWithCurrentId:[NSUserDefaults.standardUserDefaults integerForKey:USE_BRIDGES]
+                     noBridgeId:[NSNumber numberWithInteger:USE_BRIDGES_NONE]
+                     providedBridges:@{[NSNumber numberWithInteger:USE_BRIDGES_OBFS4]: @"obfs4",
+                                       [NSNumber numberWithInteger:USE_BRIDGES_MEEKAMAZON]: @"meek-amazon",
+                                       [NSNumber numberWithInteger:USE_BRIDGES_MEEKAZURE]: @"meek-azure"}
+                     customBridgeId:[NSNumber numberWithInteger:USE_BRIDGES_CUSTOM]
+                     customBridges:[NSUserDefaults.standardUserDefaults stringArrayForKey:CUSTOM_BRIDGES]];
 
-    [[appDelegate webViewController] presentViewController:navController animated:YES completion:nil];
+
+    [self presentViewController:bridgeVC animated:YES completion:nil];
 }
 
 - (void)menuShare
@@ -273,6 +281,47 @@ NSString * const LABEL = @"L";
 		return [UIColor yellowColor];
 	else
 		return [UIColor colorWithRed:0 green:0.5 blue:0 alpha:1];
+}
+
+#pragma mark - POEDelegate
+
+/**
+ Receive this callback, after the user finished the bridges configuration.
+
+ - parameter bridgesId: the selected ID of the list you gave in the constructor of
+ BridgeSelectViewController.
+ - parameter customBridges: the list of custom bridges the user configured.
+ */
+- (void)bridgeConfigured:(NSInteger)bridgesId customBridges:(NSArray *)customBridges
+{
+    [NSUserDefaults.standardUserDefaults setInteger:bridgesId forKey:USE_BRIDGES];
+    [NSUserDefaults.standardUserDefaults setObject:customBridges forKey:CUSTOM_BRIDGES];
+    [NSUserDefaults.standardUserDefaults synchronize];
+
+    appDelegate.window.rootViewController = [[OBRootViewController alloc] init];
+    appDelegate.window.rootViewController.restorationIdentifier = @"OBRootViewController";
+
+    [appDelegate.webViewController viewIsNoLongerVisible];
+}
+
+- (void)introFinished:(BOOL)useBridge
+{
+    NSLog(@"Not implemented!");
+}
+
+- (void)changeSettings
+{
+    NSLog(@"Not implemented!");
+}
+
+- (void)userFinishedConnecting
+{
+    NSLog(@"Not implemented!");
+}
+
+- (void)localeUpdated:(NSString *)localeId
+{
+    NSLog(@"Not implemented!");
 }
 
 @end

@@ -6,7 +6,8 @@
  */
 
 #import <UIKit/UIKit.h>
+@import POE;
 
-@interface WebViewMenuController : UITableViewController
+@interface WebViewMenuController : UITableViewController<POEDelegate>
 
 @end

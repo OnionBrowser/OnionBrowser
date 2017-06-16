@@ -7,7 +7,6 @@
 
 #import "OBRootViewController.h"
 #import "AppDelegate.h"
-#import "BridgeViewController.h"
 #import "OBSettingsConstants.h"
 
 #ifdef __OBJC__
@@ -23,6 +22,16 @@
     {
         self.introVC = [[IntroViewController alloc] init];
         self.introVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+
+        self.bridgeVC = [BridgeSelectViewController
+                         initWithCurrentId:[NSUserDefaults.standardUserDefaults integerForKey:USE_BRIDGES]
+                         noBridgeId:[NSNumber numberWithInteger:USE_BRIDGES_NONE]
+                         providedBridges:@{[NSNumber numberWithInteger:USE_BRIDGES_OBFS4]: @"obfs4",
+                                           [NSNumber numberWithInteger:USE_BRIDGES_MEEKAMAZON]: @"meek-amazon",
+                                           [NSNumber numberWithInteger:USE_BRIDGES_MEEKAZURE]: @"meek-azure"}
+                         customBridgeId:[NSNumber numberWithInteger:USE_BRIDGES_CUSTOM]
+                         customBridges:[NSUserDefaults.standardUserDefaults stringArrayForKey:CUSTOM_BRIDGES]];
+        
         self.conctVC = [[ConnectingViewController alloc] init];
         self.conctVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
         self.errorVC = [[ErrorViewController alloc] init];
@@ -46,7 +55,8 @@
     {
         self.isStartup = NO;
 
-        [self.settings setBool:NO forKey:DID_INTRO];
+         // Enable this for debugging:
+//        [self.settings setBool:NO forKey:DID_INTRO];
         if ([self.settings boolForKey:DID_INTRO])
         {
             self.conctVC.autoClose = YES;
@@ -76,13 +86,16 @@
 }
 
 -(void) torConnFinished {
-    self.torStarted = YES;
-
     NSLog(@"OBROOTVIEWCONTROLLER received tor connection completion callback");
 
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.conctVC connectingFinished];
-    });
+    if (!self.ignoreTor)
+    {
+        [self cancelFailGuard];
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.conctVC connectingFinished];
+        });
+    }
 }
 
 
@@ -96,20 +109,57 @@
  */
 - (void)introFinished:(BOOL)useBridge
 {
-    //[self.settings setBool:YES forKey:DID_INTRO];
-    if (useBridge) {
-        BridgeViewController *bridgesVC = [[BridgeViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:bridgesVC];
-        navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-        
-        [self.introVC presentViewController:navController animated:YES completion:nil];
-    } else {
-        //[self.settings setBool:[NSNumber numberWithInt:USE_BRIDGES_NONE] forKey:USE_BRIDGES];
+    [self.settings setBool:YES forKey:DID_INTRO];
 
-        // Jump straight to startTor
-        [self.introVC presentViewController:self.conctVC animated:YES completion:nil];
+    if (useBridge) {
+        [self.introVC presentViewController:self.bridgeVC animated:YES completion:nil];
+        return;
+    }
+
+    [self.settings setInteger:USE_BRIDGES_NONE forKey:USE_BRIDGES];
+
+    // Jump straight to startTor
+    [self.introVC presentViewController:self.conctVC animated:YES completion:nil];
+    [self startTor];
+}
+
+/**
+ Receive this callback, after the user finished the bridges configuration.
+
+ - parameter bridgesId: the selected ID of the list you gave in the constructor of
+ BridgeSelectViewController.
+ - parameter customBridges: the list of custom bridges the user configured.
+ */
+- (void)bridgeConfigured:(NSInteger)bridgesId customBridges:(NSArray *)customBridges
+{
+    [self.settings setInteger:bridgesId forKey:USE_BRIDGES];
+    [self.settings setObject:customBridges forKey:CUSTOM_BRIDGES];
+
+    if (self.conctVC.presentingViewController)
+    {
+        // Already showing - do connection again from beginning.
         [self startTor];
     }
+    else {
+        // Not showing - present the ConnectingViewController and start connecting afterwards.
+        [self.introVC presentViewController:self.conctVC animated:YES completion:^{
+            [self startTor];
+        }];
+    }
+}
+
+/**
+ Receive this callback, when the user pressed the gear icon in the ConnectingViewController.
+
+ This probably means, the connection doesn't work and the user wants to configure bridges.
+
+ Cancel the connection here and show the BridgeSelectViewController afterwards.
+ */
+- (void)changeSettings
+{
+    self.ignoreTor = YES;
+    [self cancelFailGuard];
+    [self.conctVC presentViewController:self.bridgeVC animated:YES completion:nil];
 }
 
 /**
@@ -120,7 +170,7 @@
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     appDelegate.webViewController = [[WebViewController alloc] init];
 
-    [self dismissViewControllerAnimated: true completion: ^{
+    [self dismissViewControllerAnimated: YES completion: ^{
         appDelegate.window.rootViewController = appDelegate.webViewController;
         [appDelegate.webViewController viewIsVisible];
     }];
@@ -144,6 +194,7 @@
  */
 - (void) startTor
 {
+    self.ignoreTor = NO;
     [self.settings synchronize];
     
     OnionManager *onion = [OnionManager singleton];
@@ -173,30 +224,31 @@
     // Tor doesn't always come up right away, so put a tiny delay.
     // TODO: actually find a solution for race condition
     [NSTimer scheduledTimerWithTimeInterval:1.0f repeats:NO block:^(NSTimer * _Nonnull timer) {
-        [_conctVC connectingStarted];
-    }];
-
-    // Tor doesn't always come up right away, so put a tiny delay.
-    // TODO: actually find a solution for race condition
-    [NSTimer scheduledTimerWithTimeInterval:1.0f repeats:NO block:^(NSTimer * _Nonnull timer) {
         [self.conctVC connectingStarted];
     }];
 
-    // Show error to user, when, after 30 seconds, Tor has still not started.
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(30 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        NSLog(@"OBROOTVIEWCONTROLLER Tor fail guard - has it started? %d", self.torStarted);
+    self.failGuard = dispatch_block_create(0, ^{
+        NSLog(@"OBROOTVIEWCONTROLLER Tor fail guard - didn't start!");
 
-        if (!self.torStarted)
-        {
-            // Show intro again, next time, so user can choose a bridge.
-            [self.settings setBool:NO forKey:DID_INTRO];
-            [self.settings synchronize];
-
-            [self.errorVC updateProgress:self.progress];
-            [self.conctVC presentViewController:self.errorVC animated:YES completion:nil];
-        }
+        [self.errorVC updateProgress:self.progress];
+        [self.conctVC presentViewController:self.errorVC animated:YES completion:nil];
     });
+
+    // Show error to user, when, after 30 seconds, Tor has still not started.
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(30 * NSEC_PER_SEC)),
+                   dispatch_get_main_queue(), self.failGuard);
 }
 
+/**
+    Cancel the fail guard.
+ */
+- (void) cancelFailGuard
+{
+    if (self.failGuard != nil)
+    {
+        dispatch_block_cancel(self.failGuard);
+        self.failGuard = nil;
+    }
+}
 
 @end
