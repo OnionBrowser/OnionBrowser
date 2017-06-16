@@ -124,11 +124,11 @@
 }
 
 /**
- Receive this callback, after the user finished the bridges configuration.
+     Receive this callback, after the user finished the bridges configuration.
 
- - parameter bridgesId: the selected ID of the list you gave in the constructor of
- BridgeSelectViewController.
- - parameter customBridges: the list of custom bridges the user configured.
+     - parameter bridgesId: the selected ID of the list you gave in the constructor of
+     BridgeSelectViewController.
+     - parameter customBridges: the list of custom bridges the user configured.
  */
 - (void)bridgeConfigured:(NSInteger)bridgesId customBridges:(NSArray *)customBridges
 {
@@ -149,11 +149,11 @@
 }
 
 /**
- Receive this callback, when the user pressed the gear icon in the ConnectingViewController.
+     Receive this callback, when the user pressed the gear icon in the ConnectingViewController.
 
- This probably means, the connection doesn't work and the user wants to configure bridges.
+     This probably means, the connection doesn't work and the user wants to configure bridges.
 
- Cancel the connection here and show the BridgeSelectViewController afterwards.
+     Cancel the connection here and show the BridgeSelectViewController afterwards.
  */
 - (void)changeSettings
 {
@@ -177,7 +177,7 @@
 }
 
 /**
- Callback, when the user changed the locale.
+     Callback, when the user changed the locale.
  */
 - (void)localeUpdated:(NSString *)localeId
 {

@@ -93,8 +93,28 @@ import Foundation
 
     private var bridgesId: Int?
     private var customBridges: [String]?
+    private var needsReconfiguration: Bool = false
 
+    /**
+        Set bridges configuration and evaluate, if the new configuration is actually different
+        then the old one.
+     
+         - parameter bridgesId: the selected ID as defined in OBSettingsConstants.
+         - parameter customBridges: a list of custom bridges the user configured.
+    */
     func setBridgeConfiguration(bridgesId: Int, customBridges: [String]?) {
+        needsReconfiguration = bridgesId != self.bridgesId ?? USE_BRIDGES_NONE
+
+        if !needsReconfiguration {
+            if let oldVal = self.customBridges, let newVal = customBridges {
+                needsReconfiguration = oldVal != newVal
+            }
+            else{
+                needsReconfiguration = (self.customBridges == nil && customBridges != nil) ||
+                    (self.customBridges != nil && customBridges == nil)
+            }
+        }
+
         self.bridgesId = bridgesId
         self.customBridges = customBridges
     }
@@ -129,6 +149,7 @@ import Foundation
             }
 
             self.torThread = TorThread(configuration: torConf)
+            needsReconfiguration = false
             
             self.torThread!.start()
             self.obfsproxy.start()
@@ -136,7 +157,9 @@ import Foundation
             print("STARTING TOR");
         }
         else {
-            // TODO @mtigas: Add reconfiguration of self.torThread here
+            if needsReconfiguration {
+                // TODO @mtigas: Add reconfiguration of self.torThread here
+            }
         }
 
         // Wait long enough for tor itself to have started. It's OK to wait for this
