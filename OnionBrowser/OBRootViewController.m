@@ -211,7 +211,6 @@
     self.failGuard = dispatch_block_create(0, ^{
         NSLog(@"OBROOTVIEWCONTROLLER Tor fail guard - didn't start!");
 
-        [self.errorVC updateProgress:self.progress];
         [self.conctVC presentViewController:self.errorVC animated:YES completion:nil];
     });
 
