@@ -158,7 +158,53 @@ import Foundation
         }
         else {
             if needsReconfiguration {
-                // TODO @mtigas: Add reconfiguration of self.torThread here
+                if bridgesId == nil || bridgesId == USE_BRIDGES_NONE {
+                    // Not using bridges, so null out the "Bridge" conf
+                    torController.resetConf(forKey: "bridge", completion: { (_, _) in
+                    })
+                    torController.setConfForKey("usebridges", withValue: "0", completion: { (_, _) in
+                    })
+                } else {
+                    var bridges:Array<String> = []
+                    
+                    switch bridgesId! {
+                    case USE_BRIDGES_OBFS4:
+                        bridges = OnionManager.obfs4Bridges
+                    case USE_BRIDGES_MEEKAMAZON:
+                        bridges = OnionManager.meekAmazonBridges
+                    case USE_BRIDGES_MEEKAZURE:
+                        bridges = OnionManager.meekAzureBridges
+                    default:
+                        if customBridges != nil {
+                            bridges = customBridges!
+                        }
+                    }
+                    
+                    
+                    // wrap each bridge line in double-quotes (")
+                    let quoted_bridges = bridges.map({ (bridge:String) -> String in
+                        return "\"\(bridge)\""
+                    })
+                    /*
+                     // space-delimit it so it works as an arg for SETCONF
+                    let bridge_arg = quoted_bridges.joined(separator: " ")
+                    print("Bridge \(bridge_arg)")
+                    */
+
+                    
+                    torController.resetConf(forKey: "bridge", completion: { (_, _) in
+                    })
+                    
+                    for (_, bridge_arg) in quoted_bridges.enumerated() {
+                        torController.setConfForKey("bridge", withValue: bridge_arg, completion: { (_, _) in
+                        })
+                    }
+
+                    torController.setConfForKey("usebridges", withValue: "1", completion: { (_, _) in
+                    })
+
+                }
+
             }
         }
 
