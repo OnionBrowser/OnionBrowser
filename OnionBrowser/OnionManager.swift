@@ -30,7 +30,7 @@ import Foundation
         } catch let error as NSError {
             print(error.localizedDescription);
         }
-        
+
         // Configure tor and return the configuration object
         let configuration = TorConfiguration()
         configuration.cookieAuthentication = true
@@ -40,7 +40,8 @@ import Foundation
             "--clientonly", "1",
             "--socksport", "39050",
             "--controlport", "127.0.0.1:39060",
-            "--log", "notice stdout",
+            //"--log", "notice stdout",
+            "--log", "notice file /dev/null",
             "--clientuseipv4", "1",
             "--clientuseipv6", "1",
             "--ClientTransportPlugin", "obfs4 socks5 127.0.0.1:47351",
@@ -48,9 +49,9 @@ import Foundation
         ]
         return configuration
     }()
-    
+
     // MARK: - Built-in configuration options
-    
+
     private static let obfs4Bridges = [
         "obfs4 154.35.22.10:15937 8FB9F4319E89E5C6223052AA525A192AFBC85D55 cert=GGGS1TX4R81m3r0HBl79wKy1OtPPNR2CZUIrHjkRg65Vc2VR8fOyo64f9kmT1UAFG7j0HQ iat-mode=0",
         "obfs4 198.245.60.50:443 752CF7825B3B9EA6A98C83AC41F7099D67007EA5 cert=xpmQtKUqQ/6v5X7ijgYE/f03+l2/EuQ1dexjyUhh16wQlu/cpXUGalmhDIlhuiQPNEKmKw iat-mode=0",
@@ -86,7 +87,7 @@ import Foundation
     private let torController = TorController(socketHost: "127.0.0.1", port: 39060)
     private let obfsproxy = ObfsThread()
 
-    
+
     private var torThread: TorThread?
 
     public var torHasConnected: Bool = false
@@ -98,7 +99,7 @@ import Foundation
     /**
         Set bridges configuration and evaluate, if the new configuration is actually different
         then the old one.
-     
+
          - parameter bridgesId: the selected ID as defined in OBSettingsConstants.
          - parameter customBridges: a list of custom bridges the user configured.
     */
@@ -143,14 +144,14 @@ import Foundation
                             args += bridgeLinesToArgs(customBridges!)
                         }
                 }
-                
+
                 print("\n\n\(String(describing: args))\n\n");
                 torConf.arguments = args
             }
 
             self.torThread = TorThread(configuration: torConf)
             needsReconfiguration = false
-            
+
             self.torThread!.start()
             self.obfsproxy.start()
 
@@ -160,13 +161,14 @@ import Foundation
             if needsReconfiguration {
                 if bridgesId == nil || bridgesId == USE_BRIDGES_NONE {
                     // Not using bridges, so null out the "Bridge" conf
-                    torController.resetConf(forKey: "bridge", completion: { (_, _) in
-                    })
                     torController.setConfForKey("usebridges", withValue: "0", completion: { (_, _) in
+                    })
+                    torController.resetConf(forKey: "bridge", completion: { (_, _) in
                     })
                 } else {
                     var bridges:Array<String> = []
-                    
+                    var confs:[Dictionary<String,String>] = []
+
                     switch bridgesId! {
                     case USE_BRIDGES_OBFS4:
                         bridges = OnionManager.obfs4Bridges
@@ -179,28 +181,23 @@ import Foundation
                             bridges = customBridges!
                         }
                     }
-                    
-                    
+
                     // wrap each bridge line in double-quotes (")
                     let quoted_bridges = bridges.map({ (bridge:String) -> String in
                         return "\"\(bridge)\""
                     })
-                    /*
-                     // space-delimit it so it works as an arg for SETCONF
-                    let bridge_arg = quoted_bridges.joined(separator: " ")
-                    print("Bridge \(bridge_arg)")
-                    */
-
-                    
-                    torController.resetConf(forKey: "bridge", completion: { (_, _) in
-                    })
-                    
                     for (_, bridge_arg) in quoted_bridges.enumerated() {
-                        torController.setConfForKey("bridge", withValue: bridge_arg, completion: { (_, _) in
-                        })
+                        confs.append(["key":"bridge", "value":bridge_arg])
                     }
 
+                    // Ensure we set UseBridges=1
                     torController.setConfForKey("usebridges", withValue: "1", completion: { (_, _) in
+                    })
+
+                    // Clear existing bridge conf and then set the new bridge configs.
+                    torController.resetConf(forKey: "bridge", completion: { (_, _) in
+                    })
+                    torController.setConfs(confs, completion: { (_, _) in
                     })
 
                 }
