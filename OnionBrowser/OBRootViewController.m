@@ -204,9 +204,7 @@
     
     // Tor doesn't always come up right away, so put a tiny delay.
     // TODO: actually find a solution for race condition
-    [NSTimer scheduledTimerWithTimeInterval:1.0f repeats:NO block:^(NSTimer * _Nonnull timer) {
-        [self.conctVC connectingStarted];
-    }];
+    [NSTimer scheduledTimerWithTimeInterval:1.0f target:self.conctVC selector:@selector(connectingStarted) userInfo:nil repeats:NO];
 
     self.failGuard = dispatch_block_create(0, ^{
         NSLog(@"OBROOTVIEWCONTROLLER Tor fail guard - didn't start!");
