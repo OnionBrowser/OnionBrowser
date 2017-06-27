@@ -15,7 +15,7 @@
 #import "URLBlockerRuleController.h"
 #import "WebViewMenuController.h"
 #import "OBSettingsConstants.h"
-#import "OBRootViewController.h"
+#import "OnionBrowser-Swift.h"
 
 #import "OnePasswordExtension.h"
 #import "TUSafariActivity.h"
@@ -298,10 +298,15 @@ NSString * const LABEL = @"L";
     [NSUserDefaults.standardUserDefaults setObject:customBridges forKey:CUSTOM_BRIDGES];
     [NSUserDefaults.standardUserDefaults synchronize];
 
-    appDelegate.window.rootViewController = [[OBRootViewController alloc] init];
-    appDelegate.window.rootViewController.restorationIdentifier = @"OBRootViewController";
-
-    [appDelegate.webViewController viewIsNoLongerVisible];
+    // At this point we already have a connection. The bridge reconfiguration is very cheap,
+    // so we stay in the browser view and let OnionManager reconfigure in the background.
+    // Actually, the reconfiguration can be done completely offline, so we don't have a chance to
+    // find out, if another bridge setting (or no bridge) actually works afterwards.
+    // The user will find out, when she tries to continue browsing.
+    OnionManager *onion = [OnionManager singleton];
+    [onion setBridgeConfigurationWithBridgesId:bridgesId
+                                 customBridges:customBridges];
+    [onion startTorWithDelegate:nil];
 }
 
 - (void)introFinished:(BOOL)useBridge
