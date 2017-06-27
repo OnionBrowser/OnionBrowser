@@ -75,7 +75,8 @@
 // the underlying Tor process. We mostly don't really use this here, instead
 // passing the info along to `conctVC`.
 
--(void) torConnProgress: (NSInteger)progress {
+- (void)torConnProgress: (NSInteger)progress
+{
     NSLog(@"OBROOTVIEWCONTROLLER received tor progress callback: %ld", (long)progress);
 
     self.progress = (float)progress / 100;
@@ -85,16 +86,25 @@
     });
 }
 
--(void) torConnFinished {
+- (void)torConnFinished
+{
     NSLog(@"OBROOTVIEWCONTROLLER received tor connection completion callback");
 
     if (!self.ignoreTor)
     {
-        [self cancelFailGuard];
-
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.conctVC connectingFinished];
         });
+    }
+}
+
+-(void)torConnError
+{
+    if (!self.ignoreTor)
+    {
+        NSLog(@"OBROOTVIEWCONTROLLER Tor didn't start!");
+
+        [self.conctVC presentViewController:self.errorVC animated:YES completion:nil];
     }
 }
 
@@ -158,7 +168,6 @@
 - (void)changeSettings
 {
     self.ignoreTor = YES;
-    [self cancelFailGuard];
     [self.conctVC presentViewController:self.bridgeVC animated:YES completion:nil];
 }
 
@@ -201,32 +210,8 @@
     [onion setBridgeConfigurationWithBridgesId:[self.settings integerForKey:USE_BRIDGES]
                                  customBridges:[self.settings arrayForKey:CUSTOM_BRIDGES]];
     [onion startTorWithDelegate:self];
-    
-    // Tor doesn't always come up right away, so put a tiny delay.
-    // TODO: actually find a solution for race condition
-    [NSTimer scheduledTimerWithTimeInterval:1.0f target:self.conctVC selector:@selector(connectingStarted) userInfo:nil repeats:NO];
 
-    self.failGuard = dispatch_block_create(0, ^{
-        NSLog(@"OBROOTVIEWCONTROLLER Tor fail guard - didn't start!");
-
-        [self.conctVC presentViewController:self.errorVC animated:YES completion:nil];
-    });
-
-    // Show error to user, when, after 30 seconds, Tor has still not started.
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(30 * NSEC_PER_SEC)),
-                   dispatch_get_main_queue(), self.failGuard);
-}
-
-/**
-    Cancel the fail guard.
- */
-- (void) cancelFailGuard
-{
-    if (self.failGuard != nil)
-    {
-        dispatch_block_cancel(self.failGuard);
-        self.failGuard = nil;
-    }
+    [self.conctVC connectingStarted];
 }
 
 @end

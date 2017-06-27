@@ -22,6 +22,5 @@
 @property BOOL isStartup;
 @property BOOL ignoreTor;
 @property float progress;
-@property dispatch_block_t failGuard;
 
 @end

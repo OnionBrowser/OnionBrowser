@@ -91,6 +91,7 @@ import Foundation
     private var torThread: TorThread?
 
     public var torHasConnected: Bool = false
+    private var failGuard: DispatchWorkItem?
 
     private var bridgesId: Int?
     private var customBridges: [String]?
@@ -120,7 +121,10 @@ import Foundation
         self.customBridges = customBridges
     }
 
-    func startTor(delegate: OnionManagerDelegate) {
+    func startTor(delegate: OnionManagerDelegate?) {
+        cancelFailGuard()
+        torHasConnected = false
+
         if self.torThread == nil {
             let torConf = OnionManager.torBaseConf
 
@@ -230,8 +234,9 @@ import Foundation
                         if established {
                             self.torHasConnected = true
                             self.torController.removeObserver(completeObs)
+                            self.cancelFailGuard()
                             print("ESTABLISHED")
-                            delegate.torConnFinished()
+                            delegate?.torConnFinished()
                         }
                     }) // torController.addObserver
 
@@ -242,7 +247,7 @@ import Foundation
                         if type == "STATUS_CLIENT" && action == "BOOTSTRAP" {
                             let progress = Int(arguments!["PROGRESS"]!)!
 
-                            delegate.torConnProgress(progress)
+                            delegate?.torConnProgress(progress)
 
                             if progress >= 100 {
                                 self.torController.removeObserver(progressObs)
@@ -257,6 +262,17 @@ import Foundation
                 else { print("didn't connect to control port") }
             }) // controller authenticate
         }) //delay
+
+
+        failGuard = DispatchWorkItem {
+            if !self.torHasConnected {
+                delegate?.torConnError()
+            }
+        }
+
+        // Show error to user, when, after 30 seconds, Tor has still not started.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 30, execute: failGuard!)
+
     }// startTor
 
     private func bridgeLinesToArgs(_ bridgeLines: [String]) -> [String] {
@@ -267,5 +283,13 @@ import Foundation
         }
 
         return bridges
+    }
+
+    /**
+        Cancel the fail guard.
+     */
+    private func cancelFailGuard() {
+        failGuard?.cancel()
+        failGuard = nil
     }
 }

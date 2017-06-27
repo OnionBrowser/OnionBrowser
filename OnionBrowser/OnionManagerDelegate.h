@@ -9,6 +9,8 @@
 
 @protocol OnionManagerDelegate
 
--(void)torConnProgress: (NSInteger)progress;
--(void)torConnFinished;
+- (void)torConnProgress: (NSInteger)progress;
+- (void)torConnFinished;
+- (void)torConnError;
+
 @end
