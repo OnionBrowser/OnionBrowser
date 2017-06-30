@@ -62,7 +62,9 @@ PODS:
   - POE (0.1.0):
     - KMPlaceholderTextView (~> 1.3)
     - Localize (~> 1.3)
+    - UIColor-HexRGB
   - TUSafariActivity (1.0.4)
+  - UIColor-HexRGB (1.0.1)
   - WYPopoverController (0.3.9)
   - XLForm (3.3.0)
 
@@ -94,7 +96,7 @@ CHECKOUT OPTIONS:
     :commit: c45d994cae9b3b75db488b5a5302b7273520a12b
     :git: https://github.com/tladesignz/Localize.git
   POE:
-    :commit: 57321b088463890175ccb23cd73f3d516ec7301b
+    :commit: f99ae9a87e88b7c6c81333602f4a62b24648b6e3
     :git: https://github.com/GuardianProject/POE.git
   WYPopoverController:
     :commit: 9b8011bd95bd95f6fca6a0afa78965fbf645a062
@@ -112,8 +114,9 @@ SPEC CHECKSUMS:
   Localize: eb2c8f13b06b162ccf3f6d63b8419921c166d2b1
   OCMock: 35ae71d6a8fcc1b59434d561d1520b9dd4f15765
   OrderedDictionary: 138c8d2e358d3a0c9adda15c6c7db24e8e3b09e6
-  POE: 3e312b563f36bd4bca5c1a6609060e9316a14bc1
+  POE: c03c46ab00a021872c4a6fee273de47447b92272
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
+  UIColor-HexRGB: daccfa7e936af664369734a164b0309087d7f970
   WYPopoverController: a9db25ac2841a686acdc0f3a99bdb21545db32f4
   XLForm: d5c391dfc62865927b5bcab0a5a0dbfb3e02b0ec
 
