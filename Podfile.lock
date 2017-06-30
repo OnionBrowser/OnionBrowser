@@ -96,7 +96,7 @@ CHECKOUT OPTIONS:
     :commit: c45d994cae9b3b75db488b5a5302b7273520a12b
     :git: https://github.com/tladesignz/Localize.git
   POE:
-    :commit: f99ae9a87e88b7c6c81333602f4a62b24648b6e3
+    :commit: 84519983ad0ac6943c7d1da8c29a72c8a63cc121
     :git: https://github.com/GuardianProject/POE.git
   WYPopoverController:
     :commit: 9b8011bd95bd95f6fca6a0afa78965fbf645a062
