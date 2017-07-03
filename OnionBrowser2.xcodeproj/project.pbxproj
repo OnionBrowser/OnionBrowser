@@ -209,6 +209,8 @@
 		A045E5E41EDC5C1700BC8A92 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Endless/Base.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
 		A045E5E71EDC5C2200BC8A92 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = Endless/de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A045E5E81EDC5C2200BC8A92 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = Endless/de.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
+		A05AD0251F0A54DA00953274 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = Endless/nb.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A05AD0261F0A54DA00953274 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = Endless/nb.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
 		B939C78DF3B8CD69639FF3B7 /* Pods-OnionBrowser2-OnionBrowser2 Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnionBrowser2-OnionBrowser2 Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OnionBrowser2-OnionBrowser2 Tests/Pods-OnionBrowser2-OnionBrowser2 Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		E7CC312F97D82C609CB70043 /* Pods-OnionBrowser2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnionBrowser2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OnionBrowser2/Pods-OnionBrowser2.debug.xcconfig"; sourceTree = "<group>"; };
 		EF8A13CB193E79B9BE443762 /* Pods-OnionBrowser2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnionBrowser2.release.xcconfig"; path = "Pods/Target Support Files/Pods-OnionBrowser2/Pods-OnionBrowser2.release.xcconfig"; sourceTree = "<group>"; };
@@ -541,6 +543,7 @@
 				en,
 				Base,
 				de,
+				nb,
 			);
 			mainGroup = 01801E891A32CA2A002B4718;
 			productRefGroup = 01801E931A32CA2A002B4718 /* Products */;
@@ -770,6 +773,7 @@
 			children = (
 				A045E5E21EDC5C1700BC8A92 /* Base */,
 				A045E5E71EDC5C2200BC8A92 /* de */,
+				A05AD0251F0A54DA00953274 /* nb */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -779,6 +783,7 @@
 			children = (
 				A045E5E41EDC5C1700BC8A92 /* Base */,
 				A045E5E81EDC5C2200BC8A92 /* de */,
+				A05AD0261F0A54DA00953274 /* nb */,
 			);
 			name = OnePasswordExtension.strings;
 			sourceTree = "<group>";
