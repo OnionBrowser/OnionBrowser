@@ -1,0 +1,21 @@
+[main]
+host = https://www.transifex.com
+
+[onion-browser.localizablestrings]
+file_filter = Endless/<lang>.lproj/Localizable.strings
+source_file = Endless/Base.lproj/Localizable.strings
+source_lang = en
+type = STRING
+
+[onion-browser.onepasswordextensionstrings]
+file_filter = Endless/<lang>.lproj/OnePasswordExtension.strings
+source_file = Endless/Base.lproj/OnePasswordExtension.strings
+source_lang = en
+type = STRING
+
+[onion-browser.rootstrings]
+file_filter = Endless/InAppSettings.bundle/<lang>.lproj/Root.strings
+source_file = Endless/InAppSettings.bundle/en.lproj/Root.strings
+source_lang = en
+type = STRING
+
