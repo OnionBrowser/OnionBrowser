@@ -110,7 +110,7 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>FooterText</key>
-			<string>When switching to another app, close all tabs and non-whitelisted cookies</string>
+			<string>When switching to another app, close all tabs and clear non-whitelisted cookies</string>
 		</dict>
 		<dict>
 			<key>Key</key>

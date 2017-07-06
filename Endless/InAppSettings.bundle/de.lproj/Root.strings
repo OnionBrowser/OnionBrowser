@@ -11,7 +11,7 @@
 "Cookie auto-sweep interval" = "Cookie Selbstreinigungsinterval";
 "Cookies and local storage data from non-whitelisted hosts will be cleared even from open tabs after not being accessed for this many minutes" = "Cookies und lokal gespeicherte Daten von nicht positiv gelisteten Servern werden auch von offenen Seiten nach dieser Anzahl Minuten gelöscht.";
 "Clear all when backgrounded" = "Alles löschen wenn im Hintergrund";
-"When switching to another app, close all tabs and non-whitelisted cookies" = "Schließe alle Reiter und lösche alle nicht positiv gelisteten Cookies, wenn zu einer anderen App gewechselt wird.";
+"When switching to another app, close all tabs and clear non-whitelisted cookies" = "Schließe alle Reiter und lösche alle nicht positiv gelisteten Cookies, wenn zu einer anderen App gewechselt wird.";
 "Allow 3rd party keyboards" = "Erlaube Tastaturen anderer Anbieter";
 "Changing this option requires restarting the app" = "Die App muß neu gestartet werden, wenn diese Einstellung geändert wird.";
 "Support" = "Unterstützung";
