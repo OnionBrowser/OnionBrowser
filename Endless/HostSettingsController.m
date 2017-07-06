@@ -242,7 +242,7 @@
 			if (![host isDefault])
 				[opts addObject:[XLFormOptionsObject formOptionsObjectWithValue:HOST_SETTINGS_DEFAULT displayText:NSLocalizedString(@"(Use Default)", nil)]];
 			[opts addObject:[XLFormOptionsObject formOptionsObjectWithValue:HOST_SETTINGS_CSP_OPEN displayText:NSLocalizedString(@"Open (normal browsing mode)", nil)]];
-			[opts addObject:[XLFormOptionsObject formOptionsObjectWithValue:HOST_SETTINGS_CSP_BLOCK_CONNECT displayText:NSLocalizedString(@"No XHR/WebSockets/Video connections", nil)]];
+			[opts addObject:[XLFormOptionsObject formOptionsObjectWithValue:HOST_SETTINGS_CSP_BLOCK_CONNECT displayText:NSLocalizedString(@"No XHR/WebSocket/Video connections", nil)]];
 			[opts addObject:[XLFormOptionsObject formOptionsObjectWithValue:HOST_SETTINGS_CSP_STRICT displayText:NSLocalizedString(@"Strict (no JavaScript, video, etc.)", nil)]];
 			[row setSelectorOptions:opts];
 			
