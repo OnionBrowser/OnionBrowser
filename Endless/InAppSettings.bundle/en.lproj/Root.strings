@@ -16,8 +16,6 @@
 "Changing this option requires restarting the app" = "Changing this option requires restarting the app";
 "Support" = "Support";
 "Report a bug" = "Report a bug";
-"Enable crash reporting" = "Enable crash reporting";
-"Automatically report crash information to the developer through Crashlytics (no URLs, cookies, device IDs, etc. will be sent)" = "Automatically report crash information to the developer through Crashlytics (no URLs, cookies, device IDs, etc. will be sent)";
 "Miscellaneous" = "Miscellaneous";
 "Rate on App Store" = "Rate on App Store";
 "About" = "About";

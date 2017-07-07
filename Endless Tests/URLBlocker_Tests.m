@@ -41,14 +41,16 @@
 
 - (void)testNotBlockingFromSameSite
 {
-	BOOL block = [URLBlocker shouldBlockURL:[NSURL URLWithString:@"https://twitter.com/"] fromMainDocumentURL:[NSURL URLWithString:@"https://www.twitter.com/"]];
-	XCTAssert(block == NO);
+	NSString *block;
+	
+	block = [URLBlocker blockingTargetForURL:[NSURL URLWithString:@"https://twitter.com/"] fromMainDocumentURL:[NSURL URLWithString:@"https://www.twitter.com/"]];
+	XCTAssert(block == nil);
 
-	BOOL block2 = [URLBlocker shouldBlockURL:[NSURL URLWithString:@"https://platform.twitter.com/widgets.js"] fromMainDocumentURL:[NSURL URLWithString:@"https://twitter.com/jcs/status/548344727771545600"]];
-	XCTAssert(block2 == NO);
+	block = [URLBlocker blockingTargetForURL:[NSURL URLWithString:@"https://platform.twitter.com/widgets.js"] fromMainDocumentURL:[NSURL URLWithString:@"https://twitter.com/jcs/status/548344727771545600"]];
+	XCTAssert(block == nil);
 
-	BOOL block3 = [URLBlocker shouldBlockURL:[NSURL URLWithString:@"https://platform.twitter.com/widgets.js"] fromMainDocumentURL:[NSURL URLWithString:@"https://jcs.org/statuses/2014/12/25/548344727771545600/"]];
-	XCTAssert(block3 == YES);
+	block = [URLBlocker blockingTargetForURL:[NSURL URLWithString:@"https://platform.twitter.com/widgets.js"] fromMainDocumentURL:[NSURL URLWithString:@"https://jcs.org/statuses/2014/12/25/548344727771545600/"]];
+	XCTAssert(block != nil);
 }
 
 @end

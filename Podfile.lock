@@ -1,6 +1,4 @@
 PODS:
-  - Crashlytics (3.8.4):
-    - Fabric (~> 1.6.3)
   - DTFoundation (1.7.12):
     - DTFoundation/AppKit (= 1.7.12)
     - DTFoundation/Core (= 1.7.12)
@@ -53,7 +51,6 @@ PODS:
     - DTFoundation/Core
   - DTFoundation/UIKit_BlocksAdditions (1.7.12):
     - DTFoundation/Core
-  - Fabric (1.6.11)
   - InAppSettingsKit (2.8.1)
   - KMPlaceholderTextView (1.3.0)
   - Localize (1.3.0)
@@ -69,9 +66,7 @@ PODS:
   - XLForm (3.3.0)
 
 DEPENDENCIES:
-  - Crashlytics
   - DTFoundation
-  - Fabric
   - InAppSettingsKit
   - Localize (from `https://github.com/tladesignz/Localize.git`)
   - OCMock
@@ -96,7 +91,7 @@ CHECKOUT OPTIONS:
     :commit: c45d994cae9b3b75db488b5a5302b7273520a12b
     :git: https://github.com/tladesignz/Localize.git
   POE:
-    :commit: 84519983ad0ac6943c7d1da8c29a72c8a63cc121
+    :commit: 3c7ad7b1c10c37ed5145e61da675722362d5df4c
     :git: https://github.com/GuardianProject/POE.git
   WYPopoverController:
     :commit: 9b8011bd95bd95f6fca6a0afa78965fbf645a062
@@ -106,9 +101,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/jcs/XLForm.git
 
 SPEC CHECKSUMS:
-  Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
   DTFoundation: 26a164ef510877387906fb92bff524a792db4bf8
-  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   InAppSettingsKit: 94d2fba3ccd700fc4e32c6d09fabcc0af2426744
   KMPlaceholderTextView: 2bbcd19a273648a80a61e1e48f9743a24d8930e3
   Localize: eb2c8f13b06b162ccf3f6d63b8419921c166d2b1
@@ -120,6 +113,6 @@ SPEC CHECKSUMS:
   WYPopoverController: a9db25ac2841a686acdc0f3a99bdb21545db32f4
   XLForm: d5c391dfc62865927b5bcab0a5a0dbfb3e02b0ec
 
-PODFILE CHECKSUM: 28bb5592f80379d0de1df82483f8482330beeb57
+PODFILE CHECKSUM: 70bd407a5e32991fa53a4ff7848c94aff1b64bb3
 
 COCOAPODS: 1.2.1

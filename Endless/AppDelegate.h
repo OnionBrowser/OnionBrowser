@@ -8,16 +8,13 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
-#import <Fabric/Fabric.h>
-#import <Crashlytics/Crashlytics.h>
-
 #import "CookieJar.h"
 #import "HSTSCache.h"
 #import "WebViewController.h"
 
 #define STATE_RESTORE_TRY_KEY @"state_restore_lock"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, CrashlyticsDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 

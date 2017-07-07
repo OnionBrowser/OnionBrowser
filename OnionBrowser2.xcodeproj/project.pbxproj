@@ -58,6 +58,7 @@
 		01F8794B1A41232E00A63654 /* credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 01F8794A1A41232E00A63654 /* credits.html */; };
 		01F8794C1A4124FE00A63654 /* credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 01F8794A1A41232E00A63654 /* credits.html */; };
 		01FC0E571B38FB6B00955D9A /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01FC0E561B38FB6B00955D9A /* Launch Screen.xib */; };
+		04FDD6D1D4B9098A87AB3CD1 /* Pods_OnionBrowser2_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BB84FAF615B29592CF9C92B /* Pods_OnionBrowser2_Tests.framework */; };
 		222C400DE4B9FC48E2F1917B /* Pods_OnionBrowser2_OnionBrowser2_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C70D3A94351131F40CB14B3 /* Pods_OnionBrowser2_OnionBrowser2_Tests.framework */; };
 		2A89EDEAD544E48335C05E61 /* Pods_OnionBrowser2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88C2CD881DEDC30A008ABA3F /* Pods_OnionBrowser2.framework */; };
 		691286EA1EABEE6900CEC414 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 691286E91EABEE6900CEC414 /* LaunchScreen.xib */; };
@@ -169,6 +170,9 @@
 		01F879471A41141800A63654 /* urlblocker_mock_targets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = urlblocker_mock_targets.plist; sourceTree = "<group>"; };
 		01F8794A1A41232E00A63654 /* credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = credits.html; path = Endless/Resources/credits.html; sourceTree = "<group>"; };
 		01FC0E561B38FB6B00955D9A /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "Launch Screen.xib"; path = "Endless/Resources/Launch Screen.xib"; sourceTree = "<group>"; };
+		168630E3C5D8B650B28F0B17 /* Pods-OnionBrowser2 Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnionBrowser2 Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OnionBrowser2 Tests/Pods-OnionBrowser2 Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		303C0B6F3832C02A4A75AEF8 /* Pods-OnionBrowser2 Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnionBrowser2 Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OnionBrowser2 Tests/Pods-OnionBrowser2 Tests.release.xcconfig"; sourceTree = "<group>"; };
+		4BB84FAF615B29592CF9C92B /* Pods_OnionBrowser2_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OnionBrowser2_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C70D3A94351131F40CB14B3 /* Pods_OnionBrowser2_OnionBrowser2_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OnionBrowser2_OnionBrowser2_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		502A43620FDAA0768A0CB0FA /* Pods-OnionBrowser2-OnionBrowser2 Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnionBrowser2-OnionBrowser2 Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OnionBrowser2-OnionBrowser2 Tests/Pods-OnionBrowser2-OnionBrowser2 Tests.release.xcconfig"; sourceTree = "<group>"; };
 		691286E91EABEE6900CEC414 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LaunchScreen.xib; path = OnionBrowser/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -234,6 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				222C400DE4B9FC48E2F1917B /* Pods_OnionBrowser2_OnionBrowser2_Tests.framework in Frameworks */,
+				04FDD6D1D4B9098A87AB3CD1 /* Pods_OnionBrowser2_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,6 +409,8 @@
 				EF8A13CB193E79B9BE443762 /* Pods-OnionBrowser2.release.xcconfig */,
 				B939C78DF3B8CD69639FF3B7 /* Pods-OnionBrowser2-OnionBrowser2 Tests.debug.xcconfig */,
 				502A43620FDAA0768A0CB0FA /* Pods-OnionBrowser2-OnionBrowser2 Tests.release.xcconfig */,
+				168630E3C5D8B650B28F0B17 /* Pods-OnionBrowser2 Tests.debug.xcconfig */,
+				303C0B6F3832C02A4A75AEF8 /* Pods-OnionBrowser2 Tests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -438,6 +445,7 @@
 				018333EB1A357D8B00670CD1 /* libPods-OCMock.a */,
 				88C2CD881DEDC30A008ABA3F /* Pods_OnionBrowser2.framework */,
 				4C70D3A94351131F40CB14B3 /* Pods_OnionBrowser2_OnionBrowser2_Tests.framework */,
+				4BB84FAF615B29592CF9C92B /* Pods_OnionBrowser2_Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -667,7 +675,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OnionBrowser2-OnionBrowser2 Tests/Pods-OnionBrowser2-OnionBrowser2 Tests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OnionBrowser2 Tests/Pods-OnionBrowser2 Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B05361771C03FA2DFF545519 /* [CP] Check Pods Manifest.lock */ = {
@@ -697,7 +705,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OnionBrowser2-OnionBrowser2 Tests/Pods-OnionBrowser2-OnionBrowser2 Tests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OnionBrowser2 Tests/Pods-OnionBrowser2 Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -938,7 +946,7 @@
 		};
 		018333E01A35727C00670CD1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B939C78DF3B8CD69639FF3B7 /* Pods-OnionBrowser2-OnionBrowser2 Tests.debug.xcconfig */;
+			baseConfigurationReference = 168630E3C5D8B650B28F0B17 /* Pods-OnionBrowser2 Tests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -970,7 +978,7 @@
 		};
 		018333E11A35727C00670CD1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 502A43620FDAA0768A0CB0FA /* Pods-OnionBrowser2-OnionBrowser2 Tests.release.xcconfig */;
+			baseConfigurationReference = 303C0B6F3832C02A4A75AEF8 /* Pods-OnionBrowser2 Tests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";

@@ -1,6 +1,6 @@
 /*
  * Endless
- * Copyright (c) 2014-2015 joshua stein <jcs@jcs.org>
+ * Copyright (c) 2014-2017 joshua stein <jcs@jcs.org>
  *
  * See LICENSE file for redistribution terms.
  */
@@ -13,15 +13,29 @@
 /*
  * local storage is found in NSCachesDirectory and can be a file or directory:
  *
- * ./AppData/Library/Caches/https_m.imgur.com_0.localstorage
- * ./AppData/Library/Caches/https_m.youtube.com_0.localstorage
- * ./AppData/Library/Caches/http_samy.pl_0
- * ./AppData/Library/Caches/http_samy.pl_0/.lock
- * ./AppData/Library/Caches/http_samy.pl_0/0000000000000001.db
- * ./AppData/Library/Caches/http_samy.pl_0.localstorage
+ * endlessproxys_www.google.com_0.localstorage
+ * https_m.imgur.com_0.localstorage
+ * https_m.youtube.com_0.localstorage
+ * http_samy.pl_0/
+ * http_samy.pl_0/.lock
+ * http_samy.pl_0/0000000000000001.db
+ * http_samy.pl_0.localstorage
+ * https_samy.pl_0.localstorage-shm
+ * https_samy.pl_0.localstorage-wal
+ * ___IndexedDB/
+ * ___IndexedDB/http_nparashuram.com_0/BookShop1/IndexedDB.sqlite3
+ * ___IndexedDB/http_nparashuram.com_0/BookShop1/IndexedDB.sqlite3-shm
+ *
+ * the root-level "Databases.db(-(shm|wal))?" file contains references to other files
  */
 
-#define LOCAL_STORAGE_REGEX @"/(https?_(.+)_\\d+|_*IndexedDB)"
+#define LOCAL_STORAGE_REGEX @"^(___IndexedDB/)?(https?|endless[a-z]*?)_(.+)_\\d+"
+
+/* the capture group of the above that extracts the hostname */
+#define LOCAL_STORAGE_REGEX_HOSTNAME_GROUP 3
+
+/* files we'll exclude from a deep-clean of the cache directory */
+#define CACHE_EXCLUSIONS_REGEX @"^(org.jcs.endless/HSTS\\.plist|Databases\\.db(-shm|wal)?|Snapshots/.*)$"
 
 @implementation CookieJar {
 	AppDelegate *appDelegate;
@@ -139,22 +153,32 @@
 	
 	NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:LOCAL_STORAGE_REGEX options:0 error:nil];
 	
-	for (NSString *file in [fm contentsOfDirectoryAtPath:cacheDir error:nil]) {
-		NSString *absFile = [NSString stringWithFormat:@"%@/%@", cacheDir, file];
+	NSRegularExpression *ignoreRegex = [NSRegularExpression regularExpressionWithPattern:CACHE_EXCLUSIONS_REGEX options:0 error:nil];
+
+	for (NSString *file in [fm subpathsAtPath:cacheDir]) {
+		if ([ignoreRegex numberOfMatchesInString:file options:0 range:NSMakeRange(0, [file length])] > 0) {
+#ifdef TRACE_COOKIES
+			NSLog(@"[CookieJar] excluding file from sweep: %@", file);
+#endif
+			continue;
+		}
 		
-		NSArray *matches = [regex matchesInString:absFile options:0 range:NSMakeRange(0, [absFile length])];
+		NSString *absFile = [NSString stringWithFormat:@"%@/%@", cacheDir, file];
+
+		NSArray *matches = [regex matchesInString:file options:0 range:NSMakeRange(0, [file length])];
 		if (!matches || ![matches count]) {
+			[files setObject:NSLocalizedString(@"(Other cache data)", nil) forKey:absFile];
 			continue;
 		}
 		
 		for (NSTextCheckingResult *match in matches) {
 			if ([match numberOfRanges] >= 1) {
-				NSString *host = [absFile substringWithRange:[match rangeAtIndex:1]];
+				NSString *host = [file substringWithRange:[match rangeAtIndex:LOCAL_STORAGE_REGEX_HOSTNAME_GROUP]];
 				[files setObject:host forKey:absFile];
 			}
 		}
 	}
-	
+
 	return files;
 }
 
@@ -242,9 +266,15 @@
 		}
 	}
 	
-	NSDictionary *files = [self localStorageFiles];
-	for (NSString *file in [files allKeys]) {
-		NSString *fhost = [files objectForKey:file];
+	NSDictionary *allFiles = [self localStorageFiles];
+	
+	/* sort filenames by length descending, so we're always deleting files in a dir before the dir itself */
+	NSArray *files = [[allFiles allKeys] sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+		return [[NSNumber numberWithLong:[(NSString *)b length]] compare:[NSNumber numberWithLong:[(NSString *)a length]]];
+	}];
+	
+	for (NSString *file in files) {
+		NSString *fhost = [allFiles objectForKey:file];
 		
 		if ([host isEqualToString:fhost]) {
 #ifdef TRACE_COOKIES
@@ -286,9 +316,15 @@
 
 - (void)clearAllNonWhitelistedLocalStorageOlderThan:(NSTimeInterval)secs
 {
-	NSDictionary *files = [self localStorageFiles];
-	for (NSString *file in [files allKeys]) {
-		NSString *fhost = [files objectForKey:file];
+	NSDictionary *allFiles = [self localStorageFiles];
+	
+	/* sort filenames by length descending, so we're always deleting files in a dir before the dir itself */
+	NSArray *files = [[allFiles allKeys] sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+		return [[NSNumber numberWithLong:[(NSString *)b length]] compare:[NSNumber numberWithLong:[(NSString *)a length]]];
+	}];
+	
+	for (NSString *file in files) {
+		NSString *fhost = [allFiles objectForKey:file];
 		
 		if ([self isHostWhitelisted:fhost]) {
 			continue;
@@ -301,6 +337,9 @@
 				NSMutableDictionary *tabData = [[self dataAccesses] objectForKey:tabHashN];
 				NSDate *la = [tabData objectForKey:fhost];
 				if (la != nil || [[NSDate date] timeIntervalSinceDate:la] < secs) {
+#ifdef TRACE_COOKIES
+					NSLog(@"[CookieJar] tab %@ blocking sweep of >%f secs", tabHashN, secs);
+#endif
 					blocker = tabHashN;
 					break;
 				}

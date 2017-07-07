@@ -16,8 +16,6 @@
 "Changing this option requires restarting the app" = "Die App muß neu gestartet werden, wenn diese Einstellung geändert wird.";
 "Support" = "Unterstützung";
 "Report a bug" = "Fehler melden";
-"Enable crash reporting" = "Absturzreports aktivieren";
-"Automatically report crash information to the developer through Crashlytics (no URLs, cookies, device IDs, etc. will be sent)" = "Automatisch Absturzinformationen an den Entwickler mit Hilfe von Crashlytics melden. (URLs, Cookies, Geräte-IDs, etc. werden nicht gesendet.)";
 "Miscellaneous" = "Vermischtes";
 "Rate on App Store" = "Im App Store bewerten";
 "About" = "Über";

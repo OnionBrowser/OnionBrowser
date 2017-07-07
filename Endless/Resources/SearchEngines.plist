@@ -5,9 +5,9 @@
 	<key>DuckDuckGo</key>
 	<dict>
 		<key>search_url</key>
-		<string>http://3g2upl4pq6kufc4m.onion/?q=%@</string>
+		<string>https://duckduckgo.com/?q=%@</string>
 		<key>homepage_url</key>
-		<string>http://3g2upl4pq6kufc4m.onion/</string>
+		<string>https://duckduckgo.com/</string>
 		<key>autocomplete_url</key>
 		<string>https://ac.duckduckgo.com/ac/?type=list&amp;q=%@</string>
 	</dict>
