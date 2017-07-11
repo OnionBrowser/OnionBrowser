@@ -9,9 +9,7 @@ target "OnionBrowser2" do
   pod "XLForm", :git => "https://github.com/jcs/XLForm.git"
   pod "TUSafariActivity"
 
-  pod 'Localize', :git => 'https://github.com/tladesignz/Localize.git'
-  pod "POE", :git => "https://github.com/GuardianProject/POE.git"
-  #pod "POE", :git => "https://github.com/mtigas/POE.git"
+  pod "POE"
 end
 
 target "OnionBrowser2 Tests" do
