@@ -44,6 +44,8 @@ import Foundation
             "--log", "notice file /dev/null",
             "--clientuseipv4", "1",
             "--clientuseipv6", "1",
+            "--ClientPreferIPv6ORPort", "auto",
+            "--ClientPreferIPv6DirPort", "auto",
             "--ClientTransportPlugin", "obfs4 socks5 127.0.0.1:47351",
             "--ClientTransportPlugin", "meek_lite socks5 127.0.0.1:47352",
         ]
