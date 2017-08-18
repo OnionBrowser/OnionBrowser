@@ -76,6 +76,10 @@
 		8AD5FFBC1EB3DFEB0066E7E3 /* Iobfs4proxy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD5FFBB1EB3DFEB0066E7E3 /* Iobfs4proxy.framework */; };
 		A045E5E51EDC5C1700BC8A92 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A045E5E11EDC5C1700BC8A92 /* Localizable.strings */; };
 		A045E5E61EDC5C1700BC8A92 /* OnePasswordExtension.strings in Resources */ = {isa = PBXBuildFile; fileRef = A045E5E31EDC5C1700BC8A92 /* OnePasswordExtension.strings */; };
+		A0C377061F4730320039198E /* Settings.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = A0C377051F4730320039198E /* Settings.xcdatamodel */; };
+		A0C377091F4730430039198E /* OldBookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C377081F4730430039198E /* OldBookmark.m */; };
+		A0C3770C1F47313B0039198E /* Migration.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C3770B1F47313B0039198E /* Migration.m */; };
+		A0C3770E1F47342C0039198E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0C3770D1F47342C0039198E /* CoreData.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -215,6 +219,12 @@
 		A045E5E81EDC5C2200BC8A92 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = Endless/de.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
 		A05AD0251F0A54DA00953274 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = Endless/nb.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A05AD0261F0A54DA00953274 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = Endless/nb.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
+		A0C377051F4730320039198E /* Settings.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Settings.xcdatamodel; sourceTree = "<group>"; };
+		A0C377071F4730430039198E /* OldBookmark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OldBookmark.h; sourceTree = "<group>"; };
+		A0C377081F4730430039198E /* OldBookmark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OldBookmark.m; sourceTree = "<group>"; };
+		A0C3770A1F47313B0039198E /* Migration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Migration.h; sourceTree = "<group>"; };
+		A0C3770B1F47313B0039198E /* Migration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Migration.m; sourceTree = "<group>"; };
+		A0C3770D1F47342C0039198E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B939C78DF3B8CD69639FF3B7 /* Pods-OnionBrowser2-OnionBrowser2 Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnionBrowser2-OnionBrowser2 Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OnionBrowser2-OnionBrowser2 Tests/Pods-OnionBrowser2-OnionBrowser2 Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		E7CC312F97D82C609CB70043 /* Pods-OnionBrowser2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnionBrowser2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OnionBrowser2/Pods-OnionBrowser2.debug.xcconfig"; sourceTree = "<group>"; };
 		EF8A13CB193E79B9BE443762 /* Pods-OnionBrowser2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnionBrowser2.release.xcconfig"; path = "Pods/Target Support Files/Pods-OnionBrowser2/Pods-OnionBrowser2.release.xcconfig"; sourceTree = "<group>"; };
@@ -225,6 +235,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0C3770E1F47342C0039198E /* CoreData.framework in Frameworks */,
 				693145FE1D3EEAE400D08A6A /* Tor.framework in Frameworks */,
 				019516D11B7D8B400078586A /* libz.tbd in Frameworks */,
 				016B2FCD1A5648AE002D2730 /* WebKit.framework in Frameworks */,
@@ -418,6 +429,7 @@
 		6998064A1EABE5C70012F75E /* OnionBrowser */ = {
 			isa = PBXGroup;
 			children = (
+				A0C377041F472F780039198E /* Migration */,
 				691286E91EABEE6900CEC414 /* LaunchScreen.xib */,
 				691286EB1EABF2B300CEC414 /* OnionBrowser2-Bridging-Header.h */,
 				691286EC1EABF2B400CEC414 /* OnionManager.swift */,
@@ -439,6 +451,7 @@
 		6CC21620E2AE7B4037C6401B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A0C3770D1F47342C0039198E /* CoreData.framework */,
 				693145FD1D3EEAE400D08A6A /* Tor.framework */,
 				019516D01B7D8B400078586A /* libz.tbd */,
 				016B2FCC1A5648AE002D2730 /* WebKit.framework */,
@@ -471,6 +484,18 @@
 				A00436131E8187800067652D /* urlblocker.json */,
 			);
 			name = Build;
+			sourceTree = "<group>";
+		};
+		A0C377041F472F780039198E /* Migration */ = {
+			isa = PBXGroup;
+			children = (
+				A0C377051F4730320039198E /* Settings.xcdatamodel */,
+				A0C377071F4730430039198E /* OldBookmark.h */,
+				A0C377081F4730430039198E /* OldBookmark.m */,
+				A0C3770A1F47313B0039198E /* Migration.h */,
+				A0C3770B1F47313B0039198E /* Migration.m */,
+			);
+			name = Migration;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -529,7 +554,7 @@
 				TargetAttributes = {
 					01801E911A32CA2A002B4718 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = 68QUP6KP2C;
+						DevelopmentTeam = S57Z428H2Z;
 						LastSwiftMigration = 0830;
 						SystemCapabilities = {
 							com.apple.DataProtection = {
@@ -719,6 +744,7 @@
 				01D7412F1A466AF0007B7033 /* NSString+JavascriptEscape.m in Sources */,
 				014E68A51B9BED3300D98A0A /* HostSettingsController.m in Sources */,
 				69CBCD521E9347B8009D5352 /* UIResponder+FirstResponder.m in Sources */,
+				A0C377091F4730430039198E /* OldBookmark.m in Sources */,
 				01F2AE391B7FEF5E00D5651A /* SSLCertificate.m in Sources */,
 				01801E9B1A32CA2A002B4718 /* AppDelegate.m in Sources */,
 				69CBCD4D1E934249009D5352 /* RuleEditorRow.m in Sources */,
@@ -732,7 +758,9 @@
 				01801EA11A32CA2A002B4718 /* WebViewController.m in Sources */,
 				019516CF1B7D8A0C0078586A /* NSData+CocoaDevUsersAdditions.m in Sources */,
 				01F8793B1A4108DD00A63654 /* URLBlocker.m in Sources */,
+				A0C377061F4730320039198E /* Settings.xcdatamodel in Sources */,
 				01801EC01A335BEC002B4718 /* URLInterceptor.m in Sources */,
+				A0C3770C1F47313B0039198E /* Migration.m in Sources */,
 				01F2AE401B82666900D5651A /* SSLCertificateViewController.m in Sources */,
 				69EFCCA21EAD20CB00280747 /* OBRootViewController.m in Sources */,
 				018333CA1A3505FB00670CD1 /* HTTPSEverywhere.m in Sources */,
@@ -895,7 +923,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 68QUP6KP2C;
+				DEVELOPMENT_TEAM = S57Z428H2Z;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -924,7 +952,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 68QUP6KP2C;
+				DEVELOPMENT_TEAM = S57Z428H2Z;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
