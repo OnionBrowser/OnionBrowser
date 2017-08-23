@@ -12,3 +12,4 @@
 #import "Bookmark.h"
 #import "OldBookmark.h"
 #import "Bridge.h"
+#import "HostSettings.h"
