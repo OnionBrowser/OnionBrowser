@@ -12,16 +12,18 @@ import CoreData
 class Migration: NSObject {
 
     /**
-        Migrates bookmarks and bridge settings of version 1.x to 2.x.
+        Migrates bookmarks, bridge settings and miscelaneous other settings of version 1.x to 2.x.
     */
     class func migrate() {
+        let settings = UserDefaults.standard
+
         let storeUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last?
             .appendingPathComponent("Settings.sqlite")
 
-        let isReachable = try? storeUrl?.checkResourceIsReachable()
+        var isReachable = try? storeUrl?.checkResourceIsReachable()
 
         // Check, if CoreData SQLite file is there, if so migrate bookmarks and bridge settings.
-        if isReachable != nil && isReachable! != nil && isReachable!!
+        if (isReachable ?? false) ?? false
         {
             // Initialize CoreData.
             if let mom = NSManagedObjectModel.mergedModel(from: nil)
@@ -40,10 +42,8 @@ class Migration: NSObject {
                 let request = NSFetchRequest<Bridge>.init(entityName: "Bridge")
                 let oldBridges = try? moc.fetch(request)
 
-                if oldBridges != nil && oldBridges!.count > 0
+                if (oldBridges?.count ?? 0) > 0
                 {
-                    let settings = UserDefaults.standard
-
                     // Don't show intro to bridge users - otherwise these settings are lost.
                     settings.set(true, forKey: DID_INTRO)
 
@@ -108,6 +108,40 @@ class Migration: NSObject {
                         // Can't do anything now. We tried...
                     }
                 }
+            }
+        }
+
+        let settingsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+            .last?.appendingPathComponent("Settings.plist")
+
+        isReachable = try? settingsUrl?.checkResourceIsReachable()
+
+        // Check, if Settings.plist file is there, if so, migrate homepage.
+        if (isReachable ?? false) ?? false
+        {
+            if let raw = FileManager.default.contents(atPath: settingsUrl!.path)
+            {
+                let oldSettings = try? PropertyListSerialization.propertyList(
+                    from: raw,
+                    options: .mutableContainersAndLeaves,
+                    format: nil)
+                    as? [String: Any]
+
+                if let homepage = oldSettings??["homepage"] as? String
+                {
+                    if !homepage.isEmpty && homepage != "onionbrowser:home"
+                    {
+                        settings.set(homepage, forKey: "homepage")
+                        settings.synchronize()
+                    }
+                }
+            }
+
+            do {
+                try FileManager.default.removeItem(at: settingsUrl!)
+            } catch {
+                // This should not happen.
+                // Can't do anything now. We tried...
             }
         }
     }
