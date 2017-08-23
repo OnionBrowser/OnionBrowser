@@ -13,7 +13,7 @@
 #import "UIResponder+FirstResponder.h"
 
 #import "OBRootViewController.h"
-#import "Migration.h"
+#import "OnionBrowser-Swift.h"
 
 @implementation AppDelegate
 {
