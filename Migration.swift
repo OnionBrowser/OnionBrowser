@@ -29,11 +29,10 @@ class Migration: NSObject {
         var isReachable = try? storeUrl?.checkResourceIsReachable()
 
         // Check, if CoreData SQLite file is there, if so migrate bookmarks and bridge settings.
-        if (isReachable ?? false) ?? false
-        {
+        if (isReachable ?? false) ?? false {
+
             // Initialize CoreData.
-            if let mom = NSManagedObjectModel.mergedModel(from: nil)
-            {
+            if let mom = NSManagedObjectModel.mergedModel(from: nil) {
                 let psc = NSPersistentStoreCoordinator.init(managedObjectModel: mom)
 
                 let moc = NSManagedObjectContext.init(concurrencyType: .mainQueueConcurrencyType)
@@ -48,14 +47,12 @@ class Migration: NSObject {
                 let request = NSFetchRequest<Bridge>.init(entityName: "Bridge")
                 let oldBridges = try? moc.fetch(request)
 
-                if (oldBridges?.count ?? 0) > 0
-                {
+                if (oldBridges?.count ?? 0) > 0 {
                     // Don't show intro to bridge users - otherwise these settings are lost.
                     settings.set(true, forKey: DID_INTRO)
 
                     // Detect default Meek bridges.
-                    if oldBridges!.count == 1
-                    {
+                    if oldBridges!.count == 1 {
                         let ob = oldBridges![0];
 
                         if ob.conf == OnionManager.meekAmazonBridges[0]
@@ -86,8 +83,7 @@ class Migration: NSObject {
                     let request = NSFetchRequest<OldBookmark>.init(entityName: "Bookmark")
                     request.sortDescriptors = [NSSortDescriptor.init(key: "order", ascending: true)]
 
-                    if let oldBookmarks = try? moc.fetch(request)
-                    {
+                    if let oldBookmarks = try? moc.fetch(request) {
                         let newBookmarks = Bookmark.list()
 
                         for ob in oldBookmarks {
@@ -103,8 +99,7 @@ class Migration: NSObject {
 
                     // Remove old CoreData storage.
                     do {
-                        if store != nil
-                        {
+                        if store != nil {
                             try moc.persistentStoreCoordinator?.remove(store!)
                         }
 
@@ -123,59 +118,57 @@ class Migration: NSObject {
         isReachable = try? settingsUrl?.checkResourceIsReachable()
 
         // Check, if Settings.plist file is there, if so, migrate some, which apply to Endless, too.
-        if (isReachable ?? false) ?? false
-        {
-            if let raw = FileManager.default.contents(atPath: settingsUrl!.path)
-            {
-                let oldSettings = try? PropertyListSerialization.propertyList(
-                    from: raw,
-                    options: .mutableContainersAndLeaves,
-                    format: nil)
-                    as? [String: Any]
+        if (isReachable ?? false) ?? false {
+            
+            DispatchQueue.global(qos: .background).async {
+                if let raw = FileManager.default.contents(atPath: settingsUrl!.path) {
+                    let oldSettings = try? PropertyListSerialization.propertyList(
+                        from: raw,
+                        options: .mutableContainersAndLeaves,
+                        format: nil)
+                        as? [String: Any]
 
-                // Homepage setting.
-                if let homepage = oldSettings??["homepage"] as? String
-                {
-                    if !homepage.isEmpty && homepage != "onionbrowser:home"
-                    {
-                        settings.set(homepage, forKey: "homepage")
-                        settings.synchronize()
+                    // Homepage setting.
+                    if let homepage = oldSettings??["homepage"] as? String {
+                        if !homepage.isEmpty && homepage != "onionbrowser:home"
+                        {
+                            settings.set(homepage, forKey: "homepage")
+                            settings.synchronize()
+                        }
                     }
-                }
 
 // DEACTIVATED - CURRENTLY UNCLEAR, IF SHOULD BE DONE OR NOT.
-//                // Do-Not-Track header.
-//                if let dnt = oldSettings??["dnt"] as? Int
-//                {
-//                    // 1.X had 3 settings: 0 = unset, 1 = cantrack, 2 = notrack
-//                    // Endless has only two options "send_dnt" true or false.
-//                    // Translation table: 0 => false, 1 => false, 2 => true
-//                    settings.set(dnt == 2, forKey: "send_dnt")
-//                    settings.synchronize()
-//                }
+//                    // Do-Not-Track header.
+//                    if let dnt = oldSettings??["dnt"] as? Int
+//                    {
+//                        // 1.X had 3 settings: 0 = unset, 1 = cantrack, 2 = notrack
+//                        // Endless has only two options "send_dnt" true or false.
+//                        // Translation table: 0 => false, 1 => false, 2 => true
+//                        settings.set(dnt == 2, forKey: "send_dnt")
+//                        settings.synchronize()
+//                    }
 
-                // Content security policy setting. For legacy reasons named "javascript".
-                if let csp = oldSettings??["javascript"] as? Int
-                {
-                    // From the 1.X sources:
-                    // #define CONTENTPOLICY_STRICT 0 // Blocks nearly every CSP type
-                    // #define CONTENTPOLICY_BLOCK_CONNECT 1 // Blocks `connect-src` (XHR, CORS, WebSocket)
-                    // #define CONTENTPOLICY_PERMISSIVE 2 // Allows all content (DANGEROUS: websockets leak outside tor)
+                    // Content security policy setting. For legacy reasons named "javascript".
+                    if let csp = oldSettings??["javascript"] as? Int {
+                        // From the 1.X sources:
+                        // #define CONTENTPOLICY_STRICT 0 // Blocks nearly every CSP type
+                        // #define CONTENTPOLICY_BLOCK_CONNECT 1 // Blocks `connect-src` (XHR, CORS, WebSocket)
+                        // #define CONTENTPOLICY_PERMISSIVE 2 // Allows all content (DANGEROUS: websockets leak outside tor)
 
-                    if let defaultHostSettings = HostSettings.default()
-                    {
-                        defaultHostSettings.setSetting(HOST_SETTINGS_KEY_CSP,
-                                                        toValue: cspTranslation[csp])
-                        defaultHostSettings.save()
+                        if let defaultHostSettings = HostSettings.default() {
+                            defaultHostSettings.setSetting(HOST_SETTINGS_KEY_CSP,
+                                                            toValue: cspTranslation[csp])
+                            defaultHostSettings.save()
+                        }
                     }
                 }
-            }
 
-            do {
-                try FileManager.default.removeItem(at: settingsUrl!)
-            } catch {
-                // This should not happen.
-                // Can't do anything now. We tried...
+                do {
+                    try FileManager.default.removeItem(at: settingsUrl!)
+                } catch {
+                    // This should not happen.
+                    // Can't do anything now. We tried...
+                }
             }
         }
     }
