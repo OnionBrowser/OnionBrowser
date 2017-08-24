@@ -271,7 +271,7 @@ import Foundation
         }
 
         // Show error to user, when, after 30 seconds, Tor has still not started.
-        DispatchQueue.main.asyncAfter(deadline: .now() + 30, execute: failGuard!)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 60, execute: failGuard!)
 
     }// startTor
 
