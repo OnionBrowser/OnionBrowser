@@ -137,16 +137,15 @@ class Migration: NSObject {
                         }
                     }
 
-// DEACTIVATED - CURRENTLY UNCLEAR, IF SHOULD BE DONE OR NOT.
-//                    // Do-Not-Track header.
-//                    if let dnt = oldSettings??["dnt"] as? Int
-//                    {
-//                        // 1.X had 3 settings: 0 = unset, 1 = cantrack, 2 = notrack
-//                        // Endless has only two options "send_dnt" true or false.
-//                        // Translation table: 0 => false, 1 => false, 2 => true
-//                        settings.set(dnt == 2, forKey: "send_dnt")
-//                        settings.synchronize()
-//                    }
+                    // Do-Not-Track header.
+                    if let dnt = oldSettings??["dnt"] as? Int
+                    {
+                        // 1.X had 3 settings: 0 = unset, 1 = cantrack, 2 = notrack
+                        // Endless has only two options "send_dnt" true or false.
+                        // Translation table: 0 => false, 1 => false, 2 => true
+                        settings.set(dnt == 2, forKey: "send_dnt")
+                        settings.synchronize()
+                    }
 
                     // Content security policy setting. For legacy reasons named "javascript".
                     if let csp = oldSettings??["javascript"] as? Int {
@@ -159,6 +158,23 @@ class Migration: NSObject {
                             defaultHostSettings.setSetting(HOST_SETTINGS_KEY_CSP,
                                                             toValue: cspTranslation[csp])
                             defaultHostSettings.save()
+                        }
+                    }
+
+                    // Minimal TLS version. Only the "1.2 only" setting will be migrated, as 
+                    // the "SSL v3" setting is not supported in Endless.
+                    if let tlsver = oldSettings??["tlsver"] as? Int {
+                        // From the 1.X sources:
+                        // #define X_TLSVER_ANY 0
+                        // #define X_TLSVER_TLS1 1
+                        // #define X_TLSVER_TLS1_2_ONLY 2
+
+                        if tlsver == 2 {
+                            if let defaultHostSettings = HostSettings.default() {
+                                defaultHostSettings.setSetting(HOST_SETTINGS_KEY_TLS,
+                                                               toValue: HOST_SETTINGS_TLS_12)
+                                defaultHostSettings.save()
+                            }
                         }
                     }
                 }
