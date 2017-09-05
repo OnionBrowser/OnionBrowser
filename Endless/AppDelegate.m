@@ -13,6 +13,7 @@
 #import "UIResponder+FirstResponder.h"
 
 #import "OBRootViewController.h"
+#import "OnionBrowser-Swift.h"
 
 @implementation AppDelegate
 {
@@ -55,6 +56,8 @@
 	self.window.backgroundColor = [UIColor groupTableViewBackgroundColor];
 	self.window.rootViewController = [[OBRootViewController alloc] init];
 	self.window.rootViewController.restorationIdentifier = @"OBRootViewController";
+
+    [Migration migrate];
 
 	return YES;
 }

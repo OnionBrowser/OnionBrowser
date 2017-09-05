@@ -77,10 +77,10 @@ import Foundation
         "obfs4 85.17.30.79:443 FC259A04A328A07FED1413E9FC6526530D9FD87A cert=RutxZlu8BtyP+y0NX7bAVD41+J/qXNhHUrKjFkRSdiBAhIHIQLhKQ2HxESAKZprn/lR3KA iat-mode=0",
         "obfs4 38.229.1.78:80 C8CBDB2464FC9804A69531437BCF2BE31FDD2EE4 cert=Hmyfd2ev46gGY7NoVxA9ngrPF2zCZtzskRTzoWXbxNkzeVnGFPWmrTtILRyqCTjHR+s9dg iat-mode=1"
     ]
-    private static let meekAmazonBridges = [
+    public static let meekAmazonBridges = [
         "meek_lite 0.0.2.0:2 B9E7141C594AF25699E0079C1F0146F409495296 url=https://d2cly7j4zqgua7.cloudfront.net/ front=a0.awsstatic.com"
     ]
-    private static let meekAzureBridges = [
+    public static let meekAzureBridges = [
         "meek_lite 0.0.2.0:3 97700DFE9F483596DDA6264C4D7DF7641E1E39CE url=https://meek.azureedge.net/ front=ajax.aspnetcdn.com"
     ]
 
@@ -273,7 +273,7 @@ import Foundation
         }
 
         // Show error to user, when, after 30 seconds, Tor has still not started.
-        DispatchQueue.main.asyncAfter(deadline: .now() + 30, execute: failGuard!)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 60, execute: failGuard!)
 
     }// startTor
 

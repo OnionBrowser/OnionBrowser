@@ -9,3 +9,7 @@
 #import "OnionManagerDelegate.h"
 #import "ObfsThread.h"
 #import "OBSettingsConstants.h"
+#import "Bookmark.h"
+#import "OldBookmark.h"
+#import "Bridge.h"
+#import "HostSettings.h"
