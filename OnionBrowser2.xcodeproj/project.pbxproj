@@ -220,6 +220,8 @@
 		A045E5E81EDC5C2200BC8A92 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = Endless/de.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
 		A05AD0251F0A54DA00953274 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = Endless/nb.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A05AD0261F0A54DA00953274 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = Endless/nb.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
+		A096BBE71F68359500A5C6AB /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Endless/es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A096BBE81F68359500A5C6AB /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Endless/es.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
 		A0C377051F4730320039198E /* Settings.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Settings.xcdatamodel; sourceTree = "<group>"; };
 		A0C3770D1F47342C0039198E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		A0F92BF41F4DB24E00B9E787 /* Migration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Migration.swift; sourceTree = "<group>"; };
@@ -432,7 +434,6 @@
 			isa = PBXGroup;
 			children = (
 				A0C377041F472F780039198E /* Migration */,
-				691286E91EABEE6900CEC414 /* LaunchScreen.xib */,
 				691286EB1EABF2B300CEC414 /* OnionBrowser2-Bridging-Header.h */,
 				691286EC1EABF2B400CEC414 /* OnionManager.swift */,
 				8AD128421ED630C1005C43E4 /* OBSettingsConstants.h */,
@@ -441,6 +442,7 @@
 				69EFCCA01EAD20CB00280747 /* OBRootViewController.h */,
 				69EFCCA11EAD20CB00280747 /* OBRootViewController.m */,
 				8AD5FFB81EB3DFE30066E7E3 /* ObfsThread.h */,
+				691286E91EABEE6900CEC414 /* LaunchScreen.xib */,
 				8AD5FFB91EB3DFE30066E7E3 /* ObfsThread.m */,
 				8AD1283B1ED61812005C43E4 /* Ipv6Tester.h */,
 				8AD1283C1ED61812005C43E4 /* Ipv6Tester.m */,
@@ -580,6 +582,7 @@
 				Base,
 				de,
 				nb,
+				es,
 			);
 			mainGroup = 01801E891A32CA2A002B4718;
 			productRefGroup = 01801E931A32CA2A002B4718 /* Products */;
@@ -814,6 +817,7 @@
 				A045E5E21EDC5C1700BC8A92 /* Base */,
 				A045E5E71EDC5C2200BC8A92 /* de */,
 				A05AD0251F0A54DA00953274 /* nb */,
+				A096BBE71F68359500A5C6AB /* es */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -824,6 +828,7 @@
 				A045E5E41EDC5C1700BC8A92 /* Base */,
 				A045E5E81EDC5C2200BC8A92 /* de */,
 				A05AD0261F0A54DA00953274 /* nb */,
+				A096BBE81F68359500A5C6AB /* es */,
 			);
 			name = OnePasswordExtension.strings;
 			sourceTree = "<group>";
