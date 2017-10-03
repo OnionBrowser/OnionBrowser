@@ -53,7 +53,7 @@ NSString * const LABEL = @"L";
     [buttons addObject:@{ FUNC : @"menuHTTPSEverywhere", LABEL : NSLocalizedString(@"HTTPS Everywhere", nil) }];
     [buttons addObject:@{ FUNC : @"menuHostSettings", LABEL : NSLocalizedString(@"Host Settings", nil) }];
     [buttons addObject:@{ FUNC : @"menuSettings", LABEL : NSLocalizedString(@"Global Settings", nil) }];
-    [buttons addObject:@{ FUNC : @"bridgeSettings", LABEL : NSLocalizedString(@"Tor Connection Settings", nil) }];
+    [buttons addObject:@{ FUNC : @"bridgeSettings", LABEL : NSLocalizedString(@"Bridge Configuration", nil) }];
 
 	[self.view setBackgroundColor:[UIColor clearColor]];
 	[self.tableView setSeparatorInset:UIEdgeInsetsZero];
