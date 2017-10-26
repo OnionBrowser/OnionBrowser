@@ -1,5 +1,4 @@
-#github "iCepa/Tor.framework" "e89aa869097688f3bb173f02106d1b19b468bbf7"
-#github "iCepa/Tor.framework" "master"
+github "iCepa/Tor.framework" == 31.8.2
+#binary "https://cdn.tig.as/files/Tor.json" == 31.8.2
 
-github "mtigas/Tor.framework" "openssl-1.0.X-compat_setconf"
-#github "mtigas/Tor.framework" "4f9c848d57eec64b0fde67389e9ca95e97d41a53"
+binary "https://cdn.tig.as/files/Iobfs4proxy.json" == 1.0

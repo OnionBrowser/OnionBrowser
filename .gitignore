@@ -12,11 +12,11 @@ Carthage/Build/
 .LSOverride
 .DS_Store
 *.swp
-Iobfs4proxy.framework/
-Iobfs4proxy.framework.tar.xz
-Iobfs4proxy.framework.tar.gz
 
 fabric.apikey
 fabric.buildsecret
 Endless/DonationViewController.h
 Endless/DonationViewController.m
+
+geoip
+geoip6

@@ -1,1 +1,2 @@
-github "mtigas/Tor.framework" "4f9c848d57eec64b0fde67389e9ca95e97d41a53"
+binary "https://cdn.tig.as/files/Iobfs4proxy.json" "1.0"
+github "iCepa/Tor.framework" "v31.8.2"

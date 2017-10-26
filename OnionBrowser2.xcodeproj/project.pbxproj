@@ -69,11 +69,13 @@
 		69CBCD4F1E93451C009D5352 /* urlblocker.json in Resources */ = {isa = PBXBuildFile; fileRef = 69CBCD4E1E93451C009D5352 /* urlblocker.json */; };
 		69CBCD521E9347B8009D5352 /* UIResponder+FirstResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CBCD511E9347B8009D5352 /* UIResponder+FirstResponder.m */; };
 		69EFCCA21EAD20CB00280747 /* OBRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69EFCCA11EAD20CB00280747 /* OBRootViewController.m */; };
+		8ACB70CF1FA1369A001E5588 /* Iobfs4proxy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ACB70CE1FA1369A001E5588 /* Iobfs4proxy.framework */; };
+		8ACB70D21FA136F0001E5588 /* geoip in Resources */ = {isa = PBXBuildFile; fileRef = 8ACB70D01FA136F0001E5588 /* geoip */; };
+		8ACB70D31FA136F0001E5588 /* geoip6 in Resources */ = {isa = PBXBuildFile; fileRef = 8ACB70D11FA136F0001E5588 /* geoip6 */; };
 		8AD1283D1ED61812005C43E4 /* Ipv6Tester.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD1283C1ED61812005C43E4 /* Ipv6Tester.m */; };
 		8AD128401ED61822005C43E4 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD1283F1ED61822005C43E4 /* Reachability.m */; };
 		8AD128441ED6314A005C43E4 /* OBSettingsConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD128431ED6314A005C43E4 /* OBSettingsConstants.m */; };
 		8AD5FFBA1EB3DFE30066E7E3 /* ObfsThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD5FFB91EB3DFE30066E7E3 /* ObfsThread.m */; };
-		8AD5FFBC1EB3DFEB0066E7E3 /* Iobfs4proxy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD5FFBB1EB3DFEB0066E7E3 /* Iobfs4proxy.framework */; };
 		A045E5E51EDC5C1700BC8A92 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A045E5E11EDC5C1700BC8A92 /* Localizable.strings */; };
 		A045E5E61EDC5C1700BC8A92 /* OnePasswordExtension.strings in Resources */ = {isa = PBXBuildFile; fileRef = A045E5E31EDC5C1700BC8A92 /* OnePasswordExtension.strings */; };
 		A0C377061F4730320039198E /* Settings.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = A0C377051F4730320039198E /* Settings.xcdatamodel */; };
@@ -197,6 +199,9 @@
 		69EFCCA11EAD20CB00280747 /* OBRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OBRootViewController.m; path = OnionBrowser/OBRootViewController.m; sourceTree = "<group>"; };
 		69EFCCA51EAD297700280747 /* OnionManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OnionManagerDelegate.h; path = OnionBrowser/OnionManagerDelegate.h; sourceTree = "<group>"; };
 		88C2CD881DEDC30A008ABA3F /* Pods_OnionBrowser2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OnionBrowser2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8ACB70CE1FA1369A001E5588 /* Iobfs4proxy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Iobfs4proxy.framework; path = Carthage/Build/iOS/Iobfs4proxy.framework; sourceTree = "<group>"; };
+		8ACB70D01FA136F0001E5588 /* geoip */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = geoip; sourceTree = "<group>"; };
+		8ACB70D11FA136F0001E5588 /* geoip6 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = geoip6; sourceTree = "<group>"; };
 		8AD1283B1ED61812005C43E4 /* Ipv6Tester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Ipv6Tester.h; path = OnionBrowser/Ipv6Tester.h; sourceTree = "<group>"; };
 		8AD1283C1ED61812005C43E4 /* Ipv6Tester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Ipv6Tester.m; path = OnionBrowser/Ipv6Tester.m; sourceTree = "<group>"; };
 		8AD1283E1ED61822005C43E4 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = OnionBrowser/Reachability.h; sourceTree = "<group>"; };
@@ -205,7 +210,6 @@
 		8AD128431ED6314A005C43E4 /* OBSettingsConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBSettingsConstants.m; sourceTree = "<group>"; };
 		8AD5FFB81EB3DFE30066E7E3 /* ObfsThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ObfsThread.h; path = OnionBrowser/ObfsThread.h; sourceTree = "<group>"; };
 		8AD5FFB91EB3DFE30066E7E3 /* ObfsThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ObfsThread.m; path = OnionBrowser/ObfsThread.m; sourceTree = "<group>"; };
-		8AD5FFBB1EB3DFEB0066E7E3 /* Iobfs4proxy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Iobfs4proxy.framework; sourceTree = "<group>"; };
 		A00436091E81856F0067652D /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		A004360A1E81856F0067652D /* Cartfile.resolved */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile.resolved; sourceTree = "<group>"; };
 		A004360B1E81856F0067652D /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -240,11 +244,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				A0C3770E1F47342C0039198E /* CoreData.framework in Frameworks */,
+				8ACB70CF1FA1369A001E5588 /* Iobfs4proxy.framework in Frameworks */,
 				693145FE1D3EEAE400D08A6A /* Tor.framework in Frameworks */,
 				019516D11B7D8B400078586A /* libz.tbd in Frameworks */,
 				016B2FCD1A5648AE002D2730 /* WebKit.framework in Frameworks */,
 				2A89EDEAD544E48335C05E61 /* Pods_OnionBrowser2.framework in Frameworks */,
-				8AD5FFBC1EB3DFEB0066E7E3 /* Iobfs4proxy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,6 +375,8 @@
 				01FC0E561B38FB6B00955D9A /* Launch Screen.xib */,
 				0135F4751A3D2931005A8F16 /* SearchEngines.plist */,
 				69CBCD4E1E93451C009D5352 /* urlblocker.json */,
+				8ACB70D01FA136F0001E5588 /* geoip */,
+				8ACB70D11FA136F0001E5588 /* geoip6 */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -447,7 +453,7 @@
 				8AD1283B1ED61812005C43E4 /* Ipv6Tester.h */,
 				8AD1283C1ED61812005C43E4 /* Ipv6Tester.m */,
 				8AD128411ED6182A005C43E4 /* ThirdParty */,
-				8AD5FFBB1EB3DFEB0066E7E3 /* Iobfs4proxy.framework */,
+				8ACB70CE1FA1369A001E5588 /* Iobfs4proxy.framework */,
 			);
 			name = OnionBrowser;
 			sourceTree = "<group>";
@@ -510,6 +516,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 01801EB81A32CA2A002B4718 /* Build configuration list for PBXNativeTarget "OnionBrowser2" */;
 			buildPhases = (
+				8ACB70CD1FA13676001E5588 /* ShellScript */,
 				419D29EB17ED58E70BF9872A /* [CP] Check Pods Manifest.lock */,
 				01801E8E1A32CA2A002B4718 /* Sources */,
 				01801E8F1A32CA2A002B4718 /* Frameworks */,
@@ -600,9 +607,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8ACB70D31FA136F0001E5588 /* geoip6 in Resources */,
 				0135F4761A3D2931005A8F16 /* SearchEngines.plist in Resources */,
 				018333EA1A35746500670CD1 /* https-everywhere_targets.plist in Resources */,
 				018333E91A35746500670CD1 /* https-everywhere_rules.plist in Resources */,
+				8ACB70D21FA136F0001E5588 /* geoip in Resources */,
 				01801EC31A3360F8002B4718 /* InAppSettings.bundle in Resources */,
 				69CBCD4F1E93451C009D5352 /* urlblocker.json in Resources */,
 				01D7412C1A45F8EB007B7033 /* injected.js in Resources */,
@@ -708,6 +717,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OnionBrowser2 Tests/Pods-OnionBrowser2 Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		8ACB70CD1FA13676001E5588 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "curl -Lo ./geoip https://gitweb.torproject.org/tor.git/plain/src/config/geoip?h=tor-0.3.1.8\ncurl -Lo ./geoip6 https://gitweb.torproject.org/tor.git/plain/src/config/geoip6?h=tor-0.3.1.8";
 		};
 		B05361771C03FA2DFF545519 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
