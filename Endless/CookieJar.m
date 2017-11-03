@@ -35,7 +35,7 @@
 #define LOCAL_STORAGE_REGEX_HOSTNAME_GROUP 3
 
 /* files we'll exclude from a deep-clean of the cache directory */
-#define CACHE_EXCLUSIONS_REGEX @"^(org.jcs.endless/HSTS\\.plist|Databases\\.db(-shm|wal)?|Snapshots/.*)$"
+#define CACHE_EXCLUSIONS_REGEX @"^(%@(/(HSTS\\.plist|com\\.apple\\.metal(/.*)?|(Databases|Cache)\\.db(-shm|-wal)?))?|Snapshots(/.*)?|tor(/.*)?)$"
 
 @implementation CookieJar {
 	AppDelegate *appDelegate;
@@ -85,7 +85,7 @@
 - (BOOL)isHostWhitelisted:(NSString *)host
 {
 	host = [host lowercaseString];
-	
+
 	HostSettings *hs = [HostSettings forHost:host];
 	if (hs && [hs boolSettingOrDefault:HOST_SETTINGS_KEY_WHITELIST_COOKIES]) {
 #ifdef TRACE_COOKIE_WHITELIST
@@ -153,7 +153,12 @@
 	
 	NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:LOCAL_STORAGE_REGEX options:0 error:nil];
 	
-	NSRegularExpression *ignoreRegex = [NSRegularExpression regularExpressionWithPattern:CACHE_EXCLUSIONS_REGEX options:0 error:nil];
+	NSRegularExpression *ignoreRegex = [NSRegularExpression
+                                        regularExpressionWithPattern:
+                                        [NSString stringWithFormat:CACHE_EXCLUSIONS_REGEX,
+                                         [[NSBundle mainBundle] bundleIdentifier]]
+                                                                                 options:0
+                                                                                   error:nil];
 
 	for (NSString *file in [fm subpathsAtPath:cacheDir]) {
 		if ([ignoreRegex numberOfMatchesInString:file options:0 range:NSMakeRange(0, [file length])] > 0) {
