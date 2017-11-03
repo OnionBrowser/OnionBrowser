@@ -11,6 +11,9 @@ import Foundation
 
     static let singleton = OnionManager()
 
+    // Show Tor log in iOS' app log.
+    private static let TOR_LOGGING = true
+
     private static let torBaseConf: TorConfiguration = {
 
         // Store data in <appdir>/Library/Caches/tor (Library/Caches/ is for things that can persist between
@@ -215,6 +218,11 @@ import Foundation
         // because Tor is already trying to connect; this is just the part that polls for
         // progress.
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.75, execute: {
+            if OnionManager.TOR_LOGGING {
+                // Show Tor log in iOS' app log.
+                TORInstallTorLogging()
+            }
+
             if !self.torController.isConnected {
                 do {
                     try self.torController.connect()
