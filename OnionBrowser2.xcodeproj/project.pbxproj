@@ -224,6 +224,8 @@
 		A045E5E81EDC5C2200BC8A92 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = Endless/de.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
 		A05AD0251F0A54DA00953274 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = Endless/nb.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A05AD0261F0A54DA00953274 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = Endless/nb.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
+		A060AC191FB4C710000828EF /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = Endless/fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A060AC1A1FB4C710000828EF /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = Endless/fr.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
 		A096BBE71F68359500A5C6AB /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Endless/es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A096BBE81F68359500A5C6AB /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Endless/es.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
 		A0C377051F4730320039198E /* Settings.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Settings.xcdatamodel; sourceTree = "<group>"; };
@@ -516,8 +518,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 01801EB81A32CA2A002B4718 /* Build configuration list for PBXNativeTarget "OnionBrowser2" */;
 			buildPhases = (
-				8ACB70CD1FA13676001E5588 /* ShellScript */,
 				419D29EB17ED58E70BF9872A /* [CP] Check Pods Manifest.lock */,
+				8ACB70CD1FA13676001E5588 /* ShellScript */,
 				01801E8E1A32CA2A002B4718 /* Sources */,
 				01801E8F1A32CA2A002B4718 /* Frameworks */,
 				01801E901A32CA2A002B4718 /* Resources */,
@@ -566,7 +568,7 @@
 				TargetAttributes = {
 					01801E911A32CA2A002B4718 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = S57Z428H2Z;
+                        DevelopmentTeam = S57Z428H2Z;
 						LastSwiftMigration = 0830;
 						SystemCapabilities = {
 							com.apple.DataProtection = {
@@ -590,6 +592,7 @@
 				de,
 				nb,
 				es,
+				fr,
 			);
 			mainGroup = 01801E891A32CA2A002B4718;
 			productRefGroup = 01801E931A32CA2A002B4718 /* Products */;
@@ -840,6 +843,7 @@
 				A045E5E71EDC5C2200BC8A92 /* de */,
 				A05AD0251F0A54DA00953274 /* nb */,
 				A096BBE71F68359500A5C6AB /* es */,
+				A060AC191FB4C710000828EF /* fr */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -851,6 +855,7 @@
 				A045E5E81EDC5C2200BC8A92 /* de */,
 				A05AD0261F0A54DA00953274 /* nb */,
 				A096BBE81F68359500A5C6AB /* es */,
+				A060AC1A1FB4C710000828EF /* fr */,
 			);
 			name = OnePasswordExtension.strings;
 			sourceTree = "<group>";
@@ -954,7 +959,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = S57Z428H2Z;
+                DEVELOPMENT_TEAM = S57Z428H2Z;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -965,7 +970,7 @@
 				INFOPLIST_FILE = Endless/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.miketigas.OnionBrowser;
+                PRODUCT_BUNDLE_IDENTIFIER = com.miketigas.OnionBrowser;
 				PRODUCT_NAME = OnionBrowser;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "OnionBrowser/OnionBrowser2-Bridging-Header.h";
@@ -983,7 +988,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = S57Z428H2Z;
+                DEVELOPMENT_TEAM = S57Z428H2Z;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -994,7 +999,7 @@
 				INFOPLIST_FILE = Endless/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.miketigas.OnionBrowser;
+                PRODUCT_BUNDLE_IDENTIFIER = com.miketigas.OnionBrowser;
 				PRODUCT_NAME = OnionBrowser;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "OnionBrowser/OnionBrowser2-Bridging-Header.h";
