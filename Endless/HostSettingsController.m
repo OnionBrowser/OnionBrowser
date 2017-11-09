@@ -119,7 +119,7 @@
 
 - (void)addHost:sender
 {
-	UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Host settings", nil) message:NSLocalizedString(@"Enter the host/domain to define settings for", nil) preferredStyle:UIAlertControllerStyleAlert];
+	UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Host Settings", nil) message:NSLocalizedString(@"Enter the host/domain to define settings for", nil) preferredStyle:UIAlertControllerStyleAlert];
 	[alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
 		textField.placeholder = @"example.com";
 		
