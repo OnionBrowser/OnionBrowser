@@ -9,7 +9,7 @@ import Foundation
 
 @objc class OnionManager : NSObject {
 
-    static let singleton = OnionManager()
+    @objc static let singleton = OnionManager()
 
     // Show Tor log in iOS' app log.
     private static let TOR_LOGGING = true
@@ -109,7 +109,7 @@ import Foundation
          - parameter bridgesId: the selected ID as defined in OBSettingsConstants.
          - parameter customBridges: a list of custom bridges the user configured.
     */
-    func setBridgeConfiguration(bridgesId: Int, customBridges: [String]?) {
+    @objc func setBridgeConfiguration(bridgesId: Int, customBridges: [String]?) {
         needsReconfiguration = bridgesId != self.bridgesId ?? USE_BRIDGES_NONE
 
         if !needsReconfiguration {
@@ -126,7 +126,7 @@ import Foundation
         self.customBridges = customBridges
     }
 
-    func startTor(delegate: OnionManagerDelegate?) {
+    @objc func startTor(delegate: OnionManagerDelegate?) {
         cancelFailGuard()
         torHasConnected = false
 
@@ -221,6 +221,7 @@ import Foundation
             if OnionManager.TOR_LOGGING {
                 // Show Tor log in iOS' app log.
                 TORInstallTorLogging()
+                TORInstallEventLogging()
             }
 
             if !self.torController.isConnected {

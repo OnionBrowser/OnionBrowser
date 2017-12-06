@@ -20,7 +20,7 @@ class Migration: NSObject {
     /**
         Migrates bookmarks, bridge settings and miscelaneous other settings of version 1.x to 2.x.
     */
-    class func migrate() {
+    @objc class func migrate() {
         let settings = UserDefaults.standard
 
         let storeUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last?

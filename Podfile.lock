@@ -1,64 +1,64 @@
 PODS:
-  - DTFoundation (1.7.12):
-    - DTFoundation/AppKit (= 1.7.12)
-    - DTFoundation/Core (= 1.7.12)
-    - DTFoundation/Debug (= 1.7.12)
-    - DTFoundation/DTAnimatedGIF (= 1.7.12)
-    - DTFoundation/DTASN1 (= 1.7.12)
-    - DTFoundation/DTAsyncFileDeleter (= 1.7.12)
-    - DTFoundation/DTAWS (= 1.7.12)
-    - DTFoundation/DTHTMLParser (= 1.7.12)
-    - DTFoundation/DTProgressHUD (= 1.7.12)
-    - DTFoundation/DTReachability (= 1.7.12)
-    - DTFoundation/DTScripting (= 1.7.12)
-    - DTFoundation/DTSidePanel (= 1.7.12)
-    - DTFoundation/DTSQLite (= 1.7.12)
-    - DTFoundation/DTUTI (= 1.7.12)
-    - DTFoundation/DTZipArchive (= 1.7.12)
-    - DTFoundation/Runtime (= 1.7.12)
-    - DTFoundation/UIKit (= 1.7.12)
-    - DTFoundation/UIKit_BlocksAdditions (= 1.7.12)
-  - DTFoundation/Core (1.7.12)
-  - DTFoundation/Debug (1.7.12):
+  - DTFoundation (1.7.13):
+    - DTFoundation/AppKit (= 1.7.13)
+    - DTFoundation/Core (= 1.7.13)
+    - DTFoundation/Debug (= 1.7.13)
+    - DTFoundation/DTAnimatedGIF (= 1.7.13)
+    - DTFoundation/DTASN1 (= 1.7.13)
+    - DTFoundation/DTAsyncFileDeleter (= 1.7.13)
+    - DTFoundation/DTAWS (= 1.7.13)
+    - DTFoundation/DTHTMLParser (= 1.7.13)
+    - DTFoundation/DTProgressHUD (= 1.7.13)
+    - DTFoundation/DTReachability (= 1.7.13)
+    - DTFoundation/DTScripting (= 1.7.13)
+    - DTFoundation/DTSidePanel (= 1.7.13)
+    - DTFoundation/DTSQLite (= 1.7.13)
+    - DTFoundation/DTUTI (= 1.7.13)
+    - DTFoundation/DTZipArchive (= 1.7.13)
+    - DTFoundation/Runtime (= 1.7.13)
+    - DTFoundation/UIKit (= 1.7.13)
+    - DTFoundation/UIKit_BlocksAdditions (= 1.7.13)
+  - DTFoundation/Core (1.7.13)
+  - DTFoundation/Debug (1.7.13):
     - DTFoundation/Core
     - DTFoundation/Runtime
-  - DTFoundation/DTAnimatedGIF (1.7.12)
-  - DTFoundation/DTASN1 (1.7.12):
+  - DTFoundation/DTAnimatedGIF (1.7.13)
+  - DTFoundation/DTASN1 (1.7.13):
     - DTFoundation/Core
-  - DTFoundation/DTAsyncFileDeleter (1.7.12):
+  - DTFoundation/DTAsyncFileDeleter (1.7.13):
     - DTFoundation/Core
-  - DTFoundation/DTAWS (1.7.12):
+  - DTFoundation/DTAWS (1.7.13):
     - DTFoundation/Core
-  - DTFoundation/DTHTMLParser (1.7.12):
+  - DTFoundation/DTHTMLParser (1.7.13):
     - DTFoundation/Core
-  - DTFoundation/DTProgressHUD (1.7.12):
+  - DTFoundation/DTProgressHUD (1.7.13):
     - DTFoundation/Core
     - DTFoundation/UIKit
-  - DTFoundation/DTReachability (1.7.12):
+  - DTFoundation/DTReachability (1.7.13):
     - DTFoundation/Core
-  - DTFoundation/DTScripting (1.7.12):
+  - DTFoundation/DTScripting (1.7.13):
     - DTFoundation/Core
-  - DTFoundation/DTSidePanel (1.7.12):
+  - DTFoundation/DTSidePanel (1.7.13):
     - DTFoundation/UIKit
-  - DTFoundation/DTSQLite (1.7.12):
+  - DTFoundation/DTSQLite (1.7.13):
     - DTFoundation/Core
-  - DTFoundation/DTUTI (1.7.12)
-  - DTFoundation/DTZipArchive (1.7.12):
-    - DTFoundation/DTZipArchive/Minizip (= 1.7.12)
-  - DTFoundation/DTZipArchive/Minizip (1.7.12)
-  - DTFoundation/Runtime (1.7.12)
-  - DTFoundation/UIKit (1.7.12):
+  - DTFoundation/DTUTI (1.7.13)
+  - DTFoundation/DTZipArchive (1.7.13):
+    - DTFoundation/DTZipArchive/Minizip (= 1.7.13)
+  - DTFoundation/DTZipArchive/Minizip (1.7.13)
+  - DTFoundation/Runtime (1.7.13)
+  - DTFoundation/UIKit (1.7.13):
     - DTFoundation/Core
-  - DTFoundation/UIKit_BlocksAdditions (1.7.12):
+  - DTFoundation/UIKit_BlocksAdditions (1.7.13):
     - DTFoundation/Core
   - InAppSettingsKit (2.8.1)
   - KMPlaceholderTextView (1.3.0)
-  - Localize (1.4.0)
-  - OCMock (3.4)
+  - Localize (1.5.2)
+  - OCMock (3.4.1)
   - OrderedDictionary (1.4)
-  - POE (0.1.0):
+  - POE (0.2.0):
     - KMPlaceholderTextView (~> 1.3)
-    - Localize (~> 1.4)
+    - Localize (~> 1.5)
     - UIColor-HexRGB
   - TUSafariActivity (1.0.4)
   - UIColor-HexRGB (1.0.1)
@@ -70,7 +70,7 @@ DEPENDENCIES:
   - InAppSettingsKit
   - OCMock
   - OrderedDictionary
-  - POE
+  - POE (~> 0.2)
   - TUSafariActivity
   - WYPopoverController (from `https://github.com/sammcewan/WYPopoverController.git`)
   - XLForm (from `https://github.com/jcs/XLForm.git`)
@@ -90,18 +90,18 @@ CHECKOUT OPTIONS:
     :git: https://github.com/jcs/XLForm.git
 
 SPEC CHECKSUMS:
-  DTFoundation: 26a164ef510877387906fb92bff524a792db4bf8
+  DTFoundation: f03be9fd786f11e505bb8fc44e2a3732bf0917df
   InAppSettingsKit: 94d2fba3ccd700fc4e32c6d09fabcc0af2426744
   KMPlaceholderTextView: 2bbcd19a273648a80a61e1e48f9743a24d8930e3
-  Localize: cb3a47c12ebcd7a530c4fe2135064d9655f04052
-  OCMock: 35ae71d6a8fcc1b59434d561d1520b9dd4f15765
+  Localize: fe7b9cbf3a9e2146d055d4782d8f810ecdf2de08
+  OCMock: 2cd0716969bab32a2283ff3a46fd26a8c8b4c5e3
   OrderedDictionary: 138c8d2e358d3a0c9adda15c6c7db24e8e3b09e6
-  POE: ddb8c99af934fa44acd502f71d60e4224a1791b3
+  POE: fba73abe24637956d3250904528d243de7d44857
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
   UIColor-HexRGB: daccfa7e936af664369734a164b0309087d7f970
   WYPopoverController: a9db25ac2841a686acdc0f3a99bdb21545db32f4
   XLForm: d5c391dfc62865927b5bcab0a5a0dbfb3e02b0ec
 
-PODFILE CHECKSUM: 363f94a9085b545196b03a27875c0da0164eb8e2
+PODFILE CHECKSUM: 3134530b43ba0bebc8c5cce8385db174d3fc4338
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.3.1
