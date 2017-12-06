@@ -12,7 +12,7 @@ import Foundation
     @objc static let singleton = OnionManager()
 
     // Show Tor log in iOS' app log.
-    private static let TOR_LOGGING = true
+    private static let TOR_LOGGING = false
 
     private static let torBaseConf: TorConfiguration = {
 
