@@ -75,25 +75,6 @@
 	[[self webViewController] viewIsNoLongerVisible];
 }
 
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
-    UIAlertController *ac = [UIAlertController
-                             alertControllerWithTitle:NSLocalizedString(@"Tor connection failure", nil)
-                             message:NSLocalizedString(@"__CONNECTION_FAILURE_DESCRIPTION__", nil)
-                             preferredStyle:UIAlertControllerStyleAlert];
-    [ac addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil)
-                                           style:UIAlertActionStyleCancel handler:nil]];
-    [ac addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Quit App", nil)
-                                           style:UIAlertActionStyleDestructive
-                                         handler:^(UIAlertAction* action){
-                                             [self applicationDidEnterBackground:application];
-                                             [self applicationWillTerminate:application];
-
-                                             exit(0);
-                                         }]];
-    [self.window.rootViewController presentViewController:ac animated:NO completion:nil];
-}
-
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
