@@ -513,8 +513,37 @@
 	NSLog(@"[Tab %@] showing error dialog: %@ (%@)", self.tabIndex, msg, error);
 #endif
 
-	UIAlertController *uiac = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", nil) message:msg preferredStyle:UIAlertControllerStyleAlert];
-	[uiac addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:nil]];
+	UIAlertController *uiac = [UIAlertController
+                               alertControllerWithTitle:NSLocalizedString(@"Error", nil)
+                               message:msg
+                               preferredStyle:UIAlertControllerStyleAlert];
+
+    [uiac addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil)
+                                             style:UIAlertActionStyleDefault handler:nil]];
+
+    // "Connection refused", most possibly created, because Tor's sockets were closed by iOS
+    // during app sleep. This is non-recoverable. We show a different message, here.
+    if (error.code == 61)
+    {
+        [uiac setTitle:NSLocalizedString(@"Tor connection failure", nil)];
+        [uiac setMessage:NSLocalizedString(@"__CONNECTION_FAILURE_DESCRIPTION__", nil)];
+
+        [uiac addAction:[UIAlertAction
+                         actionWithTitle:NSLocalizedString(@"Quit App", nil)
+                         style:UIAlertActionStyleDestructive
+                         handler:^(UIAlertAction* action){
+                             UIApplication *application = [UIApplication sharedApplication];
+                             [application performSelector:@selector(suspend)];
+
+                             AppDelegate *appDelegate = (AppDelegate *)[application delegate];
+                             [appDelegate applicationDidEnterBackground:application];
+                             [appDelegate applicationWillTerminate:application];
+
+                             [NSThread sleepForTimeInterval:2];
+                             exit(0);
+                         }]];
+    }
+
 	[[appDelegate webViewController] presentViewController:uiac animated:YES completion:nil];
 	
 	[self webViewDidFinishLoad:__webView];
