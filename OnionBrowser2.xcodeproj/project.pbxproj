@@ -1006,7 +1006,7 @@
 				INFOPLIST_FILE = Endless/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-                PRODUCT_BUNDLE_IDENTIFIER = com.miketigas.OnionBrowser;
+				PRODUCT_BUNDLE_IDENTIFIER = com.miketigas.OnionBrowser;
 				PRODUCT_NAME = OnionBrowser;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "OnionBrowser/OnionBrowser2-Bridging-Header.h";
@@ -1036,7 +1036,7 @@
 				INFOPLIST_FILE = Endless/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-                PRODUCT_BUNDLE_IDENTIFIER = com.miketigas.OnionBrowser;
+				PRODUCT_BUNDLE_IDENTIFIER = com.miketigas.OnionBrowser;
 				PRODUCT_NAME = OnionBrowser;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "OnionBrowser/OnionBrowser2-Bridging-Header.h";
