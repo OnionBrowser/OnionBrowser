@@ -1,2 +1,2 @@
 binary "https://cdn.tig.as/files/Iobfs4proxy.json" "1.0"
-github "iCepa/Tor.framework" "v31.8.2"
+binary "https://cdn.tig.as/files/Tor.json" "31.9.1"

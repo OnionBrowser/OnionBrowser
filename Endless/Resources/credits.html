@@ -18,11 +18,12 @@
 <body>
 <h2>Onion Browser</h2>
 <ul style="padding-left: 0">
-		<li>Version 2.0.0-rc (20171215.28)
+		<li>Version 2.0.0 (20180113.29)
 		<ul><li><b>Endless</b> 1.6.1</li>
 		<li><b>Tor</b>: 0.3.1.9</li>
 		<li><b>libevent</b>: 2.1.8</li>
-		<li><b>OpenSSL</b>: 1.1.0g</li></ul>
+		<li><b>OpenSSL</b>: 1.1.0g</li>
+		<li><b>liblzma</b>: 5.2.3</li></ul>
 		</li>
 </ul>
 
@@ -519,6 +520,81 @@ Redistribution and use in source and binary forms, with or without modification,
 THIS SOFTWARE IS PROVIDED BY ERIC YOUNG ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 The licence and distribution terms for any publically available version or derivative of this code cannot be changed.  i.e. this code cannot simply be copied and put under another distribution licence [including the GNU Public Licence.]
+</pre>
+
+<p>
+<hr>
+</p>
+
+
+<pre>
+	<strong>XZ Utils</strong> (liblzma)
+
+This software includes code from XZ Utils <https://tukaani.org/xz/>. liblzma is in the public domain. The full XZ Utils COPYING document is reproduced in full, below.
+
+XZ Utils Licensing
+==================
+
+Different licenses apply to different files in this package. Here
+is a rough summary of which licenses apply to which parts of this
+package (but check the individual files to be sure!):
+
+- liblzma is in the public domain.
+
+- xz, xzdec, and lzmadec command line tools are in the public
+domain unless GNU getopt_long had to be compiled and linked
+in from the lib directory. The getopt_long code is under
+GNU LGPLv2.1+.
+
+- The scripts to grep, diff, and view compressed files have been
+adapted from gzip. These scripts and their documentation are
+under GNU GPLv2+.
+
+- All the documentation in the doc directory and most of the
+XZ Utils specific documentation files in other directories
+are in the public domain.
+
+- Translated messages are in the public domain.
+
+- The build system contains public domain files, and files that
+are under GNU GPLv2+ or GNU GPLv3+. None of these files end up
+in the binaries being built.
+
+- Test files and test code in the tests directory, and debugging
+utilities in the debug directory are in the public domain.
+
+- The extra directory may contain public domain files, and files
+that are under various free software licenses.
+
+You can do whatever you want with the files that have been put into
+the public domain. If you find public domain legally problematic,
+take the previous sentence as a license grant. If you still find
+the lack of copyright legally problematic, you have too many
+lawyers.
+
+As usual, this software is provided "as is", without any warranty.
+
+If you copy significant amounts of public domain code from XZ Utils
+into your project, acknowledging this somewhere in your software is
+polite (especially if it is proprietary, non-free software), but
+naturally it is not legally required. Here is an example of a good
+notice to put into "about box" or into documentation:
+
+This software includes code from XZ Utils <https://tukaani.org/xz/>.
+
+The following license texts are included in the following files:
+- COPYING.LGPLv2.1: GNU Lesser General Public License version 2.1
+- COPYING.GPLv2: GNU General Public License version 2
+- COPYING.GPLv3: GNU General Public License version 3
+
+Note that the toolchain (compiler, linker etc.) may add some code
+pieces that are copyrighted. Thus, it is possible that e.g. liblzma
+binary wouldn't actually be in the public domain in its entirety
+even though it contains no copyrighted code from the XZ Utils source
+package.
+
+If you have questions, don't hesitate to ask the author(s) for more
+information.
 </pre>
 
 <p>
