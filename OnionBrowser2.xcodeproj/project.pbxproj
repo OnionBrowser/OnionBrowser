@@ -343,6 +343,7 @@
 		01801E891A32CA2A002B4718 = {
 			isa = PBXGroup;
 			children = (
+				A06441F9200CB82500D6C50C /* AppStore */,
 				A00436111E8185AA0067652D /* Build */,
 				01801E941A32CA2A002B4718 /* Endless */,
 				6998064A1EABE5C70012F75E /* OnionBrowser */,
@@ -547,7 +548,6 @@
 		A00436111E8185AA0067652D /* Build */ = {
 			isa = PBXGroup;
 			children = (
-				A01F64FD2003AE610087306B /* Screenshots */,
 				A010FA191E798C0400E04222 /* BUILD.md */,
 				A00436091E81856F0067652D /* Cartfile */,
 				A004360A1E81856F0067652D /* Cartfile.resolved */,
@@ -555,7 +555,6 @@
 				A004360C1E81856F0067652D /* Podfile.lock */,
 				A00436121E8187800067652D /* convert_rules.rb */,
 				A00436131E8187800067652D /* urlblocker.json */,
-				A06441F5200CADE800D6C50C /* AppStoreStrings.md */,
 			);
 			name = Build;
 			sourceTree = "<group>";
@@ -784,6 +783,15 @@
 				A01F65552003BCA40087306B /* 5.png */,
 			);
 			path = es;
+			sourceTree = "<group>";
+		};
+		A06441F9200CB82500D6C50C /* AppStore */ = {
+			isa = PBXGroup;
+			children = (
+				A01F64FD2003AE610087306B /* Screenshots */,
+				A06441F5200CADE800D6C50C /* AppStoreStrings.md */,
+			);
+			path = AppStore;
 			sourceTree = "<group>";
 		};
 		A0C377041F472F780039198E /* Migration */ = {
