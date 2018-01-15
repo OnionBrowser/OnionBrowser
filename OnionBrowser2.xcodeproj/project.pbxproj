@@ -67,7 +67,6 @@
 		69CBCD4F1E93451C009D5352 /* urlblocker.json in Resources */ = {isa = PBXBuildFile; fileRef = 69CBCD4E1E93451C009D5352 /* urlblocker.json */; };
 		69CBCD521E9347B8009D5352 /* UIResponder+FirstResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CBCD511E9347B8009D5352 /* UIResponder+FirstResponder.m */; };
 		69EFCCA21EAD20CB00280747 /* OBRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69EFCCA11EAD20CB00280747 /* OBRootViewController.m */; };
-		69F14524200A9BED00E98B2D /* AppStoreStrings.md in Resources */ = {isa = PBXBuildFile; fileRef = 69F14523200A9BED00E98B2D /* AppStoreStrings.md */; };
 		8ACB70CF1FA1369A001E5588 /* Iobfs4proxy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ACB70CE1FA1369A001E5588 /* Iobfs4proxy.framework */; };
 		8ACB70D21FA136F0001E5588 /* geoip in Resources */ = {isa = PBXBuildFile; fileRef = 8ACB70D01FA136F0001E5588 /* geoip */; };
 		8ACB70D31FA136F0001E5588 /* geoip6 in Resources */ = {isa = PBXBuildFile; fileRef = 8ACB70D11FA136F0001E5588 /* geoip6 */; };
@@ -194,7 +193,6 @@
 		69EFCCA01EAD20CB00280747 /* OBRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OBRootViewController.h; path = OnionBrowser/OBRootViewController.h; sourceTree = "<group>"; };
 		69EFCCA11EAD20CB00280747 /* OBRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OBRootViewController.m; path = OnionBrowser/OBRootViewController.m; sourceTree = "<group>"; };
 		69EFCCA51EAD297700280747 /* OnionManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OnionManagerDelegate.h; path = OnionBrowser/OnionManagerDelegate.h; sourceTree = "<group>"; };
-		69F14523200A9BED00E98B2D /* AppStoreStrings.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = AppStoreStrings.md; sourceTree = "<group>"; };
 		70FC48F95B2838270343A120 /* Pods-OnionBrowser2 Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnionBrowser2 Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OnionBrowser2 Tests/Pods-OnionBrowser2 Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		73DB8664F790D7101FC0F4BE /* Pods-OnionBrowser2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnionBrowser2.release.xcconfig"; path = "Pods/Target Support Files/Pods-OnionBrowser2/Pods-OnionBrowser2.release.xcconfig"; sourceTree = "<group>"; };
 		8ACB70CE1FA1369A001E5588 /* Iobfs4proxy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Iobfs4proxy.framework; path = Carthage/Build/iOS/Iobfs4proxy.framework; sourceTree = "<group>"; };
@@ -294,6 +292,10 @@
 		A05AD0261F0A54DA00953274 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = Endless/nb.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
 		A060AC191FB4C710000828EF /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = Endless/fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A060AC1A1FB4C710000828EF /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = Endless/fr.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
+		A06441F4200CADE800D6C50C /* Base */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = Base; path = Base.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
+		A06441F6200CB06C00D6C50C /* nb */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = nb; path = nb.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
+		A06441F7200CB08300D6C50C /* es */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = es; path = es.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
+		A06441F8200CB09300D6C50C /* de */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = de; path = de.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
 		A0882DF72003A8620098833B /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
 		A0882DF82003A8620098833B /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
 		A0882DF92003A8620098833B /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
@@ -439,7 +441,6 @@
 			children = (
 				A045E5E11EDC5C1700BC8A92 /* Localizable.strings */,
 				A045E5E31EDC5C1700BC8A92 /* OnePasswordExtension.strings */,
-				69F14523200A9BED00E98B2D /* AppStoreStrings.md */,
 				01F8794A1A41232E00A63654 /* credits.html */,
 				016B2FCA1A53466D002D2730 /* hsts_preload.plist */,
 				018333E71A35746500670CD1 /* https-everywhere_rules.plist */,
@@ -554,6 +555,7 @@
 				A004360C1E81856F0067652D /* Podfile.lock */,
 				A00436121E8187800067652D /* convert_rules.rb */,
 				A00436131E8187800067652D /* urlblocker.json */,
+				A06441F5200CADE800D6C50C /* AppStoreStrings.md */,
 			);
 			name = Build;
 			sourceTree = "<group>";
@@ -865,7 +867,7 @@
 				TargetAttributes = {
 					01801E911A32CA2A002B4718 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = 68QUP6KP2C;
+                        DevelopmentTeam = 68QUP6KP2C;
 						LastSwiftMigration = 0920;
 						SystemCapabilities = {
 							com.apple.DataProtection = {
@@ -916,7 +918,6 @@
 				69CBCD4F1E93451C009D5352 /* urlblocker.json in Resources */,
 				01D7412C1A45F8EB007B7033 /* injected.js in Resources */,
 				01801EA61A32CA2A002B4718 /* Images.xcassets in Resources */,
-				69F14524200A9BED00E98B2D /* AppStoreStrings.md in Resources */,
 				01F8794C1A4124FE00A63654 /* credits.html in Resources */,
 				A045E5E51EDC5C1700BC8A92 /* Localizable.strings in Resources */,
 				016B2FCB1A53466D002D2730 /* hsts_preload.plist in Resources */,
@@ -1190,6 +1191,17 @@
 			name = OnePasswordExtension.strings;
 			sourceTree = "<group>";
 		};
+		A06441F5200CADE800D6C50C /* AppStoreStrings.md */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A06441F4200CADE800D6C50C /* Base */,
+				A06441F6200CB06C00D6C50C /* nb */,
+				A06441F7200CB08300D6C50C /* es */,
+				A06441F8200CB09300D6C50C /* de */,
+			);
+			name = AppStoreStrings.md;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -1301,7 +1313,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 68QUP6KP2C;
+                DEVELOPMENT_TEAM = 68QUP6KP2C;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1312,7 +1324,7 @@
 				INFOPLIST_FILE = Endless/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.miketigas.OnionBrowser;
+                PRODUCT_BUNDLE_IDENTIFIER = com.miketigas.OnionBrowser;
 				PRODUCT_NAME = OnionBrowser;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "OnionBrowser/OnionBrowser2-Bridging-Header.h";
@@ -1331,7 +1343,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 68QUP6KP2C;
+                DEVELOPMENT_TEAM = 68QUP6KP2C;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1342,7 +1354,7 @@
 				INFOPLIST_FILE = Endless/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.miketigas.OnionBrowser;
+                PRODUCT_BUNDLE_IDENTIFIER = com.miketigas.OnionBrowser;
 				PRODUCT_NAME = OnionBrowser;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "OnionBrowser/OnionBrowser2-Bridging-Header.h";

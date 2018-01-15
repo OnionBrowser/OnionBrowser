@@ -19,3 +19,9 @@ source_file = Endless/InAppSettings.bundle/en.lproj/Root.strings
 source_lang = en
 type = STRING
 
+[onion-browser.appstorestringsmd]
+file_filter = <lang>.lproj/AppStoreStrings.md
+source_file = Base.lproj/AppStoreStrings.md
+source_lang = en
+type = GITHUBMARKDOWN
+
