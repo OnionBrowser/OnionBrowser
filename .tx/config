@@ -20,8 +20,8 @@ source_lang = en
 type = STRING
 
 [onion-browser.appstorestringsmd]
-file_filter = <lang>.lproj/AppStoreStrings.md
-source_file = Base.lproj/AppStoreStrings.md
+file_filter = AppStore/<lang>.lproj/AppStoreStrings.md
+source_file = AppStore/Base.lproj/AppStoreStrings.md
 source_lang = en
 type = GITHUBMARKDOWN
 
