@@ -94,6 +94,18 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		8A1177102010FD1F00741429 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		010EEA641A43A536001E8B65 /* CookieController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CookieController.h; sourceTree = "<group>"; };
 		010EEA651A43A536001E8B65 /* CookieController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CookieController.m; sourceTree = "<group>"; };
@@ -847,6 +859,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 018333DF1A35727C00670CD1 /* Build configuration list for PBXNativeTarget "OnionBrowser2 Tests" */;
 			buildPhases = (
+				8A1177102010FD1F00741429 /* CopyFiles */,
 				1C550CC82345C0B27822988C /* [CP] Check Pods Manifest.lock */,
 				018333D31A35727C00670CD1 /* Sources */,
 				018333D41A35727C00670CD1 /* Frameworks */,
@@ -875,7 +888,7 @@
 				TargetAttributes = {
 					01801E911A32CA2A002B4718 = {
 						CreatedOnToolsVersion = 6.1.1;
-                        DevelopmentTeam = 68QUP6KP2C;
+						DevelopmentTeam = 68QUP6KP2C;
 						LastSwiftMigration = 0920;
 						SystemCapabilities = {
 							com.apple.DataProtection = {
@@ -1321,7 +1334,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-                DEVELOPMENT_TEAM = 68QUP6KP2C;
+				DEVELOPMENT_TEAM = 68QUP6KP2C;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1332,7 +1345,7 @@
 				INFOPLIST_FILE = Endless/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-                PRODUCT_BUNDLE_IDENTIFIER = com.miketigas.OnionBrowser;
+				PRODUCT_BUNDLE_IDENTIFIER = com.miketigas.OnionBrowser;
 				PRODUCT_NAME = OnionBrowser;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "OnionBrowser/OnionBrowser2-Bridging-Header.h";
@@ -1351,7 +1364,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-                DEVELOPMENT_TEAM = 68QUP6KP2C;
+				DEVELOPMENT_TEAM = 68QUP6KP2C;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1362,7 +1375,7 @@
 				INFOPLIST_FILE = Endless/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-                PRODUCT_BUNDLE_IDENTIFIER = com.miketigas.OnionBrowser;
+				PRODUCT_BUNDLE_IDENTIFIER = com.miketigas.OnionBrowser;
 				PRODUCT_NAME = OnionBrowser;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "OnionBrowser/OnionBrowser2-Bridging-Header.h";
