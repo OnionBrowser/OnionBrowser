@@ -51,12 +51,12 @@ PODS:
     - DTFoundation/Core
   - DTFoundation/UIKit_BlocksAdditions (1.7.13):
     - DTFoundation/Core
-  - InAppSettingsKit (2.8.1)
+  - InAppSettingsKit (2.9)
   - KMPlaceholderTextView (1.3.0)
   - Localize (1.5.2)
   - OCMock (3.4.1)
   - OrderedDictionary (1.4)
-  - POE (0.2.2):
+  - POE (0.2.3):
     - KMPlaceholderTextView (~> 1.3)
     - Localize (~> 1.5)
     - UIColor-HexRGB
@@ -91,12 +91,12 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   DTFoundation: f03be9fd786f11e505bb8fc44e2a3732bf0917df
-  InAppSettingsKit: 94d2fba3ccd700fc4e32c6d09fabcc0af2426744
+  InAppSettingsKit: fc3dea21846535b76b8289b119dbfdbe2505b2b2
   KMPlaceholderTextView: 2bbcd19a273648a80a61e1e48f9743a24d8930e3
   Localize: fe7b9cbf3a9e2146d055d4782d8f810ecdf2de08
   OCMock: 2cd0716969bab32a2283ff3a46fd26a8c8b4c5e3
   OrderedDictionary: 138c8d2e358d3a0c9adda15c6c7db24e8e3b09e6
-  POE: 403833918e530d2bea5e70ac31c90d043ef56ecf
+  POE: 0bccc421cf737bad78ad3447a0950e03a7688889
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
   UIColor-HexRGB: daccfa7e936af664369734a164b0309087d7f970
   WYPopoverController: a9db25ac2841a686acdc0f3a99bdb21545db32f4
