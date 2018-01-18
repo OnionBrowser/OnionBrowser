@@ -862,8 +862,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 018333DF1A35727C00670CD1 /* Build configuration list for PBXNativeTarget "OnionBrowser2 Tests" */;
 			buildPhases = (
-				8A1177102010FD1F00741429 /* CopyFiles */,
 				1C550CC82345C0B27822988C /* [CP] Check Pods Manifest.lock */,
+				8A1177102010FD1F00741429 /* CopyFiles */,
 				018333D31A35727C00670CD1 /* Sources */,
 				018333D41A35727C00670CD1 /* Frameworks */,
 				018333D51A35727C00670CD1 /* Resources */,
