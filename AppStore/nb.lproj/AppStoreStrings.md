@@ -2,11 +2,9 @@ Løk-nettleseren
 
 Sikker, anonym surfing med Tor
 
-`nettleser,tor,tor-nettleser,løk-nettleser,anonym nettleser, privat nettleser, anonym,rødløk,ionion`
+`nettleser,tor,tor-nettleser,løk-nettleser,privat nettleser,anonym,orbot,orfox,onion,løk`
 
 ---
-
-NÅ GRATIS!
 
 Løk-nettleseren er den originale Tor-drevne nettleseren for iOS. Løk-nettleseren hjelper deg å omgå sensur og få tilgang til Internett med bedret sikkerhet og personvern.
 

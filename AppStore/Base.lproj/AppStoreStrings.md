@@ -2,11 +2,9 @@ Onion Browser
 
 Secure, anonymous web with Tor
 
-`browser,tor,tor browser,onion browser,anonymous browser,private browser,anonymous,red onion,ionion`
+`Browser,Tor,Tor Browser,Onion Browser,anonymous,private,private browser,orbot,orfox,onion`
 
 ---
-
-NOW FREE!
 
 Onion Browser is the original open-source Tor-powered browser for iOS. Onion Browser helps you bypass censorship and access the internet with more safety and privacy.
 

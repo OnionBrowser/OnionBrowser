@@ -2,11 +2,9 @@ Navegador Onion
 
 Web segura y anónima con Tor
 
-`navegador,tor,navegador tor,tor browser,navegador onion,onion browser,navegador anónimo,navegador privado,anónimo,red onion,ionion`
+`navegador,tor,navegador tor,tor browser,onion browser,privado,anónimo,orbot,orfox,onion,cebolla`
 
 ---
-
-¡AHORA GRATIS!
 
 EL Navegador Onion es el navegador original de código abierto impulsado-por-Tor para iOS. El Navegador Onion le ayuda a eludir la censura y acceder a Internet con más seguridad y privacidad.
 
