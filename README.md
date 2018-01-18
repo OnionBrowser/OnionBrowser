@@ -12,7 +12,7 @@ Please see the [LICENSE][license] file for usage and redistribution terms. As of
 
 ---
 
-* **OnionBrowser**: 2.0.0 (20180118.30) - See [official release history][releases] and [changelog][changelog].
+* **OnionBrowser**: 2.0.0 (20180118.31) - See [official release history][releases] and [changelog][changelog].
 * **[Endless][endless]** upstream: 1.6.1
 * **[Tor.framework][Tor.framework]**: 31.9.1
   * **[Tor][tor]**: 0.3.1.9
