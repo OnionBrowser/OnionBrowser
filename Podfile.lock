@@ -70,7 +70,7 @@ DEPENDENCIES:
   - InAppSettingsKit
   - OCMock
   - OrderedDictionary
-  - POE (~> 0.2)
+  - POE (~> 0.2.3)
   - TUSafariActivity
   - WYPopoverController (from `https://github.com/sammcewan/WYPopoverController.git`)
   - XLForm (from `https://github.com/jcs/XLForm.git`)
@@ -102,6 +102,6 @@ SPEC CHECKSUMS:
   WYPopoverController: a9db25ac2841a686acdc0f3a99bdb21545db32f4
   XLForm: d5c391dfc62865927b5bcab0a5a0dbfb3e02b0ec
 
-PODFILE CHECKSUM: 3134530b43ba0bebc8c5cce8385db174d3fc4338
+PODFILE CHECKSUM: 12c7531d1b71b87cdff29cac249b05801bf3fbb0
 
 COCOAPODS: 1.3.1

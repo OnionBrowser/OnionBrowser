@@ -1,7 +1,3 @@
 [submodule "https-everywhere"]
 	path = https-everywhere
 	url = https://github.com/EFForg/https-everywhere
-[submodule "Carthage/Checkouts/Tor.framework"]
-	path = Carthage/Checkouts/Tor.framework
-	url = https://github.com/mtigas/Tor.framework.git
-	ignore = dirty
