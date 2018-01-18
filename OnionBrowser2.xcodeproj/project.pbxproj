@@ -315,6 +315,9 @@
 		A0882DFC2003A9040098833B /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
 		A096BBE71F68359500A5C6AB /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Endless/es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A096BBE81F68359500A5C6AB /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Endless/es.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
+		A0BFBE022010F48100BE2980 /* ga */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = ga; path = ga.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
+		A0BFBE032010F48100BE2980 /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ga; path = Endless/ga.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A0BFBE042010F48200BE2980 /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ga; path = Endless/ga.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
 		A0C377051F4730320039198E /* Settings.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Settings.xcdatamodel; sourceTree = "<group>"; };
 		A0C3770D1F47342C0039198E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		A0F92BF41F4DB24E00B9E787 /* Migration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Migration.swift; sourceTree = "<group>"; };
@@ -913,6 +916,7 @@
 				nb,
 				es,
 				fr,
+				ga,
 			);
 			mainGroup = 01801E891A32CA2A002B4718;
 			productRefGroup = 01801E931A32CA2A002B4718 /* Products */;
@@ -1196,6 +1200,7 @@
 				A05AD0251F0A54DA00953274 /* nb */,
 				A096BBE71F68359500A5C6AB /* es */,
 				A060AC191FB4C710000828EF /* fr */,
+				A0BFBE032010F48100BE2980 /* ga */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1208,6 +1213,7 @@
 				A05AD0261F0A54DA00953274 /* nb */,
 				A096BBE81F68359500A5C6AB /* es */,
 				A060AC1A1FB4C710000828EF /* fr */,
+				A0BFBE042010F48200BE2980 /* ga */,
 			);
 			name = OnePasswordExtension.strings;
 			sourceTree = "<group>";
@@ -1219,6 +1225,7 @@
 				A06441F6200CB06C00D6C50C /* nb */,
 				A06441F7200CB08300D6C50C /* es */,
 				A06441F8200CB09300D6C50C /* de */,
+				A0BFBE022010F48100BE2980 /* ga */,
 			);
 			name = AppStoreStrings.md;
 			sourceTree = "<group>";
