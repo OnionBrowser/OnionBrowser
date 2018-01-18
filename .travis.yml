@@ -1,0 +1,16 @@
+language: objective-c
+osx_image: xcode9.2
+xcode_sdk: iphonesimulator11.2
+
+before_install:
+- brew update
+- brew outdated carthage || brew upgrade carthage
+- brew outdated xctool || brew upgrade xctool
+
+script:
+  - pod repo update && pod install
+  - carthage update --platform iOS
+  - xctool -project OnionBrowser/OnionBrowser.xcodeproj -scheme OnionBrowser -sdk iphonesimulator11.2 -configuration TestBuilds -destination platform='iOS Simulator',OS=11.2,name='iPhone 8' run-tests -freshInstall -testTimeout 100
+
+notifications:
+  email: false
