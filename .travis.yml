@@ -10,7 +10,7 @@ before_install:
 script:
   - pod repo update && pod install
   - carthage update --platform iOS
-  - xctool -workspace OnionBrowser2.xcworkspace -scheme OnionBrowser2 -sdk iphonesimulator11.2 -configuration Debug -destination platform='iOS Simulator',OS=11.2,name='iPhone 8' run-tests -freshInstall -testTimeout 100
+  - xctool -workspace OnionBrowser2.xcworkspace -scheme OnionBrowser2 -sdk iphonesimulator11.2 -configuration Debug -destination platform='iOS Simulator',OS=11.2,name='iPhone 8' -launch-timeout 120 run-tests -testTimeout 120 -resetSimulator
 
 notifications:
   email: false

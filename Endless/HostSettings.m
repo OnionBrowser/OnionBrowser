@@ -74,8 +74,8 @@ static NSMutableDictionary *_hosts;
 
 + (void)persist
 {
-	//if ([(AppDelegate *)[[UIApplication sharedApplication] delegate] areTesting])
-	//	abort();
+	if ([(AppDelegate *)[[UIApplication sharedApplication] delegate] areTesting])
+        return;
 		
 	NSMutableDictionary *td = [[NSMutableDictionary alloc] initWithCapacity:[[self hosts] count]];
 	for (NSString *k in [[self hosts] allKeys])
