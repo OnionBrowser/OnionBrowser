@@ -6,6 +6,25 @@ Sikker, anonym surfing med Tor
 
 ---
 
+Welcome to Onion Browser 2!
+
+Onion Browser 2 is a total rewrite of the app which contains several new features:
+
+* A friendlier first-time launch experience.
+* An updated user interface, containing "tabbed browsing" and improved settings panels
+* HTTPS Everywhere support
+* 1Password support
+* Built-in ad-blocking and privacy protection
+* Tweak security/privacy settings on a per-site basis (including cookie policy, user agent, and javascript/active content policy).
+* Tor 0.3.1.9
+* Settings and bookmarks from Onion Browser 1 are retained, with the exception of the user-agent spoofing string.
+
+Best of all: this update is free!
+
+The Onion Browser 2 update was supported by the Guardian Project, with help from Benjamin Erhart and Carrie Winfrey. Onion Browser 2 is based on the open-source "Endless" Browser; special thanks to Joshua Stein for creating Endless and for granting permission to use it in Onion Browser. See the credits file in the app settings for more information.
+
+---
+
 Løk-nettleseren er den originale Tor-drevne nettleseren for iOS. Løk-nettleseren hjelper deg å omgå sensur og få tilgang til Internett med bedret sikkerhet og personvern.
 
 Du kan lese mer om Løk-nettleseren på den offisielle Tor-prosjektbloggen: https://blog.torproject.org/node/1255
