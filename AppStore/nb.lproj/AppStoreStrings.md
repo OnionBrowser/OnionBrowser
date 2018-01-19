@@ -6,22 +6,22 @@ Sikker, anonym surfing med Tor
 
 ---
 
-Welcome to Onion Browser 2!
+Velkommen til Løk-nettleseren versjon 2.
 
-Onion Browser 2 is a total rewrite of the app which contains several new features:
+Løk-nettleseren 2 er en fullstendig omskriving av programmet som inneholder flere nye funksjoner:
 
-* A friendlier first-time launch experience.
-* An updated user interface, containing "tabbed browsing" and improved settings panels
-* HTTPS Everywhere support
-* 1Password support
-* Built-in ad-blocking and privacy protection
-* Tweak security/privacy settings on a per-site basis (including cookie policy, user agent, and javascript/active content policy).
+* Vennligere førstegangsoppstart.
+* Oppdatert brukergrensesnitt, med "fanebabsert nettlesing" og forbedrede innstillingspaneler
+* HTTPS Everywhere-støtte
+* 1Password-støtte
+* Innebygd reklameblokkering og personvernsbeskyttelse
+* Juster sikkerhet og personvernsinnstillinger per side (inkludert kakepraksis, brukeragent, og JavaScript/praksis for aktivt innhold).
 * Tor 0.3.1.9
-* Settings and bookmarks from Onion Browser 1 are retained, with the exception of the user-agent spoofing string.
+* Innstillinger og bokmerker fra Løk-nettleser 1 beholdes, med unntak av brukeragentforfalskningsstrengen.
 
-Best of all: this update is free!
+Oppdateringen er gratis.
 
-The Onion Browser 2 update was supported by the Guardian Project, with help from Benjamin Erhart and Carrie Winfrey. Onion Browser 2 is based on the open-source "Endless" Browser; special thanks to Joshua Stein for creating Endless and for granting permission to use it in Onion Browser. See the credits file in the app settings for more information.
+Løk-nettleser 2-oppgraderingen ble støttet av Guardian-prosjektet, med hjelp fra Benjamin Erhart og Carrie Winfrey. Løk-nettleser 2 e er basert på den åpne-kildekodenettleseren "Endless". Spesiell takk til Joshua Stein for å ha laget Endless og for samtykke til å bruke den i Løk-nettleseren. Se bidragsyter-fila i programinnstillingene for mer informasjon.
 
 ---
 
