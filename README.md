@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/mtigas/OnionBrowser.svg?branch=2.X)](https://travis-ci.org/mtigas/OnionBrowser)  
 [Official Site][official] | [Support][help] | [Changelog][changelog] | [Donate][donate]  
-&copy; 2012-2017 [Mike Tigas][miketigas] ([@mtigas](https://twitter.com/mtigas))
+&copy; 2012-2018, Tigas Ventures, LLC ([Mike Tigas][miketigas] / [@mtigas](https://twitter.com/mtigas))
 
 *This is the Onion Browser <strong>2.X branch</strong>, based on [Endless][endless]. This branch is in active development and is probably completely broken from time to time. This version has not yet been released in the App Store.*
 
@@ -12,7 +12,7 @@ Please see the [LICENSE][license] file for usage and redistribution terms. As of
 
 ---
 
-* **OnionBrowser**: 2.0.0 (20180119.32) - See [official release history][releases] and [changelog][changelog].
+* **OnionBrowser**: 2.0.0 (20180121.33) - See [official release history][releases] and [changelog][changelog].
 * **[Endless][endless]** upstream: 1.6.1
 * **[Tor.framework][Tor.framework]**: 31.9.1
   * **[Tor][tor]**: 0.3.1.9
