@@ -14,6 +14,11 @@ import Foundation
     // Show Tor log in iOS' app log.
     private static let TOR_LOGGING = false
 
+    private static let TOR_IPV6_CONN_FALSE = 0
+    private static let TOR_IPV6_CONN_DUAL = 1
+    private static let TOR_IPV6_CONN_ONLY = 2
+    private static let TOR_IPV6_CONN_UNKNOWN = 99
+
     private static let torBaseConf: TorConfiguration = {
 
         // Store data in <appdir>/Library/Caches/tor (Library/Caches/ is for things that can persist between
@@ -38,7 +43,7 @@ import Foundation
         let configuration = TorConfiguration()
         configuration.cookieAuthentication = true
         configuration.dataDirectory = dataDir
-        configuration.arguments = [
+        var config_args = [
             "--ignore-missing-torrc",
             "--clientonly", "1",
             "--socksport", "39050",
@@ -47,11 +52,25 @@ import Foundation
             "--log", "notice file /dev/null",
             "--clientuseipv4", "1",
             "--clientuseipv6", "1",
-            "--ClientPreferIPv6ORPort", "auto",
-            "--ClientPreferIPv6DirPort", "auto",
             "--ClientTransportPlugin", "obfs4 socks5 127.0.0.1:47351",
             "--ClientTransportPlugin", "meek_lite socks5 127.0.0.1:47352",
         ]
+
+        // Use Ipv6Tester. If we _think_ we're IPv6-only, tell Tor to prefer IPv6 ports.
+        // (Tor doesn't always guess this properly due to some internal IPv4 addresses being used,
+        // so "auto" sometimes fails to bootstrap.)
+        print("ipv6_status: \(Ipv6Tester.ipv6_status())")
+        if (Ipv6Tester.ipv6_status() == TOR_IPV6_CONN_ONLY) {
+            config_args += [
+                "--ClientPreferIPv6ORPort", "1",
+            ]
+        } else {
+            config_args += [
+                "--ClientPreferIPv6ORPort", "auto",
+            ]
+        }
+
+        configuration.arguments = config_args
         return configuration
     }()
 
@@ -282,7 +301,7 @@ import Foundation
         }
 
         // Show error to user, when, after 30 seconds, Tor has still not started.
-        DispatchQueue.main.asyncAfter(deadline: .now() + 60, execute: failGuard!)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 90, execute: failGuard!)
 
     }// startTor
 
