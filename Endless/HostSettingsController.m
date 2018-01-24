@@ -278,6 +278,7 @@
 		}
 
 		/* block external lan requests */
+        /*
 		{
 			XLFormRowDescriptor *row = [XLFormRowDescriptor formRowDescriptorWithTag:HOST_SETTINGS_KEY_BLOCK_LOCAL_NETS rowType:XLFormRowDescriptorTypeSelectorActionSheet title:NSLocalizedString(@"Block external LAN requests", nil)];
 			[self setYesNoSelectorOptionsForSetting:HOST_SETTINGS_KEY_BLOCK_LOCAL_NETS host:host row:row withDefault:(![host isDefault])];
@@ -290,6 +291,7 @@
 			[form addFormSection:section];
 			[section addFormRow:row];
 		}
+         */
 	}
 	
 	/* misc section */
@@ -314,7 +316,7 @@
 		
 		NSArray *keys = @[
 			HOST_SETTINGS_KEY_ALLOW_MIXED_MODE,
-			HOST_SETTINGS_KEY_BLOCK_LOCAL_NETS,
+			//HOST_SETTINGS_KEY_BLOCK_LOCAL_NETS,
 			HOST_SETTINGS_KEY_CSP,
 			HOST_SETTINGS_KEY_TLS,
 			HOST_SETTINGS_KEY_WHITELIST_COOKIES,

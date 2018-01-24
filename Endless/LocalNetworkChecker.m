@@ -57,6 +57,8 @@ static NSMutableDictionary *dnsCache;
 	
 	char ipAddress[INET6_ADDRSTRLEN];
 	NSMutableArray *addresses = [NSMutableArray array];
+    
+    /*
 	CFIndex numAddresses = CFArrayGetCount(addressesRef);
 	for (CFIndex currentIndex = 0; currentIndex < numAddresses; currentIndex++) {
 		struct sockaddr *address = (struct sockaddr *)CFDataGetBytePtr(CFArrayGetValueAtIndex(addressesRef, currentIndex));
@@ -75,7 +77,8 @@ static NSMutableDictionary *dnsCache;
 	CFRelease(hostRef);
 
 	[dnsCache setValue:@{ @"addresses" : addresses, @"time" : [NSDate date] } forKey:[host lowercaseString]];
-	
+	*/
+    
 	return addresses;
 }
 

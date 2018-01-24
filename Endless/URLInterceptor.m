@@ -11,7 +11,7 @@
 #import "AppDelegate.h"
 #import "HSTSCache.h"
 #import "HTTPSEverywhere.h"
-#import "LocalNetworkChecker.h"
+// #import "LocalNetworkChecker.h"
 #import "SSLCertificate.h"
 #import "URLBlocker.h"
 #import "URLInterceptor.h"
@@ -270,9 +270,11 @@ static NSString *_javascriptToInject;
 		self.isOrigin = YES;
 	}
 	
+    /*
 	if (self.isOrigin) {
 		[LocalNetworkChecker clearCache];
 	}
+    */
 	else {
 		NSString *blocker = [URLBlocker blockingTargetForURL:[newRequest URL] fromMainDocumentURL:[newRequest mainDocumentURL]];
 		if (blocker != nil) {
@@ -340,6 +342,7 @@ static NSString *_javascriptToInject;
 			}
 		}
 		
+        /*
 		if ([self.originHostSettings settingOrDefault:HOST_SETTINGS_KEY_BLOCK_LOCAL_NETS]) {
 			if (![LocalNetworkChecker isHostOnLocalNet:[[newRequest mainDocumentURL] host]] && [LocalNetworkChecker isHostOnLocalNet:[[newRequest URL] host]]) {
 #ifdef TRACE_HOST_SETTINGS
@@ -349,6 +352,7 @@ static NSString *_javascriptToInject;
 				return;
 			}
 		}
+        */
 	}
 	
 	/* we're handling cookies ourself */
