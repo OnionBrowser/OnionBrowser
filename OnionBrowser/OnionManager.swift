@@ -43,13 +43,19 @@ import Foundation
         let configuration = TorConfiguration()
         configuration.cookieAuthentication = true
         configuration.dataDirectory = dataDir
+
+        #if DEBUG
+            let log_loc = "notice stdout"
+        #else
+            let log_loc = "notice file /dev/null"
+        #endif
+
         var config_args = [
             "--ignore-missing-torrc",
             "--clientonly", "1",
             "--socksport", "39050",
             "--controlport", "127.0.0.1:39060",
-            //"--log", "notice stdout",
-            "--log", "notice file /dev/null",
+            "--log", log_loc,
             "--clientuseipv6", "1",
             "--ClientTransportPlugin", "obfs4 socks5 127.0.0.1:47351",
             "--ClientTransportPlugin", "meek_lite socks5 127.0.0.1:47352",
@@ -69,7 +75,7 @@ import Foundation
             config_args += [
                 "--ClientPreferIPv6DirPort", "auto",
                 "--ClientPreferIPv6ORPort", "auto",
-                "--clientuseipv4", "",
+                "--clientuseipv4", "1",
             ]
         }
 
@@ -224,6 +230,9 @@ import Foundation
                 torConf.arguments = args
             }
 
+            #if DEBUG
+                dump(torConf.arguments)
+            #endif
             self.torThread = TorThread(configuration: torConf)
             needsReconfiguration = false
 
@@ -342,10 +351,10 @@ import Foundation
         }) //delay
 
         initRetry = DispatchWorkItem {
-
+            print("RETRY")
             self.torController.setConfForKey("DisableNetwork", withValue: "1", completion: { (_, _) in
             })
-            self.torReconnect()
+            //self.torReconnect()
             self.torController.setConfForKey("DisableNetwork", withValue: "0", completion: { (_, _) in
             })
 
