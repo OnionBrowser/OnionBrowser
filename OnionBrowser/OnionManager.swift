@@ -122,6 +122,7 @@ import Foundation
     private var torThread: TorThread?
 
     public var torHasConnected: Bool = false
+    private var initRetry: DispatchWorkItem?
     private var failGuard: DispatchWorkItem?
 
     private var bridgesId: Int?
@@ -168,9 +169,26 @@ import Foundation
         
         torController.setConfs(confs, completion: { (_, _) in
         })
+        torReconnect()
+    }
+
+    @objc func torReconnect() {
+        //torController.setConfForKey("DisableNetwork", withValue: "1", completion: { (_, _) in
+        //})
+
+        torController.sendCommand("RELOAD", arguments: nil, data: nil, observer: { (_, _, _) -> Bool in
+            return true
+        })
+        torController.sendCommand("NEWNYM", arguments: nil, data: nil, observer: { (_, _, _) -> Bool in
+            return true
+        })
+
+        //torController.setConfForKey("DisableNetwork", withValue: "0", completion: { (_, _) in
+        //})
     }
 
     @objc func startTor(delegate: OnionManagerDelegate?) {
+        cancelInitRetry()
         cancelFailGuard()
         torHasConnected = false
         
@@ -293,6 +311,7 @@ import Foundation
                         if established {
                             self.torHasConnected = true
                             self.torController.removeObserver(completeObs)
+                            self.cancelInitRetry()
                             self.cancelFailGuard()
                             print("ESTABLISHED")
                             delegate?.torConnFinished()
@@ -322,15 +341,27 @@ import Foundation
             }) // controller authenticate
         }) //delay
 
+        initRetry = DispatchWorkItem {
 
-        failGuard = DispatchWorkItem {
-            if !self.torHasConnected {
-                delegate?.torConnError()
+            self.torController.setConfForKey("DisableNetwork", withValue: "1", completion: { (_, _) in
+            })
+            self.torReconnect()
+            self.torController.setConfForKey("DisableNetwork", withValue: "0", completion: { (_, _) in
+            })
+
+            self.failGuard = DispatchWorkItem {
+                if !self.torHasConnected {
+                    delegate?.torConnError()
+                }
             }
+
+            // Show error to user, when, after 90 seconds (30 sec + one retry of 60 sec), Tor has still not started.
+            DispatchQueue.main.asyncAfter(deadline: .now() + 60, execute: self.failGuard!)
         }
 
-        // Show error to user, when, after 30 seconds, Tor has still not started.
-        DispatchQueue.main.asyncAfter(deadline: .now() + 90, execute: failGuard!)
+        // On first load: If Tor hasn't finished bootstrap in 30 seconds,
+        // HUP tor once in case we have partially bootstrapped but got stuck.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 30, execute: initRetry!)
 
     }// startTor
 
@@ -344,6 +375,13 @@ import Foundation
         return bridges
     }
 
+    /**
+        Cancel the connection retry
+     */
+    private func cancelInitRetry() {
+        initRetry?.cancel()
+        initRetry = nil
+    }
     /**
         Cancel the fail guard.
      */

@@ -4,7 +4,7 @@
 [Official Site][official] | [Support][help] | [Changelog][changelog] | [Donate][donate]  
 &copy; 2012-2018, Tigas Ventures, LLC ([Mike Tigas][miketigas] / [@mtigas](https://twitter.com/mtigas))
 
-*This is the Onion Browser <strong>2.X branch</strong>, based on [Endless][endless]. This branch is in active development and is probably completely broken from time to time. This version has not yet been released in the App Store.*
+*This is the Onion Browser <strong>2.X branch</strong>, based on [Endless][endless]. The old version of Onion Browser can be found [here][1.X].*
 
 **Onion Browser** is a free web browser for iPhone and iPad that encrypts and tunnels web traffic through the [Tor network][tor]. See the [official site][official] for more details and App Store links.
 
@@ -12,9 +12,9 @@ Please see the [LICENSE][license] file for usage and redistribution terms. As of
 
 ---
 
-* **OnionBrowser**: 2.0.2 (20180124.39) - See [official release history][releases] and [changelog][changelog].
+* **OnionBrowser**: 2.0.2 (20180125.40) - See [official release history][releases] and [changelog][changelog].
 * **[Endless][endless]** upstream: 1.6.1
-* **[Tor.framework][Tor.framework]**: 31.9.1
+* **[Tor.framework][Tor.framework]**: 31.9.2
   * **[Tor][tor]**: 0.3.1.9
   * **[libevent][libevent]**: 2.1.8
   * **[OpenSSL][openssl]**: 1.1.0g
