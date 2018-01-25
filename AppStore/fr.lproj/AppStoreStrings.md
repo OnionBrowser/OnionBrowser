@@ -15,9 +15,9 @@ Le navigateur Oignon 2 est une réécriture complète de l’appli. Il comprend
 * La prise en charge de HTTPS partout
 * La prise en charge de 1Password
 * L’intégration du blocage de publicité et de la protection des renseignements personnels
-* Le peaufinage des paramètres de sécurité et de confidentialité site par site (incluant la politique des témoins, l’agent utilisateur, ainsi que la politique JavaScript et de contenu actif).
+* Le peaufinage des paramètres de sécurité et de confidentialité site par site (incluant la politique des témoins, l’agent utilisateur, ainsi que la politique JavaScript et de contenu actif)
 * Tor 0.3.1.9
-* Les paramètres et les signets du navigateur Oignon 1 sont conservés, sauf la chaîne de masquage de l’agent utilisateur.
+* Les paramètres et les signets du navigateur Oignon 1 sont conservés, sauf la chaîne de masquage de l’agent utilisateur
 
 Et en plus, cette mise à jour est gratuite !
 

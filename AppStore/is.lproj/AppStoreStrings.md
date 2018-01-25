@@ -10,14 +10,14 @@ Velkomin(n) í Onion-vafrann 2!
 
 Onion-vafrinn 2 er algjör endurritun forritsins, sem innifelur ýmsa nýja eiginleika:
 
-* Vinalegri fyrstaskiptis-ræsing.
+* Vinalegri fyrstaskiptis-ræsing
 * Uppfært notandaviðmót, með vafur í flipum og endurbættum stillingaspjöldum
 * Stuðningur við HTTPS Everywhere
 * Stuðningur við 1Password innskráningu
 * Innbyggð útilokun auglýsinga og verndun á friðhelgi einkalífs
-* Fínstilling á öryggi/gagnaleynd fyrir hvert vefsvæði (þar með talið stefnur varðandi vefkökur, kennistreng og javascript/virkt efni).
+* Fínstilling á öryggi/gagnaleynd fyrir hvert vefsvæði (þar með talið stefnur varðandi vefkökur, kennistreng og JavaScript/virkt efni)
 * Tor 0.3.1.9
-* Stillingum og bókamerkjum úr from Onion-vafra 1 er haldið, að frátöldum dulbúnum kennistrengjum.
+* Stillingum og bókamerkjum úr from Onion-vafra 1 er haldið, að frátöldum dulbúnum kennistrengjum
 
 Best af öllu: þessi uppfærsla er frjáls og ókeypis!
 

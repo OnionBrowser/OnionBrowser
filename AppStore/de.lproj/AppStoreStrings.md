@@ -6,22 +6,22 @@ Sicheres, anonymes Web mit Tor
 
 ---
 
-Welcome to Onion Browser 2!
+Wilkommen beim Onion Browser 2!
 
-Onion Browser 2 is a total rewrite of the app which contains several new features:
+Onion Browser 2 ist eine komplette Neuentwicklung die einige neue Features beinhaltet:
 
-* A friendlier first-time launch experience.
-* An updated user interface, containing "tabbed browsing" and improved settings panels
-* HTTPS Everywhere support
-* 1Password support
-* Built-in ad-blocking and privacy protection
-* Tweak security/privacy settings on a per-site basis (including cookie policy, user agent, and javascript/active content policy).
+* Eine kleine Einführung beim allerersten Start
+* Ein neues Benutzerinterface mit Reitern, und verbessterten Einstellungsseiten
+* HTTPS Everywhere Unterstützung
+* 1Password Unterstützung
+* Eingebauter Werbeblocker und Privatsphäreschutz
+* Die Möglichkeit Sicherheits-/Privatsphäreeinstellungen pro Seite zu ändern (Cookie-Einstellungen, Browseridentifizierung (User Agent), und JavaScript/Einstellungen zu aktivem Inhalt)
 * Tor 0.3.1.9
-* Settings and bookmarks from Onion Browser 1 are retained, with the exception of the user-agent spoofing string.
+* Einstellungen und Lesezeichen aus Onion Browser 1 werden erhalten, mit Ausnahme der User Agent Einstellung
 
-Best of all: this update is free!
+Und das Beste: Dieses Update ist kostenlos!
 
-The Onion Browser 2 update was supported by the Guardian Project, with help from Benjamin Erhart and Carrie Winfrey. Onion Browser 2 is based on the open-source "Endless" Browser; special thanks to Joshua Stein for creating Endless and for granting permission to use it in Onion Browser. See the credits file in the app settings for more information.
+Das Onion Browser 2 Update wurde vom Guardian Project unterstützt, mit Hilfe von Benjamin Erhart und Carrie Winfrey. Onion Browser 2 basiert auf dem quelloffenen "Endless" Browser; besonderer Dank gilt Joshua Stein, den Entwickler von Endless, insbesondere dafür, dass er die Erlaubnis erteilt hat, Endless in Onion Browser zu verwenden. Siehe "Über" in den Einstellungen der App für weitere Informationen.
 
 ---
 
