@@ -10,14 +10,14 @@ Velkommen til Løk-nettleseren versjon 2.
 
 Løk-nettleseren 2 er en fullstendig omskriving av programmet som inneholder flere nye funksjoner:
 
-* Vennligere førstegangsoppstart.
+* Vennligere førstegangsoppstart
 * Oppdatert brukergrensesnitt, med "fanebabsert nettlesing" og forbedrede innstillingspaneler
 * HTTPS Everywhere-støtte
 * 1Password-støtte
 * Innebygd reklameblokkering og personvernsbeskyttelse
-* Juster sikkerhet og personvernsinnstillinger per side (inkludert kakepraksis, brukeragent, og JavaScript/praksis for aktivt innhold).
+* Juster sikkerhet og personvernsinnstillinger per side (inkludert kakepraksis, brukeragent, og JavaScript/praksis for aktivt innhold)
 * Tor 0.3.1.9
-* Innstillinger og bokmerker fra Løk-nettleser 1 beholdes, med unntak av brukeragentforfalskningsstrengen.
+* Innstillinger og bokmerker fra Løk-nettleser 1 beholdes, med unntak av brukeragentforfalskningsstrengen
 
 Oppdateringen er gratis.
 

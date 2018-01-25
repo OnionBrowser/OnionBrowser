@@ -17,7 +17,7 @@ Onion Browser 2 ist eine komplette Neuentwicklung die einige neue Features beinh
 * Eingebauter Werbeblocker und Privatsphäreschutz
 * Die Möglichkeit Sicherheits-/Privatsphäreeinstellungen pro Seite zu ändern (Cookie-Einstellungen, Browseridentifizierung (User Agent), und JavaScript/Einstellungen zu aktivem Inhalt)
 * Tor 0.3.1.9
-* Einstellungen und Lesezeichen aus Onion Browser 1 werden erhalten, mit Ausnahme der User Agent Einstellung.
+* Einstellungen und Lesezeichen aus Onion Browser 1 werden erhalten, mit Ausnahme der User Agent Einstellung
 
 Und das Beste: Dieses Update ist kostenlos!
 
