@@ -31,6 +31,7 @@
 	UITextField *urlField;
 	UIButton *lockIcon;
 	UIButton *brokenLockIcon;
+    UIColor *blueTint;
 	UIProgressView *progressBar;
 	UIView *tabToolbarHairline;
 	UIToolbar *tabToolbar;
@@ -86,10 +87,18 @@
 	
 	tabToolbarHairline = [[UIView alloc] init];
 	[toolbar addSubview:tabToolbarHairline];
+
+    // Fix issue #115:
+    // Generate default blue iOS tint color.
+    // We need to set this hard instead of relying on
+    // [appDelegate window].tintColor, since the accessibility feature "darken colors" actually
+    // makes the default tint color the exact same color as the background color, which effectitvely
+    // hides icons from the human eye.
+    blueTint = [UIColor colorWithRed:0 green:0.47843137254902 blue:1 alpha:1];
 	
 	progressBar = [[UIProgressView alloc] init];
 	[progressBar setTrackTintColor:[UIColor clearColor]];
-	[progressBar setTintColor:[appDelegate window].tintColor];
+	[progressBar setTintColor:blueTint];
 	[progressBar setProgress:0.0];
 	[toolbar addSubview:progressBar];
 	
@@ -134,7 +143,7 @@
 	tabsButton = [UIButton buttonWithType:UIButtonTypeCustom];
 	UIImage *tabsImage = [[UIImage imageNamed:@"tabs"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 	[tabsButton setImage:tabsImage forState:UIControlStateNormal];
-	[tabsButton setTintColor:[progressBar tintColor]];
+	[tabsButton setTintColor:blueTint];
 	[tabsButton addTarget:self action:@selector(showTabs:) forControlEvents:UIControlEventTouchUpInside];
 	[toolbar addSubview:tabsButton];
 	
@@ -142,13 +151,13 @@
 	[tabCount setText:@""];
 	[tabCount setTextAlignment:NSTextAlignmentCenter];
 	[tabCount setFont:[UIFont systemFontOfSize:11]];
-	[tabCount setTextColor:[progressBar tintColor]];
+	[tabCount setTextColor:blueTint];
 	[toolbar addSubview:tabCount];
 	
 	settingsButton = [UIButton buttonWithType:UIButtonTypeCustom];
 	UIImage *settingsImage = [[UIImage imageNamed:@"settings"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 	[settingsButton setImage:settingsImage forState:UIControlStateNormal];
-	[settingsButton setTintColor:[progressBar tintColor]];
+	[settingsButton setTintColor:blueTint];
 	[settingsButton addTarget:self action:@selector(showPopover:) forControlEvents:UIControlEventTouchUpInside];
 	[toolbar addSubview:settingsButton];
 	
@@ -403,11 +412,11 @@
 		[urlField setBackgroundColor:[UIColor whiteColor]];
 		[tabToolbarHairline setBackgroundColor:[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0]];
 
-		[tabAddButton setTintColor:[progressBar tintColor]];
-		[tabDoneButton setTintColor:[progressBar tintColor]];
-		[settingsButton setTintColor:[progressBar tintColor]];
-		[tabsButton setTintColor:[progressBar tintColor]];
-		[tabCount setTextColor:[progressBar tintColor]];
+		[tabAddButton setTintColor:blueTint];
+		[tabDoneButton setTintColor:blueTint];
+		[settingsButton setTintColor:blueTint];
+		[tabsButton setTintColor:blueTint];
+		[tabCount setTextColor:blueTint];
 		
 		[tabChooser setPageIndicatorTintColor:[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0]];
 		[tabChooser setCurrentPageIndicatorTintColor:[UIColor grayColor]];
@@ -767,7 +776,7 @@
 	
 	backButton.enabled = (self.curWebViewTab && self.curWebViewTab.canGoBack);
 	if (backButton.enabled) {
-		[backButton setTintColor:(self.darkInterface ? [UIColor lightTextColor] : [progressBar tintColor])];
+		[backButton setTintColor:(self.darkInterface ? [UIColor lightTextColor] : blueTint)];
 	}
 	else {
 		[backButton setTintColor:[UIColor grayColor]];
@@ -775,7 +784,7 @@
 
 	forwardButton.hidden = !(self.curWebViewTab && self.curWebViewTab.canGoForward);
 	if (forwardButton.enabled) {
-		[forwardButton setTintColor:(self.darkInterface ? [UIColor lightTextColor] : [progressBar tintColor])];
+		[forwardButton setTintColor:(self.darkInterface ? [UIColor lightTextColor] : blueTint)];
 	}
 	else {
 		[forwardButton setTintColor:[UIColor grayColor]];
