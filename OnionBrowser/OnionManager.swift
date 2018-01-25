@@ -50,7 +50,6 @@ import Foundation
             "--controlport", "127.0.0.1:39060",
             //"--log", "notice stdout",
             "--log", "notice file /dev/null",
-            "--clientuseipv4", "1",
             "--clientuseipv6", "1",
             "--ClientTransportPlugin", "obfs4 socks5 127.0.0.1:47351",
             "--ClientTransportPlugin", "meek_lite socks5 127.0.0.1:47352",
@@ -60,13 +59,17 @@ import Foundation
         // (Tor doesn't always guess this properly due to some internal IPv4 addresses being used,
         // so "auto" sometimes fails to bootstrap.)
         print("ipv6_status: \(Ipv6Tester.ipv6_status())")
-        if (Ipv6Tester.ipv6_status() == TOR_IPV6_CONN_ONLY) {
+        if (Ipv6Tester.ipv6_status() == OnionManager.TOR_IPV6_CONN_ONLY) {
             config_args += [
+                "--ClientPreferIPv6DirPort", "1",
                 "--ClientPreferIPv6ORPort", "1",
+                "--clientuseipv4", "0",
             ]
         } else {
             config_args += [
+                "--ClientPreferIPv6DirPort", "auto",
                 "--ClientPreferIPv6ORPort", "auto",
+                "--clientuseipv4", "",
             ]
         }
 
@@ -148,10 +151,32 @@ import Foundation
         self.bridgesId = bridgesId
         self.customBridges = customBridges
     }
+    
+    @objc func networkChange() {
+        print("ipv6_status: \(Ipv6Tester.ipv6_status())")
+        var confs:[Dictionary<String,String>] = []
+
+        if (Ipv6Tester.ipv6_status() == OnionManager.TOR_IPV6_CONN_ONLY) {
+            confs.append(["key":"ClientPreferIPv6DirPort", "value":"1"])
+            confs.append(["key":"ClientPreferIPv6ORPort", "value":"1"])
+            confs.append(["key":"clientuseipv4", "value":"0"])
+        } else {
+            confs.append(["key":"ClientPreferIPv6DirPort", "value":"auto"])
+            confs.append(["key":"ClientPreferIPv6ORPort", "value":"auto"])
+            confs.append(["key":"clientuseipv4", "value":"1"])
+        }
+        
+        torController.setConfs(confs, completion: { (_, _) in
+        })
+    }
 
     @objc func startTor(delegate: OnionManagerDelegate?) {
         cancelFailGuard()
         torHasConnected = false
+        
+        let reach:Reachability = Reachability.forInternetConnection()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.networkChange), name: NSNotification.Name.reachabilityChanged, object: nil)
+        reach.startNotifier()
 
         if self.torThread == nil {
             let torConf = OnionManager.torBaseConf
