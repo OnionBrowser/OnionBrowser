@@ -30,6 +30,7 @@ static NSMutableDictionary *dnsCache;
 
 /* iOS has its internal DNS cache, so this does not have to send out another request on the wire */
 + (NSArray *)addressesForHostname:(NSString *)host {
+    /* DISABLED BECAUSE IT CREATES A DNS LEAK!
 	if (!dnsCache) {
 		[[self class] clearCache];
 	}
@@ -58,7 +59,6 @@ static NSMutableDictionary *dnsCache;
 	char ipAddress[INET6_ADDRSTRLEN];
 	NSMutableArray *addresses = [NSMutableArray array];
     
-    /*
 	CFIndex numAddresses = CFArrayGetCount(addressesRef);
 	for (CFIndex currentIndex = 0; currentIndex < numAddresses; currentIndex++) {
 		struct sockaddr *address = (struct sockaddr *)CFDataGetBytePtr(CFArrayGetValueAtIndex(addressesRef, currentIndex));
@@ -77,9 +77,11 @@ static NSMutableDictionary *dnsCache;
 	CFRelease(hostRef);
 
 	[dnsCache setValue:@{ @"addresses" : addresses, @"time" : [NSDate date] } forKey:[host lowercaseString]];
-	*/
-    
+
 	return addresses;
+     */
+
+    return @[];
 }
 
 + (BOOL)isHostOnLocalNet:(NSString *)host
