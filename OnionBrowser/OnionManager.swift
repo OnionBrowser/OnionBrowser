@@ -94,6 +94,9 @@ import Foundation
         "obfs4 85.31.186.98:443 011F2599C0E9B27EE74B353155E244813763C3E5 cert=ayq0XzCwhpdysn5o0EyDUbmSOx3X/oTEbzDMvczHOdBJKlvIdHHLJGkZARtT4dcBFArPPg iat-mode=0",
         "obfs4 85.31.186.26:443 91A6354697E6B02A386312F68D82CF86824D3606 cert=PBwr+S8JTVZo6MPdHnkTwXJPILWADLqfMGoVvhZClMq/Urndyd42BwX9YFJHZnBB3H0XCw iat-mode=0"
     ]
+    private static let obfs4BridgesIPv6 = [
+        "obfs4 [2001:470:b381:bfff:216:3eff:fe23:d6c3]:443 CDF2E852BF539B82BD10E27E9115A31734E378C2 cert=qUVQ0srL1JI/vO6V6m/24anYXiJD3QP2HgzUKQtQ7GRqqUvs7P+tG43RtAqdhLOALP7DJQ iat-mode=1"
+    ]
     public static let meekAmazonBridges = [
         "meek_lite 0.0.2.0:2 B9E7141C594AF25699E0079C1F0146F409495296 url=https://d2cly7j4zqgua7.cloudfront.net/ front=a0.awsstatic.com"
     ]
@@ -203,7 +206,11 @@ import Foundation
                 args.append("1")
                 switch bridgesId! {
                 case USE_BRIDGES_OBFS4:
-                    args += bridgeLinesToArgs(OnionManager.obfs4Bridges)
+                    if (Ipv6Tester.ipv6_status() == OnionManager.TOR_IPV6_CONN_ONLY) {
+                        args += bridgeLinesToArgs(OnionManager.obfs4BridgesIPv6)
+                    } else {
+                        args += bridgeLinesToArgs(OnionManager.obfs4Bridges)
+                    }
                 case USE_BRIDGES_MEEKAMAZON:
                     args += bridgeLinesToArgs(OnionManager.meekAmazonBridges)
                 case USE_BRIDGES_MEEKAZURE:
@@ -266,7 +273,11 @@ import Foundation
 
                     switch bridgesId! {
                     case USE_BRIDGES_OBFS4:
-                        bridges = OnionManager.obfs4Bridges
+                        if (Ipv6Tester.ipv6_status() == OnionManager.TOR_IPV6_CONN_ONLY) {
+                            bridges = OnionManager.obfs4BridgesIPv6
+                        } else {
+                            bridges = OnionManager.obfs4Bridges
+                        }
                     case USE_BRIDGES_MEEKAMAZON:
                         bridges = OnionManager.meekAmazonBridges
                     case USE_BRIDGES_MEEKAZURE:
