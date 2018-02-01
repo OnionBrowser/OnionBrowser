@@ -61,24 +61,6 @@ import Foundation
             "--ClientTransportPlugin", "meek_lite socks5 127.0.0.1:47352",
         ]
 
-        // Use Ipv6Tester. If we _think_ we're IPv6-only, tell Tor to prefer IPv6 ports.
-        // (Tor doesn't always guess this properly due to some internal IPv4 addresses being used,
-        // so "auto" sometimes fails to bootstrap.)
-        print("ipv6_status: \(Ipv6Tester.ipv6_status())")
-        if (Ipv6Tester.ipv6_status() == OnionManager.TOR_IPV6_CONN_ONLY) {
-            config_args += [
-                "--ClientPreferIPv6DirPort", "1",
-                "--ClientPreferIPv6ORPort", "1",
-                "--clientuseipv4", "0",
-            ]
-        } else {
-            config_args += [
-                "--ClientPreferIPv6DirPort", "auto",
-                "--ClientPreferIPv6ORPort", "auto",
-                "--clientuseipv4", "1",
-            ]
-        }
-
         configuration.arguments = config_args
         return configuration
     }()
@@ -164,10 +146,17 @@ import Foundation
         var confs:[Dictionary<String,String>] = []
 
         if (Ipv6Tester.ipv6_status() == OnionManager.TOR_IPV6_CONN_ONLY) {
+            // we think we're on a ipv6-only DNS64/NAT64 network
             confs.append(["key":"ClientPreferIPv6DirPort", "value":"1"])
             confs.append(["key":"ClientPreferIPv6ORPort", "value":"1"])
-            confs.append(["key":"clientuseipv4", "value":"0"])
+            if (self.bridgesId != nil && self.bridgesId != USE_BRIDGES_NONE) {
+                // bridges on, leave ipv4 on
+                confs.append(["key":"clientuseipv4", "value":"1"])
+            } else {
+                confs.append(["key":"clientuseipv4", "value":"0"])
+            }
         } else {
+            // default mode
             confs.append(["key":"ClientPreferIPv6DirPort", "value":"auto"])
             confs.append(["key":"ClientPreferIPv6ORPort", "value":"auto"])
             confs.append(["key":"clientuseipv4", "value":"1"])
@@ -197,7 +186,7 @@ import Foundation
         cancelInitRetry()
         cancelFailGuard()
         torHasConnected = false
-        
+
         let reach:Reachability = Reachability.forInternetConnection()
         NotificationCenter.default.addObserver(self, selector: #selector(self.networkChange), name: NSNotification.Name.reachabilityChanged, object: nil)
         reach.startNotifier()
@@ -205,34 +194,56 @@ import Foundation
         if self.torThread == nil {
             let torConf = OnionManager.torBaseConf
 
+            var args = torConf.arguments!
+
+            // configure bridge lines, if necessar
+            print("use_bridges = \(String(describing: bridgesId))")
             if bridgesId != nil && bridgesId != USE_BRIDGES_NONE {
-                // Take default config, add the bridges, and turn on "usebridges 1"
-                var args = torConf.arguments!
                 args.append("--usebridges")
                 args.append("1")
-
-                print("use_bridges = \(String(describing: bridgesId))")
-
                 switch bridgesId! {
-                    case USE_BRIDGES_OBFS4:
-                        args += bridgeLinesToArgs(OnionManager.obfs4Bridges)
-                    case USE_BRIDGES_MEEKAMAZON:
-                        args += bridgeLinesToArgs(OnionManager.meekAmazonBridges)
-                    case USE_BRIDGES_MEEKAZURE:
-                        args += bridgeLinesToArgs(OnionManager.meekAzureBridges)
-                    default:
-                        if customBridges != nil {
-                            args += bridgeLinesToArgs(customBridges!)
-                        }
+                case USE_BRIDGES_OBFS4:
+                    args += bridgeLinesToArgs(OnionManager.obfs4Bridges)
+                case USE_BRIDGES_MEEKAMAZON:
+                    args += bridgeLinesToArgs(OnionManager.meekAmazonBridges)
+                case USE_BRIDGES_MEEKAZURE:
+                    args += bridgeLinesToArgs(OnionManager.meekAzureBridges)
+                default:
+                    if customBridges != nil {
+                        args += bridgeLinesToArgs(customBridges!)
+                    }
                 }
+            }
 
-                print("\n\n\(String(describing: args))\n\n");
-                torConf.arguments = args
+            // configure ipv4/ipv6
+            // Use Ipv6Tester. If we _think_ we're IPv6-only, tell Tor to prefer IPv6 ports.
+            // (Tor doesn't always guess this properly due to some internal IPv4 addresses being used,
+            // so "auto" sometimes fails to bootstrap.)
+            print("ipv6_status: \(Ipv6Tester.ipv6_status())")
+            if (Ipv6Tester.ipv6_status() == OnionManager.TOR_IPV6_CONN_ONLY) {
+                args += [
+                    "--ClientPreferIPv6DirPort", "1",
+                    "--ClientPreferIPv6ORPort", "1",
+                ]
+                if bridgesId != nil && bridgesId != USE_BRIDGES_NONE {
+                    // ipv6-only + bridges, leave ipv4 on
+                    args += ["--clientuseipv4", "1"]
+                } else {
+                    // ipv6-only, bridges are off
+                    args += ["--clientuseipv4", "0"]
+                }
+            } else {
+                args += [
+                    "--ClientPreferIPv6DirPort", "auto",
+                    "--ClientPreferIPv6ORPort", "auto",
+                    "--clientuseipv4", "1",
+                ]
             }
 
             #if DEBUG
-                dump(torConf.arguments)
+                dump("\n\n\(String(describing: args))\n\n")
             #endif
+            torConf.arguments = args
             self.torThread = TorThread(configuration: torConf)
             needsReconfiguration = false
 
