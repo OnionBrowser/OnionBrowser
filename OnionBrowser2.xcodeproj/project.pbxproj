@@ -230,6 +230,13 @@
 		A004360C1E81856F0067652D /* Podfile.lock */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile.lock; sourceTree = "<group>"; };
 		A00436121E8187800067652D /* convert_rules.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = convert_rules.rb; sourceTree = "<group>"; };
 		A00436131E8187800067652D /* urlblocker.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = urlblocker.json; path = Endless/Resources/urlblocker.json; sourceTree = "<group>"; };
+		A0079AD42019F56600511268 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "zh-Hans"; path = "zh-Hans.lproj/AppStoreStrings.md"; sourceTree = "<group>"; };
+		A0079AD52019F58600511268 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "zh-Hant"; path = "zh-Hant.lproj/AppStoreStrings.md"; sourceTree = "<group>"; };
+		A0079AD62019F58600511268 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "Endless/zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		A0079AD72019F58600511268 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "Endless/zh-Hant.lproj/OnePasswordExtension.strings"; sourceTree = "<group>"; };
+		A0079AD82019F8E000511268 /* fr */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = fr; path = fr.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
+		A0079AD92019F8E700511268 /* fa */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = fa; path = fa.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
+		A0079ADA2019F8EB00511268 /* is */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = is; path = is.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
 		A010FA171E7986DE00E04222 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		A010FA191E798C0400E04222 /* BUILD.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = BUILD.md; sourceTree = "<group>"; };
 		A01F64F82003AE280087306B /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
@@ -897,7 +904,7 @@
 				TargetAttributes = {
 					01801E911A32CA2A002B4718 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = 68QUP6KP2C;
+                        DevelopmentTeam = 68QUP6KP2C;
 						LastSwiftMigration = 0920;
 						SystemCapabilities = {
 							com.apple.DataProtection = {
@@ -926,6 +933,7 @@
 				fa,
 				is,
 				"zh-Hans",
+				"zh-Hant",
 			);
 			mainGroup = 01801E891A32CA2A002B4718;
 			productRefGroup = 01801E931A32CA2A002B4718 /* Products */;
@@ -1213,6 +1221,7 @@
 				8A3F82EF201903D60088F205 /* fa */,
 				8A3F82F0201903E10088F205 /* is */,
 				8A3F82F1201903E90088F205 /* zh-Hans */,
+				A0079AD62019F58600511268 /* zh-Hant */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1229,6 +1238,7 @@
 				8A3F82F2201904100088F205 /* fa */,
 				8A3F82F3201904170088F205 /* is */,
 				8A3F82F42019041E0088F205 /* zh-Hans */,
+				A0079AD72019F58600511268 /* zh-Hant */,
 			);
 			name = OnePasswordExtension.strings;
 			sourceTree = "<group>";
@@ -1241,6 +1251,11 @@
 				A06441F7200CB08300D6C50C /* es */,
 				A06441F8200CB09300D6C50C /* de */,
 				A0BFBE022010F48100BE2980 /* ga */,
+				A0079AD42019F56600511268 /* zh-Hans */,
+				A0079AD52019F58600511268 /* zh-Hant */,
+				A0079AD82019F8E000511268 /* fr */,
+				A0079AD92019F8E700511268 /* fa */,
+				A0079ADA2019F8EB00511268 /* is */,
 			);
 			name = AppStoreStrings.md;
 			sourceTree = "<group>";
@@ -1356,7 +1371,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 68QUP6KP2C;
+                DEVELOPMENT_TEAM = 68QUP6KP2C;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1367,7 +1382,7 @@
 				INFOPLIST_FILE = Endless/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.miketigas.OnionBrowser;
+                PRODUCT_BUNDLE_IDENTIFIER = com.miketigas.OnionBrowser;
 				PRODUCT_NAME = OnionBrowser;
 				PROVISIONING_PROFILE = "";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1387,7 +1402,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 68QUP6KP2C;
+                DEVELOPMENT_TEAM = 68QUP6KP2C;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1398,7 +1413,7 @@
 				INFOPLIST_FILE = Endless/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.miketigas.OnionBrowser;
+                PRODUCT_BUNDLE_IDENTIFIER = com.miketigas.OnionBrowser;
 				PRODUCT_NAME = OnionBrowser;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "OnionBrowser/OnionBrowser2-Bridging-Header.h";
