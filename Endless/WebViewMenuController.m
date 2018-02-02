@@ -16,6 +16,7 @@
 #import "WebViewMenuController.h"
 #import "OBSettingsConstants.h"
 #import "OnionBrowser-Swift.h"
+#import "Ipv6Tester.h"
 
 #import "OnePasswordExtension.h"
 #import "TUSafariActivity.h"
@@ -247,12 +248,20 @@ NSString * const LABEL = @"L";
 
 - (void)bridgeSettings
 {
+    NSDictionary<NSNumber *,NSString *> *builtInBridges;
+    
+    if ([Ipv6Tester ipv6_status] == TOR_IPV6_CONN_ONLY) {
+        builtInBridges = @{[NSNumber numberWithInteger:USE_BRIDGES_OBFS4]: @"obfs4",
+                           [NSNumber numberWithInteger:USE_BRIDGES_MEEKAMAZON]: @"meek-amazon",
+                           [NSNumber numberWithInteger:USE_BRIDGES_MEEKAZURE]: @"meek-azure"};
+    } else {
+        builtInBridges = @{[NSNumber numberWithInteger:USE_BRIDGES_OBFS4]: @"obfs4",
+                           [NSNumber numberWithInteger:USE_BRIDGES_MEEKAZURE]: @"meek-azure"};
+    }
     UINavigationController *bridgeVC = [BridgeSelectViewController
                      initWithCurrentId:[NSUserDefaults.standardUserDefaults integerForKey:USE_BRIDGES]
                      noBridgeId:[NSNumber numberWithInteger:USE_BRIDGES_NONE]
-                     providedBridges:@{[NSNumber numberWithInteger:USE_BRIDGES_OBFS4]: @"obfs4",
-                                       [NSNumber numberWithInteger:USE_BRIDGES_MEEKAMAZON]: @"meek-amazon",
-                                       [NSNumber numberWithInteger:USE_BRIDGES_MEEKAZURE]: @"meek-azure"}
+                     providedBridges:builtInBridges
                      customBridgeId:[NSNumber numberWithInteger:USE_BRIDGES_CUSTOM]
                      customBridges:[NSUserDefaults.standardUserDefaults stringArrayForKey:CUSTOM_BRIDGES]];
 

@@ -8,6 +8,7 @@
 #import "OBRootViewController.h"
 #import "AppDelegate.h"
 #import "OBSettingsConstants.h"
+#import "Ipv6Tester.h"
 
 #ifdef __OBJC__
 #import "OnionBrowser-Swift.h"
@@ -23,12 +24,20 @@
         self.introVC = [[IntroViewController alloc] init];
         self.introVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 
+        NSDictionary<NSNumber *,NSString *> *builtInBridges;
+        if ([Ipv6Tester ipv6_status] == TOR_IPV6_CONN_ONLY) {
+            builtInBridges = @{[NSNumber numberWithInteger:USE_BRIDGES_OBFS4]: @"obfs4",
+                               [NSNumber numberWithInteger:USE_BRIDGES_MEEKAMAZON]: @"meek-amazon",
+                               [NSNumber numberWithInteger:USE_BRIDGES_MEEKAZURE]: @"meek-azure"};
+        } else {
+            builtInBridges = @{[NSNumber numberWithInteger:USE_BRIDGES_OBFS4]: @"obfs4",
+                               [NSNumber numberWithInteger:USE_BRIDGES_MEEKAZURE]: @"meek-azure"};
+        }
+
         self.bridgeVC = [BridgeSelectViewController
                          initWithCurrentId:[NSUserDefaults.standardUserDefaults integerForKey:USE_BRIDGES]
                          noBridgeId:[NSNumber numberWithInteger:USE_BRIDGES_NONE]
-                         providedBridges:@{[NSNumber numberWithInteger:USE_BRIDGES_OBFS4]: @"obfs4",
-                                           [NSNumber numberWithInteger:USE_BRIDGES_MEEKAMAZON]: @"meek-amazon",
-                                           [NSNumber numberWithInteger:USE_BRIDGES_MEEKAZURE]: @"meek-azure"}
+                         providedBridges:builtInBridges
                          customBridgeId:[NSNumber numberWithInteger:USE_BRIDGES_CUSTOM]
                          customBridges:[NSUserDefaults.standardUserDefaults stringArrayForKey:CUSTOM_BRIDGES]];
         
