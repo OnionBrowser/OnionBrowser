@@ -2,7 +2,7 @@
 
 使用 Tor 匿名安全地浏览互联网
 
-`浏览器,tor,tor 浏览器,洋葱浏览器,匿名,隐私,私人浏览器,orbot,orfox,洋葱`
+`浏览器,tor,tor 浏览器,洋葱浏览器,匿名,隐私,隐私浏览器,orbot,orfox,洋葱`
 
 ---
 
@@ -10,49 +10,50 @@
 
 洋葱浏览器 2 是原版本的一次全新重写，提供一些全新的功能：
 
-* 更加友好的启动体验
+* 首次启动体验更友好。
 * 更新用户界面：支持多页面浏览 (tabbed browsing)，改善设置面板
 * 支持 HTTPS Everywhere
 * 支持 1Password
 * 内置广告拦截和隐私保护
-* 根据每个网战调整不同的安全/隐私设置(包括cookie设置，代理和JavaScript/启用设置)
+* Tweak security/privacy settings on a per-site basis (including cookie policy, user agent, and JavaScript/active content policy).
 * Tor 0.3.1.9
-* 保留洋葱浏览器 1 版本中的设置和书签功能，但用户代理伪装字符串除外
+* Settings and bookmarks from Onion Browser 1 are retained.
 
 而且，所有的更新都是免费的！
 
-洋葱浏览器2 更新来自 守护者项目 的支持，其中特别感谢 Benjamin Erhart 和 Carrie Winfrey 的帮助。洋葱浏览器2 的开发是基于开源的 无尽浏览器，特别感谢 Joshua Stein 能够创造 无尽 并授予 洋葱浏览器 使用它的权限。请参阅应用设置下的鸣谢文件以了解更多。
+洋葱浏览器 2 这次更新得到 Guardian Project 的支持，特别感谢 Benjamin Erhart 和 Carrie Winfrey 的帮助。洋葱浏览器 2 基于开源的 Endless 浏览器，特别感谢 Endless 的开发者 Joshua Stein 及其对洋葱浏览器的授权。更多信息，请查看应用设置下的致谢文件。
+
+2.0.2: Security update: fix DNS leak. Fixes for IPv6 connectivity affecting users of some mobile carriers. Fixes for some crashes. Added localizations for several languages.
+
+2.0.1: Minor update to fix App Store rating link.
 
 ---
 
-洋葱浏览器是为 iOS系统 量身定做的开源 Tor浏览器。它可以帮助您绕过审查，以更加安全隐私的方式访问互联网。
+Onion Browser is the original free and open-source Tor-powered web browser for iOS. Onion Browser helps you access the internet with more safety and privacy, and no extra cost to you.
 
-您可以从 Tor项目 官方博客了解更多关于 洋葱浏览器 的信息：
-https://blog.torproject.org/node/1255
+“The best Tor-related offering on iOS right now is Onion Browser” - The Daily Dot, October 14, 2015.
 
-”现在 IOS 上最好的 Tor 有关应用程序是 洋葱浏览器。“ - 《The Daily Dot》，2015年10月14日.
-
-洋葱浏览器 被《The New York Times》、《 The Guardian》、《Salon》、《TechCrunch》、《Gizmodo》、《 Boing Boing》、《Lifehacker》、《 Macworld》、《The Daily Dot》等其他知名杂志推荐。
+媒体报导：纽约时报、卫报、Salon、TechCrunch、Gizmodo、Boing Boing、Lifehacker、Macworld、Daily Dot 等等。
 
 功能：
-• 通过 Tor 浏览互联网：
-- 您的真实IP地址将可以对网页隐藏。
-- 您的浏览将不会被因特网供应商和不安全的无线网络追踪。
-- 访问只对 Tor 可访问的.onion网站。
+• 通过 Tor 网络浏览互联网：
+- Protect your privacy from website tracking.
+- Secure your traffic from insecure wireless networks and ISPs.
+- Support for HTTPS Everywhere, an automatic switch to HTTPS enabled websites.
+- 访问只对 Tor 可访问的 .onion 网站。
 
-• 通过“obfs4”和“meek”进行流量遮蔽，以此抵御网络过滤器和审查。
-
-• 阻挡网络跟踪：一键获得新IP地址并清除所有cookie、历史记录和缓存。
+• Fight online tracking: block scripts and automatically clear cookies and tabs, based on your preferences.
 
 • 还有能更多功能有效保护您的隐私！
 
-免责声明：
-由于您的流量数据需要被 Tor 网络加密和中继，相比于通过普通浏览器和VPN，Tor上网页浏览会慢很多。
+DISCLAIMERS:
+- Web browsing is much slower than through a normal web browser or a VPN because your traffic is encrypted and relayed through the Tor network.
 
-多媒体文件经常能绕过 Tor 危害您的隐私。洋葱浏览器不支持视频并默认屏蔽视频文件及其传输。
+- 多媒体文件经常能绕过 Tor 网络并泄露您的隐私信息。洋葱浏览器不支持视频并默认屏蔽视频文件及其传输。
 
-对有效封锁 Tor 的国家地区及网络供应商，洋葱浏览器 可能无法正常使用。如果应用程序无法连接，请尝试网桥或访问“帮助/支持”页面以了解您可以执行的操作。我们没有做出任何可以成功使用的保证。
+- Onion Browser might not work on networks with advanced network restrictions. If the app does not connect, try using bridges (or a different type of bridge), force-quit, and then restart the app.
 
-您在使用 洋葱浏览器 时需要承担相应风险。注意敏感数据并不总会在移动设备上。
+- 谨慎使用，风险自负。请注意，敏感数据不仅仅来自移动设备。
 
-洋葱浏览器 是免费开源的软件。您可以在onionbrowser.com上了解更多关于洋葱浏览器及如何支持 IOS版本 Tor 的发展。
+** Onion Browser is free and open-source software. You can read more about Onion Browser and how to support development of Tor on iOS by visiting onionbrowser.com **
+
