@@ -28,15 +28,29 @@ static AppDelegate *appDelegate;
 static BOOL sendDNT = true;
 static NSMutableArray *tmpAllowed;
 
-static NSString *_javascriptToInject;
-+ (NSString *)javascriptToInject
+/* These injections get prepended as a <script> tag on HTML mimetypes, on the top-level document only. */
+static NSString *_htmlJavascriptToInject;
++ (NSString *)htmlJavascriptToInject
 {
-	if (!_javascriptToInject) {
+	if (!_htmlJavascriptToInject) {
 		NSString *path = [[NSBundle mainBundle] pathForResource:@"injected" ofType:@"js"];
-		_javascriptToInject = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+		_htmlJavascriptToInject = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
 	}
 	
-	return _javascriptToInject;
+	return _htmlJavascriptToInject;
+}
+
+/* These injections get prepended on any JS mimetype or as a <script> tag on HTML mimetypes. */
+static NSString *_scriptJavascriptToInject;
++ (NSString *)scriptJavascriptToInject
+{
+    if (!_scriptJavascriptToInject) {
+        // If we want to add more globally-applied blocking via injected JS scripts, add them here.
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"block_webrtc" ofType:@"js"];
+        _scriptJavascriptToInject = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    }
+    
+    return _scriptJavascriptToInject;
 }
 
 + (void)setSendDNT:(BOOL)val
@@ -406,8 +420,11 @@ static NSString *_javascriptToInject;
 
 	contentType = CONTENT_TYPE_OTHER;
 	NSString *ctype = [[self caseInsensitiveHeader:@"content-type" inResponse:response] lowercaseString];
-	if (ctype != nil && ([ctype hasPrefix:@"text/html"] || [ctype hasPrefix:@"application/html"] || [ctype hasPrefix:@"application/xhtml+xml"]))
+    if (ctype != nil && ([ctype hasPrefix:@"text/html"] || [ctype hasPrefix:@"application/html"] || [ctype hasPrefix:@"application/xhtml+xml"])) {
 		contentType = CONTENT_TYPE_HTML;
+    } else if (ctype != nil && ([ctype hasPrefix:@"text/javascript"] || [ctype hasPrefix:@"application/javascript"] || [ctype hasPrefix:@"text/x-javascript"] || [ctype hasPrefix:@"application/x-javascript"])) {
+        contentType = CONTENT_TYPE_JS;
+    }
 	
 	/* rewrite or inject Content-Security-Policy (and X-Webkit-CSP just in case) headers */
 	NSString *CSPheader = nil;
@@ -568,16 +585,30 @@ static NSString *_javascriptToInject;
 	
 	if (newData != nil) {
 		if (firstChunk) {
-			/* we only need to do injection for top-level docs */
+            NSMutableData *tData = [[NSMutableData alloc] init];
 			if (self.isOrigin) {
+                // htmlJavascriptToInject only needs to happen on top-level document
 				NSMutableData *tData = [[NSMutableData alloc] init];
-				if (contentType == CONTENT_TYPE_HTML)
+                if (contentType == CONTENT_TYPE_HTML) {
 					/* prepend a doctype to force into standards mode and throw in any javascript overrides */
-					[tData appendData:[[NSString stringWithFormat:@"<!DOCTYPE html><script type=\"text/javascript\" nonce=\"%@\">%@</script>", [self cspNonce], [[self class] javascriptToInject]] dataUsingEncoding:NSUTF8StringEncoding]];
-				
-				[tData appendData:newData];
-				newData = tData;
-			}
+					[tData appendData:[[NSString stringWithFormat:@"<!DOCTYPE html>"] dataUsingEncoding:NSUTF8StringEncoding]];
+                    [tData appendData:[[NSString stringWithFormat:@"<script type=\"text/javascript\">%@</script>", [[self class] scriptJavascriptToInject]] dataUsingEncoding:NSUTF8StringEncoding]];
+                    [tData appendData:[[NSString stringWithFormat:@"<script type=\"text/javascript\" nonce=\"%@\">%@</script>", [self cspNonce], [[self class] htmlJavascriptToInject]] dataUsingEncoding:NSUTF8StringEncoding]];
+                } else if (contentType == CONTENT_TYPE_JS) {
+                    [tData appendData:[[[self class] scriptJavascriptToInject] dataUsingEncoding:NSUTF8StringEncoding]];
+                }
+            } else {
+                // However, scriptJavascriptToInject should be prepended on any child document or included JS file
+                if (contentType == CONTENT_TYPE_HTML) {
+                    /* prepend a doctype to force into standards mode and throw in any javascript overrides */
+                    [tData appendData:[[NSString stringWithFormat:@"<!DOCTYPE html>"] dataUsingEncoding:NSUTF8StringEncoding]];
+                    [tData appendData:[[NSString stringWithFormat:@"<script type=\"text/javascript\">%@</script>", [[self class] scriptJavascriptToInject]] dataUsingEncoding:NSUTF8StringEncoding]];
+                } else if (contentType == CONTENT_TYPE_JS) {
+                    [tData appendData:[[[self class] scriptJavascriptToInject] dataUsingEncoding:NSUTF8StringEncoding]];
+                }
+            } 
+            [tData appendData:newData];
+            newData = tData;
 
 			firstChunk = NO;
 		}

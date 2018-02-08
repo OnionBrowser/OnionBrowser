@@ -74,6 +74,7 @@
 		8AD128401ED61822005C43E4 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD1283F1ED61822005C43E4 /* Reachability.m */; };
 		8AD128441ED6314A005C43E4 /* OBSettingsConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD128431ED6314A005C43E4 /* OBSettingsConstants.m */; };
 		8AD5FFBA1EB3DFE30066E7E3 /* ObfsThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD5FFB91EB3DFE30066E7E3 /* ObfsThread.m */; };
+		8AF16095202CD6D600AC0BCE /* block_webrtc.js in Resources */ = {isa = PBXBuildFile; fileRef = 8AF16094202CD6D600AC0BCE /* block_webrtc.js */; };
 		A045E5E51EDC5C1700BC8A92 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A045E5E11EDC5C1700BC8A92 /* Localizable.strings */; };
 		A045E5E61EDC5C1700BC8A92 /* OnePasswordExtension.strings in Resources */ = {isa = PBXBuildFile; fileRef = A045E5E31EDC5C1700BC8A92 /* OnePasswordExtension.strings */; };
 		A0C377061F4730320039198E /* Settings.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = A0C377051F4730320039198E /* Settings.xcdatamodel */; };
@@ -224,6 +225,7 @@
 		8AD128431ED6314A005C43E4 /* OBSettingsConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBSettingsConstants.m; sourceTree = "<group>"; };
 		8AD5FFB81EB3DFE30066E7E3 /* ObfsThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ObfsThread.h; path = OnionBrowser/ObfsThread.h; sourceTree = "<group>"; };
 		8AD5FFB91EB3DFE30066E7E3 /* ObfsThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ObfsThread.m; path = OnionBrowser/ObfsThread.m; sourceTree = "<group>"; };
+		8AF16094202CD6D600AC0BCE /* block_webrtc.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = block_webrtc.js; path = OnionBrowser/block_webrtc.js; sourceTree = "<group>"; };
 		A00436091E81856F0067652D /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		A004360A1E81856F0067652D /* Cartfile.resolved */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile.resolved; sourceTree = "<group>"; };
 		A004360B1E81856F0067652D /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -477,6 +479,7 @@
 				01801EA51A32CA2A002B4718 /* Images.xcassets */,
 				01801EC21A3360F8002B4718 /* InAppSettings.bundle */,
 				01D7412B1A45F8EB007B7033 /* injected.js */,
+				8AF16094202CD6D600AC0BCE /* block_webrtc.js */,
 				01FC0E561B38FB6B00955D9A /* Launch Screen.xib */,
 				0135F4751A3D2931005A8F16 /* SearchEngines.plist */,
 				69CBCD4E1E93451C009D5352 /* urlblocker.json */,
@@ -962,6 +965,7 @@
 				01801EA61A32CA2A002B4718 /* Images.xcassets in Resources */,
 				01F8794C1A4124FE00A63654 /* credits.html in Resources */,
 				A045E5E51EDC5C1700BC8A92 /* Localizable.strings in Resources */,
+				8AF16095202CD6D600AC0BCE /* block_webrtc.js in Resources */,
 				016B2FCB1A53466D002D2730 /* hsts_preload.plist in Resources */,
 				691286EA1EABEE6900CEC414 /* LaunchScreen.xib in Resources */,
 				A045E5E61EDC5C1700BC8A92 /* OnePasswordExtension.strings in Resources */,
