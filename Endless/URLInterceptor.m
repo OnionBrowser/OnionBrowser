@@ -41,16 +41,16 @@ static NSString *_htmlJavascriptToInject;
 }
 
 /* These injections get prepended on any JS mimetype or as a <script> tag on HTML mimetypes. */
-static NSString *_scriptJavascriptToInject;
-+ (NSString *)scriptJavascriptToInject
+static NSString *_webrtcJavascriptToInject;
++ (NSString *)webrtcJavascriptToInject
 {
-    if (!_scriptJavascriptToInject) {
+    if (!_webrtcJavascriptToInject) {
         // If we want to add more globally-applied blocking via injected JS scripts, add them here.
         NSString *path = [[NSBundle mainBundle] pathForResource:@"block_webrtc" ofType:@"js"];
-        _scriptJavascriptToInject = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+        _webrtcJavascriptToInject = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     }
     
-    return _scriptJavascriptToInject;
+    return _webrtcJavascriptToInject;
 }
 
 + (void)setSendDNT:(BOOL)val
@@ -585,6 +585,7 @@ static NSString *_scriptJavascriptToInject;
 	
 	if (newData != nil) {
 		if (firstChunk) {
+            NSString *CSPmode = [self.originHostSettings setting:HOST_SETTINGS_KEY_CSP];
             NSMutableData *tData = [[NSMutableData alloc] init];
 			if (self.isOrigin) {
                 // htmlJavascriptToInject only needs to happen on top-level document
@@ -592,19 +593,27 @@ static NSString *_scriptJavascriptToInject;
                 if (contentType == CONTENT_TYPE_HTML) {
 					/* prepend a doctype to force into standards mode and throw in any javascript overrides */
 					[tData appendData:[[NSString stringWithFormat:@"<!DOCTYPE html>"] dataUsingEncoding:NSUTF8StringEncoding]];
-                    [tData appendData:[[NSString stringWithFormat:@"<script type=\"text/javascript\">%@</script>", [[self class] scriptJavascriptToInject]] dataUsingEncoding:NSUTF8StringEncoding]];
+                    if ([CSPmode isEqualToString:HOST_SETTINGS_CSP_STRICT] || [CSPmode isEqualToString:HOST_SETTINGS_CSP_BLOCK_CONNECT]) {
+                        [tData appendData:[[NSString stringWithFormat:@"<script type=\"text/javascript\">%@</script>", [[self class] webrtcJavascriptToInject]] dataUsingEncoding:NSUTF8StringEncoding]];
+                    }
                     [tData appendData:[[NSString stringWithFormat:@"<script type=\"text/javascript\" nonce=\"%@\">%@</script>", [self cspNonce], [[self class] htmlJavascriptToInject]] dataUsingEncoding:NSUTF8StringEncoding]];
                 } else if (contentType == CONTENT_TYPE_JS) {
-                    [tData appendData:[[[self class] scriptJavascriptToInject] dataUsingEncoding:NSUTF8StringEncoding]];
+                    if ([CSPmode isEqualToString:HOST_SETTINGS_CSP_STRICT] || [CSPmode isEqualToString:HOST_SETTINGS_CSP_BLOCK_CONNECT]) {
+                        [tData appendData:[[[self class] webrtcJavascriptToInject] dataUsingEncoding:NSUTF8StringEncoding]];
+                    }
                 }
             } else {
                 // However, scriptJavascriptToInject should be prepended on any child document or included JS file
                 if (contentType == CONTENT_TYPE_HTML) {
                     /* prepend a doctype to force into standards mode and throw in any javascript overrides */
                     [tData appendData:[[NSString stringWithFormat:@"<!DOCTYPE html>"] dataUsingEncoding:NSUTF8StringEncoding]];
-                    [tData appendData:[[NSString stringWithFormat:@"<script type=\"text/javascript\">%@</script>", [[self class] scriptJavascriptToInject]] dataUsingEncoding:NSUTF8StringEncoding]];
+                    if ([CSPmode isEqualToString:HOST_SETTINGS_CSP_STRICT] || [CSPmode isEqualToString:HOST_SETTINGS_CSP_BLOCK_CONNECT]) {
+                        [tData appendData:[[NSString stringWithFormat:@"<script type=\"text/javascript\">%@</script>", [[self class] webrtcJavascriptToInject]] dataUsingEncoding:NSUTF8StringEncoding]];
+                    }
                 } else if (contentType == CONTENT_TYPE_JS) {
-                    [tData appendData:[[[self class] scriptJavascriptToInject] dataUsingEncoding:NSUTF8StringEncoding]];
+                    if ([CSPmode isEqualToString:HOST_SETTINGS_CSP_STRICT] || [CSPmode isEqualToString:HOST_SETTINGS_CSP_BLOCK_CONNECT]) {
+                        [tData appendData:[[[self class] webrtcJavascriptToInject] dataUsingEncoding:NSUTF8StringEncoding]];
+                    }
                 }
             } 
             [tData appendData:newData];

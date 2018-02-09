@@ -37,7 +37,7 @@
 @property (strong, nonatomic) NSString *cspNonce;
 
 + (NSString *)htmlJavascriptToInject;
-+ (NSString *)scriptJavascriptToInject;
++ (NSString *)webrtcJavascriptToInject;
 + (void)setSendDNT:(BOOL)val;
 + (void)temporarilyAllow:(NSURL *)url;
 + (NSString *)prependDirectivesIfExisting:(NSDictionary *)directives inCSPHeader:(NSString *)header;
