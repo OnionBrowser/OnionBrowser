@@ -431,7 +431,7 @@ static NSString *_webrtcJavascriptToInject;
 	NSString *CSPmode = [self.originHostSettings setting:HOST_SETTINGS_KEY_CSP];
 
 	if ([CSPmode isEqualToString:HOST_SETTINGS_CSP_STRICT])
-		CSPheader = @"connect-src 'none'; default-src 'none'; font-src 'none'; media-src 'none'; object-src 'none'; sandbox allow-forms allow-top-navigation; script-src 'none'; style-src 'unsafe-inline' *; report-uri;";
+		CSPheader = @"connect-src 'none'; default-src 'none'; font-src 'none'; media-src 'none'; object-src 'none'; sandbox allow-forms allow-top-navigation; script-src 'none'; style-src 'unsafe-inline' *; img-src 'unsafe-inline' *; report-uri;";
 	else if ([CSPmode isEqualToString:HOST_SETTINGS_CSP_BLOCK_CONNECT])
 		CSPheader = @"connect-src 'none'; media-src 'none'; object-src 'none'; report-uri;";
 	
