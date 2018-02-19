@@ -1,8 +1,8 @@
 ## Onion Browser
 
 [![Build Status](https://travis-ci.org/mtigas/OnionBrowser.svg?branch=2.X)](https://travis-ci.org/mtigas/OnionBrowser)  
-[Official Site][official] | [Support][help] | [Changelog][changelog] | [Donate][donate]  
-&copy; 2012-2018, Tigas Ventures, LLC ([Mike Tigas][miketigas] / [@mtigas](https://twitter.com/mtigas))
+[Official Site][official] | [Support][help] | [Release History][releases] | [Donate][donate]  
+&copy; 2012-2018, Tigas Ventures, LLC ([Mike Tigas][miketigas])
 
 *This is the Onion Browser <strong>2.X branch</strong>, based on [Endless][endless]. The old version of Onion Browser can be found [here][1.X].*
 
