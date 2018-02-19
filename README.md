@@ -20,11 +20,11 @@ Please see the [LICENSE][license] file for usage and redistribution terms. As of
   * **[OpenSSL][openssl]**: 1.1.0g
   * **[liblzma][liblzma]**: 5.2.3
 
-[official]: https://mike.tig.as/onionbrowser/
-[help]: https://mike.tig.as/onionbrowser/help/
+[official]: https://onionbrowser.com/
+[help]: https://github.com/mtigas/OnionBrowser/wiki/Help
 [releases]: https://github.com/mtigas/OnionBrowser/releases
 [changelog]: https://raw.github.com/mtigas/OnionBrowser/2.X/CHANGES.txt
-[donate]: https://mike.tig.as/onionbrowser/#support-project
+[donate]: https://onionbrowser.com/#support-project
 [miketigas]: https://mike.tig.as/
 [license]: https://github.com/mtigas/OnionBrowser/blob/2.X/LICENSE
 [Tor.framework]: https://github.com/iCepa/Tor.framework
