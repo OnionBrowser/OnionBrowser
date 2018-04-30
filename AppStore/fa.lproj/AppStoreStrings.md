@@ -1,59 +1,59 @@
 مرورگر Onion
 
-مطمئن،‌ وبگردی ناشناس با تور
+وبگردی ناشناس و مطمئن با تور
 
-`Browser,Tor,Tor Browser,Onion Browser,anonymous,private,private browser,orbot,orfox,onion`
-
----
-
-Welcome to Onion Browser 2!
-
-Onion Browser 2 is a total rewrite of the app which contains several new features:
-
-* A friendlier first-time launch experience.
-* An updated user interface, containing "tabbed browsing" and improved settings panels
-* HTTPS Everywhere support
-* 1Password support
-* Built-in ad-blocking and privacy protection
-* Tweak security/privacy settings on a per-site basis (including cookie policy, user agent, and JavaScript/active content policy).
-* Tor 0.3.1.9
-* Settings and bookmarks from Onion Browser 1 are retained.
-
-Best of all: this update is free!
-
-The Onion Browser 2 update was supported by the Guardian Project, with help from Benjamin Erhart and Carrie Winfrey. Onion Browser 2 is based on the open-source "Endless" Browser; special thanks to Joshua Stein for creating Endless and for granting permission to use it in Onion Browser. See the credits file in the app settings for more information.
-
-2.0.2: Security update: fix DNS leak. Fixes for IPv6 connectivity affecting users of some mobile carriers. Fixes for some crashes. Added localizations for several languages.
-
-2.0.1: Minor update to fix App Store rating link.
+`مرورگر,تور,مرورگر تور,مرورگر Onion,ناشناس,خصوصی, مرورگر خصوصی,orbot,orfox,onion`
 
 ---
 
-Onion Browser is the original free and open-source Tor-powered web browser for iOS. Onion Browser helps you access the internet with more safety and privacy, and no extra cost to you.
+به نسخه ۲ مرورگر Onion خوش آمدید!
 
-“The best Tor-related offering on iOS right now is Onion Browser” - The Daily Dot, October 14, 2015.
+مرورگر Onion نسخه ۲ به طور کامل بازنویسی شده و دارای ویژگی‌های جدید است:
 
-Featured in: The New York Times, The Guardian, Salon, TechCrunch, Gizmodo, Boing Boing, Lifehacker, Macworld, The Daily Dot, & others.
+* یک تجربه راه‌اندازی دوستانه‌تر
+* رابط کاربری به‌روز شده، شامل "tabbed browsing" و پنل‌های تنظیماتِ بهبودیافته
+* پشتیبانی از HTTPS Everywhere
+* پشتیبانی از 1Password
+* مسدودگر تبلیغات ساخته شده در اپ و حفظ حریم خصوصی
+* تنظیمات امنیت/ حریم خصوصی را بر اساس هر وبسایت (از جمله سیاست کوکی‌ها، عامل کاربری، و سیاست جاوا اسکریپت و یا محتوای فعال) اصلاح کنید.
+* تور 0.3.1.9
+* تنظیمات و بوکمارک‌ها از نسخه ۱ مرورگر Onion حفظ می‌شوند.
 
-FEATURES:
-• Browse the internet over Tor:
-- Protect your privacy from website tracking.
-- Secure your traffic from insecure wireless networks and ISPs.
-- Support for HTTPS Everywhere, an automatic switch to HTTPS enabled websites.
-- Access .onion sites that are only accessible over Tor.
+با آرزوی بهترین‌ها: این به‌روز رسانی رایگان است!
 
-• Fight online tracking: block scripts and automatically clear cookies and tabs, based on your preferences.
+به‌روز رسانی نسخه ۲ مرورگر Onion به پشتیبانی پروژه گاردین و با کمک بنجامین ارهات و کری وینفری انجام شده است. نسخه ۲ مرورگر Onion بر اساس مرورگرِ متن‌بازِ Endless پایه‌بندی شده است. از جاشوا استین برای ساختن Endless و اجازه استفاده از آن در مرورگر Onion تشکر ویژه می‌کنیم. برای کسب اطلاعات بیشتر به فایل credits را در تنظیمات برنامه سر بزنید. 
 
-• And more privacy-enhancing features!
+2.0.2: به‌روز رسانی امنیتی: برطرف کردن نشت DNS. بر طرف کردن مشکل اتصال IPv6 برای برخی کاربران تلفن همراه. رفع بعضی قطع شدن‌ها. پشتیبانی از چندین زبان
 
-DISCLAIMERS:
-- Web browsing is much slower than through a normal web browser or a VPN because your traffic is encrypted and relayed through the Tor network.
+2.0.1: به‌روز رسانی جزئی برای اصلاح لینک امتیازدهی در اپ‌استور
 
-- Multimedia often bypass Tor and compromise your privacy; video files and video streams are blocked by default and are not supported by Onion Browser.
+---
 
-- Onion Browser might not work on networks with advanced network restrictions. If the app does not connect, try using bridges (or a different type of bridge), force-quit, and then restart the app.
+مرورگر Onion منبع اصلی، رایگان و متن‌بازی بر پایه شبکه تور و برای iOS است. مرورگر Onion به شما در دسترسی به اینترنت با ایمنی بیشتر و حفظ حریم خصوصی کمک می‌کند و هیچ هزینه اضافی برای شما نخواهد داشت.
 
-- Use of Onion Browser is at your own risk; remember that sensitive data does not always belong on a mobile device.
+"در حال حاضر مرورگر Onion بهترین اپلیکیشنِ ساخته شده بر پایه شبکه‌ی Tor در iOS است" - The Daily Dot، October 14، 2015
 
-** Onion Browser is free and open-source software. You can read more about Onion Browser and how to support development of Tor on iOS by visiting onionbrowser.com **
+برگزیده در:  The New York Times, The Guardian, Salon, TechCrunch, Gizmodo, Boing Boing, Lifehacker, Macworld, The Daily Dot و دیگر رسانه‌ها.
+
+ویژگی‌ها:
+• اینترنت را از طریق شبکه تور مرور کنید: 
+- از حریم خصوصی خود در برابر ردیابی وبسایت‌ها محافظت کنید.
+- از امنیت ترافیک خود در برابر شبکه‌های وای-فای ناامن و شرکت‌های خدمات اینترنت محافظت کنید.
+- پشتیبانی از HTTPS Everywhere به صورت تغییر خودکار به HTTPS برای وبسایت‌هایی که این پروتکل را پشتیبانی می‌کنند.
+- دسترسی به وبسایت‌های .onion که فقط از طریق شبکه تور قابل دسترسی‌اند.
+
+• مبارزه با ردیابی آنلاین: اسکریپت‌ها را مسدود کنید و به صورت خودکار کوکی‌ها و زبانه‌ها را بر اساس تنظیمات برگزیده خود پاک کنید.
+
+• و ویژگی‌هایی برای تقویت بیشتر حریم خصوصی!
+
+سلب مسئولیت:
+- گردش کردن در اینترنت به مراتب کندتر از گردش کردنِ معمولی و یا استفاده از وی‌پی‌ان است زیرا ترافیک شما از طریق شبکه تور رمزگذاری شده است.
+
+- فایل‌های چندرسانه ای اغلب از طریق تور عبور می‌کنند و حریم خصوصی شما را به خطر می‌اندازند. فایل‌های ویدئویی و استریم کردن ویدیویی به طور پیش‌فرض مسدود شده و توسط مرورگر Onion پشتیبانی نمی‌شوند.
+
+- مرورگر Onion ممکن است در شبکه‌هایی با محدودیت‌های پیشرفته کار نکند. اگر برنامه وصل نشد، سعی کنید از پل‌های ارتباطی (یا نوع دیگری از پل) استفاده کنید، force-quit کنید، و سپس برنامه را دوباره راه اندازی کنید.
+
+- استفاده از مرورگر Onion و ریسک‌های احتمالی بر عهده‌ شماست؛ به یاد داشته باشید که داده‌های حساس خود را بر دستگاه تلفن همراه ذخیره نکنید.
+
+** مرورگر Onion یک ابزار رایگان و متن‌باز است. می‌توانید درباره این مرورگر و چگونگی حمایت از تور بر روی iOS در onionbrowser.com بیشتر بخوانید **
 

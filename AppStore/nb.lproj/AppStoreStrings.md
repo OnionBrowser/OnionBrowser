@@ -15,45 +15,45 @@ Løk-nettleseren 2 er en fullstendig omskriving av programmet som inneholder fle
 * HTTPS Everywhere-støtte
 * 1Password-støtte
 * Innebygd reklameblokkering og personvernsbeskyttelse
-* Tweak security/privacy settings on a per-site basis (including cookie policy, user agent, and JavaScript/active content policy).
+* Juster sikkerhet/personvernsinnstillinger per side (inkludert kakepraksis, brukeragent, og JavaScript/praksis for aktivt innhold).
 * Tor 0.3.1.9
-* Settings and bookmarks from Onion Browser 1 are retained.
+* Innstillinger og bokmerker fra Løk-nettleser 1 beholdes.
 
 Oppdateringen er gratis.
 
 Løk-nettleser 2-oppgraderingen ble støttet av Guardian-prosjektet, med hjelp fra Benjamin Erhart og Carrie Winfrey. Løk-nettleser 2 e er basert på den åpne-kildekodenettleseren "Endless". Spesiell takk til Joshua Stein for å ha laget Endless og for samtykke til å bruke den i Løk-nettleseren. Se bidragsyter-fila i programinnstillingene for mer informasjon.
 
-2.0.2: Security update: fix DNS leak. Fixes for IPv6 connectivity affecting users of some mobile carriers. Fixes for some crashes. Added localizations for several languages.
+2.0.2: Sikkerhetsoppdatering: Tetting av DNS-lekkasje. Fikser for IPv6-tilkobling som har innvirkning på brukere fra noen mobiltilbydere. Fikser for noen kræsj. Tillagte lokaliseringer for flere språk.
 
-2.0.1: Minor update to fix App Store rating link.
+2.0.1: Mindre oppdatering for å fikse vurderingslenken til Apples App-butikk.
 
 ---
 
-Onion Browser is the original free and open-source Tor-powered web browser for iOS. Onion Browser helps you access the internet with more safety and privacy, and no extra cost to you.
+Løk-nettleseren er den originale frie Tor-drevne nettleseren for iOS. Løk-nettleseren hjelper deg å få tilgang til Internett med bedret sikkerhet og personvern, uten ekstra kostnad for deg.
 
-“The best Tor-related offering on iOS right now is Onion Browser” - The Daily Dot, October 14, 2015.
+“Den beste Tor-relaterte tilbudet på iOS akkurat nå er Løk-nettleseren” - The Daily Dot, 14 Oktober, 2015.
 
 Skrevet om i: The New York Times, The Guardian, Salon, TechCrunch, Gizmodo, Boing Boing, Lifehacker, Macworld, The Daily Dot, og andre.
 
 FUNKSJONER:
 • Surf på nettet over Tor:
-- Protect your privacy from website tracking.
-- Secure your traffic from insecure wireless networks and ISPs.
-- Support for HTTPS Everywhere, an automatic switch to HTTPS enabled websites.
+- Beskytt ditt personvern fra nettsidesporing.
+- Sikre trafikken din sendt over usikre nettverk og tjenestetilbydere.
+- Støtte for HTTPS Everywhere, en automatisk bryter for påslag av HTTPS på sider der det er mulig.
 - Få tilgang til .onion-sider som bare er tilgjengelige over Tor.
 
-• Fight online tracking: block scripts and automatically clear cookies and tabs, based on your preferences.
+• Ta opp kampen med nettbasert sporing: Blokkerer og tømmer automatisk kaker og faner, basert på dine innstillinger.
 
 • Og flere personvernsfremmende funksjoner!
 
-DISCLAIMERS:
-- Web browsing is much slower than through a normal web browser or a VPN because your traffic is encrypted and relayed through the Tor network.
+ANSVARSFRASKRIVELSER:
+- Nettlesing er mye tregere enn gjennom en normal nettleser eller en VPN, fordi trafikken din krypteres og sendes i stafett gjennom Tor-nettverket.
 
 - Multimedia omgår ofte Tor og eksponerer trusler for personvernet; videofiler og videostrømmer er blokkert som forvalg og støttes ikke av Løk-nettleseren.
 
-- Onion Browser might not work on networks with advanced network restrictions. If the app does not connect, try using bridges (or a different type of bridge), force-quit, and then restart the app.
+- Det kan hende Løk-nettleseren ikke fungerer sammen med avanserte nettverksbegrensninger. Hvis programmet ikke kobler til, prøv å bruke broer, (eller en annen type bro), tving avslutning og start så programmet på nytt.
 
 - Bruk av Løk-nettleseren skjer på egen risiko; husk at sensitiv data ikke alltid hører hjemme på en mobil enhet.
 
-** Onion Browser is free and open-source software. You can read more about Onion Browser and how to support development of Tor on iOS by visiting onionbrowser.com **
+** Løk-nettleseren er fri programvare. Du kan lese mer om Løk-nettleseren og hvordan du støtter utviklingen av Tor på iOS ved å besøke onionbrowser.com **
 

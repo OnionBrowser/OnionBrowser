@@ -2,58 +2,58 @@ Navegador Onion
 
 Web segura y anónima con Tor
 
-`navegador,tor,navegador tor,tor browser,onion browser,privado,anónimo,orbot,orfox,onion,cebolla`
+`Browser,Tor,Tor Browser,Onion Browser,anonymous,private,private browser,orbot,orfox,onion, navegador onion, navegador, anónimo, privado, navegador privado`
 
 ---
 
-Welcome to Onion Browser 2!
+Bienvenido al Navegador Onion 2!
 
-Onion Browser 2 is a total rewrite of the app which contains several new features:
+Navegador Onion 2 es una re-escritura total de la aplicación que contiene varias características nuevas:
 
-* A friendlier first-time launch experience.
-* An updated user interface, containing "tabbed browsing" and improved settings panels
-* HTTPS Everywhere support
-* 1Password support
-* Built-in ad-blocking and privacy protection
-* Tweak security/privacy settings on a per-site basis (including cookie policy, user agent, and JavaScript/active content policy).
+* Por primera vez, una experiencia de lanzamiento más amigable.
+* Una interfaz de usuario actualizada, que contiene "exploración con pestañas" y paneles de configuración mejorados 
+* Soporte para HTTPS Everywhere
+* Soporte para 1Password
+* Protección de privacidad y bloqueo de anuncios incorporado
+* Afina la configuración de seguridad/privacidad para cada sitio (incluyendo política de cookies, user agent y política de JavaScript/contenido activo).
 * Tor 0.3.1.9
-* Settings and bookmarks from Onion Browser 1 are retained.
+* La configuración y los marcadores del Navegador Onion 1 se conservan.
 
-Best of all: this update is free!
+Lo mejor de todo: ¡esta actualización es gratis!
 
-The Onion Browser 2 update was supported by the Guardian Project, with help from Benjamin Erhart and Carrie Winfrey. Onion Browser 2 is based on the open-source "Endless" Browser; special thanks to Joshua Stein for creating Endless and for granting permission to use it in Onion Browser. See the credits file in the app settings for more information.
+La actualización del Navegador Onion 2 fue apoyada por The Guardian Project, con la ayuda de Benjamin Erhart y Carrie Winfrey.  El Navegador Onion 2 está basado en el navegador de código abierto "Endless"; un agradecimiento especial a Joshua Stein por crear Endless y por otorgar permiso para usarlo en el Navegador Onion. Consulta el archivo de créditos en la configuración de la aplicación para obtener más información.
 
-2.0.2: Security update: fix DNS leak. Fixes for IPv6 connectivity affecting users of some mobile carriers. Fixes for some crashes. Added localizations for several languages.
+2.0.2: Actualización de seguridad: corrige la fuga de DNS. Arregla problemas de conectividad IPv6 que afectan a los usuarios de algunos operadores de telefonía. Arregla algunos colapsos del sistema. Se agregaron traducciones para varios idiomas.
 
-2.0.1: Minor update to fix App Store rating link.
+2.0.1: Actualización menor para corregir el enlace de calificación de la App Store.
 
 ---
 
-Onion Browser is the original free and open-source Tor-powered web browser for iOS. Onion Browser helps you access the internet with more safety and privacy, and no extra cost to you.
+El Navegador Onion es el navegador TOR original y de código abierto para iOS. Te ayuda a acceder a Internet con más seguridad y privacidad y sin costo adicional para ti.
 
-“The best Tor-related offering on iOS right now is Onion Browser” - The Daily Dot, October 14, 2015.
+"La mejor oferta relacionada con Tor en iOS ahora es el Navegador Onion" - The Daily Dot, 14 de octubre de 2015.
 
-Destacado en: The New York Times, The Guardian, Salon, TechCrunch, Gizmodo, Boing Boing, Lifehacker, Macworld, The Daily Dot, y otros.
+Mencionado en: The New York Times, The Guardian, Salon, TechCrunch, Gizmodo, Boing Boing, Lifehacker, Macworld, The Daily Dot, y otros.
 
 CARACTERÍSTICAS:
 • Navega por Internet a través de Tor:
-- Protect your privacy from website tracking.
-- Secure your traffic from insecure wireless networks and ISPs.
-- Support for HTTPS Everywhere, an automatic switch to HTTPS enabled websites.
+- Protege tu privacidad del tracking online
+- Asegura tu tráfico en redes inalámbricas inseguras y PSIs.
+- Soporte para HTTPS Everywhere, un cambiador automático para sitios web que tienen HTTPS.
 - Accede a sitios .onion que sólo son accesibles a través de Tor.
 
-• Fight online tracking: block scripts and automatically clear cookies and tabs, based on your preferences.
+• Combate el seguimiento en línea: bloquea los scripts y borra automáticamente las cookies y las pestañas, según tus preferencias.
 
 • ¡Y más características de mejora de la privacidad!
 
-DISCLAIMERS:
-- Web browsing is much slower than through a normal web browser or a VPN because your traffic is encrypted and relayed through the Tor network.
+ACLARACIONES:
+- La navegación web es mucho más lenta que a través de un navegador web normal o una VPN porque tu tráfico se cifra y retransmite a través de la red Tor.
 
-- El contenido multimedia a menudo elude Tor y compromete su privacidad; los ficheros y streams de vídeo están bloqueados por defecto y no están soportados por el Navegador Onion.
+- El contenido multimedia a menudo elude Tor y compromete tu privacidad; los ficheros y streams de vídeo están bloqueados por defecto y no están soportados por el Navegador Onion.
 
-- Onion Browser might not work on networks with advanced network restrictions. If the app does not connect, try using bridges (or a different type of bridge), force-quit, and then restart the app.
+- El Navegador Onion podría no funcionar en redes con restricciones de red avanzadas. Si la aplicación no se conecta, intenta usar puentes (o un tipo diferente de puente), fuerza el cierre y luego reinicia la aplicación. 
 
-- El uso del Navegador Onion es por su cuenta y riesgo, recuerde que los datos sensibles no siempre tienen su origen en un dispositivo móvil.
+- El uso del Navegador Onion es por tu cuenta y riesgo, recuerda que los datos sensibles no siempre tienen lugar en un dispositivo móvil.
 
-** Onion Browser is free and open-source software. You can read more about Onion Browser and how to support development of Tor on iOS by visiting onionbrowser.com **
+** El Navegador Onion es un software gratuito y de código abierto. Puedes leer más acerca del Navegador Onion y cómo apoyar al desarrollo de Tor en iOS visitando onionbrowser.com **
 

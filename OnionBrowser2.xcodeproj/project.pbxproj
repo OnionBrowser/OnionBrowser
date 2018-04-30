@@ -323,6 +323,51 @@
 		A06441F6200CB06C00D6C50C /* nb */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = nb; path = nb.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
 		A06441F7200CB08300D6C50C /* es */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = es; path = es.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
 		A06441F8200CB09300D6C50C /* de */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = de; path = de.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
+		A0759DBE20975C2A000DFBFE /* Gemfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Gemfile; sourceTree = "<group>"; };
+		A0759DBF20975C32000DFBFE /* Gemfile.lock */ = {isa = PBXFileReference; lastKnownFileType = text; path = Gemfile.lock; sourceTree = "<group>"; };
+		A0759DC020975CCD000DFBFE /* sq */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = sq; path = sq.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
+		A0759DC120975CCE000DFBFE /* sq */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sq; path = Endless/sq.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A0759DC220975CCE000DFBFE /* sq */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sq; path = Endless/sq.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
+		A0759DC320975CE1000DFBFE /* ar-001 */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "ar-001"; path = "ar-001.lproj/AppStoreStrings.md"; sourceTree = "<group>"; };
+		A0759DC420975CE2000DFBFE /* ar-001 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ar-001"; path = "Endless/ar-001.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		A0759DC520975CE2000DFBFE /* ar-001 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ar-001"; path = "Endless/ar-001.lproj/OnePasswordExtension.strings"; sourceTree = "<group>"; };
+		A0759DC620975CF0000DFBFE /* bn */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = bn; path = bn.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
+		A0759DC720975CF1000DFBFE /* bn */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = bn; path = Endless/bn.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A0759DC820975CF1000DFBFE /* bn */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = bn; path = Endless/bn.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
+		A0759DC920975D06000DFBFE /* ca-ES */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "ca-ES"; path = "ca-ES.lproj/AppStoreStrings.md"; sourceTree = "<group>"; };
+		A0759DCA20975D07000DFBFE /* ca-ES */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ca-ES"; path = "Endless/ca-ES.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		A0759DCB20975D07000DFBFE /* ca-ES */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ca-ES"; path = "Endless/ca-ES.lproj/OnePasswordExtension.strings"; sourceTree = "<group>"; };
+		A0759DCC20975D12000DFBFE /* nl */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = nl; path = nl.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
+		A0759DCD20975D13000DFBFE /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = Endless/nl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A0759DCE20975D13000DFBFE /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = Endless/nl.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
+		A0759DCF20975D21000DFBFE /* hi */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = hi; path = hi.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
+		A0759DD020975D22000DFBFE /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = Endless/hi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A0759DD120975D23000DFBFE /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = Endless/hi.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
+		A0759DD220975D33000DFBFE /* hu-HU */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "hu-HU"; path = "hu-HU.lproj/AppStoreStrings.md"; sourceTree = "<group>"; };
+		A0759DD320975D34000DFBFE /* hu-HU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "hu-HU"; path = "Endless/hu-HU.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		A0759DD420975D34000DFBFE /* hu-HU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "hu-HU"; path = "Endless/hu-HU.lproj/OnePasswordExtension.strings"; sourceTree = "<group>"; };
+		A0759DD520975D67000DFBFE /* ja */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = ja; path = ja.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
+		A0759DD620975D67000DFBFE /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = Endless/ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A0759DD720975D68000DFBFE /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = Endless/ja.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
+		A0759DD820975D79000DFBFE /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "pt-BR"; path = "pt-BR.lproj/AppStoreStrings.md"; sourceTree = "<group>"; };
+		A0759DD920975D7A000DFBFE /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "Endless/pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		A0759DDA20975D7A000DFBFE /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "Endless/pt-BR.lproj/OnePasswordExtension.strings"; sourceTree = "<group>"; };
+		A0759DDB20975D84000DFBFE /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "pt-PT"; path = "pt-PT.lproj/AppStoreStrings.md"; sourceTree = "<group>"; };
+		A0759DDC20975D85000DFBFE /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "Endless/pt-PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		A0759DDD20975D85000DFBFE /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "Endless/pt-PT.lproj/OnePasswordExtension.strings"; sourceTree = "<group>"; };
+		A0759DDE20975D9E000DFBFE /* ru */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = ru; path = ru.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
+		A0759DDF20975D9E000DFBFE /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = Endless/ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A0759DE020975D9F000DFBFE /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = Endless/ru.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
+		A0759DE120975DB1000DFBFE /* ta */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = ta; path = ta.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
+		A0759DE220975DB2000DFBFE /* ta */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ta; path = Endless/ta.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A0759DE320975DB3000DFBFE /* ta */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ta; path = Endless/ta.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
+		A0759DE420975DC5000DFBFE /* te */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = te; path = te.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
+		A0759DE520975DC6000DFBFE /* te */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = te; path = Endless/te.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A0759DE620975DC7000DFBFE /* te */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = te; path = Endless/te.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
+		A0759DE720975DCC000DFBFE /* uk */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = uk; path = uk.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
+		A0759DE820975DCD000DFBFE /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = Endless/uk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A0759DE920975DCD000DFBFE /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = Endless/uk.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
+		A0759DEA20975DDE000DFBFE /* config */ = {isa = PBXFileReference; lastKnownFileType = text; name = config; path = .tx/config; sourceTree = "<group>"; };
 		A0882DF72003A8620098833B /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
 		A0882DF82003A8620098833B /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
 		A0882DF92003A8620098833B /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
@@ -579,11 +624,14 @@
 		A00436111E8185AA0067652D /* Build */ = {
 			isa = PBXGroup;
 			children = (
+				A0759DBE20975C2A000DFBFE /* Gemfile */,
+				A0759DBF20975C32000DFBFE /* Gemfile.lock */,
 				A010FA191E798C0400E04222 /* BUILD.md */,
 				A00436091E81856F0067652D /* Cartfile */,
 				A004360A1E81856F0067652D /* Cartfile.resolved */,
 				A004360B1E81856F0067652D /* Podfile */,
 				A004360C1E81856F0067652D /* Podfile.lock */,
+				A0759DEA20975DDE000DFBFE /* config */,
 				A00436121E8187800067652D /* convert_rules.rb */,
 				A00436131E8187800067652D /* urlblocker.json */,
 			);
@@ -902,7 +950,8 @@
 		01801E8A1A32CA2A002B4718 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0920;
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = jcs;
 				TargetAttributes = {
 					01801E911A32CA2A002B4718 = {
@@ -937,6 +986,20 @@
 				is,
 				"zh-Hans",
 				"zh-Hant",
+				sq,
+				"ar-001",
+				bn,
+				"ca-ES",
+				nl,
+				hi,
+				"hu-HU",
+				ja,
+				"pt-BR",
+				"pt-PT",
+				ru,
+				ta,
+				te,
+				uk,
 			);
 			mainGroup = 01801E891A32CA2A002B4718;
 			productRefGroup = 01801E931A32CA2A002B4718 /* Products */;
@@ -1226,6 +1289,20 @@
 				8A3F82F0201903E10088F205 /* is */,
 				8A3F82F1201903E90088F205 /* zh-Hans */,
 				A0079AD62019F58600511268 /* zh-Hant */,
+				A0759DC120975CCE000DFBFE /* sq */,
+				A0759DC420975CE2000DFBFE /* ar-001 */,
+				A0759DC720975CF1000DFBFE /* bn */,
+				A0759DCA20975D07000DFBFE /* ca-ES */,
+				A0759DCD20975D13000DFBFE /* nl */,
+				A0759DD020975D22000DFBFE /* hi */,
+				A0759DD320975D34000DFBFE /* hu-HU */,
+				A0759DD620975D67000DFBFE /* ja */,
+				A0759DD920975D7A000DFBFE /* pt-BR */,
+				A0759DDC20975D85000DFBFE /* pt-PT */,
+				A0759DDF20975D9E000DFBFE /* ru */,
+				A0759DE220975DB2000DFBFE /* ta */,
+				A0759DE520975DC6000DFBFE /* te */,
+				A0759DE820975DCD000DFBFE /* uk */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1243,6 +1320,20 @@
 				8A3F82F3201904170088F205 /* is */,
 				8A3F82F42019041E0088F205 /* zh-Hans */,
 				A0079AD72019F58600511268 /* zh-Hant */,
+				A0759DC220975CCE000DFBFE /* sq */,
+				A0759DC520975CE2000DFBFE /* ar-001 */,
+				A0759DC820975CF1000DFBFE /* bn */,
+				A0759DCB20975D07000DFBFE /* ca-ES */,
+				A0759DCE20975D13000DFBFE /* nl */,
+				A0759DD120975D23000DFBFE /* hi */,
+				A0759DD420975D34000DFBFE /* hu-HU */,
+				A0759DD720975D68000DFBFE /* ja */,
+				A0759DDA20975D7A000DFBFE /* pt-BR */,
+				A0759DDD20975D85000DFBFE /* pt-PT */,
+				A0759DE020975D9F000DFBFE /* ru */,
+				A0759DE320975DB3000DFBFE /* ta */,
+				A0759DE620975DC7000DFBFE /* te */,
+				A0759DE920975DCD000DFBFE /* uk */,
 			);
 			name = OnePasswordExtension.strings;
 			sourceTree = "<group>";
@@ -1260,6 +1351,20 @@
 				A0079AD82019F8E000511268 /* fr */,
 				A0079AD92019F8E700511268 /* fa */,
 				A0079ADA2019F8EB00511268 /* is */,
+				A0759DC020975CCD000DFBFE /* sq */,
+				A0759DC320975CE1000DFBFE /* ar-001 */,
+				A0759DC620975CF0000DFBFE /* bn */,
+				A0759DC920975D06000DFBFE /* ca-ES */,
+				A0759DCC20975D12000DFBFE /* nl */,
+				A0759DCF20975D21000DFBFE /* hi */,
+				A0759DD220975D33000DFBFE /* hu-HU */,
+				A0759DD520975D67000DFBFE /* ja */,
+				A0759DD820975D79000DFBFE /* pt-BR */,
+				A0759DDB20975D84000DFBFE /* pt-PT */,
+				A0759DDE20975D9E000DFBFE /* ru */,
+				A0759DE120975DB1000DFBFE /* ta */,
+				A0759DE420975DC5000DFBFE /* te */,
+				A0759DE720975DCC000DFBFE /* uk */,
 			);
 			name = AppStoreStrings.md;
 			sourceTree = "<group>";
@@ -1280,12 +1385,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -1333,12 +1440,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

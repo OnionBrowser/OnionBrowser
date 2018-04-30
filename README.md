@@ -1,4 +1,4 @@
-## Onion Browser
+# Onion Browser
 
 [![Build Status](https://travis-ci.org/mtigas/OnionBrowser.svg?branch=2.X)](https://travis-ci.org/mtigas/OnionBrowser)  
 [Official Site][official] | [Support][help] | [Release History][releases] | [Donate][donate]  
@@ -36,7 +36,7 @@ Please see the [LICENSE][license] file for usage and redistribution terms. As of
 [endless]: https://github.com/jcs/endless
 [1.X]: https://github.com/mtigas/OnionBrowser/tree/1.X
 
-### Notable 2.X Features
+## Notable 2.X Features
 
 The following features are new to Onion Browser, by way of the upstream work on [Endless][endless]:
 
@@ -56,3 +56,30 @@ The following features are new to Onion Browser, by way of the upstream work on 
 
 - [1Password extension](https://github.com/AgileBits/onepassword-app-extension)
   support (if 1Password app is installed)
+  
+  ## Acknowledgements
+  
+  These people helped with translations. Thank you so much, folks!
+  
+  Arabic: AboShanab, mada19
+  Bengali: codesmite, Al_Shahrior
+  Chinese (Simplified): Selinaf, feeblebiscuit, tsaizb, Lafrenze
+  Chinese (Traditional): Selinaf, s8321414, jxtsai
+  Catalán: Ecron, pau.selles
+  Dutch: SilverXp, biancahey, kwadronaut, pljmn
+  French: yahoe.001
+  German: Atalanttore, beonex1, nautilusx
+  Hindi: balapandu222, drashti4, umkdikshit
+  Hungarian: benewfy, vargaviktor
+  Icelandic: anarchodin, sveinki
+  Irish: kscanne
+  Japanese: Naofumi, Songbogong, TokumeiNanashi, pluto987, jpanonowl
+  Norwegian (Bokmål): kingu
+  Persian: ariaa, arminoza, nariman, sabs
+  Portuguese (Brazil): flaviove, CypherZnnb
+  Russian: anm, ifti
+  Spanish: arielbarbosa, Maria_Jose, emmapeel, strel
+  Tamil: balapandu222, Selva_Makilan
+  Telugu: balapandu222, sonusandeep
+  Ukrainian: Herenko, lyubomyr
+
