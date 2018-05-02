@@ -911,7 +911,6 @@
 				01801E901A32CA2A002B4718 /* Resources */,
 				693145FF1D3EEAF500D08A6A /* ShellScript */,
 				89C901B3C39940B10E4CE4EE /* [CP] Embed Pods Frameworks */,
-				BEB7ED1FAAF41C4F579EE5C0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -932,7 +931,6 @@
 				018333D41A35727C00670CD1 /* Frameworks */,
 				018333D51A35727C00670CD1 /* Resources */,
 				D8FF388A8305006E3AEF190B /* [CP] Embed Pods Frameworks */,
-				E4C2E693956E971467FFA3B1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1154,21 +1152,6 @@
 			shellPath = /bin/bash;
 			shellScript = "curl -Lo ./geoip https://gitweb.torproject.org/tor.git/plain/src/config/geoip?h=tor-0.3.1.8\ncurl -Lo ./geoip6 https://gitweb.torproject.org/tor.git/plain/src/config/geoip6?h=tor-0.3.1.8";
 		};
-		BEB7ED1FAAF41C4F579EE5C0 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OnionBrowser2/Pods-OnionBrowser2-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		D8FF388A8305006E3AEF190B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1177,31 +1160,18 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-OnionBrowser2 Tests/Pods-OnionBrowser2 Tests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/DTFoundation/DTFoundation.framework",
+				"${BUILT_PRODUCTS_DIR}/Localize/Localize.framework",
 				"${BUILT_PRODUCTS_DIR}/OCMock/OCMock.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DTFoundation.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Localize.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OCMock.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OnionBrowser2 Tests/Pods-OnionBrowser2 Tests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E4C2E693956E971467FFA3B1 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OnionBrowser2 Tests/Pods-OnionBrowser2 Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

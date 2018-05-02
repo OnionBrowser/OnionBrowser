@@ -1,5 +1,4 @@
-#github "mtigas/Tor.framework" == 31.9.2
-#github "mtigas/Tor.framework" "eefd16ef602dbe70e852bd0f5ff089945892f2d0"
-binary "https://cdn.tig.as/files/Tor.json" == 31.9.2
+#binary "https://cdn.tig.as/files/Tor.json" == 31.9.2
+github "iCepa/Tor.framework" "master"
 
 binary "https://cdn.tig.as/files/Iobfs4proxy.json" == 1.0

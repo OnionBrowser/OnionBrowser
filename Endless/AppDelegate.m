@@ -109,11 +109,17 @@
 		[[self cookieJar] clearAllOldNonWhitelistedData];
 	
 	[application ignoreSnapshotOnNextApplicationLaunch];
+
+//    Experiment: Stop Tor and restart later.
+//    [OnionManager.singleton stopTor];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
 	[[self webViewController] viewIsVisible];
+
+//    Experiment: Start/restart Tor. Can't be used exactly like this, since we need the delegate to be set properly to the POE library.
+//    [OnionManager.singleton startTorWithDelegate:nil];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

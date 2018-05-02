@@ -51,10 +51,12 @@ import Foundation
         #endif
 
         var config_args = [
+            "--allow-missing-torrc",
             "--ignore-missing-torrc",
             "--clientonly", "1",
             "--socksport", "39050",
             "--controlport", "127.0.0.1:39060",
+//            "--HashedControlPassword", "16:1427783EE4FFA03B60A19E6625D3F28EC59943393CC80FABF3CC7FF18A",
             "--log", log_loc,
             "--clientuseipv6", "1",
             "--ClientTransportPlugin", "obfs4 socks5 127.0.0.1:47351",
@@ -199,7 +201,7 @@ import Foundation
 
             var args = torConf.arguments!
 
-            // configure bridge lines, if necessar
+            // configure bridge lines, if necessary
             print("use_bridges = \(String(describing: bridgesId))")
             if bridgesId != nil && bridgesId != USE_BRIDGES_NONE {
                 args.append("--usebridges")
@@ -255,7 +257,10 @@ import Foundation
             needsReconfiguration = false
 
             self.torThread!.start()
-            self.obfsproxy.start()
+
+            if !self.obfsproxy.isExecuting && !self.obfsproxy.isCancelled && !self.obfsproxy.isFinished {
+                self.obfsproxy.start()
+            }
 
             print("STARTING TOR");
         }
@@ -314,7 +319,7 @@ import Foundation
         // Wait long enough for tor itself to have started. It's OK to wait for this
         // because Tor is already trying to connect; this is just the part that polls for
         // progress.
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.75, execute: {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
             if OnionManager.TOR_LOGGING {
                 // Show Tor log in iOS' app log.
                 TORInstallTorLogging()
@@ -331,6 +336,7 @@ import Foundation
 
             let cookieURL = OnionManager.torBaseConf.dataDirectory!.appendingPathComponent("control_auth_cookie")
             let cookie = try? Data(contentsOf: cookieURL)
+//            let cookie = "6aNBPCDO9W441oDn6Oj5BIUqJnKr23l".data(using: .utf8)
 
             print("cookieURL: ", cookieURL as Any)
             print("cookie: ", cookie!)
@@ -395,6 +401,19 @@ import Foundation
         DispatchQueue.main.asyncAfter(deadline: .now() + 30, execute: initRetry!)
 
     }// startTor
+
+    /**
+     Experimental Tor shutdown.
+    */
+    @objc func stopTor() {
+        print("TRY SHUTDOWN!")
+
+        torController.sendCommand("SIGNAL SHUTDOWN", arguments: ["0"], data: nil, observer: { (_, _, _) -> Bool in
+            print("SHUTDOWN OBSERVER CALLED!")
+            self.torThread = nil
+            return true
+        })
+    }
 
     private func bridgeLinesToArgs(_ bridgeLines: [String]) -> [String] {
         var bridges: [String] = []
