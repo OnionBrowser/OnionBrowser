@@ -152,7 +152,6 @@ import Foundation
 
         if (Ipv6Tester.ipv6_status() == OnionManager.TOR_IPV6_CONN_ONLY) {
             // we think we're on a ipv6-only DNS64/NAT64 network
-            confs.append(["key":"ClientPreferIPv6DirPort", "value":"1"])
             confs.append(["key":"ClientPreferIPv6ORPort", "value":"1"])
             if (self.bridgesId != nil && self.bridgesId != USE_BRIDGES_NONE) {
                 // bridges on, leave ipv4 on
@@ -335,13 +334,13 @@ import Foundation
             }
 
             let cookieURL = OnionManager.torBaseConf.dataDirectory!.appendingPathComponent("control_auth_cookie")
-            let cookie = try? Data(contentsOf: cookieURL)
+            let cookie = try! Data(contentsOf: cookieURL)
 //            let cookie = "6aNBPCDO9W441oDn6Oj5BIUqJnKr23l".data(using: .utf8)
 
             print("cookieURL: ", cookieURL as Any)
-            print("cookie: ", cookie!)
+            print("cookie: ", cookie)
 
-            self.torController.authenticate(with: cookie!, completion: { (success, error) in
+            self.torController.authenticate(with: cookie, completion: { (success, error) in
                 if success {
                     var completeObs: Any?
                     completeObs = self.torController.addObserver(forCircuitEstablished: { (established) in

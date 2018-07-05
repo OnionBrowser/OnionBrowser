@@ -119,7 +119,10 @@
 	[[self webViewController] viewIsVisible];
 
 //    Experiment: Start/restart Tor. Can't be used exactly like this, since we need the delegate to be set properly to the POE library.
-//    [OnionManager.singleton startTorWithDelegate:nil];
+//    if ([self.window.rootViewController class] != [OBRootViewController class])
+//    {
+//        [OnionManager.singleton startTorWithDelegate:nil];
+//    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
