@@ -9,6 +9,7 @@ profile
 Pods
 .ruby-version
 Carthage/Build/
+Carthage/Checkouts/
 .LSOverride
 .DS_Store
 *.swp

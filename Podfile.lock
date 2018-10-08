@@ -76,17 +76,6 @@ DEPENDENCIES:
   - WYPopoverController (from `https://github.com/sammcewan/WYPopoverController.git`)
   - XLForm (from `https://github.com/jcs/XLForm.git`)
 
-SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
-    - DTFoundation
-    - InAppSettingsKit
-    - KMPlaceholderTextView
-    - OCMock
-    - OrderedDictionary
-    - POE
-    - TUSafariActivity
-    - UIColor-HexRGB
-
 EXTERNAL SOURCES:
   Localize:
     :git: https://github.com/tladesignz/Localize.git
@@ -121,4 +110,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 406fe2da96d5f1cd3dbc7ca20b641ba9fa2321ef
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.4.0

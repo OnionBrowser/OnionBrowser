@@ -12,12 +12,12 @@ Please see the [LICENSE][license] file for usage and redistribution terms. As of
 
 ---
 
-* **OnionBrowser**: 2.0.3 (20180209.48) - See [official release history][releases] and [changelog][changelog].
+* **OnionBrowser**: 2.2.0-pre (20181008.1) - See [official release history][releases] and [changelog][changelog].
 * **[Endless][endless]** upstream: 1.6.1
-* **[Tor.framework][Tor.framework]**: 31.9.2
-  * **[Tor][tor]**: 0.3.1.9
+* **[Tor.framework][Tor.framework]**: 35.2.1
+  * **[Tor][tor]**: 0.3.5.2-alpha
   * **[libevent][libevent]**: 2.1.8
-  * **[OpenSSL][openssl]**: 1.1.0g
+  * **[OpenSSL][openssl]**: 1.1.0i
   * **[liblzma][liblzma]**: 5.2.3
 
 [official]: https://onionbrowser.com/
