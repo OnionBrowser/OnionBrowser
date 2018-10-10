@@ -30,7 +30,9 @@ import Foundation
 
         let dataDir = URL(fileURLWithPath: docsDir, isDirectory: true).appendingPathComponent("tor", isDirectory: true)
 
-        print(dataDir);
+        #if DEBUG
+            print(dataDir);
+        #endif
 
         // Create tor data directory if it does not yet exist
         do {
@@ -201,7 +203,10 @@ import Foundation
             var args = torConf.arguments!
 
             // configure bridge lines, if necessary
-            print("use_bridges = \(String(describing: bridgesId))")
+            #if DEBUG
+                print("use_bridges = \(String(describing: bridgesId))")
+            #endif
+
             if bridgesId != nil && bridgesId != USE_BRIDGES_NONE {
                 args.append("--usebridges")
                 args.append("1")
@@ -335,10 +340,11 @@ import Foundation
 
             let cookieURL = OnionManager.torBaseConf.dataDirectory!.appendingPathComponent("control_auth_cookie")
             let cookie = try! Data(contentsOf: cookieURL)
-//            let cookie = "6aNBPCDO9W441oDn6Oj5BIUqJnKr23l".data(using: .utf8)
 
-            print("cookieURL: ", cookieURL as Any)
-            print("cookie: ", cookie)
+            #if DEBUG
+                print("cookieURL: ", cookieURL as Any)
+                print("cookie: ", cookie)
+            #endif
 
             self.torController.authenticate(with: cookie, completion: { (success, error) in
                 if success {
@@ -349,7 +355,10 @@ import Foundation
                             self.torController.removeObserver(completeObs)
                             self.cancelInitRetry()
                             self.cancelFailGuard()
-                            print("ESTABLISHED")
+                            #if DEBUG
+                                print("ESTABLISHED")
+                            #endif
+
                             delegate?.torConnFinished()
                         }
                     }) // torController.addObserver
@@ -378,7 +387,9 @@ import Foundation
         }) //delay
 
         initRetry = DispatchWorkItem {
-            print("RETRY")
+            #if DEBUG
+                print("RETRY")
+            #endif
             self.torController.setConfForKey("DisableNetwork", withValue: "1", completion: { (_, _) in
             })
             //self.torReconnect()
