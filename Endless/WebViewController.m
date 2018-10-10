@@ -300,7 +300,7 @@
 			if (homepage == nil || [homepage isEqualToString:@""]) {
 				//NSDictionary *se = [[appDelegate searchEngines] objectForKey:[userDefaults stringForKey:@"search_engine"]];
 				//homepage = [se objectForKey:@"homepage_url"];
-                homepage = @"http://onionbr5zulufnuj.onion/";
+                homepage = @"http://3heens4xbedlj57xwcggjsdglot7e36p4rogy642xokemfo2duh6bbyd.onion/";
 			}
 			
 			[self addNewTabForURL:[NSURL URLWithString:homepage]];
