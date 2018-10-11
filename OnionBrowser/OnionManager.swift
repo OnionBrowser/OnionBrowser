@@ -36,11 +36,19 @@ import Foundation
 
         // Create tor data directory if it does not yet exist
         do {
-            try FileManager.default.createDirectory(atPath: dataDir.absoluteString, withIntermediateDirectories: true, attributes: nil)
+            try FileManager.default.createDirectory(atPath: dataDir.path, withIntermediateDirectories: true, attributes: nil)
         } catch let error as NSError {
             print(error.localizedDescription);
         }
-
+        // Create tor v3 auth directory if it does not yet exist
+        let authDir = URL(fileURLWithPath: dataDir.path, isDirectory: true).appendingPathComponent("auth", isDirectory: true)
+        do {
+            try FileManager.default.createDirectory(atPath: authDir.path, withIntermediateDirectories: true, attributes: nil)
+        } catch let error as NSError {
+            print(error.localizedDescription);
+        }
+        // TODO: pref pane for adding "<sitename>.auth_private" files to this directory
+        
         // Configure tor and return the configuration object
         let configuration = TorConfiguration()
         configuration.cookieAuthentication = true
@@ -63,6 +71,7 @@ import Foundation
             "--clientuseipv6", "1",
             "--ClientTransportPlugin", "obfs4 socks5 127.0.0.1:47351",
             "--ClientTransportPlugin", "meek_lite socks5 127.0.0.1:47352",
+            "--ClientOnionAuthDir", authDir.path
         ]
 
         configuration.arguments = config_args
