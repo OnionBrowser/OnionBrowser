@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		8AC3B3A721700AD300E0CB4A /* OBVersion */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 8AC3B3A821700AD300E0CB4A /* Build configuration list for PBXAggregateTarget "OBVersion" */;
+			buildPhases = (
+				8A3EBA9221700AE80054A9FF /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = OBVersion;
+			productName = OBVersion;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		010EEA661A43A536001E8B65 /* CookieController.m in Sources */ = {isa = PBXBuildFile; fileRef = 010EEA651A43A536001E8B65 /* CookieController.m */; };
 		010EEA691A43C8CF001E8B65 /* CookieJar.m in Sources */ = {isa = PBXBuildFile; fileRef = 010EEA681A43C8CF001E8B65 /* CookieJar.m */; };
@@ -92,6 +106,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 01801E911A32CA2A002B4718;
 			remoteInfo = Endless;
+		};
+		8A3EBA9321700B0A0054A9FF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 01801E8A1A32CA2A002B4718 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8AC3B3A721700AD300E0CB4A;
+			remoteInfo = OBVersion;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -214,6 +235,7 @@
 		8A3F82F2201904100088F205 /* fa */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fa; path = Endless/fa.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
 		8A3F82F3201904170088F205 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = Endless/is.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
 		8A3F82F42019041E0088F205 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "Endless/zh-Hans.lproj/OnePasswordExtension.strings"; sourceTree = "<group>"; };
+		8AC3B3A621700A9D00E0CB4A /* version.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = version.h; path = OnionBrowser/version.h; sourceTree = "<group>"; };
 		8ACB70CE1FA1369A001E5588 /* Iobfs4proxy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Iobfs4proxy.framework; path = Carthage/Build/iOS/Iobfs4proxy.framework; sourceTree = "<group>"; };
 		8ACB70D01FA136F0001E5588 /* geoip */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = geoip; sourceTree = "<group>"; };
 		8ACB70D11FA136F0001E5588 /* geoip6 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = geoip6; sourceTree = "<group>"; };
@@ -592,6 +614,7 @@
 				8AD5FFB91EB3DFE30066E7E3 /* ObfsThread.m */,
 				8AD1283B1ED61812005C43E4 /* Ipv6Tester.h */,
 				8AD1283C1ED61812005C43E4 /* Ipv6Tester.m */,
+				8AC3B3A621700A9D00E0CB4A /* version.h */,
 				8AD128411ED6182A005C43E4 /* ThirdParty */,
 				8ACB70CE1FA1369A001E5588 /* Iobfs4proxy.framework */,
 			);
@@ -916,6 +939,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				8A3EBA9421700B0A0054A9FF /* PBXTargetDependency */,
 			);
 			name = OnionBrowser2;
 			productName = Endless;
@@ -968,6 +992,10 @@
 						CreatedOnToolsVersion = 6.1.1;
 						TestTargetID = 01801E911A32CA2A002B4718;
 					};
+					8AC3B3A721700AD300E0CB4A = {
+						CreatedOnToolsVersion = 10.0;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 01801E8D1A32CA2A002B4718 /* Build configuration list for PBXProject "OnionBrowser2" */;
@@ -1008,6 +1036,7 @@
 			targets = (
 				01801E911A32CA2A002B4718 /* OnionBrowser2 */,
 				018333D61A35727C00670CD1 /* OnionBrowser2 Tests */,
+				8AC3B3A721700AD300E0CB4A /* OBVersion */,
 			);
 		};
 /* End PBXProject section */
@@ -1171,6 +1200,23 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OnionBrowser2/Pods-OnionBrowser2-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		8A3EBA9221700AE80054A9FF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$SRCROOT\"/OnionBrowser/build-util/mk_build_versions.sh\n";
+		};
 		8ACB70CD1FA13676001E5588 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1274,6 +1320,11 @@
 			isa = PBXTargetDependency;
 			target = 01801E911A32CA2A002B4718 /* OnionBrowser2 */;
 			targetProxy = 018333DD1A35727C00670CD1 /* PBXContainerItemProxy */;
+		};
+		8A3EBA9421700B0A0054A9FF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8AC3B3A721700AD300E0CB4A /* OBVersion */;
+			targetProxy = 8A3EBA9321700B0A0054A9FF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1422,6 +1473,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1470,6 +1522,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
@@ -1596,6 +1649,22 @@
 			};
 			name = Release;
 		};
+		8AC3B3A921700AD300E0CB4A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		8AC3B3AA21700AD300E0CB4A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1622,6 +1691,15 @@
 			buildConfigurations = (
 				018333E01A35727C00670CD1 /* Debug */,
 				018333E11A35727C00670CD1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8AC3B3A821700AD300E0CB4A /* Build configuration list for PBXAggregateTarget "OBVersion" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8AC3B3A921700AD300E0CB4A /* Debug */,
+				8AC3B3AA21700AD300E0CB4A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

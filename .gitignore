@@ -18,6 +18,7 @@ fabric.apikey
 fabric.buildsecret
 Endless/DonationViewController.h
 Endless/DonationViewController.m
+OnionBrowser/version.h
 
 geoip
 geoip6
