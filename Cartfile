@@ -1,8 +1,5 @@
-#binary "https://cdn.tig.as/files/Tor.json" == 31.9.2
+binary "https://icepa.github.io/Tor.framework/Tor.json" == 305.2.1
 #github "iCepa/Tor.framework" "master"
-### mtigas/Tor.framework@tor_0_3_5_2-wip (separate from main iCepa repo for now since it's not stable)
-github "mtigas/Tor.framework" "6b9ea7b1d98374e7e81bdb62f96194a0799d532b"
-#git "file:///Users/mtigas/Code/Tor.framework" "6b9ea7b1d98374e7e81bdb62f96194a0799d532b"
-
+#github "mtigas/Tor.framework" "6b9ea7b1d98374e7e81bdb62f96194a0799d532b"
 
 binary "https://cdn.tig.as/files/Iobfs4proxy.json" == 1.0
