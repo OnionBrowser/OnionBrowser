@@ -20,6 +20,7 @@
 	NSMutableArray *_keyCommands;
 	NSMutableArray *_allKeyBindings;
 	NSArray *_allCommandsAndKeyBindings;
+    NSUInteger torState;
 }
 
 - (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -110,19 +111,27 @@
 	
 	[application ignoreSnapshotOnNextApplicationLaunch];
 
-//    Experiment: Stop Tor and restart later.
-//    [OnionManager.singleton stopTor];
+    // Experiment: Stop Tor and restart later.
+    if (self.torState != TOR_STATE_STOPPED) {
+        [OnionManager.singleton stopTor];
+        self.torState = TOR_STATE_STOPPED;
+    }
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
 	[[self webViewController] viewIsVisible];
 
-//    Experiment: Start/restart Tor. Can't be used exactly like this, since we need the delegate to be set properly to the POE library.
-//    if ([self.window.rootViewController class] != [OBRootViewController class])
-//    {
-//        [OnionManager.singleton startTorWithDelegate:nil];
-//    }
+    // Experiment: Start/restart Tor.
+    if (self.torState != TOR_STATE_STARTED) {
+        // TODO: actually use UI instead of silently trying to restart tor
+        OnionManager *onion = [OnionManager singleton];
+        [onion startTorWithDelegate:nil];
+        self.torState = TOR_STATE_STARTED;
+        //if ([self.window.rootViewController class] != [OBRootViewController class]) {
+        //...something that re-inits the POE bits
+        //}
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

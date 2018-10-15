@@ -206,7 +206,9 @@ import Foundation
         NotificationCenter.default.addObserver(self, selector: #selector(self.networkChange), name: NSNotification.Name.reachabilityChanged, object: nil)
         reach.startNotifier()
 
-        if self.torThread == nil {
+        if ((self.torThread == nil) || (self.torThread?.isCancelled ?? true)) {
+            self.torThread = nil
+            
             let torConf = OnionManager.torBaseConf
 
             var args = torConf.arguments!
@@ -378,6 +380,9 @@ import Foundation
 
                         if type == "STATUS_CLIENT" && action == "BOOTSTRAP" {
                             let progress = Int(arguments!["PROGRESS"]!)!
+                            #if DEBUG
+                                print("PROGRESS: \(progress)")
+                            #endif
 
                             delegate?.torConnProgress(progress)
 
@@ -426,12 +431,15 @@ import Foundation
     */
     @objc func stopTor() {
         print("TRY SHUTDOWN!")
-
-        torController.sendCommand("SIGNAL SHUTDOWN", arguments: ["0"], data: nil, observer: { (_, _, _) -> Bool in
-            print("SHUTDOWN OBSERVER CALLED!")
-            self.torThread = nil
-            return true
-        })
+        
+        // under the hood, TORController will SIGNAL SHUTDOWN and set it's channel to nil, so
+        // we actually rely on that to stop tor and reset the state of torController. (we can
+        // SIGNAL SHUTDOWN here, but we can't reset the torController "isConnected" state.)
+        self.torController.disconnect()
+        
+        // More cleanup
+        self.torThread?.cancel()
+        self.torHasConnected = false
     }
 
     private func bridgeLinesToArgs(_ bridgeLines: [String]) -> [String] {
