@@ -1,4 +1,4 @@
-Navegador Onion
+Onion Browser
 
 Web segura y anónima con Tor
 
@@ -6,9 +6,9 @@ Web segura y anónima con Tor
 
 ---
 
-Bienvenido al Navegador Onion 2!
+Bienvenido a Onion Browser 2!
 
-Navegador Onion 2 es una re-escritura total de la aplicación que contiene varias características nuevas:
+Onion Browser 2 es una re-escritura total de la aplicación que contiene varias características nuevas:
 
 * Por primera vez, una experiencia de lanzamiento más amigable.
 * Una interfaz de usuario actualizada, que contiene "exploración con pestañas" y paneles de configuración mejorados 
@@ -17,11 +17,11 @@ Navegador Onion 2 es una re-escritura total de la aplicación que contiene varia
 * Protección de privacidad y bloqueo de anuncios incorporado
 * Afina la configuración de seguridad/privacidad para cada sitio (incluyendo política de cookies, user agent y política de JavaScript/contenido activo).
 * Tor 0.3.1.9
-* La configuración y los marcadores del Navegador Onion 1 se conservan.
+* La configuración y los marcadores del Onion Browser 1 se conservan.
 
 Lo mejor de todo: ¡esta actualización es gratis!
 
-La actualización del Navegador Onion 2 fue apoyada por The Guardian Project, con la ayuda de Benjamin Erhart y Carrie Winfrey.  El Navegador Onion 2 está basado en el navegador de código abierto "Endless"; un agradecimiento especial a Joshua Stein por crear Endless y por otorgar permiso para usarlo en el Navegador Onion. Consulta el archivo de créditos en la configuración de la aplicación para obtener más información.
+La actualización del Onion Browser 2 fue apoyada por The Guardian Project, con la ayuda de Benjamin Erhart y Carrie Winfrey.  El Onion Browser 2 está basado en el navegador de código abierto "Endless"; un agradecimiento especial a Joshua Stein por crear Endless y por otorgar permiso para usarlo en el Onion Browser. Consulta el archivo de créditos en la configuración de la aplicación para obtener más información.
 
 2.0.2: Actualización de seguridad: corrige la fuga de DNS. Arregla problemas de conectividad IPv6 que afectan a los usuarios de algunos operadores de telefonía. Arregla algunos colapsos del sistema. Se agregaron traducciones para varios idiomas.
 
@@ -29,9 +29,9 @@ La actualización del Navegador Onion 2 fue apoyada por The Guardian Project, co
 
 ---
 
-El Navegador Onion es el navegador TOR original y de código abierto para iOS. Te ayuda a acceder a Internet con más seguridad y privacidad y sin costo adicional para ti.
+El Onion Browser es el navegador TOR original y de código abierto para iOS. Onion Browser te ayuda a acceder a Internet con más seguridad y privacidad y sin costo adicional para ti.
 
-"La mejor oferta relacionada con Tor en iOS ahora es el Navegador Onion" - The Daily Dot, 14 de octubre de 2015.
+"La mejor oferta relacionada con Tor en iOS ahora es el Onion Browser" - The Daily Dot, 14 de octubre de 2015.
 
 Mencionado en: The New York Times, The Guardian, Salon, TechCrunch, Gizmodo, Boing Boing, Lifehacker, Macworld, The Daily Dot, y otros.
 
@@ -49,11 +49,11 @@ CARACTERÍSTICAS:
 ACLARACIONES:
 - La navegación web es mucho más lenta que a través de un navegador web normal o una VPN porque tu tráfico se cifra y retransmite a través de la red Tor.
 
-- El contenido multimedia a menudo elude Tor y compromete tu privacidad; los ficheros y streams de vídeo están bloqueados por defecto y no están soportados por el Navegador Onion.
+- El contenido multimedia a menudo elude Tor y compromete tu privacidad; los ficheros y streams de vídeo están bloqueados por defecto y no están soportados por el Onion Browser.
 
-- El Navegador Onion podría no funcionar en redes con restricciones de red avanzadas. Si la aplicación no se conecta, intenta usar puentes (o un tipo diferente de puente), fuerza el cierre y luego reinicia la aplicación. 
+- El Onion Browser podría no funcionar en redes con restricciones de red avanzadas. Si la aplicación no se conecta, intenta usar puentes (o un tipo diferente de puente), fuerza el cierre y luego reinicia la aplicación. 
 
-- El uso del Navegador Onion es por tu cuenta y riesgo, recuerda que los datos sensibles no siempre tienen lugar en un dispositivo móvil.
+- El uso del Onion Browser es por tu cuenta y riesgo, recuerda que los datos sensibles no siempre tienen lugar en un dispositivo móvil.
 
-** El Navegador Onion es un software gratuito y de código abierto. Puedes leer más acerca del Navegador Onion y cómo apoyar al desarrollo de Tor en iOS visitando onionbrowser.com **
+** El Onion Browser es un software gratuito y de código abierto. Puedes leer más acerca del  Onion Browser y cómo apoyar al desarrollo de Tor en iOS visitando onionbrowser.com **
 

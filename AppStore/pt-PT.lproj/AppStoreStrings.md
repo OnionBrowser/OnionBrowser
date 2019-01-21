@@ -2,7 +2,7 @@ Onion Browser
 
 Web segura e anónima com o Tor
 
-`Browser,Tor,Tor Browser,Onion Browser,anonymous,private,private browser,orbot,orfox,onion`
+`Navegador,Tor,Tor Browser,Onion Browser,anónimo,privado,navegador privado,orbot,orfox,onion`
 
 ---
 
@@ -11,49 +11,49 @@ Bem-vindo ao Onion Browser 2!
 A aplicação Onion Browser 2 foi totalmente reescrita, e contém várias novas funcionalidades:
 
 * Uma experiência de lançamento pela primeira vez e mais amigável.
-* Uma interface do utilizador atualizada, contendo "navegação por separadores" e painéis de definições melhorados
+* Uma interface do utilizador atualizada, contendo "navegação por separadores" e painéis de configurações melhorados
 * Suporte para HTTPS Everywhere
 * Suporte para 1Password
 * Bloqueio de anúncios e proteção de privacidade incorporados
 * Ajustar as definições de segurança/privacidade por site (incluindo a política de cookies, agente de utilizador e política de conteúdo ativo/JavaScript).
 * Tor 0.3.1.9
-* São mantidas as definições e os marcadores do Onion Browser 1.
+* As configurações e os marcadores do Onion Browser 1 serão mantidas.
 
 E o melhor de tudo: esta atualização é gratuita!
 
-The Onion Browser 2 update was supported by the Guardian Project, with help from Benjamin Erhart and Carrie Winfrey. Onion Browser 2 is based on the open-source "Endless" Browser; special thanks to Joshua Stein for creating Endless and for granting permission to use it in Onion Browser. See the credits file in the app settings for more information.
+A atualização do Onion Browser 2 era suportada pelo Projeto Guardian, com a ajuda de Benjamin Erhart e Carrie Winfrey. O Onion Browser 2 é baseado no código aberto "Endless" Browser; agradecimentos especiais a Joshua Stein por criar o Endless e por conceder a permissão para utilizá-lo no Onion Browser. Consulte o ficheiro de créditos nas configurações da aplicação para mais informação.
 
-2.0.2: Security update: fix DNS leak. Fixes for IPv6 connectivity affecting users of some mobile carriers. Fixes for some crashes. Added localizations for several languages.
+2.0.2: Atualização de segurança: correção de falha de DNS. Correções de ligação IPv6 que afetavam os utilizadores de alguns operadores de telemóveis. Correções para alguns craches. Adicionadas localizações para alguns idiomas.
 
-2.0.1: Minor update to fix App Store rating link.
+2.0.1: Atualização secundária para corrigir a hiperligação de classificação na Loja de Aplicações.
 
 ---
 
-Onion Browser is the original free and open-source Tor-powered web browser for iOS. Onion Browser helps you access the internet with more safety and privacy, and no extra cost to you.
+Onion Browser é o navegador da Web original (Tor) gratuito e de código aberto para iOS. Onion Browser ajuda-o a aceder à Internet com mais segurança e privacidade, e sem nenhum custo extra para si.
 
-“The best Tor-related offering on iOS right now is Onion Browser” - The Daily Dot, October 14, 2015.
+“De momento, o melhor Tor (relacionado) em oferta no iOS é o Onion Browser” - The Daily Dot, 14 de outubro de 2015.
 
 Apresentado no: The New York Times, The Guardian, Salão, TechCrunch, Gizmodo, Boing Boing, Lifehacker, Macworld, The Daily Dot, e outros.
 
 FUNCIONALIDADES:
 • Explore a Internet com o Tor:
 - Proteja a sua privacidade contra a monitorização do site da Web
-- Secure your traffic from insecure wireless networks and ISPs.
-- Support for HTTPS Everywhere, an automatic switch to HTTPS enabled websites.
-- Access .onion sites that are only accessible over Tor.
+- Proteja o seu tráfego de redes sem fio e ISPs inseguros.
+- Suporte para HTTPS Everywhere, um comutador automático para sites da Web em HTTPS.
+- Aceda aos sites .onion que só são acessíveis com o Tor.
 
-• Fight online tracking: block scripts and automatically clear cookies and tabs, based on your preferences.
+• Combata a monitorização on-line: bloqueie scripts e limpe automaticamente os cookies e separadores, com base nas suas preferências.
 
-• And more privacy-enhancing features!
+• E mais funcionalidades para melhorar a privacidade!
 
 LIMITAÇÃO DE RESPONSABILIDADE:
-- Web browsing is much slower than through a normal web browser or a VPN because your traffic is encrypted and relayed through the Tor network.
+- A navegação na Web é muito mais lenta do que através de um navegador da Web normal ou de uma VPN, porque o tráfego é encriptado e retransmitido pela rede Tor.
 
-- Multimedia often bypass Tor and compromise your privacy; video files and video streams are blocked by default and are not supported by Onion Browser.
+- A multimédia frequentemente contornam o Tor e comprometem a sua privacidade; os ficheiros de vídeo e transmissões de vídeo são bloqueados por predefinição e não são suportados pelo Onion Browser.
 
-- Onion Browser might not work on networks with advanced network restrictions. If the app does not connect, try using bridges (or a different type of bridge), force-quit, and then restart the app.
+- O Onion Browser pode não funcionar nas redes com restrições de rede avançadas. Se a aplicação não se ligar, tente usar pontes (ou um tipo diferente de ponte), force o parar, e reinicie a aplicação.
 
-- Use of Onion Browser is at your own risk; remember that sensitive data does not always belong on a mobile device.
+- Use o Onion Browser por sua conta e risco; lembre-se de que os dados confidenciais nem sempre pertencem a um dispositivo móvel.
 
-** Onion Browser is free and open-source software. You can read more about Onion Browser and how to support development of Tor on iOS by visiting onionbrowser.com **
+** Onion Browser é software de código aberto e gratuito. Pode ler mais sobre o Onion Browser e como apoiar o desenvolvimento do Tor no iOS, visitando onionbrowser.com **
 

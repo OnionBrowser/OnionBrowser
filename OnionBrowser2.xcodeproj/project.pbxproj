@@ -333,6 +333,39 @@
 		A01F655F2003BDEC0087306B /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
 		A01F65602003BE860087306B /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
 		A01F65612003BE860087306B /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
+		A025F25321F626420034B947 /* br */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = br; path = br.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
+		A025F25421F626420034B947 /* br */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = br; path = Endless/br.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A025F25521F626430034B947 /* br */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = br; path = Endless/br.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
+		A025F25621F6265D0034B947 /* el */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = el; path = el.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
+		A025F25721F6265E0034B947 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = Endless/el.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A025F25821F6265E0034B947 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = Endless/el.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
+		A025F25921F626710034B947 /* gu */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = gu; path = gu.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
+		A025F25A21F626710034B947 /* gu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = gu; path = Endless/gu.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A025F25B21F626720034B947 /* gu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = gu; path = Endless/gu.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
+		A025F25C21F6267A0034B947 /* he */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = he; path = he.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
+		A025F25D21F6267A0034B947 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = Endless/he.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A025F25E21F6267B0034B947 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = Endless/he.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
+		A025F25F21F626A00034B947 /* id */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = id; path = id.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
+		A025F26021F626A10034B947 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = Endless/id.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A025F26121F626A10034B947 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = Endless/id.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
+		A025F26221F626AF0034B947 /* it */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = it; path = it.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
+		A025F26321F626AF0034B947 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = Endless/it.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A025F26421F626B00034B947 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = Endless/it.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
+		A025F26521F626CA0034B947 /* mk */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = mk; path = mk.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
+		A025F26621F626CB0034B947 /* mk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mk; path = Endless/mk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A025F26721F626CB0034B947 /* mk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mk; path = Endless/mk.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
+		A025F26821F626DD0034B947 /* pl */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = pl; path = pl.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
+		A025F26921F626DD0034B947 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = Endless/pl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A025F26A21F626DE0034B947 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = Endless/pl.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
+		A025F26B21F626EE0034B947 /* ro */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = ro; path = ro.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
+		A025F26C21F626EF0034B947 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = Endless/ro.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A025F26D21F626EF0034B947 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = Endless/ro.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
+		A025F26E21F627110034B947 /* tr-TR */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "tr-TR"; path = "tr-TR.lproj/AppStoreStrings.md"; sourceTree = "<group>"; };
+		A025F26F21F627110034B947 /* tr-TR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "tr-TR"; path = "Endless/tr-TR.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		A025F27021F627120034B947 /* tr-TR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "tr-TR"; path = "Endless/tr-TR.lproj/OnePasswordExtension.strings"; sourceTree = "<group>"; };
+		A025F27121F627180034B947 /* vi */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = vi; path = vi.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
+		A025F27221F627180034B947 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = Endless/vi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A025F27321F627190034B947 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = Endless/vi.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
 		A045E5E21EDC5C1700BC8A92 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Endless/Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A045E5E41EDC5C1700BC8A92 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Endless/Base.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
 		A045E5E71EDC5C2200BC8A92 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = Endless/de.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1026,6 +1059,17 @@
 				ta,
 				te,
 				uk,
+				br,
+				el,
+				gu,
+				he,
+				id,
+				it,
+				mk,
+				pl,
+				ro,
+				"tr-TR",
+				vi,
 			);
 			mainGroup = 01801E891A32CA2A002B4718;
 			productRefGroup = 01801E931A32CA2A002B4718 /* Products */;
@@ -1324,6 +1368,17 @@
 				A0759DE220975DB2000DFBFE /* ta */,
 				A0759DE520975DC6000DFBFE /* te */,
 				A0759DE820975DCD000DFBFE /* uk */,
+				A025F25421F626420034B947 /* br */,
+				A025F25721F6265E0034B947 /* el */,
+				A025F25A21F626710034B947 /* gu */,
+				A025F25D21F6267A0034B947 /* he */,
+				A025F26021F626A10034B947 /* id */,
+				A025F26321F626AF0034B947 /* it */,
+				A025F26621F626CB0034B947 /* mk */,
+				A025F26921F626DD0034B947 /* pl */,
+				A025F26C21F626EF0034B947 /* ro */,
+				A025F26F21F627110034B947 /* tr-TR */,
+				A025F27221F627180034B947 /* vi */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1355,6 +1410,17 @@
 				A0759DE320975DB3000DFBFE /* ta */,
 				A0759DE620975DC7000DFBFE /* te */,
 				A0759DE920975DCD000DFBFE /* uk */,
+				A025F25521F626430034B947 /* br */,
+				A025F25821F6265E0034B947 /* el */,
+				A025F25B21F626720034B947 /* gu */,
+				A025F25E21F6267B0034B947 /* he */,
+				A025F26121F626A10034B947 /* id */,
+				A025F26421F626B00034B947 /* it */,
+				A025F26721F626CB0034B947 /* mk */,
+				A025F26A21F626DE0034B947 /* pl */,
+				A025F26D21F626EF0034B947 /* ro */,
+				A025F27021F627120034B947 /* tr-TR */,
+				A025F27321F627190034B947 /* vi */,
 			);
 			name = OnePasswordExtension.strings;
 			sourceTree = "<group>";
@@ -1386,6 +1452,17 @@
 				A0759DE120975DB1000DFBFE /* ta */,
 				A0759DE420975DC5000DFBFE /* te */,
 				A0759DE720975DCC000DFBFE /* uk */,
+				A025F25321F626420034B947 /* br */,
+				A025F25621F6265D0034B947 /* el */,
+				A025F25921F626710034B947 /* gu */,
+				A025F25C21F6267A0034B947 /* he */,
+				A025F25F21F626A00034B947 /* id */,
+				A025F26221F626AF0034B947 /* it */,
+				A025F26521F626CA0034B947 /* mk */,
+				A025F26821F626DD0034B947 /* pl */,
+				A025F26B21F626EE0034B947 /* ro */,
+				A025F26E21F627110034B947 /* tr-TR */,
+				A025F27121F627180034B947 /* vi */,
 			);
 			name = AppStoreStrings.md;
 			sourceTree = "<group>";

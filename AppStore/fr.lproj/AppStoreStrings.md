@@ -57,4 +57,3 @@ AVERTISSEMENTS :
 
 ** Le Navigateur Onion est un logiciel libre et à code source ouvert. Vous pouvez en apprendre davantage sur le Navigateur Onion et le soutien du développement de Tor sur iOS en visitant onionbrowser.com **
 
-

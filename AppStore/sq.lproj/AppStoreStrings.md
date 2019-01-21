@@ -6,54 +6,54 @@ Rrjet i sigurt, anonim me Tor
 
 ---
 
-Mirëseerdhët te Onion Browser 2!
+Mirë se vini në Onion Browser 2!
 
 Onion Browser 2 është rishkrim i plotë i aplikacionit që përmban disa karakteristika të reja:
 
 * Një përvojë e re për hapjen e parë.
 * Ndërfaqe përdoruesi e përditësar, që përfshin "shfletim me ndarje" dhe panele të përmirësuara konfigurimi
-* Suport për HTTPS Kudo
+* Suport për HTTPS Everywhere
 * Suport për 1Password
 * Bllokim reklamash dhe ruajtje privatësie të inkorporuara
-* Ndryshoni opsionet e sigurisë/privatësisë për çdo faqe (duke përfshirë politikat e 'cookies',
+* Ndryshoni opsionet e sigurisë/privatësisë për çdo faqe (duke përfshirë politikat e 'cookies', agjentët e përdoruesit dhe Javascript/ politika përmbajtjeje aktive).
 * Tor 0.3.1.9
-* Konfigurimi dhe të dhënat janë ruajtur nga Onion Browser 1.
+* Konfigurimi dhe bookmarks nga Onion Browser 1 janë ruajtur.
 
-Best of all: this update is free!
+Dhe më e mira: ky përditësim është falas.
 
-The Onion Browser 2 update was supported by the Guardian Project, with help from Benjamin Erhart and Carrie Winfrey. Onion Browser 2 is based on the open-source "Endless" Browser; special thanks to Joshua Stein for creating Endless and for granting permission to use it in Onion Browser. See the credits file in the app settings for more information.
+Përditësimi i Onion Browser 2 u mbështet nga Guardian Project, me ndihmë nga Benjamin Erhart dhe Carrie Winfrey. Onion Browser 2 është bazuar tek shfletuasi me kod-burim të hapur "Endless"; një falenderim special shkon për Joshua Stein për krijimin e Endless dhe për dhënien e lejes për përdorimin e tij në Onion Browser. Shiko skedarin e krediteve tek regjistrimet e aplikacionit për më shumë informacion. 
 
-2.0.2: Security update: fix DNS leak. Fixes for IPv6 connectivity affecting users of some mobile carriers. Fixes for some crashes. Added localizations for several languages.
+2.0.2: Përditësim sigurie: rregullim i humbjeve DNS. Rregullime për IPv6 të cilat afektojnë përdoruesit për disa operatorë celular. Rregullime për disa dështime. U shtuan përkthime për disa gjuhë.
 
-2.0.1: Minor update to fix App Store rating link.
+2.0.1: Përditësim i vogël për të rregulluar ndërlidhjen e vlerësimit në App Store.
 
 ---
 
-Onion Browser is the original free and open-source Tor-powered web browser for iOS. Onion Browser helps you access the internet with more safety and privacy, and no extra cost to you.
+Onion Browser është shfletuesi origjinal me kod-burim të hapur i bazuar në Tor për iOS. Onion Browser të ndihmon të aksesosh internetin me më shumë siguri dhe privatësi dhe pa kosto shtesë për ty. 
 
-“The best Tor-related offering on iOS right now is Onion Browser” - The Daily Dot, October 14, 2015.
+“Opsioni më i mirë për momentin i bazuar në Tor për iOS është Onion Browser ” - The Daily Dot, 14 tetor, 2015.
 
-Featured in: The New York Times, The Guardian, Salon, TechCrunch, Gizmodo, Boing Boing, Lifehacker, Macworld, The Daily Dot, & others.
+Paraqitur në: The New York Times, The Guardian, Salon, TechCrunch, Gizmodo, Boing Boing, Lifehacker, Macworld, The Daily Dot dhe të tjerë.
 
-FEATURES:
-• Browse the internet over Tor:
-- Protect your privacy from website tracking.
-- Secure your traffic from insecure wireless networks and ISPs.
-- Support for HTTPS Everywhere, an automatic switch to HTTPS enabled websites.
-- Access .onion sites that are only accessible over Tor.
+Karakteristika:
+• Navigo në internet mbi rrjetin Tor:
+- Ruaj privatësinë tënde nga monitorimet e faqeve në internet
+- Siguro trafikun tënd nga rrjete pa-tela të pasigurta dhe Ofruesit të Internetit
+- Mbështetje për HTTPS Everywhere, një kalim automatik tek faqet që kanë të aktivizuar HTTPS.
+- Akseso faqet .onion që janë të aksesueshme vetëm në rrjetin Tor.
 
-• Fight online tracking: block scripts and automatically clear cookies and tabs, based on your preferences.
+• Lufto monitorimin në internet: blloko skripte dhe fshij automatikisht cookies and tabs bazuar në preferencat e tua. 
 
-• And more privacy-enhancing features!
+• Dhe akoma më shumë karakteristika për rritjen e privatësisë!
 
-DISCLAIMERS:
-- Web browsing is much slower than through a normal web browser or a VPN because your traffic is encrypted and relayed through the Tor network.
+MOHIME:
+- Navigimi në internet është shumë herë më i ngadaltë nga navigimi normal ose përmes një VPN sepse trafiku është i enkriptuar dhe i bazuar mbi rrjetin Tor.
 
-- Multimedia often bypass Tor and compromise your privacy; video files and video streams are blocked by default and are not supported by Onion Browser.
+- Multimedia shpeshherë tejkalon Tor duke vënë në rrezik privatësinë tënde; skedarët video dhe transmetimet video janë të bllokuar dhe nuk suportohen në Onion Browser. 
 
-- Onion Browser might not work on networks with advanced network restrictions. If the app does not connect, try using bridges (or a different type of bridge), force-quit, and then restart the app.
+- Onion Browser mund të mos fuksionojë në rrjete më kufizime të avancuara. Nëse aplikacioni nuk lidhet, përvoni të përdorni ura - bridges (ose një lloj ure tjetër), ndalim me forcë dhe më pas rihapni aplikacionin. 
 
-- Use of Onion Browser is at your own risk; remember that sensitive data does not always belong on a mobile device.
+- Përdor Onion Browser me përgjegjesinë tënde; ki në mëndje që të dhëna sensitive nuk i përkasin gjithmonë një pajisje celulare. 
 
-** Onion Browser is free and open-source software. You can read more about Onion Browser and how to support development of Tor on iOS by visiting onionbrowser.com **
+** Onion Browser është një program i lirë dhe me kod-burim të hapur. Mund të lexoni më shumë për Onion Browser dhe si të suportosh zhvillimin e Tor në iOS duke vizituar onionbrowser.com **
 
