@@ -1,0 +1,22 @@
+//
+//  Config.xcconfig
+//  OnionBrowser
+//
+//  Created by Benjamin Erhart on 21.01.19.
+//  Copyright © 2019 Guardian Project. All rights reserved.
+//
+
+// Avoid accidental checkins:
+// git update-index --skip-worktree Config.xcconfig
+// git update-index --no-skip-worktree Config.xcconfig
+
+
+OB_APP_BUNDLE_ID = com.miketigas.OnionBrowser
+
+DEVELOPMENT_TEAM = 68QUP6KP2C
+
+PROVISIONING_PROFILE_SPECIFIER_DEV = 
+PROVISIONING_PROFILE_SPECIFIER_RELEASE =
+
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) DEVELOPMENT_TEAM="$(DEVELOPMENT_TEAM)"
+
