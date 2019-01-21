@@ -934,7 +934,6 @@
 				01801E901A32CA2A002B4718 /* Resources */,
 				693145FF1D3EEAF500D08A6A /* ShellScript */,
 				89C901B3C39940B10E4CE4EE /* [CP] Embed Pods Frameworks */,
-				4578C7D091CC7B3D90876500 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -956,7 +955,6 @@
 				018333D41A35727C00670CD1 /* Frameworks */,
 				018333D51A35727C00670CD1 /* Resources */,
 				D8FF388A8305006E3AEF190B /* [CP] Embed Pods Frameworks */,
-				1600253A6B69EBC380773313 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -975,7 +973,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = jcs;
 				TargetAttributes = {
 					01801E911A32CA2A002B4718 = {
@@ -1084,21 +1082,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1600253A6B69EBC380773313 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OnionBrowser2 Tests/Pods-OnionBrowser2 Tests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		1C550CC82345C0B27822988C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1115,21 +1098,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4578C7D091CC7B3D90876500 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OnionBrowser2/Pods-OnionBrowser2-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		69160F006979AAACEFC1CA71 /* [CP] Check Pods Manifest.lock */ = {

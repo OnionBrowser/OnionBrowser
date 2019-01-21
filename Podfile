@@ -11,7 +11,7 @@ target "OnionBrowser2" do
   pod "XLForm", :git => "https://github.com/jcs/XLForm.git"
   pod "TUSafariActivity"
 
-  pod "POE", '~> 0.3.0'
+  pod "POE", '~> 0.4'
 end
 
 target "OnionBrowser2 Tests" do
