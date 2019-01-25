@@ -266,7 +266,7 @@ NSString * const LABEL = @"L";
                      customBridges:[NSUserDefaults.standardUserDefaults stringArrayForKey:CUSTOM_BRIDGES]];
 
 
-    [self presentViewController:bridgeVC animated:YES completion:nil];
+    [[appDelegate webViewController] presentViewController:bridgeVC animated:YES completion:nil];
 }
 
 - (void)menuShare
