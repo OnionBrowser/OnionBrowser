@@ -295,16 +295,16 @@
 {
 	NSURL *url = [request URL];
 	
-	/* treat endlesshttps?:// links clicked inside of web pages as normal links */
-	if ([[[url scheme] lowercaseString] isEqualToString:@"endlesshttp"]) {
+	/* treat onionhttps?:// links clicked inside of web pages as normal links */
+	if ([[[url scheme] lowercaseString] isEqualToString:@"onionhttp"]) {
 		NSMutableURLRequest *tr = [request mutableCopy];
-		[tr setURL:[NSURL URLWithString:[[url absoluteString] stringByReplacingCharactersInRange:NSMakeRange(0, [@"endlesshttp" length]) withString:@"http"]]];
+		[tr setURL:[NSURL URLWithString:[[url absoluteString] stringByReplacingCharactersInRange:NSMakeRange(0, [@"onionhttp" length]) withString:@"http"]]];
 		[self loadRequest:tr withForce:NO];
 		return NO;
 	}
-	else if ([[[url scheme] lowercaseString] isEqualToString:@"endlesshttps"]) {
+	else if ([[[url scheme] lowercaseString] isEqualToString:@"onionhttps"]) {
 		NSMutableURLRequest *tr = [request mutableCopy];
-		[tr setURL:[NSURL URLWithString:[[url absoluteString] stringByReplacingCharactersInRange:NSMakeRange(0, [@"endlesshttps" length]) withString:@"https"]]];
+		[tr setURL:[NSURL URLWithString:[[url absoluteString] stringByReplacingCharactersInRange:NSMakeRange(0, [@"onionhttps" length]) withString:@"https"]]];
 		[self loadRequest:tr withForce:NO];
 		return NO;
 	}

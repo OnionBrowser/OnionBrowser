@@ -147,10 +147,10 @@
 #ifdef TRACE
 	NSLog(@"[AppDelegate] request to open url \"%@\"", url);
 #endif
-	if ([[[url scheme] lowercaseString] isEqualToString:@"endlesshttp"])
-		url = [NSURL URLWithString:[[url absoluteString] stringByReplacingCharactersInRange:NSMakeRange(0, [@"endlesshttp" length]) withString:@"http"]];
-	else if ([[[url scheme] lowercaseString] isEqualToString:@"endlesshttps"])
-		url = [NSURL URLWithString:[[url absoluteString] stringByReplacingCharactersInRange:NSMakeRange(0, [@"endlesshttps" length]) withString:@"https"]];
+	if ([[[url scheme] lowercaseString] isEqualToString:@"onionhttp"])
+		url = [NSURL URLWithString:[[url absoluteString] stringByReplacingCharactersInRange:NSMakeRange(0, [@"onionhttp" length]) withString:@"http"]];
+	else if ([[[url scheme] lowercaseString] isEqualToString:@"onionhttps"])
+		url = [NSURL URLWithString:[[url absoluteString] stringByReplacingCharactersInRange:NSMakeRange(0, [@"onionhttps" length]) withString:@"https"]];
 
 	[[self webViewController] dismissViewControllerAnimated:YES completion:nil];
 	[[self webViewController] addNewTabForURL:url];
