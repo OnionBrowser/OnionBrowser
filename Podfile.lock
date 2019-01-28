@@ -56,7 +56,7 @@ PODS:
   - Localize (2.1.0)
   - OCMock (3.4.3)
   - OrderedDictionary (1.4)
-  - POE (0.4.0):
+  - POE (0.4.1):
     - KMPlaceholderTextView (~> 1.4)
     - Localize (~> 2.1)
     - UIColor-HexRGB
@@ -113,7 +113,7 @@ SPEC CHECKSUMS:
   Localize: f360a343abfac047be5b375c45be1059f5f625f3
   OCMock: 43565190abc78977ad44a61c0d20d7f0784d35ab
   OrderedDictionary: 138c8d2e358d3a0c9adda15c6c7db24e8e3b09e6
-  POE: 41c771e6f071e78878ae5c2d42674f58968dab9f
+  POE: 70460527cc9dbdb7cb356dd56e6d4ac63f5d4a66
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
   UIColor-HexRGB: daccfa7e936af664369734a164b0309087d7f970
   WYPopoverController: a9db25ac2841a686acdc0f3a99bdb21545db32f4
