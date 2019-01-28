@@ -259,12 +259,12 @@ NSString * const LABEL = @"L";
                            [NSNumber numberWithInteger:USE_BRIDGES_MEEKAZURE]: @"meek-azure"};
     }
     UINavigationController *bridgeVC = [BridgeSelectViewController
-                     initWithCurrentId:[NSUserDefaults.standardUserDefaults integerForKey:USE_BRIDGES]
-                     noBridgeId:[NSNumber numberWithInteger:USE_BRIDGES_NONE]
-                     providedBridges:builtInBridges
-                     customBridgeId:[NSNumber numberWithInteger:USE_BRIDGES_CUSTOM]
-                     customBridges:[NSUserDefaults.standardUserDefaults stringArrayForKey:CUSTOM_BRIDGES]];
-
+        initWithCurrentId:[NSUserDefaults.standardUserDefaults integerForKey:USE_BRIDGES]
+        noBridgeId:[NSNumber numberWithInteger:USE_BRIDGES_NONE]
+        providedBridges:builtInBridges
+        customBridgeId:[NSNumber numberWithInteger:USE_BRIDGES_CUSTOM]
+        customBridges:[NSUserDefaults.standardUserDefaults stringArrayForKey:CUSTOM_BRIDGES]
+        delegate: self];
 
     [[appDelegate webViewController] presentViewController:bridgeVC animated:YES completion:nil];
 }

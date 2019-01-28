@@ -39,7 +39,8 @@
                          noBridgeId:[NSNumber numberWithInteger:USE_BRIDGES_NONE]
                          providedBridges:builtInBridges
                          customBridgeId:[NSNumber numberWithInteger:USE_BRIDGES_CUSTOM]
-                         customBridges:[NSUserDefaults.standardUserDefaults stringArrayForKey:CUSTOM_BRIDGES]];
+                         customBridges:[NSUserDefaults.standardUserDefaults stringArrayForKey:CUSTOM_BRIDGES]
+                         delegate:nil];
         
         self.conctVC = [[ConnectingViewController alloc] init];
         self.conctVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
