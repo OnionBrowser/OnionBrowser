@@ -312,7 +312,7 @@ NSString * const LABEL = @"L";
     // Actually, the reconfiguration can be done completely offline, so we don't have a chance to
     // find out, if another bridge setting (or no bridge) actually works afterwards.
     // The user will find out, when she tries to continue browsing.
-    OnionManager *onion = [OnionManager singleton];
+    OnionManager *onion = OnionManager.shared;
     [onion setBridgeConfigurationWithBridgesId:bridgesId
                                  customBridges:customBridges];
     [onion startTorWithDelegate:nil];

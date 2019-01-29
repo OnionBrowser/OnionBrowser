@@ -87,7 +87,7 @@
 
 - (void)torConnProgress: (NSInteger)progress
 {
-    NSLog(@"OBROOTVIEWCONTROLLER received tor progress callback: %ld", (long)progress);
+    NSLog(@"[%@] received tor progress callback: %ld", [self class], (long)progress);
 
     self.progress = (float)progress / 100;
 
@@ -98,7 +98,7 @@
 
 - (void)torConnFinished
 {
-    NSLog(@"OBROOTVIEWCONTROLLER received tor connection completion callback");
+    NSLog(@"[%@] received tor connection completion callback", [self class]);
 
     if (!self.ignoreTor)
     {
@@ -112,7 +112,7 @@
 {
     if (!self.ignoreTor)
     {
-        NSLog(@"OBROOTVIEWCONTROLLER Tor didn't start!");
+        NSLog(@"[%@] Tor didn't start!", [self class]);
 
         [self.conctVC presentViewController:self.errorVC animated:YES completion:nil];
     }
@@ -216,7 +216,7 @@
     self.ignoreTor = NO;
     [self.settings synchronize];
     
-    OnionManager *onion = [OnionManager singleton];
+    OnionManager *onion = OnionManager.shared;
     [onion setBridgeConfigurationWithBridgesId:[self.settings integerForKey:USE_BRIDGES]
                                  customBridges:[self.settings arrayForKey:CUSTOM_BRIDGES]];
     [onion startTorWithDelegate:self];

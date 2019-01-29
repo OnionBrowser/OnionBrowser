@@ -9,7 +9,7 @@ import Foundation
 
 @objc class OnionManager : NSObject {
 
-    @objc static let singleton = OnionManager()
+    @objc static let shared = OnionManager()
 
     // Show Tor log in iOS' app log.
     private static let TOR_LOGGING = false
@@ -31,21 +31,21 @@ import Foundation
         let dataDir = URL(fileURLWithPath: docsDir, isDirectory: true).appendingPathComponent("tor", isDirectory: true)
 
         #if DEBUG
-            print(dataDir);
+            print("[\(String(describing: OnionManager.self))] dataDir=\(dataDir)");
         #endif
 
         // Create tor data directory if it does not yet exist
         do {
             try FileManager.default.createDirectory(atPath: dataDir.path, withIntermediateDirectories: true, attributes: nil)
         } catch let error as NSError {
-            print(error.localizedDescription);
+            print("[\(String(describing: OnionManager.self))] error=\(error.localizedDescription))")
         }
         // Create tor v3 auth directory if it does not yet exist
         let authDir = URL(fileURLWithPath: dataDir.path, isDirectory: true).appendingPathComponent("auth", isDirectory: true)
         do {
             try FileManager.default.createDirectory(atPath: authDir.path, withIntermediateDirectories: true, attributes: nil)
         } catch let error as NSError {
-            print(error.localizedDescription);
+            print("[\(String(describing: OnionManager.self))] error=\(error.localizedDescription))")
         }
         // TODO: pref pane for adding "<sitename>.auth_private" files to this directory
         
@@ -158,7 +158,7 @@ import Foundation
     }
     
     @objc func networkChange() {
-        print("ipv6_status: \(Ipv6Tester.ipv6_status())")
+        print("[\(String(describing: OnionManager.self))] ipv6_status: \(Ipv6Tester.ipv6_status())")
         var confs:[Dictionary<String,String>] = []
 
         if (Ipv6Tester.ipv6_status() == OnionManager.TOR_IPV6_CONN_ONLY) {
@@ -215,7 +215,7 @@ import Foundation
 
             // configure bridge lines, if necessary
             #if DEBUG
-                print("use_bridges = \(String(describing: bridgesId))")
+                print("[\(String(describing: OnionManager.self))] bridgesId=\(bridgesId ?? -1)")
             #endif
 
             if bridgesId != nil && bridgesId != USE_BRIDGES_NONE {
@@ -243,7 +243,7 @@ import Foundation
             // Use Ipv6Tester. If we _think_ we're IPv6-only, tell Tor to prefer IPv6 ports.
             // (Tor doesn't always guess this properly due to some internal IPv4 addresses being used,
             // so "auto" sometimes fails to bootstrap.)
-            print("ipv6_status: \(Ipv6Tester.ipv6_status())")
+            print("[\(String(describing: OnionManager.self))] ipv6_status: \(Ipv6Tester.ipv6_status())")
             if (Ipv6Tester.ipv6_status() == OnionManager.TOR_IPV6_CONN_ONLY) {
                 args += [
                     "--ClientPreferIPv6DirPort", "1",
@@ -277,7 +277,7 @@ import Foundation
                 self.obfsproxy.start()
             }
 
-            print("STARTING TOR");
+            print("[\(String(describing: OnionManager.self))] Starting Tor")
         }
         else {
             if needsReconfiguration {
@@ -345,7 +345,7 @@ import Foundation
                 do {
                     try self.torController.connect()
                 } catch {
-                    print("Error info: \(error)")
+                    print("[\(String(describing: OnionManager.self))] error=\(error)")
                 }
             }
 
@@ -353,8 +353,8 @@ import Foundation
             let cookie = try! Data(contentsOf: cookieURL)
 
             #if DEBUG
-                print("cookieURL: ", cookieURL as Any)
-                print("cookie: ", cookie)
+                print("[\(String(describing: OnionManager.self))] cookieURL=", cookieURL as Any)
+                print("[\(String(describing: OnionManager.self))] cookie=", cookie)
             #endif
 
             self.torController.authenticate(with: cookie, completion: { (success, error) in
@@ -367,7 +367,7 @@ import Foundation
                             self.cancelInitRetry()
                             self.cancelFailGuard()
                             #if DEBUG
-                                print("ESTABLISHED")
+                                print("[\(String(describing: OnionManager.self))] connection established")
                             #endif
 
                             delegate?.torConnFinished()
@@ -381,7 +381,7 @@ import Foundation
                         if type == "STATUS_CLIENT" && action == "BOOTSTRAP" {
                             let progress = Int(arguments!["PROGRESS"]!)!
                             #if DEBUG
-                                print("PROGRESS: \(progress)")
+                                print("[\(String(describing: OnionManager.self))] progress=\(progress)")
                             #endif
 
                             delegate?.torConnProgress(progress)
@@ -396,17 +396,17 @@ import Foundation
                         return false;
                     }) // torController.addObserver
                 } // if success (authenticate)
-                else { print("didn't connect to control port") }
+                else { print("[\(String(describing: OnionManager.self))] Didn't connect to control port.") }
             }) // controller authenticate
         }) //delay
 
         initRetry = DispatchWorkItem {
             #if DEBUG
-                print("RETRY")
+                print("[\(String(describing: OnionManager.self))] Triggering Tor connection retry.")
             #endif
             self.torController.setConfForKey("DisableNetwork", withValue: "1", completion: { (_, _) in
             })
-            //self.torReconnect()
+
             self.torController.setConfForKey("DisableNetwork", withValue: "0", completion: { (_, _) in
             })
 
@@ -430,7 +430,7 @@ import Foundation
      Experimental Tor shutdown.
     */
     @objc func stopTor() {
-        print("TRY SHUTDOWN!")
+        print("[\(String(describing: OnionManager.self))] #stopTor")
         
         // under the hood, TORController will SIGNAL SHUTDOWN and set it's channel to nil, so
         // we actually rely on that to stop tor and reset the state of torController. (we can
