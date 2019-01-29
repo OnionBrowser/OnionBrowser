@@ -189,7 +189,7 @@ import Foundation
         torController.sendCommand("RELOAD", arguments: nil, data: nil, observer: { (_, _, _) -> Bool in
             return true
         })
-        torController.sendCommand("NEWNYM", arguments: nil, data: nil, observer: { (_, _, _) -> Bool in
+        torController.sendCommand("SIGNAL NEWNYM", arguments: nil, data: nil, observer: { (_, _, _) -> Bool in
             return true
         })
 
