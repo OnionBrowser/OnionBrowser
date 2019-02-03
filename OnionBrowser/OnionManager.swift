@@ -119,7 +119,7 @@ import Foundation
 
     // MARK: - OnionManager instance
 
-    private let torController = TorController(socketHost: "127.0.0.1", port: 39060)
+    private var torController: TorController?
     private let obfsproxy = ObfsThread()
 
 
@@ -177,7 +177,7 @@ import Foundation
             confs.append(["key":"clientuseipv4", "value":"1"])
         }
         
-        torController.setConfs(confs, completion: { (_, _) in
+        torController?.setConfs(confs, completion: { (_, _) in
         })
         torReconnect()
     }
@@ -186,10 +186,10 @@ import Foundation
         //torController.setConfForKey("DisableNetwork", withValue: "1", completion: { (_, _) in
         //})
 
-        torController.sendCommand("RELOAD", arguments: nil, data: nil, observer: { (_, _, _) -> Bool in
+        torController?.sendCommand("RELOAD", arguments: nil, data: nil, observer: { (_, _, _) -> Bool in
             return true
         })
-        torController.sendCommand("SIGNAL NEWNYM", arguments: nil, data: nil, observer: { (_, _, _) -> Bool in
+        torController?.sendCommand("SIGNAL NEWNYM", arguments: nil, data: nil, observer: { (_, _, _) -> Bool in
             return true
         })
 
@@ -201,6 +201,10 @@ import Foundation
         cancelInitRetry()
         cancelFailGuard()
         torHasConnected = false
+        
+        if (self.torController == nil) {
+            self.torController = TorController(socketHost: "127.0.0.1", port: 39060)
+        }
 
         let reach:Reachability = Reachability.forInternetConnection()
         NotificationCenter.default.addObserver(self, selector: #selector(self.networkChange), name: NSNotification.Name.reachabilityChanged, object: nil)
@@ -283,9 +287,9 @@ import Foundation
             if needsReconfiguration {
                 if bridgesId == nil || bridgesId == USE_BRIDGES_NONE {
                     // Not using bridges, so null out the "Bridge" conf
-                    torController.setConfForKey("usebridges", withValue: "0", completion: { (_, _) in
+                    torController!.setConfForKey("usebridges", withValue: "0", completion: { (_, _) in
                     })
-                    torController.resetConf(forKey: "bridge", completion: { (_, _) in
+                    torController!.resetConf(forKey: "bridge", completion: { (_, _) in
                     })
                 } else {
                     var bridges:Array<String> = []
@@ -317,13 +321,13 @@ import Foundation
                     }
 
                     // Ensure we set UseBridges=1
-                    torController.setConfForKey("usebridges", withValue: "1", completion: { (_, _) in
+                    self.torController!.setConfForKey("usebridges", withValue: "1", completion: { (_, _) in
                     })
 
                     // Clear existing bridge conf and then set the new bridge configs.
-                    torController.resetConf(forKey: "bridge", completion: { (_, _) in
+                    self.torController!.resetConf(forKey: "bridge", completion: { (_, _) in
                     })
-                    torController.setConfs(confs, completion: { (_, _) in
+                    self.torController!.setConfs(confs, completion: { (_, _) in
                     })
 
                 }
@@ -341,9 +345,9 @@ import Foundation
                 TORInstallEventLogging()
             }
 
-            if !self.torController.isConnected {
+            if !self.torController!.isConnected {
                 do {
-                    try self.torController.connect()
+                    try self.torController!.connect()
                 } catch {
                     print("[\(String(describing: OnionManager.self))] error=\(error)")
                 }
@@ -357,13 +361,13 @@ import Foundation
                 print("[\(String(describing: OnionManager.self))] cookie=", cookie)
             #endif
 
-            self.torController.authenticate(with: cookie, completion: { (success, error) in
+            self.torController!.authenticate(with: cookie, completion: { (success, error) in
                 if success {
                     var completeObs: Any?
-                    completeObs = self.torController.addObserver(forCircuitEstablished: { (established) in
+                    completeObs = self.torController?.addObserver(forCircuitEstablished: { (established) in
                         if established {
                             self.torHasConnected = true
-                            self.torController.removeObserver(completeObs)
+                            self.torController?.removeObserver(completeObs)
                             self.cancelInitRetry()
                             self.cancelFailGuard()
                             #if DEBUG
@@ -375,7 +379,7 @@ import Foundation
                     }) // torController.addObserver
 
                     var progressObs: Any?
-                    progressObs = self.torController.addObserver(forStatusEvents: {
+                    progressObs = self.torController?.addObserver(forStatusEvents: {
                         (type: String, severity: String, action: String, arguments: [String : String]?) -> Bool in
 
                         if type == "STATUS_CLIENT" && action == "BOOTSTRAP" {
@@ -387,7 +391,7 @@ import Foundation
                             delegate?.torConnProgress(progress)
 
                             if progress >= 100 {
-                                self.torController.removeObserver(progressObs)
+                                self.torController?.removeObserver(progressObs)
                             }
 
                             return true;
@@ -404,10 +408,10 @@ import Foundation
             #if DEBUG
                 print("[\(String(describing: OnionManager.self))] Triggering Tor connection retry.")
             #endif
-            self.torController.setConfForKey("DisableNetwork", withValue: "1", completion: { (_, _) in
+            self.torController?.setConfForKey("DisableNetwork", withValue: "1", completion: { (_, _) in
             })
 
-            self.torController.setConfForKey("DisableNetwork", withValue: "0", completion: { (_, _) in
+            self.torController?.setConfForKey("DisableNetwork", withValue: "0", completion: { (_, _) in
             })
 
             self.failGuard = DispatchWorkItem {
@@ -435,7 +439,9 @@ import Foundation
         // under the hood, TORController will SIGNAL SHUTDOWN and set it's channel to nil, so
         // we actually rely on that to stop tor and reset the state of torController. (we can
         // SIGNAL SHUTDOWN here, but we can't reset the torController "isConnected" state.)
-        self.torController.disconnect()
+        self.torController?.disconnect()
+        
+        self.torController = nil
         
         // More cleanup
         self.torThread?.cancel()
