@@ -10,7 +10,7 @@
 # at most 7 characters long so we can use the format:
 # ${MINUTES_SINCE_DATE}.${DECIMALIZED_GIT_HASH}
 # 
-OB_BUNDLE_SHORT_VERSION_DATE="October 10 2018 00:00:00 GMT"
+OB_BUNDLE_SHORT_VERSION_DATE="2018-10-10 00:00:00 GMT"
 OB_BUNDLE_SHORT_VERSION_STRING=2.1.991
 
 BASH_SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"

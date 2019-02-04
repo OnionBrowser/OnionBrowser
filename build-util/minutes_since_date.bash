@@ -10,7 +10,7 @@ DATE="${1}"
 fi
 
 SECONDS_FROM_EPOCH_TO_NOW=$( date "+%s" )
-SECONDS_FROM_EPOCH_TO_DATE=$( date -j -f "%b %d %Y %T %Z" "${DATE}" "+%s" )
+SECONDS_FROM_EPOCH_TO_DATE=$( date -j -f "%Y-%m-%d %H:%M:%S %Z" "${DATE}" "+%s" )
 
 MINUTES_SINCE_DATE=$(( $(( ${SECONDS_FROM_EPOCH_TO_NOW}-${SECONDS_FROM_EPOCH_TO_DATE} ))/60 ))
 
