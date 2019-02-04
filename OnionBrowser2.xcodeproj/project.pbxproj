@@ -436,6 +436,8 @@
 		A07D655A2208A2540002D775 /* decimalize_git_hash.bash */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = decimalize_git_hash.bash; sourceTree = "<group>"; };
 		A07D655B2208A2540002D775 /* minutes_since_date.bash */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = minutes_since_date.bash; sourceTree = "<group>"; };
 		A07D655C2208A4320002D775 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		A07D655D2208A6DA0002D775 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		A07D655F2208A9B40002D775 /* get-geoip.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "get-geoip.sh"; sourceTree = "<group>"; };
 		A0882DF72003A8620098833B /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
 		A0882DF82003A8620098833B /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
 		A0882DF92003A8620098833B /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
@@ -700,6 +702,7 @@
 				A0759DEA20975DDE000DFBFE /* config */,
 				A00436121E8187800067652D /* convert_rules.rb */,
 				A00436131E8187800067652D /* urlblocker.json */,
+				A07D655D2208A6DA0002D775 /* .gitignore */,
 			);
 			name = Build;
 			sourceTree = "<group>";
@@ -959,6 +962,7 @@
 				A07D65592208A2540002D775 /* decode_bundle_version.sh */,
 				A07D655A2208A2540002D775 /* decimalize_git_hash.bash */,
 				A07D655B2208A2540002D775 /* minutes_since_date.bash */,
+				A07D655F2208A9B40002D775 /* get-geoip.sh */,
 			);
 			path = "build-util";
 			sourceTree = "<group>";
@@ -1256,7 +1260,7 @@
 		};
 		8ACB70CD1FA13676001E5588 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
@@ -1265,7 +1269,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "touch OnionBrowser/authSecret.txt\ncurl -Lo ./geoip https://gitweb.torproject.org/tor.git/plain/src/config/geoip?h=tor-0.3.5.2-alpha\ncurl -Lo ./geoip6 https://gitweb.torproject.org/tor.git/plain/src/config/geoip6?h=tor-0.3.5.2-alpha\n";
+			shellScript = "\"$SRCROOT\"/build-util/get-geoip.sh\n";
 		};
 		D8FF388A8305006E3AEF190B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
