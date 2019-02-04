@@ -86,17 +86,17 @@
 		8ACB70D31FA136F0001E5588 /* geoip6 in Resources */ = {isa = PBXBuildFile; fileRef = 8ACB70D11FA136F0001E5588 /* geoip6 */; };
 		8AD1283D1ED61812005C43E4 /* Ipv6Tester.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD1283C1ED61812005C43E4 /* Ipv6Tester.m */; };
 		8AD128401ED61822005C43E4 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD1283F1ED61822005C43E4 /* Reachability.m */; };
-		8AD128441ED6314A005C43E4 /* OBSettingsConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD128431ED6314A005C43E4 /* OBSettingsConstants.m */; };
 		8AD5FFBA1EB3DFE30066E7E3 /* ObfsThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD5FFB91EB3DFE30066E7E3 /* ObfsThread.m */; };
 		8AF16095202CD6D600AC0BCE /* block_webrtc.js in Resources */ = {isa = PBXBuildFile; fileRef = 8AF16094202CD6D600AC0BCE /* block_webrtc.js */; };
 		A025F27521F62C100034B947 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = A025F27421F62C100034B947 /* Config.xcconfig */; };
 		A045E5E51EDC5C1700BC8A92 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A045E5E11EDC5C1700BC8A92 /* Localizable.strings */; };
 		A045E5E61EDC5C1700BC8A92 /* OnePasswordExtension.strings in Resources */ = {isa = PBXBuildFile; fileRef = A045E5E31EDC5C1700BC8A92 /* OnePasswordExtension.strings */; };
-		A0C377061F4730320039198E /* Settings.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = A0C377051F4730320039198E /* Settings.xcdatamodel */; };
+		A07D654B2208A0C10002D775 /* OBSettingsConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = A07D654A2208A0C10002D775 /* OBSettingsConstants.m */; };
+		A07D65532208A17E0002D775 /* Bridge.m in Sources */ = {isa = PBXBuildFile; fileRef = A07D654D2208A17E0002D775 /* Bridge.m */; };
+		A07D65542208A17E0002D775 /* OldBookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = A07D654F2208A17E0002D775 /* OldBookmark.m */; };
+		A07D65552208A17E0002D775 /* Settings.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = A07D65502208A17E0002D775 /* Settings.xcdatamodel */; };
+		A07D65562208A17E0002D775 /* Migration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07D65522208A17E0002D775 /* Migration.swift */; };
 		A0C3770E1F47342C0039198E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0C3770D1F47342C0039198E /* CoreData.framework */; };
-		A0F92BF51F4DB24E00B9E787 /* Migration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F92BF41F4DB24E00B9E787 /* Migration.swift */; };
-		A0F92C161F4DC9A800B9E787 /* OldBookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = A0F92C151F4DC9A800B9E787 /* OldBookmark.m */; };
-		A0F92C191F4DC9B200B9E787 /* Bridge.m in Sources */ = {isa = PBXBuildFile; fileRef = A0F92C181F4DC9B200B9E787 /* Bridge.m */; };
 		C5C31F75A60EA0CFBD188E31 /* Pods_OnionBrowser2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B30AD5A822226C06231D37B7 /* Pods_OnionBrowser2.framework */; };
 /* End PBXBuildFile section */
 
@@ -245,7 +245,6 @@
 		8AD1283E1ED61822005C43E4 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = OnionBrowser/Reachability.h; sourceTree = "<group>"; };
 		8AD1283F1ED61822005C43E4 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = OnionBrowser/Reachability.m; sourceTree = "<group>"; };
 		8AD128421ED630C1005C43E4 /* OBSettingsConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OBSettingsConstants.h; path = OnionBrowser/OBSettingsConstants.h; sourceTree = "<group>"; };
-		8AD128431ED6314A005C43E4 /* OBSettingsConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBSettingsConstants.m; sourceTree = "<group>"; };
 		8AD5FFB81EB3DFE30066E7E3 /* ObfsThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ObfsThread.h; path = OnionBrowser/ObfsThread.h; sourceTree = "<group>"; };
 		8AD5FFB91EB3DFE30066E7E3 /* ObfsThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ObfsThread.m; path = OnionBrowser/ObfsThread.m; sourceTree = "<group>"; };
 		8AF16094202CD6D600AC0BCE /* block_webrtc.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = block_webrtc.js; path = OnionBrowser/block_webrtc.js; sourceTree = "<group>"; };
@@ -425,6 +424,18 @@
 		A0759DE820975DCD000DFBFE /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = Endless/uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A0759DE920975DCD000DFBFE /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = Endless/uk.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
 		A0759DEA20975DDE000DFBFE /* config */ = {isa = PBXFileReference; lastKnownFileType = text; name = config; path = .tx/config; sourceTree = "<group>"; };
+		A07D654A2208A0C10002D775 /* OBSettingsConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OBSettingsConstants.m; path = OnionBrowser/OBSettingsConstants.m; sourceTree = "<group>"; };
+		A07D654D2208A17E0002D775 /* Bridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bridge.m; sourceTree = "<group>"; };
+		A07D654E2208A17E0002D775 /* OldBookmark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OldBookmark.h; sourceTree = "<group>"; };
+		A07D654F2208A17E0002D775 /* OldBookmark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OldBookmark.m; sourceTree = "<group>"; };
+		A07D65502208A17E0002D775 /* Settings.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Settings.xcdatamodel; sourceTree = "<group>"; };
+		A07D65512208A17E0002D775 /* Bridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bridge.h; sourceTree = "<group>"; };
+		A07D65522208A17E0002D775 /* Migration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Migration.swift; sourceTree = "<group>"; };
+		A07D65582208A2540002D775 /* mk_build_versions.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = mk_build_versions.sh; sourceTree = "<group>"; };
+		A07D65592208A2540002D775 /* decode_bundle_version.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = decode_bundle_version.sh; sourceTree = "<group>"; };
+		A07D655A2208A2540002D775 /* decimalize_git_hash.bash */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = decimalize_git_hash.bash; sourceTree = "<group>"; };
+		A07D655B2208A2540002D775 /* minutes_since_date.bash */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = minutes_since_date.bash; sourceTree = "<group>"; };
+		A07D655C2208A4320002D775 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		A0882DF72003A8620098833B /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
 		A0882DF82003A8620098833B /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
 		A0882DF92003A8620098833B /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
@@ -435,13 +446,7 @@
 		A0BFBE022010F48100BE2980 /* ga */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = ga; path = ga.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
 		A0BFBE032010F48100BE2980 /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ga; path = Endless/ga.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A0BFBE042010F48200BE2980 /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ga; path = Endless/ga.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
-		A0C377051F4730320039198E /* Settings.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Settings.xcdatamodel; sourceTree = "<group>"; };
 		A0C3770D1F47342C0039198E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		A0F92BF41F4DB24E00B9E787 /* Migration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Migration.swift; sourceTree = "<group>"; };
-		A0F92C141F4DC9A800B9E787 /* OldBookmark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OldBookmark.h; sourceTree = "<group>"; };
-		A0F92C151F4DC9A800B9E787 /* OldBookmark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OldBookmark.m; sourceTree = "<group>"; };
-		A0F92C171F4DC9B200B9E787 /* Bridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bridge.h; sourceTree = "<group>"; };
-		A0F92C181F4DC9B200B9E787 /* Bridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bridge.m; sourceTree = "<group>"; };
 		B30AD5A822226C06231D37B7 /* Pods_OnionBrowser2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OnionBrowser2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA15652BE4316C2D3F7B882E /* Pods_OnionBrowser2_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OnionBrowser2_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1B3628D53AA0DB0F529757B /* Pods-OnionBrowser2 Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnionBrowser2 Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OnionBrowser2 Tests/Pods-OnionBrowser2 Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -475,6 +480,8 @@
 		01801E891A32CA2A002B4718 = {
 			isa = PBXGroup;
 			children = (
+				A010FA171E7986DE00E04222 /* README.md */,
+				A025F27421F62C100034B947 /* Config.xcconfig */,
 				A06441F9200CB82500D6C50C /* AppStore */,
 				A00436111E8185AA0067652D /* Build */,
 				01801E941A32CA2A002B4718 /* Endless */,
@@ -485,7 +492,6 @@
 				018333D81A35727C00670CD1 /* Endless Tests */,
 				01801E931A32CA2A002B4718 /* Products */,
 				6CC21620E2AE7B4037C6401B /* Frameworks */,
-				A010FA171E7986DE00E04222 /* README.md */,
 				B1EB2F32A9D9D14276D9A162 /* Pods */,
 			);
 			sourceTree = "<group>";
@@ -636,12 +642,11 @@
 		6998064A1EABE5C70012F75E /* OnionBrowser */ = {
 			isa = PBXGroup;
 			children = (
-				A025F27621F62C190034B947 /* Config */,
-				A0C377041F472F780039198E /* Migration */,
+				A07D654C2208A1410002D775 /* Migration */,
 				691286EB1EABF2B300CEC414 /* OnionBrowser2-Bridging-Header.h */,
 				691286EC1EABF2B400CEC414 /* OnionManager.swift */,
 				8AD128421ED630C1005C43E4 /* OBSettingsConstants.h */,
-				8AD128431ED6314A005C43E4 /* OBSettingsConstants.m */,
+				A07D654A2208A0C10002D775 /* OBSettingsConstants.m */,
 				69EFCCA51EAD297700280747 /* OnionManagerDelegate.h */,
 				69EFCCA01EAD20CB00280747 /* OBRootViewController.h */,
 				69EFCCA11EAD20CB00280747 /* OBRootViewController.m */,
@@ -683,9 +688,11 @@
 		A00436111E8185AA0067652D /* Build */ = {
 			isa = PBXGroup;
 			children = (
+				A07D65572208A2540002D775 /* build-util */,
+				A010FA191E798C0400E04222 /* BUILD.md */,
+				A07D655C2208A4320002D775 /* LICENSE */,
 				A0759DBE20975C2A000DFBFE /* Gemfile */,
 				A0759DBF20975C32000DFBFE /* Gemfile.lock */,
-				A010FA191E798C0400E04222 /* BUILD.md */,
 				A00436091E81856F0067652D /* Cartfile */,
 				A004360A1E81856F0067652D /* Cartfile.resolved */,
 				A004360B1E81856F0067652D /* Podfile */,
@@ -923,14 +930,6 @@
 			path = es;
 			sourceTree = "<group>";
 		};
-		A025F27621F62C190034B947 /* Config */ = {
-			isa = PBXGroup;
-			children = (
-				A025F27421F62C100034B947 /* Config.xcconfig */,
-			);
-			name = Config;
-			sourceTree = "<group>";
-		};
 		A06441F9200CB82500D6C50C /* AppStore */ = {
 			isa = PBXGroup;
 			children = (
@@ -940,17 +939,28 @@
 			path = AppStore;
 			sourceTree = "<group>";
 		};
-		A0C377041F472F780039198E /* Migration */ = {
+		A07D654C2208A1410002D775 /* Migration */ = {
 			isa = PBXGroup;
 			children = (
-				A0C377051F4730320039198E /* Settings.xcdatamodel */,
-				A0F92C141F4DC9A800B9E787 /* OldBookmark.h */,
-				A0F92C151F4DC9A800B9E787 /* OldBookmark.m */,
-				A0F92C171F4DC9B200B9E787 /* Bridge.h */,
-				A0F92C181F4DC9B200B9E787 /* Bridge.m */,
-				A0F92BF41F4DB24E00B9E787 /* Migration.swift */,
+				A07D65502208A17E0002D775 /* Settings.xcdatamodel */,
+				A07D65522208A17E0002D775 /* Migration.swift */,
+				A07D65512208A17E0002D775 /* Bridge.h */,
+				A07D654D2208A17E0002D775 /* Bridge.m */,
+				A07D654E2208A17E0002D775 /* OldBookmark.h */,
+				A07D654F2208A17E0002D775 /* OldBookmark.m */,
 			);
-			name = Migration;
+			path = Migration;
+			sourceTree = "<group>";
+		};
+		A07D65572208A2540002D775 /* build-util */ = {
+			isa = PBXGroup;
+			children = (
+				A07D65582208A2540002D775 /* mk_build_versions.sh */,
+				A07D65592208A2540002D775 /* decode_bundle_version.sh */,
+				A07D655A2208A2540002D775 /* decimalize_git_hash.bash */,
+				A07D655B2208A2540002D775 /* minutes_since_date.bash */,
+			);
+			path = "build-util";
 			sourceTree = "<group>";
 		};
 		B1EB2F32A9D9D14276D9A162 /* Pods */ = {
@@ -1022,6 +1032,7 @@
 				TargetAttributes = {
 					01801E911A32CA2A002B4718 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = "$(DEVELOPMENT_TEAM)";
 						LastSwiftMigration = 1000;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -1032,12 +1043,12 @@
 					};
 					018333D61A35727C00670CD1 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = 68QUP6KP2C;
+						DevelopmentTeam = "$(DEVELOPMENT_TEAM)";
 						TestTargetID = 01801E911A32CA2A002B4718;
 					};
 					8AC3B3A721700AD300E0CB4A = {
 						CreatedOnToolsVersion = 10.0;
-						DevelopmentTeam = 68QUP6KP2C;
+						DevelopmentTeam = "$(DEVELOPMENT_TEAM)";
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -1241,7 +1252,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"$SRCROOT\"/OnionBrowser/build-util/mk_build_versions.sh\n";
+			shellScript = "\"$SRCROOT\"/build-util/mk_build_versions.sh\n";
 		};
 		8ACB70CD1FA13676001E5588 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1287,12 +1298,12 @@
 			files = (
 				01D741281A44DF1C007B7033 /* WebViewMenuController.m in Sources */,
 				01D7412F1A466AF0007B7033 /* NSString+JavascriptEscape.m in Sources */,
+				A07D65562208A17E0002D775 /* Migration.swift in Sources */,
 				014E68A51B9BED3300D98A0A /* HostSettingsController.m in Sources */,
 				69CBCD521E9347B8009D5352 /* UIResponder+FirstResponder.m in Sources */,
 				01F2AE391B7FEF5E00D5651A /* SSLCertificate.m in Sources */,
 				01801E9B1A32CA2A002B4718 /* AppDelegate.m in Sources */,
 				69CBCD4D1E934249009D5352 /* RuleEditorRow.m in Sources */,
-				A0F92C191F4DC9B200B9E787 /* Bridge.m in Sources */,
 				8AD128401ED61822005C43E4 /* Reachability.m in Sources */,
 				01AFEB491B4ED48000A02482 /* Bookmark.m in Sources */,
 				01801E981A32CA2A002B4718 /* main.m in Sources */,
@@ -1301,21 +1312,20 @@
 				018333D21A35291200670CD1 /* HTTPSEverywhereRule.m in Sources */,
 				01AFEB4F1B4F2A5F00A02482 /* OnePasswordExtension.m in Sources */,
 				01801EA11A32CA2A002B4718 /* WebViewController.m in Sources */,
-				A0F92C161F4DC9A800B9E787 /* OldBookmark.m in Sources */,
 				019516CF1B7D8A0C0078586A /* NSData+CocoaDevUsersAdditions.m in Sources */,
 				01F8793B1A4108DD00A63654 /* URLBlocker.m in Sources */,
-				A0C377061F4730320039198E /* Settings.xcdatamodel in Sources */,
 				01801EC01A335BEC002B4718 /* URLInterceptor.m in Sources */,
 				01F2AE401B82666900D5651A /* SSLCertificateViewController.m in Sources */,
 				69EFCCA21EAD20CB00280747 /* OBRootViewController.m in Sources */,
 				018333CA1A3505FB00670CD1 /* HTTPSEverywhere.m in Sources */,
 				01F7CB491A5253DD00F42B73 /* HSTSCache.m in Sources */,
 				69CBCD471E934228009D5352 /* URLBlockerRuleController.m in Sources */,
-				8AD128441ED6314A005C43E4 /* OBSettingsConstants.m in Sources */,
 				691286ED1EABF2B400CEC414 /* OnionManager.swift in Sources */,
 				01F7CB4E1A52FC4E00F42B73 /* NSString+IPAddress.m in Sources */,
 				014E68A81B9BEDDC00D98A0A /* HostSettings.m in Sources */,
 				0135F47F1A3E548F005A8F16 /* WebViewTab.m in Sources */,
+				A07D654B2208A0C10002D775 /* OBSettingsConstants.m in Sources */,
+				A07D65532208A17E0002D775 /* Bridge.m in Sources */,
 				01AFEB371B4DBA8D00A02482 /* BookmarkController.m in Sources */,
 				010EEA661A43A536001E8B65 /* CookieController.m in Sources */,
 				8AD1283D1ED61812005C43E4 /* Ipv6Tester.m in Sources */,
@@ -1323,7 +1333,8 @@
 				019516CC1B7D858C0078586A /* CKHTTPConnection.m in Sources */,
 				0182AD9B1AACC55400F3B7ED /* HTTPSEverywhereRuleController.m in Sources */,
 				010EEA691A43C8CF001E8B65 /* CookieJar.m in Sources */,
-				A0F92BF51F4DB24E00B9E787 /* Migration.swift in Sources */,
+				A07D65542208A17E0002D775 /* OldBookmark.m in Sources */,
+				A07D65552208A17E0002D775 /* Settings.xcdatamodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
