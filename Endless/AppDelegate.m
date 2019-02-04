@@ -110,9 +110,8 @@
 	
 	[application ignoreSnapshotOnNextApplicationLaunch];
 
-    if (self.torState != TOR_STATE_STOPPED) {
+    if (OnionManager.shared.state != TorStateStopped) {
         [OnionManager.shared stopTor];
-        self.torState = TOR_STATE_STOPPED;
     }
 }
 
@@ -120,10 +119,9 @@
 {
 	[[self webViewController] viewIsVisible];
 
-    if (self.torState != TOR_STATE_STARTED) {
+    if (OnionManager.shared.state != TorStateStarted && OnionManager.shared.state != TorStateConnected) {
         // TODO: actually use UI instead of silently trying to restart tor
         [OnionManager.shared startTorWithDelegate:nil];
-        self.torState = TOR_STATE_STARTED;
 
 //        if ([self.window.rootViewController class] != [OBRootViewController class]) {
 //                self.window.rootViewController = [[OBRootViewController alloc] init];

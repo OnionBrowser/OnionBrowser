@@ -222,8 +222,6 @@
     [onion startTorWithDelegate:self];
 
     [self.conctVC connectingStarted];
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    appDelegate.torState = TOR_STATE_STARTED;
 }
 
 @end

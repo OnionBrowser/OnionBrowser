@@ -14,10 +14,6 @@
 
 #define STATE_RESTORE_TRY_KEY @"state_restore_lock"
 
-#define TOR_STATE_NONE 0
-#define TOR_STATE_STARTED 1
-#define TOR_STATE_STOPPED 2
-
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;

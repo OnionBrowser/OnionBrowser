@@ -9,6 +9,13 @@ import Foundation
 
 @objc class OnionManager : NSObject {
 
+    @objc enum TorState: Int {
+        case none
+        case started
+        case connected
+        case stopped
+    }
+
     @objc static let shared = OnionManager()
 
     // Show Tor log in iOS' app log.
@@ -125,7 +132,7 @@ import Foundation
 
     private var torThread: TorThread?
 
-    public var torHasConnected: Bool = false
+    @objc public var state = TorState.none
     private var initRetry: DispatchWorkItem?
     private var failGuard: DispatchWorkItem?
 
@@ -200,7 +207,7 @@ import Foundation
     @objc func startTor(delegate: OnionManagerDelegate?) {
         cancelInitRetry()
         cancelFailGuard()
-        torHasConnected = false
+        state = .started
         
         if (self.torController == nil) {
             self.torController = TorController(socketHost: "127.0.0.1", port: 39060)
@@ -366,7 +373,7 @@ import Foundation
                     var completeObs: Any?
                     completeObs = self.torController?.addObserver(forCircuitEstablished: { (established) in
                         if established {
-                            self.torHasConnected = true
+                            self.state = .connected
                             self.torController?.removeObserver(completeObs)
                             self.cancelInitRetry()
                             self.cancelFailGuard()
@@ -415,7 +422,7 @@ import Foundation
             })
 
             self.failGuard = DispatchWorkItem {
-                if !self.torHasConnected {
+                if self.state != .connected {
                     delegate?.torConnError()
                 }
             }
@@ -445,7 +452,7 @@ import Foundation
         
         // More cleanup
         self.torThread?.cancel()
-        self.torHasConnected = false
+        self.state = .stopped
     }
 
     private func bridgeLinesToArgs(_ bridgeLines: [String]) -> [String] {
