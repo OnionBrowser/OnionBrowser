@@ -29,6 +29,8 @@
 @property (readonly, strong, nonatomic) NSMutableDictionary *searchEngines;
 
 @property (strong, atomic) NSString *defaultUserAgent;
+@property (strong, atomic) NSURL *urlToOpenAtLaunch;
+
 @property (atomic) NSUInteger torState;
 
 - (BOOL)areTesting;

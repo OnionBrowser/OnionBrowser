@@ -27,7 +27,7 @@
 		<key>homepage_url</key>
 		<string>https://startpage.com/</string>
 		<key>autocomplete_url</key>
-		<string>https://startpage.com/do/suggest?query=%@&amp;format=plain</string>
+		<string>https://startpage.com/do/suggest?format=plain</string>
 		<key>post_params</key>
 		<dict>
 			<key>query</key>

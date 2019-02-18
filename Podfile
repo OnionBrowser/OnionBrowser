@@ -10,6 +10,7 @@ target "OnionBrowser2" do
   pod "OrderedDictionary"
   pod "XLForm", :git => "https://github.com/jcs/XLForm.git"
   pod "TUSafariActivity"
+  pod "VForceTouch"
 
   pod "POE", '~> 0.4'
 end

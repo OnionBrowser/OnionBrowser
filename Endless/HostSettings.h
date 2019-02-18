@@ -7,6 +7,8 @@
 
 #import <Foundation/Foundation.h>
 
+#define HOST_SETTINGS_CHANGED @"host_settings_changed"
+
 #define HOST_SETTINGS_DEFAULT @"__default"
 #define HOST_SETTINGS_VALUE_YES @"1"
 #define HOST_SETTINGS_VALUE_NO @"0"
@@ -22,6 +24,8 @@
 
 #define HOST_SETTINGS_KEY_WHITELIST_COOKIES @"whitelist_cookies"
 
+#define HOST_SETTINGS_KEY_ALLOW_WEBRTC @"allow_webrtc"
+
 #define HOST_SETTINGS_KEY_ALLOW_MIXED_MODE @"allow_mixed_mode"
 
 #define HOST_SETTINGS_KEY_CSP @"content_policy"
@@ -31,12 +35,15 @@
 
 #define HOST_SETTINGS_KEY_USER_AGENT @"user_agent"
 
+#define HOST_SETTINGS_KEY_UNIVERSAL_LINK_PROTECTION @"universal_link_protection"
+
 @interface HostSettings : NSObject
 
 @property (strong) NSMutableDictionary *dict;
 
 + (void)persist;
 
++ (NSDictionary *)defaults;
 + (HostSettings *)defaultHostSettings;
 + (HostSettings *)forHost:(NSString *)host;
 + (HostSettings *)settingsOrDefaultsForHost:(NSString *)host;

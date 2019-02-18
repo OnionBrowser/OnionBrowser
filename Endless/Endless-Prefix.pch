@@ -40,9 +40,6 @@
 /* bypass most of URLInterceptor for troubleshooting */
 #undef USE_DUMMY_URLINTERCEPTOR
 
-/* only enable donation controller in production builds */
-#undef SHOW_DONATION_CONTROLLER
-
 #endif
 
 #endif

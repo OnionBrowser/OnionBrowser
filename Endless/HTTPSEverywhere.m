@@ -194,19 +194,17 @@ static NSCache *ruleCache;
 	return NO;
 }
 
-+ (void)noteInsecureRedirectionForURL:(NSURL *)URL
++ (void)noteInsecureRedirectionForURL:(NSURL *)URL toURL:(NSURL *)toURL
 {
 	if (insecureRedirections == nil) {
 		insecureRedirections = [[NSMutableDictionary alloc] init];
 	}
 	
 	NSNumber *count = [insecureRedirections objectForKey:URL];
-	if (count != nil && [count intValue] != 0) {
+	if (count != nil && [count intValue] != 0)
 		count = [NSNumber numberWithInt:[count intValue] + 1];
-	}
-	else {
+	else
 		count = [NSNumber numberWithInt:1];
-	}
 	
 	[insecureRedirections setObject:count forKey:URL];
 	
@@ -215,7 +213,7 @@ static NSCache *ruleCache;
 	}
 	
 	for (HTTPSEverywhereRule *rule in [[self class] potentiallyApplicableRulesForHost:[URL host]]) {
-		if ([rule apply:URL] != nil) {
+		if ([rule apply:URL] != nil || [rule apply:toURL] != nil) {
 			NSLog(@"[HTTPSEverywhere] insecure redirection count %@ for %@, disabling rule %@", count, URL, [rule name]);
 			[[self class] disableRuleByName:[rule name] withReason:@"Redirection loop"];
 		}

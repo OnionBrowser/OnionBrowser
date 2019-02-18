@@ -62,6 +62,7 @@ PODS:
     - UIColor-HexRGB
   - TUSafariActivity (1.0.4)
   - UIColor-HexRGB (1.0.1)
+  - VForceTouch (0.0.2)
   - WYPopoverController (0.3.9)
   - XLForm (3.3.0)
 
@@ -73,6 +74,7 @@ DEPENDENCIES:
   - OrderedDictionary
   - POE (~> 0.4)
   - TUSafariActivity
+  - VForceTouch
   - WYPopoverController (from `https://github.com/sammcewan/WYPopoverController.git`)
   - XLForm (from `https://github.com/jcs/XLForm.git`)
 
@@ -86,6 +88,7 @@ SPEC REPOS:
     - POE
     - TUSafariActivity
     - UIColor-HexRGB
+    - VForceTouch
 
 EXTERNAL SOURCES:
   Localize:
@@ -116,9 +119,10 @@ SPEC CHECKSUMS:
   POE: b1e2977c82a0e72d6ff975e95322bb22829446ee
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
   UIColor-HexRGB: daccfa7e936af664369734a164b0309087d7f970
+  VForceTouch: b5c3a28625269e1818cf915728173bda9f669d6b
   WYPopoverController: a9db25ac2841a686acdc0f3a99bdb21545db32f4
   XLForm: d5c391dfc62865927b5bcab0a5a0dbfb3e02b0ec
 
-PODFILE CHECKSUM: 1f5e82b69706f3ff53cdb46d95ec3aca8726db67
+PODFILE CHECKSUM: 23f35b96349b3771d6e2aff5a70064b916bb907c
 
 COCOAPODS: 1.5.3

@@ -56,6 +56,16 @@
 		</dict>
 		<dict>
 			<key>Title</key>
+			<string>Auto-complete search results</string>
+			<key>Key</key>
+			<string>search_engine_live</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>DefaultValue</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>Title</key>
 			<string>Custom home page</string>
 			<key>Key</key>
 			<string>homepage</string>
@@ -155,16 +165,6 @@
 			<string>Miscellaneous</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
-		</dict>
-		<dict>
-			<key>Key</key>
-			<string>open_donation</string>
-			<key>Title</key>
-			<string>Fund Endless development</string>
-			<key>Type</key>
-			<string>IASKButtonSpecifier</string>
-			<key>IASKTextAlignment</key>
-			<string>IASKUITextAlignmentLeft</string>
 		</dict>
 		<dict>
 			<key>Key</key>

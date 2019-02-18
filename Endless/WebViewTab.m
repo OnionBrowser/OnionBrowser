@@ -12,10 +12,15 @@
 #import "NSString+JavascriptEscape.h"
 #import "UIResponder+FirstResponder.h"
 
+#import "NSString+DTURLEncoding.h"
+#import "VForceTouchGestureRecognizer.h"
+
 @import WebKit;
 
 @implementation WebViewTab {
 	AppDelegate *appDelegate;
+	BOOL inForceTouch;
+	BOOL skipHistory;
 }
 
 + (WebViewTab *)openedWebViewTabByRandID:(NSString *)randID
@@ -59,7 +64,10 @@
 	[_webView.scrollView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
 	[_webView.scrollView setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
 	[_webView.scrollView setDecelerationRate:UIScrollViewDecelerationRateNormal];
-	
+    if (@available(iOS 11.0, *)) {
+        [_webView.scrollView setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentNever];
+    }
+
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(webKitprogressEstimateChanged:) name:@"WebProgressEstimateChangedNotification" object:[_webView valueForKeyPath:@"documentView.webView"]];
 	
 	/* swiping goes back and forward in current webview */
@@ -114,10 +122,16 @@
 	[self setApplicableHTTPSEverywhereRules:[[NSMutableDictionary alloc] init]];
 	[self setApplicableURLBlockerTargets:[[NSMutableDictionary alloc] init]];
 
-	UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressMenu:)];
+	VForceTouchGestureRecognizer *forceTouch = [[VForceTouchGestureRecognizer alloc] initWithTarget:self action:@selector(pressedMenu:)];
+	[forceTouch setDelegate:self];
+	[forceTouch setPercentMinimalRequest:0.4];
+	inForceTouch = NO;
+	[self.webView addGestureRecognizer:forceTouch];
+	
+	UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(pressedMenu:)];
 	[lpgr setDelegate:self];
-	[_webView addGestureRecognizer:lpgr];
-
+	[self.webView addGestureRecognizer:lpgr];
+	
 	for (UIView *_view in _webView.subviews) {
 		for (UIGestureRecognizer *recognizer in _view.gestureRecognizers) {
 			[recognizer addTarget:self action:@selector(webViewTouched:)];
@@ -128,6 +142,8 @@
 			}
 		}
 	}
+	
+	self.history = [[NSMutableArray alloc] initWithCapacity:HISTORY_SIZE];
 	
 	/* this doubles as a way to force the webview to initialize itself, otherwise the UA doesn't seem to set right before refreshing a previous restoration state */
 	NSString *ua = [_webView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
@@ -142,15 +158,25 @@
 - (void)dealloc
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:@"WebProgressEstimateChangedNotification" object:[_webView valueForKeyPath:@"documentView.webView"]];
-	[_webView setDelegate:nil];
-	[_webView stopLoading];
 	
-	for (id gr in [_webView gestureRecognizers])
-		[_webView removeGestureRecognizer:gr];
+	void (^block)(void) = ^{
+		[_webView setDelegate:nil];
+		[_webView stopLoading];
+		
+		for (id gr in [_webView gestureRecognizers])
+			[_webView removeGestureRecognizer:gr];
+		
+		_webView = nil;
+		
+		[[self viewHolder] removeFromSuperview];
+	};
 	
-	_webView = nil;
-	
-	[[self viewHolder] removeFromSuperview];
+	if ([NSThread isMainThread])
+		block();
+	else
+		dispatch_sync(dispatch_get_main_queue(), ^{
+			block();
+		});
 }
 
 /* for long press gesture recognizer to work properly */
@@ -228,13 +254,22 @@
 
 - (void)loadRequest:(NSURLRequest *)req withForce:(BOOL)force
 {
-	[self.webView stopLoading];
-	[self prepareForNewURL:[req URL]];
+	void (^block)(void) = ^{
+		[self.webView stopLoading];
+		[self prepareForNewURL:[req URL]];
 	
-	if (force)
-		[self setForcingRefresh:YES];
- 
-	[self.webView loadRequest:req];
+		if (force)
+			[self setForcingRefresh:YES];
+	
+		[self.webView loadRequest:req];
+	};
+	
+	if ([NSThread isMainThread])
+		block();
+	else
+		dispatch_sync(dispatch_get_main_queue(), ^{
+			block();
+		});
 }
 
 - (void)searchFor:(NSString *)query
@@ -249,7 +284,7 @@
 	NSDictionary *pp = [se objectForKey:@"post_params"];
 	NSString *urls;
 	if (pp == nil)
-		urls = [[NSString stringWithFormat:[se objectForKey:@"search_url"], query] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+		urls = [NSString stringWithFormat:[se objectForKey:@"search_url"], [query stringByURLEncoding]];
 	else
 		urls = [se objectForKey:@"search_url"];
 	
@@ -267,12 +302,12 @@
 			if (![params isEqualToString:@""])
 				[params appendString:@"&"];
 			
-			[params appendString:[key stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
+			[params appendString:[key stringByURLEncoding]];
 			[params appendString:@"="];
 			
 			NSString *val = [pp objectForKey:key];
 			if ([val isEqualToString:@"%@"])
-				val = [query stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+				val = [query stringByURLEncoding];
 			[params appendString:val];
 		}
 		
@@ -313,22 +348,34 @@
 	else if (![[url scheme] isEqualToString:@"endlessipc"]) {
 		/* try to prevent universal links from triggering by refusing the initial request and starting a new one */
 		BOOL iframe = ![[[request URL] absoluteString] isEqualToString:[[request mainDocumentURL] absoluteString]];
-		if (iframe) {
+		
+		HostSettings *hs = [HostSettings settingsOrDefaultsForHost:[url host]];
+		if ([hs boolSettingOrDefault:HOST_SETTINGS_KEY_UNIVERSAL_LINK_PROTECTION]) {
+			if (iframe && navigationType != UIWebViewNavigationTypeLinkClicked) {
 #ifdef TRACE
-			NSLog(@"[Tab %@] not doing universal link workaround for iframe %@", [self tabIndex], url);
+				NSLog(@"[Tab %@] not doing universal link workaround for iframe %@", [self tabIndex], url);
 #endif
-		} else if (navigationType == UIWebViewNavigationTypeBackForward) {
+			} else if (navigationType == UIWebViewNavigationTypeBackForward) {
 #ifdef TRACE
-			NSLog(@"[Tab %@] not doing universal link workaround for back/forward navigation to %@", [self tabIndex], url);
+				NSLog(@"[Tab %@] not doing universal link workaround for back/forward navigation to %@", [self tabIndex], url);
 #endif
-		} else if ([[[url scheme] lowercaseString] hasPrefix:@"http"] && ![NSURLProtocol propertyForKey:UNIVERSAL_LINKS_WORKAROUND_KEY inRequest:request]) {
-			NSMutableURLRequest *tr = [request mutableCopy];
-			[NSURLProtocol setProperty:@YES forKey:UNIVERSAL_LINKS_WORKAROUND_KEY inRequest:tr];
+			} else if (navigationType == UIWebViewNavigationTypeFormSubmitted) {
 #ifdef TRACE
-			NSLog(@"[Tab %@] doing universal link workaround for %@", [self tabIndex], url);
+				NSLog(@"[Tab %@] not doing universal link workaround for form submission to %@", [self tabIndex], url);
 #endif
-			[self loadRequest:tr withForce:NO];
-			return NO;
+			} else if ([[[url scheme] lowercaseString] hasPrefix:@"http"] && ![NSURLProtocol propertyForKey:UNIVERSAL_LINKS_WORKAROUND_KEY inRequest:request]) {
+				NSMutableURLRequest *tr = [request mutableCopy];
+				[NSURLProtocol setProperty:@YES forKey:UNIVERSAL_LINKS_WORKAROUND_KEY inRequest:tr];
+#ifdef TRACE
+				NSLog(@"[Tab %@] doing universal link workaround for %@", [self tabIndex], url);
+#endif
+				[self loadRequest:tr withForce:NO];
+				return NO;
+			}
+		} else {
+#ifdef TRACE
+			NSLog(@"[Tab %@] not doing universal link workaround for %@ due to HostSettings", [self tabIndex], url);
+#endif
 		}
 		
 		if (!iframe)
@@ -457,8 +504,24 @@
 	if (docTitle == nil || [docTitle isEqualToString:@""])
 		docTitle = finalURL;
 	
+	/* if we're viewing just an image, scale it down to fit the screen width and color its background */
+	NSString *ctype = [__webView stringByEvaluatingJavaScriptFromString:@"document.contentType"];
+	if (ctype != nil && [ctype hasPrefix:@"image/"]) {
+		[__webView stringByEvaluatingJavaScriptFromString:@"(function(){ document.body.style.backgroundColor = '#202020'; var i = document.getElementsByTagName('img')[0]; if (i && i.clientWidth > window.innerWidth) { var m = document.createElement('meta'); m.name='viewport'; m.content='width=device-width, initial-scale=1, maximum-scale=5'; document.getElementsByTagName('head')[0].appendChild(m); i.style.width = '100%'; } })();"];
+	}
+	
 	[self.title setText:docTitle];
 	self.url = [NSURL URLWithString:finalURL];
+	
+	if (!skipHistory) {
+		while (self.history.count > HISTORY_SIZE)
+			[self.history removeObjectAtIndex:0];
+		
+		if (self.history.count == 0 || ![[[self.history lastObject] objectForKey:@"url"] isEqualToString:finalURL])
+			[self.history addObject:@{ @"url" : finalURL, @"title" : docTitle }];
+	}
+	
+	skipHistory = NO;
 }
 
 - (void)webView:(UIWebView *)__webView didFailLoadWithError:(NSError *)error
@@ -513,13 +576,8 @@
 	NSLog(@"[Tab %@] showing error dialog: %@ (%@)", self.tabIndex, msg, error);
 #endif
 
-	UIAlertController *uiac = [UIAlertController
-                               alertControllerWithTitle:NSLocalizedString(@"Error", nil)
-                               message:msg
-                               preferredStyle:UIAlertControllerStyleAlert];
-
-    [uiac addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil)
-                                             style:UIAlertActionStyleDefault handler:nil]];
+	UIAlertController *uiac = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", nil) message:msg preferredStyle:UIAlertControllerStyleAlert];
+	[uiac addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:nil]];
 
     // "Connection refused", most possibly created, because Tor's sockets were closed by iOS
     // during app sleep. This is non-recoverable. We show a different message, here.
@@ -605,18 +663,30 @@
 	[[appDelegate webViewController] webViewTouched];
 }
 
-- (void)longPressMenu:(UILongPressGestureRecognizer *)sender {
+- (void)pressedMenu:(UIGestureRecognizer *)event
+{
 	UIAlertController *alertController;
 	NSString *href, *img, *alt;
 	
-	if (sender.state != UIGestureRecognizerStateBegan)
+	if ([event isKindOfClass:[VForceTouchGestureRecognizer class]]) {
+		if ([event state] == UIGestureRecognizerStateBegan) {
+			inForceTouch = YES;
+		} else if ([event state] == UIGestureRecognizerStateChanged) {
+			inForceTouch = YES;
+			return;
+		} else {
+			inForceTouch = NO;
+			return;
+		}
+	} else if (inForceTouch || [event state] != UIGestureRecognizerStateBegan) {
 		return;
-	
+	}
+
 #ifdef TRACE
-	NSLog(@"[Tab %@] long-press gesture recognized", self.tabIndex);
+	NSLog(@"[Tab %@] %@ gesture recognized (%@)", [event class], self.tabIndex, event);
 #endif
 	
-	NSArray *elements = [self elementsAtLocationFromGestureRecognizer:sender];
+	NSArray *elements = [self elementsAtLocationFromGestureRecognizer:event];
 	for (NSDictionary *element in elements) {
 		NSString *k = [element allKeys][0];
 		NSDictionary *attrs = [element objectForKey:k];
@@ -644,8 +714,28 @@
 #endif
 	
 	if (!(href || img)) {
-		sender.enabled = false;
-		sender.enabled = true;
+		event.enabled = false;
+		event.enabled = true;
+		return;
+	}
+	
+	if (inForceTouch) {
+		/* taptic feedback */
+		UINotificationFeedbackGenerator *uinfg = [[UINotificationFeedbackGenerator alloc] init];
+		[uinfg prepare];
+		[uinfg notificationOccurred:UINotificationFeedbackTypeSuccess];
+		
+		NSURL *u;
+		if (href)
+			u = [NSURL URLWithString:href];
+		else if (img)
+			u = [NSURL URLWithString:img];
+
+		if (u) {
+			WebViewTab *newtab = [[appDelegate webViewController] addNewTabForURL:u forRestoration:NO withAnimation:WebViewTabAnimationQuick withCompletionBlock:nil];
+			newtab.openedByTabHash = [NSNumber numberWithLong:self.hash];
+		}
+		
 		return;
 	}
 	
@@ -699,8 +789,8 @@
 	
 	UIPopoverPresentationController *popover = [alertController popoverPresentationController];
 	if (popover) {
-		popover.sourceView = [sender view];
-		CGPoint loc = [sender locationInView:[sender view]];
+		popover.sourceView = [event view];
+		CGPoint loc = [event locationInView:[event view]];
 		/* offset for width of the finger */
 		popover.sourceRect = CGRectMake(loc.x + 35, loc.y, 1, 1);
 		popover.permittedArrowDirections = UIPopoverArrowDirectionAny;
@@ -722,6 +812,7 @@
 - (void)goBack
 {
 	if ([self.webView canGoBack]) {
+		skipHistory = YES;
 		[[self webView] goBack];
 	}
 	else if (self.openedByTabHash) {
@@ -738,18 +829,22 @@
 
 - (void)goForward
 {
-	if ([[self webView] canGoForward])
+	if ([[self webView] canGoForward]) {
+		skipHistory = YES;
 		[[self webView] goForward];
+	}
 }
 
 - (void)refresh
 {
 	[self setNeedsRefresh:FALSE];
+	skipHistory = YES;
 	[[self webView] reload];
 }
 
 - (void)forceRefresh
 {
+	skipHistory = YES;
 	[self loadURL:[self url] withForce:YES];
 }
 
@@ -887,6 +982,22 @@
 #endif
 	
 	[[self webView] stringByEvaluatingJavaScriptFromString:js];
+}
+
+/* UIActivityItemSource for URL sharing */
+- (id)activityViewControllerPlaceholderItem:(UIActivityViewController *)activityViewController
+{
+	return [self url];
+}
+
+- (id)activityViewController:(UIActivityViewController *)activityViewController itemForActivityType:(UIActivityType)activityType
+{
+	return [self url];
+}
+
+- (NSString *)activityViewController:(UIActivityViewController *)activityViewController subjectForActivityType:(UIActivityType)activityType
+{
+	return [[self title] text];
 }
 
 @end

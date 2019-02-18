@@ -14,12 +14,32 @@
 #define TOOLBAR_PADDING 6
 #define TOOLBAR_BUTTON_SIZE 30
 
+/* this just detects the iPhone X by its notch */
+#define HAS_OLED \
+^{ \
+if (@available(iOS 11.0, *)) { \
+return [[[[UIApplication sharedApplication] delegate] window] safeAreaInsets].bottom > 0; \
+} \
+else { \
+return false; \
+} \
+}()
+
+typedef NS_ENUM(NSInteger, WebViewTabAnimation) {
+    WebViewTabAnimationDefault,
+    WebViewTabAnimationHidden,
+    WebViewTabAnimationQuick,
+};
+
 @interface WebViewController : UIViewController <UITableViewDelegate, UITextFieldDelegate, UIGestureRecognizerDelegate, UIScrollViewDelegate, IASKSettingsDelegate, WYPopoverControllerDelegate>
 
 @property BOOL toolbarOnBottom;
 @property BOOL darkInterface;
 
+@property (readonly) UIEdgeInsets safeAreaInsets;
+
 - (void)focusUrlField;
+- (void)unfocusUrlField;
 
 - (NSMutableArray *)webViewTabs;
 - (__strong WebViewTab *)curWebViewTab;
@@ -30,7 +50,8 @@
 - (void)viewIsNoLongerVisible;
 
 - (WebViewTab *)addNewTabForURL:(NSURL *)url;
-- (WebViewTab *)addNewTabForURL:(NSURL *)url forRestoration:(BOOL)restoration withCompletionBlock:(void(^)(BOOL))block;
+- (WebViewTab *)addNewTabForURL:(NSURL *)url forRestoration:(BOOL)restoration withAnimation:(WebViewTabAnimation)animation withCompletionBlock:(void(^)(BOOL finished))block;
+- (void)addNewTabFromToolbar:(id)_id;
 - (void)switchToTab:(NSNumber *)tabNumber;
 - (void)removeTab:(NSNumber *)tabNumber andFocusTab:(NSNumber *)toFocus;
 - (void)removeTab:(NSNumber *)tabNumber;
@@ -45,5 +66,6 @@
 - (void)prepareForNewURLFromString:(NSString *)url;
 - (void)showBookmarksForEditing:(BOOL)editing;
 - (void)hideBookmarks;
+- (void)hideSearchResults;
 
 @end

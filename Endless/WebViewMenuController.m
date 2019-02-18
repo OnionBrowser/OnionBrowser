@@ -21,10 +21,6 @@
 #import "OnePasswordExtension.h"
 #import "TUSafariActivity.h"
 
-#ifdef SHOW_DONATION_CONTROLLER
-#include "DonationViewController.h"
-#endif
-
 @implementation WebViewMenuController {
 	AppDelegate *appDelegate;
 	IASKAppSettingsViewController *appSettingsViewController;
@@ -42,18 +38,22 @@ NSString * const LABEL = @"L";
 
 	buttons = [[NSMutableArray alloc] initWithCapacity:10];
 	
-    [buttons addObject:@{ FUNC : @"menuRefresh", LABEL : NSLocalizedString(@"Refresh", nil) }];
+	[buttons addObject:@{ FUNC : @"menuRefresh", LABEL : NSLocalizedString(@"Refresh", nil) }];
+	
+	/* no point in showing this if the user doesn't have a password manager installed */
+	if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"bitwarden://"]])
+		[buttons addObject:@{ FUNC : @"menuOnePassword", LABEL : NSLocalizedString(@"Fill with Bitwarden", nil) }];
+	else if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"onepassword://"]])
+		[buttons addObject:@{ FUNC : @"menuOnePassword", LABEL : NSLocalizedString(@"Fill with 1Password", nil) }];
+	else if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"org-appextension-feature-password-management://"]])
+		[buttons addObject:@{ FUNC : @"menuOnePassword", LABEL : NSLocalizedString(@"Password Manager", nil) }];
 
-    /* no point in showing this if the user doesn't have 1p installed */
-    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"onepassword://"]])
-    [buttons addObject:@{ FUNC : @"menuOnePassword", LABEL : NSLocalizedString(@"Fill with 1Password", nil) }];
-
-    [buttons addObject:@{ FUNC : @"menuAddOrManageBookmarks", LABEL : NSLocalizedString(@"Manage Bookmarks", nil) }];
-    [buttons addObject:@{ FUNC : @"menuShare", LABEL : NSLocalizedString(@"Share URL", nil) }];
-    [buttons addObject:@{ FUNC : @"menuURLBlocker", LABEL : NSLocalizedString(@"URL Blocker", nil) }];
-    [buttons addObject:@{ FUNC : @"menuHTTPSEverywhere", LABEL : NSLocalizedString(@"HTTPS Everywhere", nil) }];
-    [buttons addObject:@{ FUNC : @"menuHostSettings", LABEL : NSLocalizedString(@"Host Settings", nil) }];
-    [buttons addObject:@{ FUNC : @"menuSettings", LABEL : NSLocalizedString(@"Global Settings", nil) }];
+	[buttons addObject:@{ FUNC : @"menuAddOrManageBookmarks", LABEL : NSLocalizedString(@"Manage Bookmarks", nil) }];
+	[buttons addObject:@{ FUNC : @"menuShare", LABEL : NSLocalizedString(@"Share URL", nil) }];
+	[buttons addObject:@{ FUNC : @"menuURLBlocker", LABEL : NSLocalizedString(@"URL Blocker", nil) }];
+	[buttons addObject:@{ FUNC : @"menuHTTPSEverywhere", LABEL : NSLocalizedString(@"HTTPS Everywhere", nil) }];
+	[buttons addObject:@{ FUNC : @"menuHostSettings", LABEL : NSLocalizedString(@"Host Settings", nil) }];
+	[buttons addObject:@{ FUNC : @"menuSettings", LABEL : NSLocalizedString(@"Global Settings", nil) }];
     [buttons addObject:@{ FUNC : @"bridgeSettings", LABEL : NSLocalizedString(@"Bridge Configuration", nil) }];
 
 	[self.view setBackgroundColor:[UIColor clearColor]];
@@ -111,8 +111,8 @@ NSString * const LABEL = @"L";
 	NSString *func = [button objectForKey:FUNC];
 	if ([func isEqualToString:@"menuAddOrManageBookmarks"]) {
 		if (haveURL && [Bookmark isURLBookmarked:[[[appDelegate webViewController] curWebViewTab] url]]) {
-            cell.textLabel.text = NSLocalizedString(@"Bookmarks", nil);
-            cell.detailTextLabel.text = NSLocalizedString(@"Page bookmarked", nil);
+			cell.textLabel.text = NSLocalizedString(@"Bookmarks", nil);
+			cell.detailTextLabel.text = NSLocalizedString(@"Page bookmarked", nil);
 		}
 	}
 	else if ([func isEqualToString:@"menuOnePassword"] || [func isEqualToString:@"menuRefresh"] || [func isEqualToString:@"menuShare"]) {
@@ -138,11 +138,11 @@ NSString * const LABEL = @"L";
 	else if ([func isEqualToString:@"menuHostSettings"]) {
 		HostSettings *hs = [HostSettings settingsOrDefaultsForHost:[[[[appDelegate webViewController] curWebViewTab] url] host]];
 		if (hs && ![hs isDefault]) {
-            cell.detailTextLabel.text = NSLocalizedString(@"Custom settings", nil);
+			cell.detailTextLabel.text = NSLocalizedString(@"Custom settings", nil);
 			cell.detailTextLabel.textColor = [self colorForMenuTextHighlight];
 		}
 		else {
-            cell.detailTextLabel.text = NSLocalizedString(@"Using defaults", nil);
+			cell.detailTextLabel.text = NSLocalizedString(@"Using defaults", nil);
 			cell.detailTextLabel.textColor = [UIColor grayColor];
 		}
 	}
@@ -233,13 +233,6 @@ NSString * const LABEL = @"L";
 		appSettingsViewController.delegate = [appDelegate webViewController];
 		appSettingsViewController.showDoneButton = YES;
 		appSettingsViewController.showCreditsFooter = NO;
-		
-#ifdef SHOW_DONATION_CONTROLLER
-		if (![DonationViewController canMakeDonation])
-			[appSettingsViewController setHiddenKeys:[NSSet setWithArray:@[ @"open_donation" ]]];
-#else
-		[appSettingsViewController setHiddenKeys:[NSSet setWithArray:@[ @"open_donation" ]]];
-#endif
 	}
 	
 	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:appSettingsViewController];
@@ -249,7 +242,7 @@ NSString * const LABEL = @"L";
 - (void)bridgeSettings
 {
     NSDictionary<NSNumber *,NSString *> *builtInBridges;
-    
+
     if ([Ipv6Tester ipv6_status] == TOR_IPV6_CONN_ONLY) {
         builtInBridges = @{[NSNumber numberWithInteger:USE_BRIDGES_OBFS4]: @"obfs4",
                            [NSNumber numberWithInteger:USE_BRIDGES_MEEKAMAZON]: @"meek-amazon",
@@ -272,7 +265,7 @@ NSString * const LABEL = @"L";
 - (void)menuShare
 {
 	TUSafariActivity *activity = [[TUSafariActivity alloc] init];
-	UIActivityViewController *avc = [[UIActivityViewController alloc] initWithActivityItems:@[ [[[appDelegate webViewController] curWebViewTab] url] ] applicationActivities:@[ activity ]];
+	UIActivityViewController *avc = [[UIActivityViewController alloc] initWithActivityItems:@[ [[appDelegate webViewController] curWebViewTab] ] applicationActivities:@[ activity ]];
 	
 	UIPopoverPresentationController *popover = [avc popoverPresentationController];
 	if (popover) {
@@ -287,7 +280,7 @@ NSString * const LABEL = @"L";
 - (UIColor *)colorForMenuTextHighlight
 {
 	if ([[appDelegate webViewController] darkInterface])
-		return [UIColor yellowColor];
+		return [UIColor colorWithRed:1 green:1 blue:0.69f alpha:1];
 	else
 		return [UIColor colorWithRed:0 green:0.5 blue:0 alpha:1];
 }

@@ -77,7 +77,12 @@ static NSDictionary *_preloadedHosts;
 
 - (void)persist
 {
-	[self writeToFile:[[self class] hstsCachePath] atomically:YES];
+	@try {
+		[self writeToFile:[[self class] hstsCachePath] atomically:YES];
+	}
+	@catch(NSException *e) {
+		NSLog(@"[HSTSCache] failed persisting to file: %@", e);
+	}
 }
 
 - (NSURL *)rewrittenURI:(NSURL *)URL
@@ -212,7 +217,8 @@ static NSDictionary *_preloadedHosts;
 
 - (void)setValue:(id)value forKey:(NSString *)key
 {
-	[[self dict] setValue:value forKey:key];
+	if (value != nil && key != nil)
+		[[self dict] setValue:value forKey:key];
 }
 
 - (void)removeObjectForKey:(id)aKey
