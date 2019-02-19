@@ -75,6 +75,7 @@
 		4130BF407DA5BE9819776E93 /* Pods_OnionBrowser2_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA15652BE4316C2D3F7B882E /* Pods_OnionBrowser2_Tests.framework */; };
 		691286EA1EABEE6900CEC414 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 691286E91EABEE6900CEC414 /* LaunchScreen.xib */; };
 		691286ED1EABF2B400CEC414 /* OnionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691286EC1EABF2B400CEC414 /* OnionManager.swift */; };
+		6926DAEE221C836F00D71752 /* credits.html.in in Resources */ = {isa = PBXBuildFile; fileRef = 6926DAED221C836F00D71752 /* credits.html.in */; };
 		693145FE1D3EEAE400D08A6A /* Tor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 693145FD1D3EEAE400D08A6A /* Tor.framework */; };
 		69CBCD471E934228009D5352 /* URLBlockerRuleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CBCD461E934228009D5352 /* URLBlockerRuleController.m */; };
 		69CBCD4D1E934249009D5352 /* RuleEditorRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CBCD4B1E934249009D5352 /* RuleEditorRow.m */; };
@@ -215,6 +216,7 @@
 		691286E91EABEE6900CEC414 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LaunchScreen.xib; path = OnionBrowser/LaunchScreen.xib; sourceTree = "<group>"; };
 		691286EB1EABF2B300CEC414 /* OnionBrowser2-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "OnionBrowser2-Bridging-Header.h"; path = "OnionBrowser/OnionBrowser2-Bridging-Header.h"; sourceTree = "<group>"; };
 		691286EC1EABF2B400CEC414 /* OnionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnionManager.swift; path = OnionBrowser/OnionManager.swift; sourceTree = "<group>"; };
+		6926DAED221C836F00D71752 /* credits.html.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = credits.html.in; path = Endless/Resources/credits.html.in; sourceTree = "<group>"; };
 		693145FD1D3EEAE400D08A6A /* Tor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tor.framework; path = Carthage/Build/iOS/Tor.framework; sourceTree = "<group>"; };
 		69CBCD451E934228009D5352 /* URLBlockerRuleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLBlockerRuleController.h; sourceTree = "<group>"; };
 		69CBCD461E934228009D5352 /* URLBlockerRuleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLBlockerRuleController.m; sourceTree = "<group>"; };
@@ -583,6 +585,7 @@
 				A045E5E11EDC5C1700BC8A92 /* Localizable.strings */,
 				A045E5E31EDC5C1700BC8A92 /* OnePasswordExtension.strings */,
 				01F8794A1A41232E00A63654 /* credits.html */,
+				6926DAED221C836F00D71752 /* credits.html.in */,
 				016B2FCA1A53466D002D2730 /* hsts_preload.plist */,
 				018333E71A35746500670CD1 /* https-everywhere_rules.plist */,
 				018333E81A35746500670CD1 /* https-everywhere_targets.plist */,
@@ -1125,6 +1128,7 @@
 				01801EC31A3360F8002B4718 /* InAppSettings.bundle in Resources */,
 				69CBCD4F1E93451C009D5352 /* urlblocker.json in Resources */,
 				01D7412C1A45F8EB007B7033 /* injected.js in Resources */,
+				6926DAEE221C836F00D71752 /* credits.html.in in Resources */,
 				01801EA61A32CA2A002B4718 /* Images.xcassets in Resources */,
 				01F8794C1A4124FE00A63654 /* credits.html in Resources */,
 				A045E5E51EDC5C1700BC8A92 /* Localizable.strings in Resources */,

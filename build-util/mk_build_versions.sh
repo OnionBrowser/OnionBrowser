@@ -9,9 +9,11 @@
 # at most 10 characters long. Thus, MINUTES_SINCE_DATE needs to be
 # at most 7 characters long so we can use the format:
 # ${MINUTES_SINCE_DATE}.${DECIMALIZED_GIT_HASH}
-# 
-OB_BUNDLE_SHORT_VERSION_DATE="2018-10-10 00:00:00 GMT"
-OB_BUNDLE_SHORT_VERSION_STRING=2.1.991
+
+# 2.2.X epoch: 2019-02-19 18:00 GMT
+# do not change until 2.3.0 OR august 2020
+OB_BUNDLE_SHORT_VERSION_DATE="2019-02-19 18:00:00 GMT"
+OB_BUNDLE_SHORT_VERSION_STRING=2.2.0
 
 BASH_SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -33,3 +35,8 @@ cat <<EOF > "${SRCROOT}"/OnionBrowser/version.h
 #define OBBundleShortVersionString ${OB_BUNDLE_SHORT_VERSION_STRING}
 #define OBBundleVersion ${OB_BUNDLE_VERSION}
 EOF
+
+cat "${SRCROOT}"/Endless/Resources/credits.html.in | \
+sed "s/XX_OB_BUNDLE_SHORT_VERSION_STRING_XX/${OB_BUNDLE_SHORT_VERSION_STRING}/g" | \
+sed "s/XX_OB_BUNDLE_VERSION_XX/${OB_BUNDLE_VERSION}/g" \
+  > "${SRCROOT}"/Endless/Resources/credits.html
