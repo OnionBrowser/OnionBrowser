@@ -16,7 +16,7 @@ Peramban Web Onion 2 adalah aplikasi yang telah dikembangkan dari versi sebelumn
 * Dukungan 1Password
 * Pemasangan pemblokiran iklan dan perlindungan privasi
 * Keamanan ganda / pengaturan privasi secara per halaman web (termasuk kebijakan cookie, agen pengguna, dan JavaScript / kebijakan konten aktif).
-* Tor 0.3.1.9
+* Tor 0.3.5.8
 * Pengaturan dan markah buku dari Peramban Web Onion 1  tetap dipertahankan.
 
 Terbaik dari semuanya: pembaruan gratis!

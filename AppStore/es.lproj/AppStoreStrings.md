@@ -16,7 +16,7 @@ Onion Browser 2 es una re-escritura total de la aplicación que contiene varias 
 * Soporte para 1Password
 * Protección de privacidad y bloqueo de anuncios incorporado
 * Afina la configuración de seguridad/privacidad para cada sitio (incluyendo política de cookies, user agent y política de JavaScript/contenido activo).
-* Tor 0.3.1.9
+* Tor 0.3.5.8
 * La configuración y los marcadores del Onion Browser 1 se conservan.
 
 Lo mejor de todo: ¡esta actualización es gratis!

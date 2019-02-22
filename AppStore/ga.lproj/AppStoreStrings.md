@@ -16,7 +16,7 @@ Bhí an aip athscríofa ón tús le haghaidh Brabhsálaí Onion 2, agus tá roin
 * Tacaíocht do 1Password
 * Cosc ar fhógraí agus cosaint príobháideachais ionsuite.
 * Mionathraigh socruithe slándála/príobháideachais ar shuímh ar leith (m.sh. polasaí fianán, UserAgent, agus polasaí maidir le JavaScript/ábhar gníomhach).
-* Tor 0.3.1.9
+* Tor 0.3.5.8
 * Coinneofar na socruithe agus leabharmharcanna ó Brabhsálaí Onion 1.
 
 An rud is fearr: tá an nuashonrú seo saor in aisce!

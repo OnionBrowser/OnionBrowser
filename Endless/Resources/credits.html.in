@@ -20,7 +20,7 @@
 <ul style="padding-left: 0">
 		<li>Version XX_OB_BUNDLE_SHORT_VERSION_STRING_XX (XX_OB_BUNDLE_VERSION_XX)
 		<ul><li><b>Endless</b> 1.6.1</li>
-		<li><b>Tor</b>: 0.3.5.7</li>
+		<li><b>Tor</b>: 0.3.5.8</li>
 		<li><b>libevent</b>: 2.1.8</li>
 		<li><b>OpenSSL</b>: 1.1.0i</li>
 		<li><b>liblzma</b>: 5.2.3</li></ul>
