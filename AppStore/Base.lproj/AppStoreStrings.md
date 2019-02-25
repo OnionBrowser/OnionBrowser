@@ -16,7 +16,7 @@ Onion Browser 2 is a total rewrite of the app which contains several new feature
 * 1Password support
 * Built-in ad-blocking and privacy protection
 * Tweak security/privacy settings on a per-site basis (including cookie policy, user agent, and JavaScript/active content policy).
-* Tor 0.3.1.9
+* Tor 0.3.5.8
 * Settings and bookmarks from Onion Browser 1 are retained.
 
 Best of all: this update is free!

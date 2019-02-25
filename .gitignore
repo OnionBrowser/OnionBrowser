@@ -19,6 +19,7 @@ fabric.buildsecret
 Endless/DonationViewController.h
 Endless/DonationViewController.m
 OnionBrowser/version.h
+Endless/Resources/credits.html
 
 geoip
 geoip6

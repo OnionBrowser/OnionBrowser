@@ -16,7 +16,7 @@ Az Onion Böngésző 2 teljes újraírása a korábbi alkalmazásnak néhány ú
 * 1Password támogatás
 * Beépített reklám blokkolás és adatvédelem
 * Állítson biztonsági/adatvédelmi beállításokat oldalanként (bele értve a cookie szabályzatot, böngésző azonosítás és Javascript/aktív tartalom szabályzás).
-* Tor 0.3.1.9
+* Tor 0.3.5.8
 * A beállítások és a könyvjelzők az Onion Böngésző 1-ből megtartásra kerülnek.
 
 A legjobb az egészben: ez a frissítés ingyenes!

@@ -16,7 +16,7 @@ Onion Browser 2 është rishkrim i plotë i aplikacionit që përmban disa karak
 * Suport për 1Password
 * Bllokim reklamash dhe ruajtje privatësie të inkorporuara
 * Ndryshoni opsionet e sigurisë/privatësisë për çdo faqe (duke përfshirë politikat e 'cookies', agjentët e përdoruesit dhe Javascript/ politika përmbajtjeje aktive).
-* Tor 0.3.1.9
+* Tor 0.3.5.8
 * Konfigurimi dhe bookmarks nga Onion Browser 1 janë ruajtur.
 
 Dhe më e mira: ky përditësim është falas.

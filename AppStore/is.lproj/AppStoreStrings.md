@@ -16,7 +16,7 @@ Onion-vafrinn 2 er algjör endurritun forritsins, sem innifelur ýmsa nýja eigi
 * Stuðningur við 1Password innskráningu
 * Innbyggð útilokun auglýsinga og verndun á friðhelgi einkalífs
 * Fínstilling á öryggi/gagnaleynd fyrir hvert vefsvæði (þar með talið stefnur varðandi vefkökur, kennistreng og JavaScript/virkt efni).
-* Tor 0.3.1.9
+* Tor 0.3.5.8
 * Stillingum og bókamerkjum úr Onion-vafra 1 er haldið til haga.
 
 Best af öllu: þessi uppfærsla er frjáls og ókeypis!

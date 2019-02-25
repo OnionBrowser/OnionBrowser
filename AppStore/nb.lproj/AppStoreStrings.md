@@ -16,7 +16,7 @@ Onion-nettleseren 2 er en fullstendig omskriving av programmet som inneholder fl
 * 1Passord-støtte
 * Innebygd reklameblokkering og personvernbeskyttelse
 * Juster sikkerhet/personverninnstillinger per side (inkludert informasjonskapsel-policy, brukeragent, og JavaScript/policy for aktivt innhold).
-* Tor 0.3.1.9
+* Tor 0.3.5.8
 * Innstillinger og bokmerker fra Onion-nettleser 1 beholdes.
 
 Oppdateringen er gratis.

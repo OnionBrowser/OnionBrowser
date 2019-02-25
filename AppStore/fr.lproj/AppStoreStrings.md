@@ -16,7 +16,7 @@ Le Navigateur Onion 2 est une réécriture complète de l’appli. Il comprend 
 * La prise en charge de 1Password
 * L’intégration du blocage de publicité et de la protection des renseignements personnels
 * Le peaufinage des paramètres de sécurité et de confidentialité site par site (incluant la politique des témoins, l’agent utilisateur, ainsi que la politique JavaScript et de contenu actif).
-* Tor 0.3.1.9
+* Tor 0.3.5.8
 * Les paramètres et les signets du Navigateur Onion 1 sont conservés.
 
 Et en plus, cette mise à jour est gratuite !

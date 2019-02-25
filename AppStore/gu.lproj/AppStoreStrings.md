@@ -16,7 +16,7 @@ Onion Browser 2 પર આપનું સ્વાગત છે!
 * 1પાસવર્ડ  સપોર્ટ 
 * Built-in ad-blocking and privacy protection
 * Tweak security/privacy settings on a per-site basis (including cookie policy, user agent, and JavaScript/active content policy).
-* Tor 0.3.1.9
+* Tor 0.3.5.8
 * Settings and bookmarks from Onion Browser 1 are retained.
 
 સર્વશ્રેષ્ઠ: આ અપડેટ મફત છે!
