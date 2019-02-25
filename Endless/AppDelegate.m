@@ -59,12 +59,9 @@
 	self.window.backgroundColor = [UIColor groupTableViewBackgroundColor];
 	self.window.rootViewController = [[OBRootViewController alloc] init];
 	self.window.rootViewController.restorationIdentifier = @"OBRootViewController";
-	
-	/* setting AVAudioSessionCategoryAmbient will prevent audio from UIWebView from pausing already-playing audio from other apps */
-	[[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient error:nil];
-	[[AVAudioSession sharedInstance] setActive:NO error:nil];
-	
 
+	[self adjustMuteSwitchBehavior];
+	
     [Migration migrate];
 
     Boolean didFirstRunBookmarks = [userDefaults boolForKey:@"did_first_run_bookmarks"];
@@ -237,8 +234,8 @@
 	if (!_keyCommands) {
 		_keyCommands = [[NSMutableArray alloc] init];
 		
-		[_keyCommands addObject:[UIKeyCommand keyCommandWithInput:UIKeyInputLeftArrow modifierFlags:UIKeyModifierCommand action:@selector(handleKeyboardShortcut:) discoverabilityTitle:NSLocalizedString(@"Go Back", nil)]];
-		[_keyCommands addObject:[UIKeyCommand keyCommandWithInput:UIKeyInputRightArrow modifierFlags:UIKeyModifierCommand action:@selector(handleKeyboardShortcut:) discoverabilityTitle:NSLocalizedString(@"Go Forward", nil)]];
+		[_keyCommands addObject:[UIKeyCommand keyCommandWithInput:@"[" modifierFlags:UIKeyModifierCommand action:@selector(handleKeyboardShortcut:) discoverabilityTitle:NSLocalizedString(@"Go Back", nil)]];
+		[_keyCommands addObject:[UIKeyCommand keyCommandWithInput:@"]" modifierFlags:UIKeyModifierCommand action:@selector(handleKeyboardShortcut:) discoverabilityTitle:NSLocalizedString(@"Go Forward", nil)]];
 
 		[_keyCommands addObject:[UIKeyCommand keyCommandWithInput:@"b" modifierFlags:UIKeyModifierCommand action:@selector(handleKeyboardShortcut:) discoverabilityTitle:NSLocalizedString(@"Show Bookmarks", nil)]];
 
@@ -325,12 +322,12 @@
 			return;
 		}
 		
-		if ([[keyCommand input] isEqualToString:UIKeyInputLeftArrow]) {
+		if ([[keyCommand input] isEqualToString:@"["]) {
 			[[[self webViewController] curWebViewTab] goBack];
 			return;
 		}
 		
-		if ([[keyCommand input] isEqualToString:UIKeyInputRightArrow]) {
+		if ([[keyCommand input] isEqualToString:@"]"]) {
 			[[[self webViewController] curWebViewTab] goForward];
 			return;
 		}
@@ -426,6 +423,19 @@
 		[[self cookieJar] clearAllNonWhitelistedData];
 	} else {
 		NSLog(@"[AppDelegate] need to handle action %@", [shortcutItem type]);
+	}
+}
+
+- (void)adjustMuteSwitchBehavior
+{
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+
+	if ([userDefaults boolForKey:@"mute_with_switch"]) {
+		/* setting AVAudioSessionCategoryAmbient will prevent audio from UIWebView from pausing already-playing audio from other apps */
+		[[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient error:nil];
+		[[AVAudioSession sharedInstance] setActive:NO error:nil];
+	} else {
+		[[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
 	}
 }
 

@@ -123,8 +123,8 @@
 	[alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
 		textField.placeholder = @"example.com";
 		
-		if (firstMatch != nil)
-			textField.text = firstMatch;
+		if (self->firstMatch != nil)
+			textField.text = self->firstMatch;
 	}];
 	
 	UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK action") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
@@ -133,7 +133,7 @@
 			HostSettings *hs = [[HostSettings alloc] initForHost:[host text] withDict:nil];
 			[hs save];
 			[HostSettings persist];
-			_sortedHosts = nil;
+			self->_sortedHosts = nil;
 			
 			[self.tableView reloadData];
 			[self showDetailsForHost:[host text]];
@@ -240,6 +240,25 @@
 		XLFormSectionDescriptor *section = [XLFormSectionDescriptor formSection];
 		[section setTitle:NSLocalizedString(@"Security", nil)];
 		[form addFormSection:section];
+
+		/* ignore TLS errors */
+		if ([[NSUserDefaults standardUserDefaults] boolForKey:@"allow_tls_error_ignore"])
+		{
+			XLFormRowDescriptor *row = [XLFormRowDescriptor formRowDescriptorWithTag:HOST_SETTINGS_KEY_IGNORE_TLS_ERRORS rowType:XLFormRowDescriptorTypeSelectorActionSheet title:NSLocalizedString(@"Ignore TLS errors", nil)];
+
+			XLFormOptionsObject *yes = [XLFormOptionsObject formOptionsObjectWithValue:HOST_SETTINGS_VALUE_YES displayText:NSLocalizedString(@"Yes", nil)];
+			XLFormOptionsObject *no = [XLFormOptionsObject formOptionsObjectWithValue:HOST_SETTINGS_VALUE_NO displayText:NSLocalizedString(@"No", nil)];
+
+			// This value is always "NO", except, when the user set the global setting
+			// "allow_tls_error_ignore" to YES *and* they surfed to a site with an error
+			// *and* the selected "ignore" on the following error alert.
+			[row setSelectorOptions:@[no]];
+
+			NSString *val = [host setting:HOST_SETTINGS_KEY_IGNORE_TLS_ERRORS];
+			[row setValue:[val isEqualToString:HOST_SETTINGS_VALUE_YES] ? yes : no];
+
+			[section addFormRow:row];
+		}
 		
 		/* tls version */
 		{

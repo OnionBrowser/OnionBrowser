@@ -15,15 +15,7 @@
 #define TOOLBAR_BUTTON_SIZE 30
 
 /* this just detects the iPhone X by its notch */
-#define HAS_OLED \
-^{ \
-if (@available(iOS 11.0, *)) { \
-return [[[[UIApplication sharedApplication] delegate] window] safeAreaInsets].bottom > 0; \
-} \
-else { \
-return false; \
-} \
-}()
+#define HAS_OLED ([[[[UIApplication sharedApplication] delegate] window] safeAreaInsets].bottom > 0)
 
 typedef NS_ENUM(NSInteger, WebViewTabAnimation) {
     WebViewTabAnimationDefault,
@@ -35,8 +27,6 @@ typedef NS_ENUM(NSInteger, WebViewTabAnimation) {
 
 @property BOOL toolbarOnBottom;
 @property BOOL darkInterface;
-
-@property (readonly) UIEdgeInsets safeAreaInsets;
 
 - (void)focusUrlField;
 - (void)unfocusUrlField;

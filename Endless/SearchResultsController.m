@@ -181,7 +181,7 @@
 			return;
 		}
 		
-		if (![lastQuery isEqualToString:tquery]) {
+		if (![self->lastQuery isEqualToString:tquery]) {
 			NSLog(@"[SearchResultsController] stale query results, ignoring");
 			return;
 		}
@@ -196,12 +196,12 @@
 			NSString *ct = [[httpResponse allHeaderFields] objectForKey:@"Content-Type"];
 			if (ct != nil && ([ct containsString:@"javascript"] || [ct containsString:@"json"])) {
 				NSArray *res = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-				lastResults = [res objectAtIndex:1];
+				self->lastResults = [res objectAtIndex:1];
 			} else {
-				lastResults = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] componentsSeparatedByString:@"\n"];
+				self->lastResults = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] componentsSeparatedByString:@"\n"];
 			}
 #ifdef TRACE
-			NSLog(@"[SearchResultsController] auto-complete results: %@", lastResults);
+			NSLog(@"[SearchResultsController] auto-complete results: %@", self->lastResults);
 #endif
 			dispatch_sync(dispatch_get_main_queue(), ^{
 				[[self tableView] reloadData];

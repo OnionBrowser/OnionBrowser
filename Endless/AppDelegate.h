@@ -31,9 +31,8 @@
 @property (strong, atomic) NSString *defaultUserAgent;
 @property (strong, atomic) NSURL *urlToOpenAtLaunch;
 
-@property (atomic) NSUInteger torState;
-
 - (BOOL)areTesting;
+- (void)adjustMuteSwitchBehavior;
 
 @end
 

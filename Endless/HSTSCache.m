@@ -212,7 +212,14 @@ static NSDictionary *_preloadedHosts;
 
 - (BOOL)writeToFile:(NSString *)path atomically:(BOOL)useAuxiliaryFile
 {
-	return [[self dict] writeToFile:path atomically:useAuxiliaryFile];
+	@try {
+		return [[self dict] writeToFile:path atomically:useAuxiliaryFile];
+	}
+	@catch(NSException *e) {
+		NSLog(@"[HSTSCache] failed persisting to file: %@", e);
+	}
+	
+	return false;
 }
 
 - (void)setValue:(id)value forKey:(NSString *)key

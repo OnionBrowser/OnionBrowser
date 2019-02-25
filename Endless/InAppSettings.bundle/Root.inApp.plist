@@ -33,6 +33,34 @@
 			<false/>
 		</dict>
 		<dict>
+			<key>Title</key>
+			<string>Mute audio with mute switch</string>
+			<key>Key</key>
+			<string>mute_with_switch</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>DefaultValue</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>Custom home page</string>
+			<key>Key</key>
+			<string>homepage</string>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>DefaultValue</key>
+			<string>http://3heens4xbedlj57xwcggjsdglot7e36p4rogy642xokemfo2duh6bbyd.onion/</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>Search Engine</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>FooterText</key>
+			<string>When disabled, all text entered in search bar will be sent to the search engine unless it starts with &quot;http&quot;</string>
+		</dict>
+		<dict>
 			<key>DefaultValue</key>
 			<string>DuckDuckGo</string>
 			<key>Values</key>
@@ -66,13 +94,13 @@
 		</dict>
 		<dict>
 			<key>Title</key>
-			<string>Custom home page</string>
+			<string>Stop auto-complete at first dot</string>
 			<key>Key</key>
-			<string>homepage</string>
+			<string>search_engine_stop_dot</string>
 			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
+			<string>PSToggleSwitchSpecifier</string>
 			<key>DefaultValue</key>
-			<string>http://3heens4xbedlj57xwcggjsdglot7e36p4rogy642xokemfo2duh6bbyd.onion/</string>
+			<true/>
 		</dict>
 		<dict>
 			<key>Title</key>
@@ -159,6 +187,24 @@
 			<string>Report a bug</string>
 			<key>File</key>
 			<string>onionhttps://github.com/OnionBrowser/OnionBrowser/issues</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>Security</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>FooterText</key>
+			<string>When enabled, a per-host option to ignore further TLS errors is shown in the TLS error dialog</string>
+		</dict>
+		<dict>
+			<key>Key</key>
+			<string>allow_tls_error_ignore</string>
+			<key>Title</key>
+			<string>Allow ignoring TLS errors</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>DefaultValue</key>
+			<false/>
 		</dict>
 		<dict>
 			<key>Title</key>

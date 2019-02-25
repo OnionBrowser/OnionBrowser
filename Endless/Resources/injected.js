@@ -141,7 +141,7 @@ var __endless = {
 				return;
 							   
 			var e = document.createEvent("KeyboardEvent");
-			e.initKeyboardEvent(kind, false, true, document.body, "", 0, !!ctrl, !!alt, !!shift, !!meta, false);
+			e.initKeyboardEvent(kind, false, true, window, "", 0, !!ctrl, !!alt, !!shift, !!meta, false);
 			Object.defineProperty(e, "keyCode", { writable: false, value: (kind == "keypress" ? keypress_keycode : keycode) } );
 			Object.defineProperty(e, "which", { writable: false, value: (kind == "keypress" ? keypress_keycode : keycode) } );
 			Object.defineProperty(e, "charCode", { writable: false, value: (kind == "keypress" ? keypress_keycode : 0) } );

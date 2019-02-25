@@ -64,10 +64,8 @@
 	[_webView.scrollView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
 	[_webView.scrollView setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
 	[_webView.scrollView setDecelerationRate:UIScrollViewDecelerationRateNormal];
-    if (@available(iOS 11.0, *)) {
-        [_webView.scrollView setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentNever];
-    }
-
+	[_webView.scrollView setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentNever];
+	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(webKitprogressEstimateChanged:) name:@"WebProgressEstimateChangedNotification" object:[_webView valueForKeyPath:@"documentView.webView"]];
 	
 	/* swiping goes back and forward in current webview */
@@ -160,13 +158,13 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:@"WebProgressEstimateChangedNotification" object:[_webView valueForKeyPath:@"documentView.webView"]];
 	
 	void (^block)(void) = ^{
-		[_webView setDelegate:nil];
-		[_webView stopLoading];
+		[self->_webView setDelegate:nil];
+		[self->_webView stopLoading];
 		
-		for (id gr in [_webView gestureRecognizers])
-			[_webView removeGestureRecognizer:gr];
+		for (id gr in [self->_webView gestureRecognizers])
+			[self->_webView removeGestureRecognizer:gr];
 		
-		_webView = nil;
+		self->_webView = nil;
 		
 		[[self viewHolder] removeFromSuperview];
 	};
@@ -429,7 +427,7 @@
 		UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Confirm", nil) message:NSLocalizedString(@"Allow this page to close its tab?", nil) preferredStyle:UIAlertControllerStyleAlert];
 		
 		UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK action") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-			[[appDelegate webViewController] removeTab:[self tabIndex]];
+			[[self->appDelegate webViewController] removeTab:[self tabIndex]];
 		}];
 		
 		UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", @"Cancel action") style:UIAlertActionStyleCancel handler:nil];
@@ -526,6 +524,8 @@
 
 - (void)webView:(UIWebView *)__webView didFailLoadWithError:(NSError *)error
 {
+	BOOL isTLSError = false;
+	
 	self.url = __webView.request.URL;
 	[self setProgress:@0];
 	
@@ -546,13 +546,16 @@
 	if ([[error domain] isEqualToString:NSOSStatusErrorDomain]) {
 		switch (error.code) {
 		case errSSLProtocol: /* -9800 */
-			msg = @"SSL protocol error";
+			msg = NSLocalizedString(@"TLS protocol error", nil);
+			isTLSError = true;
 			break;
 		case errSSLNegotiation: /* -9801 */
-			msg = @"SSL handshake failed";
+			msg = NSLocalizedString(@"TLS handshake failed", nil);
+			isTLSError = true;
 			break;
 		case errSSLXCertChainInvalid: /* -9807 */
-			msg = @"SSL certificate chain verification error (self-signed certificate?)";
+			msg = NSLocalizedString(@"TLS certificate chain verification error (self-signed certificate?)", nil);
+			isTLSError = true;
 			break;
 		}
 	}
@@ -601,6 +604,36 @@
                              exit(0);
                          }]];
     }
+
+    if (u != nil && isTLSError && [[NSUserDefaults standardUserDefaults] boolForKey:@"allow_tls_error_ignore"]) {
+		[uiac addAction:[UIAlertAction
+						 actionWithTitle:NSLocalizedString(@"Ignore for this host", nil)
+						 style:UIAlertActionStyleDestructive
+						 handler:^(UIAlertAction * _Nonnull action) {
+
+			/*
+			 * self.url will hold the URL of the UIWebView which is the last *successful* request.
+			 * We need the URL of the *failed* request, which should be in `u`.
+			 * (From `error`'s `userInfo` dictionary.
+			 */
+			NSURL *url = [[NSURL alloc] initWithString:u];
+			if (url != nil) {
+				HostSettings *hs = [HostSettings forHost:url.host];
+
+				if (hs == nil) {
+					hs = [[HostSettings alloc] initForHost:url.host withDict:nil];
+				}
+
+				[hs setSetting:HOST_SETTINGS_KEY_IGNORE_TLS_ERRORS toValue:HOST_SETTINGS_VALUE_YES];
+
+				[hs save];
+				[HostSettings persist];
+
+				// Retry the failed request.
+				[self loadURL:url];
+			}
+		}]];
+	}
 
 	[[appDelegate webViewController] presentViewController:uiac animated:YES completion:nil];
 	
@@ -746,7 +779,7 @@
 	}];
 	
 	UIAlertAction *openNewTabAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Open in a New Tab", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-		WebViewTab *newtab = [[appDelegate webViewController] addNewTabForURL:[NSURL URLWithString:href]];
+		WebViewTab *newtab = [[self->appDelegate webViewController] addNewTabForURL:[NSURL URLWithString:href]];
 		newtab.openedByTabHash = [NSNumber numberWithLong:self.hash];
 	}];
 	
@@ -765,7 +798,7 @@
 		else {
 			UIAlertController *uiac = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", nil) message:[NSString stringWithFormat:NSLocalizedString(@"An error occurred downloading image %@", nil), img] preferredStyle:UIAlertControllerStyleAlert];
 			[uiac addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:nil]];
-			[[appDelegate webViewController] presentViewController:uiac animated:YES completion:nil];
+			[[self->appDelegate webViewController] presentViewController:uiac animated:YES completion:nil];
 		}
 	}];
 	

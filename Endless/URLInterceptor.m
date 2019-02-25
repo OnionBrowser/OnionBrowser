@@ -555,8 +555,22 @@ static NSString *_javascriptToInject;
 			else
 				[newRequest setHTTPMethod:@"GET"];
 			
+			/* if the new URL is not absolute, try to build one relative to the current URL */
+			NSURL *tURL = [NSURL URLWithString:newURL relativeToURL:[[self actualRequest] URL]];
+			
+			/* but if that failed, the new URL is probably absolute already */
+			if (tURL == nil)
+				tURL = [NSURL URLWithString:newURL];
+			
+			if (tURL == nil) {
+				NSLog(@"[URLInterceptor] [Tab %@] failed building URL from %ld redirect to %@", wvt.tabIndex, (long)response.statusCode, newURL);
+				[[self connection] cancel];
+				[[self client] URLProtocol:self didFailWithError:[NSError errorWithDomain:NSCocoaErrorDomain code:NSUserCancelledError userInfo:@{ ORIGIN_KEY: (self.isOrigin ? @YES : @NO )}]];
+				return;
+			}
+			
 			/* strangely, if we pass [NSURL URLWithString:/ relativeToURL:[NSURL https://blah/asdf/]] as the URL for the new request, it treats it as just "/" with no domain information so we have to build the relative URL, turn it into a string, then back to a URL */
-			NSURLComponents *newURLC = [[NSURLComponents alloc] initWithString:[[NSURL URLWithString:newURL relativeToURL:[[self actualRequest] URL]] absoluteString]];
+			NSURLComponents *newURLC = [[NSURLComponents alloc] initWithString:[tURL absoluteString]];
 			
 			/* if we have no anchor in the new location, but the original request did, we need to preserve it */
 			if ([newURLC fragment] == nil || [[newURLC fragment] isEqualToString:@""]) {

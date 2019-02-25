@@ -38,6 +38,7 @@
 	UILabel *tabCount;
 	int keyboardHeight;
 	BOOL keyboardShowing;
+	float safeAreaBottom;
 	
 	UIButton *backButton;
 	UILongPressGestureRecognizer *historyRecognizer;
@@ -87,6 +88,7 @@
 	self.darkInterface = [userDefaults boolForKey:@"dark_interface"];
 
 	keyboardHeight = 0;
+	safeAreaBottom = 0;
 	
 	tabToolbarHairline = [[UIView alloc] init];
 	[toolbar addSubview:tabToolbarHairline];
@@ -360,7 +362,7 @@
 	[super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
 
 	[coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
-		if (showingTabs)
+		if (self->showingTabs)
 			[self showTabsWithCompletionBlock:nil];
 		
 		[self dismissPopover];
@@ -370,37 +372,46 @@
 	}];
 }
 
+- (void)viewSafeAreaInsetsDidChange
+{
+	[super viewSafeAreaInsetsDidChange];
+	
+	if (self.view.safeAreaInsets.bottom != 0)
+		safeAreaBottom = self.view.safeAreaInsets.bottom;
+}
+
 - (void)viewDidLayoutSubviews
 {
-	float statusBarHeight = [[UIApplication sharedApplication] statusBarFrame].size.height;
+	UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+	float statusBarHeight = (UIInterfaceOrientationIsLandscape(orientation) ? 0 : [[UIApplication sharedApplication] statusBarFrame].size.height);
 
 	/* views are transforming and we may calculate things incorrectly here, so just ignore this request */
 	if (showingTabs)
 		return;
 	
 	/* keep the root view the size of the window minus the statusbar */
-	self.view.frame = CGRectMake(0, statusBarHeight, [appDelegate window].bounds.size.width, [appDelegate window].bounds.size.height - statusBarHeight);
+	self.view.frame = CGRectMake(0, statusBarHeight, [appDelegate window].bounds.size.width, [appDelegate window].bounds.size.height - statusBarHeight - keyboardHeight);
 	wrapper.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
 	
 	/* keep tabScroller the size of the root frame minus the toolbar */
 	if (self.toolbarOnBottom) {
-		toolbar.frame = tabToolbar.frame = CGRectMake(self.safeAreaInsets.left, self.view.bounds.size.height - TOOLBAR_HEIGHT - keyboardHeight - (keyboardHeight ? 0 : self.safeAreaInsets.bottom), self.view.bounds.size.width - self.safeAreaInsets.left - self.safeAreaInsets.right, TOOLBAR_HEIGHT + keyboardHeight);
+		toolbar.frame = tabToolbar.frame = CGRectMake(self.view.safeAreaInsets.left, self.view.bounds.size.height - TOOLBAR_HEIGHT - (keyboardHeight ? 0 : safeAreaBottom), self.view.bounds.size.width - self.view.safeAreaInsets.left - self.view.safeAreaInsets.right, TOOLBAR_HEIGHT);
 
 		progressBar.frame = CGRectMake(0, 0, toolbar.bounds.size.width, 2);
 		tabToolbarHairline.frame = CGRectMake(0, 0, toolbar.bounds.size.width, 1);
 
-		tabScroller.frame = CGRectMake(self.safeAreaInsets.left, 0, self.view.bounds.size.width - self.safeAreaInsets.left - self.safeAreaInsets.right, self.view.bounds.size.height - TOOLBAR_HEIGHT - self.safeAreaInsets.bottom);
+		tabScroller.frame = CGRectMake(self.view.safeAreaInsets.left, 0, self.view.bounds.size.width - self.view.safeAreaInsets.left - self.view.safeAreaInsets.right, self.view.bounds.size.height - TOOLBAR_HEIGHT - (keyboardHeight ? 0 : safeAreaBottom));
 
-		tabChooser.frame = CGRectMake(self.safeAreaInsets.left, self.view.bounds.size.height - TOOLBAR_HEIGHT - 20 - self.safeAreaInsets.bottom, self.view.frame.size.width - self.safeAreaInsets.left - self.safeAreaInsets.right, 20);
+		tabChooser.frame = CGRectMake(self.view.safeAreaInsets.left, self.view.bounds.size.height - TOOLBAR_HEIGHT - 20 - (keyboardHeight ? 0 : safeAreaBottom), self.view.frame.size.width - self.view.safeAreaInsets.left - self.view.safeAreaInsets.right, 20);
 	}
 	else {
-		toolbar.frame = tabToolbar.frame = CGRectMake(0, self.safeAreaInsets.left, self.view.bounds.size.width - self.safeAreaInsets.left + self.safeAreaInsets.right, TOOLBAR_HEIGHT);
+		toolbar.frame = tabToolbar.frame = CGRectMake(0, 0, self.view.bounds.size.width - self.view.safeAreaInsets.left + self.view.safeAreaInsets.right, TOOLBAR_HEIGHT);
 		progressBar.frame = CGRectMake(0, TOOLBAR_HEIGHT - 2, toolbar.frame.size.width, 2);
 		tabToolbarHairline.frame = CGRectMake(0, TOOLBAR_HEIGHT - 0.5, toolbar.frame.size.width, 0.5);
 
 		tabScroller.frame = CGRectMake(0, TOOLBAR_HEIGHT, self.view.bounds.size.width, self.view.bounds.size.height - TOOLBAR_HEIGHT);
 
-		tabChooser.frame = CGRectMake(0, self.view.bounds.size.height - 20 - 20, tabScroller.bounds.size.width, 20);
+		tabChooser.frame = CGRectMake(0, self.view.bounds.size.height - 20 - (keyboardHeight ? 0 : safeAreaBottom), tabScroller.bounds.size.width, 20);
 	}
 
 	if (self.darkInterface) {
@@ -482,7 +493,7 @@
 	
 	if (bookmarks) {
 		if (self.toolbarOnBottom)
-			bookmarks.view.frame = CGRectMake(0, 0, self.view.bounds.size.width - self.safeAreaInsets.right, toolbar.frame.origin.y);
+			bookmarks.view.frame = CGRectMake(0, 0, self.view.bounds.size.width - self.view.safeAreaInsets.right, toolbar.frame.origin.y);
 		else
 			bookmarks.view.frame = CGRectMake(0, toolbar.frame.origin.y + toolbar.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height);
 	}
@@ -492,7 +503,7 @@
 
 - (CGRect)frameForTabIndex:(NSUInteger)number
 {
-	return CGRectMake((self.view.frame.size.width * number), 0, self.view.frame.size.width - self.safeAreaInsets.left - self.safeAreaInsets.right, tabScroller.frame.size.height);
+	return CGRectMake((self.view.frame.size.width * number), 0, self.view.frame.size.width - self.view.safeAreaInsets.left - self.view.safeAreaInsets.right, tabScroller.frame.size.height);
 }
 
 - (CGRect)frameForUrlField
@@ -578,7 +589,7 @@
 	[tabScroller bringSubviewToFront:toolbar];
 
 	void (^swapToTab)(BOOL) = ^(BOOL dummy) {
-		[self setCurTabIndex:(int)webViewTabs.count - 1];
+		[self setCurTabIndex:(int)self->webViewTabs.count - 1];
 		
 		[self slideToCurrentTabWithAnimation:animation completionBlock:^(BOOL finished) {
 			if (url != nil)
@@ -615,7 +626,7 @@
 - (void)addNewTabFromToolbar:(id)_id
 {
 	[self addNewTabForURL:nil forRestoration:NO withAnimation:WebViewTabAnimationDefault withCompletionBlock:^(BOOL finished) {
-		[urlField becomeFirstResponder];
+		[self->urlField becomeFirstResponder];
 	}];
 }
 
@@ -714,7 +725,7 @@
 				/* no tabs left, add one and zoom out */
 				[self reindexTabs];
 				[self addNewTabForURL:nil forRestoration:false withAnimation:WebViewTabAnimationDefault withCompletionBlock:^(BOOL finished) {
-					[urlField becomeFirstResponder];
+					[self->urlField becomeFirstResponder];
 				}];
 				return;
 			}
@@ -727,10 +738,10 @@
 	[self reindexTabs];
 	
 	[UIView animateWithDuration:0.25 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-		tabScroller.contentSize = CGSizeMake([self frameForTabIndex:0].size.width * tabChooser.numberOfPages, [self frameForTabIndex:0].size.height);
+		self->tabScroller.contentSize = CGSizeMake([self frameForTabIndex:0].size.width * self->tabChooser.numberOfPages, [self frameForTabIndex:0].size.height);
 
-		for (int i = 0; i < webViewTabs.count; i++) {
-			WebViewTab *wvt = webViewTabs[i];
+		for (int i = 0; i < self->webViewTabs.count; i++) {
+			WebViewTab *wvt = self->webViewTabs[i];
 			
 			[[wvt viewHolder] setTransform:CGAffineTransformIdentity];
 			[[wvt viewHolder] setFrame:[self frameForTabIndex:i]];
@@ -739,10 +750,10 @@
 			[wvt.viewHolder setTransform:CGAffineTransformMakeScale(rotated ? ZOOM_OUT_SCALE_ROTATED : ZOOM_OUT_SCALE, rotated ? ZOOM_OUT_SCALE_ROTATED : ZOOM_OUT_SCALE)];
 		}
 	} completion:^(BOOL finished) {
-		[self setCurTabIndex:curTabIndex];
+		[self setCurTabIndex:self->curTabIndex];
 
 		[self slideToCurrentTabWithAnimation:WebViewTabAnimationDefault completionBlock:^(BOOL finished) {
-			showingTabs = true;
+			self->showingTabs = true;
 			[self showTabs:nil];
 		}];
 	}];
@@ -849,19 +860,19 @@
 		[progressBar setProgress:progress animated:NO];
 
 		[UIView animateWithDuration:fadeAnimationDuration delay:fadeOutDelay options:UIViewAnimationOptionCurveLinear animations:^{
-			progressBar.alpha = 0.0;
+			self->progressBar.alpha = 0.0;
 		} completion:^(BOOL finished) {
 			[self updateSearchBarDetails];
 		}];
 	}
 	else {
 		[UIView animateWithDuration:(animated ? fadeAnimationDuration : 0.0) delay:0.0 options:UIViewAnimationOptionCurveLinear animations:^{
-			[progressBar setProgress:progress animated:YES];
+			[self->progressBar setProgress:progress animated:YES];
 
-			if (showingTabs)
-				progressBar.alpha = 0.0;
+			if (self->showingTabs)
+				self->progressBar.alpha = 0.0;
 			else
-				progressBar.alpha = 1.0;
+				self->progressBar.alpha = 1.0;
 		} completion:nil];
 	}
 }
@@ -888,12 +899,12 @@
 		[self showBookmarksForEditing:NO];
 	
 	[UIView animateWithDuration:0.15 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
-		[urlField setTextAlignment:NSTextAlignmentNatural];
-		[backButton setHidden:true];
-		[forwardButton setHidden:true];
-		[urlField setFrame:[self frameForUrlField]];
+		[self->urlField setTextAlignment:NSTextAlignmentNatural];
+		[self->backButton setHidden:true];
+		[self->forwardButton setHidden:true];
+		[self->urlField setFrame:[self frameForUrlField]];
 	} completion:^(BOOL finished) {
-		[urlField performSelector:@selector(selectAll:) withObject:nil afterDelay:0.1];
+		[self->urlField performSelector:@selector(selectAll:) withObject:nil afterDelay:0.1];
 	}];
 
 	[self updateSearchBarDetails];
@@ -901,17 +912,18 @@
 
 - (void)textFieldDidChange:(UITextField *)textField
 {
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+
 	if (textField != urlField)
 		return;
 
 	/* if it looks like we're typing a url, stop searching */
-	if ([urlField text] == nil || [[urlField text] isEqualToString:@""] || [[urlField text] hasPrefix:@"http:"] || [[urlField text] hasPrefix:@"https:"] || [[urlField text] containsString:@"."]) {
+	if ([urlField text] == nil || [[urlField text] isEqualToString:@""] || [[urlField text] hasPrefix:@"http:"] || [[urlField text] hasPrefix:@"https:"] || ([[urlField text] containsString:@"."] && [userDefaults boolForKey:@"search_engine_stop_dot"])) {
 		[self hideSearchResults];
 		[self showBookmarksForEditing:NO];
 		return;
 	}
 	
-	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	if (![userDefaults boolForKey:@"search_engine_live"])
 		return;
 	
@@ -931,10 +943,10 @@
 	[self hideSearchResults];
 
 	[UIView animateWithDuration:0.15 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
-		[urlField setTextAlignment:NSTextAlignmentCenter];
-		[backButton setHidden:false];
-		[forwardButton setHidden:!(self.curWebViewTab && self.curWebViewTab.canGoForward)];
-		[urlField setFrame:[self frameForUrlField]];
+		[self->urlField setTextAlignment:NSTextAlignmentCenter];
+		[self->backButton setHidden:false];
+		[self->forwardButton setHidden:!(self.curWebViewTab && self.curWebViewTab.canGoForward)];
+		[self->urlField setFrame:[self frameForUrlField]];
 	} completion:nil];
 
 	[self updateSearchBarDetails];
@@ -1071,6 +1083,8 @@
 		} else {
 			[[UIApplication sharedApplication] setAlternateIconName:nil completionHandler:nil];
 		}
+	} else if ([prop isEqualToString:@"mute_with_switch"]) {
+		[appDelegate adjustMuteSwitchBehavior];
 	}
 }
 
@@ -1101,15 +1115,15 @@
 		
 		[UIView animateWithDuration:0.15 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^(void) {
 			if (!self.toolbarOnBottom)
-				tabScroller.frame = CGRectMake(tabScroller.frame.origin.x, (TOOLBAR_HEIGHT / 2), tabScroller.frame.size.width, tabScroller.frame.size.height);
+				self->tabScroller.frame = CGRectMake(self->tabScroller.frame.origin.x, (TOOLBAR_HEIGHT / 2), self->tabScroller.frame.size.width, self->tabScroller.frame.size.height);
 			
-			for (int i = 0; i < webViewTabs.count; i++)
-				[(WebViewTab *)webViewTabs[i] zoomOut];
+			for (int i = 0; i < self->webViewTabs.count; i++)
+				[(WebViewTab *)self->webViewTabs[i] zoomOut];
 			
-			tabChooser.hidden = false;
-			toolbar.hidden = true;
-			tabToolbar.hidden = false;
-			progressBar.alpha = 0.0;
+			self->tabChooser.hidden = false;
+			self->toolbar.hidden = true;
+			self->tabToolbar.hidden = false;
+			self->progressBar.alpha = 0.0;
 		} completion:block];
 		
 		tabScroller.contentOffset = CGPointMake([self frameForTabIndex:curTabIndex].origin.x, 0);
@@ -1125,15 +1139,15 @@
 	else {
 		[UIView animateWithDuration:0.15 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^(void) {
 			if (!self.toolbarOnBottom)
-				tabScroller.frame = CGRectMake(tabScroller.frame.origin.x, TOOLBAR_HEIGHT, tabScroller.frame.size.width, tabScroller.frame.size.height);
+				self->tabScroller.frame = CGRectMake(self->tabScroller.frame.origin.x, TOOLBAR_HEIGHT, self->tabScroller.frame.size.width, self->tabScroller.frame.size.height);
 
-			for (int i = 0; i < webViewTabs.count; i++)
-				[(WebViewTab *)webViewTabs[i] zoomNormal];
+			for (int i = 0; i < self->webViewTabs.count; i++)
+				[(WebViewTab *)self->webViewTabs[i] zoomNormal];
 			
-			tabChooser.hidden = true;
-			toolbar.hidden = false;
-			tabToolbar.hidden = true;
-			progressBar.alpha = (progressBar.progress > 0.0 && progressBar.progress < 1.0 ? 1.0 : 0.0);
+			self->tabChooser.hidden = true;
+			self->toolbar.hidden = false;
+			self->tabToolbar.hidden = true;
+			self->progressBar.alpha = (self->progressBar.progress > 0.0 && self->progressBar.progress < 1.0 ? 1.0 : 0.0);
 		} completion:block];
 		
 		tabScroller.scrollEnabled = NO;
@@ -1190,7 +1204,7 @@
 	[self updateProgress];
 
 	void (^moveBlock)(void) = ^{
-		[tabScroller setContentOffset:CGPointMake([self frameForTabIndex:curTabIndex].origin.x, 0) animated:NO];
+		[self->tabScroller setContentOffset:CGPointMake([self frameForTabIndex:self->curTabIndex].origin.x, 0) animated:NO];
 	};
 	
 	if (animation == WebViewTabAnimationQuick) {
@@ -1297,19 +1311,6 @@
 	[[searchResults view] removeFromSuperview];
 	[searchResults removeFromParentViewController];
 	searchResults = nil;
-}
-
-/**
- Encapsulate iOS version check and fetch of `self.view.safeAreaInsets`.
- Returns a 0 insets struct on fallback.
- */
-- (UIEdgeInsets)safeAreaInsets
-{
-    if (@available(iOS 11.0, *)) {
-        return self.view.safeAreaInsets;
-    }
-
-    return UIEdgeInsetsMake(0, 0, 0, 0);
 }
 
 @end

@@ -16,6 +16,8 @@
 #define HOST_SETTINGS_KEY_HOST @"host"
 #define HOST_SETTINGS_HOST_DEFAULT_LABEL NSLocalizedString(@"Default Settings", nil)
 
+#define HOST_SETTINGS_KEY_IGNORE_TLS_ERRORS @"ignore_tls_errors"
+
 #define HOST_SETTINGS_KEY_TLS @"min_tls"
 #define HOST_SETTINGS_TLS_12 @"1.2"
 #define HOST_SETTINGS_TLS_AUTO @"1.1"
