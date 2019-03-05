@@ -22,11 +22,15 @@
 	NSMutableArray *_keyCommands;
 	NSMutableArray *_allKeyBindings;
 	NSArray *_allCommandsAndKeyBindings;
+
+	BOOL inStartupPhase;
 }
 
 - (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 	[self initializeDefaults];
+
+	inStartupPhase = YES;
 
 #ifdef USE_DUMMY_URLINTERCEPTOR
 	[NSURLProtocol registerClass:[DummyURLInterceptor class]];
@@ -128,8 +132,8 @@
 {
 	[[self webViewController] viewIsVisible];
 
-    if (OnionManager.shared.state != TorStateStarted && OnionManager.shared.state != TorStateConnected) {
-        // TODO: actually use UI instead of silently trying to restart tor
+    if (!inStartupPhase && OnionManager.shared.state != TorStateStarted && OnionManager.shared.state != TorStateConnected) {
+        // TODO: actually use UI instead of silently trying to restart Tor.
         [OnionManager.shared startTorWithDelegate:nil];
 
 //        if ([self.window.rootViewController class] != [OBRootViewController class]) {
@@ -137,9 +141,12 @@
 //                self.window.rootViewController.restorationIdentifier = @"OBRootViewController";
 //        }
     }
-//    else {
+    else {
+		// During app startup, we don't start Tor from here, but from
+		// OBRootViewController in order to catch the delegate callback for progress.
+		inStartupPhase = NO;
 //        [[self webViewController] viewIsVisible];
-//    }
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
