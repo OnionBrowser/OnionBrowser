@@ -276,12 +276,19 @@ static NSMutableDictionary <NSData *, NSMutableDictionary *> *certCache = nil;
 		return nil;
 	}
 	
-	NSObject *ret = [arr objectAtIndex:index];
-	if (ret == nil) {
-		NSLog(@"[SSLCertificate] array object at index %lu is nil", (long)index);
+	NSObject *ret;
+	@try {
+		ret = [arr objectAtIndex:index];
+		if (ret == nil) {
+			NSLog(@"[SSLCertificate] array object at index %lu is nil", (long)index);
+			return nil;
+		}
+	}
+	@catch(NSException *e) {
+		NSLog(@"[SSLCertificate] failed fetching object %lu from array: %@", (long)index, e);
 		return nil;
 	}
-	
+		
 	if (cType != nil && ![ret isKindOfClass:cType]) {
 		NSLog(@"[SSLCertificate] array object at index %lu is type %@, not %@", (long)index, NSStringFromClass([ret class]), cType);
 		return nil;
@@ -336,6 +343,8 @@ static NSMutableDictionary <NSData *, NSMutableDictionary *> *certCache = nil;
 		return @"TLS 1.1";
 	case kTLSProtocol12:
 		return @"TLS 1.2";
+	case kTLSProtocol13:
+		return @"TLS 1.3";
 	default:
 		return [NSString stringWithFormat:@"Unknown (%d)", [self negotiatedProtocol]];
 	}
@@ -656,6 +665,10 @@ static NSMutableDictionary <NSData *, NSMutableDictionary *> *certCache = nil;
 		return @"TLS_ECDH_RSA_WITH_AES_128_GCM_SHA256";
 	case TLS_ECDH_RSA_WITH_AES_256_GCM_SHA384:
 		return @"TLS_ECDH_RSA_WITH_AES_256_GCM_SHA384";
+	case TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256:
+		return @"TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256";
+	case TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256:
+		return @"TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256";
 	case TLS_EMPTY_RENEGOTIATION_INFO_SCSV:
 		return @"TLS_EMPTY_RENEGOTIATION_INFO_SCSV";
 	case SSL_RSA_WITH_RC2_CBC_MD5:

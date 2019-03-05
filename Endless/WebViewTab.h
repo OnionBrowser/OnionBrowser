@@ -1,6 +1,6 @@
 /*
  * Endless
- * Copyright (c) 2014-2017 joshua stein <jcs@jcs.org>
+ * Copyright (c) 2014-2018 joshua stein <jcs@jcs.org>
  *
  * See LICENSE file for redistribution terms.
  */
@@ -12,6 +12,8 @@
 
 #define ZOOM_OUT_SCALE 0.8
 #define ZOOM_OUT_SCALE_ROTATED 0.7
+
+#define HISTORY_SIZE 40
 
 #define UNIVERSAL_LINKS_WORKAROUND_KEY @"yayprivacy"
 
@@ -94,7 +96,7 @@ static const struct keyboard_map_entry {
 	{ NULL }
 };
 
-@interface WebViewTab : NSObject <UIWebViewDelegate, UIGestureRecognizerDelegate>
+@interface WebViewTab : NSObject <UIWebViewDelegate, UIGestureRecognizerDelegate, UIActivityItemSource>
 
 @property (strong, atomic) UIView *viewHolder;
 @property (strong, atomic) UIWebView *webView;
@@ -116,6 +118,8 @@ static const struct keyboard_map_entry {
 /* for javascript IPC */
 @property (strong, atomic) NSString *randID;
 @property (strong, atomic) NSNumber *openedByTabHash;
+
+@property (strong, atomic) NSMutableArray *history;
 
 + (WebViewTab *)openedWebViewTabByRandID:(NSString *)randID;
 

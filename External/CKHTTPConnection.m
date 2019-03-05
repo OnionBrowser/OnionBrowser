@@ -20,7 +20,6 @@
 @interface CKHTTPConnection ()
 - (CFHTTPMessageRef)HTTPRequest;
 - (NSInputStream *)HTTPStream;
-- (NSInputStream *)HTTPBodyStream;
 - (void)start;
 - (id <CKHTTPConnectionDelegate>)delegate;
 @end
@@ -121,17 +120,31 @@
 	NSURL *url = (__bridge_transfer NSURL *)(CFHTTPMessageCopyRequestURL([self HTTPRequest]));
 	if ([[[url scheme] lowercaseString] isEqualToString:@"https"]) {
 		hs = [HostSettings settingsOrDefaultsForHost:[url host]];
+
+		CFMutableDictionaryRef sslOptions = CFDictionaryCreateMutable(kCFAllocatorDefault, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
+
+		BOOL setOptions = NO;
+
+		if ([hs boolSettingOrDefault:HOST_SETTINGS_KEY_IGNORE_TLS_ERRORS]
+			&& [[NSUserDefaults standardUserDefaults] boolForKey:@"allow_tls_error_ignore"])
+		{
+			CFDictionarySetValue(sslOptions, kCFStreamSSLValidatesCertificateChain, kCFBooleanFalse);
+			setOptions = YES;
+		}
 		
 		if ([[hs settingOrDefault:HOST_SETTINGS_KEY_TLS] isEqualToString:HOST_SETTINGS_TLS_12]) {
 			/* kTLSProtocol12 allows lower protocols, so use kCFStreamSSLLevel to force 1.2 */
 			
-			CFMutableDictionaryRef sslOptions = CFDictionaryCreateMutable(kCFAllocatorDefault, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
 			CFDictionarySetValue(sslOptions, kCFStreamSSLLevel, CFSTR("kCFStreamSocketSecurityLevelTLSv1_2"));
-			CFReadStreamSetProperty((__bridge CFReadStreamRef)_HTTPStream, kCFStreamPropertySSLSettings, sslOptions);
-			
+			setOptions = YES;
+
 #ifdef TRACE_HOST_SETTINGS
 			NSLog(@"[HostSettings] set TLS/SSL min level for %@ to TLS 1.2", [url host]);
 #endif
+		}
+
+		if (setOptions) {
+			CFReadStreamSetProperty((__bridge CFReadStreamRef)_HTTPStream, kCFStreamPropertySSLSettings, sslOptions);
 		}
 	}
 	
@@ -187,22 +200,33 @@
 	
 	enabled = (SSLCipherSuite *)malloc(numSupported * sizeof(SSLCipherSuite));
 	
-	/* XXX: should we reverse this and only ban bad ciphers and allow all others? */
 	for (int i = 0; i < numSupported; i++) {
 		switch (supported[i]) {
+		case TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256:
+		case TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256:
+		case TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384:
+		case TLS_DHE_RSA_WITH_AES_256_GCM_SHA384:
+		case TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384:
 		case TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256:
 		case TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256:
 		case TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA:
 		case TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA:
 		case TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA:
 		case TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA:
-		case TLS_DHE_RSA_WITH_AES_128_CBC_SHA:
-		case TLS_DHE_RSA_WITH_AES_256_CBC_SHA:
 		case TLS_RSA_WITH_AES_128_CBC_SHA:
 		case TLS_RSA_WITH_AES_256_CBC_SHA:
-		case TLS_RSA_WITH_3DES_EDE_CBC_SHA:
 			enabled[numEnabled++] = supported[i];
 			break;
+		default:
+			if (supported[i] > TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256 &&
+			    supported[i] < TLS_EMPTY_RENEGOTIATION_INFO_SCSV) {
+				/* assume anything newer than what we've allowed is more secure */
+				enabled[numEnabled++] = supported[i];
+				break;
+			}
+#ifdef TRACE
+			NSLog(@"[CKHTTPConnection] disabling weak SSL/TLS cipher 0x%d", supported[i]);
+#endif
 		}
 	}
 	free(supported);

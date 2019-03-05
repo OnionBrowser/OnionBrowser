@@ -34,6 +34,9 @@ UISearchDisplayController *searchDisplayController;
 	searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
 	searchDisplayController.delegate = self;
 	searchDisplayController.searchResultsDataSource = self;
+	searchDisplayController.searchResultsTableView.delegate = self;
+	
+	self.tableView.delegate = self;
 	
 	[[self tableView] setTableHeaderView:self.searchBar];
 }

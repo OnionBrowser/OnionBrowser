@@ -3,6 +3,11 @@
  * Copyright (c) 2015 joshua stein <jcs@jcs.org>
  *
  * See LICENSE file for redistribution terms.
+ *
+ * To add a new setting:
+ * 1. Define its key in HostSettings.h
+ * 2. Add it to [HostSettings defaults] along with its default value
+ * 3. Add it to [HostSettings showDetailsForHost:] in the appropriate section, or make a new one
  */
 
 #import "AppDelegate.h"
@@ -15,12 +20,15 @@ static NSMutableDictionary *_hosts;
 + (NSDictionary *)defaults
 {
 	return @{
+	       HOST_SETTINGS_KEY_IGNORE_TLS_ERRORS: HOST_SETTINGS_VALUE_NO,
 	       HOST_SETTINGS_KEY_TLS: HOST_SETTINGS_TLS_AUTO,
 	       HOST_SETTINGS_KEY_CSP: HOST_SETTINGS_CSP_BLOCK_CONNECT,
 	       //HOST_SETTINGS_KEY_BLOCK_LOCAL_NETS: HOST_SETTINGS_VALUE_YES,
 	       HOST_SETTINGS_KEY_ALLOW_MIXED_MODE: HOST_SETTINGS_VALUE_NO,
 	       HOST_SETTINGS_KEY_WHITELIST_COOKIES: HOST_SETTINGS_VALUE_NO,
 	       HOST_SETTINGS_KEY_USER_AGENT: @"",
+	       HOST_SETTINGS_KEY_ALLOW_WEBRTC: HOST_SETTINGS_VALUE_NO,
+	       HOST_SETTINGS_KEY_UNIVERSAL_LINK_PROTECTION: HOST_SETTINGS_VALUE_YES,
 	};
 }
 
@@ -75,7 +83,7 @@ static NSMutableDictionary *_hosts;
 + (void)persist
 {
 	if ([(AppDelegate *)[[UIApplication sharedApplication] delegate] areTesting])
-        return;
+		return;
 		
 	NSMutableDictionary *td = [[NSMutableDictionary alloc] initWithCapacity:[[self hosts] count]];
 	for (NSString *k in [[self hosts] allKeys])

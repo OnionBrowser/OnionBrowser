@@ -123,8 +123,8 @@
 	[alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
 		textField.placeholder = @"example.com";
 		
-		if (firstMatch != nil)
-			textField.text = firstMatch;
+		if (self->firstMatch != nil)
+			textField.text = self->firstMatch;
 	}];
 	
 	UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK action") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
@@ -133,7 +133,7 @@
 			HostSettings *hs = [[HostSettings alloc] initForHost:[host text] withDict:nil];
 			[hs save];
 			[HostSettings persist];
-			_sortedHosts = nil;
+			self->_sortedHosts = nil;
 			
 			[self.tableView reloadData];
 			[self showDetailsForHost:[host text]];
@@ -198,9 +198,41 @@
 			[section setFooterTitle:([host isDefault]
                                      ? NSLocalizedString(@"Allow hosts to permanently store cookies and local storage databases", nil)
                                      : NSLocalizedString(@"Allow this host to permanently store cookies and local storage databases", nil))
-             ];
+			];
 			[section addFormRow:row];
+			[form addFormSection:section];
 		}
+		
+		/* allow webRTC */
+		{
+			XLFormRowDescriptor *row = [XLFormRowDescriptor formRowDescriptorWithTag:HOST_SETTINGS_KEY_ALLOW_WEBRTC rowType:XLFormRowDescriptorTypeSelectorActionSheet title:NSLocalizedString(@"Allow WebRTC", nil)];
+			[self setYesNoSelectorOptionsForSetting:HOST_SETTINGS_KEY_ALLOW_WEBRTC host:host row:row withDefault:(![host isDefault])];
+			
+			section = [XLFormSectionDescriptor formSection];
+			[section setTitle:@""];
+			[section setFooterTitle:([host isDefault]
+						 ? NSLocalizedString(@"Allow hosts to access WebRTC functions", nil)
+						 : NSLocalizedString(@"Allow this host to access WebRTC functions", nil))
+			];
+			[section addFormRow:row];
+			[form addFormSection:section];
+		}
+		
+		/* universal link protection */
+		{
+			XLFormRowDescriptor *row = [XLFormRowDescriptor formRowDescriptorWithTag:HOST_SETTINGS_KEY_UNIVERSAL_LINK_PROTECTION rowType:XLFormRowDescriptorTypeSelectorActionSheet title:NSLocalizedString(@"Universal Link Protection", nil)];
+			[self setYesNoSelectorOptionsForSetting:HOST_SETTINGS_KEY_UNIVERSAL_LINK_PROTECTION host:host row:row withDefault:(![host isDefault])];
+			
+			section = [XLFormSectionDescriptor formSection];
+			[section setTitle:@""];
+			[section setFooterTitle:([host isDefault]
+						 ? NSLocalizedString(@"Handle tapping on links in a non-standard way to avoid possibly opening external applications", nil)
+						 : NSLocalizedString(@"Handle tapping on links on pages from this host in a non-standard way to avoid possibly opening external applications", nil))
+			];
+			[section addFormRow:row];
+			[form addFormSection:section];
+		}
+
 	}
 	
 	/* security section */
@@ -208,6 +240,25 @@
 		XLFormSectionDescriptor *section = [XLFormSectionDescriptor formSection];
 		[section setTitle:NSLocalizedString(@"Security", nil)];
 		[form addFormSection:section];
+
+		/* ignore TLS errors */
+		if ([[NSUserDefaults standardUserDefaults] boolForKey:@"allow_tls_error_ignore"])
+		{
+			XLFormRowDescriptor *row = [XLFormRowDescriptor formRowDescriptorWithTag:HOST_SETTINGS_KEY_IGNORE_TLS_ERRORS rowType:XLFormRowDescriptorTypeSelectorActionSheet title:NSLocalizedString(@"Ignore TLS errors", nil)];
+
+			XLFormOptionsObject *yes = [XLFormOptionsObject formOptionsObjectWithValue:HOST_SETTINGS_VALUE_YES displayText:NSLocalizedString(@"Yes", nil)];
+			XLFormOptionsObject *no = [XLFormOptionsObject formOptionsObjectWithValue:HOST_SETTINGS_VALUE_NO displayText:NSLocalizedString(@"No", nil)];
+
+			// This value is always "NO", except, when the user set the global setting
+			// "allow_tls_error_ignore" to YES *and* they surfed to a site with an error
+			// *and* the selected "ignore" on the following error alert.
+			[row setSelectorOptions:@[no]];
+
+			NSString *val = [host setting:HOST_SETTINGS_KEY_IGNORE_TLS_ERRORS];
+			[row setValue:[val isEqualToString:HOST_SETTINGS_VALUE_YES] ? yes : no];
+
+			[section addFormRow:row];
+		}
 		
 		/* tls version */
 		{
@@ -241,7 +292,7 @@
 			NSMutableArray *opts = [[NSMutableArray alloc] init];
 			if (![host isDefault])
 				[opts addObject:[XLFormOptionsObject formOptionsObjectWithValue:HOST_SETTINGS_DEFAULT displayText:NSLocalizedString(@"(Use Default)", nil)]];
-			[opts addObject:[XLFormOptionsObject formOptionsObjectWithValue:HOST_SETTINGS_CSP_OPEN displayText:NSLocalizedString(@"Permissive (May reveal IP & location)", nil)]];
+			[opts addObject:[XLFormOptionsObject formOptionsObjectWithValue:HOST_SETTINGS_CSP_OPEN displayText:NSLocalizedString(@"Open (normal browsing mode)", nil)]];
 			[opts addObject:[XLFormOptionsObject formOptionsObjectWithValue:HOST_SETTINGS_CSP_BLOCK_CONNECT displayText:NSLocalizedString(@"No XHR/WebSocket/Video connections", nil)]];
 			[opts addObject:[XLFormOptionsObject formOptionsObjectWithValue:HOST_SETTINGS_CSP_STRICT displayText:NSLocalizedString(@"Strict (no JavaScript, video, etc.)", nil)]];
 			[row setSelectorOptions:opts];
@@ -314,16 +365,7 @@
 		if (![host isDefault])
 			[host setHostname:[[form formValues] objectForKey:HOST_SETTINGS_KEY_HOST]];
 		
-		NSArray *keys = @[
-			HOST_SETTINGS_KEY_ALLOW_MIXED_MODE,
-			//HOST_SETTINGS_KEY_BLOCK_LOCAL_NETS,
-			HOST_SETTINGS_KEY_CSP,
-			HOST_SETTINGS_KEY_TLS,
-			HOST_SETTINGS_KEY_WHITELIST_COOKIES,
-			HOST_SETTINGS_KEY_USER_AGENT,
-		];
-		
-		for (NSString *key in keys) {
+		for (NSString *key in [[HostSettings defaults] allKeys]) {
 			XLFormOptionsObject *opt = [[form formValues] objectForKey:key];
 			if (opt)
 				[host setSetting:key toValue:(NSString *)[opt valueData]];
@@ -331,6 +373,10 @@
 		
 		[host save];
 		[HostSettings persist];
+		
+		dispatch_async(dispatch_get_main_queue(), ^{
+			[[NSNotificationCenter defaultCenter] postNotificationName:HOST_SETTINGS_CHANGED object:nil];
+		});
 	}];
 
 	[[self navigationController] pushViewController:formController animated:YES];

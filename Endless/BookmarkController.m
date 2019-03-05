@@ -85,7 +85,7 @@
 {
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"bookmark"];
 	if (cell == nil)
-		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"boomark"];
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"bookmark"];
 
 	Bookmark *b = [[Bookmark list] objectAtIndex:indexPath.row];
 	if (b != nil) {

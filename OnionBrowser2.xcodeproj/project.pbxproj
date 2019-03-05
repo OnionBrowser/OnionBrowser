@@ -90,6 +90,8 @@
 		8AD5FFBA1EB3DFE30066E7E3 /* ObfsThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD5FFB91EB3DFE30066E7E3 /* ObfsThread.m */; };
 		8AF16095202CD6D600AC0BCE /* block_webrtc.js in Resources */ = {isa = PBXBuildFile; fileRef = 8AF16094202CD6D600AC0BCE /* block_webrtc.js */; };
 		A025F27521F62C100034B947 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = A025F27421F62C100034B947 /* Config.xcconfig */; };
+		A02CE2B8220079B800964A14 /* SearchResultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = A02CE2B6220079B700964A14 /* SearchResultsController.m */; };
+		A02CE2BB22007A0200964A14 /* HistoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = A02CE2BA22007A0200964A14 /* HistoryController.m */; };
 		A045E5E51EDC5C1700BC8A92 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A045E5E11EDC5C1700BC8A92 /* Localizable.strings */; };
 		A045E5E61EDC5C1700BC8A92 /* OnePasswordExtension.strings in Resources */ = {isa = PBXBuildFile; fileRef = A045E5E31EDC5C1700BC8A92 /* OnePasswordExtension.strings */; };
 		A07D654B2208A0C10002D775 /* OBSettingsConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = A07D654A2208A0C10002D775 /* OBSettingsConstants.m */; };
@@ -97,6 +99,7 @@
 		A07D65542208A17E0002D775 /* OldBookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = A07D654F2208A17E0002D775 /* OldBookmark.m */; };
 		A07D65552208A17E0002D775 /* Settings.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = A07D65502208A17E0002D775 /* Settings.xcdatamodel */; };
 		A07D65562208A17E0002D775 /* Migration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07D65522208A17E0002D775 /* Migration.swift */; };
+		A08737E1221324B5005A68CC /* HostSettings_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = A08737DF2213235F005A68CC /* HostSettings_Tests.m */; };
 		A0C3770E1F47342C0039198E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0C3770D1F47342C0039198E /* CoreData.framework */; };
 		C5C31F75A60EA0CFBD188E31 /* Pods_OnionBrowser2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B30AD5A822226C06231D37B7 /* Pods_OnionBrowser2.framework */; };
 /* End PBXBuildFile section */
@@ -369,6 +372,10 @@
 		A025F27221F627180034B947 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = Endless/vi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A025F27321F627190034B947 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = Endless/vi.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
 		A025F27421F62C100034B947 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		A02CE2B6220079B700964A14 /* SearchResultsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultsController.m; sourceTree = "<group>"; };
+		A02CE2B7220079B800964A14 /* SearchResultsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultsController.h; sourceTree = "<group>"; };
+		A02CE2B922007A0100964A14 /* HistoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryController.h; sourceTree = "<group>"; };
+		A02CE2BA22007A0200964A14 /* HistoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryController.m; sourceTree = "<group>"; };
 		A045E5E21EDC5C1700BC8A92 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Endless/Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A045E5E41EDC5C1700BC8A92 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Endless/Base.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
 		A045E5E71EDC5C2200BC8A92 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = Endless/de.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -440,6 +447,7 @@
 		A07D655C2208A4320002D775 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		A07D655D2208A6DA0002D775 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		A07D655F2208A9B40002D775 /* get-geoip.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "get-geoip.sh"; sourceTree = "<group>"; };
+		A08737DF2213235F005A68CC /* HostSettings_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HostSettings_Tests.m; sourceTree = "<group>"; };
 		A0882DF72003A8620098833B /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
 		A0882DF82003A8620098833B /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
 		A0882DF92003A8620098833B /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
@@ -499,6 +507,7 @@
 				B1EB2F32A9D9D14276D9A162 /* Pods */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 		01801E931A32CA2A002B4718 /* Products */ = {
 			isa = PBXGroup;
@@ -522,6 +531,8 @@
 				010EEA651A43A536001E8B65 /* CookieController.m */,
 				010EEA671A43C8CF001E8B65 /* CookieJar.h */,
 				010EEA681A43C8CF001E8B65 /* CookieJar.m */,
+				A02CE2B922007A0100964A14 /* HistoryController.h */,
+				A02CE2BA22007A0200964A14 /* HistoryController.m */,
 				014E68A61B9BEDDC00D98A0A /* HostSettings.h */,
 				014E68A71B9BEDDC00D98A0A /* HostSettings.m */,
 				014E68A31B9BED3300D98A0A /* HostSettingsController.h */,
@@ -538,6 +549,8 @@
 				69CBCD491E934249009D5352 /* RuleEditorController.m */,
 				69CBCD4A1E934249009D5352 /* RuleEditorRow.h */,
 				69CBCD4B1E934249009D5352 /* RuleEditorRow.m */,
+				A02CE2B7220079B800964A14 /* SearchResultsController.h */,
+				A02CE2B6220079B700964A14 /* SearchResultsController.m */,
 				01F2AE371B7FEF5E00D5651A /* SSLCertificate.h */,
 				01F2AE381B7FEF5E00D5651A /* SSLCertificate.m */,
 				01F2AE3E1B82666900D5651A /* SSLCertificateViewController.h */,
@@ -606,6 +619,7 @@
 			isa = PBXGroup;
 			children = (
 				01D741291A45EDD1007B7033 /* CookieJar_Tests.m */,
+				A08737DF2213235F005A68CC /* HostSettings_Tests.m */,
 				01F7CB4A1A526B9C00F42B73 /* HSTSCache_Tests.m */,
 				018333DB1A35727C00670CD1 /* HTTPSEverywhere_Tests.m */,
 				01F2AE411B827BC200D5651A /* SSLCertificate_Tests.m */,
@@ -1224,6 +1238,7 @@
 				"${BUILT_PRODUCTS_DIR}/POE/POE.framework",
 				"${BUILT_PRODUCTS_DIR}/TUSafariActivity/TUSafariActivity.framework",
 				"${BUILT_PRODUCTS_DIR}/UIColor-HexRGB/UIColor_HexRGB.framework",
+				"${BUILT_PRODUCTS_DIR}/VForceTouch/VForceTouch.framework",
 				"${BUILT_PRODUCTS_DIR}/WYPopoverController/WYPopoverController.framework",
 				"${BUILT_PRODUCTS_DIR}/XLForm/XLForm.framework",
 			);
@@ -1237,6 +1252,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/POE.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TUSafariActivity.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIColor_HexRGB.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VForceTouch.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WYPopoverController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLForm.framework",
 			);
@@ -1304,6 +1320,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A02CE2B8220079B800964A14 /* SearchResultsController.m in Sources */,
 				01D741281A44DF1C007B7033 /* WebViewMenuController.m in Sources */,
 				01D7412F1A466AF0007B7033 /* NSString+JavascriptEscape.m in Sources */,
 				A07D65562208A17E0002D775 /* Migration.swift in Sources */,
@@ -1322,6 +1339,7 @@
 				01801EA11A32CA2A002B4718 /* WebViewController.m in Sources */,
 				019516CF1B7D8A0C0078586A /* NSData+CocoaDevUsersAdditions.m in Sources */,
 				01F8793B1A4108DD00A63654 /* URLBlocker.m in Sources */,
+				A02CE2BB22007A0200964A14 /* HistoryController.m in Sources */,
 				01801EC01A335BEC002B4718 /* URLInterceptor.m in Sources */,
 				01F2AE401B82666900D5651A /* SSLCertificateViewController.m in Sources */,
 				69EFCCA21EAD20CB00280747 /* OBRootViewController.m in Sources */,
@@ -1352,6 +1370,7 @@
 			files = (
 				01F7CB4B1A526B9C00F42B73 /* HSTSCache_Tests.m in Sources */,
 				01F879411A4112E500A63654 /* URLBlocker_Tests.m in Sources */,
+				A08737E1221324B5005A68CC /* HostSettings_Tests.m in Sources */,
 				01D7412A1A45EDD1007B7033 /* CookieJar_Tests.m in Sources */,
 				018333DC1A35727C00670CD1 /* HTTPSEverywhere_Tests.m in Sources */,
 				01F2AE421B827BC200D5651A /* SSLCertificate_Tests.m in Sources */,
@@ -1554,7 +1573,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_PREFIX_HEADER = OnionBrowser/version.h;
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1605,7 +1624,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_PREFIX_HEADER = OnionBrowser/version.h;
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -1631,7 +1650,7 @@
 				);
 				GCC_NO_COMMON_BLOCKS = NO;
 				INFOPLIST_FILE = Endless/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(OB_APP_BUNDLE_ID)";
 				PRODUCT_NAME = OnionBrowser;
@@ -1663,7 +1682,7 @@
 				);
 				GCC_NO_COMMON_BLOCKS = NO;
 				INFOPLIST_FILE = Endless/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(OB_APP_BUNDLE_ID)";
 				PRODUCT_NAME = OnionBrowser;

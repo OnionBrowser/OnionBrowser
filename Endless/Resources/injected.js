@@ -141,7 +141,7 @@ var __endless = {
 				return;
 							   
 			var e = document.createEvent("KeyboardEvent");
-			e.initKeyboardEvent(kind, false, true, document.body, "", 0, !!ctrl, !!alt, !!shift, !!meta, false);
+			e.initKeyboardEvent(kind, false, true, window, "", 0, !!ctrl, !!alt, !!shift, !!meta, false);
 			Object.defineProperty(e, "keyCode", { writable: false, value: (kind == "keypress" ? keypress_keycode : keycode) } );
 			Object.defineProperty(e, "which", { writable: false, value: (kind == "keypress" ? keypress_keycode : keycode) } );
 			Object.defineProperty(e, "charCode", { writable: false, value: (kind == "keypress" ? keypress_keycode : 0) } );
@@ -300,6 +300,13 @@ var __endless = {
 	console.warn = function() { console._log("warn", arguments); };
 	console.error = function() { console._log("error", arguments); };
 
+	if ("##BLOCK_WEBRTC##") {
+ 		navigator.mediaDevices = null;
+ 		navigator.getUserMedia = null;
+		window.RTCPeerConnection = null;
+		window.webkitRTCPeerConnection = null;
+	}
+ 
 	if (document.readyState == "complete" || document.readyState == "interactive")
 		__endless.onLoad();
 	else

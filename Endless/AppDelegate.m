@@ -1,9 +1,11 @@
 /*
  * Endless
- * Copyright (c) 2014-2017 joshua stein <jcs@jcs.org>
+ * Copyright (c) 2014-2018 joshua stein <jcs@jcs.org>
  *
  * See LICENSE file for redistribution terms.
  */
+
+#import <AVFoundation/AVFoundation.h>
 
 #import "AppDelegate.h"
 #import "Bookmark.h"
@@ -20,15 +22,20 @@
 	NSMutableArray *_keyCommands;
 	NSMutableArray *_allKeyBindings;
 	NSArray *_allCommandsAndKeyBindings;
+
+	BOOL inStartupPhase;
 }
 
 - (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 	[self initializeDefaults];
 
+	inStartupPhase = YES;
+
 #ifdef USE_DUMMY_URLINTERCEPTOR
 	[NSURLProtocol registerClass:[DummyURLInterceptor class]];
 #else
+	[URLInterceptor setup];
 	[NSURLProtocol registerClass:[URLInterceptor class]];
 #endif
 
@@ -57,6 +64,8 @@
 	self.window.rootViewController = [[OBRootViewController alloc] init];
 	self.window.rootViewController.restorationIdentifier = @"OBRootViewController";
 
+	[self adjustMuteSwitchBehavior];
+	
     [Migration migrate];
 
     Boolean didFirstRunBookmarks = [userDefaults boolForKey:@"did_first_run_bookmarks"];
@@ -83,6 +92,10 @@
 {
 	[self.window makeKeyAndVisible];
 
+	if (launchOptions != nil && [launchOptions objectForKey:UIApplicationLaunchOptionsShortcutItemKey]) {
+		[self handleShortcut:[launchOptions objectForKey:UIApplicationLaunchOptionsShortcutItemKey]];
+	}
+	
 	return YES;
 }
 
@@ -119,8 +132,8 @@
 {
 	[[self webViewController] viewIsVisible];
 
-    if (OnionManager.shared.state != TorStateStarted && OnionManager.shared.state != TorStateConnected) {
-        // TODO: actually use UI instead of silently trying to restart tor
+    if (!inStartupPhase && OnionManager.shared.state != TorStateStarted && OnionManager.shared.state != TorStateConnected) {
+        // TODO: actually use UI instead of silently trying to restart Tor.
         [OnionManager.shared startTorWithDelegate:nil];
 
 //        if ([self.window.rootViewController class] != [OBRootViewController class]) {
@@ -128,9 +141,12 @@
 //                self.window.rootViewController.restorationIdentifier = @"OBRootViewController";
 //        }
     }
-//    else {
+    else {
+		// During app startup, we don't start Tor from here, but from
+		// OBRootViewController in order to catch the delegate callback for progress.
+		inStartupPhase = NO;
 //        [[self webViewController] viewIsVisible];
-//    }
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -144,8 +160,25 @@
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
 #ifdef TRACE
-	NSLog(@"[AppDelegate] request to open url \"%@\"", url);
+	NSLog(@"[AppDelegate] request to open url at launch: %@", url);
 #endif
+	if ([[[url scheme] lowercaseString] isEqualToString:@"onionhttp"])
+		url = [NSURL URLWithString:[[url absoluteString] stringByReplacingCharactersInRange:NSMakeRange(0, [@"onionhttp" length]) withString:@"http"]];
+	else if ([[[url scheme] lowercaseString] isEqualToString:@"onionhttps"])
+		url = [NSURL URLWithString:[[url absoluteString] stringByReplacingCharactersInRange:NSMakeRange(0, [@"onionhttps" length]) withString:@"https"]];
+
+	/* delay until we're done drawing the UI */
+	self.urlToOpenAtLaunch = url;
+	
+	return YES;
+}
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
+{
+#ifdef TRACE
+	NSLog(@"[AppDelegate] request to open url: %@", url);
+#endif
+
 	if ([[[url scheme] lowercaseString] isEqualToString:@"onionhttp"])
 		url = [NSURL URLWithString:[[url absoluteString] stringByReplacingCharactersInRange:NSMakeRange(0, [@"onionhttp" length]) withString:@"http"]];
 	else if ([[[url scheme] lowercaseString] isEqualToString:@"onionhttps"])
@@ -155,6 +188,12 @@
 	[[self webViewController] addNewTabForURL:url];
 	
 	return YES;
+}
+
+- (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler
+{
+	[self handleShortcut:shortcutItem];
+	completionHandler(YES);
 }
 
 - (BOOL)application:(UIApplication *)application shouldAllowExtensionPointIdentifier:(NSString *)extensionPointIdentifier {
@@ -202,8 +241,8 @@
 	if (!_keyCommands) {
 		_keyCommands = [[NSMutableArray alloc] init];
 		
-		[_keyCommands addObject:[UIKeyCommand keyCommandWithInput:UIKeyInputLeftArrow modifierFlags:UIKeyModifierCommand action:@selector(handleKeyboardShortcut:) discoverabilityTitle:NSLocalizedString(@"Go Back", nil)]];
-		[_keyCommands addObject:[UIKeyCommand keyCommandWithInput:UIKeyInputRightArrow modifierFlags:UIKeyModifierCommand action:@selector(handleKeyboardShortcut:) discoverabilityTitle:NSLocalizedString(@"Go Forward", nil)]];
+		[_keyCommands addObject:[UIKeyCommand keyCommandWithInput:@"[" modifierFlags:UIKeyModifierCommand action:@selector(handleKeyboardShortcut:) discoverabilityTitle:NSLocalizedString(@"Go Back", nil)]];
+		[_keyCommands addObject:[UIKeyCommand keyCommandWithInput:@"]" modifierFlags:UIKeyModifierCommand action:@selector(handleKeyboardShortcut:) discoverabilityTitle:NSLocalizedString(@"Go Forward", nil)]];
 
 		[_keyCommands addObject:[UIKeyCommand keyCommandWithInput:@"b" modifierFlags:UIKeyModifierCommand action:@selector(handleKeyboardShortcut:) discoverabilityTitle:NSLocalizedString(@"Show Bookmarks", nil)]];
 
@@ -279,7 +318,7 @@
 		}
 		
 		if ([[keyCommand input] isEqualToString:@"t"]) {
-			[[self webViewController] addNewTabForURL:nil forRestoration:NO withCompletionBlock:^(BOOL finished) {
+			[[self webViewController] addNewTabForURL:nil forRestoration:NO withAnimation:WebViewTabAnimationDefault withCompletionBlock:^(BOOL finished) {
 				[[self webViewController] focusUrlField];
 			}];
 			return;
@@ -290,12 +329,12 @@
 			return;
 		}
 		
-		if ([[keyCommand input] isEqualToString:UIKeyInputLeftArrow]) {
+		if ([[keyCommand input] isEqualToString:@"["]) {
 			[[[self webViewController] curWebViewTab] goBack];
 			return;
 		}
 		
-		if ([[keyCommand input] isEqualToString:UIKeyInputRightArrow]) {
+		if ([[keyCommand input] isEqualToString:@"]"]) {
 			[[[self webViewController] curWebViewTab] goForward];
 			return;
 		}
@@ -379,6 +418,32 @@
 	}
 	
 	return NO;
+}
+
+- (void)handleShortcut:(UIApplicationShortcutItem *)shortcutItem
+{
+	if ([[shortcutItem type] containsString:@"OpenNewTab"]) {
+		[[self webViewController] dismissViewControllerAnimated:YES completion:nil];
+		[[self webViewController] addNewTabFromToolbar:nil];
+	} else if ([[shortcutItem type] containsString:@"ClearData"]) {
+		[[self webViewController] removeAllTabs];
+		[[self cookieJar] clearAllNonWhitelistedData];
+	} else {
+		NSLog(@"[AppDelegate] need to handle action %@", [shortcutItem type]);
+	}
+}
+
+- (void)adjustMuteSwitchBehavior
+{
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+
+	if ([userDefaults boolForKey:@"mute_with_switch"]) {
+		/* setting AVAudioSessionCategoryAmbient will prevent audio from UIWebView from pausing already-playing audio from other apps */
+		[[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient error:nil];
+		[[AVAudioSession sharedInstance] setActive:NO error:nil];
+	} else {
+		[[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+	}
 }
 
 @end
