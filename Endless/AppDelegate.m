@@ -103,6 +103,8 @@
 {
 	[application ignoreSnapshotOnNextApplicationLaunch];
 	[[self webViewController] viewIsNoLongerVisible];
+
+	[BlurredSnapshot create];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
@@ -130,6 +132,8 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
+	[BlurredSnapshot remove];
+
 	[[self webViewController] viewIsVisible];
 
     if (!inStartupPhase && OnionManager.shared.state != TorStateStarted && OnionManager.shared.state != TorStateConnected) {
