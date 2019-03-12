@@ -9,13 +9,12 @@
 #import "AppDelegate.h"
 #import "RuleEditorRow.h"
 
-@interface RuleEditorController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate, UITableViewDelegate>
+@interface RuleEditorController : UITableViewController <UISearchResultsUpdating>
 
 @property AppDelegate *appDelegate;
 @property NSMutableArray<RuleEditorRow *> *sortedRuleRows;
 @property NSMutableArray<RuleEditorRow *> *inUseRuleRows;
 
-@property UISearchBar *searchBar;
 @property NSMutableArray<RuleEditorRow *> *searchResult;
 
 - (NSString *)ruleDisabledReason:(RuleEditorRow *)row;

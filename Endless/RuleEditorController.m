@@ -9,7 +9,7 @@
 
 @implementation RuleEditorController
 
-UISearchDisplayController *searchDisplayController;
+UISearchController *searchController;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -29,19 +29,17 @@ UISearchDisplayController *searchDisplayController;
 {
 	[super viewDidLoad];
 	
-	self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
-	
-	searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
-	searchDisplayController.delegate = self;
-	searchDisplayController.searchResultsDataSource = self;
-	searchDisplayController.searchResultsTableView.delegate = self;
+	searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+	searchController.searchResultsUpdater = self;
+	searchController.obscuresBackgroundDuringPresentation = NO;
+	self.definesPresentationContext = YES;
+	self.navigationItem.searchController = searchController;
 	
 	self.tableView.delegate = self;
-	
-	[[self tableView] setTableHeaderView:self.searchBar];
 }
 
-#pragma mark - Table view data source
+
+#pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -60,7 +58,7 @@ UISearchDisplayController *searchDisplayController;
 {
 	if (section == 0)
 		return [self.inUseRuleRows count];
-	else if (tableView == self.searchDisplayController.searchResultsTableView)
+	else if ([self isFiltering])
 		return [self.searchResult count];
 	else
 		return [self.sortedRuleRows count];
@@ -121,35 +119,12 @@ UISearchDisplayController *searchDisplayController;
 	[tableView reloadData];
 }
 
+
+#pragma mark - UITableViewDelegate
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
-{
-	[self.searchResult removeAllObjects];
-	
-	for (RuleEditorRow *row in self.sortedRuleRows) {
-		if ([row textLabel] != nil) {
-			NSRange range = [[row textLabel] rangeOfString:searchString options:NSCaseInsensitiveSearch];
-
-			if (range.length > 0) {
-				[self.searchResult addObject:row];
-				continue;
-			}
-		}
-		if ([row detailTextLabel] != nil) {
-			NSRange range = [[row detailTextLabel] rangeOfString:searchString options:NSCaseInsensitiveSearch];
-			
-			if (range.length > 0) {
-				[self.searchResult addObject:row];
-				continue;
-			}
-		}
-	}
-	
-	return YES;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
@@ -162,22 +137,39 @@ UISearchDisplayController *searchDisplayController;
 		return NSLocalizedString(@"Enable", nil);
 }
 
-- (RuleEditorRow *)ruleForTableView:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath
+
+# pragma mark - UISearchResultsUpdating
+
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController
 {
-	NSMutableArray *group;
-	
-	if ([indexPath section] == 0)
-		group = [self inUseRuleRows];
-	else if (tableView == self.searchDisplayController.searchResultsTableView)
-		group = [self searchResult];
-	else
-		group = [self sortedRuleRows];
-			 
-	if (group && [group count] > [indexPath row])
-		return [group objectAtIndex:indexPath.row];
-	else
-		return nil;
+	NSString *search = searchController.searchBar.text;
+
+	[self.searchResult removeAllObjects];
+
+	for (RuleEditorRow *row in self.sortedRuleRows) {
+		if ([row textLabel] != nil) {
+			NSRange range = [[row textLabel] rangeOfString:search options:NSCaseInsensitiveSearch];
+
+			if (range.length > 0) {
+				[self.searchResult addObject:row];
+				continue;
+			}
+		}
+		if ([row detailTextLabel] != nil) {
+			NSRange range = [[row detailTextLabel] rangeOfString:search options:NSCaseInsensitiveSearch];
+
+			if (range.length > 0) {
+				[self.searchResult addObject:row];
+				continue;
+			}
+		}
+	}
+
+	[self.tableView reloadData];
 }
+
+
+# pragma mark - Public Methods
 
 - (NSString *)ruleDisabledReason:(RuleEditorRow *)row
 {
@@ -192,6 +184,31 @@ UISearchDisplayController *searchDisplayController;
 - (void)enableRuleForRow:(RuleEditorRow *)row
 {
 	abort();
+}
+
+
+# pragma mark - Private Methods
+
+- (RuleEditorRow *)ruleForTableView:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath
+{
+	NSMutableArray *group;
+
+	if ([indexPath section] == 0)
+		group = [self inUseRuleRows];
+	else if ([self isFiltering])
+		group = [self searchResult];
+	else
+		group = [self sortedRuleRows];
+
+	if (group && [group count] > [indexPath row])
+		return [group objectAtIndex:indexPath.row];
+	else
+		return nil;
+}
+
+- (BOOL)isFiltering
+{
+	return searchController.isActive && searchController.searchBar.text.length != 0;
 }
 
 @end
