@@ -6,6 +6,7 @@
 //
 
 #import "OnePasswordExtension.h"
+#import "../Endless/SilenceDeprecation.h"
 
 // Version
 #define VERSION_NUMBER @(184)
@@ -208,10 +209,13 @@ static NSString *const AppExtensionWebViewPageDetails = @"pageDetails";
 - (void)fillItemIntoWebView:(nonnull id)webView forViewController:(nonnull UIViewController *)viewController sender:(nullable id)sender showOnlyLogins:(BOOL)yesOrNo completion:(nonnull OnePasswordSuccessCompletionBlock)completion {
 	NSAssert(webView != nil, @"webView must not be nil");
 	NSAssert(viewController != nil, @"viewController must not be nil");
-	NSAssert([webView isKindOfClass:[UIWebView class]] || [webView isKindOfClass:[WKWebView class]], @"webView must be an instance of WKWebView or UIWebView.");
+	SILENCE_DEPRECATION(NSAssert([webView isKindOfClass:[UIWebView class]] || [webView isKindOfClass:[WKWebView class]], @"webView must be an instance of WKWebView or UIWebView."));
 
 #ifdef __IPHONE_8_0
+SILENCE_DEPRECATION_ON
 	if ([webView isKindOfClass:[UIWebView class]]) {
+SILENCE_DEPRECATION_OFF
+
 		[self fillItemIntoUIWebView:webView webViewController:viewController sender:(id)sender showOnlyLogins:yesOrNo completion:^(BOOL success, NSError *error) {
 			if (completion) {
 				completion(success, error);
@@ -238,11 +242,15 @@ static NSString *const AppExtensionWebViewPageDetails = @"pageDetails";
 
 - (void)createExtensionItemForWebView:(nonnull id)webView completion:(nonnull OnePasswordExtensionItemCompletionBlock)completion {
 	NSAssert(webView != nil, @"webView must not be nil");
-	NSAssert([webView isKindOfClass:[UIWebView class]] || [webView isKindOfClass:[WKWebView class]], @"webView must be an instance of WKWebView or UIWebView.");
+	SILENCE_DEPRECATION(NSAssert([webView isKindOfClass:[UIWebView class]] || [webView isKindOfClass:[WKWebView class]], @"webView must be an instance of WKWebView or UIWebView."));
 	
 #ifdef __IPHONE_8_0
+
+SILENCE_DEPRECATION_ON
 	if ([webView isKindOfClass:[UIWebView class]]) {
 		UIWebView *uiWebView = (UIWebView *)webView;
+SILENCE_DEPRECATION_OFF
+
 		NSString *collectedPageDetails = [uiWebView stringByEvaluatingJavaScriptFromString:OPWebViewCollectFieldsScript];
 
 		[self createExtensionItemForURLString:uiWebView.request.URL.absoluteString webPageDetails:collectedPageDetails completion:completion];
@@ -401,7 +409,10 @@ static NSString *const AppExtensionWebViewPageDetails = @"pageDetails";
 }
 #endif
 
+SILENCE_DEPRECATION_ON
 - (void)fillItemIntoUIWebView:(nonnull UIWebView *)webView webViewController:(nonnull UIViewController *)viewController sender:(nullable id)sender showOnlyLogins:(BOOL)yesOrNo completion:(nonnull OnePasswordSuccessCompletionBlock)completion {
+SILENCE_DEPRECATION_OFF
+
 	NSString *collectedPageDetails = [webView stringByEvaluatingJavaScriptFromString:OPWebViewCollectFieldsScript];
 	[self findLoginIn1PasswordWithURLString:webView.request.URL.absoluteString collectedPageDetails:collectedPageDetails forWebViewController:viewController sender:sender withWebView:webView showOnlyLogins:yesOrNo completion:^(BOOL success, NSError *error) {
 		if (completion) {
@@ -425,8 +436,11 @@ static NSString *const AppExtensionWebViewPageDetails = @"pageDetails";
 	[scriptSource appendFormat:@"(document, %@, undefined);", fillScript];
 
 #ifdef __IPHONE_8_0
+SILENCE_DEPRECATION_ON
 	if ([webView isKindOfClass:[UIWebView class]]) {
 		NSString *result = [((UIWebView *)webView) stringByEvaluatingJavaScriptFromString:scriptSource];
+SILENCE_DEPRECATION_OFF
+
 		BOOL success = (result != nil);
 		NSError *error = nil;
 

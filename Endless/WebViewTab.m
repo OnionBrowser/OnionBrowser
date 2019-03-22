@@ -50,7 +50,7 @@
 	/* re-register user agent with our hash, which should only affect this UIWebView */
 	[[NSUserDefaults standardUserDefaults] registerDefaults:@{ @"UserAgent": [NSString stringWithFormat:@"%@/%lu", [appDelegate defaultUserAgent], (unsigned long)self.hash] }];
 	
-	_webView = [[UIWebView alloc] initWithFrame:CGRectZero];
+	SILENCE_DEPRECATION(_webView = [[UIWebView alloc] initWithFrame:CGRectZero]);
 	_needsRefresh = FALSE;
 	if (rid != nil) {
 		[_webView setRestorationIdentifier:rid];
@@ -158,13 +158,13 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:@"WebProgressEstimateChangedNotification" object:[_webView valueForKeyPath:@"documentView.webView"]];
 	
 	void (^block)(void) = ^{
-		[self->_webView setDelegate:nil];
-		[self->_webView stopLoading];
+        [self->_webView setDelegate:nil];
+        [self->_webView stopLoading];
 		
-		for (id gr in [self->_webView gestureRecognizers])
-			[self->_webView removeGestureRecognizer:gr];
+        for (id gr in [self->_webView gestureRecognizers])
+            [self->_webView removeGestureRecognizer:gr];
 		
-		self->_webView = nil;
+        self->_webView = nil;
 		
 		[[self viewHolder] removeFromSuperview];
 	};
@@ -324,20 +324,23 @@
 }
 
 /* this will only fire for top-level requests (and iframes), not page elements */
+SILENCE_DEPRECATION_ON
 - (BOOL)webView:(UIWebView *)__webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
+SILENCE_DEPRECATION_OFF
+
 	NSURL *url = [request URL];
 	
-	/* treat onionhttps?:// links clicked inside of web pages as normal links */
-	if ([[[url scheme] lowercaseString] isEqualToString:@"onionhttp"]) {
+	/* treat endlesshttps?:// links clicked inside of web pages as normal links */
+	if ([[[url scheme] lowercaseString] isEqualToString:@"endlesshttp"]) {
 		NSMutableURLRequest *tr = [request mutableCopy];
-		[tr setURL:[NSURL URLWithString:[[url absoluteString] stringByReplacingCharactersInRange:NSMakeRange(0, [@"onionhttp" length]) withString:@"http"]]];
+		[tr setURL:[NSURL URLWithString:[[url absoluteString] stringByReplacingCharactersInRange:NSMakeRange(0, [@"endlesshttp" length]) withString:@"http"]]];
 		[self loadRequest:tr withForce:NO];
 		return NO;
 	}
-	else if ([[[url scheme] lowercaseString] isEqualToString:@"onionhttps"]) {
+	else if ([[[url scheme] lowercaseString] isEqualToString:@"endlesshttps"]) {
 		NSMutableURLRequest *tr = [request mutableCopy];
-		[tr setURL:[NSURL URLWithString:[[url absoluteString] stringByReplacingCharactersInRange:NSMakeRange(0, [@"onionhttps" length]) withString:@"https"]]];
+		[tr setURL:[NSURL URLWithString:[[url absoluteString] stringByReplacingCharactersInRange:NSMakeRange(0, [@"endlesshttps" length]) withString:@"https"]]];
 		[self loadRequest:tr withForce:NO];
 		return NO;
 	}
@@ -427,7 +430,7 @@
 		UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Confirm", nil) message:NSLocalizedString(@"Allow this page to close its tab?", nil) preferredStyle:UIAlertControllerStyleAlert];
 		
 		UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK action") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-			[[self->appDelegate webViewController] removeTab:[self tabIndex]];
+            [[self->appDelegate webViewController] removeTab:[self tabIndex]];
 		}];
 		
 		UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", @"Cancel action") style:UIAlertActionStyleCancel handler:nil];
@@ -475,8 +478,11 @@
 	return NO;
 }
 
+SILENCE_DEPRECATION_ON
 - (void)webViewDidStartLoad:(UIWebView *)__webView
 {
+SILENCE_DEPRECATION_OFF
+
 	/* reset and then let WebViewController animate to our actual progress */
 	[self setProgress:@0.0];
 	[self setProgress:@0.1];
@@ -485,8 +491,10 @@
 		self.url = [[__webView request] URL];
 }
 
+SILENCE_DEPRECATION_ON
 - (void)webViewDidFinishLoad:(UIWebView *)__webView
 {
+SILENCE_DEPRECATION_OFF
 #ifdef TRACE
 	NSLog(@"[Tab %@] finished loading page/iframe %@, security level is %lu", self.tabIndex, [[[__webView request] URL] absoluteString], self.secureMode);
 #endif
@@ -522,8 +530,11 @@
 	skipHistory = NO;
 }
 
+SILENCE_DEPRECATION_ON
 - (void)webView:(UIWebView *)__webView didFailLoadWithError:(NSError *)error
 {
+SILENCE_DEPRECATION_OFF
+
 	BOOL isTLSError = false;
 	
 	self.url = __webView.request.URL;
@@ -570,7 +581,9 @@
 #ifdef TRACE
 			NSLog(@"[Tab %@] not showing dialog for non-origin error: %@ (%@)", self.tabIndex, msg, error);
 #endif
+SILENCE_DEPRECATION_ON
 			[self webViewDidFinishLoad:__webView];
+SILENCE_DEPRECATION_OFF
 			return;
 		}
 	}
@@ -582,30 +595,7 @@
 	UIAlertController *uiac = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", nil) message:msg preferredStyle:UIAlertControllerStyleAlert];
 	[uiac addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:nil]];
 
-    // "Connection refused", most possibly created, because Tor's sockets were closed by iOS
-    // during app sleep. This is non-recoverable. We show a different message, here.
-    if (error.code == 61)
-    {
-        [uiac setTitle:NSLocalizedString(@"Tor connection failure", nil)];
-        [uiac setMessage:NSLocalizedString(@"__CONNECTION_FAILURE_DESCRIPTION__", nil)];
-
-        [uiac addAction:[UIAlertAction
-                         actionWithTitle:NSLocalizedString(@"Quit App", nil)
-                         style:UIAlertActionStyleDestructive
-                         handler:^(UIAlertAction* action){
-                             UIApplication *application = [UIApplication sharedApplication];
-                             [application performSelector:@selector(suspend)];
-
-                             AppDelegate *appDelegate = (AppDelegate *)[application delegate];
-                             [appDelegate applicationDidEnterBackground:application];
-                             [appDelegate applicationWillTerminate:application];
-
-                             [NSThread sleepForTimeInterval:2];
-                             exit(0);
-                         }]];
-    }
-
-    if (u != nil && isTLSError && [[NSUserDefaults standardUserDefaults] boolForKey:@"allow_tls_error_ignore"]) {
+	if (u != nil && isTLSError && [[NSUserDefaults standardUserDefaults] boolForKey:@"allow_tls_error_ignore"]) {
 		[uiac addAction:[UIAlertAction
 						 actionWithTitle:NSLocalizedString(@"Ignore for this host", nil)
 						 style:UIAlertActionStyleDestructive
@@ -636,12 +626,17 @@
 	}
 
 	[[appDelegate webViewController] presentViewController:uiac animated:YES completion:nil];
-	
+
+SILENCE_DEPRECATION_ON
 	[self webViewDidFinishLoad:__webView];
+SILENCE_DEPRECATION_OFF
 }
 
+SILENCE_DEPRECATION_ON
 - (void)webView:(UIWebView *)__webView callbackWith:(NSString *)callback
 {
+SILENCE_DEPRECATION_OFF
+	
 	NSString *finalcb = [NSString stringWithFormat:@"(function() { %@; __endless.ipcDone = (new Date()).getTime(); })();", callback];
 
 #ifdef TRACE_IPC
@@ -798,7 +793,7 @@
 		else {
 			UIAlertController *uiac = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", nil) message:[NSString stringWithFormat:NSLocalizedString(@"An error occurred downloading image %@", nil), img] preferredStyle:UIAlertControllerStyleAlert];
 			[uiac addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:nil]];
-			[[self->appDelegate webViewController] presentViewController:uiac animated:YES completion:nil];
+            [[self->appDelegate webViewController] presentViewController:uiac animated:YES completion:nil];
 		}
 	}];
 	

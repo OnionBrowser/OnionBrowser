@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "SSLCertificate.h"
+#import "SilenceDeprecation.h"
 
 #define ZOOM_OUT_SCALE 0.8
 #define ZOOM_OUT_SCALE_ROTATED 0.7
@@ -99,7 +100,9 @@ static const struct keyboard_map_entry {
 @interface WebViewTab : NSObject <UIWebViewDelegate, UIGestureRecognizerDelegate, UIActivityItemSource>
 
 @property (strong, atomic) UIView *viewHolder;
+SILENCE_DEPRECATION_ON
 @property (strong, atomic) UIWebView *webView;
+SILENCE_DEPRECATION_OFF
 @property (strong, atomic) UIRefreshControl *refresher;
 @property (strong, atomic) NSURL *url;
 @property BOOL needsRefresh;

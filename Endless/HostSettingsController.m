@@ -9,7 +9,11 @@
 #import "HostSettings.h"
 #import "HostSettingsController.h"
 
+#import "SilenceDeprecation.h"
+
+SILENCE_DEPRECATION_ON
 #import "XLForm.h"
+SILENCE_DEPRECATION_OFF
 
 @interface HostSettingsXLFormViewController : XLFormViewController
 @property (copy, nonatomic) void (^disappearCallback)(HostSettingsXLFormViewController *);

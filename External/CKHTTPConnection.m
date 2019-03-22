@@ -16,6 +16,7 @@
 #import "CKHTTPConnection.h"
 #import "HostSettings.h"
 #import "SSLCertificate.h"
+#import "../Endless/SilenceDeprecation.h"
 
 @interface CKHTTPConnection ()
 - (CFHTTPMessageRef)HTTPRequest;
@@ -91,7 +92,8 @@
 {
 	NSAssert(!_HTTPStream, @"Connection already started");
 	HostSettings *hs;
-	
+
+SILENCE_DEPRECATION_ON
 	if (_HTTPBodyStream)
 		_HTTPStream = (__bridge_transfer NSInputStream *)(CFReadStreamCreateForStreamedHTTPRequest(NULL, [self HTTPRequest], (__bridge CFReadStreamRef)_HTTPBodyStream));
 	else
@@ -115,7 +117,9 @@
 		CFReadStreamSetProperty((__bridge CFReadStreamRef)(_HTTPStream), kCFStreamPropertyHTTPAttemptPersistentConnection, kCFBooleanTrue);
 	else
 		CFReadStreamSetProperty((__bridge CFReadStreamRef)(_HTTPStream), kCFStreamPropertyHTTPAttemptPersistentConnection, kCFBooleanFalse);
-	
+
+SILENCE_DEPRECATION_OFF
+
 	/* set SSL protocol version enforcement before opening, when using kCFStreamSSLLevel */
 	NSURL *url = (__bridge_transfer NSURL *)(CFHTTPMessageCopyRequestURL([self HTTPRequest]));
 	if ([[[url scheme] lowercaseString] isEqualToString:@"https"]) {
@@ -263,7 +267,8 @@
 - (void)stream:(NSInputStream *)theStream handleEvent:(NSStreamEvent)streamEvent
 {
 	NSParameterAssert(theStream == [self stream]);
-	
+
+SILENCE_DEPRECATION_ON
 	NSURL *URL = [theStream propertyForKey:(NSString *)kCFStreamPropertyHTTPFinalURL];
 
 	if (!_haveReceivedResponse) {
@@ -272,7 +277,8 @@
 			NSHTTPURLResponse *URLResponse = [[NSHTTPURLResponse alloc] initWithURL:URL statusCode:CFHTTPMessageGetResponseStatusCode(response) HTTPVersion:(__bridge NSString * _Nullable)(CFHTTPMessageCopyVersion(response)) headerFields:(__bridge NSDictionary<NSString *,NSString *> * _Nullable)(CFHTTPMessageCopyAllHeaderFields(response))];
 			
 			NSData *d = (__bridge NSData *)CFHTTPMessageCopySerializedMessage((__bridge CFHTTPMessageRef _Nonnull)([_HTTPStream propertyForKey:(NSString *)kCFStreamPropertyHTTPResponseHeader]));
-			
+SILENCE_DEPRECATION_OFF
+
 			/* work around bug where CFHTTPMessageIsHeaderComplete reports true but there is no actual header data to be found */
 			if ([d length] < 5) {
 #ifdef TRACE
@@ -462,8 +468,6 @@ process:
 {
 	NSParameterAssert(response);
 	
-#warning "Instance variable used while 'self' is not set to the result of [self init]"
-	 
 	// Try to create an authentication object from the response
 	_HTTPAuthentication = CFHTTPAuthenticationCreateFromResponse(NULL, response);
 	if (![self CFHTTPAuthentication])

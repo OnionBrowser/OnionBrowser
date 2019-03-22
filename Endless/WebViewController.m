@@ -1228,7 +1228,9 @@
 	 * to   "Mozilla/5.0 (iPhone; CPU iPhone OS 8_4_1 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12H321 Safari/600.1.4"
 	 */
 
+	SILENCE_DEPRECATION_ON
 	UIWebView *twv = [[UIWebView alloc] initWithFrame:CGRectZero];
+	SILENCE_DEPRECATION_OFF
 	NSString *ua = [twv stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
 	
 	NSMutableArray *uapieces = [[NSMutableArray alloc] initWithArray:[ua componentsSeparatedByString:@" "]];
