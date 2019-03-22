@@ -8,7 +8,7 @@
 
 **Onion Browser** is a free web browser for iPhone and iPad that encrypts and tunnels web traffic through the [Tor network][tor]. See the [official site][official] for more details and App Store links.
 
-Please see the [LICENSE][license] file for usage and redistribution terms. As of the 2.X (Endless-based) tree, redistribution of this software in binary form, with or without modification, is not permitted. (The previous [1.X tree][1.X] of Onion Browser was available under [a different license](https://github.com/mtigas/OnionBrowser/blob/1.X/LICENSE).)
+Please see the [LICENSE][license] file for usage and redistribution terms. As of the 2.X (Endless-based) tree, redistribution of this software in binary form, with or without modification, is not permitted. (The previous [1.X tree][1.X] of Onion Browser was available under [a different license](https://github.com/OnionBrowser/OnionBrowser/blob/1.X/LICENSE).)
 
 ---
 
@@ -21,12 +21,12 @@ Please see the [LICENSE][license] file for usage and redistribution terms. As of
   * **[liblzma][liblzma]**: 5.2.3
 
 [official]: https://onionbrowser.com/
-[help]: https://github.com/mtigas/OnionBrowser/wiki/Help
-[releases]: https://github.com/mtigas/OnionBrowser/releases
-[changelog]: https://raw.github.com/mtigas/OnionBrowser/2.X/CHANGES.txt
+[help]: https://github.com/OnionBrowser/OnionBrowser/wiki/Help
+[releases]: https://github.com/OnionBrowser/OnionBrowser/releases
+[changelog]: https://raw.github.com/OnionBrowser/OnionBrowser/2.X/CHANGES.txt
 [donate]: https://onionbrowser.com/#support-project
 [miketigas]: https://mike.tig.as/
-[license]: https://github.com/mtigas/OnionBrowser/blob/2.X/LICENSE
+[license]: https://github.com/OnionBrowser/OnionBrowser/blob/2.X/LICENSE
 [Tor.framework]: https://github.com/iCepa/Tor.framework
 [tor]: https://www.torproject.org/
 [libevent]: http://libevent.org/
@@ -34,7 +34,7 @@ Please see the [LICENSE][license] file for usage and redistribution terms. As of
 [liblzma]: https://tukaani.org/xz/
 [iobfs]: https://github.com/mtigas/iObfs
 [endless]: https://github.com/jcs/endless
-[1.X]: https://github.com/mtigas/OnionBrowser/tree/1.X
+[1.X]: https://github.com/OnionBrowser/OnionBrowser/tree/1.X
 
 ## Notable 2.X Features
 
