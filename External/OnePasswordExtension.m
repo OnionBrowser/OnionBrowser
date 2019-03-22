@@ -6,7 +6,7 @@
 //
 
 #import "OnePasswordExtension.h"
-#import "../Endless/SilenceDeprecation.h"
+#import "../Endless/SilenceWarnings.h"
 
 // Version
 #define VERSION_NUMBER @(184)
@@ -214,7 +214,7 @@ static NSString *const AppExtensionWebViewPageDetails = @"pageDetails";
 #ifdef __IPHONE_8_0
 SILENCE_DEPRECATION_ON
 	if ([webView isKindOfClass:[UIWebView class]]) {
-SILENCE_DEPRECATION_OFF
+SILENCE_WARNINGS_OFF
 
 		[self fillItemIntoUIWebView:webView webViewController:viewController sender:(id)sender showOnlyLogins:yesOrNo completion:^(BOOL success, NSError *error) {
 			if (completion) {
@@ -249,7 +249,7 @@ SILENCE_DEPRECATION_OFF
 SILENCE_DEPRECATION_ON
 	if ([webView isKindOfClass:[UIWebView class]]) {
 		UIWebView *uiWebView = (UIWebView *)webView;
-SILENCE_DEPRECATION_OFF
+SILENCE_WARNINGS_OFF
 
 		NSString *collectedPageDetails = [uiWebView stringByEvaluatingJavaScriptFromString:OPWebViewCollectFieldsScript];
 
@@ -411,7 +411,7 @@ SILENCE_DEPRECATION_OFF
 
 SILENCE_DEPRECATION_ON
 - (void)fillItemIntoUIWebView:(nonnull UIWebView *)webView webViewController:(nonnull UIViewController *)viewController sender:(nullable id)sender showOnlyLogins:(BOOL)yesOrNo completion:(nonnull OnePasswordSuccessCompletionBlock)completion {
-SILENCE_DEPRECATION_OFF
+SILENCE_WARNINGS_OFF
 
 	NSString *collectedPageDetails = [webView stringByEvaluatingJavaScriptFromString:OPWebViewCollectFieldsScript];
 	[self findLoginIn1PasswordWithURLString:webView.request.URL.absoluteString collectedPageDetails:collectedPageDetails forWebViewController:viewController sender:sender withWebView:webView showOnlyLogins:yesOrNo completion:^(BOOL success, NSError *error) {
@@ -439,7 +439,7 @@ SILENCE_DEPRECATION_OFF
 SILENCE_DEPRECATION_ON
 	if ([webView isKindOfClass:[UIWebView class]]) {
 		NSString *result = [((UIWebView *)webView) stringByEvaluatingJavaScriptFromString:scriptSource];
-SILENCE_DEPRECATION_OFF
+SILENCE_WARNINGS_OFF
 
 		BOOL success = (result != nil);
 		NSError *error = nil;

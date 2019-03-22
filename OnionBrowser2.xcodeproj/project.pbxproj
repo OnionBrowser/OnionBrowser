@@ -450,7 +450,7 @@
 		A07D655F2208A9B40002D775 /* get-geoip.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "get-geoip.sh"; sourceTree = "<group>"; };
 		A07E14702237E29E00B76F77 /* BlurredSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurredSnapshot.swift; sourceTree = "<group>"; };
 		A08737DF2213235F005A68CC /* HostSettings_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HostSettings_Tests.m; sourceTree = "<group>"; };
-		A0879556224537E000330327 /* SilenceDeprecation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SilenceDeprecation.h; sourceTree = "<group>"; };
+		A08795572245406E00330327 /* SilenceWarnings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SilenceWarnings.h; sourceTree = "<group>"; };
 		A0882DF72003A8620098833B /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
 		A0882DF82003A8620098833B /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
 		A0882DF92003A8620098833B /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
@@ -590,7 +590,7 @@
 				01D741311A49EA14007B7033 /* RuleEditorController.m */,
 				69CBCD501E9347B8009D5352 /* UIResponder+FirstResponder.h */,
 				69CBCD511E9347B8009D5352 /* UIResponder+FirstResponder.m */,
-				A0879556224537E000330327 /* SilenceDeprecation.h */,
+				A08795572245406E00330327 /* SilenceWarnings.h */,
 			);
 			name = "Supporting Files";
 			path = Endless;

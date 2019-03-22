@@ -179,7 +179,8 @@ NSString * const LABEL = @"L";
 	SEL action = NSSelectorFromString([button objectForKey:FUNC]);
 	
 	if ([self respondsToSelector:action])
-		[self performSelector:action];
+		// Nothing will be leaking. The calls are all hardcoded.
+		SILENCE_PERFORM_SELECTOR_LEAKS([self performSelector:action]);
 	else
 		NSLog(@"can't call %@", NSStringFromSelector(action));
 }

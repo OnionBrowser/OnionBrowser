@@ -16,7 +16,7 @@
 #import "CKHTTPConnection.h"
 #import "HostSettings.h"
 #import "SSLCertificate.h"
-#import "../Endless/SilenceDeprecation.h"
+#import "../Endless/SilenceWarnings.h"
 
 @interface CKHTTPConnection ()
 - (CFHTTPMessageRef)HTTPRequest;
@@ -118,7 +118,7 @@ SILENCE_DEPRECATION_ON
 	else
 		CFReadStreamSetProperty((__bridge CFReadStreamRef)(_HTTPStream), kCFStreamPropertyHTTPAttemptPersistentConnection, kCFBooleanFalse);
 
-SILENCE_DEPRECATION_OFF
+SILENCE_WARNINGS_OFF
 
 	/* set SSL protocol version enforcement before opening, when using kCFStreamSSLLevel */
 	NSURL *url = (__bridge_transfer NSURL *)(CFHTTPMessageCopyRequestURL([self HTTPRequest]));
@@ -277,7 +277,7 @@ SILENCE_DEPRECATION_ON
 			NSHTTPURLResponse *URLResponse = [[NSHTTPURLResponse alloc] initWithURL:URL statusCode:CFHTTPMessageGetResponseStatusCode(response) HTTPVersion:(__bridge NSString * _Nullable)(CFHTTPMessageCopyVersion(response)) headerFields:(__bridge NSDictionary<NSString *,NSString *> * _Nullable)(CFHTTPMessageCopyAllHeaderFields(response))];
 			
 			NSData *d = (__bridge NSData *)CFHTTPMessageCopySerializedMessage((__bridge CFHTTPMessageRef _Nonnull)([_HTTPStream propertyForKey:(NSString *)kCFStreamPropertyHTTPResponseHeader]));
-SILENCE_DEPRECATION_OFF
+SILENCE_WARNINGS_OFF
 
 			/* work around bug where CFHTTPMessageIsHeaderComplete reports true but there is no actual header data to be found */
 			if ([d length] < 5) {

@@ -327,7 +327,7 @@
 SILENCE_DEPRECATION_ON
 - (BOOL)webView:(UIWebView *)__webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-SILENCE_DEPRECATION_OFF
+SILENCE_WARNINGS_OFF
 
 	NSURL *url = [request URL];
 	
@@ -481,7 +481,7 @@ SILENCE_DEPRECATION_OFF
 SILENCE_DEPRECATION_ON
 - (void)webViewDidStartLoad:(UIWebView *)__webView
 {
-SILENCE_DEPRECATION_OFF
+SILENCE_WARNINGS_OFF
 
 	/* reset and then let WebViewController animate to our actual progress */
 	[self setProgress:@0.0];
@@ -494,7 +494,7 @@ SILENCE_DEPRECATION_OFF
 SILENCE_DEPRECATION_ON
 - (void)webViewDidFinishLoad:(UIWebView *)__webView
 {
-SILENCE_DEPRECATION_OFF
+SILENCE_WARNINGS_OFF
 #ifdef TRACE
 	NSLog(@"[Tab %@] finished loading page/iframe %@, security level is %lu", self.tabIndex, [[[__webView request] URL] absoluteString], self.secureMode);
 #endif
@@ -533,7 +533,7 @@ SILENCE_DEPRECATION_OFF
 SILENCE_DEPRECATION_ON
 - (void)webView:(UIWebView *)__webView didFailLoadWithError:(NSError *)error
 {
-SILENCE_DEPRECATION_OFF
+SILENCE_WARNINGS_OFF
 
 	BOOL isTLSError = false;
 	
@@ -583,7 +583,7 @@ SILENCE_DEPRECATION_OFF
 #endif
 SILENCE_DEPRECATION_ON
 			[self webViewDidFinishLoad:__webView];
-SILENCE_DEPRECATION_OFF
+SILENCE_WARNINGS_OFF
 			return;
 		}
 	}
@@ -629,13 +629,13 @@ SILENCE_DEPRECATION_OFF
 
 SILENCE_DEPRECATION_ON
 	[self webViewDidFinishLoad:__webView];
-SILENCE_DEPRECATION_OFF
+SILENCE_WARNINGS_OFF
 }
 
 SILENCE_DEPRECATION_ON
 - (void)webView:(UIWebView *)__webView callbackWith:(NSString *)callback
 {
-SILENCE_DEPRECATION_OFF
+SILENCE_WARNINGS_OFF
 	
 	NSString *finalcb = [NSString stringWithFormat:@"(function() { %@; __endless.ipcDone = (new Date()).getTime(); })();", callback];
 

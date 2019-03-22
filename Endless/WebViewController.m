@@ -1235,7 +1235,7 @@
 
 	SILENCE_DEPRECATION_ON
 	UIWebView *twv = [[UIWebView alloc] initWithFrame:CGRectZero];
-	SILENCE_DEPRECATION_OFF
+	SILENCE_WARNINGS_OFF
 	NSString *ua = [twv stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
 	
 	NSMutableArray *uapieces = [[NSMutableArray alloc] initWithArray:[ua componentsSeparatedByString:@" "]];
