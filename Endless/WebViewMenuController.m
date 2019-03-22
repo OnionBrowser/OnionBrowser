@@ -100,7 +100,13 @@ NSString * const LABEL = @"L";
 	cell.textLabel.text = [button objectForKey:LABEL];
 	cell.detailTextLabel.text = nil;
 	cell.detailTextLabel.font = [UIFont systemFontOfSize:11];
-	
+
+	// Allow auto-adjustment for translations.
+	cell.textLabel.adjustsFontSizeToFitWidth = YES;
+	cell.textLabel.minimumScaleFactor = .5;
+	cell.detailTextLabel.adjustsFontSizeToFitWidth = YES;
+	cell.detailTextLabel.minimumScaleFactor = .5;
+
 	if ([[appDelegate webViewController] darkInterface]) {
 		cell.textLabel.textColor = [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0];
 		cell.detailTextLabel.textColor = [UIColor grayColor];
