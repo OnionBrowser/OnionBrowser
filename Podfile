@@ -1,8 +1,6 @@
 platform :ios, "11.4"
 use_frameworks!
 
-pod 'Localize', :git => 'https://github.com/tladesignz/Localize.git'
-
 target "OnionBrowser2" do
   pod "InAppSettingsKit"
   pod "WYPopoverController", :git => "https://github.com/sammcewan/WYPopoverController.git"
