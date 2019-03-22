@@ -2,7 +2,7 @@ Navigateur Onion
 
 Le Web sécurisé et anonyme avec Tor
 
-`Navigateur,Tor,Navigateur Tor,Navigateur Onion,Navigateur Oignon,anonyme,confidentiel, privé,navigateur privé,navigateur confidentiel,orbot,orfox,oignon,onion`
+`Navigateur,Tor,Tor Browser,Navigateur Onion,,anonyme,confidentiel, privé,navigateur privé,navigateur confidentiel,orbot,orfox,oignon,onion`
 
 ---
 
@@ -17,7 +17,7 @@ Le Navigateur Onion 2 est une réécriture complète de l’appli. Il comprend 
 * L’intégration du blocage de publicité et de la protection des renseignements personnels
 * Le peaufinage des paramètres de sécurité et de confidentialité site par site (incluant la politique des témoins, l’agent utilisateur, ainsi que la politique JavaScript et de contenu actif).
 * Tor 0.3.5.8
-* Les paramètres et les signets du Navigateur Onion 1 sont conservés.
+* Les paramètres et les marque-pages du Navigateur Onion 1 sont conservés.
 
 Et en plus, cette mise à jour est gratuite !
 
@@ -29,7 +29,7 @@ La mise à jour vers le Navigateur Onion 2 a été soutenue par le Projet Guard
 
 ---
 
-Le Navigateur Onion est le navigateur libre, à code source ouvert et propulsé par Tor, original pour iOS. Le Navigateur Onion vous aide à accéder à Internet avec plus de sécurité et de confidentialité, sans coût additionnel.
+Le Navigateur Onion est le navigateur libre original pour iOS, à code source ouvert et propulsé par Tor. Le Navigateur Onion vous aide à accéder à Internet avec plus de sécurité et de confidentialité, sans frais supplémentaires.
 
 « Le Navigateur Onion est actuellement la meilleure offre associée à Tor sur iOS » — « The Daily Dot » le 14 octobre 2015
 
@@ -44,16 +44,16 @@ CARACTÉRISTIQUES :
 
 • Combattre le suivi à la trace en ligne : bloquer les scripts et nettoyer automatiquement les témoins et les onglets selon vos préférences.
 
-• Et d’autres caractéristiques améliorant la confidentialité !
+• Et d’autres caractéristiques qui améliorent la confidentialité !
 
 AVERTISSEMENTS :
 - La navigation Web est beaucoup plus lente qu’avec un navigateur Web et un RPV normaux, car votre trafic est chiffré et relayé par le réseau Tor.
 
 - Le contenu multimédia contourne souvent Tor et compromet votre confidentialité ; les fichiers vidéo et les flux vidéo sont bloqués par défaut et ne sont pas pris en charge par le Navigateur Onion.
 
-- Le Navigateur Onion pourrait ne pas fonctionner sur des réseaux appliquant des restrictions réseau sophistiquées. Si l’appli ne se connecte pas, essayez d’utiliser des ponts (ou un type de pont différent), forcez la fermeture et redémarrez l’appli.
+- Le Navigateur Onion pourrait ne pas fonctionner sur les réseaux qui appliquent des restrictions réseau sophistiquées. Si l’appli ne se connecte pas, essayez d’utiliser des ponts (ou un type de pont différent), forcez la fermeture et redémarrez l’appli.
 
 - Vous utilisez le Navigateur Onion à vos propres risques ; souvenez-vous qu’un appareil mobile n’est pas toujours la meilleure solution pour abriter des données délicates.
 
-** Le Navigateur Onion est un logiciel libre et à code source ouvert. Vous pouvez en apprendre davantage sur le Navigateur Onion et le soutien du développement de Tor sur iOS en visitant onionbrowser.com **
+** Le Navigateur Onion est un logiciel libre et à code source ouvert. Vous pouvez en apprendre davantage sur le Navigateur Onion et sur la façon de soutenir le développement de Tor sur iOS en visitant onionbrowser.com **
 

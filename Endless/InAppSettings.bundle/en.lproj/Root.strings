@@ -1,7 +1,7 @@
 /* A single strings file, whose title is specified in your preferences schema. The strings files provide the localized content to display to the user for each of your preferences. */
 "User Interface" = "User Interface";
 "If blank, the search engine page will be used" = "If blank, the search engine page will be used";
-"If blank, the default OnionBrowser page will be used" = "If blank, the default OnionBrowser page will be used";
+"If blank, the default Onion Browser page will be used" = "If blank, the default Onion Browser page will be used";
 "Toolbar on bottom" = "Toolbar on bottom";
 "Dark interface" = "Dark interface";
 "Dark app icon" = "Dark app icon";
