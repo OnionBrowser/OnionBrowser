@@ -1,6 +1,6 @@
-# Build OnionBrowser 2.X
+# Build Onion Browser 2.X
 ## Build Dependencies
-OnionBrowser uses both CocoaPods *and* Carthage due to its usage in dependencies.
+Onion Browser uses both CocoaPods *and* Carthage due to its usage in dependencies.
 
 - [CocoaPods](https://cocoapods.org/)
 - [Carthage](https://github.com/Carthage/Carthage)
@@ -14,7 +14,7 @@ Be aware, though, that this will lead to a bug with a library `libz.[dylib|a]` u
 
 Therefor it is highly recommended to install carthage via the officially documented ways!
 
-## Steps to build OnionBrowser 2.X
+## Steps to build Onion Browser 2.X
 
 ```bash
 git clone git@github.com:mtigas/OnionBrowser.git
@@ -48,6 +48,6 @@ binary "https://cdn.tig.as/files/Tor.json" == 31.8.2
 binary "https://cdn.tig.as/files/Iobfs4proxy.json" == 1.0
 ```
 
-Then run the **Steps to build OnionBrowser 2.X** above.
+Then run the **Steps to build Onion Browser 2.X** above.
 
 (TODO: See why Carthage isn't picking up the binary automatically from the GitHub release.)
