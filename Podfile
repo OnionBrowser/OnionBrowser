@@ -10,7 +10,7 @@ target "OnionBrowser2" do
   pod "TUSafariActivity"
   pod "VForceTouch"
 
-  pod "POE", '~> 0.4'
+  pod "POE", '~> 0.5'
 end
 
 target "OnionBrowser2 Tests" do

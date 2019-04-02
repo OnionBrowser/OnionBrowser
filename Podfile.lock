@@ -56,7 +56,7 @@ PODS:
   - Localize (2.1.0)
   - OCMock (3.4.3)
   - OrderedDictionary (1.4)
-  - POE (0.4.3):
+  - POE (0.5.0):
     - KMPlaceholderTextView (~> 1.4)
     - Localize (~> 2.1)
     - UIColor-HexRGB
@@ -71,7 +71,7 @@ DEPENDENCIES:
   - InAppSettingsKit
   - OCMock
   - OrderedDictionary
-  - POE (~> 0.4)
+  - POE (~> 0.5)
   - TUSafariActivity
   - VForceTouch
   - WYPopoverController (from `https://github.com/sammcewan/WYPopoverController.git`)
@@ -111,13 +111,13 @@ SPEC CHECKSUMS:
   Localize: f360a343abfac047be5b375c45be1059f5f625f3
   OCMock: 43565190abc78977ad44a61c0d20d7f0784d35ab
   OrderedDictionary: 138c8d2e358d3a0c9adda15c6c7db24e8e3b09e6
-  POE: aac0ab0beeef65c0a4da39a9270c4be362094351
+  POE: 7e66dad86623282e5e5b182477a5b8a865571ed2
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
   UIColor-HexRGB: daccfa7e936af664369734a164b0309087d7f970
   VForceTouch: b5c3a28625269e1818cf915728173bda9f669d6b
   WYPopoverController: a9db25ac2841a686acdc0f3a99bdb21545db32f4
   XLForm: d5c391dfc62865927b5bcab0a5a0dbfb3e02b0ec
 
-PODFILE CHECKSUM: 932603214ad91159bd69aa4efa15bd13f52f4e19
+PODFILE CHECKSUM: 49961870e3a0fb8c9dffc6535fe8c81cd7b78dc9
 
 COCOAPODS: 1.6.1

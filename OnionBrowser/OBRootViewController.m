@@ -35,7 +35,7 @@
         }
 
         self.bridgeVC = [BridgeSelectViewController
-                         initWithCurrentId:[NSUserDefaults.standardUserDefaults integerForKey:USE_BRIDGES]
+                         instantiateWithCurrentId:[NSUserDefaults.standardUserDefaults integerForKey:USE_BRIDGES]
                          noBridgeId:[NSNumber numberWithInteger:USE_BRIDGES_NONE]
                          providedBridges:builtInBridges
                          customBridgeId:[NSNumber numberWithInteger:USE_BRIDGES_CUSTOM]
