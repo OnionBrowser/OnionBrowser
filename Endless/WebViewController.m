@@ -382,8 +382,7 @@
 
 - (void)viewDidLayoutSubviews
 {
-	UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-	float statusBarHeight = (UIInterfaceOrientationIsLandscape(orientation) ? 0 : [[UIApplication sharedApplication] statusBarFrame].size.height);
+	float statusBarHeight = [[UIApplication sharedApplication] statusBarFrame].size.height;
 
 	/* views are transforming and we may calculate things incorrectly here, so just ignore this request */
 	if (showingTabs)
