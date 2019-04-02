@@ -29,7 +29,7 @@ class Migration: NSObject {
         var isReachable = try? storeUrl?.checkResourceIsReachable()
 
         // Check, if CoreData SQLite file is there, if so migrate bookmarks and bridge settings.
-        if (isReachable ?? false) ?? false {
+        if isReachable ?? false {
 
             // Initialize CoreData.
             if let mom = NSManagedObjectModel.mergedModel(from: nil) {
@@ -118,7 +118,7 @@ class Migration: NSObject {
         isReachable = try? settingsUrl?.checkResourceIsReachable()
 
         // Check, if Settings.plist file is there, if so, migrate some, which apply to Endless, too.
-        if (isReachable ?? false) ?? false {
+        if isReachable ?? false {
             
             DispatchQueue.global(qos: .background).async {
                 if let raw = FileManager.default.contents(atPath: settingsUrl!.path) {
@@ -129,7 +129,7 @@ class Migration: NSObject {
                         as? [String: Any]
 
                     // Homepage setting.
-                    if let homepage = oldSettings??["homepage"] as? String {
+                    if let homepage = oldSettings?["homepage"] as? String {
                         if !homepage.isEmpty && homepage != "onionbrowser:home"
                         {
                             settings.set(homepage, forKey: "homepage")
@@ -138,7 +138,7 @@ class Migration: NSObject {
                     }
 
                     // Do-Not-Track header.
-                    if let dnt = oldSettings??["dnt"] as? Int
+                    if let dnt = oldSettings?["dnt"] as? Int
                     {
                         // 1.X had 3 settings: 0 = unset, 1 = cantrack, 2 = notrack
                         // Endless has only two options "send_dnt" true or false.
@@ -148,7 +148,7 @@ class Migration: NSObject {
                     }
 
                     // Content security policy setting. For legacy reasons named "javascript".
-                    if let csp = oldSettings??["javascript"] as? Int {
+                    if let csp = oldSettings?["javascript"] as? Int {
                         // From the 1.X sources:
                         // #define CONTENTPOLICY_STRICT 0 // Blocks nearly every CSP type
                         // #define CONTENTPOLICY_BLOCK_CONNECT 1 // Blocks `connect-src` (XHR, CORS, WebSocket)
@@ -163,7 +163,7 @@ class Migration: NSObject {
 
                     // Minimal TLS version. Only the "1.2 only" setting will be migrated, as 
                     // the "SSL v3" setting is not supported in Endless.
-                    if let tlsver = oldSettings??["tlsver"] as? Int {
+                    if let tlsver = oldSettings?["tlsver"] as? Int {
                         // From the 1.X sources:
                         // #define X_TLSVER_ANY 0
                         // #define X_TLSVER_TLS1 1
