@@ -97,7 +97,7 @@ static const struct keyboard_map_entry {
 	{ NULL }
 };
 
-@interface WebViewTab : NSObject <UIWebViewDelegate, UIGestureRecognizerDelegate, UIActivityItemSource>
+@interface WebViewTab : NSObject <UIWebViewDelegate, UIGestureRecognizerDelegate>
 
 @property (strong, atomic) UIView *viewHolder;
 SILENCE_DEPRECATION_ON

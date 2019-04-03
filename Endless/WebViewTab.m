@@ -1018,20 +1018,4 @@ SILENCE_WARNINGS_OFF
 	[[self webView] stringByEvaluatingJavaScriptFromString:js];
 }
 
-/* UIActivityItemSource for URL sharing */
-- (id)activityViewControllerPlaceholderItem:(UIActivityViewController *)activityViewController
-{
-	return [self url];
-}
-
-- (id)activityViewController:(UIActivityViewController *)activityViewController itemForActivityType:(UIActivityType)activityType
-{
-	return [self url];
-}
-
-- (NSString *)activityViewController:(UIActivityViewController *)activityViewController subjectForActivityType:(UIActivityType)activityType
-{
-	return [[self title] text];
-}
-
 @end

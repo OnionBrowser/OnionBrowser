@@ -102,6 +102,7 @@
 		A07E14712237E29E00B76F77 /* BlurredSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07E14702237E29E00B76F77 /* BlurredSnapshot.swift */; };
 		A08737E1221324B5005A68CC /* HostSettings_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = A08737DF2213235F005A68CC /* HostSettings_Tests.m */; };
 		A09A2A972254B3D100A3EEF0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A09A2A992254B3D100A3EEF0 /* InfoPlist.strings */; };
+		A09A2AAB2254D2C700A3EEF0 /* WebViewTab+Activity.m in Sources */ = {isa = PBXBuildFile; fileRef = A09A2AAA2254D2C700A3EEF0 /* WebViewTab+Activity.m */; };
 		A0C3770E1F47342C0039198E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0C3770D1F47342C0039198E /* CoreData.framework */; };
 		C5C31F75A60EA0CFBD188E31 /* Pods_OnionBrowser2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B30AD5A822226C06231D37B7 /* Pods_OnionBrowser2.framework */; };
 /* End PBXBuildFile section */
@@ -461,6 +462,8 @@
 		A096BBE81F68359500A5C6AB /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Endless/es.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
 		A09A2A982254B3D100A3EEF0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A09A2A9A2254B3D400A3EEF0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A09A2AA92254D2C700A3EEF0 /* WebViewTab+Activity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WebViewTab+Activity.h"; sourceTree = "<group>"; };
+		A09A2AAA2254D2C700A3EEF0 /* WebViewTab+Activity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "WebViewTab+Activity.m"; sourceTree = "<group>"; };
 		A0BFBE022010F48100BE2980 /* ga */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = ga; path = ga.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
 		A0BFBE032010F48100BE2980 /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ga; path = Endless/ga.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A0BFBE042010F48200BE2980 /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ga; path = Endless/ga.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
@@ -573,6 +576,8 @@
 				01D741271A44DF1C007B7033 /* WebViewMenuController.m */,
 				0135F47D1A3E548F005A8F16 /* WebViewTab.h */,
 				0135F47E1A3E548F005A8F16 /* WebViewTab.m */,
+				A09A2AA92254D2C700A3EEF0 /* WebViewTab+Activity.h */,
+				A09A2AAA2254D2C700A3EEF0 /* WebViewTab+Activity.m */,
 			);
 			path = Endless;
 			sourceTree = "<group>";
@@ -1350,6 +1355,7 @@
 				01F8793B1A4108DD00A63654 /* URLBlocker.m in Sources */,
 				A02CE2BB22007A0200964A14 /* HistoryController.m in Sources */,
 				01801EC01A335BEC002B4718 /* URLInterceptor.m in Sources */,
+				A09A2AAB2254D2C700A3EEF0 /* WebViewTab+Activity.m in Sources */,
 				01F2AE401B82666900D5651A /* SSLCertificateViewController.m in Sources */,
 				69EFCCA21EAD20CB00280747 /* OBRootViewController.m in Sources */,
 				018333CA1A3505FB00670CD1 /* HTTPSEverywhere.m in Sources */,
