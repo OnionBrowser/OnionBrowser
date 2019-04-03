@@ -101,6 +101,7 @@
 		A07D65562208A17E0002D775 /* Migration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07D65522208A17E0002D775 /* Migration.swift */; };
 		A07E14712237E29E00B76F77 /* BlurredSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07E14702237E29E00B76F77 /* BlurredSnapshot.swift */; };
 		A08737E1221324B5005A68CC /* HostSettings_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = A08737DF2213235F005A68CC /* HostSettings_Tests.m */; };
+		A09A2A972254B3D100A3EEF0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A09A2A992254B3D100A3EEF0 /* InfoPlist.strings */; };
 		A0C3770E1F47342C0039198E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0C3770D1F47342C0039198E /* CoreData.framework */; };
 		C5C31F75A60EA0CFBD188E31 /* Pods_OnionBrowser2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B30AD5A822226C06231D37B7 /* Pods_OnionBrowser2.framework */; };
 /* End PBXBuildFile section */
@@ -458,6 +459,8 @@
 		A0882DFC2003A9040098833B /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
 		A096BBE71F68359500A5C6AB /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Endless/es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A096BBE81F68359500A5C6AB /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Endless/es.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
+		A09A2A982254B3D100A3EEF0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A09A2A9A2254B3D400A3EEF0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A0BFBE022010F48100BE2980 /* ga */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = ga; path = ga.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
 		A0BFBE032010F48100BE2980 /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ga; path = Endless/ga.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A0BFBE042010F48200BE2980 /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ga; path = Endless/ga.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
@@ -579,6 +582,7 @@
 			children = (
 				018333CF1A351B3B00670CD1 /* Endless-Prefix.pch */,
 				01801E961A32CA2A002B4718 /* Info.plist */,
+				A09A2A992254B3D100A3EEF0 /* InfoPlist.strings */,
 				01EFA7FD1A63851400688398 /* LocalNetworkChecker.h */,
 				01EFA7FE1A63851400688398 /* LocalNetworkChecker.m */,
 				01801E971A32CA2A002B4718 /* main.m */,
@@ -1149,6 +1153,7 @@
 				69CBCD4F1E93451C009D5352 /* urlblocker.json in Resources */,
 				01D7412C1A45F8EB007B7033 /* injected.js in Resources */,
 				6926DAEE221C836F00D71752 /* credits.html.in in Resources */,
+				A09A2A972254B3D100A3EEF0 /* InfoPlist.strings in Resources */,
 				01801EA61A32CA2A002B4718 /* Images.xcassets in Resources */,
 				01F8794C1A4124FE00A63654 /* credits.html in Resources */,
 				A045E5E51EDC5C1700BC8A92 /* Localizable.strings in Resources */,
@@ -1522,6 +1527,15 @@
 				A025F27121F627180034B947 /* vi */,
 			);
 			name = AppStoreStrings.md;
+			sourceTree = "<group>";
+		};
+		A09A2A992254B3D100A3EEF0 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A09A2A982254B3D100A3EEF0 /* en */,
+				A09A2A9A2254B3D400A3EEF0 /* de */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

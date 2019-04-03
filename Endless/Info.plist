@@ -50,7 +50,9 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>Used to import bridges via QR code. Optional.</string>
+	<string>Needed to read bridge addresses from displayed QR codes.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Needed to store the selected image to your photos.</string>
 	<key>NSMainNibFile</key>
 	<string>Launch Screen</string>
 	<key>UIApplicationShortcutItems</key>
