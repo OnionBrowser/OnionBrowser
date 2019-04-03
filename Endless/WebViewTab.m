@@ -777,7 +777,12 @@ SILENCE_WARNINGS_OFF
 		WebViewTab *newtab = [[self->appDelegate webViewController] addNewTabForURL:[NSURL URLWithString:href]];
 		newtab.openedByTabHash = [NSNumber numberWithLong:self.hash];
 	}];
-	
+
+	UIAlertAction *openBackgroundTabAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Open in Background Tab", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+		WebViewTab *newtab = [[self->appDelegate webViewController] addNewTabForURL:[NSURL URLWithString:href] forRestoration:NO withAnimation:WebViewTabAnimationHidden withCompletionBlock:nil];
+		newtab.openedByTabHash = [NSNumber numberWithLong:self.hash];
+	}];
+
 	UIAlertAction *openSafariAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Open in Safari", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
 		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:href] options:@{} completionHandler:nil];
 	}];
@@ -804,6 +809,7 @@ SILENCE_WARNINGS_OFF
 	if (href) {
 		[alertController addAction:openAction];
 		[alertController addAction:openNewTabAction];
+		[alertController addAction:openBackgroundTabAction];
 		[alertController addAction:openSafariAction];
 	}
 	
