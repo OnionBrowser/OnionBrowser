@@ -352,9 +352,9 @@ import Foundation
                 TORInstallEventLogging()
             }
 
-            if !self.torController!.isConnected {
+            if !(self.torController?.isConnected ?? false) {
                 do {
-                    try self.torController!.connect()
+                    try self.torController?.connect()
                 } catch {
                     print("[\(String(describing: OnionManager.self))] error=\(error)")
                 }
