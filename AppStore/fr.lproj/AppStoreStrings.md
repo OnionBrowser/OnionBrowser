@@ -2,7 +2,7 @@ Navigateur Onion
 
 Le Web sécurisé et anonyme avec Tor
 
-`Navigateur,Tor,Tor Browser,Navigateur Onion,,anonyme,confidentiel, privé,navigateur privé,navigateur confidentiel,orbot,orfox,oignon,onion`
+`Navigateur,Tor,Tor Browser,Navigateur Tor,Navigateur Onion,,anonyme,confidentiel, privé,navigateur privé,navigateur confidentiel,orbot,orfox,oignon,onion`
 
 ---
 
