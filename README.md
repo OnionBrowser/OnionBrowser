@@ -1,6 +1,9 @@
 # Onion Browser
 
-[![Build Status](https://travis-ci.org/mtigas/OnionBrowser.svg?branch=2.X)](https://travis-ci.org/mtigas/OnionBrowser)  
+[![Build Status](https://travis-ci.org/mtigas/OnionBrowser.svg?branch=2.X)](https://travis-ci.org/mtigas/OnionBrowser) 
+[![Backers on Open Collective](https://opencollective.com/OnionBrowser/backers/badge.svg)](#backers)
+ [![Sponsors on Open Collective](https://opencollective.com/OnionBrowser/sponsors/badge.svg)](#sponsors) 
+  
 [Official Site][official] | [Support][help] | [Release History][releases] | [Donate][donate]  
 &copy; 2012-2018, Tigas Ventures, LLC ([Mike Tigas][miketigas])
 
@@ -82,4 +85,34 @@ The following features are new to Onion Browser, by way of the upstream work on 
   Tamil: balapandu222, Selva_Makilan
   Telugu: balapandu222, sonusandeep
   Ukrainian: Herenko, lyubomyr
+
+
+## Contributors
+
+This project exists thanks to all the people who contribute. 
+<a href="graphs/contributors"><img src="https://opencollective.com/OnionBrowser/contributors.svg?width=890&button=false" /></a>
+
+
+## Backers
+
+Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/OnionBrowser#backer)]
+
+<a href="https://opencollective.com/OnionBrowser#backers" target="_blank"><img src="https://opencollective.com/OnionBrowser/backers.svg?width=890"></a>
+
+
+## Sponsors
+
+Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/OnionBrowser#sponsor)]
+
+<a href="https://opencollective.com/OnionBrowser/sponsor/0/website" target="_blank"><img src="https://opencollective.com/OnionBrowser/sponsor/0/avatar.svg"></a>
+<a href="https://opencollective.com/OnionBrowser/sponsor/1/website" target="_blank"><img src="https://opencollective.com/OnionBrowser/sponsor/1/avatar.svg"></a>
+<a href="https://opencollective.com/OnionBrowser/sponsor/2/website" target="_blank"><img src="https://opencollective.com/OnionBrowser/sponsor/2/avatar.svg"></a>
+<a href="https://opencollective.com/OnionBrowser/sponsor/3/website" target="_blank"><img src="https://opencollective.com/OnionBrowser/sponsor/3/avatar.svg"></a>
+<a href="https://opencollective.com/OnionBrowser/sponsor/4/website" target="_blank"><img src="https://opencollective.com/OnionBrowser/sponsor/4/avatar.svg"></a>
+<a href="https://opencollective.com/OnionBrowser/sponsor/5/website" target="_blank"><img src="https://opencollective.com/OnionBrowser/sponsor/5/avatar.svg"></a>
+<a href="https://opencollective.com/OnionBrowser/sponsor/6/website" target="_blank"><img src="https://opencollective.com/OnionBrowser/sponsor/6/avatar.svg"></a>
+<a href="https://opencollective.com/OnionBrowser/sponsor/7/website" target="_blank"><img src="https://opencollective.com/OnionBrowser/sponsor/7/avatar.svg"></a>
+<a href="https://opencollective.com/OnionBrowser/sponsor/8/website" target="_blank"><img src="https://opencollective.com/OnionBrowser/sponsor/8/avatar.svg"></a>
+<a href="https://opencollective.com/OnionBrowser/sponsor/9/website" target="_blank"><img src="https://opencollective.com/OnionBrowser/sponsor/9/avatar.svg"></a>
+
 
