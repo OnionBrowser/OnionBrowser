@@ -167,6 +167,8 @@ SILENCE_WARNINGS_OFF
 	
 	XLFormDescriptor *form = [XLFormDescriptor formDescriptorWithTitle:[host hostname]];
 
+	HostSettingsXLFormViewController *formController = [[HostSettingsXLFormViewController alloc] initWithForm:form];
+
 	/* hostname */
 	{
 		XLFormSectionDescriptor *section = [XLFormSectionDescriptor formSection];
@@ -211,7 +213,24 @@ SILENCE_WARNINGS_OFF
 		{
 			XLFormRowDescriptor *row = [XLFormRowDescriptor formRowDescriptorWithTag:HOST_SETTINGS_KEY_ALLOW_WEBRTC rowType:XLFormRowDescriptorTypeSelectorActionSheet title:NSLocalizedString(@"Allow WebRTC", nil)];
 			[self setYesNoSelectorOptionsForSetting:HOST_SETTINGS_KEY_ALLOW_WEBRTC host:host row:row withDefault:(![host isDefault])];
-			
+
+			row.onChangeBlock = ^(XLFormOptionsObject * _Nullable oldValue, XLFormOptionsObject * _Nullable newValue, XLFormRowDescriptor * _Nonnull rowDescriptor) {
+				if ([newValue.formValue isEqual:HOST_SETTINGS_VALUE_YES]) {
+					XLFormRowDescriptor *row = [form formRowWithTag:HOST_SETTINGS_KEY_CSP];
+
+					if ([((XLFormOptionsObject *)row.value).formValue isEqual:HOST_SETTINGS_CSP_STRICT]) {
+						for (XLFormOptionsObject *opt in row.selectorOptions) {
+							if ([opt.valueData isEqual:HOST_SETTINGS_CSP_BLOCK_CONNECT]) {
+								row.value = opt;
+								break;
+							}
+						}
+
+						[formController reloadFormRow: row];
+					}
+				}
+			};
+
 			section = [XLFormSectionDescriptor formSection];
 			[section setTitle:@""];
 			[section setFooterTitle:([host isDefault]
@@ -308,7 +327,22 @@ SILENCE_WARNINGS_OFF
 			for (XLFormOptionsObject *opt in opts)
 				if ([[opt valueData] isEqualToString:val])
 					[row setValue:opt];
-			
+
+			row.onChangeBlock = ^(XLFormOptionsObject * _Nullable oldValue, XLFormOptionsObject * _Nullable newValue, XLFormRowDescriptor * _Nonnull rowDescriptor) {
+				if ([newValue.formValue isEqual:HOST_SETTINGS_CSP_STRICT]) {
+					XLFormRowDescriptor *row = [form formRowWithTag:HOST_SETTINGS_KEY_ALLOW_WEBRTC];
+
+					for (XLFormOptionsObject *opt in row.selectorOptions) {
+						if ([opt.valueData isEqual:HOST_SETTINGS_VALUE_NO]) {
+							row.value = opt;
+							break;
+						}
+					}
+
+					[formController reloadFormRow: row];
+				}
+			};
+
 			section = [XLFormSectionDescriptor formSection];
 			[section setTitle:@""];
 			[section setFooterTitle:([host isDefault]
@@ -364,7 +398,6 @@ SILENCE_WARNINGS_OFF
 		}
 	}
 
-	HostSettingsXLFormViewController *formController = [[HostSettingsXLFormViewController alloc] initWithForm:form];
 	[formController setDisappearCallback:^(HostSettingsXLFormViewController *form) {
 		if (![host isDefault])
 			[host setHostname:[[form formValues] objectForKey:HOST_SETTINGS_KEY_HOST]];
