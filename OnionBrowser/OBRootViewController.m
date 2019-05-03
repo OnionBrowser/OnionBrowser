@@ -191,7 +191,10 @@
 
     [self dismissViewControllerAnimated: YES completion: ^{
         appDelegate.window.rootViewController = appDelegate.webViewController;
-        [appDelegate.webViewController viewIsVisible];
+
+		[TabSecurity restore];
+
+		[appDelegate.webViewController viewIsVisible];
     }];
 }
 

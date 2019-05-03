@@ -109,20 +109,13 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-
 	if (![self areTesting]) {
 		[HostSettings persist];
 		[[self hstsCache] persist];
 	}
 	
-	if ([userDefaults boolForKey:@"clear_on_background"]) {
-		[[self webViewController] removeAllTabs];
-		[[self cookieJar] clearAllNonWhitelistedData];
-	}
-	else
-		[[self cookieJar] clearAllOldNonWhitelistedData];
-	
+	[TabSecurity handleBackgrounding];
+
 	[application ignoreSnapshotOnNextApplicationLaunch];
 
     if (OnionManager.shared.state != TorStateStopped) {
@@ -229,12 +222,8 @@
 {
 	if ([self areTesting])
 		return NO;
-	
-	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	if ([userDefaults boolForKey:@"clear_on_background"])
-		return NO;
 
-	return YES;
+	return !TabSecurity.isClearOnBackground;
 }
 
 - (NSArray<UIKeyCommand *> *)keyCommands
