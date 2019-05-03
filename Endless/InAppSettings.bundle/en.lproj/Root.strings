@@ -21,7 +21,7 @@
 "Tab Security" = "Tab Security";
 "Always remember open tabs" = "Always remember open tabs";
 "Forget tabs when app shuts down" = "Forget tabs when app shuts down";
-"Forget tabs when app is sent into background" = "Forget tabs when app is sent into background";
+"Forget tabs when app in background" = "Forget tabs when app in background";
 "Changing this option requires restarting the app" = "Changing this option requires restarting the app";
 "Allow 3rd party keyboards" = "Allow 3rd party keyboards";
 "Report a bug" = "Report a bug";

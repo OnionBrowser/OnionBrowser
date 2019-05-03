@@ -150,28 +150,28 @@
 			<key>FooterText</key>
 			<string>Choose, how long app remembers open tabs.</string>
 		</dict>
-        <dict>
-            <key>Key</key>
-            <string>tab_security</string>
-            <key>Title</key>
-            <string>Tab Security</string>
-            <key>Type</key>
-            <string>PSMultiValueSpecifier</string>
-            <key>DefaultValue</key>
-            <string>forget_on_shutdown</string>
-            <key>Values</key>
-            <array>
-                <string>always_remember</string>
-                <string>forget_on_shutdown</string>
-                <string>clear_on_background</string>
-            </array>
-            <key>Titles</key>
-            <array>
-                <string>Always remember open tabs</string>
-                <string>Forget tabs when app shuts down</string>
-                <string>Forget tabs when app is sent into background</string>
-            </array>
-        </dict>
+		<dict>
+			<key>Key</key>
+			<string>tab_security</string>
+			<key>Title</key>
+			<string>Tab Security</string>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>DefaultValue</key>
+			<string>forget_on_shutdown</string>
+			<key>Values</key>
+			<array>
+				<string>always_remember</string>
+				<string>forget_on_shutdown</string>
+				<string>clear_on_background</string>
+			</array>
+			<key>Titles</key>
+			<array>
+				<string>Always remember open tabs</string>
+				<string>Forget tabs when app shuts down</string>
+				<string>Forget tabs when app in background</string>
+			</array>
+		</dict>
 		<dict>
 			<key>Title</key>
 			<string></string>
