@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) CFStringRef uti;
 
 /**
- Document at UIWebView's url is an document like a PDF or DOC or plain-text,
+ Document at UIWebView's url is a document like a PDF or DOC or plain-text,
  or an image or video, BUT NOT markup (HTML and XML).
  */
 @property (nonatomic, readonly) BOOL isDocument;
@@ -36,12 +36,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) BOOL isImageOrAv;
 
 /**
- Document at UIWebView's url is a HTML or XML.
+ Document at UIWebView's url is HTML or XML.
  */
 @property (nonatomic, readonly) BOOL isMarkup;
 
 /**
- The raw data from document itself.
+ The raw data from the document itself.
  */
 @property (nonatomic) NSData *content;
 

@@ -170,11 +170,11 @@
 {
 	CFStringRef uti = self.uti;
 
-	Boolean isHtml = UTTypeConformsTo(uti, kUTTypeText);
+	Boolean isText = UTTypeConformsTo(uti, kUTTypeText);
 
 	CFRelease(uti);
 
-	return !!isHtml;
+	return !!isText;
 }
 
 - (BOOL)isMarkup
