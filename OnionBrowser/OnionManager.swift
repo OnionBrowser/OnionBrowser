@@ -368,7 +368,7 @@ import Foundation
                 print("[\(String(describing: OnionManager.self))] cookie=", cookie)
             #endif
 
-            self.torController!.authenticate(with: cookie, completion: { (success, error) in
+            self.torController?.authenticate(with: cookie, completion: { (success, error) in
                 if success {
                     var completeObs: Any?
                     completeObs = self.torController?.addObserver(forCircuitEstablished: { (established) in
