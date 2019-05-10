@@ -53,10 +53,10 @@ PODS:
     - DTFoundation/Core
   - InAppSettingsKit (2.10)
   - KMPlaceholderTextView (1.4.0)
-  - Localize (2.2.0)
+  - Localize (2.3.0)
   - OCMock (3.4.3)
   - OrderedDictionary (1.4)
-  - POE (0.5.3):
+  - POE (0.5.4):
     - KMPlaceholderTextView (~> 1.4)
     - Localize (~> 2.2)
     - UIColor-HexRGB
@@ -108,10 +108,10 @@ SPEC CHECKSUMS:
   DTFoundation: f03be9fd786f11e505bb8fc44e2a3732bf0917df
   InAppSettingsKit: d965e29be941eb19857271e4625de3fba6e23c9f
   KMPlaceholderTextView: 2206c3df39979e9396e2d96fa9f427a8951121b0
-  Localize: db1c46fb0f275cee2ec63bcdf194c567d8fda6c0
+  Localize: cb1ae53ed73decaad0dce217806ed983091913f5
   OCMock: 43565190abc78977ad44a61c0d20d7f0784d35ab
   OrderedDictionary: 138c8d2e358d3a0c9adda15c6c7db24e8e3b09e6
-  POE: 9e8a4c63731ff4481eeb18cd3e3a04332278fd31
+  POE: 6765381e09b3a2d424b618e0ae46e8ec3f7ce4b6
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
   UIColor-HexRGB: daccfa7e936af664369734a164b0309087d7f970
   VForceTouch: b5c3a28625269e1818cf915728173bda9f669d6b
