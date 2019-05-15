@@ -303,8 +303,8 @@ SILENCE_WARNINGS_OFF
 					[row setValue:opt];
 			
 			[section setFooterTitle:([host isDefault]
-                                     ? NSLocalizedString(@"Minimum version of TLS required by hosts to negotiate HTTPS connections", nil)
-                                     : NSLocalizedString(@"Minimum version of TLS required by this host to negotiate HTTPS connections", nil))];
+                                     ? NSLocalizedString(@"Minimum version of TLS required for hosts to negotiate HTTPS connections", nil)
+                                     : NSLocalizedString(@"Minimum version of TLS required for this host to negotiate HTTPS connections", nil))];
 			[section addFormRow:row];
 		}
 		
