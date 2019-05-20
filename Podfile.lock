@@ -56,7 +56,7 @@ PODS:
   - Localize (2.3.0)
   - OCMock (3.4.3)
   - OrderedDictionary (1.4)
-  - POE (0.5.5):
+  - POE (0.5.6):
     - KMPlaceholderTextView (~> 1.4)
     - Localize (~> 2.2)
     - UIColor-HexRGB
@@ -111,7 +111,7 @@ SPEC CHECKSUMS:
   Localize: cb1ae53ed73decaad0dce217806ed983091913f5
   OCMock: 43565190abc78977ad44a61c0d20d7f0784d35ab
   OrderedDictionary: 138c8d2e358d3a0c9adda15c6c7db24e8e3b09e6
-  POE: 2cb31b354de0c166ac3709700cdc2400776b4931
+  POE: 6ed1114a4fcd5bd62a3f896c80e10527062b30ca
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
   UIColor-HexRGB: daccfa7e936af664369734a164b0309087d7f970
   VForceTouch: b5c3a28625269e1818cf915728173bda9f669d6b

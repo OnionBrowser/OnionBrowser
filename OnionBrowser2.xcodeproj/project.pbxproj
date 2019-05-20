@@ -259,6 +259,9 @@
 		8AD5FFB81EB3DFE30066E7E3 /* ObfsThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ObfsThread.h; path = OnionBrowser/ObfsThread.h; sourceTree = "<group>"; };
 		8AD5FFB91EB3DFE30066E7E3 /* ObfsThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ObfsThread.m; path = OnionBrowser/ObfsThread.m; sourceTree = "<group>"; };
 		8AF16094202CD6D600AC0BCE /* block_webrtc.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = block_webrtc.js; path = OnionBrowser/block_webrtc.js; sourceTree = "<group>"; };
+		A001CD302292C46300F8B092 /* fa */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fa; path = fa.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A001CD312292C46500F8B092 /* sq */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sq; path = sq.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A001CD352292C46B00F8B092 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A00436091E81856F0067652D /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		A004360A1E81856F0067652D /* Cartfile.resolved */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile.resolved; sourceTree = "<group>"; };
 		A004360B1E81856F0067652D /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -1170,6 +1173,7 @@
 			projectRoot = "";
 			targets = (
 				01801E911A32CA2A002B4718 /* OnionBrowser2 */,
+				A03DBCDC22858BBA001890C4 /* Sinkhole */,
 				018333D61A35727C00670CD1 /* OnionBrowser2 Tests */,
 				8AC3B3A721700AD300E0CB4A /* OBVersion */,
 			);
@@ -1597,6 +1601,9 @@
 				A03DBCB322857D68001890C4 /* zh-Hant */,
 				A03DBCBF22857DF5001890C4 /* el */,
 				A0AE9774228C619E00DFF1E3 /* ca-ES */,
+				A001CD302292C46300F8B092 /* fa */,
+				A001CD312292C46500F8B092 /* sq */,
+				A001CD352292C46B00F8B092 /* uk */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

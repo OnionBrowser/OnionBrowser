@@ -4,7 +4,7 @@ host = https://www.transifex.com
 [onion-browser.localizablestrings]
 file_filter = Endless/<lang>.lproj/Localizable.strings
 source_file = Endless/Base.lproj/Localizable.strings
-source_lang = en
+source_lang = en_US
 trans.ar = Endless/ar-001.lproj/Localizable.strings
 trans.ca = Endless/ca-ES.lproj/Localizable.strings
 trans.hu_HU = Endless/hu-HU.lproj/Localizable.strings
@@ -16,7 +16,7 @@ type = STRING
 [onion-browser.onepasswordextensionstrings]
 file_filter = Endless/<lang>.lproj/OnePasswordExtension.strings
 source_file = Endless/Base.lproj/OnePasswordExtension.strings
-source_lang = en
+source_lang = en_US
 trans.ar = Endless/ar-001.lproj/OnePasswordExtension.strings
 trans.ca = Endless/ca-ES.lproj/OnePasswordExtension.strings
 trans.hu_HU = Endless/hu-HU.lproj/OnePasswordExtension.strings
@@ -28,7 +28,7 @@ type = STRING
 [onion-browser.rootstrings]
 file_filter = Endless/InAppSettings.bundle/<lang>.lproj/Root.strings
 source_file = Endless/InAppSettings.bundle/en.lproj/Root.strings
-source_lang = en
+source_lang = en_US
 trans.ar = Endless/InAppSettings.bundle/ar-001.lproj/Root.strings
 trans.ca = Endless/InAppSettings.bundle/ca-ES.lproj/Root.strings
 trans.hu_HU = Endless/InAppSettings.bundle/hu-HU.lproj/Root.strings
@@ -40,7 +40,7 @@ type = STRING
 [onion-browser.appstorestringsmd]
 file_filter = AppStore/<lang>.lproj/AppStoreStrings.md
 source_file = AppStore/Base.lproj/AppStoreStrings.md
-source_lang = en
+source_lang = en_US
 trans.ar = AppStore/ar-001.lproj/AppStoreStrings.md
 trans.ca = AppStore/ca-ES.lproj/AppStoreStrings.md
 trans.hu_HU = AppStore/hu-HU.lproj/AppStoreStrings.md
@@ -53,7 +53,7 @@ type = GITHUBMARKDOWN
 file_filter = Endless/<lang>.lproj/InfoPlist.strings
 minimum_perc = 0
 source_file = Endless/en.lproj/InfoPlist.strings
-source_lang = en
+source_lang = en_US
 type = STRINGS
 trans.ar = Endless/ar-001.lproj/InfoPlist.strings
 trans.ca = Endless/ca-ES.lproj/InfoPlist.strings
