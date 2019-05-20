@@ -9,6 +9,7 @@
 #import "WebViewTab+Activity.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <objc/runtime.h>
+#import "URLInterceptor.h"
 
 @implementation WebViewTab (Activity)
 
@@ -17,6 +18,9 @@
 	if (!self.downloadStarted)
 	{
 		// TODO: This bypasses Tor! Not ready for production!
+		NSURLSessionConfiguration *conf = NSURLSessionConfiguration.defaultSessionConfiguration;
+		conf.protocolClasses = @[[URLInterceptor class]];
+
 		NSURLSession *session = [NSURLSession sessionWithConfiguration:
 								 NSURLSessionConfiguration.defaultSessionConfiguration];
 
