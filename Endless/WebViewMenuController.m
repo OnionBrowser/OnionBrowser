@@ -21,6 +21,15 @@
 #import "OnePasswordExtension.h"
 #import "TUSafariActivity.h"
 
+#ifdef SHOW_DONATION_CONTROLLER
+#ifdef __OBJC__
+#import "OnionBrowser-Swift.h"
+#import <StoreKit/SKPaymentQueue.h>
+#import <StoreKit/StoreKit.h>
+#endif
+#endif
+
+
 @implementation WebViewMenuController {
 	AppDelegate *appDelegate;
 	IASKAppSettingsViewController *appSettingsViewController;
@@ -54,8 +63,11 @@ NSString * const LABEL = @"L";
 	[buttons addObject:@{ FUNC : @"menuHTTPSEverywhere", LABEL : NSLocalizedString(@"HTTPS Everywhere", nil) }];
 	[buttons addObject:@{ FUNC : @"menuHostSettings", LABEL : NSLocalizedString(@"Host Settings", nil) }];
 	[buttons addObject:@{ FUNC : @"menuSettings", LABEL : NSLocalizedString(@"Global Settings", nil) }];
-    [buttons addObject:@{ FUNC : @"bridgeSettings", LABEL : NSLocalizedString(@"Bridge Configuration", nil) }];
-
+	[buttons addObject:@{ FUNC : @"bridgeSettings", LABEL : NSLocalizedString(@"Bridge Configuration", nil) }];
+#ifdef SHOW_DONATION_CONTROLLER
+	[buttons addObject:@{ FUNC : @"menuDonation", LABEL : NSLocalizedString(@"Fund Development", nil) }];
+#endif
+	
 	[self.view setBackgroundColor:[UIColor clearColor]];
 	[self.tableView setSeparatorInset:UIEdgeInsetsZero];
 	
@@ -232,6 +244,16 @@ NSString * const LABEL = @"L";
 {
 	[[appDelegate webViewController] showBookmarksForEditing:YES];
 }
+
+#ifdef SHOW_DONATION_CONTROLLER
+- (void)menuDonation
+{
+	DonationViewController *dvc = [[DonationViewController alloc] init];
+	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:dvc];
+	[[appDelegate webViewController] presentViewController:navController animated:YES completion:nil];
+}
+#endif
+
 
 - (void)menuSettings
 {

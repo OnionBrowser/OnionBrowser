@@ -15,9 +15,9 @@ Please see the [LICENSE][license] file for usage and redistribution terms. As of
 
 ---
 
-* **Onion Browser**: 2.2.0 - See [official release history][releases] and [changelog][changelog].
+* **Onion Browser**: 2.2.1 - See [official release history][releases] and [changelog][changelog].
 * **[Endless][endless]** upstream: 1.6.1
-* **[Tor.framework][Tor.framework]**: 35.2.1
+* **[Tor.framework][Tor.framework]**: 305.8.1
   * **[Tor][tor]**: 0.3.5.8
   * **[libevent][libevent]**: 2.1.8
   * **[OpenSSL][openssl]**: 1.1.0i

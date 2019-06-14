@@ -82,6 +82,7 @@
 		69CBCD4F1E93451C009D5352 /* urlblocker.json in Resources */ = {isa = PBXBuildFile; fileRef = 69CBCD4E1E93451C009D5352 /* urlblocker.json */; };
 		69CBCD521E9347B8009D5352 /* UIResponder+FirstResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CBCD511E9347B8009D5352 /* UIResponder+FirstResponder.m */; };
 		69EFCCA21EAD20CB00280747 /* OBRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69EFCCA11EAD20CB00280747 /* OBRootViewController.m */; };
+		8A9BD4022294507C00230DF9 /* DonationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9BD4012294507C00230DF9 /* DonationViewController.swift */; };
 		8ACB70CF1FA1369A001E5588 /* Iobfs4proxy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ACB70CE1FA1369A001E5588 /* Iobfs4proxy.framework */; };
 		8ACB70D21FA136F0001E5588 /* geoip in Resources */ = {isa = PBXBuildFile; fileRef = 8ACB70D01FA136F0001E5588 /* geoip */; };
 		8ACB70D31FA136F0001E5588 /* geoip6 in Resources */ = {isa = PBXBuildFile; fileRef = 8ACB70D11FA136F0001E5588 /* geoip6 */; };
@@ -246,6 +247,7 @@
 		8A3F82F2201904100088F205 /* fa */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fa; path = Endless/fa.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
 		8A3F82F3201904170088F205 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = Endless/is.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
 		8A3F82F42019041E0088F205 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "Endless/zh-Hans.lproj/OnePasswordExtension.strings"; sourceTree = "<group>"; };
+		8A9BD4012294507C00230DF9 /* DonationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DonationViewController.swift; path = OnionBrowser/DonationViewController.swift; sourceTree = "<group>"; };
 		8AC3B3A621700A9D00E0CB4A /* version.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = version.h; path = OnionBrowser/version.h; sourceTree = "<group>"; };
 		8ACB70CE1FA1369A001E5588 /* Iobfs4proxy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Iobfs4proxy.framework; path = Carthage/Build/iOS/Iobfs4proxy.framework; sourceTree = "<group>"; };
 		8ACB70D01FA136F0001E5588 /* geoip */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = geoip; sourceTree = "<group>"; };
@@ -721,6 +723,7 @@
 				8AC3B3A621700A9D00E0CB4A /* version.h */,
 				8AD128411ED6182A005C43E4 /* ThirdParty */,
 				8ACB70CE1FA1369A001E5588 /* Iobfs4proxy.framework */,
+				8A9BD4012294507C00230DF9 /* DonationViewController.swift */,
 			);
 			name = OnionBrowser;
 			sourceTree = "<group>";
@@ -1396,6 +1399,7 @@
 				691286ED1EABF2B400CEC414 /* OnionManager.swift in Sources */,
 				01F7CB4E1A52FC4E00F42B73 /* NSString+IPAddress.m in Sources */,
 				014E68A81B9BEDDC00D98A0A /* HostSettings.m in Sources */,
+				8A9BD4022294507C00230DF9 /* DonationViewController.swift in Sources */,
 				0135F47F1A3E548F005A8F16 /* WebViewTab.m in Sources */,
 				A07D654B2208A0C10002D775 /* OBSettingsConstants.m in Sources */,
 				A07D65532208A17E0002D775 /* Bridge.m in Sources */,
