@@ -21,12 +21,13 @@
 #import "OnePasswordExtension.h"
 #import "TUSafariActivity.h"
 
-#ifdef SHOW_DONATION_CONTROLLER
 #ifdef __OBJC__
 #import "OnionBrowser-Swift.h"
+#endif
+
+#ifdef SHOW_DONATION_CONTROLLER
 #import <StoreKit/SKPaymentQueue.h>
 #import <StoreKit/StoreKit.h>
-#endif
 #endif
 
 

@@ -29,14 +29,11 @@ import StoreKit
 		super.viewDidLoad()
 		
 		self.title = "Donate"
-		self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(title: "Done", style: .done, target: self, action: Selector("dismiss:"))
+		self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(title: "Done", style: .done, target: self, action: #selector(self.dismissView))
 		
-		// Fetch IAP Products available
 		fetchAvailableProducts()
 	}
-	
-	
-	
+
 	override public func numberOfSections(in tableView: UITableView) -> Int {
 		if (iapProducts.isEmpty) {
 			return 1
@@ -155,24 +152,9 @@ import StoreKit
 		}
 	}
 	
-	
-	
-	/*
-	// MARK: -  BUY 10 COINS BUTTON
-	@IBAction func buy10coinsButt(_ sender: Any) {
-	purchaseMyProduct(product: iapProducts[0])
-	}
-	
-	// MARK: - UNLOCK PREMIUM BUTTON
-	@IBAction func unlockPremiumButt(_ sender: Any) {
-	purchaseMyProduct(product: iapProducts[1])
-	}
-	*/
-	
 	// MARK: - FETCH AVAILABLE IAP PRODUCTS
 	public func fetchAvailableProducts()  {
 		
-		// Put here your IAP Products ID's
 		let productIdentifiers = NSSet(objects:
 			TIER_0_99, TIER_4_99, TIER_9_99
 		)
@@ -191,9 +173,6 @@ import StoreKit
 		}
 	}
 	
-	
-	
-	
 	// MARK: - MAKE PURCHASE OF A PRODUCT
 	func makeDonation(product: SKProduct) {
 		if SKPaymentQueue.canMakePayments() {
@@ -204,8 +183,6 @@ import StoreKit
 			print("PRODUCT TO PURCHASE: \(product.productIdentifier)")
 			product_to_pay = product
 			
-			
-			// IAP Purchases dsabled on the Device
 		} else {
 			let alert = UIAlertController(title: "Purchase Failure",
 										  message: "Sorry, in-app purchase is disabled on your device!",
@@ -267,11 +244,10 @@ import StoreKit
 	}
 	
 	
-	
-	
-	
-	
-	
+	@objc private func dismissView() {
+		dismiss(animated: true, completion: nil)
+	}
+
 	override public func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
 		// Dispose of any resources that can be recreated.
