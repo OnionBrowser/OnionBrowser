@@ -12,6 +12,7 @@ trans.pt_BR = Endless/pt-BR.lproj/Localizable.strings
 trans.pt_PT = Endless/pt-PT.lproj/Localizable.strings
 trans.tr_TR = Endless/tr-TR.lproj/Localizable.strings
 type = STRING
+minimum_perc = 75
 
 [onion-browser.onepasswordextensionstrings]
 file_filter = Endless/<lang>.lproj/OnePasswordExtension.strings
@@ -24,6 +25,7 @@ trans.pt_BR = Endless/pt-BR.lproj/OnePasswordExtension.strings
 trans.pt_PT = Endless/pt-PT.lproj/OnePasswordExtension.strings
 trans.tr_TR = Endless/tr-TR.lproj/OnePasswordExtension.strings
 type = STRING
+minimum_perc = 75
 
 [onion-browser.rootstrings]
 file_filter = Endless/InAppSettings.bundle/<lang>.lproj/Root.strings
@@ -36,6 +38,7 @@ trans.pt_BR = Endless/InAppSettings.bundle/pt-BR.lproj/Root.strings
 trans.pt_PT = Endless/InAppSettings.bundle/pt-PT.lproj/Root.strings
 trans.tr_TR = Endless/InAppSettings.bundle/tr-TR.lproj/Root.strings
 type = STRING
+minimum_perc = 75
 
 [onion-browser.appstorestringsmd]
 file_filter = AppStore/<lang>.lproj/AppStoreStrings.md
@@ -48,6 +51,7 @@ trans.pt_BR = AppStore/pt-BR.lproj/AppStoreStrings.md
 trans.pt_PT = AppStore/pt-PT.lproj/AppStoreStrings.md
 trans.tr_TR = AppStore/tr-TR.lproj/AppStoreStrings.md
 type = GITHUBMARKDOWN
+minimum_perc = 75
 
 [onion-browser.infoplist-strings]
 file_filter = Endless/<lang>.lproj/InfoPlist.strings
@@ -61,3 +65,4 @@ trans.hu_HU = Endless/hu-HU.lproj/InfoPlist.strings
 trans.pt_BR = Endless/pt-BR.lproj/InfoPlist.strings
 trans.pt_PT = Endless/pt-PT.lproj/InfoPlist.strings
 trans.tr_TR = Endless/tr-TR.lproj/InfoPlist.strings
+minimum_perc = 75
