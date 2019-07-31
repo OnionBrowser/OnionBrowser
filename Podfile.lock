@@ -55,11 +55,16 @@ PODS:
   - KMPlaceholderTextView (1.4.0)
   - Localize (2.3.0)
   - OCMock (3.4.3)
+  - OCSPCache (0.1.0):
+    - OpenSSL-Universal (= 1.0.2.17)
+    - ReactiveObjC (= 3.1.1)
+  - OpenSSL-Universal (1.0.2.17)
   - OrderedDictionary (1.4)
   - POE (0.5.7):
     - KMPlaceholderTextView (~> 1.4)
     - Localize (~> 2.2)
     - UIColor-HexRGB
+  - ReactiveObjC (3.1.1)
   - TUSafariActivity (1.0.4)
   - UIColor-HexRGB (1.0.1)
   - VForceTouch (0.0.2)
@@ -70,6 +75,7 @@ DEPENDENCIES:
   - DTFoundation
   - InAppSettingsKit (~> 2.12)
   - OCMock
+  - OCSPCache (from `https://github.com/Psiphon-Labs/OCSPCache`)
   - OrderedDictionary
   - POE (~> 0.5)
   - TUSafariActivity
@@ -85,19 +91,26 @@ SPEC REPOS:
     - KMPlaceholderTextView
     - Localize
     - OCMock
+    - OpenSSL-Universal
     - OrderedDictionary
     - POE
+    - ReactiveObjC
     - TUSafariActivity
     - UIColor-HexRGB
     - VForceTouch
 
 EXTERNAL SOURCES:
+  OCSPCache:
+    :git: https://github.com/Psiphon-Labs/OCSPCache
   WYPopoverController:
     :git: https://github.com/sammcewan/WYPopoverController.git
   XLForm:
     :git: https://github.com/jcs/XLForm.git
 
 CHECKOUT OPTIONS:
+  OCSPCache:
+    :commit: b945a5784cd88ed5693a62a931617bd371f3c9a8
+    :git: https://github.com/Psiphon-Labs/OCSPCache
   WYPopoverController:
     :commit: 9b8011bd95bd95f6fca6a0afa78965fbf645a062
     :git: https://github.com/sammcewan/WYPopoverController.git
@@ -111,14 +124,17 @@ SPEC CHECKSUMS:
   KMPlaceholderTextView: 2206c3df39979e9396e2d96fa9f427a8951121b0
   Localize: cb1ae53ed73decaad0dce217806ed983091913f5
   OCMock: 43565190abc78977ad44a61c0d20d7f0784d35ab
+  OCSPCache: 96237607aa9f77ba2fd9119e383b9fb1ef41cfa2
+  OpenSSL-Universal: ff04c2e6befc3f1247ae039e60c93f76345b3b5a
   OrderedDictionary: 138c8d2e358d3a0c9adda15c6c7db24e8e3b09e6
   POE: a90b4ad4e3684a31e5df031c9ba382ddbf59cdd5
+  ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
   UIColor-HexRGB: daccfa7e936af664369734a164b0309087d7f970
   VForceTouch: b5c3a28625269e1818cf915728173bda9f669d6b
   WYPopoverController: a9db25ac2841a686acdc0f3a99bdb21545db32f4
   XLForm: d5c391dfc62865927b5bcab0a5a0dbfb3e02b0ec
 
-PODFILE CHECKSUM: abac948b6872f84f0f04c26d3f00da680f3306cc
+PODFILE CHECKSUM: 1e0e10adaac7ab95a301f15f119a2b31ca329c61
 
 COCOAPODS: 1.7.5

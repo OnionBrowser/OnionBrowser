@@ -46,6 +46,7 @@
  */
 
 @import Foundation;
+#import "WebViewTab.h"
 
 #define CONTENT_TYPE_OTHER	0
 #define CONTENT_TYPE_HTML	1
@@ -116,8 +117,8 @@
 + (void)temporarilyAllowURL:(NSURL *__nullable)url
 			  forWebViewTab:(WebViewTab *__nullable)webViewTab;
 
-+ (void)temporarilyAllowURL:(NSURL *)url
-			  forWebViewTab:(WebViewTab*)webViewTab
++ (void)temporarilyAllowURL:(NSURL *_Nullable)url
+			  forWebViewTab:(WebViewTab *_Nullable)webViewTab
 			  isOCSPRequest:(BOOL)isOCSPRequest;
 
 @end

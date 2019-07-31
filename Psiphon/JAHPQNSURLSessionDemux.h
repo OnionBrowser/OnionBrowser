@@ -46,6 +46,7 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "DownloadHelper.h"
 
 /*! A simple class for demultiplexing NSURLSession delegate callbacks to a per-task delegate object.
 

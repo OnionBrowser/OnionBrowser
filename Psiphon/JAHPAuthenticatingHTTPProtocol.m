@@ -56,6 +56,9 @@
 #import "JAHPCacheStoragePolicy.h"
 #import "JAHPQNSURLSessionDemux.h"
 
+#import "AppDelegate.h"
+#import "HostSettings.h"
+
 // I use the following typedef to keep myself sane in the face of the wacky
 // Objective-C block syntax.
 
@@ -338,38 +341,39 @@ static JAHPQNSURLSessionDemux *sharedDemuxInstance = nil;
 	// Set TLSMinimumSupportedProtocol from user settings.
 	// NOTE: TLSMaximumSupportedProtocol is always set to the max supported by the system
 	// by default so there is no need to set it.
-	NSString *tlsVersion = [[NSUserDefaults standardUserDefaults] stringForKey:kMinTlsVersion];
+	NSString *tlsVersion = [HostSettings.defaultHostSettings setting:HOST_SETTINGS_KEY_TLS];
 
-	if ([tlsVersion isEqualToString:kMinTlsVersionTLS_1_2]) {
+	if ([tlsVersion isEqualToString:HOST_SETTINGS_TLS_12]) {
 		config.TLSMinimumSupportedProtocol = kTLSProtocol12;
-	} else if ([tlsVersion isEqualToString:kMinTlsVersionTLS_1_1]){
-		config.TLSMinimumSupportedProtocol = kTLSProtocol11;
-	} else if ([tlsVersion isEqualToString:kMinTlsVersionTLS_1_0]){
-		config.TLSMinimumSupportedProtocol = kTLSProtocol1;
-	} else {
-		// Have a safe default if userDefaults are corrupted
-		// or have a deprecated value for kMinTlsVersion
+	}
+	else {
 		config.TLSMinimumSupportedProtocol = kTLSProtocol1;
 	}
 
 	// Set proxy
 	NSString* proxyHost = @"localhost";
-	NSNumber* socksProxyPort = [NSNumber numberWithInt: (int)[AppDelegate sharedAppDelegate].socksProxyPort];
-	NSNumber* httpProxyPort = [NSNumber numberWithInt: (int)[AppDelegate sharedAppDelegate].httpProxyPort];
+	NSInteger socksProxyPort = AppDelegate.sharedAppDelegate.socksProxyPort;
+	NSInteger httpProxyPort = AppDelegate.sharedAppDelegate.httpProxyPort;
+	NSMutableDictionary *proxyDict = [@{} mutableCopy];
 
-	NSDictionary *proxyDict = @{
-								@"SOCKSEnable" : [NSNumber numberWithInt:0],
-								(NSString *)kCFStreamPropertySOCKSProxyHost : proxyHost,
-								(NSString *)kCFStreamPropertySOCKSProxyPort : socksProxyPort,
+	if (socksProxyPort > 0) {
+		proxyDict[@"SOCKSEnable"] = @YES;
+		proxyDict[(NSString *)kCFStreamPropertySOCKSProxyHost] = proxyHost;
+		proxyDict[(NSString *)kCFStreamPropertySOCKSProxyPort] = [NSNumber numberWithInteger: socksProxyPort];
+	}
 
-								@"HTTPEnable"  : [NSNumber numberWithInt:1],
-								(NSString *)kCFStreamPropertyHTTPProxyHost  : proxyHost,
-								(NSString *)kCFStreamPropertyHTTPProxyPort  : httpProxyPort,
+	if (httpProxyPort > 0) {
+SILENCE_DEPRECATION_ON
+		proxyDict[@"HTTPEnable"] = @YES;
+		proxyDict[(NSString *)kCFStreamPropertyHTTPProxyHost] = proxyHost;
+		proxyDict[(NSString *)kCFStreamPropertyHTTPProxyPort] = [NSNumber numberWithInteger: httpProxyPort];
 
-								@"HTTPSEnable" : [NSNumber numberWithInt:1],
-								(NSString *)kCFStreamPropertyHTTPSProxyHost : proxyHost,
-								(NSString *)kCFStreamPropertyHTTPSProxyPort : httpProxyPort,
-								};
+		proxyDict[@"HTTPSEnable"] = @YES;
+		proxyDict[(NSString *)kCFStreamPropertyHTTPSProxyHost] = proxyHost;
+		proxyDict[(NSString *)kCFStreamPropertyHTTPSProxyPort] = [NSNumber numberWithInteger: httpProxyPort];
+SILENCE_WARNINGS_OFF
+	}
+
 	config.connectionProxyDictionary = proxyDict;
 
 	return config;
@@ -545,7 +549,7 @@ static NSString * kJAHPRecursiveRequestFlagProperty = @"com.jivesoftware.JAHPAut
 
 				UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedStringWithDefaultValue(@"OK_ACTION", nil, [NSBundle mainBundle], @"OK", @"OK action") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
 					[[self class] authenticatingHTTPProtocol:self logWithFormat:@"opening in 3rd party app: %@", [request URL]];
-					[[UIApplication sharedApplication] openURL:[request URL]];
+					[UIApplication.sharedApplication openURL:[request URL] options:@{} completionHandler:nil];
 				}];
 
 				UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedStringWithDefaultValue(@"CANCEL_ACTION", nil, [NSBundle mainBundle], @"Cancel", @"Cancel action") style:UIAlertActionStyleCancel handler:nil];
@@ -596,28 +600,13 @@ static NSString * kJAHPRecursiveRequestFlagProperty = @"com.jivesoftware.JAHPAut
 	}
 
 	/* we're handling cookies ourself */
-	[mutableRequest setHTTPShouldHandleCookies:NO];
-	NSString *cookiePolicy = [CookieJar cookiePolicy];
+	mutableRequest.HTTPShouldHandleCookies = NO;
+	NSArray *cookies = [AppDelegate.sharedAppDelegate.cookieJar cookiesForURL:mutableRequest.URL forTab:_wvt.hash];
 
-	// Do not send any cookies if current policy is to block all
-	if (![cookiePolicy isEqualToString:kAlwaysBlock]) {
-		NSArray<NSHTTPCookie *> *cookies = nil;
-
-		if ([cookiePolicy isEqualToString:kAllowWebsitesIVisit] || [cookiePolicy isEqualToString:kAlwaysAllow]) {
-			// always send if matching cookies found in the jar
-			cookies = [CookieJar cookiesForURL:[mutableRequest URL]];
-		} else if ([cookiePolicy isEqualToString:kAllowCurrentWebsiteOnly]) {
-			// only send if request URL is of same origin as mainDocumentURL
-			if([CookieJar isSameOrigin:[mutableRequest URL] toURL: [mutableRequest mainDocumentURL]]) {
-				cookies = [CookieJar cookiesForURL:[mutableRequest URL]];
-			}
-		}
-
-		if (cookies != nil && [cookies count] > 0) {
-			[[self class] authenticatingHTTPProtocol:self logWithFormat:@"[Tab %@] sending %lu cookie(s) to %@", _wvt.tabIndex, (unsigned long)[cookies count], [mutableRequest URL]];
-			NSDictionary *headers = [NSHTTPCookie requestHeaderFieldsWithCookies:cookies];
-			[mutableRequest setAllHTTPHeaderFields:headers];
-		}
+	if (cookies != nil && cookies.count > 0) {
+		[self.class authenticatingHTTPProtocol:self logWithFormat:@"[Tab %@] sending %lu cookie(s) to %@", _wvt.tabIndex, (unsigned long)cookies.count, mutableRequest.URL];
+		NSDictionary *headers = [NSHTTPCookie requestHeaderFieldsWithCookies:cookies];
+		mutableRequest.allHTTPHeaderFields = headers;
 	}
 
 	/* add "do not track" header if it's enabled in the settings */
@@ -1017,7 +1006,11 @@ static NSString * kJAHPRecursiveRequestFlagProperty = @"com.jivesoftware.JAHPAut
 	assert([[self class] propertyForKey:kJAHPRecursiveRequestFlagProperty inRequest:newRequest] != nil);
 
 	/* save any cookies we just received */
-	[CookieJar setCookies:[NSHTTPCookie cookiesWithResponseHeaderFields:[response allHeaderFields] forURL:[_actualRequest URL]] forURL:[_actualRequest URL] mainDocumentURL:[_actualRequest mainDocumentURL]];
+	[AppDelegate.sharedAppDelegate.cookieJar
+	 setCookies:[NSHTTPCookie cookiesWithResponseHeaderFields:response.allHeaderFields forURL:_actualRequest.URL]
+	 forURL:_actualRequest.URL
+	 mainDocumentURL:_actualRequest.mainDocumentURL
+	 forTab:_wvt.hash];
 
 	redirectRequest = [newRequest mutableCopy];
 
@@ -1026,8 +1019,9 @@ static NSString * kJAHPRecursiveRequestFlagProperty = @"com.jivesoftware.JAHPAut
 	[NSURLProtocol setProperty:[NSNumber numberWithLong:_wvt.hash] forKey:WVT_KEY inRequest:redirectRequest];
 
 	/* if we're being redirected from secure back to insecure, we might be stuck in a loop from an HTTPSEverywhere rule */
-	if ([[[_actualRequest URL] scheme] isEqualToString:@"https"] && [[[redirectRequest URL] scheme] isEqualToString:@"http"]) {
-		[HTTPSEverywhere noteInsecureRedirectionForURL:[_actualRequest URL]];
+	if ([[[_actualRequest URL] scheme] isEqualToString:@"https"] && [[[redirectRequest URL] scheme] isEqualToString:@"http"])
+	{
+		[HTTPSEverywhere noteInsecureRedirectionForURL:_actualRequest.URL toURL:redirectRequest.URL];
 	}
 
 	[[self class] removePropertyForKey:kJAHPRecursiveRequestFlagProperty inRequest:redirectRequest];
@@ -1094,7 +1088,7 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 			// Allow each URL to be loaded through JAHP
 			NSURL* (^modifyOCSPURL)(NSURL *url) = ^NSURL*(NSURL *url) {
 				[JAHPAuthenticatingHTTPProtocol temporarilyAllowURL:url
-													  forWebViewTab:_wvt
+													  forWebViewTab:self->_wvt
 													  isOCSPRequest:YES];
 				return nil;
 			};
@@ -1112,7 +1106,7 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 				if ([[task.currentRequest mainDocumentURL] isEqual:[task.currentRequest URL]]) {
 					SSLCertificate *certificate = [[SSLCertificate alloc] initWithSecTrustRef:trust];
 					if (certificate != nil) {
-						[_wvt setSSLCertificate:certificate];
+						[self->_wvt setSSLCertificate:certificate];
 						// Also cache the cert for displaying when
 						// -URLSession:task:didReceiveChallenge: is not getting called
 						// due to NSURLSession internal TLS caching
@@ -1192,9 +1186,9 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 
 	if(_wvt && [[dataTask.currentRequest URL] isEqual:[dataTask.currentRequest mainDocumentURL]]) {
 		[_wvt setUrl:[dataTask.currentRequest URL]];
-		dispatch_async(dispatch_get_main_queue(), ^{
-			[[[AppDelegate sharedAppDelegate] webViewController] adjustLayoutForNewHTTPResponse:_wvt];
-		});
+//		dispatch_async(dispatch_get_main_queue(), ^{
+//			[[[AppDelegate sharedAppDelegate] webViewController] adjustLayoutForNewHTTPResponse:self->_wvt];
+//		});
 	}
 
 	NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
@@ -1320,7 +1314,11 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 	 Note that we need to do the same thing in the
 	 - (void)URLSession:task:willPerformHTTPRedirection
 	 */
-	[CookieJar setCookies:[NSHTTPCookie cookiesWithResponseHeaderFields:responseHeaders forURL:[_actualRequest URL]] forURL:[_actualRequest URL] mainDocumentURL:[_actualRequest mainDocumentURL]];
+	[AppDelegate.sharedAppDelegate.cookieJar
+	 setCookies:[NSHTTPCookie cookiesWithResponseHeaderFields:responseHeaders forURL:_actualRequest.URL]
+	 forURL:_actualRequest.URL
+	 mainDocumentURL:_actualRequest.mainDocumentURL
+	 forTab:_wvt.hash];
 
 	if ([[[self.request URL] scheme] isEqualToString:@"https"]) {
 		NSString *hsts = [[(NSHTTPURLResponse *)response allHeaderFields] objectForKey:HSTS_HEADER];
@@ -1482,9 +1480,9 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didBecomeDownloadTask:(NSURLSessionDownloadTask *)downloadTask {
 	self.task = downloadTask;
-	if (_wvt != nil) {
-		[_wvt didStartDownloadingFile];
-	}
+//	if (_wvt != nil) {
+//		[_wvt didStartDownloadingFile];
+//	}
 }
 
 # pragma mark * NSURLSessionDownloadDelegate methods
@@ -1496,9 +1494,9 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 }
 
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location {
-	if (_wvt != nil) {
-		[_wvt didFinishDownloadingToURL:location];
-	}
+//	if (_wvt != nil) {
+//		[_wvt didFinishDownloadingToURL:location];
+//	}
 }
 
 @end

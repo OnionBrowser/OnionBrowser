@@ -97,6 +97,13 @@
 		A03DBCEF22859B99001890C4 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = A03DBCEC22859B99001890C4 /* Config.m */; };
 		A045E5E51EDC5C1700BC8A92 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A045E5E11EDC5C1700BC8A92 /* Localizable.strings */; };
 		A045E5E61EDC5C1700BC8A92 /* OnePasswordExtension.strings in Resources */ = {isa = PBXBuildFile; fileRef = A045E5E31EDC5C1700BC8A92 /* OnePasswordExtension.strings */; };
+		A053136E22F1C737006655EC /* JAHPAuthenticatingHTTPProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = A053136422F1C573006655EC /* JAHPAuthenticatingHTTPProtocol.m */; };
+		A053136F22F1C73A006655EC /* JAHPCacheStoragePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A053136622F1C573006655EC /* JAHPCacheStoragePolicy.m */; };
+		A053137022F1C73C006655EC /* JAHPCanonicalRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = A053136822F1C574006655EC /* JAHPCanonicalRequest.m */; };
+		A053137122F1C740006655EC /* JAHPQNSURLSessionDemux.m in Sources */ = {isa = PBXBuildFile; fileRef = A053136222F1C573006655EC /* JAHPQNSURLSessionDemux.m */; };
+		A053137222F1CBD3006655EC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 01801E9A1A32CA2A002B4718 /* AppDelegate.m */; };
+		A053137522F1E587006655EC /* CertificateAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = A053137322F1E587006655EC /* CertificateAuthentication.m */; };
+		A053137822F1EC19006655EC /* DownloadHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A053137622F1EC19006655EC /* DownloadHelper.m */; };
 		A072C4D3227C68500022BC58 /* BlurredSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = A072C4D1227C684E0022BC58 /* BlurredSnapshot.swift */; };
 		A072C4D4227C68500022BC58 /* TabSecurity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A072C4D2227C684F0022BC58 /* TabSecurity.swift */; };
 		A07D654B2208A0C10002D775 /* OBSettingsConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = A07D654A2208A0C10002D775 /* OBSettingsConstants.m */; };
@@ -468,6 +475,10 @@
 		A053136722F1C573006655EC /* JAHPCacheStoragePolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JAHPCacheStoragePolicy.h; sourceTree = "<group>"; };
 		A053136822F1C574006655EC /* JAHPCanonicalRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAHPCanonicalRequest.m; sourceTree = "<group>"; };
 		A053136922F1C574006655EC /* JAHPQNSURLSessionDemux.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JAHPQNSURLSessionDemux.h; sourceTree = "<group>"; };
+		A053137322F1E587006655EC /* CertificateAuthentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CertificateAuthentication.m; sourceTree = "<group>"; };
+		A053137422F1E587006655EC /* CertificateAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CertificateAuthentication.h; sourceTree = "<group>"; };
+		A053137622F1EC19006655EC /* DownloadHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadHelper.m; sourceTree = "<group>"; };
+		A053137722F1EC19006655EC /* DownloadHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadHelper.h; sourceTree = "<group>"; };
 		A05AD0251F0A54DA00953274 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = Endless/nb.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A05AD0261F0A54DA00953274 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = Endless/nb.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
 		A060AC191FB4C710000828EF /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = Endless/fr.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -597,6 +608,8 @@
 				A025F27421F62C100034B947 /* Config.xcconfig */,
 				A03DBCEB22859B99001890C4 /* Config.h */,
 				A03DBCEC22859B99001890C4 /* Config.m */,
+				01801E991A32CA2A002B4718 /* AppDelegate.h */,
+				01801E9A1A32CA2A002B4718 /* AppDelegate.m */,
 				A06441F9200CB82500D6C50C /* AppStore */,
 				A00436111E8185AA0067652D /* Build */,
 				01801E941A32CA2A002B4718 /* Endless */,
@@ -625,8 +638,6 @@
 		01801E941A32CA2A002B4718 /* Endless */ = {
 			isa = PBXGroup;
 			children = (
-				01801E991A32CA2A002B4718 /* AppDelegate.h */,
-				01801E9A1A32CA2A002B4718 /* AppDelegate.m */,
 				01AFEB471B4ED48000A02482 /* Bookmark.h */,
 				01AFEB481B4ED48000A02482 /* Bookmark.m */,
 				01AFEB351B4DBA8D00A02482 /* BookmarkController.h */,
@@ -1249,6 +1260,10 @@
 		A053136122F1C53A006655EC /* Psiphon */ = {
 			isa = PBXGroup;
 			children = (
+				A053137422F1E587006655EC /* CertificateAuthentication.h */,
+				A053137322F1E587006655EC /* CertificateAuthentication.m */,
+				A053137722F1EC19006655EC /* DownloadHelper.h */,
+				A053137622F1EC19006655EC /* DownloadHelper.m */,
 				A053136322F1C573006655EC /* JAHPAuthenticatingHTTPProtocol.h */,
 				A053136422F1C573006655EC /* JAHPAuthenticatingHTTPProtocol.m */,
 				A053136722F1C573006655EC /* JAHPCacheStoragePolicy.h */,
@@ -1590,6 +1605,8 @@
 			files = (
 				A072C4D4227C68500022BC58 /* TabSecurity.swift in Sources */,
 				A02CE2B8220079B800964A14 /* SearchResultsController.m in Sources */,
+				A053136E22F1C737006655EC /* JAHPAuthenticatingHTTPProtocol.m in Sources */,
+				A053137822F1EC19006655EC /* DownloadHelper.m in Sources */,
 				01D741281A44DF1C007B7033 /* WebViewMenuController.m in Sources */,
 				01D7412F1A466AF0007B7033 /* NSString+JavascriptEscape.m in Sources */,
 				A07D65562208A17E0002D775 /* Migration.swift in Sources */,
@@ -1599,6 +1616,7 @@
 				01801E9B1A32CA2A002B4718 /* AppDelegate.m in Sources */,
 				69CBCD4D1E934249009D5352 /* RuleEditorRow.m in Sources */,
 				8AD128401ED61822005C43E4 /* Reachability.m in Sources */,
+				A053137522F1E587006655EC /* CertificateAuthentication.m in Sources */,
 				01AFEB491B4ED48000A02482 /* Bookmark.m in Sources */,
 				01801E981A32CA2A002B4718 /* main.m in Sources */,
 				8AD5FFBA1EB3DFE30066E7E3 /* ObfsThread.m in Sources */,
@@ -1609,6 +1627,7 @@
 				019516CF1B7D8A0C0078586A /* NSData+CocoaDevUsersAdditions.m in Sources */,
 				01F8793B1A4108DD00A63654 /* URLBlocker.m in Sources */,
 				A02CE2BB22007A0200964A14 /* HistoryController.m in Sources */,
+				A053137022F1C73C006655EC /* JAHPCanonicalRequest.m in Sources */,
 				01801EC01A335BEC002B4718 /* URLInterceptor.m in Sources */,
 				A09A2AAB2254D2C700A3EEF0 /* WebViewTab+Activity.m in Sources */,
 				01F2AE401B82666900D5651A /* SSLCertificateViewController.m in Sources */,
@@ -1622,6 +1641,7 @@
 				014E68A81B9BEDDC00D98A0A /* HostSettings.m in Sources */,
 				8A9BD4022294507C00230DF9 /* DonationViewController.swift in Sources */,
 				0135F47F1A3E548F005A8F16 /* WebViewTab.m in Sources */,
+				A053137122F1C740006655EC /* JAHPQNSURLSessionDemux.m in Sources */,
 				A07D654B2208A0C10002D775 /* OBSettingsConstants.m in Sources */,
 				A07D65532208A17E0002D775 /* Bridge.m in Sources */,
 				A072C4D3227C68500022BC58 /* BlurredSnapshot.swift in Sources */,
@@ -1634,6 +1654,7 @@
 				010EEA691A43C8CF001E8B65 /* CookieJar.m in Sources */,
 				A07D65542208A17E0002D775 /* OldBookmark.m in Sources */,
 				A07D65552208A17E0002D775 /* Settings.xcdatamodel in Sources */,
+				A053136F22F1C73A006655EC /* JAHPCacheStoragePolicy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1645,6 +1666,7 @@
 				01F7CB4B1A526B9C00F42B73 /* HSTSCache_Tests.m in Sources */,
 				01F879411A4112E500A63654 /* URLBlocker_Tests.m in Sources */,
 				A08737E1221324B5005A68CC /* HostSettings_Tests.m in Sources */,
+				A053137222F1CBD3006655EC /* AppDelegate.m in Sources */,
 				01D7412A1A45EDD1007B7033 /* CookieJar_Tests.m in Sources */,
 				018333DC1A35727C00670CD1 /* HTTPSEverywhere_Tests.m in Sources */,
 				01F2AE421B827BC200D5651A /* SSLCertificate_Tests.m in Sources */,
