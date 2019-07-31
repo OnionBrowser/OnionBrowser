@@ -460,6 +460,14 @@
 		A045E5E41EDC5C1700BC8A92 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Endless/Base.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
 		A045E5E71EDC5C2200BC8A92 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = Endless/de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A045E5E81EDC5C2200BC8A92 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = Endless/de.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
+		A053136222F1C573006655EC /* JAHPQNSURLSessionDemux.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAHPQNSURLSessionDemux.m; sourceTree = "<group>"; };
+		A053136322F1C573006655EC /* JAHPAuthenticatingHTTPProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JAHPAuthenticatingHTTPProtocol.h; sourceTree = "<group>"; };
+		A053136422F1C573006655EC /* JAHPAuthenticatingHTTPProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAHPAuthenticatingHTTPProtocol.m; sourceTree = "<group>"; };
+		A053136522F1C573006655EC /* JAHPCanonicalRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JAHPCanonicalRequest.h; sourceTree = "<group>"; };
+		A053136622F1C573006655EC /* JAHPCacheStoragePolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAHPCacheStoragePolicy.m; sourceTree = "<group>"; };
+		A053136722F1C573006655EC /* JAHPCacheStoragePolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JAHPCacheStoragePolicy.h; sourceTree = "<group>"; };
+		A053136822F1C574006655EC /* JAHPCanonicalRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAHPCanonicalRequest.m; sourceTree = "<group>"; };
+		A053136922F1C574006655EC /* JAHPQNSURLSessionDemux.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JAHPQNSURLSessionDemux.h; sourceTree = "<group>"; };
 		A05AD0251F0A54DA00953274 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = Endless/nb.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A05AD0261F0A54DA00953274 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = Endless/nb.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
 		A060AC191FB4C710000828EF /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = Endless/fr.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -592,6 +600,7 @@
 				A06441F9200CB82500D6C50C /* AppStore */,
 				A00436111E8185AA0067652D /* Build */,
 				01801E941A32CA2A002B4718 /* Endless */,
+				A053136122F1C53A006655EC /* Psiphon */,
 				6998064A1EABE5C70012F75E /* OnionBrowser */,
 				01801EC11A3360B1002B4718 /* Resources */,
 				01AFEB4A1B4F2A5F00A02482 /* External */,
@@ -765,7 +774,6 @@
 				BED522A5B119CE39951BF4AF /* Pods-OnionBrowser2 Tests.debug.xcconfig */,
 				7C533CEB1E7ECF97A3FA703D /* Pods-OnionBrowser2 Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -1236,6 +1244,21 @@
 				A07D655D2208A6DA0002D775 /* .gitignore */,
 			);
 			name = Build;
+			sourceTree = "<group>";
+		};
+		A053136122F1C53A006655EC /* Psiphon */ = {
+			isa = PBXGroup;
+			children = (
+				A053136322F1C573006655EC /* JAHPAuthenticatingHTTPProtocol.h */,
+				A053136422F1C573006655EC /* JAHPAuthenticatingHTTPProtocol.m */,
+				A053136722F1C573006655EC /* JAHPCacheStoragePolicy.h */,
+				A053136622F1C573006655EC /* JAHPCacheStoragePolicy.m */,
+				A053136522F1C573006655EC /* JAHPCanonicalRequest.h */,
+				A053136822F1C574006655EC /* JAHPCanonicalRequest.m */,
+				A053136922F1C574006655EC /* JAHPQNSURLSessionDemux.h */,
+				A053136222F1C573006655EC /* JAHPQNSURLSessionDemux.m */,
+			);
+			path = Psiphon;
 			sourceTree = "<group>";
 		};
 		A06441F9200CB82500D6C50C /* AppStore */ = {
