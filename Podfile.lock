@@ -51,12 +51,12 @@ PODS:
     - DTFoundation/Core
   - DTFoundation/UIKit_BlocksAdditions (1.7.13):
     - DTFoundation/Core
-  - InAppSettingsKit (2.10)
+  - InAppSettingsKit (2.12)
   - KMPlaceholderTextView (1.4.0)
   - Localize (2.3.0)
   - OCMock (3.4.3)
   - OrderedDictionary (1.4)
-  - POE (0.5.6):
+  - POE (0.5.7):
     - KMPlaceholderTextView (~> 1.4)
     - Localize (~> 2.2)
     - UIColor-HexRGB
@@ -68,11 +68,12 @@ PODS:
 
 DEPENDENCIES:
   - DTFoundation
-  - InAppSettingsKit
+  - InAppSettingsKit (~> 2.12)
   - OCMock
   - OrderedDictionary
   - POE (~> 0.5)
   - TUSafariActivity
+  - UIColor-HexRGB
   - VForceTouch
   - WYPopoverController (from `https://github.com/sammcewan/WYPopoverController.git`)
   - XLForm (from `https://github.com/jcs/XLForm.git`)
@@ -106,18 +107,18 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   DTFoundation: f03be9fd786f11e505bb8fc44e2a3732bf0917df
-  InAppSettingsKit: d965e29be941eb19857271e4625de3fba6e23c9f
+  InAppSettingsKit: 363ed5ea061ebcb76d69ca1eed08c8a4fe48baf2
   KMPlaceholderTextView: 2206c3df39979e9396e2d96fa9f427a8951121b0
   Localize: cb1ae53ed73decaad0dce217806ed983091913f5
   OCMock: 43565190abc78977ad44a61c0d20d7f0784d35ab
   OrderedDictionary: 138c8d2e358d3a0c9adda15c6c7db24e8e3b09e6
-  POE: 6ed1114a4fcd5bd62a3f896c80e10527062b30ca
+  POE: a90b4ad4e3684a31e5df031c9ba382ddbf59cdd5
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
   UIColor-HexRGB: daccfa7e936af664369734a164b0309087d7f970
   VForceTouch: b5c3a28625269e1818cf915728173bda9f669d6b
   WYPopoverController: a9db25ac2841a686acdc0f3a99bdb21545db32f4
   XLForm: d5c391dfc62865927b5bcab0a5a0dbfb3e02b0ec
 
-PODFILE CHECKSUM: 49961870e3a0fb8c9dffc6535fe8c81cd7b78dc9
+PODFILE CHECKSUM: abac948b6872f84f0f04c26d3f00da680f3306cc
 
-COCOAPODS: 1.7.2
+COCOAPODS: 1.7.5

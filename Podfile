@@ -1,19 +1,19 @@
-platform :ios, "11.4"
-use_frameworks!
+platform :ios, '11.4'
 
-target "OnionBrowser2" do
-  pod "InAppSettingsKit"
-  pod "WYPopoverController", :git => "https://github.com/sammcewan/WYPopoverController.git"
-  pod "DTFoundation"
-  pod "OrderedDictionary"
-  pod "XLForm", :git => "https://github.com/jcs/XLForm.git"
-  pod "TUSafariActivity"
-  pod "VForceTouch"
+target 'OnionBrowser2' do
+  pod 'InAppSettingsKit', '~> 2.12'
+  pod 'WYPopoverController', :git => 'https://github.com/sammcewan/WYPopoverController.git'
+  pod 'DTFoundation'
+  pod 'OrderedDictionary'
+  pod 'XLForm', :git => 'https://github.com/jcs/XLForm.git'
+  pod 'TUSafariActivity'
+  pod 'VForceTouch'
 
-  pod "POE", '~> 0.5'
+  pod 'POE', '~> 0.5'
+  pod 'UIColor-HexRGB', :modular_headers => true
 end
 
-target "OnionBrowser2 Tests" do
-  pod "OCMock"
-  pod "DTFoundation"
+target 'OnionBrowser2 Tests' do
+  pod 'OCMock'
+  pod 'DTFoundation'
 end
