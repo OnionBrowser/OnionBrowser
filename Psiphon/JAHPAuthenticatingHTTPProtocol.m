@@ -142,8 +142,10 @@ typedef void (^JAHPChallengeCompletionHandler)(NSURLSessionAuthChallengeDisposit
 static JAHPWeakDelegateHolder* weakDelegateHolder;
 
 static NSMutableArray<TemporarilyAllowedURL*> *tmpAllowed;
-
+static NSCache *injectCache;
 static NSString *_javascriptToInject;
+
+#define INJECT_CACHE_SIZE 20
 
 + (NSString *)javascriptToInject
 {
@@ -153,6 +155,38 @@ static NSString *_javascriptToInject;
 	}
 
 	return _javascriptToInject;
+}
+
++ (void)clearInjectCache
+{
+	[injectCache removeAllObjects];
+}
+
++ (NSString *)javascriptToInjectForURL:(NSURL *)url
+{
+	if (injectCache == nil)
+	{
+		injectCache = [[NSCache alloc] init];
+		injectCache.countLimit = INJECT_CACHE_SIZE;
+	}
+
+	NSString *js = [injectCache objectForKey:url.host];
+	if (js != nil)
+	{
+		return js;
+	}
+
+	HostSettings *hs = [HostSettings settingsOrDefaultsForHost:url.host];
+
+	NSString *block = [hs boolSettingOrDefault:HOST_SETTINGS_KEY_ALLOW_WEBRTC] ? @"false" : @"true";
+
+	js = [[self javascriptToInject]
+		  stringByReplacingOccurrencesOfString:@"\"##BLOCK_WEBRTC##\""
+		  withString:block];
+
+	[injectCache setObject:js forKey:url.host];
+
+	return js;
 }
 
 + (void)temporarilyAllowURL:(NSURL *)url
@@ -267,10 +301,16 @@ static NSString *_javascriptToInject;
 + (void)start
 {
 	[NSURLProtocol registerClass:self];
+	
+	[NSNotificationCenter.defaultCenter
+	 addObserver:self selector:@selector(clearInjectCache)
+	 name:HOST_SETTINGS_CHANGED object:nil];
 }
 
 + (void)stop {
 	[NSURLProtocol unregisterClass:self];
+
+	[NSNotificationCenter.defaultCenter removeObserver:self];
 }
 
 + (id<JAHPAuthenticatingHTTPProtocolDelegate>)delegate
@@ -1362,10 +1402,9 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 		NSMutableData *tData = [[NSMutableData alloc] init];
 		if (_isFirstChunk) {
 			// Prepend a doctype to force into standards mode and throw in any javascript overrides
-			[tData appendData:[[NSString stringWithFormat:@"<!DOCTYPE html><script type=\"text/javascript\" nonce=\"%@\">%@;\n __psiphon.urlProxyPort=%d;</script>",
+			[tData appendData:[[NSString stringWithFormat:@"<!DOCTYPE html><script type=\"text/javascript\" nonce=\"%@\">%@</script>",
 								[self cspNonce],
-								[[self class] javascriptToInject],
-								(int)[[AppDelegate sharedAppDelegate] httpProxyPort]
+								[self.class javascriptToInjectForURL:dataTask.currentRequest.mainDocumentURL]
 								] dataUsingEncoding:NSUTF8StringEncoding]
 				];
 			[tData appendData:data];

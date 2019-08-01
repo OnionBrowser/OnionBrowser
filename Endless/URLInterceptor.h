@@ -35,9 +35,6 @@
 @property (strong) HostSettings *originHostSettings;
 @property (strong, nonatomic) NSString *cspNonce;
 
-+ (void)setup;
-+ (void)clearInjectCache;
-+ (NSString *)javascriptToInject;
 + (void)setSendDNT:(BOOL)val;
 + (void)temporarilyAllow:(NSURL *)url;
 + (NSString *)prependDirectivesIfExisting:(NSDictionary *)directives inCSPHeader:(NSString *)header;
