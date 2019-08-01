@@ -25,13 +25,7 @@
 }
 
 static AppDelegate *appDelegate;
-static BOOL sendDNT = true;
 static NSMutableArray *tmpAllowed;
-
-+ (void)setSendDNT:(BOOL)val
-{
-	sendDNT = val;
-}
 
 + (void)temporarilyAllow:(NSURL *)url
 {
@@ -367,10 +361,6 @@ static NSMutableArray *tmpAllowed;
 		[newRequest setAllHTTPHeaderFields:headers];
 	}
 
-	/* add "do not track" header if it's enabled in the settings */
-	if (sendDNT)
-		[newRequest setValue:@"1" forHTTPHeaderField:@"DNT"];
-	
 	/* if we're trying to bypass the cache (forced reload), kill the If-None-Match header that gets put here automatically */
 	if ([wvt forcingRefresh]) {
 #ifdef TRACE

@@ -35,7 +35,6 @@
 @property (strong) HostSettings *originHostSettings;
 @property (strong, nonatomic) NSString *cspNonce;
 
-+ (void)setSendDNT:(BOOL)val;
 + (void)temporarilyAllow:(NSURL *)url;
 + (NSString *)prependDirectivesIfExisting:(NSDictionary *)directives inCSPHeader:(NSString *)header;
 

@@ -650,8 +650,8 @@ static NSString * kJAHPRecursiveRequestFlagProperty = @"com.jivesoftware.JAHPAut
 	}
 
 	/* add "do not track" header if it's enabled in the settings */
-	BOOL sendDNT = [[NSUserDefaults standardUserDefaults] boolForKey:@"sendDoNotTrack"];
-	if(sendDNT) {
+	if ([NSUserDefaults.standardUserDefaults boolForKey:@"send_dnt"])
+	{
 		[mutableRequest setValue:@"1" forHTTPHeaderField:@"DNT"];
 	}
 
