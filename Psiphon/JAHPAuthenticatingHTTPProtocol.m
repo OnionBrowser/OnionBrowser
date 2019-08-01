@@ -1519,9 +1519,9 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didBecomeDownloadTask:(NSURLSessionDownloadTask *)downloadTask {
 	self.task = downloadTask;
-//	if (_wvt != nil) {
-//		[_wvt didStartDownloadingFile];
-//	}
+	if (_wvt != nil) {
+		[_wvt didStartDownloadingFile];
+	}
 }
 
 # pragma mark * NSURLSessionDownloadDelegate methods
@@ -1533,9 +1533,9 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 }
 
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location {
-//	if (_wvt != nil) {
-//		[_wvt didFinishDownloadingToURL:location];
-//	}
+	if (_wvt != nil) {
+		[_wvt didFinishDownloadingToURL:location];
+	}
 }
 
 @end

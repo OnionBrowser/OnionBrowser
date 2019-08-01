@@ -11,6 +11,8 @@
 #import "SSLCertificate.h"
 #import "SilenceWarnings.h"
 
+#import "DownloadHelper.h"
+
 #define ZOOM_OUT_SCALE 0.8
 #define ZOOM_OUT_SCALE_ROTATED 0.7
 
@@ -97,7 +99,7 @@ static const struct keyboard_map_entry {
 	{ NULL }
 };
 
-@interface WebViewTab : NSObject <UIWebViewDelegate, UIGestureRecognizerDelegate>
+@interface WebViewTab : NSObject <UIWebViewDelegate, UIGestureRecognizerDelegate, DownloadTaskDelegate>
 
 @property (strong, atomic) UIView *viewHolder;
 SILENCE_DEPRECATION_ON

@@ -25,32 +25,6 @@
 }
 
 static AppDelegate *appDelegate;
-static NSMutableArray *tmpAllowed;
-
-+ (void)temporarilyAllow:(NSURL *)url
-{
-	if (!tmpAllowed)
-		tmpAllowed = [[NSMutableArray alloc] initWithCapacity:1];
-	
-	[tmpAllowed addObject:url];
-}
-
-+ (BOOL)isURLTemporarilyAllowed:(NSURL *)url
-{
-	int found = -1;
-	
-	for (int i = 0; i < [tmpAllowed count]; i++) {
-		if ([[tmpAllowed[i] absoluteString] isEqualToString:[url absoluteString]])
-			found = i;
-	}
-	
-	if (found > -1) {
-		NSLog(@"[URLInterceptor] temporarily allowing %@ from allowed list with no matching WebViewTab", url);
-		[tmpAllowed removeObjectAtIndex:found];
-	}
-	
-	return (found > -1);
-}
 
 + (NSURLRequest *)canonicalRequestForRequest:(NSURLRequest *)request
 {
@@ -171,9 +145,6 @@ static NSMutableArray *tmpAllowed;
 		}
 	}
 	
-	if (wvt == nil && [[self class] isURLTemporarilyAllowed:[request URL]])
-		wvt = [[appDelegate webViewController] curWebViewTab];
-
 	/*
 	 * Videos load without our modified User-Agent (which normally has a per-tab hash appended to it to be able to match
 	 * it to the proper tab) but it does have its own UA which starts with "AppleCoreMedia/".  Assume it came from the

@@ -15,6 +15,8 @@
 #import "NSString+DTURLEncoding.h"
 #import "VForceTouchGestureRecognizer.h"
 
+#import "SilenceWarnings.h"
+
 @import WebKit;
 
 @implementation WebViewTab {
@@ -670,11 +672,26 @@ SILENCE_WARNINGS_OFF
 	}
 }
 
+
+#pragma mark - DownloadTaskDelegate
+
+- (void)didStartDownloadingFile {
+	// TODO: Maybe implement some UI here?
+}
+
+- (void)didFinishDownloadingToURL:(NSURL *)location {
+	// TODO
+}
+
+
 - (void)setProgress:(NSNumber *)pr
 {
 	_progress = pr;
 	[[appDelegate webViewController] updateProgress];
 }
+
+
+#pragma mark - Other
 
 - (void)swipeRightAction:(UISwipeGestureRecognizer *)gesture
 {
@@ -788,18 +805,27 @@ SILENCE_WARNINGS_OFF
 	}];
 
 	UIAlertAction *saveImageAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Save Image", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-		NSURL *imgurl = [NSURL URLWithString:img];
-		[URLInterceptor temporarilyAllow:imgurl];
-		NSData *imgdata = [NSData dataWithContentsOfURL:imgurl];
-		if (imgdata) {
-			UIImage *i = [UIImage imageWithData:imgdata];
-			UIImageWriteToSavedPhotosAlbum(i, self, nil, nil);
-		}
-		else {
-			UIAlertController *uiac = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", nil) message:[NSString stringWithFormat:NSLocalizedString(@"An error occurred downloading image %@", nil), img] preferredStyle:UIAlertControllerStyleAlert];
-			[uiac addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:nil]];
-            [[self->appDelegate webViewController] presentViewController:uiac animated:YES completion:nil];
-		}
+		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+			NSURL *imgurl = [NSURL URLWithString:img];
+			[JAHPAuthenticatingHTTPProtocol temporarilyAllowURL:imgurl forWebViewTab:self];
+
+			NSURLRequest *request = [[NSURLRequest alloc] initWithURL:imgurl];
+SILENCE_DEPRECATION_ON
+			NSData *imgdata = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+SILENCE_WARNINGS_OFF
+
+			if (imgdata) {
+				UIImage *i = [UIImage imageWithData:imgdata];
+				UIImageWriteToSavedPhotosAlbum(i, self, nil, nil);
+			}
+			else {
+				dispatch_async(dispatch_get_main_queue(), ^{
+					UIAlertController *uiac = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", nil) message:[NSString stringWithFormat:NSLocalizedString(@"An error occurred downloading image %@", nil), img] preferredStyle:UIAlertControllerStyleAlert];
+					[uiac addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:nil]];
+					[[self->appDelegate webViewController] presentViewController:uiac animated:YES completion:nil];
+				});
+			}
+		});
 	}];
 	
 	UIAlertAction *copyURLAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Copy URL", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
