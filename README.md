@@ -59,32 +59,46 @@ The following features are new to Onion Browser, by way of the upstream work on 
 
 - [1Password extension](https://github.com/AgileBits/onepassword-app-extension)
   support (if 1Password app is installed)
-  
-  ## Acknowledgements
-  
-  These people helped with translations. Thank you so much, folks!
-  
-  Arabic: AboShanab, mada19
-  Bengali: codesmite, Al_Shahrior
-  Chinese (Simplified): Selinaf, feeblebiscuit, tsaizb, Lafrenze
-  Chinese (Traditional): Selinaf, s8321414, jxtsai
-  Catalán: Ecron, pau.selles
-  Dutch: SilverXp, biancahey, kwadronaut, pljmn
-  French: yahoe.001
-  German: Atalanttore, beonex1, nautilusx
-  Hindi: balapandu222, drashti4, umkdikshit
-  Hungarian: benewfy, vargaviktor
-  Icelandic: anarchodin, sveinki
-  Irish: kscanne
-  Japanese: Naofumi, Songbogong, TokumeiNanashi, pluto987, jpanonowl
-  Norwegian (Bokmål): kingu
-  Persian: ariaa, arminoza, nariman, sabs
-  Portuguese (Brazil): flaviove, CypherZnnb
-  Russian: anm, ifti
-  Spanish: arielbarbosa, Maria_Jose, emmapeel, strel
-  Tamil: balapandu222, Selva_Makilan
-  Telugu: balapandu222, sonusandeep
-  Ukrainian: Herenko, lyubomyr
+
+
+## Acknowledgements
+
+These people helped with translations. Thank you so much, folks!
+
+- Albanian: alter2000, elioqoshi, marianaballa, vilisuli
+- Arabic: AboShanab, mada19
+- Bengali: codesmite, Al_Shahrior   
+- Breton: Iriep
+- Catalan: Aetheria, Ecron, jmontane, pau.selles   
+- Chinese (Simplified): Selinaf, feeblebiscuit, tsaizb, Lafrenze, ff98sha
+- Chinese (Traditional): Selinaf, s8321414, jxtsai, MengPangWang 
+- Catalán: Ecron, pau.selles
+- Czech: Plarome
+- Dutch: SilverXp, biancahey, kwadronaut, pljmn, Meteor0id 
+- French: yahoe.001
+- German: Atalanttore, beonex1, nautilusx
+- Greek: dmaroulidis, KAUTH, pappasadrian, ssk1 
+- Gujarati: dipakparmar65, drashti4
+- Hebrew: IONIL
+- Hindi: balapandu222, drashti4, umkdikshit
+- Hungarian: benewfy, vargaviktor
+- Icelandic: anarchodin, sveinki
+- Indonesian: myusuffin
+- Irish: kscanne
+- Italian: EllipticSet, Japanese (ja), jpanonowl, Naofumi, pluto987, Songbogong, TokumeiNanashi   
+- Korean: sector429
+- Japanese: Naofumi, Songbogong, TokumeiNanashi, pluto987, jpanonowl
+- Macedonian: Liljana_Ackovska, Zarko_Gjurov
+- Norwegian (Bokmål): kingu, eirik174
+- Persian: ariaa, arminoza, nariman, sabs, magnifico
+- Portuguese (Portugal): manuelarodsilva   
+- Portuguese (Brazil): flaviove, CypherZnnb
+- Russian: anm, dianazryn, emedvedev, Ifti
+- Spanish: arielbarbosa, Maria_Jose, emmapeel, strel, zakooch
+- Tamil: balapandu222, Selva_Makilan
+- Telugu: balapandu222, sonusandeep
+- Turkish:  falcontr06, kayazeren 
+- Ukrainian: Herenko, lyubomyr
 
 
 ## Contributors

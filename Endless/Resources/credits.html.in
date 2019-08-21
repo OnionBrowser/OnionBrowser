@@ -63,46 +63,72 @@ committed to furthering free speech and digital privacy. Please consider donatin
 </ul>
 <p>And special thanks to the volunteer translators at Transifex for making Onion Browser easier to use around the world:</p>
 <dl>
+    <dt>Albanian</dt>
+    <dd>alter2000, elioqoshi, marianaballa, vilisuli</dd>
     <dt>Arabic</dt>
     <dd>AboShanab, mada19</dd>
     <dt>Bengali</dt>
     <dd>codesmite, Al_Shahrior</dd>
+    <dt>Breton</dt>
+    <dd>Iriep</dd>
+    <dt>Catalan</dt>
+    <dd>Aetheria, Ecron, jmontane, pau.selles</dd>
     <dt>Chinese (Simplified)</dt>
-    <dd>Selinaf, feeblebiscuit, tsaizb, Lafrenze</dd>
+    <dd>Selinaf, feeblebiscuit, tsaizb, Lafrenze, ff98sha</dd>
     <dt>Chinese (Traditional)</dt>
-    <dd>Selinaf, s8321414, jxtsai</dd>
+    <dd>Selinaf, s8321414, jxtsai, MengPangWang</dd>
     <dt>Catalán</dt>
     <dd>Ecron, pau.selles</dd>
+    <dt>Czech</dt>
+    <dd>Plarome</dd>
     <dt>Dutch</dt>
-    <dd>SilverXp, biancahey, kwadronaut, pljmn</dd>
+    <dd>SilverXp, biancahey, kwadronaut, pljmn, Meteor0id</dd>
     <dt>French</dt>
     <dd>yahoe.001</dd>
     <dt>German</dt>
     <dd>Atalanttore, beonex1, nautilusx</dd>
+    <dt>Greek</dt>
+    <dd>dmaroulidis, KAUTH, pappasadrian, ssk1</dd>
+    <dt>Gujarati</dt>
+    <dd>dipakparmar65, drashti4</dd>
+    <dt>Hebrew</dt>
+    <dd>IONIL</dd>
     <dt>Hindi</dt>
     <dd>balapandu222, drashti4, umkdikshit</dd>
     <dt>Hungarian</dt>
     <dd>benewfy, vargaviktor</dd>
     <dt>Icelandic</dt>
     <dd>anarchodin, sveinki</dd>
+    <dt>Indonesian</dt>
+    <dd>myusuffin</dd>
     <dt>Irish</dt>
     <dd>kscanne</dd>
+    <dt>Italian</dt>
+    <dd>EllipticSet, Japanese (ja), jpanonowl, Naofumi, pluto987, Songbogong, TokumeiNanashi</dd>
+    <dt>Korean</dt>
+    <dd>sector429</dd>
     <dt>Japanese</dt>
     <dd>Naofumi, Songbogong, TokumeiNanashi, pluto987, jpanonowl</dd>
+    <dt>Macedonian</dt>
+    <dd>Liljana_Ackovska, Zarko_Gjurov</dd>
     <dt>Norwegian (Bokmål)</dt>
-    <dd>kingu</dd>
+    <dd>kingu, eirik174</dd>
     <dt>Persian</dt>
-    <dd>ariaa, arminoza, nariman, sabs</dd>
+    <dd>ariaa, arminoza, nariman, sabs, magnifico</dd>
+    <dt>Portuguese (Portugal)</dt>
+    <dd>manuelarodsilva</dd>
     <dt>Portuguese (Brazil)</dt>
     <dd>flaviove, CypherZnnb</dd>
     <dt>Russian</dt>
-    <dd>anm, ifti</dd>
+    <dd>anm, dianazryn, emedvedev, Ifti</dd>
     <dt>Spanish</dt>
-    <dd>arielbarbosa, Maria_Jose, emmapeel, strel</dd>
+    <dd>arielbarbosa, Maria_Jose, emmapeel, strel, zakooch</dd>
     <dt>Tamil</dt>
     <dd>balapandu222, Selva_Makilan</dd>
     <dt>Telugu</dt>
     <dd>balapandu222, sonusandeep</dd>
+    <dt>Turkish</dt>
+    <dd>falcontr06, kayazeren</dd>
     <dt>Ukrainian</dt>
     <dd>Herenko, lyubomyr</dd>
 </dl>
@@ -442,7 +468,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 <pre>
 <strong>vee</strong> (VForceTouch)
-	
+
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
