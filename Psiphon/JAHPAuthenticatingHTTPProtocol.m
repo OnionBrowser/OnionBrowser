@@ -58,6 +58,7 @@
 
 #import "AppDelegate.h"
 #import "HostSettings.h"
+#import "URLBlocker.h"
 
 @import CSPHeader;
 
@@ -539,6 +540,14 @@ static NSString * kJAHPRecursiveRequestFlagProperty = @"com.jivesoftware.JAHPAut
 
 		return nil;
 	}
+
+	// Check, if URL needs to be blocked.
+	NSString *blocker = [URLBlocker blockingTargetForURL:[request URL] fromMainDocumentURL:[request mainDocumentURL]];
+	if (!blocker) {
+		[[_wvt applicableURLBlockerTargets] setObject:@YES forKey:blocker];
+		return nil;
+	}
+
 
 	[[self class] authenticatingHTTPProtocol:self logWithFormat:@"[Tab %@] initializing %@ to %@ (via %@)", _wvt.tabIndex, [request HTTPMethod], [[request URL] absoluteString], [request mainDocumentURL]];
 

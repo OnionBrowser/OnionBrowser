@@ -146,20 +146,6 @@ static AppDelegate *appDelegate;
 		self.isOrigin = YES;
 	}
 	
-    /*
-	if (self.isOrigin) {
-		[LocalNetworkChecker clearCache];
-	}
-    */
-	else {
-		NSString *blocker = [URLBlocker blockingTargetForURL:[newRequest URL] fromMainDocumentURL:[newRequest mainDocumentURL]];
-		if (blocker != nil) {
-			[[wvt applicableURLBlockerTargets] setObject:@YES forKey:blocker];
-			cancelLoading();
-			return;
-		}
-	}
-	
 	/* some rules act on the host we're connecting to, and some act on the origin host */
 	self.hostSettings = [HostSettings settingsOrDefaultsForHost:[[[self request] URL] host]];
 	NSString *oHost = [[[self request] mainDocumentURL] host];
@@ -168,28 +154,6 @@ static AppDelegate *appDelegate;
 	else
 		self.originHostSettings = [HostSettings settingsOrDefaultsForHost:oHost];
 
-	/* check HSTS cache first to see if scheme needs upgrading */
-	[newRequest setURL:[[appDelegate hstsCache] rewrittenURI:[[self request] URL]]];
-	
-	/* then check HTTPS Everywhere (must pass all URLs since some rules are not just scheme changes */
-	NSArray *HTErules = [HTTPSEverywhere potentiallyApplicableRulesForHost:[[[self request] URL] host]];
-	if (HTErules != nil && [HTErules count] > 0) {
-		[newRequest setURL:[HTTPSEverywhere rewrittenURI:[[self request] URL] withRules:HTErules]];
-		
-		for (HTTPSEverywhereRule *HTErule in HTErules) {
-			[[wvt applicableHTTPSEverywhereRules] setObject:@YES forKey:[HTErule name]];
-		}
-	}
-	
-	/* in case our URL changed/upgraded, send back to the webview so it knows what our protocol is for "//" assets */
-	if (self.isOrigin && ![[[newRequest URL] absoluteString] isEqualToString:[[self.request URL] absoluteString]]) {
-#ifdef TRACE_HOST_SETTINGS
-		NSLog(@"[URLInterceptor] [Tab %@] canceling origin request to redirect %@ rewritten to %@", wvt.tabIndex, [[self.request URL] absoluteString], [[newRequest URL] absoluteString]);
-#endif
-		[wvt loadURL:[newRequest URL]];
-		return;
-	}
-	
 	if (!self.isOrigin) {
 		if ([wvt secureMode] > WebViewTabSecureModeInsecure && ![[[[newRequest URL] scheme] lowercaseString] isEqualToString:@"https"]) {
 			if ([self.originHostSettings settingOrDefault:HOST_SETTINGS_KEY_ALLOW_MIXED_MODE]) {
@@ -206,18 +170,6 @@ static AppDelegate *appDelegate;
 				return;
 			}
 		}
-		
-        /*
-		if ([self.originHostSettings settingOrDefault:HOST_SETTINGS_KEY_BLOCK_LOCAL_NETS]) {
-			if (![LocalNetworkChecker isHostOnLocalNet:[[newRequest mainDocumentURL] host]] && [LocalNetworkChecker isHostOnLocalNet:[[newRequest URL] host]]) {
-#ifdef TRACE_HOST_SETTINGS
-				NSLog(@"[URLInterceptor] [Tab %@] blocking request from origin %@ to local net host %@", wvt.tabIndex, [newRequest mainDocumentURL], [newRequest URL]);
-#endif
-				cancelLoading();
-				return;
-			}
-		}
-        */
 	}
 	
 	/* we're handling cookies ourself */
