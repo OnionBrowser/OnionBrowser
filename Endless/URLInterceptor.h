@@ -13,9 +13,6 @@
 #define ORIGIN_KEY @"_origin"
 #define WVT_KEY @"_wvt"
 
-#define ENCODING_DEFLATE	1
-#define ENCODING_GZIP		2
-
 @interface URLInterceptor : NSURLProtocol <CKHTTPConnectionDelegate> {
 	NSMutableData *_data;
 	NSURLRequest *_request;

@@ -544,7 +544,17 @@ static NSString * kJAHPRecursiveRequestFlagProperty = @"com.jivesoftware.JAHPAut
 
 	NSMutableURLRequest *mutableRequest = [request mutableCopy];
 
-	[mutableRequest setValue:_userAgent forHTTPHeaderField:@"User-Agent"];
+	NSString *host = mutableRequest.mainDocumentURL.host;
+	if (host.length == 0) {
+		host = mutableRequest.URL.host;
+	}
+
+	NSString *userAgent = [[HostSettings settingsOrDefaultsForHost:host] settingOrDefault:HOST_SETTINGS_KEY_USER_AGENT];
+	if (userAgent.length == 0) {
+		userAgent = _userAgent;
+	}
+
+	[mutableRequest setValue:userAgent forHTTPHeaderField:@"User-Agent"];
 	[mutableRequest setHTTPShouldUsePipelining:YES];
 
 	if ([NSURLProtocol propertyForKey:ORIGIN_KEY inRequest:mutableRequest]) {
@@ -1234,8 +1244,12 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 	}
 
 	/* rewrite or inject Content-Security-Policy (and X-Webkit-CSP just in case) headers */
-	HostSettings *ohs = [HostSettings settingsOrDefaultsForHost:dataTask.currentRequest.mainDocumentURL.host];
-	NSString *cspMode = [ohs settingOrDefault:HOST_SETTINGS_KEY_CSP];
+	NSString *host = dataTask.currentRequest.mainDocumentURL.host;
+	if (host.length == 0) {
+		host = dataTask.currentRequest.URL.host;
+	}
+
+	NSString *cspMode = [[HostSettings settingsOrDefaultsForHost:host] settingOrDefault:HOST_SETTINGS_KEY_CSP];
 
 	NSMutableDictionary *responseHeaders = [[NSMutableDictionary alloc] initWithDictionary:[httpResponse allHeaderFields]];
 
@@ -1297,6 +1311,10 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 	 forURL:_actualRequest.URL
 	 mainDocumentURL:_actualRequest.mainDocumentURL
 	 forTab:_wvt.hash];
+
+	/* in case of localStorage */
+	[AppDelegate.sharedAppDelegate.cookieJar trackDataAccessForDomain:[[response URL] host] fromTab:_wvt.hash];
+
 
 	if ([[[self.request URL] scheme] isEqualToString:@"https"]) {
 		NSString *hsts = [[(NSHTTPURLResponse *)response allHeaderFields] objectForKey:HSTS_HEADER];

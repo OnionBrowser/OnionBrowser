@@ -168,17 +168,6 @@ static AppDelegate *appDelegate;
 	else
 		self.originHostSettings = [HostSettings settingsOrDefaultsForHost:oHost];
 
-	/* set our proper UA, or use this host's version */
-	NSString *customUA = [self.originHostSettings settingOrDefault:HOST_SETTINGS_KEY_USER_AGENT];
-	if (customUA == nil || [customUA isEqualToString:@""])
-		[newRequest setValue:userAgent forHTTPHeaderField:@"User-Agent"];
-	else {
-#ifdef TRACE
-		NSLog(@"[URLInterceptor] [Tab %@] setting custom UA: %@", wvt.tabIndex, customUA);
-#endif
-		[newRequest setValue:customUA forHTTPHeaderField:@"User-Agent"];
-	}
-
 	/* check HSTS cache first to see if scheme needs upgrading */
 	[newRequest setURL:[[appDelegate hstsCache] rewrittenURI:[[self request] URL]]];
 	
@@ -261,140 +250,10 @@ static AppDelegate *appDelegate;
 	[self.connection cancel];
 }
 
-/*
- * CKHTTPConnection has established a connection (possibly with our TLS options), sent our request, and gotten a response.
- * Handle different types of content, inject JavaScript overrides, set fake CSP for WebView to process internally, etc.
- * Note that at this point, [self request] may be stale, so use [self actualRequest]
- */
-- (void)HTTPConnection:(CKHTTPConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response
-{
-#ifdef TRACE
-	NSLog(@"[URLInterceptor] [Tab %@] got HTTP response %ld, content-type %@, length %lld for %@", wvt.tabIndex, (long)[response statusCode], [response MIMEType], [response expectedContentLength], [[[self actualRequest] URL] absoluteString]);
-#endif
-	
-	encoding = 0;
-	_data = nil;
-	firstChunk = YES;
-
-	/* save any cookies we just received */
-	[[appDelegate cookieJar] setCookies:[NSHTTPCookie cookiesWithResponseHeaderFields:[response allHeaderFields] forURL:[[self actualRequest] URL]] forURL:[[self actualRequest] URL] mainDocumentURL:[wvt url] forTab:wvt.hash];
-	
-	/* in case of localStorage */
-	[[appDelegate cookieJar] trackDataAccessForDomain:[[response URL] host] fromTab:wvt.hash];
-	
-	if ([[[self.request URL] scheme] isEqualToString:@"https"]) {
-		NSString *hsts = [[(NSHTTPURLResponse *)response allHeaderFields] objectForKey:HSTS_HEADER];
-		if (hsts != nil && ![hsts isEqualToString:@""]) {
-			[[appDelegate hstsCache] parseHSTSHeader:hsts forHost:[[self.request URL] host]];
-		}
-	}
-	
-	if ([wvt secureMode] > WebViewTabSecureModeInsecure && ![[[[[self actualRequest] URL] scheme] lowercaseString] isEqualToString:@"https"]) {
-		/* an element on the page was not sent over https but the initial request was, downgrade to mixed */
-		if ([wvt secureMode] > WebViewTabSecureModeInsecure) {
-			[wvt setSecureMode:WebViewTabSecureModeMixed];
-		}
-	}
-	
-	/* handle HTTP-level redirects */
-	if (response.statusCode == 301 || response.statusCode == 302 || response.statusCode == 303 || response.statusCode == 307) {
-		NSString *newURL = [self caseInsensitiveHeader:@"location" inResponse:response];
-		if (newURL == nil || [newURL isEqualToString:@""])
-			NSLog(@"[URLInterceptor] [Tab %@] got %ld redirect at %@ but no location header", wvt.tabIndex, (long)response.statusCode, [[self actualRequest] URL]);
-		else {
-			NSMutableURLRequest *newRequest = [[NSMutableURLRequest alloc] init];
-
-			/* 307 redirects are supposed to retain the method when redirecting but others should go back to GET */
-			if (response.statusCode == 307)
-				[newRequest setHTTPMethod:[[self actualRequest] HTTPMethod]];
-			else
-				[newRequest setHTTPMethod:@"GET"];
-			
-			/* if the new URL is not absolute, try to build one relative to the current URL */
-			NSURL *tURL = [NSURL URLWithString:newURL relativeToURL:[[self actualRequest] URL]];
-			
-			/* but if that failed, the new URL is probably absolute already */
-			if (tURL == nil)
-				tURL = [NSURL URLWithString:newURL];
-			
-			if (tURL == nil) {
-				NSLog(@"[URLInterceptor] [Tab %@] failed building URL from %ld redirect to %@", wvt.tabIndex, (long)response.statusCode, newURL);
-				[[self connection] cancel];
-				[[self client] URLProtocol:self didFailWithError:[NSError errorWithDomain:NSCocoaErrorDomain code:NSUserCancelledError userInfo:@{ ORIGIN_KEY: (self.isOrigin ? @YES : @NO )}]];
-				return;
-			}
-			
-			/* strangely, if we pass [NSURL URLWithString:/ relativeToURL:[NSURL https://blah/asdf/]] as the URL for the new request, it treats it as just "/" with no domain information so we have to build the relative URL, turn it into a string, then back to a URL */
-			NSURLComponents *newURLC = [[NSURLComponents alloc] initWithString:[tURL absoluteString]];
-			
-			/* if we have no anchor in the new location, but the original request did, we need to preserve it */
-			if ([newURLC fragment] == nil || [[newURLC fragment] isEqualToString:@""]) {
-				if ([[[self actualRequest] URL] fragment] != nil && ![[[[self actualRequest] URL] fragment] isEqualToString:@""])
-					[newURLC setFragment:[[[self actualRequest] URL] fragment]];
-			}
-			
-			[newRequest setURL:[newURLC URL]];
-
-#ifdef TRACE
-			NSLog(@"[URLInterceptor] [Tab %@] got %ld redirect from %@ to %@", wvt.tabIndex, (long)response.statusCode, [[[self actualRequest] URL] absoluteString], [[newRequest URL] absoluteURL]);
-#endif
-			[newRequest setMainDocumentURL:[[self actualRequest] mainDocumentURL]];
-			
-			[NSURLProtocol setProperty:[NSNumber numberWithLong:wvt.hash] forKey:WVT_KEY inRequest:newRequest];
-
-			/* if we're being redirected from secure back to insecure, we might be stuck in a loop from an HTTPSEverywhere rule */
-			if ([[[[self actualRequest] URL] scheme] isEqualToString:@"https"] && [[[newRequest URL] scheme] isEqualToString:@"http"])
-				[HTTPSEverywhere noteInsecureRedirectionForURL:[[self actualRequest] URL] toURL:[newRequest URL]];
-			
-			/* process it all over again */
-			[NSURLProtocol removePropertyForKey:REWRITTEN_KEY inRequest:newRequest];
-			[[self client] URLProtocol:self wasRedirectedToRequest:newRequest redirectResponse:response];
-		}
-		
-		[[self connection] cancel];
-		[[self client] URLProtocol:self didFailWithError:[NSError errorWithDomain:NSCocoaErrorDomain code:NSUserCancelledError userInfo:@{ ORIGIN_KEY: (self.isOrigin ? @YES : @NO )}]];
-		return;
-	}
-	
-	NSString *content_encoding = [self caseInsensitiveHeader:@"content-encoding" inResponse:response];
-	if (content_encoding != nil) {
-		if ([content_encoding isEqualToString:@"deflate"])
-			encoding = ENCODING_DEFLATE;
-		else if ([content_encoding isEqualToString:@"gzip"])
-			encoding = ENCODING_GZIP;
-		else
-			NSLog(@"[URLInterceptor] [Tab %@] unknown content encoding \"%@\"", wvt.tabIndex, content_encoding);
-	}
-	
-	[self.client URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageAllowedInMemoryOnly];
-}
-
 - (void)HTTPConnection:(CKHTTPConnection *)connection didReceiveSecTrust:(SecTrustRef)secTrustRef certificate:(SSLCertificate *)certificate
 {
 	if (self.isOrigin)
 		[wvt setSSLCertificate:certificate];
-}
-
-- (void)HTTPConnection:(CKHTTPConnection *)connection didReceiveData:(NSData *)data
-{
-	[self appendData:data];
-	
-	NSData *newData;
-	if (encoding) {
-		/*
-		 * Try to un-gzip the data we've received so far.  If we get nil (it's incomplete gzip data),
-		 * continue to buffer it before passing it along. If we *can* ungzip it, pass the ugzip'd data
-		 * along and reset the buffer.
-		 */
-		if (encoding == ENCODING_DEFLATE)
-			newData = [_data zlibInflate];
-		else if (encoding == ENCODING_GZIP)
-			newData = [_data gzipInflate];
-	}
-	else
-		newData = [[NSData alloc] initWithBytes:[data bytes] length:[data length]];
-	
-	[self.client URLProtocol:self didLoadData:newData];
 }
 
 - (void)HTTPConnectionDidFinishLoading:(CKHTTPConnection *)connection {
