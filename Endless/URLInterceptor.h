@@ -13,9 +13,6 @@
 #define ORIGIN_KEY @"_origin"
 #define WVT_KEY @"_wvt"
 
-#define CONTENT_TYPE_OTHER	0
-#define CONTENT_TYPE_HTML	1
-
 #define ENCODING_DEFLATE	1
 #define ENCODING_GZIP		2
 
@@ -34,8 +31,6 @@
 @property (strong) HostSettings *hostSettings;
 @property (strong) HostSettings *originHostSettings;
 @property (strong, nonatomic) NSString *cspNonce;
-
-+ (NSString *)prependDirectivesIfExisting:(NSDictionary *)directives inCSPHeader:(NSString *)header;
 
 - (NSMutableData *)data;
 

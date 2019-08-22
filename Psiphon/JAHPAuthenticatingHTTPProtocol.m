@@ -59,6 +59,8 @@
 #import "AppDelegate.h"
 #import "HostSettings.h"
 
+@import CSPHeader;
+
 // I use the following typedef to keep myself sane in the face of the wacky
 // Objective-C block syntax.
 
@@ -231,71 +233,6 @@ static NSString *_javascriptToInject;
 	}
 
 	return ret;
-}
-
-+ (NSString *)prependDirectivesIfExisting:(NSDictionary *)directives inCSPHeader:(NSString *)header
-{
-	/*
-	 * CSP guide says apostrophe can't be in a bare string, so it should be safe to assume
-	 * splitting on ; will not catch any ; inside of an apostrophe-enclosed value, since those
-	 * can only be constant things like 'self', 'unsafe-inline', etc.
-	 *
-	 * https://www.w3.org/TR/CSP2/#source-list-parsing
-	 */
-
-	NSMutableDictionary *curDirectives = [[NSMutableDictionary alloc] init];
-	NSArray *td = [header componentsSeparatedByString:@";"];
-	for (int i = 0; i < [td count]; i++) {
-		NSString *t = [(NSString *)[td objectAtIndex:i] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-		NSRange r = [t rangeOfString:@" "];
-		if (r.length > 0) {
-			NSString *dir = [[t substringToIndex:r.location] lowercaseString];
-			NSString *val = [[t substringFromIndex:r.location] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-			[curDirectives setObject:val forKey:dir];
-		}
-	}
-
-	for (NSString *newDir in [directives allKeys]) {
-		NSArray *newvals = [directives objectForKey:newDir];
-		NSString *curval = [curDirectives objectForKey:newDir];
-		if (curval) {
-			NSString *newval = [newvals objectAtIndex:0];
-
-			/*
-			 * If none of the existing values for this directive have a nonce or hash,
-			 * then inserting our value with a nonce will cause the directive to become
-			 * strict, so "'nonce-abcd' 'self' 'unsafe-inline'" causes the browser to
-			 * ignore 'self' and 'unsafe-inline', requiring that all scripts have a
-			 * nonce or hash.  Since the site would probably only ever have nonce values
-			 * in its <script> tags if it was in the CSP policy, only include our nonce
-			 * value if the CSP policy already has them.
-			 */
-			if ([curval containsString:@"'nonce-"] || [curval containsString:@"'sha"])
-				newval = [newvals objectAtIndex:1];
-
-			if ([curval containsString:@"'none'"]) {
-				newval = [newvals objectAtIndex:1];
-				/*
-				 * CSP spec says if 'none' is encountered to ignore anything else,
-				 * so if 'none' is there, just replace it with newval rather than
-				 * prepending.
-				 */
-			} else {
-				if ([newval isEqualToString:@""])
-					newval = curval;
-				else
-					newval = [NSString stringWithFormat:@"%@ %@", newval, curval];
-			}
-
-			[curDirectives setObject:newval forKey:newDir];
-		}
-	}
-
-	NSMutableString *ret = [[NSMutableString alloc] init];
-	for (NSString *dir in [[curDirectives allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)])
-		[ret appendString:[NSString stringWithFormat:@"%@%@ %@;", ([ret length] > 0 ? @" " : @""), dir, [curDirectives objectForKey:dir]]];
-
-	return [NSString stringWithString:ret];
 }
 
 + (void)start
@@ -1297,55 +1234,56 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 	}
 
 	/* rewrite or inject Content-Security-Policy (and X-Webkit-CSP just in case) headers */
-	NSString *CSPheader = nil;
-
-	BOOL disableJavascript = NO; // TODO-DISABLE-JAVASCRIPT: hardcode off until fixed
-	if (disableJavascript) {
-		CSPheader = @"script-src 'none';";
-	}
-
-	NSString *curCSP = [self caseInsensitiveHeader:@"content-security-policy" inResponse:httpResponse];
-	if(curCSP == nil) {
-		curCSP = [self caseInsensitiveHeader:@"x-webkit-csp" inResponse:httpResponse];
-	}
+	HostSettings *ohs = [HostSettings settingsOrDefaultsForHost:dataTask.currentRequest.mainDocumentURL.host];
+	NSString *cspMode = [ohs settingOrDefault:HOST_SETTINGS_KEY_CSP];
 
 	NSMutableDictionary *responseHeaders = [[NSMutableDictionary alloc] initWithDictionary:[httpResponse allHeaderFields]];
 
-	/* directives and their values (normal and nonced versions) to prepend */
-	NSDictionary *wantedDirectives = @{
-									   @"child-src": @[ @"endlessipc:", @"endlessipc:" ],
-									   @"media-src": @[ @"http://127.0.0.1:*/tunneled-rewrite/", @"http://127.0.0.1:*/tunneled-rewrite/"], // for URL proxy
-									   @"default-src" : @[ @"endlessipc:", [NSString stringWithFormat:@"'nonce-%@' endlessipc:", [self cspNonce]] ],
-									   @"frame-src": @[ @"endlessipc:", @"endlessipc:" ],
-									   @"script-src" : @[ @"", [NSString stringWithFormat:@"'nonce-%@'", [self cspNonce]] ],
-									   };
+	CSPHeader *cspHeader = [[CSPHeader alloc] initFromHeaders: responseHeaders];
 
-	/* don't bother rewriting with the header if we don't want a restrictive one (CSPheader) and the site doesn't have one (curCSP) */
-	if (curCSP != nil) {
-		for (id h in [responseHeaders allKeys]) {
-			NSString *hv = (NSString *)[[httpResponse allHeaderFields] valueForKey:h];
+	NoneSource *none = [[NoneSource alloc] init];
 
-			if ([[h lowercaseString] isEqualToString:@"content-security-policy"] || [[h lowercaseString] isEqualToString:@"x-webkit-csp"]) {
-				/* merge in the things we require for any policy in case exiting policies would block them */
-				if(CSPheader != nil) {
-					// Override existing CSP with ours
-					hv = [[self class] prependDirectivesIfExisting:wantedDirectives inCSPHeader:CSPheader];
-				} else {
-					hv = [[self class] prependDirectivesIfExisting:wantedDirectives inCSPHeader:hv];
-				}
+	// Allow styles and images, nothing else. However, don't open up styles and
+	// images restrictions further than the original server response allows.
+	if ([cspMode isEqualToString:HOST_SETTINGS_CSP_STRICT]) {
+		HostSource *all = [HostSource all];
 
-				[responseHeaders setObject:hv forKey:h];
-			}
-			else
-				[responseHeaders setObject:hv forKey:h];
+		Directive *style = [cspHeader get:StyleDirective.self];
+		if (!style) {
+			style = [[StyleDirective alloc] initWithSources:@[[[UnsafeInlineSource alloc] init], all]];
 		}
+
+		Directive *img = [cspHeader get:ImgDirective.self];
+		if (!img) {
+			img = [[ImgDirective alloc] initWithSources:@[all]];
+		}
+
+		DefaultDirective *deflt = [[DefaultDirective alloc] initWithSources:@[none]];
+		SandboxDirective *sandbox = [[SandboxDirective alloc]
+									 initWithSources:@[[[AllowFormsSource alloc] init],
+													   [[AllowTopNavigationSource alloc] init]]];
+
+		cspHeader = [[CSPHeader alloc] initWithDirectives:@[deflt, style, img, sandbox]];
 	}
-	else if (CSPheader != nil) {
-		// No CSP present in the original response, so we set our own
-		NSString *newCSPValue = [[self class] prependDirectivesIfExisting:wantedDirectives inCSPHeader:CSPheader];
-		[responseHeaders setObject:newCSPValue forKey:@"Content-Security-Policy"];
-		[responseHeaders setObject:newCSPValue forKey:@"X-WebKit-CSP"];
+	// Don't allow WebRTC, audio and video.
+	else if ([cspMode isEqualToString:HOST_SETTINGS_CSP_BLOCK_CONNECT])
+	{
+		[cspHeader addOrReplaceDirective:[[ConnectDirective alloc] initWithSources:@[none]]];
+		[cspHeader addOrReplaceDirective:[[MediaDirective alloc] initWithSources:@[none]]];
+		[cspHeader addOrReplaceDirective:[[ObjectDirective alloc] initWithSources:@[none]]];
 	}
+
+	// Always allow communication within the app.
+	SchemeSource *schemeSource = [[SchemeSource alloc] initWithScheme:@"endlessipc"];
+
+	[cspHeader prependDirective:[[ChildDirective alloc] initWithSources:@[schemeSource]]];
+	[cspHeader prependDirective:[[FrameDirective alloc] initWithSources:@[schemeSource]]];
+	[cspHeader prependDirective:[[DefaultDirective alloc] initWithSources:@[schemeSource]]];
+
+	// Allow our script to run.
+	[cspHeader allowInjectedScriptWithNonce:[self cspNonce]];
+
+	responseHeaders = [[cspHeader applyToHeaders: responseHeaders] mutableCopy];
 
 	/* rebuild our response with any modified headers */
 	response = [[NSHTTPURLResponse alloc] initWithURL:[httpResponse URL] statusCode:[httpResponse statusCode] HTTPVersion:@"1.1" headerFields:responseHeaders];
