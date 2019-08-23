@@ -136,7 +136,7 @@ SILENCE_WARNINGS_OFF
 			setOptions = YES;
 		}
 		
-		if ([[hs settingOrDefault:HOST_SETTINGS_KEY_TLS] isEqualToString:HOST_SETTINGS_TLS_12]) {
+//		if ([[hs settingOrDefault:HOST_SETTINGS_KEY_TLS] isEqualToString:HOST_SETTINGS_TLS_12]) {
 			/* kTLSProtocol12 allows lower protocols, so use kCFStreamSSLLevel to force 1.2 */
 			
 			CFDictionarySetValue(sslOptions, kCFStreamSSLLevel, CFSTR("kCFStreamSocketSecurityLevelTLSv1_2"));
@@ -145,7 +145,7 @@ SILENCE_WARNINGS_OFF
 #ifdef TRACE_HOST_SETTINGS
 			NSLog(@"[HostSettings] set TLS/SSL min level for %@ to TLS 1.2", [url host]);
 #endif
-		}
+//		}
 
 		if (setOptions) {
 			CFReadStreamSetProperty((__bridge CFReadStreamRef)_HTTPStream, kCFStreamPropertySSLSettings, sslOptions);

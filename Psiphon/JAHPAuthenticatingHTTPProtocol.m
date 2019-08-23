@@ -319,9 +319,9 @@ static JAHPQNSURLSessionDemux *sharedDemuxInstance = nil;
 	// Set TLSMinimumSupportedProtocol from user settings.
 	// NOTE: TLSMaximumSupportedProtocol is always set to the max supported by the system
 	// by default so there is no need to set it.
-	NSString *tlsVersion = [HostSettings.defaultHostSettings setting:HOST_SETTINGS_KEY_TLS];
+	NSString *tlsVersion = [NSUserDefaults.standardUserDefaults stringForKey:@"tls_version"];
 
-	if ([tlsVersion isEqualToString:HOST_SETTINGS_TLS_12]) {
+	if ([tlsVersion isEqualToString:@"tls_12"]) {
 		config.TLSMinimumSupportedProtocol = kTLSProtocol12;
 	}
 	else {

@@ -283,31 +283,6 @@ SILENCE_WARNINGS_OFF
 			[section addFormRow:row];
 		}
 		
-		/* tls version */
-		{
-			XLFormRowDescriptor *row = [XLFormRowDescriptor formRowDescriptorWithTag:HOST_SETTINGS_KEY_TLS rowType:XLFormRowDescriptorTypeSelectorActionSheet title:NSLocalizedString(@"TLS version", nil)];
-			
-			NSMutableArray *opts = [[NSMutableArray alloc] init];
-			if (![host isDefault])
-				[opts addObject:[XLFormOptionsObject formOptionsObjectWithValue:HOST_SETTINGS_DEFAULT displayText:NSLocalizedString(@"(Use Default)", nil)]];
-			[opts addObject:[XLFormOptionsObject formOptionsObjectWithValue:HOST_SETTINGS_TLS_12 displayText:NSLocalizedString(@"TLS 1.2 Only", nil)]];
-			[opts addObject:[XLFormOptionsObject formOptionsObjectWithValue:HOST_SETTINGS_TLS_AUTO displayText:NSLocalizedString(@"TLS 1.2, 1.1, or 1.0", nil)]];
-			[row setSelectorOptions:opts];
-			
-			NSString *val = [host setting:HOST_SETTINGS_KEY_TLS];
-			if (val == nil)
-				val = HOST_SETTINGS_DEFAULT;
-			
-			for (XLFormOptionsObject *opt in opts)
-				if ([[opt valueData] isEqualToString:val])
-					[row setValue:opt];
-			
-			[section setFooterTitle:([host isDefault]
-                                     ? NSLocalizedString(@"Minimum version of TLS required for hosts to negotiate HTTPS connections", nil)
-                                     : NSLocalizedString(@"Minimum version of TLS required for this host to negotiate HTTPS connections", nil))];
-			[section addFormRow:row];
-		}
-		
 		/* content policy */
 		{
 			XLFormRowDescriptor *row = [XLFormRowDescriptor formRowDescriptorWithTag:HOST_SETTINGS_KEY_CSP rowType:XLFormRowDescriptorTypeSelectorActionSheet title:NSLocalizedString(@"Content policy", nil)];
@@ -343,12 +318,10 @@ SILENCE_WARNINGS_OFF
 				}
 			};
 
-			section = [XLFormSectionDescriptor formSection];
-			[section setTitle:@""];
 			[section setFooterTitle:([host isDefault]
                                      ? NSLocalizedString(@"Restrictions on resources loaded from web pages", nil)
                                      : NSLocalizedString(@"Restrictions on resources loaded from web pages at this host", nil))];
-			[form addFormSection:section];
+
 			[section addFormRow:row];
 		}
 		

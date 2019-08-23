@@ -18,10 +18,6 @@
 
 #define HOST_SETTINGS_KEY_IGNORE_TLS_ERRORS @"ignore_tls_errors"
 
-#define HOST_SETTINGS_KEY_TLS @"min_tls"
-#define HOST_SETTINGS_TLS_12 @"1.2"
-#define HOST_SETTINGS_TLS_AUTO @"1.1"
-
 // #define HOST_SETTINGS_KEY_BLOCK_LOCAL_NETS @"block_into_local_nets"
 
 #define HOST_SETTINGS_KEY_WHITELIST_COOKIES @"whitelist_cookies"

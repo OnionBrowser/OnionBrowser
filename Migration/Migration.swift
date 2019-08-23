@@ -170,11 +170,7 @@ class Migration: NSObject {
                         // #define X_TLSVER_TLS1_2_ONLY 2
 
                         if tlsver == 2 {
-                            if let defaultHostSettings = HostSettings.default() {
-                                defaultHostSettings.setSetting(HOST_SETTINGS_KEY_TLS,
-                                                               toValue: HOST_SETTINGS_TLS_12)
-                                defaultHostSettings.save()
-                            }
+							UserDefaults.standard.set("tls_12", forKey: "tls_version")
                         }
                     }
                 }
