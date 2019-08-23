@@ -595,6 +595,16 @@ static NSString * kJAHPRecursiveRequestFlagProperty = @"com.jivesoftware.JAHPAut
 		return nil;
 	}
 
+	// Blocking mixed-content requests if set.
+	if (!_isOrigin
+		&& _wvt.secureMode > WebViewTabSecureModeInsecure
+		&& ![mutableRequest.URL.scheme.lowercaseString isEqualToString:@"https"]
+		&& ![[HostSettings settingsOrDefaultsForHost:host] boolSettingOrDefault:HOST_SETTINGS_KEY_ALLOW_MIXED_MODE])
+	{
+		[_wvt setSecureMode:WebViewTabSecureModeMixed];
+		return nil;
+	}
+
 	/* we're handling cookies ourself */
 	mutableRequest.HTTPShouldHandleCookies = NO;
 	NSArray *cookies = [AppDelegate.sharedAppDelegate.cookieJar cookiesForURL:mutableRequest.URL forTab:_wvt.hash];
