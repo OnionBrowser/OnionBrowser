@@ -1,5 +1,5 @@
 PODS:
-  - CSPHeader (0.3.0)
+  - CSPHeader (0.4.0)
   - DTFoundation (1.7.13):
     - DTFoundation/AppKit (= 1.7.13)
     - DTFoundation/Core (= 1.7.13)
@@ -73,7 +73,7 @@ PODS:
   - XLForm (3.3.0)
 
 DEPENDENCIES:
-  - CSPHeader (~> 0.3)
+  - CSPHeader (~> 0.4)
   - DTFoundation
   - InAppSettingsKit (~> 2.12)
   - OCMock
@@ -122,7 +122,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/jcs/XLForm.git
 
 SPEC CHECKSUMS:
-  CSPHeader: 2253188760e9b494cf8699d309f38f0ccd8a1be0
+  CSPHeader: adec9dd23d5ea822b8e397407c40c6435b4a7c49
   DTFoundation: f03be9fd786f11e505bb8fc44e2a3732bf0917df
   InAppSettingsKit: 363ed5ea061ebcb76d69ca1eed08c8a4fe48baf2
   KMPlaceholderTextView: 2206c3df39979e9396e2d96fa9f427a8951121b0
@@ -139,6 +139,6 @@ SPEC CHECKSUMS:
   WYPopoverController: a9db25ac2841a686acdc0f3a99bdb21545db32f4
   XLForm: d5c391dfc62865927b5bcab0a5a0dbfb3e02b0ec
 
-PODFILE CHECKSUM: ee0669d98c317efebfc31079b7e8e33ca9eb081c
+PODFILE CHECKSUM: a258cb309997d754775fc56a50a186eefeaa59d4
 
 COCOAPODS: 1.7.5

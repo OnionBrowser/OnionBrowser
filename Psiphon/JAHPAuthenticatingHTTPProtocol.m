@@ -1294,7 +1294,8 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 		DefaultDirective *deflt = [[DefaultDirective alloc] initWithSources:@[none]];
 		SandboxDirective *sandbox = [[SandboxDirective alloc]
 									 initWithSources:@[[[AllowFormsSource alloc] init],
-													   [[AllowTopNavigationSource alloc] init]]];
+													   [[AllowTopNavigationSource alloc] init],
+													   [[AllowScripts alloc] init]]];
 
 		cspHeader = [[CSPHeader alloc] initWithDirectives:@[deflt, style, img, sandbox]];
 	}
