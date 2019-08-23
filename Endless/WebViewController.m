@@ -10,7 +10,6 @@
 #import "HistoryController.h"
 #import "SearchResultsController.h"
 #import "SSLCertificateViewController.h"
-#import "URLInterceptor.h"
 #import "WebViewController.h"
 #import "WebViewTab.h"
 #import "WebViewMenuController.h"

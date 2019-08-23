@@ -9,7 +9,6 @@
 #import "WebViewTab+Activity.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <objc/runtime.h>
-#import "URLInterceptor.h"
 
 /**
  Tries to offer the currently open page in the most usable way to the user:

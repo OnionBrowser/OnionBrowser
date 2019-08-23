@@ -7,7 +7,6 @@
 
 #import "AppDelegate.h"
 #import "SearchResultsController.h"
-#import "URLInterceptor.h"
 
 #import "NSString+DTURLEncoding.h"
 

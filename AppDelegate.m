@@ -10,7 +10,7 @@
 #import "AppDelegate.h"
 #import "Bookmark.h"
 #import "HTTPSEverywhere.h"
-#import "URLInterceptor.h"
+#import "HostSettings.h"
 
 #import "UIResponder+FirstResponder.h"
 

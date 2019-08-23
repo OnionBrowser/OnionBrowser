@@ -6,8 +6,8 @@
  */
 
 #import "AppDelegate.h"
-#import "URLInterceptor.h"
 #import "WebViewTab.h"
+#import "HostSettings.h"
 
 #import "NSString+JavascriptEscape.h"
 #import "UIResponder+FirstResponder.h"
