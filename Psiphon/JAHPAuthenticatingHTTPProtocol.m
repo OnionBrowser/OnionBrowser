@@ -543,7 +543,7 @@ static NSString * kJAHPRecursiveRequestFlagProperty = @"com.jivesoftware.JAHPAut
 
 	// Check, if URL needs to be blocked.
 	NSString *blocker = [URLBlocker blockingTargetForURL:[request URL] fromMainDocumentURL:[request mainDocumentURL]];
-	if (!blocker) {
+	if (blocker) {
 		[[_wvt applicableURLBlockerTargets] setObject:@YES forKey:blocker];
 		return nil;
 	}
