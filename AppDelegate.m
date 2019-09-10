@@ -502,7 +502,7 @@
 	/* no credentials, prompt the user */
 	if (nsuc == nil) {
 		dispatch_async(dispatch_get_main_queue(), ^{
-			self->authAlertController = [UIAlertController alertControllerWithTitle:NSLocalizedStringWithDefaultValue(@"HTTP_AUTH_TITLE", nil, [NSBundle mainBundle], @"Authentication Required", @"HTTP authentication alert title") message:@"" preferredStyle:UIAlertControllerStyleAlert];
+			self->authAlertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Authentication Required", @"HTTP authentication alert title") message:@"" preferredStyle:UIAlertControllerStyleAlert];
 
 			if ([[challenge protectionSpace] realm] != nil && ![[[challenge protectionSpace] realm] isEqualToString:@""])
 			[self->authAlertController setMessage:[NSString stringWithFormat:@"%@: \"%@\"", [[challenge protectionSpace] host], [[challenge protectionSpace] realm]]];
@@ -510,20 +510,20 @@
 			[self->authAlertController setMessage:[[challenge protectionSpace] host]];
 
 			[self->authAlertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-				textField.placeholder = NSLocalizedStringWithDefaultValue(@"HTTP_AUTH_USER_NAME", nil, [NSBundle mainBundle], @"User Name", "HTTP authentication alert user name input title");
+				textField.placeholder = NSLocalizedString(@"User Name", "HTTP authentication alert user name input title");
 			}];
 
 			[self->authAlertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-				textField.placeholder = NSLocalizedStringWithDefaultValue(@"HTTP_AUTH_PASSWORD", nil, [NSBundle mainBundle], @"Password", @"HTTP authentication alert password input title");
+				textField.placeholder = NSLocalizedString(@"Password", @"HTTP authentication alert password input title");
 				textField.secureTextEntry = YES;
 			}];
 
-			[self->authAlertController addAction:[UIAlertAction actionWithTitle:NSLocalizedStringWithDefaultValue(@"CANCEL_ACTION", nil, [NSBundle mainBundle], @"Cancel", @"Cancel action") style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+			[self->authAlertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", @"Cancel action") style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
 				[[challenge sender] cancelAuthenticationChallenge:challenge];
 				[authenticatingHTTPProtocol.client URLProtocol:authenticatingHTTPProtocol didFailWithError:[NSError errorWithDomain:NSCocoaErrorDomain code:NSUserCancelledError userInfo:@{ ORIGIN_KEY: @YES }]];
 			}]];
 
-			[self->authAlertController addAction:[UIAlertAction actionWithTitle:NSLocalizedStringWithDefaultValue(@"HTTP_AUTH_LOG_IN", nil, [NSBundle mainBundle], @"Log In", @"HTTP authentication alert log in button action") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+			[self->authAlertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Log In", @"HTTP authentication alert log in button action") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
 				UITextField *login = self->authAlertController.textFields.firstObject;
 				UITextField *password = self->authAlertController.textFields.lastObject;
 
