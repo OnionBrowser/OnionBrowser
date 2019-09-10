@@ -59,7 +59,9 @@ NSString* _Nonnull const OCSPCacheUserDefaultsKey = @"OCSPCache.ocsp_cache_1";
 		[[OCSPAuthURLSessionDelegate alloc] initWithLogger:authLogger
 												 ocspCache:self.ocspCache
 											 modifyOCSPURL:nil
-												   session:nil];
+												   session:nil
+												   timeout:1];
+
 	}
 
 	return self;

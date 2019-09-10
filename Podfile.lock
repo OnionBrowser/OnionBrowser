@@ -77,7 +77,7 @@ DEPENDENCIES:
   - DTFoundation
   - InAppSettingsKit (~> 2.12)
   - OCMock
-  - OCSPCache (from `https://github.com/Psiphon-Labs/OCSPCache`)
+  - OCSPCache (from `https://github.com/mirokuratczyk/OCSPCache`)
   - OrderedDictionary
   - POE (~> 0.5)
   - TUSafariActivity
@@ -104,7 +104,7 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   OCSPCache:
-    :git: https://github.com/Psiphon-Labs/OCSPCache
+    :git: https://github.com/mirokuratczyk/OCSPCache
   WYPopoverController:
     :git: https://github.com/sammcewan/WYPopoverController.git
   XLForm:
@@ -112,8 +112,8 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   OCSPCache:
-    :commit: b945a5784cd88ed5693a62a931617bd371f3c9a8
-    :git: https://github.com/Psiphon-Labs/OCSPCache
+    :commit: fec58d95f3474346fd2fa3e4ea8281b9ff51afa8
+    :git: https://github.com/mirokuratczyk/OCSPCache
   WYPopoverController:
     :commit: 9b8011bd95bd95f6fca6a0afa78965fbf645a062
     :git: https://github.com/sammcewan/WYPopoverController.git
@@ -139,6 +139,6 @@ SPEC CHECKSUMS:
   WYPopoverController: a9db25ac2841a686acdc0f3a99bdb21545db32f4
   XLForm: d5c391dfc62865927b5bcab0a5a0dbfb3e02b0ec
 
-PODFILE CHECKSUM: a258cb309997d754775fc56a50a186eefeaa59d4
+PODFILE CHECKSUM: 47e8a5dc6d514c700fe207410376ceec11c77d3d
 
 COCOAPODS: 1.7.5
