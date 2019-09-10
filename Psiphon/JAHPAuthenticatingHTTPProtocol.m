@@ -1091,22 +1091,36 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 			};
 #endif
 
-			// Allow each URL to be loaded through JAHP
-			NSURL* (^modifyOCSPURL)(NSURL *url) = ^NSURL*(NSURL *url) {
-				[JAHPAuthenticatingHTTPProtocol temporarilyAllowURL:url
-													  forWebViewTab:self->_wvt
-													  isOCSPRequest:YES];
-				return nil;
-			};
+			BOOL successfulAuth = NO;
 
-			OCSPAuthURLSessionDelegate *authURLSessionDelegate =
-			AppDelegate.sharedAppDelegate.certificateAuthentication.authURLSessionDelegate;
+			if ([NSUserDefaults.standardUserDefaults boolForKey:@"allow_tls_error_ignore"]
+				&& [[HostSettings settingsOrDefaultsForHost:task.currentRequest.URL.host] boolSettingOrDefault:HOST_SETTINGS_KEY_IGNORE_TLS_ERRORS])
+			{
+				successfulAuth = YES;
 
-			BOOL successfulAuth =
-			[authURLSessionDelegate evaluateTrust:trust
-							modifyOCSPURLOverride:modifyOCSPURL
-								  sessionOverride:sharedDemuxInstance.session
-								completionHandler:completionHandler];
+				dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+					completionHandler(NSURLSessionAuthChallengeUseCredential,
+									  [NSURLCredential credentialForTrust:trust]);
+				});
+			}
+			else {
+				// Allow each URL to be loaded through JAHP
+				NSURL* (^modifyOCSPURL)(NSURL *url) = ^NSURL*(NSURL *url) {
+					[JAHPAuthenticatingHTTPProtocol temporarilyAllowURL:url
+														  forWebViewTab:self->_wvt
+														  isOCSPRequest:YES];
+					return nil;
+				};
+
+				OCSPAuthURLSessionDelegate *authURLSessionDelegate =
+				AppDelegate.sharedAppDelegate.certificateAuthentication.authURLSessionDelegate;
+
+				successfulAuth =
+				[authURLSessionDelegate evaluateTrust:trust
+								modifyOCSPURLOverride:modifyOCSPURL
+									  sessionOverride:sharedDemuxInstance.session
+									completionHandler:completionHandler];
+			}
 
 			if (successfulAuth) {
 				if ([[task.currentRequest mainDocumentURL] isEqual:[task.currentRequest URL]]) {

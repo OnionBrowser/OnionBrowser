@@ -554,9 +554,9 @@ SILENCE_WARNINGS_OFF
 		return;
 
 	NSString *msg = [error localizedDescription];
-	
+
 	/* https://opensource.apple.com/source/libsecurity_ssl/libsecurity_ssl-36800/lib/SecureTransport.h */
-	if ([[error domain] isEqualToString:NSOSStatusErrorDomain]) {
+	if ([error.domain isEqualToString:NSOSStatusErrorDomain]) {
 		switch (error.code) {
 		case errSSLProtocol: /* -9800 */
 			msg = NSLocalizedString(@"TLS protocol error", nil);
@@ -570,6 +570,17 @@ SILENCE_WARNINGS_OFF
 			msg = NSLocalizedString(@"TLS certificate chain verification error (self-signed certificate?)", nil);
 			isTLSError = true;
 			break;
+		case -1202:
+			isTLSError = true;
+			break;
+		}
+	}
+
+	if ([error.domain isEqualToString:NSURLErrorDomain]) {
+		switch (error.code) {
+			case -1202:
+				isTLSError = true;
+				break;
 		}
 	}
 
