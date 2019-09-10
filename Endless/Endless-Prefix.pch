@@ -37,9 +37,6 @@
 /* be verbose about hardware keyboard processing */
 #undef TRACE_KEYBOARD_INPUT
 
-/* bypass most of URLInterceptor for troubleshooting */
-#undef USE_DUMMY_URLINTERCEPTOR
-
 #endif
 
 #endif

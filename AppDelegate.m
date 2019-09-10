@@ -44,13 +44,6 @@
 	[JAHPAuthenticatingHTTPProtocol setDelegate:self];
 	[JAHPAuthenticatingHTTPProtocol start];
 
-//#ifdef USE_DUMMY_URLINTERCEPTOR
-//	[NSURLProtocol registerClass:[DummyURLInterceptor class]];
-//#else
-//	[URLInterceptor setup];
-//	[NSURLProtocol registerClass:[URLInterceptor class]];
-//#endif
-
 	self.hstsCache = [HSTSCache retrieve];
 	self.cookieJar = [[CookieJar alloc] init];
 	[Bookmark retrieveList];
