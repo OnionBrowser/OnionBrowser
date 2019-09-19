@@ -12,7 +12,7 @@ target 'OnionBrowser2' do
   pod 'POE', '~> 0.5'
   pod 'UIColor-HexRGB', :modular_headers => true
 
-  pod 'OCSPCache', :git => 'https://github.com/mirokuratczyk/OCSPCache'
+  pod 'OCSPCache', :git => 'https://github.com/Psiphon-Labs/OCSPCache'
 
   pod 'CSPHeader', '~> 0.4'
 end
