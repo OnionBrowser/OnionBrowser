@@ -11,6 +11,7 @@
 #import "Bookmark.h"
 #import "HTTPSEverywhere.h"
 #import "HostSettings.h"
+#import "DownloadHelper.h"
 
 #import "UIResponder+FirstResponder.h"
 
@@ -90,6 +91,8 @@
         [userDefaults synchronize];
     }
 
+	[DownloadHelper deleteDownloadsDirectory];
+
     return YES;
 }
 
@@ -155,7 +158,9 @@
 {
 	/* this definitely ends our sessions */
 	[[self cookieJar] clearAllNonWhitelistedData];
-	
+
+	[DownloadHelper deleteDownloadsDirectory];
+
 	[application ignoreSnapshotOnNextApplicationLaunch];
 }
 

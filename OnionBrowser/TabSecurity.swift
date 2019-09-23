@@ -31,6 +31,7 @@ import UIKit
 		let appDelegate = UIApplication.shared.delegate as? AppDelegate
 		let controller = appDelegate?.webViewController
 		let cookieJar = appDelegate?.cookieJar
+		let ocspCache = appDelegate?.certificateAuthentication
 
 		if security == clearOnBackground {
 			controller?.removeAllTabs()
@@ -38,6 +39,7 @@ import UIKit
 		}
 		else {
 			cookieJar?.clearAllOldNonWhitelistedData()
+			ocspCache?.persist()
 		}
 
 		if security == alwaysRemember {

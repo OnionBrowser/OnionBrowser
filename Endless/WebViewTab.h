@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <QuickLook/QuickLook.h>
 
 #import "SSLCertificate.h"
 #import "SilenceWarnings.h"
@@ -99,14 +100,18 @@ static const struct keyboard_map_entry {
 	{ NULL }
 };
 
-@interface WebViewTab : NSObject <UIWebViewDelegate, UIGestureRecognizerDelegate, DownloadTaskDelegate>
+@interface WebViewTab : NSObject <UIWebViewDelegate, UIGestureRecognizerDelegate,
+DownloadTaskDelegate, QLPreviewControllerDelegate, QLPreviewControllerDataSource,
+UIDocumentInteractionControllerDelegate>
 
 @property (strong, atomic) UIView *viewHolder;
 SILENCE_DEPRECATION_ON
 @property (strong, atomic) UIWebView *webView;
 SILENCE_WARNINGS_OFF
+@property (strong,atomic) QLPreviewController *previewController;
 @property (strong, atomic) UIRefreshControl *refresher;
 @property (strong, atomic) NSURL *url;
+@property (strong, atomic) NSURL *downloadedFile;
 @property BOOL needsRefresh;
 @property (strong, atomic) NSNumber *tabIndex;
 @property (strong, atomic) UIView *titleHolder;

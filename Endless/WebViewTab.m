@@ -20,14 +20,18 @@
 @import WebKit;
 
 @implementation WebViewTab {
-	AppDelegate *appDelegate;
 	BOOL inForceTouch;
 	BOOL skipHistory;
+
+	// For downloads
+	UIView *downloadPreview;
+	UIDocumentInteractionController *documentInteractionController;
+	UIView *previewControllerOverlay;
 }
 
 + (WebViewTab *)openedWebViewTabByRandID:(NSString *)randID
 {
-	for (WebViewTab *wvt in [[(AppDelegate *)[[UIApplication sharedApplication] delegate] webViewController] webViewTabs]) {
+	for (WebViewTab *wvt in AppDelegate.sharedAppDelegate.webViewController.webViewTabs) {
 		if ([wvt randID] != nil && [[wvt randID] isEqualToString:randID]) {
 			return wvt;
 		}
@@ -45,12 +49,10 @@
 {
 	self = [super init];
 	
-	appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-	
 	_viewHolder = [[UIView alloc] initWithFrame:frame];
 	
 	/* re-register user agent with our hash, which should only affect this UIWebView */
-	[[NSUserDefaults standardUserDefaults] registerDefaults:@{ @"UserAgent": [NSString stringWithFormat:@"%@/%lu", [appDelegate defaultUserAgent], (unsigned long)self.hash] }];
+	[[NSUserDefaults standardUserDefaults] registerDefaults:@{ @"UserAgent": [NSString stringWithFormat:@"%@/%lu", AppDelegate.sharedAppDelegate.defaultUserAgent, (unsigned long)self.hash] }];
 	
 	SILENCE_DEPRECATION(_webView = [[UIWebView alloc] initWithFrame:CGRectZero]);
 	_needsRefresh = FALSE;
@@ -157,6 +159,8 @@
 
 - (void)dealloc
 {
+	[self cancelDownloadAndRemovePreview];
+
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:@"WebProgressEstimateChangedNotification" object:[_webView valueForKeyPath:@"documentView.webView"]];
 	
 	void (^block)(void) = ^{
@@ -222,7 +226,7 @@
 	[self.viewHolder setFrame:frame];
 	[self.webView setFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
 	
-	if ([[appDelegate webViewController] toolbarOnBottom]) {
+	if (AppDelegate.sharedAppDelegate.webViewController.toolbarOnBottom) {
 		[self.titleHolder setFrame:CGRectMake(0, frame.size.height, frame.size.width, 32)];
 		[self.closer setFrame:CGRectMake(3, frame.size.height + 8, 18, 18)];
 		[self.title setFrame:CGRectMake(22, frame.size.height + 8, frame.size.width - 22 - 22, 18)];
@@ -275,11 +279,11 @@
 - (void)searchFor:(NSString *)query
 {
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	NSDictionary *se = [[appDelegate searchEngines] objectForKey:[userDefaults stringForKey:@"search_engine"]];
+	NSDictionary *se = [AppDelegate.sharedAppDelegate.searchEngines objectForKey:[userDefaults stringForKey:@"search_engine"]];
 	
 	if (se == nil)
 		/* just pick the first search engine */
-		se = [[appDelegate searchEngines] objectForKey:[[[appDelegate searchEngines] allKeys] firstObject]];
+		se = [AppDelegate.sharedAppDelegate.searchEngines objectForKey:[[AppDelegate.sharedAppDelegate.searchEngines allKeys] firstObject]];
 	
 	NSDictionary *pp = [se objectForKey:@"post_params"];
 	NSString *urls;
@@ -384,6 +388,7 @@ SILENCE_WARNINGS_OFF
 		if (!iframe)
 			[self prepareForNewURL:[request mainDocumentURL]];
 
+		[self cancelDownloadAndRemovePreview];
 		return YES;
 	}
 	
@@ -415,7 +420,7 @@ SILENCE_WARNINGS_OFF
 	else if ([action isEqualToString:@"window.open"]) {
 		/* only allow windows to be opened from mouse/touch events, like a normal browser's popup blocker */
 		if (navigationType == UIWebViewNavigationTypeLinkClicked) {
-			WebViewTab *newtab = [[appDelegate webViewController] addNewTabForURL:nil];
+			WebViewTab *newtab = [AppDelegate.sharedAppDelegate.webViewController addNewTabForURL:nil];
 			newtab.randID = param;
 			newtab.openedByTabHash = [NSNumber numberWithLong:self.hash];
 			
@@ -432,14 +437,14 @@ SILENCE_WARNINGS_OFF
 		UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Confirm", nil) message:NSLocalizedString(@"Allow this page to close its tab?", nil) preferredStyle:UIAlertControllerStyleAlert];
 		
 		UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK action") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            [[self->appDelegate webViewController] removeTab:[self tabIndex]];
+            [AppDelegate.sharedAppDelegate.webViewController removeTab:[self tabIndex]];
 		}];
 		
 		UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", @"Cancel action") style:UIAlertActionStyleCancel handler:nil];
 		[alertController addAction:cancelAction];
 		[alertController addAction:okAction];
 		
-		[[appDelegate webViewController] presentViewController:alertController animated:YES completion:nil];
+		[AppDelegate.sharedAppDelegate.webViewController presentViewController:alertController animated:YES completion:nil];
 		
 		[self webView:__webView callbackWith:@""];
 	}
@@ -472,7 +477,7 @@ SILENCE_WARNINGS_OFF
 		
 		/* actions */
 		else if ([action isEqualToString:@"fakeWindow.close"]) {
-			[[appDelegate webViewController] removeTab:[wvt tabIndex]];
+			[AppDelegate.sharedAppDelegate.webViewController removeTab:wvt.tabIndex];
 			[self webView:__webView callbackWith:@""];
 		}
 	}
@@ -638,7 +643,7 @@ SILENCE_WARNINGS_OFF
 		}]];
 	}
 
-	[[appDelegate webViewController] presentViewController:uiac animated:YES completion:nil];
+	[AppDelegate.sharedAppDelegate.webViewController presentViewController:uiac animated:YES completion:nil];
 
 SILENCE_DEPRECATION_ON
 	[self webViewDidFinishLoad:__webView];
@@ -683,26 +688,13 @@ SILENCE_WARNINGS_OFF
 	}
 }
 
-
-#pragma mark - DownloadTaskDelegate
-
-- (void)didStartDownloadingFile {
-	// TODO: Maybe implement some UI here?
-}
-
-- (void)didFinishDownloadingToURL:(NSURL *)location {
-	// TODO
-}
-
-
 - (void)setProgress:(NSNumber *)pr
 {
 	_progress = pr;
-	[[appDelegate webViewController] updateProgress];
+	dispatch_async(dispatch_get_main_queue(), ^{
+		[AppDelegate.sharedAppDelegate.webViewController updateProgress];
+	});
 }
-
-
-#pragma mark - Other
 
 - (void)swipeRightAction:(UISwipeGestureRecognizer *)gesture
 {
@@ -716,7 +708,7 @@ SILENCE_WARNINGS_OFF
 
 - (void)webViewTouched:(UIEvent *)event
 {
-	[[appDelegate webViewController] webViewTouched];
+	[AppDelegate.sharedAppDelegate.webViewController webViewTouched];
 }
 
 - (void)pressedMenu:(UIGestureRecognizer *)event
@@ -788,7 +780,7 @@ SILENCE_WARNINGS_OFF
 			u = [NSURL URLWithString:img];
 
 		if (u) {
-			WebViewTab *newtab = [[appDelegate webViewController] addNewTabForURL:u forRestoration:NO withAnimation:WebViewTabAnimationQuick withCompletionBlock:nil];
+			WebViewTab *newtab = [AppDelegate.sharedAppDelegate.webViewController addNewTabForURL:u forRestoration:NO withAnimation:WebViewTabAnimationQuick withCompletionBlock:nil];
 			newtab.openedByTabHash = [NSNumber numberWithLong:self.hash];
 		}
 		
@@ -802,12 +794,12 @@ SILENCE_WARNINGS_OFF
 	}];
 	
 	UIAlertAction *openNewTabAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Open in a New Tab", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-		WebViewTab *newtab = [[self->appDelegate webViewController] addNewTabForURL:[NSURL URLWithString:href]];
+		WebViewTab *newtab = [AppDelegate.sharedAppDelegate.webViewController addNewTabForURL:[NSURL URLWithString:href]];
 		newtab.openedByTabHash = [NSNumber numberWithLong:self.hash];
 	}];
 
 	UIAlertAction *openBackgroundTabAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Open in Background Tab", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-		WebViewTab *newtab = [[self->appDelegate webViewController] addNewTabForURL:[NSURL URLWithString:href] forRestoration:NO withAnimation:WebViewTabAnimationHidden withCompletionBlock:nil];
+		WebViewTab *newtab = [AppDelegate.sharedAppDelegate.webViewController addNewTabForURL:[NSURL URLWithString:href] forRestoration:NO withAnimation:WebViewTabAnimationHidden withCompletionBlock:nil];
 		newtab.openedByTabHash = [NSNumber numberWithLong:self.hash];
 	}];
 
@@ -833,7 +825,7 @@ SILENCE_WARNINGS_OFF
 				dispatch_async(dispatch_get_main_queue(), ^{
 					UIAlertController *uiac = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", nil) message:[NSString stringWithFormat:NSLocalizedString(@"An error occurred downloading image %@", nil), img] preferredStyle:UIAlertControllerStyleAlert];
 					[uiac addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:nil]];
-					[[self->appDelegate webViewController] presentViewController:uiac animated:YES completion:nil];
+					[AppDelegate.sharedAppDelegate.webViewController presentViewController:uiac animated:YES completion:nil];
 				});
 			}
 		});
@@ -867,7 +859,7 @@ SILENCE_WARNINGS_OFF
 		popover.permittedArrowDirections = UIPopoverArrowDirectionAny;
 	}
 	
-	[[appDelegate webViewController] presentViewController:alertController animated:YES completion:nil];
+	[AppDelegate.sharedAppDelegate.webViewController presentViewController:alertController animated:YES completion:nil];
 }
 
 - (BOOL)canGoBack
@@ -887,14 +879,14 @@ SILENCE_WARNINGS_OFF
 		[[self webView] goBack];
 	}
 	else if (self.openedByTabHash) {
-		for (WebViewTab *wvt in [[appDelegate webViewController] webViewTabs]) {
+		for (WebViewTab *wvt in AppDelegate.sharedAppDelegate.webViewController.webViewTabs) {
 			if ([wvt hash] == [self.openedByTabHash longValue]) {
-				[[appDelegate webViewController] removeTab:self.tabIndex andFocusTab:[wvt tabIndex]];
+				[AppDelegate.sharedAppDelegate.webViewController removeTab:self.tabIndex andFocusTab:[wvt tabIndex]];
 				return;
 			}
 		}
 		
-		[[appDelegate webViewController] removeTab:self.tabIndex];
+		[AppDelegate.sharedAppDelegate.webViewController removeTab:self.tabIndex];
 	}
 }
 
@@ -1053,6 +1045,175 @@ SILENCE_WARNINGS_OFF
 #endif
 	
 	[[self webView] stringByEvaluatingJavaScriptFromString:js];
+}
+
+#pragma mark - DownloadTaskDelegate methods
+
+- (void)didStartDownloadingFile {
+	// Ignore.
+}
+
+- (void)didFinishDownloadingToURL:(NSURL *)location {
+	dispatch_async(dispatch_get_main_queue(), ^{
+		if (location != nil) {
+			self.downloadedFile = location;
+			[self addPreviewController]; // add preview controller to view
+		} else {
+#ifdef TRACE
+			NSLog(@"didFinishDownloadingToURL called with nil location");
+#endif
+		}
+	});
+}
+
+#pragma mark - DownloadTaskDelegate helpers
+// Add preview controller as a child of WebViewController and
+// its view as a subview of self.viewHolder
+- (void)addPreviewController {
+	self.previewController = [[QLPreviewController alloc] init];
+	self.previewController.delegate = self;
+	self.previewController.dataSource = self;
+
+	// Setup preview overlay
+	downloadPreview = [[UIView alloc] init];
+	downloadPreview.translatesAutoresizingMaskIntoConstraints = NO;
+	[self.viewHolder addSubview:downloadPreview];
+
+	[downloadPreview.leadingAnchor constraintEqualToAnchor:self.viewHolder.leadingAnchor].active = YES;
+	[downloadPreview.topAnchor constraintEqualToAnchor:self.viewHolder.topAnchor].active = YES;
+	[downloadPreview.trailingAnchor constraintEqualToAnchor:self.viewHolder.trailingAnchor].active = YES;
+	[downloadPreview.bottomAnchor constraintEqualToAnchor:self.viewHolder.bottomAnchor].active = YES;
+
+	// Add viewController as a child of WebViewController
+	UIViewController *parent = AppDelegate.sharedAppDelegate.webViewController;
+	[parent addChildViewController:self.previewController];
+	self.previewController.view.translatesAutoresizingMaskIntoConstraints = NO;
+
+	// Add previewController.view as a subview of view
+	[downloadPreview addSubview:self.previewController.view];
+
+	// Setup previewController's autolayout
+	[self.previewController.view.leadingAnchor constraintEqualToAnchor:downloadPreview.leadingAnchor].active = YES;
+	[self.previewController.view.topAnchor constraintEqualToAnchor:downloadPreview.topAnchor].active = YES;
+	[self.previewController.view.trailingAnchor constraintEqualToAnchor:downloadPreview.trailingAnchor].active = YES;
+
+	[self.previewController didMoveToParentViewController:parent];
+
+	UIToolbar *toolbar = [[UIToolbar alloc] init];
+	UIBarButtonItem *shareItem = [[UIBarButtonItem alloc]
+								  initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+								  target:self
+								  action:@selector(presentOptionsMenuForCurrentDownload:)];
+
+	[toolbar setItems:@[shareItem]];
+	toolbar.translatesAutoresizingMaskIntoConstraints = NO;
+
+	[downloadPreview addSubview:toolbar];
+
+	[toolbar.leadingAnchor constraintEqualToAnchor:downloadPreview.leadingAnchor].active = YES;
+	[toolbar.topAnchor constraintEqualToAnchor:self.previewController.view.bottomAnchor].active = YES;
+	[toolbar.trailingAnchor constraintEqualToAnchor:downloadPreview.trailingAnchor].active = YES;
+	[toolbar.bottomAnchor constraintEqualToAnchor:downloadPreview.bottomAnchor].active = YES;
+
+	// Add another overlay (a hack to create a transparant clickable view)
+	// which doesn't influence the alpha of the "more" button but allows us
+	// to disable interaction with the file preview when zoomed out in the
+	// all-tabs view.
+	previewControllerOverlay = [[UIView alloc] init];
+	previewControllerOverlay.backgroundColor = [UIColor whiteColor];
+	previewControllerOverlay.alpha = 0.11;
+	previewControllerOverlay.userInteractionEnabled = NO;
+	previewControllerOverlay.translatesAutoresizingMaskIntoConstraints = NO;
+	previewControllerOverlay.hidden = YES;
+	[downloadPreview addSubview:previewControllerOverlay];
+
+	// Setup autolayout
+	[previewControllerOverlay.leadingAnchor constraintEqualToAnchor:downloadPreview.leadingAnchor].active = YES;
+	[previewControllerOverlay.topAnchor constraintEqualToAnchor:downloadPreview.topAnchor].active = YES;
+	[previewControllerOverlay.trailingAnchor constraintEqualToAnchor:downloadPreview.trailingAnchor].active = YES;
+	[previewControllerOverlay.bottomAnchor constraintEqualToAnchor:downloadPreview.bottomAnchor].active = YES;
+}
+
+- (void)presentOptionsMenuForCurrentDownload:(id)sender {
+	if (self.downloadedFile) {
+		documentInteractionController = [self setupControllerWithURL:self.downloadedFile usingDelegate:self];
+		BOOL presented = [documentInteractionController presentOptionsMenuFromRect:[AppDelegate sharedAppDelegate].webViewController.view.frame inView:[AppDelegate sharedAppDelegate].webViewController.view animated:YES];
+		if (!presented) {
+#ifdef TRACE
+			NSLog(@"Failed to present options menu for current download");
+#endif
+		}
+	}
+}
+
+// Should be called whenever navigation occurs or
+// when the WebViewTab is being closed.
+- (void)cancelDownloadAndRemovePreview {
+	if (self.downloadedFile) {
+		// Delete the temporary file
+		NSError *err;
+		[[NSFileManager defaultManager] removeItemAtPath:self.downloadedFile.path error:&err];
+		if (err != nil) {
+#ifdef TRACE
+			NSLog(@"File delete error %@", err);
+#endif
+		}
+		self.downloadedFile = nil;
+	}
+	[self removePreviewController];
+}
+
+- (void)removeDownloadPreview {
+	if (downloadPreview != nil) {
+		[downloadPreview removeFromSuperview];
+		downloadPreview = nil;
+	}
+}
+
+- (void)removePreviewController {
+	documentInteractionController = nil;
+
+	if (self.previewController != nil) {
+		[self.previewController.view removeFromSuperview];
+		[self.previewController removeFromParentViewController];
+		self.previewController = nil;
+		previewControllerOverlay = nil;
+		documentInteractionController = nil;
+	}
+	[self removeDownloadPreview];
+}
+
+#pragma mark - UIDocumentInteractionControllerDelegate methods and helpers
+
+- (UIViewController *)documentInteractionControllerViewControllerForPreview:(UIDocumentInteractionController *)controller {
+	return [[AppDelegate sharedAppDelegate] webViewController];
+}
+
+- (UIDocumentInteractionController *) setupControllerWithURL: (NSURL*) fileURL
+											   usingDelegate: (id <UIDocumentInteractionControllerDelegate>) interactionDelegate {
+	UIDocumentInteractionController *interactionController = [UIDocumentInteractionController interactionControllerWithURL:fileURL];
+	interactionController.delegate = interactionDelegate;
+
+	return interactionController;
+}
+
+- (void)documentInteractionControllerDidEndPreview:(UIDocumentInteractionController *)controller {
+	if ([documentInteractionController isEqual:controller]) {
+		documentInteractionController = nil;
+	}
+}
+
+#pragma mark - QLPreviewControllerDataSource methods
+
+- (id<QLPreviewItem>)previewController:(QLPreviewController *)controller previewItemAtIndex:(NSInteger)index {
+	return self.downloadedFile;
+}
+
+- (NSInteger)numberOfPreviewItemsInPreviewController:(QLPreviewController *)controller {
+	if (self.downloadedFile != nil) {
+		return 1;
+	}
+	return 0;
 }
 
 @end
