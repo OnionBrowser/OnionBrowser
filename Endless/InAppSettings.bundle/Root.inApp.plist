@@ -210,6 +210,28 @@
 		</dict>
 		<dict>
 			<key>Key</key>
+			<string>tls_version</string>
+			<key>Title</key>
+			<string>TLS Version</string>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>DefaultValue</key>
+			<string>tls_10</string>
+			<key>Values</key>
+			<array>
+				<string>tls_12</string>
+				<string>tls_10</string>
+			</array>
+			<key>Titles</key>
+			<array>
+				<string>TLS 1.2 Only</string>
+				<string>TLS 1.2, 1.1 or 1.0</string>
+			</array>
+			<key>FooterText</key>
+			<string>Minimum version of TLS required for hosts to negotiate HTTPS connections</string>
+		</dict>
+		<dict>
+			<key>Key</key>
 			<string>allow_tls_error_ignore</string>
 			<key>Title</key>
 			<string>Allow ignoring TLS errors</string>

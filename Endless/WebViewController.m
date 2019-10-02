@@ -10,7 +10,6 @@
 #import "HistoryController.h"
 #import "SearchResultsController.h"
 #import "SSLCertificateViewController.h"
-#import "URLInterceptor.h"
 #import "WebViewController.h"
 #import "WebViewTab.h"
 #import "WebViewMenuController.h"
@@ -1097,7 +1096,6 @@
 	[self dismissViewControllerAnimated:YES completion:nil];
 	
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	[URLInterceptor setSendDNT:[userDefaults boolForKey:@"send_dnt"]];
 	[[appDelegate cookieJar] setOldDataSweepTimeout:[NSNumber numberWithInteger:[userDefaults integerForKey:@"old_data_sweep_mins"]]];
 	
 	self.toolbarOnBottom = [userDefaults boolForKey:@"toolbar_on_bottom"];

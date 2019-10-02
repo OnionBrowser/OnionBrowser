@@ -12,9 +12,12 @@
 #import "HSTSCache.h"
 #import "WebViewController.h"
 
+#import "JAHPAuthenticatingHTTPProtocol.h"
+#import "CertificateAuthentication.h"
+
 #define STATE_RESTORE_TRY_KEY @"state_restore_lock"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, JAHPAuthenticatingHTTPProtocolDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
@@ -30,6 +33,13 @@
 
 @property (strong, atomic) NSString *defaultUserAgent;
 @property (strong, atomic) NSURL *urlToOpenAtLaunch;
+
+@property NSInteger socksProxyPort;
+@property NSInteger httpProxyPort;
+@property NSCache *sslCertCache;
+@property CertificateAuthentication *certificateAuthentication;
+
++ (AppDelegate *)sharedAppDelegate;
 
 - (BOOL)areTesting;
 - (void)adjustMuteSwitchBehavior;

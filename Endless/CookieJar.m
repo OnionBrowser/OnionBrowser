@@ -41,6 +41,22 @@
 	AppDelegate *appDelegate;
 }
 
+
++ (BOOL)isSameOrigin:(NSURL *)aURL toURL:(NSURL *)bURL
+{
+	if ([aURL.scheme caseInsensitiveCompare:bURL.scheme] != NSOrderedSame) return NO;
+	if ([aURL.host caseInsensitiveCompare:bURL.host] != NSOrderedSame) return NO;
+
+	if (aURL.port || bURL.port)
+	{
+		// TODO: should we match ports 80 and 443 to nil for http and https respectively?
+		if (![aURL.port isEqual:bURL.port]) return NO;
+	}
+
+	return YES;
+}
+
+
 - (CookieJar *)init
 {
 	self = [super init];

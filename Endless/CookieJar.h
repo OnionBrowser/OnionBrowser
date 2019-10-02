@@ -14,6 +14,8 @@
 @property NSMutableDictionary *localStorage;
 @property NSNumber *oldDataSweepTimeout;
 
++ (BOOL)isSameOrigin:(NSURL *)aURL toURL:(NSURL *)bURL;
+
 - (NSArray *)sortedHostCounts;
 - (BOOL)isHostWhitelisted:(NSString *)host;
 

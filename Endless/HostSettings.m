@@ -21,7 +21,6 @@ static NSMutableDictionary *_hosts;
 {
 	return @{
 	       HOST_SETTINGS_KEY_IGNORE_TLS_ERRORS: HOST_SETTINGS_VALUE_NO,
-	       HOST_SETTINGS_KEY_TLS: HOST_SETTINGS_TLS_AUTO,
 	       HOST_SETTINGS_KEY_CSP: HOST_SETTINGS_CSP_STRICT,
 	       //HOST_SETTINGS_KEY_BLOCK_LOCAL_NETS: HOST_SETTINGS_VALUE_YES,
 	       HOST_SETTINGS_KEY_ALLOW_MIXED_MODE: HOST_SETTINGS_VALUE_NO,
@@ -223,11 +222,6 @@ static NSMutableDictionary *_hosts;
 	if (value == nil || [value isEqualToString:HOST_SETTINGS_DEFAULT]) {
 		[[self dict] removeObjectForKey:setting];
 		return;
-	}
-	
-	if ([setting isEqualToString:HOST_SETTINGS_KEY_TLS]) {
-		if (!([value isEqualToString:HOST_SETTINGS_TLS_12] || [value isEqualToString:HOST_SETTINGS_TLS_AUTO]))
-			return;
 	}
 	
 	[[self dict] setObject:value forKey:setting];

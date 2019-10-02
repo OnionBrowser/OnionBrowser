@@ -7,7 +7,6 @@
 
 #import "AppDelegate.h"
 #import "SearchResultsController.h"
-#import "URLInterceptor.h"
 
 #import "NSString+DTURLEncoding.h"
 
@@ -171,8 +170,10 @@
 		[request setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
 	}
 	
-	/* so URLInterceptor leaves us alone */
-	[NSURLProtocol setProperty:@YES forKey:REWRITTEN_KEY inRequest:request];
+	/* Allow request without a tab */
+	[NSURLProtocol setProperty:
+	 [NSNumber numberWithUnsignedLong:appDelegate.webViewController.curWebViewTab.hash]
+						forKey:WVT_KEY inRequest:request];
 	
 	__block NSString *tquery = [query copy];
 	NSURLSessionDataTask *t = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
