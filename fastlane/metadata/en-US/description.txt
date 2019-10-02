@@ -1,0 +1,27 @@
+Onion Browser is the original free and open-source Tor-powered web browser for iOS. Onion Browser helps you access the internet with more safety and privacy, and no extra cost to you.
+
+“The best Tor-related offering on iOS right now is Onion Browser” - The Daily Dot, October 14, 2015.
+
+Featured in: The New York Times, The Guardian, Salon, TechCrunch, Gizmodo, Boing Boing, Lifehacker, Macworld, The Daily Dot, & others.
+
+FEATURES:
+• Browse the internet over Tor:
+- Protect your privacy from website tracking
+- Secure your traffic from insecure wireless networks and ISPs
+- Support for HTTPS Everywhere, an automatic switch to HTTPS enabled websites
+- Access .onion sites that are only accessible over Tor.
+
+• Fight online tracking: block scripts and automatically clear cookies and tabs, based on your preferences.
+
+• And more privacy-enhancing features!
+
+DISCLAIMERS:
+- Web browsing is much slower than through a normal web browser or a VPN because your traffic is encrypted and relayed through the Tor network.
+
+- Multimedia often bypass Tor and compromise your privacy; video files and video streams are blocked by default and are not supported by Onion Browser.
+
+- Onion Browser might not work on networks with advanced network restrictions. If the app does not connect, try using bridges (or a different type of bridge), force-quit, and then restart the app.
+
+- Use of Onion Browser is at your own risk; remember that sensitive data does not always belong on a mobile device.
+
+** Onion Browser is free and open-source software. You can read more about Onion Browser and how to support development of Tor on iOS by visiting onionbrowser.com **
