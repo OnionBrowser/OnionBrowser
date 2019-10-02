@@ -1,58 +1,58 @@
 PODS:
   - CSPHeader (0.4.0)
-  - DTFoundation (1.7.13):
-    - DTFoundation/AppKit (= 1.7.13)
-    - DTFoundation/Core (= 1.7.13)
-    - DTFoundation/Debug (= 1.7.13)
-    - DTFoundation/DTAnimatedGIF (= 1.7.13)
-    - DTFoundation/DTASN1 (= 1.7.13)
-    - DTFoundation/DTAsyncFileDeleter (= 1.7.13)
-    - DTFoundation/DTAWS (= 1.7.13)
-    - DTFoundation/DTHTMLParser (= 1.7.13)
-    - DTFoundation/DTProgressHUD (= 1.7.13)
-    - DTFoundation/DTReachability (= 1.7.13)
-    - DTFoundation/DTScripting (= 1.7.13)
-    - DTFoundation/DTSidePanel (= 1.7.13)
-    - DTFoundation/DTSQLite (= 1.7.13)
-    - DTFoundation/DTUTI (= 1.7.13)
-    - DTFoundation/DTZipArchive (= 1.7.13)
-    - DTFoundation/Runtime (= 1.7.13)
-    - DTFoundation/UIKit (= 1.7.13)
-    - DTFoundation/UIKit_BlocksAdditions (= 1.7.13)
-  - DTFoundation/Core (1.7.13)
-  - DTFoundation/Debug (1.7.13):
+  - DTFoundation (1.7.14):
+    - DTFoundation/AppKit (= 1.7.14)
+    - DTFoundation/Core (= 1.7.14)
+    - DTFoundation/Debug (= 1.7.14)
+    - DTFoundation/DTAnimatedGIF (= 1.7.14)
+    - DTFoundation/DTASN1 (= 1.7.14)
+    - DTFoundation/DTAsyncFileDeleter (= 1.7.14)
+    - DTFoundation/DTAWS (= 1.7.14)
+    - DTFoundation/DTHTMLParser (= 1.7.14)
+    - DTFoundation/DTProgressHUD (= 1.7.14)
+    - DTFoundation/DTReachability (= 1.7.14)
+    - DTFoundation/DTScripting (= 1.7.14)
+    - DTFoundation/DTSidePanel (= 1.7.14)
+    - DTFoundation/DTSQLite (= 1.7.14)
+    - DTFoundation/DTUTI (= 1.7.14)
+    - DTFoundation/DTZipArchive (= 1.7.14)
+    - DTFoundation/Runtime (= 1.7.14)
+    - DTFoundation/UIKit (= 1.7.14)
+    - DTFoundation/UIKit_BlocksAdditions (= 1.7.14)
+  - DTFoundation/Core (1.7.14)
+  - DTFoundation/Debug (1.7.14):
     - DTFoundation/Core
     - DTFoundation/Runtime
-  - DTFoundation/DTAnimatedGIF (1.7.13)
-  - DTFoundation/DTASN1 (1.7.13):
+  - DTFoundation/DTAnimatedGIF (1.7.14)
+  - DTFoundation/DTASN1 (1.7.14):
     - DTFoundation/Core
-  - DTFoundation/DTAsyncFileDeleter (1.7.13):
+  - DTFoundation/DTAsyncFileDeleter (1.7.14):
     - DTFoundation/Core
-  - DTFoundation/DTAWS (1.7.13):
+  - DTFoundation/DTAWS (1.7.14):
     - DTFoundation/Core
-  - DTFoundation/DTHTMLParser (1.7.13):
+  - DTFoundation/DTHTMLParser (1.7.14):
     - DTFoundation/Core
-  - DTFoundation/DTProgressHUD (1.7.13):
+  - DTFoundation/DTProgressHUD (1.7.14):
     - DTFoundation/Core
     - DTFoundation/UIKit
-  - DTFoundation/DTReachability (1.7.13):
+  - DTFoundation/DTReachability (1.7.14):
     - DTFoundation/Core
-  - DTFoundation/DTScripting (1.7.13):
+  - DTFoundation/DTScripting (1.7.14):
     - DTFoundation/Core
-  - DTFoundation/DTSidePanel (1.7.13):
+  - DTFoundation/DTSidePanel (1.7.14):
     - DTFoundation/UIKit
-  - DTFoundation/DTSQLite (1.7.13):
+  - DTFoundation/DTSQLite (1.7.14):
     - DTFoundation/Core
-  - DTFoundation/DTUTI (1.7.13)
-  - DTFoundation/DTZipArchive (1.7.13):
-    - DTFoundation/DTZipArchive/Minizip (= 1.7.13)
-  - DTFoundation/DTZipArchive/Minizip (1.7.13)
-  - DTFoundation/Runtime (1.7.13)
-  - DTFoundation/UIKit (1.7.13):
+  - DTFoundation/DTUTI (1.7.14)
+  - DTFoundation/DTZipArchive (1.7.14):
+    - DTFoundation/DTZipArchive/Minizip (= 1.7.14)
+  - DTFoundation/DTZipArchive/Minizip (1.7.14)
+  - DTFoundation/Runtime (1.7.14)
+  - DTFoundation/UIKit (1.7.14):
     - DTFoundation/Core
-  - DTFoundation/UIKit_BlocksAdditions (1.7.13):
+  - DTFoundation/UIKit_BlocksAdditions (1.7.14):
     - DTFoundation/Core
-  - InAppSettingsKit (2.12)
+  - InAppSettingsKit (2.14)
   - KMPlaceholderTextView (1.4.0)
   - Localize (2.3.0)
   - OCMock (3.4.3)
@@ -87,7 +87,7 @@ DEPENDENCIES:
   - XLForm (from `https://github.com/jcs/XLForm.git`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - CSPHeader
     - DTFoundation
     - InAppSettingsKit
@@ -112,7 +112,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   OCSPCache:
-    :commit: 7de4443d48ee00187d41a07076e48aad0069e8c1
+    :commit: 71e9f5d2fdc4afb0d9b04ea019e2f0bec64cdc30
     :git: https://github.com/Psiphon-Labs/OCSPCache
   WYPopoverController:
     :commit: 9b8011bd95bd95f6fca6a0afa78965fbf645a062
@@ -123,8 +123,8 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   CSPHeader: adec9dd23d5ea822b8e397407c40c6435b4a7c49
-  DTFoundation: f03be9fd786f11e505bb8fc44e2a3732bf0917df
-  InAppSettingsKit: 363ed5ea061ebcb76d69ca1eed08c8a4fe48baf2
+  DTFoundation: 25aa19bb7c6e225b1dfae195604fb8cf1da0ab4c
+  InAppSettingsKit: 800853da39388780c15191846688c0974c5b13b5
   KMPlaceholderTextView: 2206c3df39979e9396e2d96fa9f427a8951121b0
   Localize: cb1ae53ed73decaad0dce217806ed983091913f5
   OCMock: 43565190abc78977ad44a61c0d20d7f0784d35ab
@@ -141,4 +141,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: a258cb309997d754775fc56a50a186eefeaa59d4
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.8.1
