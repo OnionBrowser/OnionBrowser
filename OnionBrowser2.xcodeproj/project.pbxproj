@@ -269,28 +269,28 @@
 		A004360C1E81856F0067652D /* Podfile.lock */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile.lock; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A00436121E8187800067652D /* convert_rules.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = convert_rules.rb; sourceTree = "<group>"; };
 		A00436131E8187800067652D /* urlblocker.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = urlblocker.json; path = Endless/Resources/urlblocker.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.json; };
-		A0079AD42019F56600511268 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "zh-Hans"; path = "zh-Hans.lproj/AppStoreStrings.md"; sourceTree = "<group>"; };
-		A0079AD52019F58600511268 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "zh-Hant"; path = "zh-Hant.lproj/AppStoreStrings.md"; sourceTree = "<group>"; };
+		A0079AD42019F56600511268 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "zh-Hans"; path = "zh-Hans.lproj/promo-text.md"; sourceTree = "<group>"; };
+		A0079AD52019F58600511268 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "zh-Hant"; path = "zh-Hant.lproj/promo-text.md"; sourceTree = "<group>"; };
 		A0079AD62019F58600511268 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "Endless/zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		A0079AD72019F58600511268 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "Endless/zh-Hant.lproj/OnePasswordExtension.strings"; sourceTree = "<group>"; };
-		A0079AD82019F8E000511268 /* fr */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = fr; path = fr.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
-		A0079AD92019F8E700511268 /* fa */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = fa; path = fa.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
-		A0079ADA2019F8EB00511268 /* is */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = is; path = is.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
+		A0079AD82019F8E000511268 /* fr */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = fr; path = "fr.lproj/promo-text.md"; sourceTree = "<group>"; };
+		A0079AD92019F8E700511268 /* fa */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = fa; path = "fa.lproj/promo-text.md"; sourceTree = "<group>"; };
+		A0079ADA2019F8EB00511268 /* is */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = is; path = "is.lproj/promo-text.md"; sourceTree = "<group>"; };
 		A010FA171E7986DE00E04222 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		A010FA191E798C0400E04222 /* BUILD.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = BUILD.md; sourceTree = "<group>"; };
-		A025F25621F6265D0034B947 /* el */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = el; path = el.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
+		A025F25621F6265D0034B947 /* el */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = el; path = "el.lproj/promo-text.md"; sourceTree = "<group>"; };
 		A025F25721F6265E0034B947 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = Endless/el.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A025F25821F6265E0034B947 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = Endless/el.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
-		A025F25921F626710034B947 /* gu */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = gu; path = gu.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
+		A025F25921F626710034B947 /* gu */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = gu; path = "gu.lproj/promo-text.md"; sourceTree = "<group>"; };
 		A025F25A21F626710034B947 /* gu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = gu; path = Endless/gu.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A025F25B21F626720034B947 /* gu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = gu; path = Endless/gu.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
-		A025F25C21F6267A0034B947 /* he */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = he; path = he.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
+		A025F25C21F6267A0034B947 /* he */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = he; path = "he.lproj/promo-text.md"; sourceTree = "<group>"; };
 		A025F25D21F6267A0034B947 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = Endless/he.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A025F25E21F6267B0034B947 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = Endless/he.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
-		A025F26521F626CA0034B947 /* mk */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = mk; path = mk.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
+		A025F26521F626CA0034B947 /* mk */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = mk; path = "mk.lproj/promo-text.md"; sourceTree = "<group>"; };
 		A025F26621F626CB0034B947 /* mk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mk; path = Endless/mk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A025F26721F626CB0034B947 /* mk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mk; path = Endless/mk.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
-		A025F26E21F627110034B947 /* tr-TR */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "tr-TR"; path = "tr-TR.lproj/AppStoreStrings.md"; sourceTree = "<group>"; };
+		A025F26E21F627110034B947 /* tr-TR */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "tr-TR"; path = "tr-TR.lproj/promo-text.md"; sourceTree = "<group>"; };
 		A025F26F21F627110034B947 /* tr-TR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "tr-TR"; path = "Endless/tr-TR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		A025F27021F627120034B947 /* tr-TR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "tr-TR"; path = "Endless/tr-TR.lproj/OnePasswordExtension.strings"; sourceTree = "<group>"; };
 		A025F27421F62C100034B947 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
@@ -298,7 +298,7 @@
 		A02CE2B7220079B800964A14 /* SearchResultsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultsController.h; sourceTree = "<group>"; };
 		A02CE2B922007A0100964A14 /* HistoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryController.h; sourceTree = "<group>"; };
 		A02CE2BA22007A0200964A14 /* HistoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryController.m; sourceTree = "<group>"; };
-		A03DBCAC2285799A001890C4 /* cs */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = cs; path = cs.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
+		A03DBCAC2285799A001890C4 /* cs */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = cs; path = "cs.lproj/promo-text.md"; sourceTree = "<group>"; };
 		A03DBCAD2285799A001890C4 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = Endless/cs.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A03DBCAE2285799A001890C4 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = Endless/cs.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
 		A03DBCAF2285799A001890C4 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -329,54 +329,54 @@
 		A05AD0261F0A54DA00953274 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = Endless/nb.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
 		A060AC191FB4C710000828EF /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = Endless/fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A060AC1A1FB4C710000828EF /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = Endless/fr.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
-		A06441F4200CADE800D6C50C /* Base */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = Base; path = Base.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
-		A06441F6200CB06C00D6C50C /* nb */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = nb; path = nb.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
-		A06441F7200CB08300D6C50C /* es */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = es; path = es.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
-		A06441F8200CB09300D6C50C /* de */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = de; path = de.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
+		A06441F4200CADE800D6C50C /* Base */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = Base; path = "Base.lproj/promo-text.md"; sourceTree = "<group>"; };
+		A06441F6200CB06C00D6C50C /* nb */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = nb; path = "nb.lproj/promo-text.md"; sourceTree = "<group>"; };
+		A06441F7200CB08300D6C50C /* es */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = es; path = "es.lproj/promo-text.md"; sourceTree = "<group>"; };
+		A06441F8200CB09300D6C50C /* de */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = de; path = "de.lproj/promo-text.md"; sourceTree = "<group>"; };
 		A072C4D1227C684E0022BC58 /* BlurredSnapshot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlurredSnapshot.swift; path = OnionBrowser/BlurredSnapshot.swift; sourceTree = "<group>"; };
 		A072C4D2227C684F0022BC58 /* TabSecurity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabSecurity.swift; path = OnionBrowser/TabSecurity.swift; sourceTree = "<group>"; };
 		A0759DBE20975C2A000DFBFE /* Gemfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Gemfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A0759DBF20975C32000DFBFE /* Gemfile.lock */ = {isa = PBXFileReference; lastKnownFileType = text; path = Gemfile.lock; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A0759DC020975CCD000DFBFE /* sq */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = sq; path = sq.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
+		A0759DC020975CCD000DFBFE /* sq */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = sq; path = "sq.lproj/promo-text.md"; sourceTree = "<group>"; };
 		A0759DC120975CCE000DFBFE /* sq */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sq; path = Endless/sq.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A0759DC220975CCE000DFBFE /* sq */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sq; path = Endless/sq.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
-		A0759DC320975CE1000DFBFE /* ar-001 */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "ar-001"; path = "ar-001.lproj/AppStoreStrings.md"; sourceTree = "<group>"; };
+		A0759DC320975CE1000DFBFE /* ar-001 */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "ar-001"; path = "ar-001.lproj/promo-text.md"; sourceTree = "<group>"; };
 		A0759DC420975CE2000DFBFE /* ar-001 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ar-001"; path = "Endless/ar-001.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		A0759DC520975CE2000DFBFE /* ar-001 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ar-001"; path = "Endless/ar-001.lproj/OnePasswordExtension.strings"; sourceTree = "<group>"; };
-		A0759DC620975CF0000DFBFE /* bn */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = bn; path = bn.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
+		A0759DC620975CF0000DFBFE /* bn */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = bn; path = "bn.lproj/promo-text.md"; sourceTree = "<group>"; };
 		A0759DC720975CF1000DFBFE /* bn */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = bn; path = Endless/bn.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A0759DC820975CF1000DFBFE /* bn */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = bn; path = Endless/bn.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
-		A0759DC920975D06000DFBFE /* ca-ES */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "ca-ES"; path = "ca-ES.lproj/AppStoreStrings.md"; sourceTree = "<group>"; };
+		A0759DC920975D06000DFBFE /* ca-ES */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "ca-ES"; path = "ca-ES.lproj/promo-text.md"; sourceTree = "<group>"; };
 		A0759DCA20975D07000DFBFE /* ca-ES */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ca-ES"; path = "Endless/ca-ES.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		A0759DCB20975D07000DFBFE /* ca-ES */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ca-ES"; path = "Endless/ca-ES.lproj/OnePasswordExtension.strings"; sourceTree = "<group>"; };
-		A0759DCC20975D12000DFBFE /* nl */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = nl; path = nl.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
+		A0759DCC20975D12000DFBFE /* nl */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = nl; path = "nl.lproj/promo-text.md"; sourceTree = "<group>"; };
 		A0759DCD20975D13000DFBFE /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = Endless/nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A0759DCE20975D13000DFBFE /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = Endless/nl.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
-		A0759DCF20975D21000DFBFE /* hi */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = hi; path = hi.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
+		A0759DCF20975D21000DFBFE /* hi */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = hi; path = "hi.lproj/promo-text.md"; sourceTree = "<group>"; };
 		A0759DD020975D22000DFBFE /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = Endless/hi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A0759DD120975D23000DFBFE /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = Endless/hi.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
-		A0759DD220975D33000DFBFE /* hu-HU */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "hu-HU"; path = "hu-HU.lproj/AppStoreStrings.md"; sourceTree = "<group>"; };
+		A0759DD220975D33000DFBFE /* hu-HU */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "hu-HU"; path = "hu-HU.lproj/promo-text.md"; sourceTree = "<group>"; };
 		A0759DD320975D34000DFBFE /* hu-HU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "hu-HU"; path = "Endless/hu-HU.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		A0759DD420975D34000DFBFE /* hu-HU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "hu-HU"; path = "Endless/hu-HU.lproj/OnePasswordExtension.strings"; sourceTree = "<group>"; };
-		A0759DD520975D67000DFBFE /* ja */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = ja; path = ja.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
+		A0759DD520975D67000DFBFE /* ja */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = ja; path = "ja.lproj/promo-text.md"; sourceTree = "<group>"; };
 		A0759DD620975D67000DFBFE /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = Endless/ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A0759DD720975D68000DFBFE /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = Endless/ja.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
-		A0759DD820975D79000DFBFE /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "pt-BR"; path = "pt-BR.lproj/AppStoreStrings.md"; sourceTree = "<group>"; };
+		A0759DD820975D79000DFBFE /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "pt-BR"; path = "pt-BR.lproj/promo-text.md"; sourceTree = "<group>"; };
 		A0759DD920975D7A000DFBFE /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "Endless/pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		A0759DDA20975D7A000DFBFE /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "Endless/pt-BR.lproj/OnePasswordExtension.strings"; sourceTree = "<group>"; };
-		A0759DDB20975D84000DFBFE /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "pt-PT"; path = "pt-PT.lproj/AppStoreStrings.md"; sourceTree = "<group>"; };
+		A0759DDB20975D84000DFBFE /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "pt-PT"; path = "pt-PT.lproj/promo-text.md"; sourceTree = "<group>"; };
 		A0759DDC20975D85000DFBFE /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "Endless/pt-PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		A0759DDD20975D85000DFBFE /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "Endless/pt-PT.lproj/OnePasswordExtension.strings"; sourceTree = "<group>"; };
-		A0759DDE20975D9E000DFBFE /* ru */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = ru; path = ru.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
+		A0759DDE20975D9E000DFBFE /* ru */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = ru; path = "ru.lproj/promo-text.md"; sourceTree = "<group>"; };
 		A0759DDF20975D9E000DFBFE /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = Endless/ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A0759DE020975D9F000DFBFE /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = Endless/ru.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
-		A0759DE120975DB1000DFBFE /* ta */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = ta; path = ta.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
+		A0759DE120975DB1000DFBFE /* ta */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = ta; path = "ta.lproj/promo-text.md"; sourceTree = "<group>"; };
 		A0759DE220975DB2000DFBFE /* ta */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ta; path = Endless/ta.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A0759DE320975DB3000DFBFE /* ta */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ta; path = Endless/ta.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
-		A0759DE420975DC5000DFBFE /* te */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = te; path = te.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
+		A0759DE420975DC5000DFBFE /* te */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = te; path = "te.lproj/promo-text.md"; sourceTree = "<group>"; };
 		A0759DE520975DC6000DFBFE /* te */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = te; path = Endless/te.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A0759DE620975DC7000DFBFE /* te */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = te; path = Endless/te.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
-		A0759DE720975DCC000DFBFE /* uk */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = uk; path = uk.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
+		A0759DE720975DCC000DFBFE /* uk */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = uk; path = "uk.lproj/promo-text.md"; sourceTree = "<group>"; };
 		A0759DE820975DCD000DFBFE /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = Endless/uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A0759DE920975DCD000DFBFE /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = Endless/uk.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
 		A0759DEA20975DDE000DFBFE /* config */ = {isa = PBXFileReference; lastKnownFileType = text; name = config; path = .tx/config; sourceTree = "<group>"; };
@@ -852,7 +852,7 @@
 		A0AE3CC9227091A200FF8FC1 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A0AE3CCC227091A800FF8FC1 /* mk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mk; path = mk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A0AE9774228C619E00DFF1E3 /* ca-ES */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ca-ES"; path = "ca-ES.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		A0BFBE022010F48100BE2980 /* ga */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = ga; path = ga.lproj/AppStoreStrings.md; sourceTree = "<group>"; };
+		A0BFBE022010F48100BE2980 /* ga */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = ga; path = "ga.lproj/promo-text.md"; sourceTree = "<group>"; };
 		A0BFBE032010F48100BE2980 /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ga; path = Endless/ga.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A0BFBE042010F48200BE2980 /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ga; path = Endless/ga.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
 		A0C3770D1F47342C0039198E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -893,7 +893,6 @@
 				A03DBCEC22859B99001890C4 /* Config.m */,
 				01801E991A32CA2A002B4718 /* AppDelegate.h */,
 				01801E9A1A32CA2A002B4718 /* AppDelegate.m */,
-				A06441F9200CB82500D6C50C /* AppStore */,
 				A00436111E8185AA0067652D /* Build */,
 				01801E941A32CA2A002B4718 /* Endless */,
 				A053136122F1C53A006655EC /* Psiphon */,
@@ -1131,6 +1130,7 @@
 				A004360B1E81856F0067652D /* Podfile */,
 				A004360C1E81856F0067652D /* Podfile.lock */,
 				A00436131E8187800067652D /* urlblocker.json */,
+				A06441F5200CADE800D6C50C /* promo-text.md */,
 			);
 			name = Build;
 			sourceTree = "<group>";
@@ -1152,14 +1152,6 @@
 				A053136222F1C573006655EC /* JAHPQNSURLSessionDemux.m */,
 			);
 			path = Psiphon;
-			sourceTree = "<group>";
-		};
-		A06441F9200CB82500D6C50C /* AppStore */ = {
-			isa = PBXGroup;
-			children = (
-				A06441F5200CADE800D6C50C /* AppStoreStrings.md */,
-			);
-			path = AppStore;
 			sourceTree = "<group>";
 		};
 		A07D654C2208A1410002D775 /* Migration */ = {
@@ -2401,7 +2393,7 @@
 			name = OnePasswordExtension.strings;
 			sourceTree = "<group>";
 		};
-		A06441F5200CADE800D6C50C /* AppStoreStrings.md */ = {
+		A06441F5200CADE800D6C50C /* promo-text.md */ = {
 			isa = PBXVariantGroup;
 			children = (
 				A06441F4200CADE800D6C50C /* Base */,
@@ -2435,7 +2427,7 @@
 				A025F26E21F627110034B947 /* tr-TR */,
 				A03DBCAC2285799A001890C4 /* cs */,
 			);
-			name = AppStoreStrings.md;
+			name = "promo-text.md";
 			sourceTree = "<group>";
 		};
 		A09A2A992254B3D100A3EEF0 /* InfoPlist.strings */ = {

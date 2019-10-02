@@ -41,15 +41,15 @@ type = STRING
 minimum_perc = 75
 
 [onion-browser.appstorestringsmd]
-file_filter = AppStore/<lang>.lproj/AppStoreStrings.md
-source_file = AppStore/Base.lproj/AppStoreStrings.md
+file_filter = <lang>.lproj/promo-text.md
+source_file = Base.lproj/promo-text.md
 source_lang = en_US
-trans.ar = AppStore/ar-001.lproj/AppStoreStrings.md
-trans.ca = AppStore/ca-ES.lproj/AppStoreStrings.md
-trans.hu_HU = AppStore/hu-HU.lproj/AppStoreStrings.md
-trans.pt_BR = AppStore/pt-BR.lproj/AppStoreStrings.md
-trans.pt_PT = AppStore/pt-PT.lproj/AppStoreStrings.md
-trans.tr_TR = AppStore/tr-TR.lproj/AppStoreStrings.md
+trans.ar = ar-001.lproj/promo-text.md
+trans.ca = ca-ES.lproj/promo-text.md
+trans.hu_HU = hu-HU.lproj/promo-text.md
+trans.pt_BR = pt-BR.lproj/promo-text.md
+trans.pt_PT = pt-PT.lproj/promo-text.md
+trans.tr_TR = tr-TR.lproj/promo-text.md
 type = GITHUBMARKDOWN
 minimum_perc = 75
 
