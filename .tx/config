@@ -66,3 +66,75 @@ trans.pt_BR = Endless/pt-BR.lproj/InfoPlist.strings
 trans.pt_PT = Endless/pt-PT.lproj/InfoPlist.strings
 trans.tr_TR = Endless/tr-TR.lproj/InfoPlist.strings
 minimum_perc = 75
+
+[onion-browser.subtitle]
+file_filter = fastlane/metadata/<lang>/subtitle.txt
+minimum_perc = 100
+source_file = fastlane/metadata/en-US/subtitle.txt
+source_lang = en
+type = TXT
+trans.ar = fastlane/metadata/ar-SA/subtitle.txt
+trans.ca = fastlane/metadata/ca-ES/subtitle.txt
+trans.de = fastlane/metadata/de-DE/subtitle.txt
+trans.es = fastlane/metadata/es-ES/subtitle.txt
+trans.fr = fastlane/metadata/fr-FR/subtitle.txt
+trans.hu_HU = fastlane/metadata/hu-HU/subtitle.txt
+trans.nb = fastlane/metadata/no/subtitle.txt
+trans.nl = fastlane/metadata/nl-NL/subtitle.txt
+trans.pt_BR = fastlane/metadata/pt-BR/subtitle.txt
+trans.pt_PT = fastlane/metadata/pt-PT/subtitle.txt
+trans.tr_TR = fastlane/metadata/tr-TR/subtitle.txt
+
+[onion-browser.keywords]
+file_filter = fastlane/metadata/<lang>/keywords.txt
+minimum_perc = 75
+source_file = fastlane/metadata/en-US/keywords.txt
+source_lang = en
+type = TXT
+trans.ar = fastlane/metadata/ar-SA/keywords.txt
+trans.ca = fastlane/metadata/ca-ES/keywords.txt
+trans.de = fastlane/metadata/de-DE/keywords.txt
+trans.es = fastlane/metadata/es-ES/keywords.txt
+trans.fr = fastlane/metadata/fr-FR/keywords.txt
+trans.hu_HU = fastlane/metadata/hu-HU/keywords.txt
+trans.nb = fastlane/metadata/no/keywords.txt
+trans.nl = fastlane/metadata/nl-NL/keywords.txt
+trans.pt_BR = fastlane/metadata/pt-BR/keywords.txt
+trans.pt_PT = fastlane/metadata/pt-PT/keywords.txt
+trans.tr_TR = fastlane/metadata/tr-TR/keywords.txt
+
+[onion-browser.name]
+file_filter = fastlane/metadata/<lang>/name.txt
+minimum_perc = 100
+source_file = fastlane/metadata/en-US/name.txt
+source_lang = en
+type = TXT
+trans.ar = fastlane/metadata/ar-SA/name.txt
+trans.ca = fastlane/metadata/ca-ES/name.txt
+trans.de = fastlane/metadata/de-DE/name.txt
+trans.es = fastlane/metadata/es-ES/name.txt
+trans.fr = fastlane/metadata/fr-FR/name.txt
+trans.hu_HU = fastlane/metadata/hu-HU/name.txt
+trans.nb = fastlane/metadata/no/name.txt
+trans.nl = fastlane/metadata/nl-NL/name.txt
+trans.pt_BR = fastlane/metadata/pt-BR/name.txt
+trans.pt_PT = fastlane/metadata/pt-PT/name.txt
+trans.tr_TR = fastlane/metadata/tr-TR/name.txt
+
+[onion-browser.description]
+file_filter = fastlane/metadata/<lang>/description.txt
+minimum_perc = 75
+source_file = fastlane/metadata/en-US/description.txt
+source_lang = en
+type = TXT
+trans.ar = fastlane/metadata/ar-SA/description.txt
+trans.ca = fastlane/metadata/ca-ES/description.txt
+trans.de = fastlane/metadata/de-DE/description.txt
+trans.es = fastlane/metadata/es-ES/description.txt
+trans.fr = fastlane/metadata/fr-FR/description.txt
+trans.hu_HU = fastlane/metadata/hu-HU/description.txt
+trans.nb = fastlane/metadata/no/description.txt
+trans.nl = fastlane/metadata/nl-NL/description.txt
+trans.pt_BR = fastlane/metadata/pt-BR/description.txt
+trans.pt_PT = fastlane/metadata/pt-PT/description.txt
+trans.tr_TR = fastlane/metadata/tr-TR/description.txt

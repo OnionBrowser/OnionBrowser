@@ -11,8 +11,7 @@ FUNKCIÓK:
 - A HTTPS Everywhere támogatása,  automatikus váltás HTTPS támogatott weboldalakra.
 - .onion oldalak elérése, amik csak a Tor alatt érhetők el.
 
-• Harcoljon az online követés ellen:
-tiltson le szkripteket és automatikusan takarítsa a cookie-kat és füleket a beállításai alapján.
+• Harcoljon az online követés ellen: tiltson le szkripteket és automatikusan takarítsa a cookie-kat és füleket a beállításai alapján.
 
 • és még több adatvédelmi funkció!
 

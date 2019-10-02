@@ -25,4 +25,3 @@ Featured in: The New York Times, The Guardian, Salon, TechCrunch, Gizmodo, Boing
 - Onion બ્રાઉઝરનો ઉપયોગ તમારા પોતાના જોખમે છે; યાદ રાખો કે સંવેદનશીલ ડેટા હંમેશાં મોબાઇલ ઉપકરણ પર રહેતો નથી.
 
 ** Onion Browser is free and open-source software. You can read more about Onion Browser and how to support development of Tor on iOS by visiting onionbrowser.com **
-

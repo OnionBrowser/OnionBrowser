@@ -2,26 +2,26 @@
 
 "أفضل عروض تور المتعلقة بنظام iOS في الوقت الحالي هو Onion Browser"
 
-The Daily Dot، تشرين الأول 14، 2015.
+ظهر في: The New York Times, The Guardian, Salon, TechCrunch, Gizmodo, Boing Boing, Lifehacker, Macworld, The Daily Dot, &amp; وآخرين.
 
-ظهر في: The New York Times, The Guardian, Salon, TechCrunch, Gizmodo, Boing Boing, Lifehacker, Macworld, The Daily Dot, & وآخرين.
-- المميزات:
-- • تصفح الإنترنت عبر Tor:
+المميزات:
+• تصفح الإنترنت عبر Tor:
 - حماية خصوصيتك من تتبع موقع الويب.
 - تأمين حركة المرور الخاصة بك من الشبكات اللاسلكية و مزوّدِ خدمات الإنترنت غير الآمنة.
-
 دعم HTTPS Everywhere ، التحويل تلقائيًا إلى مواقع الويب التي تُمِكن HTTPS بِها.
-
 الوصول إلى مواقع .onion التي لا يمكن الوصول إليها إلا عبر Tor.
 
 • مكافحة تتبع الانترنت: حظر البرامج النصية ومسح ملفات تعريف الارتباط وعلامات التبويب تلقائيًا، استنادًا إلى تفضيلاتك.
-- • والمزيد من ميزات تعزيز الخصوصية!
 
-- إخلاء المسؤولية:
+• والمزيد من ميزات تعزيز الخصوصية!
 
+إخلاء المسؤولية:
 - يكون تصفح الويب أبطأ بكثير من متصفح الإنترنت العادي أو VPN لأن حركة المرور الخاصة بك مشفرة ويتم ترحيلها عبر شبكة Tor.
 
 - غالبًا ما تتجاوز الوسائط المتعددة تور وتهدد خصوصيتك. يتم حظر ملفات الفيديو وبث الفيديو بشكل إفتراضي ولا يدعمها متصفح أونيون.
 
 قد لا يعمل متصفح أونيون على الشبكات ذات قيود الشبكة المتقدمة. إذا لم يتصل التطبيق، فجرِّب إستخدام الجسور (أو نوعًا آخر من الجسور)، ثم قم بإغلاقه إجباريًا، ثم أعد تشغيل التطبيق.
 
+- Use of Onion Browser is at your own risk; remember that sensitive data does not always belong on a mobile device.
+
+** Onion Browser is free and open-source software. You can read more about Onion Browser and how to support development of Tor on iOS by visiting onionbrowser.com **

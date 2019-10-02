@@ -25,4 +25,3 @@ ANSVARSFRASKRIVELSER:
 - Bruk av Onion-nettleseren skjer på egen risiko; husk at sensitive data ikke nødvendigvis bør lagres på en mobil enhet.
 
 ** Onion-nettleseren er fri og åpen programvare. Du kan lese mer om Onion-nettleseren og hvordan du støtter utviklingen av Onion på iOS ved å besøke onionbrowser.com **
-
