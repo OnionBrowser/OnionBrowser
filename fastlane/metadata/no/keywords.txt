@@ -1,1 +1,1 @@
-nettleser,tor,tor browser,tor-nettleser,løk-nettleser,privat nettleser,anonym,orbot,orfox,onion,løk
+nettleser,tor,tor-nettleser,onion-nettleser,privat nettleser,anonym,orbot,orfox,onion,løk

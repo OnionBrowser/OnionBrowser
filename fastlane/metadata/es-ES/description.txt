@@ -20,7 +20,7 @@ ACLARACIONES:
 
 - El contenido multimedia a menudo elude Tor y compromete tu privacidad; los ficheros y streams de vídeo están bloqueados por defecto y no están soportados por el Onion Browser.
 
-- El Onion Browser podría no funcionar en redes con restricciones de red avanzadas. Si la aplicación no se conecta, intenta usar puentes (o un tipo diferente de puente), fuerza el cierre y luego reinicia la aplicación. 
+- El Onion Browser podría no funcionar en redes con restricciones de red avanzadas. Si la aplicación no se conecta, intenta usar puentes (o un tipo diferente de puente), fuerza el cierre y luego reinicia la aplicación.
 
 - El uso del Onion Browser es por tu cuenta y riesgo, recuerda que los datos sensibles no siempre tienen lugar en un dispositivo móvil.
 

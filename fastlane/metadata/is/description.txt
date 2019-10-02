@@ -1,0 +1,27 @@
+Onion-vafrinn er upprunalegi opni og frjálsi vafrinn fyrir Tor á iOS. Onion-vafrinn hjálpar þér til að nota internetið á öruggan máta með aukinni friðhelgi og án aukakostnaðar.
+
+“Það besta sem er í gangi núna varðandi Tor á iOS er Onion-vafrinn” - The Daily Dot, 14. október, 2015.
+
+Umfjöllun í: The New York Times, The Guardian, Salon, TechCrunch, Gizmodo, Boing Boing, Lifehacker, Macworld, The Daily Dot, & víðar.
+
+EIGINLEIKAR:
+• Flakkaðu um internetið í gegnum Tor:
+- Verðu þig fyrir njósnum vefsvæða.
+- Ferðastu á öruggan máta um óvarin þráðlaus netkerfi og þjónustuaðila.
+- Stuðningur við HTTPS Everywhere, sem skiptir sjáfvirkt yfir á  HTTPS-virkjuð vefsvæði.
+- Farðu á .onion vefsvæði sem einungis eru aðgengileg í gegnum Tor.
+
+• Berstu við að fylgst sé með þér á netinu: lokaðu á skriftur, hreisaðu skjálfkrafa út vefkökur og flipa, allt eftir kjörstillingum þínum.
+
+• Auk fjölda annarra eiginleika til að bæta friðhelgi þína!
+
+FYRIRVARAR:
+- Vafur á netinu er mun hægvirkara með Tor heldur en með venjulegum vöfrum eða í gegnum VPN vegna þess að samskiptin þín eru dulrituð og endurbeint í gegnum Tor-netið.
+
+- Margmiðlunargögn fara oft framhjá Tor og setja því gagnaleynd þína í hættu; lokað er sjálfgefið á myndskeið og myndstreymi sem eru því ekki studd af Onion-vafranum.
+
+- Onion-vafrinn gæti virkað illa á netkerfum með þróaðar takmarkanir. Ef forritið tengist ekki, prófaðu þá að nota brýr (eða aðra tegund brúar), þvingaðu algera stöðvun forritsins og endurræstu það síðan.
+
+- Notkun Onion-vafrans er á þína eigin ábyrgð; mundu að viðkvæm gögn eiga kannski ekki heima á snjalltækjum.
+
+** Onion-vafrinn er frjáls og opinn hugbúnaður. Þú getur lesið meira um Onion-vafrann og það hvernig hægt er að styðja við þróun Tor á iOS með því að heimsækja onionbrowser.com **

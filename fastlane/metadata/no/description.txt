@@ -1,27 +1,28 @@
-Løk-nettleseren er den originale frie Tor-drevne nettleseren for iOS. Løk-nettleseren hjelper deg å få tilgang til Internett med bedret sikkerhet og personvern, uten ekstra kostnad for deg.
+Onion-nettleseren er den originale frie Tor-drevne nettleseren for iOS med åpen kildekode. Onion-nettleseren gir deg tilgang til Internett med bedre sikkerhet og personvern, uten at det koster deg en krone.
 
-“Den beste Tor-relaterte tilbudet på iOS akkurat nå er Løk-nettleseren” - The Daily Dot, 14 Oktober, 2015.
+“Det beste Tor-relaterte tilbudet på iOS akkurat nå er Onion-nettleseren” - The Daily Dot, 14 Oktober, 2015.
 
-Skrevet om i: The New York Times, The Guardian, Salon, TechCrunch, Gizmodo, Boing Boing, Lifehacker, Macworld, The Daily Dot, og andre.
+Skrevet om i: The New York Times, The Guardian, Salon, TechCrunch, Gizmodo, Boing Boing, Lifehacker, Macworld, The Daily Dot og andre.
 
-FUNKSJONER: • Surf på nettet over Tor:
+FUNKSJONER:
+• Surf på nettet over Tor:
+- Beskytt ditt personvern fra nettsidesporing.
+- Sikre trafikken din sendt over usikre nettverk og Internett-leverandører.
+- Støtte for HTTPS Everywhere, en automatisk bryter for påslåing av HTTPS på sider der dette er mulig.
+- Få tilgang til .onion-sider som bare er tilgjengelige over Tor.
 
-Beskytt ditt personvern fra nettsidesporing.
-Sikre trafikken din sendt over usikre nettverk og tjenestetilbydere.
-Støtte for HTTPS Everywhere, en automatisk bryter for påslag av HTTPS på sider der det er mulig.
-Få tilgang til .onion-sider som bare er tilgjengelige over Tor.
-• Ta opp kampen med nettbasert sporing: Blokkerer og tømmer automatisk kaker og faner, basert på dine innstillinger.
+• Ta opp kampen med nettbasert sporing: Blokkerer og fjerner automatisk informasjonskapsler og faner, basert på innstillingene dine.
 
-• Og flere personvernsfremmende funksjoner!
+• Og flere andre funksjoner som forbedret personvernet ditt!
 
 ANSVARSFRASKRIVELSER:
+- Nettlesing er mye tregere enn gjennom en normal nettleser eller et VPN, fordi trafikken din krypteres og blir sendt fra node til node i Tor-nettverket.
 
-Nettlesing er mye tregere enn gjennom en normal nettleser eller en VPN, fordi trafikken din krypteres og sendes i stafett gjennom Tor-nettverket.
+- Det hender ofte at multimedia omgår Tor og eksponerer personvernet ditt for trusler. Videofiler og videostrømmer blokkeres som standard og støttes ikke av Onion-nettleseren.
 
-Multimedia omgår ofte Tor og eksponerer trusler for personvernet; videofiler og videostrømmer er blokkert som forvalg og støttes ikke av Løk-nettleseren.
+- Det kan hende Onion-nettleseren ikke fungerer sammen med avanserte nettverksbegrensninger. Hvis programmet ikke kobler til, prøv å bruke broer, (eller en annen type bro), tving avslutning og start så appen på nytt.
 
-Det kan hende Løk-nettleseren ikke fungerer sammen med avanserte nettverksbegrensninger. Hvis programmet ikke kobler til, prøv å bruke broer, (eller en annen type bro), tving avslutning og start så programmet på nytt.
+- Bruk av Onion-nettleseren skjer på egen risiko; husk at sensitive data ikke nødvendigvis bør lagres på en mobil enhet.
 
-Bruk av Løk-nettleseren skjer på egen risiko; husk at sensitiv data ikke alltid hører hjemme på en mobil enhet.
+** Onion-nettleseren er fri og åpen programvare. Du kan lese mer om Onion-nettleseren og hvordan du støtter utviklingen av Onion på iOS ved å besøke onionbrowser.com **
 
-** Løk-nettleseren er fri programvare. Du kan lese mer om Løk-nettleseren og hvordan du støtter utviklingen av Tor på iOS ved å besøke onionbrowser.com **
