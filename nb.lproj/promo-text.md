@@ -18,4 +18,3 @@ Onion-nettleser 2-oppgraderingen ble støttet av Guardian-prosjektet, med hjelp 
 2.0.2: Sikkerhetsoppdatering: Fiks for DNS-lekkasje. Fikser for IPv6-tilkobling som har innvirkning på brukere fra noen mobiltilbydere. Fikser for noen kræsj. La til oversettelser for flere språk.
 
 2.0.1: Mindre oppdatering der vi fikset vurderingslenken i Apple Store-butikken.
-

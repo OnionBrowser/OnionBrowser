@@ -2,7 +2,7 @@ Welkom bij Onion Browser 2!
 
 Onion Browser 2 is een totaal herschreven app die enkele nieuwe functies bevat:
 
-* Een vriendelijkere first-time launch-ervaring.
+* Een vriendelijkere eerste-opstartervaring.
 * Een bijgewerkte gebruikersinterface, die ‘browsen met tabbladen’ bevat, evenals verbeterde instellingspanelen
 * HTTPS Everywhere-ondersteuning
 * 1Password-ondersteuning
