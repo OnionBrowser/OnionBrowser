@@ -1,0 +1,20 @@
+Fáilte go dtí Brabhsálaí Onion 2!
+
+Bhí an aip athscríofa ón tús le haghaidh Brabhsálaí Onion 2, agus tá roinnt gnéithe nua ann:
+
+* Níos cairdiúla an chéad uair a úsáidtear é.
+* Comhéadan athdheartha, le "brabhsáil i gcluaisíní" agus roghchlár socruithe níos fearr
+* Tacaíocht do HTTPS Everywhere
+* Tacaíocht do 1Password
+* Cosc ar fhógraí agus cosaint príobháideachais ionsuite.
+* Mionathraigh socruithe slándála/príobháideachais ar shuímh ar leith (m.sh. polasaí fianán, UserAgent, agus polasaí maidir le JavaScript/ábhar gníomhach).
+* Tor 0.3.5.8
+* Coinneofar na socruithe agus leabharmharcanna ó Brabhsálaí Onion 1.
+
+An rud is fearr: tá an nuashonrú seo saor in aisce!
+
+Rinneadh Brabhsálaí Onion 2 le tacaíocht airgid ón Guardian Project, le cúnamh ó Benjamin Erhart agus Carrie Winfrey. Tá Brabhsálaí Onion 2 bunaithe ar an mbrabhsálaí oscailte "Endless"; táimid an-bhuíoch de Joshua Stein as Endless a chruthú agus as cead a thabhairt dúinn é a úsáid i mBrabhsálaí Onion. Féach ar na hadmhálacha sna socruithe chun tuilleadh eolais a fháil.
+
+2.0.2: Nuashonrú slándála: Réitíodh: poll slándála DNS, fadhb le ceangal IPv6 d'úsáideoirí ar iompróirí áirithe, agus fabhtanna tuairteála. Cuireadh teangacha nua leis.
+
+2.0.1: Mion-nuashonrú chun nasc rátála san App Store a réiteach.

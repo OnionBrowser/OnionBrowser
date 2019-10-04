@@ -1,0 +1,20 @@
+Onion 浏览器 2 最新发布！
+
+Onion 浏览器 2 是原版本的一次全新重写，提供一些全新的功能：
+
+* 首次启动体验更友好。
+* 更新用户界面，支持标签浏览，改善设置面板
+* 支持 HTTPS Everywhere
+* 支持 1Password
+* 内置广告拦截和隐私保护
+* 可基于访问站点调整安全/隐私设置（包括 cookie 策略、用户代理以及 javascript 或活动内容策略）。
+* Tor 0.3.5.8
+* 保留 Onion 浏览器 1 版本中的设置和书签功能，但用户代理伪装字符串除外。
+
+而且，所有的更新都是免费的！
+
+Onion 浏览器 2 这次更新得到 Guardian Project 的支持，特别感谢 Benjamin Erhart 和 Carrie Winfrey 的帮助。Onion 浏览器 2 基于开源的 Endless 浏览器，特别感谢 Endless 的开发者 Joshua Stein 及其对 Onion 浏览器的授权。更多信息，请查看应用设置下的致谢文件。
+
+2.0.2：安全更新：已修复DNS漏洞。 已修复会影响一些移动运营商用户的IPv6连接。 已修复一些崩溃。 已新增多种语言。
+
+2.0.1：更新修复了App Store评级链接。

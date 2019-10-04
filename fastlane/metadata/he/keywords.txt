@@ -1,1 +1,1 @@
-Browser,Tor,Tor Browser,Onion Browser,anonymous,private,private browser,orbot,orfox,onion,דפדפן,תור,דפדפן תור,דפדפן בצל,אלמוניות,פרטי,דפדפן פרטי
+Tor,Tor Browser,Onion Browser,anonymous,דפדפן,תור,דפדפן תור,דפדפן בצל,אלמוניות,פרטי,דפדפן פרטי

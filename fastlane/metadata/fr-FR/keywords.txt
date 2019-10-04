@@ -1,1 +1,1 @@
-Navigateur,Tor,Tor Browser,Navigateur Tor,Navigateur Onion,Onion Browser,anonyme,confidentiel,privé,navigateur privé,navigateur confidentiel,orbot,orfox,oignon,onion
+Navigateur,Tor,Navigateur Tor,Navigateur Onion,onion,oignon,anonyme,confidentiel,privé,orfox,orbot
