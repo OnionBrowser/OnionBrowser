@@ -42,7 +42,6 @@
 		018333EA1A35746500670CD1 /* https-everywhere_targets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 018333E81A35746500670CD1 /* https-everywhere_targets.plist */; };
 		019516D11B7D8B400078586A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 019516D01B7D8B400078586A /* libz.tbd */; };
 		01AFEB371B4DBA8D00A02482 /* BookmarkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01AFEB361B4DBA8D00A02482 /* BookmarkController.m */; };
-		01AFEB491B4ED48000A02482 /* Bookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = 01AFEB481B4ED48000A02482 /* Bookmark.m */; };
 		01AFEB4F1B4F2A5F00A02482 /* OnePasswordExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 01AFEB4D1B4F2A5F00A02482 /* OnePasswordExtension.m */; };
 		01D741281A44DF1C007B7033 /* WebViewMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D741271A44DF1C007B7033 /* WebViewMenuController.m */; };
 		01D7412A1A45EDD1007B7033 /* CookieJar_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D741291A45EDD1007B7033 /* CookieJar_Tests.m */; };
@@ -112,6 +111,10 @@
 		A09A2A972254B3D100A3EEF0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A09A2A992254B3D100A3EEF0 /* InfoPlist.strings */; };
 		A09A2AAB2254D2C700A3EEF0 /* WebViewTab+Activity.m in Sources */ = {isa = PBXBuildFile; fileRef = A09A2AAA2254D2C700A3EEF0 /* WebViewTab+Activity.m */; };
 		A0C3770E1F47342C0039198E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0C3770D1F47342C0039198E /* CoreData.framework */; };
+		A0D68DFF234C89080027C61A /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D68DFE234C89080027C61A /* Bookmark.swift */; };
+		A0D68E0A234C8E150027C61A /* BookmarksViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0D68E08234C8E140027C61A /* BookmarksViewController.xib */; };
+		A0D68E0B234C8E150027C61A /* BookmarksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D68E09234C8E140027C61A /* BookmarksViewController.swift */; };
+		A0D68E0D234CABF30027C61A /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D68E0C234CABF30027C61A /* BookmarkViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -182,8 +185,6 @@
 		019516D01B7D8B400078586A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		01AFEB351B4DBA8D00A02482 /* BookmarkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkController.h; sourceTree = "<group>"; };
 		01AFEB361B4DBA8D00A02482 /* BookmarkController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkController.m; sourceTree = "<group>"; };
-		01AFEB471B4ED48000A02482 /* Bookmark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bookmark.h; sourceTree = "<group>"; };
-		01AFEB481B4ED48000A02482 /* Bookmark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bookmark.m; sourceTree = "<group>"; };
 		01AFEB4C1B4F2A5F00A02482 /* OnePasswordExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnePasswordExtension.h; sourceTree = "<group>"; };
 		01AFEB4D1B4F2A5F00A02482 /* OnePasswordExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnePasswordExtension.m; sourceTree = "<group>"; };
 		01D741261A44DF1C007B7033 /* WebViewMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewMenuController.h; sourceTree = "<group>"; };
@@ -812,6 +813,10 @@
 		A0BFBE032010F48100BE2980 /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ga; path = Endless/ga.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A0BFBE042010F48200BE2980 /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ga; path = Endless/ga.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
 		A0C3770D1F47342C0039198E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		A0D68DFE234C89080027C61A /* Bookmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bookmark.swift; sourceTree = "<group>"; };
+		A0D68E08234C8E140027C61A /* BookmarksViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BookmarksViewController.xib; path = OnionBrowser/BookmarksViewController.xib; sourceTree = "<group>"; };
+		A0D68E09234C8E140027C61A /* BookmarksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookmarksViewController.swift; path = OnionBrowser/BookmarksViewController.swift; sourceTree = "<group>"; };
+		A0D68E0C234CABF30027C61A /* BookmarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BookmarkViewController.swift; path = OnionBrowser/BookmarkViewController.swift; sourceTree = "<group>"; };
 		BED522A5B119CE39951BF4AF /* Pods-OnionBrowser2 Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnionBrowser2 Tests.debug.xcconfig"; path = "Target Support Files/Pods-OnionBrowser2 Tests/Pods-OnionBrowser2 Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -876,8 +881,6 @@
 		01801E941A32CA2A002B4718 /* Endless */ = {
 			isa = PBXGroup;
 			children = (
-				01AFEB471B4ED48000A02482 /* Bookmark.h */,
-				01AFEB481B4ED48000A02482 /* Bookmark.m */,
 				01AFEB351B4DBA8D00A02482 /* BookmarkController.h */,
 				01AFEB361B4DBA8D00A02482 /* BookmarkController.m */,
 				010EEA641A43A536001E8B65 /* CookieController.h */,
@@ -1023,6 +1026,10 @@
 		6998064A1EABE5C70012F75E /* OnionBrowser */ = {
 			isa = PBXGroup;
 			children = (
+				A0D68DFE234C89080027C61A /* Bookmark.swift */,
+				A0D68E08234C8E140027C61A /* BookmarksViewController.xib */,
+				A0D68E09234C8E140027C61A /* BookmarksViewController.swift */,
+				A0D68E0C234CABF30027C61A /* BookmarkViewController.swift */,
 				A07D654C2208A1410002D775 /* Migration */,
 				691286EB1EABF2B300CEC414 /* OnionBrowser2-Bridging-Header.h */,
 				691286EC1EABF2B400CEC414 /* OnionManager.swift */,
@@ -2211,6 +2218,7 @@
 				691286EA1EABEE6900CEC414 /* LaunchScreen.xib in Resources */,
 				A045E5E61EDC5C1700BC8A92 /* OnePasswordExtension.strings in Resources */,
 				01FC0E571B38FB6B00955D9A /* Launch Screen.xib in Resources */,
+				A0D68E0A234C8E150027C61A /* BookmarksViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2240,6 +2248,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-OnionBrowser2/Pods-OnionBrowser2-resources.sh",
+				"${PODS_ROOT}/Eureka/Source/Resources/Eureka.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/InAppSettingsKit/InAppSettingsKit.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/POE/POE.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/TUSafariActivity/TUSafariActivity.bundle",
@@ -2247,6 +2256,7 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Eureka.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/InAppSettingsKit.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/POE.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TUSafariActivity.bundle",
@@ -2366,7 +2376,7 @@
 				69CBCD4D1E934249009D5352 /* RuleEditorRow.m in Sources */,
 				8AD128401ED61822005C43E4 /* Reachability.m in Sources */,
 				A053137522F1E587006655EC /* CertificateAuthentication.m in Sources */,
-				01AFEB491B4ED48000A02482 /* Bookmark.m in Sources */,
+				A0D68E0B234C8E150027C61A /* BookmarksViewController.swift in Sources */,
 				01801E981A32CA2A002B4718 /* main.m in Sources */,
 				8AD5FFBA1EB3DFE30066E7E3 /* ObfsThread.m in Sources */,
 				01D741321A49EA14007B7033 /* RuleEditorController.m in Sources */,
@@ -2383,6 +2393,7 @@
 				018333CA1A3505FB00670CD1 /* HTTPSEverywhere.m in Sources */,
 				01F7CB491A5253DD00F42B73 /* HSTSCache.m in Sources */,
 				69CBCD471E934228009D5352 /* URLBlockerRuleController.m in Sources */,
+				A0D68DFF234C89080027C61A /* Bookmark.swift in Sources */,
 				691286ED1EABF2B400CEC414 /* OnionManager.swift in Sources */,
 				01F7CB4E1A52FC4E00F42B73 /* NSString+IPAddress.m in Sources */,
 				014E68A81B9BEDDC00D98A0A /* HostSettings.m in Sources */,
@@ -2398,6 +2409,7 @@
 				01EFA7FF1A63851400688398 /* LocalNetworkChecker.m in Sources */,
 				0182AD9B1AACC55400F3B7ED /* HTTPSEverywhereRuleController.m in Sources */,
 				010EEA691A43C8CF001E8B65 /* CookieJar.m in Sources */,
+				A0D68E0D234CABF30027C61A /* BookmarkViewController.swift in Sources */,
 				A07D65542208A17E0002D775 /* OldBookmark.m in Sources */,
 				A07D65552208A17E0002D775 /* Settings.xcdatamodel in Sources */,
 				A053136F22F1C73A006655EC /* JAHPCacheStoragePolicy.m in Sources */,

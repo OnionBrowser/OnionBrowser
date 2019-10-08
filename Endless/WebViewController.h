@@ -54,7 +54,7 @@ typedef NS_ENUM(NSInteger, WebViewTabAnimation) {
 - (void)forceRefresh;
 - (void)dismissPopover;
 - (void)prepareForNewURLFromString:(NSString *)url;
-- (void)showBookmarksForEditing:(BOOL)editing;
+- (void)showBookmarks;
 - (void)hideBookmarks;
 - (void)hideSearchResults;
 

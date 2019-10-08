@@ -6,7 +6,6 @@
  */
 
 #import "AppDelegate.h"
-#import "Bookmark.h"
 #import "CookieController.h"
 #import "HostSettings.h"
 #import "HostSettingsController.h"
@@ -129,7 +128,7 @@ NSString * const LABEL = @"L";
 
 	NSString *func = [button objectForKey:FUNC];
 	if ([func isEqualToString:@"menuAddOrManageBookmarks"]) {
-		if (haveURL && [Bookmark isURLBookmarked:[[[appDelegate webViewController] curWebViewTab] url]]) {
+		if (haveURL && [Bookmark containsUrl:appDelegate.webViewController.curWebViewTab.url]) {
 			cell.textLabel.text = NSLocalizedString(@"Bookmarks", nil);
 			cell.detailTextLabel.text = NSLocalizedString(@"Page bookmarked", nil);
 		}
@@ -243,7 +242,7 @@ NSString * const LABEL = @"L";
 
 - (void)menuAddOrManageBookmarks
 {
-	[[appDelegate webViewController] showBookmarksForEditing:YES];
+	[appDelegate.webViewController presentViewController:[BookmarksViewController instantiate] animated:YES completion:nil];
 }
 
 #ifdef SHOW_DONATION_CONTROLLER

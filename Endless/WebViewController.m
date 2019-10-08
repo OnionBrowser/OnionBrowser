@@ -899,7 +899,7 @@
 	[urlField setText:[self.curWebViewTab.url absoluteString]];
 	
 	if (bookmarks == nil)
-		[self showBookmarksForEditing:NO];
+		[self showBookmarks];
 	
 	[UIView animateWithDuration:0.15 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
 		[self->urlField setTextAlignment:NSTextAlignmentNatural];
@@ -923,7 +923,7 @@
 	/* if it looks like we're typing a url, stop searching */
 	if ([urlField text] == nil || [[urlField text] isEqualToString:@""] || [[urlField text] hasPrefix:@"http:"] || [[urlField text] hasPrefix:@"https:"] || ([[urlField text] containsString:@"."] && [userDefaults boolForKey:@"search_engine_stop_dot"])) {
 		[self hideSearchResults];
-		[self showBookmarksForEditing:NO];
+		[self showBookmarks];
 		return;
 	}
 	
@@ -1255,28 +1255,24 @@
 	return [uapieces componentsJoinedByString:@" "];
 }
 
-- (void)showBookmarksForEditing:(BOOL)editing
+- (void)showBookmarks
 {
 	if (bookmarks)
 		return;
 	
 	bookmarks = [[BookmarkController alloc] init];
 
-	if (editing) {
-		UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:bookmarks];
-		[self presentViewController:navController animated:YES completion:nil];
-	} else {
-		bookmarks.embedded = true;
-
-		if (self.toolbarOnBottom)
-			/* we can't size according to keyboard height because we don't know it yet, so we'll just put it full height below the toolbar and we'll update it when the keyboard shows up */
-			bookmarks.view.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
-		else
-			bookmarks.view.frame = CGRectMake(0, toolbar.frame.size.height + toolbar.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
-		
-		[self addChildViewController:bookmarks];
-		[self.view insertSubview:[bookmarks view] belowSubview:toolbar];
+	if (self.toolbarOnBottom)
+	{
+		/* we can't size according to keyboard height because we don't know it yet, so we'll just put it full height below the toolbar and we'll update it when the keyboard shows up */
+		bookmarks.view.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
 	}
+	else {
+		bookmarks.view.frame = CGRectMake(0, toolbar.frame.size.height + toolbar.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
+	}
+
+	[self addChildViewController:bookmarks];
+	[self.view insertSubview:[bookmarks view] belowSubview:toolbar];
 }
 
 - (void)hideBookmarks

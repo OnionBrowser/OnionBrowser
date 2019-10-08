@@ -8,7 +8,6 @@
 #import <AVFoundation/AVFoundation.h>
 
 #import "AppDelegate.h"
-#import "Bookmark.h"
 #import "HTTPSEverywhere.h"
 #import "HostSettings.h"
 #import "DownloadHelper.h"
@@ -47,8 +46,7 @@
 
 	self.hstsCache = [HSTSCache retrieve];
 	self.cookieJar = [[CookieJar alloc] init];
-	[Bookmark retrieveList];
-	
+
 	/* handle per-version upgrades or migrations */
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	long lastBuild = [userDefaults integerForKey:@"last_build"];
@@ -76,16 +74,16 @@
 
     Boolean didFirstRunBookmarks = [userDefaults boolForKey:@"did_first_run_bookmarks"];
     if (!didFirstRunBookmarks) {
-        if ([[Bookmark list] count] == 0) { // our first run of Onion Browser 2, but did we migrate any bookmarks from previous versions?
-            [Bookmark addBookmarkForURLString:@"https://3g2upl4pq6kufc4m.onion/" withName:@"DuckDuckGo Search Engine (onion)"];
-            [Bookmark addBookmarkForURLString:@"http://expyuzz4wqqyqhjn.onion/" withName:@"The Tor Project (onion)"];
-            [Bookmark addBookmarkForURLString:@"https://freedom.press/" withName:@"Freedom of the Press Foundation"];
-            [Bookmark addBookmarkForURLString:@"https://www.propub3r6espa33w.onion/" withName:@"ProPublica (onion)"];
-            [Bookmark addBookmarkForURLString:@"https://mobile.nytimes3xbfgragh.onion/" withName:@"New York Times (onion)"];
-            [Bookmark addBookmarkForURLString:@"https://m.facebookcorewwwi.onion/" withName:@"Facebook (Onion)"];
-            [Bookmark addBookmarkForURLString:@"http://tigas3l7uusztiqu.onion/onionbrowser/" withName:@"Onion Browser official site (onion)"];
-            [Bookmark addBookmarkForURLString:@"http://tigas3l7uusztiqu.onion/" withName:@"Mike Tigas, Onion Browser author (onion)"];
-            [Bookmark persistList];
+        if (Bookmark.all.count == 0) { // our first run of Onion Browser 2, but did we migrate any bookmarks from previous versions?
+			[Bookmark addWithName:@"DuckDuckGo Search Engine (onion)" url:@"https://3g2upl4pq6kufc4m.onion/"];
+			[Bookmark addWithName:@"The Tor Project (onion)" url:@"http://expyuzz4wqqyqhjn.onion/"];
+			[Bookmark addWithName:@"Freedom of the Press Foundation" url:@"https://freedom.press/"];
+			[Bookmark addWithName:@"ProPublica (onion)" url:@"https://www.propub3r6espa33w.onion/"];
+			[Bookmark addWithName:@"New York Times (onion)" url:@"https://mobile.nytimes3xbfgragh.onion/"];
+			[Bookmark addWithName:@"Facebook (Onion)" url:@"https://m.facebookcorewwwi.onion/"];
+			[Bookmark addWithName:@"Onion Browser official site (onion)" url:@"http://tigas3l7uusztiqu.onion/onionbrowser/"];
+			[Bookmark addWithName:@"Mike Tigas, Onion Browser author (onion)" url:@"http://tigas3l7uusztiqu.onion/"];
+            [Bookmark store];
         }
         [userDefaults setBool:YES forKey:@"did_first_run_bookmarks"];
         [userDefaults synchronize];
@@ -311,7 +309,7 @@
 {
 	if ([keyCommand modifierFlags] == UIKeyModifierCommand) {
 		if ([[keyCommand input] isEqualToString:@"b"]) {
-			[[self webViewController] showBookmarksForEditing:NO];
+			[self.webViewController showBookmarks];
 			return;
 		}
 

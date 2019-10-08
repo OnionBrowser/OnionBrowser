@@ -9,6 +9,4 @@
 
 @interface BookmarkController : UITableViewController <UIGestureRecognizerDelegate>
 
-@property BOOL embedded;
-
 @end

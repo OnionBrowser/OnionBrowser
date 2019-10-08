@@ -84,17 +84,11 @@ class Migration: NSObject {
                     request.sortDescriptors = [NSSortDescriptor.init(key: "order", ascending: true)]
 
                     if let oldBookmarks = try? moc.fetch(request) {
-                        let newBookmarks = Bookmark.list()
-
                         for ob in oldBookmarks {
-                            let nb = Bookmark.init()
-                            nb.name = ob.title
-                            nb.setUrlString(ob.url)
-
-                            newBookmarks?.add(nb)
+							Bookmark.add(name: ob.title, url: ob.url)
                         }
 
-                        Bookmark.persistList()
+                        Bookmark.store()
                     }
 
                     // Remove old CoreData storage.
