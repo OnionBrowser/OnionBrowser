@@ -36,7 +36,7 @@ open class Bookmark: NSObject {
 		return bookmarks
 	}()
 
-	class func add(name: String, url: String) {
+	class func add(name: String?, url: String) {
 		all.append(Bookmark(name: name, url: url))
 	}
 

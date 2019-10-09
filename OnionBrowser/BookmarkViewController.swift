@@ -21,6 +21,14 @@ class BookmarkViewController: FormViewController {
 
 	private var bookmark: Bookmark?
 
+	private let titleRow = TextRow() {
+		$0.placeholder = NSLocalizedString("Title", comment: "Bookmark title placeholder")
+	}
+
+	private let urlRow =  URLRow() {
+		$0.placeholder = NSLocalizedString("Address", comment: "Bookmark URL placeholder")
+	}
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,12 +42,10 @@ class BookmarkViewController: FormViewController {
 				index = Bookmark.all.firstIndex(of: bookmark)
 			}
 			else {
-				bookmark = Bookmark()
-
 				// Check, if we have a URL. If so, prefill with that.
 				if let url = tab?.url {
-					bookmark?.name = tab?.title?.text
-					bookmark?.url = url
+					titleRow.value = tab?.title?.text
+					urlRow.value = url
 				}
 			}
 		}
@@ -53,60 +59,53 @@ class BookmarkViewController: FormViewController {
 
 		if index == nil {
 			navigationItem.rightBarButtonItem = UIBarButtonItem(
-				barButtonSystemItem: .save, target: self, action: #selector(save))
+				barButtonSystemItem: .save, target: self, action: #selector(addNew))
 
 			// Don't allow to store empty bookmarks.
-			if bookmark?.url == nil {
-				navigationItem.rightBarButtonItem?.isEnabled = false
-			}
+			navigationItem.rightBarButtonItem?.isEnabled = urlRow.value != nil
+		}
+
+		if let bookmark = bookmark {
+			titleRow.value = bookmark.name
+			urlRow.value = bookmark.url
 		}
 
 		form
-			+++ TextRow() {
-				$0.placeholder = NSLocalizedString("Title", comment: "Bookmark title placeholder")
-				$0.value = bookmark?.name
+			+++ titleRow
+			<<< urlRow
+			.onChange { row in
+				self.navigationItem.rightBarButtonItem?.isEnabled = row.value != nil
 			}
-			.onChange({ row in
-				self.bookmark?.name = row.value
-
-				if self.index != nil {
-					self.store()
-				}
-			})
-			<<< URLRow() {
-				$0.placeholder = NSLocalizedString("Address", comment: "Bookmark URL placeholder")
-				$0.value = bookmark?.url
-			}
-			.onChange({ row in
-				if let value = row.value {
-					self.bookmark?.url = value
-
-					self.navigationItem.rightBarButtonItem?.isEnabled = true
-
-					if self.index != nil {
-						self.store()
-					}
-				}
-			})
     }
 
-	@objc private func save() {
-		store()
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
 
-		navigationController?.popViewController(animated: true)
+		// Store changes, if user edits an existing bookmark or bookmark was created
+		// with #addNew.
+		if index != nil {
+			bookmark?.name = titleRow.value
+
+			// Don't allow empty URL.
+			if let url = urlRow.value {
+				bookmark?.url = url
+			}
+
+			Bookmark.store()
+
+			delegate?.needsReload()
+		}
 	}
 
-	private func store() {
-		if index == nil,
-			let bookmark = bookmark {
+	@objc private func addNew() {
+		if urlRow.value != nil {
+			bookmark = Bookmark()
 
-			Bookmark.all.append(bookmark)
+			Bookmark.all.append(bookmark!)
+			// Trigger store in #viewWillDisappear by setting index != nil.
+			index = Bookmark.all.firstIndex(of: bookmark!)
 
-			index = Bookmark.all.firstIndex(of: bookmark)
+			navigationController?.popViewController(animated: true)
 		}
-
-		Bookmark.store()
-
-		delegate?.needsReload()
 	}
 }

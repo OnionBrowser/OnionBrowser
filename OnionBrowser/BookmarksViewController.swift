@@ -88,6 +88,8 @@ UITableViewDelegate, UISearchResultsUpdating, BookmarkViewControllerDelegate {
 		cell.textLabel?.adjustsFontSizeToFitWidth = true
 		cell.textLabel?.minimumScaleFactor = 0.5
 
+		cell.accessoryType = .disclosureIndicator
+
 		return cell
 	}
 
@@ -100,14 +102,10 @@ UITableViewDelegate, UISearchResultsUpdating, BookmarkViewControllerDelegate {
 	}
 
 	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-		switch editingStyle {
-		case .delete:
+		if editingStyle == .delete {
 			Bookmark.all.remove(at: indexPath.row)
 			Bookmark.store()
 			tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
-
-		default:
-			break
 		}
 	}
 
@@ -166,18 +164,18 @@ UITableViewDelegate, UISearchResultsUpdating, BookmarkViewControllerDelegate {
 
 	// MARK: Actions
 
-	@objc func dismiss_() {
+	@objc private func dismiss_() {
 		navigationController?.dismiss(animated: true)
 	}
 
-    @objc func add() {
+    @objc private func add() {
 		let vc = BookmarkViewController()
 		vc.delegate = self
 
 		navigationController?.pushViewController(vc, animated: true)
     }
 
-    @objc func edit() {
+    @objc private func edit() {
 		tableView.setEditing(!tableView.isEditing, animated: true)
 
 		updateButtons()
