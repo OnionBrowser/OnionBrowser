@@ -6,7 +6,6 @@
  */
 
 #import "AppDelegate.h"
-#import "CookieController.h"
 #import "HostSettings.h"
 #import "HostSettingsController.h"
 #import "IASKAppSettingsViewController.h"

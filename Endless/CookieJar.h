@@ -28,4 +28,6 @@
 - (void)clearAllDataForHost:(NSString *)host;
 - (void)clearNonWhitelistedDataForTab:(NSUInteger)tabHash;
 
+- (NSDictionary *)localStorageFiles;
+
 @end

@@ -41,14 +41,6 @@
 			<string>Cookies and local storage data from non-whitelisted hosts will be cleared even from open tabs after not being accessed for this many minutes</string>
 		</dict>
 		<dict>
-			<key>IASKViewControllerClass</key>
-			<string>CookieController</string>
-			<key>Title</key>
-			<string>Edit cookies and local storage</string>
-			<key>Type</key>
-			<string>PSChildPaneSpecifier</string>
-		</dict>
-		<dict>
 			<key>Key</key>
 			<string>old_data_sweep_mins</string>
 			<key>Title</key>
