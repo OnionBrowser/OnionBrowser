@@ -39,9 +39,6 @@
 	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", nil) style:UIBarButtonItemStyleDone target:self.navigationController action:@selector(dismissModalViewControllerAnimated:)];
 
 	self.title = NSLocalizedString(@"History", nil);
-	
-	if ([[appDelegate webViewController] darkInterface])
-		[[self tableView] setBackgroundColor:[UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:1.0]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -84,12 +81,6 @@
 	cell.detailTextLabel.text = [hitem objectForKey:@"url"];
 	
 	[cell setShowsReorderControl:NO];
-	
-	if ([[appDelegate webViewController] darkInterface]) {
-		[cell setBackgroundColor:[UIColor clearColor]];
-		[[cell textLabel] setTextColor:[UIColor whiteColor]];
-		[[cell detailTextLabel] setTextColor:[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1.0]];
-	}
 	
 	return cell;
 }

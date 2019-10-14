@@ -70,9 +70,6 @@ NSString * const LABEL = @"L";
 	
 	[self.view setBackgroundColor:[UIColor clearColor]];
 	[self.tableView setSeparatorInset:UIEdgeInsetsZero];
-	
-	if ([[appDelegate webViewController] darkInterface])
-		[self.tableView setSeparatorColor:[UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:0.75]];
 }
 
 - (CGSize)preferredContentSize
@@ -119,11 +116,6 @@ NSString * const LABEL = @"L";
 	cell.detailTextLabel.adjustsFontSizeToFitWidth = YES;
 	cell.detailTextLabel.minimumScaleFactor = .5;
 
-	if ([[appDelegate webViewController] darkInterface]) {
-		cell.textLabel.textColor = [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0];
-		cell.detailTextLabel.textColor = [UIColor grayColor];
-	}
-	
 	BOOL haveURL = ([[[appDelegate webViewController] curWebViewTab] url] != nil);
 
 	NSString *func = [button objectForKey:FUNC];
@@ -308,10 +300,7 @@ NSString * const LABEL = @"L";
 
 - (UIColor *)colorForMenuTextHighlight
 {
-	if ([[appDelegate webViewController] darkInterface])
-		return [UIColor colorWithRed:1 green:1 blue:0.69f alpha:1];
-	else
-		return [UIColor colorWithRed:0 green:0.5 blue:0 alpha:1];
+	return [UIColor colorWithRed:0 green:0.5 blue:0 alpha:1];
 }
 
 #pragma mark - POEDelegate

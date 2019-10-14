@@ -24,9 +24,6 @@
 	
 	self.title = NSLocalizedString(@"Search Results", nil);
 	
-	if ([[appDelegate webViewController] darkInterface])
-		[[self tableView] setBackgroundColor:[UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:1.0]];
-	
 	lastResults = @[];
 }
 
@@ -82,11 +79,6 @@
 	cell.textLabel.text = [lastResults objectAtIndex:indexPath.row];
 	
 	[cell setShowsReorderControl:NO];
-	
-	if ([[appDelegate webViewController] darkInterface]) {
-		[cell setBackgroundColor:[UIColor clearColor]];
-		[[cell textLabel] setTextColor:[UIColor whiteColor]];
-	}
 	
 	return cell;
 }

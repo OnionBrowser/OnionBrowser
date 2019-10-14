@@ -83,8 +83,6 @@
 	[toolbar setClipsToBounds:YES];
 	[[self view] addSubview:toolbar];
 	
-	self.darkInterface = [userDefaults boolForKey:@"dark_interface"];
-
 	keyboardHeight = 0;
 	safeAreaBottom = 0;
 	
@@ -227,10 +225,7 @@
 
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
-	if ([self darkInterface])
-		return UIStatusBarStyleLightContent;
-	else
-		return UIStatusBarStyleDefault;
+	return UIStatusBarStyleDefault;
 }
 
 - (void)didReceiveMemoryWarning
@@ -399,56 +394,24 @@
 
 	tabChooser.frame = CGRectMake(0, self.view.bounds.size.height - 20 - (keyboardHeight ? 0 : safeAreaBottom), tabScroller.bounds.size.width, 20);
 
-	if (self.darkInterface) {
-		if (HAS_OLED) {
-			[[appDelegate window] setBackgroundColor:[UIColor blackColor]];
-			[wrapper setBackgroundColor:[UIColor blackColor]];
-			
-			[tabScroller setBackgroundColor:[UIColor blackColor]];
-			
-			[toolbar setBackgroundColor:[UIColor blackColor]];
-		}
-		else {
-			[[appDelegate window] setBackgroundColor:[UIColor darkGrayColor]];
-			[wrapper setBackgroundColor:[UIColor darkGrayColor]];
-			
-			[tabScroller setBackgroundColor:[UIColor darkGrayColor]];
-			
-			[toolbar setBackgroundColor:[UIColor darkGrayColor]];
-		}
-		
-		[urlField setBackgroundColor:[UIColor grayColor]];
-		[tabToolbarHairline setBackgroundColor:[UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:1.0]];
+	[[appDelegate window] setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
 
-		[tabAddButton setTintColor:[UIColor lightTextColor]];
-		[tabDoneButton setTintColor:[UIColor lightTextColor]];
-		[settingsButton setTintColor:[UIColor lightTextColor]];
-		[tabsButton setTintColor:[UIColor lightTextColor]];
-		[tabCount setTextColor:[UIColor lightTextColor]];
-		
-		[tabChooser setPageIndicatorTintColor:[UIColor lightGrayColor]];
-		[tabChooser setCurrentPageIndicatorTintColor:[UIColor whiteColor]];
-	}
-	else {
-		[[appDelegate window] setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
-		
-		[wrapper setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+	[wrapper setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
 
-		[tabScroller setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
-		[toolbar setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
-		[urlField setBackgroundColor:[UIColor whiteColor]];
-		[tabToolbarHairline setBackgroundColor:[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0]];
+	[tabScroller setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+	[toolbar setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+	[urlField setBackgroundColor:[UIColor whiteColor]];
+	[tabToolbarHairline setBackgroundColor:[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0]];
 
-		[tabAddButton setTintColor:blueTint];
-		[tabDoneButton setTintColor:blueTint];
-		[settingsButton setTintColor:blueTint];
-		[tabsButton setTintColor:blueTint];
-		[tabCount setTextColor:blueTint];
+	[tabAddButton setTintColor:blueTint];
+	[tabDoneButton setTintColor:blueTint];
+	[settingsButton setTintColor:blueTint];
+	[tabsButton setTintColor:blueTint];
+	[tabCount setTextColor:blueTint];
 
-		[tabChooser setPageIndicatorTintColor:[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0]];
-		[tabChooser setCurrentPageIndicatorTintColor:[UIColor grayColor]];
-	}
-	
+	[tabChooser setPageIndicatorTintColor:[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.0]];
+	[tabChooser setCurrentPageIndicatorTintColor:[UIColor grayColor]];
+
 	[self setNeedsStatusBarAppearanceUpdate];
 
 	/* tabScroller.frame is now our actual webview viewing area */
@@ -757,10 +720,7 @@
 {
 	/* TODO: cache curURL and only do anything here if it changed, these changes might be expensive */
 
-	if (self.darkInterface)
-		[urlField setTextColor:[UIColor colorWithRed:0.9f green:0.9f blue:0.9f alpha:1.0f]];
-	else
-		[urlField setTextColor:[UIColor darkTextColor]];
+	[urlField setTextColor:[UIColor darkTextColor]];
 
 	if (urlField.isFirstResponder) {
 		/* focused, don't muck with the URL while it's being edited */
@@ -805,13 +765,13 @@
 	
 	backButton.enabled = (self.curWebViewTab && self.curWebViewTab.canGoBack);
 	if (backButton.enabled)
-		[backButton setTintColor:(self.darkInterface ? [UIColor lightTextColor] : blueTint)];
+		[backButton setTintColor:blueTint];
 	else
 		[backButton setTintColor:[UIColor grayColor]];
 
 	forwardButton.hidden = !(self.curWebViewTab && self.curWebViewTab.canGoForward);
 	if (forwardButton.enabled)
-		[forwardButton setTintColor:(self.darkInterface ? [UIColor lightTextColor] : blueTint)];
+		[forwardButton setTintColor:blueTint];
 	else
 		[forwardButton setTintColor:[UIColor grayColor]];
 
@@ -1034,12 +994,6 @@
 	[popover.theme setOuterShadowColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.75]];
 	[popover.theme setOuterShadowOffset:CGSizeMake(0, 2)];
 	[popover.theme setOverlayColor:[UIColor clearColor]];
-	if ([self darkInterface]) {
-		if (HAS_OLED)
-			[popover.theme setTintColor:[UIColor blackColor]];
-		else
-			[popover.theme setTintColor:[UIColor darkGrayColor]];
-	}
 	[popover endThemeUpdates];
 	
 	[popover presentPopoverFromRect:CGRectMake(settingsButton.frame.origin.x, toolbar.frame.origin.y + settingsButton.frame.origin.y + settingsButton.frame.size.height - 30, settingsButton.frame.size.width, settingsButton.frame.size.height) inView:self.view permittedArrowDirections:WYPopoverArrowDirectionAny animated:YES options:WYPopoverAnimationOptionFadeWithScale];
@@ -1078,8 +1032,6 @@
 	
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	[[appDelegate cookieJar] setOldDataSweepTimeout:[NSNumber numberWithInteger:[userDefaults integerForKey:@"old_data_sweep_mins"]]];
-	
-	self.darkInterface = [userDefaults boolForKey:@"dark_interface"];
 }
 
 - (void)showTabs:(id)_id

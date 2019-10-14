@@ -14,16 +14,6 @@
 		</dict>
 		<dict>
 			<key>Title</key>
-			<string>Dark interface</string>
-			<key>Key</key>
-			<string>dark_interface</string>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-			<key>DefaultValue</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>Title</key>
 			<string>Mute audio with mute switch</string>
 			<key>Key</key>
 			<string>mute_with_switch</string>
