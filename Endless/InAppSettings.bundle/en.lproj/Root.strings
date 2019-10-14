@@ -4,11 +4,6 @@
 "If blank, the default Onion Browser page will be used" = "If blank, the default Onion Browser page will be used";
 "Mute audio with mute switch" = "Mute audio with mute switch";
 "Custom home page" = "Custom home page";
-"Search Engine" = "Search Engine";
-"When disabled, all text entered in search bar will be sent to the search engine unless it starts with \"http\"" = "When disabled, all text entered in search bar will be sent to the search engine unless it starts with \"http\"";
-"Search engine" = "Search engine";
-"Auto-complete search results" = "Auto-complete search results";
-"Stop auto-complete at first dot" = "Stop auto-complete at first dot";
 "Privacy" = "Privacy";
 "Cookies and local storage data from non-whitelisted hosts will be cleared even from open tabs after not being accessed for this many minutes" = "Cookies and local storage data from non-whitelisted hosts will be cleared even from open tabs after not being accessed for this many minutes";
 "Send Do-Not-Track header" = "Send Do-Not-Track header";

@@ -34,56 +34,6 @@
 		</dict>
 		<dict>
 			<key>Title</key>
-			<string>Search Engine</string>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
-			<key>FooterText</key>
-			<string>When disabled, all text entered in search bar will be sent to the search engine unless it starts with &quot;http&quot;</string>
-		</dict>
-		<dict>
-			<key>DefaultValue</key>
-			<string>DuckDuckGo</string>
-			<key>Values</key>
-			<array>
-				<string>DuckDuckGo</string>
-				<string>Google</string>
-				<string>Startpage</string>
-			</array>
-			<key>Titles</key>
-			<array>
-				<string>DuckDuckGo</string>
-				<string>Google</string>
-				<string>Startpage</string>
-			</array>
-			<key>Key</key>
-			<string>search_engine</string>
-			<key>Title</key>
-			<string>Search engine</string>
-			<key>Type</key>
-			<string>PSMultiValueSpecifier</string>
-		</dict>
-		<dict>
-			<key>Title</key>
-			<string>Auto-complete search results</string>
-			<key>Key</key>
-			<string>search_engine_live</string>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-			<key>DefaultValue</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>Title</key>
-			<string>Stop auto-complete at first dot</string>
-			<key>Key</key>
-			<string>search_engine_stop_dot</string>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-			<key>DefaultValue</key>
-			<true/>
-		</dict>
-		<dict>
-			<key>Title</key>
 			<string>Privacy</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>

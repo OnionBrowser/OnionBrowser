@@ -63,6 +63,7 @@ NSString * const LABEL = @"L";
 	[buttons addObject:@{ FUNC : @"menuHTTPSEverywhere", LABEL : NSLocalizedString(@"HTTPS Everywhere", nil) }];
 	[buttons addObject:@{ FUNC : @"menuHostSettings", LABEL : NSLocalizedString(@"Host Settings", nil) }];
 	[buttons addObject:@{ FUNC : @"menuSettings", LABEL : NSLocalizedString(@"Global Settings", nil) }];
+	[buttons addObject:@{ FUNC : @"menuSettingsNew", LABEL: NSLocalizedString(@"Settings", nil) }];
 	[buttons addObject:@{ FUNC : @"bridgeSettings", LABEL : NSLocalizedString(@"Bridge Configuration", nil) }];
 #ifdef SHOW_DONATION_CONTROLLER
 	[buttons addObject:@{ FUNC : @"menuDonation", LABEL : NSLocalizedString(@"Fund Development", nil) }];
@@ -258,6 +259,13 @@ NSString * const LABEL = @"L";
 	
 	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:appSettingsViewController];
 	[[appDelegate webViewController] presentViewController:navController animated:YES completion:nil];
+}
+
+- (void)menuSettingsNew
+{
+	UINavigationController *vc = [SettingsViewController instantiate];
+
+	[appDelegate.webViewController presentViewController:vc animated:YES completion:nil];
 }
 
 - (void)bridgeSettings
