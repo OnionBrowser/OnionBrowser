@@ -62,10 +62,9 @@ PODS:
     - ReactiveObjC (= 3.1.1)
   - OpenSSL-Universal (1.0.2.17)
   - OrderedDictionary (1.4)
-  - POE (0.5.7):
+  - POE (0.6.0):
     - KMPlaceholderTextView (~> 1.4)
     - Localize (~> 2.2)
-    - UIColor-HexRGB
   - ReactiveObjC (3.1.1)
   - TUSafariActivity (1.0.4)
   - UIColor-HexRGB (1.0.1)
@@ -81,7 +80,7 @@ DEPENDENCIES:
   - OCMock
   - OCSPCache (from `https://github.com/Psiphon-Labs/OCSPCache`)
   - OrderedDictionary
-  - POE (~> 0.5)
+  - POE (~> 0.6)
   - TUSafariActivity
   - UIColor-HexRGB
   - VForceTouch
@@ -135,7 +134,7 @@ SPEC CHECKSUMS:
   OCSPCache: 96237607aa9f77ba2fd9119e383b9fb1ef41cfa2
   OpenSSL-Universal: ff04c2e6befc3f1247ae039e60c93f76345b3b5a
   OrderedDictionary: 138c8d2e358d3a0c9adda15c6c7db24e8e3b09e6
-  POE: a90b4ad4e3684a31e5df031c9ba382ddbf59cdd5
+  POE: b5c8a0524a55701a3215c6acaf501cc82dd4ec32
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
   UIColor-HexRGB: daccfa7e936af664369734a164b0309087d7f970
@@ -143,6 +142,6 @@ SPEC CHECKSUMS:
   WYPopoverController: a9db25ac2841a686acdc0f3a99bdb21545db32f4
   XLForm: d5c391dfc62865927b5bcab0a5a0dbfb3e02b0ec
 
-PODFILE CHECKSUM: 155c212a3a33c2cad63d83602ec3bef2d76bd5f2
+PODFILE CHECKSUM: 13ec88d7a83784759ee635c371c9aa18948b38e2
 
 COCOAPODS: 1.8.3
