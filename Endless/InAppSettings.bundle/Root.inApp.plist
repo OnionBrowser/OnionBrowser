@@ -120,20 +120,6 @@
 			<key>DefaultValue</key>
 			<false/>
 		</dict>
-		<dict>
-			<key>File</key>
-			<string>credits.html</string>
-			<key>IASKViewControllerClass</key>
-			<string>IASKAppSettingsWebViewController</string>
-			<key>IASKViewControllerSelector</key>
-			<string>initWithFile:specifier:</string>
-			<key>Title</key>
-			<string>About</string>
-			<key>Type</key>
-			<string>PSChildPaneSpecifier</string>
-			<key>IASKChildTitle</key>
-			<string>About Onion Browser</string>
-		</dict>
 	</array>
 	<key>StringsTable</key>
 	<string>Root</string>

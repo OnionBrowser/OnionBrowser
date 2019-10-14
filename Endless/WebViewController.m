@@ -746,11 +746,22 @@
 		
 		NSString *host;
 		if (self.curWebViewTab.url == nil)
-			host = @"";
+		{
+		 	host = @"";
+		}
 		else {
-			host = [self.curWebViewTab.url host];
+			host = self.curWebViewTab.url.host;
 			if (host == nil)
-				host = [self.curWebViewTab.url absoluteString];
+			{
+				if ([self.curWebViewTab.url isEqual:
+					 [NSBundle.mainBundle URLForResource:@"credits" withExtension:@"html"]])
+				{
+					host = ABOUT_ONION_BROWSER;
+				}
+				else {
+					host = self.curWebViewTab.url.absoluteString;
+				}
+			}
 		}
 		
 		NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^www\\d*\\." options:NSRegularExpressionCaseInsensitive error:nil];

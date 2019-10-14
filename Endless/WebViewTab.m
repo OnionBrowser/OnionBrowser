@@ -246,6 +246,11 @@
 
 - (void)loadURL:(NSURL *)u withForce:(BOOL)force
 {
+	if ([u.absoluteString isEqualToString:ABOUT_ONION_BROWSER])
+	{
+		u = [NSBundle.mainBundle URLForResource:@"credits" withExtension:@"html"];
+	}
+
 	[self loadRequest:[NSURLRequest requestWithURL:u] withForce:force];
 }
 

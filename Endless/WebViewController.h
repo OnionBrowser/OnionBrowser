@@ -14,6 +14,8 @@
 #define TOOLBAR_PADDING 6
 #define TOOLBAR_BUTTON_SIZE 30
 
+#define ABOUT_ONION_BROWSER @"about:onion-browser"
+
 /* this just detects the iPhone X by its notch */
 #define HAS_OLED ([[[[UIApplication sharedApplication] delegate] window] safeAreaInsets].bottom > 0)
 
