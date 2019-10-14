@@ -8,11 +8,6 @@
 "Cookies and local storage data from non-whitelisted hosts will be cleared even from open tabs after not being accessed for this many minutes" = "Cookies and local storage data from non-whitelisted hosts will be cleared even from open tabs after not being accessed for this many minutes";
 "Edit cookies and local storage" = "Edit cookies and local storage";
 "Cookie auto-sweep interval" = "Cookie auto-sweep interval";
-"Choose, how long app remembers open tabs." = "Choose, how long app remembers open tabs.";
-"Tab Security" = "Tab Security";
-"Always remember open tabs" = "Always remember open tabs";
-"Forget tabs when app shuts down" = "Forget tabs when app shuts down";
-"Forget tabs when app in background" = "Forget tabs when app in background";
 "Changing this option requires restarting the app" = "Changing this option requires restarting the app";
 "Allow 3rd party keyboards" = "Allow 3rd party keyboards";
 "Report a bug" = "Report a bug";

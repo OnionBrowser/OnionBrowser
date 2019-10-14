@@ -84,7 +84,7 @@ class SettingsViewController: FormViewController {
 		}
 
 		+++ Section(header: NSLocalizedString("Privacy & Security", comment: "Section header"),
-					footer: NSLocalizedString("", comment: "Explanation in section footer"))
+					footer: NSLocalizedString("Choose, how long app remembers open tabs.", comment: "Explanation in section footer"))
 
 		<<< SwitchRow() {
 			$0.title = NSLocalizedString("Send Do-Not-Track Header", comment: "Option title")
