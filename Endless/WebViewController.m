@@ -83,7 +83,6 @@
 	[toolbar setClipsToBounds:YES];
 	[[self view] addSubview:toolbar];
 	
-	self.toolbarOnBottom = [userDefaults boolForKey:@"toolbar_on_bottom"];
 	self.darkInterface = [userDefaults boolForKey:@"dark_interface"];
 
 	keyboardHeight = 0;
@@ -228,7 +227,7 @@
 
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
-	if ([self darkInterface] || [self toolbarOnBottom])
+	if ([self darkInterface])
 		return UIStatusBarStyleLightContent;
 	else
 		return UIStatusBarStyleDefault;
@@ -392,25 +391,13 @@
 	wrapper.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
 	
 	/* keep tabScroller the size of the root frame minus the toolbar */
-	if (self.toolbarOnBottom) {
-		toolbar.frame = tabToolbar.frame = CGRectMake(self.view.safeAreaInsets.left, self.view.bounds.size.height - TOOLBAR_HEIGHT - (keyboardHeight ? 0 : safeAreaBottom), self.view.bounds.size.width - self.view.safeAreaInsets.left - self.view.safeAreaInsets.right, TOOLBAR_HEIGHT);
+	toolbar.frame = tabToolbar.frame = CGRectMake(0, 0, self.view.bounds.size.width - self.view.safeAreaInsets.left + self.view.safeAreaInsets.right, TOOLBAR_HEIGHT);
+	progressBar.frame = CGRectMake(0, TOOLBAR_HEIGHT - 2, toolbar.frame.size.width, 2);
+	tabToolbarHairline.frame = CGRectMake(0, TOOLBAR_HEIGHT - 0.5, toolbar.frame.size.width, 0.5);
 
-		progressBar.frame = CGRectMake(0, 0, toolbar.bounds.size.width, 2);
-		tabToolbarHairline.frame = CGRectMake(0, 0, toolbar.bounds.size.width, 1);
+	tabScroller.frame = CGRectMake(0, TOOLBAR_HEIGHT, self.view.bounds.size.width, self.view.bounds.size.height - TOOLBAR_HEIGHT);
 
-		tabScroller.frame = CGRectMake(self.view.safeAreaInsets.left, 0, self.view.bounds.size.width - self.view.safeAreaInsets.left - self.view.safeAreaInsets.right, self.view.bounds.size.height - TOOLBAR_HEIGHT - (keyboardHeight ? 0 : safeAreaBottom));
-
-		tabChooser.frame = CGRectMake(self.view.safeAreaInsets.left, self.view.bounds.size.height - TOOLBAR_HEIGHT - 20 - (keyboardHeight ? 0 : safeAreaBottom), self.view.frame.size.width - self.view.safeAreaInsets.left - self.view.safeAreaInsets.right, 20);
-	}
-	else {
-		toolbar.frame = tabToolbar.frame = CGRectMake(0, 0, self.view.bounds.size.width - self.view.safeAreaInsets.left + self.view.safeAreaInsets.right, TOOLBAR_HEIGHT);
-		progressBar.frame = CGRectMake(0, TOOLBAR_HEIGHT - 2, toolbar.frame.size.width, 2);
-		tabToolbarHairline.frame = CGRectMake(0, TOOLBAR_HEIGHT - 0.5, toolbar.frame.size.width, 0.5);
-
-		tabScroller.frame = CGRectMake(0, TOOLBAR_HEIGHT, self.view.bounds.size.width, self.view.bounds.size.height - TOOLBAR_HEIGHT);
-
-		tabChooser.frame = CGRectMake(0, self.view.bounds.size.height - 20 - (keyboardHeight ? 0 : safeAreaBottom), tabScroller.bounds.size.width, 20);
-	}
+	tabChooser.frame = CGRectMake(0, self.view.bounds.size.height - 20 - (keyboardHeight ? 0 : safeAreaBottom), tabScroller.bounds.size.width, 20);
 
 	if (self.darkInterface) {
 		if (HAS_OLED) {
@@ -443,10 +430,7 @@
 		[tabChooser setCurrentPageIndicatorTintColor:[UIColor whiteColor]];
 	}
 	else {
-		if ([self toolbarOnBottom])
-			[[appDelegate window] setBackgroundColor:[UIColor blackColor]];
-		else
-			[[appDelegate window] setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+		[[appDelegate window] setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
 		
 		[wrapper setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
 
@@ -490,10 +474,7 @@
 	urlField.frame = [self frameForUrlField];
 	
 	if (bookmarks) {
-		if (self.toolbarOnBottom)
-			bookmarks.view.frame = CGRectMake(0, 0, self.view.bounds.size.width - self.view.safeAreaInsets.right, toolbar.frame.origin.y);
-		else
-			bookmarks.view.frame = CGRectMake(0, toolbar.frame.origin.y + toolbar.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height);
+		bookmarks.view.frame = CGRectMake(0, toolbar.frame.origin.y + toolbar.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height);
 	}
 
 	[self updateSearchBarDetails];
@@ -1098,7 +1079,6 @@
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	[[appDelegate cookieJar] setOldDataSweepTimeout:[NSNumber numberWithInteger:[userDefaults integerForKey:@"old_data_sweep_mins"]]];
 	
-	self.toolbarOnBottom = [userDefaults boolForKey:@"toolbar_on_bottom"];
 	self.darkInterface = [userDefaults boolForKey:@"dark_interface"];
 }
 
@@ -1116,9 +1096,6 @@
 		[self unfocusUrlField];
 		
 		[UIView animateWithDuration:0.15 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^(void) {
-			if (!self.toolbarOnBottom)
-				self->tabScroller.frame = CGRectMake(self->tabScroller.frame.origin.x, (TOOLBAR_HEIGHT / 2), self->tabScroller.frame.size.width, self->tabScroller.frame.size.height);
-			
 			for (int i = 0; i < self->webViewTabs.count; i++)
 				[(WebViewTab *)self->webViewTabs[i] zoomOut];
 			
@@ -1140,9 +1117,6 @@
 	}
 	else {
 		[UIView animateWithDuration:0.15 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^(void) {
-			if (!self.toolbarOnBottom)
-				self->tabScroller.frame = CGRectMake(self->tabScroller.frame.origin.x, TOOLBAR_HEIGHT, self->tabScroller.frame.size.width, self->tabScroller.frame.size.height);
-
 			for (int i = 0; i < self->webViewTabs.count; i++)
 				[(WebViewTab *)self->webViewTabs[i] zoomNormal];
 			
@@ -1262,14 +1236,7 @@
 	
 	bookmarks = [[BookmarkController alloc] init];
 
-	if (self.toolbarOnBottom)
-	{
-		/* we can't size according to keyboard height because we don't know it yet, so we'll just put it full height below the toolbar and we'll update it when the keyboard shows up */
-		bookmarks.view.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
-	}
-	else {
-		bookmarks.view.frame = CGRectMake(0, toolbar.frame.size.height + toolbar.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
-	}
+	bookmarks.view.frame = CGRectMake(0, toolbar.frame.size.height + toolbar.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
 
 	[self addChildViewController:bookmarks];
 	[self.view insertSubview:[bookmarks view] belowSubview:toolbar];
@@ -1290,11 +1257,7 @@
 	if (!searchResults) {
 		searchResults = [[SearchResultsController alloc] init];
 	
-		if (self.toolbarOnBottom)
-		/* we can't size according to keyboard height because we don't know it yet, so we'll just put it full height below the toolbar and we'll update it when the keyboard shows up */
-			searchResults.view.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
-		else
-			searchResults.view.frame = CGRectMake(0, toolbar.frame.size.height + toolbar.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
+		searchResults.view.frame = CGRectMake(0, toolbar.frame.size.height + toolbar.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
 		
 		[self addChildViewController:searchResults];
 		[self.view insertSubview:[searchResults view] belowSubview:toolbar];

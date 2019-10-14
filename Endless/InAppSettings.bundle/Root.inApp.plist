@@ -14,16 +14,6 @@
 		</dict>
 		<dict>
 			<key>Title</key>
-			<string>Toolbar on bottom</string>
-			<key>Key</key>
-			<string>toolbar_on_bottom</string>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-			<key>DefaultValue</key>
-			<false/>
-		</dict>
-		<dict>
-			<key>Title</key>
 			<string>Dark interface</string>
 			<key>Key</key>
 			<string>dark_interface</string>
