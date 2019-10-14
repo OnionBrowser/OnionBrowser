@@ -10,7 +10,6 @@
 "Cookie auto-sweep interval" = "Cookie auto-sweep interval";
 "Changing this option requires restarting the app" = "Changing this option requires restarting the app";
 "Allow 3rd party keyboards" = "Allow 3rd party keyboards";
-"Report a bug" = "Report a bug";
 "Security" = "Security";
 "When enabled, a per-host option to ignore further TLS errors is shown in the TLS error dialog" = "When enabled, a per-host option to ignore further TLS errors is shown in the TLS error dialog";
 "Allow ignoring TLS errors" = "Allow ignoring TLS errors";
