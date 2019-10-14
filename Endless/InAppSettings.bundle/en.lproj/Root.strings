@@ -6,7 +6,6 @@
 "Custom home page" = "Custom home page";
 "Privacy" = "Privacy";
 "Cookies and local storage data from non-whitelisted hosts will be cleared even from open tabs after not being accessed for this many minutes" = "Cookies and local storage data from non-whitelisted hosts will be cleared even from open tabs after not being accessed for this many minutes";
-"Send Do-Not-Track header" = "Send Do-Not-Track header";
 "Edit cookies and local storage" = "Edit cookies and local storage";
 "Cookie auto-sweep interval" = "Cookie auto-sweep interval";
 "Choose, how long app remembers open tabs." = "Choose, how long app remembers open tabs.";
