@@ -172,6 +172,17 @@ class SettingsViewController: FormViewController {
 
 		section
 		<<< ButtonRow() {
+			$0.title = NSLocalizedString("Fund Development", comment: "Button title")
+			$0.cell.textLabel?.numberOfLines = 0
+		}
+		.cellUpdate { cell, _ in
+			cell.textLabel?.textAlignment = .natural
+		}
+		.onCellSelection { _, _ in
+			self.navigationController?.pushViewController(DonationViewController(), animated: true)
+		}
+
+		<<< ButtonRow() {
 			$0.title = NSLocalizedString("About", comment: "Button title")
 			$0.cell.textLabel?.numberOfLines = 0
 		}

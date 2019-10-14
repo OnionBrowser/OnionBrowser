@@ -24,11 +24,6 @@
 #import "OnionBrowser-Swift.h"
 #endif
 
-#ifdef SHOW_DONATION_CONTROLLER
-#import <StoreKit/SKPaymentQueue.h>
-#import <StoreKit/StoreKit.h>
-#endif
-
 
 @implementation WebViewMenuController {
 	AppDelegate *appDelegate;
@@ -65,10 +60,7 @@ NSString * const LABEL = @"L";
 	[buttons addObject:@{ FUNC : @"menuSettings", LABEL : NSLocalizedString(@"Global Settings", nil) }];
 	[buttons addObject:@{ FUNC : @"menuSettingsNew", LABEL: NSLocalizedString(@"Settings", nil) }];
 	[buttons addObject:@{ FUNC : @"bridgeSettings", LABEL : NSLocalizedString(@"Bridge Configuration", nil) }];
-#ifdef SHOW_DONATION_CONTROLLER
-	[buttons addObject:@{ FUNC : @"menuDonation", LABEL : NSLocalizedString(@"Fund Development", nil) }];
-#endif
-	
+
 	[self.view setBackgroundColor:[UIColor clearColor]];
 	[self.tableView setSeparatorInset:UIEdgeInsetsZero];
 }
@@ -237,16 +229,6 @@ NSString * const LABEL = @"L";
 {
 	[appDelegate.webViewController presentViewController:[BookmarksViewController instantiate] animated:YES completion:nil];
 }
-
-#ifdef SHOW_DONATION_CONTROLLER
-- (void)menuDonation
-{
-	DonationViewController *dvc = [[DonationViewController alloc] init];
-	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:dvc];
-	[[appDelegate webViewController] presentViewController:navController animated:YES completion:nil];
-}
-#endif
-
 
 - (void)menuSettings
 {
