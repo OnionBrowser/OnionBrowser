@@ -98,6 +98,7 @@ class SettingsViewController: FormViewController {
 
 		<<< LabelRow() {
 			$0.title = NSLocalizedString("Edit Local Storage", comment: "Option title")
+			$0.cell.textLabel?.numberOfLines = 0
 			$0.cell.accessoryType = .disclosureIndicator
 		}
 		.onCellSelection { _, _ in
@@ -107,6 +108,7 @@ class SettingsViewController: FormViewController {
 
 		<<< LabelRow() {
 			$0.title = NSLocalizedString("Edit Cookies", comment: "Option title")
+			$0.cell.textLabel?.numberOfLines = 0
 			$0.cell.accessoryType = .disclosureIndicator
 		}
 		.onCellSelection { _, _ in
@@ -171,12 +173,10 @@ class SettingsViewController: FormViewController {
 		}
 
 		section
-		<<< ButtonRow() {
+		<<< LabelRow() {
 			$0.title = NSLocalizedString("Fund Development", comment: "Button title")
 			$0.cell.textLabel?.numberOfLines = 0
-		}
-		.cellUpdate { cell, _ in
-			cell.textLabel?.textAlignment = .natural
+			$0.cell.accessoryType = .disclosureIndicator
 		}
 		.onCellSelection { _, _ in
 			self.navigationController?.pushViewController(DonationViewController(), animated: true)

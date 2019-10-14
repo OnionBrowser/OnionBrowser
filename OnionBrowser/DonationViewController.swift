@@ -45,12 +45,11 @@ import StoreKit
 		
 		title = NSLocalizedString("Donate", comment: "")
 
-		navigationItem.leftBarButtonItem = UIBarButtonItem(
-			title: NSLocalizedString("Done", comment: ""), style: .done,
-			target: self, action: #selector(dismissView))
-		
 		fetchAvailableProducts()
 	}
+
+
+	// MARK: UITableViewSource
 
 	override public func numberOfSections(in tableView: UITableView) -> Int {
 		return iapProducts.isEmpty ? 1 : 4
@@ -137,6 +136,9 @@ import StoreKit
 		
 		return cell
 	}
+
+
+	// MARK: UITableViewDelegate
 	
 	override public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		if !(indexPath.section == 1 || indexPath.section == 2 || indexPath.section == 3) {
@@ -161,21 +163,14 @@ import StoreKit
 									 handler: { _ in self.makeDonation(product: product) })])
 		}
 	}
-	
-	// MARK: - FETCH AVAILABLE IAP PRODUCTS
-	public func fetchAvailableProducts()  {
 
-		let productIdentifiers = Set(arrayLiteral: DonationViewController.TIER_0_99,
-									 DonationViewController.TIER_4_99,
-									 DonationViewController.TIER_9_99)
-		
-		productsRequest = SKProductsRequest(productIdentifiers: productIdentifiers)
-		productsRequest.delegate = self
-		productsRequest.start()
-	}
+
+	// MARK: SKProductsRequestDelegate
 	
-	// MARK: - REQUEST IAP PRODUCTS
-	public func productsRequest (_ request:SKProductsRequest, didReceive response: SKProductsResponse) {
+	/**
+	Request IAP products
+	*/
+	public func productsRequest(_ request:SKProductsRequest, didReceive response: SKProductsResponse) {
 		if response.products.count > 0 {
 			iapProducts = response.products
 			
@@ -183,24 +178,12 @@ import StoreKit
 		}
 	}
 	
-	// MARK: - MAKE PURCHASE OF A PRODUCT
-	func makeDonation(product: SKProduct) {
-		if SKPaymentQueue.canMakePayments() {
-			let payment = SKPayment(product: product)
-			SKPaymentQueue.default().add(self)
-			SKPaymentQueue.default().add(payment)
-			
-			print("PRODUCT TO PURCHASE: \(product.productIdentifier)")
-			productToPay = product
-		}
-		else {
-			showError()
-		}
-	}
+
+	// MARK: SKPaymentTransactionObserver
 	
-	
-	
-	// MARK:- IAP PAYMENT QUEUE
+	/**
+	IAP payment queue
+	*/
 	public func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
 		for transaction in transactions {
 			let paymentQueue = SKPaymentQueue.default()
@@ -240,10 +223,39 @@ import StoreKit
 			}
 		}
 	}
-	
-	
-	@objc private func dismissView() {
-		dismiss(animated: true)
+
+
+	// MARK: Private Methods
+
+	/**
+	Fetch available IAP products
+	*/
+	private func fetchAvailableProducts()  {
+
+		let productIdentifiers = Set(arrayLiteral: DonationViewController.TIER_0_99,
+									 DonationViewController.TIER_4_99,
+									 DonationViewController.TIER_9_99)
+
+		productsRequest = SKProductsRequest(productIdentifiers: productIdentifiers)
+		productsRequest.delegate = self
+		productsRequest.start()
+	}
+
+	/**
+	Make purchase of a product.
+	*/
+	private func makeDonation(product: SKProduct) {
+		if SKPaymentQueue.canMakePayments() {
+			let payment = SKPayment(product: product)
+			SKPaymentQueue.default().add(self)
+			SKPaymentQueue.default().add(payment)
+
+			print("PRODUCT TO PURCHASE: \(product.productIdentifier)")
+			productToPay = product
+		}
+		else {
+			showError()
+		}
 	}
 
 	private func showError() {
