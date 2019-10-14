@@ -1013,15 +1013,7 @@
 {
 	NSString *prop = [[[notification userInfo] allKeys] firstObject];
 		
-	if ([prop isEqualToString:@"dark_icon"]) {
-		NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-		
-		if ([userDefaults boolForKey:@"dark_icon"]) {
-			[[UIApplication sharedApplication] setAlternateIconName:@"BlackIcon-60" completionHandler:nil];
-		} else {
-			[[UIApplication sharedApplication] setAlternateIconName:nil completionHandler:nil];
-		}
-	} else if ([prop isEqualToString:@"mute_with_switch"]) {
+	if ([prop isEqualToString:@"mute_with_switch"]) {
 		[appDelegate adjustMuteSwitchBehavior];
 	}
 }
