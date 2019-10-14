@@ -17,7 +17,6 @@
 "TLS 1.2 Only" = "TLS 1.2 Only";
 "TLS 1.2, 1.1 or 1.0" = "TLS 1.2, 1.1 or 1.0";
 "Minimum version of TLS required for hosts to negotiate HTTPS connections" = "Minimum version of TLS required for hosts to negotiate HTTPS connections";
-"Rate on App Store" = "Rate on App Store";
 "About" = "About";
 "About Onion Browser" = "About Onion Browser";
 "About Endless" = "About Endless";
