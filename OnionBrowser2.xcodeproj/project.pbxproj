@@ -89,6 +89,9 @@
 		A02CE2B8220079B800964A14 /* SearchResultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = A02CE2B6220079B700964A14 /* SearchResultsController.m */; };
 		A02CE2BB22007A0200964A14 /* HistoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = A02CE2BA22007A0200964A14 /* HistoryController.m */; };
 		A0364537235094DF0038930E /* StorageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0364536235094DF0038930E /* StorageViewController.swift */; };
+		A03A2DD223577971002D640B /* Bundle+displayName.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03A2DD123577970002D640B /* Bundle+displayName.swift */; };
+		A03A2DD423577B91002D640B /* SecurityPresetsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03A2DD323577B91002D640B /* SecurityPresetsRow.swift */; };
+		A03A2DD623577CEC002D640B /* SecurityPresetsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A03A2DD523577CEC002D640B /* SecurityPresetsCell.xib */; };
 		A03DBCED22859B99001890C4 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = A03DBCEC22859B99001890C4 /* Config.m */; };
 		A03DBCEF22859B99001890C4 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = A03DBCEC22859B99001890C4 /* Config.m */; };
 		A045E5E51EDC5C1700BC8A92 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A045E5E11EDC5C1700BC8A92 /* Localizable.strings */; };
@@ -290,6 +293,9 @@
 		A02CE2B922007A0100964A14 /* HistoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryController.h; sourceTree = "<group>"; };
 		A02CE2BA22007A0200964A14 /* HistoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryController.m; sourceTree = "<group>"; };
 		A0364536235094DF0038930E /* StorageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StorageViewController.swift; path = OnionBrowser/StorageViewController.swift; sourceTree = "<group>"; };
+		A03A2DD123577970002D640B /* Bundle+displayName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Bundle+displayName.swift"; path = "OnionBrowser/Bundle+displayName.swift"; sourceTree = "<group>"; };
+		A03A2DD323577B91002D640B /* SecurityPresetsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SecurityPresetsRow.swift; path = OnionBrowser/SecurityPresetsRow.swift; sourceTree = "<group>"; };
+		A03A2DD523577CEC002D640B /* SecurityPresetsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SecurityPresetsCell.xib; path = OnionBrowser/SecurityPresetsCell.xib; sourceTree = "<group>"; };
 		A03DBCAD2285799A001890C4 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = Endless/cs.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A03DBCAE2285799A001890C4 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = Endless/cs.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
 		A03DBCAF2285799A001890C4 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -1027,8 +1033,11 @@
 		6998064A1EABE5C70012F75E /* OnionBrowser */ = {
 			isa = PBXGroup;
 			children = (
+				A03A2DD123577970002D640B /* Bundle+displayName.swift */,
 				A0B4838B234DEBE100F9701B /* SettingsViewController.swift */,
 				A04E5768235757FE00BA9DD1 /* SecurityViewController.swift */,
+				A03A2DD323577B91002D640B /* SecurityPresetsRow.swift */,
+				A03A2DD523577CEC002D640B /* SecurityPresetsCell.xib */,
 				A0364536235094DF0038930E /* StorageViewController.swift */,
 				A0D68DFE234C89080027C61A /* Bookmark.swift */,
 				A0D68E08234C8E140027C61A /* BookmarksViewController.xib */,
@@ -2206,6 +2215,7 @@
 			files = (
 				8ACB70D31FA136F0001E5588 /* geoip6 in Resources */,
 				0135F4761A3D2931005A8F16 /* SearchEngines.plist in Resources */,
+				A03A2DD623577CEC002D640B /* SecurityPresetsCell.xib in Resources */,
 				018333EA1A35746500670CD1 /* https-everywhere_targets.plist in Resources */,
 				018333E91A35746500670CD1 /* https-everywhere_rules.plist in Resources */,
 				8ACB70D21FA136F0001E5588 /* geoip in Resources */,
@@ -2401,8 +2411,10 @@
 				69CBCD471E934228009D5352 /* URLBlockerRuleController.m in Sources */,
 				A0D68DFF234C89080027C61A /* Bookmark.swift in Sources */,
 				691286ED1EABF2B400CEC414 /* OnionManager.swift in Sources */,
+				A03A2DD223577971002D640B /* Bundle+displayName.swift in Sources */,
 				01F7CB4E1A52FC4E00F42B73 /* NSString+IPAddress.m in Sources */,
 				014E68A81B9BEDDC00D98A0A /* HostSettings.m in Sources */,
+				A03A2DD423577B91002D640B /* SecurityPresetsRow.swift in Sources */,
 				8A9BD4022294507C00230DF9 /* DonationViewController.swift in Sources */,
 				0135F47F1A3E548F005A8F16 /* WebViewTab.m in Sources */,
 				A053137122F1C740006655EC /* JAHPQNSURLSessionDemux.m in Sources */,

@@ -34,6 +34,14 @@ class SettingsViewController: FormViewController {
 
 	private let userDefaults = UserDefaults.standard
 
+	private let defaultSecurityRow = LabelRow() {
+		$0.title = NSLocalizedString("Default Security", comment: "Option title")
+		$0.cell.textLabel?.numberOfLines = 0
+		$0.cell.accessoryType = .disclosureIndicator
+		$0.cell.selectionStyle = .default
+	}
+
+
     @objc
 	class func instantiate() -> UINavigationController {
 		return UINavigationController(rootViewController: self.init())
@@ -47,14 +55,7 @@ class SettingsViewController: FormViewController {
 		navigationItem.title = NSLocalizedString("Settings", comment: "Scene title")
 
 		form
-		+++ LabelRow() {
-			$0.title = NSLocalizedString("Default Security", comment: "Option title")
-			$0.cell.textLabel?.numberOfLines = 0
-			$0.cell.accessoryType = .disclosureIndicator
-			$0.cell.selectionStyle = .default
-
-			$0.value = NSLocalizedString("Safe", comment: "Security Level")
-		}
+		+++ defaultSecurityRow
 		.onCellSelection { _, _ in
 			self.navigationController?.pushViewController(
 				SecurityViewController(), animated: true)
@@ -241,6 +242,13 @@ class SettingsViewController: FormViewController {
 			self.dismsiss_()
 		}
     }
+
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+
+		defaultSecurityRow.value = SecurityPreset(HostSettings.default()).description
+		defaultSecurityRow.updateCell()
+	}
 
 	@objc private func dismsiss_() {
 		navigationController?.dismiss(animated: true)
