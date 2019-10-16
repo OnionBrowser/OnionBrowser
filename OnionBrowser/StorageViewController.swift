@@ -102,11 +102,72 @@ class StorageViewController: UITableViewController {
 		return 1
     }
 
-	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+	override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 		if section == 0 {
-			return displayType == .cookies
-				? NSLocalizedString("Cookies", comment: "Section header")
-				: NSLocalizedString("Local Storage", comment: "Section header")
+			return 56
+		}
+
+		return super.tableView(tableView, heightForHeaderInSection: section)
+	}
+
+	override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+		if section == 0 {
+			let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header")
+				?? UITableViewHeaderFooterView(reuseIdentifier: "header")
+
+			var title: UILabel? = view.contentView.viewWithTag(666) as? UILabel
+			var amount: UILabel? = view.contentView.viewWithTag(667) as? UILabel
+
+			if title == nil {
+				title = UILabel()
+				title?.textColor = UIColor(red: 0.427451, green: 0.427451, blue: 0.447059, alpha: 1)
+				title?.font = .systemFont(ofSize: 14)
+				title?.translatesAutoresizingMaskIntoConstraints = false
+				title?.tag = 666
+
+				view.contentView.addSubview(title!)
+				title?.leadingAnchor.constraint(equalTo: view.contentView.leadingAnchor, constant: 16).isActive = true
+				title?.bottomAnchor.constraint(equalTo: view.contentView.bottomAnchor, constant: -8).isActive = true
+
+				amount = UILabel()
+				amount?.textColor = title?.textColor
+				amount?.font = title?.font
+				amount?.translatesAutoresizingMaskIntoConstraints = false
+				amount?.tag = 667
+
+				view.contentView.addSubview(amount!)
+				amount?.trailingAnchor.constraint(equalTo: view.contentView.trailingAnchor, constant: -16).isActive = true
+				amount?.bottomAnchor.constraint(equalTo: view.contentView.bottomAnchor, constant: -8).isActive = true
+			}
+
+			if displayType == .cookies {
+				title?.text = NSLocalizedString("Cookies", comment: "Section header")
+					.localizedUppercase
+
+				var count = 0
+
+				for cookie in cookies {
+					count += cookie.value
+				}
+
+				amount?.text = NumberFormatter
+					.localizedString(from: NSNumber(value: count), number: .none)
+			}
+			else {
+				title?.text = NSLocalizedString("Local Storage", comment: "Section header")
+					.localizedUppercase
+
+				var count: Int64 = 0
+
+				for store in localStorage {
+					count += store.value
+				}
+
+				amount?.text = ByteCountFormatter
+					.string(fromByteCount: count, countStyle: .file)
+			}
+
+			return view
 		}
 
 		return nil
