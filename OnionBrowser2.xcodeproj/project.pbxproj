@@ -93,6 +93,7 @@
 		A03DBCEF22859B99001890C4 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = A03DBCEC22859B99001890C4 /* Config.m */; };
 		A045E5E51EDC5C1700BC8A92 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A045E5E11EDC5C1700BC8A92 /* Localizable.strings */; };
 		A045E5E61EDC5C1700BC8A92 /* OnePasswordExtension.strings in Resources */ = {isa = PBXBuildFile; fileRef = A045E5E31EDC5C1700BC8A92 /* OnePasswordExtension.strings */; };
+		A04E5769235757FE00BA9DD1 /* SecurityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04E5768235757FE00BA9DD1 /* SecurityViewController.swift */; };
 		A053136E22F1C737006655EC /* JAHPAuthenticatingHTTPProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = A053136422F1C573006655EC /* JAHPAuthenticatingHTTPProtocol.m */; };
 		A053136F22F1C73A006655EC /* JAHPCacheStoragePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A053136622F1C573006655EC /* JAHPCacheStoragePolicy.m */; };
 		A053137022F1C73C006655EC /* JAHPCanonicalRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = A053136822F1C574006655EC /* JAHPCanonicalRequest.m */; };
@@ -380,6 +381,7 @@
 		A046AE8D234795B200E6B3A5 /* keywords.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = keywords.txt; sourceTree = "<group>"; };
 		A046AE8E234795B200E6B3A5 /* promotional_text.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = promotional_text.txt; sourceTree = "<group>"; };
 		A046AE8F234795B200E6B3A5 /* description.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = description.txt; sourceTree = "<group>"; };
+		A04E5768235757FE00BA9DD1 /* SecurityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SecurityViewController.swift; path = OnionBrowser/SecurityViewController.swift; sourceTree = "<group>"; };
 		A053136222F1C573006655EC /* JAHPQNSURLSessionDemux.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAHPQNSURLSessionDemux.m; sourceTree = "<group>"; };
 		A053136322F1C573006655EC /* JAHPAuthenticatingHTTPProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JAHPAuthenticatingHTTPProtocol.h; sourceTree = "<group>"; };
 		A053136422F1C573006655EC /* JAHPAuthenticatingHTTPProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JAHPAuthenticatingHTTPProtocol.m; sourceTree = "<group>"; };
@@ -1026,6 +1028,7 @@
 			isa = PBXGroup;
 			children = (
 				A0B4838B234DEBE100F9701B /* SettingsViewController.swift */,
+				A04E5768235757FE00BA9DD1 /* SecurityViewController.swift */,
 				A0364536235094DF0038930E /* StorageViewController.swift */,
 				A0D68DFE234C89080027C61A /* Bookmark.swift */,
 				A0D68E08234C8E140027C61A /* BookmarksViewController.xib */,
@@ -2374,6 +2377,7 @@
 				69CBCD521E9347B8009D5352 /* UIResponder+FirstResponder.m in Sources */,
 				01F2AE391B7FEF5E00D5651A /* SSLCertificate.m in Sources */,
 				01801E9B1A32CA2A002B4718 /* AppDelegate.m in Sources */,
+				A04E5769235757FE00BA9DD1 /* SecurityViewController.swift in Sources */,
 				69CBCD4D1E934249009D5352 /* RuleEditorRow.m in Sources */,
 				8AD128401ED61822005C43E4 /* Reachability.m in Sources */,
 				A053137522F1E587006655EC /* CertificateAuthentication.m in Sources */,

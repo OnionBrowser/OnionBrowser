@@ -47,6 +47,19 @@ class SettingsViewController: FormViewController {
 		navigationItem.title = NSLocalizedString("Settings", comment: "Scene title")
 
 		form
+		+++ LabelRow() {
+			$0.title = NSLocalizedString("Default Security", comment: "Option title")
+			$0.cell.textLabel?.numberOfLines = 0
+			$0.cell.accessoryType = .disclosureIndicator
+			$0.cell.selectionStyle = .default
+
+			$0.value = NSLocalizedString("Safe", comment: "Security Level")
+		}
+		.onCellSelection { _, _ in
+			self.navigationController?.pushViewController(
+				SecurityViewController(), animated: true)
+		}
+
 		+++ Section(header: NSLocalizedString("Search", comment: "Section header"),
 					footer: NSLocalizedString("When disabled, all text entered in search bar will be sent to the search engine unless it starts with \"http\"",
 											  comment: "Explanation in section footer"))
@@ -100,6 +113,7 @@ class SettingsViewController: FormViewController {
 			$0.title = NSLocalizedString("Edit Local Storage", comment: "Option title")
 			$0.cell.textLabel?.numberOfLines = 0
 			$0.cell.accessoryType = .disclosureIndicator
+			$0.cell.selectionStyle = .default
 		}
 		.onCellSelection { _, _ in
 			self.navigationController?.pushViewController(
@@ -110,6 +124,7 @@ class SettingsViewController: FormViewController {
 			$0.title = NSLocalizedString("Edit Cookies", comment: "Option title")
 			$0.cell.textLabel?.numberOfLines = 0
 			$0.cell.accessoryType = .disclosureIndicator
+			$0.cell.selectionStyle = .default
 		}
 		.onCellSelection { _, _ in
 			self.navigationController?.pushViewController(
@@ -205,6 +220,7 @@ class SettingsViewController: FormViewController {
 			$0.title = NSLocalizedString("Fund Development", comment: "Button title")
 			$0.cell.textLabel?.numberOfLines = 0
 			$0.cell.accessoryType = .disclosureIndicator
+			$0.cell.selectionStyle = .default
 		}
 		.onCellSelection { _, _ in
 			self.navigationController?.pushViewController(DonationViewController(), animated: true)
