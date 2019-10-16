@@ -61,8 +61,6 @@
 
 - (void)loadView
 {
-	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-
 	appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 	[appDelegate setWebViewController:self];
 	[appDelegate setDefaultUserAgent:[self buildDefaultUserAgent]];
