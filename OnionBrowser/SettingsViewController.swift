@@ -117,6 +117,34 @@ class SettingsViewController: FormViewController {
 		}
 
 		<<< PushRow<Option>() {
+			$0.title = NSLocalizedString("TLS Version", comment: "Option title")
+			$0.selectorTitle = $0.title
+			$0.options = [Option("tls_12", NSLocalizedString("TLS 1.2 Only", comment: "Option")),
+						  Option("tls_10", NSLocalizedString("TLS 1.2, 1.1 or 1.0", comment: "Option"))]
+
+			if let value = userDefaults.object(forKey: "tls_version") as? String {
+				$0.value = $0.options?.first { $0.id == value }
+			}
+
+			$0.cell.textLabel?.numberOfLines = 0
+		}
+		.onPresent { vc, selectorVc in
+			print("[\(String(describing: type(of: self)))] selectorVc=\(selectorVc)")
+
+			// This is just to trigger the usage of #sectionFooterTitleForKey
+			selectorVc.sectionKeyForValue = { value in
+				return NSLocalizedString("TLS Version", comment: "Option title")
+			}
+
+			selectorVc.sectionFooterTitleForKey = { key in
+				return NSLocalizedString("Minimum version of TLS required for hosts to negotiate HTTPS connections.", comment: "Option description")
+			}
+		}
+		.onChange { row in
+			self.userDefaults.set(row.value?.id ?? "tls_12", forKey: "tls_version")
+		}
+
+		<<< PushRow<Option>() {
 			$0.title = NSLocalizedString("Tab Security", comment: "Option title")
 			$0.selectorTitle = $0.title
 			$0.options = [Option("always_remember", NSLocalizedString("Remember Tabs", comment: "")),
