@@ -23,7 +23,7 @@ class StorageViewController: UITableViewController {
 		return AppDelegate.shared()?.cookieJar
 	}
 
-	private lazy var cookies: [String: Int] = {
+	private lazy var cookies: [(key: String, value: Int)] = {
 		var data = [String: Int]()
 
 		if let cookies = cookieJar?.cookieStorage.cookies {
@@ -39,10 +39,10 @@ class StorageViewController: UITableViewController {
 			}
 		}
 
-		return data
+		return data.sorted { $0.value > $1.value }
 	}()
 
-	private lazy var localStorage: [String: Int64] = {
+	private lazy var localStorage: [(key: String, value: Int64)] = {
 		var data = [String: Int64]()
 
 		if let files = cookieJar?.localStorageFiles() {
@@ -57,7 +57,7 @@ class StorageViewController: UITableViewController {
 			}
 		}
 
-		return data
+		return data.sorted{ $0.value > $1.value }
 	}()
 
 	init(type: StorageViewController.DisplayType) {
@@ -147,19 +147,19 @@ class StorageViewController: UITableViewController {
 		cell.selectionStyle = .none
 
 		if displayType == .cookies {
-			let domain = cookies.keys.sorted()[indexPath.row]
+			let cookie = cookies[indexPath.row]
 
-			cell.textLabel?.text = domain
+			cell.textLabel?.text = cookie.key
 			cell.detailTextLabel?.text = NumberFormatter.localizedString(
-				from: NSNumber(value: cookies[domain] ?? 0), number: .none)
+				from: NSNumber(value: cookie.value), number: .none)
 		}
 		else {
-			let domain = localStorage.keys.sorted()[indexPath.row]
+			let item = localStorage[indexPath.row]
 
-			cell.textLabel?.text = domain
+			cell.textLabel?.text = item.key
 
 			cell.detailTextLabel?.text = ByteCountFormatter.string(
-				fromByteCount: localStorage[domain] ?? 0, countStyle: .file)
+				fromByteCount: item.value, countStyle: .file)
 		}
 
         return cell
@@ -179,15 +179,15 @@ class StorageViewController: UITableViewController {
 		UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
 
         if editingStyle == .delete {
-			let host = (displayType == .cookies ? cookies.keys.sorted() : localStorage.keys.sorted())[indexPath.row]
+			let host = displayType == .cookies ? cookies[indexPath.row].key : localStorage[indexPath.row].key
 
 			cookieJar?.clearAllData(forHost: host)
 
 			if displayType == .cookies {
-				cookies.removeValue(forKey: host)
+				cookies.remove(at: indexPath.row)
 			}
 			else {
-				localStorage.removeValue(forKey: host)
+				localStorage.remove(at: indexPath.row)
 			}
 
             tableView.deleteRows(at: [indexPath], with: .fade)
