@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StorageViewController: UITableViewController {
+class StorageViewController: UITableViewController, UISearchResultsUpdating {
 
 	enum DisplayType {
 		case cookies
@@ -17,42 +17,50 @@ class StorageViewController: UITableViewController {
 
 	private let displayType: DisplayType
 
+    private let searchController = UISearchController(searchResultsController: nil)
+    private var filtered = [(key: String, value: Int64)]()
+
+	/**
+     true, if a search filter is currently set by the user.
+    */
+	private var isFiltering: Bool {
+        return searchController.isActive
+            && !(searchController.searchBar.text?.isEmpty ?? true)
+    }
+
 	private var showShortlist = true
 
 	private var cookieJar: CookieJar? {
 		return AppDelegate.shared()?.cookieJar
 	}
 
-	private lazy var cookies: [(key: String, value: Int)] = {
-		var data = [String: Int]()
-
-		if let cookies = cookieJar?.cookieStorage.cookies {
-			for cookie in cookies {
-				var domain = cookie.domain
-
-				if domain.first == "." {
-					domain.removeFirst()
-				}
-
-				var counted = data[domain] ?? 0
-				data[domain] = counted + 1
-			}
-		}
-
-		return data.sorted { $0.value > $1.value }
-	}()
-
-	private lazy var localStorage: [(key: String, value: Int64)] = {
+	private lazy var data: [(key: String, value: Int64)] = {
 		var data = [String: Int64]()
 
-		if let files = cookieJar?.localStorageFiles() {
-			for item in files {
-				if let filepath = item.key as? String,
-					let domain = item.value as? String {
+		if displayType == .cookies {
+			if let cookies = cookieJar?.cookieStorage.cookies {
+				for cookie in cookies {
+					var domain = cookie.domain
 
-					var space = data[domain] ?? 0
+					if domain.first == "." {
+						domain.removeFirst()
+					}
 
-					data[domain] = space + (size(filepath) ?? 0)
+					var counted = data[domain] ?? 0
+					data[domain] = counted + 1
+				}
+			}
+		}
+		else {
+			if let files = cookieJar?.localStorageFiles() {
+				for item in files {
+					if let filepath = item.key as? String,
+						let domain = item.value as? String {
+
+						var space = data[domain] ?? 0
+
+						data[domain] = space + (size(filepath) ?? 0)
+					}
 				}
 			}
 		}
@@ -83,20 +91,23 @@ class StorageViewController: UITableViewController {
 			: NSLocalizedString("Local Storage", comment: "Scene title")
 
 		self.navigationItem.rightBarButtonItem = self.editButtonItem
+
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        definesPresentationContext = true
+		navigationItem.searchController = searchController
 	}
 
 
     // MARK: UITableViewDataSource
 
 	override func numberOfSections(in tableView: UITableView) -> Int {
-		return 2
+		return isFiltering ? 1 : 2
 	}
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		if section == 0 {
-			let count = displayType == .cookies ? cookies.count : localStorage.count
-
-			return showShortlist && count > 11 ? 11 : count
+			return isFiltering ? filtered.count : (showShortlist && data.count > 11 ? 11 : data.count)
 		}
 
 		return 1
@@ -140,15 +151,15 @@ class StorageViewController: UITableViewController {
 				amount?.bottomAnchor.constraint(equalTo: view.contentView.bottomAnchor, constant: -8).isActive = true
 			}
 
+			var count: Int64 = 0
+
+			for item in isFiltering ? filtered : data {
+				count += item.value
+			}
+
 			if displayType == .cookies {
 				title?.text = NSLocalizedString("Cookies", comment: "Section header")
 					.localizedUppercase
-
-				var count = 0
-
-				for cookie in cookies {
-					count += cookie.value
-				}
 
 				amount?.text = NumberFormatter
 					.localizedString(from: NSNumber(value: count), number: .none)
@@ -156,12 +167,6 @@ class StorageViewController: UITableViewController {
 			else {
 				title?.text = NSLocalizedString("Local Storage", comment: "Section header")
 					.localizedUppercase
-
-				var count: Int64 = 0
-
-				for store in localStorage {
-					count += store.value
-				}
 
 				amount?.text = ByteCountFormatter
 					.string(fromByteCount: count, countStyle: .file)
@@ -188,10 +193,8 @@ class StorageViewController: UITableViewController {
 			return cell
 		}
 
-		if showShortlist && indexPath.row == 10 {
-			let count = displayType == .cookies ? cookies.count : localStorage.count
-
-			if count > 11 {
+		if !isFiltering && showShortlist && indexPath.row == 10 {
+			if data.count > 11 {
 				let cell = tableView.dequeueReusableCell(withIdentifier: "overflowCell")
 					?? UITableViewCell(style: .default, reuseIdentifier: "overflowCell")
 
@@ -207,18 +210,15 @@ class StorageViewController: UITableViewController {
 
 		cell.selectionStyle = .none
 
-		if displayType == .cookies {
-			let cookie = cookies[indexPath.row]
+		let item = (isFiltering ? filtered : data)[indexPath.row]
 
-			cell.textLabel?.text = cookie.key
+		cell.textLabel?.text = item.key
+
+		if displayType == .cookies {
 			cell.detailTextLabel?.text = NumberFormatter.localizedString(
-				from: NSNumber(value: cookie.value), number: .none)
+				from: NSNumber(value: item.value), number: .none)
 		}
 		else {
-			let item = localStorage[indexPath.row]
-
-			cell.textLabel?.text = item.key
-
 			cell.detailTextLabel?.text = ByteCountFormatter.string(
 				fromByteCount: item.value, countStyle: .file)
 		}
@@ -227,9 +227,7 @@ class StorageViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-		if indexPath.section > 0 || showShortlist && indexPath.row == 10
-			&& (displayType == .cookies ? cookies.count : localStorage.count) > 11 {
-
+		if indexPath.section > 0 || !isFiltering && showShortlist && indexPath.row == 10 && data.count > 11 {
 			return false
 		}
 
@@ -240,18 +238,20 @@ class StorageViewController: UITableViewController {
 		UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
 
         if editingStyle == .delete {
-			let host = displayType == .cookies ? cookies[indexPath.row].key : localStorage[indexPath.row].key
+			let host = (isFiltering ? filtered : data)[indexPath.row].key
 
 			cookieJar?.clearAllData(forHost: host)
 
-			if displayType == .cookies {
-				cookies.remove(at: indexPath.row)
+			if isFiltering {
+				filtered.remove(at: indexPath.row)
+
+				data.removeAll { $0.key == host }
 			}
 			else {
-				localStorage.remove(at: indexPath.row)
+				data.remove(at: indexPath.row)
 			}
 
-            tableView.deleteRows(at: [indexPath], with: .fade)
+			tableView.reloadSections(IndexSet(integer: indexPath.section), with: .automatic)
         }
     }
 
@@ -267,17 +267,25 @@ class StorageViewController: UITableViewController {
 		else if indexPath.section > 0 {
 			cookieJar?.clearAllNonWhitelistedData()
 
-			if displayType == .cookies {
-				cookies.removeAll()
-			}
-			else {
-				localStorage.removeAll()
-			}
-
+			data.removeAll()
 		}
 
 		tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
 		tableView.deselectRow(at: indexPath, animated: true)
+	}
+
+
+	// MARK: UISearchResultsUpdating
+
+	func updateSearchResults(for searchController: UISearchController) {
+		if let search = searchController.searchBar.text?.lowercased() {
+			filtered = data.filter() { $0.key.lowercased().contains(search) }
+        }
+		else {
+			filtered.removeAll()
+		}
+
+        tableView.reloadData()
 	}
 
 
