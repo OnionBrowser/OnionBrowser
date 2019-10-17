@@ -18,7 +18,7 @@ enum SecurityPreset: Int, CustomStringConvertible {
 			return NSLocalizedString("Insecure", comment: "Security level")
 
 		case .medium:
-			return NSLocalizedString("Medium", comment: "Security level")
+			return NSLocalizedString("Moderate", comment: "Security level")
 
 		case .secure:
 			return NSLocalizedString("Secure", comment: "Security level")
@@ -76,19 +76,59 @@ enum SecurityPreset: Int, CustomStringConvertible {
 
 class SecurityPresetsCell: Cell<SecurityPreset>, CellType {
 
-    @IBOutlet weak var radio: UISegmentedControl!
+	private lazy var shields: [SecurityShield] = {
+		var shields = [SecurityShield]()
 
-    @IBAction func valueChanged(_ sender: UISegmentedControl) {
-        row.value = SecurityPreset(rawValue: sender.selectedSegmentIndex)
-        row.updateCell()
-    }
+		for i in 0 ... 2 {
+			if let preset = SecurityPreset(rawValue: i) {
+				let shield = SecurityShield(preset)
+				shield.translatesAutoresizingMaskIntoConstraints = false
+
+				shields.append(shield)
+			}
+		}
+
+		return shields
+	}()
+
+	@objc private func shieldSelected(_ sender: UITapGestureRecognizer) {
+		let view = sender.view as? SecurityShield
+
+		for shield in shields {
+			if shield.isSelected && shield != view {
+				shield.isSelected = false
+			}
+		}
+
+		row.value = view?.preset
+		row.updateCell()
+	}
+
+	override func setup() {
+		super.setup()
+
+		for shield in shields {
+			addSubview(shield)
+
+			shield.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(shieldSelected(_:))))
+			
+			shield.topAnchor.constraint(equalTo: topAnchor, constant: 32).isActive = true
+			shield.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -32).isActive = true
+		}
+
+		shields.first?.trailingAnchor.constraint(equalTo: shields[1].leadingAnchor, constant: -48).isActive = true
+		shields[1].centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+		shields.last?.leadingAnchor.constraint(equalTo: shields[1].trailingAnchor, constant: 48).isActive = true
+
+		selectionStyle = .none
+	}
 
     public override func update() {
         super.update()
 
-		radio.selectedSegmentIndex = row.value?.rawValue ?? SecurityPreset.custom.rawValue > SecurityPreset.custom.rawValue
-			? row.value!.rawValue
-			: UISegmentedControl.noSegment
+		for shield in shields {
+			shield.isSelected = shield.preset == row.value
+		}
 	}
 }
 
@@ -97,6 +137,8 @@ final class SecurityPresetsRow: Row<SecurityPresetsCell>, RowType {
     required init(tag: String?) {
         super.init(tag: tag)
 
-        cellProvider = CellProvider<SecurityPresetsCell>(nibName: String(describing: SecurityPresetsCell.self))
+		cellStyle = .default
+
+        cellProvider = CellProvider<SecurityPresetsCell>()
     }
 }
