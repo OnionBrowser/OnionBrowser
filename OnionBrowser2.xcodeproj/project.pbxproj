@@ -88,7 +88,7 @@
 		A02CE2B8220079B800964A14 /* SearchResultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = A02CE2B6220079B700964A14 /* SearchResultsController.m */; };
 		A02CE2BB22007A0200964A14 /* HistoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = A02CE2BA22007A0200964A14 /* HistoryController.m */; };
 		A0364537235094DF0038930E /* StorageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0364536235094DF0038930E /* StorageViewController.swift */; };
-		A03A2DD223577971002D640B /* Bundle+displayName.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03A2DD123577970002D640B /* Bundle+displayName.swift */; };
+		A03A2DD223577971002D640B /* Bundle+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03A2DD123577970002D640B /* Bundle+Helpers.swift */; };
 		A03A2DD423577B91002D640B /* SecurityPresetsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03A2DD323577B91002D640B /* SecurityPresetsRow.swift */; };
 		A03DBCED22859B99001890C4 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = A03DBCEC22859B99001890C4 /* Config.m */; };
 		A03DBCEF22859B99001890C4 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = A03DBCEC22859B99001890C4 /* Config.m */; };
@@ -290,7 +290,7 @@
 		A02CE2B922007A0100964A14 /* HistoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryController.h; sourceTree = "<group>"; };
 		A02CE2BA22007A0200964A14 /* HistoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryController.m; sourceTree = "<group>"; };
 		A0364536235094DF0038930E /* StorageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageViewController.swift; sourceTree = "<group>"; };
-		A03A2DD123577970002D640B /* Bundle+displayName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+displayName.swift"; sourceTree = "<group>"; };
+		A03A2DD123577970002D640B /* Bundle+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Helpers.swift"; sourceTree = "<group>"; };
 		A03A2DD323577B91002D640B /* SecurityPresetsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityPresetsRow.swift; sourceTree = "<group>"; };
 		A03DBCAD2285799A001890C4 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = Endless/cs.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A03DBCAE2285799A001890C4 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = Endless/cs.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
@@ -1481,7 +1481,7 @@
 			isa = PBXGroup;
 			children = (
 				A072C4D1227C684E0022BC58 /* BlurredSnapshot.swift */,
-				A03A2DD123577970002D640B /* Bundle+displayName.swift */,
+				A03A2DD123577970002D640B /* Bundle+Helpers.swift */,
 				8AD1283B1ED61812005C43E4 /* Ipv6Tester.h */,
 				8AD1283C1ED61812005C43E4 /* Ipv6Tester.m */,
 				A072C4D2227C684F0022BC58 /* TabSecurity.swift */,
@@ -2420,7 +2420,7 @@
 				69CBCD471E934228009D5352 /* URLBlockerRuleController.m in Sources */,
 				A0D68DFF234C89080027C61A /* Bookmark.swift in Sources */,
 				691286ED1EABF2B400CEC414 /* OnionManager.swift in Sources */,
-				A03A2DD223577971002D640B /* Bundle+displayName.swift in Sources */,
+				A03A2DD223577971002D640B /* Bundle+Helpers.swift in Sources */,
 				01F7CB4E1A52FC4E00F42B73 /* NSString+IPAddress.m in Sources */,
 				014E68A81B9BEDDC00D98A0A /* HostSettings.m in Sources */,
 				A03A2DD423577B91002D640B /* SecurityPresetsRow.swift in Sources */,

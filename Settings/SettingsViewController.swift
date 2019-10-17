@@ -177,11 +177,10 @@ class SettingsViewController: FormViewController {
 			self.userDefaults.set(row.value?.id ?? "forget_on_shutdown", forKey: "tab_security")
 		}
 
-		let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "unknown"
-
 		let section = Section(header: NSLocalizedString("Support", comment: "Section header"),
-							  footer: String(format: NSLocalizedString(
-								"Version %@", comment: "Version info at end of scene"), version))
+							  footer: String(
+								format: NSLocalizedString("Version %@", comment: "Version info at end of scene"),
+								Bundle.main.version))
 
 		form
 		+++ section
