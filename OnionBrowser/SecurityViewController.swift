@@ -64,10 +64,7 @@ class SecurityViewController: FormViewController {
 
 
         form
-		+++ Section(String(format:
-			NSLocalizedString("This is your default security setting for every website you visit in %@.",
-							  comment: "Scene description, placeholder will display app name"),
-						   Bundle.main.displayName))
+		+++ Section("to be replaced in #willDisplayHeaderView to avoid capitalization")
 
 		<<< securityPresetsRow
 		.onChange { row in
@@ -157,5 +154,22 @@ class SecurityViewController: FormViewController {
 		super.viewWillDisappear(animated)
 
 		HostSettings.persist()
+	}
+
+
+	// MARK: UITableViewDelegate
+
+	/**
+	Workaround to avoid capitalization of header.
+	*/
+	func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+		if section == 0,
+			let header = view as? UITableViewHeaderFooterView {
+
+			header.textLabel?.text = String(format:
+				NSLocalizedString("This is your default security setting for every website you visit in %@.",
+								  comment: "Scene description, placeholder will contain app name"),
+											Bundle.main.displayName)
+		}
 	}
 }
