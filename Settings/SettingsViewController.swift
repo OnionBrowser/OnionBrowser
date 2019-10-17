@@ -153,7 +153,8 @@ class SettingsViewController: FormViewController {
 			}
 
 			selectorVc.sectionFooterTitleForKey = { key in
-				return NSLocalizedString("Minimum version of TLS required for hosts to negotiate HTTPS connections.", comment: "Option description")
+				return NSLocalizedString("Minimum version of TLS required for hosts to negotiate HTTPS connections.",
+										 comment: "Option description")
 			}
 		}
 		.onChange { row in
@@ -176,6 +177,31 @@ class SettingsViewController: FormViewController {
 		.onChange { row in
 			self.userDefaults.set(row.value?.id ?? "forget_on_shutdown", forKey: "tab_security")
 		}
+
+		+++ Section(header: NSLocalizedString("Miscellaneous", comment: "Section header"),
+					footer: NSLocalizedString("Changing this option requires restarting the app.",
+											  comment: "Option explanation"))
+
+		<<< SwitchRow() {
+			$0.title = NSLocalizedString("Mute Audio with Mute Switch", comment: "Option title")
+			$0.value = userDefaults.bool(forKey: "mute_with_switch")
+			$0.cell.switchControl.onTintColor = .poeAccent
+			$0.cell.textLabel?.numberOfLines = 0
+		}
+		.onChange { row in
+			self.userDefaults.set(row.value ?? false, forKey: "mute_with_switch")
+		}
+
+		<<< SwitchRow() {
+			$0.title = NSLocalizedString("Allow 3rd-Party Keyboards", comment: "Option title")
+			$0.value = userDefaults.bool(forKey: "third_party_keyboards")
+			$0.cell.switchControl.onTintColor = .poeAccent
+			$0.cell.textLabel?.numberOfLines = 0
+		}
+		.onChange { row in
+			self.userDefaults.set(row.value ?? false, forKey: "third_party_keyboards")
+		}
+
 
 		let section = Section(header: NSLocalizedString("Support", comment: "Section header"),
 							  footer: String(
