@@ -17,6 +17,7 @@ target 'OnionBrowser2' do
   pod 'CSPHeader', '~> 0.4'
 
   pod 'Eureka', '~> 5.1'
+  pod 'Reachability', '~> 3.2'
 end
 
 target 'OnionBrowser2 Tests' do

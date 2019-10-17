@@ -65,6 +65,7 @@ PODS:
   - POE (0.6.0):
     - KMPlaceholderTextView (~> 1.4)
     - Localize (~> 2.2)
+  - Reachability (3.2)
   - ReactiveObjC (3.1.1)
   - TUSafariActivity (1.0.4)
   - UIColor-HexRGB (1.0.1)
@@ -81,6 +82,7 @@ DEPENDENCIES:
   - OCSPCache (from `https://github.com/Psiphon-Labs/OCSPCache`)
   - OrderedDictionary
   - POE (~> 0.6)
+  - Reachability (~> 3.2)
   - TUSafariActivity
   - UIColor-HexRGB
   - VForceTouch
@@ -99,6 +101,7 @@ SPEC REPOS:
     - OpenSSL-Universal
     - OrderedDictionary
     - POE
+    - Reachability
     - ReactiveObjC
     - TUSafariActivity
     - UIColor-HexRGB
@@ -135,6 +138,7 @@ SPEC CHECKSUMS:
   OpenSSL-Universal: ff04c2e6befc3f1247ae039e60c93f76345b3b5a
   OrderedDictionary: 138c8d2e358d3a0c9adda15c6c7db24e8e3b09e6
   POE: b5c8a0524a55701a3215c6acaf501cc82dd4ec32
+  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
   UIColor-HexRGB: daccfa7e936af664369734a164b0309087d7f970
@@ -142,6 +146,6 @@ SPEC CHECKSUMS:
   WYPopoverController: a9db25ac2841a686acdc0f3a99bdb21545db32f4
   XLForm: d5c391dfc62865927b5bcab0a5a0dbfb3e02b0ec
 
-PODFILE CHECKSUM: 13ec88d7a83784759ee635c371c9aa18948b38e2
+PODFILE CHECKSUM: d24af231b252e48636e62b9d317e9c3bff8d0a31
 
 COCOAPODS: 1.8.3
