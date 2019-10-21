@@ -6,7 +6,6 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "IASKAppSettingsViewController.h"
 #import "WebViewTab.h"
 #import "WYPopoverController.h"
 
@@ -25,7 +24,7 @@ typedef NS_ENUM(NSInteger, WebViewTabAnimation) {
     WebViewTabAnimationQuick,
 };
 
-@interface WebViewController : UIViewController <UITableViewDelegate, UITextFieldDelegate, UIGestureRecognizerDelegate, UIScrollViewDelegate, IASKSettingsDelegate, WYPopoverControllerDelegate>
+@interface WebViewController : UIViewController <UITableViewDelegate, UITextFieldDelegate, UIGestureRecognizerDelegate, UIScrollViewDelegate, WYPopoverControllerDelegate>
 
 - (void)focusUrlField;
 - (void)unfocusUrlField;

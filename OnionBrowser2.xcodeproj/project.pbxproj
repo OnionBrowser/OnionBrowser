@@ -32,7 +32,6 @@
 		01801E9B1A32CA2A002B4718 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 01801E9A1A32CA2A002B4718 /* AppDelegate.m */; };
 		01801EA11A32CA2A002B4718 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01801EA01A32CA2A002B4718 /* WebViewController.m */; };
 		01801EA61A32CA2A002B4718 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01801EA51A32CA2A002B4718 /* Images.xcassets */; };
-		01801EC31A3360F8002B4718 /* InAppSettings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 01801EC21A3360F8002B4718 /* InAppSettings.bundle */; };
 		0182AD9B1AACC55400F3B7ED /* HTTPSEverywhereRuleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0182AD9A1AACC55400F3B7ED /* HTTPSEverywhereRuleController.m */; };
 		018333CA1A3505FB00670CD1 /* HTTPSEverywhere.m in Sources */ = {isa = PBXBuildFile; fileRef = 018333C91A3505FB00670CD1 /* HTTPSEverywhere.m */; };
 		018333D21A35291200670CD1 /* HTTPSEverywhereRule.m in Sources */ = {isa = PBXBuildFile; fileRef = 018333D11A35291200670CD1 /* HTTPSEverywhereRule.m */; };
@@ -172,7 +171,6 @@
 		01801E9F1A32CA2A002B4718 /* WebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		01801EA01A32CA2A002B4718 /* WebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		01801EA51A32CA2A002B4718 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Endless/Resources/Images.xcassets; sourceTree = "<group>"; };
-		01801EC21A3360F8002B4718 /* InAppSettings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = InAppSettings.bundle; path = Endless/InAppSettings.bundle; sourceTree = "<group>"; };
 		0182AD991AACC55400F3B7ED /* HTTPSEverywhereRuleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPSEverywhereRuleController.h; sourceTree = "<group>"; };
 		0182AD9A1AACC55400F3B7ED /* HTTPSEverywhereRuleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPSEverywhereRuleController.m; sourceTree = "<group>"; };
 		018333C81A3505FB00670CD1 /* HTTPSEverywhere.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPSEverywhere.h; sourceTree = "<group>"; };
@@ -969,7 +967,6 @@
 				018333E71A35746500670CD1 /* https-everywhere_rules.plist */,
 				018333E81A35746500670CD1 /* https-everywhere_targets.plist */,
 				01801EA51A32CA2A002B4718 /* Images.xcassets */,
-				01801EC21A3360F8002B4718 /* InAppSettings.bundle */,
 				01D7412B1A45F8EB007B7033 /* injected.js */,
 				8AF16094202CD6D600AC0BCE /* block_webrtc.js */,
 				01FC0E561B38FB6B00955D9A /* Launch Screen.xib */,
@@ -2235,7 +2232,6 @@
 				018333EA1A35746500670CD1 /* https-everywhere_targets.plist in Resources */,
 				018333E91A35746500670CD1 /* https-everywhere_rules.plist in Resources */,
 				8ACB70D21FA136F0001E5588 /* geoip in Resources */,
-				01801EC31A3360F8002B4718 /* InAppSettings.bundle in Resources */,
 				69CBCD4F1E93451C009D5352 /* urlblocker.json in Resources */,
 				01D7412C1A45F8EB007B7033 /* injected.js in Resources */,
 				6926DAEE221C836F00D71752 /* credits.html.in in Resources */,
@@ -2279,7 +2275,6 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-OnionBrowser2/Pods-OnionBrowser2-resources.sh",
 				"${PODS_ROOT}/Eureka/Source/Resources/Eureka.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/InAppSettingsKit/InAppSettingsKit.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/POE/POE.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/TUSafariActivity/TUSafariActivity.bundle",
 				"${PODS_ROOT}/XLForm/XLForm/XLForm.bundle",
@@ -2287,7 +2282,6 @@
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Eureka.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/InAppSettingsKit.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/POE.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TUSafariActivity.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/XLForm.bundle",

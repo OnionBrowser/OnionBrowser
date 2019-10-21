@@ -53,7 +53,6 @@ PODS:
   - DTFoundation/UIKit_BlocksAdditions (1.7.14):
     - DTFoundation/Core
   - Eureka (5.1.0)
-  - InAppSettingsKit (2.14)
   - KMPlaceholderTextView (1.4.0)
   - Localize (2.3.0)
   - OCMock (3.4.3)
@@ -77,7 +76,6 @@ DEPENDENCIES:
   - CSPHeader (~> 0.4)
   - DTFoundation
   - Eureka (~> 5.1)
-  - InAppSettingsKit (~> 2.12)
   - OCMock
   - OCSPCache (from `https://github.com/Psiphon-Labs/OCSPCache`)
   - OrderedDictionary
@@ -94,7 +92,6 @@ SPEC REPOS:
     - CSPHeader
     - DTFoundation
     - Eureka
-    - InAppSettingsKit
     - KMPlaceholderTextView
     - Localize
     - OCMock
@@ -130,7 +127,6 @@ SPEC CHECKSUMS:
   CSPHeader: adec9dd23d5ea822b8e397407c40c6435b4a7c49
   DTFoundation: 25aa19bb7c6e225b1dfae195604fb8cf1da0ab4c
   Eureka: 18a5076dcf0c41f9cd9748aa1c42f4d11434bdae
-  InAppSettingsKit: 800853da39388780c15191846688c0974c5b13b5
   KMPlaceholderTextView: 2206c3df39979e9396e2d96fa9f427a8951121b0
   Localize: cb1ae53ed73decaad0dce217806ed983091913f5
   OCMock: 43565190abc78977ad44a61c0d20d7f0784d35ab
@@ -146,6 +142,6 @@ SPEC CHECKSUMS:
   WYPopoverController: a9db25ac2841a686acdc0f3a99bdb21545db32f4
   XLForm: d5c391dfc62865927b5bcab0a5a0dbfb3e02b0ec
 
-PODFILE CHECKSUM: d24af231b252e48636e62b9d317e9c3bff8d0a31
+PODFILE CHECKSUM: f1429cf4cd9c1ace3ba317df9e27c9b25e59ff82
 
 COCOAPODS: 1.8.3

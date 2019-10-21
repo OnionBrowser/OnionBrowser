@@ -1,8 +1,0 @@
-/* A single strings file, whose title is specified in your preferences schema. The strings files provide the localized content to display to the user for each of your preferences. */
-"User Interface" = "User Interface";
-"If blank, the search engine page will be used" = "If blank, the search engine page will be used";
-"If blank, the default Onion Browser page will be used" = "If blank, the default Onion Browser page will be used";
-"Custom home page" = "Custom home page";
-"Security" = "Security";
-"When enabled, a per-host option to ignore further TLS errors is shown in the TLS error dialog" = "When enabled, a per-host option to ignore further TLS errors is shown in the TLS error dialog";
-"Allow ignoring TLS errors" = "Allow ignoring TLS errors";

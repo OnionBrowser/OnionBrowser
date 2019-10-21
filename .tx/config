@@ -27,19 +27,6 @@ trans.tr_TR = Endless/tr-TR.lproj/OnePasswordExtension.strings
 type = STRING
 minimum_perc = 75
 
-[onion-browser.rootstrings]
-file_filter = Endless/InAppSettings.bundle/<lang>.lproj/Root.strings
-source_file = Endless/InAppSettings.bundle/en.lproj/Root.strings
-source_lang = en_US
-trans.ar = Endless/InAppSettings.bundle/ar-001.lproj/Root.strings
-trans.ca = Endless/InAppSettings.bundle/ca-ES.lproj/Root.strings
-trans.hu_HU = Endless/InAppSettings.bundle/hu-HU.lproj/Root.strings
-trans.pt_BR = Endless/InAppSettings.bundle/pt-BR.lproj/Root.strings
-trans.pt_PT = Endless/InAppSettings.bundle/pt-PT.lproj/Root.strings
-trans.tr_TR = Endless/InAppSettings.bundle/tr-TR.lproj/Root.strings
-type = STRING
-minimum_perc = 75
-
 [onion-browser.infoplist-strings]
 file_filter = Endless/<lang>.lproj/InfoPlist.strings
 minimum_perc = 0

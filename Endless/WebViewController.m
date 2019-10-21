@@ -16,8 +16,6 @@
 #import "WYPopoverController.h"
 #import "OnionBrowser-Swift.h"
 
-#import "IASKSettingsReader.h"
-
 @implementation WebViewController {
 	AppDelegate *appDelegate;
 	UIView *wrapper;
@@ -203,7 +201,6 @@
 	NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
 	[center addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
 	[center addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-	[center addObserver:self selector:@selector(settingStaged:) name:kIASKAppSettingChanged object:nil];
 
 	[[appDelegate window] addSubview:self.view];
 
@@ -304,15 +301,8 @@
 		if ([appDelegate areTesting]) {
 			[self addNewTabForURL:nil];
 		} else {
-			NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-			NSString *homepage = [userDefaults stringForKey:@"homepage"];
-			
-			if (homepage == nil || [homepage isEqualToString:@""]) {
-				//homepage = Settings.searchEngine.homepageUrl;
-                homepage = @"http://3heens4xbedlj57xwcggjsdglot7e36p4rogy642xokemfo2duh6bbyd.onion/";
-			}
-			
-			[self addNewTabForURL:[NSURL URLWithString:homepage]];
+			[self addNewTabForURL:
+			 [NSURL URLWithString:@"http://3heens4xbedlj57xwcggjsdglot7e36p4rogy642xokemfo2duh6bbyd.onion/"]];
 		}
 	}
 }
@@ -1014,20 +1004,6 @@
 - (BOOL)popoverControllerShouldDismissPopover:(WYPopoverController *)controller
 {
 	return YES;
-}
-
-- (void)settingStaged:(NSNotification *)notification
-{
-	NSString *prop = [[[notification userInfo] allKeys] firstObject];
-		
-	if ([prop isEqualToString:@"mute_with_switch"]) {
-		[appDelegate adjustMuteSwitchBehavior];
-	}
-}
-
-- (void)settingsViewControllerDidEnd:(IASKAppSettingsViewController *)sender
-{
-	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)showTabs:(id)_id

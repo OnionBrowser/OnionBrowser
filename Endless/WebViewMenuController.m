@@ -8,7 +8,6 @@
 #import "AppDelegate.h"
 #import "HostSettings.h"
 #import "HostSettingsController.h"
-#import "IASKAppSettingsViewController.h"
 #import "HTTPSEverywhereRuleController.h"
 #import "URLBlockerRuleController.h"
 #import "WebViewMenuController.h"
@@ -26,7 +25,6 @@
 
 @implementation WebViewMenuController {
 	AppDelegate *appDelegate;
-	IASKAppSettingsViewController *appSettingsViewController;
 	NSMutableArray *buttons;
 }
 
@@ -56,8 +54,7 @@ NSString * const LABEL = @"L";
 	[buttons addObject:@{ FUNC : @"menuURLBlocker", LABEL : NSLocalizedString(@"URL Blocker", nil) }];
 	[buttons addObject:@{ FUNC : @"menuHTTPSEverywhere", LABEL : NSLocalizedString(@"HTTPS Everywhere", nil) }];
 	[buttons addObject:@{ FUNC : @"menuHostSettings", LABEL : NSLocalizedString(@"Host Settings", nil) }];
-	[buttons addObject:@{ FUNC : @"menuSettings", LABEL : NSLocalizedString(@"Global Settings", nil) }];
-	[buttons addObject:@{ FUNC : @"menuSettingsNew", LABEL: NSLocalizedString(@"Settings", nil) }];
+	[buttons addObject:@{ FUNC : @"menuSettings", LABEL: NSLocalizedString(@"Settings", nil) }];
 	[buttons addObject:@{ FUNC : @"bridgeSettings", LABEL : NSLocalizedString(@"Bridge Configuration", nil) }];
 
 	[self.view setBackgroundColor:[UIColor clearColor]];
@@ -230,19 +227,6 @@ NSString * const LABEL = @"L";
 }
 
 - (void)menuSettings
-{
-	if (!appSettingsViewController) {
-		appSettingsViewController = [[IASKAppSettingsViewController alloc] init];
-		appSettingsViewController.delegate = [appDelegate webViewController];
-		appSettingsViewController.showDoneButton = YES;
-		appSettingsViewController.showCreditsFooter = NO;
-	}
-	
-	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:appSettingsViewController];
-	[[appDelegate webViewController] presentViewController:navController animated:YES completion:nil];
-}
-
-- (void)menuSettingsNew
 {
 	UINavigationController *vc = [SettingsViewController instantiate];
 

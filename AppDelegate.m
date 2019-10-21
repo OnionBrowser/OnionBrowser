@@ -33,8 +33,6 @@
 
 - (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-	[self initializeDefaults];
-
 	inStartupPhase = YES;
 
 	self.socksProxyPort = 39050;
@@ -369,36 +367,6 @@
 	
 	UIViewController *presentedViewController = (UIViewController *)rootViewController.presentedViewController;
 	return [self topViewController:presentedViewController];
-}
-
-- (void)initializeDefaults
-{
-	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	
-	NSString *plistPath = [[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"InAppSettings.bundle"] stringByAppendingPathComponent:@"Root.inApp.plist"];
-	NSDictionary *settingsDictionary = [NSDictionary dictionaryWithContentsOfFile:plistPath];
-
-	for (NSDictionary *pref in [settingsDictionary objectForKey:@"PreferenceSpecifiers"]) {
-		NSString *key = [pref objectForKey:@"Key"];
-		if (key == nil)
-			continue;
-
-		if ([userDefaults objectForKey:key] == NULL) {
-			NSObject *val = [pref objectForKey:@"DefaultValue"];
-			if (val == nil)
-				continue;
-			
-			[userDefaults setObject:val forKey:key];
-#ifdef TRACE
-			NSLog(@"[AppDelegate] initialized default preference for %@ to %@", key, val);
-#endif
-		}
-	}
-	
-	if (![userDefaults synchronize]) {
-		NSLog(@"[AppDelegate] failed saving preferences");
-		abort();
-	}
 }
 
 - (BOOL)areTesting

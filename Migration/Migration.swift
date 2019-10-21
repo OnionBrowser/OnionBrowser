@@ -122,15 +122,6 @@ class Migration: NSObject {
                         format: nil)
                         as? [String: Any]
 
-                    // Homepage setting.
-                    if let homepage = oldSettings?["homepage"] as? String {
-                        if !homepage.isEmpty && homepage != "onionbrowser:home"
-                        {
-                            settings.set(homepage, forKey: "homepage")
-                            settings.synchronize()
-                        }
-                    }
-
                     // Do-Not-Track header.
                     if let dnt = oldSettings?["dnt"] as? Int
                     {

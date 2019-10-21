@@ -1087,8 +1087,7 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 
 			BOOL successfulAuth = NO;
 
-			if ([NSUserDefaults.standardUserDefaults boolForKey:@"allow_tls_error_ignore"]
-				&& [[HostSettings settingsOrDefaultsForHost:task.currentRequest.URL.host] boolSettingOrDefault:HOST_SETTINGS_KEY_IGNORE_TLS_ERRORS])
+			if ([[HostSettings settingsOrDefaultsForHost:task.currentRequest.URL.host] boolSettingOrDefault:HOST_SETTINGS_KEY_IGNORE_TLS_ERRORS])
 			{
 				successfulAuth = YES;
 

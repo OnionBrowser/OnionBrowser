@@ -607,7 +607,7 @@ SILENCE_WARNINGS_OFF
 	UIAlertController *uiac = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", nil) message:msg preferredStyle:UIAlertControllerStyleAlert];
 	[uiac addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:nil]];
 
-	if (u != nil && isTLSError && [[NSUserDefaults standardUserDefaults] boolForKey:@"allow_tls_error_ignore"]) {
+	if (u != nil && isTLSError) {
 		[uiac addAction:[UIAlertAction
 						 actionWithTitle:NSLocalizedString(@"Ignore for this host", nil)
 						 style:UIAlertActionStyleDestructive

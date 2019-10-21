@@ -185,6 +185,8 @@ class Settings: NSObject {
 		}
 		set {
 			UserDefaults.standard.set(newValue, forKey: "mute_with_switch")
+
+			AppDelegate.shared()?.adjustMuteSwitchBehavior()
 		}
 	}
 
@@ -208,6 +210,7 @@ class Settings: NSObject {
 		}
 		set {
 			UserDefaults.standard.set(newValue / 60, forKey: "old_data_sweep_mins")
+			
 			AppDelegate.shared()?.cookieJar.oldDataSweepTimeout = NSNumber(value: newValue / 60)
 		}
 	}
