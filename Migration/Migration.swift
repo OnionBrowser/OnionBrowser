@@ -33,7 +33,7 @@ class Migration: NSObject {
 
             // Initialize CoreData.
             if let mom = NSManagedObjectModel.mergedModel(from: nil) {
-                let psc = NSPersistentStoreCoordinator.init(managedObjectModel: mom)
+                let psc = NSPersistentStoreCoordinator(managedObjectModel: mom)
 
                 let moc = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
                 moc.persistentStoreCoordinator = psc

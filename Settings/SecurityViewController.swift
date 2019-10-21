@@ -97,7 +97,7 @@ class SecurityViewController: FormViewController {
 			}
 		}
 
-		+++ Section(footer: NSLocalizedString("Handle tapping on links in a non-standard way to avoid possibly opening external applications",
+		+++ Section(footer: NSLocalizedString("Handle tapping on links in a non-standard way to avoid possibly opening external applications.",
 											  comment: "Option description"))
 
 		<<< contentPolicyRow
@@ -118,7 +118,7 @@ class SecurityViewController: FormViewController {
 											 toValue: row.value ?? false ? HOST_SETTINGS_VALUE_YES : HOST_SETTINGS_VALUE_NO)
 		}
 
-		+++ Section(footer: NSLocalizedString("Allow hosts to access WebRTC functions",
+		+++ Section(footer: NSLocalizedString("Allow hosts to access WebRTC functions.",
 											  comment: "Option description"))
 
 		<<< webRtcRow
@@ -129,7 +129,7 @@ class SecurityViewController: FormViewController {
 			self.securityPresetsRow.updateCell()
 		}
 
-		+++ Section(footer: NSLocalizedString("Allow HTTPS hosts to load page resources from non-HTTPS hosts (useful for RSS readers and other aggregators)",
+		+++ Section(footer: NSLocalizedString("Allow HTTPS hosts to load page resources from non-HTTPS hosts. (Useful for RSS readers and other aggregators.)",
 											  comment: "Option description"))
 
 		<<< mixedModeRow
@@ -154,7 +154,8 @@ class SecurityViewController: FormViewController {
 											 toValue: row.value ?? false ? HOST_SETTINGS_VALUE_YES : HOST_SETTINGS_VALUE_NO)
 		}
 
-		+++ Section(NSLocalizedString("Other", comment: "Section title"))
+		+++ Section(header: NSLocalizedString("Other", comment: "Section title"),
+					footer: NSLocalizedString("Custom user-agent string, or blank to use the default.", comment: "Option description"))
 
 		<<< TextRow() {
 			$0.title = NSLocalizedString("User Agent", comment: "Option title")

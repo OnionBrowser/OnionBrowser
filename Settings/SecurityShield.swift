@@ -55,6 +55,7 @@ class SecurityShield: UIView {
 
 		view.font = .systemFont(ofSize: 14)
 		view.textColor = .systemGray
+		view.textAlignment = .center
 		view.adjustsFontSizeToFitWidth = true
 		view.minimumScaleFactor = 0.5
 		view.allowsDefaultTighteningForTruncation = true
