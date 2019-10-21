@@ -29,8 +29,6 @@
 @property (strong, atomic) CookieJar *cookieJar;
 @property (strong, atomic) HSTSCache *hstsCache;
 
-@property (readonly, strong, nonatomic) NSMutableDictionary *searchEngines;
-
 @property (strong, atomic) NSString *defaultUserAgent;
 @property (strong, atomic) NSURL *urlToOpenAtLaunch;
 

@@ -35,7 +35,7 @@ class Migration: NSObject {
             if let mom = NSManagedObjectModel.mergedModel(from: nil) {
                 let psc = NSPersistentStoreCoordinator.init(managedObjectModel: mom)
 
-                let moc = NSManagedObjectContext.init(concurrencyType: .mainQueueConcurrencyType)
+                let moc = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
                 moc.persistentStoreCoordinator = psc
 
                 let store = try? psc.addPersistentStore(ofType: NSSQLiteStoreType,
@@ -137,8 +137,7 @@ class Migration: NSObject {
                         // 1.X had 3 settings: 0 = unset, 1 = cantrack, 2 = notrack
                         // Endless has only two options "send_dnt" true or false.
                         // Translation table: 0 => false, 1 => false, 2 => true
-                        settings.set(dnt == 2, forKey: "send_dnt")
-                        settings.synchronize()
+						Settings.sendDnt = dnt == 2
                     }
 
                     // Content security policy setting. For legacy reasons named "javascript".
@@ -164,7 +163,7 @@ class Migration: NSObject {
                         // #define X_TLSVER_TLS1_2_ONLY 2
 
                         if tlsver == 2 {
-							UserDefaults.standard.set("tls_12", forKey: "tls_version")
+                            Settings.tlsVersion = .tls12
                         }
                     }
                 }

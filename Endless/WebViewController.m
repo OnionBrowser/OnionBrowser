@@ -14,6 +14,7 @@
 #import "WebViewTab.h"
 #import "WebViewMenuController.h"
 #import "WYPopoverController.h"
+#import "OnionBrowser-Swift.h"
 
 #import "IASKSettingsReader.h"
 
@@ -307,8 +308,7 @@
 			NSString *homepage = [userDefaults stringForKey:@"homepage"];
 			
 			if (homepage == nil || [homepage isEqualToString:@""]) {
-				//NSDictionary *se = [[appDelegate searchEngines] objectForKey:[userDefaults stringForKey:@"search_engine"]];
-				//homepage = [se objectForKey:@"homepage_url"];
+				//homepage = Settings.searchEngine.homepageUrl;
                 homepage = @"http://3heens4xbedlj57xwcggjsdglot7e36p4rogy642xokemfo2duh6bbyd.onion/";
 			}
 			
@@ -865,19 +865,17 @@
 
 - (void)textFieldDidChange:(UITextField *)textField
 {
-	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-
 	if (textField != urlField)
 		return;
 
 	/* if it looks like we're typing a url, stop searching */
-	if ([urlField text] == nil || [[urlField text] isEqualToString:@""] || [[urlField text] hasPrefix:@"http:"] || [[urlField text] hasPrefix:@"https:"] || ([[urlField text] containsString:@"."] && [userDefaults boolForKey:@"search_engine_stop_dot"])) {
+	if ([urlField text] == nil || [[urlField text] isEqualToString:@""] || [[urlField text] hasPrefix:@"http:"] || [[urlField text] hasPrefix:@"https:"] || ([[urlField text] containsString:@"."] && Settings.searchLiveStopDot)) {
 		[self hideSearchResults];
 		[self showBookmarks];
 		return;
 	}
 	
-	if (![userDefaults boolForKey:@"search_engine_live"])
+	if (!Settings.searchLive)
 		return;
 	
 	[self hideBookmarks];
@@ -1030,9 +1028,6 @@
 - (void)settingsViewControllerDidEnd:(IASKAppSettingsViewController *)sender
 {
 	[self dismissViewControllerAnimated:YES completion:nil];
-	
-	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	[[appDelegate cookieJar] setOldDataSweepTimeout:[NSNumber numberWithInteger:[userDefaults integerForKey:@"old_data_sweep_mins"]]];
 }
 
 - (void)showTabs:(id)_id

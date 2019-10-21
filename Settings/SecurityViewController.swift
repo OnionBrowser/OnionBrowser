@@ -13,23 +13,39 @@ import Eureka
 
 class SecurityViewController: FormViewController {
 
+    enum ContentPolicy: String, CustomStringConvertible {
+        case open = "open"
+        case blockXhr = "block_connect"
+        case strict = "strict"
+
+		var description: String {
+			switch self {
+			case .open:
+				return NSLocalizedString("Open (normal browsing mode)",
+				comment: "Content policy option")
+
+			case .blockXhr:
+				return NSLocalizedString("No XHR/WebSocket/Video connections",
+				comment: "Content policy option")
+
+			default:
+				return NSLocalizedString("Strict (no JavaScript, video, etc.)",
+				comment: "Content policy option")
+			}
+		}
+    }
+
 	private let defaultSettings = HostSettings.default()
 
 	private let securityPresetsRow = SecurityPresetsRow()
 
-	private let contentPolicyRow = PushRow<Option>() {
+	private let contentPolicyRow = PushRow<ContentPolicy>() {
 		$0.title = NSLocalizedString("Content Policy", comment: "Option title")
 		$0.selectorTitle = $0.title
 
-		$0.options = [Option(HOST_SETTINGS_CSP_OPEN,
-							 NSLocalizedString("Open (normal browsing mode)",
-											   comment: "Content policy option")),
-					  Option(HOST_SETTINGS_CSP_BLOCK_CONNECT,
-							 NSLocalizedString("No XHR/WebSocket/Video connections",
-											   comment: "Content policy option")),
-					  Option(HOST_SETTINGS_CSP_STRICT,
-							 NSLocalizedString("Strict (no JavaScript, video, etc.)",
-											   comment: "Content policy option"))]
+		$0.options = [ContentPolicy.open,
+					  ContentPolicy.blockXhr,
+					  ContentPolicy.strict]
 
 		$0.cell.textLabel?.numberOfLines = 0
 	}
@@ -55,7 +71,7 @@ class SecurityViewController: FormViewController {
 		securityPresetsRow.value = SecurityPreset(defaultSettings)
 
 		if let value = defaultSettings?.settingOrDefault(HOST_SETTINGS_KEY_CSP) {
-			contentPolicyRow.value = contentPolicyRow.options?.first { $0.id == value }
+			contentPolicyRow.value = ContentPolicy(rawValue: value)
 		}
 
 		webRtcRow.value = defaultSettings?.boolSettingOrDefault(HOST_SETTINGS_KEY_ALLOW_WEBRTC)
@@ -71,7 +87,7 @@ class SecurityViewController: FormViewController {
 			// Only change other settings, if a non-custom preset was chosen.
 			// Do nothing, if it was unselected.
 			if let values = row.value?.values {
-				self.contentPolicyRow.value = self.contentPolicyRow.options?.first { $0.id == values.csp }
+				self.contentPolicyRow.value = ContentPolicy(rawValue: values.csp)
 				self.webRtcRow.value = values.webRtc
 				self.mixedModeRow.value = values.mixedMode
 
@@ -86,7 +102,7 @@ class SecurityViewController: FormViewController {
 
 		<<< contentPolicyRow
 		.onChange { row in
-			self.defaultSettings?.setSetting(HOST_SETTINGS_KEY_CSP, toValue: row.value?.id)
+			self.defaultSettings?.setSetting(HOST_SETTINGS_KEY_CSP, toValue: row.value?.rawValue)
 			self.securityPresetsRow.value = SecurityPreset(self.defaultSettings)
 			self.securityPresetsRow.updateCell()
 		}

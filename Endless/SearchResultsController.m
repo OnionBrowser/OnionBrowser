@@ -7,6 +7,7 @@
 
 #import "AppDelegate.h"
 #import "SearchResultsController.h"
+#import "OnionBrowser-Swift.h"
 
 #import "NSString+DTURLEncoding.h"
 
@@ -114,20 +115,15 @@
 #ifdef TRACE
 	NSLog(@"[SearchResultsController] need to autocomplete search for \"%@\"", query);
 #endif
+
+	SearchEngine *se = Settings.searchEngine;
 	
-	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	NSDictionary *se = [[appDelegate searchEngines] objectForKey:[userDefaults stringForKey:@"search_engine"]];
-	
-	if (se == nil)
-		/* just pick the first search engine */
-		se = [[appDelegate searchEngines] objectForKey:[[[appDelegate searchEngines] allKeys] firstObject]];
-	
-	NSDictionary *pp = [se objectForKey:@"post_params"];
+	NSDictionary *pp = se.postParams;
 	NSString *urls;
 	if (pp == nil)
-		urls = [NSString stringWithFormat:[se objectForKey:@"autocomplete_url"], [query stringByURLEncoding]];
+		urls = [NSString stringWithFormat:se.autocompleteUrl, [query stringByURLEncoding]];
 	else
-		urls = [se objectForKey:@"autocomplete_url"];
+		urls = se.autocompleteUrl;
 	
 	NSURL *url = [NSURL URLWithString:urls];
 	NSMutableURLRequest *request;

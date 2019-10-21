@@ -12,27 +12,7 @@ import UIKit
 import Eureka
 import POE
 
-struct Option: CustomStringConvertible, Equatable {
-
-	let id: String
-
-	var description: String
-
-	init(_ id: String, _ title: String? = nil) {
-		self.id = id
-		description = title ?? ""
-	}
-
-	// MARK: Equatable
-
-	static func ==(lhs: Option, rhs: Option) -> Bool {
-		return lhs.id == rhs.id
-	}
-}
-
 class SettingsViewController: FormViewController {
-
-	private let userDefaults = UserDefaults.standard
 
 	private let defaultSecurityRow = LabelRow() {
 		$0.title = NSLocalizedString("Default Security", comment: "Option title")
@@ -68,33 +48,38 @@ class SettingsViewController: FormViewController {
 		<<< PushRow<String>() {
 			$0.title = NSLocalizedString("Search Engine", comment: "Option title")
 			$0.selectorTitle = $0.title
-			$0.options = (AppDelegate.shared()?.searchEngines.allKeys as? [String])?.sorted()
-			$0.value = userDefaults.object(forKey: "search_engine") as? String
+			$0.options = Settings.allSearchEngineNames
+			$0.value = Settings.searchEngineName
 			$0.cell.textLabel?.numberOfLines = 0
 		}
 		.onChange { row in
-			self.userDefaults.set(row.value ?? AppDelegate.shared()?.searchEngines.allKeys.first,
-								  forKey: "search_engine")
+			if let value = row.value {
+				Settings.searchEngineName = value
+			}
 		}
 
 		<<< SwitchRow() {
 			$0.title = NSLocalizedString("Auto-Complete Search Results", comment: "Option title")
-			$0.value = userDefaults.bool(forKey: "search_engine_live")
+			$0.value = Settings.searchLive
 			$0.cell.switchControl.onTintColor = .poeAccent
 			$0.cell.textLabel?.numberOfLines = 0
 		}
 		.onChange { row in
-			self.userDefaults.set(row.value ?? false, forKey: "search_engine_live")
+			if let value = row.value {
+				Settings.searchLive = value
+			}
 		}
 
 		<<< SwitchRow() {
 			$0.title = NSLocalizedString("Stop Auto-Complete at First Dot", comment: "Option title")
-			$0.value = userDefaults.bool(forKey: "search_engine_stop_dot")
+			$0.value = Settings.searchLiveStopDot
 			$0.cell.switchControl.onTintColor = .poeAccent
 			$0.cell.textLabel?.numberOfLines = 0
 		}
 		.onChange { row in
-			self.userDefaults.set(row.value ?? true, forKey: "search_engine_stop_dot")
+			if let value = row.value {
+				Settings.searchLiveStopDot = value
+			}
 		}
 
 		+++ Section(header: NSLocalizedString("Privacy & Security", comment: "Section header"),
@@ -102,45 +87,35 @@ class SettingsViewController: FormViewController {
 
 		<<< SwitchRow() {
 			$0.title = NSLocalizedString("Send Do-Not-Track Header", comment: "Option title")
-			$0.value = userDefaults.bool(forKey: "send_dnt")
+			$0.value = Settings.sendDnt
 			$0.cell.switchControl.onTintColor = .poeAccent
 			$0.cell.textLabel?.numberOfLines = 0
 		}
 		.onChange { row in
-			self.userDefaults.set(row.value ?? false, forKey: "send_dnt")
+			if let value = row.value {
+				Settings.sendDnt = value
+			}
 		}
 
 		<<< LabelRow() {
-			$0.title = NSLocalizedString("Edit Local Storage", comment: "Option title")
+			$0.title = NSLocalizedString("Cookies and Local Storage", comment: "Option title")
 			$0.cell.textLabel?.numberOfLines = 0
 			$0.cell.accessoryType = .disclosureIndicator
 			$0.cell.selectionStyle = .default
 		}
 		.onCellSelection { _, _ in
 			self.navigationController?.pushViewController(
-				StorageViewController(type: .localStorage), animated: true)
+				Storage1ViewController(), animated: true)
 		}
 
-		<<< LabelRow() {
-			$0.title = NSLocalizedString("Edit Cookies", comment: "Option title")
-			$0.cell.textLabel?.numberOfLines = 0
-			$0.cell.accessoryType = .disclosureIndicator
-			$0.cell.selectionStyle = .default
-		}
-		.onCellSelection { _, _ in
-			self.navigationController?.pushViewController(
-				StorageViewController(type: .cookies), animated: true)
-		}
-
-		<<< PushRow<Option>() {
+		<<< PushRow<Settings.TlsVersion>() {
 			$0.title = NSLocalizedString("TLS Version", comment: "Option title")
 			$0.selectorTitle = $0.title
-			$0.options = [Option("tls_12", NSLocalizedString("TLS 1.2 Only", comment: "Option")),
-						  Option("tls_10", NSLocalizedString("TLS 1.2, 1.1 or 1.0", comment: "Option"))]
+			$0.options = [Settings.TlsVersion.tls13,
+						  Settings.TlsVersion.tls12,
+						  Settings.TlsVersion.tls10]
 
-			if let value = userDefaults.object(forKey: "tls_version") as? String {
-				$0.value = $0.options?.first { $0.id == value }
-			}
+			$0.value = Settings.tlsVersion
 
 			$0.cell.textLabel?.numberOfLines = 0
 		}
@@ -158,24 +133,26 @@ class SettingsViewController: FormViewController {
 			}
 		}
 		.onChange { row in
-			self.userDefaults.set(row.value?.id ?? "tls_12", forKey: "tls_version")
+			if let value = row.value {
+				Settings.tlsVersion = value
+			}
 		}
 
-		<<< PushRow<Option>() {
+		<<< PushRow<TabSecurity.Level>() {
 			$0.title = NSLocalizedString("Tab Security", comment: "Option title")
 			$0.selectorTitle = $0.title
-			$0.options = [Option("always_remember", NSLocalizedString("Remember Tabs", comment: "")),
-						  Option("forget_on_shutdown", NSLocalizedString("Forget at Shutdown", comment: "")),
-						  Option("clear_on_background", NSLocalizedString("Forget in Background", comment: ""))]
+			$0.options = [TabSecurity.Level.alwaysRemember,
+						  TabSecurity.Level.forgetOnShutdown,
+						  TabSecurity.Level.clearOnBackground]
 
-			if let value = userDefaults.object(forKey: "tab_security") as? String {
-				$0.value = $0.options?.first { $0.id == value }
-			}
+			$0.value = Settings.tabSecurity
 
 			$0.cell.textLabel?.numberOfLines = 0
 		}
 		.onChange { row in
-			self.userDefaults.set(row.value?.id ?? "forget_on_shutdown", forKey: "tab_security")
+			if let value = row.value {
+				Settings.tabSecurity = value
+			}
 		}
 
 		+++ Section(header: NSLocalizedString("Miscellaneous", comment: "Section header"),
@@ -184,22 +161,26 @@ class SettingsViewController: FormViewController {
 
 		<<< SwitchRow() {
 			$0.title = NSLocalizedString("Mute Audio with Mute Switch", comment: "Option title")
-			$0.value = userDefaults.bool(forKey: "mute_with_switch")
+			$0.value = Settings.muteWithSwitch
 			$0.cell.switchControl.onTintColor = .poeAccent
 			$0.cell.textLabel?.numberOfLines = 0
 		}
 		.onChange { row in
-			self.userDefaults.set(row.value ?? false, forKey: "mute_with_switch")
+			if let value = row.value {
+				Settings.muteWithSwitch = value
+			}
 		}
 
 		<<< SwitchRow() {
 			$0.title = NSLocalizedString("Allow 3rd-Party Keyboards", comment: "Option title")
-			$0.value = userDefaults.bool(forKey: "third_party_keyboards")
+			$0.value = Settings.thirdPartyKeyboards
 			$0.cell.switchControl.onTintColor = .poeAccent
 			$0.cell.textLabel?.numberOfLines = 0
 		}
 		.onChange { row in
-			self.userDefaults.set(row.value ?? false, forKey: "third_party_keyboards")
+			if let value = row.value {
+				Settings.thirdPartyKeyboards = value
+			}
 		}
 
 

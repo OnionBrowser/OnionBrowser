@@ -59,6 +59,7 @@
 #import "AppDelegate.h"
 #import "HostSettings.h"
 #import "URLBlocker.h"
+#import "OnionBrowser-Swift.h"
 
 @import CSPHeader;
 
@@ -319,14 +320,7 @@ static JAHPQNSURLSessionDemux *sharedDemuxInstance = nil;
 	// Set TLSMinimumSupportedProtocol from user settings.
 	// NOTE: TLSMaximumSupportedProtocol is always set to the max supported by the system
 	// by default so there is no need to set it.
-	NSString *tlsVersion = [NSUserDefaults.standardUserDefaults stringForKey:@"tls_version"];
-
-	if ([tlsVersion isEqualToString:@"tls_12"]) {
-		config.TLSMinimumSupportedProtocol = kTLSProtocol12;
-	}
-	else {
-		config.TLSMinimumSupportedProtocol = kTLSProtocol1;
-	}
+	config.TLSMinimumSupportedProtocol = Settings.minimumSupportedProtocol;
 
 	// Set proxy
 	NSString* proxyHost = @"localhost";
@@ -616,7 +610,7 @@ static NSString * kJAHPRecursiveRequestFlagProperty = @"com.jivesoftware.JAHPAut
 	}
 
 	/* add "do not track" header if it's enabled in the settings */
-	if ([NSUserDefaults.standardUserDefaults boolForKey:@"send_dnt"])
+	if (Settings.sendDnt)
 	{
 		[mutableRequest setValue:@"1" forHTTPHeaderField:@"DNT"];
 	}

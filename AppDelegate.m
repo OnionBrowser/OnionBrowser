@@ -200,8 +200,7 @@
 
 - (BOOL)application:(UIApplication *)application shouldAllowExtensionPointIdentifier:(NSString *)extensionPointIdentifier {
 	if ([extensionPointIdentifier isEqualToString:UIApplicationKeyboardExtensionPointIdentifier]) {
-		NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-		return [userDefaults boolForKey:@"third_party_keyboards"];
+		return Settings.thirdPartyKeyboards;
 	}
 	return YES;
 }
@@ -400,8 +399,6 @@
 		NSLog(@"[AppDelegate] failed saving preferences");
 		abort();
 	}
-	
-	_searchEngines = [NSMutableDictionary dictionaryWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"SearchEngines.plist"]];
 }
 
 - (BOOL)areTesting
@@ -436,9 +433,7 @@
 
 - (void)adjustMuteSwitchBehavior
 {
-	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-
-	if ([userDefaults boolForKey:@"mute_with_switch"]) {
+	if (Settings.muteWithSwitch) {
 		/* setting AVAudioSessionCategoryAmbient will prevent audio from UIWebView from pausing already-playing audio from other apps */
 		[[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient error:nil];
 		[[AVAudioSession sharedInstance] setActive:NO error:nil];

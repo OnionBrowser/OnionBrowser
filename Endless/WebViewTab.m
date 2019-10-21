@@ -8,6 +8,7 @@
 #import "AppDelegate.h"
 #import "WebViewTab.h"
 #import "HostSettings.h"
+#import "OnionBrowser-Swift.h"
 
 #import "NSString+JavascriptEscape.h"
 #import "UIResponder+FirstResponder.h"
@@ -276,19 +277,14 @@
 
 - (void)searchFor:(NSString *)query
 {
-	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	NSDictionary *se = [AppDelegate.sharedAppDelegate.searchEngines objectForKey:[userDefaults stringForKey:@"search_engine"]];
-	
-	if (se == nil)
-		/* just pick the first search engine */
-		se = [AppDelegate.sharedAppDelegate.searchEngines objectForKey:[[AppDelegate.sharedAppDelegate.searchEngines allKeys] firstObject]];
-	
-	NSDictionary *pp = [se objectForKey:@"post_params"];
+	SearchEngine *se = Settings.searchEngine;
+
+	NSDictionary *pp = se.postParams;
 	NSString *urls;
 	if (pp == nil)
-		urls = [NSString stringWithFormat:[se objectForKey:@"search_url"], [query stringByURLEncoding]];
+		urls = [NSString stringWithFormat:se.searchUrl, [query stringByURLEncoding]];
 	else
-		urls = [se objectForKey:@"search_url"];
+		urls = se.searchUrl;
 	
 	NSURL *url = [NSURL URLWithString:urls];
 	if (pp == nil) {

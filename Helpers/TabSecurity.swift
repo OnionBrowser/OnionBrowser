@@ -10,30 +10,47 @@
 
 import UIKit
 
-@objc class TabSecurity: NSObject {
+@objcMembers
+class TabSecurity: NSObject {
 
-	private static let tabSecurity = "tab_security"
-	private static let alwaysRemember = "always_remember"
-	private static let forgetOnShutdown = "forget_on_shutdown"
-	private static let clearOnBackground = "clear_on_background"
+	enum Level: String, CustomStringConvertible {
+
+		case alwaysRemember = "always_remember"
+		case forgetOnShutdown = "forget_on_shutdown"
+		case clearOnBackground = "clear_on_background"
+
+		var description: String {
+			switch self {
+			case .alwaysRemember:
+				return NSLocalizedString("Remember Tabs", comment: "Tab security level")
+
+			case .forgetOnShutdown:
+				return NSLocalizedString("Forget at Shutdown", comment: "Tab security level")
+
+			default:
+				return NSLocalizedString("Forget in Background", comment: "Tab security level")
+			}
+		}
+	}
+
 	private static let openTabs = "open_tabs"
 
-	@objc class var isClearOnBackground: Bool {
-		return UserDefaults.standard.object(forKey: tabSecurity) as? String ?? forgetOnShutdown == clearOnBackground
+	class var isClearOnBackground: Bool {
+		return Settings.tabSecurity  == .clearOnBackground
 	}
 
 	/**
 	Handle tab privacy
 	*/
-	@objc class func handleBackgrounding() {
+	class func handleBackgrounding() {
 		let ud = UserDefaults.standard
-		let security = ud.object(forKey: tabSecurity) as? String ?? forgetOnShutdown
+		let security = Settings.tabSecurity
 		let appDelegate = UIApplication.shared.delegate as? AppDelegate
 		let controller = appDelegate?.webViewController
 		let cookieJar = appDelegate?.cookieJar
 		let ocspCache = appDelegate?.certificateAuthentication
 
-		if security == clearOnBackground {
+		if security == .clearOnBackground {
 			controller?.removeAllTabs()
 			cookieJar?.clearAllNonWhitelistedData()
 		}
@@ -42,7 +59,7 @@ import UIKit
 			ocspCache?.persist()
 		}
 
-		if security == alwaysRemember {
+		if security == .alwaysRemember {
 			if let tabs = controller?.webViewTabs() as? [WebViewTab] {
 
 				var urls = [URL]()
@@ -66,11 +83,10 @@ import UIKit
 		}
 	}
 
-	@objc class func restore() {
+	class func restore() {
 		let ud = UserDefaults.standard
 
-		if let tabSecurity = ud.object(forKey: tabSecurity) as? String,
-			tabSecurity == alwaysRemember,
+		if Settings.tabSecurity  == .alwaysRemember,
 			let controller = (UIApplication.shared.delegate as? AppDelegate)?.webViewController,
 			let data = ud.object(forKey: openTabs) as? Data,
 			let urls = NSKeyedUnarchiver.unarchiveObject(with: data) as? [URL] {

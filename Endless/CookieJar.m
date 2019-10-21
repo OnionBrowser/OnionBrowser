@@ -9,6 +9,7 @@
 #import "CookieJar.h"
 #import "HostSettings.h"
 #import "HTTPSEverywhere.h"
+#import "OnionBrowser-Swift.h"
 
 /*
  * local storage is found in NSCachesDirectory and can be a file or directory:
@@ -91,9 +92,8 @@
 			[fileManager removeItemAtPath:whitelist error:nil];
 		}
 	}
-	
-	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	[self setOldDataSweepTimeout:[NSNumber numberWithInteger:[userDefaults integerForKey:@"old_data_sweep_mins"]]];
+
+	self.oldDataSweepTimeout = [NSNumber numberWithDouble:Settings.cookieAutoSweepInterval];
 	
 	return self;
 }
