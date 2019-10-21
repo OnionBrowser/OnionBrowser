@@ -24,28 +24,6 @@
 		</dict>
 		<dict>
 			<key>Title</key>
-			<string>Privacy</string>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
-			<key>FooterText</key>
-			<string>Cookies and local storage data from non-whitelisted hosts will be cleared even from open tabs after not being accessed for this many minutes</string>
-		</dict>
-		<dict>
-			<key>Key</key>
-			<string>old_data_sweep_mins</string>
-			<key>Title</key>
-			<string>Cookie auto-sweep interval</string>
-			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
-			<key>DefaultValue</key>
-			<integer>30</integer>
-			<key>KeyboardType</key>
-			<string>NumberPad</string>
-			<key>IASKTextAlignment</key>
-			<string>IASKUITextAlignmentRight</string>
-		</dict>
-		<dict>
-			<key>Title</key>
 			<string>Security</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>

@@ -29,7 +29,7 @@ class Storage1ViewController: FormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-		navigationItem.title = NSLocalizedString("Cookies and  Local Storage", comment: "Scene title")
+		navigationItem.title = NSLocalizedString("Cookies and Local Storage", comment: "Scene title")
 
 		form
 		+++ LabelRow() {

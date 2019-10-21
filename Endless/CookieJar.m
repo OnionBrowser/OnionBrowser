@@ -188,7 +188,7 @@
 
 		NSArray *matches = [regex matchesInString:file options:0 range:NSMakeRange(0, [file length])];
 		if (!matches || ![matches count]) {
-			[files setObject:NSLocalizedString(@"(Other cache data)", nil) forKey:absFile];
+			[files setObject:NSLocalizedString(@"(other cache data)", nil) forKey:absFile];
 			continue;
 		}
 		
