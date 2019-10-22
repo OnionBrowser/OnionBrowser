@@ -101,6 +101,8 @@
 		A053137222F1CBD3006655EC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 01801E9A1A32CA2A002B4718 /* AppDelegate.m */; };
 		A053137522F1E587006655EC /* CertificateAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = A053137322F1E587006655EC /* CertificateAuthentication.m */; };
 		A053137822F1EC19006655EC /* DownloadHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A053137622F1EC19006655EC /* DownloadHelper.m */; };
+		A062401A235F0BDC008DADDD /* CustomSitesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0624019235F0BDC008DADDD /* CustomSitesViewController.swift */; };
+		A062401C235F134C008DADDD /* SearchableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A062401B235F134C008DADDD /* SearchableTableViewController.swift */; };
 		A072C4D3227C68500022BC58 /* BlurredSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = A072C4D1227C684E0022BC58 /* BlurredSnapshot.swift */; };
 		A072C4D4227C68500022BC58 /* TabSecurity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A072C4D2227C684F0022BC58 /* TabSecurity.swift */; };
 		A07D654B2208A0C10002D775 /* OBSettingsConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = A07D654A2208A0C10002D775 /* OBSettingsConstants.m */; };
@@ -400,6 +402,8 @@
 		A05AD0261F0A54DA00953274 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = Endless/nb.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
 		A060AC191FB4C710000828EF /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = Endless/fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A060AC1A1FB4C710000828EF /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = Endless/fr.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
+		A0624019235F0BDC008DADDD /* CustomSitesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSitesViewController.swift; sourceTree = "<group>"; };
+		A062401B235F134C008DADDD /* SearchableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchableTableViewController.swift; sourceTree = "<group>"; };
 		A072C4D1227C684E0022BC58 /* BlurredSnapshot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurredSnapshot.swift; sourceTree = "<group>"; };
 		A072C4D2227C684F0022BC58 /* TabSecurity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabSecurity.swift; sourceTree = "<group>"; };
 		A0759DBE20975C2A000DFBFE /* Gemfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Gemfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -1473,6 +1477,7 @@
 				A04E5768235757FE00BA9DD1 /* SecurityViewController.swift */,
 				A03A2DD323577B91002D640B /* SecurityPresetsRow.swift */,
 				A090E2CA23586E360067A865 /* SecurityShield.swift */,
+				A0624019235F0BDC008DADDD /* CustomSitesViewController.swift */,
 				A090E2D02358B2040067A865 /* Storage1ViewController.swift */,
 				A0364536235094DF0038930E /* Storage2ViewController.swift */,
 				8A9BD4012294507C00230DF9 /* DonationViewController.swift */,
@@ -1487,6 +1492,7 @@
 				A03A2DD123577970002D640B /* Bundle+Helpers.swift */,
 				8AD1283B1ED61812005C43E4 /* Ipv6Tester.h */,
 				8AD1283C1ED61812005C43E4 /* Ipv6Tester.m */,
+				A062401B235F134C008DADDD /* SearchableTableViewController.swift */,
 				A072C4D2227C684F0022BC58 /* TabSecurity.swift */,
 			);
 			path = Helpers;
@@ -2406,6 +2412,7 @@
 				8AD5FFBA1EB3DFE30066E7E3 /* ObfsThread.m in Sources */,
 				A084FD7A235A03EA00DA63CF /* Settings.swift in Sources */,
 				01D741321A49EA14007B7033 /* RuleEditorController.m in Sources */,
+				A062401A235F0BDC008DADDD /* CustomSitesViewController.swift in Sources */,
 				018333D21A35291200670CD1 /* HTTPSEverywhereRule.m in Sources */,
 				01AFEB4F1B4F2A5F00A02482 /* OnePasswordExtension.m in Sources */,
 				01801EA11A32CA2A002B4718 /* WebViewController.m in Sources */,
@@ -2420,6 +2427,7 @@
 				018333CA1A3505FB00670CD1 /* HTTPSEverywhere.m in Sources */,
 				01F7CB491A5253DD00F42B73 /* HSTSCache.m in Sources */,
 				69CBCD471E934228009D5352 /* URLBlockerRuleController.m in Sources */,
+				A062401C235F134C008DADDD /* SearchableTableViewController.swift in Sources */,
 				A0D68DFF234C89080027C61A /* Bookmark.swift in Sources */,
 				691286ED1EABF2B400CEC414 /* OnionManager.swift in Sources */,
 				A03A2DD223577971002D640B /* Bundle+Helpers.swift in Sources */,

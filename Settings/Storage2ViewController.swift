@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Storage2ViewController: UITableViewController, UISearchResultsUpdating {
+class Storage2ViewController: SearchableTableViewController {
 
 	struct Item {
 		let host: String
@@ -22,16 +22,7 @@ class Storage2ViewController: UITableViewController, UISearchResultsUpdating {
 		}
 	}
 
-    private let searchController = UISearchController(searchResultsController: nil)
     private var filtered = [Item]()
-
-	/**
-     true, if a search filter is currently set by the user.
-    */
-	private var isFiltering: Bool {
-        return searchController.isActive
-            && !(searchController.searchBar.text?.isEmpty ?? true)
-    }
 
 	private var showShortlist = true
 
@@ -85,11 +76,6 @@ class Storage2ViewController: UITableViewController, UISearchResultsUpdating {
 		navigationItem.title = NSLocalizedString("Cookies and Local Storage", comment: "Scene title")
 
 		self.navigationItem.rightBarButtonItem = self.editButtonItem
-
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        definesPresentationContext = true
-		navigationItem.searchController = searchController
 	}
 
 
@@ -265,9 +251,9 @@ class Storage2ViewController: UITableViewController, UISearchResultsUpdating {
 
 	// MARK: UISearchResultsUpdating
 
-	func updateSearchResults(for searchController: UISearchController) {
-		if let search = searchController.searchBar.text?.lowercased() {
-			filtered = data.filter() { $0.host.lowercased().contains(search) }
+	override func updateSearchResults(for searchController: UISearchController) {
+		if let searchText = searchText {
+			filtered = data.filter() { $0.host.lowercased().contains(searchText) }
         }
 		else {
 			filtered.removeAll()

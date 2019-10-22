@@ -85,6 +85,16 @@ class SettingsViewController: FormViewController {
 		+++ Section(header: NSLocalizedString("Privacy & Security", comment: "Section header"),
 					footer: NSLocalizedString("Choose, how long app remembers open tabs.", comment: "Explanation in section footer"))
 
+		<<< LabelRow() {
+			$0.title = NSLocalizedString("Custom Site Security", comment: "Option label")
+			$0.cell.textLabel?.numberOfLines = 0
+			$0.cell.accessoryType = .disclosureIndicator
+			$0.cell.selectionStyle = .default
+		}
+		.onCellSelection { _, _ in
+			self.navigationController?.pushViewController(CustomSitesViewController(), animated: true)
+		}
+
 		<<< SwitchRow() {
 			$0.title = NSLocalizedString("Send Do-Not-Track Header", comment: "Option title")
 			$0.value = Settings.sendDnt
