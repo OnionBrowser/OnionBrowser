@@ -132,11 +132,14 @@ class CustomSitesViewController: SearchableTableViewController {
 
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		if indexPath.section == 0 {
+			let vc = SecurityViewController()
+			vc.host = (isFiltering ? filtered : hosts)[indexPath.row]
 
-			return
+			navigationController?.pushViewController(vc, animated: true)
 		}
-
-		navigationController?.pushViewController(AddSiteViewController(), animated: true)
+		else {
+			navigationController?.pushViewController(AddSiteViewController(), animated: true)
+		}
 
 		tableView.deselectRow(at: indexPath, animated: false)
 	}

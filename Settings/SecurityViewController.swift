@@ -13,6 +13,8 @@ import Eureka
 
 class SecurityViewController: FormViewController {
 
+	var host: String?
+
     enum ContentPolicy: String, CustomStringConvertible {
         case open = "open"
         case blockXhr = "block_connect"
@@ -35,7 +37,9 @@ class SecurityViewController: FormViewController {
 		}
     }
 
-	private let defaultSettings = HostSettings.default()
+	private lazy var hostSettings = host != nil
+		? HostSettings.forHost(host)
+		: HostSettings.default()
 
 	private let securityPresetsRow = SecurityPresetsRow()
 
@@ -66,27 +70,38 @@ class SecurityViewController: FormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-		navigationItem.title = NSLocalizedString("Default Security", comment: "Scene title")
+		navigationItem.title = host ?? NSLocalizedString("Default Security", comment: "Scene title")
 
-		securityPresetsRow.value = SecurityPreset(defaultSettings)
+		securityPresetsRow.value = SecurityPreset(hostSettings)
 
-		if let value = defaultSettings?.settingOrDefault(HOST_SETTINGS_KEY_CSP) {
+		if let value = hostSettings?.settingOrDefault(HOST_SETTINGS_KEY_CSP) {
 			contentPolicyRow.value = ContentPolicy(rawValue: value)
 		}
 
-		webRtcRow.value = defaultSettings?.boolSettingOrDefault(HOST_SETTINGS_KEY_ALLOW_WEBRTC)
+		webRtcRow.value = hostSettings?.boolSettingOrDefault(HOST_SETTINGS_KEY_ALLOW_WEBRTC)
 
-		mixedModeRow.value = defaultSettings?.boolSettingOrDefault(HOST_SETTINGS_KEY_ALLOW_MIXED_MODE)
+		mixedModeRow.value = hostSettings?.boolSettingOrDefault(HOST_SETTINGS_KEY_ALLOW_MIXED_MODE)
 
 
         form
-		+++ Section("to be replaced in #willDisplayHeaderView to avoid capitalization")
+		+++ (host != nil ? Section() : Section("to be replaced in #willDisplayHeaderView to avoid capitalization"))
 
 		<<< securityPresetsRow
 		.onChange { row in
 			// Only change other settings, if a non-custom preset was chosen.
 			// Do nothing, if it was unselected.
 			if let values = row.value?.values {
+
+				// Force-set this, because #onChange callbacks are only called,
+				// when values actually change. So this might lead to a host
+				// still being configured for default values, although these should
+				// be set hard.
+				self.hostSettings?.setSetting(HOST_SETTINGS_KEY_CSP, toValue: values.csp)
+				self.hostSettings?.setSetting(HOST_SETTINGS_KEY_ALLOW_WEBRTC, toValue: values.webRtc
+					? HOST_SETTINGS_VALUE_YES : HOST_SETTINGS_VALUE_NO)
+				self.hostSettings?.setSetting(HOST_SETTINGS_KEY_ALLOW_MIXED_MODE, toValue: values.mixedMode
+					? HOST_SETTINGS_VALUE_YES : HOST_SETTINGS_VALUE_NO)
+
 				self.contentPolicyRow.value = ContentPolicy(rawValue: values.csp)
 				self.webRtcRow.value = values.webRtc
 				self.mixedModeRow.value = values.mixedMode
@@ -102,19 +117,19 @@ class SecurityViewController: FormViewController {
 
 		<<< contentPolicyRow
 		.onChange { row in
-			self.defaultSettings?.setSetting(HOST_SETTINGS_KEY_CSP, toValue: row.value?.rawValue)
-			self.securityPresetsRow.value = SecurityPreset(self.defaultSettings)
+			self.hostSettings?.setSetting(HOST_SETTINGS_KEY_CSP, toValue: row.value?.rawValue)
+			self.securityPresetsRow.value = SecurityPreset(self.hostSettings)
 			self.securityPresetsRow.updateCell()
 		}
 
 		<<< SwitchRow() {
 			$0.title = NSLocalizedString("Universal Link Protection", comment: "Option title")
-			$0.value = defaultSettings?.boolSettingOrDefault(HOST_SETTINGS_KEY_UNIVERSAL_LINK_PROTECTION)
+			$0.value = hostSettings?.boolSettingOrDefault(HOST_SETTINGS_KEY_UNIVERSAL_LINK_PROTECTION)
 			$0.cell.switchControl.onTintColor = .poeAccent
 			$0.cell.textLabel?.numberOfLines = 0
 		}
 		.onChange { row in
-			self.defaultSettings?.setSetting(HOST_SETTINGS_KEY_UNIVERSAL_LINK_PROTECTION,
+			self.hostSettings?.setSetting(HOST_SETTINGS_KEY_UNIVERSAL_LINK_PROTECTION,
 											 toValue: row.value ?? false ? HOST_SETTINGS_VALUE_YES : HOST_SETTINGS_VALUE_NO)
 		}
 
@@ -123,9 +138,9 @@ class SecurityViewController: FormViewController {
 
 		<<< webRtcRow
 		.onChange { row in
-			self.defaultSettings?.setSetting(HOST_SETTINGS_KEY_ALLOW_WEBRTC,
+			self.hostSettings?.setSetting(HOST_SETTINGS_KEY_ALLOW_WEBRTC,
 											 toValue: row.value ?? false ? HOST_SETTINGS_VALUE_YES : HOST_SETTINGS_VALUE_NO)
-			self.securityPresetsRow.value = SecurityPreset(self.defaultSettings)
+			self.securityPresetsRow.value = SecurityPreset(self.hostSettings)
 			self.securityPresetsRow.updateCell()
 		}
 
@@ -134,9 +149,9 @@ class SecurityViewController: FormViewController {
 
 		<<< mixedModeRow
 		.onChange { row in
-			self.defaultSettings?.setSetting(HOST_SETTINGS_KEY_ALLOW_MIXED_MODE,
+			self.hostSettings?.setSetting(HOST_SETTINGS_KEY_ALLOW_MIXED_MODE,
 											 toValue: row.value ?? false ? HOST_SETTINGS_VALUE_YES : HOST_SETTINGS_VALUE_NO)
-			self.securityPresetsRow.value = SecurityPreset(self.defaultSettings)
+			self.securityPresetsRow.value = SecurityPreset(self.hostSettings)
 			self.securityPresetsRow.updateCell()
 		}
 
@@ -145,12 +160,12 @@ class SecurityViewController: FormViewController {
 
 		<<< SwitchRow() {
 			$0.title = NSLocalizedString("Allow Persistent Cookies", comment: "Option title")
-			$0.value = defaultSettings?.boolSettingOrDefault(HOST_SETTINGS_KEY_WHITELIST_COOKIES)
+			$0.value = hostSettings?.boolSettingOrDefault(HOST_SETTINGS_KEY_WHITELIST_COOKIES)
 			$0.cell.switchControl.onTintColor = .poeAccent
 			$0.cell.textLabel?.numberOfLines = 0
 		}
 		.onChange { row in
-			self.defaultSettings?.setSetting((HOST_SETTINGS_KEY_WHITELIST_COOKIES),
+			self.hostSettings?.setSetting((HOST_SETTINGS_KEY_WHITELIST_COOKIES),
 											 toValue: row.value ?? false ? HOST_SETTINGS_VALUE_YES : HOST_SETTINGS_VALUE_NO)
 		}
 
@@ -159,11 +174,11 @@ class SecurityViewController: FormViewController {
 
 		<<< TextRow() {
 			$0.title = NSLocalizedString("User Agent", comment: "Option title")
-			$0.value = defaultSettings?.settingOrDefault(HOST_SETTINGS_KEY_USER_AGENT)
+			$0.value = hostSettings?.settingOrDefault(HOST_SETTINGS_KEY_USER_AGENT)
 			$0.cell.textLabel?.numberOfLines = 0
 		}
 		.onChange {row in
-			self.defaultSettings?.setSetting(HOST_SETTINGS_KEY_USER_AGENT, toValue: row.value)
+			self.hostSettings?.setSetting(HOST_SETTINGS_KEY_USER_AGENT, toValue: row.value)
 		}
     }
 

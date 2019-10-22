@@ -38,10 +38,18 @@ class AddSiteViewController: FormViewController {
 
 	@objc private func add() {
 		if let host = urlRow.value?.host ?? urlRow.value?.path {
-			HostSettings(forHost: host, withDict: nil)?.save()
+			HostSettings(forHost: host, withDict: HostSettings.defaults())?.save()
 			HostSettings.persist()
 
-			navigationController?.popViewController(animated: true)
+			if var vcs = navigationController?.viewControllers {
+				vcs.removeLast()
+
+				let vc = SecurityViewController()
+				vc.host = host
+				vcs.append(vc)
+
+				navigationController?.setViewControllers(vcs, animated: true)
+			}
 		}
 	}
 }
