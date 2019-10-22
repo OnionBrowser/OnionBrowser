@@ -7,7 +7,6 @@
 
 #import "AppDelegate.h"
 #import "HostSettings.h"
-#import "HostSettingsController.h"
 #import "HTTPSEverywhereRuleController.h"
 #import "URLBlockerRuleController.h"
 #import "WebViewMenuController.h"
@@ -53,7 +52,6 @@ NSString * const LABEL = @"L";
 	[buttons addObject:@{ FUNC : @"menuShare", LABEL : NSLocalizedString(@"Share URL", nil) }];
 	[buttons addObject:@{ FUNC : @"menuURLBlocker", LABEL : NSLocalizedString(@"URL Blocker", nil) }];
 	[buttons addObject:@{ FUNC : @"menuHTTPSEverywhere", LABEL : NSLocalizedString(@"HTTPS Everywhere", nil) }];
-	[buttons addObject:@{ FUNC : @"menuHostSettings", LABEL : NSLocalizedString(@"Host Settings", nil) }];
 	[buttons addObject:@{ FUNC : @"menuSettings", LABEL: NSLocalizedString(@"Settings", nil) }];
 	[buttons addObject:@{ FUNC : @"bridgeSettings", LABEL : NSLocalizedString(@"Bridge Configuration", nil) }];
 
@@ -207,18 +205,6 @@ NSString * const LABEL = @"L";
 	HTTPSEverywhereRuleController *herc = [[HTTPSEverywhereRuleController alloc] init];
 	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:herc];
 	[[appDelegate webViewController] presentViewController:navController animated:YES completion:nil];
-}
-
-- (void)menuHostSettings
-{
-	HostSettingsController *hsc = [[HostSettingsController alloc] init];
-	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:hsc];
-	[[appDelegate webViewController] presentViewController:navController animated:YES completion:nil];
-	
-	/* if we have custom settings, skip directly to them */
-	HostSettings *hs = [HostSettings settingsOrDefaultsForHost:[[[[appDelegate webViewController] curWebViewTab] url] host]];
-	if (hs && ![hs isDefault])
-		[hsc showDetailsForHost:[hs hostname]];
 }
 
 - (void)menuAddOrManageBookmarks

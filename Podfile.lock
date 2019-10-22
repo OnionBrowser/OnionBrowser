@@ -70,7 +70,6 @@ PODS:
   - UIColor-HexRGB (1.0.1)
   - VForceTouch (0.0.2)
   - WYPopoverController (0.3.9)
-  - XLForm (3.3.0)
 
 DEPENDENCIES:
   - CSPHeader (~> 0.4)
@@ -85,7 +84,6 @@ DEPENDENCIES:
   - UIColor-HexRGB
   - VForceTouch
   - WYPopoverController (from `https://github.com/sammcewan/WYPopoverController.git`)
-  - XLForm (from `https://github.com/jcs/XLForm.git`)
 
 SPEC REPOS:
   trunk:
@@ -109,8 +107,6 @@ EXTERNAL SOURCES:
     :git: https://github.com/Psiphon-Labs/OCSPCache
   WYPopoverController:
     :git: https://github.com/sammcewan/WYPopoverController.git
-  XLForm:
-    :git: https://github.com/jcs/XLForm.git
 
 CHECKOUT OPTIONS:
   OCSPCache:
@@ -119,9 +115,6 @@ CHECKOUT OPTIONS:
   WYPopoverController:
     :commit: 9b8011bd95bd95f6fca6a0afa78965fbf645a062
     :git: https://github.com/sammcewan/WYPopoverController.git
-  XLForm:
-    :commit: 03bab2d19c94366ea993bf0b3983820cc1f45cf8
-    :git: https://github.com/jcs/XLForm.git
 
 SPEC CHECKSUMS:
   CSPHeader: adec9dd23d5ea822b8e397407c40c6435b4a7c49
@@ -140,8 +133,7 @@ SPEC CHECKSUMS:
   UIColor-HexRGB: daccfa7e936af664369734a164b0309087d7f970
   VForceTouch: b5c3a28625269e1818cf915728173bda9f669d6b
   WYPopoverController: a9db25ac2841a686acdc0f3a99bdb21545db32f4
-  XLForm: d5c391dfc62865927b5bcab0a5a0dbfb3e02b0ec
 
-PODFILE CHECKSUM: f1429cf4cd9c1ace3ba317df9e27c9b25e59ff82
+PODFILE CHECKSUM: e76a7c1a89abc2a61460dec3e1b051e2bf5cabc5
 
 COCOAPODS: 1.8.3
