@@ -169,9 +169,30 @@ class SecurityViewController: FormViewController {
 											 toValue: row.value ?? false ? HOST_SETTINGS_VALUE_YES : HOST_SETTINGS_VALUE_NO)
 		}
 
-		+++ Section(header: NSLocalizedString("Other", comment: "Section title"),
-					footer: NSLocalizedString("Custom user-agent string, or blank to use the default.", comment: "Option description"))
+		let section = Section(header: NSLocalizedString("Other", comment: "Section title"),
+							  footer: NSLocalizedString("Custom user-agent string, or blank to use the default.",
+														comment: "Option description"))
 
+		form
+		+++ section
+
+		if hostSettings?.boolSettingOrDefault(HOST_SETTINGS_KEY_IGNORE_TLS_ERRORS) ?? false {
+			section
+			<<< SwitchRow() {
+				$0.title = NSLocalizedString("Ignore TLS Errors", comment: "Option title")
+				$0.value = hostSettings?.boolSettingOrDefault(HOST_SETTINGS_KEY_IGNORE_TLS_ERRORS)
+				$0.cell.switchControl.onTintColor = .poeAccent
+				$0.cell.textLabel?.numberOfLines = 0
+			}
+			.onChange { row in
+				self.hostSettings?.setSetting((HOST_SETTINGS_KEY_IGNORE_TLS_ERRORS),
+												 toValue: HOST_SETTINGS_VALUE_NO)
+
+				row.cell.switchControl.isEnabled = false
+			}
+		}
+
+		section
 		<<< TextRow() {
 			$0.title = NSLocalizedString("User Agent", comment: "Option title")
 			$0.value = hostSettings?.settingOrDefault(HOST_SETTINGS_KEY_USER_AGENT)
