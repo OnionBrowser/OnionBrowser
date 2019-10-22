@@ -3,33 +3,20 @@
 //  OnionBrowser2
 //
 //  Created by Benjamin Erhart on 22.10.19.
-//  Copyright © 2019 jcs. All rights reserved.
+//  Copyright (c) 2012-2019, Tigas Ventures, LLC (Mike Tigas)
+//
+//  This file is part of Onion Browser. See LICENSE file for redistribution terms.
 //
 
 import UIKit
 
 class CustomSitesViewController: SearchableTableViewController {
 
-	private lazy var hosts: [String] = {
-		var hosts = HostSettings.sortedHosts() as? [String] ?? []
+	private lazy var hosts = [String]()
 
-		// We only want to have the real hosts here.
-		hosts.removeAll { $0 == HOST_SETTINGS_DEFAULT }
+	private lazy var filtered = [String]()
 
-		return hosts
-	}()
-
-	private var filtered = [String]()
-
-	private lazy var levels: [String: SecurityPreset] = {
-		var levels = [String: SecurityPreset]()
-
-		for host in hosts {
-			levels[host] = SecurityPreset(HostSettings.forHost(host))
-		}
-
-		return levels
-	}()
+	private lazy var levels = [String: SecurityPreset]()
 
 	init() {
 		super.init(style: .grouped)
@@ -46,6 +33,22 @@ class CustomSitesViewController: SearchableTableViewController {
 
 		self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+
+		// Reload, could have been changed by AddSiteViewController
+		hosts = HostSettings.sortedHosts() as? [String] ?? []
+
+		// We only want to have the real hosts here.
+		hosts.removeAll { $0 == HOST_SETTINGS_DEFAULT }
+
+		for host in hosts {
+			levels[host] = SecurityPreset(HostSettings.forHost(host))
+		}
+
+		tableView.reloadData()
+	}
 
     // MARK: UITableViewDataSource
 
@@ -96,17 +99,22 @@ class CustomSitesViewController: SearchableTableViewController {
 		return indexPath.section == 0
     }
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit
+		editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+
         if editingStyle == .delete {
-            // Delete the row from the data source
+			let host = (isFiltering ? filtered : hosts)[indexPath.row]
+
+			hosts.removeAll { $0 == host }
+			filtered.removeAll { $0 == host }
+			levels.removeValue(forKey: host)
+
+			HostSettings.remove(forHost: host)
+			HostSettings.persist()
+
             tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
-    */
 
 	// MARK: UITableViewDelegate
 
@@ -120,6 +128,17 @@ class CustomSitesViewController: SearchableTableViewController {
 			header.textLabel?.text = NSLocalizedString("Define custom settings for specific sites.",
 													   comment: "Option description")
 		}
+	}
+
+	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		if indexPath.section == 0 {
+
+			return
+		}
+
+		navigationController?.pushViewController(AddSiteViewController(), animated: true)
+
+		tableView.deselectRow(at: indexPath, animated: false)
 	}
 
 

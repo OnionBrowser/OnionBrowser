@@ -103,6 +103,7 @@
 		A053137822F1EC19006655EC /* DownloadHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A053137622F1EC19006655EC /* DownloadHelper.m */; };
 		A062401A235F0BDC008DADDD /* CustomSitesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0624019235F0BDC008DADDD /* CustomSitesViewController.swift */; };
 		A062401C235F134C008DADDD /* SearchableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A062401B235F134C008DADDD /* SearchableTableViewController.swift */; };
+		A062401E235F1FF4008DADDD /* AddSiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A062401D235F1FF4008DADDD /* AddSiteViewController.swift */; };
 		A072C4D3227C68500022BC58 /* BlurredSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = A072C4D1227C684E0022BC58 /* BlurredSnapshot.swift */; };
 		A072C4D4227C68500022BC58 /* TabSecurity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A072C4D2227C684F0022BC58 /* TabSecurity.swift */; };
 		A07D654B2208A0C10002D775 /* OBSettingsConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = A07D654A2208A0C10002D775 /* OBSettingsConstants.m */; };
@@ -404,6 +405,7 @@
 		A060AC1A1FB4C710000828EF /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = Endless/fr.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
 		A0624019235F0BDC008DADDD /* CustomSitesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSitesViewController.swift; sourceTree = "<group>"; };
 		A062401B235F134C008DADDD /* SearchableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchableTableViewController.swift; sourceTree = "<group>"; };
+		A062401D235F1FF4008DADDD /* AddSiteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSiteViewController.swift; sourceTree = "<group>"; };
 		A072C4D1227C684E0022BC58 /* BlurredSnapshot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurredSnapshot.swift; sourceTree = "<group>"; };
 		A072C4D2227C684F0022BC58 /* TabSecurity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabSecurity.swift; sourceTree = "<group>"; };
 		A0759DBE20975C2A000DFBFE /* Gemfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Gemfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -1478,6 +1480,7 @@
 				A03A2DD323577B91002D640B /* SecurityPresetsRow.swift */,
 				A090E2CA23586E360067A865 /* SecurityShield.swift */,
 				A0624019235F0BDC008DADDD /* CustomSitesViewController.swift */,
+				A062401D235F1FF4008DADDD /* AddSiteViewController.swift */,
 				A090E2D02358B2040067A865 /* Storage1ViewController.swift */,
 				A0364536235094DF0038930E /* Storage2ViewController.swift */,
 				8A9BD4012294507C00230DF9 /* DonationViewController.swift */,
@@ -2431,6 +2434,7 @@
 				A0D68DFF234C89080027C61A /* Bookmark.swift in Sources */,
 				691286ED1EABF2B400CEC414 /* OnionManager.swift in Sources */,
 				A03A2DD223577971002D640B /* Bundle+Helpers.swift in Sources */,
+				A062401E235F1FF4008DADDD /* AddSiteViewController.swift in Sources */,
 				01F7CB4E1A52FC4E00F42B73 /* NSString+IPAddress.m in Sources */,
 				014E68A81B9BEDDC00D98A0A /* HostSettings.m in Sources */,
 				A03A2DD423577B91002D640B /* SecurityPresetsRow.swift in Sources */,
