@@ -116,6 +116,17 @@ class SecurityViewController: FormViewController {
 											  comment: "Option description"))
 
 		<<< contentPolicyRow
+		.onPresent { vc, selectorVc in
+			// This is just to trigger the usage of #sectionFooterTitleForKey
+			selectorVc.sectionKeyForValue = { value in
+				return NSLocalizedString("Content Policy", comment: "Option title")
+			}
+
+			selectorVc.sectionFooterTitleForKey = { key in
+				return NSLocalizedString("Restrictions on resources loaded from web pages.",
+										 comment: "Option description")
+			}
+		}
 		.onChange { row in
 			self.hostSettings?.setSetting(HOST_SETTINGS_KEY_CSP, toValue: row.value?.rawValue)
 			self.securityPresetsRow.value = SecurityPreset(self.hostSettings)
@@ -140,6 +151,14 @@ class SecurityViewController: FormViewController {
 		.onChange { row in
 			self.hostSettings?.setSetting(HOST_SETTINGS_KEY_ALLOW_WEBRTC,
 											 toValue: row.value ?? false ? HOST_SETTINGS_VALUE_YES : HOST_SETTINGS_VALUE_NO)
+
+			// Cannot have WebRTC while blocking everything besides images and styles.
+			// So need to lift restrictions there, too.
+			if row.value ?? false && self.contentPolicyRow.value == .strict {
+				self.contentPolicyRow.value = .blockXhr
+				self.contentPolicyRow.updateCell()
+			}
+
 			self.securityPresetsRow.value = SecurityPreset(self.hostSettings)
 			self.securityPresetsRow.updateCell()
 		}
@@ -207,6 +226,11 @@ class SecurityViewController: FormViewController {
 		super.viewWillDisappear(animated)
 
 		HostSettings.persist()
+
+		DispatchQueue.main.async {
+			NotificationCenter.default.post(name: NSNotification.Name(rawValue: HOST_SETTINGS_CHANGED),
+											object: nil, userInfo: nil)
+		}
 	}
 
 

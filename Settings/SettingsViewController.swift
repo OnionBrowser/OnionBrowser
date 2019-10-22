@@ -130,8 +130,6 @@ class SettingsViewController: FormViewController {
 			$0.cell.textLabel?.numberOfLines = 0
 		}
 		.onPresent { vc, selectorVc in
-			print("[\(String(describing: type(of: self)))] selectorVc=\(selectorVc)")
-
 			// This is just to trigger the usage of #sectionFooterTitleForKey
 			selectorVc.sectionKeyForValue = { value in
 				return NSLocalizedString("TLS Version", comment: "Option title")
