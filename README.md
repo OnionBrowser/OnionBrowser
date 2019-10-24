@@ -11,7 +11,7 @@
 
 **Onion Browser** is a free web browser for iPhone and iPad that encrypts and tunnels web traffic through the [Tor network][tor]. See the [official site][official] for more details and App Store links.
 
-Please see the [LICENSE][license] file for usage and redistribution terms. As of the 2.X (Endless-based) tree, redistribution of this software in binary form, with or without modification, is not permitted. (The previous [1.X tree][1.X] of Onion Browser was available under [a different license](https://github.com/OnionBrowser/OnionBrowser/blob/1.X/LICENSE).)
+Please see the [LICENSE][license] file for usage and redistribution terms.
 
 ---
 

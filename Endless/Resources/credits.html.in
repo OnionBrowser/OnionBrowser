@@ -32,7 +32,7 @@
 <p>Onion Browser is developed by Mike Tigas (<a href="https://mike.tig.as/">https://mike.tig.as/</a> | <a href="http://tigas3l7uusztiqu.onion/">tigas3l7uusztiqu.onion</a>) with assistance from the Guardian Project (<a href="https://guardianproject.info/">guardianproject.info</a>). Benjamin Erhart (<a href="https://die.netzarchitekten.com/">Die Netzarchitekten</a>) and Carrie Winfrey (<a href="http://okthankscreative.com/">okthankscreative.com</a>) contributed additional design and development effort for Onion Browser 2.0.</p>
 <p>Work on Onion Browser is supported by individual donors and organizations
 committed to furthering free speech and digital privacy. Please consider donating to support continued development of Onion Browser and other Tor iOS initiatives:<br><a href="https://mike.tig.as/onionbrowser/#support-project">https://mike.tig.as/onionbrowser/#support-project</a></p>
-<p>Onion Browser 2.0 and newer is based on the open-source Endless Browser; special thanks to Joshua Stein for creating Endless and for granting permission to use it in Onion Browser.</p>
+<p>Onion Browser 2.0 and newer is based on the open-source Endless Browser; special thanks to joshua stein for creating Endless and for granting permission to use it in Onion Browser.</p>
 
 <p>Use of the app is under the terms of the <a href="https://www.apple.com/legal/internet-services/itunes/appstore/dev/stdeula/">standard iOS App Store End User License Agreement</a> and the below licenses and disclaimers. Onion Browser is provided as-is and use of the app is at your own risk. Remember: sensitive data does not always belong on a mobile device.</p>
 
@@ -158,16 +158,11 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 <strong>Endless</strong> - https://github.com/jcs/endless
 Copyright &copy; 2014-2019 joshua stein &lt;jcs@jcs.org&gt;
 
-Redistribution and use in source form, with or without modification, and use in binary form, is permitted provided that the following conditions are met:
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 
 1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
-2. The name of the author may not be used to endorse or promote products derived from this software without specific prior written permission.
-
-Redistribution in binary form, with or without modification, is not permitted except by the following:
-
-- Superblock, LLC
-- Psiphon, Inc.
-- Tigas Ventures, LLC ("Mike Tigas")
+2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+3. The name of the author may not be used to endorse or promote products derived from this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </pre>

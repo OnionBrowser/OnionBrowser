@@ -1,12 +1,3 @@
-(NOTE: This is not a BSD/ISC/MIT license.  You are permitted to use this
-source code, with or without modification, in source or binary form, on
-your devices however you see fit.  You are not permitted to redistribute
-binaries of this source code, with or without modification.  In other
-words, you cannot put this application or any application derived from
-it, on the Apple App Store, Cydia, or any other binary-only distribution
-channel.)
-
-
 Onion Browser (version 2.0 and newer) is based on code from Endless and is
 distributed, with permission, under the terms of the Endless License. The
 Endless License is reproduced in full below the Onion Browser License.
@@ -24,10 +15,6 @@ are met:
 2. The name of the author may not be used to endorse or promote products
    derived from this software without specific prior written permission.
 
-Redistribution of this project in binary form, with or without modification,
-is NOT permitted without the explicit written permission of the Endless
-copyright holder.
-
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -42,23 +29,19 @@ POSSIBILITY OF SUCH DAMAGE.
 
 
 Endless
-Copyright (c) 2014-2017 joshua stein <jcs@jcs.org>
+Copyright (c) 2014-2019 joshua stein <jcs@jcs.org>
 
-Redistribution and use in source form, with or without modification,
-and use in binary form, is permitted provided that the following conditions
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions
 are met:
 
 1. Redistributions of source code must retain the above copyright
    notice, this list of conditions and the following disclaimer.
-2. The name of the author may not be used to endorse or promote products
+2. Redistributions in binary form must reproduce the above copyright
+   notice, this list of conditions and the following disclaimer in the
+   documentation and/or other materials provided with the distribution.
+3. The name of the author may not be used to endorse or promote products
    derived from this software without specific prior written permission.
-
-Redistribution in binary form, with or without modification, is NOT
-permitted except by the following:
-
-- Superblock, LLC
-- Psiphon, Inc.
-- Tigas Ventures, LLC ("Mike Tigas")
 
 THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
 IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
@@ -70,6 +53,3 @@ DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
 THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
-For 3rd party software licenses, see Endless/Resources/credits.html
