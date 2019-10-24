@@ -991,6 +991,11 @@
 	[popover.theme setOuterShadowColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.75]];
 	[popover.theme setOuterShadowOffset:CGSizeMake(0, 2)];
 	[popover.theme setOverlayColor:[UIColor clearColor]];
+
+	if (@available(iOS 13.0, *)) {
+		popover.theme.fillTopColor = UIColor.systemBackgroundColor;
+	}
+
 	[popover endThemeUpdates];
 	
 	[popover presentPopoverFromRect:CGRectMake(settingsButton.frame.origin.x, toolbar.frame.origin.y + settingsButton.frame.origin.y + settingsButton.frame.size.height - 30, settingsButton.frame.size.width, settingsButton.frame.size.height) inView:self.view permittedArrowDirections:WYPopoverArrowDirectionAny animated:YES options:WYPopoverAnimationOptionFadeWithScale];

@@ -55,8 +55,14 @@ NSString * const LABEL = @"L";
 	[buttons addObject:@{ FUNC : @"menuSettings", LABEL: NSLocalizedString(@"Settings", nil) }];
 	[buttons addObject:@{ FUNC : @"bridgeSettings", LABEL : NSLocalizedString(@"Bridge Configuration", nil) }];
 
-	[self.view setBackgroundColor:[UIColor clearColor]];
-	[self.tableView setSeparatorInset:UIEdgeInsetsZero];
+	if (@available(iOS 13.0, *)) {
+		self.view.backgroundColor = UIColor.systemBackgroundColor;
+	}
+	else {
+		self.view.backgroundColor = UIColor.clearColor;
+	}
+
+	self.tableView.separatorInset = UIEdgeInsetsZero;
 }
 
 - (CGSize)preferredContentSize
@@ -91,7 +97,7 @@ NSString * const LABEL = @"L";
 	
 	NSDictionary *button = [buttons objectAtIndex:[indexPath row]];
 	
-	cell.backgroundColor = [UIColor clearColor];
+	cell.backgroundColor = UIColor.clearColor;
 	cell.textLabel.font = [UIFont systemFontOfSize:13];
 	cell.textLabel.text = [button objectForKey:LABEL];
 	cell.detailTextLabel.text = nil;
@@ -140,7 +146,7 @@ NSString * const LABEL = @"L";
 		}
 		else {
 			cell.detailTextLabel.text = NSLocalizedString(@"Using defaults", nil);
-			cell.detailTextLabel.textColor = [UIColor grayColor];
+			cell.detailTextLabel.textColor = UIColor.systemGrayColor;
 		}
 	}
 
@@ -259,7 +265,7 @@ NSString * const LABEL = @"L";
 
 - (UIColor *)colorForMenuTextHighlight
 {
-	return [UIColor colorWithRed:0 green:0.5 blue:0 alpha:1];
+	return UIColor.systemGreenColor;
 }
 
 #pragma mark - POEDelegate
