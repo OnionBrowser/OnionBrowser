@@ -104,7 +104,7 @@ These people helped with translations. Thank you so much, folks!
 ## Contributors
 
 This project exists thanks to all the people who contribute. 
-<a href="graphs/contributors"><img src="https://opencollective.com/OnionBrowser/contributors.svg?width=890&button=false" /></a>
+<a href="https://github.com/OnionBrowser/OnionBrowser/graphs/contributors"><img src="https://opencollective.com/OnionBrowser/contributors.svg?width=890&button=false" /></a>
 
 
 ## Backers
