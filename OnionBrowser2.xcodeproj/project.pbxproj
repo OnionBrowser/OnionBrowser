@@ -276,8 +276,6 @@
 		A010FA191E798C0400E04222 /* BUILD.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = BUILD.md; sourceTree = "<group>"; };
 		A025F25721F6265E0034B947 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = Endless/el.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A025F25821F6265E0034B947 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = Endless/el.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
-		A025F25A21F626710034B947 /* gu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = gu; path = Endless/gu.lproj/Localizable.strings; sourceTree = "<group>"; };
-		A025F25B21F626720034B947 /* gu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = gu; path = Endless/gu.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
 		A025F25D21F6267A0034B947 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = Endless/he.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A025F25E21F6267B0034B947 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = Endless/he.lproj/OnePasswordExtension.strings; sourceTree = "<group>"; };
 		A025F26621F626CB0034B947 /* mk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mk; path = Endless/mk.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -317,10 +315,6 @@
 		A046AE32234795AD00E6B3A5 /* keywords.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = keywords.txt; sourceTree = "<group>"; };
 		A046AE33234795AD00E6B3A5 /* promotional_text.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = promotional_text.txt; sourceTree = "<group>"; };
 		A046AE34234795AD00E6B3A5 /* description.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = description.txt; sourceTree = "<group>"; };
-		A046AE36234795AD00E6B3A5 /* subtitle.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = subtitle.txt; sourceTree = "<group>"; };
-		A046AE37234795AD00E6B3A5 /* keywords.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = keywords.txt; sourceTree = "<group>"; };
-		A046AE38234795AD00E6B3A5 /* promotional_text.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = promotional_text.txt; sourceTree = "<group>"; };
-		A046AE39234795AD00E6B3A5 /* description.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = description.txt; sourceTree = "<group>"; };
 		A046AE3B234795AD00E6B3A5 /* promotional_text.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = promotional_text.txt; sourceTree = "<group>"; };
 		A046AE3D234795AE00E6B3A5 /* promotional_text.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = promotional_text.txt; sourceTree = "<group>"; };
 		A046AE3F234795AE00E6B3A5 /* subtitle.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = subtitle.txt; sourceTree = "<group>"; };
@@ -1101,7 +1095,6 @@
 				A046AE30234795AD00E6B3A5 /* fa */,
 				A046AE48234795AE00E6B3A5 /* fr-FR */,
 				A046AE8B234795B200E6B3A5 /* ga */,
-				A046AE35234795AD00E6B3A5 /* gu */,
 				A046AE2C234795AD00E6B3A5 /* he */,
 				A046AE58234795AF00E6B3A5 /* hi */,
 				A046AE2A234795AC00E6B3A5 /* hu */,
@@ -1168,17 +1161,6 @@
 				A046AE34234795AD00E6B3A5 /* description.txt */,
 			);
 			path = fa;
-			sourceTree = "<group>";
-		};
-		A046AE35234795AD00E6B3A5 /* gu */ = {
-			isa = PBXGroup;
-			children = (
-				A046AE36234795AD00E6B3A5 /* subtitle.txt */,
-				A046AE37234795AD00E6B3A5 /* keywords.txt */,
-				A046AE38234795AD00E6B3A5 /* promotional_text.txt */,
-				A046AE39234795AD00E6B3A5 /* description.txt */,
-			);
-			path = gu;
 			sourceTree = "<group>";
 		};
 		A046AE3A234795AD00E6B3A5 /* ja */ = {
@@ -2208,7 +2190,6 @@
 				te,
 				uk,
 				el,
-				gu,
 				he,
 				mk,
 				"tr-TR",
@@ -2509,7 +2490,6 @@
 				A0759DE520975DC6000DFBFE /* te */,
 				A0759DE820975DCD000DFBFE /* uk */,
 				A025F25721F6265E0034B947 /* el */,
-				A025F25A21F626710034B947 /* gu */,
 				A025F25D21F6267A0034B947 /* he */,
 				A025F26621F626CB0034B947 /* mk */,
 				A025F26F21F627110034B947 /* tr-TR */,
@@ -2546,7 +2526,6 @@
 				A0759DE620975DC7000DFBFE /* te */,
 				A0759DE920975DCD000DFBFE /* uk */,
 				A025F25821F6265E0034B947 /* el */,
-				A025F25B21F626720034B947 /* gu */,
 				A025F25E21F6267B0034B947 /* he */,
 				A025F26721F626CB0034B947 /* mk */,
 				A025F27021F627120034B947 /* tr-TR */,
