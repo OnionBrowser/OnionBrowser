@@ -83,7 +83,7 @@ class SettingsViewController: FormViewController {
 		}
 
 		+++ Section(header: NSLocalizedString("Privacy & Security", comment: "Section header"),
-					footer: NSLocalizedString("Choose, how long app remembers open tabs.", comment: "Explanation in section footer"))
+					footer: NSLocalizedString("Choose how long app remembers open tabs.", comment: "Explanation in section footer"))
 
 		<<< LabelRow() {
 			$0.title = NSLocalizedString("Custom Site Security", comment: "Option label")
