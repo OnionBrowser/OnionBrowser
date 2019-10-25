@@ -42,7 +42,7 @@ class SettingsViewController: FormViewController {
 		}
 
 		+++ Section(header: NSLocalizedString("Search", comment: "Section header"),
-					footer: NSLocalizedString("When disabled, all text entered in search bar will be sent to the search engine unless it starts with \"http\"",
+					footer: NSLocalizedString("When disabled, all text entered in search bar will be sent to the search engine unless it starts with \"http\".",
 											  comment: "Explanation in section footer"))
 
 		<<< PushRow<String>() {
