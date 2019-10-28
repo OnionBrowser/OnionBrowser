@@ -36,18 +36,18 @@ class BookmarkViewController: FormViewController {
 
 		// Was called via "+" (add).
 		if index == nil {
-			let tab = AppDelegate.shared()?.webViewController?.curWebViewTab()
 
-			// Check, if this page is already bookmarked. If so, edit that.
-			if let bookmark = Bookmark.all.first(where: { $0.url == tab?.url }) {
-				self.bookmark = bookmark
-				index = Bookmark.all.firstIndex(of: bookmark)
-			}
-			else {
-				// Check, if we have a URL. If so, prefill with that.
-				if let url = tab?.url {
-					titleRow.value = tab?.title?.text
-					urlRow.value = url
+			// Check, if we have a valid URL in the current tab. If so, prefill with that.
+			if let info = AddSiteViewController.getCurrentTabInfo() {
+
+				// Check, if this page is already bookmarked. If so, edit that.
+				if let bookmark = Bookmark.all.first(where: { $0.url == info.url }) {
+					self.bookmark = bookmark
+					index = Bookmark.all.firstIndex(of: bookmark)
+				}
+				else {
+					titleRow.value = info.title
+					urlRow.value = info.url
 				}
 			}
 		}

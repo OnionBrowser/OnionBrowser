@@ -26,6 +26,12 @@ class AddSiteViewController: FormViewController {
 			barButtonSystemItem: .add, target: self, action: #selector(add))
 		navigationItem.rightBarButtonItem?.isEnabled = false
 
+		// Prefill with current tab's URL.
+		if let info = AddSiteViewController.getCurrentTabInfo() {
+			urlRow.value = info.url
+			navigationItem.rightBarButtonItem?.isEnabled = true
+		}
+
 		form
 		+++ urlRow
 		.onChange { row in
@@ -38,8 +44,12 @@ class AddSiteViewController: FormViewController {
 
 	@objc private func add() {
 		if let host = urlRow.value?.host ?? urlRow.value?.path {
-			HostSettings(forHost: host, withDict: HostSettings.defaults())?.save()
-			HostSettings.persist()
+
+			// Don't overwrite host settings, if we already have them for this host!
+			if HostSettings.forHost(host) == nil {
+				HostSettings(forHost: host, withDict: HostSettings.defaults())?.save()
+				HostSettings.persist()
+			}
 
 			if var vcs = navigationController?.viewControllers {
 				vcs.removeLast()
@@ -51,5 +61,22 @@ class AddSiteViewController: FormViewController {
 				navigationController?.setViewControllers(vcs, animated: true)
 			}
 		}
+	}
+
+	/**
+	Evaluates the current tab, if it contains a valid URL.
+
+	- returns: nil if current tab contains no valid URL, or the URL and possibly the tab title.
+	*/
+	public class func getCurrentTabInfo() -> (url: URL, title: String?)? {
+		if let tab = AppDelegate.shared()?.webViewController?.curWebViewTab(),
+			let scheme = tab.url?.scheme?.lowercased() {
+
+			if scheme == "http" || scheme == "https" {
+				return (url: tab.url, title: tab.title?.text)
+			}
+		}
+
+		return nil
 	}
 }
