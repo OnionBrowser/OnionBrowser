@@ -5,7 +5,6 @@ Onion Browser 2 është rishkrim i plotë i aplikacionit që përmban disa karak
 * Një përvojë e re për hapjen e parë.
 * Ndërfaqe përdoruesi e përditësar, që përfshin "shfletim me ndarje" dhe panele të përmirësuara konfigurimi
 * Suport për HTTPS Everywhere
-* Suport për 1Password
 * Bllokim reklamash dhe ruajtje privatësie të inkorporuara
 * Ndryshoni opsionet e sigurisë/privatësisë për çdo faqe (duke përfshirë politikat e 'cookies', agjentët e përdoruesit dhe Javascript/ politika përmbajtjeje aktive).
 * Tor 0.3.5.8

@@ -5,7 +5,6 @@ Onion Browser 2 ist eine komplette Neuentwicklung die einige neue Features beinh
 * Eine kleine Einführung beim allerersten Start
 * Ein neues Benutzerinterface mit Reitern, und verbessterten Einstellungsseiten
 * HTTPS Everywhere Unterstützung
-* 1Password Unterstützung
 * Eingebauter Werbeblocker und Privatsphäreschutz
 * Die Möglichkeit Sicherheits-/Privatsphäreeinstellungen pro Seite zu ändern (Cookie-Einstellungen, Browseridentifizierung (User Agent), und JavaScript/Einstellungen zu aktivem Inhalt).
 * Tor 0.3.5.8

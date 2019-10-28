@@ -5,7 +5,6 @@ Onion-vafrinn 2 er algjör endurritun forritsins, sem innifelur ýmsa nýja eigi
 * Vinalegra viðmót við fyrstu keyrslu.
 * Uppfært notandaviðmót, með vafur í flipum og endurbættum stillingaspjöldum
 * Stuðningur við HTTPS Everywhere
-* Stuðningur við 1Password innskráningu
 * Innbyggð útilokun auglýsinga og verndun á friðhelgi einkalífs
 * Fínstilling á öryggi/gagnaleynd fyrir hvert vefsvæði (þar með talið stefnur varðandi vefkökur, kennistreng og JavaScript/virkt efni).
 * Tor 0.3.5.8

@@ -5,7 +5,6 @@ Onion Browser 2 es una re-escritura total de la aplicación que contiene varias 
 * Por primera vez, una experiencia de lanzamiento más amigable.
 * Una interfaz de usuario actualizada, que contiene "exploración con pestañas" y paneles de configuración mejorados 
 * Soporte para HTTPS Everywhere
-* Soporte para 1Password
 * Protección de privacidad y bloqueo de anuncios incorporado
 * Afina la configuración de seguridad/privacidad para cada sitio (incluyendo política de cookies, user agent y política de JavaScript/contenido activo).
 * Tor 0.3.5.8

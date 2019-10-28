@@ -5,7 +5,6 @@ Onion Browser 2 je zcela přepsaná verze této aplikace, která obsahuje někol
 * Přátelštější úvod do aplikace.
 * Nové uživatelské rozhraní obshaující „panely“ a lepší možnosti nastavení
 * Podpora HTTPS Everywhere
-* Podpora 1Password
 * Zabudované blokování reklam a ochrana soukromí
 * Přizpůsobte nastavení zabezpečení/soukromí pro jednotlivé stránky (včetně zásad cookie, nastavení user agent a zásad pro JavaScript/aktivní obsah).
 * Tor 0.3.5.8

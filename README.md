@@ -57,9 +57,6 @@ The following features are new to Onion Browser, by way of the upstream work on 
 
 - Ability to view SSL certificate information, to allow manual verification of SSL certificates
 
-- [1Password extension](https://github.com/AgileBits/onepassword-app-extension)
-  support (if 1Password app is installed)
-
 
 ## Acknowledgements
 

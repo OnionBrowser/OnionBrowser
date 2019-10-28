@@ -5,7 +5,6 @@ Onion Browser 2 uygulamanın tamamen yeniden yazılmış ve bazı yeni özellikl
 * İlk kullanım deneyiminin daha kolay olması sağlandı.
 * Kullanıcı arayüzü "sekmeli tarama" ile güncellendi ve ayar panoları iyileştirildi
 * HTTPS Everywhere desteği eklendi
-* 1Password desteği eklendi
 * Yerleşik reklam engelleme ve gizlilik koruma eklendi
 * Güvenlik ve gizlilik ayarlarının her site için ayrı ayrı yapılabilmesi sağlandı (çerez ilkesi, kullanıcı aracısı(user agent) ve JavaScript/etkin içerik ilkesi dahil).
 * Tor 0.3.5.8

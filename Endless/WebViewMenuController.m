@@ -14,7 +14,6 @@
 #import "OnionBrowser-Swift.h"
 #import "Ipv6Tester.h"
 
-#import "OnePasswordExtension.h"
 #import "TUSafariActivity.h"
 
 #ifdef __OBJC__
@@ -39,15 +38,6 @@ NSString * const LABEL = @"L";
 	buttons = [[NSMutableArray alloc] initWithCapacity:10];
 	
 	[buttons addObject:@{ FUNC : @"menuRefresh", LABEL : NSLocalizedString(@"Refresh", nil) }];
-	
-	/* no point in showing this if the user doesn't have a password manager installed */
-	if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"bitwarden://"]])
-		[buttons addObject:@{ FUNC : @"menuOnePassword", LABEL : NSLocalizedString(@"Fill with Bitwarden", nil) }];
-	else if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"onepassword://"]])
-		[buttons addObject:@{ FUNC : @"menuOnePassword", LABEL : NSLocalizedString(@"Fill with 1Password", nil) }];
-	else if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"org-appextension-feature-password-management://"]])
-		[buttons addObject:@{ FUNC : @"menuOnePassword", LABEL : NSLocalizedString(@"Password Manager", nil) }];
-
 	[buttons addObject:@{ FUNC : @"menuAddOrManageBookmarks", LABEL : NSLocalizedString(@"Manage Bookmarks", nil) }];
 	[buttons addObject:@{ FUNC : @"menuShare", LABEL : NSLocalizedString(@"Share URL", nil) }];
 	[buttons addObject:@{ FUNC : @"menuURLBlocker", LABEL : NSLocalizedString(@"URL Blocker", nil) }];
@@ -118,7 +108,7 @@ NSString * const LABEL = @"L";
 			cell.detailTextLabel.text = NSLocalizedString(@"Page bookmarked", nil);
 		}
 	}
-	else if ([func isEqualToString:@"menuOnePassword"] || [func isEqualToString:@"menuRefresh"] || [func isEqualToString:@"menuShare"]) {
+	else if ([func isEqualToString:@"menuRefresh"] || [func isEqualToString:@"menuShare"]) {
 		cell.userInteractionEnabled = haveURL;
 		cell.textLabel.enabled = haveURL;
 	}
@@ -189,14 +179,6 @@ NSString * const LABEL = @"L";
 - (void)menuRefresh
 {
 	[[appDelegate webViewController] forceRefresh];
-}
-
-- (void)menuOnePassword
-{
-	[[OnePasswordExtension sharedExtension] fillItemIntoWebView:[[[appDelegate webViewController] curWebViewTab] webView] forViewController:[appDelegate webViewController] sender:[[appDelegate webViewController] settingsButton] showOnlyLogins:NO completion:^(BOOL success, NSError *error) {
-		if (!success)
-			NSLog(@"[OnePasswordExtension] failed to fill into webview: %@", error);
-	}];
 }
 
 - (void)menuURLBlocker
