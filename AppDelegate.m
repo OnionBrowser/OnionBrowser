@@ -166,25 +166,33 @@
 	NSLog(@"[AppDelegate] request to open url: %@", url);
 #endif
 
-	if ([[[url scheme] lowercaseString] isEqualToString:@"onionhttp"])
-		url = [NSURL URLWithString:[[url absoluteString] stringByReplacingCharactersInRange:NSMakeRange(0, [@"onionhttp" length]) withString:@"http"]];
-	else if ([[[url scheme] lowercaseString] isEqualToString:@"onionhttps"])
-		url = [NSURL URLWithString:[[url absoluteString] stringByReplacingCharactersInRange:NSMakeRange(0, [@"onionhttps" length]) withString:@"https"]];
+	if ([url.scheme.lowercaseString isEqualToString:@"onionhttp"])
+	{
+		NSURLComponents *urlc = [[NSURLComponents alloc] initWithURL:url resolvingAgainstBaseURL:YES];
+		urlc.scheme = @"http";
+		url = urlc.URL;
+	}
+	else if ([url.scheme.lowercaseString isEqualToString:@"onionhttps"])
+	{
+		NSURLComponents *urlc = [[NSURLComponents alloc] initWithURL:url resolvingAgainstBaseURL:YES];
+		urlc.scheme = @"https";
+		url = urlc.URL;
+	}
 
 	// In case, a modal view controller is overlaying the WebViewController,
 	// we need to close it *before* adding a new tab. Otherwise, the UI will
 	// be broken on iPhone-X-type devices: The address field will be in the
 	// notch area.
-	if ([self webViewController].presentedViewController != nil)
+	if (self.webViewController.presentedViewController != nil)
 	{
-		[[self webViewController] dismissViewControllerAnimated:YES completion:^{
-			[[self webViewController] addNewTabForURL:url];
+		[self.webViewController dismissViewControllerAnimated:YES completion:^{
+			[self.webViewController addNewTabForURL:url];
 		}];
 	}
 	// If there's no modal view controller, however, the completion block would
 	// never be called.
 	else {
-		[[self webViewController] addNewTabForURL:url];
+		[self.webViewController addNewTabForURL:url];
 	}
 
 	return YES;

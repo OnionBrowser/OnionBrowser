@@ -23,12 +23,16 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
 			<key>CFBundleURLName</key>
 			<string>com.miketigas.onionbrowser</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>onionhttp</string>
 				<string>onionhttps</string>
+				<string>http</string>
+				<string>https</string>
 			</array>
 		</dict>
 	</array>
@@ -51,10 +55,10 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>Needed to read bridge addresses from displayed QR codes.</string>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Needed to store the selected image to your photos.</string>
 	<key>NSMainNibFile</key>
 	<string>Launch Screen</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Needed to store the selected image to your photos.</string>
 	<key>UIApplicationShortcutItems</key>
 	<array>
 		<dict>
