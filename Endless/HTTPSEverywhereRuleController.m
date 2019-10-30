@@ -8,6 +8,7 @@
 #import "HTTPSEverywhereRuleController.h"
 #import "HTTPSEverywhere.h"
 #import "HTTPSEverywhereRule.h"
+#import "OnionBrowser-Swift.h"
 
 @implementation HTTPSEverywhereRuleController
 

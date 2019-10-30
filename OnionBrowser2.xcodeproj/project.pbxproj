@@ -120,6 +120,8 @@
 		A0D68E0A234C8E150027C61A /* BookmarksViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0D68E08234C8E140027C61A /* BookmarksViewController.xib */; };
 		A0D68E0B234C8E150027C61A /* BookmarksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D68E09234C8E140027C61A /* BookmarksViewController.swift */; };
 		A0D68E0D234CABF30027C61A /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D68E0C234CABF30027C61A /* BookmarkViewController.swift */; };
+		A0E18F282368509C001953BA /* BrowsingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0E18F262368509C001953BA /* BrowsingViewController.xib */; };
+		A0E18F292368509C001953BA /* BrowsingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E18F272368509C001953BA /* BrowsingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -789,6 +791,8 @@
 		A0D68E08234C8E140027C61A /* BookmarksViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookmarksViewController.xib; sourceTree = "<group>"; };
 		A0D68E09234C8E140027C61A /* BookmarksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarksViewController.swift; sourceTree = "<group>"; };
 		A0D68E0C234CABF30027C61A /* BookmarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
+		A0E18F262368509C001953BA /* BrowsingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BrowsingViewController.xib; sourceTree = "<group>"; };
+		A0E18F272368509C001953BA /* BrowsingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowsingViewController.swift; sourceTree = "<group>"; };
 		BED522A5B119CE39951BF4AF /* Pods-OnionBrowser2 Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnionBrowser2 Tests.debug.xcconfig"; path = "Target Support Files/Pods-OnionBrowser2 Tests/Pods-OnionBrowser2 Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -982,6 +986,7 @@
 		6998064A1EABE5C70012F75E /* OnionBrowser */ = {
 			isa = PBXGroup;
 			children = (
+				A0E18F252368506F001953BA /* Browsing */,
 				A090E2CC2358918D0067A865 /* Bookmarks */,
 				A090E2CD235891C10067A865 /* Settings */,
 				A07D654C2208A1410002D775 /* Migration */,
@@ -2036,6 +2041,15 @@
 			path = hi;
 			sourceTree = "<group>";
 		};
+		A0E18F252368506F001953BA /* Browsing */ = {
+			isa = PBXGroup;
+			children = (
+				A0E18F272368509C001953BA /* BrowsingViewController.swift */,
+				A0E18F262368509C001953BA /* BrowsingViewController.xib */,
+			);
+			path = Browsing;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2175,6 +2189,7 @@
 				8ACB70D21FA136F0001E5588 /* geoip in Resources */,
 				69CBCD4F1E93451C009D5352 /* urlblocker.json in Resources */,
 				01D7412C1A45F8EB007B7033 /* injected.js in Resources */,
+				A0E18F282368509C001953BA /* BrowsingViewController.xib in Resources */,
 				6926DAEE221C836F00D71752 /* credits.html.in in Resources */,
 				A09A2A972254B3D100A3EEF0 /* InfoPlist.strings in Resources */,
 				01801EA61A32CA2A002B4718 /* Images.xcassets in Resources */,
@@ -2338,6 +2353,7 @@
 				A090E2D12358B2040067A865 /* Storage1ViewController.swift in Sources */,
 				69CBCD4D1E934249009D5352 /* RuleEditorRow.m in Sources */,
 				A053137522F1E587006655EC /* CertificateAuthentication.m in Sources */,
+				A0E18F292368509C001953BA /* BrowsingViewController.swift in Sources */,
 				A0D68E0B234C8E150027C61A /* BookmarksViewController.swift in Sources */,
 				01801E981A32CA2A002B4718 /* main.m in Sources */,
 				8AD5FFBA1EB3DFE30066E7E3 /* ObfsThread.m in Sources */,

@@ -187,7 +187,7 @@
 - (void)userFinishedConnecting
 {
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    appDelegate.webViewController = [[WebViewController alloc] init];
+    appDelegate.webViewController = [[BrowsingViewController alloc] init];
 
     [self dismissViewControllerAnimated: YES completion: ^{
         appDelegate.window.rootViewController = appDelegate.webViewController;

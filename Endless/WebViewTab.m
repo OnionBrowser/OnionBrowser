@@ -9,6 +9,7 @@
 #import "WebViewTab.h"
 #import "HostSettings.h"
 #import "OnionBrowser-Swift.h"
+#import "WebViewController.h"
 
 #import "NSString+JavascriptEscape.h"
 #import "UIResponder+FirstResponder.h"

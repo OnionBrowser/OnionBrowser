@@ -9,6 +9,7 @@
 #import "URLBlocker.h"
 
 #import "HTTPSEverywhere.h"
+#import "OnionBrowser-Swift.h"
 
 @implementation URLBlockerRuleController
 

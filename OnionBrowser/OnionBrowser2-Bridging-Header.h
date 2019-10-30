@@ -15,3 +15,5 @@
 #import "Ipv6Tester.h"
 #import "Reachability.h"
 #import "AppDelegate.h"
+#import "WebViewController.h"
+#import "JAHPAuthenticatingHTTPProtocol.h"
