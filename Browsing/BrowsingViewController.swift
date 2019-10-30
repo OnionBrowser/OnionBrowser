@@ -165,7 +165,7 @@ class BrowsingViewController: UIViewController, UITextFieldDelegate, UIScrollVie
 		debug("#viewIsVisible")
 
 		if tabs.count < 1 {
-			addNewTab(forURL: URL(string: "https://die.netzarchitekten.com/")) //"http://3heens4xbedlj57xwcggjsdglot7e36p4rogy642xokemfo2duh6bbyd.onion/"))
+			addNewTab(forURL: URL(string: "http://3heens4xbedlj57xwcggjsdglot7e36p4rogy642xokemfo2duh6bbyd.onion/"))
 		}
 	}
 
