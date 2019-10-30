@@ -107,13 +107,13 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4n6-Gc-zi4">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4n6-Gc-zi4">
                             <rect key="frame" x="376" y="40" width="30" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="30" id="FiD-RS-QJq"/>
                                 <constraint firstAttribute="height" constant="30" id="xaV-BG-kNi"/>
                             </constraints>
-                            <state key="normal" title="Tor"/>
+                            <state key="normal" image="onion"/>
                             <connections>
                                 <action selector="addressbarAction:" destination="-1" eventType="touchUpInside" id="dAy-Em-JoL"/>
                             </connections>
@@ -163,13 +163,13 @@
                             </connections>
                         </barButtonItem>
                         <barButtonItem systemItem="flexibleSpace" id="pDa-h2-m1S"/>
-                        <barButtonItem systemItem="action" id="lNB-Y8-dfW">
+                        <barButtonItem image="share" id="lNB-Y8-dfW">
                             <connections>
                                 <action selector="toolbarAction:" destination="-1" id="AzH-Fc-O5C"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem systemItem="flexibleSpace" id="njw-RG-HOo"/>
-                        <barButtonItem systemItem="bookmarks" id="v4S-IF-OK2">
+                        <barButtonItem image="bookmarks" id="v4S-IF-OK2">
                             <connections>
                                 <action selector="toolbarAction:" destination="-1" id="JAA-Wh-drY"/>
                             </connections>
@@ -211,11 +211,14 @@
     </objects>
     <resources>
         <image name="Shield" width="31" height="39"/>
-        <image name="back" width="11" height="18.5"/>
+        <image name="back" width="11" height="19"/>
+        <image name="bookmarks" width="14" height="18"/>
         <image name="broken_lock" width="29" height="29"/>
-        <image name="forward" width="11" height="18.5"/>
+        <image name="forward" width="11" height="19"/>
+        <image name="onion" width="19" height="21"/>
         <image name="refresh" width="29" height="29"/>
-        <image name="settings" width="23" height="23"/>
-        <image name="tabs" width="22" height="22"/>
+        <image name="settings" width="21" height="20"/>
+        <image name="share" width="17" height="22"/>
+        <image name="tabs" width="21" height="21"/>
     </resources>
 </document>
