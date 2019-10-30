@@ -63,37 +63,37 @@ class BrowsingViewController: UIViewController, UITextFieldDelegate, UIScrollVie
 			attach(webView: tab.webView)
 		}
 
-		// The last non-hidden is the one which is on top.
-		addressFl.text = tabs.last(where: { !$0.webView.isHidden })?.url.absoluteString
+		updateChrome()
 	}
+
+	private lazy var insecureIcon = UIImage(named: "insecure")
+	private lazy var secureIcon = UIImage(named: "secure")
 
 
     // MARK: Actions
-    @IBAction func addressChanged() {
-		let url = URL(string: addressFl.text ?? BrowsingViewController.blankUrl) ?? URL(string: BrowsingViewController.blankUrl)!
-
-		debug("#addressChanged url=\(url)")
-
-        if let currentTab = currentTab {
-            currentTab.load(url)
-        }
-        else {
-            addNewTab(forURL: url)
-        }
-    }
-    
     @IBAction func addressbarAction(_ sender: UIButton) {
         switch sender {
         case securityBt:
             break
 
         case encryptionBt:
-            break
+			guard let certificate = currentTab?.sslCertificate,
+				let vc = SSLCertificateViewController(sslCertificate: certificate) else {
+
+				return
+			}
+
+			vc.title = currentTab?.url.host
+
+			let navC = UINavigationController(rootViewController: vc)
+			navC.modalPresentationStyle = .popover
+			navC.popoverPresentationController?.sourceView = sender.superview
+			navC.popoverPresentationController?.sourceRect = sender.frame
+
+			present(navC, animated: true)
 
         case reloadBt:
             currentTab?.refresh()
-
-            break
 
         default:
             break
@@ -103,13 +103,22 @@ class BrowsingViewController: UIViewController, UITextFieldDelegate, UIScrollVie
     @IBAction func toolbarAction(_ sender: UIBarButtonItem) {
         switch sender {
         case backBt:
-            break
+			currentTab?.goBack()
 
         case frwrdBt:
-            break
+			currentTab?.goForward()
 
         case actionBt:
-            break
+			guard let currentTab = currentTab else {
+				return
+			}
+
+			let avc = UIActivityViewController(activityItems: [currentTab],
+											   applicationActivities: [TUSafariActivity()])
+
+			avc.popoverPresentationController?.barButtonItem = sender
+
+			present(avc, animated: true)
 
         case bookmarksBt:
             let vc = BookmarksViewController.instantiate()
@@ -134,9 +143,25 @@ class BrowsingViewController: UIViewController, UITextFieldDelegate, UIScrollVie
 	// MARK: UITextFieldDelegate
 
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-		addressChanged()
-
 		textField.resignFirstResponder()
+
+		var url = URL(string: addressFl.text ?? BrowsingViewController.blankUrl) ?? URL(string: BrowsingViewController.blankUrl)!
+
+		// Scheme defaults to "file". That's something, we definitely don't want here.
+		if url.scheme?.lowercased() != "http" || url.scheme?.lowercased() != "https" {
+			var urlc = URLComponents(url: url, resolvingAgainstBaseURL: true)
+			urlc?.scheme = "http"
+			url = urlc?.url ?? url
+		}
+
+		debug("#textFieldShouldReturn url=\(url)")
+
+		if let currentTab = currentTab {
+			currentTab.load(url)
+		}
+		else {
+			addNewTab(forURL: url)
+		}
 
 		return true
 	}
@@ -213,8 +238,9 @@ class BrowsingViewController: UIViewController, UITextFieldDelegate, UIScrollVie
 			tab.webView.scrollView.delegate = self
 
 			attach(webView: tab.webView)
-			addressFl?.text = url?.absoluteString
 		}
+
+		updateChrome()
 
 		completion?(true)
 
@@ -239,6 +265,8 @@ class BrowsingViewController: UIViewController, UITextFieldDelegate, UIScrollVie
 		for tab in tabs {
 			tab.webView.isHidden = tab != focussing
 		}
+
+		updateChrome()
 	}
 
 	func removeTab(_ tabNumber: NSNumber) {
@@ -259,6 +287,8 @@ class BrowsingViewController: UIViewController, UITextFieldDelegate, UIScrollVie
 			(focussing ?? tabs.last)?.webView.isHidden = false
 			removing.webView.removeFromSuperview()
 			tabs.remove(at: rIdx)
+
+			updateChrome()
 		}
 		else if focussing != nil {
 			switchToTab(toFocus!)
@@ -327,7 +357,26 @@ class BrowsingViewController: UIViewController, UITextFieldDelegate, UIScrollVie
 	func updateProgress() {
 		debug("#updateProgress")
 
-        progress?.progress = currentTab?.progress.floatValue ?? 1
+		if let progress = progress {
+			progress.progress = currentTab?.progress.floatValue ?? 1
+
+			if progress.progress >= 1 {
+				if !progress.isHidden {
+					UIView.transition(with: view, duration: 0.25,
+									  options: .transitionCrossDissolve,
+									  animations: { progress.isHidden = true })
+				}
+			}
+			else {
+				if progress.isHidden {
+					UIView.transition(with: view, duration: 0.25,
+									  options: .transitionCrossDissolve,
+									  animations: { progress.isHidden = false })
+				}
+			}
+		}
+
+		updateChrome()
 	}
 
 	func webViewTouched() {
@@ -402,5 +451,60 @@ class BrowsingViewController: UIViewController, UITextFieldDelegate, UIScrollVie
 			webView.topAnchor.constraint(equalTo: container.topAnchor).isActive = true
 			webView.bottomAnchor.constraint(equalTo: container.bottomAnchor).isActive = true
 		}
+	}
+
+	private func updateChrome() {
+		// The last non-hidden is the one which is on top.
+		guard let tab = tabs.last(where: { !$0.webView.isHidden }) else {
+			securityBt.setTitle(nil, for: .normal)
+			encryptionBt.isHidden = true
+			reloadBt.isEnabled = false
+			torBt.isEnabled = false
+			backBt.isEnabled = false
+			frwrdBt.isEnabled = false
+			actionBt.isEnabled = false
+
+			return
+		}
+
+		if !addressFl.isFirstResponder {
+			addressFl.text = tab.url.absoluteString
+		}
+
+		let securityId: String
+
+		switch SecurityPreset(HostSettings(orDefaultsForHost: tab.url.host)) {
+
+		case .insecure:
+			securityId = "1"
+
+		case .medium:
+			securityId = "2"
+
+		case .secure:
+			securityId = "3"
+
+		default:
+			securityId = SecurityPreset.custom.description.first?.uppercased() ?? "C"
+		}
+
+		let encryptionIcon: UIImage?
+
+		switch tab.secureMode {
+		case .secure, .secureEV:
+			encryptionIcon = secureIcon
+
+		default:
+			encryptionIcon = insecureIcon
+		}
+
+		securityBt.setTitle(securityId, for: .normal)
+		encryptionBt.setImage(encryptionIcon, for: .normal)
+		encryptionBt.isHidden = false
+		reloadBt.isEnabled = true
+		torBt.isEnabled = false
+		backBt.isEnabled = tab.canGoBack()
+		frwrdBt.isEnabled = tab.canGoForward()
+		actionBt.isEnabled = true
 	}
 }

@@ -17,3 +17,5 @@
 #import "AppDelegate.h"
 #import "WebViewController.h"
 #import "JAHPAuthenticatingHTTPProtocol.h"
+#import "SSLCertificateViewController.h"
+#import "TUSafariActivity.h"

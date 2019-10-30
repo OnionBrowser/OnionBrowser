@@ -60,12 +60,12 @@
                                         <constraint firstAttribute="height" constant="20" id="6mw-Zw-M1S"/>
                                         <constraint firstAttribute="width" constant="20" id="FNv-rl-RM2"/>
                                     </constraints>
-                                    <state key="normal" image="broken_lock"/>
+                                    <state key="normal" image="insecure"/>
                                     <connections>
                                         <action selector="addressbarAction:" destination="-1" eventType="touchUpInside" id="NlA-Zq-Tuj"/>
                                     </connections>
                                 </button>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mql-7P-9gx">
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="mql-7P-9gx">
                                     <rect key="frame" x="35" y="0.0" width="255" height="34"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="34" id="b8s-Rd-2Lj"/>
@@ -73,8 +73,6 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" returnKeyType="go" textContentType="url"/>
                                     <connections>
-                                        <action selector="addressChanged" destination="-1" eventType="valueChanged" id="QiT-XY-VXt"/>
-                                        <action selector="addressChanged" destination="-1" eventType="editingDidEnd" id="wrf-do-d2a"/>
                                         <outlet property="delegate" destination="-1" id="1QX-vy-qst"/>
                                     </connections>
                                 </textField>
@@ -213,8 +211,8 @@
         <image name="Shield" width="31" height="39"/>
         <image name="back" width="11" height="19"/>
         <image name="bookmarks" width="14" height="18"/>
-        <image name="broken_lock" width="29" height="29"/>
         <image name="forward" width="11" height="19"/>
+        <image name="insecure" width="17" height="23"/>
         <image name="onion" width="19" height="21"/>
         <image name="refresh" width="29" height="29"/>
         <image name="settings" width="21" height="20"/>
