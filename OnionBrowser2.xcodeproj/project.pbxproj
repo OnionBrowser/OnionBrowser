@@ -110,6 +110,9 @@
 		A07D65562208A17E0002D775 /* Migration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07D65522208A17E0002D775 /* Migration.swift */; };
 		A084FD7A235A03EA00DA63CF /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A084FD79235A03EA00DA63CF /* Settings.swift */; };
 		A08737E1221324B5005A68CC /* HostSettings_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = A08737DF2213235F005A68CC /* HostSettings_Tests.m */; };
+		A0894E38236AF90500EE2743 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0894E37236AF90500EE2743 /* Formatter.swift */; };
+		A0894E3A236B028D00EE2743 /* BrowsingViewController+POEDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0894E39236B028D00EE2743 /* BrowsingViewController+POEDelegate.swift */; };
+		A0894E3C236B055300EE2743 /* BrowsingViewController+Toolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0894E3B236B055300EE2743 /* BrowsingViewController+Toolbar.swift */; };
 		A090E2CB23586E360067A865 /* SecurityShield.swift in Sources */ = {isa = PBXBuildFile; fileRef = A090E2CA23586E360067A865 /* SecurityShield.swift */; };
 		A090E2D12358B2040067A865 /* Storage1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A090E2D02358B2040067A865 /* Storage1ViewController.swift */; };
 		A09A2A972254B3D100A3EEF0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A09A2A992254B3D100A3EEF0 /* InfoPlist.strings */; };
@@ -420,6 +423,9 @@
 		A084FD79235A03EA00DA63CF /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		A08737DF2213235F005A68CC /* HostSettings_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HostSettings_Tests.m; sourceTree = "<group>"; };
 		A08795572245406E00330327 /* SilenceWarnings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SilenceWarnings.h; sourceTree = "<group>"; };
+		A0894E37236AF90500EE2743 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
+		A0894E39236B028D00EE2743 /* BrowsingViewController+POEDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BrowsingViewController+POEDelegate.swift"; sourceTree = "<group>"; };
+		A0894E3B236B055300EE2743 /* BrowsingViewController+Toolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BrowsingViewController+Toolbar.swift"; sourceTree = "<group>"; };
 		A090E2CA23586E360067A865 /* SecurityShield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityShield.swift; sourceTree = "<group>"; };
 		A090E2D02358B2040067A865 /* Storage1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage1ViewController.swift; sourceTree = "<group>"; };
 		A094CCED2344CCFF00C77E55 /* Appfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Appfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -1431,6 +1437,7 @@
 			children = (
 				A072C4D1227C684E0022BC58 /* BlurredSnapshot.swift */,
 				A03A2DD123577970002D640B /* Bundle+Helpers.swift */,
+				A0894E37236AF90500EE2743 /* Formatter.swift */,
 				8AD1283B1ED61812005C43E4 /* Ipv6Tester.h */,
 				8AD1283C1ED61812005C43E4 /* Ipv6Tester.m */,
 				A062401B235F134C008DADDD /* SearchableTableViewController.swift */,
@@ -2044,8 +2051,10 @@
 		A0E18F252368506F001953BA /* Browsing */ = {
 			isa = PBXGroup;
 			children = (
-				A0E18F272368509C001953BA /* BrowsingViewController.swift */,
 				A0E18F262368509C001953BA /* BrowsingViewController.xib */,
+				A0E18F272368509C001953BA /* BrowsingViewController.swift */,
+				A0894E39236B028D00EE2743 /* BrowsingViewController+POEDelegate.swift */,
+				A0894E3B236B055300EE2743 /* BrowsingViewController+Toolbar.swift */,
 			);
 			path = Browsing;
 			sourceTree = "<group>";
@@ -2359,6 +2368,7 @@
 				8AD5FFBA1EB3DFE30066E7E3 /* ObfsThread.m in Sources */,
 				A084FD7A235A03EA00DA63CF /* Settings.swift in Sources */,
 				01D741321A49EA14007B7033 /* RuleEditorController.m in Sources */,
+				A0894E3A236B028D00EE2743 /* BrowsingViewController+POEDelegate.swift in Sources */,
 				A062401A235F0BDC008DADDD /* CustomSitesViewController.swift in Sources */,
 				018333D21A35291200670CD1 /* HTTPSEverywhereRule.m in Sources */,
 				01801EA11A32CA2A002B4718 /* WebViewController.m in Sources */,
@@ -2379,8 +2389,10 @@
 				A03A2DD223577971002D640B /* Bundle+Helpers.swift in Sources */,
 				A062401E235F1FF4008DADDD /* AddSiteViewController.swift in Sources */,
 				01F7CB4E1A52FC4E00F42B73 /* NSString+IPAddress.m in Sources */,
+				A0894E3C236B055300EE2743 /* BrowsingViewController+Toolbar.swift in Sources */,
 				014E68A81B9BEDDC00D98A0A /* HostSettings.m in Sources */,
 				A03A2DD423577B91002D640B /* SecurityPresetsRow.swift in Sources */,
+				A0894E38236AF90500EE2743 /* Formatter.swift in Sources */,
 				8A9BD4022294507C00230DF9 /* DonationViewController.swift in Sources */,
 				A090E2CB23586E360067A865 /* SecurityShield.swift in Sources */,
 				0135F47F1A3E548F005A8F16 /* WebViewTab.m in Sources */,

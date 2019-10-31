@@ -5,26 +5,28 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BrowsingViewController" customModule="OnionBrowser" customModuleProvider="target">
             <connections>
-                <outlet property="actionBt" destination="lNB-Y8-dfW" id="opQ-oG-65t"/>
+                <outlet property="actionBt" destination="1VD-Cu-Lj9" id="S9J-w8-39C"/>
                 <outlet property="addressBar" destination="RJ2-NH-hB6" id="Rmw-LA-BMd"/>
                 <outlet property="addressFl" destination="mql-7P-9gx" id="XHi-gG-Sl7"/>
-                <outlet property="backBt" destination="KDY-xl-PUU" id="cMy-3O-eKV"/>
-                <outlet property="bookmarksBt" destination="v4S-IF-OK2" id="Org-pG-jZB"/>
+                <outlet property="backBt" destination="BdK-kV-qOx" id="lBX-aw-jmb"/>
+                <outlet property="bookmarksBt" destination="fgM-cO-WGo" id="fMF-W3-WBh"/>
                 <outlet property="container" destination="VpS-hG-MKQ" id="mUx-9g-Kbs"/>
-                <outlet property="containerBottomConstraint2Toolbar" destination="oFU-lA-KFX" id="J61-j8-Hxn"/>
+                <outlet property="containerBottomConstraint2Toolbar" destination="aTy-Df-NrJ" id="4GQ-0S-TD5"/>
                 <outlet property="encryptionBt" destination="mNM-Jo-Ai5" id="iLC-HW-msb"/>
-                <outlet property="frwrdBt" destination="142-TT-A2M" id="qVR-qV-Gj2"/>
+                <outlet property="frwrdBt" destination="nTb-gO-JY9" id="vGl-0a-eyt"/>
                 <outlet property="progress" destination="Af6-aJ-isr" id="ulM-dH-nGZ"/>
                 <outlet property="reloadBt" destination="O2J-cA-pD7" id="HIe-qu-Uqy"/>
                 <outlet property="securityBt" destination="SP4-s8-0b8" id="ytw-Ky-ab9"/>
-                <outlet property="settingsBt" destination="CFC-3W-Di1" id="Rqp-B5-LNL"/>
-                <outlet property="tabsBt" destination="hsw-gS-RRq" id="L9Q-7k-kQt"/>
-                <outlet property="toolbar" destination="HNR-a0-s96" id="nWI-dU-Cpx"/>
+                <outlet property="settingsBt" destination="yK9-fq-stu" id="qLE-uP-enz"/>
+                <outlet property="tabsBt" destination="tXa-df-pw3" id="MF4-TY-hBS"/>
+                <outlet property="toolbar" destination="jzs-tH-FB8" id="0hv-MM-itN"/>
+                <outlet property="toolbarHeightConstraint" destination="ghr-NJ-LHU" id="xEd-Oj-q4H"/>
                 <outlet property="torBt" destination="4n6-Gc-zi4" id="k4Z-yF-jeX"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -48,7 +50,7 @@
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <connections>
-                                <action selector="addressbarAction:" destination="-1" eventType="touchUpInside" id="jfR-ue-pHx"/>
+                                <action selector="action:" destination="-1" eventType="touchUpInside" id="jfR-ue-pHx"/>
                             </connections>
                         </button>
                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="or9-cx-jrG">
@@ -62,7 +64,7 @@
                                     </constraints>
                                     <state key="normal" image="insecure"/>
                                     <connections>
-                                        <action selector="addressbarAction:" destination="-1" eventType="touchUpInside" id="NlA-Zq-Tuj"/>
+                                        <action selector="action:" destination="-1" eventType="touchUpInside" id="NlA-Zq-Tuj"/>
                                     </connections>
                                 </button>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="mql-7P-9gx">
@@ -84,7 +86,7 @@
                                     </constraints>
                                     <state key="normal" image="refresh"/>
                                     <connections>
-                                        <action selector="addressbarAction:" destination="-1" eventType="touchUpInside" id="Y24-R4-6DF"/>
+                                        <action selector="action:" destination="-1" eventType="touchUpInside" id="Y24-R4-6DF"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -112,13 +114,10 @@
                                 <constraint firstAttribute="height" constant="30" id="xaV-BG-kNi"/>
                             </constraints>
                             <state key="normal" image="onion"/>
-                            <connections>
-                                <action selector="addressbarAction:" destination="-1" eventType="touchUpInside" id="dAy-Em-JoL"/>
-                            </connections>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N7h-ch-TdU">
                             <rect key="frame" x="0.0" y="79" width="414" height="1"/>
-                            <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="CQZ-JN-Xw2"/>
                             </constraints>
@@ -146,62 +145,73 @@
                     <rect key="frame" x="0.0" y="80" width="414" height="733"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                 </view>
-                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HNR-a0-s96">
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="jzs-tH-FB8">
                     <rect key="frame" x="0.0" y="813" width="414" height="49"/>
-                    <items>
-                        <barButtonItem image="back" id="KDY-xl-PUU">
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BdK-kV-qOx">
+                            <rect key="frame" x="0.0" y="0.0" width="62.5" height="49"/>
+                            <state key="normal" image="back"/>
                             <connections>
-                                <action selector="toolbarAction:" destination="-1" id="LXV-cb-k67"/>
+                                <action selector="action:" destination="-1" eventType="touchUpInside" id="9zO-Ra-GOt"/>
                             </connections>
-                        </barButtonItem>
-                        <barButtonItem systemItem="flexibleSpace" id="dXP-g1-9Al"/>
-                        <barButtonItem image="forward" id="142-TT-A2M">
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nTb-gO-JY9">
+                            <rect key="frame" x="70.5" y="0.0" width="62" height="49"/>
+                            <state key="normal" image="forward"/>
                             <connections>
-                                <action selector="toolbarAction:" destination="-1" id="xlf-Xx-wdz"/>
+                                <action selector="action:" destination="-1" eventType="touchUpInside" id="xdi-IO-5ZS"/>
                             </connections>
-                        </barButtonItem>
-                        <barButtonItem systemItem="flexibleSpace" id="pDa-h2-m1S"/>
-                        <barButtonItem image="share" id="lNB-Y8-dfW">
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1VD-Cu-Lj9">
+                            <rect key="frame" x="140.5" y="0.0" width="62.5" height="49"/>
+                            <state key="normal" image="share"/>
                             <connections>
-                                <action selector="toolbarAction:" destination="-1" id="AzH-Fc-O5C"/>
+                                <action selector="action:" destination="-1" eventType="touchUpInside" id="x39-N3-FcG"/>
                             </connections>
-                        </barButtonItem>
-                        <barButtonItem systemItem="flexibleSpace" id="njw-RG-HOo"/>
-                        <barButtonItem image="bookmarks" id="v4S-IF-OK2">
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fgM-cO-WGo">
+                            <rect key="frame" x="211" y="0.0" width="62.5" height="49"/>
+                            <state key="normal" image="bookmarks"/>
                             <connections>
-                                <action selector="toolbarAction:" destination="-1" id="JAA-Wh-drY"/>
+                                <action selector="action:" destination="-1" eventType="touchUpInside" id="HdD-3q-DYa"/>
                             </connections>
-                        </barButtonItem>
-                        <barButtonItem systemItem="flexibleSpace" id="DJE-mq-rNX"/>
-                        <barButtonItem image="tabs" id="hsw-gS-RRq">
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tXa-df-pw3">
+                            <rect key="frame" x="281.5" y="0.0" width="62" height="49"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                            <state key="normal" title="1" backgroundImage="tabs"/>
                             <connections>
-                                <action selector="toolbarAction:" destination="-1" id="6KF-wa-yX8"/>
+                                <action selector="action:" destination="-1" eventType="touchUpInside" id="dkL-8E-n1d"/>
                             </connections>
-                        </barButtonItem>
-                        <barButtonItem systemItem="flexibleSpace" id="eDh-Lx-Aqz"/>
-                        <barButtonItem image="settings" id="CFC-3W-Di1">
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yK9-fq-stu">
+                            <rect key="frame" x="351.5" y="0.0" width="62.5" height="49"/>
+                            <state key="normal" image="settings"/>
                             <connections>
-                                <action selector="toolbarAction:" destination="-1" id="6rs-xC-Kfj"/>
+                                <action selector="action:" destination="-1" eventType="touchUpInside" id="wc0-KH-M46"/>
                             </connections>
-                        </barButtonItem>
-                    </items>
-                </toolbar>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="49" id="ghr-NJ-LHU"/>
+                    </constraints>
+                </stackView>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
                 <constraint firstItem="VpS-hG-MKQ" firstAttribute="top" secondItem="RJ2-NH-hB6" secondAttribute="bottom" id="2Jq-yE-1aC"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="jzs-tH-FB8" secondAttribute="bottom" id="4f0-Sn-KYb"/>
                 <constraint firstItem="VpS-hG-MKQ" firstAttribute="top" secondItem="Af6-aJ-isr" secondAttribute="bottom" id="7Vn-8h-pPZ"/>
                 <constraint firstItem="VpS-hG-MKQ" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="Cr0-3o-Gu9"/>
                 <constraint firstItem="RJ2-NH-hB6" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="L6o-B5-oU3"/>
                 <constraint firstAttribute="trailing" secondItem="RJ2-NH-hB6" secondAttribute="trailing" id="O2E-P9-dN9"/>
                 <constraint firstItem="VpS-hG-MKQ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="TIv-Sa-8N4"/>
-                <constraint firstItem="HNR-a0-s96" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="W3R-sv-YhA"/>
-                <constraint firstItem="HNR-a0-s96" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="WQT-tI-yQ2"/>
+                <constraint firstItem="jzs-tH-FB8" firstAttribute="top" secondItem="VpS-hG-MKQ" secondAttribute="bottom" id="aTy-Df-NrJ"/>
                 <constraint firstItem="Af6-aJ-isr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ep7-1p-39w"/>
-                <constraint firstItem="VpS-hG-MKQ" firstAttribute="bottom" secondItem="HNR-a0-s96" secondAttribute="top" id="oFU-lA-KFX"/>
+                <constraint firstItem="jzs-tH-FB8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="qbR-DO-KeE"/>
                 <constraint firstAttribute="trailing" secondItem="Af6-aJ-isr" secondAttribute="trailing" id="suE-MZ-BKY"/>
+                <constraint firstItem="jzs-tH-FB8" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="tBl-fW-zpQ"/>
                 <constraint firstItem="RJ2-NH-hB6" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="uYS-If-aan"/>
-                <constraint firstItem="HNR-a0-s96" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="yZd-hc-m2s"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="-57.971014492753625" y="152.67857142857142"/>

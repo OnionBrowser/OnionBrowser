@@ -11,7 +11,7 @@
 import UIKit
 
 @objcMembers
-class BrowsingViewController: UIViewController, UITextFieldDelegate, UIScrollViewDelegate {
+class BrowsingViewController: UIViewController, UITextFieldDelegate {
 
 	static let blankUrl = "about:blank"
 
@@ -20,19 +20,44 @@ class BrowsingViewController: UIViewController, UITextFieldDelegate, UIScrollVie
     @IBOutlet weak var encryptionBt: UIButton!
     @IBOutlet weak var addressFl: UITextField!
     @IBOutlet weak var reloadBt: UIButton!
-    @IBOutlet weak var torBt: UIButton!
-
+    @IBOutlet weak var torBt: UIButton! {
+        didSet {
+            torBt.addTarget(self, action: #selector(showBridgeSelection), for: .touchUpInside)
+        }
+    }
     @IBOutlet weak var progress: UIProgressView!
     @IBOutlet weak var container: UIView!
     @IBOutlet weak var containerBottomConstraint2Toolbar: NSLayoutConstraint!
 
-    @IBOutlet weak var toolbar: UIToolbar!
-    @IBOutlet weak var backBt: UIBarButtonItem!
-    @IBOutlet weak var frwrdBt: UIBarButtonItem!
-    @IBOutlet weak var actionBt: UIBarButtonItem!
-    @IBOutlet weak var bookmarksBt: UIBarButtonItem!
-    @IBOutlet weak var tabsBt: UIBarButtonItem!
-    @IBOutlet weak var settingsBt: UIBarButtonItem!
+    @IBOutlet weak var toolbar: UIStackView!
+    @IBOutlet weak var toolbarHeightConstraint: NSLayoutConstraint! {
+        didSet {
+            toolbarHeight = toolbarHeightConstraint.constant
+        }
+    }
+    @IBOutlet weak var backBt: UIButton!
+    @IBOutlet weak var frwrdBt: UIButton!
+    @IBOutlet weak var actionBt: UIButton!
+    @IBOutlet weak var bookmarksBt: UIButton!
+	@IBOutlet weak var tabsBt: UIButton! {
+		didSet {
+			// Shabby hack to un-stretch the background image.
+			if let bgImage = tabsBt.currentBackgroundImage {
+				let vInset = (bgImage.size.height - tabsBt.bounds.size.height) / 2
+				let hInset = (bgImage.size.width - tabsBt.bounds.size.width) / 2
+
+				tabsBt.setBackgroundImage(bgImage.withAlignmentRectInsets(
+					UIEdgeInsets(top: vInset, left: hInset, bottom: vInset, right: hInset)),
+										  for: .normal)
+			}
+
+			tabsBt.setTitleColor(tabsBt.tintColor, for: .normal)
+
+			// Offset from center.
+			tabsBt.titleEdgeInsets = UIEdgeInsets(top: 4, left: -4, bottom: 0, right: 0)
+		}
+	}
+    @IBOutlet weak var settingsBt: UIButton!
 
 	private(set) var tabs = [WebViewTab]()
 
@@ -42,17 +67,9 @@ class BrowsingViewController: UIViewController, UITextFieldDelegate, UIScrollVie
 		return currentTabIndex < 0 || currentTabIndex >= tabs.count ? nil : tabs[currentTabIndex]
 	}
 
-	private lazy var toolbarHeight = toolbar.bounds.height
+    var toolbarHeight: CGFloat!
 
-	private lazy var toolbarHeightConstraint: NSLayoutConstraint = {
-		let constrain = toolbar.heightAnchor.constraint(equalToConstant: toolbarHeight)
-
-		constrain.isActive = true
-
-		return constrain
-	}()
-
-    private lazy var containerBottomConstraint2Superview: NSLayoutConstraint
+    lazy var containerBottomConstraint2Superview: NSLayoutConstraint
         = container.bottomAnchor.constraint(equalTo: view.bottomAnchor)
 
     override func viewDidLoad() {
@@ -71,9 +88,10 @@ class BrowsingViewController: UIViewController, UITextFieldDelegate, UIScrollVie
 
 
     // MARK: Actions
-    @IBAction func addressbarAction(_ sender: UIButton) {
+    @IBAction func action(_ sender: UIButton) {
         switch sender {
         case securityBt:
+			// TODO: What to implement here?
             break
 
         case encryptionBt:
@@ -84,24 +102,11 @@ class BrowsingViewController: UIViewController, UITextFieldDelegate, UIScrollVie
 			}
 
 			vc.title = currentTab?.url.host
-
-			let navC = UINavigationController(rootViewController: vc)
-			navC.modalPresentationStyle = .popover
-			navC.popoverPresentationController?.sourceView = sender.superview
-			navC.popoverPresentationController?.sourceRect = sender.frame
-
-			present(navC, animated: true)
+			present(UINavigationController(rootViewController: vc), sender)
 
         case reloadBt:
             currentTab?.refresh()
 
-        default:
-            break
-        }
-    }
-
-    @IBAction func toolbarAction(_ sender: UIBarButtonItem) {
-        switch sender {
         case backBt:
 			currentTab?.goBack()
 
@@ -113,29 +118,24 @@ class BrowsingViewController: UIViewController, UITextFieldDelegate, UIScrollVie
 				return
 			}
 
-			let avc = UIActivityViewController(activityItems: [currentTab],
-											   applicationActivities: [TUSafariActivity()])
+			present(UIActivityViewController(activityItems: [currentTab],
+                                             applicationActivities: [TUSafariActivity()]),
+                    sender)
 
-			avc.popoverPresentationController?.barButtonItem = sender
-
-			present(avc, animated: true)
+		case tabsBt:
+			break
 
         case bookmarksBt:
-            let vc = BookmarksViewController.instantiate()
-            vc.modalPresentationStyle = .popover
-            vc.popoverPresentationController?.barButtonItem = sender
-
-            present(vc, animated: true)
+            present(BookmarksViewController.instantiate(), sender)
 
         case tabsBt:
             break
 
-        default:
-            let vc = SettingsViewController.instantiate()
-            vc.modalPresentationStyle = .popover
-            vc.popoverPresentationController?.barButtonItem = sender
+        case settingsBt:
+            present(SettingsViewController.instantiate(), sender)
 
-            present(vc, animated: true)
+		default:
+            break
         }
     }
 
@@ -164,23 +164,6 @@ class BrowsingViewController: UIViewController, UITextFieldDelegate, UIScrollVie
 		}
 
 		return true
-	}
-
-
-	// MARK: UIScrollViewDelegate
-
-	func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
-		showToolbar()
-	}
-
-	func scrollViewDidScroll(_ scrollView: UIScrollView) {
-		let velocity = scrollView.panGestureRecognizer.velocity(in: scrollView).y
-
-		if velocity == 0 {
-			return
-		}
-
-		showToolbar(velocity > 0)
 	}
 
 
@@ -394,55 +377,6 @@ class BrowsingViewController: UIViewController, UITextFieldDelegate, UIScrollVie
 		print("[\(String(describing: type(of: self)))] \(msg)")
 	}
 
-    private func showToolbar(_ show: Bool = true, _ animated: Bool = true) {
-		if show != toolbar.isHidden {
-			return
-		}
-
-        if show {
-            toolbar.isHidden = false
-			toolbarHeightConstraint.constant = toolbarHeight
-			containerBottomConstraint2Superview.isActive = false
-
-			// This goes away when deactivated for an unkown reason.
-			if containerBottomConstraint2Toolbar == nil {
-				containerBottomConstraint2Toolbar = container.bottomAnchor.constraint(equalTo: toolbar.topAnchor)
-			}
-
-			containerBottomConstraint2Toolbar?.isActive = true
-
-			if animated {
-				UIView.animate(withDuration: 0.25) {
-					self.view.layoutIfNeeded()
-				}
-			}
-        }
-        else {
-            toolbarHeightConstraint.constant = 0
-
-			 // This goes away when deactivated for an unkown reason.
-            containerBottomConstraint2Toolbar?.isActive = false
-
-			containerBottomConstraint2Superview.isActive = true
-
-			if animated {
-				UIView.animate(withDuration: 0.25,
-							   animations: { self.view.layoutIfNeeded() })
-				{ _ in
-					// Need to delay this a little, otherwise animation isn't seen,
-					// because isHidden becomes in effect before the animation,
-					// regardless, if we only do this in the completed callback.
-					DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-						self.toolbar.isHidden = true
-					}
-				}
-			}
-			else {
-				toolbar.isHidden = true
-			}
-		}
-    }
-
 	private func attach(webView: UIWebView) {
 		if let container = container {
 			container.addSubview(webView)
@@ -459,10 +393,10 @@ class BrowsingViewController: UIViewController, UITextFieldDelegate, UIScrollVie
 			securityBt.setTitle(nil, for: .normal)
 			encryptionBt.isHidden = true
 			reloadBt.isEnabled = false
-			torBt.isEnabled = false
 			backBt.isEnabled = false
 			frwrdBt.isEnabled = false
 			actionBt.isEnabled = false
+			tabsBt.setTitle(Formatter.localize(1), for: .normal)
 
 			return
 		}
@@ -476,13 +410,13 @@ class BrowsingViewController: UIViewController, UITextFieldDelegate, UIScrollVie
 		switch SecurityPreset(HostSettings(orDefaultsForHost: tab.url.host)) {
 
 		case .insecure:
-			securityId = "1"
+			securityId = Formatter.localize(1)
 
 		case .medium:
-			securityId = "2"
+			securityId = Formatter.localize(2)
 
 		case .secure:
-			securityId = "3"
+			securityId = Formatter.localize(3)
 
 		default:
 			securityId = SecurityPreset.custom.description.first?.uppercased() ?? "C"
@@ -502,9 +436,17 @@ class BrowsingViewController: UIViewController, UITextFieldDelegate, UIScrollVie
 		encryptionBt.setImage(encryptionIcon, for: .normal)
 		encryptionBt.isHidden = false
 		reloadBt.isEnabled = true
-		torBt.isEnabled = false
 		backBt.isEnabled = tab.canGoBack()
 		frwrdBt.isEnabled = tab.canGoForward()
 		actionBt.isEnabled = true
+		tabsBt.setTitle(Formatter.localize(tabs.count), for: .normal)
+	}
+
+	func present(_ vc: UIViewController, _ sender: UIView) {
+		vc.modalPresentationStyle = .popover
+		vc.popoverPresentationController?.sourceView = sender.superview
+		vc.popoverPresentationController?.sourceRect = sender.frame
+
+		present(vc, animated: true)
 	}
 }
