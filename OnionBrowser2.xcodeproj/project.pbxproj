@@ -67,7 +67,6 @@
 		562DCC65D19B569DD09A7BC5 /* libPods-OnionBrowser2 Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 504D70D2A4B6CCF5A1B92CF7 /* libPods-OnionBrowser2 Tests.a */; };
 		691286EA1EABEE6900CEC414 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 691286E91EABEE6900CEC414 /* LaunchScreen.xib */; };
 		691286ED1EABF2B400CEC414 /* OnionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691286EC1EABF2B400CEC414 /* OnionManager.swift */; };
-		6926DAEE221C836F00D71752 /* credits.html.in in Resources */ = {isa = PBXBuildFile; fileRef = 6926DAED221C836F00D71752 /* credits.html.in */; };
 		693145FE1D3EEAE400D08A6A /* Tor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 693145FD1D3EEAE400D08A6A /* Tor.framework */; };
 		69CBCD471E934228009D5352 /* URLBlockerRuleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CBCD461E934228009D5352 /* URLBlockerRuleController.m */; };
 		69CBCD4D1E934249009D5352 /* RuleEditorRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CBCD4B1E934249009D5352 /* RuleEditorRow.m */; };
@@ -418,6 +417,7 @@
 		A084FD79235A03EA00DA63CF /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		A08737DF2213235F005A68CC /* HostSettings_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HostSettings_Tests.m; sourceTree = "<group>"; };
 		A08795572245406E00330327 /* SilenceWarnings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SilenceWarnings.h; sourceTree = "<group>"; };
+		A0894E36236AE7C800EE2743 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		A090E2CA23586E360067A865 /* SecurityShield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityShield.swift; sourceTree = "<group>"; };
 		A090E2D02358B2040067A865 /* Storage1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage1ViewController.swift; sourceTree = "<group>"; };
 		A094CCED2344CCFF00C77E55 /* Appfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Appfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -1024,6 +1024,7 @@
 				A07D65572208A2540002D775 /* build-util */,
 				A00436091E81856F0067652D /* Cartfile */,
 				A004360A1E81856F0067652D /* Cartfile.resolved */,
+				A0894E36236AE7C800EE2743 /* CHANGELOG.md */,
 				A0759DEA20975DDE000DFBFE /* config */,
 				A00436121E8187800067652D /* convert_rules.rb */,
 				A094CCEC2344CCFF00C77E55 /* fastlane */,
@@ -2175,7 +2176,6 @@
 				8ACB70D21FA136F0001E5588 /* geoip in Resources */,
 				69CBCD4F1E93451C009D5352 /* urlblocker.json in Resources */,
 				01D7412C1A45F8EB007B7033 /* injected.js in Resources */,
-				6926DAEE221C836F00D71752 /* credits.html.in in Resources */,
 				A09A2A972254B3D100A3EEF0 /* InfoPlist.strings in Resources */,
 				01801EA61A32CA2A002B4718 /* Images.xcassets in Resources */,
 				01F8794C1A4124FE00A63654 /* credits.html in Resources */,
