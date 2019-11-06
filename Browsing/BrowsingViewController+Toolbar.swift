@@ -29,9 +29,9 @@ extension BrowsingViewController: UIScrollViewDelegate {
 	}
 
 
-	// MARK: Private Methods
+	// MARK: Public Methods
 
-    private func showToolbar(_ show: Bool = true, _ animated: Bool = true) {
+    func showToolbar(_ show: Bool = true, _ animated: Bool = true) {
 		if show != toolbar.isHidden {
 			return
 		}

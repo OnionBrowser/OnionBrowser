@@ -125,6 +125,8 @@
 		A0D68E0D234CABF30027C61A /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D68E0C234CABF30027C61A /* BookmarkViewController.swift */; };
 		A0E18F282368509C001953BA /* BrowsingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0E18F262368509C001953BA /* BrowsingViewController.xib */; };
 		A0E18F292368509C001953BA /* BrowsingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E18F272368509C001953BA /* BrowsingViewController.swift */; };
+		A0E27597236B10F800C89E18 /* BrowsingViewController+Tabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E27596236B10F800C89E18 /* BrowsingViewController+Tabs.swift */; };
+		A0E755F32372CA77006276DB /* BrowsingViewController+UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E755F22372CA77006276DB /* BrowsingViewController+UITextFieldDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -799,6 +801,8 @@
 		A0D68E0C234CABF30027C61A /* BookmarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
 		A0E18F262368509C001953BA /* BrowsingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BrowsingViewController.xib; sourceTree = "<group>"; };
 		A0E18F272368509C001953BA /* BrowsingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowsingViewController.swift; sourceTree = "<group>"; };
+		A0E27596236B10F800C89E18 /* BrowsingViewController+Tabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BrowsingViewController+Tabs.swift"; sourceTree = "<group>"; };
+		A0E755F22372CA77006276DB /* BrowsingViewController+UITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BrowsingViewController+UITextFieldDelegate.swift"; sourceTree = "<group>"; };
 		BED522A5B119CE39951BF4AF /* Pods-OnionBrowser2 Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnionBrowser2 Tests.debug.xcconfig"; path = "Target Support Files/Pods-OnionBrowser2 Tests/Pods-OnionBrowser2 Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -2054,7 +2058,9 @@
 				A0E18F262368509C001953BA /* BrowsingViewController.xib */,
 				A0E18F272368509C001953BA /* BrowsingViewController.swift */,
 				A0894E39236B028D00EE2743 /* BrowsingViewController+POEDelegate.swift */,
+				A0E755F22372CA77006276DB /* BrowsingViewController+UITextFieldDelegate.swift */,
 				A0894E3B236B055300EE2743 /* BrowsingViewController+Toolbar.swift */,
+				A0E27596236B10F800C89E18 /* BrowsingViewController+Tabs.swift */,
 			);
 			path = Browsing;
 			sourceTree = "<group>";
@@ -2350,6 +2356,7 @@
 			files = (
 				A072C4D4227C68500022BC58 /* TabSecurity.swift in Sources */,
 				A02CE2B8220079B800964A14 /* SearchResultsController.m in Sources */,
+				A0E755F32372CA77006276DB /* BrowsingViewController+UITextFieldDelegate.swift in Sources */,
 				A053136E22F1C737006655EC /* JAHPAuthenticatingHTTPProtocol.m in Sources */,
 				A053137822F1EC19006655EC /* DownloadHelper.m in Sources */,
 				01D741281A44DF1C007B7033 /* WebViewMenuController.m in Sources */,
@@ -2367,6 +2374,7 @@
 				01801E981A32CA2A002B4718 /* main.m in Sources */,
 				8AD5FFBA1EB3DFE30066E7E3 /* ObfsThread.m in Sources */,
 				A084FD7A235A03EA00DA63CF /* Settings.swift in Sources */,
+				A0E27597236B10F800C89E18 /* BrowsingViewController+Tabs.swift in Sources */,
 				01D741321A49EA14007B7033 /* RuleEditorController.m in Sources */,
 				A0894E3A236B028D00EE2743 /* BrowsingViewController+POEDelegate.swift in Sources */,
 				A062401A235F0BDC008DADDD /* CustomSitesViewController.swift in Sources */,

@@ -11,15 +11,40 @@
 import UIKit
 
 @objcMembers
-class BrowsingViewController: UIViewController, UITextFieldDelegate {
+class BrowsingViewController: UIViewController {
 
 	static let blankUrl = "about:blank"
 
-    @IBOutlet weak var addressBar: UIView!
+    @IBOutlet weak var searchBar: UIView!
+    @IBOutlet weak var searchBarHeightConstraint: NSLayoutConstraint! {
+        didSet {
+            searchBarHeight = searchBarHeightConstraint.constant
+        }
+    }
     @IBOutlet weak var securityBt: UIButton!
-    @IBOutlet weak var encryptionBt: UIButton!
-    @IBOutlet weak var addressFl: UITextField!
-    @IBOutlet weak var reloadBt: UIButton!
+	@IBOutlet weak var searchFl: UITextField! {
+		didSet {
+			searchFl.leftView = encryptionBt
+			searchFl.rightView = reloadBt
+		}
+	}
+
+	lazy var encryptionBt: UIButton = {
+		let button = UIButton(type: .custom)
+		button.addTarget(self, action: #selector(action), for: .touchUpInside)
+
+		return button
+	}()
+
+	private lazy var reloadBt: UIButton = {
+		let button = UIButton(type: .custom)
+		button.setImage(UIImage(named: "reload"), for: .normal)
+
+		button.addTarget(self, action: #selector(action), for: .touchUpInside)
+
+		return button
+	}()
+
     @IBOutlet weak var torBt: UIButton! {
         didSet {
             torBt.addTarget(self, action: #selector(showBridgeSelection), for: .touchUpInside)
@@ -29,12 +54,14 @@ class BrowsingViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var container: UIView!
     @IBOutlet weak var containerBottomConstraint2Toolbar: NSLayoutConstraint!
 
-    @IBOutlet weak var toolbar: UIStackView!
+    @IBOutlet weak var toolbar: UIView!
     @IBOutlet weak var toolbarHeightConstraint: NSLayoutConstraint! {
         didSet {
             toolbarHeight = toolbarHeightConstraint.constant
         }
     }
+    @IBOutlet weak var mainTools: UIStackView!
+    @IBOutlet weak var tabsTools: UIView!
     @IBOutlet weak var backBt: UIButton!
     @IBOutlet weak var frwrdBt: UIButton!
     @IBOutlet weak var actionBt: UIButton!
@@ -55,18 +82,31 @@ class BrowsingViewController: UIViewController, UITextFieldDelegate {
 
 			// Offset from center.
 			tabsBt.titleEdgeInsets = UIEdgeInsets(top: 4, left: -4, bottom: 0, right: 0)
+
+			tabsBt.addTarget(self, action: #selector(showAllTabs), for: .touchUpInside)
 		}
 	}
     @IBOutlet weak var settingsBt: UIButton!
+	@IBOutlet weak var addNewTabBt: UIButton! {
+		didSet {
+			addNewTabBt.addTarget(self, action: #selector(newTab), for: .touchUpInside)
+		}
+	}
+	@IBOutlet weak var hideTabsBt: UIButton! {
+		didSet {
+			hideTabsBt.addTarget(self, action: #selector(hideTabs), for: .touchUpInside)
+		}
+	}
 
 	private(set) var tabs = [WebViewTab]()
 
 	private var currentTabIndex = -1
 
-	private var currentTab: WebViewTab? {
+	var currentTab: WebViewTab? {
 		return currentTabIndex < 0 || currentTabIndex >= tabs.count ? nil : tabs[currentTabIndex]
 	}
 
+    var searchBarHeight: CGFloat!
     var toolbarHeight: CGFloat!
 
     lazy var containerBottomConstraint2Superview: NSLayoutConstraint
@@ -83,12 +123,10 @@ class BrowsingViewController: UIViewController, UITextFieldDelegate {
 		updateChrome()
 	}
 
-	private lazy var insecureIcon = UIImage(named: "insecure")
-	private lazy var secureIcon = UIImage(named: "secure")
-
 
     // MARK: Actions
-    @IBAction func action(_ sender: UIButton) {
+
+	@IBAction func action(_ sender: UIButton) {
         switch sender {
         case securityBt:
 			// TODO: What to implement here?
@@ -128,9 +166,6 @@ class BrowsingViewController: UIViewController, UITextFieldDelegate {
         case bookmarksBt:
             present(BookmarksViewController.instantiate(), sender)
 
-        case tabsBt:
-            break
-
         case settingsBt:
             present(SettingsViewController.instantiate(), sender)
 
@@ -138,33 +173,6 @@ class BrowsingViewController: UIViewController, UITextFieldDelegate {
             break
         }
     }
-
-
-	// MARK: UITextFieldDelegate
-
-	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-		textField.resignFirstResponder()
-
-		var url = URL(string: addressFl.text ?? BrowsingViewController.blankUrl) ?? URL(string: BrowsingViewController.blankUrl)!
-
-		// Scheme defaults to "file". That's something, we definitely don't want here.
-		if url.scheme?.lowercased() != "http" || url.scheme?.lowercased() != "https" {
-			var urlc = URLComponents(url: url, resolvingAgainstBaseURL: true)
-			urlc?.scheme = "http"
-			url = urlc?.url ?? url
-		}
-
-		debug("#textFieldShouldReturn url=\(url)")
-
-		if let currentTab = currentTab {
-			currentTab.load(url)
-		}
-		else {
-			addNewTab(forURL: url)
-		}
-
-		return true
-	}
 
 
 	// MARK: Old WebViewController interface
@@ -180,8 +188,8 @@ class BrowsingViewController: UIViewController, UITextFieldDelegate {
 	func viewIsNoLongerVisible() {
 		debug("#viewIsNoLongerVisible")
 
-		if addressFl.isFirstResponder {
-			addressFl.resignFirstResponder()
+		if searchFl.isFirstResponder {
+			searchFl.resignFirstResponder()
 		}
 	}
 
@@ -208,24 +216,53 @@ class BrowsingViewController: UIViewController, UITextFieldDelegate {
 		let tab = WebViewTab(frame: .zero, withRestorationIdentifier: restoration ? url?.absoluteString : nil)
 
 		if let tab = tab {
-			tab.load(url)
+			if let url = url {
+				tab.load(url)
+			}
 
 			tabs.append(tab)
-            currentTabIndex = tabs.firstIndex(of: tab) ?? -1
-
-			for otherTab in tabs {
-				otherTab.webView.isHidden = otherTab != tab
-			}
 
 			tab.webView.translatesAutoresizingMaskIntoConstraints = false
 			tab.webView.scrollView.delegate = self
+			tab.webView.isHidden = true
 
 			attach(webView: tab.webView)
+
+			let completion = { (finished: Bool) in
+				self.currentTabIndex = self.tabs.firstIndex(of: tab) ?? -1
+
+				self.updateChrome()
+
+				completion?(finished)
+			}
+
+			if animation == .hidden {
+				for otherTab in tabs {
+					otherTab.webView.isHidden = otherTab != tab
+				}
+
+				completion(true)
+			}
+			else {
+				if let currentTab = currentTab {
+					UIView.transition(from: currentTab.webView, to: tab.webView,
+									  duration: 0.25,
+									  options: [.transitionCrossDissolve, .showHideTransitionViews],
+									  completion: completion)
+				}
+				else {
+					UIView.transition(with: container, duration: 0.25,
+									  options: .transitionCrossDissolve,
+									  animations: { tab.webView.isHidden = false },
+									  completion: completion)
+				}
+			}
 		}
+		else {
+			updateChrome()
 
-		updateChrome()
-
-		completion?(true)
+			completion?(true)
+		}
 
 		return tab
 	}
@@ -314,13 +351,13 @@ class BrowsingViewController: UIViewController, UITextFieldDelegate {
 	func focusUrlField() {
 		debug("#focusUrlField")
 
-		addressFl.becomeFirstResponder()
+		searchFl.becomeFirstResponder()
 	}
 
 	func unfocusUrlField() {
 		debug("#unfocusUrlField")
 
-		addressFl.resignFirstResponder()
+		searchFl.resignFirstResponder()
 	}
 
 	func dismissPopover() {
@@ -365,15 +402,26 @@ class BrowsingViewController: UIViewController, UITextFieldDelegate {
 	func webViewTouched() {
 		debug("#webViewTouched")
 
-        if addressFl.isFirstResponder {
-            addressFl.resignFirstResponder()
+        if searchFl.isFirstResponder {
+            searchFl.resignFirstResponder()
         }
+	}
+
+
+	// MARK: Public Methods
+
+	func present(_ vc: UIViewController, _ sender: UIView) {
+		vc.modalPresentationStyle = .popover
+		vc.popoverPresentationController?.sourceView = sender.superview
+		vc.popoverPresentationController?.sourceRect = sender.frame
+
+		present(vc, animated: true)
 	}
 
 
 	// MARK: Private Methods
 
-	private func debug(_ msg: String) {
+	func debug(_ msg: String) {
 		print("[\(String(describing: type(of: self)))] \(msg)")
 	}
 
@@ -388,11 +436,11 @@ class BrowsingViewController: UIViewController, UITextFieldDelegate {
 	}
 
 	private func updateChrome() {
-		// The last non-hidden is the one which is on top.
+		updateSearchField()
+
+		// The last non-hidden should be the one which is showing.
 		guard let tab = tabs.last(where: { !$0.webView.isHidden }) else {
 			securityBt.setTitle(nil, for: .normal)
-			encryptionBt.isHidden = true
-			reloadBt.isEnabled = false
 			backBt.isEnabled = false
 			frwrdBt.isEnabled = false
 			actionBt.isEnabled = false
@@ -401,13 +449,9 @@ class BrowsingViewController: UIViewController, UITextFieldDelegate {
 			return
 		}
 
-		if !addressFl.isFirstResponder {
-			addressFl.text = tab.url.absoluteString
-		}
-
 		let securityId: String
 
-		switch SecurityPreset(HostSettings(orDefaultsForHost: tab.url.host)) {
+		switch SecurityPreset(HostSettings(orDefaultsForHost: tab.url?.host)) {
 
 		case .insecure:
 			securityId = Formatter.localize(1)
@@ -422,31 +466,11 @@ class BrowsingViewController: UIViewController, UITextFieldDelegate {
 			securityId = SecurityPreset.custom.description.first?.uppercased() ?? "C"
 		}
 
-		let encryptionIcon: UIImage?
-
-		switch tab.secureMode {
-		case .secure, .secureEV:
-			encryptionIcon = secureIcon
-
-		default:
-			encryptionIcon = insecureIcon
-		}
-
 		securityBt.setTitle(securityId, for: .normal)
-		encryptionBt.setImage(encryptionIcon, for: .normal)
-		encryptionBt.isHidden = false
-		reloadBt.isEnabled = true
+		updateEncryptionBt(tab.secureMode)
 		backBt.isEnabled = tab.canGoBack()
 		frwrdBt.isEnabled = tab.canGoForward()
 		actionBt.isEnabled = true
 		tabsBt.setTitle(Formatter.localize(tabs.count), for: .normal)
-	}
-
-	func present(_ vc: UIViewController, _ sender: UIView) {
-		vc.modalPresentationStyle = .popover
-		vc.popoverPresentationController?.sourceView = sender.superview
-		vc.popoverPresentationController?.sourceRect = sender.frame
-
-		present(vc, animated: true)
 	}
 }
