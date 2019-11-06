@@ -91,23 +91,26 @@ extension BrowsingViewController: UITextFieldDelegate {
 			searchFl.textAlignment = .natural
 		}
 		else {
-			if currentTab?.url == BrowsingViewController.creditsUrl {
-				searchFl.text = ABOUT_ONION_BROWSER
-			}
-			else if currentTab?.url?.absoluteString != BrowsingViewController.blankUrl,
-				let host = currentTab?.url?.host {
-
-				searchFl.text = host.replacingOccurrences(of: #"^www\d*\."#, with: "", options: .regularExpression)
-			}
-			else {
-				searchFl.text = currentTab?.url?.absoluteString
-			}
-
+			searchFl.text = cleanedTitle(currentTab?.url)
 			searchFl.leftViewMode = encryptionBt.image(for: .normal) == nil ? .never : .always
 			searchFl.rightViewMode = searchFl.text?.isEmpty ?? true ? .never : .always
 
 			searchFl.textAlignment = .center
 		}
+	}
+
+	func cleanedTitle(_ url: URL?) -> String? {
+		if url == BrowsingViewController.creditsUrl {
+			return ABOUT_ONION_BROWSER
+		}
+
+		if url?.absoluteString != BrowsingViewController.blankUrl,
+			let host = url?.host {
+
+			return host.replacingOccurrences(of: #"^www\d*\."#, with: "", options: .regularExpression)
+		}
+
+		return url?.absoluteString
 	}
 
 	/**

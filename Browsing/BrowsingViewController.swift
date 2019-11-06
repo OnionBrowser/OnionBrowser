@@ -54,6 +54,12 @@ class BrowsingViewController: UIViewController {
     @IBOutlet weak var container: UIView!
     @IBOutlet weak var containerBottomConstraint2Toolbar: NSLayoutConstraint!
 
+	@IBOutlet weak var tabsCollection: UICollectionView! {
+		didSet {
+			tabsCollection.dragInteractionEnabled = true
+		}
+	}
+
     @IBOutlet weak var toolbar: UIView!
     @IBOutlet weak var toolbarHeightConstraint: NSLayoutConstraint! {
         didSet {
@@ -98,12 +104,21 @@ class BrowsingViewController: UIViewController {
 		}
 	}
 
-	private(set) var tabs = [WebViewTab]()
+	var tabs = [WebViewTab]()
 
 	private var currentTabIndex = -1
-
 	var currentTab: WebViewTab? {
-		return currentTabIndex < 0 || currentTabIndex >= tabs.count ? nil : tabs[currentTabIndex]
+		get {
+			return currentTabIndex < 0 || currentTabIndex >= tabs.count ? tabs.last : tabs[currentTabIndex]
+		}
+		set {
+			if let tab = newValue {
+				currentTabIndex = tabs.firstIndex(of: tab) ?? -1
+			}
+			else {
+				currentTabIndex = -1
+			}
+		}
 	}
 
     var searchBarHeight: CGFloat!
@@ -115,9 +130,11 @@ class BrowsingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tabsCollection.register(TabCell.nib, forCellWithReuseIdentifier: TabCell.reuseIdentifier)
+
 		// There could have been tabs added before XIB was initialized.
 		for tab in tabs {
-			attach(webView: tab.webView)
+			tab.webView.add(to: container)
 		}
 
 		updateChrome()
@@ -181,7 +198,7 @@ class BrowsingViewController: UIViewController {
 		debug("#viewIsVisible")
 
 		if tabs.count < 1 {
-			addNewTab(forURL: URL(string: "http://3heens4xbedlj57xwcggjsdglot7e36p4rogy642xokemfo2duh6bbyd.onion/"))
+			addNewTab(forURL: URL(string: "https://www.golem.de/")) //"http://3heens4xbedlj57xwcggjsdglot7e36p4rogy642xokemfo2duh6bbyd.onion/"))
 		}
 	}
 
@@ -222,14 +239,12 @@ class BrowsingViewController: UIViewController {
 
 			tabs.append(tab)
 
-			tab.webView.translatesAutoresizingMaskIntoConstraints = false
 			tab.webView.scrollView.delegate = self
 			tab.webView.isHidden = true
-
-			attach(webView: tab.webView)
+			tab.webView.add(to: container)
 
 			let completion = { (finished: Bool) in
-				self.currentTabIndex = self.tabs.firstIndex(of: tab) ?? -1
+				self.currentTab = tab
 
 				self.updateChrome()
 
@@ -425,16 +440,6 @@ class BrowsingViewController: UIViewController {
 		print("[\(String(describing: type(of: self)))] \(msg)")
 	}
 
-	private func attach(webView: UIWebView) {
-		if let container = container {
-			container.addSubview(webView)
-			webView.leadingAnchor.constraint(equalTo: container.leadingAnchor).isActive = true
-			webView.trailingAnchor.constraint(equalTo: container.trailingAnchor).isActive = true
-			webView.topAnchor.constraint(equalTo: container.topAnchor).isActive = true
-			webView.bottomAnchor.constraint(equalTo: container.bottomAnchor).isActive = true
-		}
-	}
-
 	private func updateChrome() {
 		updateSearchField()
 
@@ -466,11 +471,11 @@ class BrowsingViewController: UIViewController {
 			securityId = SecurityPreset.custom.description.first?.uppercased() ?? "C"
 		}
 
-		securityBt.setTitle(securityId, for: .normal)
+		securityBt.setTitle(securityId)
 		updateEncryptionBt(tab.secureMode)
 		backBt.isEnabled = tab.canGoBack()
 		frwrdBt.isEnabled = tab.canGoForward()
 		actionBt.isEnabled = true
-		tabsBt.setTitle(Formatter.localize(tabs.count), for: .normal)
+		tabsBt.setTitle(Formatter.localize(tabs.count))
 	}
 }

@@ -127,6 +127,10 @@
 		A0E18F292368509C001953BA /* BrowsingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E18F272368509C001953BA /* BrowsingViewController.swift */; };
 		A0E27597236B10F800C89E18 /* BrowsingViewController+Tabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E27596236B10F800C89E18 /* BrowsingViewController+Tabs.swift */; };
 		A0E755F32372CA77006276DB /* BrowsingViewController+UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E755F22372CA77006276DB /* BrowsingViewController+UITextFieldDelegate.swift */; };
+		A0E755F62372EBAD006276DB /* TabCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0E755F42372EBAD006276DB /* TabCell.xib */; };
+		A0E755F72372EBAD006276DB /* TabCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E755F52372EBAD006276DB /* TabCell.swift */; };
+		A0E755F92372F119006276DB /* UIView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E755F82372F119006276DB /* UIView+Helpers.swift */; };
+		A0E755FB2373597D006276DB /* UIButton+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E755FA2373597D006276DB /* UIButton+Helpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -803,6 +807,10 @@
 		A0E18F272368509C001953BA /* BrowsingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowsingViewController.swift; sourceTree = "<group>"; };
 		A0E27596236B10F800C89E18 /* BrowsingViewController+Tabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BrowsingViewController+Tabs.swift"; sourceTree = "<group>"; };
 		A0E755F22372CA77006276DB /* BrowsingViewController+UITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BrowsingViewController+UITextFieldDelegate.swift"; sourceTree = "<group>"; };
+		A0E755F42372EBAD006276DB /* TabCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TabCell.xib; sourceTree = "<group>"; };
+		A0E755F52372EBAD006276DB /* TabCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCell.swift; sourceTree = "<group>"; };
+		A0E755F82372F119006276DB /* UIView+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Helpers.swift"; sourceTree = "<group>"; };
+		A0E755FA2373597D006276DB /* UIButton+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Helpers.swift"; sourceTree = "<group>"; };
 		BED522A5B119CE39951BF4AF /* Pods-OnionBrowser2 Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnionBrowser2 Tests.debug.xcconfig"; path = "Target Support Files/Pods-OnionBrowser2 Tests/Pods-OnionBrowser2 Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1446,6 +1454,8 @@
 				8AD1283C1ED61812005C43E4 /* Ipv6Tester.m */,
 				A062401B235F134C008DADDD /* SearchableTableViewController.swift */,
 				A072C4D2227C684F0022BC58 /* TabSecurity.swift */,
+				A0E755F82372F119006276DB /* UIView+Helpers.swift */,
+				A0E755FA2373597D006276DB /* UIButton+Helpers.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -2061,6 +2071,8 @@
 				A0E755F22372CA77006276DB /* BrowsingViewController+UITextFieldDelegate.swift */,
 				A0894E3B236B055300EE2743 /* BrowsingViewController+Toolbar.swift */,
 				A0E27596236B10F800C89E18 /* BrowsingViewController+Tabs.swift */,
+				A0E755F42372EBAD006276DB /* TabCell.xib */,
+				A0E755F52372EBAD006276DB /* TabCell.swift */,
 			);
 			path = Browsing;
 			sourceTree = "<group>";
@@ -2204,6 +2216,7 @@
 				8ACB70D21FA136F0001E5588 /* geoip in Resources */,
 				69CBCD4F1E93451C009D5352 /* urlblocker.json in Resources */,
 				01D7412C1A45F8EB007B7033 /* injected.js in Resources */,
+				A0E755F62372EBAD006276DB /* TabCell.xib in Resources */,
 				A0E18F282368509C001953BA /* BrowsingViewController.xib in Resources */,
 				6926DAEE221C836F00D71752 /* credits.html.in in Resources */,
 				A09A2A972254B3D100A3EEF0 /* InfoPlist.strings in Resources */,
@@ -2361,6 +2374,7 @@
 				A053137822F1EC19006655EC /* DownloadHelper.m in Sources */,
 				01D741281A44DF1C007B7033 /* WebViewMenuController.m in Sources */,
 				01D7412F1A466AF0007B7033 /* NSString+JavascriptEscape.m in Sources */,
+				A0E755F72372EBAD006276DB /* TabCell.swift in Sources */,
 				A07D65562208A17E0002D775 /* Migration.swift in Sources */,
 				69CBCD521E9347B8009D5352 /* UIResponder+FirstResponder.m in Sources */,
 				01F2AE391B7FEF5E00D5651A /* SSLCertificate.m in Sources */,
@@ -2381,6 +2395,7 @@
 				018333D21A35291200670CD1 /* HTTPSEverywhereRule.m in Sources */,
 				01801EA11A32CA2A002B4718 /* WebViewController.m in Sources */,
 				01F8793B1A4108DD00A63654 /* URLBlocker.m in Sources */,
+				A0E755F92372F119006276DB /* UIView+Helpers.swift in Sources */,
 				A02CE2BB22007A0200964A14 /* HistoryController.m in Sources */,
 				A0B4838C234DEBE100F9701B /* SettingsViewController.swift in Sources */,
 				A053137022F1C73C006655EC /* JAHPCanonicalRequest.m in Sources */,
@@ -2413,6 +2428,7 @@
 				01EFA7FF1A63851400688398 /* LocalNetworkChecker.m in Sources */,
 				0182AD9B1AACC55400F3B7ED /* HTTPSEverywhereRuleController.m in Sources */,
 				010EEA691A43C8CF001E8B65 /* CookieJar.m in Sources */,
+				A0E755FB2373597D006276DB /* UIButton+Helpers.swift in Sources */,
 				A0364537235094DF0038930E /* Storage2ViewController.swift in Sources */,
 				A0D68E0D234CABF30027C61A /* BookmarkViewController.swift in Sources */,
 				A07D65542208A17E0002D775 /* OldBookmark.m in Sources */,

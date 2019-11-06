@@ -27,6 +27,7 @@
                 <outlet property="securityBt" destination="SP4-s8-0b8" id="ytw-Ky-ab9"/>
                 <outlet property="settingsBt" destination="yK9-fq-stu" id="qLE-uP-enz"/>
                 <outlet property="tabsBt" destination="tXa-df-pw3" id="MF4-TY-hBS"/>
+                <outlet property="tabsCollection" destination="Q4p-od-FKg" id="j7p-Ue-kyG"/>
                 <outlet property="tabsTools" destination="ncz-tm-LKE" id="tuC-f5-rmA"/>
                 <outlet property="toolbar" destination="LVl-ag-DII" id="d0g-QS-qkV"/>
                 <outlet property="toolbarHeightConstraint" destination="jRV-nM-Ygh" id="Ow3-tu-ltB"/>
@@ -120,6 +121,22 @@
                     <rect key="frame" x="0.0" y="80" width="414" height="733"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                 </view>
+                <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Q4p-od-FKg">
+                    <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="8" minimumInteritemSpacing="8" id="UbB-FU-EXR">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="8" minY="8" maxX="8" maxY="8"/>
+                    </collectionViewFlowLayout>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="uur-vI-pUF"/>
+                        <outlet property="delegate" destination="-1" id="Vih-54-Bud"/>
+                        <outlet property="dragDelegate" destination="-1" id="Zzz-4w-7e8"/>
+                        <outlet property="dropDelegate" destination="-1" id="xGn-vq-09r"/>
+                    </connections>
+                </collectionView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LVl-ag-DII">
                     <rect key="frame" x="0.0" y="813" width="414" height="49"/>
                     <subviews>
@@ -194,7 +211,7 @@
                                     </state>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="K4r-Tu-xYl" secondAttribute="trailing" constant="16" id="Mpn-3X-kwt"/>
                                 <constraint firstItem="K4r-Tu-xYl" firstAttribute="centerY" secondItem="ncz-tm-LKE" secondAttribute="centerY" id="ooE-K8-kzE"/>
@@ -224,6 +241,7 @@
             <constraints>
                 <constraint firstItem="VpS-hG-MKQ" firstAttribute="top" secondItem="RJ2-NH-hB6" secondAttribute="bottom" id="2Jq-yE-1aC"/>
                 <constraint firstItem="VpS-hG-MKQ" firstAttribute="top" secondItem="Af6-aJ-isr" secondAttribute="bottom" id="7Vn-8h-pPZ"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Q4p-od-FKg" secondAttribute="trailing" id="CoL-su-p2Q"/>
                 <constraint firstItem="VpS-hG-MKQ" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="Cr0-3o-Gu9"/>
                 <constraint firstItem="LVl-ag-DII" firstAttribute="top" secondItem="VpS-hG-MKQ" secondAttribute="bottom" id="FXZ-Kt-2zq"/>
                 <constraint firstItem="RJ2-NH-hB6" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="L6o-B5-oU3"/>
@@ -233,6 +251,9 @@
                 <constraint firstItem="LVl-ag-DII" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="e3o-A9-Vah"/>
                 <constraint firstItem="LVl-ag-DII" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="edm-4a-dug"/>
                 <constraint firstItem="Af6-aJ-isr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ep7-1p-39w"/>
+                <constraint firstItem="Q4p-od-FKg" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="kRP-Ue-U0d"/>
+                <constraint firstItem="LVl-ag-DII" firstAttribute="top" secondItem="Q4p-od-FKg" secondAttribute="bottom" id="kjj-fl-REq"/>
+                <constraint firstItem="Q4p-od-FKg" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="p7x-qi-Eun"/>
                 <constraint firstAttribute="trailing" secondItem="Af6-aJ-isr" secondAttribute="trailing" id="suE-MZ-BKY"/>
                 <constraint firstItem="RJ2-NH-hB6" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="uYS-If-aan"/>
             </constraints>
