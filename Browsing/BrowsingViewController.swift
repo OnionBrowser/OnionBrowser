@@ -31,6 +31,8 @@ class BrowsingViewController: UIViewController {
 
 	lazy var encryptionBt: UIButton = {
 		let button = UIButton(type: .custom)
+		button.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
+
 		button.addTarget(self, action: #selector(action), for: .touchUpInside)
 
 		return button
@@ -38,6 +40,7 @@ class BrowsingViewController: UIViewController {
 
 	private lazy var reloadBt: UIButton = {
 		let button = UIButton(type: .custom)
+		button.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
 		button.setImage(UIImage(named: "reload"), for: .normal)
 
 		button.addTarget(self, action: #selector(action), for: .touchUpInside)
