@@ -15,7 +15,7 @@ UICollectionViewDelegateFlowLayout, UICollectionViewDragDelegate,
 UICollectionViewDropDelegate, TabCellDelegate {
 
 	override var preferredStatusBarStyle: UIStatusBarStyle {
-		return tabsCollection.isHidden ? .default : .lightContent
+		return tabsCollection?.isHidden ?? true ? .default : .lightContent
 	}
 
 	@objc func showAllTabs() {
