@@ -436,7 +436,7 @@ class BrowsingViewController: UIViewController {
 			backBt.isEnabled = false
 			frwrdBt.isEnabled = false
 			actionBt.isEnabled = false
-			updateTabs(count: 1)
+			updateTabCount()
 
 			return
 		}
@@ -463,18 +463,16 @@ class BrowsingViewController: UIViewController {
 		backBt.isEnabled = tab.canGoBack()
 		frwrdBt.isEnabled = tab.canGoForward()
 		actionBt.isEnabled = true
-		updateTabs(count: tabs.count)
+		updateTabCount()
 	}
 
 	/**
 	Update and center tab count in `tabsBt`.
 
 	Honors right-to-left languages.
-
-	- parameter count: The tab count.
 	*/
-	private func updateTabs(count: Int) {
-		tabsBt.setTitle(Formatter.localize(count))
+	private func updateTabCount() {
+		tabsBt.setTitle(Formatter.localize(tabs.count))
 
 		var offset: CGFloat = 0
 
