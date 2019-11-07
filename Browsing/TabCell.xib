@@ -21,19 +21,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="325" height="24"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ch-9X-bq9">
-                                <rect key="frame" x="2" y="1" width="22" height="22"/>
+                                <rect key="frame" x="4" y="4" width="16" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="1ch-9X-bq9" secondAttribute="height" multiplier="1:1" id="Qhv-0K-smt"/>
-                                    <constraint firstAttribute="width" constant="22" id="RXC-MN-Ef8"/>
+                                    <constraint firstAttribute="width" constant="16" id="RXC-MN-Ef8"/>
                                 </constraints>
                                 <color key="tintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <state key="normal" image="xmark" catalog="system"/>
+                                <state key="normal" image="close"/>
                                 <connections>
                                     <action selector="close" destination="gTV-IL-0wX" eventType="touchUpInside" id="6fz-w0-2Bl"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="www.example.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rP8-hS-ldO">
-                                <rect key="frame" x="32" y="3" width="285" height="18"/>
+                                <rect key="frame" x="28" y="3" width="289" height="18"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <color key="textColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <nil key="highlightedColor"/>
@@ -45,7 +45,7 @@
                             <constraint firstAttribute="trailing" secondItem="rP8-hS-ldO" secondAttribute="trailing" constant="8" id="ScO-ZA-XSo"/>
                             <constraint firstItem="rP8-hS-ldO" firstAttribute="leading" secondItem="1ch-9X-bq9" secondAttribute="trailing" constant="8" id="b3i-98-pZN"/>
                             <constraint firstAttribute="height" constant="24" id="gNZ-Y0-kA5"/>
-                            <constraint firstItem="1ch-9X-bq9" firstAttribute="leading" secondItem="Eej-Rl-uVU" secondAttribute="leading" constant="2" id="gxN-CO-qHY"/>
+                            <constraint firstItem="1ch-9X-bq9" firstAttribute="leading" secondItem="Eej-Rl-uVU" secondAttribute="leading" constant="4" id="gxN-CO-qHY"/>
                             <constraint firstItem="1ch-9X-bq9" firstAttribute="centerY" secondItem="Eej-Rl-uVU" secondAttribute="centerY" id="lgl-so-MKC"/>
                             <constraint firstItem="rP8-hS-ldO" firstAttribute="centerY" secondItem="Eej-Rl-uVU" secondAttribute="centerY" id="re9-t3-ifA"/>
                         </constraints>
@@ -79,6 +79,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="xmark" catalog="system" width="64" height="56"/>
+        <image name="close" width="35" height="35"/>
     </resources>
 </document>
