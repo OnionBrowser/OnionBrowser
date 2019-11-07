@@ -182,7 +182,7 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tXa-df-pw3">
                                     <rect key="frame" x="281.5" y="0.0" width="62" height="48"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                    <state key="normal" title="1" backgroundImage="tabs"/>
+                                    <state key="normal" image="tabs"/>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yK9-fq-stu">
                                     <rect key="frame" x="351.5" y="0.0" width="62.5" height="48"/>

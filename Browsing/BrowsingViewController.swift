@@ -74,20 +74,7 @@ class BrowsingViewController: UIViewController {
     @IBOutlet weak var bookmarksBt: UIButton!
 	@IBOutlet weak var tabsBt: UIButton! {
 		didSet {
-			// Shabby hack to un-stretch the background image.
-			if let bgImage = tabsBt.currentBackgroundImage {
-				let vInset = (bgImage.size.height - tabsBt.bounds.size.height) / 2
-				let hInset = (bgImage.size.width - tabsBt.bounds.size.width) / 2
-
-				tabsBt.setBackgroundImage(bgImage.withAlignmentRectInsets(
-					UIEdgeInsets(top: vInset, left: hInset, bottom: vInset, right: hInset)),
-										  for: .normal)
-			}
-
 			tabsBt.setTitleColor(tabsBt.tintColor, for: .normal)
-
-			// Offset from center.
-			tabsBt.titleEdgeInsets = UIEdgeInsets(top: 4, left: -4, bottom: 0, right: 0)
 
 			tabsBt.addTarget(self, action: #selector(showAllTabs), for: .touchUpInside)
 		}
@@ -449,7 +436,7 @@ class BrowsingViewController: UIViewController {
 			backBt.isEnabled = false
 			frwrdBt.isEnabled = false
 			actionBt.isEnabled = false
-			tabsBt.setTitle(Formatter.localize(1), for: .normal)
+			updateTabs(count: 1)
 
 			return
 		}
@@ -476,6 +463,35 @@ class BrowsingViewController: UIViewController {
 		backBt.isEnabled = tab.canGoBack()
 		frwrdBt.isEnabled = tab.canGoForward()
 		actionBt.isEnabled = true
-		tabsBt.setTitle(Formatter.localize(tabs.count))
+		updateTabs(count: tabs.count)
+	}
+
+	/**
+	Update and center tab count in `tabsBt`.
+
+	Honors right-to-left languages.
+
+	- parameter count: The tab count.
+	*/
+	private func updateTabs(count: Int) {
+		tabsBt.setTitle(Formatter.localize(count))
+
+		var offset: CGFloat = 0
+
+		if let titleLabel = tabsBt.titleLabel, let imageView = tabsBt.imageView {
+			if UIView.userInterfaceLayoutDirection(for: tabsBt.semanticContentAttribute) == .rightToLeft {
+				offset = imageView.intrinsicContentSize.width / 2 // Move right edge to center of image.
+					+ titleLabel.intrinsicContentSize.width / 2 // Move center of text to center of image.
+					+ 3 // Correct for double-frame icon.
+			}
+			else {
+				offset = -imageView.intrinsicContentSize.width / 2 // Move left edge to center of image.
+					- titleLabel.intrinsicContentSize.width / 2 // Move center of text to center of image.
+					- 3 // Correct for double-frame icon.
+			}
+		}
+
+		// 2+2 in vertical direction is correction for double-frame icon
+		tabsBt.titleEdgeInsets = UIEdgeInsets(top: 2, left: offset, bottom: -2, right: -offset)
 	}
 }
