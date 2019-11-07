@@ -108,6 +108,10 @@ class BrowsingViewController: UIViewController {
 			else {
 				currentTabIndex = -1
 			}
+
+			if currentTab?.needsRefresh ?? false {
+				currentTab?.refresh()
+			}
 		}
 	}
 
@@ -116,6 +120,10 @@ class BrowsingViewController: UIViewController {
 
     lazy var containerBottomConstraint2Superview: NSLayoutConstraint
         = container.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+
+	lazy var liveSearchVc = SearchResultsController()
+	var liveSearchOngoing = false
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -128,6 +136,30 @@ class BrowsingViewController: UIViewController {
 		}
 
 		updateChrome()
+	}
+
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+
+		let nc = NotificationCenter.default
+
+		nc.addObserver(self,
+					   selector: #selector(keyboardWillShow(notification:)),
+					   name: UIResponder.keyboardWillShowNotification,
+					   object: nil)
+
+		nc.addObserver(self, selector: #selector(keyboardWillBeHidden(notification:)),
+					   name: UIResponder.keyboardWillHideNotification,
+					   object: nil)
+	}
+
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+
+		let nc = NotificationCenter.default
+
+		nc.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+		nc.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
 	}
 
 	override func encodeRestorableState(with coder: NSCoder) {
@@ -228,6 +260,19 @@ class BrowsingViewController: UIViewController {
             break
         }
     }
+
+	@objc func keyboardWillShow(notification: Notification) {
+		if let kbSize = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
+			let insets = UIEdgeInsets(top: 0, left: 0, bottom: kbSize.height, right: 0)
+			liveSearchVc.tableView.contentInset = insets
+			liveSearchVc.tableView.scrollIndicatorInsets = insets
+		}
+	}
+
+	@objc func keyboardWillBeHidden(notification: Notification) {
+		liveSearchVc.tableView.contentInset = .zero
+		liveSearchVc.tableView.scrollIndicatorInsets = .zero
+	}
 
 
 	// MARK: Old WebViewController interface
@@ -394,6 +439,20 @@ class BrowsingViewController: UIViewController {
 
 	func hideSearchResults() {
 		debug("#hideSearchResults")
+
+		guard liveSearchOngoing else {
+			return
+		}
+
+		if UIDevice.current.userInterfaceIdiom == .pad {
+			liveSearchVc.dismiss(animated: true)
+		}
+		else {
+			liveSearchVc.view.removeFromSuperview()
+			liveSearchVc.removeFromParent()
+		}
+
+		liveSearchOngoing = false
 	}
 
 	@objc(prepareForNewURLFromString:)

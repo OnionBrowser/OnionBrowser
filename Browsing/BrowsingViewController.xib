@@ -65,6 +65,7 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="webSearch" returnKeyType="go" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                     <connections>
+                                        <action selector="searchDidChange" destination="-1" eventType="editingChanged" id="Rdm-sY-5Mt"/>
                                         <outlet property="delegate" destination="-1" id="1QX-vy-qst"/>
                                     </connections>
                                 </textField>

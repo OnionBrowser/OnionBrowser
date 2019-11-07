@@ -103,8 +103,7 @@
 
 - (void)close
 {
-	[self removeFromParentViewController];
-	[[self view] removeFromSuperview];
+	[appDelegate.webViewController hideSearchResults];
 }
 
 - (void)updateSearchResultsForQuery:(NSString *)query
