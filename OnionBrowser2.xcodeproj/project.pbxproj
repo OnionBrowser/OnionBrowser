@@ -1420,8 +1420,8 @@
 			isa = PBXGroup;
 			children = (
 				A0D68DFE234C89080027C61A /* Bookmark.swift */,
-				A0D68E09234C8E140027C61A /* BookmarksViewController.swift */,
 				A0D68E08234C8E140027C61A /* BookmarksViewController.xib */,
+				A0D68E09234C8E140027C61A /* BookmarksViewController.swift */,
 				A0D68E0C234CABF30027C61A /* BookmarkViewController.swift */,
 			);
 			path = Bookmarks;
