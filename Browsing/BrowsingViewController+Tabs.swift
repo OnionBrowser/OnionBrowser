@@ -152,13 +152,13 @@ UICollectionViewDropDelegate, TabCellDelegate {
 	// MARK: TabCellDelegate
 
 	func close(tabCell: TabCell) {
-		if let indexPath = tabsCollection.indexPath(for: tabCell) {
-			tabsCollection.deleteItems(at: [indexPath])
-		}
+		tabsCollection.performBatchUpdates({
+			if let indexPath = tabsCollection.indexPath(for: tabCell) {
+				tabsCollection.deleteItems(at: [indexPath])
 
-		if let index = tabs.firstIndex(where: { $0.webView == tabCell.container.subviews.first }) {
-			removeTab(NSNumber(value: index))
-		}
+				removeTab(NSNumber(value: indexPath.row))
+			}
+		})
 	}
 
 
