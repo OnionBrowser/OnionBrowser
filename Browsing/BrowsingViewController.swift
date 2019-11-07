@@ -130,6 +130,54 @@ class BrowsingViewController: UIViewController {
 		updateChrome()
 	}
 
+	override func encodeRestorableState(with coder: NSCoder) {
+		super.encodeRestorableState(with: coder)
+
+		var tabInfo = [[String: Any]]()
+
+		for tab in tabs {
+			if let url = tab.url {
+				tabInfo.append(["url": url, "title": tab.title.text ?? ""])
+
+				// TODO: From old code. Why here this side effect?
+				// Looks strange.
+				tab.webView.restorationIdentifier = url.absoluteString
+			}
+		}
+
+		coder.encode(tabInfo, forKey: "webViewTabs")
+		coder.encode(NSNumber(value: currentTabIndex), forKey: "curTabIndex")
+	}
+
+	override func decodeRestorableState(with coder: NSCoder) {
+		super.decodeRestorableState(with: coder)
+
+		let tabInfo = coder.decodeObject(forKey: "webViewTabs") as? [[String: Any]]
+
+		for info in tabInfo ?? [] {
+			debug("Try restoring tab with \(info).")
+
+			if let url = info["url"] as? URL {
+				let tab = addNewTab(for: url, forRestoration: true, with: .hidden, withCompletionBlock: nil)
+				tab?.title.text = info["title"] as? String
+			}
+		}
+
+		if let index = coder.decodeObject(forKey: "curTabIndex") as? NSNumber {
+			currentTabIndex = index.intValue
+		}
+
+		for tab in tabs {
+			tab.webView.isHidden = tab != currentTab
+			tab.webView.isUserInteractionEnabled = true
+			tab.webView.add(to: container)
+		}
+
+		currentTab?.refresh()
+
+		updateProgress()
+	}
+
 
     // MARK: Actions
 
