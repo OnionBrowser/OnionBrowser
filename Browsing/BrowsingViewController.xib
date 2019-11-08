@@ -157,6 +157,7 @@
                                     <state key="normal" image="back"/>
                                     <connections>
                                         <action selector="action:" destination="-1" eventType="touchUpInside" id="9zO-Ra-GOt"/>
+                                        <outletCollection property="gestureRecognizers" destination="ed4-6N-Nf3" appends="YES" id="rdu-CD-ab4"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nTb-gO-JY9">
@@ -193,6 +194,10 @@
                                     </connections>
                                 </button>
                             </subviews>
+                            <gestureRecognizers/>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="ed4-6N-Nf3" appends="YES" id="Bd8-b1-y5A"/>
+                            </connections>
                         </stackView>
                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ncz-tm-LKE">
                             <rect key="frame" x="0.0" y="1" width="414" height="48"/>
@@ -261,6 +266,11 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="-57.971014492753625" y="152.67857142857142"/>
         </view>
+        <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="ed4-6N-Nf3">
+            <connections>
+                <action selector="showHistory:" destination="-1" id="Oj6-iE-pCt"/>
+            </connections>
+        </pongPressGestureRecognizer>
     </objects>
     <resources>
         <image name="Shield" width="31" height="39"/>

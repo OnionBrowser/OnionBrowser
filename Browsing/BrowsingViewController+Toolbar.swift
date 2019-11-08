@@ -29,6 +29,21 @@ extension BrowsingViewController: UIScrollViewDelegate {
 	}
 
 
+	// MARK: Actions
+
+	@IBAction func showHistory(_ sender: UIGestureRecognizer) {
+		sender.isEnabled = false
+
+		if currentTab?.history.count ?? 0 > 1,
+			let vc = HistoryController(for: currentTab) {
+
+			present(UINavigationController(rootViewController: vc), backBt)
+		}
+
+		sender.isEnabled = true
+	}
+
+
 	// MARK: Public Methods
 
     func showToolbar(_ show: Bool = true, _ animated: Bool = true) {

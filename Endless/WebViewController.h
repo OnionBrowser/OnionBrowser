@@ -7,7 +7,6 @@
 
 #import <UIKit/UIKit.h>
 #import "WebViewTab.h"
-#import "WYPopoverController.h"
 
 #define TOOLBAR_HEIGHT 47
 #define TOOLBAR_PADDING 6
@@ -24,7 +23,7 @@ typedef NS_ENUM(NSInteger, WebViewTabAnimation) {
     WebViewTabAnimationQuick,
 };
 
-@interface WebViewController : UIViewController <UITableViewDelegate, UITextFieldDelegate, UIGestureRecognizerDelegate, UIScrollViewDelegate, WYPopoverControllerDelegate>
+@interface WebViewController : UIViewController <UITableViewDelegate, UITextFieldDelegate, UIGestureRecognizerDelegate, UIScrollViewDelegate>
 
 - (void)focusUrlField;
 - (void)unfocusUrlField;
@@ -40,20 +39,10 @@ typedef NS_ENUM(NSInteger, WebViewTabAnimation) {
 - (WebViewTab *)addNewTabForURL:(NSURL *)url;
 - (WebViewTab *)addNewTabForURL:(NSURL *)url forRestoration:(BOOL)restoration withAnimation:(WebViewTabAnimation)animation withCompletionBlock:(void(^)(BOOL finished))block;
 - (void)addNewTabFromToolbar:(id)_id;
-- (void)switchToTab:(NSNumber *)tabNumber;
 - (void)removeTab:(NSNumber *)tabNumber andFocusTab:(NSNumber *)toFocus;
-- (void)removeTab:(NSNumber *)tabNumber;
 - (void)removeAllTabs;
 
-- (void)webViewTouched;
 - (void)updateProgress;
 - (void)updateSearchBarDetails;
-- (void)refresh;
-- (void)forceRefresh;
-- (void)dismissPopover;
-- (void)prepareForNewURLFromString:(NSString *)url;
-- (void)showBookmarks;
-- (void)hideBookmarks;
-- (void)hideSearchResults;
 
 @end

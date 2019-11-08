@@ -21,3 +21,4 @@
 #import "TUSafariActivity.h"
 #import "Ipv6Tester.h"
 #import "SearchResultsController.h"
+#import "HistoryController.h"
