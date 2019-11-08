@@ -153,6 +153,19 @@ class BrowsingViewController: UIViewController {
 					   object: nil)
 	}
 
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+
+		// We made it this far, remove lock on previous startup.
+		UserDefaults.standard.removeObject(forKey: STATE_RESTORE_TRY_KEY)
+
+		if let url = AppDelegate.shared()?.urlToOpenAtLaunch {
+			AppDelegate.shared()?.urlToOpenAtLaunch = nil
+
+			addNewTab(forURL: url)
+		}
+	}
+
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 
@@ -316,7 +329,7 @@ class BrowsingViewController: UIViewController {
 		let tab = WebViewTab(frame: .zero, withRestorationIdentifier: restoration ? url?.absoluteString : nil)
 
 		if let tab = tab {
-			if let url = url {
+			if let url = url, !restoration {
 				tab.load(url)
 			}
 
@@ -325,6 +338,12 @@ class BrowsingViewController: UIViewController {
 			tab.webView.scrollView.delegate = self
 			tab.webView.isHidden = true
 			tab.webView.add(to: container)
+
+			let animations = {
+				for otherTab in self.tabs {
+					otherTab.webView.isHidden = otherTab != tab
+				}
+			}
 
 			let completion = { (finished: Bool) in
 				self.currentTab = tab
@@ -335,25 +354,11 @@ class BrowsingViewController: UIViewController {
 			}
 
 			if animation == .hidden {
-				for otherTab in tabs {
-					otherTab.webView.isHidden = otherTab != tab
-				}
-
+				animations()
 				completion(true)
 			}
 			else {
-				if let currentTab = currentTab {
-					UIView.transition(from: currentTab.webView, to: tab.webView,
-									  duration: 0.25,
-									  options: [.transitionCrossDissolve, .showHideTransitionViews],
-									  completion: completion)
-				}
-				else {
-					UIView.transition(with: container, duration: 0.25,
-									  options: .transitionCrossDissolve,
-									  animations: { tab.webView.isHidden = false },
-									  completion: completion)
-				}
+				container.transition(animations, completion)
 			}
 		}
 		else {
@@ -365,8 +370,12 @@ class BrowsingViewController: UIViewController {
 		return tab
 	}
 
-	func addNewTabFromToolbar(_ toolbar: Any?) {
-		debug("#addNewTabFromToolbar toolbar=\(String(describing: toolbar))")
+	func addNewTabFromToolbar(_ sender: Any?) {
+		debug("#addNewTabFromToolbar sender=\(String(describing: sender))")
+
+		addNewTab(for: nil, forRestoration: false, with: .default) { _ in
+			self.searchFl.becomeFirstResponder()
+		}
 	}
 
 	func switchToTab(_ tabNumber: NSNumber) {
@@ -380,11 +389,14 @@ class BrowsingViewController: UIViewController {
 
 		let focussing = tabs[index]
 
-		for tab in tabs {
-			tab.webView.isHidden = tab != focussing
+		container.transition({
+			for tab in self.tabs {
+				tab.webView.isHidden = tab != focussing
+			}
+		}) { _ in
+			self.currentTab = focussing
+			self.updateChrome()
 		}
-
-		updateChrome()
 	}
 
 	func removeTab(_ tabNumber: NSNumber) {
@@ -402,13 +414,27 @@ class BrowsingViewController: UIViewController {
 		let focussing = fIdx != nil && fIdx! > -1 && fIdx! < tabs.count ? tabs[fIdx!] : nil
 
 		if let removing = removing {
-			(focussing ?? tabs.last)?.webView.isHidden = false
-			removing.webView.removeFromSuperview()
-			tabs.remove(at: rIdx)
+			unfocusUrlField()
 
-			updateChrome()
+			container.transition({
+				removing.webView.isHidden = true
+				(focussing ?? self.tabs.last)?.webView.isHidden = false
+			}) { _ in
+				self.currentTab = focussing ?? self.tabs.last
+
+				let hash = removing.hash
+
+				removing.webView.removeFromSuperview()
+				self.tabs.remove(at: rIdx)
+
+				AppDelegate.shared()?.cookieJar.clearNonWhitelistedData(forTab: UInt(hash))
+
+				self.updateChrome()
+			}
 		}
 		else if focussing != nil {
+			unfocusUrlField()
+
 			switchToTab(toFocus!)
 		}
 	}
@@ -469,7 +495,9 @@ class BrowsingViewController: UIViewController {
 	func unfocusUrlField() {
 		debug("#unfocusUrlField")
 
-		searchFl.resignFirstResponder()
+		if searchFl.isFirstResponder {
+			searchFl.resignFirstResponder()
+		}
 	}
 
 	func dismissPopover() {
@@ -487,23 +515,19 @@ class BrowsingViewController: UIViewController {
 	}
 
 	func updateProgress() {
-		debug("#updateProgress")
+		debug("#updateProgress progress=\(currentTab?.progress.floatValue ?? 1)")
 
 		if let progress = progress {
 			progress.progress = currentTab?.progress.floatValue ?? 1
 
 			if progress.progress >= 1 {
 				if !progress.isHidden {
-					UIView.transition(with: view, duration: 0.25,
-									  options: .transitionCrossDissolve,
-									  animations: { progress.isHidden = true })
+					view.transition({ progress.isHidden = true })
 				}
 			}
 			else {
 				if progress.isHidden {
-					UIView.transition(with: view, duration: 0.25,
-									  options: .transitionCrossDissolve,
-									  animations: { progress.isHidden = false })
+					view.transition({ progress.isHidden = false })
 				}
 			}
 		}

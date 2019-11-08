@@ -31,7 +31,7 @@ UICollectionViewDropDelegate, TabCellDelegate {
 			self.setNeedsStatusBarAppearanceUpdate()
 		}
 
-		UIView.transition(with: view, duration: 0.5, options: .transitionCrossDissolve, animations: {
+		view.transition({
 			self.searchBar.isHidden = true
 			self.progress.isHidden = true
 			self.container.isHidden = true
@@ -188,12 +188,12 @@ UICollectionViewDropDelegate, TabCellDelegate {
 			self.setNeedsStatusBarAppearanceUpdate()
 		}
 
-		UIView.transition(with: view, duration: 0.5, options: .transitionCrossDissolve, animations: {
+		view.transition({
 			self.searchBar.isHidden = false
 			self.tabsCollection.isHidden = true
 			self.container.isHidden = false
 			self.tabsTools.isHidden = true
 			self.mainTools.isHidden = false
-		}, completion: completion)
+		}, completion)
 	}
 }

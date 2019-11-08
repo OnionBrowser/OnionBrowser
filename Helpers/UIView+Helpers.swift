@@ -22,4 +22,27 @@ extension UIView {
 			self.bottomAnchor.constraint(equalTo: superview.bottomAnchor).isActive = true
 		}
 	}
+
+	/**
+	Creates a transition animation of type `transitionCrossDissolve` with length 0.5 seconds for this
+	view as the container.
+
+	If this view is currently hidden, calls the callbacks directly without any animation.
+
+	- parameter animations: A block object that contains the changes you want to make to the specified view.
+		This block takes no parameters and has no return value.
+	- parameter completion: A block object to be executed when the animation sequence ends.
+		This block has no return value and takes a single Boolean argument that indicates whether or not the
+		animations actually finished before the completion handler was called.
+	*/
+	func transition(_ animations: @escaping (() -> Void), _ completion: ((Bool) -> Void)? = nil) {
+		if isHidden {
+			animations()
+			completion?(true)
+		}
+		else {
+			UIView.transition(with: self, duration: 0.5, options: .transitionCrossDissolve,
+							  animations: animations, completion: completion)
+		}
+	}
 }
