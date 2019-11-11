@@ -38,6 +38,7 @@
 	self.socksProxyPort = 39050;
 	self.sslCertCache = [[NSCache alloc] init];
 	self.certificateAuthentication = [[CertificateAuthentication alloc] init];
+	_defaultUserAgent = [self createUserAgent];
 
 	[JAHPAuthenticatingHTTPProtocol setDelegate:self];
 	[JAHPAuthenticatingHTTPProtocol start];
@@ -296,7 +297,7 @@
 	}
 	
 	/* if settings are up or something else, ignore shortcuts */
-	if (![[self topViewController] isKindOfClass:[WebViewController class]])
+	if (![[self topViewController] isKindOfClass:[BrowsingViewController class]])
 		return nil;
 	
 	id cur = [UIResponder currentFirstResponder];
@@ -324,7 +325,7 @@
 		}
 		
 		if ([[keyCommand input] isEqualToString:@"t"]) {
-			[[self webViewController] addNewTabForURL:nil forRestoration:NO withAnimation:WebViewTabAnimationDefault withCompletionBlock:^(BOOL finished) {
+			[[self webViewController] addNewTabForURL:nil forRestoration:NO withAnimation:AnimationDefault withCompletionBlock:^(BOOL finished) {
 				[[self webViewController] focusUrlField];
 			}];
 			return;
@@ -416,6 +417,39 @@
 	} else {
 		[[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
 	}
+}
+
+/**
+ Some sites do mobile detection by looking for Safari in the UA, so make us look like Mobile Safari
+
+ from "Mozilla/5.0 (iPhone; CPU iPhone OS 8_4_1 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Mobile/12H321"
+ to   "Mozilla/5.0 (iPhone; CPU iPhone OS 8_4_1 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12H321 Safari/600.1.4"
+ */
+- (NSString *)createUserAgent
+{
+	SILENCE_DEPRECATION_ON
+	UIWebView *twv = [[UIWebView alloc] initWithFrame:CGRectZero];
+	SILENCE_WARNINGS_OFF
+	NSString *ua = [twv stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
+
+	NSMutableArray *uapieces = [[ua componentsSeparatedByString:@" "] mutableCopy];
+	NSString *uamobile = uapieces[uapieces.count - 1];
+
+	// Assume Safari major version will match iOS major.
+	NSArray *osv = [UIDevice.currentDevice.systemVersion componentsSeparatedByString:@"."];
+	uapieces[uapieces.count - 1] = [NSString stringWithFormat:@"Version/%@.0", osv[0]];
+
+	[uapieces addObject:uamobile];
+
+	// Now tack on "Safari/XXX.X.X" from WebKit version.
+	for (NSString* j in uapieces) {
+		if ([j containsString:@"AppleWebKit/"]) {
+			[uapieces addObject:[j stringByReplacingOccurrencesOfString:@"AppleWebKit" withString:@"Safari"]];
+			break;
+		}
+	}
+
+	return [uapieces componentsJoinedByString:@" "];
 }
 
 

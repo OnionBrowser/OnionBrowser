@@ -13,7 +13,14 @@ import UIKit
 @objcMembers
 class BrowsingViewController: UIViewController {
 
+	@objc
+	enum Animation: Int {
+		case `default`
+		case hidden
+	}
+
 	static let blankUrl = "about:blank"
+	static let aboutOnionBrowserUrl = "about:onion-browser"
 
     @IBOutlet weak var searchBar: UIView!
     @IBOutlet weak var searchBarHeightConstraint: NSLayoutConstraint! {
@@ -322,7 +329,7 @@ class BrowsingViewController: UIViewController {
 	@discardableResult
 	@objc(addNewTabForURL:forRestoration:withAnimation:withCompletionBlock:)
 	func addNewTab(for url: URL?, forRestoration restoration: Bool,
-				   with animation: WebViewTabAnimation, withCompletionBlock completion: ((Bool) -> Void)?) -> WebViewTab? {
+				   with animation: Animation, withCompletionBlock completion: ((Bool) -> Void)?) -> WebViewTab? {
 
 		debug("#addNewTab url=\(String(describing: url)), restoration=\(restoration), animation=\(animation), completion=\(String(describing: completion))")
 

@@ -116,7 +116,7 @@ extension BrowsingViewController: UITextFieldDelegate {
 			}
 
 			if currentTab?.url == BrowsingViewController.creditsUrl {
-				searchFl.text = ABOUT_ONION_BROWSER
+				searchFl.text = BrowsingViewController.aboutOnionBrowserUrl
 			}
 			else {
 				searchFl.text = currentTab?.url?.absoluteString
@@ -140,7 +140,7 @@ extension BrowsingViewController: UITextFieldDelegate {
 
 	func prettyTitle(_ url: URL?) -> String? {
 		if url == BrowsingViewController.creditsUrl {
-			return ABOUT_ONION_BROWSER
+			return BrowsingViewController.aboutOnionBrowserUrl
 		}
 
 		if url?.absoluteString != BrowsingViewController.blankUrl,
@@ -192,8 +192,8 @@ extension BrowsingViewController: UITextFieldDelegate {
 				&& search.caseInsensitiveCompare(BrowsingViewController.blankUrl) != .orderedSame {
 
 			// If credits page, return that.
-			if search.caseInsensitiveCompare(ABOUT_ONION_BROWSER) == .orderedSame {
-				return URL(string: ABOUT_ONION_BROWSER)
+			if search.caseInsensitiveCompare(BrowsingViewController.aboutOnionBrowserUrl) == .orderedSame {
+				return URL(string: BrowsingViewController.aboutOnionBrowserUrl)
 			}
 
 			if search.range(of: #"\s+"#, options: .regularExpression) != nil

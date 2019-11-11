@@ -60,7 +60,7 @@ class TabSecurity: NSObject {
 		}
 
 		if security == .alwaysRemember {
-			if let tabs = controller?.webViewTabs() as? [WebViewTab] {
+			if let tabs = controller?.webViewTabs() {
 
 				var urls = [URL]()
 

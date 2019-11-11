@@ -69,7 +69,6 @@ PODS:
   - TUSafariActivity (1.0.4)
   - UIColor-HexRGB (1.0.1)
   - VForceTouch (0.0.2)
-  - WYPopoverController (0.3.9)
 
 DEPENDENCIES:
   - CSPHeader (~> 0.4)
@@ -83,7 +82,6 @@ DEPENDENCIES:
   - TUSafariActivity
   - UIColor-HexRGB
   - VForceTouch
-  - WYPopoverController (from `https://github.com/sammcewan/WYPopoverController.git`)
 
 SPEC REPOS:
   trunk:
@@ -105,16 +103,11 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   OCSPCache:
     :git: https://github.com/Psiphon-Labs/OCSPCache
-  WYPopoverController:
-    :git: https://github.com/sammcewan/WYPopoverController.git
 
 CHECKOUT OPTIONS:
   OCSPCache:
     :commit: 71e9f5d2fdc4afb0d9b04ea019e2f0bec64cdc30
     :git: https://github.com/Psiphon-Labs/OCSPCache
-  WYPopoverController:
-    :commit: 9b8011bd95bd95f6fca6a0afa78965fbf645a062
-    :git: https://github.com/sammcewan/WYPopoverController.git
 
 SPEC CHECKSUMS:
   CSPHeader: adec9dd23d5ea822b8e397407c40c6435b4a7c49
@@ -132,8 +125,7 @@ SPEC CHECKSUMS:
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
   UIColor-HexRGB: daccfa7e936af664369734a164b0309087d7f970
   VForceTouch: b5c3a28625269e1818cf915728173bda9f669d6b
-  WYPopoverController: a9db25ac2841a686acdc0f3a99bdb21545db32f4
 
-PODFILE CHECKSUM: 6f5869a86428da1524dc632e6828def1ef960536
+PODFILE CHECKSUM: fcb767a0eb726bab0330b96bbfd6e79cd2a1a211
 
 COCOAPODS: 1.8.4

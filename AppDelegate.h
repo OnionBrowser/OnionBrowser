@@ -30,7 +30,7 @@
 @property (strong, atomic) CookieJar *cookieJar;
 @property (strong, atomic) HSTSCache *hstsCache;
 
-@property (strong, atomic) NSString *defaultUserAgent;
+@property (strong, atomic, readonly) NSString *defaultUserAgent;
 @property (strong, atomic) NSURL *urlToOpenAtLaunch;
 
 @property NSInteger socksProxyPort;

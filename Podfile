@@ -1,7 +1,6 @@
 platform :ios, '11.4'
 
 target 'OnionBrowser2' do
-  pod 'WYPopoverController', :git => 'https://github.com/sammcewan/WYPopoverController.git'
   pod 'DTFoundation'
   pod 'OrderedDictionary'
   pod 'TUSafariActivity'

@@ -9,7 +9,6 @@
 #import "WebViewTab.h"
 #import "HostSettings.h"
 #import "OnionBrowser-Swift.h"
-#import "WebViewController.h"
 
 #import "NSString+JavascriptEscape.h"
 #import "UIResponder+FirstResponder.h"
@@ -248,7 +247,7 @@
 
 - (void)loadURL:(NSURL *)u withForce:(BOOL)force
 {
-	if ([u.absoluteString isEqualToString:ABOUT_ONION_BROWSER])
+	if ([u.absoluteString isEqualToString:BrowsingViewController.aboutOnionBrowserUrl])
 	{
 		u = [NSBundle.mainBundle URLForResource:@"credits" withExtension:@"html"];
 	}
@@ -775,7 +774,7 @@ SILENCE_WARNINGS_OFF
 			u = [NSURL URLWithString:img];
 
 		if (u) {
-			WebViewTab *newtab = [AppDelegate.sharedAppDelegate.webViewController addNewTabForURL:u forRestoration:NO withAnimation:WebViewTabAnimationQuick withCompletionBlock:nil];
+			WebViewTab *newtab = [AppDelegate.sharedAppDelegate.webViewController addNewTabForURL:u forRestoration:NO withAnimation:AnimationDefault withCompletionBlock:nil];
 			newtab.openedByTabHash = [NSNumber numberWithLong:self.hash];
 		}
 		
@@ -794,7 +793,7 @@ SILENCE_WARNINGS_OFF
 	}];
 
 	UIAlertAction *openBackgroundTabAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Open in Background Tab", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-		WebViewTab *newtab = [AppDelegate.sharedAppDelegate.webViewController addNewTabForURL:[NSURL URLWithString:href] forRestoration:NO withAnimation:WebViewTabAnimationHidden withCompletionBlock:nil];
+		WebViewTab *newtab = [AppDelegate.sharedAppDelegate.webViewController addNewTabForURL:[NSURL URLWithString:href] forRestoration:NO withAnimation:AnimationHidden withCompletionBlock:nil];
 		newtab.openedByTabHash = [NSNumber numberWithLong:self.hash];
 	}];
 
