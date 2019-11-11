@@ -40,14 +40,14 @@ extension BrowsingViewController: UITextFieldDelegate {
 					currentTab.load(url)
 				}
 				else {
-					self.addNewTab(forURL: url)
+					self.addNewTab(url)
 				}
 			}
 			else {
 				self.debug("#textFieldShouldReturn search=\(String(describing: search))")
 
 				if self.currentTab == nil {
-					self.addNewTab(forURL: nil)
+					self.addNewTab()
 				}
 
 				self.currentTab?.search(for: search)

@@ -169,7 +169,7 @@ class BrowsingViewController: UIViewController {
 		if let url = AppDelegate.shared()?.urlToOpenAtLaunch {
 			AppDelegate.shared()?.urlToOpenAtLaunch = nil
 
-			addNewTab(forURL: url)
+			addNewTab(url)
 		}
 	}
 
@@ -210,7 +210,7 @@ class BrowsingViewController: UIViewController {
 			debug("Try restoring tab with \(info).")
 
 			if let url = info["url"] as? URL {
-				let tab = addNewTab(for: url, forRestoration: true, with: .hidden, withCompletionBlock: nil)
+				let tab = addNewTab(url, forRestoration: true, animation: .hidden)
 				tab?.title.text = info["title"] as? String
 			}
 		}
@@ -227,7 +227,7 @@ class BrowsingViewController: UIViewController {
 
 		currentTab?.refresh()
 
-		updateProgress()
+		updateChrome()
 	}
 
 
@@ -270,9 +270,6 @@ class BrowsingViewController: UIViewController {
 		case tabsBt:
 			break
 
-        case bookmarksBt:
-            present(BookmarksViewController.instantiate(), sender)
-
         case settingsBt:
             present(SettingsViewController.instantiate(), sender)
 
@@ -280,6 +277,10 @@ class BrowsingViewController: UIViewController {
             break
         }
     }
+
+	@IBAction func showBookmarks() {
+		present(BookmarksViewController.instantiate(), bookmarksBt)
+	}
 
 	@objc func keyboardWillShow(notification: Notification) {
 		if let kbSize = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
@@ -297,46 +298,32 @@ class BrowsingViewController: UIViewController {
 
 	// MARK: Old WebViewController interface
 
-	func viewIsVisible() {
-		debug("#viewIsVisible")
-
+	func becomesVisible() {
 		if tabs.count < 1 {
-			addNewTab(forURL: URL(string: "https://www.golem.de/")) //"http://3heens4xbedlj57xwcggjsdglot7e36p4rogy642xokemfo2duh6bbyd.onion/"))
+			addNewTab(URL(string: "http://3heens4xbedlj57xwcggjsdglot7e36p4rogy642xokemfo2duh6bbyd.onion/"))
 		}
 	}
 
-	func viewIsNoLongerVisible() {
-		debug("#viewIsNoLongerVisible")
-
-		if searchFl.isFirstResponder {
-			searchFl.resignFirstResponder()
-		}
-	}
-
-	func webViewTabs() -> [WebViewTab] {
-		debug("#webViewTabs")
-
-		return tabs
+	func becomesInvisible() {
+		unfocusSearchField()
 	}
 
     @discardableResult
 	func addNewTab(forURL url: URL?) -> WebViewTab? {
-		debug("#addNewTabForURL url=\(String(describing: url))")
-
-		return addNewTab(for: url, forRestoration: false, with: .default, withCompletionBlock: nil)
+		return addNewTab(url)
 	}
 
 	@discardableResult
 	@objc(addNewTabForURL:forRestoration:withAnimation:withCompletionBlock:)
-	func addNewTab(for url: URL?, forRestoration restoration: Bool,
-				   with animation: Animation, withCompletionBlock completion: ((Bool) -> Void)?) -> WebViewTab? {
+	func addNewTab(_ url: URL? = nil, forRestoration: Bool = false,
+				   animation: Animation = .default, completion: ((Bool) -> Void)? = nil) -> WebViewTab? {
 
-		debug("#addNewTab url=\(String(describing: url)), restoration=\(restoration), animation=\(animation), completion=\(String(describing: completion))")
+		debug("#addNewTab url=\(String(describing: url)), forRestoration=\(forRestoration), animation=\(animation), completion=\(String(describing: completion))")
 
-		let tab = WebViewTab(frame: .zero, withRestorationIdentifier: restoration ? url?.absoluteString : nil)
+		let tab = WebViewTab(frame: .zero, withRestorationIdentifier: forRestoration ? url?.absoluteString : nil)
 
 		if let tab = tab {
-			if let url = url, !restoration {
+			if let url = url, !forRestoration {
 				tab.load(url)
 			}
 
@@ -377,19 +364,13 @@ class BrowsingViewController: UIViewController {
 		return tab
 	}
 
-	func addNewTabFromToolbar(_ sender: Any?) {
-		debug("#addNewTabFromToolbar sender=\(String(describing: sender))")
-
-		addNewTab(for: nil, forRestoration: false, with: .default) { _ in
-			self.searchFl.becomeFirstResponder()
+	func addEmptyTabAndFocus() {
+		addNewTab() { _ in
+			self.focusSearchField()
 		}
 	}
 
-	func switchToTab(_ tabNumber: NSNumber) {
-		debug("#switchToTab tabNumber=\(tabNumber)")
-
-		let index = tabNumber.intValue
-
+	func switchToTab(_ index: Int) {
 		if index < 0 || index >= tabs.count {
 			return
 		}
@@ -407,8 +388,6 @@ class BrowsingViewController: UIViewController {
 	}
 
 	func removeTab(_ tabNumber: NSNumber) {
-		debug("#removeTab tabNumber=\(tabNumber)")
-
 		removeTab(tabNumber, andFocusTab: nil)
 	}
 
@@ -421,7 +400,7 @@ class BrowsingViewController: UIViewController {
 		let focussing = fIdx != nil && fIdx! > -1 && fIdx! < tabs.count ? tabs[fIdx!] : nil
 
 		if let removing = removing {
-			unfocusUrlField()
+			unfocusSearchField()
 
 			container.transition({
 				removing.webView.isHidden = true
@@ -440,39 +419,27 @@ class BrowsingViewController: UIViewController {
 			}
 		}
 		else if focussing != nil {
-			unfocusUrlField()
+			unfocusSearchField()
 
-			switchToTab(toFocus!)
+			switchToTab(toFocus!.intValue)
 		}
 	}
 
 	func removeAllTabs() {
-		debug("#removeAllTabs")
-
 		for tab in tabs {
 			tab.webView.removeFromSuperview()
 		}
 
 		tabs.removeAll()
-	}
 
-	func curWebViewTab() -> WebViewTab? {
-		debug("#curWebViewTab")
+		currentTab = nil
 
-		return currentTab
-	}
+		AppDelegate.shared()?.cookieJar.clearAllNonWhitelistedData()
 
-	func showBookmarks() {
-		debug("#showBookmarks")
-	}
-
-	func hideBookmarks() {
-		debug("#hideBookmarks")
+		self.updateChrome()
 	}
 
 	func hideSearchResults() {
-		debug("#hideSearchResults")
-
 		guard liveSearchOngoing else {
 			return
 		}
@@ -488,41 +455,31 @@ class BrowsingViewController: UIViewController {
 		liveSearchOngoing = false
 	}
 
-	@objc(prepareForNewURLFromString:)
-	func prepareForNewUrl(from string: String) {
-		debug("#prepareForNewURL string=\(string)")
+	func focusSearchField() {
+		if !searchFl.isFirstResponder {
+			searchFl.becomeFirstResponder()
+		}
 	}
 
-	func focusUrlField() {
-		debug("#focusUrlField")
-
-		searchFl.becomeFirstResponder()
-	}
-
-	func unfocusUrlField() {
-		debug("#unfocusUrlField")
-
+	func unfocusSearchField() {
 		if searchFl.isFirstResponder {
 			searchFl.resignFirstResponder()
 		}
 	}
 
-	func dismissPopover() {
-		debug("#dismissPopover")
+
+	// MARK: Public Methods
+
+	func present(_ vc: UIViewController, _ sender: UIView) {
+		vc.modalPresentationStyle = .popover
+		vc.popoverPresentationController?.sourceView = sender.superview
+		vc.popoverPresentationController?.sourceRect = sender.frame
+
+		present(vc, animated: true)
 	}
 
-	func forceRefresh() {
-		debug("#forceRefresh")
-	}
-
-	func settingsButton() -> UIView? {
-		debug("#settingsButton")
-
-		return nil
-	}
-
-	func updateProgress() {
-		debug("#updateProgress progress=\(currentTab?.progress.floatValue ?? 1)")
+	func updateChrome() {
+		debug("#updateChrome progress=\(currentTab?.progress.floatValue ?? 1)")
 
 		if let progress = progress {
 			progress.progress = currentTab?.progress.floatValue ?? 1
@@ -539,36 +496,6 @@ class BrowsingViewController: UIViewController {
 			}
 		}
 
-		updateChrome()
-	}
-
-	func webViewTouched() {
-		debug("#webViewTouched")
-
-        if searchFl.isFirstResponder {
-            searchFl.resignFirstResponder()
-        }
-	}
-
-
-	// MARK: Public Methods
-
-	func present(_ vc: UIViewController, _ sender: UIView) {
-		vc.modalPresentationStyle = .popover
-		vc.popoverPresentationController?.sourceView = sender.superview
-		vc.popoverPresentationController?.sourceRect = sender.frame
-
-		present(vc, animated: true)
-	}
-
-
-	// MARK: Private Methods
-
-	func debug(_ msg: String) {
-		print("[\(String(describing: type(of: self)))] \(msg)")
-	}
-
-	private func updateChrome() {
 		updateSearchField()
 
 		// The last non-hidden should be the one which is showing.
@@ -606,6 +533,13 @@ class BrowsingViewController: UIViewController {
 		actionBt.isEnabled = true
 		updateTabCount()
 	}
+
+	func debug(_ msg: String) {
+		print("[\(String(describing: type(of: self)))] \(msg)")
+	}
+
+
+	// MARK: Private Methods
 
 	/**
 	Update and center tab count in `tabsBt`.

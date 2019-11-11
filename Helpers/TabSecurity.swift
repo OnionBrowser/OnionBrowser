@@ -46,13 +46,12 @@ class TabSecurity: NSObject {
 		let ud = UserDefaults.standard
 		let security = Settings.tabSecurity
 		let appDelegate = UIApplication.shared.delegate as? AppDelegate
-		let controller = appDelegate?.webViewController
+		let controller = appDelegate?.browsingUi
 		let cookieJar = appDelegate?.cookieJar
 		let ocspCache = appDelegate?.certificateAuthentication
 
 		if security == .clearOnBackground {
 			controller?.removeAllTabs()
-			cookieJar?.clearAllNonWhitelistedData()
 		}
 		else {
 			cookieJar?.clearAllOldNonWhitelistedData()
@@ -60,7 +59,7 @@ class TabSecurity: NSObject {
 		}
 
 		if security == .alwaysRemember {
-			if let tabs = controller?.webViewTabs() {
+			if let tabs = controller?.tabs {
 
 				var urls = [URL]()
 
@@ -87,15 +86,14 @@ class TabSecurity: NSObject {
 		let ud = UserDefaults.standard
 
 		if Settings.tabSecurity  == .alwaysRemember,
-			let controller = (UIApplication.shared.delegate as? AppDelegate)?.webViewController,
+			let controller = AppDelegate.shared()?.browsingUi,
 			let data = ud.object(forKey: openTabs) as? Data,
 			let urls = NSKeyedUnarchiver.unarchiveObject(with: data) as? [URL] {
 
 			for url in urls {
 				print("[\(String(describing: self))] restore tab with url=\(url)")
 
-				controller.addNewTab(for: url, forRestoration: false,
-									 with: .hidden, withCompletionBlock: nil)
+				controller.addNewTab(url, animation: .hidden)
 			}
 		}
 		else {

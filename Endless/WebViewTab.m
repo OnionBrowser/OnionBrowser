@@ -32,7 +32,7 @@
 
 + (WebViewTab *)openedWebViewTabByRandID:(NSString *)randID
 {
-	for (WebViewTab *wvt in AppDelegate.sharedAppDelegate.webViewController.webViewTabs) {
+	for (WebViewTab *wvt in AppDelegate.sharedAppDelegate.browsingUi.tabs) {
 		if ([wvt randID] != nil && [[wvt randID] isEqualToString:randID]) {
 			return wvt;
 		}
@@ -414,7 +414,7 @@ SILENCE_WARNINGS_OFF
 	else if ([action isEqualToString:@"window.open"]) {
 		/* only allow windows to be opened from mouse/touch events, like a normal browser's popup blocker */
 		if (navigationType == UIWebViewNavigationTypeLinkClicked) {
-			WebViewTab *newtab = [AppDelegate.sharedAppDelegate.webViewController addNewTabForURL:nil];
+			WebViewTab *newtab = [AppDelegate.sharedAppDelegate.browsingUi addNewTabForURL:nil];
 			newtab.randID = param;
 			newtab.openedByTabHash = [NSNumber numberWithLong:self.hash];
 			
@@ -431,14 +431,14 @@ SILENCE_WARNINGS_OFF
 		UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Confirm", nil) message:NSLocalizedString(@"Allow this page to close its tab?", nil) preferredStyle:UIAlertControllerStyleAlert];
 		
 		UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK action") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            [AppDelegate.sharedAppDelegate.webViewController removeTab:[self tabIndex]];
+            [AppDelegate.sharedAppDelegate.browsingUi removeTab:self.tabIndex];
 		}];
 		
 		UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", @"Cancel action") style:UIAlertActionStyleCancel handler:nil];
 		[alertController addAction:cancelAction];
 		[alertController addAction:okAction];
 		
-		[AppDelegate.sharedAppDelegate.webViewController presentViewController:alertController animated:YES completion:nil];
+		[AppDelegate.sharedAppDelegate.browsingUi presentViewController:alertController animated:YES completion:nil];
 		
 		[self webView:__webView callbackWith:@""];
 	}
@@ -471,7 +471,7 @@ SILENCE_WARNINGS_OFF
 		
 		/* actions */
 		else if ([action isEqualToString:@"fakeWindow.close"]) {
-			[AppDelegate.sharedAppDelegate.webViewController removeTab:wvt.tabIndex];
+			[AppDelegate.sharedAppDelegate.browsingUi removeTab:wvt.tabIndex];
 			[self webView:__webView callbackWith:@""];
 		}
 	}
@@ -637,7 +637,7 @@ SILENCE_WARNINGS_OFF
 		}]];
 	}
 
-	[AppDelegate.sharedAppDelegate.webViewController presentViewController:uiac animated:YES completion:nil];
+	[AppDelegate.sharedAppDelegate.browsingUi presentViewController:uiac animated:YES completion:nil];
 
 SILENCE_DEPRECATION_ON
 	[self webViewDidFinishLoad:__webView];
@@ -686,7 +686,7 @@ SILENCE_WARNINGS_OFF
 {
 	_progress = pr;
 	dispatch_async(dispatch_get_main_queue(), ^{
-		[AppDelegate.sharedAppDelegate.webViewController updateProgress];
+		[AppDelegate.sharedAppDelegate.browsingUi updateChrome];
 	});
 }
 
@@ -702,7 +702,7 @@ SILENCE_WARNINGS_OFF
 
 - (void)webViewTouched:(UIEvent *)event
 {
-	[AppDelegate.sharedAppDelegate.webViewController webViewTouched];
+	[AppDelegate.sharedAppDelegate.browsingUi unfocusSearchField];
 }
 
 - (void)pressedMenu:(UIGestureRecognizer *)event
@@ -774,7 +774,7 @@ SILENCE_WARNINGS_OFF
 			u = [NSURL URLWithString:img];
 
 		if (u) {
-			WebViewTab *newtab = [AppDelegate.sharedAppDelegate.webViewController addNewTabForURL:u forRestoration:NO withAnimation:AnimationDefault withCompletionBlock:nil];
+			WebViewTab *newtab = [AppDelegate.sharedAppDelegate.browsingUi addNewTabForURL:u forRestoration:NO withAnimation:AnimationDefault withCompletionBlock:nil];
 			newtab.openedByTabHash = [NSNumber numberWithLong:self.hash];
 		}
 		
@@ -788,12 +788,12 @@ SILENCE_WARNINGS_OFF
 	}];
 	
 	UIAlertAction *openNewTabAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Open in a New Tab", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-		WebViewTab *newtab = [AppDelegate.sharedAppDelegate.webViewController addNewTabForURL:[NSURL URLWithString:href]];
+		WebViewTab *newtab = [AppDelegate.sharedAppDelegate.browsingUi addNewTabForURL:[NSURL URLWithString:href]];
 		newtab.openedByTabHash = [NSNumber numberWithLong:self.hash];
 	}];
 
 	UIAlertAction *openBackgroundTabAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Open in Background Tab", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-		WebViewTab *newtab = [AppDelegate.sharedAppDelegate.webViewController addNewTabForURL:[NSURL URLWithString:href] forRestoration:NO withAnimation:AnimationHidden withCompletionBlock:nil];
+		WebViewTab *newtab = [AppDelegate.sharedAppDelegate.browsingUi addNewTabForURL:[NSURL URLWithString:href] forRestoration:NO withAnimation:AnimationHidden withCompletionBlock:nil];
 		newtab.openedByTabHash = [NSNumber numberWithLong:self.hash];
 	}];
 
@@ -819,7 +819,7 @@ SILENCE_WARNINGS_OFF
 				dispatch_async(dispatch_get_main_queue(), ^{
 					UIAlertController *uiac = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Error", nil) message:[NSString stringWithFormat:NSLocalizedString(@"An error occurred downloading image %@", nil), img] preferredStyle:UIAlertControllerStyleAlert];
 					[uiac addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:nil]];
-					[AppDelegate.sharedAppDelegate.webViewController presentViewController:uiac animated:YES completion:nil];
+					[AppDelegate.sharedAppDelegate.browsingUi presentViewController:uiac animated:YES completion:nil];
 				});
 			}
 		});
@@ -853,7 +853,7 @@ SILENCE_WARNINGS_OFF
 		popover.permittedArrowDirections = UIPopoverArrowDirectionAny;
 	}
 	
-	[AppDelegate.sharedAppDelegate.webViewController presentViewController:alertController animated:YES completion:nil];
+	[AppDelegate.sharedAppDelegate.browsingUi presentViewController:alertController animated:YES completion:nil];
 }
 
 - (BOOL)canGoBack
@@ -873,14 +873,14 @@ SILENCE_WARNINGS_OFF
 		[[self webView] goBack];
 	}
 	else if (self.openedByTabHash) {
-		for (WebViewTab *wvt in AppDelegate.sharedAppDelegate.webViewController.webViewTabs) {
+		for (WebViewTab *wvt in AppDelegate.sharedAppDelegate.browsingUi.tabs) {
 			if ([wvt hash] == [self.openedByTabHash longValue]) {
-				[AppDelegate.sharedAppDelegate.webViewController removeTab:self.tabIndex andFocusTab:[wvt tabIndex]];
+				[AppDelegate.sharedAppDelegate.browsingUi removeTab:self.tabIndex andFocusTab:wvt.tabIndex];
 				return;
 			}
 		}
 		
-		[AppDelegate.sharedAppDelegate.webViewController removeTab:self.tabIndex];
+		[AppDelegate.sharedAppDelegate.browsingUi removeTab:self.tabIndex];
 	}
 }
 
@@ -1079,7 +1079,7 @@ SILENCE_WARNINGS_OFF
 	[downloadPreview.bottomAnchor constraintEqualToAnchor:self.viewHolder.bottomAnchor].active = YES;
 
 	// Add viewController as a child of WebViewController
-	UIViewController *parent = AppDelegate.sharedAppDelegate.webViewController;
+	UIViewController *parent = AppDelegate.sharedAppDelegate.browsingUi;
 	[parent addChildViewController:self.previewController];
 	self.previewController.view.translatesAutoresizingMaskIntoConstraints = NO;
 
@@ -1131,7 +1131,7 @@ SILENCE_WARNINGS_OFF
 - (void)presentOptionsMenuForCurrentDownload:(id)sender {
 	if (self.downloadedFile) {
 		documentInteractionController = [self setupControllerWithURL:self.downloadedFile usingDelegate:self];
-		BOOL presented = [documentInteractionController presentOptionsMenuFromRect:[AppDelegate sharedAppDelegate].webViewController.view.frame inView:[AppDelegate sharedAppDelegate].webViewController.view animated:YES];
+		BOOL presented = [documentInteractionController presentOptionsMenuFromRect:AppDelegate.sharedAppDelegate.browsingUi.view.frame inView:AppDelegate.sharedAppDelegate.browsingUi.view animated:YES];
 		if (!presented) {
 #ifdef TRACE
 			NSLog(@"Failed to present options menu for current download");
@@ -1180,7 +1180,7 @@ SILENCE_WARNINGS_OFF
 #pragma mark - UIDocumentInteractionControllerDelegate methods and helpers
 
 - (UIViewController *)documentInteractionControllerViewControllerForPreview:(UIDocumentInteractionController *)controller {
-	return [[AppDelegate sharedAppDelegate] webViewController];
+	return AppDelegate.sharedAppDelegate.browsingUi;
 }
 
 - (UIDocumentInteractionController *) setupControllerWithURL: (NSURL*) fileURL

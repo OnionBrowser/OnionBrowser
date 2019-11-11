@@ -493,7 +493,7 @@ static NSString * kJAHPRecursiveRequestFlagProperty = @"com.jivesoftware.JAHPAut
 		wvthash = [NSString stringWithFormat:@"%lu", [(NSNumber *)[NSURLProtocol propertyForKey:WVT_KEY inRequest:request] longValue]];
 
 	if (wvthash != nil && ![wvthash isEqualToString:@""]) {
-		for (WebViewTab *wvt in [[[AppDelegate sharedAppDelegate] webViewController] webViewTabs]) {
+		for (WebViewTab *wvt in AppDelegate.sharedAppDelegate.browsingUi.tabs) {
 			if ([[NSString stringWithFormat:@"%lu", (unsigned long)[wvt hash]] isEqualToString:wvthash]) {
 				_wvt = wvt;
 				break;
@@ -528,7 +528,7 @@ static NSString * kJAHPRecursiveRequestFlagProperty = @"com.jivesoftware.JAHPAut
 				[alertController addAction:cancelAction];
 				[alertController addAction:okAction];
 
-				[[[AppDelegate sharedAppDelegate] webViewController] presentViewController:alertController animated:YES completion:nil];
+				[AppDelegate.sharedAppDelegate.browsingUi presentViewController:alertController animated:YES completion:nil];
 			}
 		}
 
@@ -1199,9 +1199,6 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 
 	if(_wvt && [[dataTask.currentRequest URL] isEqual:[dataTask.currentRequest mainDocumentURL]]) {
 		[_wvt setUrl:[dataTask.currentRequest URL]];
-//		dispatch_async(dispatch_get_main_queue(), ^{
-//			[[[AppDelegate sharedAppDelegate] webViewController] adjustLayoutForNewHTTPResponse:self->_wvt];
-//		});
 	}
 
 	NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;

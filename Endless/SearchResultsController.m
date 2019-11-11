@@ -31,7 +31,7 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
 	[super viewWillDisappear:animated];
-	[[appDelegate webViewController] hideSearchResults];
+	[appDelegate.browsingUi hideSearchResults];
 }
 
 #pragma mark - Table view data source
@@ -89,9 +89,11 @@
 	NSString *q = [lastResults objectAtIndex:indexPath.row];
 	
 	if (q)
-		[[[appDelegate webViewController] curWebViewTab] searchFor:q];
+	{
+		[appDelegate.browsingUi.currentTab searchFor:q];
+	}
 	
-	[[appDelegate webViewController] unfocusUrlField];
+	[appDelegate.browsingUi unfocusSearchField];
 
 	[self close];
 }
@@ -103,7 +105,7 @@
 
 - (void)close
 {
-	[appDelegate.webViewController hideSearchResults];
+	[appDelegate.browsingUi hideSearchResults];
 }
 
 - (void)updateSearchResultsForQuery:(NSString *)query
@@ -159,7 +161,7 @@
 	
 	/* Allow request without a tab */
 	[NSURLProtocol setProperty:
-	 [NSNumber numberWithUnsignedLong:appDelegate.webViewController.curWebViewTab.hash]
+	 [NSNumber numberWithUnsignedLong:appDelegate.browsingUi.currentTab.hash]
 						forKey:WVT_KEY inRequest:request];
 	
 	__block NSString *tquery = [query copy];

@@ -19,7 +19,7 @@ UICollectionViewDropDelegate, TabCellDelegate {
 	}
 
 	@objc func showAllTabs() {
-		searchFl.resignFirstResponder()
+		unfocusSearchField()
 
 		self.tabsCollection.reloadData()
 
@@ -42,7 +42,7 @@ UICollectionViewDropDelegate, TabCellDelegate {
 	}
 
 	@objc func newTab() {
-		addNewTab(for: nil, forRestoration: false, with: .hidden) { _ in
+		addNewTab(animation: .hidden) { _ in
 			self.hideTabs() { _ in
 				self.searchFl.becomeFirstResponder()
 			}
@@ -173,7 +173,7 @@ UICollectionViewDropDelegate, TabCellDelegate {
 			tab.webView.add(to: container)
 		}
 
-		updateProgress()
+		updateChrome()
 
 		if #available(iOS 13.0, *) {
 			self.view.backgroundColor = .systemBackground

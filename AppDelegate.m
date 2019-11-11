@@ -107,7 +107,7 @@
 - (void)applicationWillResignActive:(UIApplication *)application
 {
 	[application ignoreSnapshotOnNextApplicationLaunch];
-	[[self webViewController] viewIsNoLongerVisible];
+	[self.browsingUi becomesInvisible];
 
 	[BlurredSnapshot create];
 }
@@ -132,7 +132,7 @@
 {
 	[BlurredSnapshot remove];
 
-	[[self webViewController] viewIsVisible];
+	[self.browsingUi becomesVisible];
 
     if (!inStartupPhase && OnionManager.shared.state != TorStateStarted && OnionManager.shared.state != TorStateConnected) {
         // TODO: actually use UI instead of silently trying to restart Tor.
@@ -147,7 +147,7 @@
 		// During app startup, we don't start Tor from here, but from
 		// OBRootViewController in order to catch the delegate callback for progress.
 		inStartupPhase = NO;
-//        [[self webViewController] viewIsVisible];
+//        [self.browsingUi becomesVisible];
     }
 }
 
@@ -184,16 +184,16 @@
 	// we need to close it *before* adding a new tab. Otherwise, the UI will
 	// be broken on iPhone-X-type devices: The address field will be in the
 	// notch area.
-	if (self.webViewController.presentedViewController != nil)
+	if (self.browsingUi.presentedViewController != nil)
 	{
-		[self.webViewController dismissViewControllerAnimated:YES completion:^{
-			[self.webViewController addNewTabForURL:url];
+		[self.browsingUi dismissViewControllerAnimated:YES completion:^{
+			[self.browsingUi addNewTabForURL:url];
 		}];
 	}
 	// If there's no modal view controller, however, the completion block would
 	// never be called.
 	else {
-		[self.webViewController addNewTabForURL:url];
+		[self.browsingUi addNewTabForURL:url];
 	}
 
 	return YES;
@@ -315,47 +315,45 @@
 {
 	if ([keyCommand modifierFlags] == UIKeyModifierCommand) {
 		if ([[keyCommand input] isEqualToString:@"b"]) {
-			[self.webViewController showBookmarks];
+			[self.browsingUi showBookmarks];
 			return;
 		}
 
 		if ([[keyCommand input] isEqualToString:@"l"]) {
-			[[self webViewController] focusUrlField];
+			[self.browsingUi focusSearchField];
 			return;
 		}
 		
 		if ([[keyCommand input] isEqualToString:@"t"]) {
-			[[self webViewController] addNewTabForURL:nil forRestoration:NO withAnimation:AnimationDefault withCompletionBlock:^(BOOL finished) {
-				[[self webViewController] focusUrlField];
-			}];
+			[self.browsingUi addEmptyTabAndFocus];
 			return;
 		}
 		
 		if ([[keyCommand input] isEqualToString:@"w"]) {
-			[[self webViewController] removeTab:[[[self webViewController] curWebViewTab] tabIndex]];
+			[self.browsingUi removeTab:self.browsingUi.currentTab.tabIndex];
 			return;
 		}
 		
 		if ([[keyCommand input] isEqualToString:@"["]) {
-			[[[self webViewController] curWebViewTab] goBack];
+			[self.browsingUi.currentTab goBack];
 			return;
 		}
 		
 		if ([[keyCommand input] isEqualToString:@"]"]) {
-			[[[self webViewController] curWebViewTab] goForward];
+			[self.browsingUi.currentTab goForward];
 			return;
 		}
 
 		for (int i = 0; i <= 9; i++) {
 			if ([[keyCommand input] isEqualToString:[NSString stringWithFormat:@"%d", i]]) {
-				[[self webViewController] switchToTab:[NSNumber numberWithInt:(i == 0 ? 9 : i - 1)]];
+				[self.browsingUi switchToTab:(i == 0 ? 9 : i - 1)];
 				return;
 			}
 		}
 	}
 	
-	if ([self webViewController] && [[self webViewController] curWebViewTab])
-		[[[self webViewController] curWebViewTab] handleKeyCommand:keyCommand];
+	if (self.browsingUi && self.browsingUi.currentTab)
+		[self.browsingUi.currentTab handleKeyCommand:keyCommand];
 }
 
 - (UIViewController *)topViewController
@@ -397,13 +395,15 @@
 
 - (void)handleShortcut:(UIApplicationShortcutItem *)shortcutItem
 {
-	if ([[shortcutItem type] containsString:@"OpenNewTab"]) {
-		[[self webViewController] dismissViewControllerAnimated:YES completion:nil];
-		[[self webViewController] addNewTabFromToolbar:nil];
-	} else if ([[shortcutItem type] containsString:@"ClearData"]) {
-		[[self webViewController] removeAllTabs];
-		[[self cookieJar] clearAllNonWhitelistedData];
-	} else {
+	if ([shortcutItem.type containsString:@"OpenNewTab"])
+	{
+		[self.browsingUi dismissViewControllerAnimated:YES completion:nil];
+		[self.browsingUi addEmptyTabAndFocus];
+	}
+	else if ([shortcutItem.type containsString:@"ClearData"]) {
+		[self.browsingUi removeAllTabs];
+	}
+	else {
 		NSLog(@"[AppDelegate] need to handle action %@", [shortcutItem type]);
 	}
 }
@@ -555,7 +555,7 @@
 				[authenticatingHTTPProtocol resolvePendingAuthenticationChallengeWithCredential:nsuc];
 			}]];
 
-			[[[AppDelegate sharedAppDelegate] webViewController] presentViewController:self->authAlertController animated:YES completion:nil];
+			[AppDelegate.sharedAppDelegate.browsingUi presentViewController:self->authAlertController animated:YES completion:nil];
 		});
 	}
 	else {

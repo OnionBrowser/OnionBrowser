@@ -20,8 +20,10 @@
 	self.inUseRuleRows = [[NSMutableArray alloc] init];
 	
 	NSDictionary *inUse = nil;
-	if ([[self.appDelegate webViewController] curWebViewTab] != nil)
-		inUse = [[[self.appDelegate webViewController] curWebViewTab] applicableHTTPSEverywhereRules];
+	if (self.appDelegate.browsingUi.currentTab != nil)
+	{
+		inUse = self.appDelegate.browsingUi.currentTab.applicableHTTPSEverywhereRules;
+	}
 
 	for (NSString *k in [[[HTTPSEverywhere rules] allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]) {
 		RuleEditorRow *row = [[RuleEditorRow alloc] init];

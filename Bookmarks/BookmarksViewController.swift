@@ -137,8 +137,8 @@ UITableViewDelegate, UISearchResultsUpdating, BookmarkViewControllerDelegate {
 			else {
 				let bookmark = Bookmark.all[index]
 
-				AppDelegate.shared()?.webViewController?.addNewTab(
-					for: bookmark.url, forRestoration: true, with: .hidden) { _ in
+				AppDelegate.shared()?.browsingUi?.addNewTab(
+					bookmark.url, animation: .hidden) { _ in
 						self.dismiss_()
 				}
 			}

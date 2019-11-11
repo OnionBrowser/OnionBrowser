@@ -178,7 +178,7 @@
                                     <rect key="frame" x="211" y="0.0" width="62.5" height="48"/>
                                     <state key="normal" image="bookmarks"/>
                                     <connections>
-                                        <action selector="action:" destination="-1" eventType="touchUpInside" id="HdD-3q-DYa"/>
+                                        <action selector="showBookmarks" destination="-1" eventType="touchUpInside" id="ihV-YB-Wbs"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tXa-df-pw3">
