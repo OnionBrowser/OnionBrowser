@@ -66,11 +66,11 @@ UICollectionViewDropDelegate, TabCellDelegate {
 		if let cell = cell as? TabCell {
 			let tab = tabs[indexPath.row]
 
-			cell.title.text = tab.title.text
+			cell.title.text = tab.title
 
-			tab.webView.add(to: cell.container)
-			tab.webView.isHidden = false
-			tab.webView.isUserInteractionEnabled = false
+			tab.add(to: cell.container)
+			tab.isHidden = false
+			tab.isUserInteractionEnabled = false
 
 			cell.delegate = self
 		}
@@ -83,7 +83,7 @@ UICollectionViewDropDelegate, TabCellDelegate {
 
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		if let cell = collectionView.cellForItem(at: indexPath) as? TabCell {
-			currentTab = tabs.first { $0.webView == cell.container.subviews.first }
+			currentTab = tabs.first { $0 == cell.container.subviews.first }
 			hideTabs(completion: nil)
 		}
 	}
@@ -151,9 +151,9 @@ UICollectionViewDropDelegate, TabCellDelegate {
 
 	// MARK: TabCellDelegate
 
-	func close(tabCell: TabCell) {
+	func close(_ sender: TabCell) {
 		tabsCollection.performBatchUpdates({
-			if let indexPath = tabsCollection.indexPath(for: tabCell) {
+			if let indexPath = tabsCollection.indexPath(for: sender) {
 				tabsCollection.deleteItems(at: [indexPath])
 
 				removeTab(NSNumber(value: indexPath.row))
@@ -168,9 +168,9 @@ UICollectionViewDropDelegate, TabCellDelegate {
 
 		// UIViews can only ever have one superview. Move back from tabsCollection to container now.
 		for tab in tabs {
-			tab.webView.isHidden = tab != currentTab
-			tab.webView.isUserInteractionEnabled = true
-			tab.webView.add(to: container)
+			tab.isHidden = tab != currentTab
+			tab.isUserInteractionEnabled = true
+			tab.add(to: container)
 		}
 
 		updateChrome()

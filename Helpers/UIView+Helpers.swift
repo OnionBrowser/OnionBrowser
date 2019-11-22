@@ -47,4 +47,11 @@ extension UIView {
 							  animations: animations, completion: completion)
 		}
 	}
+
+	/**
+	Init a subclass of a `UIView` from its defining xib/nib.
+	*/
+	class func fromNib<T: UIView>() -> T? {
+		return Bundle(for: T.self).loadNibNamed(String(describing: T.self), owner: nil, options: nil)?.first as? T
+	}
 }

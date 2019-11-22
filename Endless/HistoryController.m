@@ -7,19 +7,20 @@
 
 #import "AppDelegate.h"
 #import "HistoryController.h"
+#import "OnionBrowser-Swift.h"
 
 @implementation HistoryController {
 	AppDelegate *appDelegate;
-	WebViewTab *tab;
+	Tab *tab;
 	NSArray *history;
 }
 
-- (HistoryController *)initForTab:(WebViewTab *)_tab
+- (HistoryController *)initForTab:(Tab *)_tab
 {
 	self = [self init];
 	tab = _tab;
 	
-	NSMutableArray *historyCopy = [[tab history] mutableCopy];
+	NSMutableArray *historyCopy = [tab.history mutableCopy];
 	
 	/* we don't need the current page */
 	[historyCopy removeLastObject];
@@ -90,7 +91,7 @@
 	NSDictionary *hitem = [history objectAtIndex:[indexPath row]];
 	
 	if (hitem != nil)
-		[tab loadURL:[NSURL URLWithString:[hitem objectForKey:@"url"]]];
+		[tab load:[NSURL URLWithString:[hitem objectForKey:@"url"]] postParams:nil];
 	
 	[self dismissViewControllerAnimated:YES completion:nil];
 }

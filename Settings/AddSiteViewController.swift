@@ -70,10 +70,10 @@ class AddSiteViewController: FormViewController {
 	*/
 	public class func getCurrentTabInfo() -> (url: URL, title: String?)? {
 		if let tab = AppDelegate.shared()?.browsingUi?.currentTab,
-			let scheme = tab.url?.scheme?.lowercased() {
+			let scheme = tab.url.scheme?.lowercased() {
 
 			if scheme == "http" || scheme == "https" {
-				return (url: tab.url, title: tab.title?.text)
+				return (url: tab.url, title: tab.title)
 			}
 		}
 

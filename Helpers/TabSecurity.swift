@@ -64,11 +64,9 @@ class TabSecurity: NSObject {
 				var urls = [URL]()
 
 				for tab in tabs {
-					if let url = tab.url {
-						urls.append(url)
+					urls.append(tab.url)
 
-						print("[\(String(describing: self))] save open tab url=\(url)")
-					}
+					print("[\(String(describing: self))] save open tab url=\(tab.url)")
 				}
 
 				ud.set(NSKeyedArchiver.archivedData(withRootObject: urls),

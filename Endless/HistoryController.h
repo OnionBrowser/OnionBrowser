@@ -7,11 +7,11 @@
 
 #import <UIKit/UIKit.h>
 
-#import "WebViewTab.h"
+@class Tab;
 
 @interface HistoryController : UITableViewController <UIGestureRecognizerDelegate>
 
-- (HistoryController *)initForTab:(WebViewTab *)tab;
+- (HistoryController *)initForTab:(Tab *)tab;
 
 @end
 

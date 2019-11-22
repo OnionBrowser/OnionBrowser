@@ -319,7 +319,7 @@
 		}
 		
 		if ([[keyCommand input] isEqualToString:@"w"]) {
-			[self.browsingUi removeTab:self.browsingUi.currentTab.tabIndex];
+			[self.browsingUi removeCurrentTab];
 			return;
 		}
 		

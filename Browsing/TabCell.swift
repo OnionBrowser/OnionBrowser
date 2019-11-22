@@ -10,8 +10,8 @@
 
 import UIKit
 
-protocol TabCellDelegate {
-    func close(tabCell: TabCell)
+protocol TabCellDelegate: class {
+    func close(_ sender: TabCell)
 }
 
 class TabCell: UICollectionViewCell {
@@ -26,7 +26,7 @@ class TabCell: UICollectionViewCell {
 
     @IBOutlet weak var container: UIView!
 
-    var delegate: TabCellDelegate?
+    weak var delegate: TabCellDelegate?
 
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -40,8 +40,11 @@ class TabCell: UICollectionViewCell {
 		setup()
 	}
 
+
+	// MARK: Actions
+
     @IBAction func close() {
-        delegate?.close(tabCell: self)
+        delegate?.close(self)
     }
 
 

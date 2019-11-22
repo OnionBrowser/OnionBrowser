@@ -686,7 +686,7 @@ SILENCE_WARNINGS_OFF
 {
 	_progress = pr;
 	dispatch_async(dispatch_get_main_queue(), ^{
-		[AppDelegate.sharedAppDelegate.browsingUi updateChrome];
+		[AppDelegate.sharedAppDelegate.browsingUi updateChrome:nil];
 	});
 }
 

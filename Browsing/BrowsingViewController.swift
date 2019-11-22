@@ -11,7 +11,7 @@
 import UIKit
 
 @objcMembers
-class BrowsingViewController: UIViewController {
+class BrowsingViewController: UIViewController, TabDelegate {
 
 	@objc
 	enum Animation: Int {
@@ -100,10 +100,10 @@ class BrowsingViewController: UIViewController {
 		}
 	}
 
-	var tabs = [WebViewTab]()
+	var tabs = [Tab]()
 
 	private var currentTabIndex = -1
-	var currentTab: WebViewTab? {
+	var currentTab: Tab? {
 		get {
 			return currentTabIndex < 0 || currentTabIndex >= tabs.count ? tabs.last : tabs[currentTabIndex]
 		}
@@ -138,7 +138,7 @@ class BrowsingViewController: UIViewController {
 
 		// There could have been tabs added before XIB was initialized.
 		for tab in tabs {
-			tab.webView.add(to: container)
+			tab.add(to: container)
 		}
 
 		updateChrome()
@@ -187,13 +187,11 @@ class BrowsingViewController: UIViewController {
 		var tabInfo = [[String: Any]]()
 
 		for tab in tabs {
-			if let url = tab.url {
-				tabInfo.append(["url": url, "title": tab.title.text ?? ""])
+			tabInfo.append(["url": tab.url, "title": tab.title])
 
-				// TODO: From old code. Why here this side effect?
-				// Looks strange.
-				tab.webView.restorationIdentifier = url.absoluteString
-			}
+			// TODO: From old code. Why here this side effect?
+			// Looks strange.
+			tab.restorationIdentifier = tab.url.absoluteString
 		}
 
 		coder.encode(tabInfo, forKey: "webViewTabs")
@@ -210,7 +208,7 @@ class BrowsingViewController: UIViewController {
 
 			if let url = info["url"] as? URL {
 				let tab = addNewTab(url, forRestoration: true, animation: .hidden)
-				tab?.title.text = info["title"] as? String
+				tab?.title = info["title"] as? String ?? ""
 			}
 		}
 
@@ -219,9 +217,9 @@ class BrowsingViewController: UIViewController {
 		}
 
 		for tab in tabs {
-			tab.webView.isHidden = tab != currentTab
-			tab.webView.isUserInteractionEnabled = true
-			tab.webView.add(to: container)
+			tab.isHidden = tab != currentTab
+			tab.isUserInteractionEnabled = true
+			tab.add(to: container)
 		}
 
 		currentTab?.refresh()
@@ -308,56 +306,51 @@ class BrowsingViewController: UIViewController {
 	}
 
     @discardableResult
-	func addNewTab(forURL url: URL?) -> WebViewTab? {
+	func addNewTab(forURL url: URL?) -> Tab? {
 		return addNewTab(url)
 	}
 
 	@discardableResult
 	@objc(addNewTabForURL:forRestoration:withAnimation:withCompletionBlock:)
 	func addNewTab(_ url: URL? = nil, forRestoration: Bool = false,
-				   animation: Animation = .default, completion: ((Bool) -> Void)? = nil) -> WebViewTab? {
+				   animation: Animation = .default, completion: ((Bool) -> Void)? = nil) -> Tab? {
 
 		debug("#addNewTab url=\(String(describing: url)), forRestoration=\(forRestoration), animation=\(animation), completion=\(String(describing: completion))")
 
-		let tab = WebViewTab(frame: .zero, withRestorationIdentifier: forRestoration ? url?.absoluteString : nil)
+		let tab = Tab(restorationId: forRestoration ? url?.absoluteString : nil)
 
-		if let tab = tab {
-			if let url = url, !forRestoration {
-				tab.load(url)
-			}
+		if let url = url, !forRestoration {
+			tab.load(url)
+		}
 
-			tabs.append(tab)
+		tab.tabDelegate = self
 
-			tab.webView.scrollView.delegate = self
-			tab.webView.isHidden = true
-			tab.webView.add(to: container)
+		tabs.append(tab)
 
-			let animations = {
-				for otherTab in self.tabs {
-					otherTab.webView.isHidden = otherTab != tab
-				}
-			}
+		tab.scrollView.delegate = self
+		tab.isHidden = true
+		tab.add(to: container)
 
-			let completion = { (finished: Bool) in
-				self.currentTab = tab
-
-				self.updateChrome()
-
-				completion?(finished)
-			}
-
-			if animation == .hidden {
-				animations()
-				completion(true)
-			}
-			else {
-				container.transition(animations, completion)
+		let animations = {
+			for otherTab in self.tabs {
+				otherTab.isHidden = otherTab != tab
 			}
 		}
-		else {
-			updateChrome()
 
-			completion?(true)
+		let completion = { (finished: Bool) in
+			self.currentTab = tab
+
+			self.updateChrome()
+
+			completion?(finished)
+		}
+
+		if animation == .hidden {
+			animations()
+			completion(true)
+		}
+		else {
+			container.transition(animations, completion)
 		}
 
 		return tab
@@ -378,12 +371,21 @@ class BrowsingViewController: UIViewController {
 
 		container.transition({
 			for tab in self.tabs {
-				tab.webView.isHidden = tab != focussing
+				tab.isHidden = tab != focussing
 			}
 		}) { _ in
 			self.currentTab = focussing
 			self.updateChrome()
 		}
+	}
+
+	func removeCurrentTab() {
+		guard let currentTab = currentTab,
+			let idx = tabs.firstIndex(of: currentTab) else {
+			return
+		}
+
+		removeTab(NSNumber(value: idx))
 	}
 
 	func removeTab(_ tabNumber: NSNumber) {
@@ -402,14 +404,14 @@ class BrowsingViewController: UIViewController {
 			unfocusSearchField()
 
 			container.transition({
-				removing.webView.isHidden = true
-				(focussing ?? self.tabs.last)?.webView.isHidden = false
+				removing.isHidden = true
+				(focussing ?? self.tabs.last)?.isHidden = false
 			}) { _ in
 				self.currentTab = focussing ?? self.tabs.last
 
 				let hash = removing.hash
 
-				removing.webView.removeFromSuperview()
+				removing.removeFromSuperview()
 				self.tabs.remove(at: rIdx)
 
 				AppDelegate.shared()?.cookieJar.clearNonWhitelistedData(forTab: UInt(hash))
@@ -426,7 +428,7 @@ class BrowsingViewController: UIViewController {
 
 	func removeAllTabs() {
 		for tab in tabs {
-			tab.webView.removeFromSuperview()
+			tab.removeFromSuperview()
 		}
 
 		tabs.removeAll()
@@ -467,21 +469,13 @@ class BrowsingViewController: UIViewController {
 	}
 
 
-	// MARK: Public Methods
+	// MARK: TabDelegate
 
-	func present(_ vc: UIViewController, _ sender: UIView) {
-		vc.modalPresentationStyle = .popover
-		vc.popoverPresentationController?.sourceView = sender.superview
-		vc.popoverPresentationController?.sourceRect = sender.frame
-
-		present(vc, animated: true)
-	}
-
-	func updateChrome() {
-		debug("#updateChrome progress=\(currentTab?.progress.floatValue ?? 1)")
+	func updateChrome(_ sender: Tab? = nil) {
+		debug("#updateChrome progress=\(currentTab?.progress ?? 1)")
 
 		if let progress = progress {
-			progress.progress = currentTab?.progress.floatValue ?? 1
+			progress.progress = currentTab?.progress ?? 1
 
 			if progress.progress >= 1 {
 				if !progress.isHidden {
@@ -498,7 +492,7 @@ class BrowsingViewController: UIViewController {
 		updateSearchField()
 
 		// The last non-hidden should be the one which is showing.
-		guard let tab = tabs.last(where: { !$0.webView.isHidden }) else {
+		guard let tab = tabs.last(where: { !$0.isHidden }) else {
 			securityBt.setTitle(nil, for: .normal)
 			backBt.isEnabled = false
 			frwrdBt.isEnabled = false
@@ -510,7 +504,7 @@ class BrowsingViewController: UIViewController {
 
 		let securityId: String
 
-		switch SecurityPreset(HostSettings(orDefaultsForHost: tab.url?.host)) {
+		switch SecurityPreset(HostSettings(orDefaultsForHost: tab.url.host)) {
 
 		case .insecure:
 			securityId = Formatter.localize(1)
@@ -527,10 +521,21 @@ class BrowsingViewController: UIViewController {
 
 		securityBt.setTitle(securityId)
 		updateEncryptionBt(tab.secureMode)
-		backBt.isEnabled = tab.canGoBack()
-		frwrdBt.isEnabled = tab.canGoForward()
+		backBt.isEnabled = tab.canGoBack
+		frwrdBt.isEnabled = tab.canGoForward
 		actionBt.isEnabled = true
 		updateTabCount()
+	}
+
+
+	// MARK: Public Methods
+
+	func present(_ vc: UIViewController, _ sender: UIView) {
+		vc.modalPresentationStyle = .popover
+		vc.popoverPresentationController?.sourceView = sender.superview
+		vc.popoverPresentationController?.sourceRect = sender.frame
+
+		present(vc, animated: true)
 	}
 
 	func debug(_ msg: String) {
