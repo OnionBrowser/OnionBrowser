@@ -10,7 +10,6 @@ import Foundation
 
 extension BrowsingViewController: UITextFieldDelegate {
 
-	private static let creditsUrl = Bundle.main.url(forResource: "credits", withExtension: "html")
 	private static let secureIcon = UIImage(named: "secure")
 	private static let insecureIcon = UIImage(named: "insecure")
 
@@ -115,11 +114,14 @@ extension BrowsingViewController: UITextFieldDelegate {
 				return
 			}
 
-			if currentTab?.url == BrowsingViewController.creditsUrl {
-				searchFl.text = BrowsingViewController.aboutOnionBrowserUrl
+			if currentTab?.url == URL.credits {
+				searchFl.text = URL.aboutOnionBrowser.absoluteString
+			}
+			else if currentTab?.url == URL.blank {
+				searchFl.text = nil
 			}
 			else {
-				searchFl.text = currentTab?.url?.absoluteString
+				searchFl.text = currentTab?.url.absoluteString
 			}
 
 			// .unlessEditing would be such a great state, if it wouldn't show
@@ -139,11 +141,11 @@ extension BrowsingViewController: UITextFieldDelegate {
 	}
 
 	func prettyTitle(_ url: URL?) -> String? {
-		if url == BrowsingViewController.creditsUrl {
-			return BrowsingViewController.aboutOnionBrowserUrl
+		if url == URL.credits {
+			return URL.aboutOnionBrowser.absoluteString
 		}
 
-		if url?.absoluteString != BrowsingViewController.blankUrl,
+		if url != URL.blank,
 			let host = url?.host {
 
 			return host.replacingOccurrences(of: #"^www\d*\."#, with: "", options: .regularExpression)
@@ -189,11 +191,11 @@ extension BrowsingViewController: UITextFieldDelegate {
 		// Must not be empty, must not be the explicit blank page.
 		if let search = search,
 			!search.isEmpty
-				&& search.caseInsensitiveCompare(BrowsingViewController.blankUrl) != .orderedSame {
+				&& search.caseInsensitiveCompare(URL.blank.absoluteString) != .orderedSame {
 
 			// If credits page, return that.
-			if search.caseInsensitiveCompare(BrowsingViewController.aboutOnionBrowserUrl) == .orderedSame {
-				return URL(string: BrowsingViewController.aboutOnionBrowserUrl)
+			if search.caseInsensitiveCompare(URL.aboutOnionBrowser.absoluteString) == .orderedSame {
+				return URL.aboutOnionBrowser
 			}
 
 			if search.range(of: #"\s+"#, options: .regularExpression) != nil
@@ -229,6 +231,6 @@ extension BrowsingViewController: UITextFieldDelegate {
 			// Unparsable. Return blank page.
 		}
 
-		return URL(string: BrowsingViewController.blankUrl)
+		return URL.blank
 	}
 }

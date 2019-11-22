@@ -543,7 +543,7 @@ static NSString * kJAHPRecursiveRequestFlagProperty = @"com.jivesoftware.JAHPAut
 	}
 
 
-	[[self class] authenticatingHTTPProtocol:self logWithFormat:@"[Tab %@] initializing %@ to %@ (via %@)", _wvt.tabIndex, [request HTTPMethod], [[request URL] absoluteString], [request mainDocumentURL]];
+	[[self class] authenticatingHTTPProtocol:self logWithFormat:@"[Tab %@] initializing %@ to %@ (via %@)", _wvt.url, [request HTTPMethod], [[request URL] absoluteString], [request mainDocumentURL]];
 
 	NSMutableURLRequest *mutableRequest = [request mutableCopy];
 
@@ -583,7 +583,7 @@ static NSString * kJAHPRecursiveRequestFlagProperty = @"com.jivesoftware.JAHPAut
 
 	/* in case our URL changed/upgraded, send back to the webview so it knows what our protocol is for "//" assets */
 	if (_isOrigin && ![[[mutableRequest URL] absoluteString] isEqualToString:[[request URL] absoluteString]]) {
-		[[self class] authenticatingHTTPProtocol:self logWithFormat:@"[Tab %@] canceling origin request to redirect %@ rewritten to %@", _wvt.tabIndex, [[self.request URL] absoluteString], [[mutableRequest URL] absoluteString]];
+		[[self class] authenticatingHTTPProtocol:self logWithFormat:@"[Tab %@] canceling origin request to redirect %@ rewritten to %@", _wvt.url, [[self.request URL] absoluteString], [[mutableRequest URL] absoluteString]];
 		[_wvt setUrl:[mutableRequest URL]];
 		[_wvt loadURL:[mutableRequest URL]];
 		return nil;
@@ -604,7 +604,7 @@ static NSString * kJAHPRecursiveRequestFlagProperty = @"com.jivesoftware.JAHPAut
 	NSArray *cookies = [AppDelegate.sharedAppDelegate.cookieJar cookiesForURL:mutableRequest.URL forTab:_wvt.hash];
 
 	if (cookies != nil && cookies.count > 0) {
-		[self.class authenticatingHTTPProtocol:self logWithFormat:@"[Tab %@] sending %lu cookie(s) to %@", _wvt.tabIndex, (unsigned long)cookies.count, mutableRequest.URL];
+		[self.class authenticatingHTTPProtocol:self logWithFormat:@"[Tab %@] sending %lu cookie(s) to %@", _wvt.url, (unsigned long)cookies.count, mutableRequest.URL];
 		NSDictionary *headers = [NSHTTPCookie requestHeaderFieldsWithCookies:cookies];
 		mutableRequest.allHTTPHeaderFields = headers;
 	}

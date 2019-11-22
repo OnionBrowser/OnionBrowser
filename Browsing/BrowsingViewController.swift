@@ -19,8 +19,7 @@ class BrowsingViewController: UIViewController {
 		case hidden
 	}
 
-	static let blankUrl = "about:blank"
-	static let aboutOnionBrowserUrl = "about:onion-browser"
+	static let aboutOnionBrowserUrl = URL.aboutOnionBrowser.absoluteString
 
     @IBOutlet weak var searchBar: UIView!
     @IBOutlet weak var searchBarHeightConstraint: NSLayoutConstraint! {

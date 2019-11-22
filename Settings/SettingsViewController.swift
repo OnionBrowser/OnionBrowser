@@ -269,9 +269,8 @@ class SettingsViewController: FormViewController {
 			cell.textLabel?.textAlignment = .natural
 		}
 		.onCellSelection { _, _ in
-			AppDelegate.shared()?.browsingUi.addNewTab(
-				URL(string: BrowsingViewController.aboutOnionBrowserUrl),
-				animation: .hidden)
+			AppDelegate.shared()?.browsingUi.addNewTab(URL.aboutOnionBrowser,
+													   animation: .hidden)
 
 			self.dismsiss_()
 		}

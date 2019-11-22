@@ -167,18 +167,7 @@
 	NSLog(@"[AppDelegate] request to open url: %@", url);
 #endif
 
-	if ([url.scheme.lowercaseString isEqualToString:@"onionhttp"])
-	{
-		NSURLComponents *urlc = [[NSURLComponents alloc] initWithURL:url resolvingAgainstBaseURL:YES];
-		urlc.scheme = @"http";
-		url = urlc.URL;
-	}
-	else if ([url.scheme.lowercaseString isEqualToString:@"onionhttps"])
-	{
-		NSURLComponents *urlc = [[NSURLComponents alloc] initWithURL:url resolvingAgainstBaseURL:YES];
-		urlc.scheme = @"https";
-		url = urlc.URL;
-	}
+	url = url.withFixedScheme;
 
 	// In case, a modal view controller is overlaying the WebViewController,
 	// we need to close it *before* adding a new tab. Otherwise, the UI will
