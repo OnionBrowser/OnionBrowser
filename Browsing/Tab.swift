@@ -3,23 +3,39 @@
 //  OnionBrowser2
 //
 //  Created by Benjamin Erhart on 22.11.19.
-//  Copyright © 2019 jcs. All rights reserved.
+//  Copyright (c) 2012-2019, Tigas Ventures, LLC (Mike Tigas)
+//
+//  This file is part of Onion Browser. See LICENSE file for redistribution terms.
 //
 
 import UIKit
 
 protocol TabDelegate: class {
 	func updateChrome(_ sender: Tab?)
+
+	func addNewTab(_ url: URL?, forRestoration: Bool,
+				   animation: BrowsingViewController.Animation,
+				   completion: ((Bool) -> Void)?) -> Tab?
+
+	func removeTab(_ tab: Tab, focus: Tab?)
+
+	func getTab(ipcId: String?) -> Tab?
+
+	func getTab(hash: Int?) -> Tab?
 }
 
 @objcMembers
-class Tab: UIWebView, UIWebViewDelegate {
+class Tab: UIView {
 
 	weak var tabDelegate: TabDelegate?
 
 	var title = URL.blank.absoluteString
 
-	private(set) var url = URL.blank
+	var parentId: Int?
+
+	var ipcId: String?
+
+	var url = URL.blank
 
 	private(set) var needsRefresh = false
 
@@ -46,13 +62,40 @@ class Tab: UIWebView, UIWebViewDelegate {
 
 	private(set) var secureMode = WebViewTabSecureMode.insecure
 
-	private(set) var progress: Float = 0 {
+	@nonobjc
+	var progress: Float = 0 {
 		didSet {
 			tabDelegate?.updateChrome(self)
 		}
 	}
 
 	private(set) var history = [[String: String]]()
+
+	private lazy var webView: UIWebView = {
+		let view = UIWebView()
+
+		view.delegate = self
+		view.scalesPageToFit = true
+		view.allowsInlineMediaPlayback = true
+
+		return view.add(to: self)
+	}()
+
+	var scrollView: UIScrollView {
+		return webView.scrollView
+	}
+
+	var canGoBack: Bool {
+		return  parentId != nil || webView.canGoBack
+	}
+
+	var canGoForward: Bool {
+		return webView.canGoForward
+	}
+
+	var previewController: QLPreviewController?
+
+	var downloadedFile: URL?
 
 
 	init(restorationId: String?) {
@@ -68,35 +111,38 @@ class Tab: UIWebView, UIWebViewDelegate {
 	}
 
 
-	// MARK: UIWebViewDelegate
-
-	func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
-		return true
-	}
-
-
 	// MARK: Public Methods
 
 	func refresh() {
 		needsRefresh = false
-		reload()
+		webView.reload()
 	}
 
 	func load(_ url: URL?, postParams: String? = nil) {
+		var request: URLRequest?
+
+		if let url = url?.withFixedScheme?.real {
+			request = URLRequest(url: url)
+
+			if let postParams = postParams {
+				request?.httpMethod = "POST"
+				request?.httpBody = postParams.data(using: .utf8)
+			}
+		}
+
+		load(request)
+	}
+
+	func load(_ request: URLRequest?) {
 		reset()
 
-		if let url = url?.real {
-			self.url = url
+		if let request = request {
+			if let url = request.url {
+				self.url = url
+			}
 
 			DispatchQueue.main.async {
-				var request = URLRequest(url: self.url)
-
-				if let postParams = postParams {
-					request.httpMethod = "POST"
-					request.httpBody = postParams.data(using: .utf8)
-				}
-
-				self.loadRequest(request)
+				self.webView.loadRequest(request)
 			}
 		}
 	}
@@ -132,17 +178,35 @@ class Tab: UIWebView, UIWebViewDelegate {
 		return load(URL(string: url), postParams: params?.joined(separator: "&"))
 	}
 
-
-	// MARK: Private Methods
-
-	private func reset() {
-		stopLoading()
+	func reset() {
+		webView.stopLoading()
 
 		url = URL.blank
 		applicableHttpsEverywhereRules.removeAllObjects()
 		applicableUrlBlockerTargets.removeAllObjects()
 		sslCertificate = nil
 	}
+
+	func goBack() {
+		if webView.canGoBack {
+			webView.goBack()
+		}
+		else if let parentId = parentId {
+			tabDelegate?.removeTab(self, focus: tabDelegate?.getTab(hash: parentId))
+		}
+	}
+
+	func goForward() {
+		webView.goForward()
+	}
+
+	@discardableResult
+	func stringByEvaluatingJavaScript(from script: String) -> String? {
+		return webView.stringByEvaluatingJavaScript(from: script)
+	}
+
+
+	// MARK: Private Methods
 
 	private func setup(_ restorationId: String? = nil) {
 		// Re-register user agent with our hash, which should only affect this UIWebView.
@@ -152,9 +216,5 @@ class Tab: UIWebView, UIWebViewDelegate {
 			restorationIdentifier = restorationId
 			needsRefresh = true
 		}
-
-		delegate = self
-		scalesPageToFit = true
-		allowsInlineMediaPlayback = true
 	}
 }

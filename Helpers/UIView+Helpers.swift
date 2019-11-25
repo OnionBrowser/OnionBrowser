@@ -12,7 +12,8 @@ import Foundation
 
 extension UIView {
 
-	func add(to superview: UIView?) {
+	@discardableResult
+	func add(to superview: UIView?) -> Self {
 		if let superview = superview {
 			translatesAutoresizingMaskIntoConstraints = false
 
@@ -23,6 +24,8 @@ extension UIView {
 			self.topAnchor.constraint(equalTo: superview.topAnchor).isActive = true
 			self.bottomAnchor.constraint(equalTo: superview.bottomAnchor).isActive = true
 		}
+
+		return self
 	}
 
 	/**

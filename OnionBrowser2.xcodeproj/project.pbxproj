@@ -80,6 +80,9 @@
 		8AD5FFBA1EB3DFE30066E7E3 /* ObfsThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD5FFB91EB3DFE30066E7E3 /* ObfsThread.m */; };
 		8AF16095202CD6D600AC0BCE /* block_webrtc.js in Resources */ = {isa = PBXBuildFile; fileRef = 8AF16094202CD6D600AC0BCE /* block_webrtc.js */; };
 		A006A1872387E20200B0344A /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = A006A1862387E20200B0344A /* Tab.swift */; };
+		A006A1892388123D00B0344A /* Tab+UIWebViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A006A1882388123C00B0344A /* Tab+UIWebViewDelegate.swift */; };
+		A006A18B2388185900B0344A /* String+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A006A18A2388185900B0344A /* String+Helpers.swift */; };
+		A006A18D23883BA400B0344A /* Tab+Downloads.swift in Sources */ = {isa = PBXBuildFile; fileRef = A006A18C23883BA400B0344A /* Tab+Downloads.swift */; };
 		A02CE2B8220079B800964A14 /* SearchResultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = A02CE2B6220079B700964A14 /* SearchResultsController.m */; };
 		A02CE2BB22007A0200964A14 /* HistoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = A02CE2BA22007A0200964A14 /* HistoryController.m */; };
 		A0364537235094DF0038930E /* Storage2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0364536235094DF0038930E /* Storage2ViewController.swift */; };
@@ -269,6 +272,9 @@
 		A00436121E8187800067652D /* convert_rules.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = convert_rules.rb; sourceTree = "<group>"; };
 		A00436131E8187800067652D /* urlblocker.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = urlblocker.json; path = Endless/Resources/urlblocker.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.json; };
 		A006A1862387E20200B0344A /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
+		A006A1882388123C00B0344A /* Tab+UIWebViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tab+UIWebViewDelegate.swift"; sourceTree = "<group>"; };
+		A006A18A2388185900B0344A /* String+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Helpers.swift"; sourceTree = "<group>"; };
+		A006A18C23883BA400B0344A /* Tab+Downloads.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tab+Downloads.swift"; sourceTree = "<group>"; };
 		A0079AD62019F58600511268 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "Endless/zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		A010FA171E7986DE00E04222 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		A010FA191E798C0400E04222 /* BUILD.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = BUILD.md; sourceTree = "<group>"; };
@@ -1444,6 +1450,7 @@
 				8AD1283B1ED61812005C43E4 /* Ipv6Tester.h */,
 				8AD1283C1ED61812005C43E4 /* Ipv6Tester.m */,
 				A062401B235F134C008DADDD /* SearchableTableViewController.swift */,
+				A006A18A2388185900B0344A /* String+Helpers.swift */,
 				A072C4D2227C684F0022BC58 /* TabSecurity.swift */,
 				A0E755F82372F119006276DB /* UIView+Helpers.swift */,
 				A0E755FA2373597D006276DB /* UIButton+Helpers.swift */,
@@ -2064,7 +2071,9 @@
 				A0894E3B236B055300EE2743 /* BrowsingViewController+Toolbar.swift */,
 				A0E27596236B10F800C89E18 /* BrowsingViewController+Tabs.swift */,
 				A006A1862387E20200B0344A /* Tab.swift */,
+				A006A18C23883BA400B0344A /* Tab+Downloads.swift */,
 				A0D419DE2386E4BD0055AC33 /* Tab+Keyboard.swift */,
+				A006A1882388123C00B0344A /* Tab+UIWebViewDelegate.swift */,
 				A0E755F42372EBAD006276DB /* TabCell.xib */,
 				A0E755F52372EBAD006276DB /* TabCell.swift */,
 			);
@@ -2363,6 +2372,7 @@
 			files = (
 				A072C4D4227C68500022BC58 /* TabSecurity.swift in Sources */,
 				A02CE2B8220079B800964A14 /* SearchResultsController.m in Sources */,
+				A006A1892388123D00B0344A /* Tab+UIWebViewDelegate.swift in Sources */,
 				A006A1872387E20200B0344A /* Tab.swift in Sources */,
 				A0E755F32372CA77006276DB /* BrowsingViewController+UITextFieldDelegate.swift in Sources */,
 				A053136E22F1C737006655EC /* JAHPAuthenticatingHTTPProtocol.m in Sources */,
@@ -2395,6 +2405,7 @@
 				A0D419DF2386E4BD0055AC33 /* Tab+Keyboard.swift in Sources */,
 				A09A2AAB2254D2C700A3EEF0 /* WebViewTab+Activity.m in Sources */,
 				01F2AE401B82666900D5651A /* SSLCertificateViewController.m in Sources */,
+				A006A18B2388185900B0344A /* String+Helpers.swift in Sources */,
 				69EFCCA21EAD20CB00280747 /* OBRootViewController.m in Sources */,
 				A03DBCED22859B99001890C4 /* Config.m in Sources */,
 				018333CA1A3505FB00670CD1 /* HTTPSEverywhere.m in Sources */,
@@ -2428,6 +2439,7 @@
 				A07D65542208A17E0002D775 /* OldBookmark.m in Sources */,
 				A07D65552208A17E0002D775 /* Settings.xcdatamodel in Sources */,
 				A053136F22F1C73A006655EC /* JAHPCacheStoragePolicy.m in Sources */,
+				A006A18D23883BA400B0344A /* Tab+Downloads.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

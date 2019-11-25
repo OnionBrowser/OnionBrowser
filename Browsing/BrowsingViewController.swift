@@ -527,6 +527,23 @@ class BrowsingViewController: UIViewController, TabDelegate {
 		updateTabCount()
 	}
 
+	@nonobjc
+	func removeTab(_ tab: Tab, focus: Tab? = nil) {
+		if let idx = tabs.lastIndex(of: tab) {
+			let focusIdx = focus == nil ? nil : tabs.lastIndex(of: focus!)
+
+			removeTab(NSNumber(value: idx), andFocusTab: focusIdx == nil ? nil : NSNumber(value: focusIdx!))
+		}
+	}
+
+	func getTab(ipcId: String?) -> Tab? {
+		return tabs.first { $0.ipcId == ipcId }
+	}
+
+	func getTab(hash: Int?) -> Tab? {
+		return tabs.first { $0.hash == hash }
+	}
+
 
 	// MARK: Public Methods
 
