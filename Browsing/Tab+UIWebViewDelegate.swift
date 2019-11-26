@@ -87,16 +87,6 @@ extension Tab: UIWebViewDelegate {
 
 		url = URL(string: finalUrl!) ?? URL.blank
 
-		title = stringByEvaluatingJavaScript(from: "document.title")
-			?? BrowsingViewController.prettyTitle(url)
-
-		let contentType = stringByEvaluatingJavaScript(from: "document.contentType")
-
-		// If we're viewing just an image, scale it down to fit the screen width and color its background.
-		if contentType?.hasPrefix("image/") ?? false {
-			stringByEvaluatingJavaScript(from: "(function(){ document.body.style.backgroundColor = '#202020'; var i = document.getElementsByTagName('img')[0]; if (i && i.clientWidth > window.innerWidth) { var m = document.createElement('meta'); m.name='viewport'; m.content='width=device-width, initial-scale=1, maximum-scale=5'; document.getElementsByTagName('head')[0].appendChild(m); i.style.width = '100%'; } })();")
-		}
-
 		if !skipHistory {
 			while history.count > Tab.historySize {
 				history.remove(at: 0)

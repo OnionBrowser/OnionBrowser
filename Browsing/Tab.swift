@@ -41,7 +41,19 @@ class Tab: UIView {
 
 	weak var tabDelegate: TabDelegate?
 
-	var title = URL.blank.absoluteString
+	var title: String {
+		if let downloadedFile = downloadedFile {
+			return downloadedFile.lastPathComponent
+		}
+
+		if let title = stringByEvaluatingJavaScript(from: "document.title") {
+			if !title.isEmpty {
+				return title
+			}
+		}
+
+		return BrowsingViewController.prettyTitle(url)
+	}
 
 	var parentId: Int?
 

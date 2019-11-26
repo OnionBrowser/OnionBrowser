@@ -187,7 +187,7 @@ class BrowsingViewController: UIViewController, TabDelegate {
 		var tabInfo = [[String: Any]]()
 
 		for tab in tabs {
-			tabInfo.append(["url": tab.url, "title": tab.title])
+			tabInfo.append(["url": tab.url])
 
 			// TODO: From old code. Why here this side effect?
 			// Looks strange.
@@ -207,8 +207,7 @@ class BrowsingViewController: UIViewController, TabDelegate {
 			debug("Try restoring tab with \(info).")
 
 			if let url = info["url"] as? URL {
-				let tab = addNewTab(url, forRestoration: true, animation: .hidden)
-				tab?.title = info["title"] as? String ?? ""
+				addNewTab(url, forRestoration: true, animation: .hidden)
 			}
 		}
 
