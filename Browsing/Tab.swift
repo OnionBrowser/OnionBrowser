@@ -99,7 +99,20 @@ class Tab: UIView {
 	var skipHistory = false
 	var history = [[String: String]]()
 
-	private lazy var webView: UIWebView = {
+	override var isUserInteractionEnabled: Bool {
+		didSet {
+			if previewController != nil {
+				if isUserInteractionEnabled {
+					overlay.removeFromSuperview()
+				}
+				else {
+					overlay.add(to: self)
+				}
+			}
+		}
+	}
+
+	private(set) lazy var webView: UIWebView = {
 		let view = UIWebView()
 
 		view.delegate = self
@@ -122,6 +135,19 @@ class Tab: UIView {
 	}
 
 	var previewController: QLPreviewController?
+
+	/**
+	Add another overlay (a hack to create a transparant clickable view)
+	to disable interaction with the file preview when used in the tab overview.
+	*/
+	private lazy var overlay: UIView = {
+		let view = UIView()
+		view.backgroundColor = .white
+		view.alpha = 0.11
+		view.isUserInteractionEnabled = false
+
+		return view
+	}()
 
 	var downloadedFile: URL?
 
