@@ -66,7 +66,7 @@ extension Tab: UIWebViewDelegate {
 			self.url = request.mainDocumentURL ?? URL.blank
 			reset()
 		}
-		cancelDownloadAndRemovePreview()
+		cancelDownload()
 
 		return true
 	}

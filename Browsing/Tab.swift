@@ -89,7 +89,9 @@ class Tab: UIView {
 	@nonobjc
 	var progress: Float = 0 {
 		didSet {
-			tabDelegate?.updateChrome(self)
+			DispatchQueue.main.async {
+				self.tabDelegate?.updateChrome(self)
+			}
 		}
 	}
 
@@ -206,7 +208,9 @@ class Tab: UIView {
 	}
 
 	func reset() {
-		webView.stopLoading()
+		DispatchQueue.main.async {
+			self.webView.stopLoading()
+		}
 
 		url = URL.blank
 		applicableHttpsEverywhereRules.removeAllObjects()
@@ -271,7 +275,7 @@ class Tab: UIView {
 
 
 	deinit {
-		cancelDownloadAndRemovePreview()
+		cancelDownload()
 
 		let block = {
 			self.webView.delegate = nil

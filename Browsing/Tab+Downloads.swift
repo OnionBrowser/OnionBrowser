@@ -17,7 +17,7 @@ extension Tab: DownloadTaskDelegate, QLPreviewControllerDelegate, QLPreviewContr
 	Should be called whenever navigation occurs or
 	when the WebViewTab is being closed.
 	*/
-	func cancelDownloadAndRemovePreview() {
+	func cancelDownload() {
 		if downloadedFile != nil {
 			// Delete the temporary file.
 			try? FileManager.default.removeItem(atPath: downloadedFile!.path)
