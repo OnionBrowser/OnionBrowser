@@ -60,6 +60,7 @@
 #import "HostSettings.h"
 #import "URLBlocker.h"
 #import "OnionBrowser-Swift.h"
+#import "SilenceWarnings.h"
 
 @import CSPHeader;
 
@@ -77,11 +78,11 @@ typedef void (^JAHPChallengeCompletionHandler)(NSURLSessionAuthChallengeDisposit
 @interface TemporarilyAllowedURL : NSObject
 
 @property (atomic, strong) NSURL *url;
-@property (atomic, strong) WebViewTab *wvt;
+@property (atomic, strong) Tab *wvt;
 @property (atomic, assign) BOOL ocspRequest;
 
 - (instancetype)initWithUrl:(NSURL*)url
-			  andWebViewTab:(WebViewTab*)wvt
+			  andWebViewTab:(Tab*)wvt
 		   andIsOCSPRequest:(BOOL)isOCSPRequest;
 
 @end
@@ -89,7 +90,7 @@ typedef void (^JAHPChallengeCompletionHandler)(NSURLSessionAuthChallengeDisposit
 @implementation TemporarilyAllowedURL
 
 - (instancetype)initWithUrl:(NSURL*)url
-			  andWebViewTab:(WebViewTab*)wvt
+			  andWebViewTab:(Tab*)wvt
 		   andIsOCSPRequest:(BOOL)isOCSPRequest {
 	self = [super init];
 
@@ -108,7 +109,7 @@ typedef void (^JAHPChallengeCompletionHandler)(NSURLSessionAuthChallengeDisposit
 	NSUInteger _contentType;
 	Boolean _isFirstChunk;
 	NSString * _cspNonce;
-	WebViewTab *_wvt;
+	Tab *_wvt;
 	NSString *_userAgent;
 	NSURLRequest *_actualRequest;
 	BOOL _isOrigin;
@@ -194,13 +195,13 @@ static NSString *_javascriptToInject;
 }
 
 + (void)temporarilyAllowURL:(NSURL *)url
-			  forWebViewTab:(WebViewTab*)webViewTab {
+			  forWebViewTab:(Tab*)webViewTab {
 
 	return [self temporarilyAllowURL:url forWebViewTab:webViewTab isOCSPRequest:NO];
 }
 
 + (void)temporarilyAllowURL:(NSURL *)url
-			  forWebViewTab:(WebViewTab*)webViewTab
+			  forWebViewTab:(Tab*)webViewTab
 			  isOCSPRequest:(BOOL)isOCSPRequest
 {
 	@synchronized (tmpAllowed) {
@@ -493,7 +494,7 @@ static NSString * kJAHPRecursiveRequestFlagProperty = @"com.jivesoftware.JAHPAut
 		wvthash = [NSString stringWithFormat:@"%lu", [(NSNumber *)[NSURLProtocol propertyForKey:WVT_KEY inRequest:request] longValue]];
 
 	if (wvthash != nil && ![wvthash isEqualToString:@""]) {
-		for (WebViewTab *wvt in AppDelegate.sharedAppDelegate.browsingUi.tabs) {
+		for (Tab *wvt in AppDelegate.sharedAppDelegate.browsingUi.tabs) {
 			if ([[NSString stringWithFormat:@"%lu", (unsigned long)[wvt hash]] isEqualToString:wvthash]) {
 				_wvt = wvt;
 				break;
@@ -512,7 +513,7 @@ static NSString * kJAHPRecursiveRequestFlagProperty = @"com.jivesoftware.JAHPAut
 
 	if (_wvt == nil) {
 
-		[[self class] authenticatingHTTPProtocol:self logWithFormat:@"request for %@ with no matching WebViewTab! (main URL %@, UA hash %@)", [request URL], [request mainDocumentURL], wvthash];
+		[[self class] authenticatingHTTPProtocol:self logWithFormat:@"request for %@ with no matching Tab! (main URL %@, UA hash %@)", [request URL], [request mainDocumentURL], wvthash];
 		[client URLProtocol:self didFailWithError:[NSError errorWithDomain:NSCocoaErrorDomain code:NSUserCancelledError userInfo:@{ ORIGIN_KEY: @YES }]];
 
 		if (![[[[request URL] scheme] lowercaseString] isEqualToString:@"http"] && ![[[[request URL] scheme] lowercaseString] isEqualToString:@"https"]) {
@@ -584,18 +585,17 @@ static NSString * kJAHPRecursiveRequestFlagProperty = @"com.jivesoftware.JAHPAut
 	/* in case our URL changed/upgraded, send back to the webview so it knows what our protocol is for "//" assets */
 	if (_isOrigin && ![[[mutableRequest URL] absoluteString] isEqualToString:[[request URL] absoluteString]]) {
 		[[self class] authenticatingHTTPProtocol:self logWithFormat:@"[Tab %@] canceling origin request to redirect %@ rewritten to %@", _wvt.url, [[self.request URL] absoluteString], [[mutableRequest URL] absoluteString]];
-		[_wvt setUrl:[mutableRequest URL]];
-		[_wvt loadURL:[mutableRequest URL]];
+		[_wvt load:mutableRequest.URL postParams:nil];
 		return nil;
 	}
 
 	// Blocking mixed-content requests if set.
 	if (!_isOrigin
-		&& _wvt.secureMode > WebViewTabSecureModeInsecure
+		&& _wvt.secureMode > SecureModeInsecure
 		&& ![mutableRequest.URL.scheme.lowercaseString isEqualToString:@"https"]
 		&& ![[HostSettings settingsOrDefaultsForHost:host] boolSettingOrDefault:HOST_SETTINGS_KEY_ALLOW_MIXED_MODE])
 	{
-		[_wvt setSecureMode:WebViewTabSecureModeMixed];
+		[_wvt setSecureMode:SecureModeMixed];
 		return nil;
 	}
 
@@ -1349,11 +1349,11 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 
 	// OCSP requests are performed out-of-band
 	if (!_isOCSPRequest &&
-		[_wvt secureMode] > WebViewTabSecureModeInsecure &&
+		[_wvt secureMode] > SecureModeInsecure &&
 		![[[[_actualRequest URL] scheme] lowercaseString] isEqualToString:@"https"]) {
 		/* an element on the page was not sent over https but the initial request was, downgrade to mixed */
-		if ([_wvt secureMode] > WebViewTabSecureModeInsecure) {
-			[_wvt setSecureMode:WebViewTabSecureModeMixed];
+		if ([_wvt secureMode] > SecureModeInsecure) {
+			[_wvt setSecureMode:SecureModeMixed];
 		}
 	}
 

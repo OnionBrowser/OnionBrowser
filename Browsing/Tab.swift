@@ -9,6 +9,7 @@
 //
 
 import UIKit
+import QuickLook
 
 protocol TabDelegate: class {
 	func updateChrome(_ sender: Tab?)
@@ -28,6 +29,15 @@ protocol TabDelegate: class {
 
 @objcMembers
 class Tab: UIView {
+
+	@objc
+	enum SecureMode: Int {
+		case insecure
+		case mixed
+		case secure
+		case secureEv
+	}
+
 
 	weak var tabDelegate: TabDelegate?
 
@@ -54,7 +64,7 @@ class Tab: UIView {
 				secureMode = .insecure
 			}
 			if sslCertificate?.isEV ?? false {
-				secureMode = .secureEV
+				secureMode = .secureEv
 			}
 			else {
 				secureMode = .secure
@@ -62,7 +72,7 @@ class Tab: UIView {
 		}
 	}
 
-	private(set) var secureMode = WebViewTabSecureMode.insecure
+	var secureMode = SecureMode.insecure
 
 	@nonobjc
 	var progress: Float = 0 {
@@ -230,6 +240,16 @@ class Tab: UIView {
 			self, selector: #selector(progressEstimateChanged(_:)),
 			name: NSNotification.Name(rawValue: "WebProgressEstimateChangedNotification"),
 			object: webView.value(forKeyPath: "documentView.webView"))
+
+		// This doubles as a way to force the webview to initialize itself,
+		// otherwise the UA doesn't seem to set right before refreshing a previous
+		// restoration state.
+		let hashInUa = stringByEvaluatingJavaScript(from: "navigator.userAgent")?.split(separator: "/").last
+
+		if hashInUa?.compare(String(hash)) != ComparisonResult.orderedSame {
+			print("[Tab \(url)] Aborting, not equal! hashInUa=\(String(describing: hashInUa)), hash=\(hash)")
+			abort()
+		}
 	}
 
 	@objc

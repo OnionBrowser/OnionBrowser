@@ -9,6 +9,7 @@
 //
 
 import Foundation
+import QuickLook
 
 extension Tab: DownloadTaskDelegate, QLPreviewControllerDelegate, QLPreviewControllerDataSource {
 

@@ -15,6 +15,7 @@
 #import "UIResponder+FirstResponder.h"
 
 #import "OBRootViewController.h"
+#import "SilenceWarnings.h"
 #import "OnionBrowser-Swift.h"
 
 @implementation AppDelegate

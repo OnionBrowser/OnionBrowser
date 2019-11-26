@@ -23,3 +23,4 @@
 #import "HistoryController.h"
 #import "URLBlockerRuleController.h"
 #import "HTTPSEverywhereRuleController.h"
+#import "DownloadHelper.h"

@@ -160,11 +160,11 @@ extension BrowsingViewController: UITextFieldDelegate {
 	- Show a open lock icon, when mode is `.mixed`.
 	- Show no icon, when mode is `.insecure`.
 	*/
-	func updateEncryptionBt(_ mode: WebViewTabSecureMode) {
+	func updateEncryptionBt(_ mode: Tab.SecureMode) {
 		let encryptionIcon: UIImage?
 
 		switch mode {
-		case .secure, .secureEV:
+		case .secure, .secureEv:
 			encryptionIcon = BrowsingViewController.secureIcon
 
 		case .mixed:

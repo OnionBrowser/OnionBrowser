@@ -19,6 +19,9 @@ extension Tab: UIWebViewDelegate {
 									  "port", "protocol", "search", "username",
 									  "password", "origin"]
 
+	private static let universalLinksWorkaroundKey = "yayprivacy"
+
+
 	func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
 		guard let url = request.url else {
 			return false
@@ -43,9 +46,9 @@ extension Tab: UIWebViewDelegate {
 			else if navigationType == .formSubmitted {
 				print("[Tab \(self.url)] not doing universal link workaround for form submission to \(url).")
 			}
-			else if (url.scheme?.lowercased().hasPrefix("http") ?? false) && (URLProtocol.property(forKey: UNIVERSAL_LINKS_WORKAROUND_KEY, in: request) != nil) {
+			else if (url.scheme?.lowercased().hasPrefix("http") ?? false) && (URLProtocol.property(forKey: Tab.universalLinksWorkaroundKey, in: request) != nil) {
 				if let tr = request as? NSMutableURLRequest {
-					URLProtocol.setProperty(true, forKey: UNIVERSAL_LINKS_WORKAROUND_KEY, in: tr)
+					URLProtocol.setProperty(true, forKey: Tab.universalLinksWorkaroundKey, in: tr)
 
 					print("[Tab \(self.url)] doing universal link workaround for \(url).")
 
