@@ -109,6 +109,7 @@
 		A07D65542208A17E0002D775 /* OldBookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = A07D654F2208A17E0002D775 /* OldBookmark.m */; };
 		A07D65552208A17E0002D775 /* Settings.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = A07D65502208A17E0002D775 /* Settings.xcdatamodel */; };
 		A07D65562208A17E0002D775 /* Migration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07D65522208A17E0002D775 /* Migration.swift */; };
+		A0821DD8238D3E3800443839 /* Tab+Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0821DD7238D3E3800443839 /* Tab+Activity.swift */; };
 		A084FD7A235A03EA00DA63CF /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A084FD79235A03EA00DA63CF /* Settings.swift */; };
 		A08737E1221324B5005A68CC /* HostSettings_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = A08737DF2213235F005A68CC /* HostSettings_Tests.m */; };
 		A0894E38236AF90500EE2743 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0894E37236AF90500EE2743 /* Formatter.swift */; };
@@ -427,6 +428,7 @@
 		A07D655F2208A9B40002D775 /* get-geoip.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "get-geoip.sh"; sourceTree = "<group>"; };
 		A07DCC6A22562B2400F64926 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		A07DCC6C22562B2C00F64926 /* tr-TR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "tr-TR"; path = "tr-TR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		A0821DD7238D3E3800443839 /* Tab+Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tab+Activity.swift"; sourceTree = "<group>"; };
 		A084FD79235A03EA00DA63CF /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		A08737DF2213235F005A68CC /* HostSettings_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HostSettings_Tests.m; sourceTree = "<group>"; };
 		A08795572245406E00330327 /* SilenceWarnings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SilenceWarnings.h; sourceTree = "<group>"; };
@@ -2071,6 +2073,7 @@
 				A0894E3B236B055300EE2743 /* BrowsingViewController+Toolbar.swift */,
 				A0E27596236B10F800C89E18 /* BrowsingViewController+Tabs.swift */,
 				A006A1862387E20200B0344A /* Tab.swift */,
+				A0821DD7238D3E3800443839 /* Tab+Activity.swift */,
 				A006A18C23883BA400B0344A /* Tab+Downloads.swift */,
 				A0D419DE2386E4BD0055AC33 /* Tab+Keyboard.swift */,
 				A006A1882388123C00B0344A /* Tab+UIWebViewDelegate.swift */,
@@ -2376,6 +2379,7 @@
 				A006A1872387E20200B0344A /* Tab.swift in Sources */,
 				A0E755F32372CA77006276DB /* BrowsingViewController+UITextFieldDelegate.swift in Sources */,
 				A053136E22F1C737006655EC /* JAHPAuthenticatingHTTPProtocol.m in Sources */,
+				A0821DD8238D3E3800443839 /* Tab+Activity.swift in Sources */,
 				A053137822F1EC19006655EC /* DownloadHelper.m in Sources */,
 				01D7412F1A466AF0007B7033 /* NSString+JavascriptEscape.m in Sources */,
 				A0E755F72372EBAD006276DB /* TabCell.swift in Sources */,
