@@ -22,6 +22,8 @@ protocol TabDelegate: class {
 	func getTab(ipcId: String?) -> Tab?
 
 	func getTab(hash: Int?) -> Tab?
+
+	func present(_ vc: UIViewController, _ sender: UIView?)
 }
 
 @objcMembers
@@ -69,7 +71,9 @@ class Tab: UIView {
 		}
 	}
 
-	private(set) var history = [[String: String]]()
+	static let historySize = 40
+	var skipHistory = false
+	var history = [[String: String]]()
 
 	private lazy var webView: UIWebView = {
 		let view = UIWebView()
@@ -115,6 +119,7 @@ class Tab: UIView {
 
 	func refresh() {
 		needsRefresh = false
+		skipHistory = true
 		webView.reload()
 	}
 
@@ -189,6 +194,7 @@ class Tab: UIView {
 
 	func goBack() {
 		if webView.canGoBack {
+			skipHistory = true
 			webView.goBack()
 		}
 		else if let parentId = parentId {
@@ -197,7 +203,10 @@ class Tab: UIView {
 	}
 
 	func goForward() {
-		webView.goForward()
+		if webView.canGoForward {
+			skipHistory = true
+			webView.goForward()
+		}
 	}
 
 	@discardableResult
@@ -215,6 +224,39 @@ class Tab: UIView {
 		if restorationId != nil {
 			restorationIdentifier = restorationId
 			needsRefresh = true
+		}
+
+		NotificationCenter.default.addObserver(
+			self, selector: #selector(progressEstimateChanged(_:)),
+			name: NSNotification.Name(rawValue: "WebProgressEstimateChangedNotification"),
+			object: webView.value(forKeyPath: "documentView.webView"))
+	}
+
+	@objc
+	private func progressEstimateChanged(_ notification: Notification) {
+		progress = Float(notification.userInfo?["WebProgressEstimatedProgressKey"] as? Float ?? 0)
+	}
+
+
+	deinit {
+		cancelDownloadAndRemovePreview()
+
+		let block = {
+			self.webView.delegate = nil
+			self.webView.stopLoading()
+
+			for gr in self.webView.gestureRecognizers ?? [] {
+				self.webView.removeGestureRecognizer(gr)
+			}
+
+			self.removeFromSuperview()
+		}
+
+		if Thread.isMainThread {
+			block()
+		}
+		else {
+			DispatchQueue.main.sync(execute: block)
 		}
 	}
 }

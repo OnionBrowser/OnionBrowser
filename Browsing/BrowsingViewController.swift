@@ -547,10 +547,12 @@ class BrowsingViewController: UIViewController, TabDelegate {
 
 	// MARK: Public Methods
 
-	func present(_ vc: UIViewController, _ sender: UIView) {
-		vc.modalPresentationStyle = .popover
-		vc.popoverPresentationController?.sourceView = sender.superview
-		vc.popoverPresentationController?.sourceRect = sender.frame
+	func present(_ vc: UIViewController, _ sender: UIView? = nil) {
+		if let sender = sender {
+			vc.modalPresentationStyle = .popover
+			vc.popoverPresentationController?.sourceView = sender.superview
+			vc.popoverPresentationController?.sourceRect = sender.frame
+		}
 
 		present(vc, animated: true)
 	}

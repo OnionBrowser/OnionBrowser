@@ -68,6 +68,145 @@ extension Tab: UIWebViewDelegate {
 		return true
 	}
 
+	func webViewDidStartLoad(_ webView: UIWebView) {
+		progress = 0.1
+	}
+
+	func webViewDidFinishLoad(_ webView: UIWebView) {
+		progress = 1
+
+		// If we have JavaScript blocked, these will be empty.
+		var finalUrl = stringByEvaluatingJavaScript(from: "window.location.href")
+
+		if finalUrl?.isEmpty ?? true {
+			finalUrl = webView.request?.mainDocumentURL?.absoluteString
+		}
+
+		url = URL(string: finalUrl!) ?? URL.blank
+
+		title = stringByEvaluatingJavaScript(from: "document.title")
+			?? BrowsingViewController.prettyTitle(url)
+
+		let contentType = stringByEvaluatingJavaScript(from: "document.contentType")
+
+		// If we're viewing just an image, scale it down to fit the screen width and color its background.
+		if contentType?.hasPrefix("image/") ?? false {
+			stringByEvaluatingJavaScript(from: "(function(){ document.body.style.backgroundColor = '#202020'; var i = document.getElementsByTagName('img')[0]; if (i && i.clientWidth > window.innerWidth) { var m = document.createElement('meta'); m.name='viewport'; m.content='width=device-width, initial-scale=1, maximum-scale=5'; document.getElementsByTagName('head')[0].appendChild(m); i.style.width = '100%'; } })();")
+		}
+
+		if !skipHistory {
+			while history.count > Tab.historySize {
+				history.remove(at: 0)
+			}
+
+			if history.isEmpty || history.last?["url"] != finalUrl {
+				history.append(["url": url.absoluteString, "title": title])
+			}
+		}
+
+		skipHistory = false
+	}
+
+	func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
+		if let url = webView.request?.url {
+			self.url = url
+		}
+
+		progress = 0
+
+		let error = error as NSError
+
+		if error.domain == NSURLErrorDomain && error.code == NSURLErrorCancelled {
+			return
+		}
+
+		// "The operation couldn't be completed. (Cocoa error 3072.)" - useless
+		if error.domain == NSCocoaErrorDomain && error.code == NSUserCancelledError {
+			return
+		}
+
+		// "Frame load interrupted" - not very helpful.
+		if error.domain == "WebKitErrorDomain" && error.code == 102 {
+			return
+		}
+
+		var isTLSError = false
+		var msg = error.localizedDescription
+
+		// https://opensource.apple.com/source/libsecurity_ssl/libsecurity_ssl-36800/lib/SecureTransport.h
+		if error.domain == NSOSStatusErrorDomain {
+			switch (error.code) {
+			case Int(errSSLProtocol): /* -9800 */
+				msg = NSLocalizedString("TLS protocol error", comment: "")
+				isTLSError = true
+
+			case Int(errSSLNegotiation): /* -9801 */
+				msg = NSLocalizedString("TLS handshake failed", comment: "")
+				isTLSError = true
+
+			case Int(errSSLXCertChainInvalid): /* -9807 */
+				msg = NSLocalizedString("TLS certificate chain verification error (self-signed certificate?)", comment: "")
+				isTLSError = true
+
+			case -1202:
+				isTLSError = true
+
+			default:
+				break
+			}
+		}
+
+		if error.domain == NSURLErrorDomain && error.code == -1202 {
+			isTLSError = true
+		}
+
+		let u = error.userInfo[NSURLErrorFailingURLStringErrorKey] as? String
+
+		if u != nil {
+			msg += "\n\n\(u!)"
+		}
+
+		if let ok = error.userInfo[ORIGIN_KEY] as? NSNumber,
+			!ok.boolValue {
+
+			print("[Tab \(url)] not showing dialog for non-origin error: \(msg) (\(error))")
+
+			return webViewDidFinishLoad(webView)
+		}
+
+		print("[Tab \(url)] showing error dialog: \(msg) (\(error)")
+
+		let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""),
+									  message: msg, preferredStyle: .alert)
+		alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""),
+									  style: .default, handler: nil))
+
+		if (u != nil && isTLSError) {
+			alert.addAction(UIAlertAction(
+				title: NSLocalizedString("Ignore for this host", comment: ""),
+				style: .destructive,
+				handler: { _ in
+					// self.url will hold the URL of the UIWebView which is the last *successful* request.
+					// We need the URL of the *failed* request, which should be in `u`.
+					// (From `error`'s `userInfo` dictionary.
+					if let url = URL(string: u!),
+						let hs = HostSettings.forHost(url.host) ?? HostSettings(forHost: url.host, withDict: nil) {
+
+						hs.setSetting(HOST_SETTINGS_KEY_IGNORE_TLS_ERRORS, toValue: HOST_SETTINGS_VALUE_YES)
+						hs.save()
+						HostSettings.persist()
+
+						// Retry the failed request.
+						self.load(url)
+					}
+				}))
+		}
+
+		tabDelegate?.present(alert, nil)
+
+		webViewDidFinishLoad(webView)
+	}
+
 
 	// MARK: Private Methods
 
@@ -140,7 +279,7 @@ extension Tab: UIWebViewDelegate {
 			alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel action"),
 										  style: .cancel, handler: nil))
 
-			AppDelegate.shared()?.browsingUi.present(alert, self)
+			tabDelegate?.present(alert, nil)
 
 			ipcCallback("")
 

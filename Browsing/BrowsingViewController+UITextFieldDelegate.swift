@@ -132,7 +132,7 @@ extension BrowsingViewController: UITextFieldDelegate {
 			searchFl.textAlignment = .natural
 		}
 		else {
-			searchFl.text = prettyTitle(currentTab?.url)
+			searchFl.text = BrowsingViewController.prettyTitle(currentTab?.url)
 			searchFl.leftViewMode = encryptionBt.image(for: .normal) == nil ? .never : .always
 			searchFl.rightViewMode = searchFl.text?.isEmpty ?? true ? .never : .always
 
@@ -140,7 +140,7 @@ extension BrowsingViewController: UITextFieldDelegate {
 		}
 	}
 
-	func prettyTitle(_ url: URL?) -> String? {
+	class func prettyTitle(_ url: URL?) -> String {
 		if url == URL.credits {
 			return URL.aboutOnionBrowser.absoluteString
 		}
@@ -151,7 +151,7 @@ extension BrowsingViewController: UITextFieldDelegate {
 			return host.replacingOccurrences(of: #"^www\d*\."#, with: "", options: .regularExpression)
 		}
 
-		return url?.absoluteString
+		return (url ?? URL.blank).absoluteString
 	}
 
 	/**
