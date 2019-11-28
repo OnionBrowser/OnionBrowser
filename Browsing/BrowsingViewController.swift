@@ -235,8 +235,16 @@ class BrowsingViewController: UIViewController, TabDelegate {
 	@IBAction func action(_ sender: UIButton) {
         switch sender {
         case securityBt:
-			// TODO: What to implement here?
-            break
+			var host = currentTab?.url.host ?? currentTab?.url.path
+
+			if HostSettings.forHost(host) == nil {
+				host = nil
+			}
+
+			let vc = SecurityViewController()
+			vc.host = host
+
+			present(UINavigationController(rootViewController: vc), sender)
 
         case encryptionBt:
 			guard let certificate = currentTab?.sslCertificate,
@@ -319,7 +327,7 @@ class BrowsingViewController: UIViewController, TabDelegate {
 
 		// The last non-hidden should be the one which is showing.
 		guard let tab = tabs.last(where: { !$0.isHidden }) else {
-			securityBt.setTitle(nil, for: .normal)
+			securityBt.setTitle(nil)
 			backBt.isEnabled = false
 			frwrdBt.isEnabled = false
 			actionBt.isEnabled = false
