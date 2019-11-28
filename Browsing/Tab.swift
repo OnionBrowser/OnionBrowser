@@ -77,7 +77,7 @@ class Tab: UIView {
 			if sslCertificate == nil {
 				secureMode = .insecure
 			}
-			if sslCertificate?.isEV ?? false {
+			else if sslCertificate?.isEV ?? false {
 				secureMode = .secureEv
 			}
 			else {
