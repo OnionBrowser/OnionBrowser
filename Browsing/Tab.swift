@@ -140,7 +140,7 @@ class Tab: UIView {
 	Add another overlay (a hack to create a transparant clickable view)
 	to disable interaction with the file preview when used in the tab overview.
 	*/
-	private lazy var overlay: UIView = {
+	private(set) lazy var overlay: UIView = {
 		let view = UIView()
 		view.backgroundColor = .white
 		view.alpha = 0.11
@@ -292,6 +292,8 @@ class Tab: UIView {
 			print("[Tab \(url)] Aborting, not equal! hashInUa=\(String(describing: hashInUa)), hash=\(hash)")
 			abort()
 		}
+
+		setupGestureRecognizers()
 	}
 
 	@objc

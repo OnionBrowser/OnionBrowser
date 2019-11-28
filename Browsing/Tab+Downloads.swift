@@ -30,6 +30,8 @@ extension Tab: DownloadTaskDelegate, QLPreviewControllerDelegate, QLPreviewContr
 			previewController?.removeFromParent()
 			previewController = nil
 		}
+
+		overlay.removeFromSuperview()
 	}
 
 
