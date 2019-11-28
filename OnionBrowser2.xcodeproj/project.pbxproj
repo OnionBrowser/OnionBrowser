@@ -38,8 +38,6 @@
 		019516D11B7D8B400078586A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 019516D01B7D8B400078586A /* libz.tbd */; };
 		01D7412A1A45EDD1007B7033 /* CookieJar_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D741291A45EDD1007B7033 /* CookieJar_Tests.m */; };
 		01D7412C1A45F8EB007B7033 /* injected.js in Resources */ = {isa = PBXBuildFile; fileRef = 01D7412B1A45F8EB007B7033 /* injected.js */; };
-		01D741321A49EA14007B7033 /* RuleEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D741311A49EA14007B7033 /* RuleEditorController.m */; };
-		01EFA7FF1A63851400688398 /* LocalNetworkChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EFA7FE1A63851400688398 /* LocalNetworkChecker.m */; };
 		01F2AE391B7FEF5E00D5651A /* SSLCertificate.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F2AE381B7FEF5E00D5651A /* SSLCertificate.m */; };
 		01F2AE401B82666900D5651A /* SSLCertificateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F2AE3F1B82666900D5651A /* SSLCertificateViewController.m */; };
 		01F2AE421B827BC200D5651A /* SSLCertificate_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F2AE411B827BC200D5651A /* SSLCertificate_Tests.m */; };
@@ -81,6 +79,7 @@
 		A006A1892388123D00B0344A /* Tab+UIWebViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A006A1882388123C00B0344A /* Tab+UIWebViewDelegate.swift */; };
 		A006A18B2388185900B0344A /* String+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A006A18A2388185900B0344A /* String+Helpers.swift */; };
 		A006A18D23883BA400B0344A /* Tab+Downloads.swift in Sources */ = {isa = PBXBuildFile; fileRef = A006A18C23883BA400B0344A /* Tab+Downloads.swift */; };
+		A01D3BA323900D2800E536F2 /* RuleEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CBCD491E934249009D5352 /* RuleEditorController.m */; };
 		A02CE2B8220079B800964A14 /* SearchResultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = A02CE2B6220079B700964A14 /* SearchResultsController.m */; };
 		A02CE2BB22007A0200964A14 /* HistoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = A02CE2BA22007A0200964A14 /* HistoryController.m */; };
 		A0364537235094DF0038930E /* Storage2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0364536235094DF0038930E /* Storage2ViewController.swift */; };
@@ -194,10 +193,6 @@
 		019516D01B7D8B400078586A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		01D741291A45EDD1007B7033 /* CookieJar_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CookieJar_Tests.m; sourceTree = "<group>"; };
 		01D7412B1A45F8EB007B7033 /* injected.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = injected.js; path = Endless/Resources/injected.js; sourceTree = "<group>"; };
-		01D741301A49EA14007B7033 /* RuleEditorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RuleEditorController.h; sourceTree = "<group>"; };
-		01D741311A49EA14007B7033 /* RuleEditorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RuleEditorController.m; sourceTree = "<group>"; };
-		01EFA7FD1A63851400688398 /* LocalNetworkChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalNetworkChecker.h; sourceTree = "<group>"; };
-		01EFA7FE1A63851400688398 /* LocalNetworkChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalNetworkChecker.m; sourceTree = "<group>"; };
 		01F2AE371B7FEF5E00D5651A /* SSLCertificate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSLCertificate.h; sourceTree = "<group>"; };
 		01F2AE381B7FEF5E00D5651A /* SSLCertificate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSLCertificate.m; sourceTree = "<group>"; };
 		01F2AE3E1B82666900D5651A /* SSLCertificateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSLCertificateViewController.h; sourceTree = "<group>"; };
@@ -886,6 +881,8 @@
 				018333D11A35291200670CD1 /* HTTPSEverywhereRule.m */,
 				0182AD991AACC55400F3B7ED /* HTTPSEverywhereRuleController.h */,
 				0182AD9A1AACC55400F3B7ED /* HTTPSEverywhereRuleController.m */,
+				01F7CB4C1A52FC4E00F42B73 /* NSString+IPAddress.h */,
+				01F7CB4D1A52FC4E00F42B73 /* NSString+IPAddress.m */,
 				69CBCD481E934249009D5352 /* RuleEditorController.h */,
 				69CBCD491E934249009D5352 /* RuleEditorController.m */,
 				69CBCD4A1E934249009D5352 /* RuleEditorRow.h */,
@@ -896,6 +893,8 @@
 				01F2AE381B7FEF5E00D5651A /* SSLCertificate.m */,
 				01F2AE3E1B82666900D5651A /* SSLCertificateViewController.h */,
 				01F2AE3F1B82666900D5651A /* SSLCertificateViewController.m */,
+				69CBCD501E9347B8009D5352 /* UIResponder+FirstResponder.h */,
+				69CBCD511E9347B8009D5352 /* UIResponder+FirstResponder.m */,
 				01F879391A4108DD00A63654 /* URLBlocker.h */,
 				01F8793A1A4108DD00A63654 /* URLBlocker.m */,
 				69CBCD451E934228009D5352 /* URLBlockerRuleController.h */,
@@ -910,16 +909,7 @@
 				018333CF1A351B3B00670CD1 /* Endless-Prefix.pch */,
 				01801E961A32CA2A002B4718 /* Info.plist */,
 				A09A2A992254B3D100A3EEF0 /* InfoPlist.strings */,
-				01EFA7FD1A63851400688398 /* LocalNetworkChecker.h */,
-				01EFA7FE1A63851400688398 /* LocalNetworkChecker.m */,
 				01801E971A32CA2A002B4718 /* main.m */,
-				01F7CB4C1A52FC4E00F42B73 /* NSString+IPAddress.h */,
-				01F7CB4D1A52FC4E00F42B73 /* NSString+IPAddress.m */,
-				01D741301A49EA14007B7033 /* RuleEditorController.h */,
-				01D741311A49EA14007B7033 /* RuleEditorController.m */,
-				69CBCD501E9347B8009D5352 /* UIResponder+FirstResponder.h */,
-				69CBCD511E9347B8009D5352 /* UIResponder+FirstResponder.m */,
-				A08795572245406E00330327 /* SilenceWarnings.h */,
 			);
 			name = "Supporting Files";
 			path = Endless;
@@ -1439,6 +1429,7 @@
 				8AD1283B1ED61812005C43E4 /* Ipv6Tester.h */,
 				8AD1283C1ED61812005C43E4 /* Ipv6Tester.m */,
 				A062401B235F134C008DADDD /* SearchableTableViewController.swift */,
+				A08795572245406E00330327 /* SilenceWarnings.h */,
 				A006A18A2388185900B0344A /* String+Helpers.swift */,
 				A072C4D2227C684F0022BC58 /* TabSecurity.swift */,
 				A0E755F82372F119006276DB /* UIView+Helpers.swift */,
@@ -2377,6 +2368,7 @@
 				A04E5769235757FE00BA9DD1 /* SecurityViewController.swift in Sources */,
 				A090E2D12358B2040067A865 /* Storage1ViewController.swift in Sources */,
 				69CBCD4D1E934249009D5352 /* RuleEditorRow.m in Sources */,
+				A01D3BA323900D2800E536F2 /* RuleEditorController.m in Sources */,
 				A053137522F1E587006655EC /* CertificateAuthentication.m in Sources */,
 				A0E18F292368509C001953BA /* BrowsingViewController.swift in Sources */,
 				A0D68E0B234C8E150027C61A /* BookmarksViewController.swift in Sources */,
@@ -2384,7 +2376,6 @@
 				8AD5FFBA1EB3DFE30066E7E3 /* ObfsThread.m in Sources */,
 				A084FD7A235A03EA00DA63CF /* Settings.swift in Sources */,
 				A0E27597236B10F800C89E18 /* BrowsingViewController+Tabs.swift in Sources */,
-				01D741321A49EA14007B7033 /* RuleEditorController.m in Sources */,
 				A0894E3A236B028D00EE2743 /* BrowsingViewController+POEDelegate.swift in Sources */,
 				A062401A235F0BDC008DADDD /* CustomSitesViewController.swift in Sources */,
 				018333D21A35291200670CD1 /* HTTPSEverywhereRule.m in Sources */,
@@ -2419,7 +2410,6 @@
 				A07D65532208A17E0002D775 /* Bridge.m in Sources */,
 				A072C4D3227C68500022BC58 /* BlurredSnapshot.swift in Sources */,
 				8AD1283D1ED61812005C43E4 /* Ipv6Tester.m in Sources */,
-				01EFA7FF1A63851400688398 /* LocalNetworkChecker.m in Sources */,
 				A0D419DD2386C6370055AC33 /* URL+Helpers.swift in Sources */,
 				0182AD9B1AACC55400F3B7ED /* HTTPSEverywhereRuleController.m in Sources */,
 				010EEA691A43C8CF001E8B65 /* CookieJar.m in Sources */,

@@ -3,7 +3,9 @@
 //  Endless
 //
 //  Created by Benjamin Erhart on 12.03.19.
-//  Copyright © 2019 jcs. All rights reserved.
+//  Copyright (c) 2012-2019, Tigas Ventures, LLC (Mike Tigas)
+//
+//  This file is part of Onion Browser. See LICENSE file for redistribution terms.
 //
 
 #ifndef SilenceWarnings_h
