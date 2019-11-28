@@ -35,7 +35,7 @@ extension Tab: UIWebViewDelegate {
 		}
 
 		// Try to prevent universal links from triggering by refusing the initial request and starting a new one.
-		let iframe = url.absoluteString == request.mainDocumentURL?.absoluteString
+		let iframe = url.absoluteString != request.mainDocumentURL?.absoluteString
 
 		let hs = HostSettings(orDefaultsForHost: url.host)
 
@@ -49,7 +49,7 @@ extension Tab: UIWebViewDelegate {
 			else if navigationType == .formSubmitted {
 				print("[Tab \(self.url)] not doing universal link workaround for form submission to \(url).")
 			}
-			else if (url.scheme?.lowercased().hasPrefix("http") ?? false) && (URLProtocol.property(forKey: Tab.universalLinksWorkaroundKey, in: request) != nil) {
+			else if (url.scheme?.lowercased().hasPrefix("http") ?? false) && (URLProtocol.property(forKey: Tab.universalLinksWorkaroundKey, in: request) == nil) {
 				if let tr = request as? NSMutableURLRequest {
 					URLProtocol.setProperty(true, forKey: Tab.universalLinksWorkaroundKey, in: tr)
 
@@ -66,8 +66,7 @@ extension Tab: UIWebViewDelegate {
 		}
 
 		if !iframe {
-			self.url = request.mainDocumentURL ?? URL.blank
-			reset()
+			reset(request.mainDocumentURL)
 		}
 		cancelDownload()
 

@@ -203,6 +203,10 @@ class Tab: UIView {
 	}
 
 	func load(_ request: URLRequest?) {
+		DispatchQueue.main.async {
+			self.webView.stopLoading()
+		}
+
 		reset()
 
 		if let request = request {
@@ -248,15 +252,11 @@ class Tab: UIView {
 		return load(URL(string: url), postParams: params?.joined(separator: "&"))
 	}
 
-	func reset() {
-		DispatchQueue.main.async {
-			self.webView.stopLoading()
-		}
-
-		url = URL.blank
+	func reset(_ url: URL? = nil) {
 		applicableHttpsEverywhereRules.removeAllObjects()
 		applicableUrlBlockerTargets.removeAllObjects()
 		sslCertificate = nil
+		self.url = url ?? URL.blank
 	}
 
 	@objc
