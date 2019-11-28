@@ -80,8 +80,8 @@
 		A006A18B2388185900B0344A /* String+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A006A18A2388185900B0344A /* String+Helpers.swift */; };
 		A006A18D23883BA400B0344A /* Tab+Downloads.swift in Sources */ = {isa = PBXBuildFile; fileRef = A006A18C23883BA400B0344A /* Tab+Downloads.swift */; };
 		A01D3BA323900D2800E536F2 /* RuleEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CBCD491E934249009D5352 /* RuleEditorController.m */; };
+		A01D3BA523902C4300E536F2 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01D3BA423902C4300E536F2 /* HistoryViewController.swift */; };
 		A02CE2B8220079B800964A14 /* SearchResultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = A02CE2B6220079B700964A14 /* SearchResultsController.m */; };
-		A02CE2BB22007A0200964A14 /* HistoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = A02CE2BA22007A0200964A14 /* HistoryController.m */; };
 		A0364537235094DF0038930E /* Storage2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0364536235094DF0038930E /* Storage2ViewController.swift */; };
 		A03A2DD223577971002D640B /* Bundle+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03A2DD123577970002D640B /* Bundle+Helpers.swift */; };
 		A03A2DD423577B91002D640B /* SecurityPresetsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03A2DD323577B91002D640B /* SecurityPresetsRow.swift */; };
@@ -268,6 +268,7 @@
 		A0079AD62019F58600511268 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "Endless/zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		A010FA171E7986DE00E04222 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		A010FA191E798C0400E04222 /* BUILD.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = BUILD.md; sourceTree = "<group>"; };
+		A01D3BA423902C4300E536F2 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		A025F25721F6265E0034B947 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = Endless/el.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A025F25D21F6267A0034B947 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = Endless/he.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A025F26621F626CB0034B947 /* mk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mk; path = Endless/mk.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -275,8 +276,6 @@
 		A025F27421F62C100034B947 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		A02CE2B6220079B700964A14 /* SearchResultsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultsController.m; sourceTree = "<group>"; };
 		A02CE2B7220079B800964A14 /* SearchResultsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultsController.h; sourceTree = "<group>"; };
-		A02CE2B922007A0100964A14 /* HistoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryController.h; sourceTree = "<group>"; };
-		A02CE2BA22007A0200964A14 /* HistoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryController.m; sourceTree = "<group>"; };
 		A0364536235094DF0038930E /* Storage2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage2ViewController.swift; sourceTree = "<group>"; };
 		A03A2DD123577970002D640B /* Bundle+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Helpers.swift"; sourceTree = "<group>"; };
 		A03A2DD323577B91002D640B /* SecurityPresetsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityPresetsRow.swift; sourceTree = "<group>"; };
@@ -869,8 +868,6 @@
 			children = (
 				010EEA671A43C8CF001E8B65 /* CookieJar.h */,
 				010EEA681A43C8CF001E8B65 /* CookieJar.m */,
-				A02CE2B922007A0100964A14 /* HistoryController.h */,
-				A02CE2BA22007A0200964A14 /* HistoryController.m */,
 				014E68A61B9BEDDC00D98A0A /* HostSettings.h */,
 				014E68A71B9BEDDC00D98A0A /* HostSettings.m */,
 				01F7CB471A5253DD00F42B73 /* HSTSCache.h */,
@@ -2050,6 +2047,7 @@
 				A0E755F22372CA77006276DB /* BrowsingViewController+UITextFieldDelegate.swift */,
 				A0894E3B236B055300EE2743 /* BrowsingViewController+Toolbar.swift */,
 				A0E27596236B10F800C89E18 /* BrowsingViewController+Tabs.swift */,
+				A01D3BA423902C4300E536F2 /* HistoryViewController.swift */,
 				A006A1862387E20200B0344A /* Tab.swift */,
 				A0821DD7238D3E3800443839 /* Tab+Activity.swift */,
 				A006A18C23883BA400B0344A /* Tab+Downloads.swift */,
@@ -2381,7 +2379,6 @@
 				018333D21A35291200670CD1 /* HTTPSEverywhereRule.m in Sources */,
 				01F8793B1A4108DD00A63654 /* URLBlocker.m in Sources */,
 				A0E755F92372F119006276DB /* UIView+Helpers.swift in Sources */,
-				A02CE2BB22007A0200964A14 /* HistoryController.m in Sources */,
 				A0B4838C234DEBE100F9701B /* SettingsViewController.swift in Sources */,
 				A053137022F1C73C006655EC /* JAHPCanonicalRequest.m in Sources */,
 				A0D419DF2386E4BD0055AC33 /* Tab+Keyboard.swift in Sources */,
@@ -2408,6 +2405,7 @@
 				A053137122F1C740006655EC /* JAHPQNSURLSessionDemux.m in Sources */,
 				A07D654B2208A0C10002D775 /* OBSettingsConstants.m in Sources */,
 				A07D65532208A17E0002D775 /* Bridge.m in Sources */,
+				A01D3BA523902C4300E536F2 /* HistoryViewController.swift in Sources */,
 				A072C4D3227C68500022BC58 /* BlurredSnapshot.swift in Sources */,
 				8AD1283D1ED61812005C43E4 /* Ipv6Tester.m in Sources */,
 				A0D419DD2386C6370055AC33 /* URL+Helpers.swift in Sources */,

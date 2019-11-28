@@ -101,8 +101,7 @@ class Tab: UIView {
 	static let historySize = 40
 	var skipHistory = false
 
-	@objc
-	var history = [[String: String]]()
+	var history = [HistoryViewController.Item]()
 
 	override var isUserInteractionEnabled: Bool {
 		didSet {

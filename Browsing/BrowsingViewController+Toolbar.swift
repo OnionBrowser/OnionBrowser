@@ -34,10 +34,8 @@ extension BrowsingViewController: UIScrollViewDelegate {
 	@IBAction func showHistory(_ sender: UIGestureRecognizer) {
 		sender.isEnabled = false
 
-		if currentTab?.history.count ?? 0 > 1,
-			let vc = HistoryController(for: currentTab) {
-
-			present(UINavigationController(rootViewController: vc), backBt)
+		if currentTab?.history.count ?? 0 > 1 {
+			present(HistoryViewController.instantiate(currentTab!), backBt)
 		}
 
 		sender.isEnabled = true

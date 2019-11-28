@@ -94,8 +94,8 @@ extension Tab: UIWebViewDelegate {
 				history.remove(at: 0)
 			}
 
-			if history.isEmpty || history.last?["url"] != finalUrl {
-				history.append(["url": url.absoluteString, "title": title])
+			if history.isEmpty || history.last?.url.absoluteString != finalUrl {
+				history.append(HistoryViewController.Item(url: url, title: title))
 			}
 		}
 
