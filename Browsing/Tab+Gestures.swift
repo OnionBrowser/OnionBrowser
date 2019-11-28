@@ -93,8 +93,9 @@ extension Tab: UIGestureRecognizerDelegate {
 			return
 		}
 
-		let menu = UIAlertController(title: (href ?? img)?.absoluteString,
-									 message: message, preferredStyle: .actionSheet)
+		let menu = UIAlertController(title: message.isEmpty ? nil : message,
+									 message: (href ?? img)?.absoluteString,
+									 preferredStyle: .actionSheet)
 
 		if href != nil || img != nil {
 			let url = href ?? img
@@ -110,8 +111,7 @@ extension Tab: UIGestureRecognizerDelegate {
 				title: NSLocalizedString("Open in a New Tab", comment: ""),
 				style: .default,
 				handler: { _ in
-					let child = self.tabDelegate?.addNewTab(
-						url, forRestoration: false, transition: .default, completion: nil)
+					let child = self.tabDelegate?.addNewTab(url)
 					child?.parentId = self.hash
 			}))
 
@@ -202,7 +202,7 @@ extension Tab: UIGestureRecognizerDelegate {
 		let (href, img, _) = analyzeTappedElements(gr)
 
 		if let url = href ?? img {
-			let child = tabDelegate?.addNewTab(url, forRestoration: false, transition: .default, completion: nil)
+			let child = tabDelegate?.addNewTab(url)
 			child?.parentId = hash
 		}
 	}

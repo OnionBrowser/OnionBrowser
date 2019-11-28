@@ -10,7 +10,6 @@
 
 import UIKit
 
-@objcMembers
 class BrowsingViewController: UIViewController, TabDelegate {
 
 	@objc
@@ -101,9 +100,12 @@ class BrowsingViewController: UIViewController, TabDelegate {
 		}
 	}
 
+	@objc
 	var tabs = [Tab]()
 
 	private var currentTabIndex = -1
+
+	@objc
 	var currentTab: Tab? {
 		get {
 			return currentTabIndex < 0 || currentTabIndex >= tabs.count ? tabs.last : tabs[currentTabIndex]
@@ -293,186 +295,6 @@ class BrowsingViewController: UIViewController, TabDelegate {
 	}
 
 
-	// MARK: Old WebViewController interface
-
-	func becomesVisible() {
-		if tabs.count < 1 {
-			addNewTab(URL(string: "http://3heens4xbedlj57xwcggjsdglot7e36p4rogy642xokemfo2duh6bbyd.onion/"))
-		}
-	}
-
-	func becomesInvisible() {
-		unfocusSearchField()
-	}
-
-    @discardableResult
-	func addNewTab(forURL url: URL?) -> Tab? {
-		return addNewTab(url)
-	}
-
-	@discardableResult
-	@objc(addNewTabForURL:forRestoration:withAnimation:withCompletionBlock:)
-	func addNewTab(_ url: URL? = nil, forRestoration: Bool = false,
-				   transition: Transition = .default, completion: ((Bool) -> Void)? = nil) -> Tab? {
-
-		debug("#addNewTab url=\(String(describing: url)), forRestoration=\(forRestoration), transition=\(transition), completion=\(String(describing: completion))")
-
-		let tab = Tab(restorationId: forRestoration ? url?.absoluteString : nil)
-
-		if let url = url, !forRestoration {
-			tab.load(url)
-		}
-
-		tab.tabDelegate = self
-
-		tabs.append(tab)
-
-		tab.scrollView.delegate = self
-		tab.isHidden = true
-		tab.add(to: container)
-
-		let animations = {
-			for otherTab in self.tabs {
-				otherTab.isHidden = otherTab != tab
-			}
-		}
-
-		let completionForeground = { (finished: Bool) in
-			self.currentTab = tab
-
-			self.updateChrome()
-
-			completion?(finished)
-		}
-
-		switch transition {
-		case .notAnimated:
-			animations()
-			completionForeground(true)
-
-		case .inBackground:
-			completion?(true)
-
-		default:
-			container.transition(animations, completionForeground)
-		}
-
-		return tab
-	}
-
-	func addEmptyTabAndFocus() {
-		addNewTab() { _ in
-			self.focusSearchField()
-		}
-	}
-
-	func switchToTab(_ index: Int) {
-		if index < 0 || index >= tabs.count {
-			return
-		}
-
-		let focussing = tabs[index]
-
-		container.transition({
-			for tab in self.tabs {
-				tab.isHidden = tab != focussing
-			}
-		}) { _ in
-			self.currentTab = focussing
-			self.updateChrome()
-		}
-	}
-
-	func removeCurrentTab() {
-		guard let currentTab = currentTab,
-			let idx = tabs.firstIndex(of: currentTab) else {
-			return
-		}
-
-		removeTab(NSNumber(value: idx))
-	}
-
-	func removeTab(_ tabNumber: NSNumber) {
-		removeTab(tabNumber, andFocusTab: nil)
-	}
-
-	func removeTab(_ tabNumber: NSNumber, andFocusTab toFocus: NSNumber? = nil) {
-		debug("#removeTab tabNumber=\(tabNumber) toFocus=\(String(describing: toFocus))")
-
-		let rIdx = tabNumber.intValue
-		let removing = rIdx > -1 && rIdx < tabs.count ? tabs[rIdx] : nil
-		let fIdx = toFocus?.intValue
-		let focussing = fIdx != nil && fIdx! > -1 && fIdx! < tabs.count ? tabs[fIdx!] : nil
-
-		if let removing = removing {
-			unfocusSearchField()
-
-			container.transition({
-				removing.isHidden = true
-				(focussing ?? self.tabs.last)?.isHidden = false
-			}) { _ in
-				self.currentTab = focussing ?? self.tabs.last
-
-				let hash = removing.hash
-
-				removing.removeFromSuperview()
-				self.tabs.remove(at: rIdx)
-
-				AppDelegate.shared()?.cookieJar.clearNonWhitelistedData(forTab: UInt(hash))
-
-				self.updateChrome()
-			}
-		}
-		else if focussing != nil {
-			unfocusSearchField()
-
-			switchToTab(toFocus!.intValue)
-		}
-	}
-
-	func removeAllTabs() {
-		for tab in tabs {
-			tab.removeFromSuperview()
-		}
-
-		tabs.removeAll()
-
-		currentTab = nil
-
-		AppDelegate.shared()?.cookieJar.clearAllNonWhitelistedData()
-
-		self.updateChrome()
-	}
-
-	func hideSearchResults() {
-		guard liveSearchOngoing else {
-			return
-		}
-
-		if UIDevice.current.userInterfaceIdiom == .pad {
-			liveSearchVc.dismiss(animated: true)
-		}
-		else {
-			liveSearchVc.view.removeFromSuperview()
-			liveSearchVc.removeFromParent()
-		}
-
-		liveSearchOngoing = false
-	}
-
-	func focusSearchField() {
-		if !searchFl.isFirstResponder {
-			searchFl.becomeFirstResponder()
-		}
-	}
-
-	func unfocusSearchField() {
-		if searchFl.isFirstResponder {
-			searchFl.resignFirstResponder()
-		}
-	}
-
-
 	// MARK: TabDelegate
 
 	func updateChrome(_ sender: Tab? = nil) {
@@ -531,12 +353,80 @@ class BrowsingViewController: UIViewController, TabDelegate {
 		updateTabCount()
 	}
 
-	@nonobjc
-	func removeTab(_ tab: Tab, focus: Tab? = nil) {
-		if let idx = tabs.lastIndex(of: tab) {
-			let focusIdx = focus == nil ? nil : tabs.lastIndex(of: focus!)
+	@objc
+	@discardableResult
+	func addNewTab(_ url: URL? = nil) -> Tab? {
+		return addNewTab(url, forRestoration: false)
+	}
 
-			removeTab(NSNumber(value: idx), andFocusTab: focusIdx == nil ? nil : NSNumber(value: focusIdx!))
+	@discardableResult
+	func addNewTab(_ url: URL? = nil, forRestoration: Bool = false,
+				   transition: Transition = .default, completion: ((Bool) -> Void)? = nil) -> Tab? {
+
+		debug("#addNewTab url=\(String(describing: url)), forRestoration=\(forRestoration), transition=\(transition), completion=\(String(describing: completion))")
+
+		let tab = Tab(restorationId: forRestoration ? url?.absoluteString : nil)
+
+		if let url = url, !forRestoration {
+			tab.load(url)
+		}
+
+		tab.tabDelegate = self
+
+		tabs.append(tab)
+
+		tab.scrollView.delegate = self
+		tab.isHidden = true
+		tab.add(to: container)
+
+		let animations = {
+			for otherTab in self.tabs {
+				otherTab.isHidden = otherTab != tab
+			}
+		}
+
+		let completionForeground = { (finished: Bool) in
+			self.currentTab = tab
+
+			self.updateChrome()
+
+			completion?(finished)
+		}
+
+		switch transition {
+		case .notAnimated:
+			animations()
+			completionForeground(true)
+
+		case .inBackground:
+			completion?(true)
+
+		default:
+			container.transition(animations, completionForeground)
+		}
+
+		return tab
+	}
+
+	func removeTab(_ tab: Tab, focus: Tab? = nil) {
+		debug("#removeTab tab=\(tab) focus=\(String(describing: focus))")
+
+		unfocusSearchField()
+
+		container.transition({
+			tab.isHidden = true
+			(focus ?? self.tabs.last)?.isHidden = false
+		}) { _ in
+			self.currentTab = focus ?? self.tabs.last
+
+			let hash = tab.hash
+
+			tab.removeFromSuperview()
+			self.tabs.removeAll { $0 == tab }
+
+			AppDelegate.shared()?.cookieJar.clearNonWhitelistedData(forTab: UInt(hash))
+
+			self.updateChrome()
 		}
 	}
 
@@ -548,9 +438,6 @@ class BrowsingViewController: UIViewController, TabDelegate {
 		return tabs.first { $0.hash == hash }
 	}
 
-
-	// MARK: Public Methods
-
 	func present(_ vc: UIViewController, _ sender: UIView? = nil) {
 		if let sender = sender {
 			vc.modalPresentationStyle = .popover
@@ -559,6 +446,101 @@ class BrowsingViewController: UIViewController, TabDelegate {
 		}
 
 		present(vc, animated: true)
+	}
+
+
+	// MARK: Public Methods
+
+	@objc
+	func becomesVisible() {
+		if tabs.count < 1 {
+			addNewTab(URL(string: "http://3heens4xbedlj57xwcggjsdglot7e36p4rogy642xokemfo2duh6bbyd.onion/"))
+		}
+	}
+
+	@objc
+	func becomesInvisible() {
+		unfocusSearchField()
+	}
+
+	@objc
+	func addEmptyTabAndFocus() {
+		addNewTab() { _ in
+			self.focusSearchField()
+		}
+	}
+
+	@objc
+	func switchToTab(_ index: Int) {
+		if index < 0 || index >= tabs.count {
+			return
+		}
+
+		let focussing = tabs[index]
+
+		container.transition({
+			for tab in self.tabs {
+				tab.isHidden = tab != focussing
+			}
+		}) { _ in
+			self.currentTab = focussing
+			self.updateChrome()
+		}
+	}
+
+	@objc
+	func removeCurrentTab() {
+		guard let currentTab = currentTab else {
+			return
+		}
+
+		removeTab(currentTab)
+	}
+
+	@objc
+	func removeAllTabs() {
+		for tab in tabs {
+			tab.removeFromSuperview()
+		}
+
+		tabs.removeAll()
+
+		currentTab = nil
+
+		AppDelegate.shared()?.cookieJar.clearAllNonWhitelistedData()
+
+		self.updateChrome()
+	}
+
+	@objc
+	func hideSearchResults() {
+		guard liveSearchOngoing else {
+			return
+		}
+
+		if UIDevice.current.userInterfaceIdiom == .pad {
+			liveSearchVc.dismiss(animated: true)
+		}
+		else {
+			liveSearchVc.view.removeFromSuperview()
+			liveSearchVc.removeFromParent()
+		}
+
+		liveSearchOngoing = false
+	}
+
+	@objc
+	func focusSearchField() {
+		if !searchFl.isFirstResponder {
+			searchFl.becomeFirstResponder()
+		}
+	}
+
+	@objc
+	func unfocusSearchField() {
+		if searchFl.isFirstResponder {
+			searchFl.resignFirstResponder()
+		}
 	}
 
 	func debug(_ msg: String) {

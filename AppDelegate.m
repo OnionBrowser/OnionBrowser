@@ -177,13 +177,13 @@
 	if (self.browsingUi.presentedViewController != nil)
 	{
 		[self.browsingUi dismissViewControllerAnimated:YES completion:^{
-			[self.browsingUi addNewTabForURL:url];
+			[self.browsingUi addNewTab:url];
 		}];
 	}
 	// If there's no modal view controller, however, the completion block would
 	// never be called.
 	else {
-		[self.browsingUi addNewTabForURL:url];
+		[self.browsingUi addNewTab:url];
 	}
 
 	return YES;

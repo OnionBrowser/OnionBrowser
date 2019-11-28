@@ -23,7 +23,6 @@
 /* Begin PBXBuildFile section */
 		010EEA691A43C8CF001E8B65 /* CookieJar.m in Sources */ = {isa = PBXBuildFile; fileRef = 010EEA681A43C8CF001E8B65 /* CookieJar.m */; };
 		0135F4761A3D2931005A8F16 /* SearchEngines.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0135F4751A3D2931005A8F16 /* SearchEngines.plist */; };
-		0135F47F1A3E548F005A8F16 /* WebViewTab.m in Sources */ = {isa = PBXBuildFile; fileRef = 0135F47E1A3E548F005A8F16 /* WebViewTab.m */; };
 		014E68A81B9BEDDC00D98A0A /* HostSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 014E68A71B9BEDDC00D98A0A /* HostSettings.m */; };
 		016B2FCB1A53466D002D2730 /* hsts_preload.plist in Resources */ = {isa = PBXBuildFile; fileRef = 016B2FCA1A53466D002D2730 /* hsts_preload.plist */; };
 		016B2FCD1A5648AE002D2730 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016B2FCC1A5648AE002D2730 /* WebKit.framework */; };
@@ -39,7 +38,6 @@
 		019516D11B7D8B400078586A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 019516D01B7D8B400078586A /* libz.tbd */; };
 		01D7412A1A45EDD1007B7033 /* CookieJar_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D741291A45EDD1007B7033 /* CookieJar_Tests.m */; };
 		01D7412C1A45F8EB007B7033 /* injected.js in Resources */ = {isa = PBXBuildFile; fileRef = 01D7412B1A45F8EB007B7033 /* injected.js */; };
-		01D7412F1A466AF0007B7033 /* NSString+JavascriptEscape.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D7412E1A466AF0007B7033 /* NSString+JavascriptEscape.m */; };
 		01D741321A49EA14007B7033 /* RuleEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D741311A49EA14007B7033 /* RuleEditorController.m */; };
 		01EFA7FF1A63851400688398 /* LocalNetworkChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EFA7FE1A63851400688398 /* LocalNetworkChecker.m */; };
 		01F2AE391B7FEF5E00D5651A /* SSLCertificate.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F2AE381B7FEF5E00D5651A /* SSLCertificate.m */; };
@@ -119,7 +117,6 @@
 		A090E2D12358B2040067A865 /* Storage1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A090E2D02358B2040067A865 /* Storage1ViewController.swift */; };
 		A099DE21238E8C2C00B79B20 /* Tab+Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = A099DE20238E8C2C00B79B20 /* Tab+Gestures.swift */; };
 		A09A2A972254B3D100A3EEF0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A09A2A992254B3D100A3EEF0 /* InfoPlist.strings */; };
-		A09A2AAB2254D2C700A3EEF0 /* WebViewTab+Activity.m in Sources */ = {isa = PBXBuildFile; fileRef = A09A2AAA2254D2C700A3EEF0 /* WebViewTab+Activity.m */; };
 		A0B4838C234DEBE100F9701B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B4838B234DEBE100F9701B /* SettingsViewController.swift */; };
 		A0C3770E1F47342C0039198E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0C3770D1F47342C0039198E /* CoreData.framework */; };
 		A0D419DD2386C6370055AC33 /* URL+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D419DC2386C6370055AC33 /* URL+Helpers.swift */; };
@@ -171,8 +168,6 @@
 		010EEA671A43C8CF001E8B65 /* CookieJar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CookieJar.h; sourceTree = "<group>"; };
 		010EEA681A43C8CF001E8B65 /* CookieJar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CookieJar.m; sourceTree = "<group>"; };
 		0135F4751A3D2931005A8F16 /* SearchEngines.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = SearchEngines.plist; path = Endless/Resources/SearchEngines.plist; sourceTree = "<group>"; };
-		0135F47D1A3E548F005A8F16 /* WebViewTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewTab.h; sourceTree = "<group>"; };
-		0135F47E1A3E548F005A8F16 /* WebViewTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewTab.m; sourceTree = "<group>"; };
 		014E68A61B9BEDDC00D98A0A /* HostSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HostSettings.h; sourceTree = "<group>"; };
 		014E68A71B9BEDDC00D98A0A /* HostSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HostSettings.m; sourceTree = "<group>"; };
 		016B2FCA1A53466D002D2730 /* hsts_preload.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = hsts_preload.plist; path = Endless/Resources/hsts_preload.plist; sourceTree = "<group>"; };
@@ -199,8 +194,6 @@
 		019516D01B7D8B400078586A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		01D741291A45EDD1007B7033 /* CookieJar_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CookieJar_Tests.m; sourceTree = "<group>"; };
 		01D7412B1A45F8EB007B7033 /* injected.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = injected.js; path = Endless/Resources/injected.js; sourceTree = "<group>"; };
-		01D7412D1A466AF0007B7033 /* NSString+JavascriptEscape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+JavascriptEscape.h"; sourceTree = "<group>"; };
-		01D7412E1A466AF0007B7033 /* NSString+JavascriptEscape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+JavascriptEscape.m"; sourceTree = "<group>"; };
 		01D741301A49EA14007B7033 /* RuleEditorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RuleEditorController.h; sourceTree = "<group>"; };
 		01D741311A49EA14007B7033 /* RuleEditorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RuleEditorController.m; sourceTree = "<group>"; };
 		01EFA7FD1A63851400688398 /* LocalNetworkChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalNetworkChecker.h; sourceTree = "<group>"; };
@@ -788,8 +781,6 @@
 		A099DE20238E8C2C00B79B20 /* Tab+Gestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tab+Gestures.swift"; sourceTree = "<group>"; };
 		A09A2A982254B3D100A3EEF0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A09A2A9A2254B3D400A3EEF0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		A09A2AA92254D2C700A3EEF0 /* WebViewTab+Activity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WebViewTab+Activity.h"; sourceTree = "<group>"; };
-		A09A2AAA2254D2C700A3EEF0 /* WebViewTab+Activity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "WebViewTab+Activity.m"; sourceTree = "<group>"; };
 		A0AE3CAE22708FAD00FF8FC1 /* hu-HU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "hu-HU"; path = "hu-HU.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		A0AE3CB42270918000FF8FC1 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A0AE3CB52270918100FF8FC1 /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ga; path = ga.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -909,10 +900,6 @@
 				01F8793A1A4108DD00A63654 /* URLBlocker.m */,
 				69CBCD451E934228009D5352 /* URLBlockerRuleController.h */,
 				69CBCD461E934228009D5352 /* URLBlockerRuleController.m */,
-				0135F47D1A3E548F005A8F16 /* WebViewTab.h */,
-				0135F47E1A3E548F005A8F16 /* WebViewTab.m */,
-				A09A2AA92254D2C700A3EEF0 /* WebViewTab+Activity.h */,
-				A09A2AAA2254D2C700A3EEF0 /* WebViewTab+Activity.m */,
 			);
 			path = Endless;
 			sourceTree = "<group>";
@@ -928,8 +915,6 @@
 				01801E971A32CA2A002B4718 /* main.m */,
 				01F7CB4C1A52FC4E00F42B73 /* NSString+IPAddress.h */,
 				01F7CB4D1A52FC4E00F42B73 /* NSString+IPAddress.m */,
-				01D7412D1A466AF0007B7033 /* NSString+JavascriptEscape.h */,
-				01D7412E1A466AF0007B7033 /* NSString+JavascriptEscape.m */,
 				01D741301A49EA14007B7033 /* RuleEditorController.h */,
 				01D741311A49EA14007B7033 /* RuleEditorController.m */,
 				69CBCD501E9347B8009D5352 /* UIResponder+FirstResponder.h */,
@@ -2384,7 +2369,6 @@
 				A053136E22F1C737006655EC /* JAHPAuthenticatingHTTPProtocol.m in Sources */,
 				A0821DD8238D3E3800443839 /* Tab+Activity.swift in Sources */,
 				A053137822F1EC19006655EC /* DownloadHelper.m in Sources */,
-				01D7412F1A466AF0007B7033 /* NSString+JavascriptEscape.m in Sources */,
 				A0E755F72372EBAD006276DB /* TabCell.swift in Sources */,
 				A07D65562208A17E0002D775 /* Migration.swift in Sources */,
 				69CBCD521E9347B8009D5352 /* UIResponder+FirstResponder.m in Sources */,
@@ -2410,7 +2394,6 @@
 				A0B4838C234DEBE100F9701B /* SettingsViewController.swift in Sources */,
 				A053137022F1C73C006655EC /* JAHPCanonicalRequest.m in Sources */,
 				A0D419DF2386E4BD0055AC33 /* Tab+Keyboard.swift in Sources */,
-				A09A2AAB2254D2C700A3EEF0 /* WebViewTab+Activity.m in Sources */,
 				01F2AE401B82666900D5651A /* SSLCertificateViewController.m in Sources */,
 				A006A18B2388185900B0344A /* String+Helpers.swift in Sources */,
 				69EFCCA21EAD20CB00280747 /* OBRootViewController.m in Sources */,
@@ -2431,7 +2414,6 @@
 				A0894E38236AF90500EE2743 /* Formatter.swift in Sources */,
 				8A9BD4022294507C00230DF9 /* DonationViewController.swift in Sources */,
 				A090E2CB23586E360067A865 /* SecurityShield.swift in Sources */,
-				0135F47F1A3E548F005A8F16 /* WebViewTab.m in Sources */,
 				A053137122F1C740006655EC /* JAHPQNSURLSessionDemux.m in Sources */,
 				A07D654B2208A0C10002D775 /* OBSettingsConstants.m in Sources */,
 				A07D65532208A17E0002D775 /* Bridge.m in Sources */,

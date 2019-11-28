@@ -156,7 +156,7 @@ UICollectionViewDropDelegate, TabCellDelegate {
 			if let indexPath = tabsCollection.indexPath(for: sender) {
 				tabsCollection.deleteItems(at: [indexPath])
 
-				removeTab(NSNumber(value: indexPath.row))
+				removeTab(tabs[indexPath.row])
 			}
 		})
 	}

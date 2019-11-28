@@ -22,6 +22,9 @@ extension Tab: UIWebViewDelegate {
 	private static let universalLinksWorkaroundKey = "yayprivacy"
 
 
+	/**
+	This will only fire for top-level requests (and iframes), not page elements.
+	*/
 	func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
 		guard let url = request.url else {
 			return false
@@ -235,7 +238,7 @@ extension Tab: UIWebViewDelegate {
 		case "window.open":
 			// Only allow windows to be opened from mouse/touch events, like a normal browser's popup blocker.
 			if navigationType == .linkClicked {
-				let child = tabDelegate?.addNewTab(nil, forRestoration: false, transition: .default, completion: nil)
+				let child = tabDelegate?.addNewTab(nil)
 				child?.parentId = hash
 				child?.ipcId = param1
 

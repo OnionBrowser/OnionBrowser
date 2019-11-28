@@ -14,6 +14,8 @@ import QuickLook
 protocol TabDelegate: class {
 	func updateChrome(_ sender: Tab?)
 
+	func addNewTab(_ url: URL?) -> Tab?
+
 	func addNewTab(_ url: URL?, forRestoration: Bool,
 				   transition: BrowsingViewController.Transition,
 				   completion: ((Bool) -> Void)?) -> Tab?
@@ -27,7 +29,6 @@ protocol TabDelegate: class {
 	func present(_ vc: UIViewController, _ sender: UIView?)
 }
 
-@objcMembers
 class Tab: UIView {
 
 	@objc
@@ -59,6 +60,7 @@ class Tab: UIView {
 
 	var ipcId: String?
 
+	@objc
 	var url = URL.blank
 
 	private(set) var needsRefresh = false
@@ -84,6 +86,7 @@ class Tab: UIView {
 		}
 	}
 
+	@objc
 	var secureMode = SecureMode.insecure
 
 	@nonobjc
@@ -97,6 +100,8 @@ class Tab: UIView {
 
 	static let historySize = 40
 	var skipHistory = false
+
+	@objc
 	var history = [[String: String]]()
 
 	override var isUserInteractionEnabled: Bool {
@@ -181,6 +186,7 @@ class Tab: UIView {
 		webView.reload()
 	}
 
+	@objc
 	func load(_ url: URL?, postParams: String? = nil) {
 		var request: URLRequest?
 
@@ -210,6 +216,7 @@ class Tab: UIView {
 		}
 	}
 
+	@objc
 	func search(for query: String?) {
 		guard let se = Settings.searchEngine,
 			let searchUrl = se.searchUrl,
@@ -252,6 +259,7 @@ class Tab: UIView {
 		sslCertificate = nil
 	}
 
+	@objc
 	func goBack() {
 		if webView.canGoBack {
 			skipHistory = true
@@ -262,6 +270,7 @@ class Tab: UIView {
 		}
 	}
 
+	@objc
 	func goForward() {
 		if webView.canGoForward {
 			skipHistory = true
