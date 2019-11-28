@@ -42,7 +42,7 @@ UICollectionViewDropDelegate, TabCellDelegate {
 	}
 
 	@objc func newTab() {
-		addNewTab(animation: .hidden) { _ in
+		addNewTab(transition: .notAnimated) { _ in
 			self.hideTabs() { _ in
 				self.searchFl.becomeFirstResponder()
 			}

@@ -24,3 +24,4 @@
 #import "URLBlockerRuleController.h"
 #import "HTTPSEverywhereRuleController.h"
 #import "DownloadHelper.h"
+#import "VForceTouchGestureRecognizer.h"

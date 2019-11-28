@@ -15,7 +15,7 @@ protocol TabDelegate: class {
 	func updateChrome(_ sender: Tab?)
 
 	func addNewTab(_ url: URL?, forRestoration: Bool,
-				   animation: BrowsingViewController.Animation,
+				   transition: BrowsingViewController.Transition,
 				   completion: ((Bool) -> Void)?) -> Tab?
 
 	func removeTab(_ tab: Tab, focus: Tab?)
@@ -150,6 +150,14 @@ class Tab: UIView {
 	}()
 
 	var downloadedFile: URL?
+
+	private(set) lazy var refresher: UIRefreshControl = {
+		let refresher = UIRefreshControl()
+
+		refresher.attributedTitle = NSAttributedString(string: NSLocalizedString("Pull to Refresh Page", comment: ""))
+
+		return refresher
+	}()
 
 
 	init(restorationId: String?) {

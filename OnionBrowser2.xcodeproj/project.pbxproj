@@ -117,6 +117,7 @@
 		A0894E3C236B055300EE2743 /* BrowsingViewController+Toolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0894E3B236B055300EE2743 /* BrowsingViewController+Toolbar.swift */; };
 		A090E2CB23586E360067A865 /* SecurityShield.swift in Sources */ = {isa = PBXBuildFile; fileRef = A090E2CA23586E360067A865 /* SecurityShield.swift */; };
 		A090E2D12358B2040067A865 /* Storage1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A090E2D02358B2040067A865 /* Storage1ViewController.swift */; };
+		A099DE21238E8C2C00B79B20 /* Tab+Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = A099DE20238E8C2C00B79B20 /* Tab+Gestures.swift */; };
 		A09A2A972254B3D100A3EEF0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A09A2A992254B3D100A3EEF0 /* InfoPlist.strings */; };
 		A09A2AAB2254D2C700A3EEF0 /* WebViewTab+Activity.m in Sources */ = {isa = PBXBuildFile; fileRef = A09A2AAA2254D2C700A3EEF0 /* WebViewTab+Activity.m */; };
 		A0B4838C234DEBE100F9701B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B4838B234DEBE100F9701B /* SettingsViewController.swift */; };
@@ -784,6 +785,7 @@
 		A094CEDE234506C700C77E55 /* description.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = description.txt; sourceTree = "<group>"; };
 		A094CEDF234506C700C77E55 /* keywords.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = keywords.txt; sourceTree = "<group>"; };
 		A096BBE71F68359500A5C6AB /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Endless/es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A099DE20238E8C2C00B79B20 /* Tab+Gestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tab+Gestures.swift"; sourceTree = "<group>"; };
 		A09A2A982254B3D100A3EEF0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A09A2A9A2254B3D400A3EEF0 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A09A2AA92254D2C700A3EEF0 /* WebViewTab+Activity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WebViewTab+Activity.h"; sourceTree = "<group>"; };
@@ -2075,6 +2077,7 @@
 				A006A1862387E20200B0344A /* Tab.swift */,
 				A0821DD7238D3E3800443839 /* Tab+Activity.swift */,
 				A006A18C23883BA400B0344A /* Tab+Downloads.swift */,
+				A099DE20238E8C2C00B79B20 /* Tab+Gestures.swift */,
 				A0D419DE2386E4BD0055AC33 /* Tab+Keyboard.swift */,
 				A006A1882388123C00B0344A /* Tab+UIWebViewDelegate.swift */,
 				A0E755F42372EBAD006276DB /* TabCell.xib */,
@@ -2412,6 +2415,7 @@
 				A006A18B2388185900B0344A /* String+Helpers.swift in Sources */,
 				69EFCCA21EAD20CB00280747 /* OBRootViewController.m in Sources */,
 				A03DBCED22859B99001890C4 /* Config.m in Sources */,
+				A099DE21238E8C2C00B79B20 /* Tab+Gestures.swift in Sources */,
 				018333CA1A3505FB00670CD1 /* HTTPSEverywhere.m in Sources */,
 				01F7CB491A5253DD00F42B73 /* HSTSCache.m in Sources */,
 				69CBCD471E934228009D5352 /* URLBlockerRuleController.m in Sources */,

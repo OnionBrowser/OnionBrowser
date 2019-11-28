@@ -91,7 +91,7 @@ class TabSecurity: NSObject {
 			for url in urls {
 				print("[\(String(describing: self))] restore tab with url=\(url)")
 
-				controller.addNewTab(url, animation: .hidden)
+				controller.addNewTab(url, transition: .notAnimated)
 			}
 		}
 		else {

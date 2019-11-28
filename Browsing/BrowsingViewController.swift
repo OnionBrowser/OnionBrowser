@@ -14,9 +14,10 @@ import UIKit
 class BrowsingViewController: UIViewController, TabDelegate {
 
 	@objc
-	enum Animation: Int {
+	enum Transition: Int {
 		case `default`
-		case hidden
+		case notAnimated
+		case inBackground
 	}
 
 	static let aboutOnionBrowserUrl = URL.aboutOnionBrowser.absoluteString
@@ -207,7 +208,7 @@ class BrowsingViewController: UIViewController, TabDelegate {
 			debug("Try restoring tab with \(info).")
 
 			if let url = info["url"] as? URL {
-				addNewTab(url, forRestoration: true, animation: .hidden)
+				addNewTab(url, forRestoration: true, transition: .notAnimated)
 			}
 		}
 
@@ -312,9 +313,9 @@ class BrowsingViewController: UIViewController, TabDelegate {
 	@discardableResult
 	@objc(addNewTabForURL:forRestoration:withAnimation:withCompletionBlock:)
 	func addNewTab(_ url: URL? = nil, forRestoration: Bool = false,
-				   animation: Animation = .default, completion: ((Bool) -> Void)? = nil) -> Tab? {
+				   transition: Transition = .default, completion: ((Bool) -> Void)? = nil) -> Tab? {
 
-		debug("#addNewTab url=\(String(describing: url)), forRestoration=\(forRestoration), animation=\(animation), completion=\(String(describing: completion))")
+		debug("#addNewTab url=\(String(describing: url)), forRestoration=\(forRestoration), transition=\(transition), completion=\(String(describing: completion))")
 
 		let tab = Tab(restorationId: forRestoration ? url?.absoluteString : nil)
 
@@ -336,7 +337,7 @@ class BrowsingViewController: UIViewController, TabDelegate {
 			}
 		}
 
-		let completion = { (finished: Bool) in
+		let completionForeground = { (finished: Bool) in
 			self.currentTab = tab
 
 			self.updateChrome()
@@ -344,12 +345,16 @@ class BrowsingViewController: UIViewController, TabDelegate {
 			completion?(finished)
 		}
 
-		if animation == .hidden {
+		switch transition {
+		case .notAnimated:
 			animations()
-			completion(true)
-		}
-		else {
-			container.transition(animations, completion)
+			completionForeground(true)
+
+		case .inBackground:
+			completion?(true)
+
+		default:
+			container.transition(animations, completionForeground)
 		}
 
 		return tab

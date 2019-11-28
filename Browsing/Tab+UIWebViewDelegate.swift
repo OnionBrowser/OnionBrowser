@@ -235,7 +235,7 @@ extension Tab: UIWebViewDelegate {
 		case "window.open":
 			// Only allow windows to be opened from mouse/touch events, like a normal browser's popup blocker.
 			if navigationType == .linkClicked {
-				let child = tabDelegate?.addNewTab(nil, forRestoration: false, animation: .default, completion: nil)
+				let child = tabDelegate?.addNewTab(nil, forRestoration: false, transition: .default, completion: nil)
 				child?.parentId = hash
 				child?.ipcId = param1
 

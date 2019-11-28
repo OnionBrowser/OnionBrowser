@@ -229,7 +229,7 @@ class SettingsViewController: FormViewController {
 		.onCellSelection { _, _ in
 			AppDelegate.shared()?.browsingUi.addNewTab(
 				URL(string: "https://github.com/OnionBrowser/OnionBrowser/issues"),
-				animation: .hidden)
+				transition: .notAnimated)
 
 			self.dismsiss_()
 		}
@@ -270,7 +270,7 @@ class SettingsViewController: FormViewController {
 		}
 		.onCellSelection { _, _ in
 			AppDelegate.shared()?.browsingUi.addNewTab(URL.aboutOnionBrowser,
-													   animation: .hidden)
+													   transition: .notAnimated)
 
 			self.dismsiss_()
 		}
