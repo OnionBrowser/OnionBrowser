@@ -248,6 +248,8 @@ class BrowsingViewController: UIViewController, TabDelegate {
     // MARK: Actions
 
 	@IBAction func action(_ sender: UIButton) {
+		unfocusSearchField()
+
         switch sender {
         case securityBt:
 			var host = currentTab?.url.host ?? currentTab?.url.path
@@ -301,6 +303,8 @@ class BrowsingViewController: UIViewController, TabDelegate {
     }
 
 	@IBAction func showBookmarks() {
+		unfocusSearchField()
+
 		present(BookmarksViewController.instantiate(), bookmarksBt)
 	}
 

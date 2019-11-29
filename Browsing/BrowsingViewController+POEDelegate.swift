@@ -14,6 +14,8 @@ import POE
 extension BrowsingViewController: POEDelegate {
 
 	@objc func showBridgeSelection() {
+		unfocusSearchField()
+
 		let builtInBridges: [Int: String]
 
 		if Ipv6Tester.ipv6_status() == TOR_IPV6_CONN_ONLY {
