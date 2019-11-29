@@ -46,7 +46,7 @@
  */
 
 @import Foundation;
-#import "WebViewTab.h"
+@class Tab;
 
 #define CONTENT_TYPE_OTHER	0
 #define CONTENT_TYPE_HTML	1
@@ -115,10 +115,10 @@
 + (void)resetSharedDemux;
 
 + (void)temporarilyAllowURL:(NSURL *__nullable)url
-			  forWebViewTab:(WebViewTab *__nullable)webViewTab;
+			  forWebViewTab:(Tab *__nullable)webViewTab;
 
 + (void)temporarilyAllowURL:(NSURL *_Nullable)url
-			  forWebViewTab:(WebViewTab *_Nullable)webViewTab
+			  forWebViewTab:(Tab *_Nullable)webViewTab
 			  isOCSPRequest:(BOOL)isOCSPRequest;
 
 @end

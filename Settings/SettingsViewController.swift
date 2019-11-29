@@ -167,6 +167,26 @@ class SettingsViewController: FormViewController {
 					footer: NSLocalizedString("Changing this option requires restarting the app.",
 											  comment: "Option explanation"))
 
+		<<< LabelRow() {
+			$0.title = NSLocalizedString("URL Blocker", comment: "Option label")
+			$0.cell.textLabel?.numberOfLines = 0
+			$0.cell.accessoryType = .disclosureIndicator
+			$0.cell.selectionStyle = .default
+		}
+		.onCellSelection { _, _ in
+			self.navigationController?.pushViewController(URLBlockerRuleController(), animated: true)
+		}
+
+		<<< LabelRow() {
+			$0.title = NSLocalizedString("HTTPS Everywhere", comment: "Option label")
+			$0.cell.textLabel?.numberOfLines = 0
+			$0.cell.accessoryType = .disclosureIndicator
+			$0.cell.selectionStyle = .default
+		}
+		.onCellSelection { _, _ in
+			self.navigationController?.pushViewController(HTTPSEverywhereRuleController(), animated: true)
+		}
+
 		<<< SwitchRow() {
 			$0.title = NSLocalizedString("Mute Audio with Mute Switch", comment: "Option title")
 			$0.value = Settings.muteWithSwitch
@@ -207,9 +227,9 @@ class SettingsViewController: FormViewController {
 			cell.textLabel?.textAlignment = .natural
 		}
 		.onCellSelection { _, _ in
-			AppDelegate.shared()?.webViewController.addNewTab(
-				for: URL(string: "https://github.com/OnionBrowser/OnionBrowser/issues"),
-				forRestoration: false, with: .quick, withCompletionBlock: nil)
+			AppDelegate.shared()?.browsingUi.addNewTab(
+				URL(string: "https://github.com/OnionBrowser/OnionBrowser/issues"),
+				transition: .notAnimated)
 
 			self.dismsiss_()
 		}
@@ -249,9 +269,8 @@ class SettingsViewController: FormViewController {
 			cell.textLabel?.textAlignment = .natural
 		}
 		.onCellSelection { _, _ in
-			AppDelegate.shared()?.webViewController.addNewTab(
-				for: URL(string: ABOUT_ONION_BROWSER), forRestoration: false,
-				with: .quick, withCompletionBlock: nil)
+			AppDelegate.shared()?.browsingUi.addNewTab(URL.aboutOnionBrowser,
+													   transition: .notAnimated)
 
 			self.dismsiss_()
 		}

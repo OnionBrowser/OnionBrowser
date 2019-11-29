@@ -187,14 +187,14 @@
 - (void)userFinishedConnecting
 {
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    appDelegate.webViewController = [[WebViewController alloc] init];
+    appDelegate.browsingUi = [[BrowsingViewController alloc] init];
 
     [self dismissViewControllerAnimated: YES completion: ^{
-        appDelegate.window.rootViewController = appDelegate.webViewController;
+        appDelegate.window.rootViewController = appDelegate.browsingUi;
 
 		[TabSecurity restore];
 
-		[appDelegate.webViewController viewIsVisible];
+		[appDelegate.browsingUi becomesVisible];
     }];
 }
 

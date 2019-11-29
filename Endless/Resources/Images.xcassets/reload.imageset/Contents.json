@@ -1,0 +1,25 @@
+{
+  "images" : [
+    {
+      "idiom" : "universal",
+      "filename" : "refresh-small.png",
+      "language-direction" : "left-to-right",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "refresh.png",
+      "language-direction" : "left-to-right",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x",
+      "language-direction" : "left-to-right"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}

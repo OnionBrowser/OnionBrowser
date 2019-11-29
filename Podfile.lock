@@ -55,7 +55,7 @@ PODS:
   - Eureka (5.1.0)
   - KMPlaceholderTextView (1.4.0)
   - Localize (2.3.0)
-  - OCMock (3.4.3)
+  - OCMock (3.5)
   - OCSPCache (0.1.0):
     - OpenSSL-Universal (= 1.0.2.17)
     - ReactiveObjC (= 3.1.1)
@@ -67,9 +67,7 @@ PODS:
   - Reachability (3.2)
   - ReactiveObjC (3.1.1)
   - TUSafariActivity (1.0.4)
-  - UIColor-HexRGB (1.0.1)
   - VForceTouch (0.0.2)
-  - WYPopoverController (0.3.9)
 
 DEPENDENCIES:
   - CSPHeader (~> 0.4)
@@ -81,9 +79,7 @@ DEPENDENCIES:
   - POE (~> 0.7)
   - Reachability (~> 3.2)
   - TUSafariActivity
-  - UIColor-HexRGB
   - VForceTouch
-  - WYPopoverController (from `https://github.com/sammcewan/WYPopoverController.git`)
 
 SPEC REPOS:
   trunk:
@@ -99,22 +95,16 @@ SPEC REPOS:
     - Reachability
     - ReactiveObjC
     - TUSafariActivity
-    - UIColor-HexRGB
     - VForceTouch
 
 EXTERNAL SOURCES:
   OCSPCache:
     :git: https://github.com/Psiphon-Labs/OCSPCache
-  WYPopoverController:
-    :git: https://github.com/sammcewan/WYPopoverController.git
 
 CHECKOUT OPTIONS:
   OCSPCache:
     :commit: 71e9f5d2fdc4afb0d9b04ea019e2f0bec64cdc30
     :git: https://github.com/Psiphon-Labs/OCSPCache
-  WYPopoverController:
-    :commit: 9b8011bd95bd95f6fca6a0afa78965fbf645a062
-    :git: https://github.com/sammcewan/WYPopoverController.git
 
 SPEC CHECKSUMS:
   CSPHeader: adec9dd23d5ea822b8e397407c40c6435b4a7c49
@@ -122,7 +112,7 @@ SPEC CHECKSUMS:
   Eureka: 18a5076dcf0c41f9cd9748aa1c42f4d11434bdae
   KMPlaceholderTextView: 2206c3df39979e9396e2d96fa9f427a8951121b0
   Localize: cb1ae53ed73decaad0dce217806ed983091913f5
-  OCMock: 43565190abc78977ad44a61c0d20d7f0784d35ab
+  OCMock: 4ab4577fc941af31f4a0398f6e7e230cf21fc72a
   OCSPCache: 96237607aa9f77ba2fd9119e383b9fb1ef41cfa2
   OpenSSL-Universal: ff04c2e6befc3f1247ae039e60c93f76345b3b5a
   OrderedDictionary: 138c8d2e358d3a0c9adda15c6c7db24e8e3b09e6
@@ -130,10 +120,8 @@ SPEC CHECKSUMS:
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
-  UIColor-HexRGB: daccfa7e936af664369734a164b0309087d7f970
   VForceTouch: b5c3a28625269e1818cf915728173bda9f669d6b
-  WYPopoverController: a9db25ac2841a686acdc0f3a99bdb21545db32f4
 
-PODFILE CHECKSUM: 6f5869a86428da1524dc632e6828def1ef960536
+PODFILE CHECKSUM: 243da0dbcdc3b30c846db3627ec696a1b4cb59cc
 
 COCOAPODS: 1.8.4

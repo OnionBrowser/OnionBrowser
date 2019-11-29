@@ -15,6 +15,7 @@
 #import "UIResponder+FirstResponder.h"
 
 #import "OBRootViewController.h"
+#import "SilenceWarnings.h"
 #import "OnionBrowser-Swift.h"
 
 @implementation AppDelegate
@@ -38,6 +39,7 @@
 	self.socksProxyPort = 39050;
 	self.sslCertCache = [[NSCache alloc] init];
 	self.certificateAuthentication = [[CertificateAuthentication alloc] init];
+	_defaultUserAgent = [self createUserAgent];
 
 	[JAHPAuthenticatingHTTPProtocol setDelegate:self];
 	[JAHPAuthenticatingHTTPProtocol start];
@@ -106,7 +108,7 @@
 - (void)applicationWillResignActive:(UIApplication *)application
 {
 	[application ignoreSnapshotOnNextApplicationLaunch];
-	[[self webViewController] viewIsNoLongerVisible];
+	[self.browsingUi becomesInvisible];
 
 	[BlurredSnapshot create];
 }
@@ -131,7 +133,7 @@
 {
 	[BlurredSnapshot remove];
 
-	[[self webViewController] viewIsVisible];
+	[self.browsingUi becomesVisible];
 
     if (!inStartupPhase && OnionManager.shared.state != TorStateStarted && OnionManager.shared.state != TorStateConnected) {
         // TODO: actually use UI instead of silently trying to restart Tor.
@@ -146,7 +148,7 @@
 		// During app startup, we don't start Tor from here, but from
 		// OBRootViewController in order to catch the delegate callback for progress.
 		inStartupPhase = NO;
-//        [[self webViewController] viewIsVisible];
+//        [self.browsingUi becomesVisible];
     }
 }
 
@@ -166,33 +168,22 @@
 	NSLog(@"[AppDelegate] request to open url: %@", url);
 #endif
 
-	if ([url.scheme.lowercaseString isEqualToString:@"onionhttp"])
-	{
-		NSURLComponents *urlc = [[NSURLComponents alloc] initWithURL:url resolvingAgainstBaseURL:YES];
-		urlc.scheme = @"http";
-		url = urlc.URL;
-	}
-	else if ([url.scheme.lowercaseString isEqualToString:@"onionhttps"])
-	{
-		NSURLComponents *urlc = [[NSURLComponents alloc] initWithURL:url resolvingAgainstBaseURL:YES];
-		urlc.scheme = @"https";
-		url = urlc.URL;
-	}
+	url = url.withFixedScheme;
 
 	// In case, a modal view controller is overlaying the WebViewController,
 	// we need to close it *before* adding a new tab. Otherwise, the UI will
 	// be broken on iPhone-X-type devices: The address field will be in the
 	// notch area.
-	if (self.webViewController.presentedViewController != nil)
+	if (self.browsingUi.presentedViewController != nil)
 	{
-		[self.webViewController dismissViewControllerAnimated:YES completion:^{
-			[self.webViewController addNewTabForURL:url];
+		[self.browsingUi dismissViewControllerAnimated:YES completion:^{
+			[self.browsingUi addNewTab:url];
 		}];
 	}
 	// If there's no modal view controller, however, the completion block would
 	// never be called.
 	else {
-		[self.webViewController addNewTabForURL:url];
+		[self.browsingUi addNewTab:url];
 	}
 
 	return YES;
@@ -296,7 +287,7 @@
 	}
 	
 	/* if settings are up or something else, ignore shortcuts */
-	if (![[self topViewController] isKindOfClass:[WebViewController class]])
+	if (![[self topViewController] isKindOfClass:[BrowsingViewController class]])
 		return nil;
 	
 	id cur = [UIResponder currentFirstResponder];
@@ -314,47 +305,45 @@
 {
 	if ([keyCommand modifierFlags] == UIKeyModifierCommand) {
 		if ([[keyCommand input] isEqualToString:@"b"]) {
-			[self.webViewController showBookmarks];
+			[self.browsingUi showBookmarks];
 			return;
 		}
 
 		if ([[keyCommand input] isEqualToString:@"l"]) {
-			[[self webViewController] focusUrlField];
+			[self.browsingUi focusSearchField];
 			return;
 		}
 		
 		if ([[keyCommand input] isEqualToString:@"t"]) {
-			[[self webViewController] addNewTabForURL:nil forRestoration:NO withAnimation:WebViewTabAnimationDefault withCompletionBlock:^(BOOL finished) {
-				[[self webViewController] focusUrlField];
-			}];
+			[self.browsingUi addEmptyTabAndFocus];
 			return;
 		}
 		
 		if ([[keyCommand input] isEqualToString:@"w"]) {
-			[[self webViewController] removeTab:[[[self webViewController] curWebViewTab] tabIndex]];
+			[self.browsingUi removeCurrentTab];
 			return;
 		}
 		
 		if ([[keyCommand input] isEqualToString:@"["]) {
-			[[[self webViewController] curWebViewTab] goBack];
+			[self.browsingUi.currentTab goBack];
 			return;
 		}
 		
 		if ([[keyCommand input] isEqualToString:@"]"]) {
-			[[[self webViewController] curWebViewTab] goForward];
+			[self.browsingUi.currentTab goForward];
 			return;
 		}
 
 		for (int i = 0; i <= 9; i++) {
 			if ([[keyCommand input] isEqualToString:[NSString stringWithFormat:@"%d", i]]) {
-				[[self webViewController] switchToTab:[NSNumber numberWithInt:(i == 0 ? 9 : i - 1)]];
+				[self.browsingUi switchToTab:(i == 0 ? 9 : i - 1)];
 				return;
 			}
 		}
 	}
 	
-	if ([self webViewController] && [[self webViewController] curWebViewTab])
-		[[[self webViewController] curWebViewTab] handleKeyCommand:keyCommand];
+	if (self.browsingUi && self.browsingUi.currentTab)
+		[self.browsingUi.currentTab handleKeyCommand:keyCommand];
 }
 
 - (UIViewController *)topViewController
@@ -396,13 +385,15 @@
 
 - (void)handleShortcut:(UIApplicationShortcutItem *)shortcutItem
 {
-	if ([[shortcutItem type] containsString:@"OpenNewTab"]) {
-		[[self webViewController] dismissViewControllerAnimated:YES completion:nil];
-		[[self webViewController] addNewTabFromToolbar:nil];
-	} else if ([[shortcutItem type] containsString:@"ClearData"]) {
-		[[self webViewController] removeAllTabs];
-		[[self cookieJar] clearAllNonWhitelistedData];
-	} else {
+	if ([shortcutItem.type containsString:@"OpenNewTab"])
+	{
+		[self.browsingUi dismissViewControllerAnimated:YES completion:nil];
+		[self.browsingUi addEmptyTabAndFocus];
+	}
+	else if ([shortcutItem.type containsString:@"ClearData"]) {
+		[self.browsingUi removeAllTabs];
+	}
+	else {
 		NSLog(@"[AppDelegate] need to handle action %@", [shortcutItem type]);
 	}
 }
@@ -416,6 +407,39 @@
 	} else {
 		[[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
 	}
+}
+
+/**
+ Some sites do mobile detection by looking for Safari in the UA, so make us look like Mobile Safari
+
+ from "Mozilla/5.0 (iPhone; CPU iPhone OS 8_4_1 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Mobile/12H321"
+ to   "Mozilla/5.0 (iPhone; CPU iPhone OS 8_4_1 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12H321 Safari/600.1.4"
+ */
+- (NSString *)createUserAgent
+{
+	SILENCE_DEPRECATION_ON
+	UIWebView *twv = [[UIWebView alloc] initWithFrame:CGRectZero];
+	SILENCE_WARNINGS_OFF
+	NSString *ua = [twv stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
+
+	NSMutableArray *uapieces = [[ua componentsSeparatedByString:@" "] mutableCopy];
+	NSString *uamobile = uapieces[uapieces.count - 1];
+
+	// Assume Safari major version will match iOS major.
+	NSArray *osv = [UIDevice.currentDevice.systemVersion componentsSeparatedByString:@"."];
+	uapieces[uapieces.count - 1] = [NSString stringWithFormat:@"Version/%@.0", osv[0]];
+
+	[uapieces addObject:uamobile];
+
+	// Now tack on "Safari/XXX.X.X" from WebKit version.
+	for (NSString* j in uapieces) {
+		if ([j containsString:@"AppleWebKit/"]) {
+			[uapieces addObject:[j stringByReplacingOccurrencesOfString:@"AppleWebKit" withString:@"Safari"]];
+			break;
+		}
+	}
+
+	return [uapieces componentsJoinedByString:@" "];
 }
 
 
@@ -521,7 +545,7 @@
 				[authenticatingHTTPProtocol resolvePendingAuthenticationChallengeWithCredential:nsuc];
 			}]];
 
-			[[[AppDelegate sharedAppDelegate] webViewController] presentViewController:self->authAlertController animated:YES completion:nil];
+			[AppDelegate.sharedAppDelegate.browsingUi presentViewController:self->authAlertController animated:YES completion:nil];
 		});
 	}
 	else {

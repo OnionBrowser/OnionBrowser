@@ -90,7 +90,7 @@ UITableViewDelegate, UISearchResultsUpdating, BookmarkViewControllerDelegate {
 		cell.textLabel?.adjustsFontSizeToFitWidth = true
 		cell.textLabel?.minimumScaleFactor = 0.5
 
-		cell.accessoryType = .disclosureIndicator
+		cell.editingAccessoryType = .disclosureIndicator
 
 		return cell
 	}
@@ -120,21 +120,29 @@ UITableViewDelegate, UISearchResultsUpdating, BookmarkViewControllerDelegate {
 	// MARK: UITableViewDelegate
 
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		let vc = BookmarkViewController()
-		vc.delegate = self
-		vc.index = indexPath.row
+		var index: Int? = indexPath.row
 
 		if isFiltering {
-			if let index = Bookmark.all.firstIndex(of: filtered[indexPath.row]) {
-				vc.index = index
-			}
-			else {
-				tableView.deselectRow(at: indexPath, animated: true)
-				return
-			}
+			index = Bookmark.all.firstIndex(of: filtered[index!])
 		}
 
-		navigationController?.pushViewController(vc, animated: true)
+		if let index = index {
+			if tableView.isEditing {
+				let vc = BookmarkViewController()
+				vc.delegate = self
+				vc.index = index
+
+				navigationController?.pushViewController(vc, animated: true)
+			}
+			else {
+				let bookmark = Bookmark.all[index]
+
+				AppDelegate.shared()?.browsingUi?.addNewTab(
+					bookmark.url, transition: .notAnimated) { _ in
+						self.dismiss_()
+				}
+			}
+		}
 
 		tableView.deselectRow(at: indexPath, animated: false)
 	}

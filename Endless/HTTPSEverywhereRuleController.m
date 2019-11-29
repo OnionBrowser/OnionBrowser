@@ -8,6 +8,7 @@
 #import "HTTPSEverywhereRuleController.h"
 #import "HTTPSEverywhere.h"
 #import "HTTPSEverywhereRule.h"
+#import "OnionBrowser-Swift.h"
 
 @implementation HTTPSEverywhereRuleController
 
@@ -15,14 +16,14 @@
 {
 	self = [super initWithStyle:style];
 	
-	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", nil) style:UIBarButtonItemStyleDone target:self.navigationController action:@selector(dismissModalViewControllerAnimated:)];
-
 	self.sortedRuleRows = [[NSMutableArray alloc] initWithCapacity:[[HTTPSEverywhere rules] count]];
 	self.inUseRuleRows = [[NSMutableArray alloc] init];
 	
 	NSDictionary *inUse = nil;
-	if ([[self.appDelegate webViewController] curWebViewTab] != nil)
-		inUse = [[[self.appDelegate webViewController] curWebViewTab] applicableHTTPSEverywhereRules];
+	if (self.appDelegate.browsingUi.currentTab != nil)
+	{
+		inUse = self.appDelegate.browsingUi.currentTab.applicableHTTPSEverywhereRules;
+	}
 
 	for (NSString *k in [[[HTTPSEverywhere rules] allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]) {
 		RuleEditorRow *row = [[RuleEditorRow alloc] init];

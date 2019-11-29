@@ -9,6 +9,7 @@
 #import "URLBlocker.h"
 
 #import "HTTPSEverywhere.h"
+#import "OnionBrowser-Swift.h"
 
 @implementation URLBlockerRuleController
 
@@ -16,14 +17,14 @@
 {
 	self = [super initWithStyle:style];
 	
-	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", nil) style:UIBarButtonItemStyleDone target:self.navigationController action:@selector(dismissModalViewControllerAnimated:)];
-	
 	self.sortedRuleRows = [[NSMutableArray alloc] initWithCapacity:[[URLBlocker targets] count]];
 	self.inUseRuleRows = [[NSMutableArray alloc] init];
 	
 	NSDictionary *inUse = nil;
-	if ([[self.appDelegate webViewController] curWebViewTab] != nil)
-		inUse = [[[self.appDelegate webViewController] curWebViewTab] applicableURLBlockerTargets];
+	if (self.appDelegate.browsingUi.currentTab != nil)
+	{
+		inUse = self.appDelegate.browsingUi.currentTab.applicableURLBlockerTargets;
+	}
 	
 	for (NSString *k in [[[URLBlocker targets] allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]) {
 		RuleEditorRow *row = [[RuleEditorRow alloc] init];

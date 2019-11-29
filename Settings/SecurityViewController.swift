@@ -72,6 +72,13 @@ class SecurityViewController: FormViewController {
 
 		navigationItem.title = host ?? NSLocalizedString("Default Security", comment: "Scene title")
 
+		// We're the root here! Provide a means to exit.
+		if navigationController?.viewControllers.first == self {
+			navigationItem.leftBarButtonItem = UIBarButtonItem(
+				barButtonSystemItem: .done, target: self,
+				action: #selector(_dismiss))
+		}
+
 		securityPresetsRow.value = SecurityPreset(hostSettings)
 
 		if let value = hostSettings?.settingOrDefault(HOST_SETTINGS_KEY_CSP) {
@@ -248,5 +255,13 @@ class SecurityViewController: FormViewController {
 								  comment: "Scene description, placeholder will contain app name"),
 											Bundle.main.displayName)
 		}
+	}
+
+
+	// MARK: Private Methods
+
+	@objc
+	private func _dismiss() {
+		dismiss(animated: true)
 	}
 }
