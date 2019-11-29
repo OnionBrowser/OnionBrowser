@@ -5,7 +5,6 @@ Onion-nettleseren 2 er en fullstendig omskriving av programmet som inneholder fl
 * Mer brukervennlig førstegangsoppstart.
 * Oppdatert brukergrensesnitt, med "fanebasert nettlesing" og forbedrede innstillingspaneler
 * HTTPS Everywhere-støtte
-* 1Passord-støtte
 * Innebygd reklameblokkering og personvernbeskyttelse
 * Juster sikkerhet/personverninnstillinger per side (inkludert informasjonskapsel-policy, brukeragent, og JavaScript/policy for aktivt innhold).
 * Tor 0.3.5.8

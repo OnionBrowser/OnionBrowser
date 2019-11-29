@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="TabCell" customModule="OnionBrowser" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="325" height="271"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="325" height="271"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eej-Rl-uVU">
+                        <rect key="frame" x="0.0" y="0.0" width="325" height="24"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ch-9X-bq9">
+                                <rect key="frame" x="4" y="4" width="16" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="1ch-9X-bq9" secondAttribute="height" multiplier="1:1" id="Qhv-0K-smt"/>
+                                    <constraint firstAttribute="width" constant="16" id="RXC-MN-Ef8"/>
+                                </constraints>
+                                <color key="tintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <state key="normal" image="close"/>
+                                <connections>
+                                    <action selector="close" destination="gTV-IL-0wX" eventType="touchUpInside" id="6fz-w0-2Bl"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="www.example.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rP8-hS-ldO">
+                                <rect key="frame" x="28" y="3" width="289" height="18"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <color key="textColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="rP8-hS-ldO" secondAttribute="trailing" constant="8" id="ScO-ZA-XSo"/>
+                            <constraint firstItem="rP8-hS-ldO" firstAttribute="leading" secondItem="1ch-9X-bq9" secondAttribute="trailing" constant="8" id="b3i-98-pZN"/>
+                            <constraint firstAttribute="height" constant="24" id="gNZ-Y0-kA5"/>
+                            <constraint firstItem="1ch-9X-bq9" firstAttribute="leading" secondItem="Eej-Rl-uVU" secondAttribute="leading" constant="4" id="gxN-CO-qHY"/>
+                            <constraint firstItem="1ch-9X-bq9" firstAttribute="centerY" secondItem="Eej-Rl-uVU" secondAttribute="centerY" id="lgl-so-MKC"/>
+                            <constraint firstItem="rP8-hS-ldO" firstAttribute="centerY" secondItem="Eej-Rl-uVU" secondAttribute="centerY" id="re9-t3-ifA"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hdQ-GP-s1R">
+                        <rect key="frame" x="0.0" y="24" width="325" height="247"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <accessibility key="accessibilityConfiguration">
+                            <accessibilityTraits key="traits" notEnabled="YES"/>
+                        </accessibility>
+                    </view>
+                </subviews>
+            </view>
+            <gestureRecognizers/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Eej-Rl-uVU" secondAttribute="trailing" id="Bdk-br-xBC"/>
+                <constraint firstItem="Eej-Rl-uVU" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="bR6-Xe-sp5"/>
+                <constraint firstAttribute="trailing" secondItem="hdQ-GP-s1R" secondAttribute="trailing" id="c6k-Hm-W78"/>
+                <constraint firstItem="Eej-Rl-uVU" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="rfe-Wh-afJ"/>
+                <constraint firstItem="hdQ-GP-s1R" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="uhg-IC-S8g"/>
+                <constraint firstItem="hdQ-GP-s1R" firstAttribute="top" secondItem="Eej-Rl-uVU" secondAttribute="bottom" id="xM7-xV-4Ae"/>
+                <constraint firstAttribute="bottom" secondItem="hdQ-GP-s1R" secondAttribute="bottom" id="zlg-U3-Ckg"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="325" height="271"/>
+            <connections>
+                <outlet property="container" destination="hdQ-GP-s1R" id="QH2-bH-Lt6"/>
+                <outlet property="title" destination="rP8-hS-ldO" id="QNi-Oy-PiV"/>
+            </connections>
+            <point key="canvasLocation" x="141.30434782608697" y="179.79910714285714"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="close" width="35" height="35"/>
+    </resources>
+</document>

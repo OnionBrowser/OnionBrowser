@@ -1,14 +1,12 @@
 platform :ios, '11.4'
 
 target 'OnionBrowser2' do
-  pod 'WYPopoverController', :git => 'https://github.com/sammcewan/WYPopoverController.git'
   pod 'DTFoundation'
   pod 'OrderedDictionary'
   pod 'TUSafariActivity'
   pod 'VForceTouch'
 
   pod 'POE', '~> 0.7'
-  pod 'UIColor-HexRGB', :modular_headers => true
 
   pod 'OCSPCache', :git => 'https://github.com/Psiphon-Labs/OCSPCache'
 

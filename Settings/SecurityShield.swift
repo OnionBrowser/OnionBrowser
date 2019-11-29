@@ -90,7 +90,7 @@ class SecurityShield: UIView {
 
 		super.init(frame: .zero)
 
-		number.text = NumberFormatter.localizedString(from: NSNumber(value: preset.rawValue + 1), number: .none)
+		number.text = Formatter.localize(preset.rawValue + 1)
 
 		title.text = preset.description
 
