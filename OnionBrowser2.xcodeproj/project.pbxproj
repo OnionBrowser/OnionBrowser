@@ -118,6 +118,7 @@
 		A09A2A972254B3D100A3EEF0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A09A2A992254B3D100A3EEF0 /* InfoPlist.strings */; };
 		A0B4838C234DEBE100F9701B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B4838B234DEBE100F9701B /* SettingsViewController.swift */; };
 		A0C3770E1F47342C0039198E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0C3770D1F47342C0039198E /* CoreData.framework */; };
+		A0C7611623912DE5004E9A15 /* BrowsingViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0C7611523912A92004E9A15 /* BrowsingViewController-iPad.xib */; };
 		A0D419DD2386C6370055AC33 /* URL+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D419DC2386C6370055AC33 /* URL+Helpers.swift */; };
 		A0D419DF2386E4BD0055AC33 /* Tab+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D419DE2386E4BD0055AC33 /* Tab+Keyboard.swift */; };
 		A0D68DFF234C89080027C61A /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D68DFE234C89080027C61A /* Bookmark.swift */; };
@@ -789,6 +790,7 @@
 		A0B4838B234DEBE100F9701B /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A0BFBE032010F48100BE2980 /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ga; path = Endless/ga.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A0C3770D1F47342C0039198E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		A0C7611523912A92004E9A15 /* BrowsingViewController-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "BrowsingViewController-iPad.xib"; sourceTree = "<group>"; };
 		A0D419DC2386C6370055AC33 /* URL+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Helpers.swift"; sourceTree = "<group>"; };
 		A0D419DE2386E4BD0055AC33 /* Tab+Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tab+Keyboard.swift"; sourceTree = "<group>"; };
 		A0D68DFE234C89080027C61A /* Bookmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bookmark.swift; sourceTree = "<group>"; };
@@ -2042,6 +2044,7 @@
 			isa = PBXGroup;
 			children = (
 				A0E18F262368509C001953BA /* BrowsingViewController.xib */,
+				A0C7611523912A92004E9A15 /* BrowsingViewController-iPad.xib */,
 				A0E18F272368509C001953BA /* BrowsingViewController.swift */,
 				A0894E39236B028D00EE2743 /* BrowsingViewController+POEDelegate.swift */,
 				A0E755F22372CA77006276DB /* BrowsingViewController+UITextFieldDelegate.swift */,
@@ -2205,6 +2208,7 @@
 				A09A2A972254B3D100A3EEF0 /* InfoPlist.strings in Resources */,
 				01801EA61A32CA2A002B4718 /* Images.xcassets in Resources */,
 				01F8794C1A4124FE00A63654 /* credits.html in Resources */,
+				A0C7611623912DE5004E9A15 /* BrowsingViewController-iPad.xib in Resources */,
 				A045E5E51EDC5C1700BC8A92 /* Localizable.strings in Resources */,
 				8AF16095202CD6D600AC0BCE /* block_webrtc.js in Resources */,
 				016B2FCB1A53466D002D2730 /* hsts_preload.plist in Resources */,

@@ -18,7 +18,7 @@ UICollectionViewDropDelegate, TabCellDelegate {
 		return tabsCollection?.isHidden ?? true ? .default : .lightContent
 	}
 
-	@objc func showAllTabs() {
+	@objc func showOverview() {
 		unfocusSearchField()
 
 		self.tabsCollection.reloadData()
@@ -36,21 +36,21 @@ UICollectionViewDropDelegate, TabCellDelegate {
 			self.progress.isHidden = true
 			self.container.isHidden = true
 			self.tabsCollection.isHidden = false
-			self.mainTools.isHidden = true
+			self.mainTools?.isHidden = true
 			self.tabsTools.isHidden = false
 		})
 	}
 
-	@objc func newTab() {
+	@objc func newTabFromOverview() {
 		addNewTab(transition: .notAnimated) { _ in
-			self.hideTabs() { _ in
+			self.hideOverview() { _ in
 				self.searchFl.becomeFirstResponder()
 			}
 		}
 	}
 
-	@objc func hideTabs() {
-		hideTabs(completion: nil)
+	@objc func hideOverview() {
+		hideOverview(completion: nil)
 	}
 
 
@@ -84,7 +84,7 @@ UICollectionViewDropDelegate, TabCellDelegate {
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		if let cell = collectionView.cellForItem(at: indexPath) as? TabCell {
 			currentTab = tabs.first { $0 == cell.container.subviews.first }
-			hideTabs(completion: nil)
+			hideOverview(completion: nil)
 		}
 	}
 
@@ -164,7 +164,7 @@ UICollectionViewDropDelegate, TabCellDelegate {
 
 	// MARK: Private Methods
 
-	private func hideTabs(completion: ((_ finished: Bool) -> Void)?) {
+	private func hideOverview(completion: ((_ finished: Bool) -> Void)?) {
 
 		// UIViews can only ever have one superview. Move back from tabsCollection to container now.
 		for tab in tabs {
@@ -193,7 +193,7 @@ UICollectionViewDropDelegate, TabCellDelegate {
 			self.tabsCollection.isHidden = true
 			self.container.isHidden = false
 			self.tabsTools.isHidden = true
-			self.mainTools.isHidden = false
+			self.mainTools?.isHidden = false
 		}, completion)
 	}
 }

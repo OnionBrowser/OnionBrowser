@@ -45,18 +45,18 @@ extension BrowsingViewController: UIScrollViewDelegate {
 	// MARK: Public Methods
 
     func showToolbar(_ show: Bool = true, _ animated: Bool = true) {
-		if show != toolbar.isHidden {
+		if toolbar == nil || show != toolbar!.isHidden {
 			return
 		}
 
         if show {
-            toolbar.isHidden = false
-			toolbarHeightConstraint.constant = toolbarHeight
+            toolbar?.isHidden = false
+			toolbarHeightConstraint?.constant = toolbarHeight ?? 0
 			containerBottomConstraint2Superview.isActive = false
 
 			// This goes away when deactivated for an unkown reason.
 			if containerBottomConstraint2Toolbar == nil {
-				containerBottomConstraint2Toolbar = container.bottomAnchor.constraint(equalTo: toolbar.topAnchor)
+				containerBottomConstraint2Toolbar = container.bottomAnchor.constraint(equalTo: toolbar!.topAnchor)
 			}
 
 			containerBottomConstraint2Toolbar?.isActive = true
@@ -68,7 +68,7 @@ extension BrowsingViewController: UIScrollViewDelegate {
 			}
         }
         else {
-            toolbarHeightConstraint.constant = 0
+			toolbarHeightConstraint?.constant = 0
 
 			 // This goes away when deactivated for an unkown reason.
             containerBottomConstraint2Toolbar?.isActive = false
@@ -83,12 +83,12 @@ extension BrowsingViewController: UIScrollViewDelegate {
 					// because isHidden becomes in effect before the animation,
 					// regardless, if we only do this in the completed callback.
 					DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-						self.toolbar.isHidden = true
+						self.toolbar?.isHidden = true
 					}
 				}
 			}
 			else {
-				toolbar.isHidden = true
+				toolbar?.isHidden = true
 			}
 		}
     }

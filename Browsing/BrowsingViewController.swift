@@ -61,7 +61,7 @@ class BrowsingViewController: UIViewController, TabDelegate {
     }
     @IBOutlet weak var progress: UIProgressView!
     @IBOutlet weak var container: UIView!
-    @IBOutlet weak var containerBottomConstraint2Toolbar: NSLayoutConstraint!
+    @IBOutlet weak var containerBottomConstraint2Toolbar: NSLayoutConstraint? // Not available on iPad
 
 	@IBOutlet weak var tabsCollection: UICollectionView! {
 		didSet {
@@ -69,34 +69,35 @@ class BrowsingViewController: UIViewController, TabDelegate {
 		}
 	}
 
-    @IBOutlet weak var toolbar: UIView!
-    @IBOutlet weak var toolbarHeightConstraint: NSLayoutConstraint! {
+    @IBOutlet weak var toolbar: UIView? // Not available on iPad
+    @IBOutlet weak var toolbarHeightConstraint: NSLayoutConstraint? { // Not available on iPad
         didSet {
-            toolbarHeight = toolbarHeightConstraint.constant
+            toolbarHeight = toolbarHeightConstraint?.constant
         }
     }
-    @IBOutlet weak var mainTools: UIStackView!
+    @IBOutlet weak var mainTools: UIStackView? // Not available on iPad
     @IBOutlet weak var tabsTools: UIView!
     @IBOutlet weak var backBt: UIButton!
     @IBOutlet weak var frwrdBt: UIButton!
     @IBOutlet weak var actionBt: UIButton!
     @IBOutlet weak var bookmarksBt: UIButton!
+	@IBOutlet weak var newTabBt: UIButton?
 	@IBOutlet weak var tabsBt: UIButton! {
 		didSet {
 			tabsBt.setTitleColor(tabsBt.tintColor, for: .normal)
 
-			tabsBt.addTarget(self, action: #selector(showAllTabs), for: .touchUpInside)
+			tabsBt.addTarget(self, action: #selector(showOverview), for: .touchUpInside)
 		}
 	}
     @IBOutlet weak var settingsBt: UIButton!
-	@IBOutlet weak var addNewTabBt: UIButton! {
+	@IBOutlet weak var newTabFromOverviewBt: UIButton! {
 		didSet {
-			addNewTabBt.addTarget(self, action: #selector(newTab), for: .touchUpInside)
+			newTabFromOverviewBt.addTarget(self, action: #selector(newTabFromOverview), for: .touchUpInside)
 		}
 	}
-	@IBOutlet weak var hideTabsBt: UIButton! {
+	@IBOutlet weak var hideOverviewBt: UIButton! {
 		didSet {
-			hideTabsBt.addTarget(self, action: #selector(hideTabs), for: .touchUpInside)
+			hideOverviewBt.addTarget(self, action: #selector(hideOverview), for: .touchUpInside)
 		}
 	}
 
@@ -125,13 +126,27 @@ class BrowsingViewController: UIViewController, TabDelegate {
 	}
 
     var searchBarHeight: CGFloat!
-    var toolbarHeight: CGFloat!
+    var toolbarHeight: CGFloat? // Not available on iPad
 
     lazy var containerBottomConstraint2Superview: NSLayoutConstraint
         = container.bottomAnchor.constraint(equalTo: view.bottomAnchor)
 
 	lazy var liveSearchVc = SearchResultsController()
 	var liveSearchOngoing = false
+
+	init() {
+		var nib = String(describing: type(of: self))
+
+		if UIDevice.current.userInterfaceIdiom == .pad {
+			nib += "-iPad"
+		}
+
+		super.init(nibName: nib, bundle: Bundle(for: type(of: self)))
+	}
+
+	required init?(coder: NSCoder) {
+		super.init(coder: coder)
+	}
 
 
     override func viewDidLoad() {
@@ -274,8 +289,8 @@ class BrowsingViewController: UIViewController, TabDelegate {
                                              applicationActivities: [TUSafariActivity()]),
                     sender)
 
-		case tabsBt:
-			break
+		case newTabBt:
+			addEmptyTabAndFocus()
 
         case settingsBt:
             present(SettingsViewController.instantiate(), sender)

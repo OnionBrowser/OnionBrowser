@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,14 +12,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BrowsingViewController" customModule="OnionBrowser" customModuleProvider="target">
             <connections>
                 <outlet property="actionBt" destination="1VD-Cu-Lj9" id="S9J-w8-39C"/>
-                <outlet property="addNewTabBt" destination="kSI-5C-QWW" id="Ubx-0p-QtT"/>
                 <outlet property="backBt" destination="BdK-kV-qOx" id="lBX-aw-jmb"/>
                 <outlet property="bookmarksBt" destination="fgM-cO-WGo" id="fMF-W3-WBh"/>
                 <outlet property="container" destination="VpS-hG-MKQ" id="mUx-9g-Kbs"/>
                 <outlet property="containerBottomConstraint2Toolbar" destination="FXZ-Kt-2zq" id="YxH-yQ-lhV"/>
                 <outlet property="frwrdBt" destination="nTb-gO-JY9" id="vGl-0a-eyt"/>
-                <outlet property="hideTabsBt" destination="K4r-Tu-xYl" id="Q0w-M9-pF0"/>
+                <outlet property="hideOverviewBt" destination="K4r-Tu-xYl" id="Q0w-M9-pF0"/>
                 <outlet property="mainTools" destination="jzs-tH-FB8" id="UYo-Ry-Ru2"/>
+                <outlet property="newTabFromOverviewBt" destination="kSI-5C-QWW" id="Ubx-0p-QtT"/>
                 <outlet property="progress" destination="Af6-aJ-isr" id="ulM-dH-nGZ"/>
                 <outlet property="searchBar" destination="RJ2-NH-hB6" id="Rmw-LA-BMd"/>
                 <outlet property="searchBarHeightConstraint" destination="4Et-fm-zpa" id="Lgy-uH-ndT"/>
