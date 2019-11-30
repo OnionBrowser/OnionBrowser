@@ -22,9 +22,7 @@
 	[super viewDidLoad];
 	
 	appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-	
-	self.title = NSLocalizedString(@"Search Results", nil);
-	
+
 	lastResults = @[];
 }
 
@@ -48,7 +46,8 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-	return NSLocalizedString(@"Search Results", nil);
+	// Needs to be a non-empty string to show the header containing the X button to close it.
+	return @" ";
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
