@@ -1303,7 +1303,7 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 
 		cspHeader = [[CSPHeader alloc] initWithDirectives:@[deflt, style, img, sandbox]];
 	}
-	// Don't allow WebRTC, audio and video.
+	// Don't allow XHR, WebSockets, audio and video.
 	else if ([cspMode isEqualToString:HOST_SETTINGS_CSP_BLOCK_CONNECT])
 	{
 		[cspHeader addOrReplaceDirective:[[ConnectDirective alloc] initWithSources:@[none]]];
