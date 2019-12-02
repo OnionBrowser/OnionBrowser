@@ -19,7 +19,6 @@
 #import "SSLCertificateViewController.h"
 #import "TUSafariActivity.h"
 #import "Ipv6Tester.h"
-#import "SearchResultsController.h"
 #import "URLBlockerRuleController.h"
 #import "HTTPSEverywhereRuleController.h"
 #import "DownloadHelper.h"

@@ -131,8 +131,7 @@ class BrowsingViewController: UIViewController, TabDelegate {
     lazy var containerBottomConstraint2Superview: NSLayoutConstraint
         = container.bottomAnchor.constraint(equalTo: view.bottomAnchor)
 
-	lazy var liveSearchVc = SearchResultsController()
-	var liveSearchOngoing = false
+	lazy var liveSearchVc = LiveSearchViewController()
 
 	init() {
 		var nib = String(describing: type(of: self))
@@ -475,6 +474,12 @@ class BrowsingViewController: UIViewController, TabDelegate {
 		present(vc, animated: true)
 	}
 
+	func unfocusSearchField() {
+		if searchFl.isFirstResponder {
+			searchFl.resignFirstResponder()
+		}
+	}
+
 
 	// MARK: Public Methods
 
@@ -540,33 +545,9 @@ class BrowsingViewController: UIViewController, TabDelegate {
 	}
 
 	@objc
-	func hideSearchResults() {
-		guard liveSearchOngoing else {
-			return
-		}
-
-		if UIDevice.current.userInterfaceIdiom == .pad {
-			liveSearchVc.dismiss(animated: true)
-		}
-		else {
-			liveSearchVc.view.removeFromSuperview()
-			liveSearchVc.removeFromParent()
-		}
-
-		liveSearchOngoing = false
-	}
-
-	@objc
 	func focusSearchField() {
 		if !searchFl.isFirstResponder {
 			searchFl.becomeFirstResponder()
-		}
-	}
-
-	@objc
-	func unfocusSearchField() {
-		if searchFl.isFirstResponder {
-			searchFl.resignFirstResponder()
 		}
 	}
 
