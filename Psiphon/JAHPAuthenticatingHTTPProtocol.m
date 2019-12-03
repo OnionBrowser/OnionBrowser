@@ -585,7 +585,7 @@ static NSString * kJAHPRecursiveRequestFlagProperty = @"com.jivesoftware.JAHPAut
 	/* in case our URL changed/upgraded, send back to the webview so it knows what our protocol is for "//" assets */
 	if (_isOrigin && ![[[mutableRequest URL] absoluteString] isEqualToString:[[request URL] absoluteString]]) {
 		[[self class] authenticatingHTTPProtocol:self logWithFormat:@"[Tab %@] canceling origin request to redirect %@ rewritten to %@", _wvt.url, [[self.request URL] absoluteString], [[mutableRequest URL] absoluteString]];
-		[_wvt load:mutableRequest.URL postParams:nil];
+		[_wvt load:mutableRequest.URL];
 		return nil;
 	}
 
@@ -1303,7 +1303,7 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 
 		cspHeader = [[CSPHeader alloc] initWithDirectives:@[deflt, style, img, sandbox]];
 	}
-	// Don't allow WebRTC, audio and video.
+	// Don't allow XHR, WebSockets, audio and video.
 	else if ([cspMode isEqualToString:HOST_SETTINGS_CSP_BLOCK_CONNECT])
 	{
 		[cspHeader addOrReplaceDirective:[[ConnectDirective alloc] initWithSources:@[none]]];

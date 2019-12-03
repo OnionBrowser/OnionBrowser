@@ -80,7 +80,7 @@
 		A006A18D23883BA400B0344A /* Tab+Downloads.swift in Sources */ = {isa = PBXBuildFile; fileRef = A006A18C23883BA400B0344A /* Tab+Downloads.swift */; };
 		A01D3BA323900D2800E536F2 /* RuleEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CBCD491E934249009D5352 /* RuleEditorController.m */; };
 		A01D3BA523902C4300E536F2 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01D3BA423902C4300E536F2 /* HistoryViewController.swift */; };
-		A02CE2B8220079B800964A14 /* SearchResultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = A02CE2B6220079B700964A14 /* SearchResultsController.m */; };
+		A0323AC32396C83A00B9DDA5 /* obfs4-bridges.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0323AC22396C83900B9DDA5 /* obfs4-bridges.plist */; };
 		A0364537235094DF0038930E /* Storage2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0364536235094DF0038930E /* Storage2ViewController.swift */; };
 		A03A2DD223577971002D640B /* Bundle+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03A2DD123577970002D640B /* Bundle+Helpers.swift */; };
 		A03A2DD423577B91002D640B /* SecurityPresetsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03A2DD323577B91002D640B /* SecurityPresetsRow.swift */; };
@@ -100,6 +100,7 @@
 		A062401E235F1FF4008DADDD /* AddSiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A062401D235F1FF4008DADDD /* AddSiteViewController.swift */; };
 		A072C4D3227C68500022BC58 /* BlurredSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = A072C4D1227C684E0022BC58 /* BlurredSnapshot.swift */; };
 		A072C4D4227C68500022BC58 /* TabSecurity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A072C4D2227C684F0022BC58 /* TabSecurity.swift */; };
+		A07D086423952D9000F18BE6 /* LiveSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07D086323952D9000F18BE6 /* LiveSearchViewController.swift */; };
 		A07D654B2208A0C10002D775 /* OBSettingsConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = A07D654A2208A0C10002D775 /* OBSettingsConstants.m */; };
 		A07D65532208A17E0002D775 /* Bridge.m in Sources */ = {isa = PBXBuildFile; fileRef = A07D654D2208A17E0002D775 /* Bridge.m */; };
 		A07D65542208A17E0002D775 /* OldBookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = A07D654F2208A17E0002D775 /* OldBookmark.m */; };
@@ -222,7 +223,7 @@
 		691286E91EABEE6900CEC414 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LaunchScreen.xib; path = OnionBrowser/LaunchScreen.xib; sourceTree = "<group>"; };
 		691286EB1EABF2B300CEC414 /* OnionBrowser2-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "OnionBrowser2-Bridging-Header.h"; path = "OnionBrowser/OnionBrowser2-Bridging-Header.h"; sourceTree = "<group>"; };
 		691286EC1EABF2B400CEC414 /* OnionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnionManager.swift; path = OnionBrowser/OnionManager.swift; sourceTree = "<group>"; };
-		6926DAED221C836F00D71752 /* credits.html.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = credits.html.in; path = Endless/Resources/credits.html.in; sourceTree = "<group>"; };
+		6926DAED221C836F00D71752 /* credits.html.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = credits.html.in; path = Endless/Resources/credits.html.in; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.html; };
 		693145FD1D3EEAE400D08A6A /* Tor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tor.framework; path = Carthage/Build/iOS/Tor.framework; sourceTree = "<group>"; };
 		69CBCD451E934228009D5352 /* URLBlockerRuleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLBlockerRuleController.h; sourceTree = "<group>"; };
 		69CBCD461E934228009D5352 /* URLBlockerRuleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLBlockerRuleController.m; sourceTree = "<group>"; };
@@ -274,8 +275,8 @@
 		A025F26621F626CB0034B947 /* mk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mk; path = Endless/mk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A025F26F21F627110034B947 /* tr-TR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "tr-TR"; path = "Endless/tr-TR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		A025F27421F62C100034B947 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
-		A02CE2B6220079B700964A14 /* SearchResultsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultsController.m; sourceTree = "<group>"; };
-		A02CE2B7220079B800964A14 /* SearchResultsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultsController.h; sourceTree = "<group>"; };
+		A0323AC12396962A00B9DDA5 /* update-bridges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "update-bridges.swift"; sourceTree = "<group>"; };
+		A0323AC22396C83900B9DDA5 /* obfs4-bridges.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "obfs4-bridges.plist"; path = "Endless/Resources/obfs4-bridges.plist"; sourceTree = "<group>"; };
 		A0364536235094DF0038930E /* Storage2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage2ViewController.swift; sourceTree = "<group>"; };
 		A03A2DD123577970002D640B /* Bundle+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Helpers.swift"; sourceTree = "<group>"; };
 		A03A2DD323577B91002D640B /* SecurityPresetsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityPresetsRow.swift; sourceTree = "<group>"; };
@@ -400,6 +401,7 @@
 		A0759DE520975DC6000DFBFE /* te */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = te; path = Endless/te.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A0759DE820975DCD000DFBFE /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = Endless/uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A0759DEA20975DDE000DFBFE /* config */ = {isa = PBXFileReference; lastKnownFileType = text; name = config; path = .tx/config; sourceTree = "<group>"; };
+		A07D086323952D9000F18BE6 /* LiveSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveSearchViewController.swift; sourceTree = "<group>"; };
 		A07D654A2208A0C10002D775 /* OBSettingsConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OBSettingsConstants.m; path = OnionBrowser/OBSettingsConstants.m; sourceTree = "<group>"; };
 		A07D654D2208A17E0002D775 /* Bridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bridge.m; sourceTree = "<group>"; };
 		A07D654E2208A17E0002D775 /* OldBookmark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OldBookmark.h; sourceTree = "<group>"; };
@@ -886,8 +888,6 @@
 				69CBCD491E934249009D5352 /* RuleEditorController.m */,
 				69CBCD4A1E934249009D5352 /* RuleEditorRow.h */,
 				69CBCD4B1E934249009D5352 /* RuleEditorRow.m */,
-				A02CE2B7220079B800964A14 /* SearchResultsController.h */,
-				A02CE2B6220079B700964A14 /* SearchResultsController.m */,
 				01F2AE371B7FEF5E00D5651A /* SSLCertificate.h */,
 				01F2AE381B7FEF5E00D5651A /* SSLCertificate.m */,
 				01F2AE3E1B82666900D5651A /* SSLCertificateViewController.h */,
@@ -917,6 +917,7 @@
 		01801EC11A3360B1002B4718 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A0323AC22396C83900B9DDA5 /* obfs4-bridges.plist */,
 				A045E5E11EDC5C1700BC8A92 /* Localizable.strings */,
 				01F8794A1A41232E00A63654 /* credits.html */,
 				6926DAED221C836F00D71752 /* credits.html.in */,
@@ -1388,6 +1389,7 @@
 				A07D655A2208A2540002D775 /* decimalize_git_hash.bash */,
 				A07D655B2208A2540002D775 /* minutes_since_date.bash */,
 				A07D655F2208A9B40002D775 /* get-geoip.sh */,
+				A0323AC12396962A00B9DDA5 /* update-bridges.swift */,
 			);
 			path = "build-util";
 			sourceTree = "<group>";
@@ -2052,6 +2054,7 @@
 				A0894E3B236B055300EE2743 /* BrowsingViewController+Toolbar.swift */,
 				A0E27596236B10F800C89E18 /* BrowsingViewController+Tabs.swift */,
 				A01D3BA423902C4300E536F2 /* HistoryViewController.swift */,
+				A07D086323952D9000F18BE6 /* LiveSearchViewController.swift */,
 				A006A1862387E20200B0344A /* Tab.swift */,
 				A0821DD7238D3E3800443839 /* Tab+Activity.swift */,
 				A006A18C23883BA400B0344A /* Tab+Downloads.swift */,
@@ -2073,6 +2076,7 @@
 			buildPhases = (
 				EC8C8E3F9E0EB2CF99FB1FE4 /* [CP] Check Pods Manifest.lock */,
 				8ACB70CD1FA13676001E5588 /* ShellScript */,
+				A0323ACF2396CBC000B9DDA5 /* ShellScript */,
 				01801E8E1A32CA2A002B4718 /* Sources */,
 				01801E8F1A32CA2A002B4718 /* Frameworks */,
 				01801E901A32CA2A002B4718 /* Resources */,
@@ -2115,7 +2119,7 @@
 		01801E8A1A32CA2A002B4718 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1020;
+				LastSwiftUpdateCheck = 1120;
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = jcs;
 				TargetAttributes = {
@@ -2205,7 +2209,6 @@
 				01D7412C1A45F8EB007B7033 /* injected.js in Resources */,
 				A0E755F62372EBAD006276DB /* TabCell.xib in Resources */,
 				A0E18F282368509C001953BA /* BrowsingViewController.xib in Resources */,
-				6926DAEE221C836F00D71752 /* credits.html.in in Resources */,
 				A09A2A972254B3D100A3EEF0 /* InfoPlist.strings in Resources */,
 				01801EA61A32CA2A002B4718 /* Images.xcassets in Resources */,
 				01F8794C1A4124FE00A63654 /* credits.html in Resources */,
@@ -2213,6 +2216,7 @@
 				A045E5E51EDC5C1700BC8A92 /* Localizable.strings in Resources */,
 				8AF16095202CD6D600AC0BCE /* block_webrtc.js in Resources */,
 				016B2FCB1A53466D002D2730 /* hsts_preload.plist in Resources */,
+				A0323AC32396C83A00B9DDA5 /* obfs4-bridges.plist in Resources */,
 				691286EA1EABEE6900CEC414 /* LaunchScreen.xib in Resources */,
 				01FC0E571B38FB6B00955D9A /* Launch Screen.xib in Resources */,
 				A0D68E0A234C8E150027C61A /* BookmarksViewController.xib in Resources */,
@@ -2304,6 +2308,23 @@
 			shellPath = /bin/bash;
 			shellScript = "\"$SRCROOT\"/build-util/get-geoip.sh\n";
 		};
+		A0323ACF2396CBC000B9DDA5 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$SRCROOT\"/build-util/update-bridges.swift\n";
+		};
 		A7B7312C8E90956C8953B066 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2356,7 +2377,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A072C4D4227C68500022BC58 /* TabSecurity.swift in Sources */,
-				A02CE2B8220079B800964A14 /* SearchResultsController.m in Sources */,
 				A006A1892388123D00B0344A /* Tab+UIWebViewDelegate.swift in Sources */,
 				A006A1872387E20200B0344A /* Tab.swift in Sources */,
 				A0E755F32372CA77006276DB /* BrowsingViewController+UITextFieldDelegate.swift in Sources */,
@@ -2419,6 +2439,7 @@
 				A0E755FB2373597D006276DB /* UIButton+Helpers.swift in Sources */,
 				A0364537235094DF0038930E /* Storage2ViewController.swift in Sources */,
 				A0D68E0D234CABF30027C61A /* BookmarkViewController.swift in Sources */,
+				A07D086423952D9000F18BE6 /* LiveSearchViewController.swift in Sources */,
 				A07D65542208A17E0002D775 /* OldBookmark.m in Sources */,
 				A07D65552208A17E0002D775 /* Settings.xcdatamodel in Sources */,
 				A053136F22F1C73A006655EC /* JAHPCacheStoragePolicy.m in Sources */,

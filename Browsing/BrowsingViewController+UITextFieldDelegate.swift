@@ -26,7 +26,7 @@ extension BrowsingViewController: UITextFieldDelegate {
 		let search = searchFl.text
 
 		DispatchQueue.main.async {
-			self.hideSearchResults()
+			self.liveSearchVc.hide()
 			textField.resignFirstResponder()
 
 			// User is shifting to a new place. Probably a good time to clear old data.
@@ -59,7 +59,7 @@ extension BrowsingViewController: UITextFieldDelegate {
 	func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
 		debug("#textFieldDidEndEditing")
 
-		self.hideSearchResults()
+		liveSearchVc.hide()
 		updateSearchField()
 	}
 
@@ -76,10 +76,10 @@ extension BrowsingViewController: UITextFieldDelegate {
 		if parseSearch(searchFl.text) != nil {
 			// That's not a search, that's a valid URL. -> Remove live search results.
 
-			return hideSearchResults()
+			return liveSearchVc.hide()
 		}
 
-		if !liveSearchOngoing {
+		if !liveSearchVc.searchOngoing {
 			if UIDevice.current.userInterfaceIdiom == .pad {
 				present(liveSearchVc, searchFl)
 			}
@@ -94,10 +94,10 @@ extension BrowsingViewController: UITextFieldDelegate {
 				liveSearchVc.view.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
 			}
 
-			liveSearchOngoing = true
+			liveSearchVc.searchOngoing = true
 		}
 
-		liveSearchVc.updateSearchResults(forQuery: searchFl.text)
+		liveSearchVc.update(searchFl.text, tab: currentTab)
 	}
 
 

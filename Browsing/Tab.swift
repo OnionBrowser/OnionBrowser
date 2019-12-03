@@ -27,6 +27,8 @@ protocol TabDelegate: class {
 	func getTab(hash: Int?) -> Tab?
 
 	func present(_ vc: UIViewController, _ sender: UIView?)
+
+	func unfocusSearchField()
 }
 
 class Tab: UIView {
@@ -186,16 +188,11 @@ class Tab: UIView {
 	}
 
 	@objc
-	func load(_ url: URL?, postParams: String? = nil) {
+	func load(_ url: URL?) {
 		var request: URLRequest?
 
 		if let url = url?.withFixedScheme?.real {
 			request = URLRequest(url: url)
-
-			if let postParams = postParams {
-				request?.httpMethod = "POST"
-				request?.httpBody = postParams.data(using: .utf8)
-			}
 		}
 
 		load(request)
@@ -221,34 +218,7 @@ class Tab: UIView {
 
 	@objc
 	func search(for query: String?) {
-		guard let se = Settings.searchEngine,
-			let searchUrl = se.searchUrl,
-			let query = query?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
-			return
-		}
-
-		let url: String
-		var params: [String]?
-
-		if let pp = se.postParams {
-			url = searchUrl
-
-			/* need to send this as a POST, so build our key val pairs */
-			params = []
-
-			for item in pp {
-				guard let key = item.key.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
-					continue
-				}
-
-				params?.append([key, String(format: item.value, query)].joined(separator: "="))
-			}
-		}
-		else {
-			url = String(format: searchUrl, query)
-		}
-
-		return load(URL(string: url), postParams: params?.joined(separator: "&"))
+		return load(LiveSearchViewController.constructRequest(query))
 	}
 
 	func reset(_ url: URL? = nil) {

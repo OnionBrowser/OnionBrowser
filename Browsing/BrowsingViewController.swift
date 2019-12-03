@@ -131,8 +131,7 @@ class BrowsingViewController: UIViewController, TabDelegate {
     lazy var containerBottomConstraint2Superview: NSLayoutConstraint
         = container.bottomAnchor.constraint(equalTo: view.bottomAnchor)
 
-	lazy var liveSearchVc = SearchResultsController()
-	var liveSearchOngoing = false
+	lazy var liveSearchVc = LiveSearchViewController()
 
 	init() {
 		var nib = String(describing: type(of: self))
@@ -465,6 +464,14 @@ class BrowsingViewController: UIViewController, TabDelegate {
 		return tabs.first { $0.hash == hash }
 	}
 
+	/**
+	Presents a view controller modally animated.
+
+	Does it as a popover, when a `sender` object is provided.
+
+	- parameter vc: The view controller to present.
+	- parameter sender: The `UIView` with which the user triggered this operation.
+	*/
 	func present(_ vc: UIViewController, _ sender: UIView? = nil) {
 		if let sender = sender {
 			vc.modalPresentationStyle = .popover
@@ -473,6 +480,12 @@ class BrowsingViewController: UIViewController, TabDelegate {
 		}
 
 		present(vc, animated: true)
+	}
+
+	func unfocusSearchField() {
+		if searchFl.isFirstResponder {
+			searchFl.resignFirstResponder()
+		}
 	}
 
 
@@ -540,33 +553,9 @@ class BrowsingViewController: UIViewController, TabDelegate {
 	}
 
 	@objc
-	func hideSearchResults() {
-		guard liveSearchOngoing else {
-			return
-		}
-
-		if UIDevice.current.userInterfaceIdiom == .pad {
-			liveSearchVc.dismiss(animated: true)
-		}
-		else {
-			liveSearchVc.view.removeFromSuperview()
-			liveSearchVc.removeFromParent()
-		}
-
-		liveSearchOngoing = false
-	}
-
-	@objc
 	func focusSearchField() {
 		if !searchFl.isFirstResponder {
 			searchFl.becomeFirstResponder()
-		}
-	}
-
-	@objc
-	func unfocusSearchField() {
-		if searchFl.isFirstResponder {
-			searchFl.resignFirstResponder()
 		}
 	}
 
