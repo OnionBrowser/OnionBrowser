@@ -55,11 +55,7 @@ class Migration: NSObject {
                     if oldBridges!.count == 1 {
                         let ob = oldBridges![0];
 
-                        if ob.conf == OnionManager.meekAmazonBridges[0]
-                        {
-                            settings.set(USE_BRIDGES_MEEKAMAZON, forKey: USE_BRIDGES)
-                        }
-                        else if ob.conf == OnionManager.meekAzureBridges[0] {
+                        if ob.conf == OnionManager.meekAzureBridges[0] {
                             settings.set(USE_BRIDGES_MEEKAZURE, forKey: USE_BRIDGES)
                         }
                     }

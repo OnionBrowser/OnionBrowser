@@ -17,7 +17,7 @@ NSString *const LOCALE = @"locale";
 // Choices for USE_BRIDGES
 NSInteger const USE_BRIDGES_NONE = 0;
 NSInteger const USE_BRIDGES_OBFS4 = 1;
-NSInteger const USE_BRIDGES_MEEKAMAZON = 2;
+NSInteger const USE_BRIDGES_MEEKAMAZON = 2; // legacy; retaining this number for future use if meek-amazon comes back
 NSInteger const USE_BRIDGES_MEEKAZURE = 3;
 NSInteger const USE_BRIDGES_CUSTOM = 99;
 

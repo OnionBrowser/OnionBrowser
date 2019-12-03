@@ -87,15 +87,8 @@ import Foundation
 
     // MARK: - Built-in configuration options
 
-	private static let obfs4Bridges = NSArray(contentsOfFile: Bundle.main.path(forResource: "obfs4-bridges", ofType: "plist")!) as! [String]
+    private static let obfs4Bridges = NSArray(contentsOfFile: Bundle.main.path(forResource: "obfs4-bridges", ofType: "plist")!) as! [String]
 
-
-	private static let obfs4BridgesIPv6 = [
-        "obfs4 [2001:470:b381:bfff:216:3eff:fe23:d6c3]:443 CDF2E852BF539B82BD10E27E9115A31734E378C2 cert=qUVQ0srL1JI/vO6V6m/24anYXiJD3QP2HgzUKQtQ7GRqqUvs7P+tG43RtAqdhLOALP7DJQ iat-mode=1"
-    ]
-    public static let meekAmazonBridges = [
-        "meek_lite 0.0.2.0:2 B9E7141C594AF25699E0079C1F0146F409495296 url=https://d2cly7j4zqgua7.cloudfront.net/ front=a0.awsstatic.com"
-    ]
     public static let meekAzureBridges = [
         "meek_lite 0.0.2.0:3 97700DFE9F483596DDA6264C4D7DF7641E1E39CE url=https://meek.azureedge.net/ front=ajax.aspnetcdn.com"
     ]
@@ -148,9 +141,15 @@ import Foundation
             // we think we're on a ipv6-only DNS64/NAT64 network
             confs.append(["key":"ClientPreferIPv6ORPort", "value":"1"])
             if (self.bridgesId != nil && self.bridgesId != USE_BRIDGES_NONE) {
-                // bridges on, leave ipv4 on
+                // bridges on, leave ipv4 on.
+                // user's bridge config contains all the IPs (v4 or v6)
+                // that we connect to, so we let _that_ setting override our
+                // "ipv6 only" self-test.
                 confs.append(["key":"clientuseipv4", "value":"1"])
             } else {
+                // otherwise, for ipv6-only no-bridge state, disable ipv4
+                // connections from here to entry/guard
+                // nodes. (i.e. all outbound connections are ipv6 only.)
                 confs.append(["key":"clientuseipv4", "value":"0"])
             }
         } else {
@@ -210,13 +209,7 @@ import Foundation
                 args.append("1")
                 switch bridgesId! {
                 case USE_BRIDGES_OBFS4:
-                    if (Ipv6Tester.ipv6_status() == OnionManager.TOR_IPV6_CONN_ONLY) {
-                        args += bridgeLinesToArgs(OnionManager.obfs4BridgesIPv6)
-                    } else {
-                        args += bridgeLinesToArgs(OnionManager.obfs4Bridges)
-                    }
-                case USE_BRIDGES_MEEKAMAZON:
-                    args += bridgeLinesToArgs(OnionManager.meekAmazonBridges)
+                    args += bridgeLinesToArgs(OnionManager.obfs4Bridges)
                 case USE_BRIDGES_MEEKAZURE:
                     args += bridgeLinesToArgs(OnionManager.meekAzureBridges)
                 default:
@@ -237,10 +230,15 @@ import Foundation
                     "--ClientPreferIPv6ORPort", "1",
                 ]
                 if bridgesId != nil && bridgesId != USE_BRIDGES_NONE {
-                    // ipv6-only + bridges, leave ipv4 on
+                    // bridges on, leave ipv4 on.
+                    // user's bridge config contains all the IPs (v4 or v6)
+                    // that we connect to, so we let _that_ setting override our
+                    // "ipv6 only" self-test.
                     args += ["--clientuseipv4", "1"]
                 } else {
-                    // ipv6-only, bridges are off
+                    // otherwise, for ipv6-only no-bridge state, disable ipv4
+                    // connections from here to entry/guard
+                    // nodes. (i.e. all outbound connections are ipv6 only.)
                     args += ["--clientuseipv4", "0"]
                 }
             } else {
@@ -280,13 +278,7 @@ import Foundation
 
                     switch bridgesId! {
                     case USE_BRIDGES_OBFS4:
-                        if (Ipv6Tester.ipv6_status() == OnionManager.TOR_IPV6_CONN_ONLY) {
-                            bridges = OnionManager.obfs4BridgesIPv6
-                        } else {
-                            bridges = OnionManager.obfs4Bridges
-                        }
-                    case USE_BRIDGES_MEEKAMAZON:
-                        bridges = OnionManager.meekAmazonBridges
+                        bridges = OnionManager.obfs4Bridges
                     case USE_BRIDGES_MEEKAZURE:
                         bridges = OnionManager.meekAzureBridges
                     default:

@@ -17,16 +17,8 @@ extension BrowsingViewController: POEDelegate {
 		unfocusSearchField()
 
 		let builtInBridges: [Int: String]
-
-		if Ipv6Tester.ipv6_status() == TOR_IPV6_CONN_ONLY {
-			builtInBridges = [USE_BRIDGES_OBFS4: "obfs4",
-							  USE_BRIDGES_MEEKAMAZON: "meek-amazon",
-							  USE_BRIDGES_MEEKAZURE: "meek-azure"]
-		}
-		else {
-			builtInBridges = [USE_BRIDGES_OBFS4: "obfs4",
-							  USE_BRIDGES_MEEKAZURE: "meek-azure"]
-		}
+		builtInBridges = [USE_BRIDGES_OBFS4: "obfs4",
+						  USE_BRIDGES_MEEKAZURE: "meek-azure"]
 
 		let ud = UserDefaults.standard
 

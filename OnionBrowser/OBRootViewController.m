@@ -8,7 +8,6 @@
 #import "OBRootViewController.h"
 #import "AppDelegate.h"
 #import "OBSettingsConstants.h"
-#import "Ipv6Tester.h"
 
 #ifdef __OBJC__
 #import "OnionBrowser-Swift.h"
@@ -25,14 +24,8 @@
         self.introVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 
         NSDictionary<NSNumber *,NSString *> *builtInBridges;
-        if ([Ipv6Tester ipv6_status] == TOR_IPV6_CONN_ONLY) {
-            builtInBridges = @{[NSNumber numberWithInteger:USE_BRIDGES_OBFS4]: @"obfs4",
-                               [NSNumber numberWithInteger:USE_BRIDGES_MEEKAMAZON]: @"meek-amazon",
-                               [NSNumber numberWithInteger:USE_BRIDGES_MEEKAZURE]: @"meek-azure"};
-        } else {
-            builtInBridges = @{[NSNumber numberWithInteger:USE_BRIDGES_OBFS4]: @"obfs4",
-                               [NSNumber numberWithInteger:USE_BRIDGES_MEEKAZURE]: @"meek-azure"};
-        }
+		builtInBridges = @{[NSNumber numberWithInteger:USE_BRIDGES_OBFS4]: @"obfs4",
+						   [NSNumber numberWithInteger:USE_BRIDGES_MEEKAZURE]: @"meek-azure"};
 
         self.bridgeVC = [BridgeSelectViewController
                          instantiateWithCurrentId:[NSUserDefaults.standardUserDefaults integerForKey:USE_BRIDGES]

@@ -17,7 +17,7 @@ extern NSString *const LOCALE;
 // Choices for USE_BRIDGES
 extern NSInteger const USE_BRIDGES_NONE;
 extern NSInteger const USE_BRIDGES_OBFS4;
-extern NSInteger const USE_BRIDGES_MEEKAMAZON;
+extern NSInteger const USE_BRIDGES_MEEKAMAZON; // legacy; retaining this for future use if meek-amazon comes back
 extern NSInteger const USE_BRIDGES_MEEKAZURE;
 extern NSInteger const USE_BRIDGES_CUSTOM;
 
