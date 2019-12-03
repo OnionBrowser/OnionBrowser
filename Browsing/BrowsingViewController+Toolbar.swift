@@ -61,6 +61,9 @@ extension BrowsingViewController: UIScrollViewDelegate {
 
 			containerBottomConstraint2Toolbar?.isActive = true
 
+			// Fix for workaround when collapsing the toolbar. (See below.)
+			tabsBt.setTitleColor(tabsBt.tintColor, for: .normal)
+
 			if animated {
 				UIView.animate(withDuration: 0.25) {
 					self.view.layoutIfNeeded()
@@ -76,6 +79,11 @@ extension BrowsingViewController: UIScrollViewDelegate {
 			containerBottomConstraint2Superview.isActive = true
 
 			if animated {
+				// Workaround: If we don't do this, the tab count number stays roughly
+				// at the same place until the end of the animation, when it is
+				// removed suddenly.
+				tabsBt.setTitleColor(.clear, for: .normal)
+
 				UIView.animate(withDuration: 0.25,
 							   animations: { self.view.layoutIfNeeded() })
 				{ _ in
