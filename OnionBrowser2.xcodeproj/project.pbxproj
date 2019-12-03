@@ -80,6 +80,7 @@
 		A006A18D23883BA400B0344A /* Tab+Downloads.swift in Sources */ = {isa = PBXBuildFile; fileRef = A006A18C23883BA400B0344A /* Tab+Downloads.swift */; };
 		A01D3BA323900D2800E536F2 /* RuleEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CBCD491E934249009D5352 /* RuleEditorController.m */; };
 		A01D3BA523902C4300E536F2 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01D3BA423902C4300E536F2 /* HistoryViewController.swift */; };
+		A0323AC32396C83A00B9DDA5 /* obfs4-bridges.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0323AC22396C83900B9DDA5 /* obfs4-bridges.plist */; };
 		A0364537235094DF0038930E /* Storage2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0364536235094DF0038930E /* Storage2ViewController.swift */; };
 		A03A2DD223577971002D640B /* Bundle+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03A2DD123577970002D640B /* Bundle+Helpers.swift */; };
 		A03A2DD423577B91002D640B /* SecurityPresetsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03A2DD323577B91002D640B /* SecurityPresetsRow.swift */; };
@@ -274,6 +275,8 @@
 		A025F26621F626CB0034B947 /* mk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mk; path = Endless/mk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A025F26F21F627110034B947 /* tr-TR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "tr-TR"; path = "Endless/tr-TR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		A025F27421F62C100034B947 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		A0323AC12396962A00B9DDA5 /* update-bridges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "update-bridges.swift"; sourceTree = "<group>"; };
+		A0323AC22396C83900B9DDA5 /* obfs4-bridges.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "obfs4-bridges.plist"; path = "Endless/Resources/obfs4-bridges.plist"; sourceTree = "<group>"; };
 		A0364536235094DF0038930E /* Storage2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage2ViewController.swift; sourceTree = "<group>"; };
 		A03A2DD123577970002D640B /* Bundle+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Helpers.swift"; sourceTree = "<group>"; };
 		A03A2DD323577B91002D640B /* SecurityPresetsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityPresetsRow.swift; sourceTree = "<group>"; };
@@ -914,6 +917,7 @@
 		01801EC11A3360B1002B4718 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A0323AC22396C83900B9DDA5 /* obfs4-bridges.plist */,
 				A045E5E11EDC5C1700BC8A92 /* Localizable.strings */,
 				01F8794A1A41232E00A63654 /* credits.html */,
 				6926DAED221C836F00D71752 /* credits.html.in */,
@@ -1385,6 +1389,7 @@
 				A07D655A2208A2540002D775 /* decimalize_git_hash.bash */,
 				A07D655B2208A2540002D775 /* minutes_since_date.bash */,
 				A07D655F2208A9B40002D775 /* get-geoip.sh */,
+				A0323AC12396962A00B9DDA5 /* update-bridges.swift */,
 			);
 			path = "build-util";
 			sourceTree = "<group>";
@@ -2071,6 +2076,7 @@
 			buildPhases = (
 				EC8C8E3F9E0EB2CF99FB1FE4 /* [CP] Check Pods Manifest.lock */,
 				8ACB70CD1FA13676001E5588 /* ShellScript */,
+				A0323ACF2396CBC000B9DDA5 /* ShellScript */,
 				01801E8E1A32CA2A002B4718 /* Sources */,
 				01801E8F1A32CA2A002B4718 /* Frameworks */,
 				01801E901A32CA2A002B4718 /* Resources */,
@@ -2113,7 +2119,7 @@
 		01801E8A1A32CA2A002B4718 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1020;
+				LastSwiftUpdateCheck = 1120;
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = jcs;
 				TargetAttributes = {
@@ -2210,6 +2216,7 @@
 				A045E5E51EDC5C1700BC8A92 /* Localizable.strings in Resources */,
 				8AF16095202CD6D600AC0BCE /* block_webrtc.js in Resources */,
 				016B2FCB1A53466D002D2730 /* hsts_preload.plist in Resources */,
+				A0323AC32396C83A00B9DDA5 /* obfs4-bridges.plist in Resources */,
 				691286EA1EABEE6900CEC414 /* LaunchScreen.xib in Resources */,
 				01FC0E571B38FB6B00955D9A /* Launch Screen.xib in Resources */,
 				A0D68E0A234C8E150027C61A /* BookmarksViewController.xib in Resources */,
@@ -2300,6 +2307,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
 			shellScript = "\"$SRCROOT\"/build-util/get-geoip.sh\n";
+		};
+		A0323ACF2396CBC000B9DDA5 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$SRCROOT\"/build-util/update-bridges.swift\n";
 		};
 		A7B7312C8E90956C8953B066 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
