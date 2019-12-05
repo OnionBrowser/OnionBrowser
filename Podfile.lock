@@ -1,5 +1,5 @@
 PODS:
-  - CSPHeader (0.4.0)
+  - CSPHeader (0.4.1)
   - DTFoundation (1.7.14):
     - DTFoundation/AppKit (= 1.7.14)
     - DTFoundation/Core (= 1.7.14)
@@ -107,7 +107,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/Psiphon-Labs/OCSPCache
 
 SPEC CHECKSUMS:
-  CSPHeader: adec9dd23d5ea822b8e397407c40c6435b4a7c49
+  CSPHeader: 352a279f3c84ab3c18014d8f682efd55fa73d885
   DTFoundation: 25aa19bb7c6e225b1dfae195604fb8cf1da0ab4c
   Eureka: 18a5076dcf0c41f9cd9748aa1c42f4d11434bdae
   KMPlaceholderTextView: 2206c3df39979e9396e2d96fa9f427a8951121b0
