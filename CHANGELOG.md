@@ -1,5 +1,17 @@
 #  Onion Browser 2 Changelog
 
+## 2.4.0 (in development)
+
+- Localization updates
+
+- Fixed keyboard behavior (now hides properly when tapping any buttons)
+
+- Updated iPad interface
+
+- Updated security settings interface
+
+- (and more in development)
+
 ## 2.3.0
 
 - Tor updated to 0.4.0.5
@@ -29,9 +41,9 @@
 
 - Tor updated to 0.3.5.8.
 - When the app goes to background, the preview in the app switcher is now obscured. (Issue #138)
-- Improved tor stop / restart behavior when going to background. Tor now completely shuts down on 
+- Improved tor stop / restart behavior when going to background. Tor now completely shuts down on
   background and a fresh Tor launched when the app is resumed.
-- FIXED: Websites with self-signed certificates may be accessed again, after warning the user of 
+- FIXED: Websites with self-signed certificates may be accessed again, after warning the user of
   the security implications. (#111)
 - FIXED: Editing bridges after first launch works again. (#121, #140)
 - FIXED: Using camera to import bridges from QR code works again. (#142)
@@ -50,7 +62,7 @@
 
 ## 2.0.1
 
-- Bugfixes to get it through the App Store inspection. 
+- Bugfixes to get it through the App Store inspection.
 
 ## 2.0.0
 

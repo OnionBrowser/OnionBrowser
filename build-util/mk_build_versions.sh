@@ -10,10 +10,11 @@
 # at most 7 characters long so we can use the format:
 # ${MINUTES_SINCE_DATE}.${DECIMALIZED_GIT_HASH}
 
-# 2.3.X epoch: 2019-10-07 20:00 GMT
-# epoch changes at v2.3.0 OR august 2020
-OB_BUNDLE_SHORT_VERSION_DATE="2019-10-07 09:00:00 GMT"
-OB_BUNDLE_SHORT_VERSION_STRING=2.3.0
+# 2.3.X epoch: 2019-10-07 20:00 UTC
+# 2.4.X epoch: 2019-12-05 21:00 UTC
+# epoch changes at v2.5.0 (or next major version) OR May 2021
+OB_BUNDLE_SHORT_VERSION_DATE="2019-12-05 21:00:00 GMT"
+OB_BUNDLE_SHORT_VERSION_STRING=2.4.0
 
 BASH_SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
