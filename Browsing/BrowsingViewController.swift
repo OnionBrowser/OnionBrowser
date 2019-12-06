@@ -54,14 +54,10 @@ class BrowsingViewController: UIViewController, TabDelegate {
 		return button
 	}()
 
-    @IBOutlet weak var torBt: UIButton! {
-        didSet {
-            torBt.addTarget(self, action: #selector(showBridgeSelection), for: .touchUpInside)
-        }
-    }
-    @IBOutlet weak var progress: UIProgressView!
-    @IBOutlet weak var container: UIView!
-    @IBOutlet weak var containerBottomConstraint2Toolbar: NSLayoutConstraint? // Not available on iPad
+	@IBOutlet weak var torBt: UIButton!
+	@IBOutlet weak var progress: UIProgressView!
+	@IBOutlet weak var container: UIView!
+	@IBOutlet weak var containerBottomConstraint2Toolbar: NSLayoutConstraint? // Not available on iPad
 
 	@IBOutlet weak var tabsCollection: UICollectionView! {
 		didSet {
@@ -275,6 +271,12 @@ class BrowsingViewController: UIViewController, TabDelegate {
         case reloadBt:
             currentTab?.refresh()
 
+		case torBt:
+			let vc = CircuitViewController()
+			vc.currentUrl = currentTab?.url
+
+            present(vc, sender)
+
         case backBt:
 			currentTab?.goBack()
 
@@ -477,6 +479,10 @@ class BrowsingViewController: UIViewController, TabDelegate {
 			vc.modalPresentationStyle = .popover
 			vc.popoverPresentationController?.sourceView = sender.superview
 			vc.popoverPresentationController?.sourceRect = sender.frame
+
+            if let delegate = vc as? UIPopoverPresentationControllerDelegate {
+                vc.popoverPresentationController?.delegate = delegate
+            }
 		}
 
 		present(vc, animated: true)

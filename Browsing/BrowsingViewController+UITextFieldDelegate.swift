@@ -67,8 +67,6 @@ extension BrowsingViewController: UITextFieldDelegate {
 	// MARK: Actions
 
 	@IBAction func searchDidChange() {
-		debug("#searchDidChange")
-
 		guard Settings.searchLive else {
 			return
 		}

@@ -91,6 +91,9 @@
                                 <constraint firstAttribute="height" constant="30" id="xaV-BG-kNi"/>
                             </constraints>
                             <state key="normal" image="onion"/>
+                            <connections>
+                                <action selector="action:" destination="-1" eventType="touchUpInside" id="CB8-HM-oda"/>
+                            </connections>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N7h-ch-TdU">
                             <rect key="frame" x="0.0" y="79" width="414" height="1"/>

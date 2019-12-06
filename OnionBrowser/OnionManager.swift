@@ -179,6 +179,31 @@ import Foundation
         //})
     }
 
+	/**
+	Acquire info about current circuit.
+
+	// TODO: Actually implement inside `Tor.framework`.
+
+	- parameter callback: Called, when all info is available.
+	- parameter nodes: The nodes, the current circuit consists of.
+	*/
+	func getCurrentCircuit(_ callback: @escaping ((_ nodes: [CircuitViewController.Node]) -> Void)) {
+		// GETINFO circuit-status
+		// GETINFO ns/name/houseofcards
+		// GETINFO ip-to-country/10.0.0.1
+
+		torController?.sendCommand("GETINFO circuit-status", arguments: nil, data: nil, observer: { (codes, lines, _) -> Bool in
+
+			print("codes=\(codes), lines=\(lines.map({ String(data: $0, encoding: .utf8) ?? "" }).joined(separator: "\n"))")
+
+			callback([CircuitViewController.Node(country: "Node 1 Country", ip: "10.0.0.1"),
+					  CircuitViewController.Node(country: "Node 2 Country", ip: "10.0.0.2"),
+					  CircuitViewController.Node(country: "Node 3 Country", ip: "10.0.0.3")])
+
+			return true
+		})
+	}
+
     @objc func startTor(delegate: OnionManagerDelegate?) {
         cancelInitRetry()
         cancelFailGuard()

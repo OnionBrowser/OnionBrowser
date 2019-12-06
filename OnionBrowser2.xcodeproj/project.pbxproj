@@ -110,7 +110,6 @@
 		A084FD7A235A03EA00DA63CF /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A084FD79235A03EA00DA63CF /* Settings.swift */; };
 		A08737E1221324B5005A68CC /* HostSettings_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = A08737DF2213235F005A68CC /* HostSettings_Tests.m */; };
 		A0894E38236AF90500EE2743 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0894E37236AF90500EE2743 /* Formatter.swift */; };
-		A0894E3A236B028D00EE2743 /* BrowsingViewController+POEDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0894E39236B028D00EE2743 /* BrowsingViewController+POEDelegate.swift */; };
 		A0894E3C236B055300EE2743 /* BrowsingViewController+Toolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0894E3B236B055300EE2743 /* BrowsingViewController+Toolbar.swift */; };
 		A090E2CB23586E360067A865 /* SecurityShield.swift in Sources */ = {isa = PBXBuildFile; fileRef = A090E2CA23586E360067A865 /* SecurityShield.swift */; };
 		A090E2D12358B2040067A865 /* Storage1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A090E2D02358B2040067A865 /* Storage1ViewController.swift */; };
@@ -133,6 +132,10 @@
 		A0E755F72372EBAD006276DB /* TabCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E755F52372EBAD006276DB /* TabCell.swift */; };
 		A0E755F92372F119006276DB /* UIView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E755F82372F119006276DB /* UIView+Helpers.swift */; };
 		A0E755FB2373597D006276DB /* UIButton+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E755FA2373597D006276DB /* UIButton+Helpers.swift */; };
+		A0EA6D9F239A9154004AC792 /* CircuitNodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0EA6D9D239A9154004AC792 /* CircuitNodeCell.xib */; };
+		A0EA6DA0239A9154004AC792 /* CircuitNodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EA6D9E239A9154004AC792 /* CircuitNodeCell.swift */; };
+		A0FC095A2397A03B0081F396 /* CircuitViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0FC09582397A03B0081F396 /* CircuitViewController.xib */; };
+		A0FC095B2397A03B0081F396 /* CircuitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0FC09592397A03B0081F396 /* CircuitViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -424,7 +427,6 @@
 		A08795572245406E00330327 /* SilenceWarnings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SilenceWarnings.h; sourceTree = "<group>"; };
 		A0894E36236AE7C800EE2743 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		A0894E37236AF90500EE2743 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
-		A0894E39236B028D00EE2743 /* BrowsingViewController+POEDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BrowsingViewController+POEDelegate.swift"; sourceTree = "<group>"; };
 		A0894E3B236B055300EE2743 /* BrowsingViewController+Toolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BrowsingViewController+Toolbar.swift"; sourceTree = "<group>"; };
 		A090E2CA23586E360067A865 /* SecurityShield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityShield.swift; sourceTree = "<group>"; };
 		A090E2D02358B2040067A865 /* Storage1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage1ViewController.swift; sourceTree = "<group>"; };
@@ -807,6 +809,10 @@
 		A0E755F52372EBAD006276DB /* TabCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCell.swift; sourceTree = "<group>"; };
 		A0E755F82372F119006276DB /* UIView+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Helpers.swift"; sourceTree = "<group>"; };
 		A0E755FA2373597D006276DB /* UIButton+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Helpers.swift"; sourceTree = "<group>"; };
+		A0EA6D9D239A9154004AC792 /* CircuitNodeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CircuitNodeCell.xib; sourceTree = "<group>"; };
+		A0EA6D9E239A9154004AC792 /* CircuitNodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitNodeCell.swift; sourceTree = "<group>"; };
+		A0FC09582397A03B0081F396 /* CircuitViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CircuitViewController.xib; sourceTree = "<group>"; };
+		A0FC09592397A03B0081F396 /* CircuitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitViewController.swift; sourceTree = "<group>"; };
 		BED522A5B119CE39951BF4AF /* Pods-OnionBrowser2 Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnionBrowser2 Tests.debug.xcconfig"; path = "Target Support Files/Pods-OnionBrowser2 Tests/Pods-OnionBrowser2 Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -2049,10 +2055,13 @@
 				A0E18F262368509C001953BA /* BrowsingViewController.xib */,
 				A0C7611523912A92004E9A15 /* BrowsingViewController-iPad.xib */,
 				A0E18F272368509C001953BA /* BrowsingViewController.swift */,
-				A0894E39236B028D00EE2743 /* BrowsingViewController+POEDelegate.swift */,
 				A0E755F22372CA77006276DB /* BrowsingViewController+UITextFieldDelegate.swift */,
 				A0894E3B236B055300EE2743 /* BrowsingViewController+Toolbar.swift */,
 				A0E27596236B10F800C89E18 /* BrowsingViewController+Tabs.swift */,
+				A0FC09582397A03B0081F396 /* CircuitViewController.xib */,
+				A0FC09592397A03B0081F396 /* CircuitViewController.swift */,
+				A0EA6D9D239A9154004AC792 /* CircuitNodeCell.xib */,
+				A0EA6D9E239A9154004AC792 /* CircuitNodeCell.swift */,
 				A01D3BA423902C4300E536F2 /* HistoryViewController.swift */,
 				A07D086323952D9000F18BE6 /* LiveSearchViewController.swift */,
 				A006A1862387E20200B0344A /* Tab.swift */,
@@ -2205,6 +2214,7 @@
 				018333EA1A35746500670CD1 /* https-everywhere_targets.plist in Resources */,
 				018333E91A35746500670CD1 /* https-everywhere_rules.plist in Resources */,
 				8ACB70D21FA136F0001E5588 /* geoip in Resources */,
+				A0EA6D9F239A9154004AC792 /* CircuitNodeCell.xib in Resources */,
 				69CBCD4F1E93451C009D5352 /* urlblocker.json in Resources */,
 				01D7412C1A45F8EB007B7033 /* injected.js in Resources */,
 				A0E755F62372EBAD006276DB /* TabCell.xib in Resources */,
@@ -2212,6 +2222,7 @@
 				A09A2A972254B3D100A3EEF0 /* InfoPlist.strings in Resources */,
 				01801EA61A32CA2A002B4718 /* Images.xcassets in Resources */,
 				01F8794C1A4124FE00A63654 /* credits.html in Resources */,
+				A0FC095A2397A03B0081F396 /* CircuitViewController.xib in Resources */,
 				A0C7611623912DE5004E9A15 /* BrowsingViewController-iPad.xib in Resources */,
 				A045E5E51EDC5C1700BC8A92 /* Localizable.strings in Resources */,
 				8AF16095202CD6D600AC0BCE /* block_webrtc.js in Resources */,
@@ -2389,6 +2400,7 @@
 				01F2AE391B7FEF5E00D5651A /* SSLCertificate.m in Sources */,
 				01801E9B1A32CA2A002B4718 /* AppDelegate.m in Sources */,
 				A04E5769235757FE00BA9DD1 /* SecurityViewController.swift in Sources */,
+				A0FC095B2397A03B0081F396 /* CircuitViewController.swift in Sources */,
 				A090E2D12358B2040067A865 /* Storage1ViewController.swift in Sources */,
 				69CBCD4D1E934249009D5352 /* RuleEditorRow.m in Sources */,
 				A01D3BA323900D2800E536F2 /* RuleEditorController.m in Sources */,
@@ -2399,7 +2411,6 @@
 				8AD5FFBA1EB3DFE30066E7E3 /* ObfsThread.m in Sources */,
 				A084FD7A235A03EA00DA63CF /* Settings.swift in Sources */,
 				A0E27597236B10F800C89E18 /* BrowsingViewController+Tabs.swift in Sources */,
-				A0894E3A236B028D00EE2743 /* BrowsingViewController+POEDelegate.swift in Sources */,
 				A062401A235F0BDC008DADDD /* CustomSitesViewController.swift in Sources */,
 				018333D21A35291200670CD1 /* HTTPSEverywhereRule.m in Sources */,
 				01F8793B1A4108DD00A63654 /* URLBlocker.m in Sources */,
@@ -2414,6 +2425,7 @@
 				A099DE21238E8C2C00B79B20 /* Tab+Gestures.swift in Sources */,
 				018333CA1A3505FB00670CD1 /* HTTPSEverywhere.m in Sources */,
 				01F7CB491A5253DD00F42B73 /* HSTSCache.m in Sources */,
+				A0EA6DA0239A9154004AC792 /* CircuitNodeCell.swift in Sources */,
 				69CBCD471E934228009D5352 /* URLBlockerRuleController.m in Sources */,
 				A062401C235F134C008DADDD /* SearchableTableViewController.swift in Sources */,
 				A0D68DFF234C89080027C61A /* Bookmark.swift in Sources */,
