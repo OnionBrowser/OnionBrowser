@@ -78,7 +78,9 @@ import Foundation
             "--clientuseipv6", "1",
             "--ClientTransportPlugin", "obfs4 socks5 127.0.0.1:47351",
             "--ClientTransportPlugin", "meek_lite socks5 127.0.0.1:47352",
-            "--ClientOnionAuthDir", authDir.path
+            "--ClientOnionAuthDir", authDir.path,
+            "--GeoIPFile", Bundle.main.path(forResource: "geoip", ofType: nil) ?? "",
+            "--GeoIPv6File", Bundle.main.path(forResource: "geoip6", ofType: nil) ?? "",
         ]
 
         configuration.arguments = config_args
@@ -251,7 +253,6 @@ import Foundation
             print("[\(String(describing: OnionManager.self))] ipv6_status: \(Ipv6Tester.ipv6_status())")
             if (Ipv6Tester.ipv6_status() == OnionManager.TOR_IPV6_CONN_ONLY) {
                 args += [
-                    "--ClientPreferIPv6DirPort", "1",
                     "--ClientPreferIPv6ORPort", "1",
                 ]
                 if bridgesId != nil && bridgesId != USE_BRIDGES_NONE {
@@ -268,7 +269,6 @@ import Foundation
                 }
             } else {
                 args += [
-                    "--ClientPreferIPv6DirPort", "auto",
                     "--ClientPreferIPv6ORPort", "auto",
                     "--clientuseipv4", "1",
                 ]
