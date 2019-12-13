@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina3_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
@@ -12,24 +12,33 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CircuitViewController" customModule="OnionBrowser" customModuleProvider="target">
             <connections>
                 <outlet property="bridgeConfigBt" destination="Khf-m9-ODb" id="Q2s-t3-UKe"/>
+                <outlet property="headerLb" destination="kc3-jB-BOw" id="Pwq-sv-Jn6"/>
                 <outlet property="newCircuitsBt" destination="Qsq-C5-NzU" id="dwI-4E-L2e"/>
                 <outlet property="tableView" destination="xbR-cA-4Uk" id="pga-vN-dfL"/>
-                <outlet property="torCircuitLb" destination="kc3-jB-BOw" id="Pwq-sv-Jn6"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tor Circuit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kc3-jB-BOw">
-                    <rect key="frame" x="16" y="64" width="382" height="26"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tor Circuit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kc3-jB-BOw">
+                    <rect key="frame" x="16" y="8" width="288" height="18"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <color key="textColor" name="Accent"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xbR-cA-4Uk">
+                    <rect key="frame" x="0.0" y="34" width="320" height="358"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="J5u-eG-hsP"/>
+                        <outlet property="delegate" destination="-1" id="KHT-fB-lZB"/>
+                    </connections>
+                </tableView>
                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qsq-C5-NzU">
-                    <rect key="frame" x="87" y="770" width="240" height="36"/>
+                    <rect key="frame" x="40" y="400" width="240" height="36"/>
                     <color key="backgroundColor" red="0.4941176471" green="0.82745098039999998" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="240" id="TUS-9B-VDf"/>
@@ -49,7 +58,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Khf-m9-ODb">
-                    <rect key="frame" x="139.5" y="814" width="135" height="28"/>
+                    <rect key="frame" x="92.5" y="444" width="135" height="28"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                     <state key="normal" title="Bridge Configuration">
                         <color key="titleColor" name="Accent"/>
@@ -58,26 +67,18 @@
                         <action selector="showBridgeSelection:" destination="-1" eventType="touchUpInside" id="FXB-02-Fb9"/>
                     </connections>
                 </button>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xbR-cA-4Uk">
-                    <rect key="frame" x="0.0" y="98" width="414" height="664"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="J5u-eG-hsP"/>
-                        <outlet property="delegate" destination="-1" id="KHT-fB-lZB"/>
-                    </connections>
-                </tableView>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
                 <constraint firstItem="Khf-m9-ODb" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="3f7-Ao-JhL"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Khf-m9-ODb" secondAttribute="bottom" constant="20" id="9DX-GR-iZ3"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Khf-m9-ODb" secondAttribute="bottom" constant="8" id="9DX-GR-iZ3"/>
                 <constraint firstItem="xbR-cA-4Uk" firstAttribute="top" secondItem="kc3-jB-BOw" secondAttribute="bottom" constant="8" id="AhC-e6-vl8"/>
                 <constraint firstItem="Qsq-C5-NzU" firstAttribute="top" secondItem="xbR-cA-4Uk" secondAttribute="bottom" constant="8" id="AoD-YT-HNx"/>
                 <constraint firstItem="kc3-jB-BOw" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="Bv1-wd-ADL"/>
                 <constraint firstItem="Khf-m9-ODb" firstAttribute="top" secondItem="Qsq-C5-NzU" secondAttribute="bottom" constant="8" id="R1U-HR-yDB"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="kc3-jB-BOw" secondAttribute="trailing" constant="16" id="TnW-qx-yAW"/>
                 <constraint firstItem="xbR-cA-4Uk" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ene-yG-hS5"/>
-                <constraint firstItem="kc3-jB-BOw" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="fR1-vm-ahM"/>
+                <constraint firstItem="kc3-jB-BOw" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="8" id="fR1-vm-ahM"/>
                 <constraint firstItem="Qsq-C5-NzU" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="p1g-0A-x25"/>
                 <constraint firstItem="xbR-cA-4Uk" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="vCW-8j-Iuv"/>
             </constraints>

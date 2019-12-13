@@ -247,16 +247,10 @@ class BrowsingViewController: UIViewController, TabDelegate {
 
         switch sender {
         case securityBt:
-			var host = currentTab?.url.host ?? currentTab?.url.path
+			let vc = SecurityPopUpViewController()
+			vc.host = currentTab?.url.host ?? currentTab?.url.path
 
-			if HostSettings.forHost(host) == nil {
-				host = nil
-			}
-
-			let vc = SecurityViewController()
-			vc.host = host
-
-			present(UINavigationController(rootViewController: vc), sender)
+			present(vc, sender)
 
         case encryptionBt:
 			guard let certificate = currentTab?.sslCertificate,

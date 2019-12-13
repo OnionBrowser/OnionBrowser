@@ -54,5 +54,4 @@ class CircuitNodeCell: UITableViewCell {
 
 		return self
 	}
-
 }

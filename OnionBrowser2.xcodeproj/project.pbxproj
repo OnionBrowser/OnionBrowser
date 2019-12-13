@@ -80,6 +80,10 @@
 		A006A18D23883BA400B0344A /* Tab+Downloads.swift in Sources */ = {isa = PBXBuildFile; fileRef = A006A18C23883BA400B0344A /* Tab+Downloads.swift */; };
 		A01D3BA323900D2800E536F2 /* RuleEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CBCD491E934249009D5352 /* RuleEditorController.m */; };
 		A01D3BA523902C4300E536F2 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01D3BA423902C4300E536F2 /* HistoryViewController.swift */; };
+		A01EE97423A3CCFC003B5AFD /* SecurityPopUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A01EE97223A3CCFC003B5AFD /* SecurityPopUpViewController.xib */; };
+		A01EE97523A3CCFC003B5AFD /* SecurityPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01EE97323A3CCFC003B5AFD /* SecurityPopUpViewController.swift */; };
+		A01EE97823A3D539003B5AFD /* SecurityLevelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A01EE97623A3D539003B5AFD /* SecurityLevelCell.xib */; };
+		A01EE97923A3D539003B5AFD /* SecurityLevelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01EE97723A3D539003B5AFD /* SecurityLevelCell.swift */; };
 		A0323AC32396C83A00B9DDA5 /* obfs4-bridges.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0323AC22396C83900B9DDA5 /* obfs4-bridges.plist */; };
 		A0364537235094DF0038930E /* Storage2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0364536235094DF0038930E /* Storage2ViewController.swift */; };
 		A03A2DD223577971002D640B /* Bundle+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03A2DD123577970002D640B /* Bundle+Helpers.swift */; };
@@ -286,6 +290,10 @@
 		A01EE96E23A3C3E2003B5AFD /* release_notes.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = release_notes.txt; sourceTree = "<group>"; };
 		A01EE96F23A3C3F1003B5AFD /* name.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = name.txt; sourceTree = "<group>"; };
 		A01EE97023A3C3F6003B5AFD /* marketing_url.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = marketing_url.txt; sourceTree = "<group>"; };
+		A01EE97223A3CCFC003B5AFD /* SecurityPopUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SecurityPopUpViewController.xib; sourceTree = "<group>"; };
+		A01EE97323A3CCFC003B5AFD /* SecurityPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityPopUpViewController.swift; sourceTree = "<group>"; };
+		A01EE97623A3D539003B5AFD /* SecurityLevelCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SecurityLevelCell.xib; sourceTree = "<group>"; };
+		A01EE97723A3D539003B5AFD /* SecurityLevelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityLevelCell.swift; sourceTree = "<group>"; };
 		A025F25721F6265E0034B947 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = Endless/el.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A025F25D21F6267A0034B947 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = Endless/he.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A025F26621F626CB0034B947 /* mk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mk; path = Endless/mk.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -2098,6 +2106,10 @@
 				A0E755F22372CA77006276DB /* BrowsingViewController+UITextFieldDelegate.swift */,
 				A0894E3B236B055300EE2743 /* BrowsingViewController+Toolbar.swift */,
 				A0E27596236B10F800C89E18 /* BrowsingViewController+Tabs.swift */,
+				A01EE97223A3CCFC003B5AFD /* SecurityPopUpViewController.xib */,
+				A01EE97323A3CCFC003B5AFD /* SecurityPopUpViewController.swift */,
+				A01EE97623A3D539003B5AFD /* SecurityLevelCell.xib */,
+				A01EE97723A3D539003B5AFD /* SecurityLevelCell.swift */,
 				A0FC09582397A03B0081F396 /* CircuitViewController.xib */,
 				A0FC09592397A03B0081F396 /* CircuitViewController.swift */,
 				A0EA6D9D239A9154004AC792 /* CircuitNodeCell.xib */,
@@ -2250,6 +2262,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A01EE97423A3CCFC003B5AFD /* SecurityPopUpViewController.xib in Resources */,
 				8ACB70D31FA136F0001E5588 /* geoip6 in Resources */,
 				0135F4761A3D2931005A8F16 /* SearchEngines.plist in Resources */,
 				018333EA1A35746500670CD1 /* https-everywhere_targets.plist in Resources */,
@@ -2263,6 +2276,7 @@
 				A09A2A972254B3D100A3EEF0 /* InfoPlist.strings in Resources */,
 				01801EA61A32CA2A002B4718 /* Images.xcassets in Resources */,
 				01F8794C1A4124FE00A63654 /* credits.html in Resources */,
+				A01EE97823A3D539003B5AFD /* SecurityLevelCell.xib in Resources */,
 				A0FC095A2397A03B0081F396 /* CircuitViewController.xib in Resources */,
 				A0C7611623912DE5004E9A15 /* BrowsingViewController-iPad.xib in Resources */,
 				A045E5E51EDC5C1700BC8A92 /* Localizable.strings in Resources */,
@@ -2451,6 +2465,7 @@
 				01801E981A32CA2A002B4718 /* main.m in Sources */,
 				8AD5FFBA1EB3DFE30066E7E3 /* ObfsThread.m in Sources */,
 				A084FD7A235A03EA00DA63CF /* Settings.swift in Sources */,
+				A01EE97523A3CCFC003B5AFD /* SecurityPopUpViewController.swift in Sources */,
 				A0E27597236B10F800C89E18 /* BrowsingViewController+Tabs.swift in Sources */,
 				A062401A235F0BDC008DADDD /* CustomSitesViewController.swift in Sources */,
 				018333D21A35291200670CD1 /* HTTPSEverywhereRule.m in Sources */,
@@ -2461,6 +2476,7 @@
 				A0D419DF2386E4BD0055AC33 /* Tab+Keyboard.swift in Sources */,
 				01F2AE401B82666900D5651A /* SSLCertificateViewController.m in Sources */,
 				A006A18B2388185900B0344A /* String+Helpers.swift in Sources */,
+				A01EE97923A3D539003B5AFD /* SecurityLevelCell.swift in Sources */,
 				69EFCCA21EAD20CB00280747 /* OBRootViewController.m in Sources */,
 				A03DBCED22859B99001890C4 /* Config.m in Sources */,
 				A099DE21238E8C2C00B79B20 /* Tab+Gestures.swift in Sources */,

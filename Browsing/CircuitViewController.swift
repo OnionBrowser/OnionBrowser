@@ -33,9 +33,9 @@ POEDelegate, UITableViewDataSource, UITableViewDelegate {
 
 	public var currentUrl: URL?
 
-	@IBOutlet weak var torCircuitLb: UILabel! {
+	@IBOutlet weak var headerLb: UILabel! {
 		didSet {
-			torCircuitLb.text = NSLocalizedString("Tor Circuit", comment: "")
+			headerLb.text = NSLocalizedString("Tor Circuit", comment: "")
 		}
 	}
 
@@ -56,7 +56,7 @@ POEDelegate, UITableViewDataSource, UITableViewDelegate {
 
 	override var preferredContentSize: CGSize {
 		get {
-			return CGSize(width: 300, height: 340)
+			return CGSize(width: 300, height: 320)
 		}
 		set {
 			// Ignore.
@@ -93,17 +93,17 @@ POEDelegate, UITableViewDataSource, UITableViewDelegate {
 	}
 
 
-	// MARK: UIPopoverPresentationControllerDelegate
-
-	public func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
-		return .none
-	}
-
-
 	// MARK: UITableViewDelegate
 
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		return CircuitNodeCell.height
+	}
+
+
+	// MARK: UIPopoverPresentationControllerDelegate
+
+	public func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+		return .none
 	}
 
 

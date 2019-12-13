@@ -28,6 +28,35 @@ enum SecurityPreset: Int, CustomStringConvertible {
 		}
 	}
 
+	var recommendation: String? {
+		switch self {
+		case .insecure:
+			return NSLocalizedString("(not recommended)", comment: "")
+
+		case .medium:
+			return NSLocalizedString("(recommended)", comment: "")
+
+		default:
+			return nil
+		}
+	}
+
+	var explanation: String {
+		switch self {
+		case .insecure:
+			return NSLocalizedString("Everything should work.", comment: "")
+
+		case .medium:
+			return NSLocalizedString("Some things won't work.", comment: "")
+
+		case .secure:
+			return NSLocalizedString("Many things won't work.", comment: "")
+
+		default:
+			return NSLocalizedString("Settings have been customized.", comment: "")
+		}
+	}
+
 	var values: (csp: String, webRtc: Bool, mixedMode: Bool)? {
 		switch self {
 		case .insecure:
