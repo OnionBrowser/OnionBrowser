@@ -1,0 +1,19 @@
+Chào mừng bạn đến với Onion Browser 2!
+
+Onion Browser 2 là phiên bản được lập trình lại hoàn toàn với nhiều tính năng mới:
+
+* Trang khởi động thân thiện với người dùng hơn
+* Giao diện người dùng được cập nhật, thêm "Duyệt web đa cửa sổ" và cải thiện bảng cài đặt
+* Hỗ trợ HTTPS Everywhere
+* Cài sẵn công cụ chặn quảng cáo và bảo vệ quyền riêng tư
+* Tinh chỉnh cài đặt bảo mật/riêng tư trên từng trang web (bao gồm cài đặt cookie, user agent và cài đặt JavaScript/nội dung động).
+* Tor 0.3.5.8
+* Cài đặt và dấu trang từ Onion Browser 1 được giữ lại.
+
+Hay nhất là: Cập nhật hoàn toàn miễn phí!
+
+Bản cập nhật Onion Browser 2 được hỗ trợ bởi Guardian Project, với sự giúp đỡ từ Benjamin Erhart và Carrie Winfrey. Onion Browser 2 được xây dựng dựa trên trình duyệt mã nguồn mở "Endless"; đặc biệt cảm ơn Joshua Stein đã phát triển Endless và cấp phép sử dụng cho Onion Browser. Xem phần "Người đóng góp" ở cài đặt ứng dụng để tìm hiểu thêm.
+
+2.0.2: Cập nhật bảo mật: sửa lỗi rò rỉ DNS. Sửa lỗi kết nối IPv6 trên một số nhà mạng. Sửa vài sự cố tự thoát. Thêm bản dịch cho vài ngôn ngữ mới.
+
+2.0.1: Bản cập nhật nhỏ sửa liên kết đến trang đánh giá trên App Store.

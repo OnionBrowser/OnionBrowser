@@ -61,7 +61,7 @@ PODS:
     - ReactiveObjC (= 3.1.1)
   - OpenSSL-Universal (1.0.2.17)
   - OrderedDictionary (1.4)
-  - POE (0.7.1):
+  - POE (0.7.2):
     - KMPlaceholderTextView (~> 1.4)
     - Localize (~> 2.2)
   - Reachability (3.2)
@@ -116,7 +116,7 @@ SPEC CHECKSUMS:
   OCSPCache: 96237607aa9f77ba2fd9119e383b9fb1ef41cfa2
   OpenSSL-Universal: ff04c2e6befc3f1247ae039e60c93f76345b3b5a
   OrderedDictionary: 138c8d2e358d3a0c9adda15c6c7db24e8e3b09e6
-  POE: 09120d1e2deb1834a64470bc122f666ef5bac1fd
+  POE: 78cff1c7d2623499726160ee030616b44996d861
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546

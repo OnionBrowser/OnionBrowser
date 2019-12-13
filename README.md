@@ -96,6 +96,7 @@ These people helped with translations. Thank you so much, folks!
 - Telugu: balapandu222, sonusandeep
 - Turkish:  falcontr06, kayazeren 
 - Ukrainian: Herenko, lyubomyr
+- Vietnamese: AshCopper, PMinhDuc, Shinigami, ppanhh
 
 
 ## Contributors

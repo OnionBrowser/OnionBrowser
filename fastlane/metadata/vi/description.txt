@@ -1,0 +1,27 @@
+Onion Browser là trình duyệt miễn phí và mã nguồn mở dành cho iOS hỗ trợ mạng lưới Tor. Onion Browser giúp bạn truy cập internet an toàn, riêng tư hơn mà không tốn thêm chi phí.
+
+"Ứng dụng liên quan đến Tor tốt nhất trên iOS hiện giờ là Onion Browser" - The Daily Dot, 14 tháng 10 năm 2015.
+
+Được nhắc đến trên: The New York Times, The Guardian, Salon, TechCrunch, Gizmodo, Boing Boing, Lifehacker, Macworld, The Daily Dot và nhiều tờ báo khác.
+
+TÍNH NĂNG:
+• Duyệt web qua mạng lưới Tor:
+- Bảo vệ quyền riêng tư của bạn khỏi sự theo dõi
+- Bảo mật lưu lượng của bạn khỏi nhà mạng và mạng không dây kém bảo mật.
+- Hỗ trợ HTTPS Everywhere, tính năng tự động chuyển lên HTTPS nếu trang web hỗ trợ
+- Truy cập trang web đuôi .onion qua mạng lưới Tor.
+
+• Chiến đấu chống theo dõi trực tuyến: Chặn script, tự động xóa cookie và cửa sổ, dựa trên tùy chỉnh của bạn.
+
+• Và nhiều tính năng tăng độ riêng tư nữa!
+
+TỪ CHỐI TRÁCH NHIỆM:
+- Duyệt web sẽ chậm hơn nhiều so với duyệt web thông thường hay VPN vì lưu lượng của bạn sẽ được mã hóa và luân chuyển trên mạng lưới Tor.
+
+- Tệp đa phương tiện thường thoát khỏi Tor và gây ảnh hưởng đến độ riêng tư của bạn; Tệp video và phát video bị chặn theo mặc định và không hỗ trợ bởi Onion Browser.
+
+- Onion Browser có thể không hoạt động trên mạng bị kiểm duyệt. Nếu ứng dụng không kết nối, hãy thử dùng cầu nối (hoặc chuyển sang cầu nối khác), đóng rồi khởi động lại ứng dụng.
+
+- Tự chấp nhận rủi ro có thể gặp phải khi dùng Onion Browser; hãy nhớ rằng dữ liệu nhạy cảm không phải lúc nào cũng nằm trên điện thoại.
+
+** Onion Browser là ứng dụng miễn phí và mã nguồn mở. Bạn có thể đọc thêm về Onion Browser và cách để hỗ trợ phát triển Tor trên iOS bằng cách truy cập onionbrowser.com **
