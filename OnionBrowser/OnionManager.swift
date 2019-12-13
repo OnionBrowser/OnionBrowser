@@ -162,48 +162,26 @@ import Foundation
         }
         
         torController?.setConfs(confs, completion: { (_, _) in
+			self.torReconnect()
         })
-        torReconnect()
     }
 
-    @objc func torReconnect() {
-        //torController.setConfForKey("DisableNetwork", withValue: "1", completion: { (_, _) in
-        //})
-
-        torController?.sendCommand("RELOAD", arguments: nil, data: nil, observer: { (_, _, _) -> Bool in
-            return true
-        })
-        torController?.sendCommand("SIGNAL NEWNYM", arguments: nil, data: nil, observer: { (_, _, _) -> Bool in
-            return true
-        })
-
-        //torController.setConfForKey("DisableNetwork", withValue: "0", completion: { (_, _) in
-        //})
+	@objc func torReconnect(_ callback: ((_ success: Bool) -> Void)? = nil) {
+		torController?.resetConnection(callback)
     }
+
+	func closeCircuits(_ circuits: [TorCircuit], _ callback: @escaping ((_ success: Bool) -> Void)) {
+		torController?.close(circuits, completion: callback)
+	}
 
 	/**
-	Acquire info about current circuit.
-
-	// TODO: Actually implement inside `Tor.framework`.
+	Get all fully built circuits and detailed info about their nodes.
 
 	- parameter callback: Called, when all info is available.
-	- parameter nodes: The nodes, the current circuit consists of.
+	- parameter circuits: A list of circuits and the nodes they consist of.
 	*/
-	func getCurrentCircuit(_ callback: @escaping ((_ nodes: [CircuitViewController.Node]) -> Void)) {
-		// GETINFO circuit-status
-		// GETINFO ns/name/houseofcards
-		// GETINFO ip-to-country/10.0.0.1
-
-		torController?.sendCommand("GETINFO circuit-status", arguments: nil, data: nil, observer: { (codes, lines, _) -> Bool in
-
-			print("codes=\(codes), lines=\(lines.map({ String(data: $0, encoding: .utf8) ?? "" }).joined(separator: "\n"))")
-
-			callback([CircuitViewController.Node(country: "Node 1 Country", ip: "10.0.0.1"),
-					  CircuitViewController.Node(country: "Node 2 Country", ip: "10.0.0.2"),
-					  CircuitViewController.Node(country: "Node 3 Country", ip: "10.0.0.3")])
-
-			return true
-		})
+	func getCircuits(_ callback: @escaping ((_ circuits: [TorCircuit]) -> Void)) {
+		torController?.getCircuits(callback)
 	}
 
     @objc func startTor(delegate: OnionManagerDelegate?) {

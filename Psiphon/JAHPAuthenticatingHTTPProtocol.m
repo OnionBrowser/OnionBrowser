@@ -333,6 +333,10 @@ static JAHPQNSURLSessionDemux *sharedDemuxInstance = nil;
 		proxyDict[@"SOCKSEnable"] = @YES;
 		proxyDict[(NSString *)kCFStreamPropertySOCKSProxyHost] = proxyHost;
 		proxyDict[(NSString *)kCFStreamPropertySOCKSProxyPort] = [NSNumber numberWithInteger: socksProxyPort];
+		// This is just to tag the in-use circuits so we can identify the currently
+		// used circuit in CircuitViewController#reloadCircuits.
+		proxyDict[(NSString *)kCFStreamPropertySOCKSUser] = @"onionbrowser";
+		proxyDict[(NSString *)kCFStreamPropertySOCKSPassword] = @"onionbrowser";
 	}
 
 	if (httpProxyPort > 0) {

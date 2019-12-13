@@ -34,7 +34,7 @@ class CircuitNodeCell: UITableViewCell {
 		topLink.isHidden = isFirst
 		bottomLink.isHidden = isLast
 
-		let text = NSMutableAttributedString(string: node.country)
+		let text = NSMutableAttributedString(string: node.title)
 
 		if let ip = node.ip {
 			text.append(NSAttributedString(string: " "))
