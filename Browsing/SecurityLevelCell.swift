@@ -55,7 +55,7 @@ class SecurityLevelCell: UITableViewCell {
 	@discardableResult
 	func set(_ preset: SecurityPreset) -> SecurityLevelCell {
 
-		numberLb.text = Formatter.localize(preset.rawValue + 1)
+		numberLb.text = preset.shortcode
 
 		let text = NSMutableAttributedString(string: preset.description)
 

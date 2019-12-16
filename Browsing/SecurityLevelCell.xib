@@ -25,9 +25,9 @@
                             <constraint firstAttribute="width" constant="24" id="ndb-kI-9CK"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WqP-nA-8hf">
-                        <rect key="frame" x="23" y="16" width="10" height="20.5"/>
-                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WqP-nA-8hf">
+                        <rect key="frame" x="24" y="15.5" width="8" height="19.5"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -72,7 +72,7 @@
                     <constraint firstItem="Zz1-d6-ynf" firstAttribute="leading" secondItem="Kkj-sZ-Bqa" secondAttribute="trailing" constant="8" id="VQf-Dc-IIu"/>
                     <constraint firstItem="Ucg-KG-MU8" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="XEx-5Y-9xd"/>
                     <constraint firstItem="Ucg-KG-MU8" firstAttribute="leading" secondItem="ygC-tF-aNh" secondAttribute="trailing" constant="8" id="Ywy-tH-fi6"/>
-                    <constraint firstItem="WqP-nA-8hf" firstAttribute="centerY" secondItem="Kkj-sZ-Bqa" secondAttribute="centerY" id="brF-gr-seW"/>
+                    <constraint firstItem="WqP-nA-8hf" firstAttribute="centerY" secondItem="Kkj-sZ-Bqa" secondAttribute="centerY" constant="-1" id="brF-gr-seW"/>
                     <constraint firstItem="Ucg-KG-MU8" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="hCw-vu-slY"/>
                     <constraint firstItem="Kkj-sZ-Bqa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="l5r-g6-tim"/>
                     <constraint firstItem="WqP-nA-8hf" firstAttribute="centerX" secondItem="Kkj-sZ-Bqa" secondAttribute="centerX" id="m3X-Ij-gZB"/>

@@ -38,7 +38,7 @@ UITableViewDataSource, UITableViewDelegate {
 
 	override var preferredContentSize: CGSize {
 		get {
-			return CGSize(width: 300, height: 320)
+			return CGSize(width: 300, height: 320 + (current == .custom ? SecurityLevelCell.height : 0))
 		}
 		set {
 			// Ignore.
@@ -46,12 +46,11 @@ UITableViewDataSource, UITableViewDelegate {
 	}
 
 	private var presets: [SecurityPreset] = [.insecure, .medium, .secure]
-	private var current: SecurityPreset?
+
+	private lazy var current = SecurityPreset(HostSettings(orDefaultsForHost: host))
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-
-		current = SecurityPreset(HostSettings(orDefaultsForHost: host))
 
 		if current == .custom {
 			presets.append(.custom)
@@ -63,9 +62,7 @@ UITableViewDataSource, UITableViewDelegate {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 
-		if let current = current,
-			let row = presets.firstIndex(of: current) {
-
+		if let row = presets.firstIndex(of: current) {
 			tableView.selectRow(at: IndexPath(row: row, section: 0), animated: animated, scrollPosition: .none)
 		}
 	}

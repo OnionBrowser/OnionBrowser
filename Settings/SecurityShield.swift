@@ -44,6 +44,7 @@ class SecurityShield: UIView {
 
 		view.font = .systemFont(ofSize: 26, weight: .black)
 		view.textColor = .white
+		view.textAlignment = .center
 
 		view.translatesAutoresizingMaskIntoConstraints = false
 
@@ -90,7 +91,7 @@ class SecurityShield: UIView {
 
 		super.init(frame: .zero)
 
-		number.text = Formatter.localize(preset.rawValue + 1)
+		number.text = preset.shortcode
 
 		title.text = preset.description
 

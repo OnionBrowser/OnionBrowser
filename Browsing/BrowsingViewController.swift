@@ -350,24 +350,7 @@ class BrowsingViewController: UIViewController, TabDelegate {
 			return
 		}
 
-		let securityId: String
-
-		switch SecurityPreset(HostSettings(orDefaultsForHost: tab.url.host)) {
-
-		case .insecure:
-			securityId = Formatter.localize(1)
-
-		case .medium:
-			securityId = Formatter.localize(2)
-
-		case .secure:
-			securityId = Formatter.localize(3)
-
-		default:
-			securityId = SecurityPreset.custom.description.first?.uppercased() ?? "C"
-		}
-
-		securityBt.setTitle(securityId)
+		securityBt.setTitle(SecurityPreset(HostSettings(orDefaultsForHost: tab.url.host)).shortcode)
 		updateEncryptionBt(tab.secureMode)
 		backBt.isEnabled = tab.canGoBack
 		frwrdBt.isEnabled = tab.canGoForward

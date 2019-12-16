@@ -28,6 +28,16 @@ enum SecurityPreset: Int, CustomStringConvertible {
 		}
 	}
 
+	var shortcode: String {
+		switch self {
+		case .insecure, .medium, .secure:
+			return Formatter.localize(rawValue + 1)
+
+		default:
+			return description.first?.uppercased() ?? "C"
+		}
+	}
+
 	var recommendation: String? {
 		switch self {
 		case .insecure:
