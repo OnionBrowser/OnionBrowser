@@ -279,6 +279,6 @@ import StoreKit
 			}
 		}
 
-		present(alert, animated: true)
+		present(alert)
 	}
 }

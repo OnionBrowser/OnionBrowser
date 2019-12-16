@@ -120,6 +120,7 @@
 		A099DE21238E8C2C00B79B20 /* Tab+Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = A099DE20238E8C2C00B79B20 /* Tab+Gestures.swift */; };
 		A09A2A972254B3D100A3EEF0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A09A2A992254B3D100A3EEF0 /* InfoPlist.strings */; };
 		A0B4838C234DEBE100F9701B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B4838B234DEBE100F9701B /* SettingsViewController.swift */; };
+		A0C1276023A7B39600CA10A8 /* UIViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C1275F23A7B39600CA10A8 /* UIViewController+Helpers.swift */; };
 		A0C3770E1F47342C0039198E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0C3770D1F47342C0039198E /* CoreData.framework */; };
 		A0C7611623912DE5004E9A15 /* BrowsingViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0C7611523912A92004E9A15 /* BrowsingViewController-iPad.xib */; };
 		A0D419DD2386C6370055AC33 /* URL+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D419DC2386C6370055AC33 /* URL+Helpers.swift */; };
@@ -814,6 +815,7 @@
 		A0AE9774228C619E00DFF1E3 /* ca-ES */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ca-ES"; path = "ca-ES.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		A0B4838B234DEBE100F9701B /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A0BFBE032010F48100BE2980 /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ga; path = Endless/ga.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A0C1275F23A7B39600CA10A8 /* UIViewController+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Helpers.swift"; sourceTree = "<group>"; };
 		A0C3770D1F47342C0039198E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		A0C7611523912A92004E9A15 /* BrowsingViewController-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "BrowsingViewController-iPad.xib"; sourceTree = "<group>"; };
 		A0D419DC2386C6370055AC33 /* URL+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Helpers.swift"; sourceTree = "<group>"; };
@@ -1488,6 +1490,7 @@
 				A006A18A2388185900B0344A /* String+Helpers.swift */,
 				A072C4D2227C684F0022BC58 /* TabSecurity.swift */,
 				A0E755F82372F119006276DB /* UIView+Helpers.swift */,
+				A0C1275F23A7B39600CA10A8 /* UIViewController+Helpers.swift */,
 				A0E755FA2373597D006276DB /* UIButton+Helpers.swift */,
 				A0D419DC2386C6370055AC33 /* URL+Helpers.swift */,
 			);
@@ -2446,6 +2449,7 @@
 				A006A1892388123D00B0344A /* Tab+UIWebViewDelegate.swift in Sources */,
 				A006A1872387E20200B0344A /* Tab.swift in Sources */,
 				A0E755F32372CA77006276DB /* BrowsingViewController+UITextFieldDelegate.swift in Sources */,
+				A0C1276023A7B39600CA10A8 /* UIViewController+Helpers.swift in Sources */,
 				A053136E22F1C737006655EC /* JAHPAuthenticatingHTTPProtocol.m in Sources */,
 				A0821DD8238D3E3800443839 /* Tab+Activity.swift in Sources */,
 				A053137822F1EC19006655EC /* DownloadHelper.m in Sources */,

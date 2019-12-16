@@ -167,11 +167,7 @@ POEDelegate, UITableViewDataSource, UITableViewDelegate {
 			customBridges: ud.stringArray(forKey: CUSTOM_BRIDGES),
 			delegate: self)
 
-		vc.modalPresentationStyle = .popover
-		vc.popoverPresentationController?.sourceView = sender.superview
-		vc.popoverPresentationController?.sourceRect = sender.frame
-
-		present(vc, animated: true)
+		present(vc, sender)
 	}
 
 

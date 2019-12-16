@@ -99,7 +99,15 @@ UITableViewDataSource, UITableViewDelegate {
 	// MARK: Actions
 
 	@IBAction func customize() {
-		// TODO
+		if HostSettings.forHost(host) == nil {
+			HostSettings(forHost: host, withDict: HostSettings.defaults())?.save()
+			HostSettings.persist()
+		}
+
+		let vc = SecurityViewController()
+		vc.host = host
+
+		present(UINavigationController(rootViewController: vc), customizeBt)
 	}
 
 	@IBAction func learnMore() {
