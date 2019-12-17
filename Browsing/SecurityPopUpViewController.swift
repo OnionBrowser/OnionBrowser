@@ -80,9 +80,11 @@ UITableViewDataSource, UITableViewDelegate {
 		changeObserver = NotificationCenter.default.addObserver(
 			forName: .hostSettingsChanged, object: nil, queue: .main)
 		{ notification in
-			if let host = notification.object as? String,
-				host == self.host,
-				self.current != SecurityPreset(HostSettings.for(host)) {
+			let host = notification.object as? String
+
+			// Hide on default changes and specific changes for this host.
+			if (host == nil || host == self.host)
+				&& self.current != SecurityPreset(HostSettings.for(host)) {
 
 				self.dismiss(animated: true)
 			}

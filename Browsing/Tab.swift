@@ -272,10 +272,12 @@ class Tab: UIView {
 		// Immediately refresh the page if its host settings were changed, so
 		// users sees the impact of their changes.
 		NotificationCenter.default.addObserver(forName: .hostSettingsChanged,
-											   object: nil, queue: .main) { notification in
-			if let host = notification.object as? String,
-				host == self.url.host {
+											   object: nil, queue: .main)
+		{ notification in
+			let host = notification.object as? String
 
+			// Refresh on default changes and specific changes for this host.
+			if host == nil || host == self.url.host {
 				self.refresh()
 			}
 		}

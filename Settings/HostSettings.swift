@@ -373,8 +373,10 @@ class HostSettings: NSObject {
 	func save() -> HostSettings.Type {
 		HostSettings.raw[host] = raw
 
+		let host = self.host == HostSettings.defaultHost ? nil : self.host
+
 		DispatchQueue.main.async {
-			NotificationCenter.default.post(name: .hostSettingsChanged, object: self.host)
+			NotificationCenter.default.post(name: .hostSettingsChanged, object: host)
 		}
 
 		return type(of: self)
