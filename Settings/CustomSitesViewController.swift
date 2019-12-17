@@ -38,13 +38,10 @@ class CustomSitesViewController: SearchableTableViewController {
 		super.viewWillAppear(animated)
 
 		// Reload, could have been changed by AddSiteViewController
-		hosts = HostSettings.sortedHosts() as? [String] ?? []
-
-		// We only want to have the real hosts here.
-		hosts.removeAll { $0 == HOST_SETTINGS_DEFAULT }
+		hosts = HostSettings.hosts
 
 		for host in hosts {
-			levels[host] = SecurityPreset(HostSettings.forHost(host))
+			levels[host] = SecurityPreset(HostSettings.for(host))
 		}
 
 		tableView.reloadData()
@@ -109,8 +106,7 @@ class CustomSitesViewController: SearchableTableViewController {
 			filtered.removeAll { $0 == host }
 			levels.removeValue(forKey: host)
 
-			HostSettings.remove(forHost: host)
-			HostSettings.persist()
+			HostSettings.remove(host).store()
 
             tableView.deleteRows(at: [indexPath], with: .fade)
         }

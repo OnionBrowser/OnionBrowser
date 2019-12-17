@@ -3,7 +3,7 @@
 #import <OCMock/OCMock.h>
 
 #import "CookieJar.h"
-#import "HostSettings.h"
+#import "OnionBrowser-Swift.h"
 
 #define TRACE_COOKIES
 
@@ -20,8 +20,8 @@
 
 	cookieJar = [[CookieJar alloc] init];
 
-	[HostSettings overrideHosts:[[NSMutableDictionary alloc] init]];
-	HostSettings *hs = [[HostSettings alloc] initForHost:@"reddit.com" withDict:@{ HOST_SETTINGS_KEY_WHITELIST_COOKIES: HOST_SETTINGS_VALUE_YES }];
+	HostSettings *hs = [HostSettings for:@"reddit.com"];
+	hs.whitelistCookies = YES;
 	[hs save];
 }
 

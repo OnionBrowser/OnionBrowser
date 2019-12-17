@@ -279,7 +279,7 @@ class SettingsViewController: FormViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 
-		defaultSecurityRow.value = SecurityPreset(HostSettings.default()).description
+		defaultSecurityRow.value = SecurityPreset(HostSettings.forDefault()).description
 		defaultSecurityRow.updateCell()
 	}
 

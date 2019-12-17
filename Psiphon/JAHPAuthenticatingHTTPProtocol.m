@@ -57,7 +57,6 @@
 #import "JAHPQNSURLSessionDemux.h"
 
 #import "AppDelegate.h"
-#import "HostSettings.h"
 #import "URLBlocker.h"
 #import "OnionBrowser-Swift.h"
 #import "SilenceWarnings.h"
@@ -181,9 +180,7 @@ static NSString *_javascriptToInject;
 		return js;
 	}
 
-	HostSettings *hs = [HostSettings settingsOrDefaultsForHost:url.host];
-
-	NSString *block = [hs boolSettingOrDefault:HOST_SETTINGS_KEY_ALLOW_WEBRTC] ? @"false" : @"true";
+	NSString *block = [HostSettings for:url.host].webRtc ? @"false" : @"true";
 
 	js = [[self javascriptToInject]
 		  stringByReplacingOccurrencesOfString:@"\"##BLOCK_WEBRTC##\""
@@ -241,10 +238,10 @@ static NSString *_javascriptToInject;
 + (void)start
 {
 	[NSURLProtocol registerClass:self];
-	
+
 	[NSNotificationCenter.defaultCenter
 	 addObserver:self selector:@selector(clearInjectCache)
-	 name:HOST_SETTINGS_CHANGED object:nil];
+	 name:HostSettings.hostSettingsChanged object:nil];
 }
 
 + (void)stop {
@@ -557,8 +554,11 @@ static NSString * kJAHPRecursiveRequestFlagProperty = @"com.jivesoftware.JAHPAut
 		host = mutableRequest.URL.host;
 	}
 
-	NSString *userAgent = [[HostSettings settingsOrDefaultsForHost:host] settingOrDefault:HOST_SETTINGS_KEY_USER_AGENT];
-	if (userAgent.length == 0) {
+	HostSettings *hs = [HostSettings for:host];
+
+	NSString *userAgent = hs.userAgent;
+	if (userAgent.length == 0)
+	{
 		userAgent = _userAgent;
 	}
 
@@ -597,7 +597,7 @@ static NSString * kJAHPRecursiveRequestFlagProperty = @"com.jivesoftware.JAHPAut
 	if (!_isOrigin
 		&& _wvt.secureMode > SecureModeInsecure
 		&& ![mutableRequest.URL.scheme.lowercaseString isEqualToString:@"https"]
-		&& ![[HostSettings settingsOrDefaultsForHost:host] boolSettingOrDefault:HOST_SETTINGS_KEY_ALLOW_MIXED_MODE])
+		&& !hs.mixedMode)
 	{
 		[_wvt setSecureMode:SecureModeMixed];
 		return nil;
@@ -1091,7 +1091,7 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 
 			BOOL successfulAuth = NO;
 
-			if ([[HostSettings settingsOrDefaultsForHost:task.currentRequest.URL.host] boolSettingOrDefault:HOST_SETTINGS_KEY_IGNORE_TLS_ERRORS])
+			if ([HostSettings for:task.currentRequest.URL.host].ignoreTlsErrors)
 			{
 				successfulAuth = YES;
 
@@ -1276,7 +1276,7 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 		host = dataTask.currentRequest.URL.host;
 	}
 
-	NSString *cspMode = [[HostSettings settingsOrDefaultsForHost:host] settingOrDefault:HOST_SETTINGS_KEY_CSP];
+	ContentPolicy cspMode = [HostSettings for:host].contentPolicy;
 
 	NSMutableDictionary *responseHeaders = [[NSMutableDictionary alloc] initWithDictionary:[httpResponse allHeaderFields]];
 
@@ -1286,7 +1286,7 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 
 	// Allow styles and images, nothing else. However, don't open up styles and
 	// images restrictions further than the original server response allows.
-	if ([cspMode isEqualToString:HOST_SETTINGS_CSP_STRICT]) {
+	if (cspMode == ContentPolicyStrict) {
 		HostSource *all = [HostSource all];
 
 		Directive *style = [cspHeader get:StyleDirective.self];
@@ -1308,7 +1308,7 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 		cspHeader = [[CSPHeader alloc] initWithDirectives:@[deflt, style, img, sandbox]];
 	}
 	// Don't allow XHR, WebSockets, audio and video.
-	else if ([cspMode isEqualToString:HOST_SETTINGS_CSP_BLOCK_CONNECT])
+	else if (cspMode == ContentPolicyBlockXhr)
 	{
 		[cspHeader addOrReplaceDirective:[[ConnectDirective alloc] initWithSources:@[none]]];
 		[cspHeader addOrReplaceDirective:[[MediaDirective alloc] initWithSources:@[none]]];

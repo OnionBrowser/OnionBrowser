@@ -45,10 +45,9 @@ class AddSiteViewController: FormViewController {
 	@objc private func add() {
 		if let host = urlRow.value?.host ?? urlRow.value?.path {
 
-			// Don't overwrite host settings, if we already have them for this host!
-			if HostSettings.forHost(host) == nil {
-				HostSettings(forHost: host, withDict: HostSettings.defaults())?.save()
-				HostSettings.persist()
+			// Create full host settings for this host, if not yet available.
+			if !HostSettings.has(host) {
+				HostSettings(for: host, withDefaults: true).save().store()
 			}
 
 			if var vcs = navigationController?.viewControllers {

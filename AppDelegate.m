@@ -9,7 +9,6 @@
 
 #import "AppDelegate.h"
 #import "HTTPSEverywhere.h"
-#import "HostSettings.h"
 #import "DownloadHelper.h"
 
 #import "UIResponder+FirstResponder.h"
@@ -57,8 +56,8 @@
 	
 	if (lastBuild != thisBuild) {
 		NSLog(@"migrating from build %ld -> %ld", lastBuild, thisBuild);
-		[HostSettings migrateFromBuild:lastBuild toBuild:thisBuild];
-		
+		// Nothing to migrate, currently.
+
 		[userDefaults setInteger:thisBuild forKey:@"last_build"];
 		[userDefaults synchronize];
 	}
@@ -116,7 +115,7 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
 	if (![self areTesting]) {
-		[HostSettings persist];
+		[HostSettings store];
 		[[self hstsCache] persist];
 	}
 	

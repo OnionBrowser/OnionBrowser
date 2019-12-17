@@ -7,7 +7,6 @@
 
 #import "AppDelegate.h"
 #import "CookieJar.h"
-#import "HostSettings.h"
 #import "HTTPSEverywhere.h"
 #import "OnionBrowser-Swift.h"
 
@@ -80,15 +79,12 @@
 			
 			NSLog(@"[CookieJar] migrating old cookie whitelist to HostSettings: %@", list);
 			for (NSString *host in [list allKeys]) {
-				HostSettings *hc = [HostSettings forHost:host];
-				if (hc == nil)
-					hc = [[HostSettings alloc] initForHost:host withDict:nil];
-				
-				[hc setSetting:HOST_SETTINGS_KEY_WHITELIST_COOKIES toValue:HOST_SETTINGS_VALUE_YES];
+				HostSettings *hc = [HostSettings for:host];
+				hc.whitelistCookies = YES;
 				[hc save];
 			}
 			
-			[HostSettings persist];
+			[HostSettings store];
 			[fileManager removeItemAtPath:whitelist error:nil];
 		}
 	}
@@ -100,32 +96,7 @@
 
 - (BOOL)isHostWhitelisted:(NSString *)host
 {
-	host = [host lowercaseString];
-
-	HostSettings *hs = [HostSettings forHost:host];
-	if (hs && [hs boolSettingOrDefault:HOST_SETTINGS_KEY_WHITELIST_COOKIES]) {
-#ifdef TRACE_COOKIE_WHITELIST
-		NSLog(@"[CookieJar] found entry for %@", host);
-#endif
-		return YES;
-	}
-	
-	/* for a cookie host of x.y.z.example.com, try y.z.example.com, z.example.com, example.com, etc. */
-	NSArray *hostp = [host componentsSeparatedByString:@"."];
-	for (int i = 1; i < [hostp count]; i++) {
-		NSString *wc = [[hostp subarrayWithRange:NSMakeRange(i, [hostp count] - i)] componentsJoinedByString:@"."];
-
-		if ((hs = [HostSettings forHost:wc]) && [hs boolSettingOrDefault:HOST_SETTINGS_KEY_WHITELIST_COOKIES]) {
-#ifdef TRACE_COOKIE_WHITELIST
-			NSLog(@"[CookieJar] found entry for component %@ in %@", wc, host);
-#endif
-			return YES;
-		}
-	}
-	
-	/* no match for any of these hosts, use the default */
-	hs = [HostSettings defaultHostSettings];
-	return [hs boolSettingOrDefault:HOST_SETTINGS_KEY_WHITELIST_COOKIES];
+	return [HostSettings for:host.lowercaseString].whitelistCookies;
 }
 
 - (NSArray *)sortedHostCounts

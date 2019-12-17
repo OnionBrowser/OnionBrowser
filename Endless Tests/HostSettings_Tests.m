@@ -1,5 +1,5 @@
 #import <XCTest/XCTest.h>
-#import "HostSettings.h"
+#import "OnionBrowser-Swift.h"
 
 @interface HostSettings_Tests : XCTestCase
 @end
@@ -10,30 +10,26 @@
 {
 	[super setUp];
 	
-	[HostSettings overrideHosts:[[NSMutableDictionary alloc] init]];
-	
-	HostSettings *hs = [[HostSettings alloc] initForHost:HOST_SETTINGS_DEFAULT withDict:nil];
+	HostSettings *hs = [HostSettings for:nil]; // Default host.
 	[hs save];
 }
 
 - (void)testJavascriptDefault
 {
-	HostSettings *hs = [HostSettings defaultHostSettings];
-	[hs setSetting:HOST_SETTINGS_KEY_CSP toValue:HOST_SETTINGS_CSP_STRICT];
+	HostSettings *hs = [HostSettings for:nil];
+	hs.contentPolicy = ContentPolicyStrict;
 	[hs save];
 	
 	/* not present, should use defaults */
-	HostSettings *blhs = [HostSettings settingsOrDefaultsForHost:@"browserleaks.com"];
-	NSString *c = [blhs settingOrDefault:HOST_SETTINGS_KEY_CSP];
-	XCTAssertTrue([c isEqualToString:HOST_SETTINGS_CSP_STRICT]);
-	
+	HostSettings *blhs = [HostSettings for:@"browserleaks.com"];
+	XCTAssertEqual(blhs.contentPolicy, ContentPolicyStrict);
+
 	/* present but not changed, should still use defaults */
-	HostSettings *blhs2 = [[HostSettings alloc] initForHost:@"browserleaks.com" withDict:nil];
+	HostSettings *blhs2 = [[HostSettings alloc] initFor:@"browserleaks.com" withDefaults:NO];
 	[blhs2 save];
 	
-	HostSettings *blhs3 = [HostSettings settingsOrDefaultsForHost:@"browserleaks.com"];
-	NSString *c2 = [blhs3 settingOrDefault:HOST_SETTINGS_KEY_CSP];
-	XCTAssertTrue([c2 isEqualToString:HOST_SETTINGS_CSP_STRICT]);
+	HostSettings *blhs3 = [HostSettings for:@"browserleaks.com"];
+	XCTAssertEqual(blhs3.contentPolicy, ContentPolicyStrict);
 }
 
 @end

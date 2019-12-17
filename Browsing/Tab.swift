@@ -269,6 +269,17 @@ class Tab: UIView {
 			name: NSNotification.Name(rawValue: "WebProgressEstimateChangedNotification"),
 			object: webView.value(forKeyPath: "documentView.webView"))
 
+		// Immediately refresh the page if its host settings were changed, so
+		// users sees the impact of their changes.
+		NotificationCenter.default.addObserver(forName: .hostSettingsChanged,
+											   object: nil, queue: .main) { notification in
+			if let host = notification.object as? String,
+				host == self.url.host {
+
+				self.refresh()
+			}
+		}
+
 		// This doubles as a way to force the webview to initialize itself,
 		// otherwise the UA doesn't seem to set right before refreshing a previous
 		// restoration state.

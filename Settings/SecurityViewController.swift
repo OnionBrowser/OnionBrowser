@@ -15,41 +15,17 @@ class SecurityViewController: FormViewController {
 
 	var host: String?
 
-    enum ContentPolicy: String, CustomStringConvertible {
-        case open = "open"
-        case blockXhr = "block_connect"
-        case strict = "strict"
-
-		var description: String {
-			switch self {
-			case .open:
-				return NSLocalizedString("Open (normal browsing mode)",
-				comment: "Content policy option")
-
-			case .blockXhr:
-				return NSLocalizedString("No XHR/WebSocket/Video connections",
-				comment: "Content policy option")
-
-			default:
-				return NSLocalizedString("Strict (no JavaScript, video, etc.)",
-				comment: "Content policy option")
-			}
-		}
-    }
-
-	private lazy var hostSettings = host != nil
-		? HostSettings.forHost(host)
-		: HostSettings.default()
+	private lazy var hostSettings = host?.isEmpty ?? true
+		? HostSettings.forDefault()
+		: HostSettings.for(host)
 
 	private let securityPresetsRow = SecurityPresetsRow()
 
-	private let contentPolicyRow = PushRow<ContentPolicy>() {
+	private let contentPolicyRow = PushRow<HostSettings.ContentPolicy>() {
 		$0.title = NSLocalizedString("Content Policy", comment: "Option title")
 		$0.selectorTitle = $0.title
 
-		$0.options = [ContentPolicy.open,
-					  ContentPolicy.blockXhr,
-					  ContentPolicy.strict]
+		$0.options = [.open, .blockXhr, .strict]
 
 		$0.cell.textLabel?.numberOfLines = 0
 	}
@@ -81,13 +57,11 @@ class SecurityViewController: FormViewController {
 
 		securityPresetsRow.value = SecurityPreset(hostSettings)
 
-		if let value = hostSettings?.settingOrDefault(HOST_SETTINGS_KEY_CSP) {
-			contentPolicyRow.value = ContentPolicy(rawValue: value)
-		}
+		contentPolicyRow.value = hostSettings.contentPolicy
 
-		webRtcRow.value = hostSettings?.boolSettingOrDefault(HOST_SETTINGS_KEY_ALLOW_WEBRTC)
+		webRtcRow.value = hostSettings.webRtc
 
-		mixedModeRow.value = hostSettings?.boolSettingOrDefault(HOST_SETTINGS_KEY_ALLOW_MIXED_MODE)
+		mixedModeRow.value = hostSettings.mixedMode
 
 
         form
@@ -103,13 +77,11 @@ class SecurityViewController: FormViewController {
 				// when values actually change. So this might lead to a host
 				// still being configured for default values, although these should
 				// be set hard.
-				self.hostSettings?.setSetting(HOST_SETTINGS_KEY_CSP, toValue: values.csp)
-				self.hostSettings?.setSetting(HOST_SETTINGS_KEY_ALLOW_WEBRTC, toValue: values.webRtc
-					? HOST_SETTINGS_VALUE_YES : HOST_SETTINGS_VALUE_NO)
-				self.hostSettings?.setSetting(HOST_SETTINGS_KEY_ALLOW_MIXED_MODE, toValue: values.mixedMode
-					? HOST_SETTINGS_VALUE_YES : HOST_SETTINGS_VALUE_NO)
+				self.hostSettings.contentPolicy = values.csp
+				self.hostSettings.webRtc = values.webRtc
+				self.hostSettings.mixedMode = values.mixedMode
 
-				self.contentPolicyRow.value = ContentPolicy(rawValue: values.csp)
+				self.contentPolicyRow.value = values.csp
 				self.webRtcRow.value = values.webRtc
 				self.mixedModeRow.value = values.mixedMode
 
@@ -135,20 +107,19 @@ class SecurityViewController: FormViewController {
 			}
 		}
 		.onChange { row in
-			self.hostSettings?.setSetting(HOST_SETTINGS_KEY_CSP, toValue: row.value?.rawValue)
+			self.hostSettings.contentPolicy = row.value ?? .strict
 			self.securityPresetsRow.value = SecurityPreset(self.hostSettings)
 			self.securityPresetsRow.updateCell()
 		}
 
 		<<< SwitchRow() {
 			$0.title = NSLocalizedString("Universal Link Protection", comment: "Option title")
-			$0.value = hostSettings?.boolSettingOrDefault(HOST_SETTINGS_KEY_UNIVERSAL_LINK_PROTECTION)
+			$0.value = hostSettings.universalLinkProtection
 			$0.cell.switchControl.onTintColor = .poeAccent
 			$0.cell.textLabel?.numberOfLines = 0
 		}
 		.onChange { row in
-			self.hostSettings?.setSetting(HOST_SETTINGS_KEY_UNIVERSAL_LINK_PROTECTION,
-											 toValue: row.value ?? false ? HOST_SETTINGS_VALUE_YES : HOST_SETTINGS_VALUE_NO)
+			self.hostSettings.universalLinkProtection = row.value ?? false
 		}
 
 		+++ Section(footer: NSLocalizedString("Allow hosts to access WebRTC functions.",
@@ -156,8 +127,7 @@ class SecurityViewController: FormViewController {
 
 		<<< webRtcRow
 		.onChange { row in
-			self.hostSettings?.setSetting(HOST_SETTINGS_KEY_ALLOW_WEBRTC,
-											 toValue: row.value ?? false ? HOST_SETTINGS_VALUE_YES : HOST_SETTINGS_VALUE_NO)
+			self.hostSettings.webRtc = row.value ?? false
 
 			// Cannot have WebRTC while blocking everything besides images and styles.
 			// So need to lift restrictions there, too.
@@ -175,8 +145,7 @@ class SecurityViewController: FormViewController {
 
 		<<< mixedModeRow
 		.onChange { row in
-			self.hostSettings?.setSetting(HOST_SETTINGS_KEY_ALLOW_MIXED_MODE,
-											 toValue: row.value ?? false ? HOST_SETTINGS_VALUE_YES : HOST_SETTINGS_VALUE_NO)
+			self.hostSettings.mixedMode = row.value ?? false
 			self.securityPresetsRow.value = SecurityPreset(self.hostSettings)
 			self.securityPresetsRow.updateCell()
 		}
@@ -186,13 +155,12 @@ class SecurityViewController: FormViewController {
 
 		<<< SwitchRow() {
 			$0.title = NSLocalizedString("Allow Persistent Cookies", comment: "Option title")
-			$0.value = hostSettings?.boolSettingOrDefault(HOST_SETTINGS_KEY_WHITELIST_COOKIES)
+			$0.value = hostSettings.whitelistCookies
 			$0.cell.switchControl.onTintColor = .poeAccent
 			$0.cell.textLabel?.numberOfLines = 0
 		}
 		.onChange { row in
-			self.hostSettings?.setSetting((HOST_SETTINGS_KEY_WHITELIST_COOKIES),
-											 toValue: row.value ?? false ? HOST_SETTINGS_VALUE_YES : HOST_SETTINGS_VALUE_NO)
+			self.hostSettings.whitelistCookies = row.value ?? false
 		}
 
 		let section = Section(header: NSLocalizedString("Other", comment: "Section title"),
@@ -202,17 +170,16 @@ class SecurityViewController: FormViewController {
 		form
 		+++ section
 
-		if hostSettings?.boolSettingOrDefault(HOST_SETTINGS_KEY_IGNORE_TLS_ERRORS) ?? false {
+		if hostSettings.ignoreTlsErrors {
 			section
 			<<< SwitchRow() {
 				$0.title = NSLocalizedString("Ignore TLS Errors", comment: "Option title")
-				$0.value = hostSettings?.boolSettingOrDefault(HOST_SETTINGS_KEY_IGNORE_TLS_ERRORS)
+				$0.value = hostSettings.ignoreTlsErrors
 				$0.cell.switchControl.onTintColor = .poeAccent
 				$0.cell.textLabel?.numberOfLines = 0
 			}
 			.onChange { row in
-				self.hostSettings?.setSetting((HOST_SETTINGS_KEY_IGNORE_TLS_ERRORS),
-												 toValue: HOST_SETTINGS_VALUE_NO)
+				self.hostSettings.ignoreTlsErrors = false
 
 				row.cell.switchControl.isEnabled = false
 			}
@@ -221,23 +188,18 @@ class SecurityViewController: FormViewController {
 		section
 		<<< TextRow() {
 			$0.title = NSLocalizedString("User Agent", comment: "Option title")
-			$0.value = hostSettings?.settingOrDefault(HOST_SETTINGS_KEY_USER_AGENT)
+			$0.value = hostSettings.userAgent
 			$0.cell.textLabel?.numberOfLines = 0
 		}
 		.onChange {row in
-			self.hostSettings?.setSetting(HOST_SETTINGS_KEY_USER_AGENT, toValue: row.value)
+			self.hostSettings.userAgent = row.value ?? ""
 		}
     }
 
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 
-		HostSettings.persist()
-
-		DispatchQueue.main.async {
-			NotificationCenter.default.post(name: NSNotification.Name(rawValue: HOST_SETTINGS_CHANGED),
-											object: nil, userInfo: nil)
-		}
+		hostSettings.save().store()
 	}
 
 

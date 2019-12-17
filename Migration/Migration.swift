@@ -11,10 +11,10 @@ import CoreData
 
 class Migration: NSObject {
 
-    private static var cspTranslation = [
-        HOST_SETTINGS_CSP_STRICT,
-        HOST_SETTINGS_CSP_BLOCK_CONNECT,
-        HOST_SETTINGS_CSP_OPEN
+	private static var cspTranslation: [HostSettings.ContentPolicy] = [
+		.strict,
+		.blockXhr,
+		.open
     ]
 
     /**
@@ -134,11 +134,9 @@ class Migration: NSObject {
                         // #define CONTENTPOLICY_BLOCK_CONNECT 1 // Blocks `connect-src` (XHR, CORS, WebSocket)
                         // #define CONTENTPOLICY_PERMISSIVE 2 // Allows all content (DANGEROUS: websockets leak outside tor)
 
-                        if let defaultHostSettings = HostSettings.default() {
-                            defaultHostSettings.setSetting(HOST_SETTINGS_KEY_CSP,
-                                                            toValue: cspTranslation[csp])
-                            defaultHostSettings.save()
-                        }
+						let hs = HostSettings.forDefault()
+						hs.contentPolicy = cspTranslation[csp]
+						hs.save().store()
                     }
 
                     // Minimal TLS version. Only the "1.2 only" setting will be migrated, as 

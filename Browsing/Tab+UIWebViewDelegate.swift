@@ -37,9 +37,7 @@ extension Tab: UIWebViewDelegate {
 		// Try to prevent universal links from triggering by refusing the initial request and starting a new one.
 		let iframe = url.absoluteString != request.mainDocumentURL?.absoluteString
 
-		let hs = HostSettings(orDefaultsForHost: url.host)
-
-		if hs?.boolSettingOrDefault(HOST_SETTINGS_KEY_UNIVERSAL_LINK_PROTECTION) ?? true {
+		if HostSettings.for(url.host).universalLinkProtection {
 			if iframe && navigationType != .linkClicked {
 				print("[Tab \(self.url)] not doing universal link workaround for iframe \(url).")
 			}
@@ -185,11 +183,11 @@ extension Tab: UIWebViewDelegate {
 					// We need the URL of the *failed* request, which should be in `u`.
 					// (From `error`'s `userInfo` dictionary.
 					if let url = URL(string: u!),
-						let hs = HostSettings.forHost(url.host) ?? HostSettings(forHost: url.host, withDict: nil) {
+						let host = url.host {
 
-						hs.setSetting(HOST_SETTINGS_KEY_IGNORE_TLS_ERRORS, toValue: HOST_SETTINGS_VALUE_YES)
-						hs.save()
-						HostSettings.persist()
+						let hs = HostSettings.for(host)
+						hs.ignoreTlsErrors = true
+						hs.save().store()
 
 						// Retry the failed request.
 						self.load(url)

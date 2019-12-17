@@ -350,7 +350,7 @@ class BrowsingViewController: UIViewController, TabDelegate {
 			return
 		}
 
-		securityBt.setTitle(SecurityPreset(HostSettings(orDefaultsForHost: tab.url.host)).shortcode)
+		securityBt.setTitle(SecurityPreset(HostSettings.for(tab.url.host)).shortcode)
 		updateEncryptionBt(tab.secureMode)
 		backBt.isEnabled = tab.canGoBack
 		frwrdBt.isEnabled = tab.canGoForward

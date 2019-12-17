@@ -11,7 +11,6 @@
 #import "OBSettingsConstants.h"
 #import "OldBookmark.h"
 #import "Bridge.h"
-#import "HostSettings.h"
 #import "Ipv6Tester.h"
 #import "Reachability.h"
 #import "AppDelegate.h"

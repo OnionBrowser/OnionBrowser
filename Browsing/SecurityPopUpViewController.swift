@@ -47,7 +47,17 @@ UITableViewDataSource, UITableViewDelegate {
 
 	private var presets: [SecurityPreset] = [.insecure, .medium, .secure]
 
-	private lazy var current = SecurityPreset(HostSettings(orDefaultsForHost: host))
+	private lazy var current = SecurityPreset(HostSettings.for(host))
+
+	private lazy var hostSettings: HostSettings? = {
+		guard let host = host, !host.isEmpty else {
+			return nil
+		}
+
+		return HostSettings.for(host)
+	}()
+
+	private var changeObserver: Any?
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -64,6 +74,27 @@ UITableViewDataSource, UITableViewDelegate {
 
 		if let row = presets.firstIndex(of: current) {
 			tableView.selectRow(at: IndexPath(row: row, section: 0), animated: animated, scrollPosition: .none)
+		}
+
+		// Dismiss ourselves if the user changed something in SecurityViewController.
+		changeObserver = NotificationCenter.default.addObserver(
+			forName: .hostSettingsChanged, object: nil, queue: .main)
+		{ notification in
+			if let host = notification.object as? String,
+				host == self.host,
+				self.current != SecurityPreset(HostSettings.for(host)) {
+
+				self.dismiss(animated: true)
+			}
+		}
+	}
+
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+
+		if let changeObserver = changeObserver {
+			NotificationCenter.default.removeObserver(changeObserver)
+			self.changeObserver = nil
 		}
 	}
 
@@ -88,6 +119,19 @@ UITableViewDataSource, UITableViewDelegate {
 		return SecurityLevelCell.height
 	}
 
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		current = presets[indexPath.row]
+
+		hostSettings?.contentPolicy = current.values?.csp ?? .strict
+		hostSettings?.webRtc = current.values?.webRtc ?? false
+		hostSettings?.mixedMode = current.values?.mixedMode ?? false
+
+		// Trigger creation, save and store of HostSettings for this host.
+		hostSettings?.save().store()
+
+		dismiss(animated: true)
+	}
+
 
 	// MARK: UIPopoverPresentationControllerDelegate
 
@@ -99,10 +143,8 @@ UITableViewDataSource, UITableViewDelegate {
 	// MARK: Actions
 
 	@IBAction func customize() {
-		if HostSettings.forHost(host) == nil {
-			HostSettings(forHost: host, withDict: HostSettings.defaults())?.save()
-			HostSettings.persist()
-		}
+		// Trigger creation, save and store of HostSettings for this host.
+		hostSettings?.save().store()
 
 		let vc = SecurityViewController()
 		vc.host = host
