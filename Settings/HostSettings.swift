@@ -121,14 +121,24 @@ class HostSettings: NSObject {
 	*/
 	@objc
 	class func `for`(_ host: String?) -> HostSettings {
+		// If no host given, return default host settings.
 		guard let host = host, !host.isEmpty else {
+			// If user-customized default host settings available, return these.
+			if has(defaultHost) {
+				return HostSettings(for: defaultHost, raw: raw[defaultHost]!)
+			}
+
+			// ...else return hardcoded defaults.
 			return HostSettings(for: defaultHost, withDefaults: true)
 		}
 
+		// If user-customized settings for this host available, return these.
 		if has(host) {
 			return HostSettings(for: host, raw: raw[host]!)
 		}
 
+		// ...else return new empty settings for this host which will trigger
+		// fall through logic to higher domain levels or default host settings.
 		return HostSettings(for: host, withDefaults: false)
 	}
 
