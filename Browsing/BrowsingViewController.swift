@@ -350,7 +350,17 @@ class BrowsingViewController: UIViewController, TabDelegate {
 			return
 		}
 
-		securityBt.setTitle(SecurityPreset(HostSettings.for(tab.url.host)).shortcode)
+		let preset = SecurityPreset(HostSettings.for(tab.url.host))
+
+		if preset == .custom {
+			securityBt.setBackgroundImage(SecurityLevelCell.customShieldImage, for: .normal)
+			securityBt.setTitle(nil)
+		}
+		else {
+			securityBt.setBackgroundImage(SecurityLevelCell.shieldImage, for: .normal)
+			securityBt.setTitle(preset.shortcode)
+		}
+
 		updateEncryptionBt(tab.secureMode)
 		backBt.isEnabled = tab.canGoBack
 		frwrdBt.isEnabled = tab.canGoForward

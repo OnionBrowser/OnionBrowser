@@ -29,7 +29,7 @@ class SecurityShield: UIView {
 	}
 
 	private lazy var shield: UIImageView = {
-		let view = UIImageView(image: UIImage(named: "Shield"))
+		let view = UIImageView(image: UIImage(named: "shield"))
 
 		view.translatesAutoresizingMaskIntoConstraints = false
 

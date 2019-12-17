@@ -18,7 +18,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Shield" translatesAutoresizingMaskIntoConstraints="NO" id="Kkj-sZ-Bqa">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shield" translatesAutoresizingMaskIntoConstraints="NO" id="Kkj-sZ-Bqa">
                         <rect key="frame" x="16" y="11" width="24" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="BMv-MI-B8B"/>
@@ -87,12 +87,13 @@
                 <outlet property="nameLb" destination="ygC-tF-aNh" id="qoa-03-dUC"/>
                 <outlet property="numberLb" destination="WqP-nA-8hf" id="Rul-ro-sXz"/>
                 <outlet property="radioLb" destination="Ucg-KG-MU8" id="3Cy-Yp-g7N"/>
+                <outlet property="shieldImg" destination="Kkj-sZ-Bqa" id="Ftz-Ep-j2l"/>
             </connections>
             <point key="canvasLocation" x="131.8840579710145" y="169.75446428571428"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="Shield" width="31" height="39"/>
+        <image name="shield" width="31" height="39"/>
         <namedColor name="Accent">
             <color red="0.24705882352941178" green="0.16862745098039217" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -24,12 +24,16 @@ class SecurityLevelCell: UITableViewCell {
         return 64
     }
 
+	static var shieldImage = UIImage(named: "shield")
+	static var customShieldImage = UIImage(named: "custom-shield")
+
 
 	override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
+    @IBOutlet weak var shieldImg: UIImageView!
     @IBOutlet weak var numberLb: UILabel!
     @IBOutlet weak var nameLb: UILabel!
     @IBOutlet weak var explanationLb: UILabel!
@@ -55,7 +59,15 @@ class SecurityLevelCell: UITableViewCell {
 	@discardableResult
 	func set(_ preset: SecurityPreset) -> SecurityLevelCell {
 
-		numberLb.text = preset.shortcode
+		if preset == .custom {
+			shieldImg.image = SecurityLevelCell.customShieldImage
+			numberLb.isHidden = true
+		}
+		else {
+			shieldImg.image = SecurityLevelCell.shieldImage
+			numberLb.isHidden = false
+			numberLb.text = preset.shortcode
+		}
 
 		let text = NSMutableAttributedString(string: preset.description)
 

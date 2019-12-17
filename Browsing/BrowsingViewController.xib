@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -50,7 +50,7 @@
                                 <constraint firstAttribute="height" constant="30" id="uDj-0Y-Wjq"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                            <state key="normal" title="3" backgroundImage="Shield">
+                            <state key="normal" title="3" backgroundImage="shield">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <connections>
@@ -276,13 +276,13 @@
         </pongPressGestureRecognizer>
     </objects>
     <resources>
-        <image name="Shield" width="31" height="39"/>
         <image name="back" width="11" height="19"/>
         <image name="bookmarks" width="14" height="18"/>
         <image name="forward" width="11" height="19"/>
         <image name="onion" width="19" height="21"/>
         <image name="settings" width="21" height="20"/>
         <image name="share" width="17" height="22"/>
+        <image name="shield" width="31" height="39"/>
         <image name="tabs" width="21" height="21"/>
     </resources>
 </document>
