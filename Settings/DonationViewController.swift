@@ -155,12 +155,15 @@ import StoreKit
 			numberFormatter.locale = product.priceLocale
 			let priceStr = numberFormatter.string(from: product.price) ?? ""
 
-			showAlert(NSLocalizedString("Confirm Purchase", comment: ""),
-					  String(format: NSLocalizedString("Are you sure you want to send a %@ tip?", comment: ""), priceStr),
-					  [UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel),
-					   UIAlertAction(title: String(format: NSLocalizedString("Confirm %@", comment: ""), priceStr),
-									 style: .default,
-									 handler: { _ in self.makeDonation(product: product) })])
+			AlertHelper.present(
+				self,
+				message: String(format: NSLocalizedString("Are you sure you want to send a %@ tip?", comment: ""), priceStr),
+				title: NSLocalizedString("Confirm Purchase", comment: ""),
+				actions: [
+					AlertHelper.cancelAction(),
+					AlertHelper.defaultAction(
+						String(format: NSLocalizedString("Confirm %@", comment: ""), priceStr),
+						handler: { _ in self.makeDonation(product: product) })])
 		}
 	}
 
@@ -200,11 +203,10 @@ import StoreKit
 				numberFormatter.locale = productToPay.priceLocale
 				let priceStr = numberFormatter.string(from: productToPay.price) ?? ""
 
-				showAlert(
-					NSLocalizedString("Payment Sent", comment: ""),
-					String(format:
-						NSLocalizedString("__DONATE_THANKS__", comment: ""),
-						   priceStr))
+				AlertHelper.present(
+					self,
+					message: String(format: NSLocalizedString("__DONATE_THANKS__", comment: ""), priceStr),
+					title: NSLocalizedString("Payment Sent", comment: ""))
 
 				if let date = transaction.transactionDate {
 					UserDefaults.standard.set(date, forKey: "previous_donation_date")
@@ -259,26 +261,9 @@ import StoreKit
 	}
 
 	private func showError() {
-		showAlert(
-			NSLocalizedString("Purchase Failure", comment: ""),
-			NSLocalizedString("Sorry, in-app purchase is disabled on your device!", comment: ""))
-	}
-
-	private func showAlert(_ title: String, _ message: String, _ actions: [UIAlertAction]? = nil) {
-		let alert = UIAlertController(
-			title: title,
-			message: message,
-			preferredStyle: .alert)
-
-		if actions == nil {
-			alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .cancel))
-		}
-		else {
-			for action in actions! {
-				alert.addAction(action)
-			}
-		}
-
-		present(alert)
+		AlertHelper.present(
+			self,
+			message: NSLocalizedString("Sorry, in-app purchase is disabled on your device!", comment: ""),
+			title: NSLocalizedString("Purchase Failure", comment: ""))
 	}
 }

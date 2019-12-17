@@ -117,6 +117,7 @@
 		A099DE21238E8C2C00B79B20 /* Tab+Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = A099DE20238E8C2C00B79B20 /* Tab+Gestures.swift */; };
 		A09A2A972254B3D100A3EEF0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A09A2A992254B3D100A3EEF0 /* InfoPlist.strings */; };
 		A0B2240C23A911F600EA2C47 /* HostSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C1276123A7C1E300CA10A8 /* HostSettings.swift */; };
+		A0B2242223A93E8000EA2C47 /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B2242123A93E8000EA2C47 /* AlertHelper.swift */; };
 		A0B4838C234DEBE100F9701B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B4838B234DEBE100F9701B /* SettingsViewController.swift */; };
 		A0C1276023A7B39600CA10A8 /* UIViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C1275F23A7B39600CA10A8 /* UIViewController+Helpers.swift */; };
 		A0C1276223A7C1E300CA10A8 /* HostSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C1276123A7C1E300CA10A8 /* HostSettings.swift */; };
@@ -811,6 +812,7 @@
 		A0AE3CCC227091A800FF8FC1 /* mk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mk; path = mk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A0AE9774228C619E00DFF1E3 /* ca-ES */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ca-ES"; path = "ca-ES.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		A0B2240E23A92B2700EA2C47 /* OnionBrowser2_Tests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OnionBrowser2_Tests-Bridging-Header.h"; sourceTree = "<group>"; };
+		A0B2242123A93E8000EA2C47 /* AlertHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
 		A0B4838B234DEBE100F9701B /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A0BFBE032010F48100BE2980 /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ga; path = Endless/ga.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A0C1275F23A7B39600CA10A8 /* UIViewController+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Helpers.swift"; sourceTree = "<group>"; };
@@ -1479,6 +1481,7 @@
 		A090E2CF235892550067A865 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				A0B2242123A93E8000EA2C47 /* AlertHelper.swift */,
 				A072C4D1227C684E0022BC58 /* BlurredSnapshot.swift */,
 				A03A2DD123577970002D640B /* Bundle+Helpers.swift */,
 				A0894E37236AF90500EE2743 /* Formatter.swift */,
@@ -2481,6 +2484,7 @@
 				A006A18B2388185900B0344A /* String+Helpers.swift in Sources */,
 				A01EE97923A3D539003B5AFD /* SecurityLevelCell.swift in Sources */,
 				69EFCCA21EAD20CB00280747 /* OBRootViewController.m in Sources */,
+				A0B2242223A93E8000EA2C47 /* AlertHelper.swift in Sources */,
 				A03DBCED22859B99001890C4 /* Config.m in Sources */,
 				A099DE21238E8C2C00B79B20 /* Tab+Gestures.swift in Sources */,
 				018333CA1A3505FB00670CD1 /* HTTPSEverywhere.m in Sources */,

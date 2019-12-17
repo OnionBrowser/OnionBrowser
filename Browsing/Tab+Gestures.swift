@@ -149,15 +149,10 @@ extension Tab: UIGestureRecognizerDelegate {
 						}
 						else {
 							DispatchQueue.main.async {
-								let alert = UIAlertController(
-									title: NSLocalizedString("Error", comment: ""),
-									message: String(format: NSLocalizedString("An error occurred downloading image %@", comment: ""),
-													img!.absoluteString),
-									preferredStyle: .alert)
-
-								alert.addAction(UIAlertAction(
-									title: NSLocalizedString("OK", comment: ""),
-									style: .default, handler: nil))
+								let alert = AlertHelper.build(
+									message: String(format:
+										NSLocalizedString("An error occurred downloading image %@", comment: ""),
+													img!.absoluteString))
 
 								self.tabDelegate?.present(alert, nil)
 							}

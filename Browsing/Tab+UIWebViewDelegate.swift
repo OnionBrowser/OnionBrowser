@@ -169,15 +169,11 @@ extension Tab: UIWebViewDelegate {
 
 		print("[Tab \(url)] showing error dialog: \(msg) (\(error)")
 
-		let alert = UIAlertController(title: NSLocalizedString("Error", comment: ""),
-									  message: msg, preferredStyle: .alert)
-		alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""),
-									  style: .default, handler: nil))
+		let alert = AlertHelper.build(message: msg)
 
 		if (u != nil && isTLSError) {
-			alert.addAction(UIAlertAction(
-				title: NSLocalizedString("Ignore for this host", comment: ""),
-				style: .destructive,
+			alert.addAction(AlertHelper.destructiveAction(
+				NSLocalizedString("Ignore for this host", comment: ""),
 				handler: { _ in
 					// self.url will hold the URL of the UIWebView which is the last *successful* request.
 					// We need the URL of the *failed* request, which should be in `u`.
@@ -261,16 +257,13 @@ extension Tab: UIWebViewDelegate {
 			return false
 
 		case "window.close":
-			let alert = UIAlertController(title: NSLocalizedString("Confirm", comment: ""),
-										  message: NSLocalizedString("Allow this page to close its tab?", comment: ""),
-										  preferredStyle: .alert)
-
-			alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK action"),
-										  style: .default,
-										  handler: { _ in self.tabDelegate?.removeTab(self, focus: nil) }))
-
-			alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel action"),
-										  style: .cancel, handler: nil))
+			let alert = AlertHelper.build(
+				message: NSLocalizedString("Allow this page to close its tab?", comment: ""),
+				title: NSLocalizedString("Confirm", comment: ""),
+				actions: [
+					AlertHelper.defaultAction(handler: { _ in self.tabDelegate?.removeTab(self, focus: nil) }),
+					AlertHelper.cancelAction()
+			])
 
 			tabDelegate?.present(alert, nil)
 
