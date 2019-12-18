@@ -32,6 +32,7 @@ UITableViewDataSource, UITableViewDelegate {
 	@IBOutlet weak var learnMoreBt: UIButton! {
 		didSet {
 			learnMoreBt.setTitle(NSLocalizedString("Learn More", comment: ""))
+			learnMoreBt.isHidden = true // Disabled, as no content, yet.
 		}
 	}
 
