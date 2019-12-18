@@ -244,6 +244,8 @@
 
 		[_keyCommands addObject:[UIKeyCommand keyCommandWithInput:@"l" modifierFlags:UIKeyModifierCommand action:@selector(handleKeyboardShortcut:) discoverabilityTitle:NSLocalizedString(@"Focus URL Field", nil)]];
 
+		[_keyCommands addObject:[UIKeyCommand keyCommandWithInput:@"r" modifierFlags:UIKeyModifierCommand action:@selector(handleKeyboardShortcut:) discoverabilityTitle:NSLocalizedString(@"Reload Tab", nil)]];
+
 		[_keyCommands addObject:[UIKeyCommand keyCommandWithInput:@"t" modifierFlags:UIKeyModifierCommand action:@selector(handleKeyboardShortcut:) discoverabilityTitle:NSLocalizedString(@"Create New Tab", nil)]];
 		[_keyCommands addObject:[UIKeyCommand keyCommandWithInput:@"w" modifierFlags:UIKeyModifierCommand action:@selector(handleKeyboardShortcut:) discoverabilityTitle:NSLocalizedString(@"Close Tab", nil)]];
 
@@ -313,6 +315,11 @@
 			return;
 		}
 		
+		if ([[keyCommand input] isEqualToString:@"r"]) {
+			[self.browsingUi.currentTab refresh];
+			return;
+		}
+
 		if ([[keyCommand input] isEqualToString:@"t"]) {
 			[self.browsingUi addEmptyTabAndFocus];
 			return;

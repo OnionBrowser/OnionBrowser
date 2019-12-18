@@ -181,6 +181,7 @@ class Tab: UIView {
 
 	// MARK: Public Methods
 
+	@objc
 	func refresh() {
 		needsRefresh = false
 		skipHistory = true
