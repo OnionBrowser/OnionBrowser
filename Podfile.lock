@@ -66,6 +66,7 @@ PODS:
     - Localize (~> 2.2)
   - Reachability (3.2)
   - ReactiveObjC (3.1.1)
+  - SDCAlertView (10.0)
   - TUSafariActivity (1.0.4)
   - VForceTouch (0.0.2)
 
@@ -78,6 +79,7 @@ DEPENDENCIES:
   - OrderedDictionary
   - POE (~> 0.7)
   - Reachability (~> 3.2)
+  - SDCAlertView (~> 10)
   - TUSafariActivity
   - VForceTouch
 
@@ -94,6 +96,7 @@ SPEC REPOS:
     - POE
     - Reachability
     - ReactiveObjC
+    - SDCAlertView
     - TUSafariActivity
     - VForceTouch
 
@@ -119,9 +122,10 @@ SPEC CHECKSUMS:
   POE: 78cff1c7d2623499726160ee030616b44996d861
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
+  SDCAlertView: 5fbc48cae6d7bf9781097e3f27883924ef3b922c
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
   VForceTouch: b5c3a28625269e1818cf915728173bda9f669d6b
 
-PODFILE CHECKSUM: 243da0dbcdc3b30c846db3627ec696a1b4cb59cc
+PODFILE CHECKSUM: 30c2ed2656d8c1206297353c353a8edeb0fe06dc
 
 COCOAPODS: 1.8.4
