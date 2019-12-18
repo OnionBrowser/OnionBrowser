@@ -410,8 +410,6 @@
 		A0759DBE20975C2A000DFBFE /* Gemfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Gemfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A0759DBF20975C32000DFBFE /* Gemfile.lock */ = {isa = PBXFileReference; lastKnownFileType = text; path = Gemfile.lock; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A0759DC120975CCE000DFBFE /* sq */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sq; path = Endless/sq.lproj/Localizable.strings; sourceTree = "<group>"; };
-		A0759DC420975CE2000DFBFE /* ar-001 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ar-001"; path = "Endless/ar-001.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		A0759DC720975CF1000DFBFE /* bn */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = bn; path = Endless/bn.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A0759DCA20975D07000DFBFE /* ca-ES */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ca-ES"; path = "Endless/ca-ES.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		A0759DCD20975D13000DFBFE /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = Endless/nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A0759DD020975D22000DFBFE /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = Endless/hi.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -420,8 +418,6 @@
 		A0759DD920975D7A000DFBFE /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "Endless/pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		A0759DDC20975D85000DFBFE /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "Endless/pt-PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		A0759DDF20975D9E000DFBFE /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = Endless/ru.lproj/Localizable.strings; sourceTree = "<group>"; };
-		A0759DE220975DB2000DFBFE /* ta */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ta; path = Endless/ta.lproj/Localizable.strings; sourceTree = "<group>"; };
-		A0759DE520975DC6000DFBFE /* te */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = te; path = Endless/te.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A0759DE820975DCD000DFBFE /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = Endless/uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A0759DEA20975DDE000DFBFE /* config */ = {isa = PBXFileReference; lastKnownFileType = text; name = config; path = .tx/config; sourceTree = "<group>"; };
 		A07D086323952D9000F18BE6 /* LiveSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveSearchViewController.swift; sourceTree = "<group>"; };
@@ -2230,8 +2226,6 @@
 				"zh-Hans",
 				"zh-Hant",
 				sq,
-				"ar-001",
-				bn,
 				"ca-ES",
 				nl,
 				hi,
@@ -2240,8 +2234,6 @@
 				"pt-BR",
 				"pt-PT",
 				ru,
-				ta,
-				te,
 				uk,
 				el,
 				he,
@@ -2569,8 +2561,6 @@
 				8A3F82F1201903E90088F205 /* zh-Hans */,
 				A0079AD62019F58600511268 /* zh-Hant */,
 				A0759DC120975CCE000DFBFE /* sq */,
-				A0759DC420975CE2000DFBFE /* ar-001 */,
-				A0759DC720975CF1000DFBFE /* bn */,
 				A0759DCA20975D07000DFBFE /* ca-ES */,
 				A0759DCD20975D13000DFBFE /* nl */,
 				A0759DD020975D22000DFBFE /* hi */,
@@ -2579,8 +2569,6 @@
 				A0759DD920975D7A000DFBFE /* pt-BR */,
 				A0759DDC20975D85000DFBFE /* pt-PT */,
 				A0759DDF20975D9E000DFBFE /* ru */,
-				A0759DE220975DB2000DFBFE /* ta */,
-				A0759DE520975DC6000DFBFE /* te */,
 				A0759DE820975DCD000DFBFE /* uk */,
 				A025F25721F6265E0034B947 /* el */,
 				A025F25D21F6267A0034B947 /* he */,
