@@ -198,9 +198,6 @@
                                 </button>
                             </subviews>
                             <gestureRecognizers/>
-                            <connections>
-                                <outletCollection property="gestureRecognizers" destination="ed4-6N-Nf3" appends="YES" id="Bd8-b1-y5A"/>
-                            </connections>
                         </stackView>
                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ncz-tm-LKE">
                             <rect key="frame" x="0.0" y="1" width="414" height="48"/>

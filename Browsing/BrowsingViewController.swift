@@ -19,8 +19,6 @@ class BrowsingViewController: UIViewController, TabDelegate {
 		case inBackground
 	}
 
-	static let aboutOnionBrowserUrl = URL.aboutOnionBrowser.absoluteString
-
     @IBOutlet weak var searchBar: UIView!
     @IBOutlet weak var searchBarHeightConstraint: NSLayoutConstraint! {
         didSet {
