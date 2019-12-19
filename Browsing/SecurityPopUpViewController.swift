@@ -122,7 +122,13 @@ UITableViewDataSource, UITableViewDelegate {
 		return SecurityLevelCell.height
 	}
 
-	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+	func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+		// Don't do anything when the already selected row was selected again.
+		if let selected = tableView.indexPathForSelectedRow?.row,
+			indexPath.row == selected {
+			return indexPath
+		}
+
 		current = presets[indexPath.row]
 
 		hostSettings?.contentPolicy = current.values?.csp ?? .strict
@@ -133,6 +139,8 @@ UITableViewDataSource, UITableViewDelegate {
 		hostSettings?.save().store()
 
 		dismiss(animated: true)
+
+		return indexPath
 	}
 
 
