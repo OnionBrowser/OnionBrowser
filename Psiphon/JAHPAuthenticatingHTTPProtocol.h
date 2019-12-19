@@ -114,6 +114,8 @@
  */
 + (void)resetSharedDemux;
 
++ (void)temporarilyAllowURL:(NSURL *__nullable)url;
+
 + (void)temporarilyAllowURL:(NSURL *__nullable)url
 			  forWebViewTab:(Tab *__nullable)webViewTab;
 

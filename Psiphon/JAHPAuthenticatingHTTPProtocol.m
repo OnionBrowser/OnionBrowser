@@ -191,9 +191,15 @@ static NSString *_javascriptToInject;
 	return js;
 }
 
-+ (void)temporarilyAllowURL:(NSURL *)url
-			  forWebViewTab:(Tab*)webViewTab {
++ (void)temporarilyAllowURL:(NSURL *__nullable)url
+{
+	return [self temporarilyAllowURL:url forWebViewTab:nil isOCSPRequest:NO];
+}
 
+
++ (void)temporarilyAllowURL:(NSURL *)url
+			  forWebViewTab:(Tab*)webViewTab
+{
 	return [self temporarilyAllowURL:url forWebViewTab:webViewTab isOCSPRequest:NO];
 }
 
@@ -510,9 +516,13 @@ static NSString * kJAHPRecursiveRequestFlagProperty = @"com.jivesoftware.JAHPAut
 			_wvt = allowedUrl.wvt;
 			_isOCSPRequest = allowedUrl.ocspRequest;
 		}
+		else {
+			_isTemporarilyAllowed = NO;
+			_isOCSPRequest = NO;
+		}
 	}
 
-	if (_wvt == nil) {
+	if (_wvt == nil && !_isTemporarilyAllowed) {
 
 		[[self class] authenticatingHTTPProtocol:self logWithFormat:@"request for %@ with no matching Tab! (main URL %@, UA hash %@)", [request URL], [request mainDocumentURL], wvthash];
 		[client URLProtocol:self didFailWithError:[NSError errorWithDomain:NSCocoaErrorDomain code:NSUserCancelledError userInfo:@{ ORIGIN_KEY: @YES }]];
@@ -1029,6 +1039,11 @@ static NSString * kJAHPRecursiveRequestFlagProperty = @"com.jivesoftware.JAHPAut
 	}
 
 	[[self class] removePropertyForKey:kJAHPRecursiveRequestFlagProperty inRequest:redirectRequest];
+
+	if (_isTemporarilyAllowed && !_wvt)
+	{
+		[JAHPAuthenticatingHTTPProtocol temporarilyAllowURL:redirectRequest.URL];
+	}
 
 	// Tell the client about the redirect.
 

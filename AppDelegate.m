@@ -71,23 +71,6 @@
 	
     [Migration migrate];
 
-    Boolean didFirstRunBookmarks = [userDefaults boolForKey:@"did_first_run_bookmarks"];
-    if (!didFirstRunBookmarks) {
-        if (Bookmark.all.count == 0) { // our first run of Onion Browser 2, but did we migrate any bookmarks from previous versions?
-			[Bookmark addWithName:@"DuckDuckGo Search Engine (onion)" url:@"https://3g2upl4pq6kufc4m.onion/"];
-			[Bookmark addWithName:@"The Tor Project (onion)" url:@"http://expyuzz4wqqyqhjn.onion/"];
-			[Bookmark addWithName:@"Freedom of the Press Foundation" url:@"https://freedom.press/"];
-			[Bookmark addWithName:@"ProPublica (onion)" url:@"https://www.propub3r6espa33w.onion/"];
-			[Bookmark addWithName:@"New York Times (onion)" url:@"https://mobile.nytimes3xbfgragh.onion/"];
-			[Bookmark addWithName:@"Facebook (Onion)" url:@"https://m.facebookcorewwwi.onion/"];
-			[Bookmark addWithName:@"Onion Browser official site (onion)" url:@"http://tigas3l7uusztiqu.onion/onionbrowser/"];
-			[Bookmark addWithName:@"Mike Tigas, Onion Browser author (onion)" url:@"http://tigas3l7uusztiqu.onion/"];
-            [Bookmark store];
-        }
-        [userDefaults setBool:YES forKey:@"did_first_run_bookmarks"];
-        [userDefaults synchronize];
-    }
-
 	[DownloadHelper deleteDownloadsDirectory];
 
     return YES;

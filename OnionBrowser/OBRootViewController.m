@@ -97,6 +97,13 @@
     {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.conctVC connectingFinished];
+
+			if (![NSUserDefaults.standardUserDefaults boolForKey:@"did_first_run_bookmarks"])
+			{
+				[Bookmark firstRunSetup];
+
+				[NSUserDefaults.standardUserDefaults setBool:YES forKey:@"did_first_run_bookmarks"];
+			}
         });
     }
 }

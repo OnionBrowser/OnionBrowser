@@ -23,6 +23,10 @@ class BookmarkViewController: FormViewController {
 
 	private var bookmark: Bookmark?
 
+    private let favIconRow = FavIconRow() {
+        $0.disabled = true
+    }
+
 	private let titleRow = TextRow() {
 		$0.placeholder = NSLocalizedString("Title", comment: "Bookmark title placeholder")
 	}
@@ -68,14 +72,21 @@ class BookmarkViewController: FormViewController {
 		}
 
 		if let bookmark = bookmark {
+			favIconRow.value = bookmark.icon
 			titleRow.value = bookmark.name
 			urlRow.value = bookmark.url
+
+			if bookmark.icon == nil {
+				acquireIcon()
+			}
 		}
 
 		form
-			+++ titleRow
+			+++ favIconRow
+			<<< titleRow
 			<<< urlRow
 			.onChange { row in
+				self.acquireIcon()
 				self.navigationItem.rightBarButtonItem?.isEnabled = row.value != nil
 			}
     }
@@ -89,15 +100,20 @@ class BookmarkViewController: FormViewController {
 			bookmark?.name = titleRow.value
 
 			// Don't allow empty URL.
-			if let url = urlRow.value {
+			if let url = cleanUrl() {
 				bookmark?.url = url
 			}
+
+			bookmark?.icon = favIconRow.value
 
 			Bookmark.store()
 
 			delegate?.needsReload()
 		}
 	}
+
+
+	// MARK: Private Methods
 
 	@objc private func addNew() {
 		if urlRow.value != nil {
@@ -109,5 +125,37 @@ class BookmarkViewController: FormViewController {
 
 			navigationController?.popViewController(animated: true)
 		}
+	}
+
+    private func acquireIcon() {
+		guard let url = cleanUrl() else {
+			return
+		}
+
+		Bookmark.icon(for: url) { image in
+			self.favIconRow.value = image
+			self.favIconRow.reload()
+		}
+    }
+
+	private func cleanUrl() -> URL? {
+		guard let url = urlRow.value else {
+			return nil
+		}
+
+		var urlc = URLComponents(url: url, resolvingAgainstBaseURL: true)
+		if urlc?.scheme?.isEmpty ?? true {
+			urlc?.scheme = "https"
+		}
+
+		// When no URL formatting is given, a domain is always parsed as a path.
+		// Users enter domains here most likely, though.
+		if urlc?.host?.isEmpty ?? true {
+			let host = urlc?.path
+			urlc?.host = host
+			urlc?.path = "/"
+		}
+
+		return urlc?.url
 	}
 }

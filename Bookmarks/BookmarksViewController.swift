@@ -53,7 +53,7 @@ UITableViewDelegate, UISearchResultsUpdating, BookmarkViewControllerDelegate {
 		navigationItem.title = NSLocalizedString("Bookmarks", comment: "Scene title")
 		updateButtons()
 
-		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "bookmark")
+		tableView.register(BookmarkCell.nib, forCellReuseIdentifier: BookmarkCell.reuseId)
 		tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
 
         searchController.searchResultsUpdater = self
@@ -79,20 +79,9 @@ UITableViewDelegate, UISearchResultsUpdating, BookmarkViewControllerDelegate {
 	}
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: "bookmark", for: indexPath)
+		let cell = tableView.dequeueReusableCell(withIdentifier: BookmarkCell.reuseId, for: indexPath) as! BookmarkCell
 
-		let bookmark = (isFiltering ? filtered : Bookmark.all)[indexPath.row]
-
-		cell.textLabel?.text = bookmark.name?.isEmpty ?? true
-			? bookmark.url?.absoluteString
-			: bookmark.name
-
-		cell.textLabel?.adjustsFontSizeToFitWidth = true
-		cell.textLabel?.minimumScaleFactor = 0.5
-
-		cell.editingAccessoryType = .disclosureIndicator
-
-		return cell
+		return cell.set((isFiltering ? filtered : Bookmark.all)[indexPath.row])
 	}
 
 	func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -105,6 +94,7 @@ UITableViewDelegate, UISearchResultsUpdating, BookmarkViewControllerDelegate {
 
 	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
 		if editingStyle == .delete {
+			Bookmark.all[indexPath.row].icon = nil // Delete icon file.
 			Bookmark.all.remove(at: indexPath.row)
 			Bookmark.store()
 			tableView.reloadSections(IndexSet(integer: 0), with: .automatic)

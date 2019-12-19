@@ -53,6 +53,9 @@ PODS:
   - DTFoundation/UIKit_BlocksAdditions (1.7.14):
     - DTFoundation/Core
   - Eureka (5.1.0)
+  - FavIcon (3.0.6)
+  - ImageRow (4.0.0):
+    - Eureka (~> 5.0)
   - KMPlaceholderTextView (1.4.0)
   - Localize (2.3.0)
   - OCMock (3.5)
@@ -74,6 +77,8 @@ DEPENDENCIES:
   - CSPHeader (~> 0.4)
   - DTFoundation
   - Eureka (~> 5.1)
+  - FavIcon (from `https://github.com/tladesignz/FavIcon.git`, branch `swift-5`)
+  - ImageRow (~> 4.0)
   - OCMock
   - OCSPCache (from `https://github.com/Psiphon-Labs/OCSPCache`)
   - OrderedDictionary
@@ -88,6 +93,7 @@ SPEC REPOS:
     - CSPHeader
     - DTFoundation
     - Eureka
+    - ImageRow
     - KMPlaceholderTextView
     - Localize
     - OCMock
@@ -101,10 +107,16 @@ SPEC REPOS:
     - VForceTouch
 
 EXTERNAL SOURCES:
+  FavIcon:
+    :branch: swift-5
+    :git: https://github.com/tladesignz/FavIcon.git
   OCSPCache:
     :git: https://github.com/Psiphon-Labs/OCSPCache
 
 CHECKOUT OPTIONS:
+  FavIcon:
+    :commit: 91d67049226db70000488690311ea9fe1aed265c
+    :git: https://github.com/tladesignz/FavIcon.git
   OCSPCache:
     :commit: 71e9f5d2fdc4afb0d9b04ea019e2f0bec64cdc30
     :git: https://github.com/Psiphon-Labs/OCSPCache
@@ -113,6 +125,8 @@ SPEC CHECKSUMS:
   CSPHeader: 352a279f3c84ab3c18014d8f682efd55fa73d885
   DTFoundation: 25aa19bb7c6e225b1dfae195604fb8cf1da0ab4c
   Eureka: 18a5076dcf0c41f9cd9748aa1c42f4d11434bdae
+  FavIcon: 9fd386d96324ce0f6063732f8bf6c7f1d5bf17a3
+  ImageRow: e65b2e1a33f89062bf2a553a2aad61d975eb7428
   KMPlaceholderTextView: 2206c3df39979e9396e2d96fa9f427a8951121b0
   Localize: cb1ae53ed73decaad0dce217806ed983091913f5
   OCMock: 4ab4577fc941af31f4a0398f6e7e230cf21fc72a
@@ -126,6 +140,6 @@ SPEC CHECKSUMS:
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
   VForceTouch: b5c3a28625269e1818cf915728173bda9f669d6b
 
-PODFILE CHECKSUM: 30c2ed2656d8c1206297353c353a8edeb0fe06dc
+PODFILE CHECKSUM: 21b44fd4ade3b6ca93fa083de055a726bc7dc905
 
 COCOAPODS: 1.8.4
