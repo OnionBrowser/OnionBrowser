@@ -264,10 +264,17 @@ class BrowsingViewController: UIViewController, TabDelegate {
             currentTab?.refresh()
 
 		case torBt:
-			let vc = CircuitViewController()
-			vc.currentUrl = currentTab?.url
+			let vc: UIViewController
 
-            present(vc, sender)
+			if let url = currentTab?.url.clean {
+				vc = CircuitViewController()
+				(vc as! CircuitViewController).currentUrl = url
+			}
+			else {
+				vc = CircuitViewController().getBridgeSelectVc()
+			}
+
+			present(vc, sender)
 
         case backBt:
 			currentTab?.goBack()

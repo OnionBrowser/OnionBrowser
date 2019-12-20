@@ -153,21 +153,23 @@ POEDelegate, UITableViewDataSource, UITableViewDelegate {
 	}
 
 	@IBAction func showBridgeSelection(_ sender: UIView) {
+		present(getBridgeSelectVc(), sender)
+	}
+
+	func getBridgeSelectVc() -> UINavigationController {
 		let builtInBridges: [Int: String]
 		builtInBridges = [USE_BRIDGES_OBFS4: "obfs4",
 						  USE_BRIDGES_MEEKAZURE: "meek-azure"]
 
 		let ud = UserDefaults.standard
 
-		let vc = BridgeSelectViewController.instantiate(
+		return BridgeSelectViewController.instantiate(
 			currentId: ud.integer(forKey: USE_BRIDGES),
 			noBridgeId: NSNumber(value: USE_BRIDGES_NONE),
 			providedBridges: builtInBridges,
 			customBridgeId: NSNumber(value: USE_BRIDGES_CUSTOM),
 			customBridges: ud.stringArray(forKey: CUSTOM_BRIDGES),
 			delegate: self)
-
-		present(vc, sender)
 	}
 
 
