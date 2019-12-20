@@ -146,7 +146,7 @@ POEDelegate, UITableViewDataSource, UITableViewDelegate {
 
 	@IBAction func newCircuits() {
 		OnionManager.shared.closeCircuits(usedCircuits) { _ in
-			AppDelegate.shared()?.browsingUi.currentTab?.refresh()
+			AppDelegate.shared().browsingUi?.currentTab?.refresh()
 
 			self.dismiss(animated: true)
 		}

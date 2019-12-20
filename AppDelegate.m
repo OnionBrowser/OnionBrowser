@@ -36,15 +36,15 @@
 	inStartupPhase = YES;
 
 	self.socksProxyPort = 39050;
-	self.sslCertCache = [[NSCache alloc] init];
-	self.certificateAuthentication = [[CertificateAuthentication alloc] init];
+	_sslCertCache = [[NSCache alloc] init];
+	_certificateAuthentication = [[CertificateAuthentication alloc] init];
 	_defaultUserAgent = [self createUserAgent];
 
 	[JAHPAuthenticatingHTTPProtocol setDelegate:self];
 	[JAHPAuthenticatingHTTPProtocol start];
 
-	self.hstsCache = [HSTSCache retrieve];
-	self.cookieJar = [[CookieJar alloc] init];
+	_hstsCache = [HSTSCache retrieve];
+	_cookieJar = [[CookieJar alloc] init];
 
 	/* handle per-version upgrades or migrations */
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];

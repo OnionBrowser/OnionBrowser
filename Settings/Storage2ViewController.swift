@@ -26,14 +26,14 @@ class Storage2ViewController: SearchableTableViewController {
 
 	private var showShortlist = true
 
-	private var cookieJar: CookieJar? {
-		return AppDelegate.shared()?.cookieJar
+	private var cookieJar: CookieJar {
+		return AppDelegate.shared().cookieJar
 	}
 
 	private lazy var data: [Item] = {
 		var data = [String: Item]()
 
-		if let cookies = cookieJar?.cookieStorage.cookies {
+		if let cookies = cookieJar.cookieStorage.cookies {
 			for cookie in cookies {
 				var host = cookie.domain
 
@@ -47,7 +47,7 @@ class Storage2ViewController: SearchableTableViewController {
 			}
 		}
 
-		if let files = cookieJar?.localStorageFiles() {
+		if let files = cookieJar.localStorageFiles() {
 			for item in files {
 				if let filepath = item.key as? String,
 					let host = item.value as? String {
@@ -214,7 +214,7 @@ class Storage2ViewController: SearchableTableViewController {
         if editingStyle == .delete {
 			let host = (isFiltering ? filtered : data)[indexPath.row].host
 
-			cookieJar?.clearAllData(forHost: host)
+			cookieJar.clearAllData(forHost: host)
 
 			if isFiltering {
 				filtered.remove(at: indexPath.row)
@@ -239,7 +239,7 @@ class Storage2ViewController: SearchableTableViewController {
 		}
 		// The remove-all cell
 		else if indexPath.section > 0 {
-			cookieJar?.clearAllNonWhitelistedData()
+			cookieJar.clearAllNonWhitelistedData()
 
 			data.removeAll()
 		}

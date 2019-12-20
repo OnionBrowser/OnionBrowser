@@ -30,7 +30,7 @@ extension BrowsingViewController: UITextFieldDelegate {
 			textField.resignFirstResponder()
 
 			// User is shifting to a new place. Probably a good time to clear old data.
-			AppDelegate.shared()?.cookieJar.clearAllNonWhitelistedData()
+			AppDelegate.shared().cookieJar.clearAllNonWhitelistedData()
 
 			if let url = self.parseSearch(search) {
 				self.debug("#textFieldShouldReturn url=\(url)")

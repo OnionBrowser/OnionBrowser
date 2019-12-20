@@ -265,7 +265,7 @@ class Tab: UIView {
 
 	private func setup(_ restorationId: String? = nil) {
 		// Re-register user agent with our hash, which should only affect this UIWebView.
-		UserDefaults.standard.register(defaults: ["UserAgent": "\(AppDelegate.shared()?.defaultUserAgent ?? "")/\(hash)"])
+		UserDefaults.standard.register(defaults: ["UserAgent": "\(AppDelegate.shared().defaultUserAgent ?? "")/\(hash)"])
 
 		if restorationId != nil {
 			restorationIdentifier = restorationId

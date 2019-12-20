@@ -227,7 +227,7 @@ class SettingsViewController: FormViewController {
 			cell.textLabel?.textAlignment = .natural
 		}
 		.onCellSelection { _, _ in
-			AppDelegate.shared()?.browsingUi.addNewTab(
+			AppDelegate.shared().browsingUi?.addNewTab(
 				URL(string: "https://github.com/OnionBrowser/OnionBrowser/issues"),
 				transition: .notAnimated)
 
@@ -269,7 +269,7 @@ class SettingsViewController: FormViewController {
 			cell.textLabel?.textAlignment = .natural
 		}
 		.onCellSelection { _, _ in
-			AppDelegate.shared()?.browsingUi.addNewTab(URL.aboutOnionBrowser,
+			AppDelegate.shared().browsingUi?.addNewTab(URL.aboutOnionBrowser,
 													   transition: .notAnimated)
 
 			self.dismsiss_()

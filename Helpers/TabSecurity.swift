@@ -84,7 +84,7 @@ class TabSecurity: NSObject {
 		let ud = UserDefaults.standard
 
 		if Settings.tabSecurity  == .alwaysRemember,
-			let controller = AppDelegate.shared()?.browsingUi,
+			let controller = AppDelegate.shared().browsingUi,
 			let data = ud.object(forKey: openTabs) as? Data,
 			let urls = NSKeyedUnarchiver.unarchiveObject(with: data) as? [URL] {
 

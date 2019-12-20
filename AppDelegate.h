@@ -20,25 +20,21 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, JAHPAuthenticatingHTTPProtocolDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic, nonnull) UIWindow *window;
 
-@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
-@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (strong, nonatomic, nullable) BrowsingViewController *browsingUi;
+@property (strong, readonly, nonnull) CookieJar *cookieJar;
+@property (strong, readonly, nonnull) HSTSCache *hstsCache;
 
-@property (strong, atomic) BrowsingViewController *browsingUi;
-@property (strong, atomic) CookieJar *cookieJar;
-@property (strong, atomic) HSTSCache *hstsCache;
-
-@property (strong, atomic, readonly) NSString *defaultUserAgent;
-@property (strong, atomic) NSURL *urlToOpenAtLaunch;
+@property (strong, readonly, nullable) NSString *defaultUserAgent;
+@property (strong, nonatomic, nullable) NSURL *urlToOpenAtLaunch;
 
 @property NSInteger socksProxyPort;
 @property NSInteger httpProxyPort;
-@property NSCache *sslCertCache;
-@property CertificateAuthentication *certificateAuthentication;
+@property (strong, readonly, nonnull) NSCache *sslCertCache;
+@property (strong, readonly, nonnull) CertificateAuthentication *certificateAuthentication;
 
-+ (AppDelegate *)sharedAppDelegate;
++ (AppDelegate *_Nonnull)sharedAppDelegate;
 
 - (BOOL)areTesting;
 - (void)adjustMuteSwitchBehavior;
