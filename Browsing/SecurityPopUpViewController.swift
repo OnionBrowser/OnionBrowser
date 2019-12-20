@@ -17,7 +17,9 @@ UITableViewDataSource, UITableViewDelegate {
 
 	@IBOutlet weak var headerLb: UILabel! {
 		didSet {
-			headerLb.text = NSLocalizedString("Security Level for This Site", comment: "")
+			headerLb.text = host != nil
+				? NSLocalizedString("Security Level for This Site", comment: "")
+				: NSLocalizedString("Default Security", comment: "")
 		}
 	}
 
@@ -50,9 +52,9 @@ UITableViewDataSource, UITableViewDelegate {
 
 	private lazy var current = SecurityPreset(HostSettings.for(host))
 
-	private lazy var hostSettings: HostSettings? = {
+	private lazy var hostSettings: HostSettings = {
 		guard let host = host, !host.isEmpty else {
-			return nil
+			return HostSettings.forDefault()
 		}
 
 		return HostSettings.for(host)
@@ -131,12 +133,12 @@ UITableViewDataSource, UITableViewDelegate {
 
 		current = presets[indexPath.row]
 
-		hostSettings?.contentPolicy = current.values?.csp ?? .strict
-		hostSettings?.webRtc = current.values?.webRtc ?? false
-		hostSettings?.mixedMode = current.values?.mixedMode ?? false
+		hostSettings.contentPolicy = current.values?.csp ?? .strict
+		hostSettings.webRtc = current.values?.webRtc ?? false
+		hostSettings.mixedMode = current.values?.mixedMode ?? false
 
 		// Trigger creation, save and store of HostSettings for this host.
-		hostSettings?.save().store()
+		hostSettings.save().store()
 
 		dismiss(animated: true)
 
@@ -155,7 +157,7 @@ UITableViewDataSource, UITableViewDelegate {
 
 	@IBAction func customize() {
 		// Trigger creation, save and store of HostSettings for this host.
-		hostSettings?.save().store()
+		hostSettings.save().store()
 
 		let vc = SecurityViewController()
 		vc.host = host

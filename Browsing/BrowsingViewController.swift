@@ -246,7 +246,7 @@ class BrowsingViewController: UIViewController, TabDelegate {
         switch sender {
         case securityBt:
 			let vc = SecurityPopUpViewController()
-			vc.host = currentTab?.url.host ?? currentTab?.url.path
+			vc.host = currentTab?.url.clean?.host ?? currentTab?.url.clean?.path
 
 			present(vc, sender)
 
