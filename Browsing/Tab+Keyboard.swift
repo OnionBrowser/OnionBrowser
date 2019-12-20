@@ -121,7 +121,7 @@ extension Tab {
 		}
 
 		if keycode < 1 {
-			return print("[Tab \(url.absoluteString)] unknown hardware keyboard input: \"\(command.input ?? "")\"")
+			return print("[Tab \(index)] unknown hardware keyboard input: \"\(command.input ?? "")\"")
 		}
 
 		switch command.input {
@@ -157,8 +157,8 @@ extension Tab {
 						(cmdKey ? "true" : "false"),
 						(keyAction != nil ? "function() { \(keyAction!) }" : "null"))
 
-		print("[Tab \(url.absoluteString)] hardware keyboard input: \"\(command.input ?? "")\", keycode=\(keycode), keypressKeycode=\(keypressKeycode), modifierFlags=\(command.modifierFlags): shiftKey=\(shiftKey), ctrlKey=\(ctrlKey), altKey=\(altKey), cmdKey=\(cmdKey)")
-		print("[Tab \(url.absoluteString)] injected JS: \(js)")
+		print("[Tab \(index)] hardware keyboard input: \"\(command.input ?? "")\", keycode=\(keycode), keypressKeycode=\(keypressKeycode), modifierFlags=\(command.modifierFlags): shiftKey=\(shiftKey), ctrlKey=\(ctrlKey), altKey=\(altKey), cmdKey=\(cmdKey)")
+		print("[Tab \(index)] injected JS: \(js)")
 
 		stringByEvaluatingJavaScript(from: js)
 	}

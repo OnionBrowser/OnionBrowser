@@ -39,19 +39,19 @@ extension Tab: UIWebViewDelegate {
 
 		if HostSettings.for(url.host).universalLinkProtection {
 			if iframe && navigationType != .linkClicked {
-				print("[Tab \(self.url)] not doing universal link workaround for iframe \(url).")
+				print("[Tab \(index)] not doing universal link workaround for iframe \(url).")
 			}
 			else if navigationType == .backForward {
-				print("[Tab \(self.url)] not doing universal link workaround for back/forward navigation to \(url).")
+				print("[Tab \(index)] not doing universal link workaround for back/forward navigation to \(url).")
 			}
 			else if navigationType == .formSubmitted {
-				print("[Tab \(self.url)] not doing universal link workaround for form submission to \(url).")
+				print("[Tab \(index)] not doing universal link workaround for form submission to \(url).")
 			}
 			else if (url.scheme?.lowercased().hasPrefix("http") ?? false) && (URLProtocol.property(forKey: Tab.universalLinksWorkaroundKey, in: request) == nil) {
 				if let tr = request as? NSMutableURLRequest {
 					URLProtocol.setProperty(true, forKey: Tab.universalLinksWorkaroundKey, in: tr)
 
-					print("[Tab \(self.url)] doing universal link workaround for \(url).")
+					print("[Tab \(index)] doing universal link workaround for \(url).")
 
 					load(tr as URLRequest)
 
@@ -60,7 +60,7 @@ extension Tab: UIWebViewDelegate {
 			}
 		}
 		else {
-			print("[Tab \(self.url)] not doing universal link workaround for \(url) due to HostSettings.")
+			print("[Tab \(index)] not doing universal link workaround for \(url) due to HostSettings.")
 		}
 
 		if !iframe {
@@ -162,12 +162,12 @@ extension Tab: UIWebViewDelegate {
 		if let ok = error.userInfo[ORIGIN_KEY] as? NSNumber,
 			!ok.boolValue {
 
-			print("[Tab \(url)] not showing dialog for non-origin error: \(msg) (\(error))")
+			print("[Tab \(index)] not showing dialog for non-origin error: \(msg) (\(error))")
 
 			return webViewDidFinishLoad(webView)
 		}
 
-		print("[Tab \(url)] showing error dialog: \(msg) (\(error)")
+		print("[Tab \(index)] showing error dialog: \(msg) (\(error)")
 
 		let alert = AlertHelper.build(message: msg)
 
@@ -202,10 +202,11 @@ extension Tab: UIWebViewDelegate {
 	/**
 	Handles all IPC calls from JavaScript.
 
-	Example:  `endlessipc://fakeWindow.open/somerandomid?http...`
+	Calls look like this: `endlessipc://<action>[/<param1>][/<param2>][?<value>]`
 
 	- parameter URL: The IPC URL
 	- parameter navigationType: The navigation type as given by webView:shouldStartLoadWith:navigationType:
+	- returns: false always, which can be used as a return for #webView:shouldStartLoadWith:navigationType:, because IPC calls should never allow any further loading.
 	*/
 	private func handleIpc(_ url: URL, _ navigationType: UIWebView.NavigationType) -> Bool {
 
@@ -215,12 +216,12 @@ extension Tab: UIWebViewDelegate {
 		let value = url.query?.replacingOccurrences(of: "+", with: " ").removingPercentEncoding
 
 		if action == "console.log" {
-			print("[Tab \(url)] [console.\(param1 ?? "log")] \(value ?? "(nil)")")
+			print("[Tab \(index)] [console.\(param1 ?? "log")] \(value ?? "(nil)")")
 			// No callback needed.
 			return false
 		}
 
-		print("[Javascript IPC]: action=\(action ?? "(nil)"), param1=\(param1 ?? "(nil)"), param2=\(param2 ?? "(nil)"), value=\(value ?? "(nil)")")
+		print("[Tab \(index)] [IPC]: action=\(action ?? "(nil)"), param1=\(param1 ?? "(nil)"), param2=\(param2 ?? "(nil)"), value=\(value ?? "(nil)")")
 
 		switch action {
 		case "noop":
@@ -244,7 +245,7 @@ extension Tab: UIWebViewDelegate {
 			}
 			else {
 				// TODO: Show a "popup blocked" warning?
-				print("[Tab \(url)] blocked non-touch window.open() (nav type \(navigationType))");
+				print("[Tab \(index)] blocked non-touch window.open() (nav type \(navigationType))");
 
 				if let param1 = param1?.escapedForJavaScript {
 					ipcCallback("__endless.openedTabs[\"\(param1)\"].opened = false;")
@@ -310,7 +311,7 @@ extension Tab: UIWebViewDelegate {
 					tab.stringByEvaluatingJavaScript(from: "window.location.\(param2) = \"\(value)\";")
 				}
 				else {
-					print("[Tab \(url)] window.\(param2 ?? "(nil)") not implemented");
+					print("[Tab \(index)] window.\(param2 ?? "(nil)") not implemented");
 				}
 
 				ipcCallback("")
@@ -331,7 +332,7 @@ extension Tab: UIWebViewDelegate {
 	private func ipcCallback(_ payload: String) {
 		let callback = "(function() { \(payload); __endless.ipcDone = (new Date()).getTime(); })();"
 
-		print("[Javascript IPC]: calling back with: %@", callback)
+		print("[Tab \(index)] [IPC]: calling back with: %@", callback)
 
 		stringByEvaluatingJavaScript(from: callback)
 	}

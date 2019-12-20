@@ -451,6 +451,10 @@ class BrowsingViewController: UIViewController, TabDelegate {
 		return tabs.first { $0.hash == hash }
 	}
 
+	func getIndex(of tab: Tab) -> Int? {
+		return tabs.firstIndex(of: tab)
+	}
+
 	func unfocusSearchField() {
 		if searchFl.isFirstResponder {
 			searchFl.resignFirstResponder()

@@ -26,6 +26,8 @@ protocol TabDelegate: class {
 
 	func getTab(hash: Int?) -> Tab?
 
+	func getIndex(of tab: Tab) -> Int?
+
 	func present(_ vc: UIViewController, _ sender: UIView?)
 
 	func unfocusSearchField()
@@ -64,6 +66,11 @@ class Tab: UIView {
 
 	@objc
 	var url = URL.blank
+
+	@objc
+	var index: Int {
+		return tabDelegate?.getIndex(of: self) ?? -1
+	}
 
 	private(set) var needsRefresh = false
 
@@ -289,7 +296,7 @@ class Tab: UIView {
 		let hashInUa = stringByEvaluatingJavaScript(from: "navigator.userAgent")?.split(separator: "/").last
 
 		if hashInUa?.compare(String(hash)) != ComparisonResult.orderedSame {
-			print("[Tab \(url)] Aborting, not equal! hashInUa=\(String(describing: hashInUa)), hash=\(hash)")
+			print("[Tab \(index)] Aborting, not equal! hashInUa=\(String(describing: hashInUa)), hash=\(hash)")
 			abort()
 		}
 
