@@ -47,6 +47,8 @@ open class Bookmark: NSObject {
 		return defaults
 	}();
 
+	private static var firstUpdateAfterStartDone = false
+
 	static var all: [Bookmark] = {
 
 		// Init FavIcon config here, because all code having to do with bookmarks should come along here anyway.
@@ -92,14 +94,17 @@ open class Bookmark: NSObject {
 			return
 		}
 
-		let fm = FileManager.default
+		// Always update after start. Language could have been changed.
+		if firstUpdateAfterStartDone {
+			let fm = FileManager.default
 
-		// If files exist and destination is newer than source, don't do anything. (Upgrades!)
-		if let dm = try? fm.attributesOfItem(atPath: URL.start.path)[.modificationDate] as? Date,
-			let sm = try? fm.attributesOfItem(atPath: source.path)[.modificationDate] as? Date {
+			// If files exist and destination is newer than source, don't do anything. (Upgrades!)
+			if let dm = try? fm.attributesOfItem(atPath: URL.start.path)[.modificationDate] as? Date,
+				let sm = try? fm.attributesOfItem(atPath: source.path)[.modificationDate] as? Date {
 
-			if dm > sm {
-				return
+				if dm > sm {
+					return
+				}
 			}
 		}
 
@@ -128,17 +133,26 @@ open class Bookmark: NSObject {
 				icon = defaultBookmarks[i].icon ?? Bookmark.defaultIcon
 			}
 
-			template = template.replacingOccurrences(of: "{{ bookmark_url_\(i) }}",
-				with: url.absoluteString)
-
-			template = template.replacingOccurrences(of: "{{ bookmark_name_\(i) }}",
-				with: name)
-
-			template = template.replacingOccurrences(of: "{{ bookmark_icon_\(i) }}",
-				with: "data:image/png;base64,\(icon.pngData()?.base64EncodedString() ?? "")")
+			template = template
+				.replacingOccurrences(of: "{{ bookmark_url_\(i) }}", with: url.absoluteString)
+				.replacingOccurrences(of: "{{ bookmark_name_\(i) }}", with: name)
+				.replacingOccurrences(of: "{{ bookmark_icon_\(i) }}",
+					with: "data:image/png;base64,\(icon.pngData()?.base64EncodedString() ?? "")")
 		}
 
+		template = template
+			.replacingOccurrences(of: "{{ Onion Browser }}",
+								  with: NSLocalizedString(Bundle.main.displayName, comment: ""))
+			.replacingOccurrences(of: "{{ Learn more about Onion Browser }}",
+								  with: String(format: NSLocalizedString("Learn more about %@", comment: ""), Bundle.main.displayName))
+			.replacingOccurrences(of: "{{ Donate to Onion Browser }}",
+								  with: String(format: NSLocalizedString("Donate to %@", comment: ""), Bundle.main.displayName))
+			.replacingOccurrences(of: "{{ Subscribe to Tor Newsletter }}",
+								  with: NSLocalizedString("Subscribe to Tor Newsletter", comment: ""))
+
 		try? template.write(to: URL.start, atomically: true, encoding: .utf8)
+
+		firstUpdateAfterStartDone = true
 	}
 
 	class func add(name: String?, url: String) {
