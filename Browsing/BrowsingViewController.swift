@@ -380,7 +380,7 @@ class BrowsingViewController: UIViewController, TabDelegate {
 
 		let tab = Tab(restorationId: forRestoration ? url?.absoluteString : nil)
 
-		if let url = url, !forRestoration {
+		if !forRestoration {
 			tab.load(url)
 		}
 
@@ -467,7 +467,7 @@ class BrowsingViewController: UIViewController, TabDelegate {
 	@objc
 	func becomesVisible() {
 		if tabs.count < 1 {
-			addNewTab(URL(string: "http://3heens4xbedlj57xwcggjsdglot7e36p4rogy642xokemfo2duh6bbyd.onion/"))
+			addNewTab()
 		}
 	}
 

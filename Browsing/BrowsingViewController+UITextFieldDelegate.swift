@@ -112,15 +112,7 @@ extension BrowsingViewController: UITextFieldDelegate {
 				return
 			}
 
-			if currentTab?.url == URL.credits {
-				searchFl.text = URL.aboutOnionBrowser.absoluteString
-			}
-			else if currentTab?.url == URL.blank {
-				searchFl.text = nil
-			}
-			else {
-				searchFl.text = currentTab?.url.absoluteString
-			}
+			searchFl.text = currentTab?.url.clean?.absoluteString
 
 			// .unlessEditing would be such a great state, if it wouldn't show
 			// while editing an empty field. Argh.
@@ -139,17 +131,15 @@ extension BrowsingViewController: UITextFieldDelegate {
 	}
 
 	class func prettyTitle(_ url: URL?) -> String {
-		if url == URL.credits {
-			return URL.aboutOnionBrowser.absoluteString
+		guard let url = url?.clean else {
+			return ""
 		}
 
-		if url != URL.blank,
-			let host = url?.host {
-
+		if let host = url.host {
 			return host.replacingOccurrences(of: #"^www\d*\."#, with: "", options: .regularExpression)
 		}
 
-		return (url ?? URL.blank).absoluteString
+		return url.absoluteString
 	}
 
 	/**
@@ -188,8 +178,12 @@ extension BrowsingViewController: UITextFieldDelegate {
 	private func parseSearch(_ search: String?) -> URL? {
 		// Must not be empty, must not be the explicit blank page.
 		if let search = search,
-			!search.isEmpty
-				&& search.caseInsensitiveCompare(URL.blank.absoluteString) != .orderedSame {
+			!search.isEmpty {
+
+			// blank page, return that.
+			if search.caseInsensitiveCompare(URL.blank.absoluteString) == .orderedSame {
+				return URL.blank
+			}
 
 			// If credits page, return that.
 			if search.caseInsensitiveCompare(URL.aboutOnionBrowser.absoluteString) == .orderedSame {
@@ -226,9 +220,10 @@ extension BrowsingViewController: UITextFieldDelegate {
 				// Someone wants to try something here. No way.
 			}
 
-			// Unparsable. Return blank page.
+			// Unparsable.
 		}
 
-		return URL.blank
+		//  Return start page.
+		return URL.start
 	}
 }

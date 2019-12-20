@@ -65,7 +65,7 @@ class Tab: UIView {
 	var ipcId: String?
 
 	@objc
-	var url = URL.blank
+	var url = URL.start
 
 	@objc
 	var index: Int {
@@ -190,6 +190,10 @@ class Tab: UIView {
 
 	@objc
 	func refresh() {
+		if url == URL.start {
+			Bookmark.updateStartPage()
+		}
+
 		needsRefresh = false
 		skipHistory = true
 		webView.reload()
@@ -213,14 +217,18 @@ class Tab: UIView {
 
 		reset()
 
-		if let request = request {
-			if let url = request.url {
-				self.url = url
+		let request = request ?? URLRequest(url: URL.start)
+
+		if let url = request.url {
+			if url == URL.start {
+				Bookmark.updateStartPage()
 			}
 
-			DispatchQueue.main.async {
-				self.webView.loadRequest(request)
-			}
+			self.url = url
+		}
+
+		DispatchQueue.main.async {
+			self.webView.loadRequest(request)
 		}
 	}
 
@@ -233,7 +241,7 @@ class Tab: UIView {
 		applicableHttpsEverywhereRules.removeAllObjects()
 		applicableUrlBlockerTargets.removeAllObjects()
 		sslCertificate = nil
-		self.url = url ?? URL.blank
+		self.url = url ?? URL.start
 	}
 
 	@objc

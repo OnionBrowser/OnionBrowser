@@ -13,9 +13,11 @@ import Foundation
 extension URL {
 
 	static let blank = URL(string: "about:blank")!
-	static let aboutOnionBrowser = URL(string: "about:onion-browser")!
-	static let credits = Bundle.main.url(forResource: "credits", withExtension: "html")
 
+	static let aboutOnionBrowser = URL(string: "about:onion-browser")!
+	static let credits = Bundle.main.url(forResource: "credits", withExtension: "html")!
+
+	static let start = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last!.appendingPathComponent("start.html")
 
 	var withFixedScheme: URL? {
 		switch scheme?.lowercased() {
@@ -36,10 +38,23 @@ extension URL {
 		}
 	}
 
-	var real: URL? {
+	var real: URL {
 		switch self {
 		case URL.aboutOnionBrowser:
 			return URL.credits
+
+		default:
+			return self
+		}
+	}
+
+	var clean: URL? {
+		switch self {
+		case URL.credits:
+			return URL.aboutOnionBrowser
+
+		case URL.start:
+			return nil
 
 		default:
 			return self

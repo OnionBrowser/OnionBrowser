@@ -85,15 +85,17 @@ extension Tab: UIWebViewDelegate {
 			finalUrl = webView.request?.mainDocumentURL?.absoluteString
 		}
 
-		url = URL(string: finalUrl!) ?? URL.blank
+		url = URL(string: finalUrl!) ?? URL.start
 
 		if !skipHistory {
 			while history.count > Tab.historySize {
 				history.remove(at: 0)
 			}
 
-			if history.isEmpty || history.last?.url.absoluteString != finalUrl {
-				history.append(HistoryViewController.Item(url: url, title: title))
+			if history.isEmpty || history.last?.url.absoluteString != finalUrl,
+				let cleanUrl = url.clean {
+
+				history.append(HistoryViewController.Item(url: cleanUrl, title: title))
 			}
 		}
 

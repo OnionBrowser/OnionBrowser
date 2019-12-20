@@ -23,8 +23,11 @@ class BookmarkViewController: FormViewController {
 
 	private var bookmark: Bookmark?
 
+	private var sceneGoneStoreImmediately = false
+
     private let favIconRow = FavIconRow() {
         $0.disabled = true
+        $0.placeholderImage = Bookmark.defaultIcon
     }
 
 	private let titleRow = TextRow() {
@@ -52,6 +55,8 @@ class BookmarkViewController: FormViewController {
 				else {
 					titleRow.value = info.title
 					urlRow.value = info.url
+
+					acquireIcon()
 				}
 			}
 		}
@@ -109,6 +114,8 @@ class BookmarkViewController: FormViewController {
 			Bookmark.store()
 
 			delegate?.needsReload()
+
+			sceneGoneStoreImmediately = true
 		}
 	}
 
@@ -135,6 +142,14 @@ class BookmarkViewController: FormViewController {
 		Bookmark.icon(for: url) { image in
 			self.favIconRow.value = image
 			self.favIconRow.reload()
+
+			// User stored bookmark and left scene.
+			// If we return to late, store the icon of the bookmark immediately,
+			// so we don't loose that information.
+			if self.sceneGoneStoreImmediately {
+				self.bookmark?.icon = image
+				Bookmark.store()
+			}
 		}
     }
 

@@ -84,6 +84,7 @@
 		A01EE97923A3D539003B5AFD /* SecurityLevelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01EE97723A3D539003B5AFD /* SecurityLevelCell.swift */; };
 		A0323AC32396C83A00B9DDA5 /* obfs4-bridges.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0323AC22396C83900B9DDA5 /* obfs4-bridges.plist */; };
 		A0364537235094DF0038930E /* Storage2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0364536235094DF0038930E /* Storage2ViewController.swift */; };
+		A038E01523ABDCF70016F2D3 /* start.html in Resources */ = {isa = PBXBuildFile; fileRef = A038E01423ABDCF70016F2D3 /* start.html */; };
 		A03A2DD223577971002D640B /* Bundle+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03A2DD123577970002D640B /* Bundle+Helpers.swift */; };
 		A03A2DD423577B91002D640B /* SecurityPresetsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03A2DD323577B91002D640B /* SecurityPresetsRow.swift */; };
 		A03DBCED22859B99001890C4 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = A03DBCEC22859B99001890C4 /* Config.m */; };
@@ -305,6 +306,7 @@
 		A0323AC12396962A00B9DDA5 /* update-bridges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "update-bridges.swift"; sourceTree = "<group>"; };
 		A0323AC22396C83900B9DDA5 /* obfs4-bridges.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "obfs4-bridges.plist"; path = "Endless/Resources/obfs4-bridges.plist"; sourceTree = "<group>"; };
 		A0364536235094DF0038930E /* Storage2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage2ViewController.swift; sourceTree = "<group>"; };
+		A038E01423ABDCF70016F2D3 /* start.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = start.html; sourceTree = "<group>"; };
 		A03A2DD123577970002D640B /* Bundle+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Helpers.swift"; sourceTree = "<group>"; };
 		A03A2DD323577B91002D640B /* SecurityPresetsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityPresetsRow.swift; sourceTree = "<group>"; };
 		A03DBCAD2285799A001890C4 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = Endless/cs.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -951,6 +953,7 @@
 			children = (
 				A0323AC22396C83900B9DDA5 /* obfs4-bridges.plist */,
 				A045E5E11EDC5C1700BC8A92 /* Localizable.strings */,
+				A038E01423ABDCF70016F2D3 /* start.html */,
 				01F8794A1A41232E00A63654 /* credits.html */,
 				6926DAED221C836F00D71752 /* credits.html.in */,
 				016B2FCA1A53466D002D2730 /* hsts_preload.plist */,
@@ -2292,6 +2295,7 @@
 				A045E5E51EDC5C1700BC8A92 /* Localizable.strings in Resources */,
 				8AF16095202CD6D600AC0BCE /* block_webrtc.js in Resources */,
 				016B2FCB1A53466D002D2730 /* hsts_preload.plist in Resources */,
+				A038E01523ABDCF70016F2D3 /* start.html in Resources */,
 				A0323AC32396C83A00B9DDA5 /* obfs4-bridges.plist in Resources */,
 				691286EA1EABEE6900CEC414 /* LaunchScreen.xib in Resources */,
 				A083DFE423ABACB5003E3D1B /* FavIconCell.xib in Resources */,
