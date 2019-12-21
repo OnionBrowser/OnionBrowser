@@ -269,6 +269,7 @@
         <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="ed4-6N-Nf3">
             <connections>
                 <action selector="showHistory:" destination="-1" id="Oj6-iE-pCt"/>
+                <outlet property="delegate" destination="-1" id="j1E-3c-IEf"/>
             </connections>
         </pongPressGestureRecognizer>
     </objects>

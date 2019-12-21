@@ -10,7 +10,7 @@
 
 import Foundation
 
-extension BrowsingViewController: UIScrollViewDelegate {
+extension BrowsingViewController: UIScrollViewDelegate, UIGestureRecognizerDelegate {
 
 	// MARK: UIScrollViewDelegate
 
@@ -26,6 +26,16 @@ extension BrowsingViewController: UIScrollViewDelegate {
 		}
 
 		showToolbar(velocity > 0)
+	}
+
+
+	// MARK: UIGestureRecognizerDelegate
+
+	func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+		// Stop the system gesture recognizer from triggering a short tap
+		// on the back button, when our long tap gesture will soon trigger the
+		// display of the HistoryViewController.
+		return gestureRecognizer is UILongPressGestureRecognizer
 	}
 
 
