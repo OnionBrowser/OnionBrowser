@@ -47,6 +47,13 @@ class BrowsingViewController: UIViewController, TabDelegate {
 		button.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
 		button.setImage(UIImage(named: "reload"), for: .normal)
 
+		if #available(iOS 13, *) {
+			button.tintColor = .label
+		}
+		else {
+			button.tintColor = .black
+		}
+
 		button.addTarget(self, action: #selector(action), for: .touchUpInside)
 
 		return button
