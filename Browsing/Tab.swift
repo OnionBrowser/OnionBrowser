@@ -147,6 +147,10 @@ class Tab: UIView {
 		return webView.canGoForward
 	}
 
+	var isLoading: Bool {
+		return webView.isLoading
+	}
+
 	var previewController: QLPreviewController?
 
 	/**
@@ -197,6 +201,10 @@ class Tab: UIView {
 		needsRefresh = false
 		skipHistory = true
 		webView.reload()
+	}
+
+	func stop() {
+		webView.stopLoading()
 	}
 
 	@objc

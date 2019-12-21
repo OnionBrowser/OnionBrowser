@@ -19,6 +19,9 @@ class BrowsingViewController: UIViewController, TabDelegate {
 		case inBackground
 	}
 
+	private static let reloadImg = UIImage(named: "reload")
+	private static let stopImg = UIImage(named: "close")
+
     @IBOutlet weak var searchBar: UIView!
     @IBOutlet weak var searchBarHeightConstraint: NSLayoutConstraint! {
         didSet {
@@ -45,7 +48,7 @@ class BrowsingViewController: UIViewController, TabDelegate {
 	private lazy var reloadBt: UIButton = {
 		let button = UIButton(type: .custom)
 		button.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
-		button.setImage(UIImage(named: "reload"), for: .normal)
+		button.setImage(BrowsingViewController.reloadImg, for: .normal)
 
 		if #available(iOS 13, *) {
 			button.tintColor = .label
@@ -53,6 +56,9 @@ class BrowsingViewController: UIViewController, TabDelegate {
 		else {
 			button.tintColor = .black
 		}
+
+		button.widthAnchor.constraint(equalToConstant: 24).isActive = true
+		button.heightAnchor.constraint(equalToConstant: 24).isActive = true
 
 		button.addTarget(self, action: #selector(action), for: .touchUpInside)
 
@@ -268,7 +274,14 @@ class BrowsingViewController: UIViewController, TabDelegate {
 			present(UINavigationController(rootViewController: vc), sender)
 
         case reloadBt:
-            currentTab?.refresh()
+			if currentTab?.isLoading ?? false {
+				currentTab?.stop()
+				updateReloadBt(false)
+			}
+			else {
+				currentTab?.refresh()
+				updateReloadBt(true)
+			}
 
 		case torBt:
 			let vc: UIViewController
@@ -348,6 +361,8 @@ class BrowsingViewController: UIViewController, TabDelegate {
 				}
 			}
 		}
+
+		updateReloadBt(currentTab?.progress ?? 1 < 1)
 
 		updateSearchField()
 
@@ -578,5 +593,21 @@ class BrowsingViewController: UIViewController, TabDelegate {
 
 		// 2+2 in vertical direction is correction for double-frame icon
 		tabsBt.titleEdgeInsets = UIEdgeInsets(top: 2, left: offset, bottom: -2, right: -offset)
+	}
+
+	/**
+	Shows either a reload or stop icon, depending on the parameter.
+
+	- parameter reloading: true, if currently loading.
+	*/
+	private func updateReloadBt(_ loading: Bool) {
+		if loading {
+			reloadBt.setImage(BrowsingViewController.stopImg, for: .normal)
+			reloadBt.imageEdgeInsets = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
+		}
+		else {
+			reloadBt.setImage(BrowsingViewController.reloadImg, for: .normal)
+			reloadBt.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+		}
 	}
 }
