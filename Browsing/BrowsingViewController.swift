@@ -276,12 +276,11 @@ class BrowsingViewController: UIViewController, TabDelegate {
         case reloadBt:
 			if currentTab?.isLoading ?? false {
 				currentTab?.stop()
-				updateReloadBt(false)
 			}
 			else {
 				currentTab?.refresh()
-				updateReloadBt(true)
 			}
+			updateReloadBt()
 
 		case torBt:
 			let vc: UIViewController
@@ -362,7 +361,7 @@ class BrowsingViewController: UIViewController, TabDelegate {
 			}
 		}
 
-		updateReloadBt(currentTab?.progress ?? 1 < 1)
+		updateReloadBt()
 
 		updateSearchField()
 
@@ -596,12 +595,10 @@ class BrowsingViewController: UIViewController, TabDelegate {
 	}
 
 	/**
-	Shows either a reload or stop icon, depending on the parameter.
-
-	- parameter reloading: true, if currently loading.
+	Shows either a reload or stop icon, depending on if the current tab is currently loading or not.
 	*/
-	private func updateReloadBt(_ loading: Bool) {
-		if loading {
+	private func updateReloadBt() {
+		if currentTab?.isLoading ?? false {
 			reloadBt.setImage(BrowsingViewController.stopImg, for: .normal)
 			reloadBt.imageEdgeInsets = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
 		}
