@@ -37,7 +37,7 @@ cat <<EOF > "${SRCROOT}"/OnionBrowser/version.h
 #define OBBundleVersion ${OB_BUNDLE_VERSION}
 EOF
 
-cat "${SRCROOT}"/Endless/Resources/credits.html.in | \
+cat "${SRCROOT}"/Resources/credits.html.in | \
 sed "s/XX_OB_BUNDLE_SHORT_VERSION_STRING_XX/${OB_BUNDLE_SHORT_VERSION_STRING}/g" | \
 sed "s/XX_OB_BUNDLE_VERSION_XX/${OB_BUNDLE_VERSION}/g" \
-  > "${SRCROOT}"/Endless/Resources/credits.html
+  > "${SRCROOT}"/Resources/credits.html

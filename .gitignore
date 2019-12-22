@@ -17,10 +17,10 @@ Carthage/Checkouts/
 fabric.apikey
 fabric.buildsecret
 OnionBrowser/version.h
-Endless/Resources/credits.html
 
-geoip
-geoip6
+Resources/credits.html
+Resources/geoip
+Resources/geoip6
 
 # metadata containing sensitive data
 fastlane/metadata/review_information

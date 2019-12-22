@@ -18,8 +18,10 @@
 
 - (id)init
 {
-    if (self = [super initWithNibName: @"LaunchScreen" bundle: [NSBundle bundleForClass: [OBRootViewController classForCoder]]])
+	if (self = [super init])
     {
+		self.view.backgroundColor = UIColor.poeAccent;
+
         self.introVC = [[IntroViewController alloc] init];
         self.introVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 

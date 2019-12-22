@@ -36,7 +36,7 @@ func resolve(_ path: String) -> String {
 
 // MARK: Main
 
-let outfile = resolve("../Endless/Resources/obfs4-bridges.plist")
+let outfile = resolve("../Resources/obfs4-bridges.plist")
 
 let modified = (try? FileManager.default.attributesOfItem(atPath: outfile)[.modificationDate] as? Date) ?? Date(timeIntervalSince1970: 0)
 

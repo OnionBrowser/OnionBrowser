@@ -12,12 +12,12 @@ require "json"
 require "net/https"
 require "uri"
 
-HTTPS_E_TARGETS_PLIST = "Endless/Resources/https-everywhere_targets.plist"
-HTTPS_E_RULES_PLIST = "Endless/Resources/https-everywhere_rules.plist"
+HTTPS_E_TARGETS_PLIST = "Resources/https-everywhere_targets.plist"
+HTTPS_E_RULES_PLIST = "Resources/https-everywhere_rules.plist"
 
 # in b64 for some reason
 HSTS_PRELOAD_LIST = "https://chromium.googlesource.com/chromium/src/net/+/master/http/transport_security_state_static.json?format=TEXT"
-HSTS_PRELOAD_HOSTS_PLIST = "Endless/Resources/hsts_preload.plist"
+HSTS_PRELOAD_HOSTS_PLIST = "Resources/hsts_preload.plist"
 
 FORCE = (ARGV[0].to_s == "-f")
 
