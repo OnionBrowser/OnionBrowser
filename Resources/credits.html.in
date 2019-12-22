@@ -19,11 +19,10 @@
 <h2>Onion Browser</h2>
 <ul style="padding-left: 0">
 	<li>Version XX_OB_BUNDLE_SHORT_VERSION_STRING_XX (XX_OB_BUNDLE_VERSION_XX)</li>
-	<li><b>Endless</b> 1.6.1</li>
-	<li><b>Tor</b>: 0.4.0.5</li>
-	<li><b>libevent</b>: 2.1.8</li>
-	<li><b>OpenSSL</b>: 1.1.0k</li>
-	<li><b>liblzma</b>: 5.2.3</li>
+	<li><b>Tor</b>: 0.4.0.6</li>
+	<li><b>libevent</b>: 2.1.11</li>
+	<li><b>OpenSSL</b>: 1.1.1d</li>
+	<li><b>liblzma</b>: 5.2.4</li>
 </ul>
 
 <p><strong>Official Site</strong><br><a href="https://mike.tig.as/onionbrowser/">https://mike.tig.as/onionbrowser/</a> (<a href="http://tigas3l7uusztiqu.onion/onionbrowser/">.onion</a>)<br>

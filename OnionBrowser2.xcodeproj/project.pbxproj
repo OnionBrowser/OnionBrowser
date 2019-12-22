@@ -68,7 +68,6 @@
 		A0BF51E823AFBF250096624A /* geoip6 in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51C023AFBF250096624A /* geoip6 */; };
 		A0BF51E923AFBF250096624A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51C123AFBF250096624A /* Images.xcassets */; };
 		A0BF51EA23AFBF250096624A /* hsts_preload.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51C423AFBF250096624A /* hsts_preload.plist */; };
-		A0BF51EB23AFBF250096624A /* credits.html.in in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51C523AFBF250096624A /* credits.html.in */; };
 		A0BF51EC23AFBF250096624A /* geoip in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51C623AFBF250096624A /* geoip */; };
 		A0BF51ED23AFBF250096624A /* start.html in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51C723AFBF250096624A /* start.html */; };
 		A0BF51EE23AFBF250096624A /* injected.js in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51CC23AFBF250096624A /* injected.js */; };
@@ -2269,7 +2268,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A0BF51EB23AFBF250096624A /* credits.html.in in Resources */,
 				A0BF51F023AFBF250096624A /* https-everywhere_targets.plist in Resources */,
 				A0BF524E23AFC3580096624A /* SecurityLevelCell.xib in Resources */,
 				A0BF528523AFC6D10096624A /* InfoPlist.strings in Resources */,
