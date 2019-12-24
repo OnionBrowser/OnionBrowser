@@ -389,7 +389,7 @@
 			}
 		}
 		
-		if (blocker) {
+		if (blocker == nil) {
 #ifdef TRACE_COOKIES
 			NSLog(@"[Tab h%@] data for %@ in use on tab %@, not deleting", tabHashN, cookieDomain, blocker);
 #endif
