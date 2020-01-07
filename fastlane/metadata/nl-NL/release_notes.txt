@@ -1,1 +1,11 @@
-
+- Nieuw browsing chrome
+- Verbeterde iPad-ondersteuning
+- Nieuwe bestemmingspagina
+- Bladwijzers met favicons
+- Nieuw Tor circuit display
+- Voorinstellingen voor beveiligingsniveau
+- Nieuw tabbladoverzicht
+- Tor bijgewerkt naar 0.4.0.6
+- Bijgewerkte OBFS4-serverlijst
+- Probleem opgelost met Content-Security-Header nonce en hash-waarden die veel sites brak.
+- Localisatie-updates

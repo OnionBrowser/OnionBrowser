@@ -1,1 +1,11 @@
-
+- Új böngésző króm
+- Továbbfejlesztett iPad támogatás
+- Új céloldal
+- Könyvjelzők faviconokkal
+- Új Tor áramköri kijelző
+- A biztonsági szint előre beállított értékei
+- Új lap áttekintés
+- A Tor frissítve: 0.4.0.6
+- Frissített OBFS4 szerverlista
+- Rögzített probléma a Content-Security-Header nonce és hash értékekkel, amelyek sok webhelyet tönkretettek.
+- Lokalizációs frissítések

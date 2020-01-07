@@ -1,16 +1,18 @@
 #  Onion Browser 2 Changelog
 
-## 2.4.0 (in development)
+## 2.4.0
 
+- New browsing chrome
+- Improved iPad support
+- New landing page
+- Bookmarks with favicons
+- New Tor circuit display
+- Security level presets
+- New tab overview
+- Tor updated to 0.4.0.6
+- Updated OBFS4 server list
+- Fixed issue with Content-Security-Header nonce and hash values which broke a lot of sites.
 - Localization updates
-
-- Fixed keyboard behavior (now hides properly when tapping any buttons)
-
-- Updated iPad interface
-
-- Updated security settings interface
-
-- (and more in development)
 
 ## 2.3.0
 

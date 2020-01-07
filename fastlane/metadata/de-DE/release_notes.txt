@@ -1,1 +1,11 @@
-
+- Neues Benutzerinterface
+- Verbesserte iPad-Unterstützung
+- Neue Startseite
+- Lesezeichen mit Icons
+- Neue Tor-Kanal-Anzeige
+- Sicherheitsniveau-Voreinstellungen
+- Neue Reiterübersicht
+- Tor aktualisiert auf 0.4.0.6
+- Aktualisierte OBFS4-Serverliste
+- Problem mit Content-Security-Header-Nonce- und Hash-Werten behoben, das viele Websites kaputt gemacht hatte.
+- Lokalisierungsupdates

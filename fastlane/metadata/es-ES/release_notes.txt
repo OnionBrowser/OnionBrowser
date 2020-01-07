@@ -1,1 +1,11 @@
-
+- Nuevo navegador Chrome
+- Soporte mejorado para iPad
+- Nueva página de destino
+- Marcadores con favicons
+- Nueva pantalla del circuito Tor
+- Presets de nivel de seguridad
+- Descripción general de la nueva pestaña
+- Tor actualizado a 0.4.0.6
+- Lista de servidores OBFS4 actualizada
+- Se corrigió el problema con los valores nonce y hash de Content-Security-Header que rompieron muchos sitios.
+- Actualizaciones de localización

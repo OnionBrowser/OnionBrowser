@@ -1,1 +1,11 @@
-
+- Chrome duyệt mới
+- Hỗ trợ iPad được cải thiện
+- Trang đích mới
+- Dấu trang với favicon
+- Hiển thị mạch Tor mới
+- Cài đặt trước mức bảo mật
+- Tổng quan về tab mới
+- Tor cập nhật lên 0.4.0.6
+- Danh sách máy chủ OBFS4 được cập nhật
+- Đã sửa lỗi với giá trị băm và giá trị băm của Content-Security-Header đã phá vỡ rất nhiều trang web.
+- Cập nhật nội địa hóa

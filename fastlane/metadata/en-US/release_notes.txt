@@ -1,1 +1,11 @@
-
+- New browsing chrome
+- Improved iPad support
+- New landing page
+- Bookmarks with favicons
+- New Tor circuit display
+- Security level presets
+- New tab overview
+- Tor updated to 0.4.0.6
+- Updated OBFS4 server list
+- Fixed issue with Content-Security-Header nonce and hash values which broke a lot of sites.
+- Localization updates

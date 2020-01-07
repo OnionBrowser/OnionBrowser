@@ -1,1 +1,11 @@
-
+- Novo navegador de cromo
+- Suporte aprimorado para iPad
+- Nova página de destino
+- Favoritos com favicons
+- Novo display do circuito Tor
+- Predefinições de nível de segurança
+- Visão geral da nova guia
+- Tor atualizado para 0.4.0.6
+- Lista de servidores OBFS4 atualizada
+- Foi corrigido um problema com os valores de nonce e hash do Content-Security-Header que quebravam muitos sites.
+- Atualizações de localização

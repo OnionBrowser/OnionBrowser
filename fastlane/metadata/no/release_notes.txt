@@ -1,1 +1,11 @@
-
+- Nytt surfekrom
+- Forbedret iPad-støtte
+- Ny destinasjonsside
+- Bokmerker med favoritter
+- Ny Tor-kretsvisning
+- Forhåndsinnstillinger for sikkerhetsnivå
+- Ny faneoversikt
+- Tor oppdaterte til 0.4.0.6
+- Oppdatert OBFS4-serverliste
+- Løst problem med Content-Security-Header nonce og hashverdier som brøt mange nettsteder.
+- Lokaliseringsoppdateringer

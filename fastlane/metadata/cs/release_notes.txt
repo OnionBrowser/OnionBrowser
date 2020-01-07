@@ -1,1 +1,11 @@
-
+- Nový prohlížeč Chrome
+- Vylepšená podpora iPadu
+- Nová vstupní stránka
+- Záložky s favicons
+- Nový displej okruhu Tor
+- Předvolby úrovně zabezpečení
+- Přehled nových karet
+- Tor byl aktualizován na 0,4,0,6
+- Aktualizovaný seznam serverů OBFS4
+- Opraven problém s nonce a hashovými hodnotami záhlaví Content-Security-Header, které rozbily mnoho webů.
+- Aktualizace lokalizace
