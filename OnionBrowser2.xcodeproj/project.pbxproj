@@ -469,28 +469,6 @@
 		A094CD6F2344CE2C00C77E55 /* name.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = name.txt; sourceTree = "<group>"; };
 		A094CD702344CE2C00C77E55 /* marketing_url.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = marketing_url.txt; sourceTree = "<group>"; };
 		A094CD712344CE2C00C77E55 /* description.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = description.txt; sourceTree = "<group>"; };
-		A094CD7F2344CFFE00C77E55 /* 5_ipadPro129_5.5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5_ipadPro129_5.5.png; sourceTree = "<group>"; };
-		A094CD802344CFFE00C77E55 /* 3_ipadPro129_3.3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3_ipadPro129_3.3.png; sourceTree = "<group>"; };
-		A094CD812344CFFE00C77E55 /* 1_iphone6Plus_1.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1_iphone6Plus_1.1.png; sourceTree = "<group>"; };
-		A094CD822344CFFE00C77E55 /* 4_ipadPro129_4.4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4_ipadPro129_4.4.png; sourceTree = "<group>"; };
-		A094CD832344CFFE00C77E55 /* 6_iphone6Plus_6.6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 6_iphone6Plus_6.6.png; sourceTree = "<group>"; };
-		A094CD842344CFFE00C77E55 /* 4_iphone6Plus_4.4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4_iphone6Plus_4.4.png; sourceTree = "<group>"; };
-		A094CD852344CFFE00C77E55 /* 1_ipadPro129_1.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1_ipadPro129_1.1.png; sourceTree = "<group>"; };
-		A094CD862344CFFE00C77E55 /* 2_iphone6Plus_2.2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2_iphone6Plus_2.2.png; sourceTree = "<group>"; };
-		A094CD872344CFFE00C77E55 /* 3_iphone6Plus_3.3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3_iphone6Plus_3.3.png; sourceTree = "<group>"; };
-		A094CD882344CFFE00C77E55 /* 2_ipadPro129_2.2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2_ipadPro129_2.2.png; sourceTree = "<group>"; };
-		A094CD892344CFFE00C77E55 /* 5_iphone6Plus_5.5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5_iphone6Plus_5.5.png; sourceTree = "<group>"; };
-		A094CD912344CFFE00C77E55 /* 5_ipadPro129_5.5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5_ipadPro129_5.5.png; sourceTree = "<group>"; };
-		A094CD922344CFFE00C77E55 /* 3_ipadPro129_3.3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3_ipadPro129_3.3.png; sourceTree = "<group>"; };
-		A094CD932344CFFE00C77E55 /* 2_iphone6Plus_2.2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2_iphone6Plus_2.2.png; sourceTree = "<group>"; };
-		A094CD942344CFFE00C77E55 /* 4_ipadPro129_4.4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4_ipadPro129_4.4.png; sourceTree = "<group>"; };
-		A094CD952344CFFE00C77E55 /* 6_iphone6Plus_6.6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 6_iphone6Plus_6.6.png; sourceTree = "<group>"; };
-		A094CD962344CFFE00C77E55 /* 4_iphone6Plus_4.4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4_iphone6Plus_4.4.png; sourceTree = "<group>"; };
-		A094CD972344CFFE00C77E55 /* 1_ipadPro129_1.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1_ipadPro129_1.1.png; sourceTree = "<group>"; };
-		A094CD982344CFFE00C77E55 /* 1_iphone6Plus_1.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1_iphone6Plus_1.1.png; sourceTree = "<group>"; };
-		A094CD992344CFFE00C77E55 /* 3_iphone6Plus_3.3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3_iphone6Plus_3.3.png; sourceTree = "<group>"; };
-		A094CD9A2344CFFE00C77E55 /* 2_ipadPro129_2.2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2_ipadPro129_2.2.png; sourceTree = "<group>"; };
-		A094CD9B2344CFFE00C77E55 /* 5_iphone6Plus_5.5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5_iphone6Plus_5.5.png; sourceTree = "<group>"; };
 		A094CD9D2344CFFE00C77E55 /* 2_iphone65_2.2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2_iphone65_2.2.png; sourceTree = "<group>"; };
 		A094CD9E2344CFFE00C77E55 /* 3_iphone65_3.3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3_iphone65_3.3.png; sourceTree = "<group>"; };
 		A094CD9F2344CFFE00C77E55 /* 1_ipadPro_1.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1_ipadPro_1.1.png; sourceTree = "<group>"; };
@@ -515,95 +493,7 @@
 		A094CDB22344CFFE00C77E55 /* 3_iphone6Plus_3.3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3_iphone6Plus_3.3.png; sourceTree = "<group>"; };
 		A094CDB32344CFFE00C77E55 /* 5_iphone6Plus_5.5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5_iphone6Plus_5.5.png; sourceTree = "<group>"; };
 		A094CDB42344CFFE00C77E55 /* 2_ipadPro_2.2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2_ipadPro_2.2.png; sourceTree = "<group>"; };
-		A094CDB62344CFFE00C77E55 /* 3_iphone65_3.3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3_iphone65_3.3.png; sourceTree = "<group>"; };
-		A094CDB72344CFFE00C77E55 /* 2_ipadPro_2.2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2_ipadPro_2.2.png; sourceTree = "<group>"; };
-		A094CDB82344CFFE00C77E55 /* 1_iphone65_1.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1_iphone65_1.1.png; sourceTree = "<group>"; };
-		A094CDB92344CFFE00C77E55 /* 5_ipadPro129_5.5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5_ipadPro129_5.5.png; sourceTree = "<group>"; };
-		A094CDBA2344CFFE00C77E55 /* 6_iphone65_6.6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 6_iphone65_6.6.png; sourceTree = "<group>"; };
-		A094CDBB2344CFFE00C77E55 /* 3_ipadPro129_3.3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3_ipadPro129_3.3.png; sourceTree = "<group>"; };
-		A094CDBC2344CFFE00C77E55 /* 6_ipadPro_6.6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 6_ipadPro_6.6.png; sourceTree = "<group>"; };
-		A094CDBD2344CFFE00C77E55 /* 1_iphone6Plus_1.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1_iphone6Plus_1.1.png; sourceTree = "<group>"; };
-		A094CDBE2344CFFE00C77E55 /* 5_ipadPro_5.5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5_ipadPro_5.5.png; sourceTree = "<group>"; };
-		A094CDBF2344CFFE00C77E55 /* 2_iphone65_2.2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2_iphone65_2.2.png; sourceTree = "<group>"; };
-		A094CDC02344CFFE00C77E55 /* 4_ipadPro_4.4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4_ipadPro_4.4.png; sourceTree = "<group>"; };
-		A094CDC12344CFFE00C77E55 /* 5_iphone65_5.5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5_iphone65_5.5.png; sourceTree = "<group>"; };
-		A094CDC22344CFFE00C77E55 /* 1_ipadPro129_1.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1_ipadPro129_1.1.png; sourceTree = "<group>"; };
-		A094CDC32344CFFE00C77E55 /* 4_ipadPro129_4.4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4_ipadPro129_4.4.png; sourceTree = "<group>"; };
-		A094CDC42344CFFE00C77E55 /* 6_iphone6Plus_6.6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 6_iphone6Plus_6.6.png; sourceTree = "<group>"; };
-		A094CDC52344CFFE00C77E55 /* 4_iphone65_4.4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4_iphone65_4.4.png; sourceTree = "<group>"; };
-		A094CDC62344CFFE00C77E55 /* 4_iphone6Plus_4.4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4_iphone6Plus_4.4.png; sourceTree = "<group>"; };
-		A094CDC72344CFFE00C77E55 /* 2_iphone6Plus_2.2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2_iphone6Plus_2.2.png; sourceTree = "<group>"; };
-		A094CDC82344CFFE00C77E55 /* 3_ipadPro_3.3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3_ipadPro_3.3.png; sourceTree = "<group>"; };
-		A094CDC92344CFFE00C77E55 /* 2_ipadPro129_2.2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2_ipadPro129_2.2.png; sourceTree = "<group>"; };
-		A094CDCA2344CFFE00C77E55 /* 3_iphone6Plus_3.3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3_iphone6Plus_3.3.png; sourceTree = "<group>"; };
-		A094CDCB2344CFFE00C77E55 /* 5_iphone6Plus_5.5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5_iphone6Plus_5.5.png; sourceTree = "<group>"; };
-		A094CDCC2344CFFE00C77E55 /* 1_ipadPro_1.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1_ipadPro_1.1.png; sourceTree = "<group>"; };
-		A094CDCE2344CFFE00C77E55 /* 5_ipadPro129_5.5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5_ipadPro129_5.5.png; sourceTree = "<group>"; };
-		A094CDCF2344CFFE00C77E55 /* 3_ipadPro129_3.3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3_ipadPro129_3.3.png; sourceTree = "<group>"; };
-		A094CDD02344CFFE00C77E55 /* 4_ipadPro129_4.4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4_ipadPro129_4.4.png; sourceTree = "<group>"; };
-		A094CDD12344CFFE00C77E55 /* 1_ipadPro129_1.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1_ipadPro129_1.1.png; sourceTree = "<group>"; };
-		A094CDD22344CFFE00C77E55 /* 2_ipadPro129_2.2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2_ipadPro129_2.2.png; sourceTree = "<group>"; };
-		A094CDD42344CFFE00C77E55 /* 5_ipadPro129_5.5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5_ipadPro129_5.5.png; sourceTree = "<group>"; };
-		A094CDD52344CFFE00C77E55 /* 3_ipadPro129_3.3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3_ipadPro129_3.3.png; sourceTree = "<group>"; };
-		A094CDD62344CFFE00C77E55 /* 4_ipadPro129_4.4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4_ipadPro129_4.4.png; sourceTree = "<group>"; };
-		A094CDD72344CFFE00C77E55 /* 1_ipadPro129_1.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1_ipadPro129_1.1.png; sourceTree = "<group>"; };
-		A094CDD82344CFFE00C77E55 /* 2_ipadPro129_2.2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2_ipadPro129_2.2.png; sourceTree = "<group>"; };
 		A094CDDF2344CFFE00C77E55 /* README.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
-		A094CDE12344CFFE00C77E55 /* 5_ipadPro129_5.5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5_ipadPro129_5.5.png; sourceTree = "<group>"; };
-		A094CDE22344CFFE00C77E55 /* 3_ipadPro129_3.3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3_ipadPro129_3.3.png; sourceTree = "<group>"; };
-		A094CDE32344CFFE00C77E55 /* 4_ipadPro129_4.4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4_ipadPro129_4.4.png; sourceTree = "<group>"; };
-		A094CDE42344CFFE00C77E55 /* 1_ipadPro129_1.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1_ipadPro129_1.1.png; sourceTree = "<group>"; };
-		A094CDE52344CFFE00C77E55 /* 2_ipadPro129_2.2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2_ipadPro129_2.2.png; sourceTree = "<group>"; };
-		A094CDF22344E6A700C77E55 /* 2_ipadPro_2.2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2_ipadPro_2.2.png; sourceTree = "<group>"; };
-		A094CDF32344E6A700C77E55 /* 4_ipadPro_4.4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4_ipadPro_4.4.png; sourceTree = "<group>"; };
-		A094CDF42344E6A700C77E55 /* 5_ipadPro_5.5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5_ipadPro_5.5.png; sourceTree = "<group>"; };
-		A094CDF52344E6A700C77E55 /* 3_ipadPro_3.3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3_ipadPro_3.3.png; sourceTree = "<group>"; };
-		A094CDF62344E6A700C77E55 /* 1_ipadPro_1.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1_ipadPro_1.1.png; sourceTree = "<group>"; };
-		A094CDF72344E7A800C77E55 /* 4_iphone6Plus_4.4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4_iphone6Plus_4.4.png; sourceTree = "<group>"; };
-		A094CDF82344E7A800C77E55 /* 3_iphone6Plus_3.3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3_iphone6Plus_3.3.png; sourceTree = "<group>"; };
-		A094CDF92344E7A800C77E55 /* 1_iphone6Plus_1.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1_iphone6Plus_1.1.png; sourceTree = "<group>"; };
-		A094CDFA2344E7A800C77E55 /* 2_iphone6Plus_2.2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2_iphone6Plus_2.2.png; sourceTree = "<group>"; };
-		A094CDFB2344E7A800C77E55 /* 5_iphone6Plus_5.5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5_iphone6Plus_5.5.png; sourceTree = "<group>"; };
-		A094CDFC2344EC5A00C77E55 /* 5_iphone6Plus_5.5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5_iphone6Plus_5.5.png; sourceTree = "<group>"; };
-		A094CDFD2344EC5A00C77E55 /* 1_iphone6Plus_1.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1_iphone6Plus_1.1.png; sourceTree = "<group>"; };
-		A094CDFE2344EC5B00C77E55 /* 3_iphone6Plus_3.3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3_iphone6Plus_3.3.png; sourceTree = "<group>"; };
-		A094CDFF2344EC5B00C77E55 /* 4_iphone6Plus_4.4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4_iphone6Plus_4.4.png; sourceTree = "<group>"; };
-		A094CE002344EC5B00C77E55 /* 2_iphone6Plus_2.2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2_iphone6Plus_2.2.png; sourceTree = "<group>"; };
-		A094CE2E2344EDA500C77E55 /* 2_ipadPro_2.2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2_ipadPro_2.2.png; sourceTree = "<group>"; };
-		A094CE2F2344EDA500C77E55 /* 1_ipadPro_1.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1_ipadPro_1.1.png; sourceTree = "<group>"; };
-		A094CE302344EDA500C77E55 /* 3_ipadPro_3.3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3_ipadPro_3.3.png; sourceTree = "<group>"; };
-		A094CE312344EDA500C77E55 /* 5_ipadPro_5.5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5_ipadPro_5.5.png; sourceTree = "<group>"; };
-		A094CE322344EDA500C77E55 /* 4_ipadPro_4.4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4_ipadPro_4.4.png; sourceTree = "<group>"; };
-		A094CE332344EE2100C77E55 /* 5_ipadPro129_5.5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5_ipadPro129_5.5.png; sourceTree = "<group>"; };
-		A094CE342344EE2100C77E55 /* 2_ipadPro129_2.2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2_ipadPro129_2.2.png; sourceTree = "<group>"; };
-		A094CE352344EE2100C77E55 /* 1_ipadPro129_1.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1_ipadPro129_1.1.png; sourceTree = "<group>"; };
-		A094CE362344EE2100C77E55 /* 3_ipadPro129_3.3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3_ipadPro129_3.3.png; sourceTree = "<group>"; };
-		A094CE372344EE2200C77E55 /* 4_ipadPro129_4.4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4_ipadPro129_4.4.png; sourceTree = "<group>"; };
-		A094CE382344EEDD00C77E55 /* 1_iphone6Plus_1.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1_iphone6Plus_1.1.png; sourceTree = "<group>"; };
-		A094CE392344EEE900C77E55 /* 5_iphone6Plus_5.5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5_iphone6Plus_5.5.png; sourceTree = "<group>"; };
-		A094CE3A2344EEE900C77E55 /* 3_iphone6Plus_3.3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3_iphone6Plus_3.3.png; sourceTree = "<group>"; };
-		A094CE3B2344EEE900C77E55 /* 4_iphone6Plus_4.4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4_iphone6Plus_4.4.png; sourceTree = "<group>"; };
-		A094CE3C2344EEE900C77E55 /* 2_iphone6Plus_2.2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2_iphone6Plus_2.2.png; sourceTree = "<group>"; };
-		A094CE3D2344EF6E00C77E55 /* 3_ipadPro_3.3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3_ipadPro_3.3.png; sourceTree = "<group>"; };
-		A094CE3E2344EF6E00C77E55 /* 1_ipadPro_1.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1_ipadPro_1.1.png; sourceTree = "<group>"; };
-		A094CE3F2344EF6E00C77E55 /* 2_ipadPro_2.2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2_ipadPro_2.2.png; sourceTree = "<group>"; };
-		A094CE402344EF6E00C77E55 /* 5_ipadPro_5.5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5_ipadPro_5.5.png; sourceTree = "<group>"; };
-		A094CE412344EF6F00C77E55 /* 4_ipadPro_4.4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4_ipadPro_4.4.png; sourceTree = "<group>"; };
-		A094CE422344F21000C77E55 /* 5_iphone6Plus_5.5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5_iphone6Plus_5.5.png; sourceTree = "<group>"; };
-		A094CE432344F21000C77E55 /* 4_ipadPro_4.4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4_ipadPro_4.4.png; sourceTree = "<group>"; };
-		A094CE442344F21000C77E55 /* 4_iphone6Plus_4.4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4_iphone6Plus_4.4.png; sourceTree = "<group>"; };
-		A094CE452344F21000C77E55 /* 2_ipadPro_2.2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2_ipadPro_2.2.png; sourceTree = "<group>"; };
-		A094CE462344F21000C77E55 /* 3_iphone6Plus_3.3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3_iphone6Plus_3.3.png; sourceTree = "<group>"; };
-		A094CE472344F21000C77E55 /* 2_iphone6Plus_2.2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2_iphone6Plus_2.2.png; sourceTree = "<group>"; };
-		A094CE482344F21000C77E55 /* 2_ipadPro129_2.2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2_ipadPro129_2.2.png; sourceTree = "<group>"; };
-		A094CE492344F21000C77E55 /* 1_iphone6Plus_1.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1_iphone6Plus_1.1.png; sourceTree = "<group>"; };
-		A094CE4A2344F21000C77E55 /* 3_ipadPro129_3.3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3_ipadPro129_3.3.png; sourceTree = "<group>"; };
-		A094CE4B2344F21000C77E55 /* 1_ipadPro_1.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1_ipadPro_1.1.png; sourceTree = "<group>"; };
-		A094CE4C2344F21000C77E55 /* 5_ipadPro_5.5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5_ipadPro_5.5.png; sourceTree = "<group>"; };
-		A094CE4D2344F21000C77E55 /* 1_ipadPro129_1.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1_ipadPro129_1.1.png; sourceTree = "<group>"; };
-		A094CE4E2344F21000C77E55 /* 3_ipadPro_3.3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3_ipadPro_3.3.png; sourceTree = "<group>"; };
-		A094CE4F2344F21000C77E55 /* 4_ipadPro129_4.4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4_ipadPro129_4.4.png; sourceTree = "<group>"; };
-		A094CE502344F21100C77E55 /* 5_ipadPro129_5.5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5_ipadPro129_5.5.png; sourceTree = "<group>"; };
 		A094CE5D234501CB00C77E55 /* apple_tv_privacy_policy.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = apple_tv_privacy_policy.txt; sourceTree = "<group>"; };
 		A094CE5E234501CB00C77E55 /* promotional_text.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = promotional_text.txt; sourceTree = "<group>"; };
 		A094CE5F234501CB00C77E55 /* subtitle.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = subtitle.txt; sourceTree = "<group>"; };
@@ -1631,75 +1521,9 @@
 			isa = PBXGroup;
 			children = (
 				A094CDDF2344CFFE00C77E55 /* README.txt */,
-				A094CDCD2344CFFE00C77E55 /* de-DE */,
 				A094CD9C2344CFFE00C77E55 /* en-US */,
-				A094CDD92344CFFE00C77E55 /* es-ES */,
-				A094CDD32344CFFE00C77E55 /* fr-FR */,
-				A094CD902344CFFE00C77E55 /* ja */,
-				A094CDE02344CFFE00C77E55 /* nl-NL */,
-				A094CD8A2344CFFE00C77E55 /* no */,
-				A094CD7E2344CFFE00C77E55 /* pt-BR */,
-				A094CDB52344CFFE00C77E55 /* ru */,
 			);
 			path = screenshots;
-			sourceTree = "<group>";
-		};
-		A094CD7E2344CFFE00C77E55 /* pt-BR */ = {
-			isa = PBXGroup;
-			children = (
-				A094CD812344CFFE00C77E55 /* 1_iphone6Plus_1.1.png */,
-				A094CD862344CFFE00C77E55 /* 2_iphone6Plus_2.2.png */,
-				A094CD872344CFFE00C77E55 /* 3_iphone6Plus_3.3.png */,
-				A094CD842344CFFE00C77E55 /* 4_iphone6Plus_4.4.png */,
-				A094CD892344CFFE00C77E55 /* 5_iphone6Plus_5.5.png */,
-				A094CD832344CFFE00C77E55 /* 6_iphone6Plus_6.6.png */,
-				A094CD852344CFFE00C77E55 /* 1_ipadPro129_1.1.png */,
-				A094CD882344CFFE00C77E55 /* 2_ipadPro129_2.2.png */,
-				A094CD802344CFFE00C77E55 /* 3_ipadPro129_3.3.png */,
-				A094CD822344CFFE00C77E55 /* 4_ipadPro129_4.4.png */,
-				A094CD7F2344CFFE00C77E55 /* 5_ipadPro129_5.5.png */,
-			);
-			path = "pt-BR";
-			sourceTree = "<group>";
-		};
-		A094CD8A2344CFFE00C77E55 /* no */ = {
-			isa = PBXGroup;
-			children = (
-				A094CE492344F21000C77E55 /* 1_iphone6Plus_1.1.png */,
-				A094CE472344F21000C77E55 /* 2_iphone6Plus_2.2.png */,
-				A094CE462344F21000C77E55 /* 3_iphone6Plus_3.3.png */,
-				A094CE442344F21000C77E55 /* 4_iphone6Plus_4.4.png */,
-				A094CE422344F21000C77E55 /* 5_iphone6Plus_5.5.png */,
-				A094CE4B2344F21000C77E55 /* 1_ipadPro_1.1.png */,
-				A094CE452344F21000C77E55 /* 2_ipadPro_2.2.png */,
-				A094CE4E2344F21000C77E55 /* 3_ipadPro_3.3.png */,
-				A094CE432344F21000C77E55 /* 4_ipadPro_4.4.png */,
-				A094CE4C2344F21000C77E55 /* 5_ipadPro_5.5.png */,
-				A094CE4D2344F21000C77E55 /* 1_ipadPro129_1.1.png */,
-				A094CE482344F21000C77E55 /* 2_ipadPro129_2.2.png */,
-				A094CE4A2344F21000C77E55 /* 3_ipadPro129_3.3.png */,
-				A094CE4F2344F21000C77E55 /* 4_ipadPro129_4.4.png */,
-				A094CE502344F21100C77E55 /* 5_ipadPro129_5.5.png */,
-			);
-			path = no;
-			sourceTree = "<group>";
-		};
-		A094CD902344CFFE00C77E55 /* ja */ = {
-			isa = PBXGroup;
-			children = (
-				A094CD972344CFFE00C77E55 /* 1_ipadPro129_1.1.png */,
-				A094CD9A2344CFFE00C77E55 /* 2_ipadPro129_2.2.png */,
-				A094CD922344CFFE00C77E55 /* 3_ipadPro129_3.3.png */,
-				A094CD942344CFFE00C77E55 /* 4_ipadPro129_4.4.png */,
-				A094CD912344CFFE00C77E55 /* 5_ipadPro129_5.5.png */,
-				A094CD982344CFFE00C77E55 /* 1_iphone6Plus_1.1.png */,
-				A094CD932344CFFE00C77E55 /* 2_iphone6Plus_2.2.png */,
-				A094CD992344CFFE00C77E55 /* 3_iphone6Plus_3.3.png */,
-				A094CD962344CFFE00C77E55 /* 4_iphone6Plus_4.4.png */,
-				A094CD9B2344CFFE00C77E55 /* 5_iphone6Plus_5.5.png */,
-				A094CD952344CFFE00C77E55 /* 6_iphone6Plus_6.6.png */,
-			);
-			path = ja;
 			sourceTree = "<group>";
 		};
 		A094CD9C2344CFFE00C77E55 /* en-US */ = {
@@ -1731,114 +1555,6 @@
 				A094CDA42344CFFE00C77E55 /* 6_ipadPro129_6.6.png */,
 			);
 			path = "en-US";
-			sourceTree = "<group>";
-		};
-		A094CDB52344CFFE00C77E55 /* ru */ = {
-			isa = PBXGroup;
-			children = (
-				A094CDBD2344CFFE00C77E55 /* 1_iphone6Plus_1.1.png */,
-				A094CDC72344CFFE00C77E55 /* 2_iphone6Plus_2.2.png */,
-				A094CDCA2344CFFE00C77E55 /* 3_iphone6Plus_3.3.png */,
-				A094CDC62344CFFE00C77E55 /* 4_iphone6Plus_4.4.png */,
-				A094CDCB2344CFFE00C77E55 /* 5_iphone6Plus_5.5.png */,
-				A094CDC42344CFFE00C77E55 /* 6_iphone6Plus_6.6.png */,
-				A094CDB82344CFFE00C77E55 /* 1_iphone65_1.1.png */,
-				A094CDBF2344CFFE00C77E55 /* 2_iphone65_2.2.png */,
-				A094CDB62344CFFE00C77E55 /* 3_iphone65_3.3.png */,
-				A094CDC52344CFFE00C77E55 /* 4_iphone65_4.4.png */,
-				A094CDC12344CFFE00C77E55 /* 5_iphone65_5.5.png */,
-				A094CDBA2344CFFE00C77E55 /* 6_iphone65_6.6.png */,
-				A094CDCC2344CFFE00C77E55 /* 1_ipadPro_1.1.png */,
-				A094CDB72344CFFE00C77E55 /* 2_ipadPro_2.2.png */,
-				A094CDC82344CFFE00C77E55 /* 3_ipadPro_3.3.png */,
-				A094CDC02344CFFE00C77E55 /* 4_ipadPro_4.4.png */,
-				A094CDBE2344CFFE00C77E55 /* 5_ipadPro_5.5.png */,
-				A094CDBC2344CFFE00C77E55 /* 6_ipadPro_6.6.png */,
-				A094CDC22344CFFE00C77E55 /* 1_ipadPro129_1.1.png */,
-				A094CDC92344CFFE00C77E55 /* 2_ipadPro129_2.2.png */,
-				A094CDBB2344CFFE00C77E55 /* 3_ipadPro129_3.3.png */,
-				A094CDC32344CFFE00C77E55 /* 4_ipadPro129_4.4.png */,
-				A094CDB92344CFFE00C77E55 /* 5_ipadPro129_5.5.png */,
-			);
-			path = ru;
-			sourceTree = "<group>";
-		};
-		A094CDCD2344CFFE00C77E55 /* de-DE */ = {
-			isa = PBXGroup;
-			children = (
-				A094CDF92344E7A800C77E55 /* 1_iphone6Plus_1.1.png */,
-				A094CDFA2344E7A800C77E55 /* 2_iphone6Plus_2.2.png */,
-				A094CDF82344E7A800C77E55 /* 3_iphone6Plus_3.3.png */,
-				A094CDF72344E7A800C77E55 /* 4_iphone6Plus_4.4.png */,
-				A094CDFB2344E7A800C77E55 /* 5_iphone6Plus_5.5.png */,
-				A094CDF62344E6A700C77E55 /* 1_ipadPro_1.1.png */,
-				A094CDF22344E6A700C77E55 /* 2_ipadPro_2.2.png */,
-				A094CDF52344E6A700C77E55 /* 3_ipadPro_3.3.png */,
-				A094CDF32344E6A700C77E55 /* 4_ipadPro_4.4.png */,
-				A094CDF42344E6A700C77E55 /* 5_ipadPro_5.5.png */,
-				A094CDD12344CFFE00C77E55 /* 1_ipadPro129_1.1.png */,
-				A094CDD22344CFFE00C77E55 /* 2_ipadPro129_2.2.png */,
-				A094CDCF2344CFFE00C77E55 /* 3_ipadPro129_3.3.png */,
-				A094CDD02344CFFE00C77E55 /* 4_ipadPro129_4.4.png */,
-				A094CDCE2344CFFE00C77E55 /* 5_ipadPro129_5.5.png */,
-			);
-			path = "de-DE";
-			sourceTree = "<group>";
-		};
-		A094CDD32344CFFE00C77E55 /* fr-FR */ = {
-			isa = PBXGroup;
-			children = (
-				A094CE382344EEDD00C77E55 /* 1_iphone6Plus_1.1.png */,
-				A094CE3C2344EEE900C77E55 /* 2_iphone6Plus_2.2.png */,
-				A094CE3A2344EEE900C77E55 /* 3_iphone6Plus_3.3.png */,
-				A094CE3B2344EEE900C77E55 /* 4_iphone6Plus_4.4.png */,
-				A094CE392344EEE900C77E55 /* 5_iphone6Plus_5.5.png */,
-				A094CE3E2344EF6E00C77E55 /* 1_ipadPro_1.1.png */,
-				A094CE3F2344EF6E00C77E55 /* 2_ipadPro_2.2.png */,
-				A094CE3D2344EF6E00C77E55 /* 3_ipadPro_3.3.png */,
-				A094CE412344EF6F00C77E55 /* 4_ipadPro_4.4.png */,
-				A094CE402344EF6E00C77E55 /* 5_ipadPro_5.5.png */,
-				A094CDD72344CFFE00C77E55 /* 1_ipadPro129_1.1.png */,
-				A094CDD82344CFFE00C77E55 /* 2_ipadPro129_2.2.png */,
-				A094CDD52344CFFE00C77E55 /* 3_ipadPro129_3.3.png */,
-				A094CDD62344CFFE00C77E55 /* 4_ipadPro129_4.4.png */,
-				A094CDD42344CFFE00C77E55 /* 5_ipadPro129_5.5.png */,
-			);
-			path = "fr-FR";
-			sourceTree = "<group>";
-		};
-		A094CDD92344CFFE00C77E55 /* es-ES */ = {
-			isa = PBXGroup;
-			children = (
-				A094CDFD2344EC5A00C77E55 /* 1_iphone6Plus_1.1.png */,
-				A094CE002344EC5B00C77E55 /* 2_iphone6Plus_2.2.png */,
-				A094CDFE2344EC5B00C77E55 /* 3_iphone6Plus_3.3.png */,
-				A094CDFF2344EC5B00C77E55 /* 4_iphone6Plus_4.4.png */,
-				A094CDFC2344EC5A00C77E55 /* 5_iphone6Plus_5.5.png */,
-				A094CE2F2344EDA500C77E55 /* 1_ipadPro_1.1.png */,
-				A094CE2E2344EDA500C77E55 /* 2_ipadPro_2.2.png */,
-				A094CE302344EDA500C77E55 /* 3_ipadPro_3.3.png */,
-				A094CE322344EDA500C77E55 /* 4_ipadPro_4.4.png */,
-				A094CE312344EDA500C77E55 /* 5_ipadPro_5.5.png */,
-				A094CE352344EE2100C77E55 /* 1_ipadPro129_1.1.png */,
-				A094CE342344EE2100C77E55 /* 2_ipadPro129_2.2.png */,
-				A094CE362344EE2100C77E55 /* 3_ipadPro129_3.3.png */,
-				A094CE372344EE2200C77E55 /* 4_ipadPro129_4.4.png */,
-				A094CE332344EE2100C77E55 /* 5_ipadPro129_5.5.png */,
-			);
-			path = "es-ES";
-			sourceTree = "<group>";
-		};
-		A094CDE02344CFFE00C77E55 /* nl-NL */ = {
-			isa = PBXGroup;
-			children = (
-				A094CDE42344CFFE00C77E55 /* 1_ipadPro129_1.1.png */,
-				A094CDE52344CFFE00C77E55 /* 2_ipadPro129_2.2.png */,
-				A094CDE22344CFFE00C77E55 /* 3_ipadPro129_3.3.png */,
-				A094CDE32344CFFE00C77E55 /* 4_ipadPro129_4.4.png */,
-				A094CDE12344CFFE00C77E55 /* 5_ipadPro129_5.5.png */,
-			);
-			path = "nl-NL";
 			sourceTree = "<group>";
 		};
 		A094CE5C234501B800C77E55 /* hu */ = {
