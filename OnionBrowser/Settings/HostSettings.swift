@@ -400,7 +400,9 @@ class HostSettings: NSObject {
 			return ""
 		}
 
-		var parts = host.split(separator: ".")
+		// Don't ommit empty subsequences to cater to hosts which containing
+		// a leading period, like ".example.com". This mostly happens with cookie handling.
+		var parts = host.split(separator: ".", omittingEmptySubsequences: false)
 
 		while parts.count > 1 {
 			parts.removeFirst()

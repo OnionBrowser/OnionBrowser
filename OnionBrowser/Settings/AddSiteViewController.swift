@@ -13,9 +13,13 @@ import Eureka
 
 class AddSiteViewController: FormViewController {
 
-	private var urlRow = URLRow() {
-		$0.title = NSLocalizedString("URL", comment: "Option title")
+	private var hostRow = TextRow() {
+		$0.title = NSLocalizedString("Host", comment: "Option title")
 		$0.placeholder = "example.com"
+		$0.cell.textField.autocorrectionType = .no
+		$0.cell.textField.autocapitalizationType = .none
+		$0.cell.textField.keyboardType = .URL
+		$0.cell.textField.textContentType = .URL
 	}
 
     override func viewDidLoad() {
@@ -26,14 +30,14 @@ class AddSiteViewController: FormViewController {
 			barButtonSystemItem: .add, target: self, action: #selector(add))
 		navigationItem.rightBarButtonItem?.isEnabled = false
 
-		// Prefill with current tab's URL.
+		// Prefill with current tab's host.
 		if let info = AddSiteViewController.getCurrentTabInfo() {
-			urlRow.value = info.url
+			hostRow.value = info.url.host ?? info.url.path
 			navigationItem.rightBarButtonItem?.isEnabled = true
 		}
 
 		form
-		+++ urlRow
+		+++ hostRow
 		.onChange { row in
 			self.navigationItem.rightBarButtonItem?.isEnabled = row.value != nil
 		}
@@ -43,7 +47,7 @@ class AddSiteViewController: FormViewController {
 	// MARK: Actions
 
 	@objc private func add() {
-		if let host = urlRow.value?.host ?? urlRow.value?.path {
+		if let host = hostRow.value {
 
 			// Create full host settings for this host, if not yet available.
 			if !HostSettings.has(host) {
