@@ -11,7 +11,7 @@
 import UIKit
 import Eureka
 
-class AddSiteViewController: FormViewController {
+class AddSiteViewController: FixedFormViewController {
 
 	private var hostRow = TextRow() {
 		$0.title = NSLocalizedString("Host", comment: "Option title")
@@ -22,8 +22,8 @@ class AddSiteViewController: FormViewController {
 		$0.cell.textField.textContentType = .URL
 	}
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+	override func viewDidLoad() {
+		super.viewDidLoad()
 
 		navigationItem.title = NSLocalizedString("Add Site", comment: "Scene title")
 		navigationItem.rightBarButtonItem = UIBarButtonItem(
@@ -41,8 +41,8 @@ class AddSiteViewController: FormViewController {
 		.onChange { row in
 			self.navigationItem.rightBarButtonItem?.isEnabled = row.value != nil
 		}
-    }
-    
+	}
+
 
 	// MARK: Actions
 

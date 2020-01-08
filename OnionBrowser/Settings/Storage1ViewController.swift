@@ -9,7 +9,7 @@
 import UIKit
 import Eureka
 
-class Storage1ViewController: FormViewController {
+class Storage1ViewController: FixedFormViewController {
 
 	/**
 	We need a day beginning at 00:00 of the current day with the user's timezone.
@@ -26,8 +26,8 @@ class Storage1ViewController: FormViewController {
 		$0.cell.textLabel?.numberOfLines = 0
 	}
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+	override func viewDidLoad() {
+		super.viewDidLoad()
 
 		navigationItem.title = NSLocalizedString("Cookies and Local Storage", comment: "Scene title")
 
@@ -64,7 +64,7 @@ class Storage1ViewController: FormViewController {
 				self.updateIntervalRow(value)
 			}
 		}
-    }
+	}
 
 	private func updateIntervalRow(_ date: Date) {
 		let dateComponents = Calendar.current.dateComponents([.hour, .minute], from: date)

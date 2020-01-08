@@ -12,7 +12,7 @@ import UIKit
 import Eureka
 import POE
 
-class SettingsViewController: FormViewController {
+class SettingsViewController: FixedFormViewController {
 
 	private let defaultSecurityRow = LabelRow() {
 		$0.title = NSLocalizedString("Default Security", comment: "Option title")
@@ -22,13 +22,13 @@ class SettingsViewController: FormViewController {
 	}
 
 
-    @objc
+	@objc
 	class func instantiate() -> UINavigationController {
 		return UINavigationController(rootViewController: self.init())
 	}
 
 	override func viewDidLoad() {
-        super.viewDidLoad()
+		super.viewDidLoad()
 
 		navigationItem.leftBarButtonItem = UIBarButtonItem(
 			barButtonSystemItem: .done, target: self, action: #selector(dismsiss_))
@@ -274,7 +274,7 @@ class SettingsViewController: FormViewController {
 
 			self.dismsiss_()
 		}
-    }
+	}
 
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)

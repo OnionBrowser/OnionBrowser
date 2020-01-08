@@ -12,7 +12,7 @@ import UIKit
 import Eureka
 import SDCAlertView
 
-class SecurityViewController: FormViewController {
+class SecurityViewController: FixedFormViewController {
 
 	var host: String?
 

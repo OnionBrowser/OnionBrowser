@@ -16,7 +16,7 @@ protocol BookmarkViewControllerDelegate {
 	func needsReload()
 }
 
-class BookmarkViewController: FormViewController {
+class BookmarkViewController: FixedFormViewController {
 
 	var index: Int?
 	var delegate: BookmarkViewControllerDelegate?
@@ -25,10 +25,10 @@ class BookmarkViewController: FormViewController {
 
 	private var sceneGoneStoreImmediately = false
 
-    private let favIconRow = FavIconRow() {
-        $0.disabled = true
-        $0.placeholderImage = Bookmark.defaultIcon
-    }
+	private let favIconRow = FavIconRow() {
+		$0.disabled = true
+		$0.placeholderImage = Bookmark.defaultIcon
+	}
 
 	private let titleRow = TextRow() {
 		$0.placeholder = NSLocalizedString("Title", comment: "Bookmark title placeholder")
@@ -38,8 +38,8 @@ class BookmarkViewController: FormViewController {
 		$0.placeholder = NSLocalizedString("Address", comment: "Bookmark URL placeholder")
 	}
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+	override func viewDidLoad() {
+		super.viewDidLoad()
 
 		// Was called via "+" (add).
 		if index == nil {
@@ -94,7 +94,7 @@ class BookmarkViewController: FormViewController {
 				self.acquireIcon()
 				self.navigationItem.rightBarButtonItem?.isEnabled = row.value != nil
 			}
-    }
+	}
 
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
@@ -134,7 +134,7 @@ class BookmarkViewController: FormViewController {
 		}
 	}
 
-    private func acquireIcon() {
+	private func acquireIcon() {
 		guard let url = cleanUrl() else {
 			return
 		}
@@ -151,7 +151,7 @@ class BookmarkViewController: FormViewController {
 				Bookmark.store()
 			}
 		}
-    }
+	}
 
 	private func cleanUrl() -> URL? {
 		guard let url = urlRow.value else {

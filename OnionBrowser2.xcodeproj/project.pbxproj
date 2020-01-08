@@ -142,6 +142,7 @@
 		A0BF528523AFC6D10096624A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A0BF528323AFC6D10096624A /* InfoPlist.strings */; };
 		A0BF52A423AFE2D70096624A /* Iobfs4proxy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0BF52A323AFE2D70096624A /* Iobfs4proxy.framework */; };
 		A0C3770E1F47342C0039198E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0C3770D1F47342C0039198E /* CoreData.framework */; };
+		A0C9531A23C6426C006D7A35 /* FixedFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C9531923C6426C006D7A35 /* FixedFormViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -728,6 +729,7 @@
 		A0BF529F23AFE25F0096624A /* Iobfs4proxy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Iobfs4proxy.framework; path = Carthage/Build/iOS/Iobfs4proxy.framework; sourceTree = "<group>"; };
 		A0BF52A323AFE2D70096624A /* Iobfs4proxy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Iobfs4proxy.framework; path = Carthage/Build/iOS/Iobfs4proxy.framework; sourceTree = SOURCE_ROOT; };
 		A0C3770D1F47342C0039198E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		A0C9531923C6426C006D7A35 /* FixedFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedFormViewController.swift; sourceTree = "<group>"; };
 		BED522A5B119CE39951BF4AF /* Pods-OnionBrowser2 Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnionBrowser2 Tests.debug.xcconfig"; path = "Target Support Files/Pods-OnionBrowser2 Tests/Pods-OnionBrowser2 Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1839,6 +1841,7 @@
 				A0BF523A23AFC3580096624A /* AlertHelper.swift */,
 				A0BF523623AFC3580096624A /* BlurredSnapshot.swift */,
 				A0BF523923AFC3580096624A /* Bundle+Helpers.swift */,
+				A0C9531923C6426C006D7A35 /* FixedFormViewController.swift */,
 				A0BF523B23AFC3580096624A /* Formatter.swift */,
 				A0BF523C23AFC3580096624A /* Ipv6Tester.h */,
 				A0BF524123AFC3580096624A /* Ipv6Tester.m */,
@@ -2188,6 +2191,7 @@
 				A0BF526F23AFC3580096624A /* Storage1ViewController.swift in Sources */,
 				01801E9B1A32CA2A002B4718 /* AppDelegate.m in Sources */,
 				A0BF527723AFC3580096624A /* BlurredSnapshot.swift in Sources */,
+				A0C9531A23C6426C006D7A35 /* FixedFormViewController.swift in Sources */,
 				A0BF527123AFC3580096624A /* SecurityShield.swift in Sources */,
 				69CBCD4D1E934249009D5352 /* RuleEditorRow.m in Sources */,
 				A0BF526D23AFC3580096624A /* SecurityViewController.swift in Sources */,
