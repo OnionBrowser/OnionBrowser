@@ -132,7 +132,7 @@ committed to furthering free speech and digital privacy. Please consider donatin
     <dt>Ukrainian</dt>
     <dd>Herenko, lyubomyr</dd>
 </dl>
-<p>If you'd like to help translate Onion Browser, visit <a href="https://www.transifex.com/otf/onion-browser/">https://www.transifex.com/otf/onion-browser/</a> to join.</p>
+<p>If you'd like to help translate Onion Browser, visit <a href="https://www.transifex.com/otf/onion-browser/">www.transifex.com/otf/onion-browser</a> to join.</p>
 
 <hr>
 </p>
@@ -140,8 +140,8 @@ committed to furthering free speech and digital privacy. Please consider donatin
 <pre>
 Onion Browser (version 2.0 and newer) is based on code from Endless and is distributed, with permission, under the terms of the Endless License. The Endless License is reproduced in full below the Onion Browser License.
 
-<strong>Onion Browser</strong> - https://mike.tig.as/onionbrowser/
-Copyright &copy; 2012-2018, Tigas Ventures LLC
+<strong>Onion Browser</strong> - <a href="https://onionbrowser.com">onionbrowser.com</a>
+Copyright &copy; 2012-2020, Tigas Ventures LLC
 
 Redistribution and use in source form, with or without modification, and use in binary form, is permitted provided that the following conditions are met:
 
@@ -154,7 +154,7 @@ Redistribution of this project in binary form, with or without modification, is 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</pre>
 
 <pre>
-<strong>Endless</strong> - https://github.com/jcs/endless
+<strong>Endless</strong> - <a href="https://github.com/jcs/endless">github.com/jcs/endless</a>
 Copyright &copy; 2014-2019 joshua stein &lt;jcs@jcs.org&gt;
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -298,7 +298,8 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 </p>
 
 <pre>
-<strong>Psiphon Inc.</strong> (OCSPCache &amp; extended version of Apple's JAHPAuthenticatingHTTPProtocol)
+<strong>Psiphon Inc.</strong> (<b>OCSPCache</b> &amp; extended version of Apple's JAHPAuthenticatingHTTPProtocol)
+<a href="https://github.com/Psiphon-Labs/OCSPCache/">github.com/Psiphon-Labs/OCSPCache</a>
 
 Copyright (c) 2017 - 2019, Psiphon Inc.
 
@@ -348,7 +349,7 @@ Copyright 2010 Charcoal Design
 Distributed under the permissive zlib license
 Get the latest version from here:
 
-https://github.com/nicklockwood/OrderedDictionary
+<a href="https://github.com/nicklockwood/OrderedDictionary">github.com/nicklockwood/OrderedDictionary</a>
 
 This software is provided 'as-is', without any express or implied warranty.  In no event will the authors be held liable for any damages arising from the use of this software.
 
@@ -366,7 +367,8 @@ Permission is granted to anyone to use this software for any purpose, including 
 </p>
 
 <pre>
-<strong>Xmartlabs</strong> (Eureka)
+<strong>Xmartlabs SRL</strong> (<b>Eureka</b> library)
+<a href="https://github.com/xmartlabs/Eureka">github.com/xmartlabs/Eureka</a>
 
 The MIT License (MIT)
 
@@ -396,11 +398,42 @@ SOFTWARE.
 </p>
 
 <pre>
+<strong>Xmartlabs SRL and the Eureka Community</strong> (<b>Eureka ImageRow</b> library)
+<a href="https://github.com/EurekaCommunity/ImageRow">github.com/EurekaCommunity/ImageRow</a>
+
+MIT License
+
+Copyright (c) 2017 Eureka Community
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+</pre>
+
+<p>
+<hr>
+</p>
+
+<pre>
 <strong>ThinkUltimate</strong> (TUSafariActivity)
 
 Copyright (c) 2012 ThinkUltimate (http://thinkultimate.com).
 
-http://github.com/davbeck/TUSafariActivity
+<a href="https://github.com/davbeck/TUSafariActivity">github.com/davbeck/TUSafariActivity</a>
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 
@@ -415,7 +448,8 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 </p>
 
 <pre>
-<strong>vee</strong> (VForceTouch)
+<strong>vee</strong> (<b>VForceTouch</b> library)
+<a href="https://github.com/vvm/ForceTouch">github.com/vvm/ForceTouch</a>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -429,8 +463,125 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 </p>
 
 <pre>
+<strong>Tony Million</strong> (<b>Reachability</b> library)
+<a href="https://github.com/tonymillion/Reachability">github.com/tonymillion/Reachability</a>
+
+Copyright (c) 2011-2013, Tony Million.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this
+list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice,
+this list of conditions and the following disclaimer in the documentation
+and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.
+</pre>
+
+<p>
+<hr>
+</p>
+
+<pre>
+<strong>Scott Berrevoets</strong> (<b>SDCAlertView</b> library)
+<a href="https://github.com/sberrevoets/SDCAlertView">github.com/sberrevoets/SDCAlertView</a>
+
+The MIT License (MIT)
+
+Copyright (c) 2013 Scott Berrevoets
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+</pre>
+
+<p>
+<hr>
+</p>
+
+<pre>
+<strong>Leon Breedt</strong> (<b>FavIcon</b> library)
+<a href="https://github.com/leonbreedt/FavIcon">github.com/leonbreedt/FavIcon</a>
+
+Copyright (C) 2018 Leon Breedt
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+</pre>
+
+<p>
+<hr>
+</p>
+
+<pre>
+<strong>Benjamin Erhart and The Guardian Project</strong> (<b>CSPHeader</b> library)
+<a href="https://github.com/tladesignz/CSPHeader">github.com/tladesignz/CSPHeader</a>
+
+Copyright (c) 2019 Guardian Project
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+</pre>
+
+<p>
+<hr>
+</p>
+
+<pre>
 <strong>Benjamin Erhart and The Guardian Project</strong> (<b>POE</b> Tor Onboarding Library)
-https://github.com/guardianproject/poe
+<a href="https://github.com/guardianproject/poe">github.com/guardianproject/poe</a>
 
 BSD 3-Clause License
 
@@ -652,8 +803,8 @@ information.
 </p>
 
 <pre>
-<strong>Mike Tigas</strong> (iObfs)
-https://github.com/mtigas/iObfs
+<strong>Mike Tigas</strong> (<b>iObfs</b>)
+<a href="https://github.com/mtigas/iObfs">github.com/mtigas/iObfs</a>
 
 Copyright &copy; 2016, Mike Tigas
 
@@ -671,8 +822,8 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 </p>
 
 <pre>
-<strong>Yawning Angel</strong> (obfs4proxy)
-https://gitweb.torproject.org/pluggable-transports/obfs4.git/
+<strong>Yawning Angel</strong> (<b>obfs4proxy</b>)
+<a href="https://gitweb.torproject.org/pluggable-transports/obfs4.git/">gitweb.torproject.org/pluggable-transports/obfs4.git</a>
 
 Copyright &copy; 2014, Yawning Angel &lt;yawning at torproject dot org&gt;
 
