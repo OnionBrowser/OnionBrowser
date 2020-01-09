@@ -39,7 +39,7 @@ class SecurityLevelCell: UITableViewCell {
     @IBOutlet weak var explanationLb: UILabel!
 	@IBOutlet weak var radioLb: UILabel! {
 		didSet {
-			radioLb.layer.borderColor = UIColor.poeAccent?.cgColor
+			radioLb.layer.borderColor = UIColor.accent?.cgColor
 		}
 	}
 
@@ -47,7 +47,7 @@ class SecurityLevelCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         if selected {
-            radioLb.backgroundColor = .poeOk
+            radioLb.backgroundColor = .ok
             radioLb.text = "\u{2713}" // Checkmark
         }
         else {

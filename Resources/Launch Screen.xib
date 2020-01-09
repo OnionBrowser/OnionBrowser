@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -32,7 +33,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.2470588235" green="0.16862745100000001" blue="0.30980392159999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" name="Accent"/>
             <constraints>
                 <constraint firstItem="msa-ta-opB" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="4sF-eI-LG7"/>
                 <constraint firstItem="msa-ta-opB" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="HZe-zG-vfQ"/>
@@ -44,5 +45,8 @@
     </objects>
     <resources>
         <image name="logo" width="1024" height="1024"/>
+        <namedColor name="Accent">
+            <color red="0.24705882352941178" green="0.16862745098039217" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

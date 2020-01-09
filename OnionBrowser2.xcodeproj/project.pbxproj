@@ -61,12 +61,12 @@
 		A053137122F1C740006655EC /* JAHPQNSURLSessionDemux.m in Sources */ = {isa = PBXBuildFile; fileRef = A053136222F1C573006655EC /* JAHPQNSURLSessionDemux.m */; };
 		A053137522F1E587006655EC /* CertificateAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = A053137322F1E587006655EC /* CertificateAuthentication.m */; };
 		A053137822F1EC19006655EC /* DownloadHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A053137622F1EC19006655EC /* DownloadHelper.m */; };
+		A07037C423C74E1100D670EC /* UIColor+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07037C323C74E1100D670EC /* UIColor+Helpers.swift */; };
 		A08737E1221324B5005A68CC /* HostSettings_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = A08737DF2213235F005A68CC /* HostSettings_Tests.m */; };
 		A0BF51E423AFBF250096624A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51A023AFBF250096624A /* Localizable.strings */; };
 		A0BF51E523AFBF250096624A /* urlblocker.json in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51AE23AFBF250096624A /* urlblocker.json */; };
 		A0BF51E623AFBF250096624A /* https-everywhere_rules.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51B223AFBF250096624A /* https-everywhere_rules.plist */; };
 		A0BF51E823AFBF250096624A /* geoip6 in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51C023AFBF250096624A /* geoip6 */; };
-		A0BF51E923AFBF250096624A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51C123AFBF250096624A /* Images.xcassets */; };
 		A0BF51EA23AFBF250096624A /* hsts_preload.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51C423AFBF250096624A /* hsts_preload.plist */; };
 		A0BF51EC23AFBF250096624A /* geoip in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51C623AFBF250096624A /* geoip */; };
 		A0BF51ED23AFBF250096624A /* start.html in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51C723AFBF250096624A /* start.html */; };
@@ -337,6 +337,8 @@
 		A053137422F1E587006655EC /* CertificateAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CertificateAuthentication.h; sourceTree = "<group>"; };
 		A053137622F1EC19006655EC /* DownloadHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadHelper.m; sourceTree = "<group>"; };
 		A053137722F1EC19006655EC /* DownloadHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadHelper.h; sourceTree = "<group>"; };
+		A07037C223C74DC900D670EC /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		A07037C323C74E1100D670EC /* UIColor+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Helpers.swift"; sourceTree = "<group>"; };
 		A0759DBE20975C2A000DFBFE /* Gemfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Gemfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A0759DBF20975C32000DFBFE /* Gemfile.lock */ = {isa = PBXFileReference; lastKnownFileType = text; path = Gemfile.lock; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A0759DEA20975DDE000DFBFE /* config */ = {isa = PBXFileReference; lastKnownFileType = text; name = config; path = .tx/config; sourceTree = "<group>"; };
@@ -606,7 +608,6 @@
 		A0BF51BD23AFBF250096624A /* block_webrtc.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = block_webrtc.js; sourceTree = "<group>"; };
 		A0BF51BF23AFBF250096624A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		A0BF51C023AFBF250096624A /* geoip6 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = geoip6; sourceTree = "<group>"; };
-		A0BF51C123AFBF250096624A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A0BF51C323AFBF250096624A /* ca-ES */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ca-ES"; path = "ca-ES.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		A0BF51C423AFBF250096624A /* hsts_preload.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = hsts_preload.plist; sourceTree = "<group>"; };
 		A0BF51C523AFBF250096624A /* credits.html.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = credits.html.in; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.html; };
@@ -1716,7 +1717,7 @@
 			isa = PBXGroup;
 			children = (
 				A0BF51A023AFBF250096624A /* Localizable.strings */,
-				A0BF51C123AFBF250096624A /* Images.xcassets */,
+				A07037C223C74DC900D670EC /* Media.xcassets */,
 				A0BF51B223AFBF250096624A /* https-everywhere_rules.plist */,
 				A0BF51D423AFBF250096624A /* https-everywhere_targets.plist */,
 				A0BF51C423AFBF250096624A /* hsts_preload.plist */,
@@ -1850,6 +1851,7 @@
 				A0BF524323AFC3580096624A /* String+Helpers.swift */,
 				A0BF524223AFC3580096624A /* TabSecurity.swift */,
 				A0BF523F23AFC3580096624A /* UIButton+Helpers.swift */,
+				A07037C323C74E1100D670EC /* UIColor+Helpers.swift */,
 				A0BF523D23AFC3580096624A /* UIView+Helpers.swift */,
 				A0BF523823AFC3580096624A /* UIViewController+Helpers.swift */,
 				A0BF524023AFC3580096624A /* URL+Helpers.swift */,
@@ -2010,7 +2012,6 @@
 				A0BF524923AFC3580096624A /* CircuitNodeCell.xib in Resources */,
 				A0BF526323AFC3580096624A /* BookmarksViewController.xib in Resources */,
 				A0BF51ED23AFBF250096624A /* start.html in Resources */,
-				A0BF51E923AFBF250096624A /* Images.xcassets in Resources */,
 				A0BF51F223AFBF250096624A /* obfs4-bridges.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2041,14 +2042,12 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-OnionBrowser2/Pods-OnionBrowser2-resources.sh",
 				"${PODS_ROOT}/Eureka/Source/Resources/Eureka.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/POE/POE.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/SDCAlertView/SDCAlertView.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/TUSafariActivity/TUSafariActivity.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Eureka.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/POE.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SDCAlertView.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TUSafariActivity.bundle",
 			);
@@ -2192,6 +2191,7 @@
 				01801E9B1A32CA2A002B4718 /* AppDelegate.m in Sources */,
 				A0BF527723AFC3580096624A /* BlurredSnapshot.swift in Sources */,
 				A0C9531A23C6426C006D7A35 /* FixedFormViewController.swift in Sources */,
+				A07037C423C74E1100D670EC /* UIColor+Helpers.swift in Sources */,
 				A0BF527123AFC3580096624A /* SecurityShield.swift in Sources */,
 				69CBCD4D1E934249009D5352 /* RuleEditorRow.m in Sources */,
 				A0BF526D23AFC3580096624A /* SecurityViewController.swift in Sources */,

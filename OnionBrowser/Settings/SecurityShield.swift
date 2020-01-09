@@ -9,7 +9,6 @@
 //
 
 import UIKit
-import POE
 
 class SecurityShield: UIView {
 
@@ -18,7 +17,7 @@ class SecurityShield: UIView {
 	var isSelected = false {
 		didSet {
 			if isSelected {
-				button.backgroundColor = .poeOk
+				button.backgroundColor = .ok
 				button.text = "\u{2713}" // Checkmark
 			}
 			else {
@@ -71,7 +70,7 @@ class SecurityShield: UIView {
 
 		view.translatesAutoresizingMaskIntoConstraints = false
 
-		view.layer.borderColor = UIColor.poeAccent?.cgColor
+		view.layer.borderColor = UIColor.accent?.cgColor
 		view.layer.cornerRadius = 12
 		view.layer.borderWidth = 1
 		view.clipsToBounds = true

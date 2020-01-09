@@ -9,10 +9,9 @@
 //
 
 import UIKit
-import POE
 
 class CircuitViewController: UIViewController, UIPopoverPresentationControllerDelegate,
-POEDelegate, UITableViewDataSource, UITableViewDelegate {
+UITableViewDataSource, UITableViewDelegate {
 
 	struct Node {
 		var title: String
@@ -157,19 +156,21 @@ POEDelegate, UITableViewDataSource, UITableViewDelegate {
 	}
 
 	func getBridgeSelectVc() -> UINavigationController {
-		let builtInBridges: [Int: String]
-		builtInBridges = [USE_BRIDGES_OBFS4: "obfs4",
-						  USE_BRIDGES_MEEKAZURE: "meek-azure"]
+//		let builtInBridges: [Int: String]
+//		builtInBridges = [USE_BRIDGES_OBFS4: "obfs4",
+//						  USE_BRIDGES_MEEKAZURE: "meek-azure"]
+//
+//		let ud = UserDefaults.standard
 
-		let ud = UserDefaults.standard
-
-		return BridgeSelectViewController.instantiate(
-			currentId: ud.integer(forKey: USE_BRIDGES),
-			noBridgeId: NSNumber(value: USE_BRIDGES_NONE),
-			providedBridges: builtInBridges,
-			customBridgeId: NSNumber(value: USE_BRIDGES_CUSTOM),
-			customBridges: ud.stringArray(forKey: CUSTOM_BRIDGES),
-			delegate: self)
+		return UINavigationController(nibName: nil, bundle: nil)
+//
+//		return BridgeSelectViewController.instantiate(
+//			currentId: ud.integer(forKey: USE_BRIDGES),
+//			noBridgeId: NSNumber(value: USE_BRIDGES_NONE),
+//			providedBridges: builtInBridges,
+//			customBridgeId: NSNumber(value: USE_BRIDGES_CUSTOM),
+//			customBridges: ud.stringArray(forKey: CUSTOM_BRIDGES),
+//			delegate: self)
 	}
 
 

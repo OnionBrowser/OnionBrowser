@@ -10,7 +10,6 @@
 
 import UIKit
 import Eureka
-import POE
 
 class SettingsViewController: FixedFormViewController {
 
@@ -61,7 +60,7 @@ class SettingsViewController: FixedFormViewController {
 		<<< SwitchRow() {
 			$0.title = NSLocalizedString("Auto-Complete Search Results", comment: "Option title")
 			$0.value = Settings.searchLive
-			$0.cell.switchControl.onTintColor = .poeAccent
+			$0.cell.switchControl.onTintColor = .accent
 			$0.cell.textLabel?.numberOfLines = 0
 		}
 		.onChange { row in
@@ -73,7 +72,7 @@ class SettingsViewController: FixedFormViewController {
 		<<< SwitchRow() {
 			$0.title = NSLocalizedString("Stop Auto-Complete at First Dot", comment: "Option title")
 			$0.value = Settings.searchLiveStopDot
-			$0.cell.switchControl.onTintColor = .poeAccent
+			$0.cell.switchControl.onTintColor = .accent
 			$0.cell.textLabel?.numberOfLines = 0
 		}
 		.onChange { row in
@@ -98,7 +97,7 @@ class SettingsViewController: FixedFormViewController {
 		<<< SwitchRow() {
 			$0.title = NSLocalizedString("Send Do-Not-Track Header", comment: "Option title")
 			$0.value = Settings.sendDnt
-			$0.cell.switchControl.onTintColor = .poeAccent
+			$0.cell.switchControl.onTintColor = .accent
 			$0.cell.textLabel?.numberOfLines = 0
 		}
 		.onChange { row in
@@ -190,7 +189,7 @@ class SettingsViewController: FixedFormViewController {
 		<<< SwitchRow() {
 			$0.title = NSLocalizedString("Mute Audio with Mute Switch", comment: "Option title")
 			$0.value = Settings.muteWithSwitch
-			$0.cell.switchControl.onTintColor = .poeAccent
+			$0.cell.switchControl.onTintColor = .accent
 			$0.cell.textLabel?.numberOfLines = 0
 		}
 		.onChange { row in
@@ -202,7 +201,7 @@ class SettingsViewController: FixedFormViewController {
 		<<< SwitchRow() {
 			$0.title = NSLocalizedString("Allow 3rd-Party Keyboards", comment: "Option title")
 			$0.value = Settings.thirdPartyKeyboards
-			$0.cell.switchControl.onTintColor = .poeAccent
+			$0.cell.switchControl.onTintColor = .accent
 			$0.cell.textLabel?.numberOfLines = 0
 		}
 		.onChange { row in

@@ -20,7 +20,7 @@
 {
 	if (self = [super init])
     {
-		self.view.backgroundColor = UIColor.poeAccent;
+		self.view.backgroundColor = UIColor.accent;
 
         self.introVC = [[IntroViewController alloc] init];
         self.introVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;

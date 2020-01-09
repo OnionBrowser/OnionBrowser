@@ -7,7 +7,6 @@
 
 #import <UIKit/UIKit.h>
 #import "OnionManagerDelegate.h"
-@import POE;
 @class OnionManager;
 
 @interface OBRootViewController : UIViewController <POEDelegate, OnionManagerDelegate>

@@ -33,13 +33,13 @@ class SecurityViewController: FixedFormViewController {
 
 	private let webRtcRow = SwitchRow() {
 		$0.title = NSLocalizedString("WebRTC", comment: "Option title")
-		$0.cell.switchControl.onTintColor = .poeAccent
+		$0.cell.switchControl.onTintColor = .accent
 		$0.cell.textLabel?.numberOfLines = 0
 	}
 
 	private let mixedModeRow = SwitchRow() {
 		$0.title = NSLocalizedString("Mixed-mode Resources", comment: "Option title")
-		$0.cell.switchControl.onTintColor = .poeAccent
+		$0.cell.switchControl.onTintColor = .accent
 		$0.cell.textLabel?.numberOfLines = 0
 	}
 
@@ -123,7 +123,7 @@ class SecurityViewController: FixedFormViewController {
 		<<< SwitchRow() {
 			$0.title = NSLocalizedString("Universal Link Protection", comment: "Option title")
 			$0.value = hostSettings.universalLinkProtection
-			$0.cell.switchControl.onTintColor = .poeAccent
+			$0.cell.switchControl.onTintColor = .accent
 			$0.cell.textLabel?.numberOfLines = 0
 		}
 		.onChange { row in
@@ -162,7 +162,7 @@ class SecurityViewController: FixedFormViewController {
 		<<< SwitchRow() {
 			$0.title = NSLocalizedString("Allow Persistent Cookies", comment: "Option title")
 			$0.value = hostSettings.whitelistCookies
-			$0.cell.switchControl.onTintColor = .poeAccent
+			$0.cell.switchControl.onTintColor = .accent
 			$0.cell.textLabel?.numberOfLines = 0
 		}
 		.onChange { row in
@@ -181,7 +181,7 @@ class SecurityViewController: FixedFormViewController {
 			<<< SwitchRow() {
 				$0.title = NSLocalizedString("Ignore TLS Errors", comment: "Option title")
 				$0.value = hostSettings.ignoreTlsErrors
-				$0.cell.switchControl.onTintColor = .poeAccent
+				$0.cell.switchControl.onTintColor = .accent
 				$0.cell.textLabel?.numberOfLines = 0
 			}
 			.onChange { row in
