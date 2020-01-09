@@ -17,7 +17,7 @@ extension URL {
 	static let aboutOnionBrowser = URL(string: "about:onion-browser")!
 	static let credits = Bundle.main.url(forResource: "credits", withExtension: "html")!
 
-	static let start = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last!.appendingPathComponent("start.html")
+	static let start = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).last!.appendingPathComponent("start.html")
 
 	var withFixedScheme: URL? {
 		switch scheme?.lowercased() {
