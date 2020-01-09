@@ -166,7 +166,7 @@ open class Bookmark: NSObject {
 			// Trigger update of start page when things changed.
 			try? FileManager.default.removeItem(at: URL.start)
 
-			for tab in AppDelegate.shared().browsingUi?.tabs ?? [] {
+			for tab in AppDelegate.shared?.browsingUi.tabs ?? [] {
 				if tab.url == URL.start {
 					tab.refresh()
 				}

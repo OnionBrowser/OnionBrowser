@@ -23,8 +23,6 @@
 /* Begin PBXBuildFile section */
 		010EEA691A43C8CF001E8B65 /* CookieJar.m in Sources */ = {isa = PBXBuildFile; fileRef = 010EEA681A43C8CF001E8B65 /* CookieJar.m */; };
 		016B2FCD1A5648AE002D2730 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016B2FCC1A5648AE002D2730 /* WebKit.framework */; };
-		01801E981A32CA2A002B4718 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 01801E971A32CA2A002B4718 /* main.m */; };
-		01801E9B1A32CA2A002B4718 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 01801E9A1A32CA2A002B4718 /* AppDelegate.m */; };
 		0182AD9B1AACC55400F3B7ED /* HTTPSEverywhereRuleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0182AD9A1AACC55400F3B7ED /* HTTPSEverywhereRuleController.m */; };
 		018333CA1A3505FB00670CD1 /* HTTPSEverywhere.m in Sources */ = {isa = PBXBuildFile; fileRef = 018333C91A3505FB00670CD1 /* HTTPSEverywhere.m */; };
 		018333D21A35291200670CD1 /* HTTPSEverywhereRule.m in Sources */ = {isa = PBXBuildFile; fileRef = 018333D11A35291200670CD1 /* HTTPSEverywhereRule.m */; };
@@ -62,6 +60,8 @@
 		A053137522F1E587006655EC /* CertificateAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = A053137322F1E587006655EC /* CertificateAuthentication.m */; };
 		A053137822F1EC19006655EC /* DownloadHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A053137622F1EC19006655EC /* DownloadHelper.m */; };
 		A07037C423C74E1100D670EC /* UIColor+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07037C323C74E1100D670EC /* UIColor+Helpers.swift */; };
+		A07037C623C7571B00D670EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07037C523C7571B00D670EC /* AppDelegate.swift */; };
+		A07037C723C79AE500D670EC /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A07037C223C74DC900D670EC /* Media.xcassets */; };
 		A08737E1221324B5005A68CC /* HostSettings_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = A08737DF2213235F005A68CC /* HostSettings_Tests.m */; };
 		A0BF51E423AFBF250096624A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51A023AFBF250096624A /* Localizable.strings */; };
 		A0BF51E523AFBF250096624A /* urlblocker.json in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51AE23AFBF250096624A /* urlblocker.json */; };
@@ -113,7 +113,6 @@
 		A0BF526623AFC3580096624A /* BookmarksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF522023AFC3580096624A /* BookmarksViewController.swift */; };
 		A0BF526723AFC3580096624A /* BookmarkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0BF522123AFC3580096624A /* BookmarkCell.xib */; };
 		A0BF526823AFC3580096624A /* BookmarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF522223AFC3580096624A /* BookmarkCell.swift */; };
-		A0BF526923AFC3580096624A /* OBRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0BF522323AFC3580096624A /* OBRootViewController.m */; };
 		A0BF526A23AFC3580096624A /* SecurityPresetsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF522523AFC3580096624A /* SecurityPresetsRow.swift */; };
 		A0BF526B23AFC3580096624A /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF522623AFC3580096624A /* Settings.swift */; };
 		A0BF526C23AFC3580096624A /* CustomSitesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF522723AFC3580096624A /* CustomSitesViewController.swift */; };
@@ -180,9 +179,6 @@
 		016B2FCC1A5648AE002D2730 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		01801E921A32CA2A002B4718 /* OnionBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnionBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01801E961A32CA2A002B4718 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		01801E971A32CA2A002B4718 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		01801E991A32CA2A002B4718 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		01801E9A1A32CA2A002B4718 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		0182AD991AACC55400F3B7ED /* HTTPSEverywhereRuleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPSEverywhereRuleController.h; sourceTree = "<group>"; };
 		0182AD9A1AACC55400F3B7ED /* HTTPSEverywhereRuleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPSEverywhereRuleController.m; sourceTree = "<group>"; };
 		018333C81A3505FB00670CD1 /* HTTPSEverywhere.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPSEverywhere.h; sourceTree = "<group>"; };
@@ -339,6 +335,7 @@
 		A053137722F1EC19006655EC /* DownloadHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadHelper.h; sourceTree = "<group>"; };
 		A07037C223C74DC900D670EC /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		A07037C323C74E1100D670EC /* UIColor+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Helpers.swift"; sourceTree = "<group>"; };
+		A07037C523C7571B00D670EC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A0759DBE20975C2A000DFBFE /* Gemfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Gemfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A0759DBF20975C32000DFBFE /* Gemfile.lock */ = {isa = PBXFileReference; lastKnownFileType = text; path = Gemfile.lock; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A0759DEA20975DDE000DFBFE /* config */ = {isa = PBXFileReference; lastKnownFileType = text; name = config; path = .tx/config; sourceTree = "<group>"; };
@@ -766,8 +763,6 @@
 				A025F27421F62C100034B947 /* Config.xcconfig */,
 				A03DBCEB22859B99001890C4 /* Config.h */,
 				A03DBCEC22859B99001890C4 /* Config.m */,
-				01801E991A32CA2A002B4718 /* AppDelegate.h */,
-				01801E9A1A32CA2A002B4718 /* AppDelegate.m */,
 				A00436111E8185AA0067652D /* Build */,
 				01801E941A32CA2A002B4718 /* Endless */,
 				A053136122F1C53A006655EC /* Psiphon */,
@@ -830,7 +825,6 @@
 				A0BF528323AFC6D10096624A /* InfoPlist.strings */,
 				018333CF1A351B3B00670CD1 /* Endless-Prefix.pch */,
 				01801E961A32CA2A002B4718 /* Info.plist */,
-				01801E971A32CA2A002B4718 /* main.m */,
 			);
 			name = "Supporting Files";
 			path = Endless;
@@ -1743,6 +1737,7 @@
 				A0BF521A23AFC3580096624A /* Bookmarks */,
 				A0BF522423AFC3580096624A /* Settings */,
 				A0BF51F923AFC3580096624A /* Migration */,
+				A07037C523C7571B00D670EC /* AppDelegate.swift */,
 				A0BF523423AFC3580096624A /* OBRootViewController.h */,
 				A0BF522323AFC3580096624A /* OBRootViewController.m */,
 				A0BF51F623AFC3580096624A /* OBSettingsConstants.h */,
@@ -1994,6 +1989,7 @@
 				A0BF528523AFC6D10096624A /* InfoPlist.strings in Resources */,
 				A0BF51F123AFBF250096624A /* Launch Screen.xib in Resources */,
 				A0BF51F423AFBF250096624A /* credits.html in Resources */,
+				A07037C723C79AE500D670EC /* Media.xcassets in Resources */,
 				A0BF526723AFC3580096624A /* BookmarkCell.xib in Resources */,
 				A0BF51EE23AFBF250096624A /* injected.js in Resources */,
 				A0BF51E423AFBF250096624A /* Localizable.strings in Resources */,
@@ -2188,7 +2184,6 @@
 				A0BF527623AFC3580096624A /* OnionManager.swift in Sources */,
 				A0BF527223AFC3580096624A /* SettingsViewController.swift in Sources */,
 				A0BF526F23AFC3580096624A /* Storage1ViewController.swift in Sources */,
-				01801E9B1A32CA2A002B4718 /* AppDelegate.m in Sources */,
 				A0BF527723AFC3580096624A /* BlurredSnapshot.swift in Sources */,
 				A0C9531A23C6426C006D7A35 /* FixedFormViewController.swift in Sources */,
 				A07037C423C74E1100D670EC /* UIColor+Helpers.swift in Sources */,
@@ -2198,7 +2193,6 @@
 				A0BF525123AFC3580096624A /* HistoryViewController.swift in Sources */,
 				A01D3BA323900D2800E536F2 /* RuleEditorController.m in Sources */,
 				A053137522F1E587006655EC /* CertificateAuthentication.m in Sources */,
-				01801E981A32CA2A002B4718 /* main.m in Sources */,
 				A0BF524F23AFC3580096624A /* CircuitViewController.swift in Sources */,
 				018333D21A35291200670CD1 /* HTTPSEverywhereRule.m in Sources */,
 				A0BF524623AFC3580096624A /* OldBookmark.m in Sources */,
@@ -2215,7 +2209,6 @@
 				A0BF525923AFC3580096624A /* TabCell.swift in Sources */,
 				A053137022F1C73C006655EC /* JAHPCanonicalRequest.m in Sources */,
 				01F2AE401B82666900D5651A /* SSLCertificateViewController.m in Sources */,
-				A0BF526923AFC3580096624A /* OBRootViewController.m in Sources */,
 				A0BF527823AFC3580096624A /* UIViewController+Helpers.swift in Sources */,
 				A0BF524D23AFC3580096624A /* Tab+Keyboard.swift in Sources */,
 				A0BF525623AFC3580096624A /* SecurityLevelCell.swift in Sources */,
@@ -2228,6 +2221,7 @@
 				A0BF525523AFC3580096624A /* Tab+UIWebViewDelegate.swift in Sources */,
 				A0BF525023AFC3580096624A /* Tab+Activity.swift in Sources */,
 				018333CA1A3505FB00670CD1 /* HTTPSEverywhere.m in Sources */,
+				A07037C623C7571B00D670EC /* AppDelegate.swift in Sources */,
 				A0BF526823AFC3580096624A /* BookmarkCell.swift in Sources */,
 				01F7CB491A5253DD00F42B73 /* HSTSCache.m in Sources */,
 				A0BF526123AFC3580096624A /* BookmarkViewController.swift in Sources */,

@@ -56,7 +56,6 @@
 #import "JAHPCacheStoragePolicy.h"
 #import "JAHPQNSURLSessionDemux.h"
 
-#import "AppDelegate.h"
 #import "URLBlocker.h"
 #import "OnionBrowser-Swift.h"
 #import "SilenceWarnings.h"
@@ -328,8 +327,8 @@ static JAHPQNSURLSessionDemux *sharedDemuxInstance = nil;
 
 	// Set proxy
 	NSString* proxyHost = @"localhost";
-	NSInteger socksProxyPort = AppDelegate.sharedAppDelegate.socksProxyPort;
-	NSInteger httpProxyPort = AppDelegate.sharedAppDelegate.httpProxyPort;
+	NSInteger socksProxyPort = AppDelegate.socksProxyPort;
+	NSInteger httpProxyPort = AppDelegate.httpProxyPort;
 	NSMutableDictionary *proxyDict = [@{} mutableCopy];
 
 	if (socksProxyPort > 0) {
@@ -501,7 +500,7 @@ static NSString * kJAHPRecursiveRequestFlagProperty = @"com.jivesoftware.JAHPAut
 		wvthash = [NSString stringWithFormat:@"%lu", [(NSNumber *)[NSURLProtocol propertyForKey:WVT_KEY inRequest:request] longValue]];
 
 	if (wvthash != nil && ![wvthash isEqualToString:@""]) {
-		for (Tab *wvt in AppDelegate.sharedAppDelegate.browsingUi.tabs) {
+		for (Tab *wvt in AppDelegate.shared.browsingUi.tabs) {
 			if ([[NSString stringWithFormat:@"%lu", (unsigned long)[wvt hash]] isEqualToString:wvthash]) {
 				_wvt = wvt;
 				break;
@@ -540,7 +539,7 @@ static NSString * kJAHPRecursiveRequestFlagProperty = @"com.jivesoftware.JAHPAut
 				[alertController addAction:cancelAction];
 				[alertController addAction:okAction];
 
-				[AppDelegate.sharedAppDelegate.browsingUi presentViewController:alertController animated:YES completion:nil];
+				[AppDelegate.shared.browsingUi presentViewController:alertController animated:YES completion:nil];
 			}
 		}
 
@@ -584,7 +583,7 @@ static NSString * kJAHPRecursiveRequestFlagProperty = @"com.jivesoftware.JAHPAut
 	}
 
 	/* check HSTS cache first to see if scheme needs upgrading */
-	[mutableRequest setURL:[[[AppDelegate sharedAppDelegate] hstsCache] rewrittenURI:[request URL]]];
+	[mutableRequest setURL:[AppDelegate.shared.hstsCache rewrittenURI:request.URL]];
 
 	/* then check HTTPS Everywhere (must pass all URLs since some rules are not just scheme changes */
 	NSArray *HTErules = [HTTPSEverywhere potentiallyApplicableRulesForHost:[[request URL] host]];
@@ -615,7 +614,7 @@ static NSString * kJAHPRecursiveRequestFlagProperty = @"com.jivesoftware.JAHPAut
 
 	/* we're handling cookies ourself */
 	mutableRequest.HTTPShouldHandleCookies = NO;
-	NSArray *cookies = [AppDelegate.sharedAppDelegate.cookieJar cookiesForURL:mutableRequest.URL forTab:_wvt.hash];
+	NSArray *cookies = [AppDelegate.shared.cookieJar cookiesForURL:mutableRequest.URL forTab:_wvt.hash];
 
 	if (cookies != nil && cookies.count > 0) {
 		[self.class authenticatingHTTPProtocol:self logWithFormat:@"[Tab %ld] sending %lu cookie(s) to %@", (long)_wvt.index, (unsigned long)cookies.count, mutableRequest.URL];
@@ -1020,7 +1019,7 @@ static NSString * kJAHPRecursiveRequestFlagProperty = @"com.jivesoftware.JAHPAut
 	assert([[self class] propertyForKey:kJAHPRecursiveRequestFlagProperty inRequest:newRequest] != nil);
 
 	/* save any cookies we just received */
-	[AppDelegate.sharedAppDelegate.cookieJar
+	[AppDelegate.shared.cookieJar
 	 setCookies:[NSHTTPCookie cookiesWithResponseHeaderFields:response.allHeaderFields forURL:_actualRequest.URL]
 	 forURL:_actualRequest.URL
 	 mainDocumentURL:_actualRequest.mainDocumentURL
@@ -1125,7 +1124,7 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 				};
 
 				OCSPAuthURLSessionDelegate *authURLSessionDelegate =
-				AppDelegate.sharedAppDelegate.certificateAuthentication.authURLSessionDelegate;
+				AppDelegate.shared.certificateAuthentication.authURLSessionDelegate;
 
 				successfulAuth =
 				[authURLSessionDelegate evaluateTrust:trust
@@ -1143,7 +1142,7 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 						// -URLSession:task:didReceiveChallenge: is not getting called
 						// due to NSURLSession internal TLS caching
 						// or UIWebView content caching
-						[[[AppDelegate sharedAppDelegate] sslCertCache]
+						[AppDelegate.shared.sslCertCache
 						 setObject:certificate
 						 forKey:challenge.protectionSpace.host];
 					}
@@ -1349,20 +1348,20 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 	 Note that we need to do the same thing in the
 	 - (void)URLSession:task:willPerformHTTPRedirection
 	 */
-	[AppDelegate.sharedAppDelegate.cookieJar
+	[AppDelegate.shared.cookieJar
 	 setCookies:[NSHTTPCookie cookiesWithResponseHeaderFields:responseHeaders forURL:_actualRequest.URL]
 	 forURL:_actualRequest.URL
 	 mainDocumentURL:_actualRequest.mainDocumentURL
 	 forTab:_wvt.hash];
 
 	/* in case of localStorage */
-	[AppDelegate.sharedAppDelegate.cookieJar trackDataAccessForDomain:[[response URL] host] fromTab:_wvt.hash];
+	[AppDelegate.shared.cookieJar trackDataAccessForDomain:[[response URL] host] fromTab:_wvt.hash];
 
 
 	if ([[[self.request URL] scheme] isEqualToString:@"https"]) {
 		NSString *hsts = [[(NSHTTPURLResponse *)response allHeaderFields] objectForKey:HSTS_HEADER];
 		if (hsts != nil && ![hsts isEqualToString:@""]) {
-			[[[AppDelegate sharedAppDelegate] hstsCache] parseHSTSHeader:hsts forHost:[[self.request URL] host]];
+			[AppDelegate.shared.hstsCache parseHSTSHeader:hsts forHost:[[self.request URL] host]];
 		}
 	}
 

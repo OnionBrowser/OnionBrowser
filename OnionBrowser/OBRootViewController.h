@@ -9,12 +9,12 @@
 #import "OnionManagerDelegate.h"
 @class OnionManager;
 
-@interface OBRootViewController : UIViewController <POEDelegate, OnionManagerDelegate>
+@interface OBRootViewController : UIViewController <OnionManagerDelegate>
 
-@property IntroViewController *introVC;
+//@property IntroViewController *introVC;
 @property UINavigationController *bridgeVC;
-@property ConnectingViewController *conctVC;
-@property ErrorViewController *errorVC;
+//@property ConnectingViewController *conctVC;
+//@property ErrorViewController *errorVC;
 
 @property NSUserDefaults *settings;
 

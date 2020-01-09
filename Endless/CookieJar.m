@@ -5,7 +5,6 @@
  * See LICENSE file for redistribution terms.
  */
 
-#import "AppDelegate.h"
 #import "CookieJar.h"
 #import "HTTPSEverywhere.h"
 #import "OnionBrowser-Swift.h"

@@ -187,13 +187,7 @@ class BrowsingViewController: UIViewController, TabDelegate {
 		super.viewDidAppear(animated)
 
 		// We made it this far, remove lock on previous startup.
-		UserDefaults.standard.removeObject(forKey: STATE_RESTORE_TRY_KEY)
-
-		if let url = AppDelegate.shared().urlToOpenAtLaunch {
-			AppDelegate.shared().urlToOpenAtLaunch = nil
-
-			addNewTab(url)
-		}
+		Settings.stateRestoreLock = false
 	}
 
 	override func viewWillDisappear(_ animated: Bool) {
@@ -465,7 +459,7 @@ class BrowsingViewController: UIViewController, TabDelegate {
 			tab.removeFromSuperview()
 			self.tabs.removeAll { $0 == tab }
 
-			AppDelegate.shared().cookieJar.clearNonWhitelistedData(forTab: UInt(hash))
+			AppDelegate.shared?.cookieJar.clearNonWhitelistedData(forTab: UInt(hash))
 
 			self.updateChrome()
 		}
@@ -548,7 +542,7 @@ class BrowsingViewController: UIViewController, TabDelegate {
 
 		currentTab = nil
 
-		AppDelegate.shared().cookieJar.clearAllNonWhitelistedData()
+		AppDelegate.shared?.cookieJar.clearAllNonWhitelistedData()
 
 		self.updateChrome()
 	}

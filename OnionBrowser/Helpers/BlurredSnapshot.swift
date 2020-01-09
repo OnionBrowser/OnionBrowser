@@ -22,15 +22,15 @@ class BlurredSnapshot: NSObject {
 	@objc class func create() {
 		// Blur current content to increase privacy when in background.
 		if view == nil,
-			let delegate = UIApplication.shared.delegate as? AppDelegate {
+			let delegate = AppDelegate.shared {
 
-			view = delegate.window.snapshotView(afterScreenUpdates: false)
+			view = delegate.window?.snapshotView(afterScreenUpdates: false)
 
 			let vev = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
 			vev.frame = view!.bounds
 
 			view?.addSubview(vev)
-			delegate.window.addSubview(view!)
+			delegate.window?.addSubview(view!)
 		}
 	}
 

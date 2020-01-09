@@ -72,7 +72,7 @@ class AddSiteViewController: FixedFormViewController {
 	- returns: nil if current tab contains no valid URL, or the URL and possibly the tab title.
 	*/
 	public class func getCurrentTabInfo() -> (url: URL, title: String?)? {
-		if let tab = AppDelegate.shared().browsingUi?.currentTab,
+		if let tab = AppDelegate.shared?.browsingUi.currentTab,
 			let scheme = tab.url.scheme?.lowercased() {
 
 			if scheme == "http" || scheme == "https" {

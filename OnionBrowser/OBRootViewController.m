@@ -6,7 +6,6 @@
  */
 
 #import "OBRootViewController.h"
-#import "AppDelegate.h"
 #import "OBSettingsConstants.h"
 
 #ifdef __OBJC__

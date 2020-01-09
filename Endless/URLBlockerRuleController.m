@@ -21,9 +21,9 @@
 	self.inUseRuleRows = [[NSMutableArray alloc] init];
 	
 	NSDictionary *inUse = nil;
-	if (self.appDelegate.browsingUi.currentTab != nil)
+	if (AppDelegate.shared.browsingUi.currentTab != nil)
 	{
-		inUse = self.appDelegate.browsingUi.currentTab.applicableURLBlockerTargets;
+		inUse = AppDelegate.shared.browsingUi.currentTab.applicableURLBlockerTargets;
 	}
 	
 	for (NSString *k in [[[URLBlocker targets] allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]) {

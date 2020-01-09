@@ -15,8 +15,6 @@ UISearchController *searchController;
 {
 	self = [super initWithStyle:style];
 	
-	self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-	
 	self.sortedRuleRows = [[NSMutableArray alloc] init];
 	self.inUseRuleRows = [[NSMutableArray alloc] init];
 

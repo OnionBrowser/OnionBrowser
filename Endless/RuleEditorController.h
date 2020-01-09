@@ -6,12 +6,10 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "AppDelegate.h"
 #import "RuleEditorRow.h"
 
 @interface RuleEditorController : UITableViewController <UISearchResultsUpdating>
 
-@property AppDelegate *appDelegate;
 @property NSMutableArray<RuleEditorRow *> *sortedRuleRows;
 @property NSMutableArray<RuleEditorRow *> *inUseRuleRows;
 

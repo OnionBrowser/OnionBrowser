@@ -20,9 +20,9 @@
 	self.inUseRuleRows = [[NSMutableArray alloc] init];
 	
 	NSDictionary *inUse = nil;
-	if (self.appDelegate.browsingUi.currentTab != nil)
+	if (AppDelegate.shared.browsingUi.currentTab != nil)
 	{
-		inUse = self.appDelegate.browsingUi.currentTab.applicableHTTPSEverywhereRules;
+		inUse = AppDelegate.shared.browsingUi.currentTab.applicableHTTPSEverywhereRules;
 	}
 
 	for (NSString *k in [[[HTTPSEverywhere rules] allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]) {

@@ -70,6 +70,16 @@ class Settings: NSObject {
 	}
 
 
+	class var stateRestoreLock: Bool {
+		get {
+			return UserDefaults.standard.bool(forKey: "state_restore_lock")
+		}
+		set {
+			UserDefaults.standard.set(newValue, forKey: "state_restore_lock")
+		}
+	}
+
+
 	class var searchEngineName: String {
 		get {
 			return UserDefaults.standard.object(forKey: "search_engine") as? String
@@ -186,7 +196,7 @@ class Settings: NSObject {
 		set {
 			UserDefaults.standard.set(newValue, forKey: "mute_with_switch")
 
-			AppDelegate.shared().adjustMuteSwitchBehavior()
+			AppDelegate.shared?.adjustMuteSwitchBehavior()
 		}
 	}
 
@@ -211,7 +221,7 @@ class Settings: NSObject {
 		set {
 			UserDefaults.standard.set(newValue / 60, forKey: "old_data_sweep_mins")
 			
-			AppDelegate.shared().cookieJar.oldDataSweepTimeout = NSNumber(value: newValue / 60)
+			AppDelegate.shared?.cookieJar.oldDataSweepTimeout = NSNumber(value: newValue / 60)
 		}
 	}
 }

@@ -5,7 +5,6 @@
  * See LICENSE file for redistribution terms.
  */
 
-#import "AppDelegate.h"
 #import "HSTSCache.h"
 #import "NSString+IPAddress.h"
 
@@ -13,9 +12,8 @@
 
 /* note that UIWebView has its own HSTS cache that comes preloaded with a big plist of hosts, but we can't change it or manually add to it */
 
-@implementation HSTSCache {
-	AppDelegate *appDelegate;
-}
+@implementation HSTSCache
+
 static NSDictionary *_preloadedHosts;
 
 + (NSString *)hstsCachePath
@@ -29,7 +27,6 @@ static NSDictionary *_preloadedHosts;
 	self = [super init];
 	
 	_dict = [[NSMutableDictionary alloc] init];
-	appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 	
 	return self;
 }
