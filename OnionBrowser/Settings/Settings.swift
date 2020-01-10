@@ -3,7 +3,9 @@
 //  OnionBrowser2
 //
 //  Created by Benjamin Erhart on 18.10.19.
-//  Copyright © 2019 jcs. All rights reserved.
+//  Copyright (c) 2012-2020, Tigas Ventures, LLC (Mike Tigas)
+//
+//  This file is part of Onion Browser. See LICENSE file for redistribution terms.
 //
 
 import UIKit
@@ -76,6 +78,24 @@ class Settings: NSObject {
 		}
 		set {
 			UserDefaults.standard.set(newValue, forKey: "state_restore_lock")
+		}
+	}
+
+	class var didIntro: Bool {
+		get {
+			return UserDefaults.standard.bool(forKey: DID_INTRO)
+		}
+		set {
+			UserDefaults.standard.set(newValue, forKey: DID_INTRO)
+		}
+	}
+
+	class var bookmarkFirstRunDone: Bool {
+		get {
+			return UserDefaults.standard.bool(forKey: "did_first_run_bookmarks")
+		}
+		set {
+			UserDefaults.standard.set(newValue, forKey: "did_first_run_bookmarks")
 		}
 	}
 

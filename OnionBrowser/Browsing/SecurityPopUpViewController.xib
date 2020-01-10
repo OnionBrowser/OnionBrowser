@@ -39,7 +39,7 @@
                 </tableView>
                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G7J-x0-l0O">
                     <rect key="frame" x="40" y="400" width="240" height="36"/>
-                    <color key="backgroundColor" red="0.4941176471" green="0.82745098039999998" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" name="Ok"/>
                     <constraints>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="240" id="Nym-z9-Yio"/>
                         <constraint firstAttribute="height" constant="36" id="igu-u0-GMX"/>
@@ -71,6 +71,7 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="8gJ-hl-pv7" secondAttribute="bottom" constant="8" id="9JT-Pn-Uma"/>
+                <constraint firstItem="G7J-x0-l0O" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Aci-4Y-vdW"/>
                 <constraint firstItem="E6G-Jt-lgu" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="8" id="JGJ-AD-CWx"/>
                 <constraint firstItem="E6G-Jt-lgu" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="LFF-bZ-ZLf"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="E6G-Jt-lgu" secondAttribute="trailing" constant="16" id="Ps7-Pa-jYL"/>
@@ -78,7 +79,6 @@
                 <constraint firstItem="Woi-BF-0Ce" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="ZGd-fF-0dc"/>
                 <constraint firstItem="Woi-BF-0Ce" firstAttribute="top" secondItem="E6G-Jt-lgu" secondAttribute="bottom" constant="8" id="gPJ-bA-2wR"/>
                 <constraint firstItem="G7J-x0-l0O" firstAttribute="top" secondItem="Woi-BF-0Ce" secondAttribute="bottom" constant="8" id="i40-Bj-gqH"/>
-                <constraint firstItem="G7J-x0-l0O" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="iMH-x1-M65"/>
                 <constraint firstItem="8gJ-hl-pv7" firstAttribute="top" secondItem="G7J-x0-l0O" secondAttribute="bottom" constant="8" id="jqg-RV-TcY"/>
                 <constraint firstItem="Woi-BF-0Ce" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="otc-dW-Tab"/>
             </constraints>
@@ -88,7 +88,10 @@
     </objects>
     <resources>
         <namedColor name="Accent">
-            <color red="0.24705882352941178" green="0.16862745098039217" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.24699999392032623" green="0.16899999976158142" blue="0.31000000238418579" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Ok">
+            <color red="0.49399998784065247" green="0.82700002193450928" blue="0.1289999932050705" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

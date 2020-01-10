@@ -49,7 +49,7 @@ class Migration: NSObject {
 
                 if (oldBridges?.count ?? 0) > 0 {
                     // Don't show intro to bridge users - otherwise these settings are lost.
-                    settings.set(true, forKey: DID_INTRO)
+					Settings.didIntro = true
 
                     // Detect default Meek bridges.
                     if oldBridges!.count == 1 {

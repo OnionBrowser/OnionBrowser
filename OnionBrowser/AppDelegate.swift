@@ -182,7 +182,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 		window = UIWindow(frame: UIScreen.main.bounds)
 		window?.backgroundColor = .accent
 		window?.rootViewController?.restorationIdentifier = "OBRootViewController"
-		window?.rootViewController = browsingUi // OBRootViewController()
+		window?.rootViewController = StartupViewController.instantiate()
 		window?.makeKeyAndVisible()
 
 		if let shortcut = launchOptions?[.shortcutItem] as? UIApplicationShortcutItem {
@@ -216,8 +216,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 
 	func applicationDidBecomeActive(_ application: UIApplication) {
 		BlurredSnapshot.remove()
-
-		browsingUi.becomesVisible()
 
 		let mgr = OnionManager.shared
 
@@ -409,12 +407,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 		if lastBuild < thisBuild {
 			print("[\(String(describing: type(of: self)))] migrating from build \(lastBuild) -> \(thisBuild)")
 
-			// Nothing to migrate, currently.
+			Migration.migrate()
 
 			UserDefaults.standard.set(thisBuild, forKey: "last_build")
 		}
-
-		Migration.migrate()
 	}
 
 	private func handle(_ shortcut: UIApplicationShortcutItem, completion: (() -> Void)? = nil) {

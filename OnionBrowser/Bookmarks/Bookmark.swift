@@ -73,6 +73,10 @@ open class Bookmark: NSObject {
 	}()
 
 	class func firstRunSetup() {
+		if Settings.bookmarkFirstRunDone {
+			return
+		}
+
 		// Only set up default list of bookmarks, when there's no others.
 		if all.count < 1 {
 			all.append(contentsOf: defaultBookmarks)
@@ -85,6 +89,8 @@ open class Bookmark: NSObject {
 						store()
 					}
 				}
+				
+				Settings.bookmarkFirstRunDone = true
 			}
         }
 	}

@@ -66,6 +66,7 @@ PODS:
   - ReactiveObjC (3.1.1)
   - SDCAlertView (10.0)
   - TUSafariActivity (1.0.4)
+  - UIImageViewAlignedSwift (0.7.0)
   - VForceTouch (0.0.2)
 
 DEPENDENCIES:
@@ -80,6 +81,7 @@ DEPENDENCIES:
   - Reachability (~> 3.2)
   - SDCAlertView (~> 10)
   - TUSafariActivity
+  - UIImageViewAlignedSwift (from `https://github.com/mirego/UIImageViewAlignedSwift.git`)
   - VForceTouch
 
 SPEC REPOS:
@@ -103,6 +105,8 @@ EXTERNAL SOURCES:
     :git: https://github.com/tladesignz/FavIcon.git
   OCSPCache:
     :git: https://github.com/Psiphon-Labs/OCSPCache
+  UIImageViewAlignedSwift:
+    :git: https://github.com/mirego/UIImageViewAlignedSwift.git
 
 CHECKOUT OPTIONS:
   FavIcon:
@@ -111,6 +115,9 @@ CHECKOUT OPTIONS:
   OCSPCache:
     :commit: 71e9f5d2fdc4afb0d9b04ea019e2f0bec64cdc30
     :git: https://github.com/Psiphon-Labs/OCSPCache
+  UIImageViewAlignedSwift:
+    :commit: 8d33fd1a153010bc437527d8b08c75ed86fc9ae1
+    :git: https://github.com/mirego/UIImageViewAlignedSwift.git
 
 SPEC CHECKSUMS:
   CSPHeader: 352a279f3c84ab3c18014d8f682efd55fa73d885
@@ -126,8 +133,9 @@ SPEC CHECKSUMS:
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
   SDCAlertView: 5fbc48cae6d7bf9781097e3f27883924ef3b922c
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
+  UIImageViewAlignedSwift: 2d082e1623c5121dec11b298d9066ae4ce704a58
   VForceTouch: b5c3a28625269e1818cf915728173bda9f669d6b
 
-PODFILE CHECKSUM: ee2b91ccee872ca6abf604aa88b7e67283045e6c
+PODFILE CHECKSUM: b04f48f143a94f461add95f77c012cc55d66d970
 
 COCOAPODS: 1.8.4
