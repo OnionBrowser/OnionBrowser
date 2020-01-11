@@ -257,6 +257,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 		return true
 	}
 
+	func application(_ application: UIApplication, shouldRestoreSecureApplicationState coder: NSCoder) -> Bool {
+		return self.application(application, shouldRestoreApplicationState: coder)
+	}
+
 	func application(_ application: UIApplication, shouldRestoreApplicationState coder: NSCoder) -> Bool {
 
 		if testing {
