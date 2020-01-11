@@ -34,6 +34,10 @@ class BridgesViewController: UIViewController {
 	}
 
 
+    @IBAction func connect() {
+        AppDelegate.shared?.show(ConnectingViewController())
+    }
+    
 	@IBAction func config() {
 		// TODO
 	}

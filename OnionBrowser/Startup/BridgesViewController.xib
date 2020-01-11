@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BridgesViewController" customModule="OnionBrowser" customModuleProvider="target">
+            <connections>
+                <outlet property="configBt" destination="dGD-Ta-SIr" id="BNn-eb-vSd"/>
+                <outlet property="connectBt" destination="L1N-sw-0rf" id="92g-1e-qx9"/>
+                <outlet property="explanationLb" destination="IMk-FQ-O02" id="Yh2-TP-6Xr"/>
+                <outlet property="headerLb" destination="vfY-6Y-PH9" id="41b-v4-R9P"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="B3v-4k-2rr">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connect to Tor for private browsing." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="20" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vfY-6Y-PH9">
+                    <rect key="frame" x="48" y="116" width="224" height="168"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="vfY-6Y-PH9" secondAttribute="height" multiplier="4:3" id="7fD-p3-Yw7"/>
+                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="480" id="azG-Ik-lDf"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="256"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you are in a country or using a connection that censors Tor, you might need to use bridges." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IMk-FQ-O02">
+                    <rect key="frame" x="48" y="292" width="224" height="81.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dGD-Ta-SIr">
+                    <rect key="frame" x="101" y="520" width="118" height="28"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                    <state key="normal" title="Configure Bridges">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="config" destination="-1" eventType="touchUpInside" id="MLO-Cf-2hp"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L1N-sw-0rf">
+                    <rect key="frame" x="40" y="476" width="240" height="36"/>
+                    <color key="backgroundColor" name="Ok"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="36" id="8aD-jL-l60"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="240" id="Sdt-oi-MF4"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <state key="normal" title="Connect to Tor">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="18"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="connect" destination="-1" eventType="touchUpInside" id="x9P-rY-x9o"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="dGD-Ta-SIr" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="JdJ-z8-yd6"/>
+                <constraint firstItem="B3v-4k-2rr" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="Nt7-oI-TCS"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="IMk-FQ-O02" secondAttribute="trailing" constant="48" id="Pd9-I9-Cbi"/>
+                <constraint firstItem="dGD-Ta-SIr" firstAttribute="top" secondItem="L1N-sw-0rf" secondAttribute="bottom" constant="8" id="XXM-CM-xnY"/>
+                <constraint firstItem="vfY-6Y-PH9" firstAttribute="top" relation="greaterThanOrEqual" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="48" id="YYp-bB-6vN"/>
+                <constraint firstItem="IMk-FQ-O02" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="48" id="bAa-6g-jT0"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="centerY" secondItem="vfY-6Y-PH9" secondAttribute="bottom" id="dUL-7N-XjR"/>
+                <constraint firstItem="B3v-4k-2rr" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="dlD-Sv-ege"/>
+                <constraint firstItem="B3v-4k-2rr" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="fRj-aX-v28"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="dGD-Ta-SIr" secondAttribute="bottom" constant="20" id="jpf-n2-zYf"/>
+                <constraint firstItem="IMk-FQ-O02" firstAttribute="top" secondItem="vfY-6Y-PH9" secondAttribute="bottom" constant="8" id="kkx-Xd-p41"/>
+                <constraint firstItem="B3v-4k-2rr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="l2M-PL-SFz"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="vfY-6Y-PH9" secondAttribute="trailing" constant="48" id="pyg-tL-8V2"/>
+                <constraint firstItem="L1N-sw-0rf" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="rsG-Qo-1PC"/>
+                <constraint firstItem="vfY-6Y-PH9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="48" id="uOz-bM-GQj"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="132" y="153"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="background" width="2049" height="2049"/>
+        <namedColor name="Ok">
+            <color red="0.49399998784065247" green="0.82700002193450928" blue="0.1289999932050705" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

@@ -179,11 +179,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
 
-		window = UIWindow(frame: UIScreen.main.bounds)
-		window?.backgroundColor = .accent
-		window?.rootViewController?.restorationIdentifier = "OBRootViewController"
-		window?.rootViewController = StartupViewController.instantiate()
-		window?.makeKeyAndVisible()
+		show(MainViewController())
 
 		if let shortcut = launchOptions?[.shortcutItem] as? UIApplicationShortcutItem {
 			handle(shortcut)
@@ -387,6 +383,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 		else {
 			try? session.setCategory(.playback)
 		}
+	}
+
+	func show(_ viewController: UIViewController?, _ completion: ((Bool) -> Void)? = nil) {
+		if window == nil {
+			window = UIWindow(frame: UIScreen.main.bounds)
+			window?.backgroundColor = .accent
+		}
+
+		window?.rootViewController?.restorationIdentifier = String(describing: type(of: viewController))
+		window?.rootViewController = viewController
+		window?.makeKeyAndVisible()
+
+		UIView.transition(with: window!, duration: 0.3, options: .transitionCrossDissolve,
+						  animations: {}, completion: completion)
 	}
 
 

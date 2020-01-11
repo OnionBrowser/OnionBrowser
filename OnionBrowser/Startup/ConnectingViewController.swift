@@ -134,20 +134,14 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate {
 	}
 
 	func torConnError() {
-		performSegue(withIdentifier: "showError", sender: self)
+		AppDelegate.shared?.show(ErrorViewController())
 	}
 
 
 	// MARK: Actions
 
     @IBAction func start() {
-		guard let window = AppDelegate.shared?.window else {
-			return
-		}
-
-		window.rootViewController = AppDelegate.shared?.browsingUi
-
-		UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: {}) { _ in
+		AppDelegate.shared?.show(AppDelegate.shared?.browsingUi) { _ in
 			TabSecurity.restore()
 
 			AppDelegate.shared?.browsingUi.becomesVisible()

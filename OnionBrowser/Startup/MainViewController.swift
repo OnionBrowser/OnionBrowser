@@ -23,10 +23,24 @@ class MainViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
+		if Settings.didIntro {
+			let vc = ConnectingViewController()
+			vc.autoClose = true
+
+			AppDelegate.shared?.show(vc)
+
+			return
+		}
+
 		claimLb.text = NSLocalizedString("Free to be you.", comment: "")
 
 		let rtl = UIView.userInterfaceLayoutDirection(for: actionLb.semanticContentAttribute) == .rightToLeft
 		actionLb.text = String(format: NSLocalizedString("Let's go %@", comment: ""),
 							   rtl ? "\u{276c}" : "\u{276d}") // Angle bracket
+	}
+
+
+	@IBAction func showNext() {
+		AppDelegate.shared?.show(BridgesViewController())
 	}
 }

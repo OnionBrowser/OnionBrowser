@@ -50,6 +50,14 @@
 		69CBCD4D1E934249009D5352 /* RuleEditorRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CBCD4B1E934249009D5352 /* RuleEditorRow.m */; };
 		69CBCD521E9347B8009D5352 /* UIResponder+FirstResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CBCD511E9347B8009D5352 /* UIResponder+FirstResponder.m */; };
 		85270CF109EE8DC546AE8B56 /* libPods-OnionBrowser2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3537B61491A2A1A4DAA2C07C /* libPods-OnionBrowser2.a */; };
+		A003A6B323C9430300BD2D20 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A003A6B123C9430300BD2D20 /* MainViewController.xib */; };
+		A003A6B423C9430300BD2D20 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A003A6B223C9430300BD2D20 /* MainViewController.swift */; };
+		A003A6B723C9480000BD2D20 /* BridgesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A003A6B523C9480000BD2D20 /* BridgesViewController.xib */; };
+		A003A6B823C9480000BD2D20 /* BridgesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A003A6B623C9480000BD2D20 /* BridgesViewController.swift */; };
+		A003A6BB23C94A4900BD2D20 /* ConnectingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A003A6B923C94A4900BD2D20 /* ConnectingViewController.xib */; };
+		A003A6BC23C94A4900BD2D20 /* ConnectingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A003A6BA23C94A4900BD2D20 /* ConnectingViewController.swift */; };
+		A003A6BF23C94D3800BD2D20 /* ErrorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A003A6BD23C94D3800BD2D20 /* ErrorViewController.xib */; };
+		A003A6C023C94D3800BD2D20 /* ErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A003A6BE23C94D3800BD2D20 /* ErrorViewController.swift */; };
 		A01D3BA323900D2800E536F2 /* RuleEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CBCD491E934249009D5352 /* RuleEditorController.m */; };
 		A03DBCED22859B99001890C4 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = A03DBCEC22859B99001890C4 /* Config.m */; };
 		A03DBCEF22859B99001890C4 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = A03DBCEC22859B99001890C4 /* Config.m */; };
@@ -63,11 +71,6 @@
 		A07037C623C7571B00D670EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07037C523C7571B00D670EC /* AppDelegate.swift */; };
 		A07037C723C79AE500D670EC /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A07037C223C74DC900D670EC /* Media.xcassets */; };
 		A08737E1221324B5005A68CC /* HostSettings_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = A08737DF2213235F005A68CC /* HostSettings_Tests.m */; };
-		A0A8E5F923C89059007E5FAD /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A8E5F723C89059007E5FAD /* MainViewController.swift */; };
-		A0A8E5FB23C8A844007E5FAD /* Startup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0A8E5FA23C8A844007E5FAD /* Startup.storyboard */; };
-		A0A8E5FD23C8ACD0007E5FAD /* BridgesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A8E5FC23C8ACD0007E5FAD /* BridgesViewController.swift */; };
-		A0A8E5FF23C8B17C007E5FAD /* StartupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A8E5FE23C8B17C007E5FAD /* StartupViewController.swift */; };
-		A0A8E60123C8C050007E5FAD /* ConnectingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A8E60023C8C050007E5FAD /* ConnectingViewController.swift */; };
 		A0BF51E423AFBF250096624A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51A023AFBF250096624A /* Localizable.strings */; };
 		A0BF51E523AFBF250096624A /* urlblocker.json in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51AE23AFBF250096624A /* urlblocker.json */; };
 		A0BF51E623AFBF250096624A /* https-everywhere_rules.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51B223AFBF250096624A /* https-everywhere_rules.plist */; };
@@ -232,6 +235,14 @@
 		69CBCD511E9347B8009D5352 /* UIResponder+FirstResponder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+FirstResponder.m"; sourceTree = "<group>"; };
 		792EAB703911B40999192FB2 /* Pods-OnionBrowser2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnionBrowser2.debug.xcconfig"; path = "Target Support Files/Pods-OnionBrowser2/Pods-OnionBrowser2.debug.xcconfig"; sourceTree = "<group>"; };
 		7C533CEB1E7ECF97A3FA703D /* Pods-OnionBrowser2 Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnionBrowser2 Tests.release.xcconfig"; path = "Target Support Files/Pods-OnionBrowser2 Tests/Pods-OnionBrowser2 Tests.release.xcconfig"; sourceTree = "<group>"; };
+		A003A6B123C9430300BD2D20 /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		A003A6B223C9430300BD2D20 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		A003A6B523C9480000BD2D20 /* BridgesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BridgesViewController.xib; sourceTree = "<group>"; };
+		A003A6B623C9480000BD2D20 /* BridgesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgesViewController.swift; sourceTree = "<group>"; };
+		A003A6B923C94A4900BD2D20 /* ConnectingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConnectingViewController.xib; sourceTree = "<group>"; };
+		A003A6BA23C94A4900BD2D20 /* ConnectingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectingViewController.swift; sourceTree = "<group>"; };
+		A003A6BD23C94D3800BD2D20 /* ErrorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ErrorViewController.xib; sourceTree = "<group>"; };
+		A003A6BE23C94D3800BD2D20 /* ErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewController.swift; sourceTree = "<group>"; };
 		A00436091E81856F0067652D /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		A004360A1E81856F0067652D /* Cartfile.resolved */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile.resolved; sourceTree = "<group>"; };
 		A004360B1E81856F0067652D /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -589,11 +600,6 @@
 		A094CEDD234506C700C77E55 /* name.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = name.txt; sourceTree = "<group>"; };
 		A094CEDE234506C700C77E55 /* description.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = description.txt; sourceTree = "<group>"; };
 		A094CEDF234506C700C77E55 /* keywords.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = keywords.txt; sourceTree = "<group>"; };
-		A0A8E5F723C89059007E5FAD /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		A0A8E5FA23C8A844007E5FAD /* Startup.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Startup.storyboard; sourceTree = "<group>"; };
-		A0A8E5FC23C8ACD0007E5FAD /* BridgesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgesViewController.swift; sourceTree = "<group>"; };
-		A0A8E5FE23C8B17C007E5FAD /* StartupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartupViewController.swift; sourceTree = "<group>"; };
-		A0A8E60023C8C050007E5FAD /* ConnectingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectingViewController.swift; sourceTree = "<group>"; };
 		A0B2240E23A92B2700EA2C47 /* OnionBrowser2_Tests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OnionBrowser2_Tests-Bridging-Header.h"; sourceTree = "<group>"; };
 		A0BF519C23AFBCFA0096624A /* convert_rules.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = convert_rules.rb; sourceTree = "<group>"; };
 		A0BF51A123AFBF250096624A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1720,11 +1726,14 @@
 		A0A8E5F523C88FFB007E5FAD /* Startup */ = {
 			isa = PBXGroup;
 			children = (
-				A0A8E5FA23C8A844007E5FAD /* Startup.storyboard */,
-				A0A8E5FE23C8B17C007E5FAD /* StartupViewController.swift */,
-				A0A8E5F723C89059007E5FAD /* MainViewController.swift */,
-				A0A8E5FC23C8ACD0007E5FAD /* BridgesViewController.swift */,
-				A0A8E60023C8C050007E5FAD /* ConnectingViewController.swift */,
+				A003A6B123C9430300BD2D20 /* MainViewController.xib */,
+				A003A6B223C9430300BD2D20 /* MainViewController.swift */,
+				A003A6B523C9480000BD2D20 /* BridgesViewController.xib */,
+				A003A6B623C9480000BD2D20 /* BridgesViewController.swift */,
+				A003A6B923C94A4900BD2D20 /* ConnectingViewController.xib */,
+				A003A6BA23C94A4900BD2D20 /* ConnectingViewController.swift */,
+				A003A6BD23C94D3800BD2D20 /* ErrorViewController.xib */,
+				A003A6BE23C94D3800BD2D20 /* ErrorViewController.swift */,
 			);
 			path = Startup;
 			sourceTree = "<group>";
@@ -2007,8 +2016,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A0A8E5FB23C8A844007E5FAD /* Startup.storyboard in Resources */,
+				A003A6B723C9480000BD2D20 /* BridgesViewController.xib in Resources */,
 				A0BF51F023AFBF250096624A /* https-everywhere_targets.plist in Resources */,
+				A003A6BF23C94D3800BD2D20 /* ErrorViewController.xib in Resources */,
 				A0BF524E23AFC3580096624A /* SecurityLevelCell.xib in Resources */,
 				A0BF528523AFC6D10096624A /* InfoPlist.strings in Resources */,
 				A0BF51F123AFBF250096624A /* Launch Screen.xib in Resources */,
@@ -2025,12 +2035,14 @@
 				A0BF51E823AFBF250096624A /* geoip6 in Resources */,
 				A0BF51E623AFBF250096624A /* https-everywhere_rules.plist in Resources */,
 				A0BF525A23AFC3580096624A /* BrowsingViewController-iPad.xib in Resources */,
+				A003A6B323C9430300BD2D20 /* MainViewController.xib in Resources */,
 				A0BF51EA23AFBF250096624A /* hsts_preload.plist in Resources */,
 				A0BF525423AFC3580096624A /* BrowsingViewController.xib in Resources */,
 				A0BF524A23AFC3580096624A /* SecurityPopUpViewController.xib in Resources */,
 				A0BF51EC23AFBF250096624A /* geoip in Resources */,
 				A0BF524923AFC3580096624A /* CircuitNodeCell.xib in Resources */,
 				A0BF526323AFC3580096624A /* BookmarksViewController.xib in Resources */,
+				A003A6BB23C94A4900BD2D20 /* ConnectingViewController.xib in Resources */,
 				A0BF51ED23AFBF250096624A /* start.html in Resources */,
 				A0BF51F223AFBF250096624A /* obfs4-bridges.plist in Resources */,
 			);
@@ -2207,6 +2219,7 @@
 				A0BF527A23AFC3580096624A /* AlertHelper.swift in Sources */,
 				A0BF527623AFC3580096624A /* OnionManager.swift in Sources */,
 				A0BF527223AFC3580096624A /* SettingsViewController.swift in Sources */,
+				A003A6BC23C94A4900BD2D20 /* ConnectingViewController.swift in Sources */,
 				A0BF526F23AFC3580096624A /* Storage1ViewController.swift in Sources */,
 				A0BF527723AFC3580096624A /* BlurredSnapshot.swift in Sources */,
 				A0C9531A23C6426C006D7A35 /* FixedFormViewController.swift in Sources */,
@@ -2216,7 +2229,6 @@
 				A0BF526D23AFC3580096624A /* SecurityViewController.swift in Sources */,
 				A0BF525123AFC3580096624A /* HistoryViewController.swift in Sources */,
 				A01D3BA323900D2800E536F2 /* RuleEditorController.m in Sources */,
-				A0A8E5FF23C8B17C007E5FAD /* StartupViewController.swift in Sources */,
 				A053137522F1E587006655EC /* CertificateAuthentication.m in Sources */,
 				A0BF524F23AFC3580096624A /* CircuitViewController.swift in Sources */,
 				018333D21A35291200670CD1 /* HTTPSEverywhereRule.m in Sources */,
@@ -2244,13 +2256,13 @@
 				A0BF526223AFC3580096624A /* FavIconRow.swift in Sources */,
 				A03DBCED22859B99001890C4 /* Config.m in Sources */,
 				A0BF525523AFC3580096624A /* Tab+UIWebViewDelegate.swift in Sources */,
-				A0A8E5F923C89059007E5FAD /* MainViewController.swift in Sources */,
+				A003A6B823C9480000BD2D20 /* BridgesViewController.swift in Sources */,
 				A0BF525023AFC3580096624A /* Tab+Activity.swift in Sources */,
+				A003A6B423C9430300BD2D20 /* MainViewController.swift in Sources */,
 				018333CA1A3505FB00670CD1 /* HTTPSEverywhere.m in Sources */,
 				A07037C623C7571B00D670EC /* AppDelegate.swift in Sources */,
 				A0BF526823AFC3580096624A /* BookmarkCell.swift in Sources */,
 				01F7CB491A5253DD00F42B73 /* HSTSCache.m in Sources */,
-				A0A8E5FD23C8ACD0007E5FAD /* BridgesViewController.swift in Sources */,
 				A0BF526123AFC3580096624A /* BookmarkViewController.swift in Sources */,
 				A0BF526A23AFC3580096624A /* SecurityPresetsRow.swift in Sources */,
 				A0BF526E23AFC3580096624A /* Storage2ViewController.swift in Sources */,
@@ -2262,9 +2274,9 @@
 				0182AD9B1AACC55400F3B7ED /* HTTPSEverywhereRuleController.m in Sources */,
 				A0BF527B23AFC3580096624A /* Formatter.swift in Sources */,
 				A0BF524B23AFC3580096624A /* CircuitNodeCell.swift in Sources */,
-				A0A8E60123C8C050007E5FAD /* ConnectingViewController.swift in Sources */,
 				010EEA691A43C8CF001E8B65 /* CookieJar.m in Sources */,
 				A0BF527523AFC3580096624A /* OBSettingsConstants.m in Sources */,
+				A003A6C023C94D3800BD2D20 /* ErrorViewController.swift in Sources */,
 				A053136F22F1C73A006655EC /* JAHPCacheStoragePolicy.m in Sources */,
 				A0BF525723AFC3580096624A /* SecurityPopUpViewController.swift in Sources */,
 			);
