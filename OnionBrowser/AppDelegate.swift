@@ -324,7 +324,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 				title: NSLocalizedString("Authentication Required", comment: ""))
 
 			AlertHelper.addTextField(self.alert!, placeholder:
-				NSLocalizedString("User Name", comment: ""))
+				NSLocalizedString("Username", comment: ""))
 
 			AlertHelper.addPasswordField(self.alert!, placeholder:
 				NSLocalizedString("Password", comment: ""))
