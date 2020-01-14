@@ -141,10 +141,14 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate {
 	// MARK: Actions
 
     @IBAction func start() {
+		if AppDelegate.shared?.browsingUi == nil {
+			AppDelegate.shared?.browsingUi = BrowsingViewController()
+		}
+
 		AppDelegate.shared?.show(AppDelegate.shared?.browsingUi) { _ in
 			TabSecurity.restore()
 
-			AppDelegate.shared?.browsingUi.becomesVisible()
+			AppDelegate.shared?.browsingUi?.becomesVisible()
 		}
 	}
 

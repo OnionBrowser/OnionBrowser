@@ -49,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 	let cookieJar = CookieJar()
 
 	@objc
-	let browsingUi = BrowsingViewController()
+	var browsingUi: BrowsingViewController?
 
 	var testing: Bool {
 		return NSClassFromString("XCTestProbe") != nil
@@ -61,7 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 	override var keyCommands: [UIKeyCommand]? {
 		// If settings are up or something else, ignore shortcuts.
 		if !(window?.rootViewController is BrowsingViewController)
-			|| browsingUi.presentedViewController != nil {
+			|| browsingUi?.presentedViewController != nil {
 
 			return nil
 		}
@@ -190,7 +190,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 
 	func applicationWillResignActive(_ application: UIApplication) {
 		application.ignoreSnapshotOnNextApplicationLaunch()
-		browsingUi.becomesInvisible()
+		browsingUi?.becomesInvisible()
 
 		BlurredSnapshot.create()
 	}
@@ -235,7 +235,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 	func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
 
 		dismissModalsAndCall {
-			self.browsingUi.addNewTab(url.withFixedScheme)
+			self.browsingUi?.addNewTab(url.withFixedScheme)
 		}
 
 		return true
@@ -357,7 +357,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 				authenticatingHTTPProtocol.resolvePendingAuthenticationChallenge(with: credential)
 			})
 
-			self.browsingUi.present(self.alert!)
+			self.browsingUi?.present(self.alert!)
 		}
 
 		return nil
@@ -430,13 +430,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 	private func handle(_ shortcut: UIApplicationShortcutItem, completion: (() -> Void)? = nil) {
 		if shortcut.type.contains("OpenNewTab") {
 			dismissModalsAndCall {
-				self.browsingUi.addEmptyTabAndFocus()
+				self.browsingUi?.addEmptyTabAndFocus()
 				completion?()
 			}
 		}
 		else if shortcut.type.contains("ClearData") {
 			dismissModalsAndCall {
-				self.browsingUi.removeAllTabs()
+				self.browsingUi?.removeAllTabs()
 				completion?()
 			}
 		}
@@ -453,8 +453,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 	- parameter completion: Callback when dismiss is done or immediately when no dismiss was necessary.
 	*/
 	private func dismissModalsAndCall(completion: @escaping () -> Void) {
-		if browsingUi.presentedViewController != nil {
-			browsingUi.dismiss(animated: true, completion: completion)
+		if browsingUi?.presentedViewController != nil {
+			browsingUi?.dismiss(animated: true, completion: completion)
 		}
 		// If there's no modal view controller, however, the completion block
 		// would never be called.
@@ -468,36 +468,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 		if keyCommand.modifierFlags == .command {
 			switch keyCommand.input {
 			case "b":
-				browsingUi.showBookmarks()
+				browsingUi?.showBookmarks()
 				return
 
 			case "l":
-				browsingUi.focusSearchField()
+				browsingUi?.focusSearchField()
 				return
 
 			case "r":
-				browsingUi.currentTab?.refresh()
+				browsingUi?.currentTab?.refresh()
 				return
 
 			case "t":
-				browsingUi.addEmptyTabAndFocus()
+				browsingUi?.addEmptyTabAndFocus()
 				return
 
 			case "w":
-				browsingUi.removeCurrentTab()
+				browsingUi?.removeCurrentTab()
 				return
 
 			case "[":
-				browsingUi.currentTab?.goBack()
+				browsingUi?.currentTab?.goBack()
 				return
 
 			case "]":
-				browsingUi.currentTab?.goForward()
+				browsingUi?.currentTab?.goForward()
 				return
 
 			default:
 				for i in 0 ... 9 {
-					if keyCommand.input == String(i) {
+					if keyCommand.input == String(i), let browsingUi = browsingUi {
 						browsingUi.switchToTab(i == 0 ? browsingUi.tabs.count - 1 : i - 1)
 						return
 					}
@@ -505,6 +505,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 			}
 		}
 
-		browsingUi.currentTab?.handleKeyCommand(keyCommand)
+		browsingUi?.currentTab?.handleKeyCommand(keyCommand)
 	}
 }

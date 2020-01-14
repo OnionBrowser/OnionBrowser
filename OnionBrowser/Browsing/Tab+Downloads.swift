@@ -75,7 +75,7 @@ extension Tab: DownloadTaskDelegate, QLPreviewControllerDelegate, QLPreviewContr
 		previewController?.delegate = self
 		previewController?.dataSource = self
 
-		AppDelegate.shared?.browsingUi.addChild(previewController!)
+		AppDelegate.shared?.browsingUi?.addChild(previewController!)
 
 		previewController?.view.add(to: self)
 
