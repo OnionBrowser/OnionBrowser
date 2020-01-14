@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -17,20 +18,32 @@
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="dZ3-v0-7jz">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                 </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cut-off-icon" translatesAutoresizingMaskIntoConstraints="NO" id="bJr-1Z-oaa">
+                    <rect key="frame" x="0.0" y="57.5" width="240" height="322.5"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="bJr-1Z-oaa" secondAttribute="height" multiplier="1:1.34286" id="jzn-OZ-S4f"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" name="Accent"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="dZ3-v0-7jz" secondAttribute="bottom" id="BFZ-je-RT0"/>
+                <constraint firstItem="bJr-1Z-oaa" firstAttribute="top" relation="greaterThanOrEqual" secondItem="v8Q-Ru-2Qy" secondAttribute="top" constant="16" id="L41-LG-0u1"/>
                 <constraint firstItem="dZ3-v0-7jz" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="LfG-zS-Nbz"/>
+                <constraint firstItem="bJr-1Z-oaa" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="RYa-Ao-MBC"/>
                 <constraint firstItem="dZ3-v0-7jz" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="eN3-QH-0U5"/>
+                <constraint firstItem="v8Q-Ru-2Qy" firstAttribute="centerY" secondItem="bJr-1Z-oaa" secondAttribute="bottom" constant="-96" id="gxi-FD-n1f"/>
+                <constraint firstItem="bJr-1Z-oaa" firstAttribute="width" relation="lessThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.75" id="iK6-fW-tVY"/>
                 <constraint firstAttribute="trailing" secondItem="dZ3-v0-7jz" secondAttribute="trailing" id="jE7-46-9Vt"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
+            <viewLayoutGuide key="safeArea" id="v8Q-Ru-2Qy"/>
             <point key="canvasLocation" x="403.5" y="444.5"/>
         </view>
     </objects>
     <resources>
         <image name="background" width="2049" height="2049"/>
+        <image name="cut-off-icon" width="945" height="1269"/>
         <namedColor name="Accent">
             <color red="0.24699999392032623" green="0.16899999976158142" blue="0.31000000238418579" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
