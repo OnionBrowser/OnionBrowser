@@ -99,6 +99,25 @@ class Settings: NSObject {
 		}
 	}
 
+	class var currentlyUsedBridgesId: Int {
+		get {
+			return UserDefaults.standard.integer(forKey: USE_BRIDGES)
+		}
+		set {
+			UserDefaults.standard.set(newValue, forKey: USE_BRIDGES)
+		}
+	}
+
+	class var customBridges: [String]? {
+		get {
+			return UserDefaults.standard.stringArray(forKey: CUSTOM_BRIDGES)
+		}
+		set {
+			UserDefaults.standard.set(newValue, forKey: CUSTOM_BRIDGES)
+
+		}
+	}
+
 
 	class var searchEngineName: String {
 		get {

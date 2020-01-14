@@ -85,6 +85,9 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate {
 		progress.isHidden = true
         startBt.isHidden = true
 
+		OnionManager.shared.setBridgeConfiguration(bridgesId: Settings.currentlyUsedBridgesId,
+												   customBridges: Settings.customBridges)
+
 		OnionManager.shared.startTor(delegate: self)
 	}
 

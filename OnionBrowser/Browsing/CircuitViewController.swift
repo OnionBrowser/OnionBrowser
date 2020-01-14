@@ -106,41 +106,6 @@ UITableViewDataSource, UITableViewDelegate {
 	}
 
 
-	// MARK: POEDelegate
-
-	func introFinished(_ useBridge: Bool) {
-		print("#introFinished not implemented!");
-	}
-
-	/**
-	Receive this callback, after the user finished the bridges configuration.
-
-	- parameter bridgesId: the selected ID of the list you gave in the constructor of
-	BridgeSelectViewController.
-	- parameter customBridges: the list of custom bridges the user configured.
-	*/
-	func bridgeConfigured(_ bridgesId: Int, customBridges: [String]) {
-		UserDefaults.standard.set(bridgesId, forKey: USE_BRIDGES)
-		UserDefaults.standard.set(customBridges, forKey: CUSTOM_BRIDGES)
-
-		// At this point we already have a connection. The bridge reconfiguration is very cheap,
-		// so we stay in the browser view and let OnionManager reconfigure in the background.
-		// Actually, the reconfiguration can be done completely offline, so we don't have a chance to
-		// find out, if another bridge setting (or no bridge) actually works afterwards.
-		// The user will find out, when she tries to continue browsing.
-		OnionManager.shared.setBridgeConfiguration(bridgesId: bridgesId, customBridges: customBridges)
-		OnionManager.shared.startTor(delegate: nil)
-	}
-
-	func changeSettings() {
-		print("#changeSettings not implemented!");
-	}
-
-	func userFinishedConnecting() {
-		print("#userFinishedConnecting not implemented!");
-	}
-
-
 	// MARK: Actions
 
 	@IBAction func newCircuits() {
@@ -152,25 +117,7 @@ UITableViewDataSource, UITableViewDelegate {
 	}
 
 	@IBAction func showBridgeSelection(_ sender: UIView) {
-		present(getBridgeSelectVc(), sender)
-	}
-
-	func getBridgeSelectVc() -> UINavigationController {
-//		let builtInBridges: [Int: String]
-//		builtInBridges = [USE_BRIDGES_OBFS4: "obfs4",
-//						  USE_BRIDGES_MEEKAZURE: "meek-azure"]
-//
-//		let ud = UserDefaults.standard
-
-		return UINavigationController(nibName: nil, bundle: nil)
-//
-//		return BridgeSelectViewController.instantiate(
-//			currentId: ud.integer(forKey: USE_BRIDGES),
-//			noBridgeId: NSNumber(value: USE_BRIDGES_NONE),
-//			providedBridges: builtInBridges,
-//			customBridgeId: NSNumber(value: USE_BRIDGES_CUSTOM),
-//			customBridges: ud.stringArray(forKey: CUSTOM_BRIDGES),
-//			delegate: self)
+		BridgeConfViewController.present(from: self)
 	}
 
 

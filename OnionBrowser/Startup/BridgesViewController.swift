@@ -39,6 +39,6 @@ class BridgesViewController: UIViewController {
     }
     
 	@IBAction func config() {
-		// TODO
+		BridgeConfViewController.present(from: self)
 	}
 }
