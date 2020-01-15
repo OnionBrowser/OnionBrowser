@@ -74,6 +74,8 @@
 		A07037C623C7571B00D670EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07037C523C7571B00D670EC /* AppDelegate.swift */; };
 		A07037C723C79AE500D670EC /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A07037C223C74DC900D670EC /* Media.xcassets */; };
 		A08737E1221324B5005A68CC /* HostSettings_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = A08737DF2213235F005A68CC /* HostSettings_Tests.m */; };
+		A099B8B723CF60C800B50998 /* InitSecurityLevelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A099B8B523CF60C800B50998 /* InitSecurityLevelViewController.xib */; };
+		A099B8B823CF60C800B50998 /* InitSecurityLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A099B8B623CF60C800B50998 /* InitSecurityLevelViewController.swift */; };
 		A0BF51E423AFBF250096624A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51A023AFBF250096624A /* Localizable.strings */; };
 		A0BF51E523AFBF250096624A /* urlblocker.json in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51AE23AFBF250096624A /* urlblocker.json */; };
 		A0BF51E623AFBF250096624A /* https-everywhere_rules.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51B223AFBF250096624A /* https-everywhere_rules.plist */; };
@@ -606,6 +608,8 @@
 		A094CEDD234506C700C77E55 /* name.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = name.txt; sourceTree = "<group>"; };
 		A094CEDE234506C700C77E55 /* description.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = description.txt; sourceTree = "<group>"; };
 		A094CEDF234506C700C77E55 /* keywords.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = keywords.txt; sourceTree = "<group>"; };
+		A099B8B523CF60C800B50998 /* InitSecurityLevelViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InitSecurityLevelViewController.xib; sourceTree = "<group>"; };
+		A099B8B623CF60C800B50998 /* InitSecurityLevelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitSecurityLevelViewController.swift; sourceTree = "<group>"; };
 		A0B2240E23A92B2700EA2C47 /* OnionBrowser2_Tests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OnionBrowser2_Tests-Bridging-Header.h"; sourceTree = "<group>"; };
 		A0BF519C23AFBCFA0096624A /* convert_rules.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = convert_rules.rb; sourceTree = "<group>"; };
 		A0BF51A123AFBF250096624A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1740,6 +1744,8 @@
 				A003A6BA23C94A4900BD2D20 /* ConnectingViewController.swift */,
 				A003A6BD23C94D3800BD2D20 /* ErrorViewController.xib */,
 				A003A6BE23C94D3800BD2D20 /* ErrorViewController.swift */,
+				A099B8B523CF60C800B50998 /* InitSecurityLevelViewController.xib */,
+				A099B8B623CF60C800B50998 /* InitSecurityLevelViewController.swift */,
 			);
 			path = Startup;
 			sourceTree = "<group>";
@@ -2044,6 +2050,7 @@
 				A0BF51E823AFBF250096624A /* geoip6 in Resources */,
 				A0BF51E623AFBF250096624A /* https-everywhere_rules.plist in Resources */,
 				A0BF525A23AFC3580096624A /* BrowsingViewController-iPad.xib in Resources */,
+				A099B8B723CF60C800B50998 /* InitSecurityLevelViewController.xib in Resources */,
 				A003A6B323C9430300BD2D20 /* MainViewController.xib in Resources */,
 				A0BF51EA23AFBF250096624A /* hsts_preload.plist in Resources */,
 				A0BF525423AFC3580096624A /* BrowsingViewController.xib in Resources */,
@@ -2233,6 +2240,7 @@
 				A0BF526F23AFC3580096624A /* Storage1ViewController.swift in Sources */,
 				A0BF527723AFC3580096624A /* BlurredSnapshot.swift in Sources */,
 				A0C9531A23C6426C006D7A35 /* FixedFormViewController.swift in Sources */,
+				A099B8B823CF60C800B50998 /* InitSecurityLevelViewController.swift in Sources */,
 				A07037C423C74E1100D670EC /* UIColor+Helpers.swift in Sources */,
 				A0BF527123AFC3580096624A /* SecurityShield.swift in Sources */,
 				69CBCD4D1E934249009D5352 /* RuleEditorRow.m in Sources */,

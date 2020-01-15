@@ -12,27 +12,38 @@ import UIKit
 
 class BridgesViewController: UIViewController {
 
-	@IBOutlet weak var headerLb: UILabel!
-	@IBOutlet weak var explanationLb: UILabel!
-	@IBOutlet weak var connectBt: UIButton!
-	@IBOutlet weak var configBt: UIButton!
+	@IBOutlet weak var headerLb: UILabel! {
+		didSet {
+			headerLb.text = NSLocalizedString("Connect to Tor for private browsing.", comment: "")
+		}
+	}
+
+	@IBOutlet weak var explanationLb: UILabel! {
+		didSet {
+			explanationLb.text = NSLocalizedString(
+				"If you are in a country or using a connection that censors Tor, you might need to use bridges.",
+				comment: "")
+		}
+	}
+
+	@IBOutlet weak var connectBt: UIButton! {
+		didSet {
+			connectBt.setTitle(NSLocalizedString("Connect to Tor", comment: ""))
+		}
+	}
+
+	@IBOutlet weak var configBt: UIButton! {
+		didSet {
+			configBt.setTitle(NSLocalizedString("Configure Bridges", comment: ""))
+		}
+	}
 
 	override var preferredStatusBarStyle: UIStatusBarStyle {
 		return .default
 	}
 
 
-	override func viewDidLoad() {
-		super.viewDidLoad()
-
-		headerLb.text = NSLocalizedString("Connect to Tor for private browsing.", comment: "")
-		explanationLb.text = NSLocalizedString(
-			"If you are in a country or using a connection that censors Tor, you might need to use bridges.",
-			comment: "")
-		connectBt.setTitle(NSLocalizedString("Connect to Tor", comment: ""))
-		configBt.setTitle(NSLocalizedString("Configure Bridges", comment: ""))
-	}
-
+	// MARK: Actions
 
     @IBAction func connect() {
         AppDelegate.shared?.show(ConnectingViewController())

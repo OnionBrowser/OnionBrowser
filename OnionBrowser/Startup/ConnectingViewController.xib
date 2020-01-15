@@ -14,8 +14,8 @@
                 <outlet property="bridgeConfBt" destination="i5D-9O-vz5" id="xX2-oK-aqN"/>
                 <outlet property="claimLb" destination="1ig-W5-fqF" id="7n4-t4-kiG"/>
                 <outlet property="image" destination="mzm-7W-P9l" id="93j-o6-Wbf"/>
+                <outlet property="nextBt" destination="zHI-gA-xf0" id="zS7-vp-3IN"/>
                 <outlet property="progress" destination="eoT-tq-A19" id="4Zt-8D-uxC"/>
-                <outlet property="startBt" destination="zHI-gA-xf0" id="zS7-vp-3IN"/>
                 <outlet property="titleLb" destination="64x-Xc-o8q" id="7B1-IH-Pgd"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -68,7 +68,7 @@
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="240" id="hUZ-zx-lP1"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                    <state key="normal" title="Start Browsing">
+                    <state key="normal" title="Next">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <userDefinedRuntimeAttributes>
@@ -77,7 +77,7 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <action selector="start" destination="-1" eventType="touchUpInside" id="Hbh-Ug-C57"/>
+                        <action selector="next" destination="-1" eventType="touchUpInside" id="gM3-nY-1tL"/>
                     </connections>
                 </button>
             </subviews>

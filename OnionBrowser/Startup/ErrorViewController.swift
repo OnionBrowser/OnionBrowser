@@ -12,11 +12,9 @@ import UIKit
 
 class ErrorViewController: UIViewController {
 
-    @IBOutlet weak var messageLb: UILabel!
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        messageLb.text = NSLocalizedString("Looks like we got stuck! Quit. Then restart the app.", comment: "")
-    }
+	@IBOutlet weak var messageLb: UILabel! {
+		didSet {
+			messageLb.text = NSLocalizedString("Looks like we got stuck! Quit. Then restart the app.", comment: "")
+		}
+	}
 }

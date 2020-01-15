@@ -12,12 +12,40 @@ import UIKit
 
 class ConnectingViewController: UIViewController, OnionManagerDelegate {
 
-	@IBOutlet weak var titleLb: UILabel!
-    @IBOutlet weak var bridgeConfBt: UIButton!
-    @IBOutlet weak var progress: UIProgressView!
+	class func start() {
+		if AppDelegate.shared?.browsingUi == nil {
+			AppDelegate.shared?.browsingUi = BrowsingViewController()
+		}
+
+		AppDelegate.shared?.show(AppDelegate.shared?.browsingUi) { _ in
+			TabSecurity.restore()
+
+			AppDelegate.shared?.browsingUi?.becomesVisible()
+		}
+	}
+
+
+	@IBOutlet weak var titleLb: UILabel! {
+		didSet {
+			titleLb.text = NSLocalizedString("Connecting to Tor", comment: "")
+		}
+	}
+
+	@IBOutlet weak var bridgeConfBt: UIButton!
+	@IBOutlet weak var progress: UIProgressView! {
+		didSet {
+			progress.isHidden = true
+		}
+	}
+
 	@IBOutlet weak var image: UIImageView!
 	@IBOutlet weak var claimLb: UILabel!
-	@IBOutlet weak var startBt: UIButton!
+
+	@IBOutlet weak var nextBt: UIButton! {
+		didSet {
+			nextBt.isHidden = true
+		}
+	}
 
 	/**
 	If set to true, will immediately jump to `browsingUi` after successful connect.
@@ -82,10 +110,6 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		titleLb.text = NSLocalizedString("Connecting to Tor", comment: "")
-		progress.isHidden = true
-        startBt.isHidden = true
-
 		OnionManager.shared.setBridgeConfiguration(bridgesId: Settings.currentlyUsedBridgesId,
 												   customBridges: Settings.customBridges)
 
@@ -122,7 +146,7 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate {
 			Bookmark.firstRunSetup()
 
 			if self.autoClose {
-				return self.start()
+				return ConnectingViewController.start()
 			}
 
 			self.refresh?.invalidate()
@@ -134,8 +158,8 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate {
 			self.progress.isHidden = true
 			self.claimLb.isHidden = true
 
-			self.startBt.setTitle(NSLocalizedString("Start Browsing", comment: ""))
-			self.startBt.isHidden = false
+			self.nextBt.setTitle(NSLocalizedString("Next", comment: ""))
+			self.nextBt.isHidden = false
 		}
 	}
 
@@ -146,16 +170,8 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate {
 
 	// MARK: Actions
 
-    @IBAction func start() {
-		if AppDelegate.shared?.browsingUi == nil {
-			AppDelegate.shared?.browsingUi = BrowsingViewController()
-		}
-
-		AppDelegate.shared?.show(AppDelegate.shared?.browsingUi) { _ in
-			TabSecurity.restore()
-
-			AppDelegate.shared?.browsingUi?.becomesVisible()
-		}
+	@IBAction func next() {
+		AppDelegate.shared?.show(InitSecurityLevelViewController())
 	}
 
     @IBAction func bridgeSettings() {

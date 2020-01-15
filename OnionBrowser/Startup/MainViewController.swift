@@ -12,8 +12,19 @@ import UIKit
 
 class MainViewController: UIViewController {
 
-	@IBOutlet weak var claimLb: UILabel!
-	@IBOutlet weak var actionLb: UILabel!
+	@IBOutlet weak var claimLb: UILabel! {
+		didSet {
+			claimLb.text = NSLocalizedString("Free to be you.", comment: "")
+		}
+	}
+	
+	@IBOutlet weak var actionLb: UILabel! {
+		didSet {
+			let rtl = UIView.userInterfaceLayoutDirection(for: actionLb.semanticContentAttribute) == .rightToLeft
+			actionLb.text = String(format: NSLocalizedString("Let's go %@", comment: ""),
+								   rtl ? "\u{276c}" : "\u{276d}") // Angle bracket
+		}
+	}
 
 	override var preferredStatusBarStyle: UIStatusBarStyle {
 		return .default
@@ -28,15 +39,7 @@ class MainViewController: UIViewController {
 			vc.autoClose = true
 
 			AppDelegate.shared?.show(vc)
-
-			return
 		}
-
-		claimLb.text = NSLocalizedString("Free to be you.", comment: "")
-
-		let rtl = UIView.userInterfaceLayoutDirection(for: actionLb.semanticContentAttribute) == .rightToLeft
-		actionLb.text = String(format: NSLocalizedString("Let's go %@", comment: ""),
-							   rtl ? "\u{276c}" : "\u{276d}") // Angle bracket
 	}
 
 
