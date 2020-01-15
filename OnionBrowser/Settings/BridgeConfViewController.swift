@@ -21,13 +21,13 @@ class BridgeConfViewController: FixedFormViewController, UINavigationControllerD
 
 	private let bridgesSection: SelectableSection<ListCheckRow<Int>> = {
 		let description = [
-			NSLocalizedString("If you live in a country that censors Tor, or if you are using a connection that blocks Tor, you can try using bridges to connect.",
+			NSLocalizedString("If you are in a country or using a connection that censors Tor, you might need to use bridges.",
 							  comment: ""),
 			"",
-			String(format: NSLocalizedString("%@ obfs4 makes traffic appear \"random\".",
-							  comment: ""), "\u{2022}"),
-			String(format: NSLocalizedString("%@ meek-azure makes your traffic pose as traffic to a Microsoft website.",
-							  comment: ""), "\u{2022}"),
+			String(format: NSLocalizedString("%@ %@ makes traffic appear \"random\".",
+							  comment: ""), "\u{2022}", "obfs4"),
+			String(format: NSLocalizedString("%@ %@ makes your traffic pose as traffic to a Microsoft website.",
+							  comment: ""), "\u{2022}", "meek-azure"),
 			"",
 			NSLocalizedString("If one type of bridge does not work, try using a different one.",
 							  comment: "")
@@ -51,7 +51,7 @@ class BridgeConfViewController: FixedFormViewController, UINavigationControllerD
 			target: self, action: #selector(connect))
 
 		let bridges = [
-			USE_BRIDGES_NONE: NSLocalizedString("No Bridge", comment: ""),
+			USE_BRIDGES_NONE: NSLocalizedString("No Bridges", comment: ""),
 			USE_BRIDGES_OBFS4: String(format: NSLocalizedString("Built-in %@", comment: ""), "obfs4"),
 			USE_BRIDGES_MEEKAZURE: String(format: NSLocalizedString("Built-in %@", comment: ""), "meek-azure"),
 			USE_BRIDGES_CUSTOM: NSLocalizedString("Custom Bridges", comment: ""),

@@ -54,7 +54,7 @@ class CustomBridgesViewController: FixedFormViewController, UIImagePickerControl
 			UIPasteboard.general.string = CustomBridgesViewController.bridgesUrl
 		})
 
-		+++ Section(NSLocalizedString("Paste Bridge", comment: ""))
+		+++ Section(NSLocalizedString("Paste Bridges", comment: ""))
 			<<< textAreaRow
 			.onChange({ row in
 				self.navigationItem.rightBarButtonItem?.isEnabled = !(row.value?.isEmpty ?? true)
