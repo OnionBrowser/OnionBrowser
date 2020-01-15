@@ -11,7 +11,7 @@
 import UIKit
 import Eureka
 
-class BridgeConfViewController: FixedFormViewController {
+class BridgeConfViewController: FixedFormViewController, UINavigationControllerDelegate {
 
 	class func present(from: UIViewController) {
 		from.present(UINavigationController(rootViewController: BridgeConfViewController()))
@@ -41,6 +41,8 @@ class BridgeConfViewController: FixedFormViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
+		navigationController?.delegate = self
+
 		navigationItem.leftBarButtonItem = UIBarButtonItem(
 			barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
 		navigationItem.title = NSLocalizedString("Bridge Configuration", comment: "")
@@ -57,6 +59,13 @@ class BridgeConfViewController: FixedFormViewController {
 
 		let selected = Settings.currentlyUsedBridgesId
 
+		bridgesSection.onSelectSelectableRow = { _, row in
+			if row.value == USE_BRIDGES_CUSTOM {
+				self.navigationController?.pushViewController(
+					CustomBridgesViewController(), animated: true)
+			}
+		}
+
 		form +++ bridgesSection
 
 		for option in bridges.sorted(by: { $0.key < $1.key }) {
@@ -65,14 +74,29 @@ class BridgeConfViewController: FixedFormViewController {
 				$0.selectableValue = option.key
 				$0.value = option.key == selected ? selected : nil
 			}
-			.onChange({ row in
-				if self.bridgesSection.selectedRow()?.value == USE_BRIDGES_CUSTOM {
-					self.navigationController?.pushViewController(
-						CustomBridgesViewController(), animated: true)
-				}
-			})
 		}
 	}
+
+
+	// MARK: UINavigationControllerDelegate
+
+	func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+		guard viewController == self else {
+			return
+		}
+
+		// Select no bridges, if custom bridges is selected but empty.
+		if bridgesSection.selectedRow()?.selectableValue == USE_BRIDGES_CUSTOM
+			&& Settings.customBridges?.isEmpty ?? true {
+
+			Settings.currentlyUsedBridgesId = USE_BRIDGES_NONE
+			bridgesSection.allRows.first?.baseValue = USE_BRIDGES_NONE
+			bridgesSection.allRows.last?.baseValue = nil
+		}
+	}
+
+
+	// MARK: Actions
 
 	@objc
 	func connect() {
