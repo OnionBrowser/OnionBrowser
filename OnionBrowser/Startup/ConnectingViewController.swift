@@ -13,7 +13,8 @@ import UIKit
 class ConnectingViewController: UIViewController, OnionManagerDelegate {
 
 	@IBOutlet weak var titleLb: UILabel!
-	@IBOutlet weak var progress: UIProgressView!
+    @IBOutlet weak var bridgeConfBt: UIButton!
+    @IBOutlet weak var progress: UIProgressView!
 	@IBOutlet weak var image: UIImageView!
 	@IBOutlet weak var claimLb: UILabel!
 	@IBOutlet weak var startBt: UIButton!
@@ -91,8 +92,8 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate {
 		OnionManager.shared.startTor(delegate: self)
 	}
 
-	override func viewWillAppear(_ animated: Bool) {
-		super.viewWillAppear(animated)
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
 
 		showClaim(nil)
 		refresh = Timer.scheduledTimer(timeInterval: 3, target: self,
@@ -127,8 +128,10 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate {
 			self.refresh?.invalidate()
 			self.refresh = nil
 
-			self.progress.isHidden = true
 			self.titleLb.text = NSLocalizedString("Connected!", comment: "")
+			self.bridgeConfBt.isHidden = true
+			self.bridgeConfBt.widthAnchor.constraint(equalToConstant: 0).isActive = true
+			self.progress.isHidden = true
 			self.claimLb.isHidden = true
 
 			self.startBt.setTitle(NSLocalizedString("Start Browsing", comment: ""))

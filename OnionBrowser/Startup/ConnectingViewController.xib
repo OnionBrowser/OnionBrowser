@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ConnectingViewController" customModule="OnionBrowser" customModuleProvider="target">
             <connections>
+                <outlet property="bridgeConfBt" destination="i5D-9O-vz5" id="xX2-oK-aqN"/>
                 <outlet property="claimLb" destination="1ig-W5-fqF" id="7n4-t4-kiG"/>
                 <outlet property="image" destination="mzm-7W-P9l" id="93j-o6-Wbf"/>
                 <outlet property="progress" destination="eoT-tq-A19" id="4Zt-8D-uxC"/>
@@ -30,6 +31,17 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i5D-9O-vz5">
+                    <rect key="frame" x="284" y="26.5" width="20" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="20" id="heI-QE-w4l"/>
+                        <constraint firstAttribute="height" constant="22" id="mcU-r8-xm1"/>
+                    </constraints>
+                    <state key="normal" image="gear"/>
+                    <connections>
+                        <action selector="bridgeSettings" destination="-1" eventType="touchUpInside" id="fl4-sU-OgG"/>
+                    </connections>
+                </button>
                 <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="eoT-tq-A19">
                     <rect key="frame" x="0.0" y="66" width="320" height="6"/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -66,17 +78,6 @@
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="start" destination="-1" eventType="touchUpInside" id="Hbh-Ug-C57"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i5D-9O-vz5">
-                    <rect key="frame" x="284" y="26.5" width="20" height="22"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="20" id="heI-QE-w4l"/>
-                        <constraint firstAttribute="height" constant="22" id="mcU-r8-xm1"/>
-                    </constraints>
-                    <state key="normal" image="gear"/>
-                    <connections>
-                        <action selector="bridgeSettings" destination="-1" eventType="touchUpInside" id="fl4-sU-OgG"/>
                     </connections>
                 </button>
             </subviews>
