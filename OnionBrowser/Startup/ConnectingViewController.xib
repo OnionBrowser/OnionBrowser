@@ -43,7 +43,7 @@
                     <rect key="frame" x="16" y="80" width="288" height="392"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ig-W5-fqF">
-                    <rect key="frame" x="32" y="480" width="288" height="0.0"/>
+                    <rect key="frame" x="16" y="480" width="288" height="0.0"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
@@ -68,14 +68,27 @@
                         <action selector="start" destination="-1" eventType="touchUpInside" id="Hbh-Ug-C57"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i5D-9O-vz5">
+                    <rect key="frame" x="284" y="26.5" width="20" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="20" id="heI-QE-w4l"/>
+                        <constraint firstAttribute="height" constant="22" id="mcU-r8-xm1"/>
+                    </constraints>
+                    <state key="normal" image="gear"/>
+                    <connections>
+                        <action selector="bridgeSettings" destination="-1" eventType="touchUpInside" id="fl4-sU-OgG"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" name="Accent"/>
             <constraints>
+                <constraint firstItem="i5D-9O-vz5" firstAttribute="centerY" secondItem="64x-Xc-o8q" secondAttribute="centerY" id="0qS-eg-tWV"/>
                 <constraint firstItem="1ig-W5-fqF" firstAttribute="top" secondItem="mzm-7W-P9l" secondAttribute="bottom" constant="8" id="BaH-Ng-yhw"/>
                 <constraint firstItem="eoT-tq-A19" firstAttribute="top" secondItem="64x-Xc-o8q" secondAttribute="bottom" constant="16" id="Dr9-Fx-4O8"/>
-                <constraint firstItem="1ig-W5-fqF" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leadingMargin" constant="16" id="DrP-z9-JQB"/>
+                <constraint firstItem="1ig-W5-fqF" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="DrP-z9-JQB"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="i5D-9O-vz5" secondAttribute="trailing" constant="16" id="OcH-yJ-hrS"/>
                 <constraint firstItem="mzm-7W-P9l" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="RHh-NO-HIv"/>
-                <constraint firstItem="1ig-W5-fqF" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailingMargin" constant="16" id="UDl-4u-gKd"/>
+                <constraint firstItem="1ig-W5-fqF" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" constant="-16" id="UDl-4u-gKd"/>
                 <constraint firstItem="zHI-gA-xf0" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="VZO-ky-Rd0"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="mzm-7W-P9l" secondAttribute="bottom" constant="96" id="bj4-bN-ekS"/>
                 <constraint firstItem="zHI-gA-xf0" firstAttribute="top" secondItem="mzm-7W-P9l" secondAttribute="bottom" constant="8" id="bpn-K4-Qws"/>
@@ -92,6 +105,7 @@
         </view>
     </objects>
     <resources>
+        <image name="gear" width="20" height="20"/>
         <namedColor name="Accent">
             <color red="0.24699999392032623" green="0.16899999976158142" blue="0.31000000238418579" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

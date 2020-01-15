@@ -155,7 +155,10 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate {
 		}
 	}
 
-
+    @IBAction func bridgeSettings() {
+		BridgeConfViewController.present(from: self)
+    }
+    
 	// MARK: Private methods
 
 	@objc private func showClaim(_ timer: Timer?) {
