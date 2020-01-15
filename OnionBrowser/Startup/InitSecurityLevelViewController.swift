@@ -121,6 +121,7 @@ class InitSecurityLevelViewController: UIViewController, UITableViewDataSource, 
 		// Trigger creation, save and store of default HostSettings.
 		hs.save().store()
 
+		Settings.didIntro = true
 
 		ConnectingViewController.start()
 	}
