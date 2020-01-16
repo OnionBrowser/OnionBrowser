@@ -59,6 +59,7 @@
 		A003A6BF23C94D3800BD2D20 /* ErrorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A003A6BD23C94D3800BD2D20 /* ErrorViewController.xib */; };
 		A003A6C023C94D3800BD2D20 /* ErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A003A6BE23C94D3800BD2D20 /* ErrorViewController.swift */; };
 		A01D3BA323900D2800E536F2 /* RuleEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CBCD491E934249009D5352 /* RuleEditorController.m */; };
+		A02CB2B523D0B0B300880720 /* AddBookmarkActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02CB2B423D0B0B300880720 /* AddBookmarkActivity.swift */; };
 		A031761F23CE462300D75F2A /* BridgeConfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A031761E23CE462300D75F2A /* BridgeConfViewController.swift */; };
 		A031762123CE51A200D75F2A /* CustomBridgesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A031762023CE51A200D75F2A /* CustomBridgesViewController.swift */; };
 		A031762323CE648200D75F2A /* ScanQrViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A031762223CE648200D75F2A /* ScanQrViewController.swift */; };
@@ -266,6 +267,7 @@
 		A01EE96F23A3C3F1003B5AFD /* name.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = name.txt; sourceTree = "<group>"; };
 		A01EE97023A3C3F6003B5AFD /* marketing_url.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = marketing_url.txt; sourceTree = "<group>"; };
 		A025F27421F62C100034B947 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		A02CB2B423D0B0B300880720 /* AddBookmarkActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookmarkActivity.swift; sourceTree = "<group>"; };
 		A031761E23CE462300D75F2A /* BridgeConfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeConfViewController.swift; sourceTree = "<group>"; };
 		A031762023CE51A200D75F2A /* CustomBridgesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBridgesViewController.swift; sourceTree = "<group>"; };
 		A031762223CE648200D75F2A /* ScanQrViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQrViewController.swift; sourceTree = "<group>"; };
@@ -1853,6 +1855,7 @@
 				A0BF521B23AFC3580096624A /* BookmarkViewController.swift */,
 				A0BF521F23AFC3580096624A /* FavIconCell.xib */,
 				A0BF521C23AFC3580096624A /* FavIconRow.swift */,
+				A02CB2B423D0B0B300880720 /* AddBookmarkActivity.swift */,
 			);
 			path = Bookmarks;
 			sourceTree = "<group>";
@@ -2276,6 +2279,7 @@
 				A031762123CE51A200D75F2A /* CustomBridgesViewController.swift in Sources */,
 				A0BF525523AFC3580096624A /* Tab+UIWebViewDelegate.swift in Sources */,
 				A003A6B823C9480000BD2D20 /* BridgesViewController.swift in Sources */,
+				A02CB2B523D0B0B300880720 /* AddBookmarkActivity.swift in Sources */,
 				A0BF525023AFC3580096624A /* Tab+Activity.swift in Sources */,
 				A003A6B423C9430300BD2D20 /* MainViewController.swift in Sources */,
 				018333CA1A3505FB00670CD1 /* HTTPSEverywhere.m in Sources */,

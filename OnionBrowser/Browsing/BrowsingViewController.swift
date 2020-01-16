@@ -22,13 +22,13 @@ class BrowsingViewController: UIViewController, TabDelegate {
 	private static let reloadImg = UIImage(named: "reload")
 	private static let stopImg = UIImage(named: "close")
 
-    @IBOutlet weak var searchBar: UIView!
-    @IBOutlet weak var searchBarHeightConstraint: NSLayoutConstraint! {
-        didSet {
-            searchBarHeight = searchBarHeightConstraint.constant
-        }
-    }
-    @IBOutlet weak var securityBt: UIButton!
+	@IBOutlet weak var searchBar: UIView!
+	@IBOutlet weak var searchBarHeightConstraint: NSLayoutConstraint! {
+		didSet {
+			searchBarHeight = searchBarHeightConstraint.constant
+		}
+	}
+	@IBOutlet weak var securityBt: UIButton!
 	@IBOutlet weak var searchFl: UITextField! {
 		didSet {
 			searchFl.leftView = encryptionBt
@@ -76,18 +76,18 @@ class BrowsingViewController: UIViewController, TabDelegate {
 		}
 	}
 
-    @IBOutlet weak var toolbar: UIView? // Not available on iPad
-    @IBOutlet weak var toolbarHeightConstraint: NSLayoutConstraint? { // Not available on iPad
-        didSet {
-            toolbarHeight = toolbarHeightConstraint?.constant
-        }
-    }
-    @IBOutlet weak var mainTools: UIStackView? // Not available on iPad
-    @IBOutlet weak var tabsTools: UIView!
-    @IBOutlet weak var backBt: UIButton!
-    @IBOutlet weak var frwrdBt: UIButton!
-    @IBOutlet weak var actionBt: UIButton!
-    @IBOutlet weak var bookmarksBt: UIButton!
+	@IBOutlet weak var toolbar: UIView? // Not available on iPad
+	@IBOutlet weak var toolbarHeightConstraint: NSLayoutConstraint? { // Not available on iPad
+		didSet {
+			toolbarHeight = toolbarHeightConstraint?.constant
+		}
+	}
+	@IBOutlet weak var mainTools: UIStackView? // Not available on iPad
+	@IBOutlet weak var tabsTools: UIView!
+	@IBOutlet weak var backBt: UIButton!
+	@IBOutlet weak var frwrdBt: UIButton!
+	@IBOutlet weak var actionBt: UIButton!
+	@IBOutlet weak var bookmarksBt: UIButton!
 	@IBOutlet weak var newTabBt: UIButton?
 	@IBOutlet weak var tabsBt: UIButton! {
 		didSet {
@@ -96,7 +96,7 @@ class BrowsingViewController: UIViewController, TabDelegate {
 			tabsBt.addTarget(self, action: #selector(showOverview), for: .touchUpInside)
 		}
 	}
-    @IBOutlet weak var settingsBt: UIButton!
+	@IBOutlet weak var settingsBt: UIButton!
 	@IBOutlet weak var newTabFromOverviewBt: UIButton! {
 		didSet {
 			newTabFromOverviewBt.addTarget(self, action: #selector(newTabFromOverview), for: .touchUpInside)
@@ -132,11 +132,11 @@ class BrowsingViewController: UIViewController, TabDelegate {
 		}
 	}
 
-    var searchBarHeight: CGFloat!
-    var toolbarHeight: CGFloat? // Not available on iPad
+	var searchBarHeight: CGFloat!
+	var toolbarHeight: CGFloat? // Not available on iPad
 
-    lazy var containerBottomConstraint2Superview: NSLayoutConstraint
-        = container.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+	lazy var containerBottomConstraint2Superview: NSLayoutConstraint
+		= container.bottomAnchor.constraint(equalTo: view.bottomAnchor)
 
 	lazy var liveSearchVc = LiveSearchViewController()
 
@@ -155,10 +155,10 @@ class BrowsingViewController: UIViewController, TabDelegate {
 	}
 
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+	override func viewDidLoad() {
+		super.viewDidLoad()
 
-        tabsCollection.register(TabCell.nib, forCellWithReuseIdentifier: TabCell.reuseIdentifier)
+		tabsCollection.register(TabCell.nib, forCellWithReuseIdentifier: TabCell.reuseIdentifier)
 
 		// There could have been tabs added before XIB was initialized.
 		for tab in tabs {
@@ -245,29 +245,29 @@ class BrowsingViewController: UIViewController, TabDelegate {
 	}
 
 
-    // MARK: Actions
+	// MARK: Actions
 
 	@IBAction func action(_ sender: UIButton) {
 		unfocusSearchField()
 
-        switch sender {
-        case securityBt:
+		switch sender {
+		case securityBt:
 			let vc = SecurityPopUpViewController()
 			vc.host = currentTab?.url.clean?.host ?? currentTab?.url.clean?.path
 
 			present(vc, sender)
 
-        case encryptionBt:
+		case encryptionBt:
 			guard let certificate = currentTab?.sslCertificate,
 				let vc = SSLCertificateViewController(sslCertificate: certificate) else {
 
-				return
+					return
 			}
 
 			vc.title = currentTab?.url.host
 			present(UINavigationController(rootViewController: vc), sender)
 
-        case reloadBt:
+		case reloadBt:
 			if currentTab?.isLoading ?? false {
 				currentTab?.stop()
 			}
@@ -286,31 +286,32 @@ class BrowsingViewController: UIViewController, TabDelegate {
 				BridgeConfViewController.present(from: self)
 			}
 
-        case backBt:
+		case backBt:
 			currentTab?.goBack()
 
-        case frwrdBt:
+		case frwrdBt:
 			currentTab?.goForward()
 
-        case actionBt:
+		case actionBt:
 			guard let currentTab = currentTab else {
 				return
 			}
 
-			present(UIActivityViewController(activityItems: [currentTab],
-                                             applicationActivities: [TUSafariActivity()]),
-                    sender)
+			present(UIActivityViewController(
+				activityItems: [currentTab],
+				applicationActivities: [AddBookmarkActivity(), TUSafariActivity()]),
+					sender)
 
 		case newTabBt:
 			addEmptyTabAndFocus()
 
-        case settingsBt:
-            present(SettingsViewController.instantiate())
+		case settingsBt:
+			present(SettingsViewController.instantiate())
 
 		default:
-            break
-        }
-    }
+			break
+		}
+	}
 
 	@IBAction func showBookmarks() {
 		unfocusSearchField()
