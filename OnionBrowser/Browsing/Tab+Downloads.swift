@@ -80,5 +80,8 @@ extension Tab: DownloadTaskDelegate, QLPreviewControllerDelegate, QLPreviewContr
 		previewController?.view.add(to: self)
 
 		previewController?.didMove(toParent: AppDelegate.shared?.browsingUi)
+
+		// Positively show toolbar, as users can't scroll it back up.
+		scrollView.delegate?.scrollViewDidScrollToTop?(scrollView)
 	}
 }
