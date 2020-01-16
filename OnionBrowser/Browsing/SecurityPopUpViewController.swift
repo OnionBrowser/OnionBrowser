@@ -162,7 +162,7 @@ UITableViewDataSource, UITableViewDelegate {
 		let vc = SecurityViewController()
 		vc.host = host
 
-		present(UINavigationController(rootViewController: vc), customizeBt)
+		present(UINavigationController(rootViewController: vc))
 	}
 
 	@IBAction func learnMore() {

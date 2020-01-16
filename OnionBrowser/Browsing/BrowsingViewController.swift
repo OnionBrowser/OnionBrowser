@@ -305,7 +305,7 @@ class BrowsingViewController: UIViewController, TabDelegate {
 			addEmptyTabAndFocus()
 
         case settingsBt:
-            present(SettingsViewController.instantiate(), sender)
+            present(SettingsViewController.instantiate())
 
 		default:
             break
