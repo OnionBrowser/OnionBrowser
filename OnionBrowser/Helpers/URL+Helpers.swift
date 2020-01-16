@@ -60,6 +60,16 @@ extension URL {
 			return self
 		}
 	}
+
+	var isSpecial: Bool {
+		switch self {
+		case URL.blank, URL.aboutOnionBrowser, URL.credits, URL.start:
+			return true
+
+		default:
+			return false
+		}
+	}
 }
 
 @objc

@@ -381,7 +381,7 @@ class BrowsingViewController: UIViewController, TabDelegate {
 		updateEncryptionBt(tab.secureMode)
 		backBt.isEnabled = tab.canGoBack
 		frwrdBt.isEnabled = tab.canGoForward
-		actionBt.isEnabled = true
+		actionBt.isEnabled = !tab.url.isSpecial
 		updateTabCount()
 	}
 
