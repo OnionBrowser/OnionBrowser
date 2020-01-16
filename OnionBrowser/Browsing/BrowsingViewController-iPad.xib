@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -68,6 +69,7 @@
                                 <constraint firstAttribute="height" constant="30" id="uDj-0Y-Wjq"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                            <color key="tintColor" name="Accent"/>
                             <state key="normal" title="3" backgroundImage="shield">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
@@ -108,6 +110,7 @@
                                 <constraint firstAttribute="width" constant="30" id="FiD-RS-QJq"/>
                                 <constraint firstAttribute="height" constant="30" id="xaV-BG-kNi"/>
                             </constraints>
+                            <color key="tintColor" name="Accent"/>
                             <state key="normal" image="onion"/>
                             <connections>
                                 <action selector="action:" destination="-1" eventType="touchUpInside" id="L03-fl-a6K"/>
@@ -312,5 +315,8 @@
         <image name="share" width="17" height="22"/>
         <image name="shield" width="31" height="39"/>
         <image name="tabs" width="21" height="21"/>
+        <namedColor name="Accent">
+            <color red="0.24699999392032623" green="0.16899999976158142" blue="0.31000000238418579" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

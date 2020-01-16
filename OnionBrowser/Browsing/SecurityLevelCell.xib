@@ -20,6 +20,7 @@
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shield" translatesAutoresizingMaskIntoConstraints="NO" id="Kkj-sZ-Bqa">
                         <rect key="frame" x="16" y="11" width="24" height="30"/>
+                        <color key="tintColor" name="Accent"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="BMv-MI-B8B"/>
                             <constraint firstAttribute="width" constant="24" id="ndb-kI-9CK"/>
@@ -95,7 +96,7 @@
     <resources>
         <image name="shield" width="31" height="39"/>
         <namedColor name="Accent">
-            <color red="0.24705882352941178" green="0.16862745098039217" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.24699999392032623" green="0.16899999976158142" blue="0.31000000238418579" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

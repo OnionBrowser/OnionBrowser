@@ -30,6 +30,8 @@ class SecurityShield: UIView {
 	private lazy var shield: UIImageView = {
 		let view = UIImageView(image: UIImage(named: "shield"))
 
+		view.tintColor = .accent
+
 		view.translatesAutoresizingMaskIntoConstraints = false
 
 		view.widthAnchor.constraint(equalToConstant: 31 * 1.5).isActive = true
