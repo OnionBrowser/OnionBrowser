@@ -39,14 +39,9 @@ extension Tab: UIActivityItemSource {
 
 
 	func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
-		if downloadedFile != nil {
-			if isImageOrAv {
-				return UIImage()
-			}
-
-			if isDocument {
-				return NSData()
-			}
+		if let file = downloadedFile,
+			isImageOrAv || isDocument {
+			return file
 		}
 
 		return url
