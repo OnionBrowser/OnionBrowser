@@ -223,6 +223,25 @@ class Settings: NSObject {
 		}
 	}
 
+	class var openTabs: [URL]? {
+		get {
+			if let data = UserDefaults.standard.object(forKey: "open_tabs") as? Data {
+				return NSKeyedUnarchiver.unarchiveObject(with: data) as? [URL]
+			}
+
+			return nil
+		}
+		set {
+			if let newValue = newValue {
+				UserDefaults.standard.set(NSKeyedArchiver.archivedData(withRootObject: newValue),
+										  forKey: "open_tabs")
+			}
+			else {
+				UserDefaults.standard.removeObject(forKey: "open_tabs")
+			}
+		}
+	}
+
 	class var muteWithSwitch: Bool {
 		get {
 			// Defaults to true!

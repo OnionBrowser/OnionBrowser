@@ -33,8 +33,6 @@ class TabSecurity: NSObject {
 		}
 	}
 
-	private static let openTabs = "open_tabs"
-
 	class var isClearOnBackground: Bool {
 		return Settings.tabSecurity  == .clearOnBackground
 	}
@@ -43,12 +41,10 @@ class TabSecurity: NSObject {
 	Handle tab privacy
 	*/
 	class func handleBackgrounding() {
-		let ud = UserDefaults.standard
 		let security = Settings.tabSecurity
-		let appDelegate = UIApplication.shared.delegate as? AppDelegate
-		let controller = appDelegate?.browsingUi
-		let cookieJar = appDelegate?.cookieJar
-		let ocspCache = appDelegate?.certificateAuthentication
+		let controller = AppDelegate.shared?.browsingUi
+		let cookieJar = AppDelegate.shared?.cookieJar
+		let ocspCache = AppDelegate.shared?.certificateAuthentication
 
 		if security == .clearOnBackground {
 			controller?.removeAllTabs()
@@ -59,45 +55,33 @@ class TabSecurity: NSObject {
 		}
 
 		if security == .alwaysRemember {
-			if let tabs = controller?.tabs {
+			// Ignore special URLs, as these could get us into trouble after app updates.
+			Settings.openTabs = controller?.tabs.map({ $0.url }).filter({ !$0.isSpecial })
 
-				var urls = [URL]()
-
-				for tab in tabs {
-					urls.append(tab.url)
-
-					print("[\(String(describing: self))] save open tab url=\(tab.url)")
-				}
-
-				ud.set(NSKeyedArchiver.archivedData(withRootObject: urls),
-					   forKey: openTabs)
-			}
+			print("[\(String(describing: self))] save open tabs=\(String(describing: Settings.openTabs))")
 		}
 		else {
 			print("[\(String(describing: self))] clear saved open tab urls")
-
-			ud.removeObject(forKey: openTabs)
+			Settings.openTabs = nil
 		}
 	}
 
 	class func restore() {
-		let ud = UserDefaults.standard
-
 		if Settings.tabSecurity  == .alwaysRemember,
-			let controller = AppDelegate.shared?.browsingUi,
-			let data = ud.object(forKey: openTabs) as? Data,
-			let urls = NSKeyedUnarchiver.unarchiveObject(with: data) as? [URL] {
+			let controller = AppDelegate.shared?.browsingUi {
 
-			for url in urls {
-				print("[\(String(describing: self))] restore tab with url=\(url)")
+			for url in Settings.openTabs ?? [] {
+				// Ignore special URLs, as these could get us into trouble after app updates.
+				if !url.isSpecial {
+					print("[\(String(describing: self))] restore tab with url=\(url)")
 
-				controller.addNewTab(url, transition: .notAnimated)
+					controller.addNewTab(url, transition: .notAnimated)
+				}
 			}
 		}
 		else {
 			print("[\(String(describing: self))] clear saved open tab urls")
-
-			ud.removeObject(forKey: openTabs)
+			Settings.openTabs = nil
 		}
 	}
 }
