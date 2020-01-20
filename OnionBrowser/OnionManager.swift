@@ -9,6 +9,15 @@
 
 import Foundation
 
+protocol OnionManagerDelegate {
+
+	func torConnProgress(_ progress: Int)
+
+	func torConnFinished()
+
+	func torConnError()
+}
+
 class OnionManager : NSObject {
 
 	enum TorState {

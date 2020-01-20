@@ -658,7 +658,6 @@
 		A0BF51E223AFBF250096624A /* hu-HU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "hu-HU"; path = "hu-HU.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		A0BF51F623AFC3580096624A /* OBSettingsConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBSettingsConstants.h; sourceTree = "<group>"; };
 		A0BF51F723AFC3580096624A /* ObfsThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObfsThread.m; sourceTree = "<group>"; };
-		A0BF51F823AFC3580096624A /* OnionManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnionManagerDelegate.h; sourceTree = "<group>"; };
 		A0BF51FA23AFC3580096624A /* Migration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Migration.swift; sourceTree = "<group>"; };
 		A0BF51FB23AFC3580096624A /* OldBookmark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OldBookmark.m; sourceTree = "<group>"; };
 		A0BF51FC23AFC3580096624A /* Bridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bridge.h; sourceTree = "<group>"; };
@@ -1784,15 +1783,12 @@
 				A0BF522423AFC3580096624A /* Settings */,
 				A0BF51F923AFC3580096624A /* Migration */,
 				A07037C523C7571B00D670EC /* AppDelegate.swift */,
-				A0BF523423AFC3580096624A /* OBRootViewController.h */,
-				A0BF522323AFC3580096624A /* OBRootViewController.m */,
+				A0BF523323AFC3580096624A /* OnionManager.swift */,
 				A0BF51F623AFC3580096624A /* OBSettingsConstants.h */,
 				A0BF523223AFC3580096624A /* OBSettingsConstants.m */,
 				A0BF523123AFC3580096624A /* ObfsThread.h */,
 				A0BF51F723AFC3580096624A /* ObfsThread.m */,
 				A0BF523023AFC3580096624A /* OnionBrowser2-Bridging-Header.h */,
-				A0BF523323AFC3580096624A /* OnionManager.swift */,
-				A0BF51F823AFC3580096624A /* OnionManagerDelegate.h */,
 				A0BF520023AFC3580096624A /* version.h */,
 				A0BF52A323AFE2D70096624A /* Iobfs4proxy.framework */,
 				A0BF523523AFC3580096624A /* Helpers */,

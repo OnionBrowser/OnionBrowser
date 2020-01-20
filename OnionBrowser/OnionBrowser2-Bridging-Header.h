@@ -6,7 +6,6 @@
  */
 
 #import <Tor/Tor.h>
-#import "OnionManagerDelegate.h"
 #import "ObfsThread.h"
 #import "OBSettingsConstants.h"
 #import "OldBookmark.h"
