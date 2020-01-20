@@ -75,6 +75,21 @@ class BridgeConfViewController: FixedFormViewController, UINavigationControllerD
 				$0.value = option.key == selected ? selected : nil
 			}
 		}
+
+		if Settings.advancedTorConf?.count ?? 0 > 0 {
+			let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 0))
+			toolbar.translatesAutoresizingMaskIntoConstraints = false
+			toolbar.sizeToFit() // Stupid workaround to avoid NSLayoutConstraint issues.
+
+			let button = UIBarButtonItem(title: NSLocalizedString("Remove Advanced Tor Conf", comment: ""),
+										 style: .plain, target: self, action: #selector(removeAdvancedTorConf))
+			toolbar.setItems([button], animated: false)
+
+			view.addSubview(toolbar)
+			toolbar.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+			toolbar.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+			toolbar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+		}
 	}
 
 
@@ -123,5 +138,13 @@ class BridgeConfViewController: FixedFormViewController, UINavigationControllerD
 	@objc
 	private func cancel() {
 		dismiss(animated: true)
+	}
+
+	@objc
+	private func removeAdvancedTorConf() {
+		Settings.advancedTorConf = nil
+
+		AlertHelper.present(self, message: NSLocalizedString("Quit. Then restart the app.", comment: ""),
+							title: NSLocalizedString("Advanced Tor Configuration Removed", comment: ""))
 	}
 }

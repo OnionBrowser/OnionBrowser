@@ -282,4 +282,13 @@ class Settings: NSObject {
 			AppDelegate.shared?.cookieJar.oldDataSweepTimeout = NSNumber(value: newValue / 60)
 		}
 	}
+
+	class var advancedTorConf: [String]? {
+		get {
+			return UserDefaults.standard.stringArray(forKey: "advanced_tor_conf")
+		}
+		set {
+			UserDefaults.standard.set(newValue, forKey: "advanced_tor_conf")
+		}
+	}
 }

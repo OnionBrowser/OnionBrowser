@@ -212,6 +212,9 @@ class OnionManager : NSObject {
 
 			var args = torConf.arguments!
 
+			// Add user-defined configuration.
+			args += Settings.advancedTorConf ?? []
+
 			args += getBridgesAsArgs()
 
 			// configure ipv4/ipv6

@@ -59,6 +59,7 @@
 		A003A6BF23C94D3800BD2D20 /* ErrorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A003A6BD23C94D3800BD2D20 /* ErrorViewController.xib */; };
 		A003A6C023C94D3800BD2D20 /* ErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A003A6BE23C94D3800BD2D20 /* ErrorViewController.swift */; };
 		A01D3BA323900D2800E536F2 /* RuleEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CBCD491E934249009D5352 /* RuleEditorController.m */; };
+		A024B39D23D38B9F007F9E68 /* AdvancedTorConfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A024B39C23D38B9F007F9E68 /* AdvancedTorConfViewController.swift */; };
 		A02CB2B523D0B0B300880720 /* AddBookmarkActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02CB2B423D0B0B300880720 /* AddBookmarkActivity.swift */; };
 		A031761F23CE462300D75F2A /* BridgeConfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A031761E23CE462300D75F2A /* BridgeConfViewController.swift */; };
 		A031762123CE51A200D75F2A /* CustomBridgesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A031762023CE51A200D75F2A /* CustomBridgesViewController.swift */; };
@@ -266,6 +267,7 @@
 		A01EE96E23A3C3E2003B5AFD /* release_notes.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = release_notes.txt; sourceTree = "<group>"; };
 		A01EE96F23A3C3F1003B5AFD /* name.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = name.txt; sourceTree = "<group>"; };
 		A01EE97023A3C3F6003B5AFD /* marketing_url.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = marketing_url.txt; sourceTree = "<group>"; };
+		A024B39C23D38B9F007F9E68 /* AdvancedTorConfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedTorConfViewController.swift; sourceTree = "<group>"; };
 		A025F27421F62C100034B947 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		A02CB2B423D0B0B300880720 /* AddBookmarkActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookmarkActivity.swift; sourceTree = "<group>"; };
 		A031761E23CE462300D75F2A /* BridgeConfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeConfViewController.swift; sourceTree = "<group>"; };
@@ -1877,6 +1879,7 @@
 				A031761E23CE462300D75F2A /* BridgeConfViewController.swift */,
 				A031762023CE51A200D75F2A /* CustomBridgesViewController.swift */,
 				A031762223CE648200D75F2A /* ScanQrViewController.swift */,
+				A024B39C23D38B9F007F9E68 /* AdvancedTorConfViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -2259,6 +2262,7 @@
 				01F8793B1A4108DD00A63654 /* URLBlocker.m in Sources */,
 				A0BF528223AFC3580096624A /* String+Helpers.swift in Sources */,
 				A0BF524423AFC3580096624A /* ObfsThread.m in Sources */,
+				A024B39D23D38B9F007F9E68 /* AdvancedTorConfViewController.swift in Sources */,
 				A0BF524723AFC3580096624A /* Settings.xcdatamodel in Sources */,
 				A0BF525E23AFC3580096624A /* BrowsingViewController+Tabs.swift in Sources */,
 				A0BF525223AFC3580096624A /* BrowsingViewController.swift in Sources */,

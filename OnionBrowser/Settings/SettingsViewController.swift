@@ -210,6 +210,16 @@ class SettingsViewController: FixedFormViewController {
 			}
 		}
 
+		+++ LabelRow() {
+			$0.title = NSLocalizedString("Advanced Tor Configuration", comment: "")
+			$0.cell.textLabel?.numberOfLines = 0
+			$0.cell.accessoryType = .disclosureIndicator
+			$0.cell.selectionStyle = .default
+		}
+		.onCellSelection({ _, _ in
+			self.navigationController?.pushViewController(AdvancedTorConfViewController(), animated: true)
+		})
+
 
 		let section = Section(header: NSLocalizedString("Support", comment: "Section header"),
 							  footer: String(
