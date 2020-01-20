@@ -56,7 +56,7 @@ class Migration: NSObject {
                         let ob = oldBridges![0];
 
                         if ob.conf == OnionManager.meekAzureBridges[0] {
-                            settings.set(USE_BRIDGES_MEEKAZURE, forKey: USE_BRIDGES)
+							Settings.currentlyUsedBridges = .meekazure
                         }
                     }
                     else {
@@ -66,8 +66,8 @@ class Migration: NSObject {
                             newBridges.append(ob.conf)
                         }
 
-                        settings.set(USE_BRIDGES_CUSTOM, forKey: USE_BRIDGES)
-                        settings.set(newBridges, forKey: CUSTOM_BRIDGES)
+						Settings.currentlyUsedBridges = .custom
+						Settings.customBridges = newBridges
                     }
 
                     settings.synchronize()

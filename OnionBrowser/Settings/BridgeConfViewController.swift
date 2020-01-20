@@ -19,7 +19,7 @@ class BridgeConfViewController: FixedFormViewController, UINavigationControllerD
 
 	var customBridges: [String]? = nil
 
-	private let bridgesSection: SelectableSection<ListCheckRow<Int>> = {
+	private let bridgesSection: SelectableSection<ListCheckRow<Settings.BridgesType>> = {
 		let description = [
 			NSLocalizedString("If you are in a country or using a connection that censors Tor, you might need to use bridges.",
 							  comment: ""),
@@ -33,7 +33,7 @@ class BridgeConfViewController: FixedFormViewController, UINavigationControllerD
 							  comment: "")
 			]
 
-		return SelectableSection<ListCheckRow<Int>>(
+		return SelectableSection<ListCheckRow<Settings.BridgesType>>(
 			header: "", footer: description.joined(separator: "\n"),
 			selectionType: .singleSelection(enableDeselection: false))
 	}()
@@ -50,17 +50,17 @@ class BridgeConfViewController: FixedFormViewController, UINavigationControllerD
 			title: NSLocalizedString("Connect", comment: ""), style: .done,
 			target: self, action: #selector(connect))
 
-		let bridges = [
-			USE_BRIDGES_NONE: NSLocalizedString("No Bridges", comment: ""),
-			USE_BRIDGES_OBFS4: String(format: NSLocalizedString("Built-in %@", comment: ""), "obfs4"),
-			USE_BRIDGES_MEEKAZURE: String(format: NSLocalizedString("Built-in %@", comment: ""), "meek-azure"),
-			USE_BRIDGES_CUSTOM: NSLocalizedString("Custom Bridges", comment: ""),
+		let bridges: [Settings.BridgesType: String] = [
+			.none: NSLocalizedString("No Bridges", comment: ""),
+			.obfs4: String(format: NSLocalizedString("Built-in %@", comment: ""), "obfs4"),
+			.meekazure: String(format: NSLocalizedString("Built-in %@", comment: ""), "meek-azure"),
+			.custom: NSLocalizedString("Custom Bridges", comment: ""),
 		]
 
-		let selected = Settings.currentlyUsedBridgesId
+		let selected = Settings.currentlyUsedBridges
 
 		bridgesSection.onSelectSelectableRow = { _, row in
-			if row.value == USE_BRIDGES_CUSTOM {
+			if row.value == .custom {
 				self.navigationController?.pushViewController(
 					CustomBridgesViewController(), animated: true)
 			}
@@ -68,8 +68,8 @@ class BridgeConfViewController: FixedFormViewController, UINavigationControllerD
 
 		form +++ bridgesSection
 
-		for option in bridges.sorted(by: { $0.key < $1.key }) {
-			form.last! <<< ListCheckRow<Int>() {
+		for option in bridges.sorted(by: { $0.key.rawValue < $1.key.rawValue }) {
+			form.last! <<< ListCheckRow<Settings.BridgesType>() {
 				$0.title = option.value
 				$0.selectableValue = option.key
 				$0.value = option.key == selected ? selected : nil
@@ -101,11 +101,11 @@ class BridgeConfViewController: FixedFormViewController, UINavigationControllerD
 		}
 
 		// Select no bridges, if custom bridges is selected but empty.
-		if bridgesSection.selectedRow()?.selectableValue == USE_BRIDGES_CUSTOM
+		if bridgesSection.selectedRow()?.selectableValue == Settings.BridgesType.custom
 			&& Settings.customBridges?.isEmpty ?? true {
 
-			Settings.currentlyUsedBridgesId = USE_BRIDGES_NONE
-			bridgesSection.allRows.first?.baseValue = USE_BRIDGES_NONE
+			Settings.currentlyUsedBridges = .none
+			bridgesSection.allRows.first?.baseValue = Settings.BridgesType.none
 			bridgesSection.allRows.last?.baseValue = nil
 		}
 	}
@@ -115,7 +115,7 @@ class BridgeConfViewController: FixedFormViewController, UINavigationControllerD
 
 	@objc
 	func connect() {
-		Settings.currentlyUsedBridgesId = bridgesSection.selectedRow()?.value ?? USE_BRIDGES_NONE
+		Settings.currentlyUsedBridges = bridgesSection.selectedRow()?.value ?? .none
 
 		if presentingViewController is BridgesViewController {
 			AppDelegate.shared?.show(ConnectingViewController())
@@ -127,7 +127,7 @@ class BridgeConfViewController: FixedFormViewController, UINavigationControllerD
 			// find out, if another bridge setting (or no bridge) actually works afterwards.
 			// The user will find out, when she tries to continue browsing.
 
-			OnionManager.shared.setBridgeConfiguration(bridgesId: Settings.currentlyUsedBridgesId,
+			OnionManager.shared.setBridgeConfiguration(bridgesType: Settings.currentlyUsedBridges,
 													   customBridges: Settings.customBridges)
 			OnionManager.shared.startTor(delegate: nil)
 

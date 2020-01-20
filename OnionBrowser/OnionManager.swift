@@ -110,7 +110,7 @@ class OnionManager : NSObject {
 	private var initRetry: DispatchWorkItem?
 	private var failGuard: DispatchWorkItem?
 
-	private var bridgesId = USE_BRIDGES_NONE
+	private var bridgesType = Settings.BridgesType.none
 	private var customBridges: [String]?
 	private var needsReconfiguration = false
 
@@ -133,7 +133,7 @@ class OnionManager : NSObject {
 			// We think we're on a IPv6-only DNS64/NAT64 network.
 			confs.append(["key": "ClientPreferIPv6ORPort", "value": "1"])
 
-			if (self.bridgesId != USE_BRIDGES_NONE) {
+			if (self.bridgesType != .none) {
 				// Bridges on, leave IPv4 on.
 				// User's bridge config contains all the IPs (v4 or v6)
 				// that we connect to, so we let _that_ setting override our
@@ -165,11 +165,11 @@ class OnionManager : NSObject {
 	Set bridges configuration and evaluate, if the new configuration is actually different
 	then the old one.
 
-	- parameter bridgesId: the selected ID as defined in OBSettingsConstants.
+	- parameter bridgesType: the selected ID as defined in OBSettingsConstants.
 	- parameter customBridges: a list of custom bridges the user configured.
 	*/
-	func setBridgeConfiguration(bridgesId: Int, customBridges: [String]?) {
-		needsReconfiguration = bridgesId != self.bridgesId
+	func setBridgeConfiguration(bridgesType: Settings.BridgesType, customBridges: [String]?) {
+		needsReconfiguration = bridgesType != self.bridgesType
 
 		if !needsReconfiguration {
 			if let oldVal = self.customBridges, let newVal = customBridges {
@@ -181,7 +181,7 @@ class OnionManager : NSObject {
 			}
 		}
 
-		self.bridgesId = bridgesId
+		self.bridgesType = bridgesType
 		self.customBridges = customBridges
 	}
 
@@ -234,7 +234,7 @@ class OnionManager : NSObject {
 			if (Ipv6Tester.ipv6_status() == TOR_IPV6_CONN_ONLY) {
 				args += ["--ClientPreferIPv6ORPort", "1"]
 
-				if bridgesId != USE_BRIDGES_NONE {
+				if bridgesType != .none {
 					// Bridges on, leave IPv4 on.
 					// User's bridge config contains all the IPs (v4 or v6)
 					// that we connect to, so we let _that_ setting override our
@@ -418,17 +418,17 @@ class OnionManager : NSObject {
 	*/
 	private func getBridges() -> [String] {
 		#if DEBUG
-		print("[\(String(describing: type(of: self)))] bridgesId=\(bridgesId)")
+		print("[\(String(describing: type(of: self)))] bridgesId=\(bridgesType)")
 		#endif
 
-		switch bridgesId {
-		case USE_BRIDGES_OBFS4:
+		switch bridgesType {
+		case .obfs4:
 			return OnionManager.obfs4Bridges
 
-		case USE_BRIDGES_MEEKAZURE:
+		case .meekazure:
 			return OnionManager.meekAzureBridges
 
-		case USE_BRIDGES_CUSTOM:
+		case .custom:
 			return customBridges ?? []
 
 		default:

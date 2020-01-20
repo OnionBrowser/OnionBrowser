@@ -71,6 +71,14 @@ class Settings: NSObject {
 		}
 	}
 
+	enum BridgesType: Int {
+		case none = 0
+		case obfs4 = 1
+		case meekamazon = 2 // legacy; retaining this number for future use if meek-amazon comes back
+		case meekazure = 3
+		case custom = 99
+	}
+
 
 	class var stateRestoreLock: Bool {
 		get {
@@ -83,10 +91,10 @@ class Settings: NSObject {
 
 	class var didIntro: Bool {
 		get {
-			return UserDefaults.standard.bool(forKey: DID_INTRO)
+			return UserDefaults.standard.bool(forKey: "did_intro")
 		}
 		set {
-			UserDefaults.standard.set(newValue, forKey: DID_INTRO)
+			UserDefaults.standard.set(newValue, forKey: "did_intro")
 		}
 	}
 
@@ -99,21 +107,21 @@ class Settings: NSObject {
 		}
 	}
 
-	class var currentlyUsedBridgesId: Int {
+	class var currentlyUsedBridges: BridgesType {
 		get {
-			return UserDefaults.standard.integer(forKey: USE_BRIDGES)
+			return BridgesType(rawValue: UserDefaults.standard.integer(forKey: "use_bridges")) ?? .none
 		}
 		set {
-			UserDefaults.standard.set(newValue, forKey: USE_BRIDGES)
+			UserDefaults.standard.set(newValue.rawValue, forKey: "use_bridges")
 		}
 	}
 
 	class var customBridges: [String]? {
 		get {
-			return UserDefaults.standard.stringArray(forKey: CUSTOM_BRIDGES)
+			return UserDefaults.standard.stringArray(forKey: "custom_bridges")
 		}
 		set {
-			UserDefaults.standard.set(newValue, forKey: CUSTOM_BRIDGES)
+			UserDefaults.standard.set(newValue, forKey: "custom_bridges")
 
 		}
 	}

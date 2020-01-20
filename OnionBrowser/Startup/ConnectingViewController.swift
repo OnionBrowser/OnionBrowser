@@ -110,7 +110,7 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		OnionManager.shared.setBridgeConfiguration(bridgesId: Settings.currentlyUsedBridgesId,
+		OnionManager.shared.setBridgeConfiguration(bridgesType: Settings.currentlyUsedBridges,
 												   customBridges: Settings.customBridges)
 
 		OnionManager.shared.startTor(delegate: self)
