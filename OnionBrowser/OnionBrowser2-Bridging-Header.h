@@ -7,7 +7,6 @@
 
 #import <Tor/Tor.h>
 #import "ObfsThread.h"
-#import "OBSettingsConstants.h"
 #import "OldBookmark.h"
 #import "Bridge.h"
 #import "Ipv6Tester.h"
