@@ -27,7 +27,7 @@ class AdvancedTorConfViewController: FixedFormViewController {
 			+ "\n\n"
 			+ NSLocalizedString("Changing this option requires restarting the app.", comment: "")
 			+ "\n\n"
-			+ NSLocalizedString("To recover from a botched configuration, remove everything in the Bridge Configuration scene on startup and restart the app.",
+			+ NSLocalizedString("To recover from a non working configuration, remove everything under \"Bridge Configuration\" on startup and restart the app.",
 								comment: "")
 
 
