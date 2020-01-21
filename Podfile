@@ -1,7 +1,7 @@
 platform :ios, '11.4'
 
 target 'OnionBrowser2' do
-  pod 'DTFoundation'
+  pod 'DTFoundation/DTASN1'
   pod 'TUSafariActivity'
   pod 'VForceTouch'
 
@@ -18,5 +18,5 @@ end
 
 target 'OnionBrowser2 Tests' do
   pod 'OCMock'
-  pod 'DTFoundation'
+  pod 'DTFoundation/DTASN1'
 end
