@@ -61,7 +61,6 @@ PODS:
     - OpenSSL-Universal (= 1.0.2.17)
     - ReactiveObjC (= 3.1.1)
   - OpenSSL-Universal (1.0.2.17)
-  - OrderedDictionary (1.4)
   - Reachability (3.2)
   - ReactiveObjC (3.1.1)
   - SDCAlertView (10.0)
@@ -76,7 +75,6 @@ DEPENDENCIES:
   - ImageRow (~> 4.0)
   - OCMock
   - OCSPCache (from `https://github.com/Psiphon-Labs/OCSPCache`)
-  - OrderedDictionary
   - Reachability (~> 3.2)
   - SDCAlertView (~> 10)
   - TUSafariActivity
@@ -90,7 +88,6 @@ SPEC REPOS:
     - ImageRow
     - OCMock
     - OpenSSL-Universal
-    - OrderedDictionary
     - Reachability
     - ReactiveObjC
     - SDCAlertView
@@ -121,13 +118,12 @@ SPEC CHECKSUMS:
   OCMock: 4ab4577fc941af31f4a0398f6e7e230cf21fc72a
   OCSPCache: 96237607aa9f77ba2fd9119e383b9fb1ef41cfa2
   OpenSSL-Universal: ff04c2e6befc3f1247ae039e60c93f76345b3b5a
-  OrderedDictionary: 138c8d2e358d3a0c9adda15c6c7db24e8e3b09e6
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
   SDCAlertView: 5fbc48cae6d7bf9781097e3f27883924ef3b922c
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
   VForceTouch: b5c3a28625269e1818cf915728173bda9f669d6b
 
-PODFILE CHECKSUM: ee2b91ccee872ca6abf604aa88b7e67283045e6c
+PODFILE CHECKSUM: 748296fadd3a7a1a9d7bfea224a4b00d91f3e988
 
 COCOAPODS: 1.8.4

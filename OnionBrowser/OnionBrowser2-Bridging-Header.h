@@ -12,7 +12,7 @@
 #import "Ipv6Tester.h"
 #import "Reachability.h"
 #import "JAHPAuthenticatingHTTPProtocol.h"
-#import "SSLCertificateViewController.h"
+#import "SSLCertificate.h"
 #import "TUSafariActivity.h"
 #import "Ipv6Tester.h"
 #import "URLBlockerRuleController.h"

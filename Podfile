@@ -2,7 +2,6 @@ platform :ios, '11.4'
 
 target 'OnionBrowser2' do
   pod 'DTFoundation'
-  pod 'OrderedDictionary'
   pod 'TUSafariActivity'
   pod 'VForceTouch'
 

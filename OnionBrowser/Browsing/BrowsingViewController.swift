@@ -258,12 +258,12 @@ class BrowsingViewController: UIViewController, TabDelegate {
 			present(vc, sender)
 
 		case encryptionBt:
-			guard let certificate = currentTab?.sslCertificate,
-				let vc = SSLCertificateViewController(sslCertificate: certificate) else {
-
+			guard let certificate = currentTab?.sslCertificate else {
 					return
 			}
 
+			let vc = CertificateViewController()
+			vc.certificate = certificate
 			vc.title = currentTab?.url.host
 			present(UINavigationController(rootViewController: vc), sender)
 

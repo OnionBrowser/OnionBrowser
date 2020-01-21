@@ -29,7 +29,6 @@
 		018333DC1A35727C00670CD1 /* HTTPSEverywhere_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 018333DB1A35727C00670CD1 /* HTTPSEverywhere_Tests.m */; };
 		019516D11B7D8B400078586A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 019516D01B7D8B400078586A /* libz.tbd */; };
 		01F2AE391B7FEF5E00D5651A /* SSLCertificate.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F2AE381B7FEF5E00D5651A /* SSLCertificate.m */; };
-		01F2AE401B82666900D5651A /* SSLCertificateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F2AE3F1B82666900D5651A /* SSLCertificateViewController.m */; };
 		01F2AE421B827BC200D5651A /* SSLCertificate_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F2AE411B827BC200D5651A /* SSLCertificate_Tests.m */; };
 		01F2AE451B827D3E00D5651A /* lobste.rs.crt in Resources */ = {isa = PBXBuildFile; fileRef = 01F2AE431B827D3E00D5651A /* lobste.rs.crt */; };
 		01F2AE461B827D3E00D5651A /* wildcard.pushover.net.crt in Resources */ = {isa = PBXBuildFile; fileRef = 01F2AE441B827D3E00D5651A /* wildcard.pushover.net.crt */; };
@@ -75,6 +74,7 @@
 		A07037C423C74E1100D670EC /* UIColor+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07037C323C74E1100D670EC /* UIColor+Helpers.swift */; };
 		A07037C623C7571B00D670EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07037C523C7571B00D670EC /* AppDelegate.swift */; };
 		A07037C723C79AE500D670EC /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A07037C223C74DC900D670EC /* Media.xcassets */; };
+		A07B55FC23D736D60051663B /* CertificateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07B55FB23D736D60051663B /* CertificateViewController.swift */; };
 		A08737E1221324B5005A68CC /* HostSettings_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = A08737DF2213235F005A68CC /* HostSettings_Tests.m */; };
 		A099B8B723CF60C800B50998 /* InitSecurityLevelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A099B8B523CF60C800B50998 /* InitSecurityLevelViewController.xib */; };
 		A099B8B823CF60C800B50998 /* InitSecurityLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A099B8B623CF60C800B50998 /* InitSecurityLevelViewController.swift */; };
@@ -208,8 +208,6 @@
 		01D741291A45EDD1007B7033 /* CookieJar_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CookieJar_Tests.m; sourceTree = "<group>"; };
 		01F2AE371B7FEF5E00D5651A /* SSLCertificate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSLCertificate.h; sourceTree = "<group>"; };
 		01F2AE381B7FEF5E00D5651A /* SSLCertificate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSLCertificate.m; sourceTree = "<group>"; };
-		01F2AE3E1B82666900D5651A /* SSLCertificateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSLCertificateViewController.h; sourceTree = "<group>"; };
-		01F2AE3F1B82666900D5651A /* SSLCertificateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSLCertificateViewController.m; sourceTree = "<group>"; };
 		01F2AE411B827BC200D5651A /* SSLCertificate_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSLCertificate_Tests.m; sourceTree = "<group>"; };
 		01F2AE431B827D3E00D5651A /* lobste.rs.crt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = lobste.rs.crt; path = SSLCertificates/lobste.rs.crt; sourceTree = "<group>"; };
 		01F2AE441B827D3E00D5651A /* wildcard.pushover.net.crt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = wildcard.pushover.net.crt; path = SSLCertificates/wildcard.pushover.net.crt; sourceTree = "<group>"; };
@@ -366,6 +364,7 @@
 		A0759DBE20975C2A000DFBFE /* Gemfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Gemfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A0759DBF20975C32000DFBFE /* Gemfile.lock */ = {isa = PBXFileReference; lastKnownFileType = text; path = Gemfile.lock; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A0759DEA20975DDE000DFBFE /* config */ = {isa = PBXFileReference; lastKnownFileType = text; name = config; path = .tx/config; sourceTree = "<group>"; };
+		A07B55FB23D736D60051663B /* CertificateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateViewController.swift; sourceTree = "<group>"; };
 		A07D65582208A2540002D775 /* mk_build_versions.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = mk_build_versions.sh; sourceTree = "<group>"; };
 		A07D65592208A2540002D775 /* decode_bundle_version.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = decode_bundle_version.sh; sourceTree = "<group>"; };
 		A07D655A2208A2540002D775 /* decimalize_git_hash.bash */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = decimalize_git_hash.bash; sourceTree = "<group>"; };
@@ -831,8 +830,6 @@
 				69CBCD4B1E934249009D5352 /* RuleEditorRow.m */,
 				01F2AE371B7FEF5E00D5651A /* SSLCertificate.h */,
 				01F2AE381B7FEF5E00D5651A /* SSLCertificate.m */,
-				01F2AE3E1B82666900D5651A /* SSLCertificateViewController.h */,
-				01F2AE3F1B82666900D5651A /* SSLCertificateViewController.m */,
 				69CBCD501E9347B8009D5352 /* UIResponder+FirstResponder.h */,
 				69CBCD511E9347B8009D5352 /* UIResponder+FirstResponder.m */,
 				01F879391A4108DD00A63654 /* URLBlocker.h */,
@@ -1825,6 +1822,7 @@
 				A0BF521023AFC3580096624A /* SecurityPopUpViewController.swift */,
 				A0BF520723AFC3580096624A /* SecurityLevelCell.xib */,
 				A0BF520F23AFC3580096624A /* SecurityLevelCell.swift */,
+				A07B55FB23D736D60051663B /* CertificateViewController.swift */,
 				A0BF521623AFC3580096624A /* LiveSearchViewController.swift */,
 				A0BF520523AFC3580096624A /* CircuitViewController.xib */,
 				A0BF520823AFC3580096624A /* CircuitViewController.swift */,
@@ -2259,7 +2257,6 @@
 				A0BF525C23AFC3580096624A /* Tab+Downloads.swift in Sources */,
 				A0BF525923AFC3580096624A /* TabCell.swift in Sources */,
 				A053137022F1C73C006655EC /* JAHPCanonicalRequest.m in Sources */,
-				01F2AE401B82666900D5651A /* SSLCertificateViewController.m in Sources */,
 				A0BF527823AFC3580096624A /* UIViewController+Helpers.swift in Sources */,
 				A0BF524D23AFC3580096624A /* Tab+Keyboard.swift in Sources */,
 				A0BF525623AFC3580096624A /* SecurityLevelCell.swift in Sources */,
@@ -2290,6 +2287,7 @@
 				0182AD9B1AACC55400F3B7ED /* HTTPSEverywhereRuleController.m in Sources */,
 				A0BF527B23AFC3580096624A /* Formatter.swift in Sources */,
 				A0BF524B23AFC3580096624A /* CircuitNodeCell.swift in Sources */,
+				A07B55FC23D736D60051663B /* CertificateViewController.swift in Sources */,
 				010EEA691A43C8CF001E8B65 /* CookieJar.m in Sources */,
 				A031761F23CE462300D75F2A /* BridgeConfViewController.swift in Sources */,
 				A003A6C023C94D3800BD2D20 /* ErrorViewController.swift in Sources */,
