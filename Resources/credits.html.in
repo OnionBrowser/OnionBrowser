@@ -1,6 +1,8 @@
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable: no">
 	<title>about:onion-browser</title>
 	<style type="text/css">
 	body, pre {
@@ -12,6 +14,18 @@
 	blockquote {
 		margin: 0;
 		margin-left: 1em;
+	}
+
+	@media (prefers-color-scheme: dark) {
+		body {
+			color: white;
+
+			background-color: black;
+		}
+
+		a {
+			color: deepskyblue;
+		}
 	}
 	</style>
 </head>
