@@ -89,23 +89,6 @@ trans.ta = fastlane/metadata_unused/ta/keywords.txt
 trans.te = fastlane/metadata_unused/te/keywords.txt
 trans.tr_TR = fastlane/metadata/tr/keywords.txt
 
-[onion-browser.appstorestringsmd]
-file_filter = fastlane/metadata_unused/<lang>/promotional_text.txt
-source_file = fastlane/metadata_unused/en-US/promotional_text.txt
-source_lang = en_US
-trans.ar = fastlane/metadata_unused/ar-SA/promotional_text.txt
-trans.de = fastlane/metadata_unused/de-DE/promotional_text.txt
-trans.es = fastlane/metadata_unused/es-ES/promotional_text.txt
-trans.fa = fastlane/metadata_unused/fa/promotional_text.txt
-trans.fr = fastlane/metadata_unused/fr-FR/promotional_text.txt
-trans.hu_HU = fastlane/metadata_unused/hu/promotional_text.txt
-trans.nb = fastlane/metadata_unused/no/promotional_text.txt
-trans.nl = fastlane/metadata_unused/nl-NL/promotional_text.txt
-trans.pt_BR = fastlane/metadata_unused/pt-BR/promotional_text.txt
-trans.pt_PT = fastlane/metadata_unused/pt-PT/promotional_text.txt
-trans.tr_TR = fastlane/metadata_unused/tr/promotional_text.txt
-type = TXT
-
 [onion-browser.description]
 file_filter = fastlane/metadata/<lang>/description.txt
 minimum_perc = 75
