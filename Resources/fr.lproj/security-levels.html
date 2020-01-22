@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable: no">
+<title class="notranslate">about:security-levels</title>
+<style type="text/css">
+		body {
+			margin: 1em;
+
+			color: black;
+			font-family: sans-serif;
+		}
+
+		h1 {
+			text-align: center;
+			text-transform: uppercase;
+		}
+
+		dt {
+			font-weight: bold;
+		}
+
+		.recommendation {
+			color: gray;
+		}
+
+		.outcome {
+			font-weight: bold;
+		}
+
+		.warning {
+			font-weight: bold;
+			font-style: italic;
+		}
+
+		@media (prefers-color-scheme: dark) {
+			body {
+				color: white;
+
+				background-color: black;
+			}
+		}
+		</style>
+</head>
+<body>
+		<h1>Niveaux de sécurité</h1>
+
+		<p>Les paramètres de sécurité des hôtes ont été regroupés de manière à vous donner un niveau de sécurité global alors que vous parcourez des sites. Pour chaque niveau, vous trouverez ci-dessous les paramètres correspondants. Ils pourraient influencer les performances de différentes façons.</p>
+
+		<h2>1. Non sécurisé</h2>
+
+		<p class="recommendation">(Non recommandé)</p>
+		<p class="outcome">Tout devrait fonctionner.</p>
+		<p><span class="warning">Avertissement : Il pourrait y avoir fuite de vos renseignements et danger potentiel.</span> Ce niveau permet aux pages Web d’utiliser certaines fonctions (WebRTC, audio et vidéo, etc.) qui pourraient se connecter par votre connexion originale au lieu d’être tunnellisées par Tor.</p>
+
+		<dl>
+<dt>Politique relative au contenu</dt>
+			<dd>Ouvert (mode normal de navigation)</dd>
+
+			<dt>Protection universelle des liens</dt>
+			<dd>Désactivée</dd>
+
+			<dt>WebRTC</dt>
+			<dd>Activé</dd>
+
+			<dt>Permettre les ressources en mode mixte</dt>
+			<dd>Oui</dd>
+		</dl>
+<h2>2. Modéré</h2>
+
+		<p class="recommendation">(Recommandé)</p>
+		<p class="outcome">Certaines choses ne fonctionneront pas.</p>
+		<p>JavaScript est autorisé, mais certaines fonctions telles que WebSockets, la géolocalisation, XHR, etc. sont explicitement désactivées.</p>
+
+		<dl>
+<dt>Politique relative au contenu</dt>
+			<dd>Aucune connexion XHR/WebSocket/Vidéo</dd>
+
+			<dt>Protection universelle des liens</dt>
+			<dd>Activée</dd>
+
+			<dt>WebRTC</dt>
+			<dd>Désactivé</dd>
+
+			<dt>Permettre les ressources en mode mixte</dt>
+			<dd>Non</dd>
+		</dl>
+<h2>3. Sécurisé</h2>
+
+		<p class="recommendation">(Recommandé)</p>
+		<p class="outcome">De nombreuses choses ne fonctionneront pas.</p>
+		<p>Désactive JavaScript, WebSockets, la géolocalisation, XHR, etc.</p>
+
+		<dl>
+<dt>Politique relative au contenu</dt>
+			<dd>Strict (pas de JavaScript ni de vidéo, etc.)</dd>
+
+			<dt>Protection universelle des liens</dt>
+			<dd>Activée</dd>
+
+			<dt>WebRTC</dt>
+			<dd>Désactivé</dd>
+
+			<dt>Permettre les ressources en mode mixte</dt>
+			<dd>Non</dd>
+		</dl>
+</body>
+</html>
