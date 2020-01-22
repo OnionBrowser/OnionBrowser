@@ -253,7 +253,10 @@ class BrowsingViewController: UIViewController, TabDelegate {
 		switch sender {
 		case securityBt:
 			let vc = SecurityPopUpViewController()
-			vc.host = currentTab?.url.clean?.host ?? currentTab?.url.clean?.path
+			let url = currentTab?.url.clean
+
+			// Don't allow special pages to customize!
+			vc.host = (url?.isSpecial ?? true) ? nil : url?.host ?? url?.path
 
 			present(vc, sender)
 
