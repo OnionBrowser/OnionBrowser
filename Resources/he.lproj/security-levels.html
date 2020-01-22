@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable: no">
+<title class="notranslate">about:security-levels</title>
+<style type="text/css">
+		body {
+			margin: 1em;
+
+			color: black;
+			font-family: sans-serif;
+		}
+
+		h1 {
+			text-align: center;
+			text-transform: uppercase;
+		}
+
+		dt {
+			font-weight: bold;
+		}
+
+		.recommendation {
+			color: gray;
+		}
+
+		.outcome {
+			font-weight: bold;
+		}
+
+		.warning {
+			font-weight: bold;
+			font-style: italic;
+		}
+
+		@media (prefers-color-scheme: dark) {
+			body {
+				color: white;
+
+				background-color: black;
+			}
+		}
+		</style>
+</head>
+<body>
+		<h1>רמות אבטחה</h1>
+
+		<p>הגדרות אבטחה של מארח קובצו כדי לתת לך רמה כללית
+		של אבטחה בעת גלישה באתרים. למטה יש מיפוי של הגדרות אלו בכל רמה.
+		הן יכולות לשנות ביצועים בדרכים שונות.</p>
+
+		<h2>1. בלתי מאובטחת</h2>
+
+		<p class="recommendation">(לא מומלץ)</p>
+		<p class="outcome">הכל אמור לעבוד.</p>
+		<p><span class="warning">אזהרה: זה עלול להדליף את המידע שלך וזה עלול להיות מסוכן.</span>
+			רמה זאת מתירה לדפי אינטרנט להשתמש במספר תפקודים (WebRTC, שמע/וידיאו, וכד')
+			אשר עשויים להתחבר על החיבור המקורי שלך במקום לתעל דרך Tor.</p>
+
+		<dl>
+<dt>מדיניות תוכן</dt>
+			<dd>פתוח (מצב גלישה רגילה)</dd>
+
+			<dt>הגנה כלל־עולמית מפני קישורים</dt>
+			<dd>כבוי</dd>
+
+			<dt>WebRTC</dt>
+			<dd>מאופשר</dd>
+
+			<dt>התר משאבים של מצב מעורבב</dt>
+			<dd>כן</dd>
+		</dl>
+<h2>2. מתונה</h2>
+
+		<p class="recommendation">(מומלץ)</p>
+		<p class="outcome">מספר דברים לא יעבדו.</p>
+		<p>JavaScript מותר, אבל כמה מהמאפיינים שלו כמו WebSockets, geolocation,
+			XHR, וכד' עדין מושבתים במפורש.</p>
+
+		<dl>
+<dt>מדיניות תוכן</dt>
+			<dd>ללא חיבורים של XHR/WebSocket/וידיאו</dd>
+
+			<dt>הגנה כלל־עולמית מפני קישורים</dt>
+			<dd>מופעל</dd>
+
+			<dt>WebRTC</dt>
+			<dd>מושבת</dd>
+
+			<dt>התר משאבים של מצב מעורבב</dt>
+			<dd>לא</dd>
+		</dl>
+<h2>3. מאובטחת</h2>
+
+		<p class="recommendation">(מומלץ)</p>
+		<p class="outcome">דברים רבים לא יעבדו.</p>
+		<p>משבית JavaScript, WebSockets, geolocation, XHR, וכד'.</p>
+
+		<dl>
+<dt>מדיניות תוכן</dt>
+			<dd>מחמיר (ללא JavaScript, וידיאו וכד')</dd>
+
+			<dt>הגנה כלל־עולמית מפני קישורים</dt>
+			<dd>מופעל</dd>
+
+			<dt>WebRTC</dt>
+			<dd>מושבת</dd>
+
+			<dt>התר משאבים של מצב מעורבב</dt>
+			<dd>לא</dd>
+		</dl>
+</body>
+</html>
