@@ -21,7 +21,7 @@ class InitSecurityLevelViewController: UIViewController, UITableViewDataSource, 
 	@IBOutlet weak var explanationLb: UILabel! {
 		didSet {
 			explanationLb.text = NSLocalizedString(
-				"Your security level will affect each website you visit and may affect their performance. Security levels can be modified per site by tapping the shield icon in your browser.",
+				"Your security level will apply to every website you visit and may affect their performance. Security levels can be modified per site by tapping the shield icon in your browser.",
 				comment: "")
 		}
 	}
