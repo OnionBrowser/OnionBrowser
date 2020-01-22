@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable: no">
+<title class="notranslate">about:security-levels</title>
+<style type="text/css">
+		body {
+			margin: 1em;
+
+			color: black;
+			font-family: sans-serif;
+		}
+
+		h1 {
+			text-align: center;
+			text-transform: uppercase;
+		}
+
+		dt {
+			font-weight: bold;
+		}
+
+		.recommendation {
+			color: gray;
+		}
+
+		.outcome {
+			font-weight: bold;
+		}
+
+		.warning {
+			font-weight: bold;
+			font-style: italic;
+		}
+
+		@media (prefers-color-scheme: dark) {
+			body {
+				color: white;
+
+				background-color: black;
+			}
+		}
+		</style>
+</head>
+<body>
+		<h1>Sicherheits&shy;niveaus</h1>
+
+		<p>Wir haben die Host-Sicherheitseinstellungen so gruppiert, daß sie ihnen ein sinnvolles Niveau and Sicherheit geben während sie browsen. 
+Hier ist ein Überblick über die Einstellungen beim jeweiligen Niveau.
+Diese können die Leistung unterschiedlich beeinflussen.</p>
+
+		<h2>1. Unsicher</h2>
+
+		<p class="recommendation">(nicht empfohlen)</p>
+		<p class="outcome">Alles sollte funktionieren.</p>
+		<p><span class="warning">Warnung: Diese Einstellung könnte sie enttarnen und ist potenziell gefährlich.</span>
+Dieses Niveau erlaubt Webseiten einige Funktionen zu benutzen (WebRTC, Audio/Video, etc.)
+die ihre normale Verbindung anstatt den Tor-Tunnel zu benutzen.
+</p>
+
+		<dl>
+<dt>Inhaltsrichtlinie</dt>
+			<dd>Offen (Normaler Modus)</dd>
+
+			<dt>Universeller Linkschutz</dt>
+			<dd>Aus</dd>
+
+			<dt>WebRTC</dt>
+			<dd>an</dd>
+
+			<dt>Erlaube gemischte Dateien</dt>
+			<dd>Ja</dd>
+		</dl>
+<h2>2. Moderat</h2>
+
+		<p class="recommendation">(empfohlen)</p>
+		<p class="outcome">Manches wird nicht funktionieren.</p>
+		<p>JavaScript ist erlaubt, aber einige Funktionen wie WebSockets, Ortung, XHR, etc. sind dennoch explizit deaktiviert.</p>
+
+		<dl>
+<dt>Inhaltsrichtlinie</dt>
+			<dd>Kein XHR/WebSocket/Video</dd>
+
+			<dt>Universeller Linkschutz</dt>
+			<dd>Ein</dd>
+
+			<dt>WebRTC</dt>
+			<dd>deaktiviert</dd>
+
+			<dt>Erlaube gemischte Dateien</dt>
+			<dd>Nein</dd>
+		</dl>
+<h2>3. Secure</h2>
+
+		<p class="recommendation">(empfohlen)</p>
+		<p class="outcome">Vieles wird nicht funktionieren.</p>
+		<p>Deaktiviert JavaScript, WebSockets, Ortung, XHR, etc.</p>
+
+		<dl>
+<dt>Inhaltsrichtlinie</dt>
+			<dd>Strikt (kein JavaScript, Video, etc.)</dd>
+
+			<dt>Universeller Linkschutz</dt>
+			<dd>Ein</dd>
+
+			<dt>WebRTC</dt>
+			<dd>deaktiviert</dd>
+
+			<dt>Erlaube gemischte Dateien</dt>
+			<dd>Nein</dd>
+		</dl>
+</body>
+</html>

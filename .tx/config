@@ -28,6 +28,19 @@ trans.pt_PT = Resources/pt-PT.lproj/InfoPlist.strings
 trans.tr_TR = Resources/tr-TR.lproj/InfoPlist.strings
 minimum_perc = 75
 
+[onion-browser.security-levels]
+file_filter = Resources/<lang>.lproj/security-levels.html
+source_file = Resources/Base.lproj/security-levels.html
+source_lang = en_US
+type = HTML
+trans.ar = Resources/ar-001.lproj/security-levels.html
+trans.ca = Resources/ca-ES.lproj/security-levels.html
+trans.hu_HU = Resources/hu-HU.lproj/security-levels.html
+trans.pt_BR = Resources/pt-BR.lproj/security-levels.html
+trans.pt_PT = Resources/pt-PT.lproj/security-levels.html
+trans.tr_TR = Resources/tr-TR.lproj/security-levels.html
+minimum_perc = 50
+
 [onion-browser.subtitle]
 file_filter = fastlane/metadata/<lang>/subtitle.txt
 minimum_perc = 100
