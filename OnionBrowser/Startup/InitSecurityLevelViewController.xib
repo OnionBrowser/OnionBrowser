@@ -67,7 +67,7 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <action selector="start" destination="-1" eventType="touchUpInside" id="KBk-ra-IGd"/>
+                        <action selector="start:" destination="-1" eventType="touchUpInside" id="TVN-Kw-Dys"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zy5-bd-gbo">
@@ -76,6 +76,9 @@
                     <state key="normal" title="Learn More">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
+                    <connections>
+                        <action selector="start:" destination="-1" eventType="touchUpInside" id="npg-bh-8eK"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

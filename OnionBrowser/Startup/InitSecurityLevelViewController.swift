@@ -38,7 +38,7 @@ class InitSecurityLevelViewController: UIViewController, UITableViewDataSource, 
 	@IBOutlet weak var learnMoreBt: UIButton! {
 		didSet {
 			learnMoreBt.setTitle(NSLocalizedString("Learn More", comment: ""))
-			learnMoreBt.isHidden = true // TODO: Enable, when page available.
+			learnMoreBt.isEnabled = false
 		}
 	}
 
@@ -99,12 +99,13 @@ class InitSecurityLevelViewController: UIViewController, UITableViewDataSource, 
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		startBt.isEnabled = true
 		startBt.backgroundColor = .ok
+		learnMoreBt.isEnabled = true
 	}
 
 
 	// MARK: Actions
 
-	@IBAction func start() {
+	@IBAction func start(_ sender: UIView) {
 		guard let selected = tableView.indexPathForSelectedRow,
 			selected.section < presets.count else {
 			return
@@ -123,6 +124,6 @@ class InitSecurityLevelViewController: UIViewController, UITableViewDataSource, 
 
 		Settings.didIntro = true
 
-		ConnectingViewController.start()
+		ConnectingViewController.start(sender == learnMoreBt)
 	}
 }

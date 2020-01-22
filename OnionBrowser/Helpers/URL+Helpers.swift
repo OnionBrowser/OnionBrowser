@@ -17,6 +17,9 @@ extension URL {
 	static let aboutOnionBrowser = URL(string: "about:onion-browser")!
 	static let credits = Bundle.main.url(forResource: "credits", withExtension: "html")!
 
+	static let aboutSecurityLevels = URL(string: "about:security-levels")!
+	static let securityLevels = Bundle.main.url(forResource: "security-levels", withExtension: "html")!
+
 	static let start = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).last!.appendingPathComponent("start.html")
 
 	var withFixedScheme: URL? {
@@ -43,6 +46,9 @@ extension URL {
 		case URL.aboutOnionBrowser:
 			return URL.credits
 
+		case URL.aboutSecurityLevels:
+			return URL.securityLevels
+
 		default:
 			return self
 		}
@@ -52,6 +58,9 @@ extension URL {
 		switch self {
 		case URL.credits:
 			return URL.aboutOnionBrowser
+
+		case URL.securityLevels:
+			return URL.aboutSecurityLevels
 
 		case URL.start:
 			return nil
@@ -63,7 +72,7 @@ extension URL {
 
 	var isSpecial: Bool {
 		switch self {
-		case URL.blank, URL.aboutOnionBrowser, URL.credits, URL.start:
+		case URL.blank, URL.aboutOnionBrowser, URL.credits, URL.aboutSecurityLevels, URL.securityLevels, URL.start:
 			return true
 
 		default:

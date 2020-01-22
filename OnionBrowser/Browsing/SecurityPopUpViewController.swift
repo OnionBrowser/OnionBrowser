@@ -34,7 +34,6 @@ UITableViewDataSource, UITableViewDelegate {
 	@IBOutlet weak var learnMoreBt: UIButton! {
 		didSet {
 			learnMoreBt.setTitle(NSLocalizedString("Learn More", comment: ""))
-			learnMoreBt.isHidden = true // Disabled, as no content, yet.
 		}
 	}
 
@@ -166,6 +165,8 @@ UITableViewDataSource, UITableViewDelegate {
 	}
 
 	@IBAction func learnMore() {
-		// TODO
+		AppDelegate.shared?.browsingUi?.addNewTab(URL.aboutSecurityLevels)
+
+		dismiss(animated: true)
 	}
 }

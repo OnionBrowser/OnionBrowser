@@ -190,6 +190,10 @@ extension BrowsingViewController: UITextFieldDelegate {
 				return URL.aboutOnionBrowser
 			}
 
+			if search.caseInsensitiveCompare(URL.aboutSecurityLevels.absoluteString) == .orderedSame {
+				return URL.aboutSecurityLevels
+			}
+
 			if search.range(of: #"\s+"#, options: .regularExpression) != nil
 				|| !search.contains(".") {
 				// Search contains spaces or contains no dots. That's really a search!

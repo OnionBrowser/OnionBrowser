@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable: no">
+		<style>
+		body {
+			margin: 1em;
+
+			color: black;
+			font-family: sans-serif;
+		}
+
+		h1 {
+			text-align: center;
+			text-transform: uppercase;
+		}
+
+		dt {
+			font-weight: bold;
+		}
+
+		.recommendation {
+			color: gray;
+		}
+
+		.outcome {
+			font-weight: bold;
+		}
+
+		.warning {
+			font-weight: bold;
+			font-style: italic;
+		}
+
+		@media (prefers-color-scheme: dark) {
+			body {
+				color: white;
+
+				background-color: black;
+			}
+		}
+
+		</style>
+	</head>
+	<body>
+		<h1>Security Levels</h1>
+
+		<p>
+		Host security settings have been grouped in ways to give you an overall level
+		of security while browsing sites. Below is a mapping of the settings in each level.
+		They may alter performance in different ways.
+		</p>
+
+		<h2>1. Insecure</h2>
+
+		<p class="recommendation">
+			(Not recommended)
+		</p>
+		<p class="outcome">
+			Everything should work.
+		</p>
+		<p>
+			<span class="warning">Warning: This could leak your information and potentially be dangerous.</span>
+			This level allows web pages to use some functions (WebRTC, Audio/Video, etc)
+			that might connect over your original connection instead of tunneling through Tor.
+		</p>
+
+		<dl>
+			<dt>Content Policy</dt>
+			<dd>Open (normal browsing mode)</dd>
+
+			<dt>Universal Link Protection</dt>
+			<dd>Off</dd>
+
+			<dt>WebRTC</dt>
+			<dd>enabled</dd>
+
+			<dt>Allow mixed-mode resources</dt>
+			<dd>Yes</dd>
+		</dl>
+
+
+		<h2>2. Moderate</h2>
+
+		<p class="recommendation">
+			(Recommended)
+		</p>
+		<p class="outcome">
+			Some things won't work.
+		</p>
+		<p>
+			JavaScript is allowed, but some of it’s features like WebSockets, geolocation,
+			XHR, etc, are still explicitly disabled.
+		</p>
+
+		<dl>
+			<dt>Content Policy</dt>
+			<dd>No XHR/WebSocket/Video connections</dd>
+
+			<dt>Universal Link Protection</dt>
+			<dd>On</dd>
+
+			<dt>WebRTC</dt>
+			<dd>disabled</dd>
+
+			<dt>Allow mixed-mode resources</dt>
+			<dd>No</dd>
+		</dl>
+
+		<h2>3. Maximum</h2>
+
+		<p class="recommendation">
+			(Recommended)
+		</p>
+		<p class="outcome">
+			Many things won't work.
+		</p>
+		<p>
+			Disables JavaScript, WebSockets, geolocation, XHR, etc.
+		</p>
+
+		<dl>
+			<dt>Content Policy</dt>
+			<dd>Strict (no JavaScript, audio, video, etc.)</dd>
+
+			<dt>Universal Link Protection</dt>
+			<dd>On</dd>
+
+			<dt>WebRTC</dt>
+			<dd>disabled</dd>
+
+			<dt>Allow mixed-mode resources</dt>
+			<dd>No</dd>
+		</dl>
+
+	</body>
+</html>
