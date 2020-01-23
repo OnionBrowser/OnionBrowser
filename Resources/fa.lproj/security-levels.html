@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable: no">
+<title class="notranslate">در مورد: سطوح امنیتی</title>
+<style type="text/css">
+		body {
+			margin: 1em;
+
+			color: black;
+			font-family: sans-serif;
+		}
+
+		h1 {
+			text-align: center;
+			text-transform: uppercase;
+		}
+
+		dt {
+			font-weight: bold;
+		}
+
+		.recommendation {
+			color: gray;
+		}
+
+		.outcome {
+			font-weight: bold;
+		}
+
+		.warning {
+			font-weight: bold;
+			font-style: italic;
+		}
+
+		@media (prefers-color-scheme: dark) {
+			body {
+				color: white;
+
+				background-color: black;
+			}
+		}
+		</style>
+</head>
+<body>
+		<h1>سطوح امنیتی</h1>
+
+		<p>تنظیمات امنیتی میزبان به شکل های گروه بندی شدند تا به شما یک سطح کلی از
+		امنیت در هنگام بازدید از سایت ها داشته باشید. در پایین یک نقشه از تنظیمات در هر سطح وجود دارد.
+		ممکن است عملکرد را در راه های مختلف تغییر دهند.</p>
+
+		<h2>1. ناامن</h2>
+
+		<p class="recommendation">(توصیه نمی‌شود)</p>
+		<p class="outcome">همه چیز باید کار کند</p>
+		<p>	هشدار: این می تواند باعث نشت اطلاعات شما شود و می تواند خطرناک باشد.<span class="warning">
+			این سطح به صفحات وب اجازه می دهد تا از برخی چیزها مانند (WebRTC، صوت/ویدیو، غیره) 
+			که ممکن است از طریق اتصال اصلی شما به جای رد کردن آن از Tor استفاده کنند.</span></p>
+
+		<dl>
+<dt>سیاست محتوا</dt>
+			<dd>باز کردن (حالت معمولی مرورگر)</dd>
+
+			<dt>حفاظت لینک عمومی</dt>
+			<dd>خاموش</dd>
+
+			<dt>WebRTC</dt>
+			<dd>فعال</dd>
+
+			<dt>اجازه استفاده از منابع به صورت ترکیبی</dt>
+			<dd>بلی</dd>
+		</dl>
+<h2>2. متعادل</h2>
+
+		<p class="recommendation">(توصیه‌شده)</p>
+		<p class="outcome">بعضی چیزها کار نخواهد کرد.</p>
+		<p>جاوا اسکریپت مجاز است، اما برخی از ویژگی‌های آن مانند WebSockets، موقعیت جغرافیایی،
+			XHR و غیره هنوز به روشنی غیر‌فعال هستند.</p>
+
+		<dl>
+<dt>سیاست محتوا</dt>
+			<dd>نبود XHR/WebSocket/ ارتباط ویدیویی </dd>
+
+			<dt>حفاظت لینک عمومی</dt>
+			<dd>روشن</dd>
+
+			<dt>WebRTC</dt>
+			<dd>غیرفعال</dd>
+
+			<dt>اجازه استفاده از منابع به صورت ترکیبی</dt>
+			<dd>خیر</dd>
+		</dl>
+<h2>3. امن</h2>
+
+		<p class="recommendation">(توصیه‌شده)</p>
+		<p class="outcome">خیلی از چیزها کار نمی‌کنند.</p>
+		<p> جاوا‌اسکریپت، وب‌سوکت‌ها، موقعیت جغرافیایی، XHR و غیره را غیر‌فعال می‌کند.</p>
+
+		<dl>
+<dt>سیاست محتوا</dt>
+			<dd>سخت گیری ( صفحات حاوی جاوا اسکریپت، ویدیو، و غیره بارگذاری نمی‌شوند)</dd>
+
+			<dt>حفاظت لینک عمومی</dt>
+			<dd>روشن</dd>
+
+			<dt>WebRTC</dt>
+			<dd>غیرفعال</dd>
+
+			<dt>اجازه استفاده از منابع به صورت ترکیبی</dt>
+			<dd>خیر</dd>
+		</dl>
+</body>
+</html>
