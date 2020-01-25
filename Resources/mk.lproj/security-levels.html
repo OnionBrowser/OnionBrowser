@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable: no">
+<title class="notranslate">about:security-levels</title>
+<style type="text/css">
+		body {
+			margin: 1em;
+
+			color: black;
+			font-family: sans-serif;
+		}
+
+		h1 {
+			text-align: center;
+			text-transform: uppercase;
+		}
+
+		dt {
+			font-weight: bold;
+		}
+
+		.recommendation {
+			color: gray;
+		}
+
+		.outcome {
+			font-weight: bold;
+		}
+
+		.warning {
+			font-weight: bold;
+			font-style: italic;
+		}
+
+		@media (prefers-color-scheme: dark) {
+			body {
+				color: white;
+
+				background-color: black;
+			}
+		}
+		</style>
+</head>
+<body>
+		<h1>Безбедносни нивоа</h1>
+
+		<p>Безбедносните поставки на хостот се групирани на начин да ви дадат целосно ниво
+		на безбедност додека прелистувате. Подолу е мапирањето на поставки во секое ниво.
+		Тие можат да влијаат на перформансите на различни начини.</p>
+
+		<h2>1. Небезбедно</h2>
+
+		<p class="recommendation">(Не препорачано)</p>
+		<p class="outcome">Се треба да работи.</p>
+		<p><span class="warning">Предупредување: Со оваа опција може да дојде до протекување на ваши информации со што истата е потенцијално опасна.</span>
+			Ова ниво дозволува веб страните да користат некои функции (WebRTC, Аудио/Видео, итн)
+			што можат да се поврзат преку вашето оригинално поврзување наместо преку тунелирањето преку Тор.</p>
+
+		<dl>
+<dt>Политика на содржина</dt>
+			<dd>Отвори (режим на нормално прелистување)</dd>
+
+			<dt>Универзална Линк Заштита</dt>
+			<dd>Исклучено</dd>
+
+			<dt>WebRTC</dt>
+			<dd>Овозможено</dd>
+
+			<dt>Дозволи ресурски од мешан-режим</dt>
+			<dd>Да</dd>
+		</dl>
+<h2>2. Умерено</h2>
+
+		<p class="recommendation">(Препорачано)</p>
+		<p class="outcome">Некои нешта нема да работат.</p>
+		<p>JavaScript е дозволена, но некои карактеристики како WebSockets, гео-локација,
+			XHR, итн., се сеуште експлицитно оневозможени.</p>
+
+		<dl>
+<dt>Политика на содржина</dt>
+			<dd>Нема XHR/WebSocket/Video поврзувања</dd>
+
+			<dt>Универзална Линк Заштита</dt>
+			<dd>Вклучи</dd>
+
+			<dt>WebRTC</dt>
+			<dd>Оневозможено</dd>
+
+			<dt>Дозволи ресурски од мешан-режим</dt>
+			<dd>Не</dd>
+		</dl>
+<h2>3. Безбедно</h2>
+
+		<p class="recommendation">(Препорачано)</p>
+		<p class="outcome">Многу нешта нема да работат.</p>
+		<p>Оневозможува JavaScript, WebSockets, гео-локација, XHR, итн.</p>
+
+		<dl>
+<dt>Политика на содржина</dt>
+			<dd>Строго (нема JavaScript, видео, итн.)</dd>
+
+			<dt>Универзална Линк Заштита</dt>
+			<dd>Вклучи</dd>
+
+			<dt>WebRTC</dt>
+			<dd>Оневозможено</dd>
+
+			<dt>Дозволи ресурски од мешан-режим</dt>
+			<dd>Не</dd>
+		</dl>
+</body>
+</html>
