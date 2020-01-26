@@ -7,3 +7,6 @@
  */
 NSPhotoLibraryAddUsageDescription = "Needed to store the selected image to your photos.";
 NSCameraUsageDescription = "Needed to read bridge addresses from displayed QR codes.";
+"New Tab" = "New Tab";
+"Clear Data" = "Clear Data";
+"Close tabs and clear data" = "Close tabs and clear data";
