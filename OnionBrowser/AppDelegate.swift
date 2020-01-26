@@ -281,8 +281,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 	}
 
 	func application(_ application: UIApplication, shouldSaveApplicationState coder: NSCoder) -> Bool {
-
 		return !testing && !TabSecurity.isClearOnBackground
+	}
+
+	func application(_ application: UIApplication, shouldSaveSecureApplicationState coder: NSCoder) -> Bool {
+		return self.application(application, shouldSaveApplicationState: coder)
 	}
 
 
