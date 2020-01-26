@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable: no">
+<title class="notranslate">about:security-levels</title>
+<style type="text/css">
+		body {
+			margin: 1em;
+
+			color: black;
+			font-family: sans-serif;
+		}
+
+		h1 {
+			text-align: center;
+			text-transform: uppercase;
+		}
+
+		dt {
+			font-weight: bold;
+		}
+
+		.recommendation {
+			color: gray;
+		}
+
+		.outcome {
+			font-weight: bold;
+		}
+
+		.warning {
+			font-weight: bold;
+			font-style: italic;
+		}
+
+		@media (prefers-color-scheme: dark) {
+			body {
+				color: white;
+
+				background-color: black;
+			}
+		}
+		</style>
+</head>
+<body>
+		<h1>Security Levels</h1>
+
+		<p>Host security settings have been grouped in ways to give you an overall level
+		of security while browsing sites. Below is a mapping of the settings in each level.
+		They may alter performance in different ways.</p>
+
+		<h2>1. Insecure</h2>
+
+		<p class="recommendation">(Not recommended)</p>
+		<p class="outcome">全て機能します</p>
+		<p><span class="warning">Warning: This could leak your information and potentially be dangerous.</span>
+			This level allows web pages to use some functions (WebRTC, Audio/Video, etc)
+			that might connect over your original connection instead of tunneling through Tor.</p>
+
+		<dl>
+<dt>コンテンツのポリシー</dt>
+			<dd>開く（通常のブラウジングモード）</dd>
+
+			<dt>ユニバーサルリンク保護</dt>
+			<dd>オフ</dd>
+
+			<dt>WebRTC</dt>
+			<dd>Enabled</dd>
+
+			<dt>混合モードリソースを許可する</dt>
+			<dd>はい</dd>
+		</dl>
+<h2>2. Moderate</h2>
+
+		<p class="recommendation">(Recommended)</p>
+		<p class="outcome">一部が機能しません</p>
+		<p>JavaScript is allowed, but some of it’s features like WebSockets, geolocation,
+			XHR, etc., are still explicitly disabled.</p>
+
+		<dl>
+<dt>コンテンツのポリシー</dt>
+			<dd>XHR/WebSocket/ビデオ通信なし</dd>
+
+			<dt>ユニバーサルリンク保護</dt>
+			<dd>オン</dd>
+
+			<dt>WebRTC</dt>
+			<dd>Disabled</dd>
+
+			<dt>混合モードリソースを許可する</dt>
+			<dd>いいえ</dd>
+		</dl>
+<h2>3. Secure</h2>
+
+		<p class="recommendation">(Recommended)</p>
+		<p class="outcome">多くは機能しません</p>
+		<p>Disables JavaScript, WebSockets, geolocation, XHR, etc.</p>
+
+		<dl>
+<dt>コンテンツのポリシー</dt>
+			<dd>厳格モード（Javascript、ビデオなど、なし）</dd>
+
+			<dt>ユニバーサルリンク保護</dt>
+			<dd>オン</dd>
+
+			<dt>WebRTC</dt>
+			<dd>Disabled</dd>
+
+			<dt>混合モードリソースを許可する</dt>
+			<dd>いいえ</dd>
+		</dl>
+</body>
+</html>
