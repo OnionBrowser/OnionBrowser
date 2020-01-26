@@ -430,13 +430,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 	private func handle(_ shortcut: UIApplicationShortcutItem, completion: (() -> Void)? = nil) {
 		if shortcut.type.contains("OpenNewTab") {
 			dismissModalsAndCall {
-				self.browsingUi?.addEmptyTabAndFocus()
+				if self.browsingUi != nil {
+					self.browsingUi?.addEmptyTabAndFocus()
+				}
+				else {
+					Settings.openNewTabOnStart = true
+				}
+
 				completion?()
 			}
 		}
 		else if shortcut.type.contains("ClearData") {
 			dismissModalsAndCall {
 				self.browsingUi?.removeAllTabs()
+				Settings.openTabs = nil
+				self.cookieJar.clearAllNonWhitelistedData()
 				completion?()
 			}
 		}

@@ -489,8 +489,9 @@ class BrowsingViewController: UIViewController, TabDelegate {
 
 	@objc
 	func becomesVisible() {
-		if tabs.count < 1 {
+		if tabs.count < 1 || Settings.openNewTabOnStart {
 			addNewTab()
+			Settings.openNewTabOnStart = false
 		}
 	}
 

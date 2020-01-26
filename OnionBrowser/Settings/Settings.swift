@@ -299,4 +299,13 @@ class Settings: NSObject {
 			UserDefaults.standard.set(newValue, forKey: "advanced_tor_conf")
 		}
 	}
+
+	class var openNewTabOnStart: Bool {
+		get {
+			return UserDefaults.standard.bool(forKey: "open_new_tab_on_start")
+		}
+		set {
+			UserDefaults.standard.set(newValue, forKey: "open_new_tab_on_start")
+		}
+	}
 }
