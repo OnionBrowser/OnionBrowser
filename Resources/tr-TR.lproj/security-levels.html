@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable: no">
+<title class="notranslate">about:security-levels</title>
+<style type="text/css">
+		body {
+			margin: 1em;
+
+			color: black;
+			font-family: sans-serif;
+		}
+
+		h1 {
+			text-align: center;
+			text-transform: uppercase;
+		}
+
+		dt {
+			font-weight: bold;
+		}
+
+		.recommendation {
+			color: gray;
+		}
+
+		.outcome {
+			font-weight: bold;
+		}
+
+		.warning {
+			font-weight: bold;
+			font-style: italic;
+		}
+
+		@media (prefers-color-scheme: dark) {
+			body {
+				color: white;
+
+				background-color: black;
+			}
+		}
+		</style>
+</head>
+<body>
+		<h1>Güvenlik Düzeyleri</h1>
+
+		<p>Güvenlik düzeyleri size web sitelerini gezerken genel bir koruma düzeyi sağlar.
+		Aşağıda her bir düzeyde ssağlanan güvenlik ayrıntılarını bulabilirsiniz.
+		Her düzey başarımı farklı şekillerde etkileyebilir.</p>
+
+		<h2>1. Güvenli değil</h2>
+
+		<p class="recommendation">(Önerilmez)</p>
+		<p class="outcome">Her şey çalışıyor olmalı.</p>
+		<p><span class="warning">Uyarı: Bu düzey bilgilerin dışarı sızmasına neden olabilir.</span>
+			Bu düzey web sayfalarının bazı işlevleri kullanabilmesini sağlar (WebRTC, Ses/Görüntü gibi)
+			Bu işlevler, Tor tüneli yerine özgün bağlantınızı kullanarak size erişebilir.</p>
+
+		<dl>
+<dt>İçerik ilkesi</dt>
+			<dd>Aç (normal tarama kipi)</dd>
+
+			<dt>Genel Bağlantı Koruması</dt>
+			<dd>Kapalı</dd>
+
+			<dt>WebRTC</dt>
+			<dd>Etkin</dd>
+
+			<dt>Karma kip kaynakları kullanılabilsin</dt>
+			<dd>Evet</dd>
+		</dl>
+<h2>2. Orta</h2>
+
+		<p class="recommendation">(Önerilir)</p>
+		<p class="outcome">Bazı şeylet çalışmaz.</p>
+		<p>JavaScript kullanılabilir ancak WebSockets, coğrafi konum, XHR gibi
+			bazı özellikler devre dışı bırakılır.</p>
+
+		<dl>
+<dt>İçerik ilkesi</dt>
+			<dd>XHR/WebSocket/Görüntü bağlantısı yok</dd>
+
+			<dt>Genel Bağlantı Koruması</dt>
+			<dd>Açık</dd>
+
+			<dt>WebRTC</dt>
+			<dd>Devre dışı</dd>
+
+			<dt>Karma kip kaynakları kullanılabilsin</dt>
+			<dd>Hayır</dd>
+		</dl>
+<h2>3. Güvenli</h2>
+
+		<p class="recommendation">(Önerilir)</p>
+		<p class="outcome">Çoğu şey çalışmaz.</p>
+		<p>JavaScript, WebSockets, coğrafi konum, XHR, gibi özellikler devre dışı bırakılır.</p>
+
+		<dl>
+<dt>İçerik ilkesi</dt>
+			<dd>Kısıtlı (JavaScript, görüntü vb yok)</dd>
+
+			<dt>Genel Bağlantı Koruması</dt>
+			<dd>Açık</dd>
+
+			<dt>WebRTC</dt>
+			<dd>Devre dışı</dd>
+
+			<dt>Karma kip kaynakları kullanılabilsin</dt>
+			<dd>Hayır</dd>
+		</dl>
+</body>
+</html>

@@ -274,6 +274,7 @@
 		A0323AC12396962A00B9DDA5 /* update-bridges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "update-bridges.swift"; sourceTree = "<group>"; };
 		A03DBCEB22859B99001890C4 /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		A03DBCEC22859B99001890C4 /* Config.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Config.m; sourceTree = "<group>"; };
+		A03ECAB123DEF92F008D3A35 /* tr-TR */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "tr-TR"; path = "tr-TR.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A03FCA8B23D8B6C8006F6A99 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = fr; path = "fr.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A046AE26234795AC00E6B3A5 /* subtitle.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = subtitle.txt; sourceTree = "<group>"; };
 		A046AE27234795AC00E6B3A5 /* keywords.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = keywords.txt; sourceTree = "<group>"; };
@@ -2410,6 +2411,7 @@
 				A0A06E8823D9CD81004687A7 /* fa */,
 				A097899E23DC2FF500FD3F54 /* mk */,
 				A0823ED323DE1A3F00641854 /* ja */,
+				A03ECAB123DEF92F008D3A35 /* tr-TR */,
 			);
 			name = "security-levels.html";
 			sourceTree = "<group>";
