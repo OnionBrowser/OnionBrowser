@@ -23,3 +23,4 @@
 #import "CookieJar.h"
 #import "CertificateAuthentication.h"
 #import "HSTSCache.h"
+#import "URLBlocker.h"

@@ -65,6 +65,7 @@
 		A031762323CE648200D75F2A /* ScanQrViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A031762223CE648200D75F2A /* ScanQrViewController.swift */; };
 		A03DBCED22859B99001890C4 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = A03DBCEC22859B99001890C4 /* Config.m */; };
 		A03DBCEF22859B99001890C4 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = A03DBCEC22859B99001890C4 /* Config.m */; };
+		A03ECAB523DF3CFB008D3A35 /* Tab+WKDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03ECAB423DF3CFB008D3A35 /* Tab+WKDelegates.swift */; };
 		A053136E22F1C737006655EC /* JAHPAuthenticatingHTTPProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = A053136422F1C573006655EC /* JAHPAuthenticatingHTTPProtocol.m */; };
 		A053136F22F1C73A006655EC /* JAHPCacheStoragePolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = A053136622F1C573006655EC /* JAHPCacheStoragePolicy.m */; };
 		A053137022F1C73C006655EC /* JAHPCanonicalRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = A053136822F1C574006655EC /* JAHPCanonicalRequest.m */; };
@@ -275,6 +276,7 @@
 		A03DBCEB22859B99001890C4 /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		A03DBCEC22859B99001890C4 /* Config.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Config.m; sourceTree = "<group>"; };
 		A03ECAB123DEF92F008D3A35 /* tr-TR */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "tr-TR"; path = "tr-TR.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A03ECAB423DF3CFB008D3A35 /* Tab+WKDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tab+WKDelegates.swift"; sourceTree = "<group>"; };
 		A03FCA8B23D8B6C8006F6A99 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = fr; path = "fr.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A046AE26234795AC00E6B3A5 /* subtitle.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = subtitle.txt; sourceTree = "<group>"; };
 		A046AE27234795AC00E6B3A5 /* keywords.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = keywords.txt; sourceTree = "<group>"; };
@@ -1832,6 +1834,7 @@
 				A0BF521423AFC3580096624A /* Tab+Gestures.swift */,
 				A0BF520623AFC3580096624A /* Tab+Keyboard.swift */,
 				A0BF520E23AFC3580096624A /* Tab+UIWebViewDelegate.swift */,
+				A03ECAB423DF3CFB008D3A35 /* Tab+WKDelegates.swift */,
 				A0BF520323AFC3580096624A /* SecurityPopUpViewController.xib */,
 				A0BF521023AFC3580096624A /* SecurityPopUpViewController.swift */,
 				A0BF520723AFC3580096624A /* SecurityLevelCell.xib */,
@@ -2226,6 +2229,7 @@
 			files = (
 				A0BF526623AFC3580096624A /* BookmarksViewController.swift in Sources */,
 				A0BF528023AFC3580096624A /* Ipv6Tester.m in Sources */,
+				A03ECAB523DF3CFB008D3A35 /* Tab+WKDelegates.swift in Sources */,
 				A0BF527923AFC3580096624A /* Bundle+Helpers.swift in Sources */,
 				A053136E22F1C737006655EC /* JAHPAuthenticatingHTTPProtocol.m in Sources */,
 				A031762323CE648200D75F2A /* ScanQrViewController.swift in Sources */,
