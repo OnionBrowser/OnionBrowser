@@ -104,6 +104,7 @@ class BrowsingViewController: UIViewController, TabDelegate {
 	}
 	@IBOutlet weak var hideOverviewBt: UIButton! {
 		didSet {
+			hideOverviewBt.setTitle(NSLocalizedString("Done", comment: ""))
 			hideOverviewBt.addTarget(self, action: #selector(hideOverview), for: .touchUpInside)
 		}
 	}
