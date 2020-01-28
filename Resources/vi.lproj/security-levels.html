@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable: no">
+<title class="notranslate">about:security-levels</title>
+<style type="text/css">
+		body {
+			margin: 1em;
+
+			color: black;
+			font-family: sans-serif;
+		}
+
+		h1 {
+			text-align: center;
+			text-transform: uppercase;
+		}
+
+		dt {
+			font-weight: bold;
+		}
+
+		.recommendation {
+			color: gray;
+		}
+
+		.outcome {
+			font-weight: bold;
+		}
+
+		.warning {
+			font-weight: bold;
+			font-style: italic;
+		}
+
+		@media (prefers-color-scheme: dark) {
+			body {
+				color: white;
+
+				background-color: black;
+			}
+		}
+		</style>
+</head>
+<body>
+		<h1>Cấp độ bảo mật</h1>
+
+		<p>Host security settings have been grouped in ways to give you an overall level
+		of security while browsing sites. Below is a mapping of the settings in each level.
+		They may alter performance in different ways.</p>
+
+		<h2>1. Kém bảo mật</h2>
+
+		<p class="recommendation">(Không khuyên dùng)</p>
+		<p class="outcome">Mọi thứ hoạt động bình thường.</p>
+		<p><span class="warning">Cảnh báo: Có thể gây rò rỉ thông tin và gây nguy hiểm.</span>
+			Cấp độ này cho phép trang web dùng một vài tính năng (WebRTC, Âm thanh/Video, v.v)
+			có thể kết nối trực tiếp tới mạng của bạn thay vì đi qua Tor.</p>
+
+		<dl>
+<dt>Quy tắc nạp nội dung</dt>
+			<dd>Không chặn (duyệt web bình thường)</dd>
+
+			<dt>Tắt Universal Link</dt>
+			<dd>Tắt</dd>
+
+			<dt>WebRTC</dt>
+			<dd>Đã bật</dd>
+
+			<dt>Cho phép tải tài nguyên đa chế độ</dt>
+			<dd>Có</dd>
+		</dl>
+<h2>2. Trung bình</h2>
+
+		<p class="recommendation">(Khuyên dùng)</p>
+		<p class="outcome">Vài thứ không hoạt động.</p>
+		<p>JavaScript được cho phép, nhưng một vài tính năng như WebSockets, định vị,
+			XHR, v.v, vẫn bị vô hiệu hóa.</p>
+
+		<dl>
+<dt>Quy tắc nạp nội dung</dt>
+			<dd>Chặn kết nối XHR/WebSocket/Video</dd>
+
+			<dt>Tắt Universal Link</dt>
+			<dd>Đã bật</dd>
+
+			<dt>WebRTC</dt>
+			<dd>Vô Hiệu Hóa</dd>
+
+			<dt>Cho phép tải tài nguyên đa chế độ</dt>
+			<dd>Không</dd>
+		</dl>
+<h2>3. Bảo mật</h2>
+
+		<p class="recommendation">(Khuyên dùng)</p>
+		<p class="outcome">Nhiều thứ không hoạt động.</p>
+		<p>Vô hiệu hóa JavaScript, WebSockets, định vị, XHR, v.v.</p>
+
+		<dl>
+<dt>Quy tắc nạp nội dung</dt>
+			<dd>Nghiêm ngặt (không JavaScript, video, v.v...)</dd>
+
+			<dt>Tắt Universal Link</dt>
+			<dd>Đã bật</dd>
+
+			<dt>WebRTC</dt>
+			<dd>Vô Hiệu Hóa</dd>
+
+			<dt>Cho phép tải tài nguyên đa chế độ</dt>
+			<dd>Không</dd>
+		</dl>
+</body>
+</html>

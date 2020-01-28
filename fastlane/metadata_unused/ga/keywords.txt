@@ -1,1 +1,1 @@
-Browser,Tor,Tor Browser,Onion Browser,anonymous,private,private browser,orbot,orfox,onion
+Brabhsálaí,Tor,Brabhsálaí Tor,Brabhsálaí Onion,príobháideach,príobháideachas,orbot,orfox,onion

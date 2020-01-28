@@ -760,6 +760,10 @@
 		A0C26E4623D8664A00C4AF1C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = de; path = "de.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A0C3770D1F47342C0039198E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		A0C9531923C6426C006D7A35 /* FixedFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedFormViewController.swift; sourceTree = "<group>"; };
+		A0D670E123E04A000003CFF6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = es; path = "es.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A0D670E223E04A1E0003CFF6 /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ga; path = "ga.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A0D670E323E04A2D0003CFF6 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = is; path = "is.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A0D670E423E04A4A0003CFF6 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = vi; path = "vi.lproj/security-levels.html"; sourceTree = "<group>"; };
 		BED522A5B119CE39951BF4AF /* Pods-OnionBrowser2 Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnionBrowser2 Tests.debug.xcconfig"; path = "Target Support Files/Pods-OnionBrowser2 Tests/Pods-OnionBrowser2 Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -2412,6 +2416,10 @@
 				A097899E23DC2FF500FD3F54 /* mk */,
 				A0823ED323DE1A3F00641854 /* ja */,
 				A03ECAB123DEF92F008D3A35 /* tr-TR */,
+				A0D670E123E04A000003CFF6 /* es */,
+				A0D670E223E04A1E0003CFF6 /* ga */,
+				A0D670E323E04A2D0003CFF6 /* is */,
+				A0D670E423E04A4A0003CFF6 /* vi */,
 			);
 			name = "security-levels.html";
 			sourceTree = "<group>";

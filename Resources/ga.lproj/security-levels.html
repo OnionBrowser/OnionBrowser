@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable: no">
+<title class="notranslate">about:security-levels</title>
+<style type="text/css">
+		body {
+			margin: 1em;
+
+			color: black;
+			font-family: sans-serif;
+		}
+
+		h1 {
+			text-align: center;
+			text-transform: uppercase;
+		}
+
+		dt {
+			font-weight: bold;
+		}
+
+		.recommendation {
+			color: gray;
+		}
+
+		.outcome {
+			font-weight: bold;
+		}
+
+		.warning {
+			font-weight: bold;
+			font-style: italic;
+		}
+
+		@media (prefers-color-scheme: dark) {
+			body {
+				color: white;
+
+				background-color: black;
+			}
+		}
+		</style>
+</head>
+<body>
+		<h1>Leibhéil Slándála</h1>
+
+		<p>Chuireamar socruithe slándála i ngrúpaí chun leibhéal iomlán slándála a thabhairt duit le linn brabhsála.
+Tá míniú ar na leibhéil éagsúla thíos.
+Rachaidh siad i bhfeidhm ar fheidhmíocht ar bhealaí éagsúla.</p>
+
+		<h2>1. Neamhshlán</h2>
+
+		<p class="recommendation">(Ní mholtar é seo)</p>
+		<p class="outcome">Feidhmeoidh chuile rud.</p>
+		<p><span class="warning">Rabhadh: D'fhéadfadh an socrú seo do chuid eolais pearsanta a scaoileadh ar bhealach contúirteach.</span>
+Tugann sé cead do leathanaigh Ghréasáin feidhmeanna áirithe a úsáid (WebRTC, Fuaim/Fís, srl.)
+a d'fhéadfadh cumarsáid a dhéanamh ar do bhuncheangal seachas trí thollán Tor.</p>
+
+		<dl>
+<dt>Polasaí inneachair</dt>
+			<dd>Oscail (gnáthbhrabhsáil)</dd>
+
+			<dt>Cosaint Uilíoch Nascanna</dt>
+			<dd>Múchta</dd>
+
+			<dt>WebRTC</dt>
+			<dd>Cumasaithe</dd>
+
+			<dt>Ceadaigh acmhainní módmheasctha</dt>
+			<dd>Ceadaigh</dd>
+		</dl>
+<h2>2. Measartha Slán</h2>
+
+		<p class="recommendation">(Molta)</p>
+		<p class="outcome">Ní fheidhmeoidh rudaí áirithe.</p>
+		<p>Tá JavaScript ceadaithe, ach díchumasófar gnéithe áirithe, mar shampla WebSockets, geoshuíomh, XHR, srl.</p>
+
+		<dl>
+<dt>Polasaí inneachair</dt>
+			<dd>Gan cheangal XHR/WebSocket/Físe</dd>
+
+			<dt>Cosaint Uilíoch Nascanna</dt>
+			<dd>Cumasaithe</dd>
+
+			<dt>WebRTC</dt>
+			<dd>Díchumasaithe</dd>
+
+			<dt>Ceadaigh acmhainní módmheasctha</dt>
+			<dd>Ná Ceadaigh</dd>
+		</dl>
+<h2>3. Slán</h2>
+
+		<p class="recommendation">(Molta)</p>
+		<p class="outcome">Ní fheidhmeoidh go leor rudaí.</p>
+		<p>Díchumasaíonn sé seo JavaScript, WebSockets, geoshuíomh, XHR, srl.</p>
+
+		<dl>
+<dt>Polasaí inneachair</dt>
+			<dd>Dian (gan JavaScript, físeáin, srl.)</dd>
+
+			<dt>Cosaint Uilíoch Nascanna</dt>
+			<dd>Cumasaithe</dd>
+
+			<dt>WebRTC</dt>
+			<dd>Díchumasaithe</dd>
+
+			<dt>Ceadaigh acmhainní módmheasctha</dt>
+			<dd>Ná Ceadaigh</dd>
+		</dl>
+</body>
+</html>

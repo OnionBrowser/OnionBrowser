@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable: no">
+<title class="notranslate">about:security-levels</title>
+<style type="text/css">
+		body {
+			margin: 1em;
+
+			color: black;
+			font-family: sans-serif;
+		}
+
+		h1 {
+			text-align: center;
+			text-transform: uppercase;
+		}
+
+		dt {
+			font-weight: bold;
+		}
+
+		.recommendation {
+			color: gray;
+		}
+
+		.outcome {
+			font-weight: bold;
+		}
+
+		.warning {
+			font-weight: bold;
+			font-style: italic;
+		}
+
+		@media (prefers-color-scheme: dark) {
+			body {
+				color: white;
+
+				background-color: black;
+			}
+		}
+		</style>
+</head>
+<body>
+		<h1>Öryggisstig</h1>
+
+		<p>Host security settings have been grouped in ways to give you an overall level
+		of security while browsing sites. Below is a mapping of the settings in each level.
+		They may alter performance in different ways.</p>
+
+		<h2>1. Óöruggt</h2>
+
+		<p class="recommendation">(Ekki er mælt með þessu)</p>
+		<p class="outcome">Allt ætti að virka.</p>
+		<p><span class="warning">Aðvörun: Þetta gæti lekið upplýsingum frá þér og mögulega verið hættulegt.</span>
+			Þetta stig leyfir vefsíðum að nota ýmsa eiginleika (WebRTC, Audio/Video, o.s.frv.)
+			sem gætu tengst yfir venjulegu nettenginguna þína í stað þess að beinast í gegnum Tor.</p>
+
+		<dl>
+<dt>Stefna varðandi efni</dt>
+			<dd>Opna (venjulegur vafurhamur)</dd>
+
+			<dt>Almenn vörn tengla</dt>
+			<dd>Slökkt</dd>
+
+			<dt>WebRTC</dt>
+			<dd>Virkt</dd>
+
+			<dt>Leyfa tilföng í blönduðum ham</dt>
+			<dd>Já</dd>
+		</dl>
+<h2>2. Miðlungs</h2>
+
+		<p class="recommendation">(Mælt er með þessu)</p>
+		<p class="outcome">Sumt mun ekki virka.</p>
+		<p>JavaScript er leyft, en sumir eiginleikar í því eins og WebSockets, hnattstaðsetning,
+			XHR, o.s.frv., eru áfram alveg óvirkir.</p>
+
+		<dl>
+<dt>Stefna varðandi efni</dt>
+			<dd>Engar XHR/WebSocket/myndskeiðs-tengingar</dd>
+
+			<dt>Almenn vörn tengla</dt>
+			<dd>Kveikt</dd>
+
+			<dt>WebRTC</dt>
+			<dd>Óvirkt</dd>
+
+			<dt>Leyfa tilföng í blönduðum ham</dt>
+			<dd>Nei</dd>
+		</dl>
+<h2>3. Öryggt</h2>
+
+		<p class="recommendation">(Mælt er með þessu)</p>
+		<p class="outcome">Margt mun ekki virka.</p>
+		<p>Gerir óvirkt JavaScript, WebSockets, hnattstaðsetningu, XHR, o.s.frv.</p>
+
+		<dl>
+<dt>Stefna varðandi efni</dt>
+			<dd>Strangt (ekkert JavaScript, myndskeið, o.s.frv.)</dd>
+
+			<dt>Almenn vörn tengla</dt>
+			<dd>Kveikt</dd>
+
+			<dt>WebRTC</dt>
+			<dd>Óvirkt</dd>
+
+			<dt>Leyfa tilföng í blönduðum ham</dt>
+			<dd>Nei</dd>
+		</dl>
+</body>
+</html>

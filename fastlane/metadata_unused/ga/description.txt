@@ -5,10 +5,10 @@ Is é Brabhsálaí Onion an chéad bhrabhsálaí oscailte bunaithe ar Tor ar ghl
 Luaite i: The New York Times, The Guardian, Salon, TechCrunch, Gizmodo, Boing Boing, Lifehacker, Macworld, The Daily Dot, agus in áiteanna eile.
 
 GNÉITHE:
-• Brabhsáil an tIdirlíon trí líonra Tor:
-- Cuir cosc ar lorgaireacht Ghréasáin.
-- Cosain do chuid tráchta ó líonraí agus ó sholáthraithe seirbhíse neamhshlána.
-- Tacaíocht do HTTPS Everywhere, seirbhís a athraíonn go suímh HTTPS go huathoibríoch.
+• Brabhsáil an tIdirlíon thar líonra Tor:
+- Cuir cosc ar lorgaireacht Ghréasáin
+- Cosain do chuid tráchta ó líonraí agus ó sholáthraithe seirbhíse neamhshlána
+- Tacaíocht do HTTPS Everywhere, seirbhís a athraíonn go suímh HTTPS go huathoibríoch
 - Bain úsáid as suímh .onion atá ar fáil trí Tor amháin.
 
 • Troid in aghaidh na lorgaireachta: cuir cosc ar scripteanna agus glan fianáin agus cluaisíní, bunaithe ar do roghanna.
