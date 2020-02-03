@@ -3,42 +3,97 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable: no">
-<title class="notranslate">about:security-levels</title>
-<style type="text/css">
+<title>about:security-levels</title>
+<style>
 		body {
 			margin: 1em;
 
-			color: black;
 			font-family: sans-serif;
+			font-size: 13pt;
+
+			color: #4a4a4a;
 		}
 
 		h1 {
 			text-align: center;
+
+			font-size: 35pt;
+			font-weight: bold;
+
+			color: #4a4a4a;
+		}
+
+		h2 {
+			font-size: 18pt;
+			font-weight: bold;
+
+			color: #4a4a4a;
+		}
+
+		h3 {
 			text-transform: uppercase;
+
+			font-size: 12pt;
+			font-weight: bold;
+
+			color: #720e95;
+		}
+
+		a {
+			font-weight: bold;
+
+			color: #720e95;
 		}
 
 		dt {
 			font-weight: bold;
 		}
 
-		.recommendation {
-			color: gray;
+		.title1 {
+			font-size: 95pt;
+			font-weight: bold;
+
+			color: #720e95;
 		}
 
-		.outcome {
+		.title2 {
+			font-size: 45pt;
 			font-weight: bold;
+
+			color: white;
+			background-color: #d8d8d8;
+		}
+
+		.recommendation {
+			font-weight: bold;
+
+			color: #720e95;
+		}
+
+		.subtitle, .outcome {
+			text-transform: uppercase;
+
+			font-size: 14pt;
+			font-weight: bold;
+
+			color: #4a4a4a;
 		}
 
 		.warning {
 			font-weight: bold;
-			font-style: italic;
 		}
 
 		@media (prefers-color-scheme: dark) {
 			body {
-				color: white;
-
 				background-color: black;
+			}
+
+			body, h1, h2, .subtitle, .outcome {
+				color: white;
+			}
+
+			a, h3, .title1, .recommendation {
+				color: #c2a0ca;
 			}
 		}
 		</style>
@@ -50,7 +105,7 @@
 		of security while browsing sites. Below is a mapping of the settings in each level.
 		They may alter performance in different ways.</p>
 
-		<h2>1. Kém bảo mật</h2>
+		<h3>1. Kém bảo mật</h3>
 
 		<p class="recommendation">(Không khuyên dùng)</p>
 		<p class="outcome">Mọi thứ hoạt động bình thường.</p>
@@ -71,7 +126,7 @@
 			<dt>Cho phép tải tài nguyên đa chế độ</dt>
 			<dd>Có</dd>
 		</dl>
-<h2>2. Trung bình</h2>
+<h3>2. Trung bình</h3>
 
 		<p class="recommendation">(Khuyên dùng)</p>
 		<p class="outcome">Vài thứ không hoạt động.</p>
@@ -91,7 +146,7 @@
 			<dt>Cho phép tải tài nguyên đa chế độ</dt>
 			<dd>Không</dd>
 		</dl>
-<h2>3. Bảo mật</h2>
+<h3>3. Bảo mật</h3>
 
 		<p class="recommendation">(Khuyên dùng)</p>
 		<p class="outcome">Nhiều thứ không hoạt động.</p>
