@@ -126,6 +126,9 @@ class Tab: UIView {
 		}
 	}
 
+	/**
+	https://www.hackingwithswift.com/articles/112/the-ultimate-guide-to-wkwebview
+	*/
 	private(set) lazy var webView: WKWebView = {
 		let conf = WKWebViewConfiguration()
 		conf.allowsAirPlayForMediaPlayback = true
