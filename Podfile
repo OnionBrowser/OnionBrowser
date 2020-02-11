@@ -20,3 +20,7 @@ target 'OnionBrowser2 Tests' do
   pod 'OCMock'
   pod 'DTFoundation/DTASN1'
 end
+
+target 'TorVPN' do
+  pod 'OBTun2Socks', git: 'https://github.com/tladesignz/OBTun2Socks.git'
+end

@@ -165,6 +165,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 
 	func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
 
+		if let log = FileManager.default.log {
+			print("\n---")
+			print(log)
+			print("---\n")
+		}
+
 		JAHPAuthenticatingHTTPProtocol.setDelegate(self)
 		JAHPAuthenticatingHTTPProtocol.start()
 
@@ -218,7 +224,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 		if (!inStartupPhase && mgr.state != .started && mgr.state != .connected) {
 			// Difficult situation to add a delegate here, so we never did.
 			// Turns out, it is no problem. Tor seems to always restart correctly.
-			mgr.startTor(delegate: nil)
+//			mgr.startTor(delegate: nil)
 		}
 		else {
 			inStartupPhase = false

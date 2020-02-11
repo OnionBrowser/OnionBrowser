@@ -109,7 +109,7 @@ UITableViewDataSource, UITableViewDelegate {
 	// MARK: Actions
 
 	@IBAction func newCircuits() {
-		OnionManager.shared.closeCircuits(usedCircuits) { _ in
+		VpnManager.shared.closeCircuits(usedCircuits) { _ in
 			AppDelegate.shared?.browsingUi?.currentTab?.refresh()
 
 			self.dismiss(animated: true)
@@ -125,7 +125,7 @@ UITableViewDataSource, UITableViewDelegate {
 
 	private func reloadCircuits() {
 		DispatchQueue.global(qos: .userInitiated).async {
-            OnionManager.shared.getCircuits { circuits in
+            VpnManager.shared.getCircuits { circuits in
 
 				// Store in-use circuits (identified by having a SOCKS username,
 				// so the user can close them and get fresh ones on #newCircuits.

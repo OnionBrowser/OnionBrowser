@@ -12,7 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Config : NSObject
 
-@property (class, nonatomic, assign, readonly, nonnull) NSString *extBundleId;
+@property (class, nonatomic, assign, readonly, nonnull) NSString *extBundleId NS_REFINED_FOR_SWIFT;
+
+@property (class, nonatomic, assign, readonly, nonnull) NSString *groupId NS_REFINED_FOR_SWIFT;
 
 @end
 

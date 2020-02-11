@@ -12,79 +12,323 @@ import NetworkExtension
 
 class PacketTunnelProvider: NEPacketTunnelProvider {
 
+	private enum Errors: Error {
+		case cookieUnreadable
+	}
+
 	private static let ENABLE_LOGGING = true
-	private static var messageQueue: [String: Any] = ["log":[]]
+	private static var messageQueue = [Message]()
+
+	private static let torSocksPort: Int32 = 39050
+	private static let torControlPort: UInt16 = 39060
+	private static let localhost = "127.0.0.1"
 
 	private var hostHandler: ((Data?) -> Void)?
 
-    override func startTunnel(options: [String : NSObject]?, completionHandler: @escaping (Error?) -> Void) {
-        // Add code here to start the process of connecting the tunnel.
+	private let queue = DispatchQueue(label: "\(String(describing: Bundle.main.bundleIdentifier)).queue")
 
-		log("[\(String(describing: type(of: self)))]#startTunnel")
+	private var torThread: TorThread?
 
-		let ipv4 = NEIPv4Settings(addresses: ["192.168.20.2"], subnetMasks: ["255.255.255.0"])
-		ipv4.includedRoutes = [NEIPv4Route.default()]
+	private lazy var torConf: TorConfiguration = {
+		let conf = TorConfiguration()
 
-		let ipv6 = NEIPv6Settings.init(addresses: ["fec0::0001"], networkPrefixLengths: [0])
-		ipv6.includedRoutes = [NEIPv6Route.default()]
+		let dataDirectory = FileManager.default.groupFolder?.appendingPathComponent("tor")
 
-		let settings = NEPacketTunnelNetworkSettings(tunnelRemoteAddress: "127.0.0.1")
-		settings.ipv4Settings = ipv4
-		settings.ipv6Settings = ipv6
-		settings.dnsSettings = NEDNSSettings(servers: ["127.0.0.1"])
-
-		log("[\(String(describing: type(of: self)))]#startTunnel before setTunnelNetworkSettings")
-
-		setTunnelNetworkSettings(settings) { error in
-			self.log("[\(String(describing: type(of: self)))]#startTunnel in callback error=\(String(describing: error))")
-
-			completionHandler(error)
+		if let dataDirectory = dataDirectory {
+			// Need to clean out, so data doesn't grow too big. Otherwise
+			// we get killed by Jetsam because Tor will use too much memory.
+			try? FileManager.default.removeItem(at: dataDirectory)
 		}
 
-		log("[\(String(describing: type(of: self)))]#startTunnel end")
+		conf.options = ["DNSPort": "12345",
+						"AutomapHostsOnResolve": "1",
+						"ClientOnly": "1",
+						"SocksPort": "\(PacketTunnelProvider.torSocksPort)",
+						"ControlPort": "\(PacketTunnelProvider.localhost):\(PacketTunnelProvider.torControlPort)",
+						"AvoidDiskWrites": "1"]
+
+		conf.cookieAuthentication = true
+		conf.dataDirectory = dataDirectory
+
+		conf.arguments = [
+			"--allow-missing-torrc",
+			"--ignore-missing-torrc",
+		]
+
+		return conf
+	}()
+
+	private var torController: TorController?
+
+	private lazy var controllerQueue = DispatchQueue.global(qos: .userInitiated)
+
+	private var torRunning: Bool {
+		self.log("#torRunning 0")
+
+		guard torThread?.isExecuting ?? false else {
+			self.log("#torRunning 1")
+
+			return false
+		}
+
+		self.log("#torRunning 2")
+
+		if let lock = torConf.dataDirectory?.appendingPathComponent("lock") {
+			self.log("#torRunning 3")
+
+			return FileManager.default.fileExists(atPath: lock.path)
+		}
+
+		self.log("#torRunning 4")
+
+		return false
 	}
 
-    override func stopTunnel(with reason: NEProviderStopReason, completionHandler: @escaping () -> Void) {
-        // Add code here to start the process of stopping the tunnel.
-        completionHandler()
-    }
-
-    override func handleAppMessage(_ messageData: Data, completionHandler: ((Data?) -> Void)?) {
-		if PacketTunnelProvider.ENABLE_LOGGING {
-			hostHandler = completionHandler
+	private var cookie: Data? {
+		if let cookieUrl = torConf.dataDirectory?.appendingPathComponent("control_auth_cookie") {
+			return try? Data(contentsOf: cookieUrl)
 		}
-    }
 
-    override func sleep(completionHandler: @escaping () -> Void) {
-        // Add code here to get ready to sleep.
-        completionHandler()
-    }
+		return nil
+	}
 
-    override func wake() {
-        // Add code here to wake up.
-    }
+	override init() {
+		super.init()
+
+		NSKeyedUnarchiver.setClass(CloseCircuitsMessage.self, forClassName:
+			"OnionBrowser.\(String(describing: CloseCircuitsMessage.self))")
+
+		NSKeyedUnarchiver.setClass(GetCircuitsMessage.self, forClassName:
+			"OnionBrowser.\(String(describing: GetCircuitsMessage.self))")
+	}
+
+
+	override func startTunnel(options: [String : NSObject]?, completionHandler: @escaping (Error?) -> Void) {
+		log("#startTunnel")
+
+		let ipv4 = NEIPv4Settings(addresses: ["192.0.2.4"], subnetMasks: ["255.255.255.0"])
+		ipv4.includedRoutes = [NEIPv4Route.default()]
+
+		let settings = NEPacketTunnelNetworkSettings(tunnelRemoteAddress: PacketTunnelProvider.localhost)
+		settings.ipv4Settings = ipv4
+		settings.dnsSettings = NEDNSSettings(servers: [PacketTunnelProvider.localhost])
+
+		log("#startTunnel before setTunnelNetworkSettings")
+
+		setTunnelNetworkSettings(settings) { error in
+			self.log("#startTunnel in setTunnelNetworkSettings callback")
+
+			if let error = error {
+				self.log("#startTunnel error=\(error)")
+				return completionHandler(error)
+			}
+
+			self.log("#startTunnel before start Tor thread")
+
+			if !self.torRunning {
+				self.log("#startTunnel configure Tor thread")
+
+				self.torThread = TorThread(configuration: self.torConf)
+
+				self.log("#startTunnel start Tor thread")
+				self.torThread?.start()
+			}
+
+			self.log("#startTunnel before dispatch")
+
+			self.controllerQueue.asyncAfter(deadline: .now() + 0.75) {
+				self.log("#startTunnel try to connect to Tor thread=\(String(describing: self.torThread))")
+
+// Use this with a recent Tor.framework to tunnel logs from Tor to the app.
+				if PacketTunnelProvider.ENABLE_LOGGING {
+					TORInstallTorLoggingCallback { (type: OSLogType, message: UnsafePointer<Int8>) in
+						if type == .default || type == .error || type == .fault {
+							PacketTunnelProvider.log(String(cString: message))
+						}
+					}
+				}
+
+				if self.torController == nil {
+					self.torController = TorController(
+						socketHost: PacketTunnelProvider.localhost,
+						port: PacketTunnelProvider.torControlPort)
+				}
+
+				if !(self.torController?.isConnected ?? false) {
+					do {
+						try self.torController?.connect()
+					}
+					catch let error {
+						self.log("#startTunnel error=\(error)")
+
+						return completionHandler(error)
+					}
+				}
+
+				guard let cookie = self.cookie else {
+					self.log("#startTunnel cookie unreadable")
+
+					return completionHandler(Errors.cookieUnreadable)
+				}
+
+				self.torController?.authenticate(with: cookie) { success, error in
+					if let error = error {
+						self.log("#startTunnel error=\(error)")
+
+						return completionHandler(error)
+					}
+
+					var progressObs: Any?
+					progressObs = self.torController?.addObserver(forStatusEvents: {
+						(type, severity, action, arguments) -> Bool in
+
+						if type == "STATUS_CLIENT" && action == "BOOTSTRAP" {
+							let progress = Int(arguments!["PROGRESS"]!)!
+							self.log("#startTunnel progress=\(progress)")
+
+							PacketTunnelProvider.messageQueue.append(ProgressMessage(Float(progress) / 100))
+							self.sendMessages()
+
+							if progress >= 100 {
+								self.torController?.removeObserver(progressObs)
+							}
+
+							return true
+						}
+
+						return false
+					})
+
+					var observer: Any?
+					observer = self.torController?.addObserver(forCircuitEstablished: { established in
+						guard established else {
+							return
+						}
+
+						self.torController?.removeObserver(observer)
+
+						TunnelInterface.setup(with: self.packetFlow)
+						TunnelInterface.startTun2Socks(PacketTunnelProvider.torSocksPort,
+													   withUsername: "onionbrowser",
+													   andPassword: "onionbrowser");
+
+						DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+							TunnelInterface.processPackets()
+						}
+
+						self.log("#startTunnel successful")
+
+						completionHandler(nil)
+					})
+				}
+			}
+		}
+	}
+
+	override func stopTunnel(with reason: NEProviderStopReason, completionHandler: @escaping () -> Void) {
+		TunnelInterface.stop()
+
+		torController?.disconnect()
+		torController = nil
+
+		torThread?.cancel()
+		torThread = nil
+
+		completionHandler()
+	}
+
+	override func handleAppMessage(_ messageData: Data, completionHandler: ((Data?) -> Void)?) {
+		let request = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(messageData)
+
+		log("#handleAppMessage messageData=\(messageData), request=\(String(describing: request))")
+
+		if request is GetCircuitsMessage {
+			torController?.getCircuits { circuits in
+				let response = try? NSKeyedArchiver.archivedData(
+					withRootObject: circuits, requiringSecureCoding: true)
+
+				completionHandler?(response)
+			}
+
+			return
+		}
+
+		if let request = request as? CloseCircuitsMessage {
+			torController?.close(request.circuits) { success in
+				let response = try? NSKeyedArchiver.archivedData(
+					withRootObject: success, requiringSecureCoding: true)
+
+				completionHandler?(response)
+			}
+
+			return
+		}
+
+		// Wait for progress updates.
+		hostHandler = completionHandler
+	}
+
+	override func sleep(completionHandler: @escaping () -> Void) {
+		completionHandler()
+	}
+
+	override func wake() {
+	}
+
+
+	// MARK: Private Methods
 
 	@objc private func sendMessages() {
-		if PacketTunnelProvider.ENABLE_LOGGING, let handler = hostHandler {
-			let response = try? NSKeyedArchiver.archivedData(withRootObject: PacketTunnelProvider.messageQueue, requiringSecureCoding: false)
-			PacketTunnelProvider.messageQueue = ["log": []]
-			handler(response)
-			hostHandler = nil
+		DispatchQueue.main.async {
+			if let handler = self.hostHandler {
+				let response = try? NSKeyedArchiver.archivedData(
+					withRootObject: PacketTunnelProvider.messageQueue,
+					requiringSecureCoding: true)
+
+				PacketTunnelProvider.messageQueue.removeAll()
+
+				handler(response)
+
+				self.hostHandler = nil
+			}
 		}
 	}
 
 	private func log(_ message: String) {
 		PacketTunnelProvider.log(message)
-
-		sendMessages()
 	}
 
-	private static func log(_ message: String) {
-		if ENABLE_LOGGING, var log = messageQueue["log"] as? [String] {
-			log.append("\(self): \(message)")
-			messageQueue["log"] = log
+	private static var logfile: URL? = {
+		let fm = FileManager.default
 
-			NSLog(message)
+		if let url = fm.logfile {
+
+			if fm.fileExists(atPath: url.path) {
+				try? fm.removeItem(at: url)
+			}
+
+			fm.createFile(atPath: url.path, contents: nil)
+
+			return url
+		}
+
+		return nil
+	}()
+
+	private static func log(_ message: String) {
+		if ENABLE_LOGGING {
+			let msg = message.trimmingCharacters(in: .whitespacesAndNewlines)
+
+			NSLog(msg)
+
+			if let data = "\(msg)\n".data(using: .utf8),
+				let url = logfile,
+				let fh = try? FileHandle(forUpdating: url) {
+
+				fh.seekToEndOfFile()
+				fh.write(data)
+				fh.closeFile()
+			}
 		}
 	}
 }

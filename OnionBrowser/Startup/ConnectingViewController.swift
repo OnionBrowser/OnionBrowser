@@ -10,7 +10,7 @@
 
 import UIKit
 
-class ConnectingViewController: UIViewController, OnionManagerDelegate {
+class ConnectingViewController: UIViewController, OnionManagerDelegate, VpnManagerDelegate {
 
 	class func start(_ showSecurityLevelsInfo: Bool = false) {
 		let appDelegate = AppDelegate.shared
@@ -116,10 +116,12 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		OnionManager.shared.setBridgeConfiguration(bridgesType: Settings.currentlyUsedBridges,
-												   customBridges: Settings.customBridges)
+		VpnManager.shared.start(delegate: self)
 
-		OnionManager.shared.startTor(delegate: self)
+//		OnionManager.shared.setBridgeConfiguration(bridgesType: Settings.currentlyUsedBridges,
+//												   customBridges: Settings.customBridges)
+//
+//		OnionManager.shared.startTor(delegate: self)
 	}
 
 	override func viewDidAppear(_ animated: Bool) {
@@ -171,6 +173,25 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate {
 
 	func torConnError() {
 		AppDelegate.shared?.show(ErrorViewController())
+	}
+
+
+	// MARK: VpnManagerDelegate
+
+	func onError(_ error: Error) {
+		print("[\(String(describing: type(of: self)))]#onError error=\(error)")
+		torConnError()
+	}
+
+    func onProgress(_ progress: Float) {
+        DispatchQueue.main.async {
+            self.progress.progress = progress
+            self.progress.isHidden = false
+        }
+    }
+
+	func onConnected() {
+		torConnFinished()
 	}
 
 

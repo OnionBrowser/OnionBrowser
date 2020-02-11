@@ -24,3 +24,4 @@
 #import "CertificateAuthentication.h"
 #import "HSTSCache.h"
 #import "URLBlocker.h"
+#import "Config.h"
