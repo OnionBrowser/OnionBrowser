@@ -65,6 +65,8 @@ trans.sq = fastlane/metadata_unused/sq/subtitle.txt
 trans.ta = fastlane/metadata_unused/ta/subtitle.txt
 trans.te = fastlane/metadata_unused/te/subtitle.txt
 trans.tr_TR = fastlane/metadata/tr/subtitle.txt
+trans.zh-Hans = fastlane/metadata_unused/zh-Hans/subtitle.txt
+trans.zh-Hant = fastlane/metadata_unused/zh-Hant/subtitle.txt
 
 [onion-browser.keywords]
 file_filter = fastlane/metadata/<lang>/keywords.txt
@@ -90,6 +92,8 @@ trans.sq = fastlane/metadata_unused/sq/keywords.txt
 trans.ta = fastlane/metadata_unused/ta/keywords.txt
 trans.te = fastlane/metadata_unused/te/keywords.txt
 trans.tr_TR = fastlane/metadata/tr/keywords.txt
+trans.zh-Hans = fastlane/metadata_unused/zh-Hans/keywords.txt
+trans.zh-Hant = fastlane/metadata_unused/zh-Hant/keywords.txt
 
 [onion-browser.description]
 file_filter = fastlane/metadata/<lang>/description.txt
@@ -115,3 +119,5 @@ trans.sq = fastlane/metadata_unused/sq/description.txt
 trans.ta = fastlane/metadata_unused/ta/description.txt
 trans.te = fastlane/metadata_unused/te/description.txt
 trans.tr_TR = fastlane/metadata/tr/description.txt
+trans.zh-Hans = fastlane/metadata_unused/zh-Hans/description.txt
+trans.zh-Hant = fastlane/metadata_unused/zh-Hant/description.txt
