@@ -20,11 +20,12 @@ open class Bookmark: NSObject {
 
 	private static let keyBookmarks = "bookmarks"
 	private static let keyVersion = "version"
+	private static let keyId = "id"
 	private static let keyName = "name"
 	private static let keyUrl = "url"
 	private static let keyIcon = "icon"
 
-	private static let version = 2
+	private static let version = 3
 
 	private static var root = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last
 	private static var bookmarkFilePath = root?.appendingPathComponent("bookmarks.plist")
@@ -187,7 +188,7 @@ open class Bookmark: NSObject {
 			let data = NSMutableDictionary()
 			data[keyBookmarks] = bookmarks
 			data[keyVersion] = version
-
+			
 			return data.write(to: path, atomically: true)
 		}
 
@@ -199,6 +200,7 @@ open class Bookmark: NSObject {
 		return all.contains { $0.url == url }
 	}
 
+	var id: String?
 	var name: String?
 	var url: URL?
 
@@ -253,9 +255,10 @@ open class Bookmark: NSObject {
 		self.icon = icon
 	}
 
-	init(name: String?, url: String?, iconName: String) {
+	init(id: String?, name: String?, url: String?, iconName: String) {
 		super.init()
 
+		self.id = id
 		self.name = name
 
 		if let url = url {
@@ -266,7 +269,8 @@ open class Bookmark: NSObject {
 	}
 
 	convenience init(_ dic: NSDictionary) {
-		self.init(name: dic[Bookmark.keyName] as? String,
+		self.init(id: dic[Bookmark.keyId] as? String,
+				  name: dic[Bookmark.keyName] as? String,
 				  url: dic[Bookmark.keyUrl] as? String,
 				  iconName: dic[Bookmark.keyIcon] as? String ?? "")
 	}
@@ -301,6 +305,7 @@ open class Bookmark: NSObject {
 
 	private func asDic() -> NSDictionary {
 		return NSDictionary(dictionary: [
+			Bookmark.keyId: id ?? "",
 			Bookmark.keyName: name ?? "",
 			Bookmark.keyUrl: url?.absoluteString ?? "",
 			Bookmark.keyIcon: iconName,

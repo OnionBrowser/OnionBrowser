@@ -99,7 +99,8 @@ UITableViewDelegate, UISearchResultsUpdating, BookmarkViewControllerDelegate {
 	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
 		if editingStyle == .delete {
 			Bookmark.all[indexPath.row].icon = nil // Delete icon file.
-			Bookmark.all.remove(at: indexPath.row)
+			let bookmark = Bookmark.all.remove(at: indexPath.row)
+			delete(bookmark)
 			Bookmark.store()
 			tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
 		}
@@ -198,5 +199,100 @@ UITableViewDelegate, UISearchResultsUpdating, BookmarkViewControllerDelegate {
 		items?.append(tableView.isEditing ? doneEditingBt : editBt)
 
 		toolbar.setItems(items, animated: true)
+	}
+
+	private lazy var encoder: JSONEncoder = {
+		let encoder = JSONEncoder()
+
+		if #available(iOS 13.0, *) {
+			encoder.outputFormatting = .withoutEscapingSlashes
+		}
+
+		return encoder
+	}()
+
+	private lazy var decoder = JSONDecoder()
+
+	private func save(_ bookmark: Bookmark) {
+		guard var request = buildRequest(),
+			let payload = try? encoder.encode(["url": bookmark.url?.absoluteString,
+											   "title": bookmark.name]) else {
+												return
+		}
+
+		request.httpMethod = "POST"
+		request.httpBody = payload
+
+		let task = URLSession.shared.dataTask(with: request) { data, response, error in
+			if let error = error {
+				print("[\(String(describing: type(of: self)))]#save error=\(error)")
+				return
+			}
+
+			guard let response = response as? HTTPURLResponse else {
+				print("[\(String(describing: type(of: self)))]#save error=No HTTP response")
+				return
+			}
+
+			guard response.statusCode == 200 else {
+				print("[\(String(describing: type(of: self)))]#save statusCode=\(response.statusCode)")
+				return
+			}
+
+			guard let data = data else {
+				print("[\(String(describing: type(of: self)))]#save error=No body")
+				return
+			}
+
+			if let payload = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+				guard payload["status"] as? String == "success" else {
+					print("[\(String(describing: type(of: self)))]#save error=No success")
+					return
+				}
+
+				guard let item = payload["item"] as? [String: String] else {
+					print("[\(String(describing: type(of: self)))]#save error=No valid bookmark item")
+					return
+				}
+
+				bookmark.id = item["id"]
+			}
+		}
+		task.resume()
+	}
+
+	private func delete(_ bookmark: Bookmark) {
+		guard let id = bookmark.id,
+			var request = buildRequest(id) else {
+
+				return
+		}
+
+		request.httpMethod = "DELETE"
+
+		let task = URLSession.shared.dataTask(with: request)
+		task.resume()
+	}
+
+	/**
+	https://nextcloud-bookmarks.readthedocs.io/en/latest/bookmark.html
+	*/
+	private func buildRequest(_ id: String? = nil) -> URLRequest? {
+		guard let server = Settings.nextcloudServer,
+			let username = Settings.nextcloudUsername,
+			let password = Settings.nextcloudPassword,
+			let auth = "\(username):\(password)".data(using: .utf8)?.base64EncodedString(),
+			let url = URL(string: "https://\(server)/index.php/apps/bookmarks/public/rest/v2/bookmark\(id != nil ? "/\(id!)" : "")") else {
+
+				return nil
+		}
+
+		var request = URLRequest(url: url)
+		request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+		request.addValue("Basic \(auth)", forHTTPHeaderField: "Authorization")
+
+		JAHPAuthenticatingHTTPProtocol.temporarilyAllow(url)
+
+		return request
 	}
 }
