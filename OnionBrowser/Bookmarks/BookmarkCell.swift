@@ -18,6 +18,10 @@ class BookmarkCell: UITableViewCell {
         return String(describing: self)
     }
 
+	class var height: CGFloat {
+		return 44
+	}
+
 	@IBOutlet weak var iconImg: UIImageView!
     @IBOutlet weak var iconWidth: NSLayoutConstraint!
     @IBOutlet weak var nameLb: UILabel!
