@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable: no">
+<title>about:security-levels</title>
+<style>
+		body {
+			margin: 1em;
+
+			font-family: sans-serif;
+			font-size: 13pt;
+
+			color: #4a4a4a;
+		}
+
+		h1 {
+			text-align: center;
+
+			font-size: 35pt;
+			font-weight: bold;
+
+			color: #4a4a4a;
+		}
+
+		h2 {
+			font-size: 18pt;
+			font-weight: bold;
+
+			color: #4a4a4a;
+		}
+
+		h3 {
+			text-transform: uppercase;
+
+			font-size: 12pt;
+			font-weight: bold;
+
+			color: #720e95;
+		}
+
+		a {
+			font-weight: bold;
+
+			color: #720e95;
+		}
+
+		dt {
+			font-weight: bold;
+		}
+
+		.title1 {
+			font-size: 95pt;
+			font-weight: bold;
+
+			color: #720e95;
+		}
+
+		.title2 {
+			font-size: 45pt;
+			font-weight: bold;
+
+			color: white;
+			background-color: #d8d8d8;
+		}
+
+		.recommendation {
+			font-weight: bold;
+
+			color: #720e95;
+		}
+
+		.subtitle, .outcome {
+			text-transform: uppercase;
+
+			font-size: 14pt;
+			font-weight: bold;
+
+			color: #4a4a4a;
+		}
+
+		.warning {
+			font-weight: bold;
+		}
+
+		@media (prefers-color-scheme: dark) {
+			body {
+				background-color: black;
+			}
+
+			body, h1, h2, .subtitle, .outcome {
+				color: white;
+			}
+
+			a, h3, .title1, .recommendation {
+				color: #c2a0ca;
+			}
+		}
+		</style>
+</head>
+<body>
+		<h1>مستويات الأمان</h1>
+
+		<p>تم تجميع إعدادات أمان المضيف لاعطائك مستوى إجمالي من الأمان عند تصفحك للمواقع.
+		الإعدادات التفصيلية لكل مستوى مبينة بالأسفل. الإعدادات يمكنها أن تغير من الأداء بطرق مختلفة.</p>
+
+		<h3>1. غير آمن</h3>
+
+		<p class="recommendation">(لا يُنصح به)</p>
+		<p class="outcome">كل شىء يجب أن يعمل.</p>
+		<p><span class="warning">تحذير: هذا يمكن أن يكون سببا فى تسريب معلوماتك ومن المحتمل أن يكون خطرا.</span>
+			هذا المستوى يسمح للمواقع باستخدام بعض الخدمات (WebRTC، الصوت/الفيديو، الخ)
+			التى يمكن أن تتصل فوق اتصالك الأصلى بدلا من المرور عبر تور.</p>
+
+		<dl>
+<dt>سياسة المحتوى </dt>
+			<dd>فتح (وضع التصفّح العادي)</dd>
+
+			<dt>حماية من Universal Link</dt>
+			<dd>لا يعمل</dd>
+
+			<dt>WebRTC</dt>
+			<dd>مفعّل</dd>
+
+			<dt>السماح للموارد ذات الوضع المختلط</dt>
+			<dd>نعم</dd>
+		</dl>
+<h3>2. المتوسط</h3>
+
+		<p class="recommendation">(يُنصح به)</p>
+		<p class="outcome">بعض الأشياء لن تعمل.</p>
+		<p>مسموح بال JavaScript، ولكن بعض مميزاتها تظل غير مفعّلة مثل WebSockets، تحديد المواقع،
+			XHR، الخ.</p>
+
+		<dl>
+<dt>سياسة المحتوى </dt>
+			<dd>بدون إتصالات XHR/WebSocket/Video</dd>
+
+			<dt>حماية من Universal Link</dt>
+			<dd>يعمل</dd>
+
+			<dt>WebRTC</dt>
+			<dd>معطل </dd>
+
+			<dt>السماح للموارد ذات الوضع المختلط</dt>
+			<dd>لا</dd>
+		</dl>
+<h3>3. آمن</h3>
+
+		<p class="recommendation">(يُنصح به)</p>
+		<p class="outcome">كثير من الأشياء لن تعمل.</p>
+		<p>يعطّل WebSockets ،JavaScript، تحديد المواقع، XHR، الخ</p>
+
+		<dl>
+<dt>سياسة المحتوى </dt>
+			<dd>صارم (بدون JavaScript، فيديو، إلخ.)</dd>
+
+			<dt>حماية من Universal Link</dt>
+			<dd>يعمل</dd>
+
+			<dt>WebRTC</dt>
+			<dd>معطل </dd>
+
+			<dt>السماح للموارد ذات الوضع المختلط</dt>
+			<dd>لا</dd>
+		</dl>
+</body>
+</html>
