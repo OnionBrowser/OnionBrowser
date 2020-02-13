@@ -187,7 +187,7 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate {
 			self.view.addGestureRecognizer(UITapGestureRecognizer(
 				target: self, action: #selector(self.bridgeSettings)))
 			self.view.isUserInteractionEnabled = true
-}
+		}
 	}
 
 
