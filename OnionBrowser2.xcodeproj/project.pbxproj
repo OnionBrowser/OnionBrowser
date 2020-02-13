@@ -55,8 +55,6 @@
 		A003A6B823C9480000BD2D20 /* BridgesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A003A6B623C9480000BD2D20 /* BridgesViewController.swift */; };
 		A003A6BB23C94A4900BD2D20 /* ConnectingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A003A6B923C94A4900BD2D20 /* ConnectingViewController.xib */; };
 		A003A6BC23C94A4900BD2D20 /* ConnectingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A003A6BA23C94A4900BD2D20 /* ConnectingViewController.swift */; };
-		A003A6BF23C94D3800BD2D20 /* ErrorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A003A6BD23C94D3800BD2D20 /* ErrorViewController.xib */; };
-		A003A6C023C94D3800BD2D20 /* ErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A003A6BE23C94D3800BD2D20 /* ErrorViewController.swift */; };
 		A01D3BA323900D2800E536F2 /* RuleEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CBCD491E934249009D5352 /* RuleEditorController.m */; };
 		A024B39D23D38B9F007F9E68 /* AdvancedTorConfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A024B39C23D38B9F007F9E68 /* AdvancedTorConfViewController.swift */; };
 		A02CB2B523D0B0B300880720 /* AddBookmarkActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02CB2B423D0B0B300880720 /* AddBookmarkActivity.swift */; };
@@ -245,9 +243,7 @@
 		A003A6B523C9480000BD2D20 /* BridgesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BridgesViewController.xib; sourceTree = "<group>"; };
 		A003A6B623C9480000BD2D20 /* BridgesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgesViewController.swift; sourceTree = "<group>"; };
 		A003A6B923C94A4900BD2D20 /* ConnectingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConnectingViewController.xib; sourceTree = "<group>"; };
-		A003A6BA23C94A4900BD2D20 /* ConnectingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectingViewController.swift; sourceTree = "<group>"; };
-		A003A6BD23C94D3800BD2D20 /* ErrorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ErrorViewController.xib; sourceTree = "<group>"; };
-		A003A6BE23C94D3800BD2D20 /* ErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewController.swift; sourceTree = "<group>"; };
+		A003A6BA23C94A4900BD2D20 /* ConnectingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectingViewController.swift; sourceTree = "<group>"; usesTabs = 1; };
 		A00436091E81856F0067652D /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		A004360A1E81856F0067652D /* Cartfile.resolved */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile.resolved; sourceTree = "<group>"; };
 		A004360B1E81856F0067652D /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -1753,8 +1749,6 @@
 				A003A6B623C9480000BD2D20 /* BridgesViewController.swift */,
 				A003A6B923C94A4900BD2D20 /* ConnectingViewController.xib */,
 				A003A6BA23C94A4900BD2D20 /* ConnectingViewController.swift */,
-				A003A6BD23C94D3800BD2D20 /* ErrorViewController.xib */,
-				A003A6BE23C94D3800BD2D20 /* ErrorViewController.swift */,
 				A099B8B523CF60C800B50998 /* InitSecurityLevelViewController.xib */,
 				A099B8B623CF60C800B50998 /* InitSecurityLevelViewController.swift */,
 			);
@@ -2043,7 +2037,6 @@
 			files = (
 				A003A6B723C9480000BD2D20 /* BridgesViewController.xib in Resources */,
 				A0BF51F023AFBF250096624A /* https-everywhere_targets.plist in Resources */,
-				A003A6BF23C94D3800BD2D20 /* ErrorViewController.xib in Resources */,
 				A0BF524E23AFC3580096624A /* SecurityLevelCell.xib in Resources */,
 				A0BF528523AFC6D10096624A /* InfoPlist.strings in Resources */,
 				A0BF51F123AFBF250096624A /* Launch Screen.xib in Resources */,
@@ -2306,7 +2299,6 @@
 				A07B55FC23D736D60051663B /* CertificateViewController.swift in Sources */,
 				010EEA691A43C8CF001E8B65 /* CookieJar.m in Sources */,
 				A031761F23CE462300D75F2A /* BridgeConfViewController.swift in Sources */,
-				A003A6C023C94D3800BD2D20 /* ErrorViewController.swift in Sources */,
 				A053136F22F1C73A006655EC /* JAHPCacheStoragePolicy.m in Sources */,
 				A0BF525723AFC3580096624A /* SecurityPopUpViewController.swift in Sources */,
 			);

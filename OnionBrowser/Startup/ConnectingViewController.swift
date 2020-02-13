@@ -46,6 +46,7 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate {
 
 	@IBOutlet weak var image: UIImageView!
 	@IBOutlet weak var claimLb: UILabel!
+    @IBOutlet weak var claimLbTopAnchor: NSLayoutConstraint!
 
 	@IBOutlet weak var nextBt: UIButton! {
 		didSet {
@@ -169,8 +170,24 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate {
 		}
 	}
 
-	func torConnError() {
-		AppDelegate.shared?.show(ErrorViewController())
+	func torConnDifficulties() {
+		DispatchQueue.main.async {
+			self.refresh?.invalidate()
+			self.refresh = nil
+
+			self.image.isHidden = true
+
+			self.claimLb.text = NSLocalizedString(
+				"Seems, Tor can't connect. Maybe you need to configure a bridge? Tap here to do so.",
+				comment: "")
+			self.claimLbTopAnchor.isActive = false
+			self.claimLb.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+			self.claimLb.font = .systemFont(ofSize: 24)
+
+			self.view.addGestureRecognizer(UITapGestureRecognizer(
+				target: self, action: #selector(self.bridgeSettings)))
+			self.view.isUserInteractionEnabled = true
+}
 	}
 
 

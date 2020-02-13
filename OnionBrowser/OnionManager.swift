@@ -15,7 +15,7 @@ protocol OnionManagerDelegate {
 
 	func torConnFinished()
 
-	func torConnError()
+	func torConnDifficulties()
 }
 
 class OnionManager : NSObject {
@@ -108,7 +108,6 @@ class OnionManager : NSObject {
 	private var torThread: TorThread?
 
 	private var initRetry: DispatchWorkItem?
-	private var failGuard: DispatchWorkItem?
 
 	private var bridgesType = Settings.BridgesType.none
 	private var customBridges: [String]?
@@ -329,6 +328,8 @@ class OnionManager : NSObject {
 					var completeObs: Any?
 					completeObs = self.torController?.addObserver(forCircuitEstablished: { established in
 						if established {
+							Thread.sleep(forTimeInterval: 60)
+
 							self.state = .connected
 							self.torController?.removeObserver(completeObs)
 							self.cancelInitRetry()
@@ -376,19 +377,13 @@ class OnionManager : NSObject {
 			self.torController?.setConfForKey("DisableNetwork", withValue: "1")
 			self.torController?.setConfForKey("DisableNetwork", withValue: "0")
 
-			self.failGuard = DispatchWorkItem {
-				if self.state != .connected {
-					delegate?.torConnError()
-				}
-			}
-
-			// Show error to user, when, after 90 seconds (30 sec + one retry of 60 sec), Tor has still not started.
-			DispatchQueue.main.asyncAfter(deadline: .now() + 60, execute: self.failGuard!)
+			// Hint user that they might need to use a bridge.
+			delegate?.torConnDifficulties()
 		}
 
 		// On first load: If Tor hasn't finished bootstrap in 30 seconds,
 		// HUP tor once in case we have partially bootstrapped but got stuck.
-		DispatchQueue.main.asyncAfter(deadline: .now() + 30, execute: initRetry!)
+		DispatchQueue.main.asyncAfter(deadline: .now() + 15, execute: initRetry!)
 
 	}// startTor
 
@@ -469,8 +464,5 @@ class OnionManager : NSObject {
 	private func cancelInitRetry() {
 		initRetry?.cancel()
 		initRetry = nil
-
-		failGuard?.cancel()
-		failGuard = nil
 	}
 }
