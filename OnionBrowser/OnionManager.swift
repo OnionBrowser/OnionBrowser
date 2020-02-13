@@ -50,7 +50,8 @@ class OnionManager : NSObject {
 			"--allow-missing-torrc",
 			"--ignore-missing-torrc",
 			"--ClientOnly", "1",
-			"--SocksPort", "39050",
+			"--AvoidDiskWrites", "1",
+			"--SocksPort", "127.0.0.1:39050",
 			"--ControlPort", "127.0.0.1:39060",
 			"--Log", log_loc,
 			"--ClientUseIPv6", "1",
@@ -79,7 +80,6 @@ class OnionManager : NSObject {
 
 			try? FileManager.default.createDirectory(at: authDir, withIntermediateDirectories: true)
 
-			// TODO: pref pane for adding "<sitename>.auth_private" files to this directory.
 			conf.dataDirectory = dataDir
 
 			conf.arguments += ["--ClientOnionAuthDir", authDir.path]
@@ -113,6 +113,14 @@ class OnionManager : NSObject {
 	private var bridgesType = Settings.BridgesType.none
 	private var customBridges: [String]?
 	private var needsReconfiguration = false
+
+	private var cookie: Data? {
+		if let cookieUrl = OnionManager.torBaseConf.dataDirectory?.appendingPathComponent("control_auth_cookie") {
+			return try? Data(contentsOf: cookieUrl)
+		}
+
+		return nil
+	}
 
 	override init() {
 		super.init()
@@ -306,28 +314,17 @@ class OnionManager : NSObject {
 				}
 			}
 
-			let cookieUrl = OnionManager.torBaseConf.dataDirectory?.appendingPathComponent("control_auth_cookie")
-			let cookie: Data?
-
-			if let cookieUrl = cookieUrl {
-				cookie = try? Data(contentsOf: cookieUrl)
-			}
-			else {
-				cookie = nil
-			}
-
-			#if DEBUG
-			print("[\(String(describing: type(of: self)))] cookieUrl=", cookieUrl?.absoluteString ?? "nil")
-			print("[\(String(describing: type(of: self)))] cookie=", cookie?.base64EncodedString() ?? "nil")
-			#endif
-
-			guard cookie != nil else {
+			guard let cookie = self.cookie else {
 				print("[\(String(describing: type(of: self)))] Could not connect to Tor - cookie unreadable!")
 
 				return
 			}
 
-			self.torController?.authenticate(with: cookie!, completion: { success, error in
+			#if DEBUG
+			print("[\(String(describing: type(of: self)))] cookie=", cookie.base64EncodedString())
+			#endif
+
+			self.torController?.authenticate(with: cookie, completion: { success, error in
 				if success {
 					var completeObs: Any?
 					completeObs = self.torController?.addObserver(forCircuitEstablished: { established in
