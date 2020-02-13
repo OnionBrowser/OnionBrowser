@@ -328,8 +328,6 @@ class OnionManager : NSObject {
 					var completeObs: Any?
 					completeObs = self.torController?.addObserver(forCircuitEstablished: { established in
 						if established {
-							Thread.sleep(forTimeInterval: 60)
-
 							self.state = .connected
 							self.torController?.removeObserver(completeObs)
 							self.cancelInitRetry()
