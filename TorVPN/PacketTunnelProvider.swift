@@ -40,12 +40,13 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
 			try? FileManager.default.removeItem(at: dataDirectory)
 		}
 
-		conf.options = ["DNSPort": "12345",
+		conf.options = ["DNSPort": "\(PacketTunnelProvider.localhost):53",
 						"AutomapHostsOnResolve": "1",
 						"ClientOnly": "1",
 						"SocksPort": "\(PacketTunnelProvider.torSocksPort)",
 						"ControlPort": "\(PacketTunnelProvider.localhost):\(PacketTunnelProvider.torControlPort)",
-						"AvoidDiskWrites": "1"]
+						"AvoidDiskWrites": "1",
+						"MaxMemInQueues": "5MB" /* For reference, no impact seen so far */]
 
 		conf.cookieAuthentication = true
 		conf.dataDirectory = dataDirectory
@@ -140,13 +141,13 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
 				self.log("#startTunnel try to connect to Tor thread=\(String(describing: self.torThread))")
 
 // Use this with a recent Tor.framework to tunnel logs from Tor to the app.
-				if PacketTunnelProvider.ENABLE_LOGGING {
-					TORInstallTorLoggingCallback { (type: OSLogType, message: UnsafePointer<Int8>) in
-						if type == .default || type == .error || type == .fault {
-							PacketTunnelProvider.log(String(cString: message))
-						}
-					}
-				}
+//				if PacketTunnelProvider.ENABLE_LOGGING {
+//					TORInstallTorLoggingCallback { (type: OSLogType, message: UnsafePointer<Int8>) in
+//						if type == .default || type == .error || type == .fault {
+//							PacketTunnelProvider.log(String(cString: message))
+//						}
+//					}
+//				}
 
 				if self.torController == nil {
 					self.torController = TorController(
@@ -266,13 +267,6 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
 
 		// Wait for progress updates.
 		hostHandler = completionHandler
-	}
-
-	override func sleep(completionHandler: @escaping () -> Void) {
-		completionHandler()
-	}
-
-	override func wake() {
 	}
 
 

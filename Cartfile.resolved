@@ -1,2 +1,2 @@
 binary "https://cdn.tig.as/files/Iobfs4proxy.json" "1.0"
-binary "https://icepa.github.io/Tor.framework/Tor.json" "400.6.2"
+github "iCepa/Tor.framework" "1792ebfb9cf226d679085232abf07e4756aad180"
