@@ -275,11 +275,15 @@ class OnionManager : NSObject {
 			if needsReconfiguration {
 				let conf = getBridgesAsConf()
 
-				torController?.setConfForKey("UseBridges", withValue: conf.count > 0 ? "1" : "0")
 				torController?.resetConf(forKey: "Bridge")
 
 				if conf.count > 0 {
+					// Bridges need to be set *before* "UseBridges"="1"!
 					torController?.setConfs(conf)
+					torController?.setConfForKey("UseBridges", withValue: "1")
+				}
+				else {
+					torController?.setConfForKey("UseBridges", withValue: "0")
 				}
 			}
 		}
