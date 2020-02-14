@@ -99,68 +99,68 @@
 		</style>
 </head>
 <body>
-		<h1>Níveis de Segurança</h1>
+		<h1>Security Levels</h1>
 
-		<p>Configurações de segurança do host estão agrupadas de maneira a lhe dar um nível geral
-		de segurança enquanto você navega. Abaixo estão mapeadas as configurações em cada nível.
-		Elas podem alterar a performance de diferentes maneiras.</p>
+		<p>Host security settings have been grouped in ways to give you an overall level
+		of security while browsing sites. Below is a mapping of the settings in each level.
+		They may alter performance in different ways.</p>
 
-		<h3>1. Sem segurança</h3>
+		<h3>1. Insecure</h3>
 
-		<p class="recommendation">(Não recomendado)</p>
+		<p class="recommendation">(Not recommended)</p>
 		<p class="outcome">Tudo deve funcionar.</p>
-		<p><span class="warning">Aviso: Isso pode ser potencialmente perigoso e vazar suas informações</span>
-			Esse nível permite que páginas web usem funções (WebRTC, Audio/Video, etc)
-			que podem se conectar através de sua conexão original ao invés de usar o túnel do Tor.</p>
+		<p><span class="warning">Warning: This could leak your information and potentially be dangerous.</span>
+			This level allows web pages to use some functions (WebRTC, Audio/Video, etc)
+			that might connect over your original connection instead of tunneling through Tor.</p>
 
 		<dl>
-<dt>Política de conteúdo</dt>
+<dt>Política de Conteúdo</dt>
 			<dd>Abrir (modo de navegação normal)</dd>
 
-			<dt>Proteção universal de links</dt>
-			<dd>Desligar</dd>
+			<dt>Proteção de Hiperligação Universal</dt>
+			<dd>Desl.</dd>
 
 			<dt>WebRTC</dt>
-			<dd>Habilitada</dd>
+			<dd>Enabled</dd>
 
 			<dt>Permitir recursos de modo misto</dt>
 			<dd>Sim</dd>
 		</dl>
-<h3>1. Moderado</h3>
+<h3>2. Moderate</h3>
 
-		<p class="recommendation">(Recomendado)</p>
-		<p class="outcome">Algumas coisas não vão funcionar.</p>
-		<p>JavaScript está habilitado, mas algumas de suas funcionalidades como WebSockets, geolocalização
-			XHR, etc., estão explicitamente desabilitadas.</p>
+		<p class="recommendation">(Recommended)</p>
+		<p class="outcome">Algumas coisas não vão funcionar</p>
+		<p>JavaScript is allowed, but some of it’s features like WebSockets, geolocation,
+			XHR, etc., are still explicitly disabled.</p>
 
 		<dl>
-<dt>Política de conteúdo</dt>
-			<dd>Nenhuma conexão XHR/WebSocket/Video</dd>
+<dt>Política de Conteúdo</dt>
+			<dd>Sem ligações de XHR/WebSocket/Vídeo</dd>
 
-			<dt>Proteção universal de links</dt>
-			<dd>Ligar</dd>
+			<dt>Proteção de Hiperligação Universal</dt>
+			<dd>Lig.</dd>
 
 			<dt>WebRTC</dt>
-			<dd>Desativada</dd>
+			<dd>Desativado</dd>
 
 			<dt>Permitir recursos de modo misto</dt>
 			<dd>Não</dd>
 		</dl>
-<h3>3. Seguro</h3>
+<h3>3. Secure</h3>
 
-		<p class="recommendation">(Recomendado)</p>
-		<p class="outcome">Muitas coisas não vão funcionar.</p>
-		<p>Desabilita JavaScript, WebSockets, geolocalização, XHR, etc.</p>
+		<p class="recommendation">(Recommended)</p>
+		<p class="outcome">Muitas coisas não vão funcionar</p>
+		<p>Disables JavaScript, WebSockets, geolocation, XHR, etc.</p>
 
 		<dl>
-<dt>Política de conteúdo</dt>
-			<dd>Restrito (sem JavaScript, vídeo etc.)</dd>
+<dt>Política de Conteúdo</dt>
+			<dd>Estrito (sem JavaScript, vídeo, etc.)</dd>
 
-			<dt>Proteção universal de links</dt>
-			<dd>Ligar</dd>
+			<dt>Proteção de Hiperligação Universal</dt>
+			<dd>Lig.</dd>
 
 			<dt>WebRTC</dt>
-			<dd>Desativada</dd>
+			<dd>Desativado</dd>
 
 			<dt>Permitir recursos de modo misto</dt>
 			<dd>Não</dd>

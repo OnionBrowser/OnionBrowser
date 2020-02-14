@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable: no">
+<title>about:security-levels</title>
+<style>
+		body {
+			margin: 1em;
+
+			font-family: sans-serif;
+			font-size: 13pt;
+
+			color: #4a4a4a;
+		}
+
+		h1 {
+			text-align: center;
+
+			font-size: 35pt;
+			font-weight: bold;
+
+			color: #4a4a4a;
+		}
+
+		h2 {
+			font-size: 18pt;
+			font-weight: bold;
+
+			color: #4a4a4a;
+		}
+
+		h3 {
+			text-transform: uppercase;
+
+			font-size: 12pt;
+			font-weight: bold;
+
+			color: #720e95;
+		}
+
+		a {
+			font-weight: bold;
+
+			color: #720e95;
+		}
+
+		dt {
+			font-weight: bold;
+		}
+
+		.title1 {
+			font-size: 95pt;
+			font-weight: bold;
+
+			color: #720e95;
+		}
+
+		.title2 {
+			font-size: 45pt;
+			font-weight: bold;
+
+			color: white;
+			background-color: #d8d8d8;
+		}
+
+		.recommendation {
+			font-weight: bold;
+
+			color: #720e95;
+		}
+
+		.subtitle, .outcome {
+			text-transform: uppercase;
+
+			font-size: 14pt;
+			font-weight: bold;
+
+			color: #4a4a4a;
+		}
+
+		.warning {
+			font-weight: bold;
+		}
+
+		@media (prefers-color-scheme: dark) {
+			body {
+				background-color: black;
+			}
+
+			body, h1, h2, .subtitle, .outcome {
+				color: white;
+			}
+
+			a, h3, .title1, .recommendation {
+				color: #c2a0ca;
+			}
+		}
+		</style>
+</head>
+<body>
+		<h1>安全等级</h1>
+
+		<p>站点安全设置将你访问时的安全级别
+		进行分组。下面是每个级别的设置内容。
+		这些选项会影响访问体验。</p>
+
+		<h3>1. 不安全</h3>
+
+		<p class="recommendation">（不推荐）</p>
+		<p class="outcome">一切都准备好了。</p>
+		<p><span class="warning">警告：此选项可能会让你泄露信息。</span>
+			此级别的站点可以使用功能（WebRTC、音视频等）
+			从而导致你使用原本的网络而不是 Tor 来连接。</p>
+
+		<dl>
+<dt>内容政策</dt>
+			<dd>打开（正常浏览模式）</dd>
+
+			<dt>通用链接保护</dt>
+			<dd>已关闭</dd>
+
+			<dt>WebRTC</dt>
+			<dd>已启用</dd>
+
+			<dt>允许混合模式资源</dt>
+			<dd>是</dd>
+		</dl>
+<h3>2. 中等</h3>
+
+		<p class="recommendation">（推荐）</p>
+		<p class="outcome">出了些问题。</p>
+		<p>启用 JavaScript，禁用 WebSocket、地理位置、
+			XHR等功能。</p>
+
+		<dl>
+<dt>内容政策</dt>
+			<dd>无 XHR/WebSocket/视频连接</dd>
+
+			<dt>通用链接保护</dt>
+			<dd>已启用</dd>
+
+			<dt>WebRTC</dt>
+			<dd>已禁用</dd>
+
+			<dt>允许混合模式资源</dt>
+			<dd>否</dd>
+		</dl>
+<h3>3. 安全</h3>
+
+		<p class="recommendation">（推荐）</p>
+		<p class="outcome">出了些问题。</p>
+		<p>禁用 JavaScript、WebSocket、地理位置、XHR等。</p>
+
+		<dl>
+<dt>内容政策</dt>
+			<dd>严格（无 Javascript、视频等）</dd>
+
+			<dt>通用链接保护</dt>
+			<dd>已启用</dd>
+
+			<dt>WebRTC</dt>
+			<dd>已禁用</dd>
+
+			<dt>允许混合模式资源</dt>
+			<dd>否</dd>
+		</dl>
+</body>
+</html>

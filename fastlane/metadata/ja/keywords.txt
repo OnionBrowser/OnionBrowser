@@ -1,1 +1,1 @@
-ブラウザ,Tor,Torブラウザ,Onion Browser,匿名,プライベート,プライベートブラウザ,orbot,orfox,onion
+ブラウザ,Tor,トーア,Onion,オニオン,匿名,プライベート,セキュア,orbot,orfox,onion
