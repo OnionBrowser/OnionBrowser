@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable: no">
+<title>about:security-levels</title>
+<style>
+		body {
+			margin: 1em;
+
+			font-family: sans-serif;
+			font-size: 13pt;
+
+			color: #4a4a4a;
+		}
+
+		h1 {
+			text-align: center;
+
+			font-size: 35pt;
+			font-weight: bold;
+
+			color: #4a4a4a;
+		}
+
+		h2 {
+			font-size: 18pt;
+			font-weight: bold;
+
+			color: #4a4a4a;
+		}
+
+		h3 {
+			text-transform: uppercase;
+
+			font-size: 12pt;
+			font-weight: bold;
+
+			color: #720e95;
+		}
+
+		a {
+			font-weight: bold;
+
+			color: #720e95;
+		}
+
+		dt {
+			font-weight: bold;
+		}
+
+		.title1 {
+			font-size: 95pt;
+			font-weight: bold;
+
+			color: #720e95;
+		}
+
+		.title2 {
+			font-size: 45pt;
+			font-weight: bold;
+
+			color: white;
+			background-color: #d8d8d8;
+		}
+
+		.recommendation {
+			font-weight: bold;
+
+			color: #720e95;
+		}
+
+		.subtitle, .outcome {
+			text-transform: uppercase;
+
+			font-size: 14pt;
+			font-weight: bold;
+
+			color: #4a4a4a;
+		}
+
+		.warning {
+			font-weight: bold;
+		}
+
+		@media (prefers-color-scheme: dark) {
+			body {
+				background-color: black;
+			}
+
+			body, h1, h2, .subtitle, .outcome {
+				color: white;
+			}
+
+			a, h3, .title1, .recommendation {
+				color: #c2a0ca;
+			}
+		}
+		</style>
+</head>
+<body>
+		<h1>নিরাপত্তার মাত্রা</h1>
+
+		<p>হোস্টের নিরাপত্তাজনিত সেটিংকে এমনভাবে ভাগ করা হয়েছে যেন ব্রাউজ করার ক্ষেত্রে নিরাপত্তার
+		মাত্রার মোটামুটি একটা ধারণা পেতে পারেন। প্রতিটি মাত্রার সেটিং নিচে ভাগ ভাগ করে দেওয়া আছে।
+		সাইটের কর্মক্ষমতার উপর এর জন্য নানারকম প্রভাব পড়তে পারে।</p>
+
+		<h3>১. অনিরাপদ</h3>
+
+		<p class="recommendation">(শ্রেয় নয়)</p>
+		<p class="outcome">সবকিছু কাজ করা উচিত।</p>
+		<p><span class="warning">সাবধান: এতে আপনার তথ্য ফাঁস হয়ে যেতে পারে এবং বিপদ হতে পারে।.</span>
+			নিরাপত্তার এই মাত্রায় ওয়েবপেইজে এমন কিছু জিনিস (ওয়েবআরটিসি, অডিও/ভিডিও, ইত্যাদি)
+			চালু থাকে যা টরের মাধ্যমে না গিয়ে বরং আপনার মূল সংযোগের মাধ্যমে তথ্য পাঠাতে পারে।</p>
+
+		<dl>
+<dt>বিষয়বস্তুর নীতি</dt>
+			<dd>খুলুন (সাধারন ব্রাউজিং মুড)</dd>
+
+			<dt>সর্বজনীন লিঙ্ক সুরক্ষা</dt>
+			<dd>বন্ধ আছে</dd>
+
+			<dt>WebRTC</dt>
+			<dd>চালু</dd>
+
+			<dt>মিশ্রিতভাবে রিসোর্স লোডের অনুমতি দিন</dt>
+			<dd>হ্যা</dd>
+		</dl>
+<h3>২. মাঝামাঝি</h3>
+
+		<p class="recommendation">(শ্রেয়)</p>
+		<p class="outcome">কিছু কিছু জিনিস কাজ করবে না।</p>
+		<p>জাভাস্ক্রিপ্ট চালু থাকে, তবে ওয়েবসকেট, ভূ-অবস্থান, XHR, ইত্যাদির মত
+			কিছু সুবিধা নির্দিষ্ট করে বন্ধ করে রাখা থাকে।</p>
+
+		<dl>
+<dt>বিষয়বস্তুর নীতি</dt>
+			<dd>কোন XHR/WebSocket/Video সংযোগ নেই</dd>
+
+			<dt>সর্বজনীন লিঙ্ক সুরক্ষা</dt>
+			<dd>চালু আছে</dd>
+
+			<dt>WebRTC</dt>
+			<dd>অক্ষম</dd>
+
+			<dt>মিশ্রিতভাবে রিসোর্স লোডের অনুমতি দিন</dt>
+			<dd>না</dd>
+		</dl>
+<h3>৩. নিরাপদ</h3>
+
+		<p class="recommendation">(শ্রেয়)</p>
+		<p class="outcome">অনেক কিছুই কাজ করবে না।</p>
+		<p>জাভাস্ক্রিপ্ট, ওয়েবসকেট, ভূ-অবস্থান, XHR, ইত্যাদি বন্ধ থাকবে।</p>
+
+		<dl>
+<dt>বিষয়বস্তুর নীতি</dt>
+			<dd>কঠোর (কোন জাভাস্ক্রিপ্ট নয়, ভিডিও, ইত্যাদি)</dd>
+
+			<dt>সর্বজনীন লিঙ্ক সুরক্ষা</dt>
+			<dd>চালু আছে</dd>
+
+			<dt>WebRTC</dt>
+			<dd>অক্ষম</dd>
+
+			<dt>মিশ্রিতভাবে রিসোর্স লোডের অনুমতি দিন</dt>
+			<dd>না</dd>
+		</dl>
+</body>
+</html>
