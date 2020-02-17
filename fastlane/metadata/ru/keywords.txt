@@ -1,1 +1,1 @@
-Браузер,Tor,Tor Browser,Onion Browser,анонимность,приватность,приватный браузер,orbot,orfox,onion
+Браузер,Tor,Tor Browser,Onion Browser,анонимный,приватный,приватный браузер,orbot,orfox,onion
