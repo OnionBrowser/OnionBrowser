@@ -263,8 +263,20 @@
 		A01EE97023A3C3F6003B5AFD /* marketing_url.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = marketing_url.txt; sourceTree = "<group>"; };
 		A024B39C23D38B9F007F9E68 /* AdvancedTorConfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedTorConfViewController.swift; sourceTree = "<group>"; };
 		A025F27421F62C100034B947 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
-		A025F8A923FAB580005CDD6D /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = uk; path = "uk.lproj/security-levels.html"; sourceTree = "<group>"; };
-		A025F8AA23FAB582005CDD6D /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = vi; path = "vi.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A025F8AB23FAC34A005CDD6D /* hu-HU */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "hu-HU"; path = "hu-HU.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A025F8AC23FAC34B005CDD6D /* is */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = is; path = "is.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A025F8AD23FAC34C005CDD6D /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ga; path = "ga.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A025F8AE23FAC34E005CDD6D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ja; path = "ja.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A025F8AF23FAC34F005CDD6D /* mk */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = mk; path = "mk.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A025F8B023FAC350005CDD6D /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = nb; path = "nb.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A025F8B123FAC351005CDD6D /* fa */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = fa; path = "fa.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A025F8B223FAC352005CDD6D /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "pt-BR"; path = "pt-BR.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A025F8B323FAC354005CDD6D /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "pt-PT"; path = "pt-PT.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A025F8B423FAC355005CDD6D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ru; path = "ru.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A025F8B523FAC356005CDD6D /* es */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = es; path = "es.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A025F8B623FAC358005CDD6D /* tr-TR */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "tr-TR"; path = "tr-TR.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A025F8B723FAC359005CDD6D /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = uk; path = "uk.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A025F8B823FAC35A005CDD6D /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = vi; path = "vi.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A02CB2B423D0B0B300880720 /* AddBookmarkActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookmarkActivity.swift; sourceTree = "<group>"; };
 		A031761E23CE462300D75F2A /* BridgeConfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeConfViewController.swift; sourceTree = "<group>"; };
 		A031762023CE51A200D75F2A /* CustomBridgesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBridgesViewController.swift; sourceTree = "<group>"; };
@@ -418,17 +430,6 @@
 		A0675F0F23F7EF4F004A3587 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = de; path = "de.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A0675F1023F7EF52004A3587 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = he; path = "he.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A0675F1123F7EF53004A3587 /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = hi; path = "hi.lproj/security-levels.html"; sourceTree = "<group>"; };
-		A0675F1323F7EF5D004A3587 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = is; path = "is.lproj/security-levels.html"; sourceTree = "<group>"; };
-		A0675F1423F7EF5F004A3587 /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ga; path = "ga.lproj/security-levels.html"; sourceTree = "<group>"; };
-		A0675F1523F7EF61004A3587 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ja; path = "ja.lproj/security-levels.html"; sourceTree = "<group>"; };
-		A0675F1623F7EF62004A3587 /* mk */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = mk; path = "mk.lproj/security-levels.html"; sourceTree = "<group>"; };
-		A0675F1723F7EF64004A3587 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = nb; path = "nb.lproj/security-levels.html"; sourceTree = "<group>"; };
-		A0675F1823F7EF65004A3587 /* fa */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = fa; path = "fa.lproj/security-levels.html"; sourceTree = "<group>"; };
-		A0675F1923F7EF67004A3587 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "pt-BR"; path = "pt-BR.lproj/security-levels.html"; sourceTree = "<group>"; };
-		A0675F1A23F7EF68004A3587 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "pt-PT"; path = "pt-PT.lproj/security-levels.html"; sourceTree = "<group>"; };
-		A0675F1B23F7EF6A004A3587 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ru; path = "ru.lproj/security-levels.html"; sourceTree = "<group>"; };
-		A0675F1C23F7EF6C004A3587 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = es; path = "es.lproj/security-levels.html"; sourceTree = "<group>"; };
-		A0675F1D23F7EF6D004A3587 /* tr-TR */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "tr-TR"; path = "tr-TR.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A07037C223C74DC900D670EC /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		A07037C323C74E1100D670EC /* UIColor+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Helpers.swift"; sourceTree = "<group>"; };
 		A07037C523C7571B00D670EC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -2429,19 +2430,20 @@
 				A0675F0F23F7EF4F004A3587 /* de */,
 				A0675F1023F7EF52004A3587 /* he */,
 				A0675F1123F7EF53004A3587 /* hi */,
-				A0675F1323F7EF5D004A3587 /* is */,
-				A0675F1423F7EF5F004A3587 /* ga */,
-				A0675F1523F7EF61004A3587 /* ja */,
-				A0675F1623F7EF62004A3587 /* mk */,
-				A0675F1723F7EF64004A3587 /* nb */,
-				A0675F1823F7EF65004A3587 /* fa */,
-				A0675F1923F7EF67004A3587 /* pt-BR */,
-				A0675F1A23F7EF68004A3587 /* pt-PT */,
-				A0675F1B23F7EF6A004A3587 /* ru */,
-				A0675F1C23F7EF6C004A3587 /* es */,
-				A0675F1D23F7EF6D004A3587 /* tr-TR */,
-				A025F8A923FAB580005CDD6D /* uk */,
-				A025F8AA23FAB582005CDD6D /* vi */,
+				A025F8AB23FAC34A005CDD6D /* hu-HU */,
+				A025F8AC23FAC34B005CDD6D /* is */,
+				A025F8AD23FAC34C005CDD6D /* ga */,
+				A025F8AE23FAC34E005CDD6D /* ja */,
+				A025F8AF23FAC34F005CDD6D /* mk */,
+				A025F8B023FAC350005CDD6D /* nb */,
+				A025F8B123FAC351005CDD6D /* fa */,
+				A025F8B223FAC352005CDD6D /* pt-BR */,
+				A025F8B323FAC354005CDD6D /* pt-PT */,
+				A025F8B423FAC355005CDD6D /* ru */,
+				A025F8B523FAC356005CDD6D /* es */,
+				A025F8B623FAC358005CDD6D /* tr-TR */,
+				A025F8B723FAC359005CDD6D /* uk */,
+				A025F8B823FAC35A005CDD6D /* vi */,
 			);
 			name = "security-levels.html";
 			sourceTree = "<group>";
