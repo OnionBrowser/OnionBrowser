@@ -263,6 +263,8 @@
 		A01EE97023A3C3F6003B5AFD /* marketing_url.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = marketing_url.txt; sourceTree = "<group>"; };
 		A024B39C23D38B9F007F9E68 /* AdvancedTorConfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedTorConfViewController.swift; sourceTree = "<group>"; };
 		A025F27421F62C100034B947 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		A025F8A923FAB580005CDD6D /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = uk; path = "uk.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A025F8AA23FAB582005CDD6D /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = vi; path = "vi.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A02CB2B423D0B0B300880720 /* AddBookmarkActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookmarkActivity.swift; sourceTree = "<group>"; };
 		A031761E23CE462300D75F2A /* BridgeConfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeConfViewController.swift; sourceTree = "<group>"; };
 		A031762023CE51A200D75F2A /* CustomBridgesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBridgesViewController.swift; sourceTree = "<group>"; };
@@ -427,7 +429,6 @@
 		A0675F1B23F7EF6A004A3587 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ru; path = "ru.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A0675F1C23F7EF6C004A3587 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = es; path = "es.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A0675F1D23F7EF6D004A3587 /* tr-TR */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "tr-TR"; path = "tr-TR.lproj/security-levels.html"; sourceTree = "<group>"; };
-		A0675F1E23F7EF6F004A3587 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = vi; path = "vi.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A07037C223C74DC900D670EC /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		A07037C323C74E1100D670EC /* UIColor+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Helpers.swift"; sourceTree = "<group>"; };
 		A07037C523C7571B00D670EC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -2439,7 +2440,8 @@
 				A0675F1B23F7EF6A004A3587 /* ru */,
 				A0675F1C23F7EF6C004A3587 /* es */,
 				A0675F1D23F7EF6D004A3587 /* tr-TR */,
-				A0675F1E23F7EF6F004A3587 /* vi */,
+				A025F8A923FAB580005CDD6D /* uk */,
+				A025F8AA23FAB582005CDD6D /* vi */,
 			);
 			name = "security-levels.html";
 			sourceTree = "<group>";
