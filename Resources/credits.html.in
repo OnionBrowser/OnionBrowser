@@ -77,38 +77,32 @@ committed to furthering free speech and digital privacy. Please consider donatin
 </ul>
 <p>And special thanks to the volunteer translators at Transifex for making Onion Browser easier to use around the world:</p>
 <dl>
-    <dt>Albanian</dt>
-    <dd>alter2000, elioqoshi, marianaballa, vilisuli</dd>
     <dt>Arabic</dt>
-    <dd>AboShanab, mada19</dd>
+    <dd>AboShanab, mada19, BNasr, Hujairi, MissPeace, ahmedessamdev</dd>
     <dt>Bengali</dt>
-    <dd>codesmite, Al_Shahrior</dd>
-    <dt>Breton</dt>
-    <dd>Iriep</dd>
-    <dt>Catalan</dt>
-    <dd>Aetheria, Ecron, jmontane, pau.selles</dd>
-    <dt>Chinese (Simplified)</dt>
-    <dd>Selinaf, feeblebiscuit, tsaizb, Lafrenze, ff98sha</dd>
-    <dt>Chinese (Traditional)</dt>
-    <dd>Selinaf, s8321414, jxtsai, MengPangWang</dd>
+    <dd>codesmite, Al_Shahrior, BNasr, hasan_md_rakib, nr072</dd>
     <dt>Catalán</dt>
-    <dd>Ecron, pau.selles</dd>
+    <dd>Ecron, pau.selles, Aetheria, Fitoschido, jmontane</dd>
+    <dt>Chinese (Simplified)</dt>
+    <dd>Selinaf, feeblebiscuit, tsaizb, Lafrenze, ff98sha, 99yongliu, Lafrenze, chrisx8_, jxtsai</dd>
+    <dt>Chinese (Traditional)</dt>
+    <dd>Selinaf, s8321414, jxtsai, MengPangWang, tsaizb, austinchang</dd>
     <dt>Czech</dt>
-    <dd>Plarome</dd>
+    <dd>Plarome, Lumeriol, hernikplays</dd>
     <dt>Dutch</dt>
-    <dd>SilverXp, biancahey, kwadronaut, pljmn, Meteor0id</dd>
+    <dd>SilverXp, biancahey, kwadronaut, pljmn, Meteor0id, ChillT, lucasz10</dd>
     <dt>French</dt>
     <dd>yahoe.001</dd>
     <dt>German</dt>
-    <dd>Atalanttore, beonex1, nautilusx</dd>
+    <dd>Atalanttore, beonex1, nautilusx, ChristophSchulz, L10N, LordExtra, m_rey</dd>
     <dt>Greek</dt>
-    <dd>dmaroulidis, KAUTH, pappasadrian, ssk1</dd>
+    <dd>dmaroulidis, KAUTH, pappasadrian, ssk1, apapac, arammos, beonex1, giormatsis</dd>
     <dt>Gujarati</dt>
     <dd>dipakparmar65, drashti4</dd>
     <dt>Hebrew</dt>
     <dd>IONIL</dd>
     <dt>Hindi</dt>
-    <dd>balapandu222, drashti4, umkdikshit</dd>
+    <dd>balapandu222, drashti4, umkdikshit, josprachi, libregeekingkid, philo_math, sonusandeep, suremak</dd>
     <dt>Hungarian</dt>
     <dd>benewfy, vargaviktor</dd>
     <dt>Icelandic</dt>
@@ -117,34 +111,28 @@ committed to furthering free speech and digital privacy. Please consider donatin
     <dd>myusuffin</dd>
     <dt>Irish</dt>
     <dd>kscanne</dd>
-    <dt>Italian</dt>
-    <dd>EllipticSet, Japanese (ja), jpanonowl, Naofumi, pluto987, Songbogong, TokumeiNanashi</dd>
-    <dt>Korean</dt>
-    <dd>sector429</dd>
     <dt>Japanese</dt>
-    <dd>Naofumi, Songbogong, TokumeiNanashi, pluto987, jpanonowl</dd>
+	<dd>Naofumi, Songbogong, TokumeiNanashi, pluto987, jpanonowl, TENCO, kiririn</dd>
     <dt>Macedonian</dt>
-    <dd>Liljana_Ackovska, Zarko_Gjurov</dd>
+    <dd>Liljana_Ackovska, Zarko_Gjurov, MatejMecka</dd>
     <dt>Norwegian (Bokmål)</dt>
     <dd>kingu, eirik174</dd>
     <dt>Persian</dt>
-    <dd>ariaa, arminoza, nariman, sabs, magnifico</dd>
-    <dt>Portuguese (Portugal)</dt>
-    <dd>manuelarodsilva</dd>
+    <dd>ariaa, arminoza, nariman, sabs, magnifico, Gilberto1, Zaefarani, alinbipr, hamidreza_yazdani, mo.hoseini, noneck, voxp, gonjayesh, koofi, nonecknoel</dd>
     <dt>Portuguese (Brazil)</dt>
-    <dd>flaviove, CypherZnnb</dd>
+    <dd>flaviove, CypherZnnb, Bk__13, CRCF, darkcrystal, eduaddadbr, leovasone, nopum, vmattos, Communia</dd>
+    <dt>Portuguese (Portugal)</dt>
+    <dd>manuelarodsilva,  Bk__13, mrBatsu</dd>
     <dt>Russian</dt>
-    <dd>anm, dianazryn, emedvedev, Ifti</dd>
+    <dd>anm, dianazryn, emedvedev, Ifti, foxing29, neocaching</dd>
     <dt>Spanish</dt>
-    <dd>arielbarbosa, Maria_Jose, emmapeel, strel, zakooch</dd>
-    <dt>Tamil</dt>
-    <dd>balapandu222, Selva_Makilan</dd>
-    <dt>Telugu</dt>
-    <dd>balapandu222, sonusandeep</dd>
+    <dd>arielbarbosa, Maria_Jose, emmapeel, strel, zakooch, Aetheria, Fabiola.mauriceh, Fitoschido, kodachi, lenazun, nosense, supermigue2000, vareli, antonela_</dd>
     <dt>Turkish</dt>
-    <dd>falcontr06, kayazeren</dd>
+    <dd>falcontr06, kayazeren, ali_demirtas</dd>
     <dt>Ukrainian</dt>
-    <dd>Herenko, lyubomyr</dd>
+    <dd>Herenko, lyubomyr, MykolaBubelich</dd>
+	<dt>Vietnamese</dt>
+	<dd>AshCopper, PMinhDuc, Shinigami</dd>
 </dl>
 <p>If you'd like to help translate Onion Browser, visit <a href="https://www.transifex.com/otf/onion-browser/">www.transifex.com/otf/onion-browser</a> to join.</p>
 

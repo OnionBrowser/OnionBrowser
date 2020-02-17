@@ -62,41 +62,58 @@ The following features are new to Onion Browser, by way of the upstream work on 
 
 These people helped with translations. Thank you so much, folks!
 
-- Albanian: alter2000, elioqoshi, marianaballa, vilisuli
-- Arabic: AboShanab, mada19
-- Bengali: codesmite, Al_Shahrior   
-- Breton: Iriep
-- Catalan: Aetheria, Ecron, jmontane, pau.selles   
-- Chinese (Simplified): Selinaf, feeblebiscuit, tsaizb, Lafrenze, ff98sha
-- Chinese (Traditional): Selinaf, s8321414, jxtsai, MengPangWang 
-- Catalán: Ecron, pau.selles
-- Czech: Plarome
-- Dutch: SilverXp, biancahey, kwadronaut, pljmn, Meteor0id 
-- French: yahoe.001
-- German: Atalanttore, beonex1, nautilusx
-- Greek: dmaroulidis, KAUTH, pappasadrian, ssk1 
-- Gujarati: dipakparmar65, drashti4
-- Hebrew: IONIL
-- Hindi: balapandu222, drashti4, umkdikshit
-- Hungarian: benewfy, vargaviktor
-- Icelandic: anarchodin, sveinki
-- Indonesian: myusuffin
-- Irish: kscanne
-- Italian: EllipticSet, Japanese (ja), jpanonowl, Naofumi, pluto987, Songbogong, TokumeiNanashi   
-- Korean: sector429
-- Japanese: Naofumi, Songbogong, TokumeiNanashi, pluto987, jpanonowl
-- Macedonian: Liljana_Ackovska, Zarko_Gjurov
-- Norwegian (Bokmål): kingu, eirik174
-- Persian: ariaa, arminoza, nariman, sabs, magnifico
-- Portuguese (Portugal): manuelarodsilva   
-- Portuguese (Brazil): flaviove, CypherZnnb
-- Russian: anm, dianazryn, emedvedev, Ifti
-- Spanish: arielbarbosa, Maria_Jose, emmapeel, strel, zakooch
-- Tamil: balapandu222, Selva_Makilan
-- Telugu: balapandu222, sonusandeep
-- Turkish:  falcontr06, kayazeren 
-- Ukrainian: Herenko, lyubomyr
-- Vietnamese: AshCopper, PMinhDuc, Shinigami, ppanhh
+- Arabic: 
+  AboShanab, mada19, BNasr, Hujairi, MissPeace, ahmedessamdev
+- Bengali: 
+  codesmite, Al_Shahrior, BNasr, hasan_md_rakib, nr072
+- Catalán: 
+  Ecron, pau.selles, Aetheria, Fitoschido, jmontane
+- Chinese (Simplified): 
+  Selinaf, feeblebiscuit, tsaizb, Lafrenze, ff98sha, 99yongliu, Lafrenze, chrisx8_, jxtsai
+- Chinese (Traditional): 
+  Selinaf, s8321414, jxtsai, MengPangWang, tsaizb, austinchang
+- Czech: 
+  Plarome, Lumeriol, hernikplays
+- Dutch: 
+  SilverXp, biancahey, kwadronaut, pljmn, Meteor0id, ChillT, lucasz10
+- French: 
+  yahoe.001
+- German: 
+  Atalanttore, beonex1, nautilusx, ChristophSchulz, L10N, LordExtra, m_rey
+- Greek: 
+  dmaroulidis, KAUTH, pappasadrian, ssk1, apapac, arammos, beonex1, giormatsis
+- Hebrew: 
+  IONIL
+- Hindi: 
+  balapandu222, drashti4, umkdikshit, josprachi, libregeekingkid, philo_math, sonusandeep, suremak
+- Hungarian: 
+  benewfy, vargaviktor
+- Icelandic: 
+  anarchodin, sveinki
+- Irish: 
+  kscanne
+- Japanese: 
+  Naofumi, Songbogong, TokumeiNanashi, pluto987, jpanonowl, TENCO, kiririn
+- Macedonian: 
+  Liljana_Ackovska, Zarko_Gjurov, MatejMecka
+- Norwegian (Bokmål): 
+  kingu, eirik174
+- Persian: 
+  ariaa, arminoza, nariman, sabs, magnifico, Gilberto1, Zaefarani, alinbipr, hamidreza_yazdani, mo.hoseini, noneck, voxp, gonjayesh, koofi, nonecknoel
+- Portuguese (Brazil): 
+  flaviove, CypherZnnb, Bk__13, CRCF, darkcrystal, eduaddadbr, leovasone, nopum, vmattos, Communia
+- Portuguese (Portugal): 
+  manuelarodsilva,  Bk__13, mrBatsu
+- Russian: 
+  anm, dianazryn, emedvedev, Ifti, foxing29, neocaching
+- Spanish: 
+  arielbarbosa, Maria_Jose, emmapeel, strel, zakooch, Aetheria, Fabiola.mauriceh, Fitoschido, kodachi, lenazun, nosense, supermigue2000, vareli, antonela_
+- Turkish:  
+  falcontr06, kayazeren, ali_demirtas
+- Ukrainian: 
+  Herenko, lyubomyr, MykolaBubelich
+- Vietnamese: 
+  AshCopper, PMinhDuc, Shinigami
 
 
 ## Contributors
