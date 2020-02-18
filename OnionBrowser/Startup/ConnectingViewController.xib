@@ -18,6 +18,8 @@
                 <outlet property="nextBt" destination="zHI-gA-xf0" id="zS7-vp-3IN"/>
                 <outlet property="progress" destination="eoT-tq-A19" id="4Zt-8D-uxC"/>
                 <outlet property="titleLb" destination="64x-Xc-o8q" id="7B1-IH-Pgd"/>
+                <outlet property="troubleLb" destination="DX9-hV-y8h" id="xTD-F6-GGV"/>
+                <outlet property="troubleLbHeight" destination="Mbu-gr-YtF" id="R8Y-oB-HlD"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -52,8 +54,17 @@
                     <color key="progressTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <color key="trackTintColor" white="1" alpha="0.2489297945" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </progressView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We're having trouble connecting to Tor. Close %@ and restart or try using a bridge." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DX9-hV-y8h">
+                    <rect key="frame" x="16" y="80" width="288" height="0.0"/>
+                    <constraints>
+                        <constraint firstAttribute="height" id="Mbu-gr-YtF"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mzm-7W-P9l">
-                    <rect key="frame" x="16" y="80" width="288" height="392"/>
+                    <rect key="frame" x="16" y="88" width="288" height="384"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ig-W5-fqF">
                     <rect key="frame" x="16" y="480" width="288" height="0.0"/>
@@ -85,25 +96,28 @@
             <color key="backgroundColor" name="Accent"/>
             <constraints>
                 <constraint firstItem="i5D-9O-vz5" firstAttribute="centerY" secondItem="64x-Xc-o8q" secondAttribute="centerY" id="0qS-eg-tWV"/>
+                <constraint firstItem="DX9-hV-y8h" firstAttribute="top" secondItem="eoT-tq-A19" secondAttribute="bottom" constant="8" id="8Nh-Uz-YpE"/>
                 <constraint firstItem="1ig-W5-fqF" firstAttribute="top" secondItem="mzm-7W-P9l" secondAttribute="bottom" constant="8" id="BaH-Ng-yhw"/>
                 <constraint firstItem="eoT-tq-A19" firstAttribute="top" secondItem="64x-Xc-o8q" secondAttribute="bottom" constant="16" id="Dr9-Fx-4O8"/>
                 <constraint firstItem="1ig-W5-fqF" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="DrP-z9-JQB"/>
+                <constraint firstItem="mzm-7W-P9l" firstAttribute="top" secondItem="DX9-hV-y8h" secondAttribute="bottom" constant="8" id="JkW-hT-Q1c"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="i5D-9O-vz5" secondAttribute="trailing" constant="16" id="OcH-yJ-hrS"/>
+                <constraint firstItem="DX9-hV-y8h" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="80" id="PRa-Tg-Pur"/>
                 <constraint firstItem="mzm-7W-P9l" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="RHh-NO-HIv"/>
                 <constraint firstItem="1ig-W5-fqF" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" constant="-16" id="UDl-4u-gKd"/>
                 <constraint firstItem="zHI-gA-xf0" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="VZO-ky-Rd0"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="DX9-hV-y8h" secondAttribute="trailing" constant="16" id="ZNC-lD-70Y"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="mzm-7W-P9l" secondAttribute="bottom" constant="96" id="bj4-bN-ekS"/>
                 <constraint firstItem="zHI-gA-xf0" firstAttribute="top" secondItem="mzm-7W-P9l" secondAttribute="bottom" constant="8" id="bpn-K4-Qws"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="mzm-7W-P9l" secondAttribute="trailing" constant="16" id="gFO-k0-FhI"/>
                 <constraint firstItem="eoT-tq-A19" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="gUw-i5-dgd"/>
-                <constraint firstItem="mzm-7W-P9l" firstAttribute="top" secondItem="eoT-tq-A19" secondAttribute="bottom" constant="8" id="hO8-4P-ip5"/>
                 <constraint firstItem="64x-Xc-o8q" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="k1G-GO-0G4"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="64x-Xc-o8q" secondAttribute="trailing" constant="16" id="lJz-eR-9yl"/>
                 <constraint firstItem="eoT-tq-A19" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="oFp-MD-Dfz"/>
-                <constraint firstItem="mzm-7W-P9l" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="80" id="vMu-xa-Rdz"/>
+                <constraint firstItem="DX9-hV-y8h" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="pQb-9O-YwL"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="132" y="153"/>
+            <point key="canvasLocation" x="131.25" y="152.11267605633802"/>
         </view>
     </objects>
     <resources>

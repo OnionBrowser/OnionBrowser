@@ -44,9 +44,26 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate {
 		}
 	}
 
+	@IBOutlet weak var troubleLb: UILabel! {
+		didSet {
+			let text = NSMutableAttributedString(
+				string: NSLocalizedString("We're having trouble connecting to Tor.", comment: ""),
+				attributes: [.font: UIFont.boldSystemFont(ofSize: 24)])
+
+			text.append(NSAttributedString(string: "\n"))
+
+			text.append(NSAttributedString(string: String(format: NSLocalizedString(
+				"Close %@ and restart or try using a bridge.",
+				comment: ""), Bundle.main.displayName), attributes: [.font: UIFont.systemFont(ofSize: 15)]))
+
+			troubleLb.attributedText = text
+		}
+	}
+	@IBOutlet weak var troubleLbHeight: NSLayoutConstraint!
+
 	@IBOutlet weak var image: UIImageView!
 	@IBOutlet weak var claimLb: UILabel!
-    @IBOutlet weak var claimLbTopAnchor: NSLayoutConstraint!
+	@IBOutlet weak var claimLbTopAnchor: NSLayoutConstraint!
 
 	@IBOutlet weak var nextBt: UIButton! {
 		didSet {
@@ -59,59 +76,36 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate {
 	*/
 	var autoClose = false
 
-	private var lastClaim: Int?
-
 	private var refresh: Timer?
 
-	private static let claims = [
-		[
-			"text": NSLocalizedString("__CLAIM_1__", comment: ""),
-			"text_color": "white",
-			"background_color": "group_bg",
-			"image": "group",
-		],
-		[
-			"text": NSLocalizedString("__CLAIM_2__", comment: ""),
-			"text_color": "black",
-			"background_color": "people_bg",
-			"image": "people",
-		],
-		[
-			"text": NSLocalizedString("__CLAIM_3__", comment: ""),
-			"text_color": "white",
-			"background_color": "facebook_bg",
-			"image": "facebook",
-		],
-		[
-			"text": NSLocalizedString("__CLAIM_4__", comment: ""),
-			"text_color": "white",
-			"background_color": "activist_bg",
-			"image": "activist",
-		],
-		[
-			"text": NSLocalizedString("__CLAIM_5__", comment: ""),
-			"text_color": "white",
-			"background_color": "blogger_bg",
-			"image": "blogger",
-		],
-		[
-			"text": NSLocalizedString("__CLAIM_6__", comment: ""),
-			"text_color": "black",
-			"background_color": "journalist_bg",
-			"image": "journalist",
-		],
-		[
-			"text": NSLocalizedString("__CLAIM_7__", comment: ""),
-			"text_color": "black",
-			"background_color": "business_bg",
-			"image": "business",
-		],
-		[
-			"text": NSLocalizedString("__CLAIM_8__", comment: ""),
-			"text_color": "black",
-			"background_color": "worker_bg",
-			"image": "worker",
-		],
+	private var success = false
+
+	private var lastClaim: Int?
+
+	private class Claim {
+		let text: String
+		let textColor: UIColor
+		let backgroundColor: UIColor?
+		let image: UIImage?
+
+		init(_ text: String, _ textColor: UIColor, _ backgroundColor: String, _ image: String) {
+			self.text = text
+			self.textColor = textColor
+			self.backgroundColor = UIColor(named: backgroundColor)
+			self.image = UIImage(named: image)
+		}
+	}
+
+	// Intentionally non-static to free memory after usage.
+	private let claims = [
+		Claim(NSLocalizedString("__CLAIM_1__", comment: ""), .white, "group_bg", "group"),
+		Claim(NSLocalizedString("__CLAIM_2__", comment: ""), .black, "people_bg", "people"),
+		Claim(NSLocalizedString("__CLAIM_3__", comment: ""), .white, "facebook_bg", "facebook"),
+		Claim(NSLocalizedString("__CLAIM_4__", comment: ""), .white, "activist_bg", "activist"),
+		Claim(NSLocalizedString("__CLAIM_5__", comment: ""), .white, "blogger_bg", "blogger"),
+		Claim(NSLocalizedString("__CLAIM_6__", comment: ""), .black, "journalist_bg", "journalist"),
+		Claim(NSLocalizedString("__CLAIM_7__", comment: ""), .black, "business_bg", "business"),
+		Claim(NSLocalizedString("__CLAIM_8__", comment: ""), .black, "worker_bg", "worker"),
 	]
 
 	override func viewDidLoad() {
@@ -167,6 +161,8 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate {
 
 			self.nextBt.setTitle(NSLocalizedString("Next", comment: ""))
 			self.nextBt.isHidden = false
+
+			self.success = true
 		}
 	}
 
@@ -175,18 +171,13 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate {
 			self.refresh?.invalidate()
 			self.refresh = nil
 
-			self.image.isHidden = true
+			self.troubleLbHeight.constant = 98
+			self.troubleLb.isHidden = false
 
-			self.claimLb.text = NSLocalizedString(
-				"Seems, Tor can't connect. Maybe you need to configure a bridge? Tap here to do so.",
-				comment: "")
-			self.claimLbTopAnchor.isActive = false
-			self.claimLb.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-			self.claimLb.font = .systemFont(ofSize: 24)
+			self.claimLb.isHidden = true
 
-			self.view.addGestureRecognizer(UITapGestureRecognizer(
-				target: self, action: #selector(self.bridgeSettings)))
-			self.view.isUserInteractionEnabled = true
+			self.nextBt.setTitle(NSLocalizedString("Configure Bridges", comment: ""))
+			self.nextBt.isHidden = false
 		}
 	}
 
@@ -194,20 +185,25 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate {
 	// MARK: Actions
 
 	@IBAction func next() {
-		AppDelegate.shared?.show(InitSecurityLevelViewController())
+		if success {
+			AppDelegate.shared?.show(InitSecurityLevelViewController())
+		}
+		else {
+			bridgeSettings()
+		}
 	}
 
-    @IBAction func bridgeSettings() {
+	@IBAction func bridgeSettings() {
 		BridgeConfViewController.present(from: self)
-    }
-    
+	}
+
 	// MARK: Private methods
 
 	@objc private func showClaim(_ timer: Timer?) {
 		var nextClaim: Int
 
 // FOR DEBUGGING: Show all in a row.
-//		if lastClaim == nil || lastClaim! >= ConnectingViewController.claims.count - 1 {
+//		if lastClaim == nil || lastClaim! >= claims.count - 1 {
 //			nextClaim = 0
 //		}
 //		else {
@@ -215,16 +211,17 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate {
 //		}
 
 		repeat {
-			nextClaim = Int(arc4random_uniform(UInt32(ConnectingViewController.claims.count)))
+			nextClaim = Int(arc4random_uniform(UInt32(claims.count)))
 		} while nextClaim == lastClaim
 
 		lastClaim = nextClaim
 
-		let data = ConnectingViewController.claims[nextClaim]
+		let claim = claims[nextClaim]
 
-		claimLb.text = data["text"]
-		claimLb.textColor = data["text_color"] == "white" ? .white : .black
-		view.backgroundColor = UIColor(named: data["background_color"]!)
-		image.image = UIImage(named: data["image"]!)
+		troubleLb.textColor = claim.textColor
+		claimLb.text = claim.text
+		claimLb.textColor = claim.textColor
+		view.backgroundColor = claim.backgroundColor
+		image.image = claim.image
 	}
 }
