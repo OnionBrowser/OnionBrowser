@@ -332,9 +332,9 @@ extension Tab: UIWebViewDelegate {
 	}
 
 	private func ipcCallback(_ payload: String) {
-		let callback = "(function() { \(payload); __endless.ipcDone = (new Date()).getTime(); })();"
+		let callback = "(function() { \(payload) __endless.ipcDone = (new Date()).getTime(); })();"
 
-		print("[Tab \(index)] [IPC]: calling back with: %@", callback)
+		print("[Tab \(index)] [IPC]: calling back with: \(callback)")
 
 		stringByEvaluatingJavaScript(from: callback)
 	}
