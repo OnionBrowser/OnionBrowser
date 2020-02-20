@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable: no">
+<title>about:security-levels</title>
+<style>
+		body {
+			margin: 1em;
+
+			font-family: sans-serif;
+			font-size: 13pt;
+
+			color: #4a4a4a;
+		}
+
+		h1 {
+			text-align: center;
+
+			font-size: 35pt;
+			font-weight: bold;
+
+			color: #4a4a4a;
+		}
+
+		h2 {
+			font-size: 18pt;
+			font-weight: bold;
+
+			color: #4a4a4a;
+		}
+
+		h3 {
+			text-transform: uppercase;
+
+			font-size: 12pt;
+			font-weight: bold;
+
+			color: #720e95;
+		}
+
+		a {
+			font-weight: bold;
+
+			color: #720e95;
+		}
+
+		dt {
+			font-weight: bold;
+		}
+
+		.title1 {
+			font-size: 95pt;
+			font-weight: bold;
+
+			color: #720e95;
+		}
+
+		.title2 {
+			font-size: 45pt;
+			font-weight: bold;
+
+			color: white;
+			background-color: #d8d8d8;
+		}
+
+		.recommendation {
+			font-weight: bold;
+
+			color: #720e95;
+		}
+
+		.subtitle, .outcome {
+			text-transform: uppercase;
+
+			font-size: 14pt;
+			font-weight: bold;
+
+			color: #4a4a4a;
+		}
+
+		.warning {
+			font-weight: bold;
+		}
+
+		@media (prefers-color-scheme: dark) {
+			body {
+				background-color: black;
+			}
+
+			body, h1, h2, .subtitle, .outcome {
+				color: white;
+			}
+
+			a, h3, .title1, .recommendation {
+				color: #c2a0ca;
+			}
+		}
+		</style>
+</head>
+<body>
+		<h1>Nivells de seguretat</h1>
+
+		<p>Les configuracions de seguretat s'han agrupat perquè tingueu un nivell general
+		de seguretat en navegar pels llocs web. A sota, hi ha una assignació de configuració per a cada nivell.
+		Poden afectar la funcionalitat de maneres diferents.</p>
+
+		<h3>1. No segur</h3>
+
+		<p class="recommendation">(no recomanat)</p>
+		<p class="outcome">Tot hauria de funcionar</p>
+		<p><span class="warning">Atenció: això podria filtra la vostra informació i ser potencialment perillós.</span>
+			Aquest nivell permet a les pàgines web usar algunes funcions (WebRTC, àudio i vídeo, etc.)
+			que poden connectar per la vostra connexió original en comptes de passar pel túnel via Tor.</p>
+
+		<dl>
+<dt>Política de contingut</dt>
+			<dd>Obre (mode de navegació normal)</dd>
+
+			<dt>Protecció d'enllaços universal</dt>
+			<dd>Desactivat</dd>
+
+			<dt>WebRTC</dt>
+			<dd>Activat</dd>
+
+			<dt>Permet recursos en mode mixt</dt>
+			<dd>Sí</dd>
+		</dl>
+<h3>2. Moderat</h3>
+
+		<p class="recommendation">(recomanat)</p>
+		<p class="outcome">Algunes coses no funcinaran</p>
+		<p>Es permet el JavaScript, però només algunes de les característques, com ara WebSockets, geolocalització,
+			XHR, etc, estan inhabilitades explícitament.</p>
+
+		<dl>
+<dt>Política de contingut</dt>
+			<dd>No hi ha cap connexió XHR/WebSocket/Video</dd>
+
+			<dt>Protecció d'enllaços universal</dt>
+			<dd>Activat</dd>
+
+			<dt>WebRTC</dt>
+			<dd>Desactivat</dd>
+
+			<dt>Permet recursos en mode mixt</dt>
+			<dd>No</dd>
+		</dl>
+<h3>3. Segur</h3>
+
+		<p class="recommendation">(recomanat)</p>
+		<p class="outcome">Moltes coses no funcionaran.</p>
+		<p>Desactiva el JavaScript. WebSockets, geolocalització, XHR, etc.</p>
+
+		<dl>
+<dt>Política de contingut</dt>
+			<dd>Estricte (sense JavaScript, vídeos, etc.)</dd>
+
+			<dt>Protecció d'enllaços universal</dt>
+			<dd>Activat</dd>
+
+			<dt>WebRTC</dt>
+			<dd>Desactivat</dd>
+
+			<dt>Permet recursos en mode mixt</dt>
+			<dd>No</dd>
+		</dl>
+</body>
+</html>
