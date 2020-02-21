@@ -82,6 +82,12 @@ class VpnManager {
 			// Manager found, but disabled. -> Enable.
 			self.manager?.isEnabled = true
 
+			// Add a "always connect" rule to avoid leakage after the network
+			// extension got killed.
+			if self.manager?.onDemandRules?.count ?? 0 < 1 {
+				self.manager?.onDemandRules = [NEOnDemandRuleConnect()]
+			}
+
 			self.manager?.saveToPreferences { error in
 				if let error = error {
 					self.manager = nil
