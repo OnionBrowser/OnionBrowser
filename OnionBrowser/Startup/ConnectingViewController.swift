@@ -47,7 +47,7 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate {
 	@IBOutlet weak var troubleLb: UILabel! {
 		didSet {
 			let text = NSMutableAttributedString(
-				string: NSLocalizedString("We're having trouble connecting to Tor.", comment: ""),
+				string: NSLocalizedString("We're having trouble.", comment: ""),
 				attributes: [.font: UIFont.boldSystemFont(ofSize: 24)])
 
 			text.append(NSAttributedString(string: "\n"))
@@ -168,9 +168,6 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate {
 
 	func torConnDifficulties() {
 		DispatchQueue.main.async {
-			self.refresh?.invalidate()
-			self.refresh = nil
-
 			self.troubleLbHeight.constant = 98
 			self.troubleLb.isHidden = false
 

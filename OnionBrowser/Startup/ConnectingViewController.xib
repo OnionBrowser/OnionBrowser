@@ -54,7 +54,7 @@
                     <color key="progressTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <color key="trackTintColor" white="1" alpha="0.2489297945" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </progressView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We're having trouble connecting to Tor. Close %@ and restart or try using a bridge." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DX9-hV-y8h">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DX9-hV-y8h">
                     <rect key="frame" x="16" y="80" width="288" height="0.0"/>
                     <constraints>
                         <constraint firstAttribute="height" id="Mbu-gr-YtF"/>
