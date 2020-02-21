@@ -1,11 +1,19 @@
-- Nytt surfekrom
-- Forbedret iPad-støtte
-- Ny destinasjonsside
-- Bokmerker med favoritter
-- Ny Tor-kretsvisning
-- Forhåndsinnstillinger for sikkerhetsnivå
-- Ny faneoversikt
-- Tor oppdaterte til 0.4.0.6
-- Oppdatert OBFS4-serverliste
-- Løst problem med Content-Security-Header nonce og hashverdier som brøt mange nettsteder.
-- Lokaliseringsoppdateringer
+- Oppdaterte oversettelser.
+- Løse problemer med vedvarende informasjonskapsler.
+- Faste problemer på iPad der scenen ble rulle bort da tastaturet viste.
+- Renovert appstart for brukergrensesnittet. Ikke vis feilside, i stedet ber brukeren konfigurere broer.
+- Forbedret brudekonfigurasjonsgrensesnitt.
+- Forbedrede popup-vinduer på iPad.
+- Legg til bokmerke fra aksjearket.
+- Økt X-knapp på fanen oversikt for enklere tett.
+- Sveip opp for å lukke faner i oversikt over faner.
+- Fast skjult verktøylinje når du ser på PDF-er, bilder og andre filer.
+- Faste aksjeopsjoner.
+- Lagt til avansert Tor-konfigurasjonsalternativ.
+- Lagt til forklaring om sikkerhetsnivåer.
+- Forbedret støtte for mørk modus.
+- Fast krasj når du viser Tor-kretser.
+- Faste appsnarveier. (På langt trykk på appikonet.)
+- Oppdatert OBFS4 broliste.
+- Rettet feil når du endrer broinnstillinger.
+- Rette problemer med injisert JavaScript.

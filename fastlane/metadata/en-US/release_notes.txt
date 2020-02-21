@@ -1,11 +1,19 @@
-- New browsing chrome
-- Improved iPad support
-- New landing page
-- Bookmarks with favicons
-- New Tor circuit display
-- Security level presets
-- New tab overview
-- Tor updated to 0.4.0.6
-- Updated OBFS4 server list
-- Fixed issue with Content-Security-Header nonce and hash values which broke a lot of sites.
-- Localization updates
+- Updated translations.
+- Fixed issues with persistent cookies.
+- Fixed issues on iPad where scene was scrolling away when keyboard showed.
+- Refurbished app start UI. Don't show error page, instead prompt user to configure bridges.
+- Improved bridge configuration UI.
+- Improved popups on iPad.
+- Add bookmark from share sheet.
+- Increased X button on tab overview for easier close.
+- Added swipe up to close tabs in tab overview.
+- Fixed hidden toolbar when viewing PDFs, images and other files.
+- Fixed share sheet options.
+- Added advanced Tor configuration option.
+- Added explanation about security levels.
+- Improved dark mode support.
+- Fixed crash when showing Tor circuits.
+- Fixed app shortcuts. (On long tap on app icon.)
+- Updated OBFS4 bridge list.
+- Fixed bug when changing bridge settings.
+- Fixed problems with injected JavaScript.

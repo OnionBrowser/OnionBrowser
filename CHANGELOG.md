@@ -1,5 +1,27 @@
 #  Onion Browser 2 Changelog
 
+## 2.5.0
+
+- Updated translations.
+- Fixed issues with persistent cookies.
+- Fixed issues on iPad where scene was scrolling away when keyboard showed.
+- Refurbished app start UI. Don't show error page, instead prompt user to configure bridges.
+- Improved bridge configuration UI.
+- Improved popups on iPad.
+- Add bookmark from share sheet.
+- Increased X button on tab overview for easier close.
+- Added swipe up to close tabs in tab overview.
+- Fixed hidden toolbar when viewing PDFs, images and other files.
+- Fixed share sheet options.
+- Added advanced Tor configuration option.
+- Added explanation about security levels.
+- Improved dark mode support.
+- Fixed crash when showing Tor circuits.
+- Fixed app shortcuts. (On long tap on app icon.)
+- Updated OBFS4 bridge list.
+- Fixed bug when changing bridge settings.
+- Fixed problems with injected JavaScript.
+
 ## 2.4.0
 
 - New browsing chrome

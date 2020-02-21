@@ -1,11 +1,19 @@
-- Nový prohlížeč Chrome
-- Vylepšená podpora iPadu
-- Nová vstupní stránka
-- Záložky s favicons
-- Nový displej okruhu Tor
-- Předvolby úrovně zabezpečení
-- Přehled nových karet
-- Tor byl aktualizován na 0,4,0,6
-- Aktualizovaný seznam serverů OBFS4
-- Opraven problém s nonce a hashovými hodnotami záhlaví Content-Security-Header, které rozbily mnoho webů.
-- Aktualizace lokalizace
+- Aktualizované překlady.
+- Opraveny problémy s trvalými soubory cookie.
+- Opraveny problémy na iPadu, kde se scéna posunula, když se ukázala klávesnice.
+- Repasované uživatelské rozhraní pro spuštění aplikace. Nezobrazovat chybovou stránku, místo toho vyzvat uživatele ke konfiguraci mostů.
+- Vylepšené uživatelské rozhraní konfigurace mostu.
+- Vylepšená vyskakovací okna na iPadu.
+- Přidat záložku ze sdíleného listu.
+- Zvýšené tlačítko X v přehledu karet pro snadnější uzavření.
+- Přidáno přejetím prstem nahoru a zavření karet v přehledu karet.
+- Opravena skrytá lišta nástrojů při prohlížení PDF, obrázků a dalších souborů.
+- Opravené možnosti sdílení listů.
+- Přidána pokročilá možnost konfigurace Tor.
+- Přidáno vysvětlení úrovní zabezpečení.
+- Vylepšená podpora tmavého režimu.
+- Opravena chyba při zobrazování obvodů Tor.
+- Opravené zkratky pro aplikace. (Dlouhým klepnutím na ikonu aplikace.)
+- Aktualizovaný seznam mostů OBFS4.
+- Opravená chyba při změně nastavení mostu.
+- Opraveny problémy s injektovaným JavaScriptem.

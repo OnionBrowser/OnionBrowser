@@ -1,11 +1,19 @@
-- Yeni tarama kromu
-- Geliştirilmiş iPad desteği
-- Yeni açılış sayfası
-- Sık kullanılanlarla yer imleri
-- Yeni Tor devre ekranı
-- Güvenlik seviyesi ön ayarları
-- Yeni sekmeye genel bakış
-- Tor 0.4.0.6'ya güncellendi
-- Güncellenmiş OBFS4 sunucu listesi
-- Çok sayıda siteyi bozan Content-Security-Header nonce ve hash değerleri ile ilgili sorun düzeltildi.
-- Yerelleştirme güncellemeleri
+- Çeviriler güncellendi.
+- Kalıcı çerezlerle ilgili sorunlar düzeltildi.
+- Klavye gösterildiğinde sahnenin kaydığı iPad'deki sorunlar düzeltildi.
+- Yenilenmiş uygulama başlangıç kullanıcı arayüzü. Hata sayfası göstermeyin, bunun yerine kullanıcıdan köprüleri yapılandırmasını isteyin.
+- Geliştirilmiş köprü yapılandırma arayüzü.
+- iPad'de geliştirilmiş pop-up'lar.
+- Paylaşım sayfasından yer imi ekleyin.
+- Daha kolay kapanmak için sekmeye genel bakışta artan X düğmesi.
+- Sekmeye genel bakıştaki sekmeleri kapatmak için yukarı kaydırın eklendi.
+- PDF, resim ve diğer dosyaları görüntülerken gizli gizli araç çubuğu.
+- Paylaşım sayfası seçenekleri düzeltildi.
+- Gelişmiş Tor yapılandırma seçeneği eklendi.
+- Güvenlik seviyeleri hakkında açıklama eklendi.
+- Geliştirilmiş karanlık mod desteği.
+- Tor devreleri gösterilirken sabit kilitlenme.
+- Sabit uygulama kısayolları. (Uygulama simgesine uzun dokunun.)
+- OBFS4 köprü listesi güncellendi.
+- Köprü ayarlarını değiştirirken hata düzeltildi.
+- Enjekte edilen JavaScript ile ilgili sorunlar düzeltildi.

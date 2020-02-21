@@ -1,11 +1,19 @@
-- Nouveau chrome de navigation
-- Prise en charge améliorée de l'iPad
-- Nouvelle page de destination
-- Signets avec favicons
-- Nouvel affichage du circuit Tor
-- Préréglages de niveau de sécurité
-- Aperçu du nouvel onglet
-- Tor mis à jour à 0.4.0.6
-- Liste des serveurs OBFS4 mise à jour
-- Correction d'un problème avec les valeurs de nonce et de hachage Content-Security-Header qui cassaient beaucoup de sites.
-- Mises à jour de localisation
+- Traductions mises à jour.
+- Correction de problèmes avec les cookies persistants.
+- Correction de problèmes sur iPad où la scène défilait lorsque le clavier était affiché.
+- UI de démarrage de l'application rénovée. N'affiche pas la page d'erreur, invite plutôt l'utilisateur à configurer les ponts.
+- Amélioration de l'interface utilisateur de configuration du pont.
+- Popups améliorés sur iPad.
+- Ajouter un signet à partir de la feuille de part.
+- Augmentation du bouton X sur la vue d'ensemble des onglets pour une fermeture plus facile.
+- Ajout d'un balayage vers le haut pour fermer les onglets dans la vue d'ensemble des onglets.
+- Correction de la barre d'outils cachée lors de la visualisation de fichiers PDF, d'images et d'autres fichiers.
+- Options de feuille de part fixe.
+- Ajout d'une option de configuration avancée de Tor.
+- Ajout d'une explication sur les niveaux de sécurité.
+- Prise en charge améliorée du mode sombre.
+- Correction d'un crash lors de l'affichage des circuits Tor.
+- Raccourcis d'application fixes. (Appuyez longuement sur l'icône de l'application.)
+- Mise à jour de la liste des ponts OBFS4.
+- Correction d'un bug lors de la modification des paramètres du pont.
+- Correction de problèmes avec JavaScript injecté.

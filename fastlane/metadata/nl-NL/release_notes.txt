@@ -1,11 +1,19 @@
-- Nieuw browsing chrome
-- Verbeterde iPad-ondersteuning
-- Nieuwe bestemmingspagina
-- Bladwijzers met favicons
-- Nieuw Tor circuit display
-- Voorinstellingen voor beveiligingsniveau
-- Nieuw tabbladoverzicht
-- Tor bijgewerkt naar 0.4.0.6
-- Bijgewerkte OBFS4-serverlijst
-- Probleem opgelost met Content-Security-Header nonce en hash-waarden die veel sites brak.
-- Localisatie-updates
+- Bijgewerkte vertalingen.
+- Problemen met permanente cookies opgelost.
+- Problemen opgelost op de iPad waarbij de scène wegschoof toen het toetsenbord werd weergegeven.
+- Refurbished app start gebruikersinterface. Toon geen foutpagina, maar vraag de gebruiker om bruggen te configureren.
+- Verbeterde gebruikersinterface voor bridge-configuratie.
+- Verbeterde pop-ups op iPad.
+- Voeg bladwijzer van deelblad toe.
+- Verhoogde X-knop op tabbladoverzicht voor eenvoudiger sluiten.
+- Veeg omhoog om tabbladen in taboverzicht te sluiten.
+- Vaste verborgen werkbalk bij het bekijken van PDF's, afbeeldingen en andere bestanden.
+- Vaste aandelenbladopties.
+- Geavanceerde Tor-configuratieoptie toegevoegd.
+- Toegevoegd uitleg over beveiligingsniveaus.
+- Verbeterde ondersteuning voor de donkere modus.
+- Vaste crash bij het tonen van Tor-circuits.
+- Vaste app-snelkoppelingen. (Tik lang op het app-pictogram.)
+- Bijgewerkte OBFS4 bridge-lijst.
+- Bug opgelost bij het wijzigen van bridge-instellingen.
+- Problemen met ingespoten JavaScript opgelost.

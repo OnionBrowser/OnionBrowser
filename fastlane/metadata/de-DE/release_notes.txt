@@ -1,11 +1,19 @@
-- Neues Benutzerinterface
-- Verbesserte iPad-Unterstützung
-- Neue Startseite
-- Lesezeichen mit Icons
-- Neue Tor-Kanal-Anzeige
-- Sicherheitsniveau-Voreinstellungen
-- Neue Reiterübersicht
-- Tor aktualisiert auf 0.4.0.6
-- Aktualisierte OBFS4-Serverliste
-- Problem mit Content-Security-Header-Nonce- und Hash-Werten behoben, das viele Websites kaputt gemacht hatte.
-- Lokalisierungsupdates
+- Aktualisierte Übersetzungen.
+- Probleme mit dauerhaften Cookies behoben.
+- Probleme auf dem iPad behoben, bei denen manche Szene beim Anzeigen der Tastatur weggescrollt wurde.
+- Überholte Benutzeroberfläche zum Starten der App. Keine Fehlerseite mehr, stattdessen wird der Benutzer aufgefordert, Brücken zu konfigurieren.
+- Verbesserte Benutzeroberfläche für die Brückenkonfiguration.
+- Verbesserte Popups auf dem iPad.
+- Lesezeichen vom Share-Sheet hinzufügen.
+- Vergrößerte X-Schaltfläche in der Reiterübersicht zum einfacheren Schließen.
+- Nach oben wischen, um Reiter in der Reiterübersicht zu schließen.
+- Versteckte Symbolleiste beim Anzeigen von PDFs, Bildern und anderen Dateien behoben.
+- Share-Sheet verbessert.
+- Option zur erweiterten Tor-Konfiguration hinzugefügt.
+- Erklärung zu Sicherheitsniveaus hinzugefügt.
+- Verbesserte Unterstützung für den Dark Mode.
+- Absturz beim Anzeigen von Tor-Kanälen behoben.
+- App-Verknüpfungen behoben. (Lange auf das App-Symbol tippen.)
+- Aktualisierte OBFS4-Brückenliste.
+- Fehler beim Ändern der Brücken-Einstellungen behoben.
+- Probleme mit injiziertem JavaScript behoben.

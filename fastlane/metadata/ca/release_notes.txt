@@ -1,11 +1,19 @@
-- Nou navegador crom
-- Millora del suport de l’iPad
-- Nova pàgina de destinació
-- Favorits amb punts de preferència
-- Nova pantalla del circuit Tor
-- Configuracions del nivell de seguretat
-- Vista general de la pestanya nova
-- Tor actualitzat al 0.4.0.6
-- Llista de servidors OBFS4 actualitzada
-- S'ha solucionat el problema amb els valors de hash i contingut de capçalera de seguretat de seguretat, que han trencat molts llocs.
-- Actualitzacions de localització
+- Traduccions actualitzades.
+- S'han solucionat problemes amb les cookies persistents.
+- S'han solucionat problemes a l'iPad on l'escena es desplaçava quan es mostrava el teclat.
+- IU d’inici d’aplicació renovada. No mostreu la pàgina d'error, en lloc d'indicar l'usuari per configurar els ponts.
+- Interfície d'usuari de configuració millorada.
+- Popups millorades a l’iPad.
+- Afegiu una adreça d'interès del full de compartir.
+- El botó X augmentat de la vista general de la pestanya per tancar-lo més fàcilment.
+- S'ha afegit lliscar cap amunt per tancar pestanyes a la vista general de les pestanyes.
+- S'ha corregit la barra d'eines amagada en veure PDFs, imatges i altres fitxers.
+- Opcions de fulls compartits corregits.
+- S'ha afegit l'opció de configuració avançada de Tor.
+- S'ha afegit una explicació sobre els nivells de seguretat.
+- Millora del suport en mode fosc.
+- S'ha corregit un accident quan es mostraven els circuits de Tor.
+- S'han solucionat les dreceres d'aplicacions. (Toqueu llargament sobre la icona de l'aplicació.)
+- Llista de pont OBFS4 actualitzada.
+- S'ha corregit un error en canviar la configuració del pont.
+- S'han solucionat problemes amb JavaScript injectat.

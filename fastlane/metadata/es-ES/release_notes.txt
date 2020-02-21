@@ -1,11 +1,19 @@
-- Nuevo navegador Chrome
-- Soporte mejorado para iPad
-- Nueva página de destino
-- Marcadores con favicons
-- Nueva pantalla del circuito Tor
-- Presets de nivel de seguridad
-- Descripción general de la nueva pestaña
-- Tor actualizado a 0.4.0.6
-- Lista de servidores OBFS4 actualizada
-- Se corrigió el problema con los valores nonce y hash de Content-Security-Header que rompieron muchos sitios.
-- Actualizaciones de localización
+- Traducciones actualizadas.
+- Se corrigieron problemas con las cookies persistentes.
+- Se corrigieron problemas en el iPad donde la escena se desplazaba cuando aparecía el teclado.
+- La aplicación restaurada inicia la interfaz de usuario. No muestre la página de error, en su lugar solicite al usuario que configure los puentes.
+- Mejora de la interfaz de usuario de la configuración del puente.
+- Ventanas emergentes mejoradas en iPad.
+- Agregar marcador de la hoja de compartir.
+- Aumento del botón X en la vista general de la pestaña para un cierre más fácil
+- Se agregó deslizar hacia arriba para cerrar las pestañas en la vista general de pestañas.
+- Se corrigió la barra de herramientas oculta al ver archivos PDF, imágenes y otros archivos.
+- Se corrigieron las opciones de compartir hoja.
+- Se agregó la opción de configuración avanzada de Tor.
+- Se agregó una explicación sobre los niveles de seguridad.
+- Soporte mejorado para el modo oscuro.
+- Se corrigió el bloqueo al mostrar los circuitos Tor.
+- Se corrigieron los accesos directos de aplicaciones. (En pulsación larga en el icono de la aplicación).
+- Actualización de la lista de puentes OBFS4.
+- Se corrigió el error al cambiar la configuración del puente.
+- Se corrigieron problemas con JavaScript inyectado.

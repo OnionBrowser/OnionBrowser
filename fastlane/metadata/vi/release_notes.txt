@@ -1,11 +1,19 @@
-- Chrome duyệt mới
-- Hỗ trợ iPad được cải thiện
-- Trang đích mới
-- Dấu trang với favicon
-- Hiển thị mạch Tor mới
-- Cài đặt trước mức bảo mật
-- Tổng quan về tab mới
-- Tor cập nhật lên 0.4.0.6
-- Danh sách máy chủ OBFS4 được cập nhật
-- Đã sửa lỗi với giá trị băm và giá trị băm của Content-Security-Header đã phá vỡ rất nhiều trang web.
-- Cập nhật nội địa hóa
+- Cập nhật bản dịch.
+- Đã sửa lỗi với cookie liên tục.
+- Đã sửa lỗi trên iPad khi cảnh bị cuộn đi khi bàn phím hiển thị.
+- Ứng dụng UI được tân trang lại. Không hiển thị trang lỗi, thay vào đó nhắc người dùng cấu hình cầu.
+- Cải thiện giao diện người dùng cấu hình cầu.
+- Cải thiện cửa sổ bật lên trên iPad.
+- Thêm dấu trang từ bảng chia sẻ.
+- Tăng nút X trên tổng quan tab để đóng dễ dàng hơn.
+- Đã thêm vuốt lên để đóng các tab trong tổng quan về tab.
+- Đã sửa lỗi thanh công cụ ẩn khi xem tệp PDF, hình ảnh và các tệp khác.
+- Cố định tùy chọn bảng chia sẻ.
+- Thêm tùy chọn cấu hình Tor nâng cao.
+- Thêm giải thích về mức độ bảo mật.
+- Cải thiện hỗ trợ chế độ tối.
+- Đã sửa lỗi sự cố khi hiển thị mạch Tor.
+- Sửa lỗi phím tắt ứng dụng. (Khi nhấn lâu vào biểu tượng ứng dụng.)
+- Cập nhật danh sách cầu OBFS4.
+- Đã sửa lỗi khi thay đổi cài đặt cầu.
+- Đã sửa lỗi JavaScript được chèn.
