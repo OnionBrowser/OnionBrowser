@@ -24,7 +24,7 @@ class BridgeConfViewController: FixedFormViewController, UINavigationControllerD
 			NSLocalizedString("If you are in a country or using a connection that censors Tor, you might need to use bridges.",
 							  comment: ""),
 			"",
-			String(format: NSLocalizedString("%1$@ %2$@ makes traffic appear \"random\".",
+			String(format: NSLocalizedString("%1$@ %2$@ makes your traffic appear \"random\".",
 							  comment: ""), "\u{2022}", "obfs4"),
 			String(format: NSLocalizedString("%1$@ %2$@ makes your traffic pose as traffic to a Microsoft website.",
 							  comment: ""), "\u{2022}", "meek-azure"),
