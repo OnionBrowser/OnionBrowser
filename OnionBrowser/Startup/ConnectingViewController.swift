@@ -52,9 +52,9 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate {
 
 			text.append(NSAttributedString(string: "\n"))
 
-			text.append(NSAttributedString(string: String(format: NSLocalizedString(
-				"Close %@ and restart or try using a bridge.",
-				comment: ""), Bundle.main.displayName), attributes: [.font: UIFont.systemFont(ofSize: 15)]))
+			text.append(NSAttributedString(string: NSLocalizedString(
+				"Close Onion Browser and restart or try using a bridge.",
+				comment: ""), attributes: [.font: UIFont.systemFont(ofSize: 15)]))
 
 			troubleLb.attributedText = text
 		}
