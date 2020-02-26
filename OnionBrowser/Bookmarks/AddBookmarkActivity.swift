@@ -56,6 +56,10 @@ class AddBookmarkActivity: UIActivity {
 				Bookmark.all.append(b)
 				Bookmark.store() // First store, so the user sees it immediately.
 
+				Nextcloud.getId(b) { id in
+					Nextcloud.store(b, id: id)
+				}
+
 				var done = false
 				b.acquireIcon {
 					done = true

@@ -69,6 +69,8 @@
 		A053137122F1C740006655EC /* JAHPQNSURLSessionDemux.m in Sources */ = {isa = PBXBuildFile; fileRef = A053136222F1C573006655EC /* JAHPQNSURLSessionDemux.m */; };
 		A053137522F1E587006655EC /* CertificateAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = A053137322F1E587006655EC /* CertificateAuthentication.m */; };
 		A053137822F1EC19006655EC /* DownloadHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A053137622F1EC19006655EC /* DownloadHelper.m */; };
+		A0696EAD2406C7D000512695 /* SyncViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0696EAC2406C7D000512695 /* SyncViewController.swift */; };
+		A0696EAF2406D94200512695 /* Nextcloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0696EAE2406D94200512695 /* Nextcloud.swift */; };
 		A07037C423C74E1100D670EC /* UIColor+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07037C323C74E1100D670EC /* UIColor+Helpers.swift */; };
 		A07037C623C7571B00D670EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07037C523C7571B00D670EC /* AppDelegate.swift */; };
 		A07037C723C79AE500D670EC /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A07037C223C74DC900D670EC /* Media.xcassets */; };
@@ -413,6 +415,8 @@
 		A056554D23F6C5FE00DE0168 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A056554E23F6C60000DE0168 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A0675F0923F7EF10004A3587 /* bn */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = bn; path = "bn.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A0696EAC2406C7D000512695 /* SyncViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncViewController.swift; sourceTree = "<group>"; };
+		A0696EAE2406D94200512695 /* Nextcloud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nextcloud.swift; sourceTree = "<group>"; };
 		A07037C223C74DC900D670EC /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		A07037C323C74E1100D670EC /* UIColor+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Helpers.swift"; sourceTree = "<group>"; };
 		A07037C523C7571B00D670EC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -1808,6 +1812,7 @@
 			isa = PBXGroup;
 			children = (
 				A0BF521E23AFC3580096624A /* Bookmark.swift */,
+				A0696EAE2406D94200512695 /* Nextcloud.swift */,
 				A0BF521D23AFC3580096624A /* BookmarksViewController.xib */,
 				A0BF522023AFC3580096624A /* BookmarksViewController.swift */,
 				A0BF522123AFC3580096624A /* BookmarkCell.xib */,
@@ -1816,6 +1821,7 @@
 				A0BF521F23AFC3580096624A /* FavIconCell.xib */,
 				A0BF521C23AFC3580096624A /* FavIconRow.swift */,
 				A02CB2B423D0B0B300880720 /* AddBookmarkActivity.swift */,
+				A0696EAC2406C7D000512695 /* SyncViewController.swift */,
 			);
 			path = Bookmarks;
 			sourceTree = "<group>";
@@ -2214,6 +2220,7 @@
 				A0BF524623AFC3580096624A /* OldBookmark.m in Sources */,
 				A0BF527E23AFC3580096624A /* UIButton+Helpers.swift in Sources */,
 				A0BF526423AFC3580096624A /* Bookmark.swift in Sources */,
+				A0696EAF2406D94200512695 /* Nextcloud.swift in Sources */,
 				01F8793B1A4108DD00A63654 /* URLBlocker.m in Sources */,
 				A0BF528223AFC3580096624A /* String+Helpers.swift in Sources */,
 				A0BF524423AFC3580096624A /* ObfsThread.m in Sources */,
@@ -2260,6 +2267,7 @@
 				A031761F23CE462300D75F2A /* BridgeConfViewController.swift in Sources */,
 				A053136F22F1C73A006655EC /* JAHPCacheStoragePolicy.m in Sources */,
 				A0BF525723AFC3580096624A /* SecurityPopUpViewController.swift in Sources */,
+				A0696EAD2406C7D000512695 /* SyncViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

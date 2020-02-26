@@ -11,17 +11,14 @@
 import UIKit
 import Eureka
 
-protocol BookmarkViewControllerDelegate {
-
-	func needsReload()
-}
-
 class BookmarkViewController: FixedFormViewController {
 
 	var index: Int?
-	var delegate: BookmarkViewControllerDelegate?
+	var delegate: BookmarksViewControllerDelegate?
 
 	private var bookmark: Bookmark?
+
+	private var nextcloudId: String?
 
 	private var sceneGoneStoreImmediately = false
 
@@ -84,6 +81,13 @@ class BookmarkViewController: FixedFormViewController {
 			if bookmark.icon == nil {
 				acquireIcon()
 			}
+
+			// Get Nextcloud ID *before* user changes URL, which is our unique
+			// identifier. So we later *update* an existing bookmark on Nextcloud
+			// with a changed URL and not create a new one.
+			Nextcloud.getId(bookmark) { id in
+				self.nextcloudId = id
+			}
 		}
 
 		form
@@ -112,6 +116,10 @@ class BookmarkViewController: FixedFormViewController {
 			bookmark?.icon = favIconRow.value
 
 			Bookmark.store()
+
+			if let bookmark = bookmark {
+				Nextcloud.store(bookmark, id: nextcloudId)
+			}
 
 			delegate?.needsReload()
 
