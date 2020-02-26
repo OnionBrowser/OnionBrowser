@@ -360,7 +360,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 				authenticatingHTTPProtocol.resolvePendingAuthenticationChallenge(with: credential)
 			})
 
-			self.browsingUi?.present(self.alert!)
+			self.window?.rootViewController?.top.present(self.alert!)
 		}
 
 		return nil
