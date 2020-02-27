@@ -288,6 +288,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 		return self.application(application, shouldSaveApplicationState: coder)
 	}
 
+	/**
+	Unload all webviews of background tabs, if OS says, we're using too much memory.
+	*/
+	func applicationDidReceiveMemoryWarning(_ application: UIApplication) {
+		for tab in browsingUi?.tabs ?? [] {
+			if tab != browsingUi?.currentTab {
+				tab.empty()
+			}
+		}
+	}
+
 
 	// MARK: JAHPAuthenticatingHTTPProtocolDelegate
 

@@ -286,19 +286,36 @@ class Tab: UIView {
 			NotificationCenter.default.removeObserver(self)
 
 			self.tabDelegate = nil
-
 			self.scrollView.delegate = nil
-
 			self.webView.delegate = nil
-			self.webView.loadHTMLString("", baseURL: nil)
-			self.webView.stopLoading()
-			self.webView.removeFromSuperview()
 
 			for gr in self.webView.gestureRecognizers ?? [] {
 				self.webView.removeGestureRecognizer(gr)
 			}
 
+			self.stop()
+			self.webView.loadHTMLString("", baseURL: nil)
+
+			self.webView.removeFromSuperview()
 			self.removeFromSuperview()
+		}
+
+		if Thread.isMainThread {
+			block()
+		}
+		else {
+			DispatchQueue.main.sync(execute: block)
+		}
+	}
+
+	func empty() {
+		let block = {
+			self.stop()
+
+			// Will empty the webView, but keep the URL and doesn't create a history entry.
+			self.stringByEvaluatingJavaScript(from: "document.open()")
+			
+			self.needsRefresh = true
 		}
 
 		if Thread.isMainThread {
