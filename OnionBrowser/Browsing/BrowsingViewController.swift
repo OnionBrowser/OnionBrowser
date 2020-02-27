@@ -115,7 +115,7 @@ class BrowsingViewController: UIViewController, TabDelegate {
 	private var currentTabIndex = -1
 
 	@objc
-	var currentTab: Tab? {
+	weak var currentTab: Tab? {
 		get {
 			return currentTabIndex < 0 || currentTabIndex >= tabs.count ? tabs.last : tabs[currentTabIndex]
 		}
@@ -339,7 +339,7 @@ class BrowsingViewController: UIViewController, TabDelegate {
 
 	// MARK: TabDelegate
 
-	func updateChrome(_ sender: Tab? = nil) {
+	func updateChrome() {
 		debug("#updateChrome progress=\(currentTab?.progress ?? 1)")
 
 		if let progress = progress {
@@ -458,7 +458,7 @@ class BrowsingViewController: UIViewController, TabDelegate {
 
 			let hash = tab.hash
 
-			tab.removeFromSuperview()
+			tab.close()
 			self.tabs.removeAll { $0 == tab }
 
 			AppDelegate.shared?.cookieJar.clearNonWhitelistedData(forTab: UInt(hash))
@@ -538,7 +538,7 @@ class BrowsingViewController: UIViewController, TabDelegate {
 	@objc
 	func removeAllTabs() {
 		for tab in tabs {
-			tab.removeFromSuperview()
+			tab.close()
 		}
 
 		tabs.removeAll()
