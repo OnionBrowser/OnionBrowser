@@ -174,7 +174,9 @@ open class Bookmark: NSObject {
 
 			for tab in AppDelegate.shared?.browsingUi?.tabs ?? [] {
 				if tab.url == URL.start {
-					tab.refresh()
+					DispatchQueue.main.async {
+						tab.refresh()
+					}
 				}
 			}
 
