@@ -22,7 +22,7 @@ class SyncViewController: FixedFormViewController {
 			"If you have access to a Nextcloud server with a Bookmarks plugin, enter your credentials to enable Onion Browser to synchronize your bookmarks with it.",
 			comment: "")
 		desc1 += "\n\n"
-		desc1 += NSLocalizedString("Please note: If you create, edit or deleta a bookmark, Onion Browser tries to sync that change to the Nextcloud server immediately. However, if that fails, no attempt is made to re-sync later.", comment: "")
+		desc1 += NSLocalizedString("Please note: If you create, edit or delete a bookmark, Onion Browser tries to sync that change to the Nextcloud server immediately. However, if that fails, no attempt is made to re-sync later.", comment: "")
 
 		var desc2 = NSLocalizedString("If you synchronize, all bookmarks will be read from the server and added/updated in Onion Browser.", comment: "")
 		desc2 += "\n\n"
