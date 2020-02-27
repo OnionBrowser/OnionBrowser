@@ -157,6 +157,8 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate {
 			self.bridgeConfBt.isHidden = true
 			self.bridgeConfBt.widthAnchor.constraint(equalToConstant: 0).isActive = true
 			self.progress.isHidden = true
+			self.troubleLbHeight.constant = 0
+			self.troubleLb.isHidden = true
 			self.claimLb.isHidden = true
 
 			self.nextBt.setTitle(NSLocalizedString("Next", comment: ""))
