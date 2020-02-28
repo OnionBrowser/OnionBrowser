@@ -157,6 +157,7 @@
 		A0C26E4323D8650E00C4AF1C /* security-levels.html in Resources */ = {isa = PBXBuildFile; fileRef = A0C26E4523D8650E00C4AF1C /* security-levels.html */; };
 		A0C3770E1F47342C0039198E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0C3770D1F47342C0039198E /* CoreData.framework */; };
 		A0C9531A23C6426C006D7A35 /* FixedFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C9531923C6426C006D7A35 /* FixedFormViewController.swift */; };
+		A0D9008B24095F5C0046C9B3 /* AltSvcHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D9008A24095F5C0046C9B3 /* AltSvcHeader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -762,6 +763,7 @@
 		A0C26E4423D8650E00C4AF1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = "Base.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A0C3770D1F47342C0039198E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		A0C9531923C6426C006D7A35 /* FixedFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedFormViewController.swift; sourceTree = "<group>"; };
+		A0D9008A24095F5C0046C9B3 /* AltSvcHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AltSvcHeader.swift; sourceTree = "<group>"; };
 		A0F0F33D23F57CC00019A62F /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ar; path = "ar.lproj/security-levels.html"; sourceTree = "<group>"; };
 		BED522A5B119CE39951BF4AF /* Pods-OnionBrowser2 Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnionBrowser2 Tests.debug.xcconfig"; path = "Target Support Files/Pods-OnionBrowser2 Tests/Pods-OnionBrowser2 Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1755,6 +1757,7 @@
 				A0BF523323AFC3580096624A /* OnionManager.swift */,
 				A0BF523123AFC3580096624A /* ObfsThread.h */,
 				A0BF51F723AFC3580096624A /* ObfsThread.m */,
+				A0D9008A24095F5C0046C9B3 /* AltSvcHeader.swift */,
 				A0BF523023AFC3580096624A /* OnionBrowser2-Bridging-Header.h */,
 				A0BF520023AFC3580096624A /* version.h */,
 				A0BF52A323AFE2D70096624A /* Iobfs4proxy.framework */,
@@ -2202,6 +2205,7 @@
 				01F2AE391B7FEF5E00D5651A /* SSLCertificate.m in Sources */,
 				A0BF527A23AFC3580096624A /* AlertHelper.swift in Sources */,
 				A0BF527623AFC3580096624A /* OnionManager.swift in Sources */,
+				A0D9008B24095F5C0046C9B3 /* AltSvcHeader.swift in Sources */,
 				A0BF527223AFC3580096624A /* SettingsViewController.swift in Sources */,
 				A003A6BC23C94A4900BD2D20 /* ConnectingViewController.swift in Sources */,
 				A0BF526F23AFC3580096624A /* Storage1ViewController.swift in Sources */,
