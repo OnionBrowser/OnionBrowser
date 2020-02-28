@@ -9,7 +9,7 @@
 
 import Foundation
 
-protocol OnionManagerDelegate {
+protocol OnionManagerDelegate: class {
 
 	func torConnProgress(_ progress: Int)
 
@@ -211,6 +211,9 @@ class OnionManager : NSObject {
 	}
 
 	func startTor(delegate: OnionManagerDelegate?) {
+		// Avoid a retain cycle. Only use the weakDelegate in closures!
+		weak var weakDelegate = delegate
+
 		cancelInitRetry()
 		state = .started
 
@@ -335,7 +338,7 @@ class OnionManager : NSObject {
 							print("[\(String(describing: type(of: self)))] Connection established!")
 							#endif
 
-							delegate?.torConnFinished()
+							weakDelegate?.torConnFinished()
 						}
 					}) // torController.addObserver
 
@@ -349,7 +352,7 @@ class OnionManager : NSObject {
 							print("[\(String(describing: OnionManager.self))] progress=\(progress)")
 							#endif
 
-							delegate?.torConnProgress(progress)
+							weakDelegate?.torConnProgress(progress)
 
 							if progress >= 100 {
 								self.torController?.removeObserver(progressObs)
