@@ -11,14 +11,24 @@
 import UIKit
 
 /**
-Parser for the Alt-Svc header.
+Parser/builder for the Alt-Svc header.
+
+The Alt-Svc HTTP response header is used to advertise alternative services through which the same resource
+can be reached.
+
+An alternative service is defined by a protocol/host/port combination.
 
 https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Alt-Svc
 */
 public class AltSvcHeader: NSObject {
 
-	private var services = [AltService]()
+	public private(set) var services = [AltService]()
 
+	/**
+	Init from a Alt-Svc header string.
+
+	- parameter token: The Alt-Svc header string.
+	*/
 	public init(token: String) {
 		let serviceTokens = token.split(separator: ",")
 
@@ -31,32 +41,82 @@ public class AltSvcHeader: NSObject {
 		}
 	}
 
-	public convenience init(headers: [String: String]) {
-		var token = ""
+	/**
+	Init from a bunch of HTTP headers, if a Alt-Svc header is contained.
+
+	- parameter headers: HTTP headers
+	*/
+	public convenience init?(headers: [String: String]) {
+		var token: String? = nil
 
 		for key in headers.keys {
 			if key.lowercased() == "alt-svc" {
-				token = headers[key]!
+				token = headers[key]
 				break
 			}
 		}
 
-		self.init(token: token)
+		if token?.isEmpty ?? true {
+			return nil
+		}
+
+		self.init(token: token!)
+	}
+
+	/**
+	Init from a list of `AltService`s.
+
+	- parameter services: The `AltService` objects.
+	*/
+	public init(_ services: [AltService]) {
+		self.services = services
+	}
+
+	public override var description: String {
+		return services.map { String(describing: $0) }.joined(separator: ", ")
 	}
 }
 
+/**
+An alternative service through which the same resource can be reached.
+
+An alternative service is defined by a protocol/host/port combination.
+*/
 public class AltService: NSObject {
 
 	private static let maxAgeRegEx = try? NSRegularExpression(pattern: "ma=(\\d+)", options: [])
 
-	private static let twentyFourHours = 24 * 60 * 60
+	/**
+	24 hours in seconds. (Default `maxAge` value)
+	*/
+	public static let twentyFourHours = 24 * 60 * 60
 
+	/**
+	The ALPN protocol identifier. Examples include h2 for HTTP/2 and h3-25 for draft 25 of the HTTP/3 protocol.
+	*/
 	public let protocolId: String
 
+	/**
+	The string specifying the alternative authority which consists of an optional host override, a colon,
+	and a mandatory port number.
+	*/
 	public let authority: String
 
+	/**
+	The number of seconds for which the alternative service is considered fresh.
+	Defaults to 24 hours.
+
+	Alternative service entries can be cached for up to `maxAge` seconds, minus the age of the response
+	(from the Age header).
+
+	If the cached entry expires, the client can no longer use this alternative service for new connections.
+	*/
 	public let maxAge: Int
 
+	/**
+	Usually cached alternative service entries are cleared on network configuration changes.
+	Use of the persist=1 parameter ensures that the entry is not deleted through such changes.
+	*/
 	public let persist: Bool
 
 	public class func parse(_ token: String) -> AltService? {
@@ -101,7 +161,7 @@ public class AltService: NSObject {
 		return AltService(protocolId: protocolId, authority: authority, maxAge: maxAge, persist: persist)
 	}
 
-	public init(protocolId: String, authority: String, maxAge: Int, persist: Bool) {
+	public init(protocolId: String, authority: String, maxAge: Int = AltService.twentyFourHours, persist: Bool = false) {
 		self.protocolId = protocolId
 		self.authority = authority
 		self.maxAge = maxAge
@@ -127,7 +187,7 @@ public class AltService: NSObject {
 
 	@objc
 	public override var description: String {
-		var token = ["\(protocolId)=\"/(authority)\""]
+		var token = ["\(protocolId)=\"\(authority)\""]
 
 		if maxAge != AltService.twentyFourHours {
 			token.append("ma=\(maxAge)")
@@ -141,10 +201,13 @@ public class AltService: NSObject {
 	}
 }
 
+/**
+The special value ''clear" indicates that the origin requests all alternatives for that origin to be invalidated.
+*/
 public class ClearAltService: AltService {
 
 	init() {
-		super.init(protocolId: "", authority: "", maxAge: 0, persist: false)
+		super.init(protocolId: "", authority: "", maxAge: 0)
 	}
 
 	@objc
