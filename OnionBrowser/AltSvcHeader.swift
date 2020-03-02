@@ -20,6 +20,7 @@ An alternative service is defined by a protocol/host/port combination.
 
 https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Alt-Svc
 */
+@objcMembers
 public class AltSvcHeader: NSObject {
 
 	public private(set) var services = [AltService]()
@@ -82,6 +83,7 @@ An alternative service through which the same resource can be reached.
 
 An alternative service is defined by a protocol/host/port combination.
 */
+@objcMembers
 public class AltService: NSObject {
 
 	private static let maxAgeRegEx = try? NSRegularExpression(pattern: "ma=(\\d+)", options: [])
@@ -97,10 +99,16 @@ public class AltService: NSObject {
 	public let protocolId: String
 
 	/**
-	The string specifying the alternative authority which consists of an optional host override, a colon,
-	and a mandatory port number.
+	The host part of the  string specifying the alternative authority which consists of an optional host override,
+	a colon, and a mandatory port number.
 	*/
-	public let authority: String
+	public let host: String
+
+	/**
+	The port number port of the string specifying the alternative authority which consists of an optional host
+	override, a colon, and a mandatory port number.
+	*/
+	public let port: Int
 
 	/**
 	The number of seconds for which the alternative service is considered fresh.
@@ -118,6 +126,11 @@ public class AltService: NSObject {
 	Use of the persist=1 parameter ensures that the entry is not deleted through such changes.
 	*/
 	public let persist: Bool
+
+	/**
+	The absolute end of validity of this `AltService` calculated from the date of creation of this object.
+	*/
+	public let maxAgeAbsolute: Date
 
 	public class func parse(_ token: String) -> AltService? {
 		let token = token.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -142,6 +155,16 @@ public class AltService: NSObject {
 				return nil
 		}
 
+		let authorityPieces = authority.split(separator: ":", omittingEmptySubsequences: false)
+
+		guard authorityPieces.count == 2,
+			let port = Int(String(authorityPieces.last ?? ""))
+			else {
+				return nil
+		}
+
+		let host = String(authorityPieces.first ?? "")
+
 		var maxAge = twentyFourHours // Default as per spec.
 
 		if pieces.count > 1 {
@@ -158,21 +181,23 @@ public class AltService: NSObject {
 
 		let persist = pieces.last?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() == "persist=1"
 
-		return AltService(protocolId: protocolId, authority: authority, maxAge: maxAge, persist: persist)
+		return AltService(protocolId: protocolId, host: host, port: port, maxAge: maxAge, persist: persist)
 	}
 
-	public init(protocolId: String, authority: String, maxAge: Int = AltService.twentyFourHours, persist: Bool = false) {
+	public init(protocolId: String, host: String = "", port: Int, maxAge: Int = AltService.twentyFourHours, persist: Bool = false) {
 		self.protocolId = protocolId
-		self.authority = authority
+		self.host = host
+		self.port = port
 		self.maxAge = maxAge
 		self.persist = persist
+		self.maxAgeAbsolute = Date(timeInterval: TimeInterval(maxAge), since: Date())
 	}
 
 	// MARK: NSObject
 
 	@objc
 	public override var hash: Int {
-		return protocolId.hashValue ^ authority.hashValue
+		return protocolId.hashValue ^ host.hashValue ^ port.hashValue
 	}
 
 	@objc
@@ -182,12 +207,13 @@ public class AltService: NSObject {
 		}
 
 		return protocolId == rhs.protocolId
-			&& authority == rhs.authority
+			&& host == rhs.host
+			&& port == rhs.port
 	}
 
 	@objc
 	public override var description: String {
-		var token = ["\(protocolId)=\"\(authority)\""]
+		var token = ["\(protocolId)=\"\(host):\(port)\""]
 
 		if maxAge != AltService.twentyFourHours {
 			token.append("ma=\(maxAge)")
@@ -207,7 +233,7 @@ The special value ''clear" indicates that the origin requests all alternatives f
 public class ClearAltService: AltService {
 
 	init() {
-		super.init(protocolId: "", authority: "", maxAge: 0)
+		super.init(protocolId: "", host: "", port: 0, maxAge: 0)
 	}
 
 	@objc

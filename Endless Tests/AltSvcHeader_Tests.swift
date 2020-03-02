@@ -25,7 +25,7 @@ class AltSvcHeader_Tests: XCTestCase {
 			let header = AltSvcHeader(token: value)
 
 			for service in header.services {
-				print("Service \"\(service)\" is \(String(describing: type(of: service))), protocolId=\(service.protocolId), authority=\(service.authority), maxAge=\(service.maxAge), persist=\(service.persist)")
+				print("Service \"\(service)\" is \(String(describing: type(of: service))), protocolId=\(service.protocolId), host=\(service.host), port=\(service.port),  maxAge=\(service.maxAge), persist=\(service.persist)")
 			}
 
 			XCTAssertEqual(String(describing: header), value, #"Testing "\(value)""#)
@@ -58,8 +58,8 @@ class AltSvcHeader_Tests: XCTestCase {
 
 	func testProgrammaticInit() {
 		let header = AltSvcHeader([
-			AltService(protocolId: "h2", authority: ":443"),
-			AltService(protocolId: "h2", authority: ":4443", maxAge: 1234, persist: true)])
+			AltService(protocolId: "h2", port: 443),
+			AltService(protocolId: "h2", port: 4443, maxAge: 1234, persist: true)])
 
 		XCTAssertEqual(String(describing: header), #"h2=":443", h2=":4443"; ma=1234; persist=1"#)
 	}
@@ -68,5 +68,16 @@ class AltSvcHeader_Tests: XCTestCase {
 		let header = AltSvcHeader(token: #"h2=":443", h2=":443""#)
 
 		XCTAssertEqual(String(describing: header), #"h2=":443""#)
+	}
+
+	func testMaxAgeCalc() {
+		let header = AltSvcHeader(token: #"h2=":443""#)
+		let service = header.services.first
+
+		XCTAssertNotNil(service)
+
+		print("maxAge=\(service?.maxAge), maxAgeAbsolute=\(service!.maxAgeAbsolute), timeIntervalSinceNow=\(service!.maxAgeAbsolute.timeIntervalSinceNow)")
+
+		XCTAssertGreaterThan(service!.maxAgeAbsolute.timeIntervalSinceNow, 0)
 	}
 }
