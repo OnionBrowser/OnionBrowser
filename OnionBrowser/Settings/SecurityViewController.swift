@@ -69,7 +69,7 @@ class SecurityViewController: FixedFormViewController {
 		+++ (host != nil ? Section() : Section("to be replaced in #willDisplayHeaderView to avoid capitalization"))
 
 		<<< securityPresetsRow
-		.onChange { row in
+		.onChange { [weak self] row in
 			// Only change other settings, if a non-custom preset was chosen.
 			// Do nothing, if it was unselected.
 			if let values = row.value?.values {
@@ -78,17 +78,17 @@ class SecurityViewController: FixedFormViewController {
 				// when values actually change. So this might lead to a host
 				// still being configured for default values, although these should
 				// be set hard.
-				self.hostSettings.contentPolicy = values.csp
-				self.hostSettings.webRtc = values.webRtc
-				self.hostSettings.mixedMode = values.mixedMode
+				self?.hostSettings.contentPolicy = values.csp
+				self?.hostSettings.webRtc = values.webRtc
+				self?.hostSettings.mixedMode = values.mixedMode
 
-				self.contentPolicyRow.value = values.csp
-				self.webRtcRow.value = values.webRtc
-				self.mixedModeRow.value = values.mixedMode
+				self?.contentPolicyRow.value = values.csp
+				self?.webRtcRow.value = values.webRtc
+				self?.mixedModeRow.value = values.mixedMode
 
-				self.contentPolicyRow.updateCell()
-				self.webRtcRow.updateCell()
-				self.mixedModeRow.updateCell()
+				self?.contentPolicyRow.updateCell()
+				self?.webRtcRow.updateCell()
+				self?.mixedModeRow.updateCell()
 			}
 		}
 
@@ -107,17 +107,19 @@ class SecurityViewController: FixedFormViewController {
 										 comment: "Option description")
 			}
 		}
-		.onChange { row in
-			let csp = row.value ?? .strict
-			var webRtc = self.hostSettings.webRtc
+		.onChange { [weak self] row in
+			if let hostSettings = self?.hostSettings {
+				let csp = row.value ?? .strict
+				var webRtc = hostSettings.webRtc
 
-			// Cannot have WebRTC while blocking everything besides images and styles.
-			// So need to restriction there, too.
-			if csp == .strict && webRtc {
-				webRtc = false
+				// Cannot have WebRTC while blocking everything besides images and styles.
+				// So need to restriction there, too.
+				if csp == .strict && webRtc {
+					webRtc = false
+				}
+
+				self?.alertBeforeChange(csp, webRtc, hostSettings.mixedMode)
 			}
-
-			self.alertBeforeChange(csp, webRtc, self.hostSettings.mixedMode)
 		}
 
 		<<< SwitchRow() {
@@ -126,34 +128,38 @@ class SecurityViewController: FixedFormViewController {
 			$0.cell.switchControl.onTintColor = .accent
 			$0.cell.textLabel?.numberOfLines = 0
 		}
-		.onChange { row in
-			self.hostSettings.universalLinkProtection = row.value ?? false
+		.onChange { [weak self] row in
+			self?.hostSettings.universalLinkProtection = row.value ?? false
 		}
 
 		+++ Section(footer: NSLocalizedString("Allow hosts to access WebRTC functions.",
 											  comment: "Option description"))
 
 		<<< webRtcRow
-		.onChange { row in
-			let webRtc = row.value ?? false
-			var csp = self.hostSettings.contentPolicy
+		.onChange { [weak self] row in
+			if let hostSettings = self?.hostSettings {
+				let webRtc = row.value ?? false
+				var csp = hostSettings.contentPolicy
 
-			// Cannot have WebRTC while blocking everything besides images and styles.
-			// So need to lift restrictions there, too.
-			if webRtc && csp == .strict {
-				csp = .blockXhr
+				// Cannot have WebRTC while blocking everything besides images and styles.
+				// So need to lift restrictions there, too.
+				if webRtc && csp == .strict {
+					csp = .blockXhr
+				}
+
+				self?.alertBeforeChange(csp, webRtc, hostSettings.mixedMode)
 			}
-
-			self.alertBeforeChange(csp, webRtc, self.hostSettings.mixedMode)
 		}
 
 		+++ Section(footer: NSLocalizedString("Allow HTTPS hosts to load page resources from non-HTTPS hosts. (Useful for RSS readers and other aggregators.)",
 											  comment: "Option description"))
 
 		<<< mixedModeRow
-		.onChange { row in
-			self.alertBeforeChange(self.hostSettings.contentPolicy,
-								   self.hostSettings.webRtc, row.value ?? false)
+		.onChange { [weak self] row in
+			if let hostSettings = self?.hostSettings {
+				self?.alertBeforeChange(hostSettings.contentPolicy,
+									   hostSettings.webRtc, row.value ?? false)
+			}
 		}
 
 		+++ Section(header: NSLocalizedString("Privacy", comment: "Section title"),
@@ -165,8 +171,8 @@ class SecurityViewController: FixedFormViewController {
 			$0.cell.switchControl.onTintColor = .accent
 			$0.cell.textLabel?.numberOfLines = 0
 		}
-		.onChange { row in
-			self.hostSettings.whitelistCookies = row.value ?? false
+		.onChange { [weak self] row in
+			self?.hostSettings.whitelistCookies = row.value ?? false
 		}
 
 		let section = Section(header: NSLocalizedString("Other", comment: "Section title"),
@@ -184,8 +190,8 @@ class SecurityViewController: FixedFormViewController {
 				$0.cell.switchControl.onTintColor = .accent
 				$0.cell.textLabel?.numberOfLines = 0
 			}
-			.onChange { row in
-				self.hostSettings.ignoreTlsErrors = false
+			.onChange { [weak self] row in
+				self?.hostSettings.ignoreTlsErrors = false
 
 				row.cell.switchControl.isEnabled = false
 			}
@@ -197,8 +203,8 @@ class SecurityViewController: FixedFormViewController {
 			$0.value = hostSettings.userAgent
 			$0.cell.textLabel?.numberOfLines = 0
 		}
-		.onChange {row in
-			self.hostSettings.userAgent = row.value ?? ""
+		.onChange { [weak self] row in
+			self?.hostSettings.userAgent = row.value ?? ""
 		}
     }
 
@@ -239,40 +245,40 @@ class SecurityViewController: FixedFormViewController {
 
 		let preset = SecurityPreset(csp, webRtc, mixedMode)
 
-		let okHandler = {
-			self.hostSettings.contentPolicy = csp
-			self.hostSettings.webRtc = webRtc
-			self.hostSettings.mixedMode = mixedMode
+		let okHandler = { [weak self] in
+			self?.hostSettings.contentPolicy = csp
+			self?.hostSettings.webRtc = webRtc
+			self?.hostSettings.mixedMode = mixedMode
 
 			// Could have been modified by webRtcRow.
-			if csp != self.contentPolicyRow.value {
-				self.calledTwice = true
-				self.contentPolicyRow.value = csp
-				self.contentPolicyRow.updateCell()
+			if csp != self?.contentPolicyRow.value {
+				self?.calledTwice = true
+				self?.contentPolicyRow.value = csp
+				self?.contentPolicyRow.updateCell()
 			}
 
 			// Could have been modified by contentPolicyRow.
-			if webRtc != self.webRtcRow.value {
-				self.calledTwice = true
-				self.webRtcRow.value = webRtc
-				self.webRtcRow.updateCell()
+			if webRtc != self?.webRtcRow.value {
+				self?.calledTwice = true
+				self?.webRtcRow.value = webRtc
+				self?.webRtcRow.updateCell()
 			}
 
-			self.securityPresetsRow.value = SecurityPreset(self.hostSettings)
-			self.securityPresetsRow.updateCell()
+			self?.securityPresetsRow.value = SecurityPreset(self?.hostSettings)
+			self?.securityPresetsRow.updateCell()
 		}
 
 		if !calledTwice && preset == .custom && securityPresetsRow.value != .custom {
-			let cancelHandler = {
-				self.contentPolicyRow.value = self.hostSettings.contentPolicy
-				self.webRtcRow.value = self.hostSettings.webRtc
-				self.mixedModeRow.value = self.hostSettings.mixedMode
+			let cancelHandler = { [weak self] in
+				self?.contentPolicyRow.value = self?.hostSettings.contentPolicy
+				self?.webRtcRow.value = self?.hostSettings.webRtc
+				self?.mixedModeRow.value = self?.hostSettings.mixedMode
 
-				self.contentPolicyRow.updateCell()
-				self.webRtcRow.updateCell()
-				self.mixedModeRow.updateCell()
+				self?.contentPolicyRow.updateCell()
+				self?.webRtcRow.updateCell()
+				self?.mixedModeRow.updateCell()
 
-				self.calledTwice = false
+				self?.calledTwice = false
 			}
 
 			let alert = AlertController(title: nil, message: nil)

@@ -70,24 +70,26 @@ class SyncViewController: FixedFormViewController {
 						|| (form.rowBy(tag: "password") as? PasswordRow)?.value?.isEmpty ?? true
 				}
 			}
-			.onCellSelection { _, row in
+			.onCellSelection { [weak self] _, row in
 				if !row.isDisabled {
-					Settings.nextcloudServer = (self.form.rowBy(tag: "host") as? TextRow)?.value
-					Settings.nextcloudUsername = (self.form.rowBy(tag: "username") as? AccountRow)?.value
-					Settings.nextcloudPassword = (self.form.rowBy(tag: "password") as? PasswordRow)?.value
+					Settings.nextcloudServer = (self?.form.rowBy(tag: "host") as? TextRow)?.value
+					Settings.nextcloudUsername = (self?.form.rowBy(tag: "username") as? AccountRow)?.value
+					Settings.nextcloudPassword = (self?.form.rowBy(tag: "password") as? PasswordRow)?.value
 
-					MBProgressHUD.showAdded(to: self.navigationController?.view ?? self.view, animated: true)
+					if let view = self?.navigationController?.view ?? self?.view {
+						MBProgressHUD.showAdded(to: view, animated: true)
 
-					Nextcloud.sync { error in
-						DispatchQueue.main.async {
-							MBProgressHUD.hide(for: self.navigationController?.view ?? self.view, animated: true)
+						Nextcloud.sync { error in
+							DispatchQueue.main.async {
+								MBProgressHUD.hide(for: view, animated: true)
 
-							if let error = error {
-								AlertHelper.present(self, message: error.localizedDescription)
+								if let error = error {
+									AlertHelper.present(self!, message: error.localizedDescription)
+								}
 							}
-						}
 
-						self.delegate?.needsReload()
+							self?.delegate?.needsReload()
+						}
 					}
 				}
 			}

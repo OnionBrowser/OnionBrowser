@@ -38,8 +38,8 @@ class AddSiteViewController: FixedFormViewController {
 
 		form
 		+++ hostRow
-		.onChange { row in
-			self.navigationItem.rightBarButtonItem?.isEnabled = row.value != nil
+		.onChange { [weak self] row in
+			self?.navigationItem.rightBarButtonItem?.isEnabled = row.value != nil
 		}
 	}
 

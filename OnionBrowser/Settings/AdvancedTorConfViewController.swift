@@ -41,11 +41,11 @@ class AdvancedTorConfViewController: FixedFormViewController {
 				return ButtonRow()
 			}
 
-			$0.multivaluedRowToInsertAt = { index in
+			$0.multivaluedRowToInsertAt = { [weak self] index in
 				return TextRow() {
 					$0.tag = String(index)
 
-					self.turnOffAutoCorrect($0.cell.textField)
+					self?.turnOffAutoCorrect($0.cell.textField)
 				}
 			}
 

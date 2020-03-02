@@ -35,8 +35,8 @@ class SettingsViewController: FixedFormViewController {
 
 		form
 		+++ defaultSecurityRow
-		.onCellSelection { _, _ in
-			self.navigationController?.pushViewController(
+		.onCellSelection { [weak self] _, _ in
+			self?.navigationController?.pushViewController(
 				SecurityViewController(), animated: true)
 		}
 
@@ -90,8 +90,8 @@ class SettingsViewController: FixedFormViewController {
 			$0.cell.accessoryType = .disclosureIndicator
 			$0.cell.selectionStyle = .default
 		}
-		.onCellSelection { _, _ in
-			self.navigationController?.pushViewController(CustomSitesViewController(), animated: true)
+		.onCellSelection { [weak self] _, _ in
+			self?.navigationController?.pushViewController(CustomSitesViewController(), animated: true)
 		}
 
 		<<< SwitchRow() {
@@ -112,8 +112,8 @@ class SettingsViewController: FixedFormViewController {
 			$0.cell.accessoryType = .disclosureIndicator
 			$0.cell.selectionStyle = .default
 		}
-		.onCellSelection { _, _ in
-			self.navigationController?.pushViewController(
+		.onCellSelection { [weak self] _, _ in
+			self?.navigationController?.pushViewController(
 				Storage1ViewController(), animated: true)
 		}
 
@@ -172,8 +172,8 @@ class SettingsViewController: FixedFormViewController {
 			$0.cell.accessoryType = .disclosureIndicator
 			$0.cell.selectionStyle = .default
 		}
-		.onCellSelection { _, _ in
-			self.navigationController?.pushViewController(URLBlockerRuleController(), animated: true)
+		.onCellSelection { [weak self] _, _ in
+			self?.navigationController?.pushViewController(URLBlockerRuleController(), animated: true)
 		}
 
 		<<< LabelRow() {
@@ -182,8 +182,8 @@ class SettingsViewController: FixedFormViewController {
 			$0.cell.accessoryType = .disclosureIndicator
 			$0.cell.selectionStyle = .default
 		}
-		.onCellSelection { _, _ in
-			self.navigationController?.pushViewController(HTTPSEverywhereRuleController(), animated: true)
+		.onCellSelection { [weak self] _, _ in
+			self?.navigationController?.pushViewController(HTTPSEverywhereRuleController(), animated: true)
 		}
 
 		<<< SwitchRow() {
@@ -216,8 +216,8 @@ class SettingsViewController: FixedFormViewController {
 			$0.cell.accessoryType = .disclosureIndicator
 			$0.cell.selectionStyle = .default
 		}
-		.onCellSelection({ _, _ in
-			self.navigationController?.pushViewController(AdvancedTorConfViewController(), animated: true)
+		.onCellSelection({ [weak self] _, _ in
+			self?.navigationController?.pushViewController(AdvancedTorConfViewController(), animated: true)
 		})
 
 
@@ -235,12 +235,12 @@ class SettingsViewController: FixedFormViewController {
 		.cellUpdate { cell, _ in
 			cell.textLabel?.textAlignment = .natural
 		}
-		.onCellSelection { _, _ in
+		.onCellSelection { [weak self] _, _ in
 			AppDelegate.shared?.browsingUi?.addNewTab(
 				URL(string: "https://github.com/OnionBrowser/OnionBrowser/issues"),
 				transition: .notAnimated)
 
-			self.dismsiss_()
+			self?.dismsiss_()
 		}
 
 		if let url = URL(string: "itms-apps://itunes.apple.com/app/id519296448"),
@@ -266,8 +266,8 @@ class SettingsViewController: FixedFormViewController {
 			$0.cell.accessoryType = .disclosureIndicator
 			$0.cell.selectionStyle = .default
 		}
-		.onCellSelection { _, _ in
-			self.navigationController?.pushViewController(DonationViewController(), animated: true)
+		.onCellSelection { [weak self] _, _ in
+			self?.navigationController?.pushViewController(DonationViewController(), animated: true)
 		}
 
 		<<< ButtonRow() {
@@ -277,11 +277,11 @@ class SettingsViewController: FixedFormViewController {
 		.cellUpdate { cell, _ in
 			cell.textLabel?.textAlignment = .natural
 		}
-		.onCellSelection { _, _ in
+		.onCellSelection { [weak self] _, _ in
 			AppDelegate.shared?.browsingUi?.addNewTab(URL.aboutOnionBrowser,
 													   transition: .notAnimated)
 
-			self.dismsiss_()
+			self?.dismsiss_()
 		}
 	}
 

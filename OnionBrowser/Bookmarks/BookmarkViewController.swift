@@ -94,9 +94,9 @@ class BookmarkViewController: FixedFormViewController {
 			+++ favIconRow
 			<<< titleRow
 			<<< urlRow
-			.onChange { row in
-				self.acquireIcon()
-				self.navigationItem.rightBarButtonItem?.isEnabled = row.value != nil
+			.onChange { [weak self] row in
+				self?.acquireIcon()
+				self?.navigationItem.rightBarButtonItem?.isEnabled = row.value != nil
 			}
 	}
 

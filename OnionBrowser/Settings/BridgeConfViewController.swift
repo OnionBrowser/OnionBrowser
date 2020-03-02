@@ -59,9 +59,9 @@ class BridgeConfViewController: FixedFormViewController, UINavigationControllerD
 
 		let selected = Settings.currentlyUsedBridges
 
-		bridgesSection.onSelectSelectableRow = { _, row in
+		bridgesSection.onSelectSelectableRow = { [weak self] _, row in
 			if row.value == .custom {
-				self.navigationController?.pushViewController(
+				self?.navigationController?.pushViewController(
 					CustomBridgesViewController(), animated: true)
 			}
 		}
