@@ -19,7 +19,7 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
 	private static let ENABLE_LOGGING = true
 	private static var messageQueue = [Message]()
 
-	private static let torSocksPort: Int32 = 39050
+	private static let torProxyPort: Int32 = 39050
 	private static let torControlPort: UInt16 = 39060
 	private static let localhost = "127.0.0.1"
 
@@ -43,7 +43,8 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
 		conf.options = ["DNSPort": "\(PacketTunnelProvider.localhost):53",
 						"AutomapHostsOnResolve": "1",
 						"ClientOnly": "1",
-						"SocksPort": "\(PacketTunnelProvider.torSocksPort)",
+						"HTTPTunnelPort": "\(PacketTunnelProvider.localhost):\(PacketTunnelProvider.torProxyPort)",
+//						"SocksPort": "\(PacketTunnelProvider.torProxyPort)",
 						"ControlPort": "\(PacketTunnelProvider.localhost):\(PacketTunnelProvider.torControlPort)",
 						"AvoidDiskWrites": "1",
 						"MaxMemInQueues": "5MB" /* For reference, no impact seen so far */]
@@ -110,9 +111,21 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
 		let ipv4 = NEIPv4Settings(addresses: ["192.0.2.4"], subnetMasks: ["255.255.255.0"])
 		ipv4.includedRoutes = [NEIPv4Route.default()]
 
+		let server = NEProxyServer(address: PacketTunnelProvider.localhost, port: Int(PacketTunnelProvider.torProxyPort))
+		let proxy = NEProxySettings()
+		proxy.autoProxyConfigurationEnabled = false
+		proxy.httpEnabled = true
+		proxy.httpServer = server
+		proxy.httpsEnabled = true
+		proxy.httpsServer = server
+		proxy.excludeSimpleHostnames = false
+		proxy.matchDomains = [""]
+
 		let settings = NEPacketTunnelNetworkSettings(tunnelRemoteAddress: PacketTunnelProvider.localhost)
 		settings.ipv4Settings = ipv4
 		settings.dnsSettings = NEDNSSettings(servers: [PacketTunnelProvider.localhost])
+		settings.dnsSettings?.matchDomains = [""]
+		settings.proxySettings = proxy
 
 		log("#startTunnel before setTunnelNetworkSettings")
 
@@ -208,14 +221,14 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
 
 						self.torController?.removeObserver(observer)
 
-						TunnelInterface.setup(with: self.packetFlow)
-						TunnelInterface.startTun2Socks(PacketTunnelProvider.torSocksPort,
-													   withUsername: "onionbrowser",
-													   andPassword: "onionbrowser");
-
-						DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-							TunnelInterface.processPackets()
-						}
+//						TunnelInterface.setup(with: self.packetFlow)
+//						TunnelInterface.startTun2Socks(PacketTunnelProvider.torProxyPort,
+//													   withUsername: "onionbrowser",
+//													   andPassword: "onionbrowser");
+//
+//						DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+//							TunnelInterface.processPackets()
+//						}
 
 						self.log("#startTunnel successful")
 
@@ -227,7 +240,7 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
 	}
 
 	override func stopTunnel(with reason: NEProviderStopReason, completionHandler: @escaping () -> Void) {
-		TunnelInterface.stop()
+//		TunnelInterface.stop()
 
 		torController?.disconnect()
 		torController = nil
