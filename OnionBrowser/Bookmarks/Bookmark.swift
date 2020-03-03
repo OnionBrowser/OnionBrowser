@@ -47,7 +47,7 @@ open class Bookmark: NSObject {
 		return defaults
 	}();
 
-	private static var firstUpdateAfterStartDone = false
+	private static var startPageNeedsUpdate = true
 
 	static var all: [Bookmark] = {
 
@@ -101,7 +101,7 @@ open class Bookmark: NSObject {
 		}
 
 		// Always update after start. Language could have been changed.
-		if firstUpdateAfterStartDone {
+		if !startPageNeedsUpdate {
 			let fm = FileManager.default
 
 			// If files exist and destination is newer than source, don't do anything. (Upgrades!)
@@ -158,7 +158,7 @@ open class Bookmark: NSObject {
 
 		try? template.write(to: URL.start, atomically: true, encoding: .utf8)
 
-		firstUpdateAfterStartDone = true
+		startPageNeedsUpdate = false
 	}
 
 	class func add(name: String?, url: String) {
@@ -170,7 +170,7 @@ open class Bookmark: NSObject {
 		if let path = bookmarkFilePath {
 
 			// Trigger update of start page when things changed.
-			try? FileManager.default.removeItem(at: URL.start)
+			startPageNeedsUpdate = true
 
 			for tab in AppDelegate.shared?.browsingUi?.tabs ?? [] {
 				if tab.url == URL.start {
