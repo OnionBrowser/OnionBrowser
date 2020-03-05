@@ -17,7 +17,7 @@ Therefor it is highly recommended to install carthage via the officially documen
 ## Steps to build Onion Browser 2.X
 
 ```bash
-git clone git@github.com:mtigas/OnionBrowser.git
+git clone git@github.com:OnionBrowser/OnionBrowser.git
 cd OnionBrowser
 git checkout 2.X
 pod repo update
