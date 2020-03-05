@@ -1,6 +1,6 @@
 # Onion Browser
 
-[![Build Status](https://travis-ci.org/mtigas/OnionBrowser.svg?branch=2.X)](https://travis-ci.org/mtigas/OnionBrowser) 
+[![Build Status](https://travis-ci.org/OnionBrowser/OnionBrowser.svg?branch=2.X)](https://travis-ci.org/OnionBrowser/OnionBrowser) 
 [![Backers on Open Collective](https://opencollective.com/OnionBrowser/backers/badge.svg)](#backers)
  [![Sponsors on Open Collective](https://opencollective.com/OnionBrowser/sponsors/badge.svg)](#sponsors) 
   
