@@ -54,6 +54,7 @@
 		A003A6B823C9480000BD2D20 /* BridgesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A003A6B623C9480000BD2D20 /* BridgesViewController.swift */; };
 		A003A6BB23C94A4900BD2D20 /* ConnectingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A003A6B923C94A4900BD2D20 /* ConnectingViewController.xib */; };
 		A003A6BC23C94A4900BD2D20 /* ConnectingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A003A6BA23C94A4900BD2D20 /* ConnectingViewController.swift */; };
+		A004FB2A241A782500451A9E /* SecureEnclave.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06DF455241A60E700A07796 /* SecureEnclave.swift */; };
 		A01D3BA323900D2800E536F2 /* RuleEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CBCD491E934249009D5352 /* RuleEditorController.m */; };
 		A024B39D23D38B9F007F9E68 /* AdvancedTorConfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A024B39C23D38B9F007F9E68 /* AdvancedTorConfViewController.swift */; };
 		A02CB2B523D0B0B300880720 /* AddBookmarkActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02CB2B423D0B0B300880720 /* AddBookmarkActivity.swift */; };
@@ -68,7 +69,6 @@
 		A053137122F1C740006655EC /* JAHPQNSURLSessionDemux.m in Sources */ = {isa = PBXBuildFile; fileRef = A053136222F1C573006655EC /* JAHPQNSURLSessionDemux.m */; };
 		A053137522F1E587006655EC /* CertificateAuthentication.m in Sources */ = {isa = PBXBuildFile; fileRef = A053137322F1E587006655EC /* CertificateAuthentication.m */; };
 		A053137822F1EC19006655EC /* DownloadHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A053137622F1EC19006655EC /* DownloadHelper.m */; };
-		A068DD97240D346B00BF46E3 /* AltSvcHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D9008A24095F5C0046C9B3 /* AltSvcHeader.swift */; };
 		A068DD99240D348300BF46E3 /* AltSvcHeader_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A068DD98240D348300BF46E3 /* AltSvcHeader_Tests.swift */; };
 		A068DD9A240D37FB00BF46E3 /* HostSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF522B23AFC3580096624A /* HostSettings.swift */; };
 		A068DD9B240D391100BF46E3 /* SSLCertificate.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F2AE381B7FEF5E00D5651A /* SSLCertificate.m */; };
@@ -427,6 +427,7 @@
 		A068DD98240D348300BF46E3 /* AltSvcHeader_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AltSvcHeader_Tests.swift; sourceTree = "<group>"; };
 		A0696EAC2406C7D000512695 /* SyncViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncViewController.swift; sourceTree = "<group>"; };
 		A0696EAE2406D94200512695 /* Nextcloud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nextcloud.swift; sourceTree = "<group>"; };
+		A06DF455241A60E700A07796 /* SecureEnclave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureEnclave.swift; sourceTree = "<group>"; };
 		A07037C223C74DC900D670EC /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		A07037C323C74E1100D670EC /* UIColor+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Helpers.swift"; sourceTree = "<group>"; };
 		A07037C523C7571B00D670EC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -1767,7 +1768,6 @@
 				A0BF523323AFC3580096624A /* OnionManager.swift */,
 				A0BF523123AFC3580096624A /* ObfsThread.h */,
 				A0BF51F723AFC3580096624A /* ObfsThread.m */,
-				A0D9008A24095F5C0046C9B3 /* AltSvcHeader.swift */,
 				A0BF523023AFC3580096624A /* OnionBrowser2-Bridging-Header.h */,
 				A0BF520023AFC3580096624A /* version.h */,
 				A0BF52A323AFE2D70096624A /* Iobfs4proxy.framework */,
@@ -1865,6 +1865,7 @@
 			isa = PBXGroup;
 			children = (
 				A0BF523A23AFC3580096624A /* AlertHelper.swift */,
+				A0D9008A24095F5C0046C9B3 /* AltSvcHeader.swift */,
 				A0BF523623AFC3580096624A /* BlurredSnapshot.swift */,
 				A0BF523923AFC3580096624A /* Bundle+Helpers.swift */,
 				A0C9531923C6426C006D7A35 /* FixedFormViewController.swift */,
@@ -1872,6 +1873,7 @@
 				A0BF523C23AFC3580096624A /* Ipv6Tester.h */,
 				A0BF524123AFC3580096624A /* Ipv6Tester.m */,
 				A0BF523E23AFC3580096624A /* SearchableTableViewController.swift */,
+				A06DF455241A60E700A07796 /* SecureEnclave.swift */,
 				A0BF523723AFC3580096624A /* SilenceWarnings.h */,
 				A0BF524323AFC3580096624A /* String+Helpers.swift */,
 				A0BF524223AFC3580096624A /* TabSecurity.swift */,
@@ -2211,6 +2213,7 @@
 				69CBCD521E9347B8009D5352 /* UIResponder+FirstResponder.m in Sources */,
 				A0BF528123AFC3580096624A /* TabSecurity.swift in Sources */,
 				A0BF526023AFC3580096624A /* BrowsingViewController+Toolbar.swift in Sources */,
+				A004FB2A241A782500451A9E /* SecureEnclave.swift in Sources */,
 				01F2AE391B7FEF5E00D5651A /* SSLCertificate.m in Sources */,
 				A0BF527A23AFC3580096624A /* AlertHelper.swift in Sources */,
 				A0BF527623AFC3580096624A /* OnionManager.swift in Sources */,
@@ -2299,7 +2302,6 @@
 				A068DD9E240D394900BF46E3 /* URLBlocker.m in Sources */,
 				A068DD9F240D395B00BF46E3 /* HSTSCache.m in Sources */,
 				018333DC1A35727C00670CD1 /* HTTPSEverywhere_Tests.m in Sources */,
-				A068DD97240D346B00BF46E3 /* AltSvcHeader.swift in Sources */,
 				01F2AE421B827BC200D5651A /* SSLCertificate_Tests.m in Sources */,
 				A068DDA0240D425200BF46E3 /* NSString+IPAddress.m in Sources */,
 			);

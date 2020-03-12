@@ -145,6 +145,21 @@ class SettingsViewController: FixedFormViewController {
 			}
 		}
 
+		<<< SwitchRow() {
+			$0.title = NSLocalizedString("Lock App with Touch ID/Face ID or Device Passcode", comment: "")
+			$0.value = SecureEnclave.loadKey() != nil
+			$0.cell.switchControl.onTintColor = .accent
+			$0.cell.textLabel?.numberOfLines = 0
+		}
+		.onChange { row in
+			if row.value ?? false {
+				row.value = SecureEnclave.createKey() != nil
+			}
+			else {
+				row.value = !SecureEnclave.removeKey()
+			}
+		}
+
 		<<< PushRow<TabSecurity.Level>() {
 			$0.title = NSLocalizedString("Tab Security", comment: "Option title")
 			$0.selectorTitle = $0.title
