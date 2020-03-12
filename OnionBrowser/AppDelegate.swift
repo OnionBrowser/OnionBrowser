@@ -190,7 +190,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 
 	func applicationWillResignActive(_ application: UIApplication) {
 		application.ignoreSnapshotOnNextApplicationLaunch()
-		browsingUi?.becomesInvisible()
+		browsingUi?.unfocusSearchField()
 
 		BlurredSnapshot.create()
 	}

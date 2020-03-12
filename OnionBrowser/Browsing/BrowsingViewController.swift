@@ -497,11 +497,6 @@ class BrowsingViewController: UIViewController, TabDelegate {
 	}
 
 	@objc
-	func becomesInvisible() {
-		unfocusSearchField()
-	}
-
-	@objc
 	func addEmptyTabAndFocus() {
 		addNewTab() { _ in
 			self.focusSearchField()
