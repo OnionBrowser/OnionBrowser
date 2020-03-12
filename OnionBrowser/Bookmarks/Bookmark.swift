@@ -161,8 +161,13 @@ open class Bookmark: NSObject {
 		startPageNeedsUpdate = false
 	}
 
-	class func add(name: String?, url: String) {
-		all.append(Bookmark(name: name, url: url))
+	@discardableResult
+	class func add(_ name: String?, _ url: String) -> Bookmark {
+		let bookmark = Bookmark(name: name, url: url)
+
+		all.append(bookmark)
+
+		return bookmark
 	}
 
 	@discardableResult

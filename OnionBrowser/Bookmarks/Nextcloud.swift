@@ -86,7 +86,9 @@ class Nextcloud: NSObject {
 				}
 					// Add non-existing.
 				else {
-					Bookmark.add(name: name, url: url)
+					Bookmark.add(name, url).acquireIcon {
+						Bookmark.store()
+					}
 				}
 			}
 
