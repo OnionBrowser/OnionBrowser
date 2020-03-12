@@ -151,12 +151,28 @@ class SettingsViewController: FixedFormViewController {
 			$0.cell.switchControl.onTintColor = .accent
 			$0.cell.textLabel?.numberOfLines = 0
 		}
-		.onChange { row in
+		.onChange { [weak self] row in
+			let newValue: Bool
+
 			if row.value ?? false {
-				row.value = SecureEnclave.createKey() != nil
+				newValue = SecureEnclave.createKey() != nil
 			}
 			else {
-				row.value = !SecureEnclave.removeKey()
+				newValue = !SecureEnclave.removeKey()
+			}
+
+			// Seems, we can't create a key. Maybe running on a simulator?
+			if newValue != row.value {
+				// Quirky way of disabling the onChange callback to avoid an endless loop.
+				self?.form.delegate = nil
+
+				row.value = newValue
+				row.updateCell()
+
+				row.disabled = true
+				row.evaluateDisabled()
+
+				self?.form.delegate = self // Enable callback again.
 			}
 		}
 
