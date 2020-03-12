@@ -156,6 +156,16 @@ class SettingsViewController: FixedFormViewController {
 
 			$0.cell.textLabel?.numberOfLines = 0
 		}
+		.onPresent { vc, selectorVc in
+			// This is just to trigger the usage of #sectionFooterTitleForKey
+			selectorVc.sectionKeyForValue = { value in
+				return NSLocalizedString("Tab Security", comment: "Option title")
+			}
+
+			selectorVc.sectionFooterTitleForKey = { key in
+				return NSLocalizedString("Choose how long app remembers open tabs.", comment: "")
+			}
+		}
 		.onChange { row in
 			if let value = row.value {
 				Settings.tabSecurity = value
