@@ -409,7 +409,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 			window?.backgroundColor = .accent
 		}
 
-		window?.rootViewController?.restorationIdentifier = String(describing: type(of: viewController))
+		if viewController?.restorationIdentifier == nil {
+			viewController?.restorationIdentifier = String(describing: type(of: viewController))
+		}
 		window?.rootViewController = viewController
 		window?.makeKeyAndVisible()
 
