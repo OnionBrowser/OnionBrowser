@@ -66,7 +66,16 @@ class BridgeConfViewController: FixedFormViewController, UINavigationControllerD
 			}
 		}
 
-		form +++ bridgesSection
+		form
+			+++ ButtonRow() {
+				$0.title = NSLocalizedString("Request Bridges from torproject.org", comment: "")
+			}
+			.onCellSelection { [weak self] _, _ in
+				self?.navigationController?.pushViewController(
+					MoatViewController(), animated: true)
+			}
+
+			+++ bridgesSection
 
 		for option in bridges.sorted(by: { $0.key.rawValue < $1.key.rawValue }) {
 			form.last! <<< ListCheckRow<Settings.BridgesType>() {

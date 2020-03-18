@@ -86,6 +86,11 @@
 		A08737E1221324B5005A68CC /* HostSettings_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = A08737DF2213235F005A68CC /* HostSettings_Tests.m */; };
 		A099B8B723CF60C800B50998 /* InitSecurityLevelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A099B8B523CF60C800B50998 /* InitSecurityLevelViewController.xib */; };
 		A099B8B823CF60C800B50998 /* InitSecurityLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A099B8B623CF60C800B50998 /* InitSecurityLevelViewController.swift */; };
+		A09EBC5A2422483C0084FEDB /* MoatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09EBC582422483C0084FEDB /* MoatViewController.swift */; };
+		A09EBC5C2422707A0084FEDB /* URLSession+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09EBC5B2422707A0084FEDB /* URLSession+Helpers.swift */; };
+		A09EBC5E242275730084FEDB /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09EBC5D242275730084FEDB /* ApiError.swift */; };
+		A09EBC61242285E10084FEDB /* CaptchaRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09EBC5F242285630084FEDB /* CaptchaRow.swift */; };
+		A09EBC62242285E60084FEDB /* CaptchaCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A09EBC60242285640084FEDB /* CaptchaCell.xib */; };
 		A0BF51E423AFBF250096624A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51A023AFBF250096624A /* Localizable.strings */; };
 		A0BF51E523AFBF250096624A /* urlblocker.json in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51AE23AFBF250096624A /* urlblocker.json */; };
 		A0BF51E623AFBF250096624A /* https-everywhere_rules.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51B223AFBF250096624A /* https-everywhere_rules.plist */; };
@@ -682,6 +687,11 @@
 		A094CEDF234506C700C77E55 /* keywords.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = keywords.txt; sourceTree = "<group>"; };
 		A099B8B523CF60C800B50998 /* InitSecurityLevelViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InitSecurityLevelViewController.xib; sourceTree = "<group>"; };
 		A099B8B623CF60C800B50998 /* InitSecurityLevelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitSecurityLevelViewController.swift; sourceTree = "<group>"; };
+		A09EBC582422483C0084FEDB /* MoatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoatViewController.swift; sourceTree = "<group>"; };
+		A09EBC5B2422707A0084FEDB /* URLSession+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Helpers.swift"; sourceTree = "<group>"; };
+		A09EBC5D242275730084FEDB /* ApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
+		A09EBC5F242285630084FEDB /* CaptchaRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptchaRow.swift; sourceTree = "<group>"; };
+		A09EBC60242285640084FEDB /* CaptchaCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CaptchaCell.xib; sourceTree = "<group>"; };
 		A0B2240E23A92B2700EA2C47 /* OnionBrowser2_Tests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OnionBrowser2_Tests-Bridging-Header.h"; sourceTree = "<group>"; };
 		A0BF519C23AFBCFA0096624A /* convert_rules.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = convert_rules.rb; sourceTree = "<group>"; };
 		A0BF51AE23AFBF250096624A /* urlblocker.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = urlblocker.json; sourceTree = "<group>"; };
@@ -1857,6 +1867,9 @@
 				A031762023CE51A200D75F2A /* CustomBridgesViewController.swift */,
 				A031762223CE648200D75F2A /* ScanQrViewController.swift */,
 				A024B39C23D38B9F007F9E68 /* AdvancedTorConfViewController.swift */,
+				A09EBC582422483C0084FEDB /* MoatViewController.swift */,
+				A09EBC60242285640084FEDB /* CaptchaCell.xib */,
+				A09EBC5F242285630084FEDB /* CaptchaRow.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1866,6 +1879,7 @@
 			children = (
 				A0BF523A23AFC3580096624A /* AlertHelper.swift */,
 				A0D9008A24095F5C0046C9B3 /* AltSvcHeader.swift */,
+				A09EBC5D242275730084FEDB /* ApiError.swift */,
 				A0BF523623AFC3580096624A /* BlurredSnapshot.swift */,
 				A0BF523923AFC3580096624A /* Bundle+Helpers.swift */,
 				A0C9531923C6426C006D7A35 /* FixedFormViewController.swift */,
@@ -1882,6 +1896,7 @@
 				A0BF523D23AFC3580096624A /* UIView+Helpers.swift */,
 				A0BF523823AFC3580096624A /* UIViewController+Helpers.swift */,
 				A0BF524023AFC3580096624A /* URL+Helpers.swift */,
+				A09EBC5B2422707A0084FEDB /* URLSession+Helpers.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -2021,6 +2036,7 @@
 				A0BF51F123AFBF250096624A /* Launch Screen.xib in Resources */,
 				A0BF51F423AFBF250096624A /* credits.html in Resources */,
 				A07037C723C79AE500D670EC /* Media.xcassets in Resources */,
+				A09EBC62242285E60084FEDB /* CaptchaCell.xib in Resources */,
 				A0BF526723AFC3580096624A /* BookmarkCell.xib in Resources */,
 				A0BF51EE23AFBF250096624A /* injected.js in Resources */,
 				A0BF51E423AFBF250096624A /* Localizable.strings in Resources */,
@@ -2207,6 +2223,7 @@
 				A0BF525D23AFC3580096624A /* LiveSearchViewController.swift in Sources */,
 				A0BF526C23AFC3580096624A /* CustomSitesViewController.swift in Sources */,
 				A0BF527C23AFC3580096624A /* UIView+Helpers.swift in Sources */,
+				A09EBC61242285E10084FEDB /* CaptchaRow.swift in Sources */,
 				A0BF524823AFC3580096624A /* Bridge.m in Sources */,
 				A053137822F1EC19006655EC /* DownloadHelper.m in Sources */,
 				A0BF525F23AFC3580096624A /* BrowsingViewController+UITextFieldDelegate.swift in Sources */,
@@ -2216,9 +2233,11 @@
 				A004FB2A241A782500451A9E /* SecureEnclave.swift in Sources */,
 				01F2AE391B7FEF5E00D5651A /* SSLCertificate.m in Sources */,
 				A0BF527A23AFC3580096624A /* AlertHelper.swift in Sources */,
+				A09EBC5A2422483C0084FEDB /* MoatViewController.swift in Sources */,
 				A0BF527623AFC3580096624A /* OnionManager.swift in Sources */,
 				A0D9008B24095F5C0046C9B3 /* AltSvcHeader.swift in Sources */,
 				A0BF527223AFC3580096624A /* SettingsViewController.swift in Sources */,
+				A09EBC5E242275730084FEDB /* ApiError.swift in Sources */,
 				A003A6BC23C94A4900BD2D20 /* ConnectingViewController.swift in Sources */,
 				A0BF526F23AFC3580096624A /* Storage1ViewController.swift in Sources */,
 				A0BF527723AFC3580096624A /* BlurredSnapshot.swift in Sources */,
@@ -2243,6 +2262,7 @@
 				A024B39D23D38B9F007F9E68 /* AdvancedTorConfViewController.swift in Sources */,
 				A0BF524723AFC3580096624A /* Settings.xcdatamodel in Sources */,
 				A0BF525E23AFC3580096624A /* BrowsingViewController+Tabs.swift in Sources */,
+				A09EBC5C2422707A0084FEDB /* URLSession+Helpers.swift in Sources */,
 				A0BF525223AFC3580096624A /* BrowsingViewController.swift in Sources */,
 				A0BF527F23AFC3580096624A /* URL+Helpers.swift in Sources */,
 				A0BF525C23AFC3580096624A /* Tab+Downloads.swift in Sources */,

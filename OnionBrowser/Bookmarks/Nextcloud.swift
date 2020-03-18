@@ -3,7 +3,9 @@
 //  OnionBrowser2
 //
 //  Created by Benjamin Erhart on 26.02.20.
-//  Copyright © 2020 jcs. All rights reserved.
+//  Copyright (c) 2012-2020, Tigas Ventures, LLC (Mike Tigas)
+//
+//  This file is part of Onion Browser. See LICENSE file for redistribution terms.
 //
 
 import UIKit
@@ -19,33 +21,6 @@ https://nextcloud-bookmarks.readthedocs.io/en/latest/bookmark.html
 */
 class Nextcloud: NSObject {
 
-	enum NextcloudError: LocalizedError {
-		case noHttpResponse
-		case no200Status(status: Int)
-		case noBody
-		case notSuccess(status: Any?)
-		case noRequestPossible
-
-		var errorDescription: String? {
-			switch self {
-			case .noHttpResponse:
-				return NSLocalizedString("No valid HTTP response.", comment: "")
-
-			case .no200Status(let status):
-				return "\(status) \(HTTPURLResponse.localizedString(forStatusCode: status))"
-
-			case .noBody:
-				return NSLocalizedString("Response body missing.", comment: "")
-
-			case .notSuccess(let status):
-				return String(format: NSLocalizedString("No success, but \"%@\" instead.", comment: ""), String(describing: status))
-
-			case .noRequestPossible:
-				return NSLocalizedString("Request could not be formed. Please check host and username/password!", comment: "")
-			}
-		}
-	}
-
 	typealias Completion = (_ error: Error?) -> ()
 
 	private static let encoder: JSONEncoder = {
@@ -60,7 +35,7 @@ class Nextcloud: NSObject {
 
 	class func sync(_ completion: Completion? = nil) {
 		guard let request = buildRequest(query: "page=-1&folder=-1") else { // Only root folder items.
-			completion?(NextcloudError.noRequestPossible)
+			completion?(ApiError.noRequestPossible)
 			return
 		}
 
@@ -119,7 +94,7 @@ class Nextcloud: NSObject {
 
 		guard var request = buildRequest(id),
 			let payload = try? encoder.encode(json) else {
-				completion?(NextcloudError.noRequestPossible)
+				completion?(ApiError.noRequestPossible)
 				return
 		}
 
@@ -141,7 +116,7 @@ class Nextcloud: NSObject {
 		getId(bookmark) { id in
 			guard let id = id,
 				var request = buildRequest(id) else {
-					completion?(NextcloudError.noRequestPossible)
+					completion?(ApiError.noRequestPossible)
 					return
 			}
 
@@ -202,42 +177,25 @@ class Nextcloud: NSObject {
 	}
 
 	private class func execute(_ request: URLRequest, _ completion: ((_ items: [[String: Any]]?, _ error: Error?) -> ())? = nil) {
-		let task = URLSession.shared.dataTask(with: request) { data, response, error in
+		let task = URLSession.shared.apiTask(with: request) { payload, error in
 			if let error = error {
 				completion?(nil, error)
 				return
 			}
 
-			guard let response = response as? HTTPURLResponse else {
-				completion?(nil, NextcloudError.noHttpResponse)
+			guard payload["status"] as? String == "success" else {
+				completion?(nil, ApiError.notSuccess(status: payload["status"]))
 				return
 			}
 
-			guard response.statusCode == 200 else {
-				completion?(nil, NextcloudError.no200Status(status: response.statusCode))
-				return
+			var items = payload["data"] as? [[String: Any]]
+
+			// TODO, can be unavailable (DELETE) or "data" (GET on collection)
+			if items == nil, let item = payload["item"] as? [String: Any] {
+				items = [item]
 			}
 
-			guard let data = data else {
-				completion?(nil, NextcloudError.noBody)
-				return
-			}
-
-			if let payload = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-				guard payload["status"] as? String == "success" else {
-					completion?(nil, NextcloudError.notSuccess(status: payload["status"]))
-					return
-				}
-
-				var items = payload["data"] as? [[String: Any]]
-
-				// TODO, can be unavailable (DELETE) or "data" (GET on collection)
-				if items == nil, let item = payload["item"] as? [String: Any] {
-					items = [item]
-				}
-
-				completion?(items, nil)
-			}
+			completion?(items, nil)
 		}
 		task.resume()
 	}
