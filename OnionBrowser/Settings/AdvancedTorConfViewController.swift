@@ -20,62 +20,76 @@ class AdvancedTorConfViewController: FixedFormViewController {
 		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save,
 															target: self, action: #selector(save))
 
-		let explanation = NSLocalizedString("Add additional command line options for Tor startup.", comment: "")
-			+ "\n\n"
-			+ String(format: NSLocalizedString("Refer to %@ for possible options.", comment: ""),
-					 "https://www.torproject.org/docs/tor-manual.html")
-			+ "\n\n"
-			+ NSLocalizedString("Changing this option requires restarting the app.", comment: "")
-			+ "\n\n"
-			+ NSLocalizedString("To recover from a non working configuration, remove everything under \"Bridge Configuration\" on startup and restart the app.",
-								comment: "")
+		form
+			+++ MultivaluedSection(multivaluedOptions: [.Insert, .Delete],
+								   header: "to be replaced in #willDisplayHeaderView to avoid capitalization") {
 
+				$0.header?.height = { 280 }
 
-		form +++ LabelRow() {
-			$0.title = explanation
-			$0.cell.textLabel?.numberOfLines = 0
-		}
-
-		+++ MultivaluedSection(multivaluedOptions: [.Insert, .Delete]) {
-			$0.addButtonProvider = { _ in
-				return ButtonRow()
-			}
-
-			$0.multivaluedRowToInsertAt = { [weak self] index in
-				return TextRow() {
-					$0.tag = String(index)
-
-					self?.turnOffAutoCorrect($0.cell.textField)
+				$0.addButtonProvider = { _ in
+					return ButtonRow()
 				}
-			}
 
-			if let conf = Settings.advancedTorConf {
-				var i = 0
-				for item in conf {
-					let r = $0.multivaluedRowToInsertAt!(i)
-					r.baseValue = item
-					$0 <<< r
-					i += 1
+				$0.multivaluedRowToInsertAt = { [weak self] index in
+					return TextRow() {
+						$0.tag = String(index)
+
+						self?.turnOffAutoCorrect($0.cell.textField)
+					}
 				}
-			}
-			else {
-				$0 <<< TextRow() {
-					$0.tag = "0"
 
-					turnOffAutoCorrect($0.cell.textField)
-
-					$0.placeholder = "--HidServAuth"
+				if let conf = Settings.advancedTorConf {
+					var i = 0
+					for item in conf {
+						let r = $0.multivaluedRowToInsertAt!(i)
+						r.baseValue = item
+						$0 <<< r
+						i += 1
+					}
 				}
-				<<< TextRow() {
-					$0.tag = "1"
+				else {
+					$0 <<< TextRow() {
+						$0.tag = "0"
 
-					turnOffAutoCorrect($0.cell.textField)
+						turnOffAutoCorrect($0.cell.textField)
 
-					$0.placeholder = "example.onion kTgk5lBIROvw2Uv9za8838"
+						$0.placeholder = "--HidServAuth"
+						}
+						<<< TextRow() {
+							$0.tag = "1"
+
+							turnOffAutoCorrect($0.cell.textField)
+
+							$0.placeholder = "example.onion kTgk5lBIROvw2Uv9za8838"
+					}
 				}
-			}
 		}
 	}
+
+
+	// MARK: UITableViewDelegate
+
+	/**
+	Workaround to avoid capitalization of header.
+	*/
+	func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+		if section == 0,
+			let header = view as? UITableViewHeaderFooterView {
+
+			header.textLabel?.text = NSLocalizedString("Add additional command line options for Tor startup.", comment: "")
+				+ "\n\n"
+				+ String(format: NSLocalizedString("Refer to %@ for possible options.", comment: ""),
+						 "https://www.torproject.org/docs/tor-manual.html")
+				+ "\n\n"
+				+ NSLocalizedString("Changing this option requires restarting the app.", comment: "")
+				+ "\n\n"
+				+ NSLocalizedString("To recover from a non working configuration, remove everything under \"Bridge Configuration\" on startup and restart the app.",
+									comment: "")
+		}
+	}
+
+
+	// MARK: Actions
 
 	@objc
 	func save() {
