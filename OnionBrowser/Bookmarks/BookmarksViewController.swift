@@ -54,7 +54,7 @@ UITableViewDelegate, UISearchResultsUpdating, BookmarksViewControllerDelegate {
 		toolbarItems = [
 			UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(add)),
 			UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-			UIBarButtonItem(title: NSLocalizedString("Sync", comment: ""), style: .plain,
+			UIBarButtonItem(title: NSLocalizedString("Sync with Nextcloud", comment: ""), style: .plain,
 							target: self, action: #selector(showSyncScene)),
 			UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)]
 

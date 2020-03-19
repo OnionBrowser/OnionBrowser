@@ -18,20 +18,15 @@ class SyncViewController: FixedFormViewController {
 
 		navigationItem.title = NSLocalizedString("Sync Bookmarks", comment: "")
 
-		var desc1 = NSLocalizedString(
-			"If you have access to a Nextcloud server with a Bookmarks plugin, enter your credentials to enable Onion Browser to synchronize your bookmarks with it.",
-			comment: "")
-		desc1 += "\n\n"
-		desc1 += NSLocalizedString("Please note: If you create, edit or delete a bookmark, Onion Browser tries to sync that change to the Nextcloud server immediately. However, if that fails, no attempt is made to re-sync later.", comment: "")
-
-		var desc2 = NSLocalizedString("If you synchronize, all bookmarks will be read from the server and added/updated in Onion Browser.", comment: "")
-		desc2 += "\n\n"
-		desc2 += NSLocalizedString("Additionally, all bookmarks not existing on the server but in Onion Browser will be created there.", comment: "")
+		var desc = NSLocalizedString("If you sync, all bookmarks will be read from the server and added/updated in Onion Browser.", comment: "")
+		desc += "\n\n"
+		desc += NSLocalizedString("Additionally, all bookmarks not existing on the server but in Onion Browser will be created there.", comment: "")
 
 		form
-			+++ Section(footer: desc1)
+			+++ Section(header: NSLocalizedString("Sync Bookmarks with Nextcloud Server", comment: ""),
+						footer: desc)
 
-			+++ TextRow("host") {
+			<<< TextRow("host") {
 				$0.title = NSLocalizedString("Host", comment: "")
 				$0.placeholder = "nextcloud.example.com"
 				$0.cell.textField.autocorrectionType = .no
@@ -60,10 +55,8 @@ class SyncViewController: FixedFormViewController {
 				cell.textField.clearButtonMode = .whileEditing
 			}
 
-			+++ Section(footer: desc2)
-
-			<<< ButtonRow("sync") {
-				$0.title = NSLocalizedString("Synchronize", comment: "")
+			+++ ButtonRow("sync") {
+				$0.title = NSLocalizedString("Sync Bookmarks", comment: "")
 				$0.disabled = Condition.function(["host", "username", "password"]) { form in
 					return (form.rowBy(tag: "host") as? TextRow)?.value?.isEmpty ?? true
 						|| (form.rowBy(tag: "username") as? AccountRow)?.value?.isEmpty ?? true
@@ -71,25 +64,42 @@ class SyncViewController: FixedFormViewController {
 				}
 			}
 			.onCellSelection { [weak self] _, row in
+				guard let vc = self else {
+					return
+				}
+
 				if !row.isDisabled {
 					Settings.nextcloudServer = (self?.form.rowBy(tag: "host") as? TextRow)?.value
 					Settings.nextcloudUsername = (self?.form.rowBy(tag: "username") as? AccountRow)?.value
 					Settings.nextcloudPassword = (self?.form.rowBy(tag: "password") as? PasswordRow)?.value
 
-					if let view = self?.navigationController?.view ?? self?.view {
-						MBProgressHUD.showAdded(to: view, animated: true)
+					let hud = MBProgressHUD.showAdded(to: vc.navigationController?.view ?? vc.view, animated: true)
 
-						Nextcloud.sync { error in
-							DispatchQueue.main.async {
-								MBProgressHUD.hide(for: view, animated: true)
+					Nextcloud.sync { error in
+						DispatchQueue.main.async {
+							hud.hide(animated: true)
 
-								if let error = error {
-									AlertHelper.present(self!, message: error.localizedDescription)
-								}
+							if let error = error {
+								let message = NSLocalizedString("We couldn't sync your bookmarks at this time. Try again to make sure your information is synced.", comment: "")
+									+ "\n\n"
+									+ error.localizedDescription
+
+								AlertHelper.present(
+									vc,
+									message: message,
+									title: NSLocalizedString("Connection to Nextcloud Server Failed", comment: ""),
+									actions: [
+										AlertHelper.cancelAction(),
+										AlertHelper.defaultAction(NSLocalizedString("Try Again", comment: ""), handler: { _ in
+											DispatchQueue.main.async {
+												vc.form.rowBy(tag: "sync")?.didSelect()
+											}
+										})
+								])
 							}
-
-							self?.delegate?.needsReload()
 						}
+
+						vc.delegate?.needsReload()
 					}
 				}
 			}
