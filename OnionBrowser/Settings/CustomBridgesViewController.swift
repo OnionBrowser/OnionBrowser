@@ -13,6 +13,8 @@ import Eureka
 
 class CustomBridgesViewController: FixedFormViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+	weak var delegate: BridgeConfDelegate?
+
 	private static let bridgesUrl = "https://bridges.torproject.org/"
 
 	private lazy var picker: UIImagePickerController = {
@@ -28,13 +30,14 @@ class CustomBridgesViewController: FixedFormViewController, UIImagePickerControl
 		$0.placeholder = OnionManager.obfs4Bridges.first
 		$0.cell.placeholderLabel?.font = .systemFont(ofSize: 15)
 		$0.cell.textLabel?.font = .systemFont(ofSize: 15)
-		$0.value = Settings.customBridges?.joined(separator: "\n")
 	}
 
 	private lazy var detector = CIDetector(ofType: CIDetectorTypeQRCode, context: nil, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh])
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+
+		textAreaRow.value = delegate?.customBridges?.joined(separator: "\n")
 
 		navigationItem.title = NSLocalizedString("Use Custom Bridges", comment: "")
 		navigationItem.rightBarButtonItem = UIBarButtonItem(
@@ -78,16 +81,12 @@ class CustomBridgesViewController: FixedFormViewController, UIImagePickerControl
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 
-		if let vc = navigationController?.viewControllers,
-			let bridgeVC = vc[(vc.count) - 1] as? BridgeConfViewController {
-
-			let bridges = textAreaRow.value?
+		delegate?.customBridges = textAreaRow.value?
 				.components(separatedBy: "\n")
 				.map({ bridge in bridge.trimmingCharacters(in: .whitespacesAndNewlines) })
-				.filter({ (bridge) in !bridge.isEmpty && !bridge.hasPrefix("//") && !bridge.hasPrefix("#") })
+				.filter({ bridge in !bridge.isEmpty && !bridge.hasPrefix("//") && !bridge.hasPrefix("#") })
 
-			bridgeVC.customBridges = bridges
-		}
+		delegate?.bridgesType = delegate?.customBridges?.isEmpty ?? true ? .none : .custom
 	}
 
 	// MARK: UIImagePickerControllerDelegate
@@ -123,8 +122,6 @@ class CustomBridgesViewController: FixedFormViewController, UIImagePickerControl
 		if let data = raw?.replacingOccurrences(of: "'", with: "\"").data(using: .utf8),
 			let newBridges = try? JSONSerialization.jsonObject(with: data, options: []) as? [String] {
 
-			Settings.customBridges = newBridges
-
 			textAreaRow.value = newBridges.joined(separator: "\n")
 			textAreaRow.updateCell()
 		}
@@ -140,9 +137,6 @@ class CustomBridgesViewController: FixedFormViewController, UIImagePickerControl
 
 	@objc
 	private func connect() {
-		if let navC = navigationController,
-			let vc = navC.viewControllers[navC.viewControllers.count - 2] as? BridgeConfViewController {
-			vc.connect()
-		}
+		delegate?.connect()
 	}
 }

@@ -22,7 +22,9 @@ class MoatViewController: FixedFormViewController {
 
 	private static let moatBaseUrl = URL(string: "https://bridges.torproject.org/moat")
 
-	var challenge: String?
+	weak var delegate: BridgeConfDelegate?
+
+	private var challenge: String?
 
 	private var captchaRow = CaptchaRow("captcha") {
 		$0.disabled = false
@@ -112,12 +114,12 @@ class MoatViewController: FixedFormViewController {
 
 		// Contact Moat service.
 		let task = URLSession.shared.apiTask(with: request) { [weak self] payload, error in
-			print("[\(String(describing: type(of: self)))] moat request: payload=\(payload), error=\(String(describing: error))")
-
 			DispatchQueue.main.async {
 				guard let vc = self else {
 					return
 				}
+
+				print("[\(String(describing: type(of: vc)))] moat request: payload=\(payload), error=\(String(describing: error))")
 
 				hud.hide(animated: true)
 				vc.navigationItem.rightBarButtonItem?.isEnabled = true
@@ -137,8 +139,9 @@ class MoatViewController: FixedFormViewController {
 						return
 				}
 
-				vc.captchaRow.value = UIImage(data: captcha)
 				vc.challenge = challenge
+				vc.captchaRow.value = UIImage(data: captcha)
+				vc.captchaRow.updateCell()
 			}
 		}
 
@@ -190,8 +193,8 @@ class MoatViewController: FixedFormViewController {
 						return
 				}
 
-				Settings.currentlyUsedBridges = .custom
-				Settings.customBridges = bridges
+				vc.delegate?.bridgesType = bridges.isEmpty ? .none : .custom
+				vc.delegate?.customBridges = bridges.isEmpty ? nil : bridges
 
 				vc.navigationController?.popViewController(animated: true)
 			}

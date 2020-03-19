@@ -11,13 +11,21 @@
 import UIKit
 import Eureka
 
-class BridgeConfViewController: FixedFormViewController, UINavigationControllerDelegate {
+protocol BridgeConfDelegate: class {
+
+	var bridgesType: Settings.BridgesType { get set }
+
+	var customBridges: [String]? { get set }
+
+	func connect()
+}
+
+class BridgeConfViewController: FixedFormViewController, UINavigationControllerDelegate,
+BridgeConfDelegate {
 
 	class func present(from: UIViewController) {
 		from.present(UINavigationController(rootViewController: BridgeConfViewController()))
 	}
-
-	var customBridges: [String]? = nil
 
 	private let bridgesSection: SelectableSection<ListCheckRow<Settings.BridgesType>> = {
 		let description = [
@@ -38,6 +46,10 @@ class BridgeConfViewController: FixedFormViewController, UINavigationControllerD
 			selectionType: .singleSelection(enableDeselection: false))
 	}()
 
+	var bridgesType = Settings.currentlyUsedBridges
+
+	var customBridges = Settings.customBridges
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
@@ -57,12 +69,12 @@ class BridgeConfViewController: FixedFormViewController, UINavigationControllerD
 			.custom: NSLocalizedString("Custom Bridges", comment: ""),
 		]
 
-		let selected = Settings.currentlyUsedBridges
-
 		bridgesSection.onSelectSelectableRow = { [weak self] _, row in
 			if row.value == .custom {
-				self?.navigationController?.pushViewController(
-					CustomBridgesViewController(), animated: true)
+				let vc = CustomBridgesViewController()
+				vc.delegate = self
+
+				self?.navigationController?.pushViewController(vc, animated: true)
 			}
 		}
 
@@ -71,8 +83,10 @@ class BridgeConfViewController: FixedFormViewController, UINavigationControllerD
 				$0.title = NSLocalizedString("Request Bridges from torproject.org", comment: "")
 			}
 			.onCellSelection { [weak self] _, _ in
-				self?.navigationController?.pushViewController(
-					MoatViewController(), animated: true)
+				let vc = MoatViewController()
+				vc.delegate = self
+
+				self?.navigationController?.pushViewController(vc, animated: true)
 			}
 
 			+++ bridgesSection
@@ -81,7 +95,7 @@ class BridgeConfViewController: FixedFormViewController, UINavigationControllerD
 			form.last! <<< ListCheckRow<Settings.BridgesType>() {
 				$0.title = option.value
 				$0.selectableValue = option.key
-				$0.value = option.key == selected ? selected : nil
+				$0.value = option.key == bridgesType ? bridgesType : nil
 			}
 		}
 
@@ -109,13 +123,8 @@ class BridgeConfViewController: FixedFormViewController, UINavigationControllerD
 			return
 		}
 
-		// Select no bridges, if custom bridges is selected but empty.
-		if bridgesSection.selectedRow()?.selectableValue == Settings.BridgesType.custom
-			&& Settings.customBridges?.isEmpty ?? true {
-
-			Settings.currentlyUsedBridges = .none
-			bridgesSection.allRows.first?.baseValue = Settings.BridgesType.none
-			bridgesSection.allRows.last?.baseValue = nil
+		for row in bridgesSection.allRows as? [ListCheckRow<Settings.BridgesType>] ?? [] {
+			row.value = row.selectableValue == bridgesType ? bridgesType : nil
 		}
 	}
 
@@ -125,6 +134,7 @@ class BridgeConfViewController: FixedFormViewController, UINavigationControllerD
 	@objc
 	func connect() {
 		Settings.currentlyUsedBridges = bridgesSection.selectedRow()?.value ?? .none
+		Settings.customBridges = customBridges
 
 		if presentingViewController is BridgesViewController {
 			AppDelegate.shared?.show(ConnectingViewController())
