@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,7 +12,7 @@
             <connections>
                 <outlet property="explanationLb" destination="DNe-I8-8Ne" id="XRd-q4-f26"/>
                 <outlet property="headerLb" destination="Ydr-3v-yli" id="iNH-8h-mYd"/>
-                <outlet property="learnMoreBt" destination="zy5-bd-gbo" id="hcQ-ta-ziy"/>
+                <outlet property="learnMoreBt" destination="zy5-bd-gbo" id="CHA-nW-v2n"/>
                 <outlet property="startBt" destination="JK7-1Z-D0y" id="OaC-KS-0Xp"/>
                 <outlet property="tableView" destination="zup-Zs-YRb" id="j2y-Kc-386"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -67,7 +67,7 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <action selector="start:" destination="-1" eventType="touchUpInside" id="TVN-Kw-Dys"/>
+                        <action selector="start" destination="-1" eventType="touchUpInside" id="l2b-TQ-2QH"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zy5-bd-gbo">
@@ -77,7 +77,7 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <connections>
-                        <action selector="start:" destination="-1" eventType="touchUpInside" id="npg-bh-8eK"/>
+                        <action selector="learnMore" destination="-1" eventType="touchUpInside" id="HQZ-YH-GnF"/>
                     </connections>
                 </button>
             </subviews>

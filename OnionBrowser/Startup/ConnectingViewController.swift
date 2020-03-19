@@ -12,7 +12,7 @@ import UIKit
 
 class ConnectingViewController: UIViewController, OnionManagerDelegate {
 
-	class func start(_ showSecurityLevelsInfo: Bool = false) {
+	class func start() {
 		let appDelegate = AppDelegate.shared
 
 		if appDelegate?.browsingUi == nil {
@@ -23,10 +23,6 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate {
 			TabSecurity.restore()
 
 			appDelegate?.browsingUi?.becomesVisible()
-
-			if showSecurityLevelsInfo {
-				appDelegate?.browsingUi?.addNewTab(URL.aboutSecurityLevels)
-			}
 		}
 	}
 
