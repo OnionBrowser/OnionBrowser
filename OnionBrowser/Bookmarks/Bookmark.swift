@@ -40,7 +40,7 @@ open class Bookmark: NSObject {
 		defaults.append(Bookmark(name: "Freedom of the Press Foundation", url: "https://freedom.press/"))
 
 		defaults.append(Bookmark(name: "Onion Browser landing page", url: "http://3heens4xbedlj57xwcggjsdglot7e36p4rogy642xokemfo2duh6bbyd.onion/"))
-		defaults.append(Bookmark(name: "Onion Browser official site", url: "http://tigas3l7uusztiqu.onion/onionbrowser/"))
+		defaults.append(Bookmark(name: "Onion Browser official site", url: "https://onionbrowser.com"))
 		defaults.append(Bookmark(name: "The Tor Project", url: "http://expyuzz4wqqyqhjn.onion/"))
 		defaults.append(Bookmark(name: "Mike Tigas, Onion Browser author", url: "http://tigas3l7uusztiqu.onion/"))
 

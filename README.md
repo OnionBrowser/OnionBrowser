@@ -27,7 +27,7 @@ Please see the [LICENSE][license] file for usage and redistribution terms.
 [help]: https://github.com/OnionBrowser/OnionBrowser/wiki/Help
 [releases]: https://github.com/OnionBrowser/OnionBrowser/releases
 [changelog]: https://raw.github.com/OnionBrowser/OnionBrowser/2.X/CHANGES.txt
-[donate]: https://onionbrowser.com/#support-project
+[donate]: https://onionbrowser.com/donate
 [miketigas]: https://mike.tig.as/
 [license]: https://github.com/OnionBrowser/OnionBrowser/blob/2.X/LICENSE
 [Tor.framework]: https://github.com/iCepa/Tor.framework
