@@ -9,7 +9,7 @@
   really removed from memory.
 - Empty all background tabs on memory warning signal from iOS.
 - Fixed race condition with accidentally deleted start page.
-- Fxied links to onionbrowser.com.
+- Fixed links to onionbrowser.com.
 - Updated translations.
 - Small bug fixes.
 
