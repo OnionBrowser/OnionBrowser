@@ -1,5 +1,18 @@
 #  Onion Browser 2 Changelog
 
+## 2.6.0
+
+- Added Nextcloud Bookmarks support.
+- Added optional biometric/device passcode app lock.
+- Added MOAT implementation: Automatic retrieval of OBFS4 bridges via Meek.
+- Fixed memory leaks, where RAM usage would increase over time, because tabs were never 
+  really removed from memory.
+- Empty all background tabs on memory warning signal from iOS.
+- Fixed race condition with accidentally deleted start page.
+- Fxied links to onionbrowser.com.
+- Updated translations.
+- Small bug fixes.
+
 ## 2.5.0
 
 - Updated translations.
