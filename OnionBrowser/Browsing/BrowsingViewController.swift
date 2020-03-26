@@ -281,14 +281,9 @@ class BrowsingViewController: UIViewController, TabDelegate {
 			updateReloadBt()
 
 		case torBt:
-			if let url = currentTab?.url.clean {
-				let vc = CircuitViewController()
-				vc.currentUrl = url
-				present(vc, sender)
-			}
-			else {
-				BridgeConfViewController.present(from: self)
-			}
+			let vc = CircuitViewController()
+			vc.currentUrl = currentTab?.url.clean
+			present(vc, sender)
 
 		case backBt:
 			currentTab?.goBack()
