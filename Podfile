@@ -9,7 +9,7 @@ target 'OnionBrowser2' do
 
   pod 'CSPHeader', '~> 0.4'
 
-  pod 'Eureka', '~> 5.1'
+  pod 'Eureka', '~> 5.2'
   pod 'ImageRow', '~> 4.0'
   pod 'Reachability', '~> 3.2'
   pod 'SDCAlertView', '~> 10'
