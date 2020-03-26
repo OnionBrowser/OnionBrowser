@@ -77,7 +77,9 @@ class SyncViewController: FixedFormViewController {
 
 					Nextcloud.sync { error in
 						DispatchQueue.main.async {
-							hud.hide(animated: true)
+							hud.mode = .customView
+							hud.customView = UIImageView(image: UIImage(named: "check"))
+							hud.hide(animated: true, afterDelay: 1)
 
 							if let error = error {
 								let message = NSLocalizedString("We couldn't sync your bookmarks at this time. Try again to make sure your information is synced.", comment: "")
