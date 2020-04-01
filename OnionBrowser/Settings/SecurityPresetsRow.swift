@@ -15,13 +15,13 @@ enum SecurityPreset: Int, CustomStringConvertible {
 	var description: String {
 		switch self {
 		case .insecure:
-			return NSLocalizedString("Insecure", comment: "Security level")
+			return NSLocalizedString("Bronze", comment: "Security level")
 
 		case .medium:
-			return NSLocalizedString("Moderate", comment: "Security level")
+			return NSLocalizedString("Silver", comment: "Security level")
 
 		case .secure:
-			return NSLocalizedString("Secure", comment: "Security level")
+			return NSLocalizedString("Gold", comment: "Security level")
 
 		default:
 			return NSLocalizedString("Custom", comment: "Security level")
@@ -30,11 +30,33 @@ enum SecurityPreset: Int, CustomStringConvertible {
 
 	var shortcode: String {
 		switch self {
-		case .insecure, .medium, .secure:
-			return Formatter.localize(rawValue + 1)
+		case .insecure:
+			return Formatter.localize(3)
+
+		case .medium:
+			return Formatter.localize(2)
+
+		case .secure:
+			return Formatter.localize(1)
 
 		default:
 			return description.first?.uppercased() ?? "C"
+		}
+	}
+
+	var color: UIColor? {
+		switch self {
+		case .insecure:
+			return .bronze
+
+		case .medium:
+			return .silver
+
+		case .secure:
+			return .gold
+
+		default:
+			return .accent
 		}
 	}
 
@@ -42,9 +64,6 @@ enum SecurityPreset: Int, CustomStringConvertible {
 		switch self {
 		case .insecure:
 			return NSLocalizedString("(not recommended)", comment: "")
-
-		case .medium:
-			return NSLocalizedString("(recommended)", comment: "")
 
 		default:
 			return nil
@@ -54,13 +73,13 @@ enum SecurityPreset: Int, CustomStringConvertible {
 	var explanation: String {
 		switch self {
 		case .insecure:
-			return NSLocalizedString("Everything should work.", comment: "")
+			return NSLocalizedString("Easy breezy. Though it could be dangerous.", comment: "")
 
 		case .medium:
-			return NSLocalizedString("Some things won't work.", comment: "")
+			return NSLocalizedString("Works pretty well. Your identity is mostly protected.", comment: "")
 
 		case .secure:
-			return NSLocalizedString("Many things won't work.", comment: "")
+			return NSLocalizedString("Websites may break. But you get great security.", comment: "")
 
 		default:
 			return NSLocalizedString("Settings have been customized.", comment: "")
@@ -118,7 +137,7 @@ class SecurityPresetsCell: Cell<SecurityPreset>, CellType {
 	private lazy var shields: [SecurityShield] = {
 		var shields = [SecurityShield]()
 
-		for i in 0 ... 2 {
+		for i in (0 ... 2).reversed() {
 			if let preset = SecurityPreset(rawValue: i) {
 				let shield = SecurityShield(preset)
 				shield.translatesAutoresizingMaskIntoConstraints = false

@@ -47,7 +47,7 @@ UITableViewDataSource, UITableViewDelegate {
 		}
 	}
 
-	private var presets: [SecurityPreset] = [.insecure, .medium, .secure]
+	private var presets: [SecurityPreset] = [.secure, .medium, .insecure]
 
 	private lazy var current = SecurityPreset(HostSettings.for(host))
 

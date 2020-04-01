@@ -374,7 +374,7 @@ class BrowsingViewController: UIViewController, TabDelegate {
 			securityBt.setTitle(nil)
 		}
 		else {
-			securityBt.setBackgroundImage(SecurityLevelCell.shieldImage, for: .normal)
+			securityBt.setBackgroundImage(SecurityLevelCell.shieldImage?.tinted(with: preset.color), for: .normal)
 			securityBt.setTitle(preset.shortcode)
 		}
 
