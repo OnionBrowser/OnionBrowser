@@ -1,19 +1,11 @@
-- traduções atualizadas.
-- Corrigido problemas com cookies persistentes.
-- Corrigidos problemas no iPad, onde a cena estava rolando quando o teclado era exibido.
-- Interface de inicialização do aplicativo recondicionada. Não mostre a página de erro, solicite ao usuário que configure pontes.
-- UI de configuração de ponte aprimorada.
-- Popups aprimorados no iPad.
-- Adicione um marcador da planilha de compartilhamento.
-- Aumento do botão X na visão geral da guia para facilitar o fechamento.
-- Adicionado deslize para fechar as guias na visão geral das guias.
-- Barra de ferramentas oculta corrigida ao visualizar PDFs, imagens e outros arquivos.
-- Opções fixas de planilha de ações.
-- Adicionado opção de configuração avançada do Tor.
-- Adicionado explicação sobre os níveis de segurança.
-- Suporte aprimorado ao modo escuro.
-- Corrigida falha ao mostrar circuitos Tor.
-- Atalhos de aplicativos corrigidos. (Toque demoradamente no ícone do aplicativo.)
-- Lista de pontes OBFS4 atualizada.
-- Corrigido o erro ao alterar as configurações da ponte.
-- Corrigidos problemas com JavaScript injetado.
+- Reformulados os níveis de segurança e melhoradas as suas descrições.
+- Adicionado suporte para os «Marcadores» do Nextcloud.
+- Adicionado bloqueio opcional de aplicação de código biométrico/dispositivo.
+- Adicionada recuperação automática de pontes OBFS4 via Meek.
+- Corrigida a fuga de memória, onde a utilização da RAM aumentava com o tempo, porque os separadores nunca eram
+realmente removidos da memória.
+- Limpa todos os separadores em segundo plano no sinal de aviso de memória do iOS.
+- Corrigidos os problemas com a página de início algumas vezes eliminada.
+- Hiperligações corrigidas para onionbrowser.com.
+- Traduções atualizadas.
+- Corrigidos erros pequenos.
