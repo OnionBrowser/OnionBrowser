@@ -1,19 +1,11 @@
-- Aktualisierte Übersetzungen.
-- Probleme mit dauerhaften Cookies behoben.
-- Probleme auf dem iPad behoben, bei denen manche Szene beim Anzeigen der Tastatur weggescrollt wurde.
-- Überholte Benutzeroberfläche zum Starten der App. Keine Fehlerseite mehr, stattdessen wird der Benutzer aufgefordert, Brücken zu konfigurieren.
-- Verbesserte Benutzeroberfläche für die Brückenkonfiguration.
-- Verbesserte Popups auf dem iPad.
-- Lesezeichen vom Share-Sheet hinzufügen.
-- Vergrößerte X-Schaltfläche in der Reiterübersicht zum einfacheren Schließen.
-- Nach oben wischen, um Reiter in der Reiterübersicht zu schließen.
-- Versteckte Symbolleiste beim Anzeigen von PDFs, Bildern und anderen Dateien behoben.
-- Share-Sheet verbessert.
-- Option zur erweiterten Tor-Konfiguration hinzugefügt.
-- Erklärung zu Sicherheitsniveaus hinzugefügt.
-- Verbesserte Unterstützung für den Dark Mode.
-- Absturz beim Anzeigen von Tor-Kanälen behoben.
-- App-Verknüpfungen behoben. (Lange auf das App-Symbol tippen.)
-- Aktualisierte OBFS4-Brückenliste.
-- Fehler beim Ändern der Brücken-Einstellungen behoben.
-- Probleme mit injiziertem JavaScript behoben.
+- Benennung und Beschreibung der Sicherheitsniveaus verbessert.
+- Nextcloud Bookmarks Unterstützung hinzugefügt.
+- Optionale App Sperrung via Face ID/Touch ID/Gerätepasswort hinzugefügt.
+- Möglichkeit zum automatischen Holen von OBFS4 Brücken via Meek hinzugefügt.
+- Speicherlecks geschlossen: RAM Verbrauch erhöhte sich über die Zeit, weil einmal
+  geöffnete Reiter nie aus dem Speicher entfernt wurden.
+- Leere alle Hintergrundreiter, wenn iOS ein Speicherwarnsignal schickt.
+- Probleme mit manchmal gelöschter Startseite behoben.
+- Kaputte links auf onionbrowser.com behoben.
+- Übersetzungen aktualisiert.
+- Kleinere Fehlerbehebungen.

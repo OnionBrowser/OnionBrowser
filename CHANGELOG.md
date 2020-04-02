@@ -2,6 +2,7 @@
 
 ## 2.6.0
 
+- Rephrased security levels and improved their description.
 - Added Nextcloud Bookmarks support.
 - Added optional biometric/device passcode app lock.
 - Added MOAT implementation: Automatic retrieval of OBFS4 bridges via Meek.
