@@ -2,7 +2,7 @@
 - תמיכה בסימניות Nextcloud התווספה.
 - נעילת יישום ביומטרית ונעילת יישום בעזרת סיסמת מכשיר התווספו.
 - אחזור אוטומטי של גשרי OBFS4 דרך Meek התווסף.
-- Fixed memory leaks, where RAM usage would increase over time, because tabs were never really removed from memory.
+- זליגות זיכרון תוקנו, בהן שימוש RAM יגבר עם הזמן, מאחר שלשוניות אף פעם לא באמת הוסרו מהזיכרון.
 - ריקון כל הודעות האזהרה לגבי לשוניות הרקע בזיכרון מן iOS.
 - בעיות עם דף התחלה מחוק לפעמים תוקנו.
 - קישורים אל onionbrowser.com תוקנו.
