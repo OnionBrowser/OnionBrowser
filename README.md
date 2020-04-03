@@ -72,6 +72,8 @@ These people helped with translations. Thank you so much, folks!
   Selinaf, feeblebiscuit, tsaizb, Lafrenze, ff98sha, 99yongliu, Lafrenze, chrisx8_, jxtsai
 - Chinese (Traditional): 
   Selinaf, s8321414, jxtsai, MengPangWang, tsaizb, austinchang
+- Croatian
+  milotype, paranatox
 - Czech: 
   Plarome, Lumeriol, hernikplays
 - Dutch: 
