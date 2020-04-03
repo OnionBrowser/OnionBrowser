@@ -332,21 +332,10 @@
 		A046AE52234795AF00E6B3A5 /* promotional_text.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = promotional_text.txt; sourceTree = "<group>"; };
 		A046AE59234795AF00E6B3A5 /* promotional_text.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = promotional_text.txt; sourceTree = "<group>"; };
 		A046AE5B234795AF00E6B3A5 /* promotional_text.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = promotional_text.txt; sourceTree = "<group>"; };
-		A046AE5D234795B000E6B3A5 /* 5_ipadPro129_5.5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5_ipadPro129_5.5.png; sourceTree = "<group>"; };
 		A046AE5E234795B000E6B3A5 /* subtitle.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = subtitle.txt; sourceTree = "<group>"; };
 		A046AE5F234795B000E6B3A5 /* keywords.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = keywords.txt; sourceTree = "<group>"; };
 		A046AE60234795B000E6B3A5 /* promotional_text.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = promotional_text.txt; sourceTree = "<group>"; };
-		A046AE61234795B000E6B3A5 /* 3_ipadPro129_3.3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3_ipadPro129_3.3.png; sourceTree = "<group>"; };
-		A046AE62234795B000E6B3A5 /* 2_iphone6Plus_2.2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2_iphone6Plus_2.2.png; sourceTree = "<group>"; };
-		A046AE63234795B000E6B3A5 /* 1_ipadPro129_1.2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1_ipadPro129_1.2.png; sourceTree = "<group>"; };
-		A046AE64234795B000E6B3A5 /* 4_ipadPro129_4.4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4_ipadPro129_4.4.png; sourceTree = "<group>"; };
-		A046AE65234795B000E6B3A5 /* 6_iphone6Plus_6.6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 6_iphone6Plus_6.6.png; sourceTree = "<group>"; };
-		A046AE66234795B000E6B3A5 /* 4_iphone6Plus_4.4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4_iphone6Plus_4.4.png; sourceTree = "<group>"; };
-		A046AE67234795B000E6B3A5 /* 1_iphone6Plus_1.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1_iphone6Plus_1.1.png; sourceTree = "<group>"; };
-		A046AE68234795B000E6B3A5 /* 2_ipadPro129_2.1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2_ipadPro129_2.1.png; sourceTree = "<group>"; };
-		A046AE69234795B000E6B3A5 /* 3_iphone6Plus_3.3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3_iphone6Plus_3.3.png; sourceTree = "<group>"; };
 		A046AE6A234795B000E6B3A5 /* description.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = description.txt; sourceTree = "<group>"; };
-		A046AE6B234795B000E6B3A5 /* 5_iphone6Plus_5.5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5_iphone6Plus_5.5.png; sourceTree = "<group>"; };
 		A046AE6D234795B000E6B3A5 /* promotional_text.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = promotional_text.txt; sourceTree = "<group>"; };
 		A046AE6F234795B000E6B3A5 /* promotional_text.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = promotional_text.txt; sourceTree = "<group>"; };
 		A046AE71234795B000E6B3A5 /* subtitle.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = subtitle.txt; sourceTree = "<group>"; };
@@ -1142,17 +1131,6 @@
 				A046AE5F234795B000E6B3A5 /* keywords.txt */,
 				A046AE60234795B000E6B3A5 /* promotional_text.txt */,
 				A046AE6A234795B000E6B3A5 /* description.txt */,
-				A046AE67234795B000E6B3A5 /* 1_iphone6Plus_1.1.png */,
-				A046AE62234795B000E6B3A5 /* 2_iphone6Plus_2.2.png */,
-				A046AE69234795B000E6B3A5 /* 3_iphone6Plus_3.3.png */,
-				A046AE66234795B000E6B3A5 /* 4_iphone6Plus_4.4.png */,
-				A046AE6B234795B000E6B3A5 /* 5_iphone6Plus_5.5.png */,
-				A046AE65234795B000E6B3A5 /* 6_iphone6Plus_6.6.png */,
-				A046AE63234795B000E6B3A5 /* 1_ipadPro129_1.2.png */,
-				A046AE68234795B000E6B3A5 /* 2_ipadPro129_2.1.png */,
-				A046AE61234795B000E6B3A5 /* 3_ipadPro129_3.3.png */,
-				A046AE64234795B000E6B3A5 /* 4_ipadPro129_4.4.png */,
-				A046AE5D234795B000E6B3A5 /* 5_ipadPro129_5.5.png */,
 			);
 			path = "ar-SA";
 			sourceTree = "<group>";
