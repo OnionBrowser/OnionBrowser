@@ -2,7 +2,7 @@
 – Prise en charge des marque-pages Nextcloud.
 – Verrouillage facultatif de l’appli par code d’accès biométrique ou de l’appareil.
 – Récupération automatique des ponts OBFS4 par Meek.
-- Fixed memory leaks, where RAM usage would increase over time, because tabs were never really removed from memory.
+– Correctif de fuites de mémoire, qui causaient une augmentation de l’utilisation de la mémoire vive au fil du temps, car les onglets n’étaient jamais vraiment supprimés de la mémoire.
 – Vidage de tous les onglets en arrière-plan à la réception d’un avertissement de mémoire d’iOS.
 – Correctif de problèmes de suppression ponctuelle de la page d’accueil.
 – Correctif des liens onionbrowser.com.

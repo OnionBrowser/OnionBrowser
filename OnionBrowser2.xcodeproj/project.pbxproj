@@ -778,6 +778,13 @@
 		A0BF52A323AFE2D70096624A /* Iobfs4proxy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Iobfs4proxy.framework; path = Carthage/Build/iOS/Iobfs4proxy.framework; sourceTree = SOURCE_ROOT; };
 		A0C26E4423D8650E00C4AF1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = "Base.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A0C3770D1F47342C0039198E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		A0C3FD062438A08B00FDB9BE /* description.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = description.txt; sourceTree = "<group>"; };
+		A0C3FD072438A0A400FDB9BE /* privacy_url.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = privacy_url.txt; sourceTree = "<group>"; };
+		A0C3FD082438A0AC00FDB9BE /* support_url.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = support_url.txt; sourceTree = "<group>"; };
+		A0C3FD092438A0B200FDB9BE /* apple_tv_privacy_policy.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = apple_tv_privacy_policy.txt; sourceTree = "<group>"; };
+		A0C3FD0A2438A0B800FDB9BE /* promotional_text.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = promotional_text.txt; sourceTree = "<group>"; };
+		A0C3FD0B2438A0BD00FDB9BE /* name.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = name.txt; sourceTree = "<group>"; };
+		A0C3FD0C2438A0C200FDB9BE /* marketing_url.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = marketing_url.txt; sourceTree = "<group>"; };
 		A0C9531923C6426C006D7A35 /* FixedFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedFormViewController.swift; sourceTree = "<group>"; };
 		A0D9008A24095F5C0046C9B3 /* AltSvcHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AltSvcHeader.swift; sourceTree = "<group>"; };
 		A0F0F33D23F57CC00019A62F /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ar; path = "ar.lproj/security-levels.html"; sourceTree = "<group>"; };
@@ -1271,9 +1278,16 @@
 		A0751CAF2437DD5A0016B324 /* hr */ = {
 			isa = PBXGroup;
 			children = (
+				A0C3FD072438A0A400FDB9BE /* privacy_url.txt */,
 				A0751CB02437DD5A0016B324 /* subtitle.txt */,
+				A0C3FD082438A0AC00FDB9BE /* support_url.txt */,
 				A0751CB12437DD5A0016B324 /* keywords.txt */,
+				A0C3FD092438A0B200FDB9BE /* apple_tv_privacy_policy.txt */,
+				A0C3FD0A2438A0B800FDB9BE /* promotional_text.txt */,
 				A0751CB22437DD5A0016B324 /* release_notes.txt */,
+				A0C3FD0B2438A0BD00FDB9BE /* name.txt */,
+				A0C3FD0C2438A0C200FDB9BE /* marketing_url.txt */,
+				A0C3FD062438A08B00FDB9BE /* description.txt */,
 			);
 			path = hr;
 			sourceTree = "<group>";
