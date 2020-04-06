@@ -1,19 +1,10 @@
+- Güvenlik düzeylerini yeniden yapılandırdı ve açıklamaları geliştirildi.
+- Nextcloud yer imleri desteği eklendi.
+- İsteğe bağlı biyometrik/aygıt parolası uygulama kilidi eklendi.
+- Meek üzerinden OBFS4 köprülerinin otomatik olarak alınması eklendi.
+- Sekmeler gerçekte bellekten asla kaldırılmadığından RAM kullanımının zamanla artmasına neden olan bellek sızıntıları düzeltildi.
+- iOS bellek uyarısı işareti gönderdiğinde tüm arka plan sekmeleri boşaltılıyor.
+- Bazen silinen başlangıç sayfası sorunları düzeltildi.
+- Onionbrowser.com bağlantıları düzeltildi.
 - Çeviriler güncellendi.
-- Kalıcı çerezlerle ilgili sorunlar düzeltildi.
-- Klavye gösterildiğinde sahnenin kaydığı iPad'deki sorunlar düzeltildi.
-- Yenilenmiş uygulama başlangıç kullanıcı arayüzü. Hata sayfası göstermeyin, bunun yerine kullanıcıdan köprüleri yapılandırmasını isteyin.
-- Geliştirilmiş köprü yapılandırma arayüzü.
-- iPad'de geliştirilmiş pop-up'lar.
-- Paylaşım sayfasından yer imi ekleyin.
-- Daha kolay kapanmak için sekmeye genel bakışta artan X düğmesi.
-- Sekmeye genel bakıştaki sekmeleri kapatmak için yukarı kaydırın eklendi.
-- PDF, resim ve diğer dosyaları görüntülerken gizli gizli araç çubuğu.
-- Paylaşım sayfası seçenekleri düzeltildi.
-- Gelişmiş Tor yapılandırma seçeneği eklendi.
-- Güvenlik seviyeleri hakkında açıklama eklendi.
-- Geliştirilmiş karanlık mod desteği.
-- Tor devreleri gösterilirken sabit kilitlenme.
-- Sabit uygulama kısayolları. (Uygulama simgesine uzun dokunun.)
-- OBFS4 köprü listesi güncellendi.
-- Köprü ayarlarını değiştirirken hata düzeltildi.
-- Enjekte edilen JavaScript ile ilgili sorunlar düzeltildi.
+- Küçük hata düzeltmeleri yapıldı.
