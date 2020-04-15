@@ -13,6 +13,7 @@
 - Fixed links to onionbrowser.com.
 - Updated translations.
 - Small bug fixes.
+- Tor updated to 0.4.2.7
 
 ## 2.5.0
 
