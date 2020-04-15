@@ -1,19 +1,10 @@
-- Traduccions actualitzades.
-- S'han solucionat problemes amb les cookies persistents.
-- S'han solucionat problemes a l'iPad on l'escena es desplaçava quan es mostrava el teclat.
-- IU d’inici d’aplicació renovada. No mostreu la pàgina d'error, en lloc d'indicar l'usuari per configurar els ponts.
-- Interfície d'usuari de configuració millorada.
-- Popups millorades a l’iPad.
-- Afegiu una adreça d'interès del full de compartir.
-- El botó X augmentat de la vista general de la pestanya per tancar-lo més fàcilment.
-- S'ha afegit lliscar cap amunt per tancar pestanyes a la vista general de les pestanyes.
-- S'ha corregit la barra d'eines amagada en veure PDFs, imatges i altres fitxers.
-- Opcions de fulls compartits corregits.
-- S'ha afegit l'opció de configuració avançada de Tor.
-- S'ha afegit una explicació sobre els nivells de seguretat.
-- Millora del suport en mode fosc.
-- S'ha corregit un accident quan es mostraven els circuits de Tor.
-- S'han solucionat les dreceres d'aplicacions. (Toqueu llargament sobre la icona de l'aplicació.)
-- Llista de pont OBFS4 actualitzada.
-- S'ha corregit un error en canviar la configuració del pont.
-- S'han solucionat problemes amb JavaScript injectat.
+- S'ha millorat la descripció dels nivells de seguretat.
+- S'ha afegit suport per als marcadors Nextcloud.
+- S'ha afegit una aplicació de bloqueig de l'aparell biomètric opcional.
+- S'ha afegit l'obtenció de ponts OBFS4 via Meek
+- S'ha corregit filtracions de memòria, que feien que l'ús de RAM s'incrementés al llarg del temps, perquè les pestanyes mai s'esborraven de la memòria.
+- Buida totes les pestanyes en segon pla del senyal d'avís de memòria de l'iOS.
+- S'han corregit problemes que de vegades eliminava la pàgina d'inici.
+- S'han corregit els enllaços onionbrowser.com.
+- S'han actualitzat les traduccions.
+- Petites correccions d'errors

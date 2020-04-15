@@ -789,6 +789,7 @@
 		A0D9008A24095F5C0046C9B3 /* AltSvcHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AltSvcHeader.swift; sourceTree = "<group>"; };
 		A0F0F33D23F57CC00019A62F /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ar; path = "ar.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A0F2FB052423AB92003CC61A /* AboutSecurityLevelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutSecurityLevelsViewController.swift; sourceTree = "<group>"; };
+		A0F66E1724475B0C0094FEB2 /* release_notes.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = release_notes.txt; sourceTree = "<group>"; };
 		BED522A5B119CE39951BF4AF /* Pods-OnionBrowser2 Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnionBrowser2 Tests.debug.xcconfig"; path = "Target Support Files/Pods-OnionBrowser2 Tests/Pods-OnionBrowser2 Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1170,6 +1171,7 @@
 				A046AE71234795B000E6B3A5 /* subtitle.txt */,
 				A046AE72234795B000E6B3A5 /* keywords.txt */,
 				A046AE73234795B000E6B3A5 /* promotional_text.txt */,
+				A0F66E1724475B0C0094FEB2 /* release_notes.txt */,
 				A046AE74234795B000E6B3A5 /* description.txt */,
 			);
 			path = is;

@@ -1,0 +1,10 @@
+- Umorðun öryggisstiga og bætt lýsing á þeim.
+- Bætt við stuðningi við Nextcloud-bókamerki.
+- Nú er hægt að læsa forriti með lífauðkenni eða aðgangskóða tækis.
+- Nú eru OBFS4 brýr sóttar sjálfvirkt í gegnum Meek.
+- Minnislekar lagfærðir, þegar notkun RAM-vinnsluminnis jókst með tímanum, þar sem flipar voru aldrei fjarlægðir raunverulega úr minni.
+- Allir bakgrunnsflipar eru núna tæmdir við aðvörun frá iOS vegna minnisskorts.
+- Löguð vandamál við að stundum var upphafssíðu eytt.
+- Lagfærðir tenglar á onionbrowser.com.
+- Uppfærðar þýðingar.
+- Smærri villuviðgerðir.
