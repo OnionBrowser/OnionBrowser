@@ -1,19 +1,10 @@
-- Frissített fordítások.
-- Javítva az állandó sütikkel kapcsolatos problémák.
-- Javítva kérdések az iPad készüléken, ahol a jelenet elmozdult a billentyűzet megmutatásakor.
-- Felújított alkalmazás indító felület. Ne jelenjen meg a hibalap, hanem arra kéri a felhasználót, hogy konfigurálja a hidakat.
-- Továbbfejlesztett hídkonfigurációs felhasználói felület.
-- Továbbfejlesztett pop-upok az iPad készüléken.
-- Könyvjelző hozzáadása a megosztási lapról.
-- Fokozott X gomb a lap áttekintésén a könnyebb bezáráshoz.
-- Húzza felfelé a fülek bezárásához a lapok áttekintésében.
-- Rögzített rejtett eszköztár PDF-fájlok, képek és más fájlok megtekintésekor.
-- Rögzített részvényopciók.
-- Speciális Tor konfigurációs lehetőség hozzáadva.
-- Hozzáadott magyarázat a biztonsági szintekről.
-- Továbbfejlesztett sötét mód támogatás.
-- Javítva a baleset, amikor a Tor áramköröket mutatják.
-- Javítva alkalmazásparancsok. (Hosszan érintse meg az alkalmazás ikont.)
-- Frissített OBFS4 hídlista.
-- Javítva a hiba, amikor megváltoztatja a híd beállításait.
-- Javított problémák az injektált JavaScript-rel.
+- Átalakított biztonsági szintek és javított leírásuk.
+- Nextcloud könyvjelző támogatás hozzáadása.
+- Opcionális biometrikus/eszközjelszó alkalmazás zár hozzáadása.
+- OBFS4 hidak automatikus letöltése Meek-kel hozzáadása.
+- Javított memória szivárgás, ahol a RAM használat nő idővel mert a fülek ténylegesen nem kerültek eltávolításra a memóriából.
+- Minden háttér fül ürítése iOS memória-figyelmeztetés esetén
+- A néha törölt kezdőoldal problémák javítása.
+- Javított linkek az onionbrowser.com-ra.
+- Frissített fordítások
+- Kis hibajavítások.

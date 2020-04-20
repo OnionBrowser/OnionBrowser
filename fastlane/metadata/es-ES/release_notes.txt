@@ -1,19 +1,10 @@
+- Se reformularon los niveles de seguridad y se mejoró su descripción.
+- Se agregó ayuda para marcadores de Nextcloud.
+- Se agregó el bloqueo opcional de la aplicación de contraseña biométrica/dispositivo
+- Añadido recuperación automática de puentes OBFS4 por medio de Meek.
+- Se corrigen perdidas de memoria, porque la utilización de RAM se incrementa con el tiempo puesto que hay pestañas que nunca se eliminan de la memoria.
+- Vacía todas las pestañas de fondo en la señal de advertencia de memoria de iOS.
+- Se corrigieron problemas con la página de inicio a veces eliminada.
+- Se corrigieron los enlaces a onionbrowser.com.
 - Traducciones actualizadas.
-- Se corrigieron problemas con las cookies persistentes.
-- Se corrigieron problemas en el iPad donde la escena se desplazaba cuando aparecía el teclado.
-- La aplicación restaurada inicia la interfaz de usuario. No muestre la página de error, en su lugar solicite al usuario que configure los puentes.
-- Mejora de la interfaz de usuario de la configuración del puente.
-- Ventanas emergentes mejoradas en iPad.
-- Agregar marcador de la hoja de compartir.
-- Aumento del botón X en la vista general de la pestaña para un cierre más fácil
-- Se agregó deslizar hacia arriba para cerrar las pestañas en la vista general de pestañas.
-- Se corrigió la barra de herramientas oculta al ver archivos PDF, imágenes y otros archivos.
-- Se corrigieron las opciones de compartir hoja.
-- Se agregó la opción de configuración avanzada de Tor.
-- Se agregó una explicación sobre los niveles de seguridad.
-- Soporte mejorado para el modo oscuro.
-- Se corrigió el bloqueo al mostrar los circuitos Tor.
-- Se corrigieron los accesos directos de aplicaciones. (En pulsación larga en el icono de la aplicación).
-- Actualización de la lista de puentes OBFS4.
-- Se corrigió el error al cambiar la configuración del puente.
-- Se corrigieron problemas con JavaScript inyectado.
+ Pequeñas correcciones de errores.

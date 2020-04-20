@@ -1,19 +1,10 @@
-- Cập nhật bản dịch.
-- Đã sửa lỗi với cookie liên tục.
-- Đã sửa lỗi trên iPad khi cảnh bị cuộn đi khi bàn phím hiển thị.
-- Ứng dụng UI được tân trang lại. Không hiển thị trang lỗi, thay vào đó nhắc người dùng cấu hình cầu.
-- Cải thiện giao diện người dùng cấu hình cầu.
-- Cải thiện cửa sổ bật lên trên iPad.
-- Thêm dấu trang từ bảng chia sẻ.
-- Tăng nút X trên tổng quan tab để đóng dễ dàng hơn.
-- Đã thêm vuốt lên để đóng các tab trong tổng quan về tab.
-- Đã sửa lỗi thanh công cụ ẩn khi xem tệp PDF, hình ảnh và các tệp khác.
-- Cố định tùy chọn bảng chia sẻ.
-- Thêm tùy chọn cấu hình Tor nâng cao.
-- Thêm giải thích về mức độ bảo mật.
-- Cải thiện hỗ trợ chế độ tối.
-- Đã sửa lỗi sự cố khi hiển thị mạch Tor.
-- Sửa lỗi phím tắt ứng dụng. (Khi nhấn lâu vào biểu tượng ứng dụng.)
-- Cập nhật danh sách cầu OBFS4.
-- Đã sửa lỗi khi thay đổi cài đặt cầu.
-- Đã sửa lỗi JavaScript được chèn.
+- Chỉnh lý và cải thiện chú thích về cấp độ bảo mật.
+- Hỗ trợ Dấu trang Nextcloud.
+- Hỗ trợ khóa ứng dụng bằng sinh trắc học/mật khẩu (không bắt buộc).
+- Tự động tìm cầu nối OBFS4 qua Meek.
+- Sửa rò rỉ bộ nhớ, là lỗi khiến dung lượng RAM sử dụng tăng theo thời gian vì cửa sổ không được xóa khỏi bộ nhớ.
+- Thông báo xóa tất cả cửa sổ dưới nền khỏi bộ nhớ trên iOS.
+- Sửa một số lỗi về trang chủ bị xóa.
+- Sửa liên kết đến onionbrowser.com.
+- Cập nhật bản dịch thuật.
+- Sửa nhiều lỗi nhỏ khác.

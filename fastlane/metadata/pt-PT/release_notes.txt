@@ -2,8 +2,7 @@
 - Adicionado suporte para os «Marcadores» do Nextcloud.
 - Adicionado bloqueio opcional de aplicação de código biométrico/dispositivo.
 - Adicionada recuperação automática de pontes OBFS4 via Meek.
-- Corrigida a fuga de memória, onde a utilização da RAM aumentava com o tempo, porque os separadores nunca eram
-realmente removidos da memória.
+- Corrigida a fuga de memória, onde a utilização da RAM aumentava com o tempo, porque os separadores nunca eram realmente removidos da memória.
 - Limpa todos os separadores em segundo plano no sinal de aviso de memória do iOS.
 - Corrigidos os problemas com a página de início algumas vezes eliminada.
 - Hiperligações corrigidas para onionbrowser.com.

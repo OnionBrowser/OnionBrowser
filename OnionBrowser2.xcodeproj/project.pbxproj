@@ -383,7 +383,6 @@
 		A056553723F6C5DB00DE0168 /* ca-ES */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ca-ES"; path = "ca-ES.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		A056553823F6C5DC00DE0168 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		A056553923F6C5DE00DE0168 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		A0675F0923F7EF10004A3587 /* bn */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = bn; path = "bn.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A068DD98240D348300BF46E3 /* AltSvcHeader_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AltSvcHeader_Tests.swift; sourceTree = "<group>"; };
 		A0696EAC2406C7D000512695 /* SyncViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncViewController.swift; sourceTree = "<group>"; };
 		A0696EAE2406D94200512695 /* Nextcloud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nextcloud.swift; sourceTree = "<group>"; };
@@ -396,20 +395,17 @@
 		A0751C892437DCF30016B324 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = fr; path = "fr.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A0751C8A2437DCF40016B324 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = de; path = "de.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A0751C8B2437DCF50016B324 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = he; path = "he.lproj/security-levels.html"; sourceTree = "<group>"; };
-		A0751C8C2437DCF60016B324 /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = hi; path = "hi.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A0751C8D2437DCF80016B324 /* hu-HU */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "hu-HU"; path = "hu-HU.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A0751C8E2437DCF90016B324 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = is; path = "is.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A0751C8F2437DCFB0016B324 /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ga; path = "ga.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A0751C902437DCFC0016B324 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ja; path = "ja.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A0751C912437DCFD0016B324 /* mk */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = mk; path = "mk.lproj/security-levels.html"; sourceTree = "<group>"; };
-		A0751C922437DCFE0016B324 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = nb; path = "nb.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A0751C932437DD000016B324 /* fa */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = fa; path = "fa.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A0751C942437DD010016B324 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "pt-BR"; path = "pt-BR.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A0751C952437DD020016B324 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "pt-PT"; path = "pt-PT.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A0751C962437DD030016B324 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ru; path = "ru.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A0751C972437DD040016B324 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = es; path = "es.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A0751C982437DD060016B324 /* tr-TR */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "tr-TR"; path = "tr-TR.lproj/security-levels.html"; sourceTree = "<group>"; };
-		A0751C992437DD070016B324 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = uk; path = "uk.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A0751C9A2437DD080016B324 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = vi; path = "vi.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A0751C9B2437DD2D0016B324 /* hr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hr; path = hr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A0751C9C2437DD2E0016B324 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -787,7 +783,6 @@
 		A0C3FD0C2438A0C200FDB9BE /* marketing_url.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = marketing_url.txt; sourceTree = "<group>"; };
 		A0C9531923C6426C006D7A35 /* FixedFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedFormViewController.swift; sourceTree = "<group>"; };
 		A0D9008A24095F5C0046C9B3 /* AltSvcHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AltSvcHeader.swift; sourceTree = "<group>"; };
-		A0F0F33D23F57CC00019A62F /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ar; path = "ar.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A0F2FB052423AB92003CC61A /* AboutSecurityLevelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutSecurityLevelsViewController.swift; sourceTree = "<group>"; };
 		A0F66E1724475B0C0094FEB2 /* release_notes.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = release_notes.txt; sourceTree = "<group>"; };
 		BED522A5B119CE39951BF4AF /* Pods-OnionBrowser2 Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnionBrowser2 Tests.debug.xcconfig"; path = "Target Support Files/Pods-OnionBrowser2 Tests/Pods-OnionBrowser2 Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -2429,8 +2424,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				A0C26E4423D8650E00C4AF1C /* Base */,
-				A0F0F33D23F57CC00019A62F /* ar */,
-				A0675F0923F7EF10004A3587 /* bn */,
 				A01D38E523FEF24F0036C560 /* ca-ES */,
 				A01D38E623FEF2500036C560 /* zh-Hans */,
 				A01D38E723FEF2520036C560 /* zh-Hant */,
@@ -2438,20 +2431,17 @@
 				A0751C892437DCF30016B324 /* fr */,
 				A0751C8A2437DCF40016B324 /* de */,
 				A0751C8B2437DCF50016B324 /* he */,
-				A0751C8C2437DCF60016B324 /* hi */,
 				A0751C8D2437DCF80016B324 /* hu-HU */,
 				A0751C8E2437DCF90016B324 /* is */,
 				A0751C8F2437DCFB0016B324 /* ga */,
 				A0751C902437DCFC0016B324 /* ja */,
 				A0751C912437DCFD0016B324 /* mk */,
-				A0751C922437DCFE0016B324 /* nb */,
 				A0751C932437DD000016B324 /* fa */,
 				A0751C942437DD010016B324 /* pt-BR */,
 				A0751C952437DD020016B324 /* pt-PT */,
 				A0751C962437DD030016B324 /* ru */,
 				A0751C972437DD040016B324 /* es */,
 				A0751C982437DD060016B324 /* tr-TR */,
-				A0751C992437DD070016B324 /* uk */,
 				A0751C9A2437DD080016B324 /* vi */,
 			);
 			name = "security-levels.html";

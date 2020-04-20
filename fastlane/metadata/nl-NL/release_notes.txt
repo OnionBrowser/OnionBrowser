@@ -1,19 +1,10 @@
+- Herformuleerde beveiligingsniveaus en verbeterde hun beschrijving.
+- Ondersteuning voor Nextcloud-bladwijzers toegevoegd.
+- Optioneel biometrisch / app-toegangscode app-slot toegevoegd.
+- Automatisch ophalen van OBFS4-bruggen toegevoegd via Meek.
+- Vaste geheugenlekken, waarbij het RAM-gebruik in de loop van de tijd zou toenemen, omdat tabbladen nooit echt uit het geheugen werden verwijderd.
+- Leeg alle achtergrondtabbladen op geheugenwaarschuwingssignaal van iOS.
+- Vaste problemen met soms verwijderde startpagina.
+- Vaste links naar uibrowser.com.
 - Bijgewerkte vertalingen.
-- Problemen met permanente cookies opgelost.
-- Problemen opgelost op de iPad waarbij de scène wegschoof toen het toetsenbord werd weergegeven.
-- Refurbished app start gebruikersinterface. Toon geen foutpagina, maar vraag de gebruiker om bruggen te configureren.
-- Verbeterde gebruikersinterface voor bridge-configuratie.
-- Verbeterde pop-ups op iPad.
-- Voeg bladwijzer van deelblad toe.
-- Verhoogde X-knop op tabbladoverzicht voor eenvoudiger sluiten.
-- Veeg omhoog om tabbladen in taboverzicht te sluiten.
-- Vaste verborgen werkbalk bij het bekijken van PDF's, afbeeldingen en andere bestanden.
-- Vaste aandelenbladopties.
-- Geavanceerde Tor-configuratieoptie toegevoegd.
-- Toegevoegd uitleg over beveiligingsniveaus.
-- Verbeterde ondersteuning voor de donkere modus.
-- Vaste crash bij het tonen van Tor-circuits.
-- Vaste app-snelkoppelingen. (Tik lang op het app-pictogram.)
-- Bijgewerkte OBFS4 bridge-lijst.
-- Bug opgelost bij het wijzigen van bridge-instellingen.
-- Problemen met ingespoten JavaScript opgelost.
+- Kleine bugfixes.

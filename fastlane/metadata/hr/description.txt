@@ -5,10 +5,10 @@ Onion preglednik je besplatan web-preglednik otvorenog koda izgrađen od Tora za
 Predstavljen u: The New York Times, The Guardian, Salon, TechCrunch, Gizmodo, Boing Boing, Lifehacker, Macworld, The Daily Dot itd.
 
 FUNKCIJE:
-• pregledaj internet preko Tora:
+• Pregledaj internet preko Tora:
 - Zaštiti svoju privatnost od praćenja
 - Zaštiti svoj promet od nesigurnih bežičnih mreža i pružatelja internetskih usluga
-- Podrška za HTTPS posvuda, vrsta automatskog prebacivanja na web mjesta s aktiviranim HTTPS-om
+- Podrška za proširenje HTTPS Everywhere, vrsta automatskog prebacivanja na web mjesta s aktiviranim HTTPS-om
 - Pristupi .onion web mjestima koja su dostupna samo preko Tora.
 
 • Bori se protiv internetskog praćenja: blokiraj skripte i automatski briši kolačiće i kartice na temelju svojih postavki.

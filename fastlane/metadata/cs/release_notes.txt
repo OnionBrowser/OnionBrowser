@@ -1,19 +1,10 @@
+- Přeformulované úrovně zabezpečení a vylepšený jejich popis.
+- Přidána podpora Nextcloud Záložky.
+- Přidán volitelný biometrický zámek zařízení / zámek aplikace.
+- Přidáno automatické načítání mostů OBFS4 přes Meek.
+- Opravené úniky paměti, kde by se využití RAM v průběhu času zvyšovalo, protože karty nebyly nikdy z paměti skutečně odstraněny.
+- Vyprázdněte všechny karty pozadí na varovném signálu paměti z iOS.
+- Opraveny problémy s někdy smazanou úvodní stránkou.
+- Opravené odkazy na onionbrowser.com.
 - Aktualizované překlady.
-- Opraveny problémy s trvalými soubory cookie.
-- Opraveny problémy na iPadu, kde se scéna posunula, když se ukázala klávesnice.
-- Repasované uživatelské rozhraní pro spuštění aplikace. Nezobrazovat chybovou stránku, místo toho vyzvat uživatele ke konfiguraci mostů.
-- Vylepšené uživatelské rozhraní konfigurace mostu.
-- Vylepšená vyskakovací okna na iPadu.
-- Přidat záložku ze sdíleného listu.
-- Zvýšené tlačítko X v přehledu karet pro snadnější uzavření.
-- Přidáno přejetím prstem nahoru a zavření karet v přehledu karet.
-- Opravena skrytá lišta nástrojů při prohlížení PDF, obrázků a dalších souborů.
-- Opravené možnosti sdílení listů.
-- Přidána pokročilá možnost konfigurace Tor.
-- Přidáno vysvětlení úrovní zabezpečení.
-- Vylepšená podpora tmavého režimu.
-- Opravena chyba při zobrazování obvodů Tor.
-- Opravené zkratky pro aplikace. (Dlouhým klepnutím na ikonu aplikace.)
-- Aktualizovaný seznam mostů OBFS4.
-- Opravená chyba při změně nastavení mostu.
-- Opraveny problémy s injektovaným JavaScriptem.
+- Opravy malých chyb.
