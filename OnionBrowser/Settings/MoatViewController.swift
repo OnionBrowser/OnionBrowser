@@ -17,6 +17,9 @@ Implements the MOAT protocol: Fetches OBFS4 bridges via Meek Azure.
 The bare minimum of the communication is implemented. E.g. no check, if OBFS4 is possible or which
 protocol version the server wants to speak. The first should be always good, as OBFS4 is the most widely
 supported bridge type, the latter should be the same as we requested (0.1.0) anyway.
+
+API description:
+https://github.com/NullHypothesis/bridgedb#accessing-the-moat-interface
 */
 class MoatViewController: FixedFormViewController {
 
@@ -71,7 +74,6 @@ class MoatViewController: FixedFormViewController {
 		// Switch to Meek. Moat needs to be done via Meek.
 		OnionManager.shared.setBridgeConfiguration(bridgesType: .meekazure, customBridges: nil)
 		OnionManager.shared.startTor(delegate: nil)
-
 
 		fetchCaptcha()
 	}
