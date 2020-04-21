@@ -304,8 +304,51 @@ class OnionManager : NSObject {
 		DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
 			if OnionManager.TOR_LOGGING {
 				// Show Tor log in iOS' app log.
-				TORInstallTorLogging()
-				TORInstallEventLogging()
+				TORInstallTorLoggingCallback { severity, msg in
+					let s: String
+
+					switch severity {
+					case .debug:
+						s = "debug"
+
+					case .error:
+						s = "error"
+
+					case .fault:
+						s = "fault"
+
+					case .info:
+						s = "info"
+
+					default:
+						s = "default"
+					}
+
+					print("[Tor \(s)] \(String(cString: msg).trimmingCharacters(in: .whitespacesAndNewlines))")
+				}
+				TORInstallEventLoggingCallback { severity, msg in
+					let s: String
+
+					switch severity {
+					case .debug:
+						// Ignore libevent debug messages. Just too many of typically no importance.
+						return
+
+					case .error:
+						s = "error"
+
+					case .fault:
+						s = "fault"
+
+					case .info:
+						s = "info"
+
+					default:
+						s = "default"
+					}
+
+					print("[libevent \(s)] \(String(cString: msg).trimmingCharacters(in: .whitespacesAndNewlines))")
+				}
 			}
 
 			if !(self.torController?.isConnected ?? false) {
