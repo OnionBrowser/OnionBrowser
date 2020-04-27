@@ -5,7 +5,7 @@ target 'OnionBrowser2' do
   pod 'TUSafariActivity'
   pod 'VForceTouch'
 
-  pod 'OCSPCache', :git => 'https://github.com/Psiphon-Labs/OCSPCache'
+#  pod 'OCSPCache', :git => 'https://github.com/Psiphon-Labs/OCSPCache'
 
   pod 'CSPHeader', '~> 0.4'
 

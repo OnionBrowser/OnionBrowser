@@ -40,10 +40,10 @@ NSString* _Nonnull const OCSPCacheUserDefaultsKey = @"OCSPCache.ocsp_cache_1";
 		};
 #endif
 
-		self.ocspCache =
-		[[OCSPCache alloc] initWithLogger:ocspLogger
-				  andLoadFromUserDefaults:[NSUserDefaults standardUserDefaults]
-								  withKey:OCSPCacheUserDefaultsKey];
+//		self.ocspCache =
+//		[[OCSPCache alloc] initWithLogger:ocspLogger
+//				  andLoadFromUserDefaults:[NSUserDefaults standardUserDefaults]
+//								  withKey:OCSPCacheUserDefaultsKey];
 
 		void (^authLogger)(NSString * _Nonnull logLine) = nil;
 
@@ -55,12 +55,12 @@ NSString* _Nonnull const OCSPCacheUserDefaultsKey = @"OCSPCache.ocsp_cache_1";
 #endif
 
 
-		self.authURLSessionDelegate =
-		[[OCSPAuthURLSessionDelegate alloc] initWithLogger:authLogger
-												 ocspCache:self.ocspCache
-											 modifyOCSPURL:nil
-												   session:nil
-												   timeout:1];
+//		self.authURLSessionDelegate =
+//		[[OCSPAuthURLSessionDelegate alloc] initWithLogger:authLogger
+//												 ocspCache:self.ocspCache
+//											 modifyOCSPURL:nil
+//												   session:nil
+//												   timeout:1];
 
 	}
 
@@ -68,8 +68,8 @@ NSString* _Nonnull const OCSPCacheUserDefaultsKey = @"OCSPCache.ocsp_cache_1";
 }
 
 - (void)persist {
-	[self.ocspCache persistToUserDefaults:[NSUserDefaults standardUserDefaults]
-								  withKey:OCSPCacheUserDefaultsKey];
+//	[self.ocspCache persistToUserDefaults:[NSUserDefaults standardUserDefaults]
+//								  withKey:OCSPCacheUserDefaultsKey];
 }
 
 + (void)deletePersistedData {

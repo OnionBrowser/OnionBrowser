@@ -23,8 +23,8 @@
 
 #import <Foundation/Foundation.h>
 
-#import "OCSPAuthURLSessionDelegate.h"
-#import "OCSPCache.h"
+//#import "OCSPAuthURLSessionDelegate.h"
+//#import "OCSPCache.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -34,8 +34,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface CertificateAuthentication : NSObject
 
-@property OCSPAuthURLSessionDelegate *authURLSessionDelegate;
-@property OCSPCache *ocspCache;
+//@property OCSPAuthURLSessionDelegate *authURLSessionDelegate;
+//@property OCSPCache *ocspCache;
 
 - (void)persist;
 

@@ -43,7 +43,6 @@
 		01F879481A41141800A63654 /* urlblocker_mock_rules.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01F879461A41141800A63654 /* urlblocker_mock_rules.plist */; };
 		01F879491A41141800A63654 /* urlblocker_mock_targets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01F879471A41141800A63654 /* urlblocker_mock_targets.plist */; };
 		562DCC65D19B569DD09A7BC5 /* libPods-OnionBrowser2 Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 504D70D2A4B6CCF5A1B92CF7 /* libPods-OnionBrowser2 Tests.a */; };
-		693145FE1D3EEAE400D08A6A /* Tor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 693145FD1D3EEAE400D08A6A /* Tor.framework */; };
 		69CBCD471E934228009D5352 /* URLBlockerRuleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CBCD461E934228009D5352 /* URLBlockerRuleController.m */; };
 		69CBCD4D1E934249009D5352 /* RuleEditorRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CBCD4B1E934249009D5352 /* RuleEditorRow.m */; };
 		69CBCD521E9347B8009D5352 /* UIResponder+FirstResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CBCD511E9347B8009D5352 /* UIResponder+FirstResponder.m */; };
@@ -93,6 +92,8 @@
 		A09EBC5E242275730084FEDB /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09EBC5D242275730084FEDB /* ApiError.swift */; };
 		A09EBC61242285E10084FEDB /* CaptchaRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09EBC5F242285630084FEDB /* CaptchaRow.swift */; };
 		A09EBC62242285E60084FEDB /* CaptchaCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A09EBC60242285640084FEDB /* CaptchaCell.xib */; };
+		A0A222DB2456F82B00134FC3 /* Tor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0A222DA2456F82B00134FC3 /* Tor.framework */; };
+		A0A222DC2456F82B00134FC3 /* Tor.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A0A222DA2456F82B00134FC3 /* Tor.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A0BF51E423AFBF250096624A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51A023AFBF250096624A /* Localizable.strings */; };
 		A0BF51E523AFBF250096624A /* urlblocker.json in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51AE23AFBF250096624A /* urlblocker.json */; };
 		A0BF51E623AFBF250096624A /* https-everywhere_rules.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51B223AFBF250096624A /* https-everywhere_rules.plist */; };
@@ -201,6 +202,17 @@
 			dstSubfolderSpec = 7;
 			files = (
 			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A0A222DD2456F82B00134FC3 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A0A222DC2456F82B00134FC3 /* Tor.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -689,6 +701,7 @@
 		A09EBC5D242275730084FEDB /* ApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
 		A09EBC5F242285630084FEDB /* CaptchaRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptchaRow.swift; sourceTree = "<group>"; };
 		A09EBC60242285640084FEDB /* CaptchaCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CaptchaCell.xib; sourceTree = "<group>"; };
+		A0A222DA2456F82B00134FC3 /* Tor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Tor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0B2240E23A92B2700EA2C47 /* OnionBrowser2_Tests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OnionBrowser2_Tests-Bridging-Header.h"; sourceTree = "<group>"; };
 		A0BF519C23AFBCFA0096624A /* convert_rules.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = convert_rules.rb; sourceTree = "<group>"; };
 		A0BF51AE23AFBF250096624A /* urlblocker.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = urlblocker.json; sourceTree = "<group>"; };
@@ -798,8 +811,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0A222DB2456F82B00134FC3 /* Tor.framework in Frameworks */,
 				A0C3770E1F47342C0039198E /* CoreData.framework in Frameworks */,
-				693145FE1D3EEAE400D08A6A /* Tor.framework in Frameworks */,
 				A0BF52A423AFE2D70096624A /* Iobfs4proxy.framework in Frameworks */,
 				019516D11B7D8B400078586A /* libz.tbd in Frameworks */,
 				016B2FCD1A5648AE002D2730 /* WebKit.framework in Frameworks */,
@@ -936,6 +949,7 @@
 		6CC21620E2AE7B4037C6401B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A0A222DA2456F82B00134FC3 /* Tor.framework */,
 				A0BF529F23AFE25F0096624A /* Iobfs4proxy.framework */,
 				A0C3770D1F47342C0039198E /* CoreData.framework */,
 				693145FD1D3EEAE400D08A6A /* Tor.framework */,
@@ -1929,8 +1943,8 @@
 				01801E8E1A32CA2A002B4718 /* Sources */,
 				01801E8F1A32CA2A002B4718 /* Frameworks */,
 				01801E901A32CA2A002B4718 /* Resources */,
-				693145FF1D3EEAF500D08A6A /* ShellScript */,
 				47905D54F235F665D456014A /* [CP] Copy Pods Resources */,
+				A0A222DD2456F82B00134FC3 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2118,20 +2132,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OnionBrowser2/Pods-OnionBrowser2-resources.sh\"\n";
 			showEnvVarsInLog = 0;
-		};
-		693145FF1D3EEAF500D08A6A /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/Tor.framework",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
 		8A3EBA9221700AE80054A9FF /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;

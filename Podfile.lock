@@ -9,12 +9,7 @@ PODS:
     - Eureka (~> 5.0)
   - MBProgressHUD (1.2.0)
   - OCMock (3.6)
-  - OCSPCache (0.1.1):
-    - OpenSSL-Universal (= 1.0.2.17)
-    - ReactiveObjC (= 3.1.1)
-  - OpenSSL-Universal (1.0.2.17)
   - Reachability (3.2)
-  - ReactiveObjC (3.1.1)
   - SDCAlertView (10.0)
   - TUSafariActivity (1.0.4)
   - VForceTouch (0.0.2)
@@ -27,7 +22,6 @@ DEPENDENCIES:
   - ImageRow (~> 4.0)
   - MBProgressHUD (~> 1.2)
   - OCMock
-  - OCSPCache (from `https://github.com/Psiphon-Labs/OCSPCache`)
   - Reachability (~> 3.2)
   - SDCAlertView (~> 10)
   - TUSafariActivity
@@ -41,9 +35,7 @@ SPEC REPOS:
     - ImageRow
     - MBProgressHUD
     - OCMock
-    - OpenSSL-Universal
     - Reachability
-    - ReactiveObjC
     - SDCAlertView
     - TUSafariActivity
     - VForceTouch
@@ -52,16 +44,11 @@ EXTERNAL SOURCES:
   FavIcon:
     :branch: swift-5
     :git: https://github.com/tladesignz/FavIcon.git
-  OCSPCache:
-    :git: https://github.com/Psiphon-Labs/OCSPCache
 
 CHECKOUT OPTIONS:
   FavIcon:
     :commit: 91d67049226db70000488690311ea9fe1aed265c
     :git: https://github.com/tladesignz/FavIcon.git
-  OCSPCache:
-    :commit: 5149e736dc1cd292e13d93cbc69d91a8c3478d9c
-    :git: https://github.com/Psiphon-Labs/OCSPCache
 
 SPEC CHECKSUMS:
   CSPHeader: 352a279f3c84ab3c18014d8f682efd55fa73d885
@@ -71,14 +58,11 @@ SPEC CHECKSUMS:
   ImageRow: e65b2e1a33f89062bf2a553a2aad61d975eb7428
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   OCMock: 5ea90566be239f179ba766fd9fbae5885040b992
-  OCSPCache: 090d054dbf8f31602896d2527a8bd69d49515695
-  OpenSSL-Universal: ff04c2e6befc3f1247ae039e60c93f76345b3b5a
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
-  ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
   SDCAlertView: 5fbc48cae6d7bf9781097e3f27883924ef3b922c
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
   VForceTouch: b5c3a28625269e1818cf915728173bda9f669d6b
 
-PODFILE CHECKSUM: c1d97da10d413aed0702ed46a7b2a6a3859b4411
+PODFILE CHECKSUM: e25bcc5bd771a8747eefdcacd793a771acb32aa2
 
 COCOAPODS: 1.9.1

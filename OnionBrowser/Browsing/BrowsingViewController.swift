@@ -305,6 +305,9 @@ class BrowsingViewController: UIViewController, TabDelegate {
 			addEmptyTabAndFocus()
 
 		case settingsBt:
+			// TODO: Don't let this into production!
+			print("[\(String(describing: type(of: self)))] triggering OnionManager#stopTor to stop Tor for debugging!")
+			OnionManager.shared.stopTor()
 			present(SettingsViewController.instantiate())
 
 		default:

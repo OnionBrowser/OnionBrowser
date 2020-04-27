@@ -49,7 +49,7 @@
 #import "CookieJar.h"
 #import "HSTSCache.h"
 #import "HTTPSEverywhere.h"
-#import "OCSPAuthURLSessionDelegate.h"
+//#import "OCSPAuthURLSessionDelegate.h"
 
 #import "JAHPAuthenticatingHTTPProtocol.h"
 #import "JAHPCanonicalRequest.h"
@@ -1121,21 +1121,21 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 			}
 			else {
 				// Allow each URL to be loaded through JAHP
-				NSURL* (^modifyOCSPURL)(NSURL *url) = ^NSURL*(NSURL *url) {
-					[JAHPAuthenticatingHTTPProtocol temporarilyAllowURL:url
-														  forWebViewTab:self->_wvt
-														  isOCSPRequest:YES];
-					return nil;
-				};
-
-				OCSPAuthURLSessionDelegate *authURLSessionDelegate =
-				AppDelegate.shared.certificateAuthentication.authURLSessionDelegate;
-
-				successfulAuth =
-				[authURLSessionDelegate evaluateTrust:trust
-								modifyOCSPURLOverride:modifyOCSPURL
-									  sessionOverride:sharedDemuxInstance.session
-									completionHandler:completionHandler];
+//				NSURL* (^modifyOCSPURL)(NSURL *url) = ^NSURL*(NSURL *url) {
+//					[JAHPAuthenticatingHTTPProtocol temporarilyAllowURL:url
+//														  forWebViewTab:self->_wvt
+//														  isOCSPRequest:YES];
+//					return nil;
+//				};
+//
+//				OCSPAuthURLSessionDelegate *authURLSessionDelegate =
+//				AppDelegate.shared.certificateAuthentication.authURLSessionDelegate;
+//
+				successfulAuth = YES;
+//				[authURLSessionDelegate evaluateTrust:trust
+//								modifyOCSPURLOverride:modifyOCSPURL
+//									  sessionOverride:sharedDemuxInstance.session
+//									completionHandler:completionHandler];
 			}
 
 			if (successfulAuth) {
