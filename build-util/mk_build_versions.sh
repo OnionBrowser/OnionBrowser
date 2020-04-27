@@ -1,14 +1,18 @@
 #!/bin/bash -euo pipefail
 # https://blog.twitch.tv/ios-versioning-89e02f0a5146
 
-# When we increment OB_BUNDLE_SHORT_VERSION_STRING
-# also update OB_BUNDLE_SHORT_VERSION_DATE to the current date/time
-# we don't have to be very exact, but it should be updated at least
+# When incrementing OB_BUNDLE_SHORT_VERSION_STRING
+# also update OB_BUNDLE_SHORT_VERSION_DATE to the current date/time.
+# You don't have to be very exact, but it should be updated at least
 # once every 18 months because iTunes requires that a CFBundleVersion
 # be at most 18 characters long, and DECIMALIZED_GIT_HASH will be
 # at most 10 characters long. Thus, MINUTES_SINCE_DATE needs to be
 # at most 7 characters long so we can use the format:
 # ${MINUTES_SINCE_DATE}.${DECIMALIZED_GIT_HASH}
+#
+# NOTE: DON'T UPDATE the date, if you DIDN'T INCREASE the version!
+# Otherwise, you may end up having older builds looking like newer builds
+# for TestFlight users!
 
 # 2.3.X epoch: 2019-10-07 20:00 UTC
 # 2.4.X epoch: 2019-12-05 21:00 UTC
