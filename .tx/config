@@ -13,6 +13,13 @@ trans.pt_PT = Resources/pt-PT.lproj/Localizable.strings
 trans.tr_TR = Resources/tr-TR.lproj/Localizable.strings
 type = STRING
 
+[onion-browser.localizable-stringsdict]
+file_filter = Resources/<lang>.lproj/Localizable.stringsdict
+minimum_perc = 0
+source_file = Resources/en.lproj/Localizable.stringsdict
+source_lang = en
+type = STRINGSDICT
+
 [onion-browser.infoplist-strings]
 file_filter = Resources/<lang>.lproj/InfoPlist.strings
 minimum_perc = 75
@@ -120,9 +127,9 @@ type = TXT
 
 [onion-browser.release-notes]
 file_filter = fastlane/metadata/<lang>/release_notes.txt
+minimum_perc = 75
 source_file = fastlane/metadata/en-US/release_notes.txt
 source_lang = en_US
-minimum_perc = 75
 trans.ar = fastlane/metadata_unused/ar-SA/release_notes.txt
 trans.bn = fastlane/metadata_unused/bn/release_notes.txt
 trans.de = fastlane/metadata/de-DE/release_notes.txt

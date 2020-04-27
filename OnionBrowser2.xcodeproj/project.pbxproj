@@ -56,6 +56,7 @@
 		A003A6BC23C94A4900BD2D20 /* ConnectingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A003A6BA23C94A4900BD2D20 /* ConnectingViewController.swift */; };
 		A004FB2A241A782500451A9E /* SecureEnclave.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06DF455241A60E700A07796 /* SecureEnclave.swift */; };
 		A013DEDA2434E69A0087D12B /* UIImage+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A013DED92434E69A0087D12B /* UIImage+Helpers.swift */; };
+		A01B41722456D16100A490A9 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = A01B41742456D16100A490A9 /* Localizable.stringsdict */; };
 		A01D3BA323900D2800E536F2 /* RuleEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CBCD491E934249009D5352 /* RuleEditorController.m */; };
 		A024B39D23D38B9F007F9E68 /* AdvancedTorConfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A024B39C23D38B9F007F9E68 /* AdvancedTorConfViewController.swift */; };
 		A02CB2B523D0B0B300880720 /* AddBookmarkActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02CB2B423D0B0B300880720 /* AddBookmarkActivity.swift */; };
@@ -269,6 +270,8 @@
 		A010FA171E7986DE00E04222 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		A010FA191E798C0400E04222 /* BUILD.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = BUILD.md; sourceTree = "<group>"; };
 		A013DED92434E69A0087D12B /* UIImage+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Helpers.swift"; sourceTree = "<group>"; };
+		A01B41732456D16100A490A9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		A01B41752456D16600A490A9 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = de; path = de.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		A01D38E523FEF24F0036C560 /* ca-ES */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "ca-ES"; path = "ca-ES.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A01D38E623FEF2500036C560 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hans"; path = "zh-Hans.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A01D38E723FEF2520036C560 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hant"; path = "zh-Hant.lproj/security-levels.html"; sourceTree = "<group>"; };
@@ -1756,6 +1759,7 @@
 			isa = PBXGroup;
 			children = (
 				A0BF51A023AFBF250096624A /* Localizable.strings */,
+				A01B41742456D16100A490A9 /* Localizable.stringsdict */,
 				A07037C223C74DC900D670EC /* Media.xcassets */,
 				A0BF51B223AFBF250096624A /* https-everywhere_rules.plist */,
 				A0BF51D423AFBF250096624A /* https-everywhere_targets.plist */,
@@ -2060,6 +2064,7 @@
 				A0BF524C23AFC3580096624A /* CircuitViewController.xib in Resources */,
 				A0BF51E823AFBF250096624A /* geoip6 in Resources */,
 				A0BF51E623AFBF250096624A /* https-everywhere_rules.plist in Resources */,
+				A01B41722456D16100A490A9 /* Localizable.stringsdict in Resources */,
 				A0C26E4323D8650E00C4AF1C /* security-levels.html in Resources */,
 				A0BF525A23AFC3580096624A /* BrowsingViewController-iPad.xib in Resources */,
 				A099B8B723CF60C800B50998 /* InitSecurityLevelViewController.xib in Resources */,
@@ -2358,6 +2363,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		A01B41742456D16100A490A9 /* Localizable.stringsdict */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A01B41732456D16100A490A9 /* en */,
+				A01B41752456D16600A490A9 /* de */,
+			);
+			name = Localizable.stringsdict;
+			sourceTree = "<group>";
+		};
 		A0BF51A023AFBF250096624A /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
