@@ -17,6 +17,7 @@ file_filter = Resources/<lang>.lproj/Localizable.stringsdict
 minimum_perc = 0
 source_file = Resources/en.lproj/Localizable.stringsdict
 source_lang = en
+trans.pt_BR = Resources/pt-BR.lproj/Localizable.stringsdict
 type = STRINGSDICT
 
 [onion-browser.infoplist-strings]
