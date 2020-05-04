@@ -10,8 +10,10 @@
 
 import UIKit
 import Eureka
+import MessageUI
 
-class CustomBridgesViewController: FixedFormViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class CustomBridgesViewController: FixedFormViewController, UIImagePickerControllerDelegate,
+UINavigationControllerDelegate, MFMailComposeViewControllerDelegate {
 
 	weak var delegate: BridgeConfDelegate?
 
@@ -59,23 +61,42 @@ class CustomBridgesViewController: FixedFormViewController, UIImagePickerControl
 
 		+++ Section(NSLocalizedString("Paste Bridges", comment: ""))
 			<<< textAreaRow
-			.onChange({ row in
-				self.navigationItem.rightBarButtonItem?.isEnabled = !(row.value?.isEmpty ?? true)
+			.onChange({ [weak self] row in
+				self?.navigationItem.rightBarButtonItem?.isEnabled = !(row.value?.isEmpty ?? true)
 			})
 
 		+++ Section(NSLocalizedString("Use QR Code", comment: ""))
 			<<< ButtonRow() {
 				$0.title = NSLocalizedString("Scan QR Code", comment: "")
 			}
-			.onCellSelection({ _, _ in
-				self.navigationController?.pushViewController(ScanQrViewController(), animated: true)
+			.onCellSelection({ [weak self] _, _ in
+				self?.navigationController?.pushViewController(ScanQrViewController(), animated: true)
 			})
 			<<< ButtonRow() {
 				$0.title = NSLocalizedString("Upload QR Code", comment: "")
 			}
-			.onCellSelection({ _, _ in
-				self.present(self.picker)
+			.onCellSelection({ [weak self] _, _ in
+				if let self = self {
+					self.present(self.picker)
+				}
 			})
+
+		if MFMailComposeViewController.canSendMail() {
+			form
+			+++ Section(NSLocalizedString("E-Mail", comment: ""))
+				<<< ButtonRow() {
+					$0.title = NSLocalizedString("Request via E-Mail", comment: "")
+				}
+				.onCellSelection({ [weak self] _, _ in
+					let vc = MFMailComposeViewController()
+					vc.mailComposeDelegate = self
+					vc.setToRecipients(["bridges@torproject.org"])
+					vc.setSubject("get transport")
+					vc.setMessageBody("get transport", isHTML: false)
+
+					self?.present(vc, animated: true)
+				})
+		}
 	}
 
 	override func viewWillDisappear(_ animated: Bool) {
@@ -112,6 +133,13 @@ class CustomBridgesViewController: FixedFormViewController, UIImagePickerControl
 	func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
 		picker.dismiss(animated: true)
 	}
+
+
+    // MARK: MFMailComposeViewControllerDelegate
+
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
+    }
 
 
 	// MARK: Public Methods

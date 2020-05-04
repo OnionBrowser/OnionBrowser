@@ -165,7 +165,7 @@ class MoatViewController: FixedFormViewController {
 		let hud = MBProgressHUD.showAdded(to: view, animated: true)
 
 		URLSession.shared.apiTask(with: request) { [weak self] payload, error in
-//			print("[\(String(describing: type(of: self)))] moat request: payload=\(payload), error=\(String(describing: error))")
+			print("[\(String(describing: type(of: self)))] moat request: payload=\(payload), error=\(String(describing: error))")
 
 			DispatchQueue.main.async {
 				guard let vc = self else {
