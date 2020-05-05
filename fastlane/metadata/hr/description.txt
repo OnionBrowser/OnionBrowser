@@ -1,4 +1,4 @@
-Onion preglednik je besplatan web-preglednik otvorenog koda izgrađen od Tora za iOS. Onion preglednik omogućuje pristup internetu s više sigurnosti i privatnosti, bez dodatnih troškova.
+Onion preglednik je besplatan web preglednik otvorenog koda izgrađen od Tora za iOS. Onion preglednik omogućuje pristup internetu s više sigurnosti i privatnosti, bez dodatnih troškova.
 
 „Najbolja ponuda Tora na iOS-u trenutačno je Onion preglednik”  The Daily Dot, 14. listopada 2015.
 
@@ -16,7 +16,7 @@ FUNKCIJE:
 • I još više funkcija za bolju privatnost!
 
 IZJAVA O ODGOVORNOSTI:
-- Pregledavanje weba je puno sporije nego putem uobičajenog internetskog preglednika ili VPN-a, jer se tvoj promet šifrira i prenosi putem Tor mreže.
+- Pregledavanje weba je puno sporije nego putem uobičajenog web preglednika ili VPN-a, jer se tvoj promet šifrira i prenosi putem Tor mreže.
 
 - Multimedija često zaobilazi Tor i ugrožava tvoju privatnost; video datoteke i video prijenosi standardno su blokirani te ih Onion preglednik ne podržava.
 
