@@ -19,6 +19,7 @@ source_file = Resources/en.lproj/Localizable.stringsdict
 source_lang = en
 trans.pt_BR = Resources/pt-BR.lproj/Localizable.stringsdict
 trans.pt_PT = Resources/pt-PT.lproj/Localizable.stringsdict
+trans.tr_TR = Resources/tr-TR.lproj/Localizable.stringsdict
 type = STRINGSDICT
 
 [onion-browser.infoplist-strings]
