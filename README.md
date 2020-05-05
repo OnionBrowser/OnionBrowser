@@ -16,11 +16,11 @@ Please see the [LICENSE][license] file for usage and redistribution terms.
 ---
 
 * **Onion Browser**: 2.6.0 - See [official release history][releases] and [changelog][changelog].
-* **[Tor.framework][Tor.framework]**: 400.6.3
-* **[Tor][tor]**: 0.4.0.6
+* **[Tor.framework][Tor.framework]**: 401.6.1
+* **[Tor][tor]**: 0.4.1.6
 * **[libevent][libevent]**: 2.1.11
-* **[OpenSSL][openssl]**: 1.1.1d
-* **[liblzma][liblzma]**: 5.2.4
+* **[OpenSSL][openssl]**: 1.1.1g
+* **[liblzma][liblzma]**: 5.2.5
 
 [official]: https://onionbrowser.com/
 [help]: https://github.com/OnionBrowser/OnionBrowser/wiki/Help
