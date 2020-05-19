@@ -43,8 +43,8 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
 		conf.options = ["DNSPort": "\(PacketTunnelProvider.localhost):53",
 						"AutomapHostsOnResolve": "1",
 						"ClientOnly": "1",
-						"HTTPTunnelPort": "\(PacketTunnelProvider.localhost):\(PacketTunnelProvider.torProxyPort)",
-//						"SocksPort": "\(PacketTunnelProvider.torProxyPort)",
+//						"HTTPTunnelPort": "\(PacketTunnelProvider.localhost):\(PacketTunnelProvider.torProxyPort)",
+						"SocksPort": "\(PacketTunnelProvider.torProxyPort)",
 						"ControlPort": "\(PacketTunnelProvider.localhost):\(PacketTunnelProvider.torControlPort)",
 						"AvoidDiskWrites": "1",
 						"MaxMemInQueues": "5MB" /* For reference, no impact seen so far */]
@@ -221,14 +221,14 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
 
 						self.torController?.removeObserver(observer)
 
-//						TunnelInterface.setup(with: self.packetFlow)
-//						TunnelInterface.startTun2Socks(PacketTunnelProvider.torProxyPort,
-//													   withUsername: "onionbrowser",
-//													   andPassword: "onionbrowser");
-//
-//						DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-//							TunnelInterface.processPackets()
-//						}
+						TunnelInterface.setup(with: self.packetFlow)
+						TunnelInterface.startTun2Socks(PacketTunnelProvider.torProxyPort,
+													   withUsername: "onionbrowser",
+													   andPassword: "onionbrowser");
+
+						DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+							TunnelInterface.processPackets()
+						}
 
 						self.log("#startTunnel successful")
 
@@ -240,7 +240,7 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
 	}
 
 	override func stopTunnel(with reason: NEProviderStopReason, completionHandler: @escaping () -> Void) {
-//		TunnelInterface.stop()
+		TunnelInterface.stop()
 
 		torController?.disconnect()
 		torController = nil
