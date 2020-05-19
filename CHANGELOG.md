@@ -1,5 +1,9 @@
 #  Onion Browser 2 Changelog
 
+## 2.6.1
+
+- Tor updated to 0.4.3.5.
+
 ## 2.6.0
 
 - Rephrased security levels and improved their description.
