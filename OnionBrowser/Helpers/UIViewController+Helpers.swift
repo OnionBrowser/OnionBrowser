@@ -3,7 +3,7 @@
 //  OnionBrowser2
 //
 //  Created by Benjamin Erhart on 16.12.19.
-//  Copyright (c) 2012-2019, Tigas Ventures, LLC (Mike Tigas)
+//  Copyright (c) 2012-2020, Tigas Ventures, LLC (Mike Tigas)
 //
 //  This file is part of Onion Browser. See LICENSE file for redistribution terms.
 //
@@ -11,7 +11,35 @@
 import Foundation
 
 extension UIViewController {
-	
+
+	public var top: UIViewController {
+		if let vc = subViewController {
+			return vc.top
+		}
+
+		return self
+	}
+
+	public var subViewController: UIViewController? {
+		if let vc = self as? UINavigationController {
+			return vc.topViewController
+		}
+
+		if let vc = self as? UISplitViewController {
+			return vc.viewControllers.last
+		}
+
+		if let vc = self as? UITabBarController {
+			return vc.selectedViewController
+		}
+
+		if let vc = presentedViewController {
+			return vc
+		}
+
+		return nil
+	}
+
 	/**
 	Presents a view controller modally animated.
 
@@ -26,9 +54,9 @@ extension UIViewController {
 			vc.popoverPresentationController?.sourceView = sender.superview
 			vc.popoverPresentationController?.sourceRect = sender.frame
 
-            if let delegate = vc as? UIPopoverPresentationControllerDelegate {
-                vc.popoverPresentationController?.delegate = delegate
-            }
+			if let delegate = vc as? UIPopoverPresentationControllerDelegate {
+				vc.popoverPresentationController?.delegate = delegate
+			}
 		}
 
 		present(vc, animated: true)

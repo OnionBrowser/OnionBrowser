@@ -52,9 +52,12 @@ class AddBookmarkActivity: UIActivity {
 					title = tabs?.first(where: { $0.url == url })?.title
 				}
 
-				let b = Bookmark(name: title, url: url.absoluteString)
-				Bookmark.all.append(b)
+				let b = Bookmark.add(title, url.absoluteString)
 				Bookmark.store() // First store, so the user sees it immediately.
+
+				Nextcloud.getId(b) { id in
+					Nextcloud.store(b, id: id)
+				}
 
 				var done = false
 				b.acquireIcon {

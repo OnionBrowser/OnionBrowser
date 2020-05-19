@@ -92,6 +92,7 @@ class SecurityShield: UIView {
 
 		super.init(frame: .zero)
 
+		shield.tintColor = preset.color
 		number.text = preset.shortcode
 
 		title.text = preset.description
@@ -117,7 +118,7 @@ class SecurityShield: UIView {
 	}
 
 	required init?(coder: NSCoder) {
-		preset = coder.decodeObject(forKey: "preset") as! SecurityPreset
+		preset = coder.decodeObject(forKey: "preset") as? SecurityPreset ?? .secure
 
 		super.init(coder: coder)
 	}

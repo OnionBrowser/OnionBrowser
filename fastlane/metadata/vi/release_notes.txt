@@ -1,11 +1,10 @@
-- Chrome duyệt mới
-- Hỗ trợ iPad được cải thiện
-- Trang đích mới
-- Dấu trang với favicon
-- Hiển thị mạch Tor mới
-- Cài đặt trước mức bảo mật
-- Tổng quan về tab mới
-- Tor cập nhật lên 0.4.0.6
-- Danh sách máy chủ OBFS4 được cập nhật
-- Đã sửa lỗi với giá trị băm và giá trị băm của Content-Security-Header đã phá vỡ rất nhiều trang web.
-- Cập nhật nội địa hóa
+- Chỉnh lý và cải thiện chú thích về cấp độ bảo mật.
+- Hỗ trợ Dấu trang Nextcloud.
+- Hỗ trợ khóa ứng dụng bằng sinh trắc học/mật khẩu (không bắt buộc).
+- Tự động tìm cầu nối OBFS4 qua Meek.
+- Sửa rò rỉ bộ nhớ, là lỗi khiến dung lượng RAM sử dụng tăng theo thời gian vì cửa sổ không được xóa khỏi bộ nhớ.
+- Thông báo xóa tất cả cửa sổ dưới nền khỏi bộ nhớ trên iOS.
+- Sửa một số lỗi về trang chủ bị xóa.
+- Sửa liên kết đến onionbrowser.com.
+- Cập nhật bản dịch thuật.
+- Sửa nhiều lỗi nhỏ khác.

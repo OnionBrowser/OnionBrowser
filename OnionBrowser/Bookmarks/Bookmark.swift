@@ -40,14 +40,14 @@ open class Bookmark: NSObject {
 		defaults.append(Bookmark(name: "Freedom of the Press Foundation", url: "https://freedom.press/"))
 
 		defaults.append(Bookmark(name: "Onion Browser landing page", url: "http://3heens4xbedlj57xwcggjsdglot7e36p4rogy642xokemfo2duh6bbyd.onion/"))
-		defaults.append(Bookmark(name: "Onion Browser official site", url: "http://tigas3l7uusztiqu.onion/onionbrowser/"))
+		defaults.append(Bookmark(name: "Onion Browser official site", url: "https://onionbrowser.com"))
 		defaults.append(Bookmark(name: "The Tor Project", url: "http://expyuzz4wqqyqhjn.onion/"))
 		defaults.append(Bookmark(name: "Mike Tigas, Onion Browser author", url: "http://tigas3l7uusztiqu.onion/"))
 
 		return defaults
 	}();
 
-	private static var firstUpdateAfterStartDone = false
+	private static var startPageNeedsUpdate = true
 
 	static var all: [Bookmark] = {
 
@@ -101,7 +101,7 @@ open class Bookmark: NSObject {
 		}
 
 		// Always update after start. Language could have been changed.
-		if firstUpdateAfterStartDone {
+		if !startPageNeedsUpdate {
 			let fm = FileManager.default
 
 			// If files exist and destination is newer than source, don't do anything. (Upgrades!)
@@ -158,11 +158,16 @@ open class Bookmark: NSObject {
 
 		try? template.write(to: URL.start, atomically: true, encoding: .utf8)
 
-		firstUpdateAfterStartDone = true
+		startPageNeedsUpdate = false
 	}
 
-	class func add(name: String?, url: String) {
-		all.append(Bookmark(name: name, url: url))
+	@discardableResult
+	class func add(_ name: String?, _ url: String) -> Bookmark {
+		let bookmark = Bookmark(name: name, url: url)
+
+		all.append(bookmark)
+
+		return bookmark
 	}
 
 	@discardableResult
@@ -170,11 +175,13 @@ open class Bookmark: NSObject {
 		if let path = bookmarkFilePath {
 
 			// Trigger update of start page when things changed.
-			try? FileManager.default.removeItem(at: URL.start)
+			startPageNeedsUpdate = true
 
 			for tab in AppDelegate.shared?.browsingUi?.tabs ?? [] {
 				if tab.url == URL.start {
-					tab.refresh()
+					DispatchQueue.main.async {
+						tab.refresh()
+					}
 				}
 			}
 
@@ -187,7 +194,7 @@ open class Bookmark: NSObject {
 			let data = NSMutableDictionary()
 			data[keyBookmarks] = bookmarks
 			data[keyVersion] = version
-
+			
 			return data.write(to: path, atomically: true)
 		}
 

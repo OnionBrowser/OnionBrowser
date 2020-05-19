@@ -25,3 +25,4 @@
 #import "HSTSCache.h"
 #import "URLBlocker.h"
 #import "Config.h"
+#import "MBProgressHUD.h"

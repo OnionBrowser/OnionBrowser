@@ -152,13 +152,13 @@ UICollectionViewDropDelegate, TabCellDelegate {
 	// MARK: TabCellDelegate
 
 	func close(_ sender: TabCell) {
-		tabsCollection.performBatchUpdates({
-			if let indexPath = tabsCollection.indexPath(for: sender) {
-				tabsCollection.deleteItems(at: [indexPath])
+		if let indexPath = tabsCollection.indexPath(for: sender) {
+			removeTab(tabs[indexPath.row])
 
-				removeTab(tabs[indexPath.row])
-			}
-		})
+			tabsCollection.performBatchUpdates({
+				tabsCollection.deleteItems(at: [indexPath])
+			})
+		}
 	}
 
 

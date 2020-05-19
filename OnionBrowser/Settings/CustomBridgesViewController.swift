@@ -10,8 +10,12 @@
 
 import UIKit
 import Eureka
+import MessageUI
 
-class CustomBridgesViewController: FixedFormViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class CustomBridgesViewController: FixedFormViewController, UIImagePickerControllerDelegate,
+UINavigationControllerDelegate, MFMailComposeViewControllerDelegate {
+
+	weak var delegate: BridgeConfDelegate?
 
 	private static let bridgesUrl = "https://bridges.torproject.org/"
 
@@ -28,13 +32,14 @@ class CustomBridgesViewController: FixedFormViewController, UIImagePickerControl
 		$0.placeholder = OnionManager.obfs4Bridges.first
 		$0.cell.placeholderLabel?.font = .systemFont(ofSize: 15)
 		$0.cell.textLabel?.font = .systemFont(ofSize: 15)
-		$0.value = Settings.customBridges?.joined(separator: "\n")
 	}
 
 	private lazy var detector = CIDetector(ofType: CIDetectorTypeQRCode, context: nil, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh])
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+
+		textAreaRow.value = delegate?.customBridges?.joined(separator: "\n")
 
 		navigationItem.title = NSLocalizedString("Use Custom Bridges", comment: "")
 		navigationItem.rightBarButtonItem = UIBarButtonItem(
@@ -56,38 +61,53 @@ class CustomBridgesViewController: FixedFormViewController, UIImagePickerControl
 
 		+++ Section(NSLocalizedString("Paste Bridges", comment: ""))
 			<<< textAreaRow
-			.onChange({ row in
-				self.navigationItem.rightBarButtonItem?.isEnabled = !(row.value?.isEmpty ?? true)
+			.onChange({ [weak self] row in
+				self?.navigationItem.rightBarButtonItem?.isEnabled = !(row.value?.isEmpty ?? true)
 			})
 
 		+++ Section(NSLocalizedString("Use QR Code", comment: ""))
 			<<< ButtonRow() {
 				$0.title = NSLocalizedString("Scan QR Code", comment: "")
 			}
-			.onCellSelection({ _, _ in
-				self.navigationController?.pushViewController(ScanQrViewController(), animated: true)
+			.onCellSelection({ [weak self] _, _ in
+				self?.navigationController?.pushViewController(ScanQrViewController(), animated: true)
 			})
 			<<< ButtonRow() {
 				$0.title = NSLocalizedString("Upload QR Code", comment: "")
 			}
-			.onCellSelection({ _, _ in
-				self.present(self.picker)
+			.onCellSelection({ [weak self] _, _ in
+				if let self = self {
+					self.present(self.picker)
+				}
 			})
+
+		if MFMailComposeViewController.canSendMail() {
+			form
+			+++ Section(NSLocalizedString("E-Mail", comment: ""))
+				<<< ButtonRow() {
+					$0.title = NSLocalizedString("Request via E-Mail", comment: "")
+				}
+				.onCellSelection({ [weak self] _, _ in
+					let vc = MFMailComposeViewController()
+					vc.mailComposeDelegate = self
+					vc.setToRecipients(["bridges@torproject.org"])
+					vc.setSubject("get transport")
+					vc.setMessageBody("get transport", isHTML: false)
+
+					self?.present(vc, animated: true)
+				})
+		}
 	}
 
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 
-		if let vc = navigationController?.viewControllers,
-			let bridgeVC = vc[(vc.count) - 1] as? BridgeConfViewController {
-
-			let bridges = textAreaRow.value?
+		delegate?.customBridges = textAreaRow.value?
 				.components(separatedBy: "\n")
 				.map({ bridge in bridge.trimmingCharacters(in: .whitespacesAndNewlines) })
-				.filter({ (bridge) in !bridge.isEmpty && !bridge.hasPrefix("//") && !bridge.hasPrefix("#") })
+				.filter({ bridge in !bridge.isEmpty && !bridge.hasPrefix("//") && !bridge.hasPrefix("#") })
 
-			bridgeVC.customBridges = bridges
-		}
+		delegate?.bridgesType = delegate?.customBridges?.isEmpty ?? true ? .none : .custom
 	}
 
 	// MARK: UIImagePickerControllerDelegate
@@ -115,6 +135,13 @@ class CustomBridgesViewController: FixedFormViewController, UIImagePickerControl
 	}
 
 
+    // MARK: MFMailComposeViewControllerDelegate
+
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
+    }
+
+
 	// MARK: Public Methods
 
 	func tryDecode(_ raw: String?) {
@@ -122,8 +149,6 @@ class CustomBridgesViewController: FixedFormViewController, UIImagePickerControl
 		// of double quotes as per JSON standard. Srsly?
 		if let data = raw?.replacingOccurrences(of: "'", with: "\"").data(using: .utf8),
 			let newBridges = try? JSONSerialization.jsonObject(with: data, options: []) as? [String] {
-
-			Settings.customBridges = newBridges
 
 			textAreaRow.value = newBridges.joined(separator: "\n")
 			textAreaRow.updateCell()
@@ -140,9 +165,6 @@ class CustomBridgesViewController: FixedFormViewController, UIImagePickerControl
 
 	@objc
 	private func connect() {
-		if let navC = navigationController,
-			let vc = navC.viewControllers[navC.viewControllers.count - 2] as? BridgeConfViewController {
-			vc.connect()
-		}
+		delegate?.connect()
 	}
 }

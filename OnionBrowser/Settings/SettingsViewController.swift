@@ -35,8 +35,8 @@ class SettingsViewController: FixedFormViewController {
 
 		form
 		+++ defaultSecurityRow
-		.onCellSelection { _, _ in
-			self.navigationController?.pushViewController(
+		.onCellSelection { [weak self] _, _ in
+			self?.navigationController?.pushViewController(
 				SecurityViewController(), animated: true)
 		}
 
@@ -90,8 +90,8 @@ class SettingsViewController: FixedFormViewController {
 			$0.cell.accessoryType = .disclosureIndicator
 			$0.cell.selectionStyle = .default
 		}
-		.onCellSelection { _, _ in
-			self.navigationController?.pushViewController(CustomSitesViewController(), animated: true)
+		.onCellSelection { [weak self] _, _ in
+			self?.navigationController?.pushViewController(CustomSitesViewController(), animated: true)
 		}
 
 		<<< SwitchRow() {
@@ -112,8 +112,8 @@ class SettingsViewController: FixedFormViewController {
 			$0.cell.accessoryType = .disclosureIndicator
 			$0.cell.selectionStyle = .default
 		}
-		.onCellSelection { _, _ in
-			self.navigationController?.pushViewController(
+		.onCellSelection { [weak self] _, _ in
+			self?.navigationController?.pushViewController(
 				Storage1ViewController(), animated: true)
 		}
 
@@ -145,6 +145,37 @@ class SettingsViewController: FixedFormViewController {
 			}
 		}
 
+		<<< SwitchRow() {
+			$0.title = NSLocalizedString("Lock App with Touch ID/Face ID or Device Passcode", comment: "")
+			$0.value = SecureEnclave.loadKey() != nil
+			$0.cell.switchControl.onTintColor = .accent
+			$0.cell.textLabel?.numberOfLines = 0
+		}
+		.onChange { [weak self] row in
+			let newValue: Bool
+
+			if row.value ?? false {
+				newValue = SecureEnclave.createKey() != nil
+			}
+			else {
+				newValue = !SecureEnclave.removeKey()
+			}
+
+			// Seems, we can't create a key. Maybe running on a simulator?
+			if newValue != row.value {
+				// Quirky way of disabling the onChange callback to avoid an endless loop.
+				self?.form.delegate = nil
+
+				row.value = newValue
+				row.updateCell()
+
+				row.disabled = true
+				row.evaluateDisabled()
+
+				self?.form.delegate = self // Enable callback again.
+			}
+		}
+
 		<<< PushRow<TabSecurity.Level>() {
 			$0.title = NSLocalizedString("Tab Security", comment: "Option title")
 			$0.selectorTitle = $0.title
@@ -155,6 +186,16 @@ class SettingsViewController: FixedFormViewController {
 			$0.value = Settings.tabSecurity
 
 			$0.cell.textLabel?.numberOfLines = 0
+		}
+		.onPresent { vc, selectorVc in
+			// This is just to trigger the usage of #sectionFooterTitleForKey
+			selectorVc.sectionKeyForValue = { value in
+				return NSLocalizedString("Tab Security", comment: "Option title")
+			}
+
+			selectorVc.sectionFooterTitleForKey = { key in
+				return NSLocalizedString("Choose how long app remembers open tabs.", comment: "")
+			}
 		}
 		.onChange { row in
 			if let value = row.value {
@@ -172,8 +213,8 @@ class SettingsViewController: FixedFormViewController {
 			$0.cell.accessoryType = .disclosureIndicator
 			$0.cell.selectionStyle = .default
 		}
-		.onCellSelection { _, _ in
-			self.navigationController?.pushViewController(URLBlockerRuleController(), animated: true)
+		.onCellSelection { [weak self] _, _ in
+			self?.navigationController?.pushViewController(URLBlockerRuleController(), animated: true)
 		}
 
 		<<< LabelRow() {
@@ -182,8 +223,8 @@ class SettingsViewController: FixedFormViewController {
 			$0.cell.accessoryType = .disclosureIndicator
 			$0.cell.selectionStyle = .default
 		}
-		.onCellSelection { _, _ in
-			self.navigationController?.pushViewController(HTTPSEverywhereRuleController(), animated: true)
+		.onCellSelection { [weak self] _, _ in
+			self?.navigationController?.pushViewController(HTTPSEverywhereRuleController(), animated: true)
 		}
 
 		<<< SwitchRow() {
@@ -216,8 +257,8 @@ class SettingsViewController: FixedFormViewController {
 			$0.cell.accessoryType = .disclosureIndicator
 			$0.cell.selectionStyle = .default
 		}
-		.onCellSelection({ _, _ in
-			self.navigationController?.pushViewController(AdvancedTorConfViewController(), animated: true)
+		.onCellSelection({ [weak self] _, _ in
+			self?.navigationController?.pushViewController(AdvancedTorConfViewController(), animated: true)
 		})
 
 
@@ -235,12 +276,12 @@ class SettingsViewController: FixedFormViewController {
 		.cellUpdate { cell, _ in
 			cell.textLabel?.textAlignment = .natural
 		}
-		.onCellSelection { _, _ in
+		.onCellSelection { [weak self] _, _ in
 			AppDelegate.shared?.browsingUi?.addNewTab(
 				URL(string: "https://github.com/OnionBrowser/OnionBrowser/issues"),
 				transition: .notAnimated)
 
-			self.dismsiss_()
+			self?.dismsiss_()
 		}
 
 		if let url = URL(string: "itms-apps://itunes.apple.com/app/id519296448"),
@@ -266,8 +307,8 @@ class SettingsViewController: FixedFormViewController {
 			$0.cell.accessoryType = .disclosureIndicator
 			$0.cell.selectionStyle = .default
 		}
-		.onCellSelection { _, _ in
-			self.navigationController?.pushViewController(DonationViewController(), animated: true)
+		.onCellSelection { [weak self] _, _ in
+			self?.navigationController?.pushViewController(DonationViewController(), animated: true)
 		}
 
 		<<< ButtonRow() {
@@ -277,11 +318,11 @@ class SettingsViewController: FixedFormViewController {
 		.cellUpdate { cell, _ in
 			cell.textLabel?.textAlignment = .natural
 		}
-		.onCellSelection { _, _ in
+		.onCellSelection { [weak self] _, _ in
 			AppDelegate.shared?.browsingUi?.addNewTab(URL.aboutOnionBrowser,
 													   transition: .notAnimated)
 
-			self.dismsiss_()
+			self?.dismsiss_()
 		}
 	}
 

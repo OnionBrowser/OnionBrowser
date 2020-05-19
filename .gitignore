@@ -25,3 +25,5 @@ Resources/geoip6
 # metadata containing sensitive data
 fastlane/metadata/review_information
 fastlane/metadata/trade_representative_contact_information
+
+fastlane/Preview.html

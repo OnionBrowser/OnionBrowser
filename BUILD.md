@@ -17,12 +17,12 @@ Therefor it is highly recommended to install carthage via the officially documen
 ## Steps to build Onion Browser 2.X
 
 ```bash
-git clone git@github.com:mtigas/OnionBrowser.git
+git clone git@github.com:OnionBrowser/OnionBrowser.git
 cd OnionBrowser
 git checkout 2.X
 pod repo update
 pod install
-carthage update --platform iOS
+carthage update
 open OnionBrowser2.xcworkspace
 ```
 
@@ -35,19 +35,14 @@ brew install automake libtool
 
 Of course, you need Homebrew for that. Check out https://brew.sh/ for this.
 
-## Using pre-built Tor.framework
 
-This is experimental -- use at your own risk!
+## Edit Config.xcconfig
 
-You can save some time by using a pre-compiled version of Tor.framework. Edit `Cartfile` to comment the `github` line and uncomment the `binary` for Tor.framework. Something like:
+Instead of changing signing/release-related configuration in the main project configuration 
+(which mainly edits the `project.pbxproj` file), do it in `Config.xcconfig` instead, which avoids
+accidental checkins of sensitive information.
 
-```
-#github "iCepa/Tor.framework" == 31.8.2
-binary "https://cdn.tig.as/files/Tor.json" == 31.8.2
+You will at least need to edit the `OB_APP_BUNDLE_ID[config=Debug]` line to be able to run
+the app in a simulator. 
 
-binary "https://cdn.tig.as/files/Iobfs4proxy.json" == 1.0
-```
-
-Then run the **Steps to build Onion Browser 2.X** above.
-
-(TODO: See why Carthage isn't picking up the binary automatically from the GitHub release.)
+Make sure, you didn't accidentally remove the references to that in `project.pbxproj`!

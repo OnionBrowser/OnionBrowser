@@ -18,8 +18,8 @@ extension String {
 		if let json = try? JSONEncoder().encode(array),
 			let s = String(data: json, encoding: .utf8) {
 
-			// Then chop off the enclosing brackets. []
-			return String(s[s.index(s.startIndex, offsetBy: 2) ... s.index(s.endIndex, offsetBy: -2)])
+			// Then chop off the enclosing brackets and quotes. ["..."]
+			return String(s.dropFirst(2).dropLast(2))
 		}
 
 		return nil

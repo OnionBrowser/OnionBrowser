@@ -12,7 +12,7 @@ import UIKit
 
 class ConnectingViewController: UIViewController, OnionManagerDelegate, VpnManagerDelegate {
 
-	class func start(_ showSecurityLevelsInfo: Bool = false) {
+	class func start() {
 		let appDelegate = AppDelegate.shared
 
 		if appDelegate?.browsingUi == nil {
@@ -23,10 +23,6 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate, VpnManag
 			TabSecurity.restore()
 
 			appDelegate?.browsingUi?.becomesVisible()
-
-			if showSecurityLevelsInfo {
-				appDelegate?.browsingUi?.addNewTab(URL.aboutSecurityLevels)
-			}
 		}
 	}
 
@@ -44,8 +40,26 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate, VpnManag
 		}
 	}
 
+	@IBOutlet weak var troubleLb: UILabel! {
+		didSet {
+			let text = NSMutableAttributedString(
+				string: NSLocalizedString("We're having trouble.", comment: ""),
+				attributes: [.font: UIFont.boldSystemFont(ofSize: 24)])
+
+			text.append(NSAttributedString(string: "\n"))
+
+			text.append(NSAttributedString(string: NSLocalizedString(
+				"Close Onion Browser and restart or try using a bridge.",
+				comment: ""), attributes: [.font: UIFont.systemFont(ofSize: 15)]))
+
+			troubleLb.attributedText = text
+		}
+	}
+	@IBOutlet weak var troubleLbHeight: NSLayoutConstraint!
+
 	@IBOutlet weak var image: UIImageView!
 	@IBOutlet weak var claimLb: UILabel!
+	@IBOutlet weak var claimLbTopAnchor: NSLayoutConstraint!
 
 	@IBOutlet weak var nextBt: UIButton! {
 		didSet {
@@ -58,59 +72,36 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate, VpnManag
 	*/
 	var autoClose = false
 
-	private var lastClaim: Int?
-
 	private var refresh: Timer?
 
-	private static let claims = [
-		[
-			"text": NSLocalizedString("__CLAIM_1__", comment: ""),
-			"text_color": "white",
-			"background_color": "group_bg",
-			"image": "group",
-		],
-		[
-			"text": NSLocalizedString("__CLAIM_2__", comment: ""),
-			"text_color": "black",
-			"background_color": "people_bg",
-			"image": "people",
-		],
-		[
-			"text": NSLocalizedString("__CLAIM_3__", comment: ""),
-			"text_color": "white",
-			"background_color": "facebook_bg",
-			"image": "facebook",
-		],
-		[
-			"text": NSLocalizedString("__CLAIM_4__", comment: ""),
-			"text_color": "white",
-			"background_color": "activist_bg",
-			"image": "activist",
-		],
-		[
-			"text": NSLocalizedString("__CLAIM_5__", comment: ""),
-			"text_color": "white",
-			"background_color": "blogger_bg",
-			"image": "blogger",
-		],
-		[
-			"text": NSLocalizedString("__CLAIM_6__", comment: ""),
-			"text_color": "black",
-			"background_color": "journalist_bg",
-			"image": "journalist",
-		],
-		[
-			"text": NSLocalizedString("__CLAIM_7__", comment: ""),
-			"text_color": "black",
-			"background_color": "business_bg",
-			"image": "business",
-		],
-		[
-			"text": NSLocalizedString("__CLAIM_8__", comment: ""),
-			"text_color": "black",
-			"background_color": "worker_bg",
-			"image": "worker",
-		],
+	private var success = false
+
+	private var lastClaim: Int?
+
+	private class Claim {
+		let text: String
+		let textColor: UIColor
+		let backgroundColor: UIColor?
+		let image: UIImage?
+
+		init(_ text: String, _ textColor: UIColor, _ backgroundColor: String, _ image: String) {
+			self.text = text
+			self.textColor = textColor
+			self.backgroundColor = UIColor(named: backgroundColor)
+			self.image = UIImage(named: image)
+		}
+	}
+
+	// Intentionally non-static to free memory after usage.
+	private let claims = [
+		Claim(NSLocalizedString("__CLAIM_1__", comment: ""), .white, "group_bg", "group"),
+		Claim(NSLocalizedString("__CLAIM_2__", comment: ""), .black, "people_bg", "people"),
+		Claim(NSLocalizedString("__CLAIM_3__", comment: ""), .white, "facebook_bg", "facebook"),
+		Claim(NSLocalizedString("__CLAIM_4__", comment: ""), .white, "activist_bg", "activist"),
+		Claim(NSLocalizedString("__CLAIM_5__", comment: ""), .white, "blogger_bg", "blogger"),
+		Claim(NSLocalizedString("__CLAIM_6__", comment: ""), .black, "journalist_bg", "journalist"),
+		Claim(NSLocalizedString("__CLAIM_7__", comment: ""), .black, "business_bg", "business"),
+		Claim(NSLocalizedString("__CLAIM_8__", comment: ""), .black, "worker_bg", "worker"),
 	]
 
 	override func viewDidLoad() {
@@ -164,15 +155,27 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate, VpnManag
 			self.bridgeConfBt.isHidden = true
 			self.bridgeConfBt.widthAnchor.constraint(equalToConstant: 0).isActive = true
 			self.progress.isHidden = true
+			self.troubleLbHeight.constant = 0
+			self.troubleLb.isHidden = true
 			self.claimLb.isHidden = true
 
 			self.nextBt.setTitle(NSLocalizedString("Next", comment: ""))
 			self.nextBt.isHidden = false
+
+			self.success = true
 		}
 	}
 
-	func torConnError() {
-		AppDelegate.shared?.show(ErrorViewController())
+	func torConnDifficulties() {
+		DispatchQueue.main.async {
+			self.troubleLbHeight.constant = 98
+			self.troubleLb.isHidden = false
+
+			self.claimLb.isHidden = true
+
+			self.nextBt.setTitle(NSLocalizedString("Configure Bridges", comment: ""))
+			self.nextBt.isHidden = false
+		}
 	}
 
 
@@ -180,7 +183,7 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate, VpnManag
 
 	func onError(_ error: Error) {
 		print("[\(String(describing: type(of: self)))]#onError error=\(error)")
-		torConnError()
+		torConnDifficulties()
 	}
 
     func onProgress(_ progress: Float) {
@@ -198,20 +201,25 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate, VpnManag
 	// MARK: Actions
 
 	@IBAction func next() {
-		AppDelegate.shared?.show(InitSecurityLevelViewController())
+		if success {
+			AppDelegate.shared?.show(InitSecurityLevelViewController())
+		}
+		else {
+			bridgeSettings()
+		}
 	}
 
-    @IBAction func bridgeSettings() {
+	@IBAction func bridgeSettings() {
 		BridgeConfViewController.present(from: self)
-    }
-    
+	}
+
 	// MARK: Private methods
 
 	@objc private func showClaim(_ timer: Timer?) {
 		var nextClaim: Int
 
 // FOR DEBUGGING: Show all in a row.
-//		if lastClaim == nil || lastClaim! >= ConnectingViewController.claims.count - 1 {
+//		if lastClaim == nil || lastClaim! >= claims.count - 1 {
 //			nextClaim = 0
 //		}
 //		else {
@@ -219,16 +227,17 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate, VpnManag
 //		}
 
 		repeat {
-			nextClaim = Int(arc4random_uniform(UInt32(ConnectingViewController.claims.count)))
+			nextClaim = Int(arc4random_uniform(UInt32(claims.count)))
 		} while nextClaim == lastClaim
 
 		lastClaim = nextClaim
 
-		let data = ConnectingViewController.claims[nextClaim]
+		let claim = claims[nextClaim]
 
-		claimLb.text = data["text"]
-		claimLb.textColor = data["text_color"] == "white" ? .white : .black
-		view.backgroundColor = UIColor(named: data["background_color"]!)
-		image.image = UIImage(named: data["image"]!)
+		troubleLb.textColor = claim.textColor
+		claimLb.text = claim.text
+		claimLb.textColor = claim.textColor
+		view.backgroundColor = claim.backgroundColor
+		image.image = claim.image
 	}
 }

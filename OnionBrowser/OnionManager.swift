@@ -9,13 +9,13 @@
 
 import Foundation
 
-protocol OnionManagerDelegate {
+protocol OnionManagerDelegate: class {
 
 	func torConnProgress(_ progress: Int)
 
 	func torConnFinished()
 
-	func torConnError()
+	func torConnDifficulties()
 }
 
 class OnionManager : NSObject {
@@ -50,7 +50,8 @@ class OnionManager : NSObject {
 			"--allow-missing-torrc",
 			"--ignore-missing-torrc",
 			"--ClientOnly", "1",
-			"--SocksPort", "39050",
+			"--AvoidDiskWrites", "1",
+			"--SocksPort", "127.0.0.1:39050",
 			"--ControlPort", "127.0.0.1:39060",
 			"--Log", log_loc,
 			"--ClientUseIPv6", "1",
@@ -79,7 +80,6 @@ class OnionManager : NSObject {
 
 			try? FileManager.default.createDirectory(at: authDir, withIntermediateDirectories: true)
 
-			// TODO: pref pane for adding "<sitename>.auth_private" files to this directory.
 			conf.dataDirectory = dataDir
 
 			conf.arguments += ["--ClientOnionAuthDir", authDir.path]
@@ -108,11 +108,18 @@ class OnionManager : NSObject {
 	private var torThread: TorThread?
 
 	private var initRetry: DispatchWorkItem?
-	private var failGuard: DispatchWorkItem?
 
 	private var bridgesType = Settings.BridgesType.none
 	private var customBridges: [String]?
 	private var needsReconfiguration = false
+
+	private var cookie: Data? {
+		if let cookieUrl = OnionManager.torBaseConf.dataDirectory?.appendingPathComponent("control_auth_cookie") {
+			return try? Data(contentsOf: cookieUrl)
+		}
+
+		return nil
+	}
 
 	override init() {
 		super.init()
@@ -204,6 +211,9 @@ class OnionManager : NSObject {
 	}
 
 	func startTor(delegate: OnionManagerDelegate?) {
+		// Avoid a retain cycle. Only use the weakDelegate in closures!
+		weak var weakDelegate = delegate
+
 		cancelInitRetry()
 		state = .started
 
@@ -275,11 +285,15 @@ class OnionManager : NSObject {
 			if needsReconfiguration {
 				let conf = getBridgesAsConf()
 
-				torController?.setConfForKey("UseBridges", withValue: conf.count > 0 ? "1" : "0")
 				torController?.resetConf(forKey: "Bridge")
 
 				if conf.count > 0 {
+					// Bridges need to be set *before* "UseBridges"="1"!
 					torController?.setConfs(conf)
+					torController?.setConfForKey("UseBridges", withValue: "1")
+				}
+				else {
+					torController?.setConfForKey("UseBridges", withValue: "0")
 				}
 			}
 		}
@@ -290,8 +304,51 @@ class OnionManager : NSObject {
 		DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
 			if OnionManager.TOR_LOGGING {
 				// Show Tor log in iOS' app log.
-				TORInstallTorLogging()
-				TORInstallEventLogging()
+				TORInstallTorLoggingCallback { severity, msg in
+					let s: String
+
+					switch severity {
+					case .debug:
+						s = "debug"
+
+					case .error:
+						s = "error"
+
+					case .fault:
+						s = "fault"
+
+					case .info:
+						s = "info"
+
+					default:
+						s = "default"
+					}
+
+					print("[Tor \(s)] \(String(cString: msg).trimmingCharacters(in: .whitespacesAndNewlines))")
+				}
+				TORInstallEventLoggingCallback { severity, msg in
+					let s: String
+
+					switch severity {
+					case .debug:
+						// Ignore libevent debug messages. Just too many of typically no importance.
+						return
+
+					case .error:
+						s = "error"
+
+					case .fault:
+						s = "fault"
+
+					case .info:
+						s = "info"
+
+					default:
+						s = "default"
+					}
+
+					print("[libevent \(s)] \(String(cString: msg).trimmingCharacters(in: .whitespacesAndNewlines))")
+				}
 			}
 
 			if !(self.torController?.isConnected ?? false) {
@@ -302,28 +359,17 @@ class OnionManager : NSObject {
 				}
 			}
 
-			let cookieUrl = OnionManager.torBaseConf.dataDirectory?.appendingPathComponent("control_auth_cookie")
-			let cookie: Data?
-
-			if let cookieUrl = cookieUrl {
-				cookie = try? Data(contentsOf: cookieUrl)
-			}
-			else {
-				cookie = nil
-			}
-
-			#if DEBUG
-			print("[\(String(describing: type(of: self)))] cookieUrl=", cookieUrl?.absoluteString ?? "nil")
-			print("[\(String(describing: type(of: self)))] cookie=", cookie?.base64EncodedString() ?? "nil")
-			#endif
-
-			guard cookie != nil else {
+			guard let cookie = self.cookie else {
 				print("[\(String(describing: type(of: self)))] Could not connect to Tor - cookie unreadable!")
 
 				return
 			}
 
-			self.torController?.authenticate(with: cookie!, completion: { success, error in
+			#if DEBUG
+			print("[\(String(describing: type(of: self)))] cookie=", cookie.base64EncodedString())
+			#endif
+
+			self.torController?.authenticate(with: cookie, completion: { success, error in
 				if success {
 					var completeObs: Any?
 					completeObs = self.torController?.addObserver(forCircuitEstablished: { established in
@@ -335,7 +381,7 @@ class OnionManager : NSObject {
 							print("[\(String(describing: type(of: self)))] Connection established!")
 							#endif
 
-							delegate?.torConnFinished()
+							weakDelegate?.torConnFinished()
 						}
 					}) // torController.addObserver
 
@@ -349,7 +395,7 @@ class OnionManager : NSObject {
 							print("[\(String(describing: OnionManager.self))] progress=\(progress)")
 							#endif
 
-							delegate?.torConnProgress(progress)
+							weakDelegate?.torConnProgress(progress)
 
 							if progress >= 100 {
 								self.torController?.removeObserver(progressObs)
@@ -375,19 +421,13 @@ class OnionManager : NSObject {
 			self.torController?.setConfForKey("DisableNetwork", withValue: "1")
 			self.torController?.setConfForKey("DisableNetwork", withValue: "0")
 
-			self.failGuard = DispatchWorkItem {
-				if self.state != .connected {
-					delegate?.torConnError()
-				}
-			}
-
-			// Show error to user, when, after 90 seconds (30 sec + one retry of 60 sec), Tor has still not started.
-			DispatchQueue.main.asyncAfter(deadline: .now() + 60, execute: self.failGuard!)
+			// Hint user that they might need to use a bridge.
+			delegate?.torConnDifficulties()
 		}
 
 		// On first load: If Tor hasn't finished bootstrap in 30 seconds,
 		// HUP tor once in case we have partially bootstrapped but got stuck.
-		DispatchQueue.main.asyncAfter(deadline: .now() + 30, execute: initRetry!)
+		DispatchQueue.main.asyncAfter(deadline: .now() + 15, execute: initRetry!)
 
 	}// startTor
 
@@ -447,7 +487,7 @@ class OnionManager : NSObject {
 		}
 
 		if args.count > 0 {
-			args.insert(contentsOf: ["--UseBridges", "1"], at: 0)
+			args.append(contentsOf: ["--UseBridges", "1"])
 		}
 
 		return args
@@ -468,8 +508,5 @@ class OnionManager : NSObject {
 	private func cancelInitRetry() {
 		initRetry?.cancel()
 		initRetry = nil
-
-		failGuard?.cancel()
-		failGuard = nil
 	}
 }

@@ -92,7 +92,7 @@ import StoreKit
 			if let prevDonationDate = ud.object(forKey: "previous_donation_date") as? Date,
 				let prevDonationAmount = ud.string(forKey: "previous_donation") {
 
-				msg += String(format: NSLocalizedString("You most recently donated %@ on %@.", comment: ""),
+				msg += String(format: NSLocalizedString("You most recently donated %1$@ on %2$@.", comment: ""),
 							  prevDonationAmount,
 							  dateFormatter.string(from: prevDonationDate))
 

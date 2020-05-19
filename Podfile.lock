@@ -4,10 +4,11 @@ PODS:
   - DTFoundation/Core (1.7.14)
   - DTFoundation/DTASN1 (1.7.14):
     - DTFoundation/Core
-  - Eureka (5.2.0)
+  - Eureka (5.2.1)
   - FavIcon (3.0.6)
   - ImageRow (4.0.0):
     - Eureka (~> 5.0)
+  - MBProgressHUD (1.2.0)
   - OBTun2Socks (0.1.0):
     - CocoaAsyncSocket (~> 7.6.2)
   - OCMock (3.6)
@@ -24,9 +25,10 @@ PODS:
 DEPENDENCIES:
   - CSPHeader (~> 0.4)
   - DTFoundation/DTASN1
-  - Eureka (~> 5.1)
+  - Eureka (~> 5.2)
   - FavIcon (from `https://github.com/tladesignz/FavIcon.git`, branch `swift-5`)
   - ImageRow (~> 4.0)
+  - MBProgressHUD (~> 1.2)
   - OBTun2Socks (from `https://github.com/tladesignz/OBTun2Socks.git`)
   - OCMock
   - OCSPCache (from `https://github.com/Psiphon-Labs/OCSPCache`)
@@ -42,6 +44,7 @@ SPEC REPOS:
     - DTFoundation
     - Eureka
     - ImageRow
+    - MBProgressHUD
     - OCMock
     - OpenSSL-Universal
     - Reachability
@@ -74,9 +77,10 @@ SPEC CHECKSUMS:
   CocoaAsyncSocket: 694058e7c0ed05a9e217d1b3c7ded962f4180845
   CSPHeader: 352a279f3c84ab3c18014d8f682efd55fa73d885
   DTFoundation: 25aa19bb7c6e225b1dfae195604fb8cf1da0ab4c
-  Eureka: 820a761c700f6eaab3b60758f138e0d9b99072b3
+  Eureka: c883105488e05bc65539f583246ecf9657cabbfe
   FavIcon: 9fd386d96324ce0f6063732f8bf6c7f1d5bf17a3
   ImageRow: e65b2e1a33f89062bf2a553a2aad61d975eb7428
+  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   OBTun2Socks: 42657ad64c8a2a2c8f726f1d4889d5a1244394ba
   OCMock: 5ea90566be239f179ba766fd9fbae5885040b992
   OCSPCache: 090d054dbf8f31602896d2527a8bd69d49515695
@@ -87,6 +91,6 @@ SPEC CHECKSUMS:
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
   VForceTouch: b5c3a28625269e1818cf915728173bda9f669d6b
 
-PODFILE CHECKSUM: a04b878013b0acaa7e803b074792e368da4caaaa
+PODFILE CHECKSUM: 5df9ae3c704f65b92d27c5f34a5565d09f30a76d
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.1

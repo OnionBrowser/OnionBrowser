@@ -1,11 +1,10 @@
-- Nieuw browsing chrome
-- Verbeterde iPad-ondersteuning
-- Nieuwe bestemmingspagina
-- Bladwijzers met favicons
-- Nieuw Tor circuit display
-- Voorinstellingen voor beveiligingsniveau
-- Nieuw tabbladoverzicht
-- Tor bijgewerkt naar 0.4.0.6
-- Bijgewerkte OBFS4-serverlijst
-- Probleem opgelost met Content-Security-Header nonce en hash-waarden die veel sites brak.
-- Localisatie-updates
+- Herformuleerde beveiligingsniveaus en verbeterde hun beschrijving.
+- Ondersteuning voor Nextcloud-bladwijzers toegevoegd.
+- Optioneel biometrisch / app-toegangscode app-slot toegevoegd.
+- Automatisch ophalen van OBFS4-bruggen toegevoegd via Meek.
+- Vaste geheugenlekken, waarbij het RAM-gebruik in de loop van de tijd zou toenemen, omdat tabbladen nooit echt uit het geheugen werden verwijderd.
+- Leeg alle achtergrondtabbladen op geheugenwaarschuwingssignaal van iOS.
+- Vaste problemen met soms verwijderde startpagina.
+- Vaste links naar uibrowser.com.
+- Bijgewerkte vertalingen.
+- Kleine bugfixes.

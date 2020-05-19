@@ -1,11 +1,10 @@
-- Nytt surfekrom
-- Forbedret iPad-støtte
-- Ny destinasjonsside
-- Bokmerker med favoritter
-- Ny Tor-kretsvisning
-- Forhåndsinnstillinger for sikkerhetsnivå
-- Ny faneoversikt
-- Tor oppdaterte til 0.4.0.6
-- Oppdatert OBFS4-serverliste
-- Løst problem med Content-Security-Header nonce og hashverdier som brøt mange nettsteder.
-- Lokaliseringsoppdateringer
+– Omformulerte sikkerhetsnivåer og forbedret beskrivelsene.
+– La til støtte for Nextcloud-bokmerker.
+– La til valgfri biometrisk/passkode-applås på enhetsbasis.
+– La til automatisk innhenting av OBFS4-broer via Meek.
+- Fixed memory leaks, where RAM usage would increase over time, because tabs were never really removed from memory.
+– Tøm alle bakgrunnsfaner ved minneadvarselssignal fra iOS.
+– Fikset problemer med at startsiden stundom ble slettet.
+– Fikset linker til onionbrowser.com.
+– Oppdaterte oversettelser.
+– Små feilrettinger.

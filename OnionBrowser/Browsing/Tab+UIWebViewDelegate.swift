@@ -155,10 +155,14 @@ extension Tab: UIWebViewDelegate {
 			isTLSError = true
 		}
 
-		let u = error.userInfo[NSURLErrorFailingURLStringErrorKey] as? String
+		if !isTLSError {
+			msg += "\n(code: \(error.code), domain: \(error.domain))"
+		}
 
-		if u != nil {
-			msg += "\n\n\(u!)"
+		let url = error.userInfo[NSURLErrorFailingURLStringErrorKey] as? String
+
+		if let url = url {
+			msg += "\n\n\(url)"
 		}
 
 		if let ok = error.userInfo[ORIGIN_KEY] as? NSNumber,
@@ -173,23 +177,20 @@ extension Tab: UIWebViewDelegate {
 
 		let alert = AlertHelper.build(message: msg)
 
-		if (u != nil && isTLSError) {
+		// self.url will hold the URL of the UIWebView which is the last
+		// *successful* request.
+		// We need the URL of the *failed* request, which should be in
+		// `error`'s `userInfo` dictionary.
+		if isTLSError, let u = url, let url = URL(string: u), let host = url.host {
 			alert.addAction(AlertHelper.destructiveAction(
 				NSLocalizedString("Ignore for this host", comment: ""),
 				handler: { _ in
-					// self.url will hold the URL of the UIWebView which is the last *successful* request.
-					// We need the URL of the *failed* request, which should be in `u`.
-					// (From `error`'s `userInfo` dictionary.
-					if let url = URL(string: u!),
-						let host = url.host {
+					let hs = HostSettings.for(host)
+					hs.ignoreTlsErrors = true
+					hs.save().store()
 
-						let hs = HostSettings.for(host)
-						hs.ignoreTlsErrors = true
-						hs.save().store()
-
-						// Retry the failed request.
-						self.load(url)
-					}
+					// Retry the failed request.
+					self.load(url)
 				}))
 		}
 
@@ -332,9 +333,9 @@ extension Tab: UIWebViewDelegate {
 	}
 
 	private func ipcCallback(_ payload: String) {
-		let callback = "(function() { \(payload); __endless.ipcDone = (new Date()).getTime(); })();"
+		let callback = "(function() { \(payload) __endless.ipcDone = (new Date()).getTime(); })();"
 
-		print("[Tab \(index)] [IPC]: calling back with: %@", callback)
+		print("[Tab \(index)] [IPC]: calling back with: \(callback)")
 
 		stringByEvaluatingJavaScript(from: callback)
 	}

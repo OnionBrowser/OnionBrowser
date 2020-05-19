@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina3_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -14,6 +14,9 @@
                 <outlet property="bridgeConfigBt" destination="Khf-m9-ODb" id="Q2s-t3-UKe"/>
                 <outlet property="headerLb" destination="kc3-jB-BOw" id="Pwq-sv-Jn6"/>
                 <outlet property="newCircuitsBt" destination="Qsq-C5-NzU" id="dwI-4E-L2e"/>
+                <outlet property="noCircuitsLb1" destination="OOK-Ah-X0j" id="mEc-kg-KWz"/>
+                <outlet property="noCircuitsLb2" destination="OjN-xm-Yit" id="XdT-8d-RRn"/>
+                <outlet property="noCircuitsView" destination="YN8-1z-igj" id="t24-JO-HfG"/>
                 <outlet property="tableView" destination="xbR-cA-4Uk" id="pga-vN-dfL"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -37,6 +40,44 @@
                         <outlet property="delegate" destination="-1" id="KHT-fB-lZB"/>
                     </connections>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YN8-1z-igj">
+                    <rect key="frame" x="0.0" y="34" width="320" height="358"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no-circuit-map" translatesAutoresizingMaskIntoConstraints="NO" id="ajB-uL-lk3">
+                            <rect key="frame" x="8" y="8" width="304" height="140"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="140" id="gMp-v3-zxf"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your traffic goes to 3 different parts of the world." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OOK-Ah-X0j">
+                            <rect key="frame" x="8" y="156" width="304" height="42"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="42" id="5N9-cE-NfK"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                            <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connect to a website to see your circuit." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OjN-xm-Yit">
+                            <rect key="frame" x="8" y="206" width="304" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstItem="OjN-xm-Yit" firstAttribute="top" secondItem="OOK-Ah-X0j" secondAttribute="bottom" constant="8" id="1kB-mb-QgU"/>
+                        <constraint firstAttribute="trailing" secondItem="OjN-xm-Yit" secondAttribute="trailing" constant="8" id="5ag-wq-maX"/>
+                        <constraint firstItem="OjN-xm-Yit" firstAttribute="leading" secondItem="YN8-1z-igj" secondAttribute="leading" constant="8" id="ApC-dc-nXh"/>
+                        <constraint firstAttribute="trailing" secondItem="ajB-uL-lk3" secondAttribute="trailing" constant="8" id="IZ4-F9-U5n"/>
+                        <constraint firstItem="OOK-Ah-X0j" firstAttribute="leading" secondItem="YN8-1z-igj" secondAttribute="leading" constant="8" id="RKb-jm-4OJ"/>
+                        <constraint firstItem="OOK-Ah-X0j" firstAttribute="top" secondItem="ajB-uL-lk3" secondAttribute="bottom" constant="8" id="Vdg-3U-mZu"/>
+                        <constraint firstItem="ajB-uL-lk3" firstAttribute="leading" secondItem="YN8-1z-igj" secondAttribute="leading" constant="8" id="WGo-Iu-7db"/>
+                        <constraint firstAttribute="trailing" secondItem="OOK-Ah-X0j" secondAttribute="trailing" constant="8" id="kWM-2Q-WiP"/>
+                        <constraint firstItem="ajB-uL-lk3" firstAttribute="top" secondItem="YN8-1z-igj" secondAttribute="top" constant="8" id="vn9-Oz-iFg"/>
+                    </constraints>
+                </view>
                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qsq-C5-NzU">
                     <rect key="frame" x="40" y="400" width="240" height="36"/>
                     <color key="backgroundColor" red="0.4941176471" green="0.82745098039999998" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -75,18 +116,23 @@
                 <constraint firstItem="xbR-cA-4Uk" firstAttribute="top" secondItem="kc3-jB-BOw" secondAttribute="bottom" constant="8" id="AhC-e6-vl8"/>
                 <constraint firstItem="Qsq-C5-NzU" firstAttribute="top" secondItem="xbR-cA-4Uk" secondAttribute="bottom" constant="8" id="AoD-YT-HNx"/>
                 <constraint firstItem="kc3-jB-BOw" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="Bv1-wd-ADL"/>
+                <constraint firstItem="YN8-1z-igj" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="NFI-eO-Gu6"/>
                 <constraint firstItem="Khf-m9-ODb" firstAttribute="top" secondItem="Qsq-C5-NzU" secondAttribute="bottom" constant="8" id="R1U-HR-yDB"/>
+                <constraint firstItem="Qsq-C5-NzU" firstAttribute="top" secondItem="YN8-1z-igj" secondAttribute="bottom" constant="8" id="SeK-Ul-g3t"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="kc3-jB-BOw" secondAttribute="trailing" constant="16" id="TnW-qx-yAW"/>
+                <constraint firstItem="YN8-1z-igj" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="YnU-1l-Vn2"/>
                 <constraint firstItem="xbR-cA-4Uk" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ene-yG-hS5"/>
                 <constraint firstItem="kc3-jB-BOw" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="8" id="fR1-vm-ahM"/>
                 <constraint firstItem="Qsq-C5-NzU" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="p1g-0A-x25"/>
                 <constraint firstItem="xbR-cA-4Uk" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="vCW-8j-Iuv"/>
+                <constraint firstItem="YN8-1z-igj" firstAttribute="top" secondItem="kc3-jB-BOw" secondAttribute="bottom" constant="8" id="ySp-8V-3XA"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="131.25" y="152.5"/>
         </view>
     </objects>
     <resources>
+        <image name="no-circuit-map" width="114" height="52"/>
         <namedColor name="Accent">
             <color red="0.24699999392032623" green="0.16899999976158142" blue="0.31000000238418579" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

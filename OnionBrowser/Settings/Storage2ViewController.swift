@@ -186,9 +186,8 @@ class Storage2ViewController: SearchableTableViewController {
 		var detail = [String]()
 
 		if item.cookies > 0 {
-			detail.append(String(
-				format: NSLocalizedString("%@ cookies", comment: "Placeholder contains formatted number"),
-				Formatter.localize(item.cookies)))
+			detail.append(String.localizedStringWithFormat(
+				NSLocalizedString("%d cookie(s)", comment: ""), item.cookies))
 		}
 
 		if item.storage > 0 {

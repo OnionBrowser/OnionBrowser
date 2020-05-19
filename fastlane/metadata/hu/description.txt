@@ -20,7 +20,7 @@ FIGYELMEZTETÉSEK:
 
 - A multimédia gyakran megkerüli a Tor-t és sérti az adatbiztonságot; a videó fájlok és videó streamek alapból tiltottak és nem támogatottak az Onion Böngésző által.
 
-- Az Onion Böngésző nem biztos, hogy működik olyan hálózatokon, ahol speciális hálózati beállítások vannak. Ha az app nem csatlakozik, próbáljon használni hidakat (vagy más típusú hidat), lépjen ki erőltetve és indítsa újra az alkalmazást.
+- Az Onion Böngésző nem biztos, hogy működik olyan hálózatokon, ahol speciális hálózati beállítások vannak. Ha az app nem csatlakozik, próbáljon használni hidakat (vagy más típusú hídat), lépjen ki erőltetve és indítsa újra az alkalmazást.
 
 - Használja az Onion Böngészőt, saját felelősségre; ne felejtse hogy az érzékeny adat nem mindig a mobil eszközhöz tartozik.
 

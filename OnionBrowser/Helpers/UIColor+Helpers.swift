@@ -31,14 +31,32 @@ public extension UIColor {
     static var accentLight = UIColor(named: "AccentLight")
 
     /**
+     Background for security level shield, bronze, code #E37C00 and #A05E0C (dark mode)
+     */
+    @objc
+    static var bronze = UIColor(named: "Bronze")
+
+    /**
      Red error view background, code #FB5427
      */
     @objc
-    static var error = UIColor.init(named: "Error")
+    static var error = UIColor(named: "Error")
+
+    /**
+     Background for security level shield, gold, code #FFD300 and #D5A900 (dark mode)
+     */
+    @objc
+    static var gold = UIColor(named: "Gold")
 
     /**
      Green connected indicator line, code #7ED321
      */
     @objc
     static var ok = UIColor(named: "Ok")
+
+    /**
+     Background for security level shield, silver, code #CFCFCF and #6F6F6F (dark mode)
+     */
+    @objc
+    static var silver = UIColor(named: "Silver")
 }

@@ -9,11 +9,12 @@ target 'OnionBrowser2' do
 
   pod 'CSPHeader', '~> 0.4'
 
-  pod 'Eureka', '~> 5.1'
+  pod 'Eureka', '~> 5.2'
   pod 'ImageRow', '~> 4.0'
   pod 'Reachability', '~> 3.2'
   pod 'SDCAlertView', '~> 10'
   pod 'FavIcon', git: 'https://github.com/tladesignz/FavIcon.git', branch: 'swift-5'
+  pod 'MBProgressHUD', '~> 1.2'
 end
 
 target 'OnionBrowser2 Tests' do

@@ -1,11 +1,10 @@
-- Új böngésző króm
-- Továbbfejlesztett iPad támogatás
-- Új céloldal
-- Könyvjelzők faviconokkal
-- Új Tor áramköri kijelző
-- A biztonsági szint előre beállított értékei
-- Új lap áttekintés
-- A Tor frissítve: 0.4.0.6
-- Frissített OBFS4 szerverlista
-- Rögzített probléma a Content-Security-Header nonce és hash értékekkel, amelyek sok webhelyet tönkretettek.
-- Lokalizációs frissítések
+- Átalakított biztonsági szintek és javított leírásuk.
+- Nextcloud könyvjelző támogatás hozzáadása.
+- Opcionális biometrikus/eszközjelszó alkalmazás zár hozzáadása.
+- OBFS4 hidak automatikus letöltése Meek-kel hozzáadása.
+- Javított memória szivárgás, ahol a RAM használat nő idővel mert a fülek ténylegesen nem kerültek eltávolításra a memóriából.
+- Minden háttér fül ürítése iOS memória-figyelmeztetés esetén
+- A néha törölt kezdőoldal problémák javítása.
+- Javított linkek az onionbrowser.com-ra.
+- Frissített fordítások
+- Kis hibajavítások.

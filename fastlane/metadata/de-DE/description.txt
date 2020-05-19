@@ -13,7 +13,7 @@ FUNKTIONEN:
 
 • Online-Nachverfolgung bekämpfen: Skripte blockieren und automatisch Cookies und Tabs löschen, basierend auf Ihren Vorlieben.
 
-• Und weitere Privatsphärefunktionen!
+• Und weitere Funktionen zur Verbesserung der Privatsphäre!
 
 HAFTUNGSAUSSCHLÜSSE:
 - Der Internetzugriff ist wesentlich langsamer, als bei normalem Surfen oder über VPNs, da der Datenverkehr verschlüsselt und durch das Tor-Netzwerk geleitet wird.

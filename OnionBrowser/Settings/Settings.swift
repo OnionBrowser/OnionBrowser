@@ -308,4 +308,31 @@ class Settings: NSObject {
 			UserDefaults.standard.set(newValue, forKey: "open_new_tab_on_start")
 		}
 	}
+
+	class var nextcloudServer: String? {
+		get {
+			return UserDefaults.standard.string(forKey: "nextcloud_server")
+		}
+		set {
+			UserDefaults.standard.set(newValue, forKey: "nextcloud_server")
+		}
+	}
+
+	class var nextcloudUsername: String? {
+		get {
+			return UserDefaults.standard.string(forKey: "nextcloud_username")
+		}
+		set {
+			UserDefaults.standard.set(newValue, forKey: "nextcloud_username")
+		}
+	}
+
+	class var nextcloudPassword: String? {
+		get {
+			return UserDefaults.standard.string(forKey: "nextcloud_password")
+		}
+		set {
+			UserDefaults.standard.set(newValue, forKey: "nextcloud_password")
+		}
+	}
 }

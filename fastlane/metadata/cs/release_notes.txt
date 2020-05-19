@@ -1,11 +1,10 @@
-- Nový prohlížeč Chrome
-- Vylepšená podpora iPadu
-- Nová vstupní stránka
-- Záložky s favicons
-- Nový displej okruhu Tor
-- Předvolby úrovně zabezpečení
-- Přehled nových karet
-- Tor byl aktualizován na 0,4,0,6
-- Aktualizovaný seznam serverů OBFS4
-- Opraven problém s nonce a hashovými hodnotami záhlaví Content-Security-Header, které rozbily mnoho webů.
-- Aktualizace lokalizace
+- Přeformulované úrovně zabezpečení a vylepšený jejich popis.
+- Přidána podpora Nextcloud Záložky.
+- Přidán volitelný biometrický zámek zařízení / zámek aplikace.
+- Přidáno automatické načítání mostů OBFS4 přes Meek.
+- Opravené úniky paměti, kde by se využití RAM v průběhu času zvyšovalo, protože karty nebyly nikdy z paměti skutečně odstraněny.
+- Vyprázdněte všechny karty pozadí na varovném signálu paměti z iOS.
+- Opraveny problémy s někdy smazanou úvodní stránkou.
+- Opravené odkazy na onionbrowser.com.
+- Aktualizované překlady.
+- Opravy malých chyb.

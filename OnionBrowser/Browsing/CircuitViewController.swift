@@ -39,16 +39,32 @@ UITableViewDataSource, UITableViewDelegate {
 	}
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var noCircuitsView: UIView!
+
+    @IBOutlet weak var noCircuitsLb1: UILabel! {
+        didSet {
+            noCircuitsLb1.text = NSLocalizedString(
+                "Your traffic goes to 3 different parts of the world.", comment: "")
+        }
+    }
+    @IBOutlet weak var noCircuitsLb2: UILabel! {
+        didSet {
+            noCircuitsLb2.text = NSLocalizedString(
+                "Connect to a website to see your circuit.", comment: "")
+        }
+    }
 
     @IBOutlet weak var newCircuitsBt: UIButton! {
 		didSet {
-			newCircuitsBt.setTitle(NSLocalizedString("New Circuit for this Site", comment: ""))
+			newCircuitsBt.setTitle(NSLocalizedString(
+                "New Circuit for this Site", comment: ""))
 		}
 	}
 
 	@IBOutlet weak var bridgeConfigBt: UIButton! {
 		didSet {
-			bridgeConfigBt.setTitle(NSLocalizedString("Bridge Configuration", comment: ""))
+			bridgeConfigBt.setTitle(NSLocalizedString(
+                "Bridge Configuration", comment: ""))
 		}
 	}
 
@@ -74,7 +90,15 @@ UITableViewDataSource, UITableViewDelegate {
 
         tableView.register(CircuitNodeCell.nib, forCellReuseIdentifier: CircuitNodeCell.reuseId)
 
-		reloadCircuits()
+		if currentUrl?.isSpecial ?? true {
+			tableView.isHidden = true
+            noCircuitsView.isHidden = false
+			newCircuitsBt.isHidden = true
+		}
+		else {
+            noCircuitsView.isHidden = true
+			reloadCircuits()
+		}
 	}
 
 

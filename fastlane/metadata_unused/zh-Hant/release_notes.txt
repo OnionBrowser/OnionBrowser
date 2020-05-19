@@ -1,0 +1,10 @@
+- 改寫了安全等級並改善了它們的描述。
+- 新增了 Nextcloud 書籤支援。
+- 新增可選的生物識別／裝置通行碼應用程式鎖。
+- 透過 Meek 新增對 OBFS4 橋接的自動檢索。
+- Fixed memory leaks, where RAM usage would increase over time, because tabs were never really removed from memory.
+- 清空從 iOS 發出的記憶體警告上的所有背景分頁。
+- 修復了首頁有時候會被刪除的問題。
+- 修復了 onionbrowser.com 連結。
+- 翻譯更新。
+- 一些錯誤修復。

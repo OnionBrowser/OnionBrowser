@@ -95,6 +95,6 @@ extension Tab: WKUIDelegate, WKNavigationDelegate {
 	func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
 		url = webView.url ?? URL.start
 
-		tabDelegate?.updateChrome(self)
+		tabDelegate?.updateChrome()
 	}
 }

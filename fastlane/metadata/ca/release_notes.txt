@@ -1,11 +1,10 @@
-- Nou navegador crom
-- Millora del suport de l’iPad
-- Nova pàgina de destinació
-- Favorits amb punts de preferència
-- Nova pantalla del circuit Tor
-- Configuracions del nivell de seguretat
-- Vista general de la pestanya nova
-- Tor actualitzat al 0.4.0.6
-- Llista de servidors OBFS4 actualitzada
-- S'ha solucionat el problema amb els valors de hash i contingut de capçalera de seguretat de seguretat, que han trencat molts llocs.
-- Actualitzacions de localització
+- S'ha millorat la descripció dels nivells de seguretat.
+- S'ha afegit suport per als marcadors Nextcloud.
+- S'ha afegit una aplicació de bloqueig de l'aparell biomètric opcional.
+- S'ha afegit l'obtenció de ponts OBFS4 via Meek
+- S'ha corregit filtracions de memòria, que feien que l'ús de RAM s'incrementés al llarg del temps, perquè les pestanyes mai s'esborraven de la memòria.
+- Buida totes les pestanyes en segon pla del senyal d'avís de memòria de l'iOS.
+- S'han corregit problemes que de vegades eliminava la pàgina d'inici.
+- S'han corregit els enllaços onionbrowser.com.
+- S'han actualitzat les traduccions.
+- Petites correccions d'errors

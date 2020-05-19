@@ -160,6 +160,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 
 	private var alert: UIAlertController?
 
+	/**
+	Flag, if biometric/password authentication after activation was successful.
+
+	Return to false immediately after positive check, otherwise, security issues will arise!
+	*/
+	private var verified = false
+
 
 	// MARK: UIApplicationDelegate
 
@@ -185,8 +192,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
 
-		show(MainViewController())
-
 		if let shortcut = launchOptions?[.shortcutItem] as? UIApplicationShortcutItem {
 			handle(shortcut)
 		}
@@ -196,7 +201,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 
 	func applicationWillResignActive(_ application: UIApplication) {
 		application.ignoreSnapshotOnNextApplicationLaunch()
-		browsingUi?.becomesInvisible()
+		browsingUi?.unfocusSearchField()
 
 		BlurredSnapshot.create()
 	}
@@ -217,7 +222,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 	}
 
 	func applicationDidBecomeActive(_ application: UIApplication) {
-		BlurredSnapshot.remove()
+
+		if !verified, let privateKey = SecureEnclave.loadKey() {
+			var counter = 0
+
+			repeat {
+				let nonce = SecureEnclave.getNonce()
+
+				verified = SecureEnclave.verify(
+					nonce, signature: SecureEnclave.sign(nonce, with: privateKey),
+					with: SecureEnclave.getPublicKey(privateKey))
+
+				counter += 1
+			} while !verified && counter < 3
+
+			if !verified {
+				applicationWillResignActive(application)
+				applicationDidEnterBackground(application)
+				applicationWillTerminate(application)
+
+				exit(0)
+			}
+
+			// Always return here, as the SecureEnclave operations will always
+			// trigger a user identification and therefore the app becomes inactive
+			// and then active again. So #applicationDidBecomeActive will be
+			// called again. Therefore, we store the result of the verification
+			// in an object property and check that on re-entry.
+			return
+		}
+
+		verified = false
+
+		if window?.rootViewController == nil {
+			show(MainViewController())
+		}
+		else {
+			BlurredSnapshot.remove()
+		}
 
 		let mgr = OnionManager.shared
 
@@ -294,6 +336,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 		return self.application(application, shouldSaveApplicationState: coder)
 	}
 
+	/**
+	Unload all webviews of background tabs, if OS says, we're using too much memory.
+	*/
+	func applicationDidReceiveMemoryWarning(_ application: UIApplication) {
+		for tab in browsingUi?.tabs ?? [] {
+			if tab != browsingUi?.currentTab {
+				tab.empty()
+			}
+		}
+	}
+
 
 	// MARK: JAHPAuthenticatingHTTPProtocolDelegate
 
@@ -366,7 +419,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 				authenticatingHTTPProtocol.resolvePendingAuthenticationChallenge(with: credential)
 			})
 
-			self.browsingUi?.present(self.alert!)
+			self.window?.rootViewController?.top.present(self.alert!)
 		}
 
 		return nil
@@ -404,7 +457,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 			window?.backgroundColor = .accent
 		}
 
-		window?.rootViewController?.restorationIdentifier = String(describing: type(of: viewController))
+		if viewController?.restorationIdentifier == nil {
+			viewController?.restorationIdentifier = String(describing: type(of: viewController))
+		}
 		window?.rootViewController = viewController
 		window?.makeKeyAndVisible()
 

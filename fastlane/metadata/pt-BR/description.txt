@@ -1,27 +1,27 @@
-O Onion Browser é o navegador web original gratuito e de código aberto para iOS. Onion Browser ajuda você a acessar a internet com mais segurança e privacidade, e sem nenhum custo extra para você.
+O Navegador Onion é o navegador web original gratuito e de código aberto para iOS. Navegador Onion ajuda você a acessar a internet com mais segurança e privacidade, e sem nenhum custo extra.
 
-“A melhor oferta relacionada ao Tor no iOS agora é Onion Browser” - The Daily Dot, 14 de outubro de 2015.
+“A melhor oferta relacionada ao Tor no iOS agora é Navegador Onion” - The Daily Dot, 14 de outubro de 2015.
 
 Destaque em: The New York Times, The Guardian, Salon, TechCrunch, Gizmodo, Boing Boing, Lifehacker, Macworld, The Daily Dot, e outros.
 
 CARACTERÍSTICAS:
 • Navegue pela internet com o Tor:
 - Proteja sua privacidade do rastreamento de sites.
-- Proteja seu tráfego de redes sem fio e ISPs inseguro.
+- Proteja seu tráfego de redes sem fio e ISPs sem segurança.
 - Suporte para HTTPS Everywhere, switch automático para sites habilitados para HTTPS.
 - Acesse sites .onion que apenas são acessíveis através do Tor.
 
-• Combata o rastreamento on-line: bloqueie os scripts e limpe automaticamente os cookies e guias, com base nas suas preferências.
+• Combata o rastreamento on-line: bloqueie os scripts e limpe automaticamente os cookies e janelas, com base nas suas preferências.
 
 • E mais recursos para melhorar a privacidade!
 
 ISENÇÃO DE RESPONSABILIDADE:
-- A navegação na Web é muito mais lenta do que através de um navegador da Web normal ou de uma VPN, porque o seu tráfego está criptografado e retransmitido através da rede Tor.
+- A navegação na Web é muito mais lenta do que em um navegador da Web normal ou de uma VPN, porque o seu tráfego está criptografado e retransmitido por meio da rede Tor.
 
-- Multimídia frequentemente ignora o Tor e compromete sua privacidade; arquivos de vídeo e fluxos de vídeo são bloqueados por padrão e não são suportados pelo Onion Browser.
+- Multimídia frequentemente ignora o Tor e compromete sua privacidade; arquivos de vídeo e fluxos de vídeo são bloqueados por padrão e não possuem suporte no Navegador Onion.
 
-- O  Onion Browser pode não funcionar em redes com restrições de rede avançadas. Se o aplicativo não se conectar, tente usar pontes (ou um tipo diferente de ponte), force-parar e reinicie o aplicativo.
+- O  Navegador Onion pode não funcionar em redes com restrições de rede avançadas. Se o aplicativo não se conectar, tente usar pontes (ou um tipo diferente de ponte), force o a parar e reinicie o aplicativo.
 
-- O uso do Onion Browser é por sua conta e risco; lembre-se de que os dados confidenciais nem sempre pertencem a um dispositivo móvel.
+- O uso do Navegador Onion é por sua conta e risco; lembre-se de que os dados confidenciais nem sempre pertencem a um dispositivo móvel.
 
-** O Onion Browser é um software livre e de código aberto. Você pode ler mais sobre o Onion Browser e como apoiar o desenvolvimento do Tor no iOS acessando o onionbrowser.com **
+** O Navegador Onion é um software livre e de código aberto. Você pode ler mais sobre o Navegador Onion e como apoiar o desenvolvimento do Tor no iOS acessando o onionbrowser.com **

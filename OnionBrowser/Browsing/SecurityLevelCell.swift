@@ -65,6 +65,7 @@ class SecurityLevelCell: UITableViewCell {
 		}
 		else {
 			shieldImg.image = SecurityLevelCell.shieldImage
+			shieldImg.tintColor = preset.color
 			numberLb.isHidden = false
 			numberLb.text = preset.shortcode
 		}

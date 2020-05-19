@@ -21,7 +21,7 @@ class InitSecurityLevelViewController: UIViewController, UITableViewDataSource, 
 	@IBOutlet weak var explanationLb: UILabel! {
 		didSet {
 			explanationLb.text = NSLocalizedString(
-				"Your security level will apply to every website you visit and may affect their performance. Security levels can be modified per site by tapping the shield icon in your browser.",
+				"The security level you choose for a website often has a direct impact on that site’s performance. Some of the protections can be overridden or modified by changing your security settings.",
 				comment: "")
 		}
 	}
@@ -38,11 +38,10 @@ class InitSecurityLevelViewController: UIViewController, UITableViewDataSource, 
 	@IBOutlet weak var learnMoreBt: UIButton! {
 		didSet {
 			learnMoreBt.setTitle(NSLocalizedString("Learn More", comment: ""))
-			learnMoreBt.isEnabled = false
 		}
 	}
 
-	private var presets: [SecurityPreset] = [.insecure, .medium, .secure]
+	private var presets: [SecurityPreset] = [.secure, .medium, .insecure]
 
 
 	override func viewDidLoad() {
@@ -99,13 +98,12 @@ class InitSecurityLevelViewController: UIViewController, UITableViewDataSource, 
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		startBt.isEnabled = true
 		startBt.backgroundColor = .ok
-		learnMoreBt.isEnabled = true
 	}
 
 
 	// MARK: Actions
 
-	@IBAction func start(_ sender: UIView) {
+	@IBAction func start() {
 		guard let selected = tableView.indexPathForSelectedRow,
 			selected.section < presets.count else {
 			return
@@ -124,6 +122,10 @@ class InitSecurityLevelViewController: UIViewController, UITableViewDataSource, 
 
 		Settings.didIntro = true
 
-		ConnectingViewController.start(sender == learnMoreBt)
+		ConnectingViewController.start()
 	}
+
+    @IBAction func learnMore() {
+		present(UINavigationController(rootViewController: AboutSecurityLevelsViewController()))
+    }
 }

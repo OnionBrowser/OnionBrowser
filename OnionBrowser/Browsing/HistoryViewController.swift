@@ -17,7 +17,7 @@ class HistoryViewController: UITableViewController {
 		var title: String?
 	}
 
-	private var tab: Tab?
+	private weak var tab: Tab?
 	private var history: [Item]?
 
 	class func instantiate(_ tab: Tab) -> UINavigationController {

@@ -10,11 +10,16 @@
 
 import UIKit
 
-class BookmarksViewController: UIViewController, UITableViewDataSource,
-UITableViewDelegate, UISearchResultsUpdating, BookmarkViewControllerDelegate {
+protocol BookmarksViewControllerDelegate {
 
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var toolbar: UIToolbar!
+	func needsReload()
+}
+
+class BookmarksViewController: UIViewController, UITableViewDataSource,
+UITableViewDelegate, UISearchResultsUpdating, BookmarksViewControllerDelegate {
+
+	@IBOutlet weak var tableView: UITableView!
+	@IBOutlet weak var toolbar: UIToolbar!
 
 	private lazy var doneBt = UIBarButtonItem(barButtonSystemItem: .done,
 											  target: self, action: #selector(dismiss_))
@@ -24,30 +29,33 @@ UITableViewDelegate, UISearchResultsUpdating, BookmarkViewControllerDelegate {
 	private lazy var editBt = UIBarButtonItem(barButtonSystemItem: .edit,
 											  target: self, action: #selector(edit))
 
-    private let searchController = UISearchController(searchResultsController: nil)
-    private var filtered = [Bookmark]()
+	private let searchController = UISearchController(searchResultsController: nil)
+	private var filtered = [Bookmark]()
 
 	private var _needsReload = false
 
-    /**
-     true, if a search filter is currently set by the user.
-    */
+	/**
+	true, if a search filter is currently set by the user.
+	*/
 	private var isFiltering: Bool {
-        return searchController.isActive
-            && !(searchController.searchBar.text?.isEmpty ?? true)
-    }
+		return searchController.isActive
+			&& !(searchController.searchBar.text?.isEmpty ?? true)
+	}
 
 
-    @objc
+	@objc
 	class func instantiate() -> UINavigationController {
 		return UINavigationController(rootViewController: self.init())
 	}
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+	override func viewDidLoad() {
+		super.viewDidLoad()
 
 		toolbarItems = [
 			UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(add)),
+			UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+			UIBarButtonItem(title: NSLocalizedString("Sync with Nextcloud", comment: ""), style: .plain,
+							target: self, action: #selector(showSyncScene)),
 			UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)]
 
 		navigationItem.title = NSLocalizedString("Bookmarks", comment: "Scene title")
@@ -56,9 +64,9 @@ UITableViewDelegate, UISearchResultsUpdating, BookmarkViewControllerDelegate {
 		tableView.register(BookmarkCell.nib, forCellReuseIdentifier: BookmarkCell.reuseId)
 		tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
 
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        definesPresentationContext = true
+		searchController.searchResultsUpdater = self
+		searchController.obscuresBackgroundDuringPresentation = false
+		definesPresentationContext = true
 		navigationItem.searchController = searchController
 	}
 
@@ -78,6 +86,10 @@ UITableViewDelegate, UISearchResultsUpdating, BookmarkViewControllerDelegate {
 		return (isFiltering ? filtered : Bookmark.all).count
 	}
 
+	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		return BookmarkCell.height
+	}
+
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: BookmarkCell.reuseId, for: indexPath) as! BookmarkCell
 
@@ -95,8 +107,9 @@ UITableViewDelegate, UISearchResultsUpdating, BookmarkViewControllerDelegate {
 	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
 		if editingStyle == .delete {
 			Bookmark.all[indexPath.row].icon = nil // Delete icon file.
-			Bookmark.all.remove(at: indexPath.row)
+			let bookmark = Bookmark.all.remove(at: indexPath.row)
 			Bookmark.store()
+			Nextcloud.delete(bookmark)
 			tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
 		}
 	}
@@ -128,8 +141,8 @@ UITableViewDelegate, UISearchResultsUpdating, BookmarkViewControllerDelegate {
 				let bookmark = Bookmark.all[index]
 
 				AppDelegate.shared?.browsingUi?.addNewTab(
-					bookmark.url, transition: .notAnimated) { _ in
-						self.dismiss_()
+				bookmark.url, transition: .notAnimated) { _ in
+					self.dismiss_()
 				}
 			}
 		}
@@ -145,17 +158,17 @@ UITableViewDelegate, UISearchResultsUpdating, BookmarkViewControllerDelegate {
 			filtered = Bookmark.all.filter() {
 				$0.name?.lowercased().contains(search) ?? false
 					|| $0.url?.absoluteString.lowercased().contains(search) ?? false
-            }
-        }
+			}
+		}
 		else {
 			filtered.removeAll()
 		}
 
-        tableView.reloadData()
+		tableView.reloadData()
 	}
 
 
-	// MARK: BookmarkViewControllerDelegate
+	// MARK: BookmarksViewControllerDelegate
 
 	func needsReload() {
 		_needsReload = true
@@ -168,17 +181,24 @@ UITableViewDelegate, UISearchResultsUpdating, BookmarkViewControllerDelegate {
 		navigationController?.dismiss(animated: true)
 	}
 
-    @objc private func add() {
+	@objc private func add() {
 		let vc = BookmarkViewController()
 		vc.delegate = self
 
 		navigationController?.pushViewController(vc, animated: true)
-    }
+	}
 
-    @objc private func edit() {
+	@objc private func edit() {
 		tableView.setEditing(!tableView.isEditing, animated: true)
 
 		updateButtons()
+	}
+
+	@objc private func showSyncScene() {
+		let vc = SyncViewController()
+		vc.delegate = self
+
+		navigationController?.pushViewController(vc, animated: true)
 	}
 
 
@@ -193,6 +213,6 @@ UITableViewDelegate, UISearchResultsUpdating, BookmarkViewControllerDelegate {
 
 		items?.append(tableView.isEditing ? doneEditingBt : editBt)
 
-        toolbar.setItems(items, animated: true)
+		toolbar.setItems(items, animated: true)
 	}
 }

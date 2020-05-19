@@ -13,7 +13,7 @@ import QuickLook
 import WebKit
 
 protocol TabDelegate: class {
-	func updateChrome(_ sender: Tab?)
+	func updateChrome()
 
 	func addNewTab(_ url: URL?) -> Tab?
 
@@ -103,7 +103,7 @@ class Tab: UIView {
 	var progress: Float = 0 {
 		didSet {
 			DispatchQueue.main.async {
-				self.tabDelegate?.updateChrome(self)
+				self.tabDelegate?.updateChrome()
 			}
 		}
 	}
@@ -309,6 +309,57 @@ class Tab: UIView {
 		return string
 	}
 
+	/**
+	Call this before giving up the tab, otherwise memory leaks will occur!
+	*/
+	func close() {
+		cancelDownload()
+
+		let block = {
+			NotificationCenter.default.removeObserver(self)
+
+			self.tabDelegate = nil
+			self.scrollView.delegate = nil
+			self.webView.uiDelegate = nil
+			self.webView.navigationDelegate = nil
+
+			for gr in self.webView.gestureRecognizers ?? [] {
+				self.webView.removeGestureRecognizer(gr)
+			}
+
+			self.stop()
+			self.webView.loadHTMLString("", baseURL: nil)
+
+			self.webView.removeFromSuperview()
+			self.removeFromSuperview()
+		}
+
+		if Thread.isMainThread {
+			block()
+		}
+		else {
+			DispatchQueue.main.sync(execute: block)
+		}
+	}
+
+	func empty() {
+		let block = {
+			self.stop()
+
+			// Will empty the webView, but keep the URL and doesn't create a history entry.
+			self.stringByEvaluatingJavaScript(from: "document.open()")
+			
+			self.needsRefresh = true
+		}
+
+		if Thread.isMainThread {
+			block()
+		}
+		else {
+			DispatchQueue.main.sync(execute: block)
+		}
+	}
+
 
 	// MARK: Private Methods
 
@@ -325,43 +376,31 @@ class Tab: UIView {
 
 		// Immediately refresh the page if its host settings were changed, so
 		// users sees the impact of their changes.
-		NotificationCenter.default.addObserver(forName: .hostSettingsChanged,
-											   object: nil, queue: .main)
-		{ notification in
-			let host = notification.object as? String
-
-			// Refresh on default changes and specific changes for this host.
-			if host == nil || host == self.url.host {
-				self.refresh()
-			}
-		}
+		NotificationCenter.default.addObserver(self, selector: #selector(hostSettingsChanged(_:)),
+											   name: .hostSettingsChanged, object: nil)
 
 		webView.customUserAgent = AppDelegate.shared?.defaultUserAgent
 
 		setupGestureRecognizers()
 	}
 
+	@objc
+	private func progressEstimateChanged(_ notification: Notification) {
+		progress = Float(notification.userInfo?["WebProgressEstimatedProgressKey"] as? Float ?? 0)
+	}
+
+	@objc
+	private func hostSettingsChanged(_ notification: Notification) {
+		let host = notification.object as? String
+
+		// Refresh on default changes and specific changes for this host.
+		if host == nil || host == self.url.host {
+			self.refresh()
+		}
+	}
+
 
 	deinit {
-		cancelDownload()
-
-		let block = {
-			self.webView.uiDelegate = nil
-			self.webView.navigationDelegate = nil
-			self.webView.stopLoading()
-
-			for gr in self.webView.gestureRecognizers ?? [] {
-				self.webView.removeGestureRecognizer(gr)
-			}
-
-			self.removeFromSuperview()
-		}
-
-		if Thread.isMainThread {
-			block()
-		}
-		else {
-			DispatchQueue.main.sync(execute: block)
-		}
+		close()
 	}
 }

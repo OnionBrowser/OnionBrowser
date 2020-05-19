@@ -1,11 +1,10 @@
-- Nouveau chrome de navigation
-- Prise en charge améliorée de l'iPad
-- Nouvelle page de destination
-- Signets avec favicons
-- Nouvel affichage du circuit Tor
-- Préréglages de niveau de sécurité
-- Aperçu du nouvel onglet
-- Tor mis à jour à 0.4.0.6
-- Liste des serveurs OBFS4 mise à jour
-- Correction d'un problème avec les valeurs de nonce et de hachage Content-Security-Header qui cassaient beaucoup de sites.
-- Mises à jour de localisation
+– Reformulation des niveaux de sécurité et amélioration de leur description.
+– Prise en charge des marque-pages Nextcloud.
+– Verrouillage facultatif de l’appli par code d’accès biométrique ou de l’appareil.
+– Récupération automatique des ponts OBFS4 par Meek.
+– Correctif de fuites de mémoire, qui causaient une augmentation de l’utilisation de la mémoire vive au fil du temps, car les onglets n’étaient jamais vraiment supprimés de la mémoire.
+– Vidage de tous les onglets en arrière-plan à la réception d’un avertissement de mémoire d’iOS.
+– Correctif de problèmes de suppression ponctuelle de la page d’accueil.
+– Correctif des liens onionbrowser.com.
+– Mise à jour des traductions.
+– Correctifs de petits bogues.

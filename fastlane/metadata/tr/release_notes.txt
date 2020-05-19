@@ -1,11 +1,10 @@
-- Yeni tarama kromu
-- Geliştirilmiş iPad desteği
-- Yeni açılış sayfası
-- Sık kullanılanlarla yer imleri
-- Yeni Tor devre ekranı
-- Güvenlik seviyesi ön ayarları
-- Yeni sekmeye genel bakış
-- Tor 0.4.0.6'ya güncellendi
-- Güncellenmiş OBFS4 sunucu listesi
-- Çok sayıda siteyi bozan Content-Security-Header nonce ve hash değerleri ile ilgili sorun düzeltildi.
-- Yerelleştirme güncellemeleri
+- Güvenlik düzeylerini yeniden yapılandırdı ve açıklamaları geliştirildi.
+- Nextcloud yer imleri desteği eklendi.
+- İsteğe bağlı biyometrik/aygıt parolası uygulama kilidi eklendi.
+- Meek üzerinden OBFS4 köprülerinin otomatik olarak alınması eklendi.
+- Sekmeler gerçekte bellekten asla kaldırılmadığından RAM kullanımının zamanla artmasına neden olan bellek sızıntıları düzeltildi.
+- iOS bellek uyarısı işareti gönderdiğinde tüm arka plan sekmeleri boşaltılıyor.
+- Bazen silinen başlangıç sayfası sorunları düzeltildi.
+- Onionbrowser.com bağlantıları düzeltildi.
+- Çeviriler güncellendi.
+- Küçük hata düzeltmeleri yapıldı.

@@ -1,11 +1,10 @@
-- Neues Benutzerinterface
-- Verbesserte iPad-Unterstützung
-- Neue Startseite
-- Lesezeichen mit Icons
-- Neue Tor-Kanal-Anzeige
-- Sicherheitsniveau-Voreinstellungen
-- Neue Reiterübersicht
-- Tor aktualisiert auf 0.4.0.6
-- Aktualisierte OBFS4-Serverliste
-- Problem mit Content-Security-Header-Nonce- und Hash-Werten behoben, das viele Websites kaputt gemacht hatte.
-- Lokalisierungsupdates
+- Benennung und Beschreibung der Sicherheitsniveaus verbessert.
+- Nextcloud Bookmarks Unterstützung hinzugefügt.
+- Optionale App Sperrung via Face ID/Touch ID/Gerätepasswort hinzugefügt.
+- Möglichkeit zum automatischen Holen von OBFS4 Brücken via Meek hinzugefügt.
+- Speicherlecks geschlossen: RAM Verbrauch erhöhte sich über die Zeit, weil einmal geöffnete Reiter nie aus dem Speicher entfernt wurden.
+- Leere alle Hintergrundreiter, wenn iOS ein Speicherwarnsignal schickt.
+- Probleme mit manchmal gelöschter Startseite behoben.
+- Kaputte links auf onionbrowser.com behoben.
+- Übersetzungen aktualisiert.
+- Kleinere Fehlerbehebungen.

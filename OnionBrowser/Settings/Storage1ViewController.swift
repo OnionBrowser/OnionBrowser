@@ -38,8 +38,8 @@ class Storage1ViewController: FixedFormViewController {
 			$0.cell.accessoryType = .disclosureIndicator
 			$0.cell.selectionStyle = .default
 		}
-		.onCellSelection { _, _ in
-			self.navigationController?.pushViewController(
+		.onCellSelection { [weak self] _, _ in
+			self?.navigationController?.pushViewController(
 				Storage2ViewController(), animated: true)
 		}
 
@@ -57,11 +57,11 @@ class Storage1ViewController: FixedFormViewController {
 				updateIntervalRow(date)
 			}
 		}
-		.onChange { row in
-			if let value = row.value, let reference = self.reference {
+		.onChange { [weak self] row in
+			if let value = row.value, let reference = self?.reference {
 				Settings.cookieAutoSweepInterval = value.timeIntervalSinceReferenceDate - reference.timeIntervalSinceReferenceDate
 
-				self.updateIntervalRow(value)
+				self?.updateIntervalRow(value)
 			}
 		}
 	}

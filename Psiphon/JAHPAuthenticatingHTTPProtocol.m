@@ -76,7 +76,7 @@ typedef void (^JAHPChallengeCompletionHandler)(NSURLSessionAuthChallengeDisposit
 @interface TemporarilyAllowedURL : NSObject
 
 @property (atomic, strong) NSURL *url;
-@property (atomic, strong) Tab *wvt;
+@property (atomic, weak) Tab *wvt;
 @property (atomic, assign) BOOL ocspRequest;
 
 - (instancetype)initWithUrl:(NSURL*)url
@@ -107,7 +107,7 @@ typedef void (^JAHPChallengeCompletionHandler)(NSURLSessionAuthChallengeDisposit
 	NSUInteger _contentType;
 	Boolean _isFirstChunk;
 	NSString * _cspNonce;
-	Tab *_wvt;
+	__weak Tab *_wvt;
 	NSString *_userAgent;
 	NSURLRequest *_actualRequest;
 	BOOL _isOrigin;
@@ -222,17 +222,22 @@ static NSString *_javascriptToInject;
 {
 	TemporarilyAllowedURL *ret = NULL;
 
-	@synchronized (tmpAllowed) {
+	@synchronized (tmpAllowed)
+	{
 		int found = -1;
 
-		for (int i = 0; i < [tmpAllowed count]; i++) {
-			if ([[tmpAllowed[i].url absoluteString] isEqualToString:[url absoluteString]]) {
+		for (int i = 0; i < [tmpAllowed count]; i++)
+		{
+			if ([tmpAllowed[i].url.absoluteString isEqualToString:url.absoluteString])
+			{
 				found = i;
 				ret = tmpAllowed[i];
+				break;
 			}
 		}
 
-		if (found > -1) {
+		if (found > -1)
+		{
 			[tmpAllowed removeObjectAtIndex:found];
 		}
 	}
