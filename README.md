@@ -148,3 +148,6 @@ Support this project by becoming a sponsor. Your logo will show up here with a l
 <a href="https://opencollective.com/OnionBrowser/sponsor/9/website" target="_blank"><img src="https://opencollective.com/OnionBrowser/sponsor/9/avatar.svg"></a>
 
 
+## How to build yourself
+
+Build instructions can be found in [BUILD.md](BUILD.md).
