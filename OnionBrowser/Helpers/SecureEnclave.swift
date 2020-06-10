@@ -36,7 +36,7 @@ class SecureEnclave: NSObject {
 	*/
 	@discardableResult
 	class func createKey() -> SecKey? {
-		let flags: SecAccessControlCreateFlags = [.privateKeyUsage, .biometryAny, .or, .devicePasscode]
+		let flags: SecAccessControlCreateFlags = [.privateKeyUsage, .userPresence]
 
 		guard let access = SecAccessControlCreateWithFlags(
 				kCFAllocatorDefault, kSecAttrAccessibleWhenUnlockedThisDeviceOnly,
