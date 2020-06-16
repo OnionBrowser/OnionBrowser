@@ -7,7 +7,7 @@ target 'OnionBrowser2' do
 
   pod 'OCSPCache', :git => 'https://github.com/Psiphon-Labs/OCSPCache'
 
-  pod 'CSPHeader', '~> 0.4'
+  pod 'CSPHeader', '~> 0.5'
 
   pod 'Eureka', '~> 5.2'
   pod 'ImageRow', '~> 4.0'

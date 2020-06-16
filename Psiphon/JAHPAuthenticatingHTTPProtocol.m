@@ -1322,7 +1322,9 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 		SandboxDirective *sandbox = [[SandboxDirective alloc]
 									 initWithSources:@[[[AllowFormsSource alloc] init],
 													   [[AllowTopNavigationSource alloc] init],
-													   [[AllowScripts alloc] init]]];
+													   [[AllowScriptsSource alloc] init],
+													   [[AllowSameOriginSource alloc] init], // BUGFIX #267: Some sites need this, esp. DuckDuckGo!
+									 ]];
 
 		cspHeader = [[CSPHeader alloc] initWithDirectives:@[deflt, style, img, sandbox]];
 	}

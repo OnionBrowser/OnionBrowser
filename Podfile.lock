@@ -1,5 +1,5 @@
 PODS:
-  - CSPHeader (0.4.1)
+  - CSPHeader (0.5.0)
   - DTFoundation/Core (1.7.14)
   - DTFoundation/DTASN1 (1.7.14):
     - DTFoundation/Core
@@ -20,7 +20,7 @@ PODS:
   - VForceTouch (0.0.2)
 
 DEPENDENCIES:
-  - CSPHeader (~> 0.4)
+  - CSPHeader (~> 0.5)
   - DTFoundation/DTASN1
   - Eureka (~> 5.2)
   - FavIcon (from `https://github.com/tladesignz/FavIcon.git`, branch `swift-5`)
@@ -64,7 +64,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/Psiphon-Labs/OCSPCache
 
 SPEC CHECKSUMS:
-  CSPHeader: 352a279f3c84ab3c18014d8f682efd55fa73d885
+  CSPHeader: e97901a17790aa81d2ff07d34cad29760a7093f7
   DTFoundation: 25aa19bb7c6e225b1dfae195604fb8cf1da0ab4c
   Eureka: c883105488e05bc65539f583246ecf9657cabbfe
   FavIcon: 9fd386d96324ce0f6063732f8bf6c7f1d5bf17a3
@@ -79,6 +79,6 @@ SPEC CHECKSUMS:
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
   VForceTouch: b5c3a28625269e1818cf915728173bda9f669d6b
 
-PODFILE CHECKSUM: c1d97da10d413aed0702ed46a7b2a6a3859b4411
+PODFILE CHECKSUM: 2b503253cf5884f7971bc7ac8d627a1816c7b5a3
 
 COCOAPODS: 1.9.1
