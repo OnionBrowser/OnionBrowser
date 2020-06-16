@@ -1331,7 +1331,15 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 	// Don't allow XHR, WebSockets, audio and video.
 	else if (cspMode == ContentPolicyBlockXhr)
 	{
-		[cspHeader addOrReplaceDirective:[[ConnectDirective alloc] initWithSources:@[none]]];
+		if (responseHeaders[@"cf-ray"]) {
+			// If Cloudflare is involved, allow page to connect to hcaptcha.com,
+			// so Cloudflare's hCaptcha works.
+			[cspHeader addOrReplaceDirective:[[ConnectDirective alloc] initWithSources:@[[[Source alloc] initWithString:@"hcaptcha.com"]]]];
+		}
+		else {
+			[cspHeader addOrReplaceDirective:[[ConnectDirective alloc] initWithSources:@[none]]];
+		}
+
 		[cspHeader addOrReplaceDirective:[[MediaDirective alloc] initWithSources:@[none]]];
 		[cspHeader addOrReplaceDirective:[[ObjectDirective alloc] initWithSources:@[none]]];
 	}
