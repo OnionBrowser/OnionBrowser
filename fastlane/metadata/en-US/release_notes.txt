@@ -1,10 +1,4 @@
-- Rephrased security levels and improved their description.
-- Added Nextcloud Bookmarks support.
-- Added optional biometric/device passcode app lock.
-- Added automatic retrieval of OBFS4 bridges via Meek.
-- Fixed memory leaks, where RAM usage would increase over time, because tabs were never really removed from memory.
-- Empty all background tabs on memory warning signal from iOS.
-- Fixed problems with sometimes deleted start page.
-- Fixed links to onionbrowser.com.
+- Updated Tor to 0.4.3.5.
 - Updated translations.
-- Small bug fixes.
+- Fixed DuckDuckGo behaviour (and probably other sites'!) in gold security level.
+- Fixed app lock when no biometry available.

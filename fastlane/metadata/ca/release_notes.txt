@@ -1,10 +1,4 @@
-- S'ha millorat la descripció dels nivells de seguretat.
-- S'ha afegit suport per als marcadors Nextcloud.
-- S'ha afegit una aplicació de bloqueig de l'aparell biomètric opcional.
-- S'ha afegit l'obtenció de ponts OBFS4 via Meek
-- S'ha corregit filtracions de memòria, que feien que l'ús de RAM s'incrementés al llarg del temps, perquè les pestanyes mai s'esborraven de la memòria.
-- Buida totes les pestanyes en segon pla del senyal d'avís de memòria de l'iOS.
-- S'han corregit problemes que de vegades eliminava la pàgina d'inici.
-- S'han corregit els enllaços onionbrowser.com.
-- S'han actualitzat les traduccions.
-- Petites correccions d'errors
+- Tor actualitzat al 0.4.3.5.
+- Traduccions actualitzades.
+- S'ha corregit el comportament de DuckDuckGo (i probablement d'altres llocs!) En nivells de seguretat d'or.
+- S'ha corregit el bloqueig de l'aplicació quan no hi ha biometria disponible.

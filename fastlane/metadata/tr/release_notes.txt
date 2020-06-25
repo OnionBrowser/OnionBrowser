@@ -1,10 +1,4 @@
-- Güvenlik düzeylerini yeniden yapılandırdı ve açıklamaları geliştirildi.
-- Nextcloud yer imleri desteği eklendi.
-- İsteğe bağlı biyometrik/aygıt parolası uygulama kilidi eklendi.
-- Meek üzerinden OBFS4 köprülerinin otomatik olarak alınması eklendi.
-- Sekmeler gerçekte bellekten asla kaldırılmadığından RAM kullanımının zamanla artmasına neden olan bellek sızıntıları düzeltildi.
-- iOS bellek uyarısı işareti gönderdiğinde tüm arka plan sekmeleri boşaltılıyor.
-- Bazen silinen başlangıç sayfası sorunları düzeltildi.
-- Onionbrowser.com bağlantıları düzeltildi.
-- Çeviriler güncellendi.
-- Küçük hata düzeltmeleri yapıldı.
+- Tor 0.4.3.5 olarak güncellendi.
+- Çeviri güncellendi.
+- Altın güvenlik düzeyinde DuckDuckGo davranışı (ve muhtemelen diğer sitelerin!) Düzeltildi.
+- Mevcut biyometri olmadığında sabit uygulama kilidi.

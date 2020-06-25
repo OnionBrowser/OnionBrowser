@@ -1,10 +1,4 @@
-- Reformulados os níveis de segurança e melhoradas as suas descrições.
-- Adicionado suporte para os «Marcadores» do Nextcloud.
-- Adicionado bloqueio opcional de aplicação de código biométrico/dispositivo.
-- Adicionada recuperação automática de pontes OBFS4 via Meek.
-- Corrigida a fuga de memória, onde a utilização da RAM aumentava com o tempo, porque os separadores nunca eram realmente removidos da memória.
-- Limpa todos os separadores em segundo plano no sinal de aviso de memória do iOS.
-- Corrigidos os problemas com a página de início algumas vezes eliminada.
-- Hiperligações corrigidas para onionbrowser.com.
-- Traduções atualizadas.
-- Corrigidos erros pequenos.
+- Tor atualizado para 0.4.3.5.
+- traduções atualizadas.
+- Corrigido o comportamento do DuckDuckGo (e provavelmente de outros sites!) No nível de segurança ouro.
+- Bloqueio de aplicativo fixo quando não há biometria disponível.

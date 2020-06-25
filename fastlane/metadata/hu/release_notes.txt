@@ -1,10 +1,4 @@
-- Átalakított biztonsági szintek és javított leírásuk.
-- Nextcloud könyvjelző támogatás hozzáadása.
-- Opcionális biometrikus/eszközjelszó alkalmazás zár hozzáadása.
-- OBFS4 hidak automatikus letöltése Meek-kel hozzáadása.
-- Javított memória szivárgás, ahol a RAM használat nő idővel mert a fülek ténylegesen nem kerültek eltávolításra a memóriából.
-- Minden háttér fül ürítése iOS memória-figyelmeztetés esetén
-- A néha törölt kezdőoldal problémák javítása.
-- Javított linkek az onionbrowser.com-ra.
-- Frissített fordítások
-- Kis hibajavítások.
+- A Tor frissítve 0.4.3.5-re.
+- Frissített fordítások.
+- Rögzített DuckDuckGo viselkedés (és valószínűleg más webhelyek!) Aranybiztonsági szinten.
+- Javítva alkalmazászár, ha nem áll rendelkezésre biometria.

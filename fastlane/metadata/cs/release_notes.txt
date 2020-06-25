@@ -1,10 +1,4 @@
-- Přeformulované úrovně zabezpečení a vylepšený jejich popis.
-- Přidána podpora Nextcloud Záložky.
-- Přidán volitelný biometrický zámek zařízení / zámek aplikace.
-- Přidáno automatické načítání mostů OBFS4 přes Meek.
-- Opravené úniky paměti, kde by se využití RAM v průběhu času zvyšovalo, protože karty nebyly nikdy z paměti skutečně odstraněny.
-- Vyprázdněte všechny karty pozadí na varovném signálu paměti z iOS.
-- Opraveny problémy s někdy smazanou úvodní stránkou.
-- Opravené odkazy na onionbrowser.com.
+- Aktualizováno Tor na 0.4.3.5.
 - Aktualizované překlady.
-- Opravy malých chyb.
+- Opraveno chování DuckDuckGo (a pravděpodobně i jiných webů!) Ve zlaté úrovni zabezpečení.
+- Opraven zámek aplikace, když není k dispozici žádná biometrie.

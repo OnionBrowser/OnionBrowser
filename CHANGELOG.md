@@ -2,7 +2,10 @@
 
 ## 2.6.1
 
-- Tor updated to 0.4.3.5.
+- Updated Tor to 0.4.3.5.
+- Updated translations.
+- Fixed DuckDuckGo behaviour (and probably other sites'!) in gold security level.
+- Fixed app lock when no biometry available.
 
 ## 2.6.0
 

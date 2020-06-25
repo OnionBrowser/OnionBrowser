@@ -1,10 +1,4 @@
-- Razine sigurnosti su preformulirane i njihovi opisi su poboljšani.
-- Dodana je podrška za Nextcloud zabilješke.
-- Dodano je opcionalno zaključavanje aplikacije biometrijskim pristupnim kodovima i pristupnim kodovima uređaja.
-- Dodano je automatsko preuzimanje OBFS4 mostova preko Meeka.
-- Ispravljena su curenja memorije, gdje bi se upotreba RAM-a s vremenom povećavala, jer kartice nikada nisu stvarno uklonjene iz memorije.
-- Prazne se sve kartice u pozadini pri iOS signalu upozorenja za memoriju.
-- Ispravljeni su problemi s ponekad izbrisanom početnom stranicom.
-- Ispravljene su poveznice na onionbrowser.com.
-- Prijevodi su aktualizirani.
-- Ispravljene su neke manje greške.
+- Ažurirano Tor na 0.4.3.5.
+- Ažurirani prijevodi.
+- Fiksno ponašanje DuckDuckGo (i vjerojatno ostalih web lokacija!) U zlatnoj razini sigurnosti.
+- Fiksno zaključavanje aplikacije kada nema biometrije.

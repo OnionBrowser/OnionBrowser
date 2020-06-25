@@ -1,10 +1,4 @@
-– Omformulerte sikkerhetsnivåer og forbedret beskrivelsene.
-– La til støtte for Nextcloud-bokmerker.
-– La til valgfri biometrisk/passkode-applås på enhetsbasis.
-– La til automatisk innhenting av OBFS4-broer via Meek.
-- Fixed memory leaks, where RAM usage would increase over time, because tabs were never really removed from memory.
-– Tøm alle bakgrunnsfaner ved minneadvarselssignal fra iOS.
-– Fikset problemer med at startsiden stundom ble slettet.
-– Fikset linker til onionbrowser.com.
-– Oppdaterte oversettelser.
-– Små feilrettinger.
+- Oppdatert Tor til 0.4.3.5.
+- Oppdaterte oversettelser.
+- Fast DuckDuckGo-oppførsel (og sannsynligvis andre nettsteder!) På gullsikkerhetsnivå.
+- Fast applås når ingen biometri er tilgjengelig.

@@ -1,10 +1,4 @@
-- Chỉnh lý và cải thiện chú thích về cấp độ bảo mật.
-- Hỗ trợ Dấu trang Nextcloud.
-- Hỗ trợ khóa ứng dụng bằng sinh trắc học/mật khẩu (không bắt buộc).
-- Tự động tìm cầu nối OBFS4 qua Meek.
-- Sửa rò rỉ bộ nhớ, là lỗi khiến dung lượng RAM sử dụng tăng theo thời gian vì cửa sổ không được xóa khỏi bộ nhớ.
-- Thông báo xóa tất cả cửa sổ dưới nền khỏi bộ nhớ trên iOS.
-- Sửa một số lỗi về trang chủ bị xóa.
-- Sửa liên kết đến onionbrowser.com.
-- Cập nhật bản dịch thuật.
-- Sửa nhiều lỗi nhỏ khác.
+- Cập nhật Tor lên 0.4.3.5.
+- Cập nhật bản dịch.
+- Đã sửa lỗi hành vi DuckDuckGo (và có thể là các trang web khác '!) Ở cấp độ bảo mật vàng.
+- Sửa lỗi khóa ứng dụng khi không có sinh trắc học.

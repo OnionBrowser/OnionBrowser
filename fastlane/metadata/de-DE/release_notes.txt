@@ -1,10 +1,4 @@
-- Benennung und Beschreibung der Sicherheitsniveaus verbessert.
-- Nextcloud Bookmarks Unterstützung hinzugefügt.
-- Optionale App Sperrung via Face ID/Touch ID/Gerätepasswort hinzugefügt.
-- Möglichkeit zum automatischen Holen von OBFS4 Brücken via Meek hinzugefügt.
-- Speicherlecks geschlossen: RAM Verbrauch erhöhte sich über die Zeit, weil einmal geöffnete Reiter nie aus dem Speicher entfernt wurden.
-- Leere alle Hintergrundreiter, wenn iOS ein Speicherwarnsignal schickt.
-- Probleme mit manchmal gelöschter Startseite behoben.
-- Kaputte links auf onionbrowser.com behoben.
-- Übersetzungen aktualisiert.
-- Kleinere Fehlerbehebungen.
+- Tor auf 0.4.3.5 aktualisiert.
+- Aktualisierte Übersetzungen.
+- Das Verhalten von DuckDuckGo (und wahrscheinlich das anderer Websites!) In der Gold-Sicherheitsstufe wurde behoben.
+- App-Sperre behoben, wenn keine Biometrie verfügbar ist.
