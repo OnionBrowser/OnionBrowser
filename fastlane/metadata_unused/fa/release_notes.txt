@@ -2,8 +2,7 @@
 - پشتیبانی از نشانک‌های Nextcloud افزوده شد. 
 - امکان قفل برنامه با رمز دستگاه/بیومتریک افزوده شد.
 - دریافت خودکار پل‌های OBFS4 از طریق Meek افزوده شد.
-- نشت حافظه که باعث افزایش استفاده از RAM در طول زمان به علت
-پاک نشدن تب‌ها از حافظه می‌شد، رفع شد.
+- Fixed memory leaks, where RAM usage would increase over time, because tabs were never really removed from memory.
 - پاک کردن تمام تب‌های پیش‌زمینه در صورت پیام خطای حافظه از iOS.
 - حل مشکلی که صفحه‌ی آغاز گاها حذف می‌شد.
 - رفع مشکل لینک‌ها به onionbrowser.com.
