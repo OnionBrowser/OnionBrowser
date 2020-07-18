@@ -1,0 +1,10 @@
+- Riformulati i livelli di sicurezza e migliorata la loro descrizione.
+- Aggiunto supporto Preferiti Nextcloud.
+- Aggiunto blocco biometrico/codice dispositivo opzionale.
+- Aggiunto recupero automatico dei bridges OBFS4 via Meek.
+- Risolte perdite di memoria, dove l'uso RAM aumenterebbe nel tempo, perchè le schede non sono state mai rimosse dalla memoria.
+- Svuotamento di tutte le schede in background su segnale d'avviso memoria proveniente da iOS.
+- Risolti problemi che potevano verificarsi a volte con pagine d'avvio cancellate.
+- Risolti collegamenti a onionbrowser.com .
+- Traduzioni aggiornate.
+- Risolti piccoli bug.

@@ -91,6 +91,8 @@ These people helped with translations. Thank you so much, folks!
   benewfy, vargaviktor
 - Icelandic: 
   anarchodin, sveinki
+- Italian:
+  EllipticSet, Rhaal, RickDeckard, ryuw
 - Irish: 
   kscanne
 - Japanese: 
