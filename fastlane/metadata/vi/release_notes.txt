@@ -1,4 +1,1 @@
-- Cập nhật Tor lên 0.4.3.5.
-- Cập nhật bản dịch.
-- Đã sửa lỗi hành vi DuckDuckGo (và có thể là các trang web khác '!) Ở cấp độ bảo mật vàng.
-- Sửa lỗi khóa ứng dụng khi không có sinh trắc học.
+- Thêm bản dịch tiếng Ý.

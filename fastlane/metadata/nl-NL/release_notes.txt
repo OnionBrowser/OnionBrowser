@@ -1,4 +1,1 @@
-- Tor geüpdatet naar 0.4.3.5.
-- Bijgewerkte vertalingen.
-- Opgelost DuckDuckGo-gedrag (en waarschijnlijk van andere sites!) In het gouden beveiligingsniveau.
-- Vaste app-vergrendeling wanneer er geen biometrie beschikbaar is.
+- Italiaanse vertaling toegevoegd.

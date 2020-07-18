@@ -1,4 +1,1 @@
-- Tor actualizado a 0.4.3.5.
-- Traducciones actualizadas.
-- Se corrigió el comportamiento de DuckDuckGo (¡y probablemente otros sitios!) En el nivel de seguridad de oro.
-- Se corrigió el bloqueo de la aplicación cuando no hay biometría disponible.
+- Añadida traducción al italiano.

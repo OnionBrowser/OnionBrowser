@@ -1,4 +1,1 @@
-- Tor 0.4.3.5 olarak güncellendi.
-- Çeviri güncellendi.
-- Altın güvenlik düzeyinde DuckDuckGo davranışı (ve muhtemelen diğer sitelerin!) Düzeltildi.
-- Mevcut biyometri olmadığında sabit uygulama kilidi.
+- İtalyanca çeviri eklendi.

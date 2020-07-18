@@ -1,5 +1,8 @@
 #  Onion Browser 2 Changelog
 
+## 2.6.2
+- Added Italian translation.
+
 ## 2.6.1
 
 - Updated Tor to 0.4.3.5.

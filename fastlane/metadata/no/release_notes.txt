@@ -1,4 +1,1 @@
-- Oppdatert Tor til 0.4.3.5.
-- Oppdaterte oversettelser.
-- Fast DuckDuckGo-oppførsel (og sannsynligvis andre nettsteder!) På gullsikkerhetsnivå.
-- Fast applås når ingen biometri er tilgjengelig.
+- Lagt til italiensk oversettelse.

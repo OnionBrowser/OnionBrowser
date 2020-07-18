@@ -1,4 +1,1 @@
-- Ažurirano Tor na 0.4.3.5.
-- Ažurirani prijevodi.
-- Fiksno ponašanje DuckDuckGo (i vjerojatno ostalih web lokacija!) U zlatnoj razini sigurnosti.
-- Fiksno zaključavanje aplikacije kada nema biometrije.
+- Dodan prijevod s talijanskog jezika.

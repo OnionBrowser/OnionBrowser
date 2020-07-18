@@ -1,4 +1,1 @@
-- A Tor frissítve 0.4.3.5-re.
-- Frissített fordítások.
-- Rögzített DuckDuckGo viselkedés (és valószínűleg más webhelyek!) Aranybiztonsági szinten.
-- Javítva alkalmazászár, ha nem áll rendelkezésre biometria.
+- Hozzáadott olasz fordítás.

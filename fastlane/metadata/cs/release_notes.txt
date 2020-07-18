@@ -1,4 +1,1 @@
-- Aktualizováno Tor na 0.4.3.5.
-- Aktualizované překlady.
-- Opraveno chování DuckDuckGo (a pravděpodobně i jiných webů!) Ve zlaté úrovni zabezpečení.
-- Opraven zámek aplikace, když není k dispozici žádná biometrie.
+- Přidán italský překlad.
