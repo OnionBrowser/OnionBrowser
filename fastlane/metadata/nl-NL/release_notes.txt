@@ -1,1 +1,2 @@
 - Italiaanse vertaling toegevoegd.
+- Tor geüpdatet naar 0.4.3.6.

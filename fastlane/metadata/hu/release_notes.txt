@@ -1,1 +1,2 @@
 - Hozzáadott olasz fordítás.
+- A Tor frissítve 0.4.3.6-ra.

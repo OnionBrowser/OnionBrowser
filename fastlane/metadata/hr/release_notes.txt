@@ -1,1 +1,2 @@
 - Dodan prijevod s talijanskog jezika.
+- Ažurirano Tor na 0.4.3.6.

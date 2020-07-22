@@ -1,1 +1,2 @@
 - Ajout de la traduction italienne.
+- Mise à jour de Tor à 0.4.3.6.

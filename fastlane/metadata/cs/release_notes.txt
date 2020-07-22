@@ -1,1 +1,2 @@
 - Přidán italský překlad.
+- Aktualizováno Tor na 0.4.3.6.

@@ -2,6 +2,7 @@
 
 ## 2.6.2
 - Added Italian translation.
+- Updated Tor to 0.4.3.6.
 
 ## 2.6.1
 

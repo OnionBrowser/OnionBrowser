@@ -1,1 +1,2 @@
 - Italienische Übersetzung hinzugefügt.
+- Auf Tor 0.4.3.6 aktualisiert.

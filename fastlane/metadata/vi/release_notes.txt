@@ -1,1 +1,2 @@
 - Thêm bản dịch tiếng Ý.
+- Cập nhật Tor lên 0.4.3.6.

@@ -1,1 +1,2 @@
 - Lagt til italiensk oversettelse.
+- Oppdatert Tor til 0.4.3.6.

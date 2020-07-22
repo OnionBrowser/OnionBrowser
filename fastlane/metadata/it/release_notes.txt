@@ -1,1 +1,2 @@
 - Aggiunta la traduzione italiana.
+- Aggiornato Tor a 0.4.3.6.
