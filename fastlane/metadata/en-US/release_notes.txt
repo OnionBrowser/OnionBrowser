@@ -1,2 +1,3 @@
 - Added Italian translation.
+- Updated Arabic translation.
 - Updated Tor to 0.4.3.6.

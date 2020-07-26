@@ -1,2 +1,3 @@
 - Italiaanse vertaling toegevoegd.
+- Bijgewerkte Arabische vertaling.
 - Tor geüpdatet naar 0.4.3.6.

@@ -62,7 +62,7 @@ The following features are new to Onion Browser, by way of the upstream work on 
 These people helped with translations. Thank you so much, folks!
 
 - Arabic: 
-  AboShanab, mada19, BNasr, Hujairi, MissPeace, ahmedessamdev
+  AboShanab, mada19, BNasr, Hujairi, MissPeace, ahmedessamdev, Bild96, Israel.K
 - Bengali: 
   codesmite, Al_Shahrior, BNasr, hasan_md_rakib, nr072
 - Catalán: 

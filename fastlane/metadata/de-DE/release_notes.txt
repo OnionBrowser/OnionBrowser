@@ -1,2 +1,3 @@
 - Italienische Übersetzung hinzugefügt.
+- Arabische Übersetzung aktualisiert.
 - Auf Tor 0.4.3.6 aktualisiert.
