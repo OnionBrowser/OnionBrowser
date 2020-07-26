@@ -315,7 +315,6 @@
 		A046AE5B234795AF00E6B3A5 /* promotional_text.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = promotional_text.txt; sourceTree = "<group>"; };
 		A046AE5E234795B000E6B3A5 /* subtitle.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = subtitle.txt; sourceTree = "<group>"; };
 		A046AE5F234795B000E6B3A5 /* keywords.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = keywords.txt; sourceTree = "<group>"; };
-		A046AE60234795B000E6B3A5 /* promotional_text.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = promotional_text.txt; sourceTree = "<group>"; };
 		A046AE6A234795B000E6B3A5 /* description.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = description.txt; sourceTree = "<group>"; };
 		A046AE6D234795B000E6B3A5 /* promotional_text.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = promotional_text.txt; sourceTree = "<group>"; };
 		A046AE6F234795B000E6B3A5 /* promotional_text.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = promotional_text.txt; sourceTree = "<group>"; };
@@ -403,6 +402,13 @@
 		A05D6DB124CD785100F9D288 /* tr-TR */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "tr-TR"; path = "tr-TR.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A05D6DB224CD785300F9D288 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = vi; path = "vi.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A05D6DB324CD787800F9D288 /* release_notes.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = release_notes.txt; sourceTree = "<group>"; };
+		A05D6DB424CD7EA200F9D288 /* privacy_url.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = privacy_url.txt; sourceTree = "<group>"; };
+		A05D6DB524CD7EB000F9D288 /* support_url.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = support_url.txt; sourceTree = "<group>"; };
+		A05D6DB624CD7EC700F9D288 /* name.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = name.txt; sourceTree = "<group>"; };
+		A05D6DB724CD7ECE00F9D288 /* marketing_url.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = marketing_url.txt; sourceTree = "<group>"; };
+		A05D6DBA24CD7F4200F9D288 /* promotional_text.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = promotional_text.txt; sourceTree = "<group>"; };
+		A05D6DBB24CD7F8900F9D288 /* promotional_text.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = promotional_text.txt; sourceTree = "<group>"; };
+		A05D6DBC24CD7F9A00F9D288 /* apple_tv_privacy_policy.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = apple_tv_privacy_policy.txt; sourceTree = "<group>"; };
 		A068DD98240D348300BF46E3 /* AltSvcHeader_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AltSvcHeader_Tests.swift; sourceTree = "<group>"; };
 		A0696EAC2406C7D000512695 /* SyncViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncViewController.swift; sourceTree = "<group>"; };
 		A0696EAE2406D94200512695 /* Nextcloud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nextcloud.swift; sourceTree = "<group>"; };
@@ -1035,7 +1041,7 @@
 		A046AE0823476A1000E6B3A5 /* metadata_unused */ = {
 			isa = PBXGroup;
 			children = (
-				A046AE5C234795B000E6B3A5 /* ar-SA */,
+				A05D6DB924CD7F4200F9D288 /* ar-SA */,
 				A046AE84234795B200E6B3A5 /* bn */,
 				A046AE7B234795B100E6B3A5 /* ca */,
 				A046AE79234795B100E6B3A5 /* cs */,
@@ -1182,10 +1188,15 @@
 		A046AE5C234795B000E6B3A5 /* ar-SA */ = {
 			isa = PBXGroup;
 			children = (
+				A05D6DB424CD7EA200F9D288 /* privacy_url.txt */,
 				A046AE5E234795B000E6B3A5 /* subtitle.txt */,
+				A05D6DB524CD7EB000F9D288 /* support_url.txt */,
 				A046AE5F234795B000E6B3A5 /* keywords.txt */,
-				A046AE60234795B000E6B3A5 /* promotional_text.txt */,
+				A05D6DBC24CD7F9A00F9D288 /* apple_tv_privacy_policy.txt */,
+				A05D6DBB24CD7F8900F9D288 /* promotional_text.txt */,
 				A05D6DB324CD787800F9D288 /* release_notes.txt */,
+				A05D6DB624CD7EC700F9D288 /* name.txt */,
+				A05D6DB724CD7ECE00F9D288 /* marketing_url.txt */,
 				A046AE6A234795B000E6B3A5 /* description.txt */,
 			);
 			path = "ar-SA";
@@ -1319,6 +1330,14 @@
 			path = Psiphon;
 			sourceTree = "<group>";
 		};
+		A05D6DB924CD7F4200F9D288 /* ar-SA */ = {
+			isa = PBXGroup;
+			children = (
+				A05D6DBA24CD7F4200F9D288 /* promotional_text.txt */,
+			);
+			path = "ar-SA";
+			sourceTree = "<group>";
+		};
 		A0751CAF2437DD5A0016B324 /* hr */ = {
 			isa = PBXGroup;
 			children = (
@@ -1394,6 +1413,7 @@
 				A094CD382344CE2C00C77E55 /* secondary_first_sub_category.txt */,
 				A094CD3A2344CE2C00C77E55 /* secondary_second_sub_category.txt */,
 				A094CD1F2344CE2C00C77E55 /* trade_representative_contact_information */,
+				A046AE5C234795B000E6B3A5 /* ar-SA */,
 				A094CEA9234504E800C77E55 /* ca */,
 				A094CE932345040A00C77E55 /* cs */,
 				A094CD3B2344CE2C00C77E55 /* de-DE */,
