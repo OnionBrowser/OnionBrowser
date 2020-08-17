@@ -46,7 +46,18 @@ BridgeConfDelegate {
 			selectionType: .singleSelection(enableDeselection: false))
 	}()
 
-	var bridgesType = Settings.currentlyUsedBridges
+	var bridgesType = Settings.currentlyUsedBridges {
+		didSet {
+			for row in bridgesSection {
+				if (row as? ListCheckRow<Settings.BridgesType>)?.value == bridgesType {
+					row.select()
+				}
+				else {
+					row.deselect()
+				}
+			}
+		}
+	}
 
 	var customBridges = Settings.customBridges
 
