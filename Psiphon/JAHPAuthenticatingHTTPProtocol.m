@@ -62,6 +62,9 @@
 
 @import CSPHeader;
 
+NSString * const kJAHPDirectMeekProperty = @"directMeek";
+
+
 // I use the following typedef to keep myself sane in the face of the wacky
 // Objective-C block syntax.
 
@@ -685,20 +688,69 @@ static NSString * kJAHPRecursiveRequestFlagProperty = @"com.jivesoftware.JAHPAut
 	_actualRequest = recursiveRequest;
 
 	///set *recursive* flag
-	[[self class] setProperty:@YES forKey:kJAHPRecursiveRequestFlagProperty inRequest:recursiveRequest];
+	[self.class setProperty:@YES forKey:kJAHPRecursiveRequestFlagProperty inRequest:recursiveRequest];
+
+	// Currently used SOCKS proxy port.
+	NSInteger port = ((NSNumber *)sharedDemuxInstance.configuration.connectionProxyDictionary[(NSString *)kCFStreamPropertySOCKSProxyPort]).integerValue;
+
+	// This is a request, which wants to talk through Meek directly.
+	// -> Reconfigure SOCKS proxy to use the iObfs4Proxy instead of Tor!
+	if ([self.class propertyForKey:kJAHPDirectMeekProperty inRequest:recursiveRequest])
+	{
+		[self.class authenticatingHTTPProtocol:self logWithFormat:@"Use Meek via iObfs4Proxy directly."];
+
+		if (port != kMeekSocksPort)
+		{
+			[self.class authenticatingHTTPProtocol:self logWithFormat:@"Reconfigure to use Meek via iObfs4Proxy directly."];
+
+			@synchronized(self.class)
+			{
+				NSURLSessionConfiguration *config = [JAHPAuthenticatingHTTPProtocol
+													 proxiedSessionConfiguration];
+
+				NSMutableDictionary *proxyDict = [@{} mutableCopy];
+
+				// https://lists.torproject.org/pipermail/anti-censorship-team/2020-April/000076.html
+				// https://gitweb.torproject.org/torspec.git/tree/pt-spec.txt
+
+				proxyDict[@"SOCKSEnable"] = @YES;
+				proxyDict[(NSString *)kCFStreamPropertySOCKSProxyHost] = @"localhost";
+				proxyDict[(NSString *)kCFStreamPropertySOCKSProxyPort] = [NSNumber numberWithInteger: kMeekSocksPort];
+				proxyDict[(NSString *)kCFStreamPropertySOCKSUser] = @"url=https://onion.azureedge.net/;";
+				// We should only split, if we overflow 255 bytes, but NSStrings are NULL-terminated,
+				// so we can't set the password to 0x00. Therefore we slightly violate the spec and
+				// split the argument list anyway, which works fine with Obfs4proxy.
+				proxyDict[(NSString *)kCFStreamPropertySOCKSPassword] = @"front=ajax.aspnetcdn.com";
+
+				config.connectionProxyDictionary = proxyDict;
+
+				sharedDemuxInstance = [[JAHPQNSURLSessionDemux alloc] initWithConfiguration:config];
+			}
+		}
+	}
+	else if (port != AppDelegate.socksProxyPort)
+	{
+		[self.class authenticatingHTTPProtocol:self logWithFormat:@"Reconfigure to use Tor."];
+
+		[self.class resetSharedDemux];
+	}
+
 
 	self.startTime = [NSDate timeIntervalSinceReferenceDate];
-	if (currentMode == nil) {
-		[[self class] authenticatingHTTPProtocol:self logWithFormat:@"start %@", [recursiveRequest URL]];
-	} else {
-		[[self class] authenticatingHTTPProtocol:self logWithFormat:@"start %@ (mode %@)", [recursiveRequest URL], currentMode];
+
+	if (!currentMode)
+	{
+		[self.class authenticatingHTTPProtocol:self logWithFormat:@"start %@", recursiveRequest.URL];
+	}
+	else {
+		[self.class authenticatingHTTPProtocol:self logWithFormat:@"start %@ (mode %@)", recursiveRequest.URL, currentMode];
 	}
 
 	// Latch the thread we were called on, primarily for debugging purposes.
-	self.clientThread = [NSThread currentThread];
+	self.clientThread = NSThread.currentThread;
 
 	// Once everything is ready to go, create a data task with the new request.
-	self.task = [[[self class] sharedDemux] dataTaskWithRequest:recursiveRequest delegate:self modes:self.modes];
+	self.task = [[self.class sharedDemux] dataTaskWithRequest:recursiveRequest delegate:self modes:self.modes];
 	assert(self.task != nil);
 
 	[self.task resume];

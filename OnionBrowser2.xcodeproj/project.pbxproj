@@ -106,7 +106,7 @@
 		A0BF51F123AFBF250096624A /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51D523AFBF250096624A /* Launch Screen.xib */; };
 		A0BF51F223AFBF250096624A /* obfs4-bridges.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51D623AFBF250096624A /* obfs4-bridges.plist */; };
 		A0BF51F423AFBF250096624A /* credits.html in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51DE23AFBF250096624A /* credits.html */; };
-		A0BF524423AFC3580096624A /* ObfsThread.m in Sources */ = {isa = PBXBuildFile; fileRef = A0BF51F723AFC3580096624A /* ObfsThread.m */; };
+		A0BF524423AFC3580096624A /* IObfs4ProxyThread.m in Sources */ = {isa = PBXBuildFile; fileRef = A0BF51F723AFC3580096624A /* IObfs4ProxyThread.m */; };
 		A0BF524523AFC3580096624A /* Migration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF51FA23AFC3580096624A /* Migration.swift */; };
 		A0BF524623AFC3580096624A /* OldBookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = A0BF51FB23AFC3580096624A /* OldBookmark.m */; };
 		A0BF524723AFC3580096624A /* Settings.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = A0BF51FD23AFC3580096624A /* Settings.xcdatamodel */; };
@@ -727,7 +727,7 @@
 		A0BF51D523AFBF250096624A /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		A0BF51D623AFBF250096624A /* obfs4-bridges.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "obfs4-bridges.plist"; sourceTree = "<group>"; };
 		A0BF51DE23AFBF250096624A /* credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = credits.html; sourceTree = "<group>"; };
-		A0BF51F723AFC3580096624A /* ObfsThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObfsThread.m; sourceTree = "<group>"; };
+		A0BF51F723AFC3580096624A /* IObfs4ProxyThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IObfs4ProxyThread.m; sourceTree = "<group>"; };
 		A0BF51FA23AFC3580096624A /* Migration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Migration.swift; sourceTree = "<group>"; };
 		A0BF51FB23AFC3580096624A /* OldBookmark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OldBookmark.m; sourceTree = "<group>"; };
 		A0BF51FC23AFC3580096624A /* Bridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bridge.h; sourceTree = "<group>"; };
@@ -779,7 +779,7 @@
 		A0BF522E23AFC3580096624A /* AddSiteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSiteViewController.swift; sourceTree = "<group>"; };
 		A0BF522F23AFC3580096624A /* DonationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonationViewController.swift; sourceTree = "<group>"; };
 		A0BF523023AFC3580096624A /* OnionBrowser2-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OnionBrowser2-Bridging-Header.h"; sourceTree = "<group>"; };
-		A0BF523123AFC3580096624A /* ObfsThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObfsThread.h; sourceTree = "<group>"; };
+		A0BF523123AFC3580096624A /* IObfs4ProxyThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IObfs4ProxyThread.h; sourceTree = "<group>"; };
 		A0BF523323AFC3580096624A /* OnionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnionManager.swift; sourceTree = "<group>"; };
 		A0BF523623AFC3580096624A /* BlurredSnapshot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurredSnapshot.swift; sourceTree = "<group>"; };
 		A0BF523723AFC3580096624A /* SilenceWarnings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SilenceWarnings.h; sourceTree = "<group>"; };
@@ -1870,8 +1870,8 @@
 				A0BF51F923AFC3580096624A /* Migration */,
 				A07037C523C7571B00D670EC /* AppDelegate.swift */,
 				A0BF523323AFC3580096624A /* OnionManager.swift */,
-				A0BF523123AFC3580096624A /* ObfsThread.h */,
-				A0BF51F723AFC3580096624A /* ObfsThread.m */,
+				A0BF523123AFC3580096624A /* IObfs4ProxyThread.h */,
+				A0BF51F723AFC3580096624A /* IObfs4ProxyThread.m */,
 				A0BF523023AFC3580096624A /* OnionBrowser2-Bridging-Header.h */,
 				A0BF520023AFC3580096624A /* version.h */,
 				A0BF52A323AFE2D70096624A /* Iobfs4proxy.framework */,
@@ -2359,7 +2359,7 @@
 				A0696EAF2406D94200512695 /* Nextcloud.swift in Sources */,
 				01F8793B1A4108DD00A63654 /* URLBlocker.m in Sources */,
 				A0BF528223AFC3580096624A /* String+Helpers.swift in Sources */,
-				A0BF524423AFC3580096624A /* ObfsThread.m in Sources */,
+				A0BF524423AFC3580096624A /* IObfs4ProxyThread.m in Sources */,
 				A024B39D23D38B9F007F9E68 /* AdvancedTorConfViewController.swift in Sources */,
 				A0BF524723AFC3580096624A /* Settings.xcdatamodel in Sources */,
 				A0BF525E23AFC3580096624A /* BrowsingViewController+Tabs.swift in Sources */,

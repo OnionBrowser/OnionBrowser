@@ -55,8 +55,8 @@ class OnionManager : NSObject {
 			"--ControlPort", "127.0.0.1:39060",
 			"--Log", log_loc,
 			"--ClientUseIPv6", "1",
-			"--ClientTransportPlugin", "obfs4 socks5 127.0.0.1:47351",
-			"--ClientTransportPlugin", "meek_lite socks5 127.0.0.1:47352",
+			"--ClientTransportPlugin", "obfs4 socks5 127.0.0.1:\(kObfs4SocksPort)",
+			"--ClientTransportPlugin", "meek_lite socks5 127.0.0.1:\(kMeekSocksPort)",
 			"--GeoIPFile", Bundle.main.path(forResource: "geoip", ofType: nil) ?? "",
 			"--GeoIPv6File", Bundle.main.path(forResource: "geoip6", ofType: nil) ?? "",
 		]
@@ -103,7 +103,7 @@ class OnionManager : NSObject {
 	public var state = TorState.none
 
 	private var torController: TorController?
-	private let obfsproxy = ObfsThread()
+	private let iObfs4Proxy = IObfs4ProxyThread()
 
 	private var torThread: TorThread?
 
@@ -210,6 +210,17 @@ class OnionManager : NSObject {
 		torController?.getCircuits(callback)
 	}
 
+	func startIObfs4Proxy() {
+		if !iObfs4Proxy.isExecuting && !iObfs4Proxy.isCancelled && !iObfs4Proxy.isFinished {
+			// Set the needed environment variables, so ObfsProxy can be used stand-alone.
+			setenv("TOR_PT_MANAGED_TRANSPORT_VER", "1", 0)
+			setenv("TOR_PT_CLIENT_TRANSPORTS", "obfs4,meek_lite,obfs2,obfs3,scramblesuit", 0)
+			setenv("TOR_PT_STATE_LOCATION", FileManager.default.temporaryDirectory.appendingPathComponent("pt_state").path, 0)
+
+			iObfs4Proxy.start()
+		}
+	}
+
 	func startTor(delegate: OnionManagerDelegate?) {
 		// Avoid a retain cycle. Only use the weakDelegate in closures!
 		weak var weakDelegate = delegate
@@ -275,9 +286,7 @@ class OnionManager : NSObject {
 
 			torThread?.start()
 
-			if !obfsproxy.isExecuting && !obfsproxy.isCancelled && !obfsproxy.isFinished {
-				obfsproxy.start()
-			}
+			startIObfs4Proxy()
 
 			print("[\(String(describing: type(of: self)))] Starting Tor")
 		}

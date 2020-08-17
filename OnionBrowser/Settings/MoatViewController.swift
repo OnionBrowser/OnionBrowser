@@ -71,20 +71,10 @@ class MoatViewController: FixedFormViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 
-		// Switch to Meek. Moat needs to be done via Meek.
-		OnionManager.shared.setBridgeConfiguration(bridgesType: .meekazure, customBridges: nil)
-		OnionManager.shared.startTor(delegate: nil)
+		// Make sure, iObfs4Proxy is started.
+		OnionManager.shared.startIObfs4Proxy()
 
 		fetchCaptcha()
-	}
-
-	override func viewWillDisappear(_ animated: Bool) {
-		super.viewWillDisappear(animated)
-
-		// Switch back to currently used bridge settings.
-		OnionManager.shared.setBridgeConfiguration(bridgesType: Settings.currentlyUsedBridges,
-												   customBridges: Settings.customBridges)
-		OnionManager.shared.startTor(delegate: nil)
 	}
 
 
@@ -213,13 +203,14 @@ class MoatViewController: FixedFormViewController {
 
 //		print("[\(String(describing: type(of: self)))] request payload=\(payload)")
 
-		var request = URLRequest(url: url)
+		let request = NSMutableURLRequest(url: url)
 		request.httpMethod = "POST"
 		request.httpBody = try? JSONSerialization.data(withJSONObject: payload, options: [])
 		request.addValue("application/vnd.api+json", forHTTPHeaderField: "Content-Type")
+		URLProtocol.setProperty(true, forKey: kJAHPDirectMeekProperty, in: request)
 
 		JAHPAuthenticatingHTTPProtocol.temporarilyAllow(url)
 
-		return request
+		return request as URLRequest
 	}
 }
