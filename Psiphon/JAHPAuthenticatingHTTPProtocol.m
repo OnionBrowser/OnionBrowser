@@ -591,21 +591,21 @@ static NSString * kJAHPRecursiveRequestFlagProperty = @"com.jivesoftware.JAHPAut
 	}
 
 	/* check HSTS cache first to see if scheme needs upgrading */
-	[mutableRequest setURL:[AppDelegate.shared.hstsCache rewrittenURI:request.URL]];
+	mutableRequest.URL = [AppDelegate.shared.hstsCache rewrittenURI:request.URL];
 
 	/* then check HTTPS Everywhere (must pass all URLs since some rules are not just scheme changes */
-	NSArray *HTErules = [HTTPSEverywhere potentiallyApplicableRulesForHost:[[request URL] host]];
-	if (HTErules != nil && [HTErules count] > 0) {
-		[mutableRequest setURL:[HTTPSEverywhere rewrittenURI:[request URL] withRules:HTErules]];
+	NSArray *hteRules = [HTTPSEverywhere potentiallyApplicableRulesForHost:[[request URL] host]];
+	if (hteRules != nil && [hteRules count] > 0) {
+		mutableRequest.URL = [HTTPSEverywhere rewrittenURI:request.URL withRules:hteRules];
 
-		for (HTTPSEverywhereRule *HTErule in HTErules) {
+		for (HTTPSEverywhereRule *HTErule in hteRules) {
 			[[_wvt applicableHTTPSEverywhereRules] setObject:@YES forKey:[HTErule name]];
 		}
 	}
 
 	/* in case our URL changed/upgraded, send back to the webview so it knows what our protocol is for "//" assets */
 	if (_isOrigin && ![[[mutableRequest URL] absoluteString] isEqualToString:[[request URL] absoluteString]]) {
-		[[self class] authenticatingHTTPProtocol:self logWithFormat:@"[Tab %ld] canceling origin request to redirect %@ rewritten to %@", (long)_wvt.index, [[self.request URL] absoluteString], [[mutableRequest URL] absoluteString]];
+		[self.class authenticatingHTTPProtocol:self logWithFormat:@"[Tab %ld] canceling origin request to redirect %@ rewritten to %@", (long)_wvt.index, self.request.URL.absoluteString, mutableRequest.URL.absoluteString];
 		[_wvt load:mutableRequest.URL];
 		return nil;
 	}
@@ -1252,16 +1252,18 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 	assert(dataTask == self.task);
 	assert(response != nil);
 	assert(completionHandler != nil);
-	assert([NSThread currentThread] == self.clientThread);
+	assert(NSThread.currentThread == self.clientThread);
 
 	// Pass the call on to our client.  The only tricky thing is that we have to decide on a
 	// cache storage policy, which is based on the actual request we issued, not the request
 	// we were given.
 
-	if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+	if ([response isKindOfClass:NSHTTPURLResponse.class])
+	{
 		cacheStoragePolicy = JAHPCacheStoragePolicyForRequestAndResponse(self.task.originalRequest, (NSHTTPURLResponse *) response);
-		statusCode = [((NSHTTPURLResponse *) response) statusCode];
-	} else {
+		statusCode = ((NSHTTPURLResponse *) response).statusCode;
+	}
+	else {
 		assert(NO);
 		cacheStoragePolicy = NSURLCacheStorageNotAllowed;
 		statusCode = 42;
@@ -1269,19 +1271,58 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 
 	[[self class] authenticatingHTTPProtocol:self logWithFormat:@"received response %zd / %@ with cache storage policy %zu", (ssize_t) statusCode, [response URL], (size_t) cacheStoragePolicy];
 
+	NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
+	NSURL *url = dataTask.currentRequest.URL;
+
+	// Redirect to provided Onion-Location, if any available, and
+	// - was not already served over an onion site,
+	// - was served over HTTPS,
+	// - is a valid URL with http: or https: protocol and a .onion hostname,
+	// - is coming from a WebViewTab, where we can trigger the reload.
+	if (
+		_wvt
+		&& ![url.host.lowercaseString hasSuffix:@".onion"]
+		&& [url.scheme.lowercaseString isEqualToString:@"https"]
+		)
+	{
+		NSString *olHeader = [self caseInsensitiveHeader:@"Onion-Location" inResponse:httpResponse];
+
+		if (olHeader)
+		{
+			NSURL *onionLocation = [[NSURL alloc] initWithString:olHeader];
+			NSString *olScheme = onionLocation.scheme.lowercaseString;
+
+			if (
+				([olScheme isEqualToString:@"http"] || [olScheme isEqualToString:@"https"])
+				&& [onionLocation.host.lowercaseString hasSuffix:@".onion"]
+				)
+			{
+				[self.class authenticatingHTTPProtocol:self logWithFormat:
+				 @"Redirect to Onion-Location=%@", onionLocation];
+
+				[_wvt load:onionLocation];
+
+				completionHandler(NSURLSessionResponseCancel);
+				return;
+			}
+		}
+	}
+
 	_contentType = CONTENT_TYPE_OTHER;
 	_isFirstChunk = YES;
 
-	if(_wvt && [[dataTask.currentRequest URL] isEqual:[dataTask.currentRequest mainDocumentURL]]) {
-		[_wvt setUrl:[dataTask.currentRequest URL]];
+	if(_wvt && [url isEqual:dataTask.currentRequest.mainDocumentURL])
+	{
+		_wvt.url = url;
 	}
 
-	NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
-	NSString *ctype = [[self caseInsensitiveHeader:@"content-type" inResponse:httpResponse] lowercaseString];
-	if (ctype != nil) {
+	NSString *ctype = [self caseInsensitiveHeader:@"Content-Type" inResponse:httpResponse].lowercaseString;
+	if (ctype)
+	{
 		if ([ctype hasPrefix:@"text/html"] || [ctype hasPrefix:@"application/html"] || [ctype hasPrefix:@"application/xhtml+xml"]) {
 			_contentType = CONTENT_TYPE_HTML;
-		} else {
+		}
+		else {
 			// TODO: keep adding new content types as needed
 			// Determine if the content type is a file type
 			// we can present.
@@ -1305,6 +1346,7 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 							   @"video/ogg",
 							   @"video/webm"
 							   ];
+
 			// TODO: (performance) could use a dictionary of dictionaries matching on type and subtype
 			for (NSString *type in types) {
 				if ([ctype hasPrefix:type]) {
@@ -1314,7 +1356,8 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 		}
 	}
 
-	if (_contentType == CONTENT_TYPE_FILE && _isOrigin && !_isTemporarilyAllowed) {
+	if (_contentType == CONTENT_TYPE_FILE && _isOrigin && !_isTemporarilyAllowed)
+	{
 		/*
 		 * If we've determined that the response's content type corresponds to a
 		 * file type that we can attempt to preview we turn the request into a download.
@@ -1323,14 +1366,14 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 		 */
 
 		// Create a fake response for the client with all headers but content type preserved
-		NSMutableDictionary *fakeHeaders = [[NSMutableDictionary alloc] initWithDictionary:[httpResponse allHeaderFields]];
+		NSMutableDictionary *fakeHeaders = httpResponse.allHeaderFields.mutableCopy;
 		// allHeaderFields canonicalizes header field names to their standard form.
 		// E.g. "content-type" will be automatically adjusted to "Content-Type".
 		// See: https://developer.apple.com/documentation/foundation/httpurlresponse/1417930-allheaderfields
 		[fakeHeaders setObject:@"text/html" forKey:@"Content-Type"];
 		[fakeHeaders setObject:@"0" forKey:@"Content-Length"];
 		[fakeHeaders setObject:@"Cache-Control: no-cache, no-store, must-revalidate" forKey:@"Cache-Control"];
-		NSURLResponse *fakeResponse = [[NSHTTPURLResponse alloc] initWithURL:[httpResponse URL] statusCode:200 HTTPVersion:@"1.1" headerFields:fakeHeaders];
+		NSURLResponse *fakeResponse = [[NSHTTPURLResponse alloc] initWithURL:httpResponse.URL statusCode:200 HTTPVersion:@"1.1" headerFields:fakeHeaders];
 
 		// Notify the client that the request finished loading so that
 		// the requests's url enters its navigation history.
@@ -1344,12 +1387,12 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 	/* rewrite or inject Content-Security-Policy (and X-Webkit-CSP just in case) headers */
 	NSString *host = dataTask.currentRequest.mainDocumentURL.host;
 	if (host.length == 0) {
-		host = dataTask.currentRequest.URL.host;
+		host = url.host;
 	}
 
 	ContentPolicy cspMode = [HostSettings for:host].contentPolicy;
 
-	NSMutableDictionary *responseHeaders = [[NSMutableDictionary alloc] initWithDictionary:[httpResponse allHeaderFields]];
+	NSMutableDictionary *responseHeaders = httpResponse.allHeaderFields.mutableCopy;
 
 	CSPHeader *cspHeader = [[CSPHeader alloc] initFromHeaders: responseHeaders];
 
@@ -1383,7 +1426,8 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 	// Don't allow XHR, WebSockets, audio and video.
 	else if (cspMode == ContentPolicyBlockXhr)
 	{
-		if (responseHeaders[@"cf-ray"]) {
+		if ([self caseInsensitiveHeader:@"cf-ray" inResponse:httpResponse])
+		{
 			// If Cloudflare is involved, allow page to connect to hcaptcha.com,
 			// so Cloudflare's hCaptcha works.
 			[cspHeader addOrReplaceDirective:[[ConnectDirective alloc] initWithSources:@[[[Source alloc] initWithString:@"hcaptcha.com"]]]];
@@ -1406,10 +1450,10 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 	// Allow our script to run.
 	[cspHeader allowInjectedScriptWithNonce:[self cspNonce]];
 
-	responseHeaders = [[cspHeader applyToHeaders: responseHeaders] mutableCopy];
+	responseHeaders = [cspHeader applyToHeaders: responseHeaders].mutableCopy;
 
 	/* rebuild our response with any modified headers */
-	response = [[NSHTTPURLResponse alloc] initWithURL:[httpResponse URL] statusCode:[httpResponse statusCode] HTTPVersion:@"1.1" headerFields:responseHeaders];
+	response = [[NSHTTPURLResponse alloc] initWithURL:httpResponse.URL statusCode:statusCode HTTPVersion:@"1.1" headerFields:responseHeaders];
 
 	/* save any cookies we just received
 	 Note that we need to do the same thing in the
@@ -1422,27 +1466,31 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 	 forTab:_wvt.hash];
 
 	/* in case of localStorage */
-	[AppDelegate.shared.cookieJar trackDataAccessForDomain:[[response URL] host] fromTab:_wvt.hash];
+	[AppDelegate.shared.cookieJar trackDataAccessForDomain:response.URL.host fromTab:_wvt.hash];
 
 
-	if ([[[self.request URL] scheme] isEqualToString:@"https"]) {
-		NSString *hsts = [[(NSHTTPURLResponse *)response allHeaderFields] objectForKey:HSTS_HEADER];
-		if (hsts != nil && ![hsts isEqualToString:@""]) {
-			[AppDelegate.shared.hstsCache parseHSTSHeader:hsts forHost:[[self.request URL] host]];
+	if ([self.request.URL.scheme.lowercaseString isEqualToString:@"https"])
+	{
+		NSString *hsts = [self caseInsensitiveHeader:HSTS_HEADER inResponse:httpResponse];
+
+		if (hsts && ![hsts isEqualToString:@""]) {
+			[AppDelegate.shared.hstsCache parseHSTSHeader:hsts forHost:self.request.URL.host];
 		}
 	}
 
 	// OCSP requests are performed out-of-band
 	if (!_isOCSPRequest &&
-		[_wvt secureMode] > SecureModeInsecure &&
-		![[[[_actualRequest URL] scheme] lowercaseString] isEqualToString:@"https"]) {
-		/* an element on the page was not sent over https but the initial request was, downgrade to mixed */
-		if ([_wvt secureMode] > SecureModeInsecure) {
-			[_wvt setSecureMode:SecureModeMixed];
+		_wvt.secureMode > SecureModeInsecure &&
+		![_actualRequest.URL.scheme.lowercaseString isEqualToString:@"https"])
+	{
+		/* An element on the page was not sent over https but the initial request was, downgrade to mixed. */
+		if (_wvt.secureMode > SecureModeInsecure)
+		{
+			_wvt.secureMode = SecureModeMixed;
 		}
 	}
 
-	[[self client] URLProtocol:self didReceiveResponse:response cacheStoragePolicy:cacheStoragePolicy];
+	[self.client URLProtocol:self didReceiveResponse:response cacheStoragePolicy:cacheStoragePolicy];
 
 	completionHandler(NSURLSessionResponseAllow);
 }
@@ -1546,19 +1594,22 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 }
 
 
-- (NSString *)caseInsensitiveHeader:(NSString *)header inResponse:(NSHTTPURLResponse *)response
+- (NSString *)caseInsensitiveHeader:(NSString *)name inResponse:(NSHTTPURLResponse *)response
 {
-	NSString *o;
-	for (id h in [response allHeaderFields]) {
-		if ([[h lowercaseString] isEqualToString:[header lowercaseString]]) {
-			o = [[response allHeaderFields] objectForKey:h];
+	name = name.lowercaseString;
+	NSString *header;
+
+	for (NSString *key in response.allHeaderFields.allKeys) {
+		if ([key.lowercaseString isEqualToString:name])
+		{
+			header = response.allHeaderFields[key];
 
 			/* XXX: does webview always honor the first matching header or the last one? */
 			break;
 		}
 	}
 
-	return o;
+	return header;
 }
 
 - (NSString *)cspNonce
