@@ -1,5 +1,11 @@
 #  Onion Browser 2 Changelog
 
+## 2.7.0
+- Use the dedicated Meek bridge of the MOAT service directly without Tor as originally intended.
+- Added support for the "Onion-Location" HTTP header. (See https://community.torproject.org/onion-services/advanced/onion-location/)
+- Small bugfixes.
+- Small translation updates to French, Japanese, Dutch and Thai.
+
 ## 2.6.2
 - Added Italian translation.
 - Updated Arabic translation.

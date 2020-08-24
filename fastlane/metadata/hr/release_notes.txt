@@ -1,3 +1,4 @@
-- Dodan prijevod s talijanskog jezika.
-- Ažurirani prijevod s arapskog jezika.
-- Ažurirano Tor na 0.4.3.6.
+- Koristite namjenski Meek most MOAT-ove usluge izravno bez Tor-a kako je prvotno bilo predviđeno.
+- Dodana je podrška za HTTP zaglavlje "Onion-Location". (Pogledajte https://community.torproject.org/onion-services/advanced/onion-location/)
+- Male greške.
+- Mala ažuriranja za prijevod na francuski, japanski, nizozemski i tajlandski.

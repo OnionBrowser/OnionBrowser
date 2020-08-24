@@ -1,3 +1,4 @@
-- İtalyanca çeviri eklendi.
-- Arapça çeviri güncellendi.
-- Tor'u 0.4.3.6'ya güncelledi.
+- MOAT hizmetinin özel Meek köprüsünü orijinal amaçlandığı gibi doğrudan Tor olmadan kullanın.
+- "Onion-Location" HTTP başlığı için destek eklendi. (Bkz. Https://community.torproject.org/onion-services/advanced/onion-location/)
+- Küçük hata düzeltmeleri.
+- Fransızca, Japonca, Hollandaca ve Tayca için küçük çeviri güncellemeleri.

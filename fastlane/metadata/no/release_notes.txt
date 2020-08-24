@@ -1,3 +1,4 @@
-- Lagt til italiensk oversettelse.
-- Oppdatert arabisk oversettelse.
-- Oppdatert Tor til 0.4.3.6.
+- Bruk den dedikerte Meek-broen til MOAT-tjenesten direkte uten Tor som opprinnelig ment.
+- Lagt til støtte for HTP-overskriften "Onion-Location". (Se https://community.torproject.org/onion-services/advanced/onion-location/)
+- Små bugfixes.
+- Liten oversettelse oppdateringer til fransk, japansk, nederlandsk og thai.

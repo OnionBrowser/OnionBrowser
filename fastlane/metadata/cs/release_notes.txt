@@ -1,3 +1,4 @@
-- Přidán italský překlad.
-- Aktualizovaný arabský překlad.
-- Aktualizováno Tor na 0.4.3.6.
+- Použijte vyhrazený most Meek služby MOAT přímo bez Tor, jak bylo původně zamýšleno.
+- Přidána podpora pro hlavičku HTTP "Onion-Location". (Viz https://community.torproject.org/onion-services/advanced/onion-location/)
+- Malé opravy chyb.
+- Malé aktualizace překladů do francouzštiny, japonštiny, holandštiny a thajštiny.

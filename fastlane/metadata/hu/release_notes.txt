@@ -1,3 +1,4 @@
-- Hozzáadott olasz fordítás.
-- Frissítve arab fordítást.
-- A Tor frissítve 0.4.3.6-ra.
+- Használja a MOAT szolgáltatás dedikált Meek hídját közvetlenül Tor nélkül, az eredeti szándék szerint.
+- Támogatás az "Onion-Location" HTTP fejléchez. (Lásd: https://community.torproject.org/onion-services/advanced/onion-location/)
+- Kis hibajavítások.
+- Kis fordítási frissítések francia, japán, holland és thai nyelvre.

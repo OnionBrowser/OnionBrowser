@@ -1,3 +1,4 @@
--イタリア語の翻訳が追加されました。
--アラビア語の翻訳を更新。
--Torを0.4.3.6に更新しました。
+-MOATサービスの専用Meekブリッジを、Torを使用せずに直接使用します。
+-「Onion-Location」HTTPヘッダーのサポートが追加されました。 （https://community.torproject.org/onion-services/advanced/onion-location/を参照してください）
+-小さなバグ修正。
+-フランス語、日本語、オランダ語、タイ語への小さな翻訳の更新。

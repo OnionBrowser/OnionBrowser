@@ -1279,6 +1279,8 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 	// - was served over HTTPS,
 	// - is a valid URL with http: or https: protocol and a .onion hostname,
 	// - is coming from a WebViewTab, where we can trigger the reload.
+	//
+	// https://community.torproject.org/onion-services/advanced/onion-location/
 	if (
 		_wvt
 		&& ![url.host.lowercaseString hasSuffix:@".onion"]

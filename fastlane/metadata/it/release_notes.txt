@@ -1,3 +1,4 @@
-- Aggiunta la traduzione italiana.
-- Traduzione araba aggiornata.
-- Aggiornato Tor a 0.4.3.6.
+- Usa il bridge Meek dedicato del servizio MOAT direttamente senza Tor come originariamente previsto.
+- Aggiunto il supporto per l'intestazione HTTP "Onion-Location". (Vedi https://community.torproject.org/onion-services/advanced/onion-location/)
+- Piccoli bug risolti.
+- Piccoli aggiornamenti delle traduzioni in francese, giapponese, olandese e thailandese.

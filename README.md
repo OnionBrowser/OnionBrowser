@@ -15,7 +15,7 @@ Please see the [LICENSE][license] file for usage and redistribution terms.
 
 ---
 
-* **Onion Browser**: 2.6.2 - See [official release history][releases] and [changelog][changelog].
+* **Onion Browser**: 2.7.0 - See [official release history][releases] and [changelog][changelog].
 * **[Tor.framework][Tor.framework]**: 403.6.1
 * **[Tor][tor]**: 0.4.3.6
 * **[libevent][libevent]**: 2.1.11
