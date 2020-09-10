@@ -60,6 +60,8 @@
 #import "OnionBrowser-Swift.h"
 #import "SilenceWarnings.h"
 
+#import <IPtProxy/IPtProxy.h>
+
 @import CSPHeader;
 
 NSString * const kJAHPDirectMeekProperty = @"directMeek";
@@ -694,12 +696,12 @@ static NSString * kJAHPRecursiveRequestFlagProperty = @"com.jivesoftware.JAHPAut
 	NSInteger port = ((NSNumber *)sharedDemuxInstance.configuration.connectionProxyDictionary[(NSString *)kCFStreamPropertySOCKSProxyPort]).integerValue;
 
 	// This is a request, which wants to talk through Meek directly.
-	// -> Reconfigure SOCKS proxy to use the iObfs4Proxy instead of Tor!
+	// -> Reconfigure SOCKS proxy to use Obfs4Proxy instead of Tor!
 	if ([self.class propertyForKey:kJAHPDirectMeekProperty inRequest:recursiveRequest])
 	{
 		[self.class authenticatingHTTPProtocol:self logWithFormat:@"Use Meek via iObfs4Proxy directly."];
 
-		if (port != kMeekSocksPort)
+		if (port != IPtProxyMeekSocksPort)
 		{
 			[self.class authenticatingHTTPProtocol:self logWithFormat:@"Reconfigure to use Meek via iObfs4Proxy directly."];
 
@@ -715,7 +717,7 @@ static NSString * kJAHPRecursiveRequestFlagProperty = @"com.jivesoftware.JAHPAut
 
 				proxyDict[@"SOCKSEnable"] = @YES;
 				proxyDict[(NSString *)kCFStreamPropertySOCKSProxyHost] = @"localhost";
-				proxyDict[(NSString *)kCFStreamPropertySOCKSProxyPort] = [NSNumber numberWithInteger: kMeekSocksPort];
+				proxyDict[(NSString *)kCFStreamPropertySOCKSProxyPort] = [NSNumber numberWithInteger: IPtProxyMeekSocksPort];
 				proxyDict[(NSString *)kCFStreamPropertySOCKSUser] = @"url=https://onion.azureedge.net/;";
 				// We should only split, if we overflow 255 bytes, but NSStrings are NULL-terminated,
 				// so we can't set the password to 0x00. Therefore we slightly violate the spec and

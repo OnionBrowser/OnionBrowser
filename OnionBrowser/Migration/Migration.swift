@@ -55,7 +55,7 @@ class Migration: NSObject {
                     if oldBridges!.count == 1 {
                         let ob = oldBridges![0];
 
-                        if ob.conf == OnionManager.meekAzureBridges[0] {
+						if ob.conf == OnionManager.meekAzureBridge.first {
 							Settings.currentlyUsedBridges = .meekazure
                         }
                     }

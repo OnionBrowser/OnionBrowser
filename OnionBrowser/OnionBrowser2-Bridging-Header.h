@@ -6,7 +6,7 @@
  */
 
 #import <Tor/Tor.h>
-#import "IObfs4ProxyThread.h"
+#import <IPtProxy/IPtProxy.h>
 #import "OldBookmark.h"
 #import "Bridge.h"
 #import "Ipv6Tester.h"

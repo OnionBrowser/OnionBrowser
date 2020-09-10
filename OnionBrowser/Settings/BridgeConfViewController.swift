@@ -77,6 +77,7 @@ BridgeConfDelegate {
 			.none: NSLocalizedString("No Bridges", comment: ""),
 			.obfs4: String(format: NSLocalizedString("Built-in %@", comment: ""), "obfs4"),
 			.meekazure: String(format: NSLocalizedString("Built-in %@", comment: ""), "meek-azure"),
+			.snowflake: String(format: NSLocalizedString("Built-in %@", comment: ""), "snowflake"),
 			.custom: NSLocalizedString("Custom Bridges", comment: ""),
 		]
 

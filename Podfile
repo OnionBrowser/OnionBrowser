@@ -15,6 +15,9 @@ target 'OnionBrowser2' do
   pod 'SDCAlertView', '~> 10'
   pod 'FavIcon', git: 'https://github.com/tladesignz/FavIcon.git', branch: 'swift-5'
   pod 'MBProgressHUD', '~> 1.2'
+
+  pod 'IPtProxy', '~> 0.1'
+  pod 'Tor', podspec: 'https://raw.githubusercontent.com/iCepa/Tor.framework/v403.6.1/Tor.podspec'
 end
 
 target 'OnionBrowser2 Tests' do

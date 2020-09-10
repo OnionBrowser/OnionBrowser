@@ -74,8 +74,9 @@ class Settings: NSObject {
 	enum BridgesType: Int {
 		case none = 0
 		case obfs4 = 1
-		case meekamazon = 2 // legacy; retaining this number for future use if meek-amazon comes back
+		case meekamazon = 2 // Legacy. Retaining this number for future use if meek-amazon comes back.
 		case meekazure = 3
+		case snowflake = 4
 		case custom = 99
 	}
 

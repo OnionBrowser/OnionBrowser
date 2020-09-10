@@ -55,8 +55,9 @@ class OnionManager : NSObject {
 			"--ControlPort", "127.0.0.1:39060",
 			"--Log", log_loc,
 			"--ClientUseIPv6", "1",
-			"--ClientTransportPlugin", "obfs4 socks5 127.0.0.1:\(kObfs4SocksPort)",
-			"--ClientTransportPlugin", "meek_lite socks5 127.0.0.1:\(kMeekSocksPort)",
+			"--ClientTransportPlugin", "obfs4 socks5 127.0.0.1:\(IPtProxyObfs4SocksPort)",
+			"--ClientTransportPlugin", "meek_lite socks5 127.0.0.1:\(IPtProxyMeekSocksPort)",
+			"--ClientTransportPlugin", "snowflake socks5 127.0.0.1:\(IPtProxySnowflakeSocksPort)", // Config is done in #startSnowflake.
 			"--GeoIPFile", Bundle.main.path(forResource: "geoip", ofType: nil) ?? "",
 			"--GeoIPv6File", Bundle.main.path(forResource: "geoip6", ofType: nil) ?? "",
 		]
@@ -93,8 +94,12 @@ class OnionManager : NSObject {
 
 	static let obfs4Bridges = NSArray(contentsOfFile: Bundle.main.path(forResource: "obfs4-bridges", ofType: "plist")!) as! [String]
 
-	static let meekAzureBridges = [
+	static let meekAzureBridge = [
 		"meek_lite 0.0.2.0:3 97700DFE9F483596DDA6264C4D7DF7641E1E39CE url=https://meek.azureedge.net/ front=ajax.aspnetcdn.com"
+	]
+
+	static let snowflakeBridge = [
+		"snowflake 192.0.2.3:1" // Reserved address. Only there to fulfill Tor Bridge line requirements.
 	]
 
 
@@ -103,7 +108,6 @@ class OnionManager : NSObject {
 	public var state = TorState.none
 
 	private var torController: TorController?
-	private let iObfs4Proxy = IObfs4ProxyThread()
 
 	private var torThread: TorThread?
 
@@ -211,14 +215,13 @@ class OnionManager : NSObject {
 	}
 
 	func startIObfs4Proxy() {
-		if !iObfs4Proxy.isExecuting && !iObfs4Proxy.isCancelled && !iObfs4Proxy.isFinished {
-			// Set the needed environment variables, so ObfsProxy can be used stand-alone.
-			setenv("TOR_PT_MANAGED_TRANSPORT_VER", "1", 0)
-			setenv("TOR_PT_CLIENT_TRANSPORTS", "obfs4,meek_lite,obfs2,obfs3,scramblesuit", 0)
-			setenv("TOR_PT_STATE_LOCATION", FileManager.default.temporaryDirectory.appendingPathComponent("pt_state").path, 0)
+		IPtProxyStartObfs4Proxy()
+	}
 
-			iObfs4Proxy.start()
-		}
+	func startSnowflake() {
+		IPtProxyStartSnowflake(
+			"stun:stun.l.google.com:19302", "https://snowflake-broker.azureedge.net/",
+			"ajax.aspnetcdn.com", "", true, false, false, 3)
 	}
 
 	func startTor(delegate: OnionManagerDelegate?) {
@@ -285,8 +288,6 @@ class OnionManager : NSObject {
 			needsReconfiguration = false
 
 			torThread?.start()
-
-			startIObfs4Proxy()
 
 			print("[\(String(describing: type(of: self)))] Starting Tor")
 		}
@@ -472,12 +473,19 @@ class OnionManager : NSObject {
 
 		switch bridgesType {
 		case .obfs4:
+			startIObfs4Proxy()
 			return OnionManager.obfs4Bridges
 
 		case .meekazure:
-			return OnionManager.meekAzureBridges
+			startIObfs4Proxy()
+			return OnionManager.meekAzureBridge
+
+		case .snowflake:
+			startSnowflake()
+			return OnionManager.snowflakeBridge
 
 		case .custom:
+			startIObfs4Proxy()
 			return customBridges ?? []
 
 		default:
