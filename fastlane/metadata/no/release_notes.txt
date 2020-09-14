@@ -1,4 +1,5 @@
 - Bruk den dedikerte Meek-broen til MOAT-tjenesten direkte uten Tor som opprinnelig ment.
-- Lagt til støtte for HTP-overskriften "Onion-Location". (Se https://community.torproject.org/onion-services/advanced/onion-location/)
-- Små bugfixes.
-- Liten oversettelse oppdateringer til fransk, japansk, nederlandsk og thai.
+- Lagt til Snowflake bridge-støtte.
+- Lagt til støtte for HTTP-overskriften "Onion-Location". (Se https://community.torproject.org/onion-services/advanced/onion-location/)
+- Små feilrettinger.
+- Små oversettelsesoppdateringer til fransk, japansk, nederlandsk og thai.

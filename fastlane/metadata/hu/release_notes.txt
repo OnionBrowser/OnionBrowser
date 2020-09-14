@@ -1,4 +1,5 @@
-- Használja a MOAT szolgáltatás dedikált Meek hídját közvetlenül Tor nélkül, az eredeti szándék szerint.
-- Támogatás az "Onion-Location" HTTP fejléchez. (Lásd: https://community.torproject.org/onion-services/advanced/onion-location/)
+- Használja a MOAT szolgáltatás Meek hídját közvetlenül Tor nélkül, az eredeti szándék szerint.
+- Hozzáadott hópehely híd támogatás.
+- Hozzáadott támogatás az "Onion-Location" HTTP fejléchez. (Lásd: https://community.torproject.org/onion-services/advanced/onion-location/)
 - Kis hibajavítások.
 - Kis fordítási frissítések francia, japán, holland és thai nyelvre.

@@ -1,4 +1,5 @@
 - Verwendet die dedizierte Meek-Brücke des MOAT-Dienstes direkt ohne Tor, wie ursprünglich vorgesehen.
+- Unterstützung für Snowflake Brücke hinzugefügt.
 - Unterstützung für den HTTP-Header "Onion-Location" hinzugefügt. (Siehe https://community.torproject.org/onion-services/advanced/onion-location/)
 - Kleine Bugfixes.
 - Kleine Übersetzungsaktualisierungen für Französisch, Japanisch, Niederländisch und Thailändisch.

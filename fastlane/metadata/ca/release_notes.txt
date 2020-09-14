@@ -1,4 +1,5 @@
-- Utilitzeu el pont Meek dedicat del servei MOAT directament sense Tor com estava previst inicialment.
+- Utilitzeu el pont Meek dedicat del servei MOAT directament sense Tor tal i com es pretenia originalment.
+- Afegit suport de pont de floc de neu.
 - S'ha afegit suport per a la capçalera HTTP "Onion-Location". (Consulteu https://community.torproject.org/onion-services/advanced/onion-location/)
-- Errors petits.
-- Petites actualitzacions de traduccions al francès, japonès, holandès i tailandès.
+- Petites correccions d'errors.
+- Petites actualitzacions de traducció a francès, japonès, holandès i tailandès.

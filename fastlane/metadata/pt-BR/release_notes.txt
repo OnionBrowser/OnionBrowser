@@ -1,4 +1,5 @@
 - Use a ponte Meek dedicada do serviço MOAT diretamente sem o Tor, conforme originalmente planejado.
+- Adicionado suporte para ponte de floco de neve.
 - Adicionado suporte para o cabeçalho HTTP "Onion-Location". (Consulte https://community.torproject.org/onion-services/advanced/onion-location/)
 - Pequenas correções de bugs.
 - Pequenas atualizações de tradução para francês, japonês, holandês e tailandês.

@@ -1,4 +1,5 @@
 -MOATサービスの専用Meekブリッジを、Torを使用せずに直接使用します。
--「Onion-Location」HTTPヘッダーのサポートが追加されました。 （https://community.torproject.org/onion-services/advanced/onion-location/を参照してください）
+-Snowflakeブリッジのサポートが追加されました。
+-「Onion-Location」HTTPヘッダーのサポートが追加されました。 （https://community.torproject.org/onion-services/advanced/onion-location/を参照）
 -小さなバグ修正。
 -フランス語、日本語、オランダ語、タイ語への小さな翻訳の更新。

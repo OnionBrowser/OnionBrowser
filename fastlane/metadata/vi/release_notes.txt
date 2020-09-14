@@ -1,4 +1,5 @@
-- Sử dụng cầu nối Meek chuyên dụng của dịch vụ MOAT trực tiếp mà không cần Tor như dự định ban đầu.
+- Sử dụng trực tiếp cầu nối Meek của dịch vụ MOAT mà không cần Tor như dự định ban đầu.
+- Thêm hỗ trợ cầu Snowflake.
 - Đã thêm hỗ trợ cho tiêu đề HTTP "Onion-Location". (Xem https://community.torproject.org/onion-services/advanced/onion-location/)
 - Sửa lỗi nhỏ.
 - Cập nhật bản dịch nhỏ sang tiếng Pháp, tiếng Nhật, tiếng Hà Lan và tiếng Thái.

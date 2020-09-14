@@ -1,4 +1,5 @@
 - MOAT hizmetinin özel Meek köprüsünü orijinal amaçlandığı gibi doğrudan Tor olmadan kullanın.
+- Snowflake köprü desteği eklendi.
 - "Onion-Location" HTTP başlığı için destek eklendi. (Bkz. Https://community.torproject.org/onion-services/advanced/onion-location/)
 - Küçük hata düzeltmeleri.
 - Fransızca, Japonca, Hollandaca ve Tayca için küçük çeviri güncellemeleri.

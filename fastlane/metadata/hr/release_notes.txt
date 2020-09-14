@@ -1,4 +1,5 @@
-- Koristite namjenski Meek most MOAT-ove usluge izravno bez Tor-a kako je prvotno bilo predviđeno.
-- Dodana je podrška za HTTP zaglavlje "Onion-Location". (Pogledajte https://community.torproject.org/onion-services/advanced/onion-location/)
-- Male greške.
-- Mala ažuriranja za prijevod na francuski, japanski, nizozemski i tajlandski.
+- Upotrijebite namjenski Moek most usluge MOAT izravno bez Tor-a kako je prvotno zamišljeno.
+- Dodana podrška za most Snowflake.
+- Dodana podrška za HTTP zaglavlje "Onion-Location". (Pogledajte https://community.torproject.org/onion-services/advanced/onion-location/)
+- Mali ispravci programskih pogrešaka.
+- Mala ažuriranja prijevoda na francuski, japanski, nizozemski i tajlandski.

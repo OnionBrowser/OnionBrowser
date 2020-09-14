@@ -1,4 +1,5 @@
-- Použijte vyhrazený most Meek služby MOAT přímo bez Tor, jak bylo původně zamýšleno.
-- Přidána podpora pro hlavičku HTTP "Onion-Location". (Viz https://community.torproject.org/onion-services/advanced/onion-location/)
+- Použijte vyhrazený Meek most služby MOAT přímo bez Tor, jak bylo původně zamýšleno.
+- Přidána podpora mostu Snowflake.
+- Přidána podpora pro hlavičku HTTP „Onion-Location“. (Viz https://community.torproject.org/onion-services/advanced/onion-location/)
 - Malé opravy chyb.
-- Malé aktualizace překladů do francouzštiny, japonštiny, holandštiny a thajštiny.
+- Malé překladové aktualizace do francouzštiny, japonštiny, holandštiny a thajštiny.

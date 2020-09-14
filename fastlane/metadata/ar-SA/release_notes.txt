@@ -1,4 +1,5 @@
 - استخدم جسر Meek المخصص لخدمة MOAT مباشرة بدون Tor كما هو محدد في الأصل.
+- تمت إضافة دعم جسر Snowflake.
 - تمت إضافة دعم لرأس HTTP "Onion-Location". (انظر https://community.torproject.org/onion-services/advanced/onion-location/)
 - إصلاحات الخلل الصغيرة.
 - تحديثات ترجمة صغيرة إلى الفرنسية واليابانية والهولندية والتايلاندية.

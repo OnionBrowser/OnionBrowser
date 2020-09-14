@@ -1,4 +1,5 @@
-- Usa il bridge Meek dedicato del servizio MOAT direttamente senza Tor come originariamente previsto.
+- Usa il ponte Meek dedicato del servizio MOAT direttamente senza Tor come originariamente previsto.
+- Aggiunto supporto ponte Snowflake.
 - Aggiunto il supporto per l'intestazione HTTP "Onion-Location". (Vedi https://community.torproject.org/onion-services/advanced/onion-location/)
 - Piccoli bug risolti.
 - Piccoli aggiornamenti delle traduzioni in francese, giapponese, olandese e thailandese.
