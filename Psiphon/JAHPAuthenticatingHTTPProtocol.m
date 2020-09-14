@@ -417,11 +417,13 @@ static NSString * kJAHPRecursiveRequestFlagProperty = @"com.jivesoftware.JAHPAut
 	// it can be called with some very odd requests <rdar://problem/15197355>.
 
 	shouldAccept = (request != nil);
-	if (shouldAccept) {
-		url = [request URL];
+	if (shouldAccept)
+	{
+		url = request.URL;
 		shouldAccept = (url != nil);
 	}
-	if ( ! shouldAccept ) {
+	if (!shouldAccept)
+	{
 		[self authenticatingHTTPProtocol:nil logWithFormat:@"decline request (malformed)"];
 	}
 
@@ -429,7 +431,8 @@ static NSString * kJAHPRecursiveRequestFlagProperty = @"com.jivesoftware.JAHPAut
 
 	if (shouldAccept) {
 		shouldAccept = ([self propertyForKey:kJAHPRecursiveRequestFlagProperty inRequest:request] == nil);
-		if ( ! shouldAccept ) {
+		if (!shouldAccept)
+		{
 			[self authenticatingHTTPProtocol:nil logWithFormat:@"decline request %@ (recursive)", url];
 		}
 	}
@@ -437,18 +440,19 @@ static NSString * kJAHPRecursiveRequestFlagProperty = @"com.jivesoftware.JAHPAut
 	// Get the scheme.
 
 	if (shouldAccept) {
-		scheme = [[url scheme] lowercaseString];
+		scheme = url.scheme.lowercaseString;
 		shouldAccept = (scheme != nil);
 
-		if ( ! shouldAccept ) {
+		if (!shouldAccept)
+		{
 			[self authenticatingHTTPProtocol:nil logWithFormat:@"decline request %@ (no scheme)", url];
 		}
 	}
 
-	// Do not try and handle requests to localhost
+	// Do not try and handle requests to localhost.
 
 	if (shouldAccept) {
-		shouldAccept = (![[url host] isEqualToString:@"127.0.0.1"]);
+		shouldAccept = ![url.host isEqualToString:@"127.0.0.1"];
 	}
 
 	// Look for "http" or "https".
@@ -457,14 +461,14 @@ static NSString * kJAHPRecursiveRequestFlagProperty = @"com.jivesoftware.JAHPAut
 	// NSURLProtocol subclass.
 
 	if (shouldAccept) {
-		shouldAccept = YES && [scheme isEqual:@"http"];
-		if ( ! shouldAccept ) {
-			shouldAccept = YES && [scheme isEqual:@"https"];
-		}
+		shouldAccept = [scheme isEqual:@"http"]
+			|| [scheme isEqual:@"https"];
 
-		if ( ! shouldAccept ) {
+		if (!shouldAccept)
+		{
 			[self authenticatingHTTPProtocol:nil logWithFormat:@"decline request %@ (scheme mismatch)", url];
-		} else {
+		}
+		else {
 			[self authenticatingHTTPProtocol:nil logWithFormat:@"accept request %@", url];
 		}
 	}
