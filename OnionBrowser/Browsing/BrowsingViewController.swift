@@ -305,7 +305,7 @@ class BrowsingViewController: UIViewController, TabDelegate {
 			addEmptyTabAndFocus()
 
 		case settingsBt:
-			present(SettingsViewController.instantiate())
+			showSettings()
 
 		default:
 			break
@@ -316,6 +316,16 @@ class BrowsingViewController: UIViewController, TabDelegate {
 		unfocusSearchField()
 
 		present(BookmarksViewController.instantiate(), bookmarksBt)
+	}
+
+	@discardableResult
+	@objc
+	func showSettings() -> UINavigationController {
+		let navC = SettingsViewController.instantiate()
+
+		present(navC)
+
+		return navC
 	}
 
 	@objc func keyboardWillShow(notification: Notification) {

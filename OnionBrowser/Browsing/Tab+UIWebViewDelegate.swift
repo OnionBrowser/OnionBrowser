@@ -275,6 +275,12 @@ extension Tab: UIWebViewDelegate {
 
 			return false
 
+		case "showDonate":
+			let navC = AppDelegate.shared?.browsingUi?.showSettings()
+			navC?.pushViewController(DonationViewController(), animated: false)
+
+			return false
+
 		default:
 			break
 		}

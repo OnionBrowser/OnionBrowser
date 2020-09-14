@@ -2,7 +2,22 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable: no">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+		<script type="text/javascript">
+			if (typeof __endless == "undefined") {
+			var __endless = {
+				showDonate: function() {
+					var iframe = document.createElement("iframe");
+					iframe.setAttribute("src", "endlessipc://showDonate");
+					iframe.setAttribute("height", "1px");
+					iframe.setAttribute("width", "1px");
+					document.documentElement.appendChild(iframe);
+					iframe.parentNode.removeChild(iframe);
+					iframe = null;
+				}
+			};
+			}
+		</script>
 		<style type="text/css">
 		html {
 			min-height: 100%;
@@ -144,7 +159,7 @@
 				</svg></a>
 			</li>
 			<li>
-				<a href="https://onionbrowser.com/donate">
+				<a href="javascript:__endless.showDonate();">
 				<svg width="17px" height="18px" viewBox="0 0 17 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 					<g id="Dec-3-2019" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 						<g id="Bridge-Config-4.10" transform="translate(-109.000000, -479.000000)">
@@ -155,8 +170,8 @@
 						</g>
 					</g>
 				</svg></a>
-				<a href="https://onionbrowser.com/donate">{{ Donate to Onion Browser }}</a>
-				<a href="https://onionbrowser.com/donate">
+				<a href="javascript:__endless.showDonate();">{{ Donate to Onion Browser }}</a>
+				<a href="javascript:__endless.showDonate();">
 				<svg width="8px" height="13px" viewBox="0 0 8 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 					<g id="Dec-3-2019" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 						<g id="10.2”-iPad" transform="translate(-516.000000, -632.000000)" fill="#7ED321">
