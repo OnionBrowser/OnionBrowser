@@ -61,6 +61,7 @@ extension Tab: UIActivityItemSource {
 				|| activityType == .airDrop
 				|| activityType == .copyToPasteboard
 				|| activityType == .saveToCameraRoll
+				|| activityType.rawValue == "com.apple.DocumentManagerUICore.SaveToFiles" // iOS 14
 				|| activityType.rawValue == "com.apple.CloudDocsUI.AddToiCloudDrive") {
 
 			// Return local file URL -> The file will be loaded and shared from there
