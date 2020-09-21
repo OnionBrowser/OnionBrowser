@@ -4,3 +4,4 @@
 - Kleine bugfixes.
 - Kleine updates van vertalingen naar het Frans, Japans, Nederlands, Thais, Catalaans en Gaelic.
 - Probleem opgelost op iOS 14, waarbij gebruikers geen documenten meer konden opslaan in de "Bestanden" -app.
+- Tor bijgewerkt naar 0.4.4.5.

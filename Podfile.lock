@@ -17,7 +17,7 @@ PODS:
   - Reachability (3.2)
   - ReactiveObjC (3.1.1)
   - SDCAlertView (10.0)
-  - Tor (403.6.1)
+  - Tor (404.5.1)
   - TUSafariActivity (1.0.4)
   - VForceTouch (0.0.2)
 
@@ -33,7 +33,7 @@ DEPENDENCIES:
   - OCSPCache (from `https://github.com/Psiphon-Labs/OCSPCache`)
   - Reachability (~> 3.2)
   - SDCAlertView (~> 10)
-  - Tor (from `https://raw.githubusercontent.com/iCepa/Tor.framework/v403.6.1/Tor.podspec`)
+  - Tor (from `https://raw.githubusercontent.com/iCepa/Tor.framework/v404.5.1/Tor.podspec`)
   - TUSafariActivity
   - VForceTouch
 
@@ -60,7 +60,7 @@ EXTERNAL SOURCES:
   OCSPCache:
     :git: https://github.com/Psiphon-Labs/OCSPCache
   Tor:
-    :podspec: https://raw.githubusercontent.com/iCepa/Tor.framework/v403.6.1/Tor.podspec
+    :podspec: https://raw.githubusercontent.com/iCepa/Tor.framework/v404.5.1/Tor.podspec
 
 CHECKOUT OPTIONS:
   FavIcon:
@@ -87,10 +87,10 @@ SPEC CHECKSUMS:
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
   SDCAlertView: 5fbc48cae6d7bf9781097e3f27883924ef3b922c
-  Tor: b99a19faafa5e6e6c9aa6489722b959c1bcb6d6c
+  Tor: 3da52dea4dc1f1f003dde7924c2994a75142a285
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
   VForceTouch: b5c3a28625269e1818cf915728173bda9f669d6b
 
-PODFILE CHECKSUM: 52dd01eecb5df98233b146ac9a11d63681aca2b6
+PODFILE CHECKSUM: 3966a364de4dfff040dccd8b8c134235d0010b20
 
 COCOAPODS: 1.9.3

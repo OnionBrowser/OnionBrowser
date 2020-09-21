@@ -4,3 +4,4 @@
 - Pequenas correções de bugs.
 - Pequenas atualizações de tradução para francês, japonês, holandês, tailandês, catalão e gaélico.
 - Corrigido problema no iOS 14, onde os usuários não podiam mais armazenar documentos no aplicativo "Arquivos".
+- Tor atualizado para 0.4.4.5.

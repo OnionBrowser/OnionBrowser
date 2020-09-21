@@ -2139,15 +2139,15 @@
 				"${PODS_ROOT}/Target Support Files/Pods-OnionBrowser2/Pods-OnionBrowser2-frameworks.sh",
 				"${PODS_ROOT}/Tor/Build/iOS/Tor.framework",
 				"${PODS_ROOT}/Tor/Build/iOS/Tor.framework.dSYM",
-				"${PODS_ROOT}/Tor/Build/iOS/4A7B879F-2015-3D65-B8F5-1F343F6CB0F0.bcsymbolmap",
-				"${PODS_ROOT}/Tor/Build/iOS/286ECF5A-8DE7-3AF4-AD0E-668049106419.bcsymbolmap",
+				"${PODS_ROOT}/Tor/Build/iOS/9A3A9F56-E427-307F-828E-4BC45FB36C43.bcsymbolmap",
+				"${PODS_ROOT}/Tor/Build/iOS/A4C86FF6-F3EA-3FBE-8721-42A7B226DDC7.bcsymbolmap",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Tor.framework",
 				"${DWARF_DSYM_FOLDER_PATH}/Tor.framework.dSYM",
-				"${BUILT_PRODUCTS_DIR}/4A7B879F-2015-3D65-B8F5-1F343F6CB0F0.bcsymbolmap",
-				"${BUILT_PRODUCTS_DIR}/286ECF5A-8DE7-3AF4-AD0E-668049106419.bcsymbolmap",
+				"${BUILT_PRODUCTS_DIR}/9A3A9F56-E427-307F-828E-4BC45FB36C43.bcsymbolmap",
+				"${BUILT_PRODUCTS_DIR}/A4C86FF6-F3EA-3FBE-8721-42A7B226DDC7.bcsymbolmap",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

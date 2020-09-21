@@ -8,6 +8,7 @@
 - Small translation updates to French, Japanese, Dutch, Thai, Catalan and Gaelic.
 - Replaced link to https://onionbrowser.com/donate on start page with display of In-App-Purchase scene.
 - Fixed issue on iOS 14, where users couldn't store documents to "Files" app anymore.
+- Updated Tor to 0.4.4.5.
 
 ## 2.6.2
 - Added Italian translation.

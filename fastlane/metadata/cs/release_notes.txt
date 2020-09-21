@@ -4,3 +4,4 @@
 - Malé opravy chyb.
 - Malé překladové aktualizace do francouzštiny, japonštiny, holandštiny, thajštiny, katalánštiny a gaelštiny.
 - Opravený problém v systému iOS 14, kdy uživatelé už nemohli ukládat dokumenty do aplikace „Soubory“.
+- Aktualizováno Tor na 0.4.4.5.

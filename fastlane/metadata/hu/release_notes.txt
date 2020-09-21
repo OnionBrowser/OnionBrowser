@@ -4,3 +4,4 @@
 - Kis hibajavítások.
 - Kis fordítási frissítések francia, japán, holland, thai, katalán és gael nyelvre.
 - Javítva az iOS 14-es probléma, ahol a felhasználók már nem tárolhatták a dokumentumokat a „Fájlok” alkalmazásba.
+- Tor frissítve 0.4.4.5-re.

@@ -4,3 +4,4 @@
 - Kleine Bugfixes.
 - Kleine Übersetzungsaktualisierungen für Französisch, Japanisch, Niederländisch, Thailändisch, Katalanisch und Gälisch.
 - Problem unter iOS 14 behoben, bei dem Benutzer keine Dokumente mehr in der App "Dateien" speichern konnten.
+- Tor auf 0.4.4.5 aktualisiert.
