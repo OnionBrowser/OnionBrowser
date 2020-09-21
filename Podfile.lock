@@ -3,7 +3,7 @@ PODS:
   - DTFoundation/Core (1.7.15)
   - DTFoundation/DTASN1 (1.7.15):
     - DTFoundation/Core
-  - Eureka (5.2.1)
+  - Eureka (5.3.0)
   - FavIcon (3.0.6)
   - ImageRow (4.0.0):
     - Eureka (~> 5.0)
@@ -24,7 +24,7 @@ PODS:
 DEPENDENCIES:
   - CSPHeader (~> 0.5)
   - DTFoundation/DTASN1
-  - Eureka (~> 5.2)
+  - Eureka (~> 5.3)
   - FavIcon (from `https://github.com/tladesignz/FavIcon.git`, branch `swift-5`)
   - ImageRow (~> 4.0)
   - IPtProxy (~> 0.1)
@@ -76,7 +76,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   CSPHeader: e97901a17790aa81d2ff07d34cad29760a7093f7
   DTFoundation: 767ca882209ef4d5132ec7e702526d5ed5bb71a2
-  Eureka: c883105488e05bc65539f583246ecf9657cabbfe
+  Eureka: 49239596c9d2eed9ab523990c34de62b6feac9f0
   FavIcon: 9fd386d96324ce0f6063732f8bf6c7f1d5bf17a3
   ImageRow: e65b2e1a33f89062bf2a553a2aad61d975eb7428
   IPtProxy: 15e1c3b6d828bc4e7dadaaeedc7ddf1377a48ca8
@@ -91,6 +91,6 @@ SPEC CHECKSUMS:
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
   VForceTouch: b5c3a28625269e1818cf915728173bda9f669d6b
 
-PODFILE CHECKSUM: 89329e3897f2cbbc3c744e95e6a4c905fd3a441f
+PODFILE CHECKSUM: 52dd01eecb5df98233b146ac9a11d63681aca2b6
 
 COCOAPODS: 1.9.3
