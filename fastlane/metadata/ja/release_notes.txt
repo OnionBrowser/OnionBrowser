@@ -2,4 +2,5 @@
 -Snowflakeブリッジのサポートが追加されました。
 -「Onion-Location」HTTPヘッダーのサポートが追加されました。 （https://community.torproject.org/onion-services/advanced/onion-location/を参照）
 -小さなバグ修正。
--フランス語、日本語、オランダ語、タイ語への小さな翻訳の更新。
+-フランス語、日本語、オランダ語、タイ語、カタロニア語、ゲール語への小さな翻訳の更新。
+-iOS 14でユーザーがドキュメントを「ファイル」アプリに保存できなくなった問題を修正しました。

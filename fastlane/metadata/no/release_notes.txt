@@ -2,4 +2,5 @@
 - Lagt til Snowflake bridge-støtte.
 - Lagt til støtte for HTTP-overskriften "Onion-Location". (Se https://community.torproject.org/onion-services/advanced/onion-location/)
 - Små feilrettinger.
-- Små oversettelsesoppdateringer til fransk, japansk, nederlandsk og thai.
+- Små oversettelsesoppdateringer til fransk, japansk, nederlandsk, thai, katalansk og gælisk.
+- Løst problem på iOS 14, der brukere ikke lenger kunne lagre dokumenter i "Files" -appen.

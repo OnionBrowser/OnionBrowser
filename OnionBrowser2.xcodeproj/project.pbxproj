@@ -507,19 +507,6 @@
 		A094CD1C2344CE2C00C77E55 /* name.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = name.txt; sourceTree = "<group>"; };
 		A094CD1D2344CE2C00C77E55 /* marketing_url.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = marketing_url.txt; sourceTree = "<group>"; };
 		A094CD1E2344CE2C00C77E55 /* description.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = description.txt; sourceTree = "<group>"; };
-		A094CD202344CE2C00C77E55 /* phone_number.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = phone_number.txt; sourceTree = "<group>"; };
-		A094CD212344CE2C00C77E55 /* address_line1.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = address_line1.txt; sourceTree = "<group>"; };
-		A094CD222344CE2C00C77E55 /* country.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = country.txt; sourceTree = "<group>"; };
-		A094CD232344CE2C00C77E55 /* city_name.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = city_name.txt; sourceTree = "<group>"; };
-		A094CD242344CE2C00C77E55 /* address_line3.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = address_line3.txt; sourceTree = "<group>"; };
-		A094CD252344CE2C00C77E55 /* address_line2.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = address_line2.txt; sourceTree = "<group>"; };
-		A094CD262344CE2C00C77E55 /* trade_name.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = trade_name.txt; sourceTree = "<group>"; };
-		A094CD272344CE2C00C77E55 /* email_address.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = email_address.txt; sourceTree = "<group>"; };
-		A094CD282344CE2C00C77E55 /* is_displayed_on_app_store.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = is_displayed_on_app_store.txt; sourceTree = "<group>"; };
-		A094CD292344CE2C00C77E55 /* last_name.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = last_name.txt; sourceTree = "<group>"; };
-		A094CD2A2344CE2C00C77E55 /* postal_code.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = postal_code.txt; sourceTree = "<group>"; };
-		A094CD2B2344CE2C00C77E55 /* first_name.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = first_name.txt; sourceTree = "<group>"; };
-		A094CD2C2344CE2C00C77E55 /* state.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = state.txt; sourceTree = "<group>"; };
 		A094CD2E2344CE2C00C77E55 /* privacy_url.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = privacy_url.txt; sourceTree = "<group>"; };
 		A094CD2F2344CE2C00C77E55 /* subtitle.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = subtitle.txt; sourceTree = "<group>"; };
 		A094CD302344CE2C00C77E55 /* support_url.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = support_url.txt; sourceTree = "<group>"; };
@@ -554,13 +541,6 @@
 		A094CD4F2344CE2C00C77E55 /* marketing_url.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = marketing_url.txt; sourceTree = "<group>"; };
 		A094CD502344CE2C00C77E55 /* description.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = description.txt; sourceTree = "<group>"; };
 		A094CD512344CE2C00C77E55 /* primary_second_sub_category.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = primary_second_sub_category.txt; sourceTree = "<group>"; };
-		A094CD532344CE2C00C77E55 /* phone_number.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = phone_number.txt; sourceTree = "<group>"; };
-		A094CD542344CE2C00C77E55 /* demo_user.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = demo_user.txt; sourceTree = "<group>"; };
-		A094CD552344CE2C00C77E55 /* notes.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = notes.txt; sourceTree = "<group>"; };
-		A094CD562344CE2C00C77E55 /* email_address.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = email_address.txt; sourceTree = "<group>"; };
-		A094CD572344CE2C00C77E55 /* last_name.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = last_name.txt; sourceTree = "<group>"; };
-		A094CD582344CE2C00C77E55 /* first_name.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = first_name.txt; sourceTree = "<group>"; };
-		A094CD592344CE2C00C77E55 /* demo_password.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = demo_password.txt; sourceTree = "<group>"; };
 		A094CD5B2344CE2C00C77E55 /* privacy_url.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = privacy_url.txt; sourceTree = "<group>"; };
 		A094CD5C2344CE2C00C77E55 /* subtitle.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = subtitle.txt; sourceTree = "<group>"; };
 		A094CD5D2344CE2C00C77E55 /* support_url.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = support_url.txt; sourceTree = "<group>"; };
@@ -800,6 +780,13 @@
 		A0C3FD0C2438A0C200FDB9BE /* marketing_url.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = marketing_url.txt; sourceTree = "<group>"; };
 		A0C9531923C6426C006D7A35 /* FixedFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedFormViewController.swift; sourceTree = "<group>"; };
 		A0D9008A24095F5C0046C9B3 /* AltSvcHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AltSvcHeader.swift; sourceTree = "<group>"; };
+		A0DB0F182518B94800B2D779 /* demo_user.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = demo_user.txt; sourceTree = "<group>"; };
+		A0DB0F192518B94800B2D779 /* notes.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = notes.txt; sourceTree = "<group>"; };
+		A0DB0F1A2518B94800B2D779 /* last_name.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = last_name.txt; sourceTree = "<group>"; };
+		A0DB0F1B2518B94800B2D779 /* demo_password.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = demo_password.txt; sourceTree = "<group>"; };
+		A0DB0F1C2518B94800B2D779 /* email_address.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = email_address.txt; sourceTree = "<group>"; };
+		A0DB0F1D2518B94800B2D779 /* first_name.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = first_name.txt; sourceTree = "<group>"; };
+		A0DB0F1E2518B94800B2D779 /* phone_number.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = phone_number.txt; sourceTree = "<group>"; };
 		A0F2FB052423AB92003CC61A /* AboutSecurityLevelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutSecurityLevelsViewController.swift; sourceTree = "<group>"; };
 		A0F66E1724475B0C0094FEB2 /* release_notes.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = release_notes.txt; sourceTree = "<group>"; };
 		A0FE4E362458551400DAC133 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1398,7 +1385,6 @@
 				A094CD392344CE2C00C77E55 /* secondary_category.txt */,
 				A094CD382344CE2C00C77E55 /* secondary_first_sub_category.txt */,
 				A094CD3A2344CE2C00C77E55 /* secondary_second_sub_category.txt */,
-				A094CD1F2344CE2C00C77E55 /* trade_representative_contact_information */,
 				A046AE5C234795B000E6B3A5 /* ar-SA */,
 				A094CEA9234504E800C77E55 /* ca */,
 				A094CE932345040A00C77E55 /* cs */,
@@ -1493,26 +1479,6 @@
 			path = "en-US";
 			sourceTree = "<group>";
 		};
-		A094CD1F2344CE2C00C77E55 /* trade_representative_contact_information */ = {
-			isa = PBXGroup;
-			children = (
-				A094CD212344CE2C00C77E55 /* address_line1.txt */,
-				A094CD252344CE2C00C77E55 /* address_line2.txt */,
-				A094CD242344CE2C00C77E55 /* address_line3.txt */,
-				A094CD232344CE2C00C77E55 /* city_name.txt */,
-				A094CD222344CE2C00C77E55 /* country.txt */,
-				A094CD272344CE2C00C77E55 /* email_address.txt */,
-				A094CD2B2344CE2C00C77E55 /* first_name.txt */,
-				A094CD282344CE2C00C77E55 /* is_displayed_on_app_store.txt */,
-				A094CD292344CE2C00C77E55 /* last_name.txt */,
-				A094CD202344CE2C00C77E55 /* phone_number.txt */,
-				A094CD2A2344CE2C00C77E55 /* postal_code.txt */,
-				A094CD2C2344CE2C00C77E55 /* state.txt */,
-				A094CD262344CE2C00C77E55 /* trade_name.txt */,
-			);
-			path = trade_representative_contact_information;
-			sourceTree = "<group>";
-		};
 		A094CD2D2344CE2C00C77E55 /* ru */ = {
 			isa = PBXGroup;
 			children = (
@@ -1567,13 +1533,13 @@
 		A094CD522344CE2C00C77E55 /* review_information */ = {
 			isa = PBXGroup;
 			children = (
-				A094CD542344CE2C00C77E55 /* demo_user.txt */,
-				A094CD592344CE2C00C77E55 /* demo_password.txt */,
-				A094CD562344CE2C00C77E55 /* email_address.txt */,
-				A094CD582344CE2C00C77E55 /* first_name.txt */,
-				A094CD572344CE2C00C77E55 /* last_name.txt */,
-				A094CD552344CE2C00C77E55 /* notes.txt */,
-				A094CD532344CE2C00C77E55 /* phone_number.txt */,
+				A0DB0F182518B94800B2D779 /* demo_user.txt */,
+				A0DB0F1B2518B94800B2D779 /* demo_password.txt */,
+				A0DB0F1C2518B94800B2D779 /* email_address.txt */,
+				A0DB0F1D2518B94800B2D779 /* first_name.txt */,
+				A0DB0F1A2518B94800B2D779 /* last_name.txt */,
+				A0DB0F192518B94800B2D779 /* notes.txt */,
+				A0DB0F1E2518B94800B2D779 /* phone_number.txt */,
 			);
 			path = review_information;
 			sourceTree = "<group>";

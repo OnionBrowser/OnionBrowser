@@ -5,8 +5,9 @@
 - Added Snowflake bridge support.
 - Added support for the "Onion-Location" HTTP header. (See https://community.torproject.org/onion-services/advanced/onion-location/)
 - Small bugfixes.
-- Small translation updates to French, Japanese, Dutch and Thai.
+- Small translation updates to French, Japanese, Dutch, Thai, Catalan and Gaelic.
 - Replaced link to https://onionbrowser.com/donate on start page with display of In-App-Purchase scene.
+- Fixed issue on iOS 14, where users couldn't store documents to "Files" app anymore.
 
 ## 2.6.2
 - Added Italian translation.

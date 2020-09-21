@@ -1,5 +1,6 @@
-- Használja a MOAT szolgáltatás Meek hídját közvetlenül Tor nélkül, az eredeti szándék szerint.
+- Használja a MOAT szolgáltatás Meek hídját közvetlenül Tor nélkül, az eredeti szándéknak megfelelően.
 - Hozzáadott hópehely híd támogatás.
-- Hozzáadott támogatás az "Onion-Location" HTTP fejléchez. (Lásd: https://community.torproject.org/onion-services/advanced/onion-location/)
+- Hozzáadta az "Onion-Location" HTTP fejlécet. (Lásd: https://community.torproject.org/onion-services/advanced/onion-location/)
 - Kis hibajavítások.
-- Kis fordítási frissítések francia, japán, holland és thai nyelvre.
+- Kis fordítási frissítések francia, japán, holland, thai, katalán és gael nyelvre.
+- Javítva az iOS 14-es probléma, ahol a felhasználók már nem tárolhatták a dokumentumokat a „Fájlok” alkalmazásba.

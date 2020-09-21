@@ -2,4 +2,5 @@
 - Dodana podrška za most Snowflake.
 - Dodana podrška za HTTP zaglavlje "Onion-Location". (Pogledajte https://community.torproject.org/onion-services/advanced/onion-location/)
 - Mali ispravci programskih pogrešaka.
-- Mala ažuriranja prijevoda na francuski, japanski, nizozemski i tajlandski.
+- Mala ažuriranja prijevoda na francuski, japanski, nizozemski, tajlandski, katalonski i galski.
+- Ispravljen problem na iOS-u 14, gdje korisnici više nisu mogli pohranjivati dokumente u aplikaciju "Datoteke".

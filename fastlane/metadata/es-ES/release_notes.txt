@@ -2,4 +2,5 @@
 - Se agregó soporte para el puente Snowflake.
 - Se agregó soporte para el encabezado HTTP "Onion-Location". (Ver https://community.torproject.org/onion-services/advanced/onion-location/)
 - Pequeñas correcciones de errores.
-- Pequeñas actualizaciones de traducción al francés, japonés, holandés y tailandés.
+- Pequeñas actualizaciones de traducción al francés, japonés, holandés, tailandés, catalán y gaélico.
+- Se solucionó el problema en iOS 14, donde los usuarios ya no podían almacenar documentos en la aplicación "Archivos".

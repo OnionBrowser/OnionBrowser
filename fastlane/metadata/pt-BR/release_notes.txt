@@ -2,4 +2,5 @@
 - Adicionado suporte para ponte de floco de neve.
 - Adicionado suporte para o cabeçalho HTTP "Onion-Location". (Consulte https://community.torproject.org/onion-services/advanced/onion-location/)
 - Pequenas correções de bugs.
-- Pequenas atualizações de tradução para francês, japonês, holandês e tailandês.
+- Pequenas atualizações de tradução para francês, japonês, holandês, tailandês, catalão e gaélico.
+- Corrigido problema no iOS 14, onde os usuários não podiam mais armazenar documentos no aplicativo "Arquivos".

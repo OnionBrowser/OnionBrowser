@@ -2,4 +2,5 @@
 - Ondersteuning voor Snowflake-brug toegevoegd.
 - Ondersteuning toegevoegd voor de HTTP-header "Onion-Location". (Zie https://community.torproject.org/onion-services/advanced/onion-location/)
 - Kleine bugfixes.
-- Kleine updates van vertalingen naar het Frans, Japans, Nederlands en Thais.
+- Kleine updates van vertalingen naar het Frans, Japans, Nederlands, Thais, Catalaans en Gaelic.
+- Probleem opgelost op iOS 14, waarbij gebruikers geen documenten meer konden opslaan in de "Bestanden" -app.
