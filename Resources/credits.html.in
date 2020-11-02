@@ -39,10 +39,13 @@
 	<li><b>liblzma</b>: 5.2.5</li>
 </ul>
 
-<p><strong>Official Site</strong><br><a href="https://onionbrowser.com">https://onionbrowser.com</a> (<a href="http://tigas3l7uusztiqu.onion/onionbrowser/">.onion</a>)<br>
-<strong>Support:</strong><br><a href="https://github.com/OnionBrowser/OnionBrowser/wiki/Help">https://github.com/OnionBrowser/OnionBrowser/wiki/Help</a> (<a href="http://tigas3l7uusztiqu.onion/onionbrowser/help/">.onion</a>)</p>
+<p><strong>Official Site</strong><br>
+<a href="https://onionbrowser.com">https://onionbrowser.com</a><br>
+<strong>Support:</strong><br>
+<a href="https://github.com/OnionBrowser/OnionBrowser/wiki/Help">https://github.com/OnionBrowser/OnionBrowser/wiki/Help</a>
+</p>
 
-<p>Onion Browser is developed by Mike Tigas (<a href="https://mike.tig.as/">https://mike.tig.as/</a> | <a href="http://tigas3l7uusztiqu.onion/">tigas3l7uusztiqu.onion</a>) with assistance from the Guardian Project (<a href="https://guardianproject.info/">guardianproject.info</a>). Benjamin Erhart (<a href="https://die.netzarchitekten.com/">Die Netzarchitekten</a>) and Carrie Winfrey (<a href="http://okthankscreative.com/">okthankscreative.com</a>) contributed additional design and development effort for Onion Browser 2.0.</p>
+<p>Onion Browser is developed by Mike Tigas (<a href="https://mike.tig.as/">https://mike.tig.as/</a>) with assistance from the Guardian Project (<a href="https://guardianproject.info/">guardianproject.info</a>). Benjamin Erhart (<a href="https://die.netzarchitekten.com/">Die Netzarchitekten</a>) and Carrie Winfrey (<a href="http://okthankscreative.com/">okthankscreative.com</a>) contributed additional design and development effort for Onion Browser 2.0.</p>
 <p>Work on Onion Browser is supported by individual donors and organizations
 committed to furthering free speech and digital privacy. Please consider donating to support continued development of Onion Browser and other Tor iOS initiatives:<br><a href="https://onionbrowser.com/donate">https://onionbrowser.com/donate</a></p>
 <p>Onion Browser 2.0 and newer is based on the open-source Endless Browser; special thanks to joshua stein for creating Endless and for granting permission to use it in Onion Browser.</p>
