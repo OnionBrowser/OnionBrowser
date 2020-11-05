@@ -1,13 +1,13 @@
 PODS:
-  - CSPHeader (0.5.0)
-  - DTFoundation/Core (1.7.15)
-  - DTFoundation/DTASN1 (1.7.15):
+  - CSPHeader (0.6.0)
+  - DTFoundation/Core (1.7.16)
+  - DTFoundation/DTASN1 (1.7.16):
     - DTFoundation/Core
-  - Eureka (5.3.0)
+  - Eureka (5.3.2)
   - FavIcon (3.0.6)
   - ImageRow (4.0.0):
     - Eureka (~> 5.0)
-  - IPtProxy (0.1.0)
+  - IPtProxy (0.3.0)
   - MBProgressHUD (1.2.0)
   - OCMock (3.7.1)
   - OCSPCache (0.1.1):
@@ -22,12 +22,12 @@ PODS:
   - VForceTouch (0.0.2)
 
 DEPENDENCIES:
-  - CSPHeader (~> 0.5)
+  - CSPHeader (~> 0.6)
   - DTFoundation/DTASN1
-  - Eureka (~> 5.3)
+  - Eureka (~> 5.3.2)
   - FavIcon (from `https://github.com/tladesignz/FavIcon.git`, branch `swift-5`)
   - ImageRow (~> 4.0)
-  - IPtProxy (~> 0.1)
+  - IPtProxy (~> 0.3)
   - MBProgressHUD (~> 1.2)
   - OCMock
   - OCSPCache (from `https://github.com/Psiphon-Labs/OCSPCache`)
@@ -74,12 +74,12 @@ CHECKOUT OPTIONS:
     :git: https://github.com/tladesignz/Tor.framework.git
 
 SPEC CHECKSUMS:
-  CSPHeader: e97901a17790aa81d2ff07d34cad29760a7093f7
-  DTFoundation: 767ca882209ef4d5132ec7e702526d5ed5bb71a2
-  Eureka: 49239596c9d2eed9ab523990c34de62b6feac9f0
+  CSPHeader: b28ad862745eb26644109f3a3aa3f5e318dcb9fe
+  DTFoundation: e7781d9fd2f202bfd451fbbf8cab71ce83b46498
+  Eureka: 1c2b8b5892bfb0e972d0fe05f8c09fd89f8625ec
   FavIcon: 9fd386d96324ce0f6063732f8bf6c7f1d5bf17a3
   ImageRow: e65b2e1a33f89062bf2a553a2aad61d975eb7428
-  IPtProxy: 15e1c3b6d828bc4e7dadaaeedc7ddf1377a48ca8
+  IPtProxy: f26d192a7e2252f0528dc8552ea6e1f926baf62e
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   OCMock: 75fbeaa46a9b11f8c182bbb1d1f7e9a35ccc9955
   OCSPCache: 090d054dbf8f31602896d2527a8bd69d49515695
@@ -91,6 +91,6 @@ SPEC CHECKSUMS:
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
   VForceTouch: b5c3a28625269e1818cf915728173bda9f669d6b
 
-PODFILE CHECKSUM: 3966a364de4dfff040dccd8b8c134235d0010b20
+PODFILE CHECKSUM: 7338207f547330aa2d173a996dba7924d03b9271
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.0
