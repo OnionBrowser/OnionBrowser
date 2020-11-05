@@ -1404,8 +1404,6 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 
 	CSPHeader *cspHeader = [[CSPHeader alloc] initFromHeaders: responseHeaders];
 
-	NoneSource *none = [[NoneSource alloc] init];
-
 	// Allow styles and images, nothing else. However, don't open up styles and
 	// images restrictions further than the original server response allows.
 	if (cspMode == ContentPolicyStrict) {
@@ -1413,7 +1411,7 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 
 		Directive *style = [cspHeader get:StyleDirective.self];
 		if (!style) {
-			style = [[StyleDirective alloc] initWithSources:@[[[UnsafeInlineSource alloc] init], all]];
+			style = [[StyleDirective alloc] initWithSources:@[[UnsafeInlineSource new], all]];
 		}
 
 		Directive *img = [cspHeader get:ImgDirective.self];
@@ -1421,12 +1419,12 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 			img = [[ImgDirective alloc] initWithSources:@[all]];
 		}
 
-		DefaultDirective *deflt = [[DefaultDirective alloc] initWithSources:@[none]];
+		DefaultDirective *deflt = [DefaultDirective new];
 		SandboxDirective *sandbox = [[SandboxDirective alloc]
-									 initWithSources:@[[[AllowFormsSource alloc] init],
-													   [[AllowTopNavigationSource alloc] init],
-													   [[AllowScriptsSource alloc] init],
-													   [[AllowSameOriginSource alloc] init], // BUGFIX #267: Some sites need this, esp. DuckDuckGo!
+									 initWithSources:@[[AllowFormsSource new],
+													   [AllowTopNavigationSource new],
+													   [AllowScriptsSource new],
+													   [AllowSameOriginSource new], // BUGFIX #267: Some sites need this, esp. DuckDuckGo!
 									 ]];
 
 		cspHeader = [[CSPHeader alloc] initWithDirectives:@[deflt, style, img, sandbox]];
@@ -1441,11 +1439,11 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 			[cspHeader addOrReplaceDirective:[[ConnectDirective alloc] initWithSources:@[[[Source alloc] initWithString:@"hcaptcha.com"]]]];
 		}
 		else {
-			[cspHeader addOrReplaceDirective:[[ConnectDirective alloc] initWithSources:@[none]]];
+			[cspHeader addOrReplaceDirective:[ConnectDirective new]];
 		}
 
-		[cspHeader addOrReplaceDirective:[[MediaDirective alloc] initWithSources:@[none]]];
-		[cspHeader addOrReplaceDirective:[[ObjectDirective alloc] initWithSources:@[none]]];
+		[cspHeader addOrReplaceDirective:[MediaDirective new]];
+		[cspHeader addOrReplaceDirective:[ObjectDirective new]];
 	}
 
 	// Always allow communication within the app.
@@ -1454,6 +1452,10 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 	[cspHeader prependDirective:[[ChildDirective alloc] initWithSources:@[schemeSource]]];
 	[cspHeader prependDirective:[[FrameDirective alloc] initWithSources:@[schemeSource]]];
 	[cspHeader prependDirective:[[DefaultDirective alloc] initWithSources:@[schemeSource]]];
+
+	// Remove reporting directives, as these may leak info and our injections might confuse site operators.
+	// Thank you very much, DuckDuckGo for reporting this!
+	[cspHeader removeDirectives:@[[ReportUriDirective new], [ReportToDirective new]]];
 
 	// Allow our script to run.
 	[cspHeader allowInjectedScriptWithNonce:[self cspNonce]];
