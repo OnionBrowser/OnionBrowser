@@ -215,15 +215,29 @@ class OnionManager : NSObject {
 	}
 
 	func startIObfs4Proxy() {
-		IPtProxyStartObfs4Proxy(nil, false, false)
+		#if DEBUG
+		let ennableLogging = true
+		#else
+		let ennableLogging = false
+		#endif
+
+		IPtProxyStartObfs4Proxy("DEBUG", ennableLogging, true)
 
 		stopSnowflake()
+	}
+
+	func stopIObfs4Proxy() {
+		print("[\(String(describing: type(of: self)))] #stopIObfs4Proxy")
+
+		IPtProxyStopObfs4Proxy()
 	}
 
 	func startSnowflake() {
 		IPtProxyStartSnowflake(
 			"stun:stun.l.google.com:19302", "https://snowflake-broker.azureedge.net/",
-			"ajax.aspnetcdn.com", nil, true, false, false, 3)
+			"ajax.aspnetcdn.com", nil, true, false, true, 3)
+
+		stopIObfs4Proxy()
 	}
 
 	func stopSnowflake() {
@@ -465,6 +479,7 @@ class OnionManager : NSObject {
 		torThread?.cancel()
 		torThread = nil
 
+		stopIObfs4Proxy()
 		stopSnowflake()
 
 		state = .stopped
@@ -499,6 +514,7 @@ class OnionManager : NSObject {
 			return customBridges ?? []
 
 		default:
+			stopIObfs4Proxy()
 			stopSnowflake()
 			return []
 		}
