@@ -243,7 +243,7 @@ class OnionManager : NSObject {
 	func stopSnowflake() {
 		print("[\(String(describing: type(of: self)))] #stopSnowflake")
 
-//		IPtProxyStopSnowflake()
+		IPtProxyStopSnowflake()
 	}
 
 	func startTor(delegate: OnionManagerDelegate?) {
