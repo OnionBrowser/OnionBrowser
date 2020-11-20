@@ -15,11 +15,11 @@ Please see the [LICENSE][license] file for usage and redistribution terms.
 
 ---
 
-* **Onion Browser**: 2.7.0 - See [official release history][releases] and [changelog][changelog].
-* **[Tor.framework][Tor.framework]**: 404.5.1
-* **[Tor][tor]**: 0.4.4.5
+* **Onion Browser**: 2.7.1 - See [official release history][releases] and [changelog][changelog].
+* **[Tor.framework][Tor.framework]**: 404.6.1
+* **[Tor][tor]**: 0.4.4.6
 * **[libevent][libevent]**: 2.1.11
-* **[OpenSSL][openssl]**: 1.1.1g
+* **[OpenSSL][openssl]**: 1.1.1h
 * **[liblzma][liblzma]**: 5.2.5
 
 [official]: https://onionbrowser.com/

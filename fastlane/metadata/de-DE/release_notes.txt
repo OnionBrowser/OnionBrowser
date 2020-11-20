@@ -1,7 +1,5 @@
-- Verwendet die dedizierte Meek-Brücke des MOAT-Dienstes direkt ohne Tor, wie ursprünglich vorgesehen.
-- Unterstützung für Snowflake Brücke hinzugefügt.
-- Unterstützung für den HTTP-Header "Onion-Location" hinzugefügt. (Siehe https://community.torproject.org/onion-services/advanced/onion-location/)
-- Kleine Bugfixes.
-- Kleine Übersetzungsaktualisierungen für Französisch, Japanisch, Niederländisch, Thailändisch, Katalanisch und Gälisch.
-- Problem unter iOS 14 behoben, bei dem Benutzer keine Dokumente mehr in der App "Dateien" speichern konnten.
-- Tor auf 0.4.4.5 aktualisiert.
+- Snowflake Stop und Neustart behoben.
+- Albanische Übersetzung hinzugefügt.
+- Kleine Updates für Kroatisch, Hebräisch, Japanisch und Spanisch.
+- Problem mit dem Content Security Header behoben. (Danke DuckDuckGo Team!)
+- Tor auf 0.4.4.6 aktualisiert.

@@ -1,7 +1,5 @@
-- MOAT hizmetinin özel Meek köprüsünü orijinal amaçlandığı gibi doğrudan Tor olmadan kullanın.
-- Snowflake köprü desteği eklendi.
-- "Onion-Location" HTTP başlığı için destek eklendi. (Bkz. Https://community.torproject.org/onion-services/advanced/onion-location/)
-- Küçük hata düzeltmeleri.
-- Fransızca, Japonca, Hollandaca, Tayca, Katalanca ve Galce için küçük çeviri güncellemeleri.
-- iOS 14'te, kullanıcıların artık belgeleri "Dosyalar" uygulamasında saklayamaması sorunu düzeltildi.
-- Tor, 0.4.4.5'e güncellendi.
+- Kar Tanesi'nin durması ve yeniden başlatılması düzeltildi.
+- Arnavutça çeviri eklendi.
+- Hırvatça, İbranice, Japonca ve İspanyolca için küçük güncellemeler.
+- İçerik Güvenliği Başlığı ile ilgili sorun düzeltildi. (DuckDuckGo ekibine teşekkürler!)
+- Tor, 0.4.4.6'e güncellendi.

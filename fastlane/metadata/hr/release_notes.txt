@@ -1,7 +1,5 @@
-- Koristite namjenski Moek most usluge MOAT izravno bez Tor-a kako je prvotno zamišljeno.
-- Dodana podrška za most Snowflake.
-- Dodana podrška za HTTP zaglavlje "Onion-Location". (Pogledajte https://community.torproject.org/onion-services/advanced/onion-location/)
-- Mali ispravci programskih pogrešaka.
-- Mala ažuriranja prijevoda na francuski, japanski, nizozemski, tajlandski, katalonski i galski.
-- Ispravljen problem na iOS-u 14, gdje korisnici više nisu mogli pohranjivati dokumente u aplikaciju "Datoteke".
-- Ažuriran Tor na 0.4.4.5.
+- Ispravljeno zaustavljanje i ponovno pokretanje pahuljice.
+- Dodan prijevod na albanski jezik.
+- Mala ažuriranja na hrvatski, hebrejski, japanski i španjolski.
+- Ispravljen problem sa zaglavljem Content Content. (Hvala DuckDuckGo timu!)
+- Ažuriran Tor na 0.4.4.6.

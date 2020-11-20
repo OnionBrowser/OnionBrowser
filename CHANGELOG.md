@@ -1,5 +1,13 @@
 #  Onion Browser 2 Changelog
 
+## 2.7.1
+
+- Fixed Snowflake stop and restart.
+- Added Albanian translation.
+- Small updates to Croatian, Hebrew, Japanese and Spanish.
+- Fixed issue with Content Security Header. (Thanks DuckDuckGo team!)
+- Updated Tor to 0.4.4.6.
+
 ## 2.7.0
 - Use the dedicated Meek bridge of the MOAT service directly without Tor as originally intended.
 - Added Snowflake bridge support.

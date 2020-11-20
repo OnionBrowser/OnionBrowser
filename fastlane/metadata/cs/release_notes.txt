@@ -1,7 +1,5 @@
-- Použijte vyhrazený Meek most služby MOAT přímo bez Tor, jak bylo původně zamýšleno.
-- Přidána podpora mostu Snowflake.
-- Přidána podpora pro hlavičku HTTP „Onion-Location“. (Viz https://community.torproject.org/onion-services/advanced/onion-location/)
-- Malé opravy chyb.
-- Malé překladové aktualizace do francouzštiny, japonštiny, holandštiny, thajštiny, katalánštiny a gaelštiny.
-- Opravený problém v systému iOS 14, kdy uživatelé už nemohli ukládat dokumenty do aplikace „Soubory“.
-- Aktualizováno Tor na 0.4.4.5.
+- Opraveno zastavení a restart sněhové vločky.
+- Přidán albánský překlad.
+- Malé aktualizace chorvatštiny, hebrejštiny, japonštiny a španělštiny.
+- Opravený problém s hlavičkou zabezpečení obsahu. (Díky týmu DuckDuckGo!)
+- Aktualizováno Tor na 0.4.4.6.

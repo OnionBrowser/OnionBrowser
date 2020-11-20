@@ -1,7 +1,5 @@
-- Utilitzeu el pont Meek dedicat del servei MOAT directament sense Tor tal i com es pretenia originalment.
-- Afegit suport de pont de floc de neu.
-- S'ha afegit suport per a la capçalera HTTP "Onion-Location". (Consulteu https://community.torproject.org/onion-services/advanced/onion-location/)
-- Petites correccions d'errors.
-- Petites actualitzacions de traducció a francès, japonès, holandès, tailandès, català i gaèlic.
-- Solució del problema a iOS 14, en què els usuaris ja no podien emmagatzemar documents a l'aplicació "Fitxers".
-- Tor actualitzat a 0.4.4.5.
+- S'ha corregit la parada i el reinici del floc de neu.
+- S'ha afegit traducció albanès.
+- Petites actualitzacions al croat, hebreu, japonès i espanyol.
+- Solució del problema amb la capçalera de seguretat del contingut. (Gràcies a l'equip DuckDuckGo!)
+- Tor actualitzat a 0.4.4.6.

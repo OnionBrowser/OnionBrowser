@@ -1,7 +1,5 @@
-- Gebruik de speciale Meek-bridge van de MOAT-service rechtstreeks zonder Tor zoals oorspronkelijk bedoeld.
-- Ondersteuning voor Snowflake-brug toegevoegd.
-- Ondersteuning toegevoegd voor de HTTP-header "Onion-Location". (Zie https://community.torproject.org/onion-services/advanced/onion-location/)
-- Kleine bugfixes.
-- Kleine updates van vertalingen naar het Frans, Japans, Nederlands, Thais, Catalaans en Gaelic.
-- Probleem opgelost op iOS 14, waarbij gebruikers geen documenten meer konden opslaan in de "Bestanden" -app.
-- Tor bijgewerkt naar 0.4.4.5.
+- Sneeuwvlok stop en herstart opgelost.
+- Albanese vertaling toegevoegd.
+- Kleine updates voor Kroatisch, Hebreeuws, Japans en Spaans.
+- Probleem opgelost met Content Security Header. (Bedankt DuckDuckGo-team!)
+- Tor bijgewerkt naar 0.4.4.6.

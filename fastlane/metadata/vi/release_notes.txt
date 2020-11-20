@@ -1,7 +1,5 @@
-- Sử dụng cầu nối Meek chuyên dụng của dịch vụ MOAT trực tiếp mà không cần Tor như dự định ban đầu.
-- Thêm hỗ trợ cầu Snowflake.
-- Đã thêm hỗ trợ cho tiêu đề HTTP "Onion-Location". (Xem https://community.torproject.org/onion-services/advanced/onion-location/)
-- Sửa lỗi nhỏ.
-- Cập nhật bản dịch nhỏ sang tiếng Pháp, tiếng Nhật, tiếng Hà Lan, tiếng Thái, tiếng Catalan và tiếng Gaelic.
-- Đã khắc phục sự cố trên iOS 14, nơi người dùng không thể lưu trữ tài liệu vào ứng dụng "Tệp" nữa.
-- Cập nhật Tor lên 0.4.4.5.
+- Sửa lỗi dừng và khởi động lại Snowflake.
+- Đã thêm bản dịch tiếng Albania.
+- Cập nhật nhỏ cho tiếng Croatia, tiếng Do Thái, tiếng Nhật và tiếng Tây Ban Nha.
+- Đã khắc phục sự cố với Tiêu đề Bảo mật Nội dung. (Cảm ơn nhóm DuckDuckGo!)
+- Cập nhật Tor lên 0.4.4.6.
