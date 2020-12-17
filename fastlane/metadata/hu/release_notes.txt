@@ -1,5 +1,2 @@
-- Javítva a hópehely leállítása és újraindítása.
-- Albán fordítás hozzáadva.
-- Apró frissítések a horvát, a héber, a japán és a spanyol nyelvre.
-- Javítva a tartalombiztonsági fejléc problémája. (Köszönöm a DuckDuckGo csapatát!)
-- Tor frissítve 0.4.4.6-re.
+- Javítottak egy problémát a szelídkék éghíddal és a MOAT szolgáltatással az új hidak beolvasása érdekében.
+- Frissített thai fordítás.

@@ -1,5 +1,2 @@
-- Risolto il problema con l'arresto e il riavvio di Snowflake.
-- Aggiunta la traduzione in albanese.
-- Piccoli aggiornamenti in croato, ebraico, giapponese e spagnolo.
-- Risolto problema con Content Security Header. (Grazie al team di DuckDuckGo!)
-- Aggiornato Tor alla 0.4.4.6.
+- Risolto un problema con il ponte azzurro mite e il servizio MOAT per recuperare nuovi ponti.
+- Aggiornata traduzione thailandese.

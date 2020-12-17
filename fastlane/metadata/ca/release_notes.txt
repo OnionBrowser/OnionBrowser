@@ -1,5 +1,2 @@
-- S'ha corregit la parada i el reinici del floc de neu.
-- S'ha afegit traducció albanès.
-- Petites actualitzacions al croat, hebreu, japonès i espanyol.
-- Solució del problema amb la capçalera de seguretat del contingut. (Gràcies a l'equip DuckDuckGo!)
-- Tor actualitzat a 0.4.4.6.
+- S'ha solucionat un problema amb el pont mansió-blau i el servei MOAT per obtenir ponts nous.
+- Traducció tailandesa actualitzada.

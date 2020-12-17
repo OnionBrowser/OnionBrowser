@@ -1,5 +1,2 @@
-- Fixed Snowflake stop and restart.
-- Added Albanian translation.
-- Small updates to Croatian, Hebrew, Japanese and Spanish.
-- Fixed issue with Content Security Header. (Thanks DuckDuckGo team!)
-- Updated Tor to 0.4.4.6.
+- Fixed a problem with the meek-azure bridge and the MOAT service to fetch new bridges.
+- Updated Thai translation.

@@ -1,5 +1,2 @@
-- Se corrigió la parada y reinicio de Snowflake.
-- Añadida traducción al albanés.
-- Pequeñas actualizaciones en croata, hebreo, japonés y español.
-- Problema solucionado con el encabezado de seguridad de contenido. (¡Gracias al equipo de DuckDuckGo!)
-- Tor actualizado a 0.4.4.6.
+- Se solucionó un problema con el puente meek-azure y el servicio MOAT para buscar nuevos puentes.
+- Traducción tailandesa actualizada.

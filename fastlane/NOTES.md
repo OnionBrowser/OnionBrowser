@@ -87,5 +87,3 @@ locked_zh-Hant
 
 ## Languages, which can't be uploaded using Fastlane Deliver:
 (due to a bug in the App Store API)
-
-ar-SA

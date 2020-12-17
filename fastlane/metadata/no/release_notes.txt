@@ -1,5 +1,2 @@
-- Fixed Snowflake stop and restart.
-- Lagt til albansk oversettelse.
-- Små oppdateringer til kroatisk, hebraisk, japansk og spansk.
-- Løst problem med Content Security Header. (Takk DuckDuckGo team!)
-- Oppdaterte Tor til 0.4.4.6.
+- Løste et problem med den saktblå broen og MOAT-tjenesten for å hente nye broer.
+- Oppdatert Thai oversettelse.

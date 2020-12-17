@@ -1,5 +1,2 @@
-- Kar Tanesi'nin durması ve yeniden başlatılması düzeltildi.
-- Arnavutça çeviri eklendi.
-- Hırvatça, İbranice, Japonca ve İspanyolca için küçük güncellemeler.
-- İçerik Güvenliği Başlığı ile ilgili sorun düzeltildi. (DuckDuckGo ekibine teşekkürler!)
-- Tor, 0.4.4.6'e güncellendi.
+- Meek-masmavi köprüsü ve MOAT hizmetiyle yeni köprüler getirme sorunu düzeltildi.
+- Tayca çeviri güncellendi.

@@ -1,5 +1,10 @@
 #  Onion Browser 2 Changelog
 
+## 2.7.2
+
+- Fixed a problem with the meek-azure bridge and the MOAT service to fetch new bridges.
+- Updated Thai translation.
+
 ## 2.7.1
 
 - Fixed Snowflake stop and restart.

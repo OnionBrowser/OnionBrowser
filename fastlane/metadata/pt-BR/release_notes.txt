@@ -1,5 +1,2 @@
-- Corrigida parada e reinicialização do floco de neve.
-- Adicionada tradução albanesa.
-- Pequenas atualizações para croata, hebraico, japonês e espanhol.
-- Corrigido problema com o cabeçalho de segurança de conteúdo. (Obrigado, equipe DuckDuckGo!)
-- Tor atualizado para 0.4.4.6.
+- Corrigido um problema com a ponte meek-azure e o serviço MOAT para buscar novas pontes.
+- Tradução tailandesa atualizada.

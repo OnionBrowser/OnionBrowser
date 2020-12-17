@@ -1,5 +1,2 @@
-- Opraveno zastavení a restart sněhové vločky.
-- Přidán albánský překlad.
-- Malé aktualizace chorvatštiny, hebrejštiny, japonštiny a španělštiny.
-- Opravený problém s hlavičkou zabezpečení obsahu. (Díky týmu DuckDuckGo!)
-- Aktualizováno Tor na 0.4.4.6.
+- Opraven problém s pokorným azurovým mostem a službou MOAT za účelem načtení nových mostů.
+- Aktualizovaný překlad do thajštiny.

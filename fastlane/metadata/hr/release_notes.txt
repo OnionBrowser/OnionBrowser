@@ -1,5 +1,2 @@
-- Ispravljeno zaustavljanje i ponovno pokretanje pahuljice.
-- Dodan prijevod na albanski jezik.
-- Mala ažuriranja na hrvatski, hebrejski, japanski i španjolski.
-- Ispravljen problem sa zaglavljem Content Content. (Hvala DuckDuckGo timu!)
-- Ažuriran Tor na 0.4.4.6.
+- Ispravljen problem s krotko-azurnim mostom i uslugom MOAT za dohvaćanje novih mostova.
+- Ažuriran tajlandski prijevod.

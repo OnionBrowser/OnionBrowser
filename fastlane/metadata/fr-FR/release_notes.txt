@@ -1,5 +1,2 @@
-- Correction de l'arrêt et du redémarrage du flocon de neige.
-- Ajout de la traduction albanaise.
-- Petites mises à jour du croate, de l'hébreu, du japonais et de l'espagnol.
-- Correction d'un problème avec l'en-tête de sécurité du contenu. (Merci à l'équipe DuckDuckGo!)
-- Mise à jour de Tor à 0.4.4.6.
+- Correction d'un problème avec le pont meek-azure et le service MOAT pour récupérer de nouveaux ponts.
+- Mise à jour de la traduction thaïlandaise.

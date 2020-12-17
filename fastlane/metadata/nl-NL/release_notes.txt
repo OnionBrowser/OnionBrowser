@@ -1,5 +1,2 @@
-- Sneeuwvlok stop en herstart opgelost.
-- Albanese vertaling toegevoegd.
-- Kleine updates voor Kroatisch, Hebreeuws, Japans en Spaans.
-- Probleem opgelost met Content Security Header. (Bedankt DuckDuckGo-team!)
-- Tor bijgewerkt naar 0.4.4.6.
+- Probleem opgelost met de meek-azuurblauwe brug en de MOAT-service om nieuwe bruggen op te halen.
+- Bijgewerkte Thaise vertaling.
