@@ -71,8 +71,8 @@ class MoatViewController: FixedFormViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 
-		// Make sure, iObfs4Proxy is started.
-		OnionManager.shared.startIObfs4Proxy()
+		// Make sure, Obfs4proxy is started.
+		OnionManager.shared.startObfs4proxy()
 
 		fetchCaptcha()
 	}

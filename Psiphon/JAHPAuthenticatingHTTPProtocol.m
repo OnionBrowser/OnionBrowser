@@ -703,11 +703,11 @@ static NSString * kJAHPRecursiveRequestFlagProperty = @"com.jivesoftware.JAHPAut
 	// -> Reconfigure SOCKS proxy to use Obfs4Proxy instead of Tor!
 	if ([self.class propertyForKey:kJAHPDirectMeekProperty inRequest:recursiveRequest])
 	{
-		[self.class authenticatingHTTPProtocol:self logWithFormat:@"Use Meek via iObfs4Proxy directly."];
+		[self.class authenticatingHTTPProtocol:self logWithFormat:@"Use Meek via Obfs4proxy directly."];
 
 		if (port != IPtProxyMeekSocksPort)
 		{
-			[self.class authenticatingHTTPProtocol:self logWithFormat:@"Reconfigure to use Meek via iObfs4Proxy directly."];
+			[self.class authenticatingHTTPProtocol:self logWithFormat:@"Reconfigure to use Meek via Obfs4proxy directly."];
 
 			@synchronized(self.class)
 			{
