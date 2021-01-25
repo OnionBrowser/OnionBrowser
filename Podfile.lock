@@ -9,7 +9,7 @@ PODS:
     - Eureka (~> 5.0)
   - IPtProxy (0.5.2)
   - MBProgressHUD (1.2.0)
-  - OCMock (3.7.1)
+  - OCMock (3.8.1)
   - OCSPCache (0.1.1):
     - OpenSSL-Universal (= 1.0.2.17)
     - ReactiveObjC (= 3.1.1)
@@ -17,7 +17,7 @@ PODS:
   - Reachability (3.2)
   - ReactiveObjC (3.1.1)
   - SDCAlertView (10.0)
-  - Tor (404.6.1)
+  - Tor (404.6.2)
   - TUSafariActivity (1.0.4)
   - VForceTouch (0.0.2)
 
@@ -33,7 +33,7 @@ DEPENDENCIES:
   - OCSPCache (from `https://github.com/Psiphon-Labs/OCSPCache`)
   - Reachability (~> 3.2)
   - SDCAlertView (~> 10)
-  - Tor (from `https://raw.githubusercontent.com/iCepa/Tor.framework/v404.6.1/Tor.podspec`)
+  - Tor (from `https://raw.githubusercontent.com/iCepa/Tor.framework/v404.6.2/Tor.podspec`)
   - TUSafariActivity
   - VForceTouch
 
@@ -60,7 +60,7 @@ EXTERNAL SOURCES:
   OCSPCache:
     :git: https://github.com/Psiphon-Labs/OCSPCache
   Tor:
-    :podspec: https://raw.githubusercontent.com/iCepa/Tor.framework/v404.6.1/Tor.podspec
+    :podspec: https://raw.githubusercontent.com/iCepa/Tor.framework/v404.6.2/Tor.podspec
 
 CHECKOUT OPTIONS:
   FavIcon:
@@ -81,16 +81,16 @@ SPEC CHECKSUMS:
   ImageRow: e65b2e1a33f89062bf2a553a2aad61d975eb7428
   IPtProxy: e2876154c00d2d312c0f9b4c1c32ce779722119c
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
-  OCMock: 75fbeaa46a9b11f8c182bbb1d1f7e9a35ccc9955
+  OCMock: 29f6e52085b4e7d9b075cbf03ed7c3112f82f934
   OCSPCache: 090d054dbf8f31602896d2527a8bd69d49515695
   OpenSSL-Universal: ff04c2e6befc3f1247ae039e60c93f76345b3b5a
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
   SDCAlertView: 5fbc48cae6d7bf9781097e3f27883924ef3b922c
-  Tor: 456af8b06bc93c17b388e9866b5a34d2ece9e775
+  Tor: ed2e252cebf07dc12bb57dace41114bec852c296
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
   VForceTouch: b5c3a28625269e1818cf915728173bda9f669d6b
 
-PODFILE CHECKSUM: dfebd5d93e3bf1f36f8538029f09fdf2f3c744fa
+PODFILE CHECKSUM: aaae25ddb72ac10889b8af417ac99c84e590442d
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.10.1
