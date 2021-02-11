@@ -97,6 +97,8 @@ These people helped with translations. Thank you so much, folks!
   EllipticSet, Rhaal, RickDeckard, ryuw
 - Irish: 
   kscanne
+- Korean:
+  MinGyu19, jmj050716, sector429
 - Japanese: 
   Naofumi, Songbogong, TokumeiNanashi, pluto987, jpanonowl, TENCO, kiririn
 - Macedonian: 
