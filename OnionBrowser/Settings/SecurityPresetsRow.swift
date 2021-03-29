@@ -166,16 +166,16 @@ class SecurityPresetsCell: Cell<SecurityPreset>, CellType {
 		super.setup()
 
 		for shield in shields {
-			addSubview(shield)
+			contentView.addSubview(shield)
 
-			shield.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(shieldSelected(_:))))
-			
-			shield.topAnchor.constraint(equalTo: topAnchor, constant: 32).isActive = true
-			shield.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -32).isActive = true
+			shield.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(shieldSelected)))
+
+			shield.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 32).isActive = true
+			shield.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -32).isActive = true
 		}
 
 		shields.first?.trailingAnchor.constraint(equalTo: shields[1].leadingAnchor, constant: -48).isActive = true
-		shields[1].centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+		shields[1].centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
 		shields.last?.leadingAnchor.constraint(equalTo: shields[1].trailingAnchor, constant: 48).isActive = true
 
 		selectionStyle = .none
