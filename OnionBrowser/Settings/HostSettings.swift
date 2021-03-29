@@ -83,6 +83,7 @@ class HostSettings: NSObject {
 	private static let webRtcKey = "allow_webrtc"
 	private static let mixedModeKey = "allow_mixed_mode"
 	private static let universalLinkProtectionKey = "universal_link_protection"
+	private static let followOnionLocationHeaderKey = "follow_onion_location_header"
 	private static let userAgentKey = "user_agent"
 	private static let contentPolicyKey = "content_policy"
 
@@ -91,6 +92,9 @@ class HostSettings: NSObject {
 		get {
 			if _raw == nil, let url = fileUrl {
 				_raw = NSDictionary(contentsOf: url) as? [String: [String: String]]
+
+				// Fix later introduced setting, which defaults to true.
+				_raw?[HostSettings.defaultHost]?[followOnionLocationHeaderKey] = HostSettings.true
 			}
 
 			return _raw ?? [:]
@@ -283,6 +287,18 @@ class HostSettings: NSObject {
 		}
 	}
 
+	@objc
+	var followOnionLocationHeader: Bool {
+		get {
+			get(HostSettings.followOnionLocationHeaderKey) == HostSettings.true
+		}
+		set {
+			raw[HostSettings.followOnionLocationHeaderKey] = newValue
+				? HostSettings.true
+				: HostSettings.false
+		}
+	}
+
 	/**
 	User Agent string to use. Will walk up the domain levels ending at the default settings,
 	if not explicitly set for this host.
@@ -348,6 +364,7 @@ class HostSettings: NSObject {
 				HostSettings.webRtcKey: HostSettings.false,
 				HostSettings.mixedModeKey: HostSettings.false,
 				HostSettings.universalLinkProtectionKey: HostSettings.true,
+				HostSettings.followOnionLocationHeaderKey: HostSettings.true,
 				HostSettings.userAgentKey: "",
 				HostSettings.contentPolicyKey: HostSettings.ContentPolicy.strict.key,
 			]

@@ -1281,6 +1281,7 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 	NSURL *url = dataTask.currentRequest.URL;
 
 	// Redirect to provided Onion-Location, if any available, and
+	// - isn't switched off by the user,
 	// - was not already served over an onion site,
 	// - was served over HTTPS,
 	// - is a valid URL with http: or https: protocol and a .onion hostname,
@@ -1288,7 +1289,8 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 	//
 	// https://community.torproject.org/onion-services/advanced/onion-location/
 	if (
-		_wvt
+		[HostSettings for:dataTask.currentRequest.URL.host].followOnionLocationHeader
+		&& _wvt
 		&& ![url.host.lowercaseString hasSuffix:@".onion"]
 		&& [url.scheme.lowercaseString isEqualToString:@"https"]
 		)
