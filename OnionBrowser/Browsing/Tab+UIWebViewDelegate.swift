@@ -38,7 +38,7 @@ extension Tab: UIWebViewDelegate {
 		let iframe = url.absoluteString != request.mainDocumentURL?.absoluteString
 
 		if HostSettings.for(url.host).universalLinkProtection {
-			if iframe && navigationType != .linkClicked {
+			if iframe {
 				print("[Tab \(index)] not doing universal link workaround for iframe \(url).")
 			}
 			else if navigationType == .backForward {
