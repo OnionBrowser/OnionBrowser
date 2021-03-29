@@ -1,2 +1,5 @@
-- Probleem opgelost met de meek-azuurblauwe brug en de MOAT-service om nieuwe bruggen op te halen.
-- Bijgewerkte Thaise vertaling.
+- Bijgewerkte Nederlandse en Albanese vertalingen.
+- Koreaanse vertaling toegevoegd.
+- Probleem opgelost met iframes in combinatie met Universal Link Protection.
+- Maak automatische doorverwijzingen naar adressen die worden geadverteerd in 'Ui-Locatie'-headers configureerbaar.
+- Probleem opgelost op iOS 14, waarbij badges op beveiligingsniveau niet meer konden worden getikt.

@@ -1,2 +1,5 @@
-- Corrigido um problema com a ponte meek-azure e o serviço MOAT para buscar novas pontes.
-- Tradução tailandesa atualizada.
+- Traduções atualizadas de holandês e albanês.
+- Adicionada tradução para o coreano.
+- Corrigido problema com iframes em conjunto com Universal Link Protection.
+- Faça redirecionamentos automáticos para endereços anunciados em cabeçalhos `Onion-Location` configuráveis.
+- Corrigido problema no iOS 14, onde os crachás de nível de segurança não podiam mais ser tocados.

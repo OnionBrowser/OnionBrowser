@@ -1,2 +1,5 @@
-- Fixed a problem with the meek-azure bridge and the MOAT service to fetch new bridges.
-- Updated Thai translation.
+- Updated Dutch and Albanian translations.
+- Added Korean translation.
+- Fixed issue with iframes in conjunction with Universal Link Protection.
+- Make automatic redirects to addresses advertised in `Onion-Location` headers configurable.
+- Fixed issue on iOS 14, where security level badges weren't tappable anymore.

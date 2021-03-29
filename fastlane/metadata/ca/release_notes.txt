@@ -1,2 +1,5 @@
-- S'ha solucionat un problema amb el pont mansió-blau i el servei MOAT per obtenir ponts nous.
-- Traducció tailandesa actualitzada.
+- Traduccions al neerlandès i albanès actualitzades.
+- S'ha afegit traducció al coreà.
+- S'ha solucionat el problema amb iframes juntament amb Universal Link Protection.
+- Feu redireccions automàtiques a les adreces publicades a les capçaleres "Onion-Location" configurables.
+- Solució del problema a iOS 14, en què les insígnies de nivell de seguretat ja no es podien aplicar.

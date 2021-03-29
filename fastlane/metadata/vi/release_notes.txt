@@ -1,2 +1,5 @@
-- Đã khắc phục sự cố với cầu meek-azure và dịch vụ MOAT để lấy cầu mới.
-- Bản dịch tiếng Thái cập nhật.
+- Cập nhật bản dịch tiếng Hà Lan và tiếng Albania.
+- Đã thêm bản dịch tiếng Hàn.
+- Đã khắc phục sự cố với iframe kết hợp với Bảo vệ liên kết chung.
+- Thực hiện chuyển hướng tự động đến các địa chỉ được quảng cáo trong tiêu đề `Onion-Location` có thể định cấu hình.
+- Đã khắc phục sự cố trên iOS 14, trong đó các huy hiệu cấp độ bảo mật không còn có thể áp dụng được nữa.

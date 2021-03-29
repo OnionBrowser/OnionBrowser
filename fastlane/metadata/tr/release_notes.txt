@@ -1,2 +1,5 @@
-- Meek-masmavi köprüsü ve MOAT hizmetiyle yeni köprüler getirme sorunu düzeltildi.
-- Tayca çeviri güncellendi.
+- Hollandaca ve Arnavutça çeviriler güncellendi.
+- Korece çeviri eklendi.
+- Evrensel Bağlantı Koruması ile birlikte iç çerçevelerle ilgili sorun düzeltildi.
+- "Onion-Location" başlıklarında reklamı yapılan adreslere otomatik yönlendirmeleri yapılandırılabilir hale getirin.
+- iOS 14'te, güvenlik düzeyi rozetlerinin artık dokunulamaz olduğu sorun düzeltildi.

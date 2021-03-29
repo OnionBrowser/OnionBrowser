@@ -1,2 +1,5 @@
-- Javítottak egy problémát a szelídkék éghíddal és a MOAT szolgáltatással az új hidak beolvasása érdekében.
-- Frissített thai fordítás.
+- Frissített holland és albán fordítások.
+- Hozzáadott koreai fordítás.
+- Javítva az iframe-ekkel kapcsolatos probléma, az Universal Link Protection alkalmazással együtt.
+- Konfigurálhatóvá kell tenni az „Onion-Location” fejlécekben hirdetett címek automatikus átirányítását.
+- Javítva az iOS 14-es probléma, ahol a biztonsági szintű jelvények már nem voltak letolhatók.

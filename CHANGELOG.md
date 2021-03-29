@@ -1,5 +1,14 @@
 #  Onion Browser 2 Changelog
 
+## 2.7.3
+
+- Updated Dutch and Albanian translations.
+- Added Korean translation.
+- Updated depenencies.
+- Fixed issue with iframes in conjunction with Universal Link Protection.
+- Make automatic redirects to addresses advertised in `Onion-Location` headers configurable.
+- Fixed issue on iOS 14, where security level badges weren't tappable anymore.
+
 ## 2.7.2
 
 - Fixed a problem with the meek-azure bridge and the MOAT service to fetch new bridges.

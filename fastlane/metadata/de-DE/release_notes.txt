@@ -1,2 +1,5 @@
-- Problem mit der meek-azure-Brücke und dem MOAT-Dienst zum Abrufen neuer Brücken behoben.
-- Thailändische Übersetzung aktualisiert.
+- Aktualisierte niederländische und albanische Übersetzungen.
+- Koreanische Übersetzung hinzugefügt.
+- Problem mit iframes in Verbindung mit Universal Link Protection behoben.
+- Automatische Weiterleitungen zu Adressen, die in den "Onion-Location"-Headern angegeben sind, jetzt konfigurierbar.
+- Problem unter iOS 14 behoben, bei dem Sicherheitsstufenabzeichen nicht mehr angetippt werden konnten.

@@ -1,2 +1,5 @@
-- Ispravljen problem s krotko-azurnim mostom i uslugom MOAT za dohvaćanje novih mostova.
-- Ažuriran tajlandski prijevod.
+- Ažurirani prijevodi s nizozemskog i albanskog jezika.
+- Dodan prijevod na korejski.
+- Ispravljena poteškoća s iframeovima u sprezi sa Universal Link Protection.
+- Neka se automatska preusmjeravanja na adrese oglašene u zaglavljima `Onion-Location` mogu konfigurirati.
+- Ispravljen problem na iOS-u 14, gdje se značke razine sigurnosti više nisu mogle dodirnuti.

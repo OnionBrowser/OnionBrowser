@@ -1,2 +1,5 @@
-- Løste et problem med den saktblå broen og MOAT-tjenesten for å hente nye broer.
-- Oppdatert Thai oversettelse.
+- Oppdaterte nederlandske og albanske oversettelser.
+- Lagt til koreansk oversettelse.
+- Løst problem med iframes i forbindelse med Universal Link Protection.
+- Gjør automatiske viderekoblinger til adresser som er annonsert i "Onion-Location" -hoder konfigurerbare.
+- Løst problem på iOS 14, der sikkerhetsnivåmerker ikke lenger kunne tappes.

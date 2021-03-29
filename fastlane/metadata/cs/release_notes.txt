@@ -1,2 +1,5 @@
-- Opraven problém s pokorným azurovým mostem a službou MOAT za účelem načtení nových mostů.
-- Aktualizovaný překlad do thajštiny.
+- Aktualizované překlady do nizozemštiny a albánštiny.
+- Přidán korejský překlad.
+- Opravený problém s prvky iframe ve spojení s ochranou Universal Link Protection.
+- Nastavit automatické přesměrování na adresy inzerované v záhlavích „Cibule-umístění“.
+- Opravený problém v systému iOS 14, kde odznaky úrovně zabezpečení již nelze klepnout.
