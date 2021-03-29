@@ -62,7 +62,7 @@ The following features are new to Onion Browser, by way of the upstream work on 
 These people helped with translations. Thank you so much, folks!
 
 - Albanian:
-  Besnik, Kristina_Millona, alter2000, elioqoshi, vilisuli
+  Besnik, Kristina_Millona, alter2000, elioqoshi, vilisuli, marianaballa
 - Arabic: 
   AboShanab, mada19, BNasr, Hujairi, MissPeace, ahmedessamdev, Bild96, Israel.K
 - Bengali: 
