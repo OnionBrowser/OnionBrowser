@@ -692,6 +692,7 @@
 		A094CEDE234506C700C77E55 /* description.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = description.txt; sourceTree = "<group>"; };
 		A094CEDF234506C700C77E55 /* keywords.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = keywords.txt; sourceTree = "<group>"; };
 		A095B1EB2612490500727947 /* release_notes.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = release_notes.txt; sourceTree = "<group>"; };
+		A095B20626124D1D00727947 /* support_url.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = support_url.txt; sourceTree = "<group>"; };
 		A099B8B523CF60C800B50998 /* InitSecurityLevelViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InitSecurityLevelViewController.xib; sourceTree = "<group>"; };
 		A099B8B623CF60C800B50998 /* InitSecurityLevelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitSecurityLevelViewController.swift; sourceTree = "<group>"; };
 		A09EBC582422483C0084FEDB /* MoatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoatViewController.swift; sourceTree = "<group>"; };
@@ -1027,6 +1028,7 @@
 			isa = PBXGroup;
 			children = (
 				A0358EC825D5808100978699 /* subtitle.txt */,
+				A095B20626124D1D00727947 /* support_url.txt */,
 				A0358EC925D5808100978699 /* keywords.txt */,
 				A095B1EB2612490500727947 /* release_notes.txt */,
 				A0358ECB25D5808100978699 /* description.txt */,
