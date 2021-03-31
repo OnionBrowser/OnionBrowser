@@ -22,7 +22,7 @@ OB_APP_BUNDLE_ID[config=Release] = com.miketigas.OnionBrowser
 OB_EXT_BUNDLE_ID[config=Release] =
 OB_APP_GROUP[config=Release] = 
 DEVELOPMENT_TEAM[config=Release] = 68QUP6KP2C
-PROVISIONING_PROFILE_SPECIFIER_MAIN[config=Release] =
+PROVISIONING_PROFILE_SPECIFIER_MAIN[config=Release] = 2020-2021 Onion Browser Distribution
 PROVISIONING_PROFILE_SPECIFIER_EXT[config=Release] =
 
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) OB_EXT_BUNDLE_ID="$(OB_EXT_BUNDLE_ID)"
