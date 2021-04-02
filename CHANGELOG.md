@@ -2,7 +2,7 @@
 
 ## 2.7.3
 
-- Updated Dutch and Albanian translations.
+- Updated translations.
 - Added Korean translation.
 - Updated depenencies.
 - Fixed issue with iframes in conjunction with Universal Link Protection.
