@@ -1,9 +1,11 @@
-/*
-* Onion Browser
-* Copyright (c) 2012-2019 Mike Tigas
-*
-* This file is part of Onion Browser. See LICENSE file for redistribution terms.
-*/
+//
+//  DonationViewController.swift
+//  OnionBrowser2
+//
+//  Copyright © 2012 - 2021, Tigas Ventures, LLC (Mike Tigas)
+//
+//  This file is part of Onion Browser. See LICENSE file for redistribution terms.
+//
 
 import UIKit
 import StoreKit

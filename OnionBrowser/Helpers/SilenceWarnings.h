@@ -1,9 +1,9 @@
 //
 //  SilenceWarnings.h
-//  Endless
+//  OnionBrowser2
 //
 //  Created by Benjamin Erhart on 12.03.19.
-//  Copyright (c) 2012-2019, Tigas Ventures, LLC (Mike Tigas)
+//  Copyright © 2012 - 2021, Tigas Ventures, LLC (Mike Tigas)
 //
 //  This file is part of Onion Browser. See LICENSE file for redistribution terms.
 //

@@ -4,7 +4,7 @@
 #  OnionBrowser2
 #
 #  Created by Benjamin Erhart on 04.02.19.
-#  Copyright © 2019 Guardian Project. All rights reserved.
+#  Copyright © 2019 - 2021 Guardian Project. All rights reserved.
 
 # Only downloads new geoip files, if they are missing or older than a day.
 

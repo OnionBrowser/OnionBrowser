@@ -3,7 +3,9 @@
 //  OnionBrowser2
 //
 //  Created by Benjamin Erhart on 01.04.20.
-//  Copyright © 2020 Tigas Ventures, LLC (Mike Tigas). All rights reserved.
+//  Copyright © 2012 - 2021, Tigas Ventures, LLC (Mike Tigas)
+//
+//  This file is part of Onion Browser. See LICENSE file for redistribution terms.
 //
 
 import UIKit
