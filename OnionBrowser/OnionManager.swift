@@ -238,10 +238,14 @@ class OnionManager : NSObject {
 		IPtProxyStopObfs4Proxy()
 	}
 
+	/**
+	See [Update domain front for Snowflake](https://gitlab.torproject.org/tpo/applications/tor-browser-build/-/commit/663a42c51fde05d7f0ee26e01c408a86f863622c)
+	*/
 	func startSnowflake() {
 		IPtProxyStartSnowflake(
-			"stun:stun.l.google.com:19302", "https://snowflake-broker.azureedge.net/",
-			"ajax.aspnetcdn.com", nil, true, false, true, 3)
+			"stun:stun.l.google.com:19302,stun:stun.voip.blackberry.com:3478,stun:stun.altar.com.pl:3478,stun:stun.antisip.com:3478,stun:stun.bluesip.net:3478,stun:stun.dus.net:3478,stun:stun.epygi.com:3478,stun:stun.sonetel.com:3478,stun:stun.sonetel.net:3478,stun:stun.stunprotocol.org:3478,stun:stun.uls.co.za:3478,stun:stun.voipgate.com:3478,stun:stun.voys.nl:3478",
+			"https://snowflake-broker.torproject.net.global.prod.fastly.net/",
+			"cdn.sstatic.net", nil, true, false, true, 3)
 
 		stopObfs4proxy()
 	}

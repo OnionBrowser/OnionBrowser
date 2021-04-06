@@ -64,7 +64,7 @@
 
 @import CSPHeader;
 
-NSString * const kJAHPDirectMeekProperty = @"directMeek";
+NSString * const kJAHPMoatProperty = @"moat";
 
 
 // I use the following typedef to keep myself sane in the face of the wacky
@@ -699,15 +699,15 @@ static NSString * kJAHPRecursiveRequestFlagProperty = @"com.jivesoftware.JAHPAut
 	// Currently used SOCKS proxy port.
 	NSInteger port = ((NSNumber *)sharedDemuxInstance.configuration.connectionProxyDictionary[(NSString *)kCFStreamPropertySOCKSProxyPort]).integerValue;
 
-	// This is a request, which wants to talk through Meek directly.
+	// This is a request, which wants to use the Moat domain fronting.
 	// -> Reconfigure SOCKS proxy to use Obfs4Proxy instead of Tor!
-	if ([self.class propertyForKey:kJAHPDirectMeekProperty inRequest:recursiveRequest])
+	if ([self.class propertyForKey:kJAHPMoatProperty inRequest:recursiveRequest])
 	{
-		[self.class authenticatingHTTPProtocol:self logWithFormat:@"Use Meek via Obfs4proxy directly."];
+		[self.class authenticatingHTTPProtocol:self logWithFormat:@"Use Moat domain fronting via Obfs4proxy."];
 
 		if (port != IPtProxyMeekSocksPort)
 		{
-			[self.class authenticatingHTTPProtocol:self logWithFormat:@"Reconfigure to use Meek via Obfs4proxy directly."];
+			[self.class authenticatingHTTPProtocol:self logWithFormat:@"Reconfigure to use Moat domain fronting via Obfs4proxy."];
 
 			@synchronized(self.class)
 			{
@@ -718,15 +718,16 @@ static NSString * kJAHPRecursiveRequestFlagProperty = @"com.jivesoftware.JAHPAut
 
 				// https://lists.torproject.org/pipermail/anti-censorship-team/2020-April/000076.html
 				// https://gitweb.torproject.org/torspec.git/tree/pt-spec.txt
+				// https://gitlab.torproject.org/tpo/applications/tor-launcher/-/merge_requests/4/diffs
 
 				proxyDict[@"SOCKSEnable"] = @YES;
 				proxyDict[(NSString *)kCFStreamPropertySOCKSProxyHost] = @"localhost";
 				proxyDict[(NSString *)kCFStreamPropertySOCKSProxyPort] = [NSNumber numberWithInteger: IPtProxyMeekSocksPort];
-				proxyDict[(NSString *)kCFStreamPropertySOCKSUser] = @"url=https://onion.azureedge.net/;";
+				proxyDict[(NSString *)kCFStreamPropertySOCKSUser] = @"url=https://moat.torproject.org.global.prod.fastly.net/;";
 				// We should only split, if we overflow 255 bytes, but NSStrings are NULL-terminated,
 				// so we can't set the password to 0x00. Therefore we slightly violate the spec and
 				// split the argument list anyway, which works fine with Obfs4proxy.
-				proxyDict[(NSString *)kCFStreamPropertySOCKSPassword] = @"front=ajax.aspnetcdn.com";
+				proxyDict[(NSString *)kCFStreamPropertySOCKSPassword] = @"front=cdn.sstatic.net";
 
 				config.connectionProxyDictionary = proxyDict;
 

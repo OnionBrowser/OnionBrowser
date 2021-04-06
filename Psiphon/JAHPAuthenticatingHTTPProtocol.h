@@ -54,7 +54,7 @@
 #define WVT_KEY @"_wvt"
 #define ORIGIN_KEY @"_origin"
 
-FOUNDATION_EXPORT NSString * _Nonnull const kJAHPDirectMeekProperty;
+FOUNDATION_EXPORT NSString * _Nonnull const kJAHPMoatProperty;
 
 
 @protocol JAHPAuthenticatingHTTPProtocolDelegate;

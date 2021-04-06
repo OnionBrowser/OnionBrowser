@@ -8,6 +8,8 @@
 - Fixed issue with iframes in conjunction with Universal Link Protection.
 - Make automatic redirects to addresses advertised in `Onion-Location` headers configurable.
 - Fixed issue on iOS 14, where security level badges weren't tappable anymore.
+- Removed Meek Azure bridge, since Microsoft announced starting to block it.
+- Updated Moat (automatic Obfs4 bridge discovery) and Snowflake bridges configuration.
 
 ## 2.7.2
 

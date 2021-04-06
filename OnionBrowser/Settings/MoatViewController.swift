@@ -207,7 +207,7 @@ class MoatViewController: FixedFormViewController {
 		request.httpMethod = "POST"
 		request.httpBody = try? JSONSerialization.data(withJSONObject: payload, options: [])
 		request.addValue("application/vnd.api+json", forHTTPHeaderField: "Content-Type")
-		URLProtocol.setProperty(true, forKey: kJAHPDirectMeekProperty, in: request)
+		URLProtocol.setProperty(true, forKey: kJAHPMoatProperty, in: request)
 
 		JAHPAuthenticatingHTTPProtocol.temporarilyAllow(url)
 
