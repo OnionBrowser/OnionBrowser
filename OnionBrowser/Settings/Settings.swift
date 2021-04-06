@@ -74,8 +74,18 @@ class Settings: NSObject {
 	enum BridgesType: Int {
 		case none = 0
 		case obfs4 = 1
+
+		@available(*, deprecated)
 		case meekamazon = 2 // Legacy. Retaining this number for future use if meek-amazon comes back.
-		case meekazure = 3
+
+		/**
+		Don't use anymore: Microsoft announced to start blocking domain fronting!
+
+		[Microsoft: Securing our approach to domain fronting within Azure](https://www.microsoft.com/security/blog/2021/03/26/securing-our-approach-to-domain-fronting-within-azure/)
+		*/
+		@available(*, deprecated)
+		case meekazure = 3 // Legacy. Retaining this number for future use if meek-azure comes back.
+
 		case snowflake = 4
 		case custom = 99
 	}

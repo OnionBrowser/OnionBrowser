@@ -34,8 +34,8 @@ BridgeConfDelegate {
 			"",
 			String(format: NSLocalizedString("%1$@ %2$@ makes your traffic appear \"random\".",
 							  comment: ""), "\u{2022}", "obfs4"),
-			String(format: NSLocalizedString("%1$@ %2$@ makes your traffic pose as traffic to a Microsoft website.",
-							  comment: ""), "\u{2022}", "meek-azure"),
+			String(format: NSLocalizedString("%1$@ %2$@ makes your traffic look like a phone call to a random user on the net.",
+							  comment: ""), "\u{2022}", "snowflake"),
 			"",
 			NSLocalizedString("If one type of bridge does not work, try using a different one.",
 							  comment: "")
@@ -76,7 +76,6 @@ BridgeConfDelegate {
 		let bridges: [Settings.BridgesType: String] = [
 			.none: NSLocalizedString("No Bridges", comment: ""),
 			.obfs4: String(format: NSLocalizedString("Built-in %@", comment: ""), "obfs4"),
-			.meekazure: String(format: NSLocalizedString("Built-in %@", comment: ""), "meek-azure"),
 			.snowflake: String(format: NSLocalizedString("Built-in %@", comment: ""), "snowflake"),
 			.custom: NSLocalizedString("Custom Bridges", comment: ""),
 		]

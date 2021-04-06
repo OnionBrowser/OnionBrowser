@@ -2,7 +2,7 @@
 //  OnionManager.swift
 //  OnionBrowser2
 //
-//  Copyright (c) 2012-2020, Tigas Ventures, LLC (Mike Tigas)
+//  Copyright (c) 2012-2021, Tigas Ventures, LLC (Mike Tigas)
 //
 //  This file is part of Onion Browser. See LICENSE file for redistribution terms.
 //
@@ -94,6 +94,12 @@ class OnionManager : NSObject {
 
 	static let obfs4Bridges = NSArray(contentsOfFile: Bundle.main.path(forResource: "obfs4-bridges", ofType: "plist")!) as! [String]
 
+	/**
+	Don't use anymore: Microsoft announced to start blocking domain fronting!
+
+	[Microsoft: Securing our approach to domain fronting within Azure](https://www.microsoft.com/security/blog/2021/03/26/securing-our-approach-to-domain-fronting-within-azure/)
+	*/
+	@available(*, deprecated)
 	static let meekAzureBridge = [
 		"meek_lite 0.0.2.0:3 97700DFE9F483596DDA6264C4D7DF7641E1E39CE url=https://meek.azureedge.net/ front=ajax.aspnetcdn.com"
 	]
@@ -500,10 +506,6 @@ class OnionManager : NSObject {
 		case .obfs4:
 			startObfs4proxy()
 			return OnionManager.obfs4Bridges
-
-		case .meekazure:
-			startObfs4proxy()
-			return OnionManager.meekAzureBridge
 
 		case .snowflake:
 			startSnowflake()
