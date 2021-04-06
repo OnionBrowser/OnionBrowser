@@ -1,5 +1,7 @@
-- Frissített holland és albán fordítások.
+- Frissített fordítások.
 - Hozzáadott koreai fordítás.
 - Javítva az iframe-ekkel kapcsolatos probléma, az Universal Link Protection alkalmazással együtt.
 - Konfigurálhatóvá kell tenni az „Onion-Location” fejlécekben hirdetett címek automatikus átirányítását.
 - Javítva az iOS 14-es probléma, ahol a biztonsági szintű jelvények már nem voltak letolhatók.
+- Eltávolította a Meek Azure hidat, mivel a Microsoft bejelentette, hogy blokkolni kezdi.
+- Frissített Moat (Obfs4 hídszolgáltatás) és hópehely konfiguráció.

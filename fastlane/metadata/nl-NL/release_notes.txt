@@ -1,5 +1,7 @@
-- Bijgewerkte Nederlandse en Albanese vertalingen.
+- Bijgewerkte vertalingen.
 - Koreaanse vertaling toegevoegd.
 - Probleem opgelost met iframes in combinatie met Universal Link Protection.
-- Maak automatische doorverwijzingen naar adressen die worden geadverteerd in 'Ui-Locatie'-headers configureerbaar.
+- Maak automatische doorverwijzingen naar adressen die worden geadverteerd in `Ui-Locatie` kopteksten configureerbaar.
 - Probleem opgelost op iOS 14, waarbij badges op beveiligingsniveau niet meer konden worden getikt.
+- Meek Azure-brug verwijderd, aangezien Microsoft aankondigde deze te gaan blokkeren.
+- Bijgewerkte Moat (Obfs4 bridge-service) en Snowflake-configuratie.

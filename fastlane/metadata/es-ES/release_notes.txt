@@ -1,5 +1,7 @@
-- Traducciones actualizadas de holandés y albanés.
+- Traducciones actualizadas.
 - Añadida traducción al coreano.
 - Problema solucionado con iframes junto con Universal Link Protection.
 - Realizar redireccionamientos automáticos a las direcciones anunciadas en los encabezados `Onion-Location` configurables.
 - Se solucionó el problema en iOS 14, donde las insignias de nivel de seguridad ya no se podían tocar.
+- Se eliminó el puente Meek Azure, ya que Microsoft anunció que comenzaría a bloquearlo.
+- Se actualizó la configuración de Moat (servicio de puente Obfs4) y Snowflake.

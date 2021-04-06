@@ -1,5 +1,7 @@
--업데이트 된 네덜란드어 및 알바니아어 번역.
+-업데이트 된 번역.
 -한국어 번역 추가.
 -Universal Link Protection과 함께 iframe 관련 문제가 수정되었습니다.
 -구성 가능한 'Onion-Location'헤더에 광고 된 주소로 자동 리디렉션합니다.
 -iOS 14에서 보안 수준 배지를 더 이상 탭할 수없는 문제가 해결되었습니다.
+-Microsoft가 차단하기 시작했다고 발표 한 이후 Meek Azure 브리지를 제거했습니다.
+-Moat (Obfs4 브리지 서비스) 및 Snowflake 구성이 업데이트되었습니다.

@@ -1,5 +1,7 @@
-- Traduccions al neerlandès i albanès actualitzades.
+- Traduccions actualitzades.
 - S'ha afegit traducció al coreà.
 - S'ha solucionat el problema amb iframes juntament amb Universal Link Protection.
 - Feu redireccions automàtiques a les adreces publicades a les capçaleres "Onion-Location" configurables.
 - Solució del problema a iOS 14, en què les insígnies de nivell de seguretat ja no es podien aplicar.
+- S'ha eliminat el pont Meek Azure, ja que Microsoft va anunciar que començaria a bloquejar-lo.
+- Actualització de la configuració de Moat (servei de pont Obfs4) i Snowflake.

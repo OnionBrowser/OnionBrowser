@@ -1,5 +1,7 @@
-- Mise à jour des traductions néerlandaise et albanaise.
+- Traductions mises à jour.
 - Ajout de la traduction coréenne.
 - Correction d'un problème avec les iframes en conjonction avec Universal Link Protection.
-- Rendre les redirections automatiques vers les adresses annoncées dans les en-têtes «Onion-Location» configurables.
+- Rendre les redirections automatiques vers les adresses annoncées dans les en-têtes `Onion-Location` configurables.
 - Correction d'un problème sur iOS 14, où les badges de niveau de sécurité n'étaient plus sélectionnables.
+- Suppression du pont Meek Azure, puisque Microsoft a annoncé qu'il commençait à le bloquer.
+- Mise à jour de la configuration de Moat (service de pont Obfs4) et de Snowflake.

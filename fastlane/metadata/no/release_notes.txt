@@ -1,5 +1,7 @@
-- Oppdaterte nederlandske og albanske oversettelser.
+- Oppdaterte oversettelser.
 - Lagt til koreansk oversettelse.
 - Løst problem med iframes i forbindelse med Universal Link Protection.
 - Gjør automatiske viderekoblinger til adresser som er annonsert i "Onion-Location" -hoder konfigurerbare.
 - Løst problem på iOS 14, der sikkerhetsnivåmerker ikke lenger kunne tappes.
+- Fjernet Meek Azure bridge, siden Microsoft kunngjorde at de begynte å blokkere den.
+- Oppdatert Moat (Obfs4 bridge service) og Snowflake konfigurasjon.

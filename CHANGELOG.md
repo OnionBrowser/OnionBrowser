@@ -4,12 +4,12 @@
 
 - Updated translations.
 - Added Korean translation.
-- Updated depenencies.
+- Updated dependencies.
 - Fixed issue with iframes in conjunction with Universal Link Protection.
 - Make automatic redirects to addresses advertised in `Onion-Location` headers configurable.
 - Fixed issue on iOS 14, where security level badges weren't tappable anymore.
 - Removed Meek Azure bridge, since Microsoft announced starting to block it.
-- Updated Moat (automatic Obfs4 bridge discovery) and Snowflake bridges configuration.
+- Updated Moat (Obfs4 bridge service) and Snowflake configuration.
 
 ## 2.7.2
 
