@@ -1,7 +1,7 @@
 - Çeviriler güncellendi.
-- Korece çeviri eklendi.
-- Evrensel Bağlantı Koruması ile birlikte iç çerçevelerle ilgili sorun düzeltildi.
-- "Onion-Location" üstbilgilerinde reklamı yapılan adreslere otomatik yönlendirmeleri yapılandırılabilir hale getirin.
-- iOS 14'te, güvenlik düzeyi rozetlerinin artık dokunulamaz olduğu sorun düzeltildi.
-- Microsoft'un engellemeye başladığını duyurduğundan beri Meek Azure köprüsü kaldırıldı.
-- Moat (Obfs4 köprü hizmeti) ve Kar Tanesi yapılandırması güncellendi.
+- Korece çevirisi eklendi.
+- Evrensel Bağlantı Koruması ile birlikte iç çerçeveler ile ilgili sorun düzeltildi.
+- `Onion-Location` üst bilgilerinde duyurulan adreslere otomatik yönlendirmeler yapılandırılabilir kılındı.
+- iOS 14 üzerinde, güvenlik düzeyi işaretlerine dokunulamaz olması sorunu düzeltildi.
+- Microsoft tarafından engellenmeye başlandığı duyurduğundan, Meek Azure köprüsü kaldırıldı.
+- Moat (Obfs4 köprü hizmeti) ve Snowflake yapılandırması güncellendi.
