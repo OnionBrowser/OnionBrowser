@@ -5,3 +5,4 @@
 - Problem unter iOS 14 behoben, bei dem Sicherheitsstufenabzeichen nicht mehr angetippt werden konnten.
 - Meek-Azure Brücke entfernt, da Microsoft angekündigt hat sie zu blockieren.
 - Moat (Obfs4 Brückenservice) und Snowflake Konfiguration aktualisiert.
+- Tor auf 0.4.5.7 und OpenSSL auf 1.1.1k aktualisiert.

@@ -5,3 +5,4 @@
 - Fixed issue on iOS 14, where security level badges weren't tappable anymore.
 - Removed Meek Azure bridge, since Microsoft announced starting to block it.
 - Updated Moat (Obfs4 bridge service) and Snowflake configuration.
+- Updated Tor to 0.4.5.7 and OpenSSL to 1.1.1k.
