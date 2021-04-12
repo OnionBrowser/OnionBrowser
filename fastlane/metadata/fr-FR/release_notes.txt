@@ -1,7 +1,8 @@
-– Mise à jour des traductions.
+– Mise à jour des traductions.
 – Ajout de la traduction en coréen.
 – Correctif d’un problème avec les éléments iframe combinés à la protection des liens universels.
 – Rendre configurables les redirections vers des adresses annoncées dans les en-têtes d’emplacement « Onion-Location ».
 – Correctif d’un problème sous iOS 14 où les pastilles de niveau de sécurité ne réagissaient plus au toucher.
 – Suppression du pont « Meek Azure », car Microsoft a annoncé qu’ils commençaient à le bloquer.
 – Mise à jour de la configuration de Moat (service de pont Obfs4) et de Snowflake.
+– Mise à jour de Tor vers 0.4.5.7 et OpenSSL vers 1.1.1k.
