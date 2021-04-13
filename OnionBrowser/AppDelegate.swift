@@ -468,15 +468,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 	Handle per-version upgrades or migrations.
 	*/
 	private func migrate() {
-		let lastBuild = UserDefaults.standard.integer(forKey: "last_build")
+		let lastBuild = UserDefaults.standard.double(forKey: "last_build")
 
-		let fmt = NumberFormatter()
-		fmt.numberStyle = .decimal
+		let thisBuild = Double(Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "") ?? 0
 
-		let thisBuild = fmt.number(
-			from: Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "")?.intValue ?? 0
-
-		if lastBuild < thisBuild {
+		// thisBuild is not necessarily bigger than lastBuild. Just different,
+		// due to the way we create it in mk_build_versions.sh
+		if lastBuild != thisBuild {
 			print("[\(String(describing: type(of: self)))] migrating from build \(lastBuild) -> \(thisBuild)")
 
 			Migration.migrate()

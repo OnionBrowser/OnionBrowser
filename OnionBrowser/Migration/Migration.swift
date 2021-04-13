@@ -46,7 +46,7 @@ class Migration: NSObject {
 														options: nil)
 
 				// Migrate bridges. Needs to be done in the main thread, otherwise it's too late.
-				let request = NSFetchRequest<Bridge>.init(entityName: "Bridge")
+				let request = NSFetchRequest<Bridge>(entityName: "Bridge")
 				let oldBridges = try? moc.fetch(request)
 
 				if (oldBridges?.count ?? 0) > 0 {
@@ -68,8 +68,8 @@ class Migration: NSObject {
 				// Jump into a background thread to do the rest of the migration.
 				DispatchQueue.global(qos: .background).async {
 					// Migrate bookmarks.
-					let request = NSFetchRequest<OldBookmark>.init(entityName: "Bookmark")
-					request.sortDescriptors = [NSSortDescriptor.init(key: "order", ascending: true)]
+					let request = NSFetchRequest<OldBookmark>(entityName: "Bookmark")
+					request.sortDescriptors = [NSSortDescriptor(key: "order", ascending: true)]
 
 					if let oldBookmarks = try? moc.fetch(request) {
 						for ob in oldBookmarks {
@@ -154,6 +154,14 @@ class Migration: NSObject {
 					// Can't do anything now. We tried...
 				}
 			}
+		}
+
+		// Migrate users who used Meek to Snowflake.
+
+		print(Settings.currentlyUsedBridges)
+
+		if (Settings.currentlyUsedBridges == .meekazure || Settings.currentlyUsedBridges == .meekamazon) {
+			Settings.currentlyUsedBridges = .snowflake
 		}
 	}
 }
