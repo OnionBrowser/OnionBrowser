@@ -5,3 +5,4 @@
 - iOS 14 üzerinde, güvenlik düzeyi işaretlerine dokunulamaz olması sorunu düzeltildi.
 - Microsoft tarafından engellenmeye başlandığı duyurduğundan, Meek Azure köprüsü kaldırıldı.
 - Moat (Obfs4 köprü hizmeti) ve Snowflake yapılandırması güncellendi.
+- Tor 0.4.5.7, OpenSSL 1.1.1k sürümüne güncellendi.
