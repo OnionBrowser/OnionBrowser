@@ -64,13 +64,19 @@ UICollectionViewDropDelegate, TabCellDelegate {
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TabCell.reuseIdentifier, for: indexPath)
 
 		if let cell = cell as? TabCell {
-			let tab = tabs[indexPath.row]
 
-			cell.title.text = tab.title
+			// Crash reports show, that indexPath.row can sometimes be different then
+			// the real size of `tabs`. No idea why that race condition happens, but
+			// we should at least not crash, if so.
+			if indexPath.row > -1 && indexPath.row < tabs.count {
+				let tab = tabs[indexPath.row]
 
-			tab.add(to: cell.container)
-			tab.isHidden = false
-			tab.isUserInteractionEnabled = false
+				cell.title.text = tab.title
+
+				tab.add(to: cell.container)
+				tab.isHidden = false
+				tab.isUserInteractionEnabled = false
+			}
 
 			cell.delegate = self
 		}
@@ -152,8 +158,14 @@ UICollectionViewDropDelegate, TabCellDelegate {
 	// MARK: TabCellDelegate
 
 	func close(_ sender: TabCell) {
-		if let indexPath = tabsCollection.indexPath(for: sender) {
-			removeTab(tabs[indexPath.row])
+		if let indexPath = tabsCollection.indexPath(for: sender), indexPath.row > -1 {
+
+			// Crash reports show, that indexPath.row can sometimes be different then
+			// the real size of `tabs`. No idea why that race condition happens, but
+			// we should at least not crash, if so.
+			if indexPath.row < tabs.count {
+				removeTab(tabs[indexPath.row])
+			}
 
 			tabsCollection.performBatchUpdates({
 				tabsCollection.deleteItems(at: [indexPath])
