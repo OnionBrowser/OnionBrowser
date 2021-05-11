@@ -10,7 +10,7 @@
 
 import UIKit
 
-protocol TabCellDelegate: class {
+protocol TabCellDelegate: AnyObject {
     func close(_ sender: TabCell)
 }
 

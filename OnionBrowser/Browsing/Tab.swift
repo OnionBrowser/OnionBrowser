@@ -11,7 +11,7 @@
 import UIKit
 import QuickLook
 
-protocol TabDelegate: class {
+protocol TabDelegate: AnyObject {
 	func updateChrome()
 
 	func addNewTab(_ url: URL?) -> Tab?

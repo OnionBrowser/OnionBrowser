@@ -9,7 +9,7 @@
 
 import Foundation
 
-protocol OnionManagerDelegate: class {
+protocol OnionManagerDelegate: AnyObject {
 
 	func torConnProgress(_ progress: Int)
 

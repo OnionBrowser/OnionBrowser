@@ -11,7 +11,7 @@
 import UIKit
 import Eureka
 
-protocol BridgeConfDelegate: class {
+protocol BridgeConfDelegate: AnyObject {
 
 	var bridgesType: Settings.BridgesType { get set }
 
