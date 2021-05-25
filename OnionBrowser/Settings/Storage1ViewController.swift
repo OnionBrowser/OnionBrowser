@@ -44,7 +44,7 @@ class Storage1ViewController: FixedFormViewController {
 		}
 
 		+++ Section(footer: NSLocalizedString(
-			"Cookies and local storage data from non-whitelisted hosts will be cleared even from open tabs after not being accessed for this many minutes.",
+			"Cookies and local storage data from non-allowlisted hosts will be cleared even from open tabs after not being accessed for this many minutes.",
 			comment: "Option description"))
 
 		<<< intervalRow
