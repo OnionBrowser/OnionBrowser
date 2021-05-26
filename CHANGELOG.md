@@ -5,7 +5,7 @@
 - Added Polish translation.
 - Fixed issue when changing custom bridges and trying to connect immediately.
 - Improved wording.
-- Fixed minor issues when starting up using Snowflake.
+- Fixed Tor bootstrap when under Snowflake.
 
 ## 2.7.3
 

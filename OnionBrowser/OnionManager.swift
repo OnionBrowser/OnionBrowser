@@ -105,7 +105,12 @@ class OnionManager : NSObject {
 	]
 
 	static let snowflakeBridge = [
-		"snowflake 192.0.2.3:1" // Reserved address. Only there to fulfill Tor Bridge line requirements.
+		// BUGFIX: The fingerprint of flakey needs to be there, otherwise,
+		// bootstrapping Tor with Snowflake is impossible.
+		// https://gitlab.torproject.org/tpo/core/tor/-/issues/40360
+		//
+		// The IP address is a reserved one, btw. Only there to fulfill Tor Bridge line requirements.
+		"snowflake 192.0.2.3:1 2B280B23E1107BB62ABFC40DDCC8824814F80A72"
 	]
 
 
