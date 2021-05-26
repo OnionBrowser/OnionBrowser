@@ -1,5 +1,9 @@
 #  Onion Browser 2 Changelog
 
+## next
+
+- Added Polish translation.
+
 ## 2.7.3
 
 - Updated translations.

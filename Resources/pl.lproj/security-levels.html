@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable: no">
+<title>about:security-levels</title>
+<style>
+		body {
+			margin: 1em;
+
+			font-family: sans-serif;
+			font-size: 13pt;
+
+			color: #4a4a4a;
+		}
+
+		h1 {
+			text-align: center;
+
+			font-size: 35pt;
+			font-weight: bold;
+
+			color: #4a4a4a;
+		}
+
+		h2 {
+			font-size: 18pt;
+			font-weight: bold;
+
+			color: #4a4a4a;
+		}
+
+		h3 {
+			text-transform: uppercase;
+
+			font-size: 12pt;
+			font-weight: bold;
+
+			color: #720e95;
+		}
+
+		a {
+			font-weight: bold;
+
+			color: #720e95;
+		}
+
+		.dt {
+			font-weight: bold;
+			font-style: normal;
+		}
+
+		.outcome {
+			font-size: 14pt;
+			font-weight: bold;
+
+			color: #4a4a4a;
+		}
+
+		.warning {
+			font-weight: bold;
+		}
+
+		@media (prefers-color-scheme: dark) {
+			body {
+				background-color: black;
+			}
+
+			body, h1, h2, .outcome {
+				color: white;
+			}
+
+			a, h3 {
+				color: #c2a0ca;
+			}
+		}
+		</style>
+</head>
+<body>
+		<h1>Poziomy Bezpieczeństwa</h1>
+
+		<p>Poziom bezpieczeństwa, który wybierzesz dla witryny, często ma bezpośredni wpływ na wydajność witryny.
+			Oto poszczególne konsekwencje dla każdego poziomu.
+			Niektóre zabezpieczenia mogą zostać nadpisane lub zmienione poprzez zmianę Twoich ustawień bezpieczeństwa.</p>
+
+		<svg width="38" height="48" viewbox="0 0 38 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><lineargradient x1="0.5" y1="0" x2="0.5" y2="1" id="linearGradient-1"><stop stop-color="#FFD300" offset="0%"></stop><stop stop-color="#D5A900" offset="100%"></stop></lineargradient><lineargradient xlink:href="#linearGradient-1" id="linearGradient23" x1="10.677078" y1="-9.3151298e-10" x2="10.677078" y2="21.354156" gradienttransform="scale(0.88975652,1.123903)" gradientunits="userSpaceOnUse"></lineargradient><lineargradient xlink:href="#linearGradient-1" id="linearGradient25" x1="10.677078" y1="-9.3151298e-10" x2="10.677078" y2="21.354156" gradienttransform="scale(0.88975652,1.123903)" gradientunits="userSpaceOnUse"></lineargradient><lineargradient xlink:href="#linearGradient-1" id="linearGradient27" x1="78.111259" y1="215.32108" x2="78.111259" y2="236.67523" gradienttransform="scale(0.88975652,1.123903)" gradientunits="userSpaceOnUse"></lineargradient></defs><g style="fill:none;fill-rule:evenodd;stroke:none;stroke-width:1" transform="scale(2)"><g transform="translate(-60,-242)" style="fill:url(#linearGradient27);fill-rule:nonzero"><g transform="translate(60,242)" style="fill:url(#linearGradient25)"><path d="m 9.4165188,0.00409302 c 0.097455,-0.01142058 0.1962613,0.00114822 0.2875828,0.03658222 v 0 L 18.610352,3.2599103 C 18.844046,3.3442585 18.999594,3.5633131 19,3.8086436 v 0 9.6577194 c 0,2.288086 -1.308833,4.185357 -3.070816,5.843995 -1.761953,1.658638 -4.009682,3.126462 -6.0859371,4.581937 -0.2056467,0.143607 -0.4808471,0.143607 -0.6864938,0 C 7.0804984,22.43682 4.8327687,20.968996 3.0708156,19.310358 1.3088328,17.65172 0,15.754449 0,13.466363 v 0 -9.6577194 C 4.0600141e-4,3.5633131 0.15595383,3.3442585 0.38964844,3.2599103 v 0 L 9.2958984,0.04067524 C 9.3346729,0.02429203 9.375108,0.01202872 9.4165188,0.00409302 Z M 10.823,7 H 9.003 L 6,9.535 7.105,10.809 8.951,9.184 v 7.02 h 1.872 z" style="fill:url(#linearGradient23)"></path></g></g></g></svg><p class="outcome">Witryny mogą w pełni nie funkcjonować. Lecz otrzymujesz świetne bezpieczeństwo.</p>
+
+		<p>Wiele funkcji witryn jest wyłączone i wszystko inne jest tunelowane przez Tora.
+			Wiele witryn nie będzie prawidłowo działać, lub będą się kiepsko wyświetlały, lecz twoja tożsamość
+			jest chroniona przed wszystkimi z wyjątkiem najbardziej agresywnych przeciwników.</p>
+
+		<p><em class="dt">Kiedy Używać:</em>
+			Używaj, gdy obawiasz się, że nieprzyjaciel odkryje Twoją tożsamość oraz, gdy
+			monitoruje i cenzuruje Twoją aktywność.</p>
+
+		<p><em class="dt">Polityka Treści:</em>
+			Ścisła</p>
+
+		<ul>
+<li>Niedozwolony JavaScript</li>
+			<li>Wyłącza WebSockets, geolokalizację oraz XHR</li>
+			<li>Brak wideo lub audio</li>
+		</ul>
+<p><em class="dt">Ochrona Przed Linkami Uniwersalnymi:</em>
+			Tak (linki pochodzące z witryn nie mogą otwierać innych aplikacji na urządzeniu)</p>
+
+		<p><em class="dt">Blokowanie WebRTC:</em>
+			Tak</p>
+
+		<p><em class="dt">Blokowanie Zasobów w Trybie Mieszanym:</em>
+			Tak (zabronione mieszanie HTTP/HTTPS)</p>
+
+		<p><em class="dt">Blokowanie Wyskakujących Reklam i Powiadomień:</em>
+			Tak</p>
+
+
+		<svg width="38" height="48" viewbox="0 0 38 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><lineargradient x1="0.5" y1="0" x2="0.5" y2="1" id="linearGradient-2"><stop stop-color="#CFCFCF" offset="0%"></stop><stop stop-color="#6F6F6F" offset="100%"></stop></lineargradient><lineargradient xlink:href="#linearGradient-2" id="linearGradient26" x1="78.033737" y1="291.39529" x2="78.033737" y2="312.74945" gradienttransform="scale(0.88975659,1.1239029)" gradientunits="userSpaceOnUse"></lineargradient><lineargradient xlink:href="#linearGradient-2" id="linearGradient28" x1="78.033737" y1="291.39529" x2="78.033737" y2="312.74945" gradienttransform="scale(0.88975659,1.1239029)" gradientunits="userSpaceOnUse"></lineargradient></defs><g style="fill:none;fill-rule:evenodd;stroke:none;stroke-width:1" transform="matrix(2,0,0,2,-1.8844248,-0.97033648)"><g transform="translate(-59,-327)" style="fill:url(#linearGradient28);fill-rule:nonzero"><path d="m 69.226933,327.54068 -8.90625,3.21923 c -0.233695,0.0844 -0.389243,0.3034 -0.389648,0.54873 v 9.65772 c 0,2.28809 1.308832,4.18536 3.070815,5.844 1.761953,1.65864 4.009683,3.12646 6.085938,4.58193 0.205646,0.14361 0.480847,0.14361 0.686493,0 2.076255,-1.45547 4.323985,-2.92329 6.085938,-4.58193 1.761983,-1.65864 3.070815,-3.55591 3.070815,-5.844 v -9.65772 c -4.06e-4,-0.24533 -0.155953,-0.46438 -0.389648,-0.54873 l -8.90625,-3.21923 c -0.09132,-0.0354 -0.190128,-0.048 -0.287583,-0.0366 -0.04141,0.008 -0.08185,0.0202 -0.12062,0.0366 z m -3.295899,14.25232 3.575,-3.211 c 0.182001,-0.16467 0.364,-0.351 0.546001,-0.559 0.182,-0.208 0.272999,-0.45067 0.272999,-0.728 0,-0.312 -0.112665,-0.55683 -0.338,-0.7345 -0.225334,-0.17767 -0.489665,-0.2665 -0.793,-0.2665 -0.364001,0 -0.647832,0.11267 -0.8515,0.338 -0.203667,0.22533 -0.318499,0.50266 -0.344499,0.832 l -1.950001,-0.143 c 0.026,-0.47667 0.125666,-0.8905 0.299001,-1.2415 0.173334,-0.351 0.402998,-0.6435 0.688999,-0.8775 0.286002,-0.234 0.621832,-0.4095 1.007501,-0.5265 0.385668,-0.117 0.803831,-0.1755 1.254499,-0.1755 0.416003,0 0.805999,0.0585 1.170001,0.1755 0.364001,0.117 0.680331,0.29033 0.948999,0.52 0.268669,0.22967 0.478833,0.51783 0.6305,0.8645 0.151668,0.34667 0.227501,0.74966 0.227501,1.209 0,0.29467 -0.03033,0.56117 -0.091,0.7995 -0.06067,0.23833 -0.145166,0.455 -0.2535,0.65 -0.108333,0.195 -0.236165,0.37483 -0.3835,0.5395 -0.147334,0.16467 -0.307665,0.325 -0.481,0.481 l -2.795,2.405 h 4.082001 v 1.716 h -6.422001 z" style="fill:url(#linearGradient26)"></path></g></g></svg><p class="outcome">Działa całkiem dobrze. Twoja tożsamość jest w większości chroniona.</p>
+
+		<p>Niektóre funkcje witryn są wyłączone i wszystko inne jest tunelowane przez Tora.
+			Niektóre witryny kiepsko działają.</p>
+
+		<p><em class="dt">Kiedy Używać:</em>
+			Używaj, gdy musisz unikać cenzury oraz uniemożliwić komuś monitorowanie
+			twojej aktywności, ale jesteś mniej zaniepokojony wyciekiem Twojej tożsamości.</p>
+
+		<p><em class="dt">Polityka Treści:</em>
+			Umiarkowana</p>
+
+		<ul>
+<li>Niektóre funkcje JavaScript dozwolone</li>
+			<li>Wyłącza WebSockets, geolokalizację oraz XHR</li>
+			<li>Brak wideo lub audio</li>
+		</ul>
+<p><em class="dt">Ochrona Przed Linkami Uniwersalnymi:</em>
+			Tak</p>
+
+		<p><em class="dt">Blokowanie WebRTC:</em>
+			Tak</p>
+
+		<p><em class="dt">Blokowanie Zasobów w Trybie Mieszanym:</em>
+			Tak</p>
+
+		<p><em class="dt">Blokowanie Wyskakujących Reklam i Powiadomień:</em>
+			Tak</p>
+
+
+		<svg width="38" height="48" viewbox="0 0 38 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><lineargradient x1="0.5" y1="0" x2="0.5" y2="1" id="linearGradient-3"><stop stop-color="#E37C00" offset="0%"></stop><stop stop-color="#A05E0C" offset="100%"></stop></lineargradient><lineargradient xlink:href="#linearGradient-3" id="linearGradient22" x1="78.033783" y1="367.02438" x2="78.033783" y2="388.37854" gradienttransform="scale(0.88975611,1.1239035)" gradientunits="userSpaceOnUse"></lineargradient><lineargradient xlink:href="#linearGradient-3" id="linearGradient24" x1="78.033783" y1="367.02438" x2="78.033783" y2="388.37854" gradienttransform="scale(0.88975611,1.1239035)" gradientunits="userSpaceOnUse"></lineargradient></defs><g style="fill:none;fill-rule:evenodd;stroke:none;stroke-width:1" transform="matrix(2,0,0,2,-1.8844248,-0.97034648)"><g transform="translate(-59,-412)" style="fill:url(#linearGradient24);fill-rule:nonzero"><path d="m 69.347553,412.50409 c 0.09745,-0.0114 0.196262,10e-4 0.287583,0.0366 v 0 l 8.90625,3.21923 c 0.233695,0.0844 0.389242,0.3034 0.389648,0.54873 v 0 9.65772 c 0,2.28809 -1.308832,4.18536 -3.070815,5.844 -1.761953,1.65864 -4.009683,3.12646 -6.085938,4.58193 -0.205646,0.14361 -0.480847,0.14361 -0.686493,0 -2.076255,-1.45547 -4.323985,-2.92329 -6.085938,-4.58193 -1.761983,-1.65864 -3.070815,-3.55591 -3.070815,-5.844 v 0 -9.65772 c 4.05e-4,-0.24533 0.155953,-0.46438 0.389648,-0.54873 v 0 l 8.90625,-3.21923 c 0.03877,-0.0164 0.07921,-0.0287 0.12062,-0.0366 z m -0.206613,7.44419 c -0.396523,0 -0.773215,0.0419 -1.130087,0.12579 -0.356871,0.0839 -0.680694,0.21407 -0.971478,0.39062 -0.290784,0.17655 -0.541912,0.40827 -0.753391,0.69517 -0.21148,0.2869 -0.370087,0.63338 -0.475826,1.03945 v 0 l 2.180869,0.45021 c 0.06168,-0.24718 0.193854,-0.45462 0.396522,-0.62235 0.202668,-0.16772 0.458201,-0.25158 0.766609,-0.25158 0.32603,0 0.60139,0.0927 0.826087,0.27806 0.224696,0.18538 0.337043,0.41931 0.337043,0.7018 0,0.22069 -0.04406,0.39945 -0.132174,0.53627 -0.08812,0.13683 -0.204869,0.24276 -0.350261,0.3178 -0.145392,0.075 -0.306202,0.12579 -0.482435,0.15227 -0.176232,0.0265 -0.356868,0.0397 -0.541912,0.0397 v 0 h -0.647653 v 1.72138 h 0.462609 c 0.220291,0 0.440579,0.007 0.66087,0.0199 0.220291,0.0132 0.418549,0.0552 0.594782,0.12579 0.176233,0.0706 0.31942,0.17876 0.429565,0.32442 0.110146,0.14565 0.165218,0.35089 0.165218,0.61572 0,0.3531 -0.103535,0.64221 -0.310609,0.86731 -0.207073,0.2251 -0.526491,0.33765 -0.958261,0.33765 -0.422958,0 -0.742375,-0.0971 -0.958261,-0.29131 -0.215885,-0.1942 -0.359072,-0.45903 -0.429565,-0.79448 v 0 l -2.088348,0.48993 c 0.193856,0.83863 0.592577,1.45214 1.196174,1.84055 0.603598,0.38842 1.323938,0.58263 2.161044,0.58263 0.458205,0 0.892172,-0.0574 1.301913,-0.17214 0.409741,-0.11476 0.766607,-0.2891 1.070609,-0.52304 0.304001,-0.23393 0.546317,-0.52744 0.726956,-0.88055 0.180639,-0.3531 0.270956,-0.76358 0.270956,-1.23145 0,-0.27365 -0.03965,-0.53406 -0.118956,-0.78124 -0.07931,-0.24717 -0.193854,-0.46786 -0.343652,-0.66207 -0.149798,-0.1942 -0.332637,-0.35751 -0.548522,-0.48993 -0.215885,-0.13241 -0.46481,-0.21627 -0.746783,-0.25158 v 0 -0.0397 c 0.519887,-0.10593 0.916405,-0.34427 1.189566,-0.71503 0.273161,-0.37076 0.409739,-0.81655 0.409739,-1.33738 0,-0.45021 -0.08591,-0.83862 -0.257739,-1.16524 -0.171827,-0.32663 -0.403129,-0.59807 -0.693913,-0.81435 -0.290784,-0.21628 -0.627824,-0.37517 -1.011131,-0.47669 -0.383306,-0.10152 -0.782027,-0.15227 -1.196174,-0.15227 z" style="fill:url(#linearGradient22)"></path></g></g></svg><p class="outcome">Bułka z masłem. Chociaż może to być niebezpiecznie.</p>
+		<p>Większość funkcji witryn jest dostępna i niektóre rzeczy nie są tunelowane przez Tora.
+			WebRTC, komunikacja audio i wideo prowadzona jest przez Twoje oryginalne połączenie
+			(prze co może być ocenzurowane).
+			<span class="warning">Uwaga:</span> Twoja tożsamość oraz adres IP
+			w niektórych przypadkach może zostać obnażony.</p>
+
+		<p><em class="dt">Kiedy Używać:</em>
+			Używaj, gdy masz obawy, że twoja aktywność jest rejestrowana, lecz akceptujesz, że jej część może być monitorowana.</p>
+
+		<p><em class="dt">Polityka Treści:</em>
+			Otwarta</p>
+
+		<ul>
+<li>Dozwolony JavaScript (oraz wszystkie jego funkcje)</li>
+			<li>Włączone audio oraz wide</li>
+		</ul>
+<p><em class="dt">Ochrona Przed Linkami Uniwersalnymi:</em>
+			Tak</p>
+
+		<p><em class="dt">Blokowanie WebRTC:</em>
+			Nie</p>
+
+		<p><em class="dt">Blokowanie Zasobów w Trybie Mieszanym:</em>
+			Nie</p>
+
+		<p><em class="dt">Blokowanie Wyskakujących Reklam i Powiadomień:</em>
+			Tak</p>
+	</body>
+</html>

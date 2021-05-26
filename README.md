@@ -107,6 +107,8 @@ These people helped with translations. Thank you so much, folks!
   kingu, eirik174
 - Persian: 
   ariaa, arminoza, nariman, sabs, magnifico, Gilberto1, Zaefarani, alinbipr, hamidreza_yazdani, mo.hoseini, noneck, voxp, gonjayesh, koofi, nonecknoel
+- Polish:
+  GEEZET1, Pihjun, tenderloin, weegoor, wiktoriatomzik
 - Portuguese (Brazil): 
   flaviove, CypherZnnb, Bk__13, CRCF, darkcrystal, eduaddadbr, leovasone, nopum, vmattos, Communia
 - Portuguese (Portugal): 
