@@ -102,12 +102,7 @@ UINavigationControllerDelegate, MFMailComposeViewControllerDelegate {
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 
-		delegate?.customBridges = textAreaRow.value?
-				.components(separatedBy: "\n")
-				.map({ bridge in bridge.trimmingCharacters(in: .whitespacesAndNewlines) })
-				.filter({ bridge in !bridge.isEmpty && !bridge.hasPrefix("//") && !bridge.hasPrefix("#") })
-
-		delegate?.bridgesType = delegate?.customBridges?.isEmpty ?? true ? .none : .custom
+		updateDelegate()
 	}
 
 	// MARK: UIImagePickerControllerDelegate
@@ -165,6 +160,18 @@ UINavigationControllerDelegate, MFMailComposeViewControllerDelegate {
 
 	@objc
 	private func connect() {
+		// Fix issue #313: Need to call this before #connect! Will be too late in #viewWillDisappear.
+		updateDelegate()
+
 		delegate?.connect()
+	}
+
+	private func updateDelegate() {
+		delegate?.customBridges = textAreaRow.value?
+				.components(separatedBy: "\n")
+				.map({ bridge in bridge.trimmingCharacters(in: .whitespacesAndNewlines) })
+				.filter({ bridge in !bridge.isEmpty && !bridge.hasPrefix("//") && !bridge.hasPrefix("#") })
+
+		delegate?.bridgesType = delegate?.customBridges?.isEmpty ?? true ? .none : .custom
 	}
 }

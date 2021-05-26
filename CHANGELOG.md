@@ -1,8 +1,9 @@
 #  Onion Browser 2 Changelog
 
-## next
+## 2.7.4
 
 - Added Polish translation.
+- Fixed issue when changing custom bridges and trying to connect immediately.
 
 ## 2.7.3
 
