@@ -298,7 +298,7 @@
 
 		if (secs == 0 || blocker == nil) {
 #ifdef TRACE_COOKIE_WHITELIST
-			NSLog(@"[CookieJar] deleting non-whitelisted cookie: %@", cookie);
+			NSLog(@"[CookieJar] deleting non-allowlisted cookie: %@", cookie);
 #endif
 			[[self cookieStorage] deleteCookie:cookie];
 		}
@@ -357,7 +357,7 @@
 	int sweepmins = [[self oldDataSweepTimeout] intValue];
 	
 #ifdef TRACE_COOKIES
-	NSLog(@"[CookieJar] clearing non-whitelisted data older than %d min(s)", sweepmins);
+	NSLog(@"[CookieJar] clearing non-allowlisted data older than %d min(s)", sweepmins);
 #endif
 	[self clearAllNonWhitelistedCookiesOlderThan:(60 * sweepmins)];
 	[self clearAllNonWhitelistedLocalStorageOlderThan:(60 * sweepmins)];
@@ -369,7 +369,7 @@
 	NSNumber *tabHashN = [NSNumber numberWithLong:tabHash];
 
 #ifdef TRACE_COOKIES
-	NSLog(@"[Tab h%@] clearing non-whitelisted data", tabHashN);
+	NSLog(@"[Tab h%@] clearing non-allowlisted data", tabHashN);
 #endif
 	
 	for (NSString *cookieDomain in [[[self dataAccesses] objectForKey:tabHashN] allKeys]) {
