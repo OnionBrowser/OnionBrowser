@@ -203,7 +203,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 	func applicationDidEnterBackground(_ application: UIApplication) {
 		if !testing {
 			HostSettings.store()
-			hstsCache?.persist()
+
+			// FIXES BUGS #311 and #325:
+			// This was so slow, that even an explicit background task wasn't
+			// good enough and iOS got impatient with us.
+			// Fixed for now, as now only non-preloaded data is written to disk.
+			// Left in a background task anyway, in case this list grows a lot
+			// again under heavy usage and would then block restart again.
+			DispatchQueue.global(qos: .background).async {
+				let taskId = application.beginBackgroundTask(expirationHandler: nil)
+
+				self.hstsCache?.persist()
+
+				application.endBackgroundTask(taskId)
+			}
 		}
 
 		TabSecurity.handleBackgrounding()
@@ -216,6 +229,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 	}
 
 	func applicationDidBecomeActive(_ application: UIApplication) {
+
+		// Note: If restart is slow (and even crashes), it could be, that
+		// #applicationDidEnterBackground isn't finished, yet!
 
 		if !verified, let privateKey = SecureEnclave.loadKey() {
 			var counter = 0

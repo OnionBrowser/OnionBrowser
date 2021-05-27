@@ -12,6 +12,18 @@
 
 /* note that UIWebView has its own HSTS cache that comes preloaded with a big plist of hosts, but we can't change it or manually add to it */
 
+// TODO: The preload list is stone-old and should be updated!
+//
+// A new one can be found here: https://chromium.googlesource.com/chromium/src/net/+/master/http/transport_security_state_static.json?format=TEXT
+//
+// And needs to be decoded:
+// base64 --decode ~/Download/transport_security_state_static.json.txt
+//
+// And then filtered and transformed to plist format!
+//
+// TODO: This class should be rewritten in Swift with proper object serialization
+// instead of a dictionary.
+
 @implementation HSTSCache
 
 static NSDictionary *_preloadedHosts;
@@ -209,8 +221,19 @@ static NSDictionary *_preloadedHosts;
 
 - (BOOL)writeToFile:(NSString *)path atomically:(BOOL)useAuxiliaryFile
 {
+	// FIXES BUGS #311 and #325:
+	// Only write non-preloaded data, since we're ignoring it in #retrieve, anyway.
+	// (OMFG! This took > 10 seconds to write and then got ignored!)
+	NSMutableDictionary *temp = [NSMutableDictionary new];
+
+	for (NSString *host in self.allKeys) {
+		if (!self.dict[host][HSTS_KEY_PRELOADED]) {
+			temp[host] = self.dict[host];
+		}
+	}
+
 	@try {
-		return [[self dict] writeToFile:path atomically:useAuxiliaryFile];
+		return [temp writeToFile:path atomically:useAuxiliaryFile];
 	}
 	@catch(NSException *e) {
 		NSLog(@"[HSTSCache] failed persisting to file: %@", e);

@@ -6,6 +6,8 @@
 - Fixed issue when changing custom bridges and trying to connect immediately.
 - Improved wording.
 - Fixed Tor bootstrap when under Snowflake.
+- Fixed bug where a huge HSTS list write was blocking app shutdown and therefore blocking 
+  and crashing app restart.
 
 ## 2.7.3
 
