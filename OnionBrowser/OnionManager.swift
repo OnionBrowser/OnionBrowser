@@ -55,9 +55,9 @@ class OnionManager : NSObject {
 			"--ControlPort", "127.0.0.1:39060",
 			"--Log", log_loc,
 			"--ClientUseIPv6", "1",
-			"--ClientTransportPlugin", "obfs4 socks5 127.0.0.1:\(IPtProxyObfs4SocksPort)",
-			"--ClientTransportPlugin", "meek_lite socks5 127.0.0.1:\(IPtProxyMeekSocksPort)",
-			"--ClientTransportPlugin", "snowflake socks5 127.0.0.1:\(IPtProxySnowflakeSocksPort)", // Config is done in #startSnowflake.
+			"--ClientTransportPlugin", "obfs4 socks5 127.0.0.1:\(IPtProxyObfs4Port())",
+			"--ClientTransportPlugin", "meek_lite socks5 127.0.0.1:\(IPtProxyMeekPort())",
+			"--ClientTransportPlugin", "snowflake socks5 127.0.0.1:\(IPtProxySnowflakePort())",
 			"--GeoIPFile", Bundle.main.path(forResource: "geoip", ofType: nil) ?? "",
 			"--GeoIPv6File", Bundle.main.path(forResource: "geoip6", ofType: nil) ?? "",
 		]
@@ -110,6 +110,7 @@ class OnionManager : NSObject {
 		// https://gitlab.torproject.org/tpo/core/tor/-/issues/40360
 		//
 		// The IP address is a reserved one, btw. Only there to fulfill Tor Bridge line requirements.
+		// The actual config is done in #startSnowflake.
 		"snowflake 192.0.2.3:1 2B280B23E1107BB62ABFC40DDCC8824814F80A72"
 	]
 

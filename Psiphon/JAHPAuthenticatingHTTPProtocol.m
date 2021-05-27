@@ -705,7 +705,7 @@ static NSString * kJAHPRecursiveRequestFlagProperty = @"com.jivesoftware.JAHPAut
 	{
 		[self.class authenticatingHTTPProtocol:self logWithFormat:@"Use Moat domain fronting via Obfs4proxy."];
 
-		if (port != IPtProxyMeekSocksPort)
+		if (port != IPtProxyMeekPort())
 		{
 			[self.class authenticatingHTTPProtocol:self logWithFormat:@"Reconfigure to use Moat domain fronting via Obfs4proxy."];
 
@@ -722,7 +722,7 @@ static NSString * kJAHPRecursiveRequestFlagProperty = @"com.jivesoftware.JAHPAut
 
 				proxyDict[@"SOCKSEnable"] = @YES;
 				proxyDict[(NSString *)kCFStreamPropertySOCKSProxyHost] = @"localhost";
-				proxyDict[(NSString *)kCFStreamPropertySOCKSProxyPort] = [NSNumber numberWithInteger: IPtProxyMeekSocksPort];
+				proxyDict[(NSString *)kCFStreamPropertySOCKSProxyPort] = [NSNumber numberWithInteger: IPtProxyMeekPort()];
 				proxyDict[(NSString *)kCFStreamPropertySOCKSUser] = @"url=https://moat.torproject.org.global.prod.fastly.net/;";
 				// We should only split, if we overflow 255 bytes, but NSStrings are NULL-terminated,
 				// so we can't set the password to 0x00. Therefore we slightly violate the spec and

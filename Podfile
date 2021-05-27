@@ -20,7 +20,7 @@ target 'OnionBrowser2' do
   pod 'FavIcon', git: 'https://github.com/tladesignz/FavIcon.git', branch: 'swift-5'
   pod 'MBProgressHUD', '~> 1.2'
 
-  pod 'IPtProxy', '~> 0.6' # :path => '../IPtProxy' #
+  pod 'IPtProxy', '~> 1.0' # :path => '../IPtProxy' #
   pod 'Tor', podspec: 'https://raw.githubusercontent.com/iCepa/Tor.framework/v405.7.1/Tor.podspec'
 end
 
