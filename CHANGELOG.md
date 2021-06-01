@@ -3,11 +3,10 @@
 ## 2.7.4
 
 - Added Polish translation.
-- Fixed issue when changing custom bridges and trying to connect immediately.
 - Improved wording.
-- Fixed Tor bootstrap when under Snowflake.
-- Fixed bug where a huge HSTS list write was blocking app shutdown and therefore blocking 
-  and crashing app restart.
+- Fixed app crashes on short pause/resume cycles.
+- Fixed app start when Snowflake bridges are configured.
+- Fixed issue when changing custom bridges and trying to connect immediately.
 
 ## 2.7.3
 
