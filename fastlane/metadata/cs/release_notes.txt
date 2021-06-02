@@ -1,7 +1,5 @@
-- Aktualizované překlady.
-- Přidán korejský překlad.
-- Opravený problém s prvky iframe ve spojení s ochranou Universal Link Protection.
-- Nastavit automatické přesměrování na adresy inzerované v záhlavích „Cibule-umístění“.
-- Opravený problém v systému iOS 14, kde odznaky úrovně zabezpečení již nelze klepnout.
-- Odstraněno most Meek Azure, protože Microsoft oznámil, že ho začne blokovat.
-- Aktualizovaná příkop (služba mostu Obfs4) a konfigurace sněhové vločky.
+- Přidán polský překlad
+- Vylepšené formulace.
+- Opraveny pády aplikace při krátkých cyklech pauza/návrat.
+- Opraven start aplikace při nakonfigurovaných Snowflake bridgích.
+- Opraven problém při změně vlastních bridgů a následném okamžitém pokusu o připojení.
