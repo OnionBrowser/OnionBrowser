@@ -7,6 +7,7 @@
 - Fixed app crashes on short pause/resume cycles.
 - Fixed app start when Snowflake bridges are configured.
 - Fixed issue when changing custom bridges and trying to connect immediately.
+- Updated Tor to version 0.4.5.8.
 
 ## 2.7.3
 

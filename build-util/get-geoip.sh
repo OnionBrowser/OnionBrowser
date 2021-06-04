@@ -10,6 +10,6 @@
 
 if [ ! -f ./Resources/geoip ] || [ ! -f ./Resources/geoip6 ] || test `find . -name geoip -mtime +1`
 then
-    curl -Lo ./Resources/geoip https://gitweb.torproject.org/tor.git/plain/src/config/geoip?h=tor-0.4.5.7
-    curl -Lo ./Resources/geoip6 https://gitweb.torproject.org/tor.git/plain/src/config/geoip6?h=tor-0.4.5.7
+    curl -Lo ./Resources/geoip https://gitweb.torproject.org/tor.git/plain/src/config/geoip?h=tor-0.4.5.8
+    curl -Lo ./Resources/geoip6 https://gitweb.torproject.org/tor.git/plain/src/config/geoip6?h=tor-0.4.5.8
 fi

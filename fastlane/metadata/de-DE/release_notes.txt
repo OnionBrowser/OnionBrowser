@@ -3,3 +3,4 @@
 - App-Abstürze bei kurzen Pausen-/Fortsetzen-Zyklen behoben.
 - App-Start behoben, wenn Snowflake-Brücken konfiguriert sind.
 - Problem behoben, wenn benutzerdefinierte Brücken geändert und versucht wurde, sofort eine Verbindung herzustellen.
+- Tor auf Version 0.4.5.8 aktualisiert.

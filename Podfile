@@ -21,7 +21,7 @@ target 'OnionBrowser2' do
   pod 'MBProgressHUD', '~> 1.2'
 
   pod 'IPtProxy', '~> 1.0' # :path => '../IPtProxy' #
-  pod 'Tor', podspec: 'https://raw.githubusercontent.com/iCepa/Tor.framework/v405.7.1/Tor.podspec'
+  pod 'Tor', podspec: 'https://raw.githubusercontent.com/iCepa/Tor.framework/v405.8.1/Tor.podspec'
 end
 
 target 'OnionBrowser2 Tests' do
