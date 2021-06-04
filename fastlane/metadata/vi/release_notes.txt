@@ -1,7 +1,6 @@
-- Bản dịch cập nhật.
-- Đã thêm bản dịch tiếng Hàn.
-- Đã khắc phục sự cố với iframe kết hợp với Bảo vệ liên kết chung.
-- Thực hiện chuyển hướng tự động đến các địa chỉ được quảng cáo trong tiêu đề `Onion-Location` có thể định cấu hình.
-- Đã khắc phục sự cố trên iOS 14, trong đó các huy hiệu cấp độ bảo mật không thể nhấn được nữa.
-- Đã xóa cầu Meek Azure do Microsoft thông báo bắt đầu chặn nó.
-- Cập nhật Moat (dịch vụ cầu nối Obfs4) và cấu hình Snowflake.
+- Đã thêm bản dịch tiếng Ba Lan.
+- Cải thiện từ ngữ.
+- Đã khắc phục sự cố ứng dụng trong các chu kỳ tạm dừng / tiếp tục ngắn.
+- Đã sửa lỗi khởi động ứng dụng khi cầu Snowflake được định cấu hình.
+- Đã khắc phục sự cố khi thay đổi cầu nối tùy chỉnh và cố gắng kết nối ngay lập tức.
+- Cập nhật Tor lên phiên bản 0.4.5.8.

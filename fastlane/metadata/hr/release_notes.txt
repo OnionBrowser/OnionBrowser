@@ -1,7 +1,6 @@
-- Ažurirani prijevodi.
-- Dodan prijevod na korejski.
-- Ispravljena poteškoća s iframovima u sprezi s Universal Link Protection.
-- Neka se automatska preusmjeravanja na adrese oglašavane u zaglavljima `Onion-Location` mogu konfigurirati.
-- Ispravljen problem na iOS-u 14, gdje se značke razine sigurnosti više nisu mogle dodirnuti.
-- Uklonjen je most Meek Azure, otkako je Microsoft objavio da ga počinje blokirati.
-- Ažurirani Moat (usluga mosta Obfs4) i konfiguracija Pahuljice.
+- Dodan prijevod na poljski.
+- Poboljšana formulacija.
+- Ispravljeni pad aplikacija u kratkim ciklusima pauze / nastavka.
+- Fiksno pokretanje aplikacije kada se konfiguriraju mostovi Pahuljica.
+- Ispravljen problem prilikom promjene prilagođenih mostova i pokušaja neposrednog povezivanja.
+- Ažuriran Tor na verziju 0.4.5.8.

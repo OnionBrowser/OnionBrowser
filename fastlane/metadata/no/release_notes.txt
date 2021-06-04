@@ -1,7 +1,6 @@
-- Oppdaterte oversettelser.
-- Lagt til koreansk oversettelse.
-- Løst problem med iframes i forbindelse med Universal Link Protection.
-- Gjør automatiske viderekoblinger til adresser som er annonsert i "Onion-Location" -hoder konfigurerbare.
-- Løst problem på iOS 14, der sikkerhetsnivåmerker ikke lenger kunne tappes.
-- Fjernet Meek Azure bridge, siden Microsoft kunngjorde at de begynte å blokkere den.
-- Oppdatert Moat (Obfs4 bridge service) og Snowflake konfigurasjon.
+- Lagt til polsk oversettelse.
+- Forbedret ordlyd.
+- Fast app krasjer på korte pause / CV-sykluser.
+- Fast app starter når Snowflake broer er konfigurert.
+- Løst problem når du endrer egendefinerte broer og prøver å koble til umiddelbart.
+- Oppdaterte Tor til versjon 0.4.5.8.

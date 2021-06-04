@@ -1,7 +1,6 @@
-- Traduccions actualitzades.
-- S'ha afegit traducció al coreà.
-- S'ha solucionat el problema amb iframes juntament amb Universal Link Protection.
-- Feu redireccions automàtiques a les adreces publicades a les capçaleres "Onion-Location" configurables.
-- Solució del problema a iOS 14, en què les insígnies de nivell de seguretat ja no es podien aplicar.
-- S'ha eliminat el pont Meek Azure, ja que Microsoft va anunciar que començaria a bloquejar-lo.
-- Actualització de la configuració de Moat (servei de pont Obfs4) i Snowflake.
+- S'ha afegit traducció al polonès.
+- Millora de la redacció.
+- S'han corregit els bloquejos d'aplicacions en cicles curts de pausa / recuperació.
+- S'ha solucionat l'inici de l'aplicació quan es configuraven els ponts de floc de neu.
+- Solució del problema en canviar ponts personalitzats i intentar connectar-se immediatament.
+- Tor actualitzat a la versió 0.4.5.8.

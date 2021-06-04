@@ -1,8 +1,6 @@
-- Çeviriler güncellendi.
-- Korece çevirisi eklendi.
-- Evrensel Bağlantı Koruması ile birlikte iç çerçeveler ile ilgili sorun düzeltildi.
-- `Onion-Location` üst bilgilerinde duyurulan adreslere otomatik yönlendirmeler yapılandırılabilir kılındı.
-- iOS 14 üzerinde, güvenlik düzeyi işaretlerine dokunulamaz olması sorunu düzeltildi.
-- Microsoft tarafından engellenmeye başlandığı duyurduğundan, Meek Azure köprüsü kaldırıldı.
-- Moat (Obfs4 köprü hizmeti) ve Snowflake yapılandırması güncellendi.
-- Tor 0.4.5.7, OpenSSL 1.1.1k sürümüne güncellendi.
+- Lehçe çeviri eklendi.
+- Geliştirilmiş ifadeler.
+- Kısa duraklama/devam etme döngülerinde sabit uygulama çöküyor.
+- Kar Tanesi köprüleri yapılandırıldığında uygulamanın başlaması düzeltildi.
+- Özel köprüleri değiştirirken ve hemen bağlanmaya çalışırken oluşan sorun düzeltildi.
+- Tor, 0.4.5.8 sürümüne güncellendi.

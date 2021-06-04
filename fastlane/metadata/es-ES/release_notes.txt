@@ -1,8 +1,6 @@
-- Traducciones actualizadas.
-- Traducción coreana agregada.
-- Error con iframes arreglado, en conjunto con Protección Universal de Vínculos.
-- Hacer configurables las redirecciones automáticas a direcciones publicadas en encabezados `Onion-Location`.
-- Error en iOS 14 arreglado, donde las insignias de nivel de seguridad no podían ser visualizadas.
-- Puente Meek Azure removido, ya que Microsoft anunció que va a empezar a bloquearlos.
-- Configuraciones Moat (servicio para puente Obfs4) y Snowflake actualizadas.
-- Actualización de Tor a 0.4.5.7 y OpenSSL a 1.1.1k.
+- Añadida traducción al polaco.
+- Redacción mejorada.
+- Se corrigieron fallas de la aplicación en ciclos cortos de pausa / reanudación.
+- Arreglado el inicio de la aplicación cuando se configuran los puentes Snowflake.
+- Se solucionó el problema al cambiar puentes personalizados e intentar conectarse de inmediato.
+- Tor actualizado a la versión 0.4.5.8.

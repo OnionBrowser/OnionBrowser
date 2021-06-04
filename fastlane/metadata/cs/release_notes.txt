@@ -1,5 +1,6 @@
-- Přidán polský překlad
+- Přidán polský překlad.
 - Vylepšené formulace.
 - Opraveny pády aplikace při krátkých cyklech pauza/návrat.
 - Opraven start aplikace při nakonfigurovaných Snowflake bridgích.
 - Opraven problém při změně vlastních bridgů a následném okamžitém pokusu o připojení.
+- Aktualizováno Tor na verzi 0.4.5.8.

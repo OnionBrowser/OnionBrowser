@@ -1,7 +1,6 @@
-- Traduzioni aggiornate.
-- Aggiunta la traduzione in coreano.
-- Risolto il problema con iframe in combinazione con Universal Link Protection.
-- Rende configurabili i reindirizzamenti automatici agli indirizzi pubblicizzati nelle intestazioni "Onion-Location".
-- Risolto il problema su iOS 14, in cui i badge del livello di sicurezza non erano più selezionabili.
-- Rimosso il bridge Meek Azure, poiché Microsoft ha annunciato di aver iniziato a bloccarlo.
-- Aggiornamento Moat (servizio bridge Obfs4) e configurazione Snowflake.
+- Aggiunta traduzione polacca.
+- Formulazione migliorata.
+- Risolti arresti anomali dell'app durante brevi cicli di pausa/ripresa.
+- Risolto il problema con l'avvio dell'app quando vengono configurati i ponti Snowflake.
+- Risolto il problema durante la modifica dei bridge personalizzati e il tentativo di connettersi immediatamente.
+- Aggiornato Tor alla versione 0.4.5.8.
