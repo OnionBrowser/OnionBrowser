@@ -32,16 +32,15 @@ open class Bookmark: NSObject {
 	private static let defaultBookmarks: [Bookmark] = {
 		var defaults = [Bookmark]()
 
-		defaults.append(Bookmark(name: "DuckDuckGo", url: "https://3g2upl4pq6kufc4m.onion/"))
+		defaults.append(Bookmark(name: "DuckDuckGo", url: "https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/"))
 		defaults.append(Bookmark(name: "New York Times", url: "https://mobile.nytimes3xbfgragh.onion/"))
 		defaults.append(Bookmark(name: "BBC", url: "https://bbcnewsv2vjtpsuy.onion/"))
-		defaults.append(Bookmark(name: "Facebook", url: "https://m.facebookcorewwwi.onion/"))
-		defaults.append(Bookmark(name: "ProPublica", url: "https://www.propub3r6espa33w.onion/"))
-		defaults.append(Bookmark(name: "Freedom of the Press Foundation", url: "https://freedom.press/"))
+		defaults.append(Bookmark(name: "Facebook", url: "https://m.facebookwkhpilnemxj7asaniu7vnjjbiltxjqhye3mhbshg7kx5tfyd.onion/"))
+		defaults.append(Bookmark(name: "ProPublica", url: "https://p53lf57qovyuvwsc6xnrppyply3vtqm7l6pcobkmyqsiofyeznfu5uqd.onion/"))
+		defaults.append(Bookmark(name: "Freedom of the Press Foundation", url: "http://fpfjxcrmw437h6z2xl3w4czl55kvkmxpapg37bbopsafdu7q454byxid.onion/"))
 
-		defaults.append(Bookmark(name: "Onion Browser landing page", url: "http://3heens4xbedlj57xwcggjsdglot7e36p4rogy642xokemfo2duh6bbyd.onion/"))
 		defaults.append(Bookmark(name: "Onion Browser official site", url: "https://onionbrowser.com"))
-		defaults.append(Bookmark(name: "The Tor Project", url: "http://expyuzz4wqqyqhjn.onion/"))
+		defaults.append(Bookmark(name: "The Tor Project", url: "http://2gzyxa5ihm7nsggfxnu52rck2vv4rvmdlkiu3zzui5du4xyclen53wid.onion/"))
 
 		return defaults
 	}();

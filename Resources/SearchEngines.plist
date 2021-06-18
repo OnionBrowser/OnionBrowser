@@ -5,29 +5,29 @@
 	<key>DuckDuckGo</key>
 	<dict>
 		<key>search_url</key>
-		<string>https://3g2upl4pq6kufc4m.onion/?q=%@</string>
+		<string>https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/?q=%@</string>
 		<key>homepage_url</key>
-		<string>https://3g2upl4pq6kufc4m.onion/</string>
+		<string>https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/</string>
 		<key>autocomplete_url</key>
-		<string>https://3g2upl4pq6kufc4m.onion/ac/?type=list&amp;q=%@</string>
+		<string>https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/ac/?type=list&amp;q=%@</string>
 	</dict>
 	<key>DuckDuckGo HTML</key>
 	<dict>
 		<key>search_url</key>
-		<string>https://3g2upl4pq6kufc4m.onion/html?q=%@</string>
+		<string>https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/html?q=%@</string>
 		<key>homepage_url</key>
-		<string>https://3g2upl4pq6kufc4m.onion/html</string>
+		<string>https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/html</string>
 		<key>autocomplete_url</key>
-		<string>https://3g2upl4pq6kufc4m.onion/ac/?type=list&amp;q=%@</string>
+		<string>https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/ac/?type=list&amp;q=%@</string>
 	</dict>
 	<key>DuckDuckGo Lite</key>
 	<dict>
 		<key>search_url</key>
-		<string>https://3g2upl4pq6kufc4m.onion/lite?q=%@</string>
+		<string>https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/lite?q=%@</string>
 		<key>homepage_url</key>
-		<string>https://3g2upl4pq6kufc4m.onion/lite</string>
+		<string>https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/lite</string>
 		<key>autocomplete_url</key>
-		<string>https://3g2upl4pq6kufc4m.onion/ac/?type=list&amp;q=%@</string>
+		<string>https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/ac/?type=list&amp;q=%@</string>
 	</dict>
 	<key>Google</key>
 	<dict>
