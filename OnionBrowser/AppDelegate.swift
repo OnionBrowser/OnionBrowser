@@ -269,6 +269,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 		}
 		else {
 			BlurredSnapshot.remove()
+
+			// Makes sure, a new tab (and therefore the bottom toolbar) is shown,
+			// if all tabs were removed.
+			browsingUi?.becomesVisible()
 		}
 
 		let mgr = OnionManager.shared
