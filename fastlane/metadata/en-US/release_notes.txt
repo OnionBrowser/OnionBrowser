@@ -1,6 +1,4 @@
-- Added Polish translation.
-- Improved wording.
-- Fixed app crashes on short pause/resume cycles.
-- Fixed app start when Snowflake bridges are configured.
-- Fixed issue when changing custom bridges and trying to connect immediately.
-- Updated Tor to version 0.4.5.8.
+- Updated Arabic, Irish and Macedonian translations.
+- Updated Tor to version 0.4.5.9.
+- Updated Snowflake to version 1.1.0.
+- Fixed a bug, where no tab was shown after restart and toolbar was also hidden.

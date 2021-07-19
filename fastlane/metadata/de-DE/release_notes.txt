@@ -1,6 +1,4 @@
-- Polnische Übersetzung hinzugefügt.
-- Verbesserte Formulierung.
-- App-Abstürze bei kurzen Pausen-/Fortsetzen-Zyklen behoben.
-- App-Start behoben, wenn Snowflake-Brücken konfiguriert sind.
-- Problem behoben, wenn benutzerdefinierte Brücken geändert und versucht wurde, sofort eine Verbindung herzustellen.
-- Tor auf Version 0.4.5.8 aktualisiert.
+- Arabische, irische und mazedonische Übersetzungen aktualisiert.
+- Tor auf Version 0.4.5.9 aktualisiert.
+- Snowflake auf Version 1.1.0 aktualisiert.
+- Fehler behoben, bei dem nach dem Neustart kein Tab angezeigt wurde und die Symbolleiste ebenfalls ausgeblendet wurde.

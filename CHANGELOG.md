@@ -1,5 +1,13 @@
 #  Onion Browser 2 Changelog
 
+
+## 2.7.5
+
+- Updated Arabic, Irish and Macedonian translations.
+- Updated Tor to version 0.4.5.9.
+- Updated Snowflake to version 1.1.0.
+- Fixed a bug, where no tab was shown after restart and toolbar was also hidden.
+
 ## 2.7.4
 
 - Added Polish translation.
