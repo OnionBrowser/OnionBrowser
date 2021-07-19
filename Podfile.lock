@@ -1,13 +1,13 @@
 PODS:
   - CSPHeader (0.6.0)
-  - DTFoundation/Core (1.7.17)
-  - DTFoundation/DTASN1 (1.7.17):
+  - DTFoundation/Core (1.7.18)
+  - DTFoundation/DTASN1 (1.7.18):
     - DTFoundation/Core
   - Eureka (5.3.3)
   - FavIcon (3.0.6)
   - ImageRow (4.0.0):
     - Eureka (~> 5.0)
-  - IPtProxy (1.0.0)
+  - IPtProxy (1.1.0)
   - MBProgressHUD (1.2.0)
   - OCMock (3.8.1)
   - OCSPCache (0.1.1):
@@ -27,7 +27,7 @@ DEPENDENCIES:
   - Eureka (~> 5.3.2)
   - FavIcon (from `https://github.com/tladesignz/FavIcon.git`, branch `swift-5`)
   - ImageRow (~> 4.0)
-  - IPtProxy (~> 1.0)
+  - IPtProxy (~> 1.1)
   - MBProgressHUD (~> 1.2)
   - OCMock
   - OCSPCache (from `https://github.com/Psiphon-Labs/OCSPCache`)
@@ -75,11 +75,11 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   CSPHeader: b28ad862745eb26644109f3a3aa3f5e318dcb9fe
-  DTFoundation: 989698be00d3f19438c38a49a8ebb3f6919dcac5
+  DTFoundation: a53f8cda2489208cbc71c648be177f902ee17536
   Eureka: e6d720290c56bb23333ad1a0e020b2a98a0e9a43
   FavIcon: 9fd386d96324ce0f6063732f8bf6c7f1d5bf17a3
   ImageRow: e65b2e1a33f89062bf2a553a2aad61d975eb7428
-  IPtProxy: a9d5218bb8ab444a3eb5c22973f87add6c605e66
+  IPtProxy: 0a56ea40c06c19ddc6922f1ad8d8f9f9154ece63
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   OCMock: 29f6e52085b4e7d9b075cbf03ed7c3112f82f934
   OCSPCache: 090d054dbf8f31602896d2527a8bd69d49515695
@@ -91,6 +91,6 @@ SPEC CHECKSUMS:
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
   VForceTouch: b5c3a28625269e1818cf915728173bda9f669d6b
 
-PODFILE CHECKSUM: 2ee3cdefc5946bff2ad89f75f4e7d28d6c0ad148
+PODFILE CHECKSUM: 602560385a6ed38e592200e7fdf125bde8c08ee6
 
 COCOAPODS: 1.10.1
