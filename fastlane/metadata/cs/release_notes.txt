@@ -1,6 +1,4 @@
-- Přidán polský překlad.
-- Vylepšené formulace.
-- Opraveny pády aplikace při krátkých cyklech pauza/návrat.
-- Opraven start aplikace při nakonfigurovaných Snowflake bridgích.
-- Opraven problém při změně vlastních bridgů a následném okamžitém pokusu o připojení.
-- Aktualizováno Tor na verzi 0.4.5.8.
+- Aktualizovány arabská, irská a makedonská lokalizace.
+- Aktualizace Toru na verzi 0.4.5.9.
+- Aktualizován Snowflake na verzi 1.1.0.
+- Opravena chyba, kdy se po restartu nezobrazovala žádná karta a panel nástrojů byl také skrytý.

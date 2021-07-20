@@ -1,6 +1,4 @@
-- Lehçe çeviri eklendi.
-- Geliştirilmiş ifadeler.
-- Kısa duraklama/devam etme döngülerinde sabit uygulama çöküyor.
-- Kar Tanesi köprüleri yapılandırıldığında uygulamanın başlaması düzeltildi.
-- Özel köprüleri değiştirirken ve hemen bağlanmaya çalışırken oluşan sorun düzeltildi.
-- Tor, 0.4.5.8 sürümüne güncellendi.
+- Arapça, İrlandaca Makedonca çevirileri güncellenci.
+- Tor, 0.4.5.9 sürümüne güncellendi.
+- Snowflake, 1.1.0 sürümüne güncellendi.
+- Yeniden başlatma sonrasında bir sekmenin ve araç çubuğunun görüntülenmemesi hatası giderildi.

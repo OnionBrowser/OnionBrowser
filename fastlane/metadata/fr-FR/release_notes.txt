@@ -1,6 +1,4 @@
-– Ajout d’une traduction en polonais.
-– Amélioration de la formulation.
-– Correctif de plantages de l’appli lors de cours cycles mettre en pause/reprendre.
-– Correctif de plantages de l’appli si des ponts Snowflake sont configurés.
-– Correctif d’un problème lors du changement des ponts personnalisés suivi d’une tentative immédiate de connexion.
-- Mise à jour de Tor vers la version 0.4.5.8.
+– Mise à jour des traductions en arabe, irlandais, et macédonien.
+– Mise à jour de Tor vers la version 0.4.5.9.
+– Mise à jour de Snowflake vers la version 1.1.0.
+– Correctif d’un bogue : aucun onglet n’était affiché après redémarrage et la barre d’outils était aussi cachée.

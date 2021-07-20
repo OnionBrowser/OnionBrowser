@@ -1,6 +1,4 @@
-- Hozzáadott lengyel fordítás.
-- Javított megfogalmazás.
-- Javítva az alkalmazás összeomlása rövid szünet / folytatás ciklusokon.
-- Javított alkalmazás indul, amikor a hópehely hidak konfigurálva vannak.
-- Javítva az egyedi hidak megváltoztatásakor és azonnali csatlakozáskor.
-- A Tor frissítve a 0.4.5.8 verzióra.
+- Frissített arab, ír és makedón fordítások.
+- A Tor frissítve a 0.4.5.9 verzióra.
+- A Snowflake frissítve a 1.1.0 verzióra.
+- Egy hiba javítva, amikor nincs fül az újraindítás után és az eszköztár is elrejtett.
