@@ -1,6 +1,5 @@
-- Đã thêm bản dịch tiếng Ba Lan.
-- Cải thiện từ ngữ.
-- Đã khắc phục sự cố ứng dụng trong các chu kỳ tạm dừng / tiếp tục ngắn.
-- Đã sửa lỗi khởi động ứng dụng khi cầu Snowflake được định cấu hình.
-- Đã khắc phục sự cố khi thay đổi cầu nối tùy chỉnh và cố gắng kết nối ngay lập tức.
-- Cập nhật Tor lên phiên bản 0.4.5.8.
+- Cập nhật bản dịch tiếng Ả Rập, tiếng Ailen và tiếng Macedonian.
+- Cập nhật Tor lên phiên bản 0.4.5.9.
+- Đã cập nhật Snowflake lên phiên bản 1.1.0.
+- Đã sửa lỗi không có tab nào được hiển thị sau khi khởi động lại và thanh công cụ cũng bị ẩn.
+- Đã thêm chính sách nội dung "Rất nghiêm ngặt" để thực sự tắt JavaScript. Ngắt menu ngữ cảnh, nhưng cần thiết cho một số trang web hiếm hoi.

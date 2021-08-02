@@ -1,6 +1,5 @@
-- Añadida traducción al polaco.
-- Redacción mejorada.
-- Se corrigieron fallas de la aplicación en ciclos cortos de pausa / reanudación.
-- Arreglado el inicio de la aplicación cuando se configuran los puentes Snowflake.
-- Se solucionó el problema al cambiar puentes personalizados e intentar conectarse de inmediato.
-- Tor actualizado a la versión 0.4.5.8.
+- Traducciones actualizadas al árabe, irlandés y macedonio.
+- Tor actualizado a la versión 0.4.5.9.
+- Snowflake actualizado a la versión 1.1.0.
+- Se corrigió un error, donde no se mostraba ninguna pestaña después del reinicio y la barra de herramientas también estaba oculta.
+- Se agregó una política de contenido "muy estricta" para desactivar realmente JavaScript. Rompe el menú contextual, pero es necesario para algunos sitios raros.

@@ -1,6 +1,5 @@
-- Dodano polskie tłumaczenie.
-- Ulepszone sformułowanie.
-- Naprawiono awarie aplikacji w krótkich cyklach pauzy/wznawiania.
-- Naprawiono uruchamianie aplikacji po skonfigurowaniu mostów Snowflake.
-- Naprawiono problem podczas zmiany niestandardowych mostów i próby natychmiastowego połączenia.
-- Zaktualizowano Tora do wersji 0.4.5.8.
+- Zaktualizowano tłumaczenia arabskie, irlandzkie i macedońskie.
+- Zaktualizowano Tora do wersji 0.4.5.9.
+- Zaktualizowano Snowflake do wersji 1.1.0.
+- Naprawiono błąd, w którym po restarcie nie wyświetlała się żadna zakładka, a pasek narzędzi był również ukryty.
+- Dodano „bardzo ścisłą” politykę treści, aby naprawdę wyłączyć JavaScript. Przerywa menu kontekstowe, ale potrzebne w przypadku niektórych rzadkich witryn.

@@ -1,6 +1,5 @@
-- S'ha afegit traducció al polonès.
-- Millora de la redacció.
-- S'han corregit els bloquejos d'aplicacions en cicles curts de pausa / recuperació.
-- S'ha solucionat l'inici de l'aplicació quan es configuraven els ponts de floc de neu.
-- Solució del problema en canviar ponts personalitzats i intentar connectar-se immediatament.
-- Tor actualitzat a la versió 0.4.5.8.
+- Actualització de les traduccions a l’àrab, l’irlandès i el macedoni.
+- Tor actualitzat a la versió 0.4.5.9.
+- Floc de neu actualitzat a la versió 1.1.0.
+- S'ha corregit un error en què no es mostrava cap pestanya després del reinici i la barra d'eines també estava amagada.
+- S'ha afegit una política de contingut "Molt Estricta" per desactivar JavaScript realment. Trenca el menú contextual, però és necessari per a alguns llocs rars.

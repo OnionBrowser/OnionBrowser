@@ -1,6 +1,5 @@
-- Dodan prijevod na poljski.
-- Poboljšana formulacija.
-- Ispravljeni pad aplikacija u kratkim ciklusima pauze / nastavka.
-- Fiksno pokretanje aplikacije kada se konfiguriraju mostovi Pahuljica.
-- Ispravljen problem prilikom promjene prilagođenih mostova i pokušaja neposrednog povezivanja.
-- Ažuriran Tor na verziju 0.4.5.8.
+- Ažurirani prijevodi na arapski, irski i makedonski jezik.
+- Tor je ažuriran na verziju 0.4.5.9.
+- Pahuljica je ažurirana na verziju 1.1.0.
+- Ispravljena je greška, gdje nakon ponovnog pokretanja nije bila prikazana kartica, a alatna traka je također bila skrivena.
+- Dodana su pravila o "vrlo strogim" sadržajima za stvarno isključivanje JavaScripta. Prekida kontekstni izbornik, ali je potreban za neke rijetke web lokacije.

@@ -1,6 +1,5 @@
-- Poolse vertaling toegevoegd.
-- Verbeterde formulering.
-- Vaste app-crashes bij korte pauze-/hervatcycli.
-- Vaste app-start wanneer Snowflake-bruggen zijn geconfigureerd.
-- Probleem opgelost bij het wijzigen van aangepaste bruggen en het proberen om onmiddellijk verbinding te maken.
-- Tor bijgewerkt naar versie 0.4.5.8.
+- Bijgewerkte Arabische, Ierse en Macedonische vertalingen.
+- Tor bijgewerkt naar versie 0.4.5.9.
+- Sneeuwvlok bijgewerkt naar versie 1.1.0.
+- Een bug opgelost waarbij er geen tabblad werd getoond na het opnieuw opstarten en de werkbalk ook verborgen was.
+- "Zeer strikt" inhoudsbeleid toegevoegd om JavaScript echt uit te schakelen. Breekt het contextmenu, maar is nodig voor sommige zeldzame sites.

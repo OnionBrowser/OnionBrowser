@@ -1,6 +1,5 @@
-- Lagt til polsk oversettelse.
-- Forbedret ordlyd.
-- Fast app krasjer på korte pause / CV-sykluser.
-- Fast app starter når Snowflake broer er konfigurert.
-- Løst problem når du endrer egendefinerte broer og prøver å koble til umiddelbart.
-- Oppdaterte Tor til versjon 0.4.5.8.
+- Oppdaterte arabiske, irske og makedonske oversettelser.
+- Oppdatert Tor til versjon 0.4.5.9.
+- Oppdatert Snowflake til versjon 1.1.0.
+- Rettet en feil, der ingen fane ble vist etter omstart og verktøylinjen også var skjult.
+- Lagt til "Veldig streng" innholdspolicy for å virkelig slå av JavaScript. Bryter kontekstmeny, men nødvendig for noen sjeldne nettsteder.
