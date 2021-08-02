@@ -26,9 +26,7 @@ class SecurityViewController: FixedFormViewController {
 		$0.title = NSLocalizedString("Content Policy", comment: "Option title")
 		$0.selectorTitle = $0.title
 
-		$0.options = [.open, .blockXhr, .strict]
-
-		$0.cell.textLabel?.numberOfLines = 0
+		$0.options = [.open, .blockXhr, .strict, .reallyStrict]
 	}
 
 	private let webRtcRow = SwitchRow() {
@@ -96,6 +94,12 @@ class SecurityViewController: FixedFormViewController {
 											  comment: "Option description"))
 
 		<<< contentPolicyRow
+		.cellSetup { cell, row in
+			cell.textLabel?.numberOfLines = 0
+			cell.textLabel?.lineBreakMode = .byWordWrapping
+			cell.textLabel?.adjustsFontSizeToFitWidth = true
+			cell.textLabel?.minimumScaleFactor = 0.5
+		}
 		.onPresent { vc, selectorVc in
 			// This is just to trigger the usage of #sectionFooterTitleForKey
 			selectorVc.sectionKeyForValue = { value in

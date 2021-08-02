@@ -1409,8 +1409,12 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 
 	// Allow styles and images, nothing else. However, don't open up styles and
 	// images restrictions further than the original server response allows.
-	if (cspMode == ContentPolicyStrict) {
+	if (cspMode == ContentPolicyStrict || cspMode == ContentPolicyReallyStrict) {
 		HostSource *all = [HostSource all];
+		NSArray<Source *> *sandboxDirectiveSources = @[[AllowFormsSource new],
+													   [AllowTopNavigationSource new],
+													   [AllowSameOriginSource new], // BUGFIX #267: Some sites need this, esp. DuckDuckGo!
+		];
 
 		Directive *style = [cspHeader get:StyleDirective.self];
 		if (!style) {
@@ -1423,12 +1427,13 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 		}
 
 		DefaultDirective *deflt = [DefaultDirective new];
+		
+		if (cspMode == ContentPolicyStrict) {
+			sandboxDirectiveSources = [sandboxDirectiveSources arrayByAddingObject: [AllowScriptsSource new]];
+		}
+		
 		SandboxDirective *sandbox = [[SandboxDirective alloc]
-									 initWithSources:@[[AllowFormsSource new],
-													   [AllowTopNavigationSource new],
-													   [AllowScriptsSource new],
-													   [AllowSameOriginSource new], // BUGFIX #267: Some sites need this, esp. DuckDuckGo!
-									 ]];
+									 initWithSources:sandboxDirectiveSources];
 
 		cspHeader = [[CSPHeader alloc] initWithDirectives:@[deflt, style, img, sandbox]];
 	}

@@ -24,6 +24,7 @@ class HostSettings: NSObject {
         case open
         case blockXhr
         case strict
+        case reallyStrict
 
 		var key: String {
 			switch self {
@@ -32,6 +33,9 @@ class HostSettings: NSObject {
 
 			case .blockXhr:
 				return "block_connect"
+
+			case .reallyStrict:
+				return "really_strict"
 
 			default:
 				return "strict"
@@ -48,6 +52,10 @@ class HostSettings: NSObject {
 				return NSLocalizedString("No XHR/WebSocket/Video connections",
 				comment: "Content policy option")
 
+			case .reallyStrict:
+				return NSLocalizedString("Very strict (JavaScript off; no long-tap menu)",
+				comment: "Content policy option")
+
 			default:
 				return NSLocalizedString("Strict (no JavaScript, video, etc.)",
 				comment: "Content policy option")
@@ -61,6 +69,9 @@ class HostSettings: NSObject {
 
 			case ContentPolicy.blockXhr.key:
 				self = .blockXhr
+
+			case ContentPolicy.reallyStrict.key:
+				self = .reallyStrict
 
 			default:
 				self = .strict
