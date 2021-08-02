@@ -94,12 +94,6 @@ class SecurityViewController: FixedFormViewController {
 											  comment: "Option description"))
 
 		<<< contentPolicyRow
-		.cellSetup { cell, row in
-			cell.textLabel?.numberOfLines = 0
-			cell.textLabel?.lineBreakMode = .byWordWrapping
-			cell.textLabel?.adjustsFontSizeToFitWidth = true
-			cell.textLabel?.minimumScaleFactor = 0.5
-		}
 		.onPresent { vc, selectorVc in
 			// This is just to trigger the usage of #sectionFooterTitleForKey
 			selectorVc.sectionKeyForValue = { value in
@@ -109,6 +103,10 @@ class SecurityViewController: FixedFormViewController {
 			selectorVc.sectionFooterTitleForKey = { key in
 				return NSLocalizedString("Restrictions on resources loaded from web pages.",
 										 comment: "Option description")
+			}
+
+			selectorVc.selectableRowCellSetup = { (cell, _) in
+				cell.textLabel?.numberOfLines = 0
 			}
 		}
 		.onChange { [weak self] row in

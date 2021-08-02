@@ -53,7 +53,7 @@ class HostSettings: NSObject {
 				comment: "Content policy option")
 
 			case .reallyStrict:
-				return NSLocalizedString("Very strict (JavaScript off; no long-tap menu)",
+				return NSLocalizedString("Very Strict (JavaScript completely off; no context menu)",
 				comment: "Content policy option")
 
 			default:
