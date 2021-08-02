@@ -2,3 +2,4 @@
 - Updated Tor to version 0.4.5.9.
 - Updated Snowflake to version 1.1.0.
 - Fixed a bug, where no tab was shown after restart and toolbar was also hidden.
+- Added "Very Strict" content policy to really switch off JavaScript. Breaks context menu, but needed for some rare sites.
