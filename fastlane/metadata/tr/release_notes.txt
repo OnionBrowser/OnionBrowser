@@ -2,3 +2,4 @@
 - Tor, 0.4.5.9 sürümüne güncellendi.
 - Snowflake, 1.1.0 sürümüne güncellendi.
 - Yeniden başlatma sonrasında bir sekmenin ve araç çubuğunun görüntülenmemesi hatası giderildi.
+- JavaScript özelliğini gerçekten kapatmak için "Çok sıkı" içerik ilkesi eklendi. Sağ tık menüsünü bozar, ancak nadir olarak bazı siteler için gereklidir.
