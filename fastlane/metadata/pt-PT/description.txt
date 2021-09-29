@@ -6,10 +6,10 @@ Apresentado no: The New York Times, The Guardian, Salão, TechCrunch, Gizmodo, B
 
 FUNCIONALIDADES:
 • Explore a Internet com o Tor:
-- Proteja a sua privacidade contra a monitorização do site da Web
+- Proteja a sua privacidade contra a monitorização do "site" da Web
 - Proteja o seu tráfego de redes sem fio e ISPs inseguros.
 - Suporte para HTTPS Everywhere, um comutador automático para sites da Web em HTTPS.
-- Aceda aos sites .onion que só são acessíveis com o Tor.
+- Aceda aos "sites" .onion que só são acessíveis com o Tor.
 
 • Combata a monitorização on-line: bloqueie scripts e limpe automaticamente os cookies e separadores, com base nas suas preferências.
 

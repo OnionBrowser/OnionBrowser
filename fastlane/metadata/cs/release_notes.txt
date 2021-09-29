@@ -2,3 +2,4 @@
 - Aktualizace Toru na verzi 0.4.5.9.
 - Aktualizován Snowflake na verzi 1.1.0.
 - Opravena chyba, kdy se po restartu nezobrazovala žádná karta a panel nástrojů byl také skrytý.
+- Přidány zásady obsahu "Velmi přísné" pro skutečné vypnutí JavaScriptu. Narušuje kontextovou nabídku, ale pro některé vzácné weby je to potřebné.
