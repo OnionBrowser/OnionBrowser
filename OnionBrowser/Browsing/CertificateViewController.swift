@@ -51,7 +51,7 @@ class CertificateViewController: UITableViewController {
 			kv(NSLocalizedString("Version", comment: ""), certificate?.version.description),
 			kv(NSLocalizedString("Serial Number", comment: ""), certificate?.serialNumber),
 			kv(NSLocalizedString("Signature Algorithm", comment: ""), certificate?.signatureAlgorithm,
-			   certificate?.hasWeakSignatureAlgorithm() ?? false ? "Error" : nil),
+			   certificate?.hasWeakSignatureAlgorithm() ?? false ? NSLocalizedString("Error", comment: "") : nil),
 		]
 
 		if certificate?.isEV ?? false {
