@@ -228,6 +228,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 		}
 	}
 
+	private var openAfterRestore: URL? = nil
+
+	func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool
+	{
+		dismissModalsAndCall {
+			if self.browsingUi != nil {
+				// Give Tor a little time to restart, before trying to load anything.
+				DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+					self.browsingUi?.addNewTab(url.withFixedScheme)
+				}
+			}
+			else {
+				Settings.openNewUrlOnStart = url.withFixedScheme
+			}
+		}
+
+		return true
+	}
+
 	func applicationDidBecomeActive(_ application: UIApplication) {
 
 		// Note: If restart is slow (and even crashes), it could be, that
@@ -292,15 +311,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 		DownloadHelper.deleteDownloadsDirectory()
 
 		application.ignoreSnapshotOnNextApplicationLaunch()
-	}
-
-	func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-
-		dismissModalsAndCall {
-			self.browsingUi?.addNewTab(url.withFixedScheme)
-		}
-
-		return true
 	}
 
 	func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
@@ -510,7 +520,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 					self.browsingUi?.addEmptyTabAndFocus()
 				}
 				else {
-					Settings.openNewTabOnStart = true
+					Settings.openNewUrlOnStart = URL(string: "about:blank")
 				}
 
 				completion?()

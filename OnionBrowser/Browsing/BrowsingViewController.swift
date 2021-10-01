@@ -495,9 +495,13 @@ class BrowsingViewController: UIViewController, TabDelegate {
 
 	@objc
 	func becomesVisible() {
-		if tabs.count < 1 || Settings.openNewTabOnStart {
+		if let newUrl = Settings.openNewUrlOnStart {
+			Settings.openNewUrlOnStart = nil
+
+			addNewTab(newUrl, transition: .notAnimated)
+		}
+		else if tabs.count < 1 {
 			addNewTab()
-			Settings.openNewTabOnStart = false
 		}
 	}
 
