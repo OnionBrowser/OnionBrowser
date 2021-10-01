@@ -119,6 +119,17 @@ class OnionManager : NSObject {
 
 	public var state = TorState.none
 
+	public lazy var onionAuth: TorOnionAuth? = {
+		guard let args = OnionManager.torBaseConf.arguments,
+			  let i = args.firstIndex(of: "--ClientOnionAuthDir"),
+			  args.count > i + 1
+		else {
+			return nil
+		}
+
+		return TorOnionAuth(dir: args[i + 1])
+	}()
+
 	private var torController: TorController?
 
 	private var torThread: TorThread?
@@ -484,7 +495,7 @@ class OnionManager : NSObject {
 	}// startTor
 
 	/**
-	Experimental Tor shutdown.
+	Shuts down Tor.
 	*/
 	func stopTor() {
 		print("[\(String(describing: type(of: self)))] #stopTor")
@@ -503,6 +514,24 @@ class OnionManager : NSObject {
 		stopSnowflake()
 
 		state = .stopped
+	}
+
+	/**
+	 Will make Tor reload its configuration, if it's already running or start (again), if not.
+
+	 This is needed, when bridge configuration changed, or when v3 onion service authentication keys
+	 are added.
+
+	 When such keys are removed, that's unfortunately not enough. Only a full stop and restart will do.
+	 But still being able to access auhtenticated Onion services after removing the key doesn't seem
+	 to be such a huge deal compared to not being able to access it despite having added the key.
+
+	 So that should be good enough?
+	 */
+	func reloadTor(delegate: OnionManagerDelegate? = nil) {
+		needsReconfiguration = true
+
+		startTor(delegate: delegate)
 	}
 
 

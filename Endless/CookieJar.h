@@ -23,8 +23,6 @@
 - (void)setCookies:(NSArray *)cookies forURL:(NSURL *)URL mainDocumentURL:(NSURL *)mainDocumentURL forTab:(NSUInteger)tabHash;
 - (void)trackDataAccessForDomain:(NSString *)domain fromTab:(NSUInteger)tabHash;
 
-- (void)clearAllNonWhitelistedData;
-- (void)clearAllOldNonWhitelistedData;
 - (void)clearAllDataForHost:(NSString *)host;
 - (void)clearNonWhitelistedDataForTab:(NSUInteger)tabHash;
 

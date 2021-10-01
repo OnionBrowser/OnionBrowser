@@ -46,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 	let hstsCache = HSTSCache.retrieve()
 
 	@objc
-	let cookieJar = CookieJar()
+	let cookieJar = BetterCookieJar()
 
 	@objc
 	var browsingUi: BrowsingViewController?

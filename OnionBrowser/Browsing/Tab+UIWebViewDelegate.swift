@@ -8,7 +8,7 @@
 //  This file is part of Onion Browser. See LICENSE file for redistribution terms.
 //
 
-import Foundation
+import UIKit
 
 extension Tab: UIWebViewDelegate {
 
@@ -175,7 +175,7 @@ extension Tab: UIWebViewDelegate {
 
 		print("[Tab \(index)] showing error dialog: \(msg) (\(error)")
 
-		let alert = AlertHelper.build(message: msg)
+		var alert = AlertHelper.build(message: msg)
 
 		// self.url will hold the URL of the UIWebView which is the last
 		// *successful* request.
@@ -192,6 +192,35 @@ extension Tab: UIWebViewDelegate {
 					// Retry the failed request.
 					self.load(url)
 				}))
+		}
+
+		// This error shows up, when a Onion v3 service needs authentication.
+		// Allow the user to enter an authentication key in that case.
+		if error.domain == NSURLErrorDomain && error.code == NSURLErrorNetworkConnectionLost,
+			let u = url, let url = URL(string: u), let host = url.host,
+		   host.lowercased().hasSuffix(".onion")
+		{
+			msg += "\n\n"
+			msg += NSLocalizedString("Maybe this site needs authentication? If you received an authentication key for this site, please enter it here:", comment: "")
+
+			alert = AlertHelper.build(message: msg, actions: [
+				AlertHelper.defaultAction() { _ in
+					guard let key = alert.textFields?.first?.text, !key.isEmpty else {
+						return
+					}
+
+					OnionManager.shared.onionAuth?.set(TorAuthKey(private: key, forDomain: url))
+
+					OnionManager.shared.reloadTor()
+
+					// Retry after 1 second to give Tor some time to load the new auth key!
+					DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+						self.load(url)
+					}
+				}
+			])
+
+			AlertHelper.addTextField(alert, placeholder: NSLocalizedString("Onion Service v3 Auth Key", comment: ""))
 		}
 
 		tabDelegate?.present(alert, nil)

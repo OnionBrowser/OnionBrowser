@@ -26,9 +26,7 @@ class Storage2ViewController: SearchableTableViewController {
 
 	private var showShortlist = true
 
-	private var cookieJar: CookieJar? {
-		return AppDelegate.shared?.cookieJar
-	}
+	private let cookieJar = AppDelegate.shared?.cookieJar
 
 	private lazy var data: [Item] = {
 		var data = [String: Item]()
