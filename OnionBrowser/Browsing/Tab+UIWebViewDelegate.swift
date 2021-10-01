@@ -196,7 +196,8 @@ extension Tab: UIWebViewDelegate {
 
 		// This error shows up, when a Onion v3 service needs authentication.
 		// Allow the user to enter an authentication key in that case.
-		if error.domain == NSURLErrorDomain && error.code == NSURLErrorNetworkConnectionLost,
+		if error.domain == NSURLErrorDomain
+			&& (error.code == NSURLErrorNetworkConnectionLost /* iOS 14/15 */ || error.code == NSURLErrorNotConnectedToInternet /* iOS 13 */),
 			let u = url, let url = URL(string: u), let host = url.host,
 		   host.lowercased().hasSuffix(".onion")
 		{
