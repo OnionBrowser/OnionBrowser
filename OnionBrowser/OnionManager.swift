@@ -244,7 +244,7 @@ class OnionManager : NSObject {
 		let ennableLogging = false
 		#endif
 
-		IPtProxyStartObfs4Proxy("DEBUG", ennableLogging, true)
+		IPtProxyStartObfs4Proxy("DEBUG", ennableLogging, true, nil)
 
 		stopSnowflake()
 	}
