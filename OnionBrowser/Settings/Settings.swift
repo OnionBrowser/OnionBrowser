@@ -315,14 +315,14 @@ class Settings: NSObject {
 
 	class var openNewUrlOnStart: URL? {
 		get {
-			if let url = UserDefaults.standard.string(forKey: "open_new_tab_on_start") {
+			if let url = UserDefaults.standard.string(forKey: "open_new_url_on_start") {
 				return URL(string: url)
 			}
 
 			return nil
 		}
 		set {
-			UserDefaults.standard.set(newValue?.absoluteString, forKey: "open_new_tab_on_start")
+			UserDefaults.standard.set(newValue?.absoluteString, forKey: "open_new_url_on_start")
 		}
 	}
 

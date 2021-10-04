@@ -12,7 +12,7 @@ import UIKit
 import AVFoundation
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPProtocolDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPProtocolDelegate, OnionManagerDelegate {
 
 	@objc
 	static let socksProxyPort = 39050
@@ -232,17 +232,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 
 	func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool
 	{
-		dismissModalsAndCall {
-			if self.browsingUi != nil {
-				// Give Tor a little time to restart, before trying to load anything.
-				DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-					self.browsingUi?.addNewTab(url.withFixedScheme)
-				}
-			}
-			else {
-				Settings.openNewUrlOnStart = url.withFixedScheme
-			}
-		}
+		Settings.openNewUrlOnStart = url.withFixedScheme
 
 		return true
 	}
@@ -283,26 +273,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 
 		verified = false
 
-		if window?.rootViewController == nil {
+		if inStartupPhase {
 			show(MainViewController())
-		}
-		else {
-			BlurredSnapshot.remove()
 
-			// Makes sure, a new tab (and therefore the bottom toolbar) is shown,
-			// if all tabs were removed.
-			browsingUi?.becomesVisible()
-		}
-
-		let mgr = OnionManager.shared
-
-		if (!inStartupPhase && mgr.state != .started && mgr.state != .connected) {
-			// Difficult situation to add a delegate here, so we never did.
-			// Turns out, it is no problem. Tor seems to always restart correctly.
-			mgr.startTor(delegate: nil)
-		}
-		else {
 			inStartupPhase = false
+		}
+		else {
+			let mgr = OnionManager.shared
+
+			if (mgr.state != .started && mgr.state != .connected) {
+				// Difficult situation to add a delegate here, so we never did.
+				// Turns out, it is no problem. Tor seems to always restart correctly.
+				mgr.startTor(delegate: self)
+			}
+			else {
+				self.torConnFinished()
+			}
 		}
 	}
 
@@ -457,6 +443,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 		}
 	}
 
+
+	// MARK: OnionManagerDelegate
+
+	func torConnProgress(_ progress: Int) {
+		// Ignored.
+	}
+
+	func torConnFinished() {
+		DispatchQueue.main.async {
+			BlurredSnapshot.remove()
+
+			// Close modal dialogs, if there are URLs to open.
+			if Settings.openNewUrlOnStart != nil {
+				self.dismissModalsAndCall {
+					self.browsingUi?.becomesVisible()
+				}
+			}
+			else {
+				self.browsingUi?.becomesVisible()
+			}
+		}
+	}
+
+	func torConnDifficulties() {
+		// This should not happen, as Tor is expected to always restart
+		// very quickly. Anyhow, show the UI at least.
+		torConnFinished()
+	}
+
+
 	// MARK: Public Methods
 
 	/**
@@ -515,16 +531,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 
 	private func handle(_ shortcut: UIApplicationShortcutItem, completion: (() -> Void)? = nil) {
 		if shortcut.type.contains("OpenNewTab") {
-			dismissModalsAndCall {
-				if self.browsingUi != nil {
-					self.browsingUi?.addEmptyTabAndFocus()
-				}
-				else {
-					Settings.openNewUrlOnStart = URL(string: "about:blank")
-				}
+			Settings.openNewUrlOnStart = URL.blank
 
-				completion?()
-			}
+			completion?()
 		}
 		else if shortcut.type.contains("ClearData") {
 			dismissModalsAndCall {

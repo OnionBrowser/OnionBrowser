@@ -498,7 +498,14 @@ class BrowsingViewController: UIViewController, TabDelegate {
 		if let newUrl = Settings.openNewUrlOnStart {
 			Settings.openNewUrlOnStart = nil
 
-			addNewTab(newUrl, transition: .notAnimated)
+			if newUrl == URL.blank {
+				// Workaround for showing an empty tab.
+				// See AppDelegate#handle:
+				addEmptyTabAndFocus()
+			}
+			else {
+				addNewTab(newUrl, transition: .notAnimated)
+			}
 		}
 		else if tabs.count < 1 {
 			addNewTab()
