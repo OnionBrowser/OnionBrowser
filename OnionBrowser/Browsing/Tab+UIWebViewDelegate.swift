@@ -202,7 +202,7 @@ extension Tab: UIWebViewDelegate {
 		   host.lowercased().hasSuffix(".onion")
 		{
 			msg += "\n\n"
-			msg += NSLocalizedString("Maybe this site needs authentication? If you received an authentication key for this site, please enter it here:", comment: "")
+			msg += NSLocalizedString("This site may need authentication. If you received an authentication key for this site, please enter it here:", comment: "")
 
 			alert = AlertHelper.build(message: msg, actions: [
 				AlertHelper.defaultAction() { _ in
