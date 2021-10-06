@@ -93,13 +93,13 @@ open class Bookmark: NSObject {
         }
 	}
 
-	class func updateStartPage() {
+	class func updateStartPage(force: Bool = false) {
 		guard let source = Bundle.main.url(forResource: "start", withExtension: "html") else {
 			return
 		}
 
 		// Always update after start. Language could have been changed.
-		if !startPageNeedsUpdate {
+		if !startPageNeedsUpdate && !force {
 			let fm = FileManager.default
 
 			// If files exist and destination is newer than source, don't do anything. (Upgrades!)
@@ -116,32 +116,39 @@ open class Bookmark: NSObject {
 			return
 		}
 
-		// Render bookmarks.
-		for i in 0 ... 5 {
-			let url: URL
-			let name: String
-			let icon: UIImage
+		if Settings.disableBookmarksOnStartPage {
+			template = template.replacingOccurrences(of: "{{ bookmarks_table_style }}", with: "display: none")
+		}
+		else {
+			template = template.replacingOccurrences(of: "{{ bookmarks_table_style }}", with: "")
 
-			if all.count > i,
-				let tempUrl = all[i].url {
+			// Render bookmarks.
+			for i in 0 ... 5 {
+				let url: URL
+				let name: String
+				let icon: UIImage
 
-				url = tempUrl
+				if all.count > i,
+					let tempUrl = all[i].url {
 
-				name = all[i].name ?? url.host!
-				icon = all[i].icon ?? Bookmark.defaultIcon
+					url = tempUrl
+
+					name = all[i].name ?? url.host!
+					icon = all[i].icon ?? Bookmark.defaultIcon
+				}
+				else {
+					// Make sure that the first 6 default bookmarks are available!
+					url = defaultBookmarks[i].url!
+					name = defaultBookmarks[i].name ?? url.host!
+					icon = defaultBookmarks[i].icon ?? Bookmark.defaultIcon
+				}
+
+				template = template
+					.replacingOccurrences(of: "{{ bookmark_url_\(i) }}", with: url.absoluteString)
+					.replacingOccurrences(of: "{{ bookmark_name_\(i) }}", with: name)
+					.replacingOccurrences(of: "{{ bookmark_icon_\(i) }}",
+						with: "data:image/png;base64,\(icon.pngData()?.base64EncodedString() ?? "")")
 			}
-			else {
-				// Make sure that the first 6 default bookmarks are available!
-				url = defaultBookmarks[i].url!
-				name = defaultBookmarks[i].name ?? url.host!
-				icon = defaultBookmarks[i].icon ?? Bookmark.defaultIcon
-			}
-
-			template = template
-				.replacingOccurrences(of: "{{ bookmark_url_\(i) }}", with: url.absoluteString)
-				.replacingOccurrences(of: "{{ bookmark_name_\(i) }}", with: name)
-				.replacingOccurrences(of: "{{ bookmark_icon_\(i) }}",
-					with: "data:image/png;base64,\(icon.pngData()?.base64EncodedString() ?? "")")
 		}
 
 		template = template

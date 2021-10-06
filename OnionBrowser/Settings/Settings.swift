@@ -288,6 +288,15 @@ class Settings: NSObject {
 		}
 	}
 
+	class var disableBookmarksOnStartPage: Bool {
+		get {
+			return UserDefaults.standard.bool(forKey: "disable_bookmarks_on_start_page")
+		}
+		set {
+			UserDefaults.standard.set(newValue, forKey: "disable_bookmarks_on_start_page")
+		}
+	}
+
 	class var cookieAutoSweepInterval: TimeInterval {
 		get {
 			// Defaults to 30 minutes.

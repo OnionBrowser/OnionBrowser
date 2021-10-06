@@ -251,6 +251,26 @@ class SettingsViewController: FixedFormViewController {
 			}
 		}
 
+		<<< SwitchRow() {
+			$0.title = NSLocalizedString("Disable Bookmarks on Start Page", comment: "Option title")
+			$0.value = Settings.disableBookmarksOnStartPage
+			$0.cell.switchControl.onTintColor = .accent
+			$0.cell.textLabel?.numberOfLines = 0
+		}
+		.onChange({ row in
+			if let value = row.value, value != Settings.disableBookmarksOnStartPage {
+				Settings.disableBookmarksOnStartPage = value
+
+				Bookmark.updateStartPage(force: true)
+
+				for tab in AppDelegate.shared?.browsingUi?.tabs ?? [] {
+					if tab.url == URL.start {
+						tab.refresh()
+					}
+				}
+			}
+		})
+
 		+++ LabelRow() {
 			$0.title = NSLocalizedString("Advanced Tor Configuration", comment: "")
 			$0.cell.textLabel?.numberOfLines = 0
