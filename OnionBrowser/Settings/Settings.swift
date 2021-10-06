@@ -279,21 +279,21 @@ class Settings: NSObject {
 		}
 	}
 
-	class var thirdPartyKeyboards: Bool {
-		get {
-			return UserDefaults.standard.bool(forKey: "third_party_keyboards")
-		}
-		set {
-			UserDefaults.standard.set(newValue, forKey: "third_party_keyboards")
-		}
-	}
-
 	class var disableBookmarksOnStartPage: Bool {
 		get {
 			return UserDefaults.standard.bool(forKey: "disable_bookmarks_on_start_page")
 		}
 		set {
 			UserDefaults.standard.set(newValue, forKey: "disable_bookmarks_on_start_page")
+		}
+	}
+
+	class var thirdPartyKeyboards: Bool {
+		get {
+			return UserDefaults.standard.bool(forKey: "third_party_keyboards")
+		}
+		set {
+			UserDefaults.standard.set(newValue, forKey: "third_party_keyboards")
 		}
 	}
 

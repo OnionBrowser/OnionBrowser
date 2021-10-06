@@ -240,18 +240,6 @@ class SettingsViewController: FixedFormViewController {
 		}
 
 		<<< SwitchRow() {
-			$0.title = NSLocalizedString("Allow 3rd-Party Keyboards", comment: "Option title")
-			$0.value = Settings.thirdPartyKeyboards
-			$0.cell.switchControl.onTintColor = .accent
-			$0.cell.textLabel?.numberOfLines = 0
-		}
-		.onChange { row in
-			if let value = row.value {
-				Settings.thirdPartyKeyboards = value
-			}
-		}
-
-		<<< SwitchRow() {
 			$0.title = NSLocalizedString("Disable Bookmarks on Start Page", comment: "Option title")
 			$0.value = Settings.disableBookmarksOnStartPage
 			$0.cell.switchControl.onTintColor = .accent
@@ -270,6 +258,18 @@ class SettingsViewController: FixedFormViewController {
 				}
 			}
 		})
+
+		<<< SwitchRow() {
+			$0.title = NSLocalizedString("Allow 3rd-Party Keyboards", comment: "Option title")
+			$0.value = Settings.thirdPartyKeyboards
+			$0.cell.switchControl.onTintColor = .accent
+			$0.cell.textLabel?.numberOfLines = 0
+		}
+		.onChange { row in
+			if let value = row.value {
+				Settings.thirdPartyKeyboards = value
+			}
+		}
 
 		+++ LabelRow() {
 			$0.title = NSLocalizedString("Advanced Tor Configuration", comment: "")
