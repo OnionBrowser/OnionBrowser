@@ -83,7 +83,7 @@ class OnionManager : NSObject {
 
 			conf.dataDirectory = dataDir
 
-			conf.arguments += ["--ClientOnionAuthDir", authDir.path]
+			conf.options["ClientOnionAuthDir"] = authDir.path 
 		}
 
 		return conf
@@ -120,14 +120,12 @@ class OnionManager : NSObject {
 	public var state = TorState.none
 
 	public lazy var onionAuth: TorOnionAuth? = {
-		guard let args = OnionManager.torBaseConf.arguments,
-			  let i = args.firstIndex(of: "--ClientOnionAuthDir"),
-			  args.count > i + 1
+		guard let dir = OnionManager.torBaseConf.options["ClientOnionAuthDir"]
 		else {
 			return nil
 		}
 
-		return TorOnionAuth(dir: args[i + 1])
+		return TorOnionAuth(dir: dir)
 	}()
 
 	private var torController: TorController?
