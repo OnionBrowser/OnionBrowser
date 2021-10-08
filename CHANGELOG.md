@@ -1,6 +1,16 @@
 #  Onion Browser 2 Changelog
 
 
+## 2.7.6
+
+- Updated Tor to version 0.4.5.10.
+- Added support for onion service v3 authentication.
+- Fixed handling of received URLs. Will now work better with other apps, regardless
+  of the state Onion Browser is in.
+- Added feature: "Disable Bookmarks on Start Page".
+- Now contains some popular User Agent strings for users to choose.
+- Translation updates.
+
 ## 2.7.5
 
 - Updated Arabic, Irish and Macedonian translations.

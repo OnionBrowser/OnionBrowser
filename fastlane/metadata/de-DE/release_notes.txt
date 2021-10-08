@@ -1,5 +1,7 @@
-- Arabische, irische und mazedonische Übersetzungen aktualisiert.
-- Tor auf Version 0.4.5.9 aktualisiert.
-- Snowflake auf Version 1.1.0 aktualisiert.
-- Fehler behoben, bei dem nach dem Neustart kein Tab angezeigt wurde und die Symbolleiste ebenfalls ausgeblendet wurde.
-- Inhaltsrichtlinie "Sehr strikt" hinzugefügt, um JavaScript wirklich auszuschalten. Macht das Kontextmenü kaputt, wird aber für einige seltene Websites benötigt.
+- Tor auf Version 0.4.5.10 aktualisiert.
+- Unterstützung für Onion Service v3 Authentifizierung hinzugefügt.
+- Die Behandlung von empfangenen URLs wurde korrigiert. Funktioniert jetzt besser
+  mit anderen Apps, unabhängig vom Zustand, in dem sich Onion Browser befindet.
+- Funktion hinzugefügt: "Lesezeichen auf der Startseite deaktivieren".
+- Enthält jetzt einige beliebte Browserkennungen zur Auswahl.
+- Übersetzungsaktualisierungen.
