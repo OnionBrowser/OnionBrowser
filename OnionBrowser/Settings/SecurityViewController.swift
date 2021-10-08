@@ -16,6 +16,10 @@ class SecurityViewController: FixedFormViewController {
 
 	var host: String?
 
+
+	private static let uaStrings = NSDictionary(contentsOfFile: Bundle.main.path(forResource: "ua-strings", ofType: "plist")!) as! [String: String]
+
+
 	private lazy var hostSettings = host?.isEmpty ?? true
 		? HostSettings.forDefault()
 		: HostSettings.for(host)
@@ -210,15 +214,42 @@ class SecurityViewController: FixedFormViewController {
 			self?.hostSettings.followOnionLocationHeader = row.value ?? false
 		}
 
-		<<< TextRow() {
+		let uaRow = TextRow() {
 			$0.title = NSLocalizedString("User Agent", comment: "Option title")
 			$0.value = hostSettings.userAgent
 			$0.cell.textLabel?.numberOfLines = 0
 		}
+		.cellUpdate { cell, _ in
+			cell.textField.clearButtonMode = .whileEditing
+		}
 		.onChange { [weak self] row in
 			self?.hostSettings.userAgent = row.value ?? ""
 		}
-    }
+
+		section
+		<<< uaRow
+
+		if !SecurityViewController.uaStrings.isEmpty {
+			let section = Section(
+				header: NSLocalizedString("Popular User Agents", comment: ""),
+				footer: NSLocalizedString("These might change server behaviour. E.g. show or not show Captchas or return pages meant for desktop browsers.", comment: ""))
+
+			form
+			+++ section
+
+			for key in SecurityViewController.uaStrings.keys.sorted() {
+				section
+				<<< ButtonRow() {
+					$0.title = key
+					$0.value = SecurityViewController.uaStrings[key]
+				}
+				.onCellSelection({ _, row in
+					uaRow.value = row.value
+					uaRow.updateCell()
+				})
+			}
+		}
+}
 
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
