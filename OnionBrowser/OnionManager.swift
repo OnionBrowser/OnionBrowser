@@ -120,7 +120,8 @@ class OnionManager : NSObject {
 	public var state = TorState.none
 
 	public lazy var onionAuth: TorOnionAuth? = {
-		guard let dir = OnionManager.torBaseConf.options["ClientOnionAuthDir"]
+		guard let dir = OnionManager.torBaseConf.options?["ClientOnionAuthDir"],
+			  !dir.isEmpty
 		else {
 			return nil
 		}
