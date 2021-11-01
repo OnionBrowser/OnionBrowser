@@ -1,4 +1,7 @@
-– Mise à jour des traductions en arabe, irlandais, et macédonien.
-– Mise à jour de Tor vers la version 0.4.5.9.
-– Mise à jour de Snowflake vers la version 1.1.0.
-– Correctif d’un bogue : aucun onglet n’était affiché après redémarrage et la barre d’outils était aussi cachée.
+- Tor mis à jour vers la version 0.4.5.10.
+- Ajout de la prise en charge de l'authentification du service onion v3.
+- Correction de la gestion des URL reçues. Fonctionnera désormais mieux avec d'autres applications, peu importe
+   de l'état du navigateur Onion.
+- Fonctionnalité ajoutée : "Désactiver les signets sur la page de démarrage".
+- Contient maintenant des chaînes d'agent utilisateur populaires que les utilisateurs peuvent choisir.
+- Mises à jour de traduction.

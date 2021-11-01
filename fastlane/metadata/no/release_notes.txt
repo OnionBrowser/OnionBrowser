@@ -1,5 +1,7 @@
-- Oppdaterte arabiske, irske og makedonske oversettelser.
-- Oppdatert Tor til versjon 0.4.5.9.
-- Oppdatert Snowflake til versjon 1.1.0.
-- Rettet en feil, der ingen fane ble vist etter omstart og verktøylinjen også var skjult.
-- Lagt til "Veldig streng" innholdspolicy for å virkelig slå av JavaScript. Bryter kontekstmeny, men nødvendig for noen sjeldne nettsteder.
+- Oppdatert Tor til versjon 0.4.5.10.
+- Lagt til støtte for onion service v3-autentisering.
+- Fast håndtering av mottatte URL-er. Vil nå fungere bedre med andre apper, uansett
+   av staten Onion Browser er i.
+- Lagt til funksjon: "Deaktiver bokmerker på startsiden".
+- Inneholder nå noen populære User Agent-strenger som brukerne kan velge.
+- Oversettelsesoppdateringer.

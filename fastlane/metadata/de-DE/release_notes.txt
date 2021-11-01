@@ -1,8 +1,7 @@
 - Tor auf Version 0.4.5.10 aktualisiert.
 - Unterstützung für Onion Service v3-Authentifizierung wurde hinzugefügt.
-- Die Verarbeitung von empfangenen URLs wurde korrigiert. Funktioniert jetzt
-  besser mit anderen Apps, unabhängig davon, in welchem Zustand sich Onion Browser
-  befindet.
+- Die Verarbeitung von empfangenen URLs wurde korrigiert. Funktioniert jetzt besser
+  mit anderen Apps, unabhängig davon, in welchem Zustand sich Onion Browser befindet.
 - Funktion hinzugefügt: "Lesezeichen auf der Startseite deaktivieren".
 - Enthält jetzt einige beliebte Browserkennungen zur Auswahl.
 - Aktualisierte Übersetzungen.

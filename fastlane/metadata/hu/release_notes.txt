@@ -1,4 +1,7 @@
-- Frissített arab, ír és makedón fordítások.
-- A Tor frissítve a 0.4.5.9 verzióra.
-- A Snowflake frissítve a 1.1.0 verzióra.
-- Egy hiba javítva, amikor nincs fül az újraindítás után és az eszköztár is elrejtett.
+- A Tor frissítve a 0.4.5.10-es verzióra.
+- Hozzáadott támogatás az onion service v3 hitelesítéshez.
+- A fogadott URL-ek kezelésének javítása. Ettől függetlenül most jobban fog működni más alkalmazásokkal
+   Az Onion Browser állapotában van.
+- Hozzáadott funkció: "Könyvjelzők letiltása a kezdőlapon".
+- Most néhány népszerű User Agent karakterláncot tartalmaz a felhasználók választhatnak.
+- Fordítási frissítések.

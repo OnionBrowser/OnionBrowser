@@ -1,5 +1,7 @@
-- Cập nhật bản dịch tiếng Ả Rập, tiếng Ailen và tiếng Macedonian.
-- Cập nhật Tor lên phiên bản 0.4.5.9.
-- Đã cập nhật Snowflake lên phiên bản 1.1.0.
-- Đã sửa lỗi không có tab nào được hiển thị sau khi khởi động lại và thanh công cụ cũng bị ẩn.
-- Đã thêm chính sách nội dung "Rất nghiêm ngặt" để thực sự tắt JavaScript. Ngắt menu ngữ cảnh, nhưng cần thiết cho một số trang web hiếm hoi.
+- Cập nhật Tor lên phiên bản 0.4.5.10.
+- Đã thêm hỗ trợ xác thực dịch vụ hành v3.
+- Đã sửa lỗi xử lý các URL đã nhận. Bây giờ sẽ hoạt động tốt hơn với các ứng dụng khác, bất kể
+   của trạng thái Trình duyệt Onion đang ở.
+- Đã thêm tính năng: "Vô hiệu hóa Dấu trang trên Trang Bắt đầu".
+- Bây giờ chứa một số chuỗi Tác nhân Người dùng phổ biến để người dùng lựa chọn.
+- Cập nhật bản dịch.

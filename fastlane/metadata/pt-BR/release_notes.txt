@@ -1,5 +1,7 @@
-- Traduções atualizadas para árabe, irlandês e macedônio.
-- Tor atualizado para a versão 0.4.5.9.
-- Atualizado Snowflake para a versão 1.1.0.
-- Corrigido um bug, onde nenhuma guia era mostrada após reiniciar e a barra de ferramentas também ficava oculta.
-- Adicionada política de conteúdo "Muito restrita" para realmente desligar o JavaScript. Quebra o menu de contexto, mas é necessário para alguns sites raros.
+- Tor atualizado para a versão 0.4.5.10.
+- Adicionado suporte para autenticação de serviço onion v3.
+- Corrigido tratamento de URLs recebidos. Agora funcionará melhor com outros aplicativos, independentemente
+   do estado em que o Onion Browser está.
+- Recurso adicionado: "Desativar favoritos na página inicial".
+- Agora contém algumas cadeias de caracteres populares do Agente do usuário para os usuários escolherem.
+- Atualizações de tradução.

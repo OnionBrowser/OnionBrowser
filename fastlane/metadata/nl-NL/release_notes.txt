@@ -1,5 +1,7 @@
-- Bijgewerkte Arabische, Ierse en Macedonische vertalingen.
-- Tor bijgewerkt naar versie 0.4.5.9.
-- Sneeuwvlok bijgewerkt naar versie 1.1.0.
-- Een bug opgelost waarbij er geen tabblad werd getoond na het opnieuw opstarten en de werkbalk ook verborgen was.
-- "Zeer strikt" inhoudsbeleid toegevoegd om JavaScript echt uit te schakelen. Breekt het contextmenu, maar is nodig voor sommige zeldzame sites.
+- Tor bijgewerkt naar versie 0.4.5.10.
+- Ondersteuning toegevoegd voor uienservice v3-authenticatie.
+- Vaste afhandeling van ontvangen URL's. Werkt nu beter met andere apps, ongeacht
+   van de staat waarin Onion Browser zich bevindt.
+- Functie toegevoegd: "Bladwijzers uitschakelen op startpagina".
+- Bevat nu enkele populaire User Agent-strings die gebruikers kunnen kiezen.
+- Vertaalupdates.

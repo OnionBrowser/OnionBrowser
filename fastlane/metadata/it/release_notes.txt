@@ -1,5 +1,7 @@
-- Aggiornate le traduzioni in arabo, irlandese e macedone.
-- Aggiornato Tor alla versione 0.4.5.9.
-- Aggiornato Snowflake alla versione 1.1.0.
-- Risolto un bug, per cui nessuna scheda veniva mostrata dopo il riavvio e anche la barra degli strumenti era nascosta.
-- Aggiunta la norma sui contenuti "Molto rigorosa" per disattivare davvero JavaScript. Interrompe il menu di scelta rapida, ma necessario per alcuni siti rari.
+- Aggiornato Tor alla versione 0.4.5.10.
+- Aggiunto il supporto per l'autenticazione del servizio onion v3.
+- Risolto il problema con la gestione degli URL ricevuti. Ora funzionerà meglio con altre app, a prescindere
+   dello stato in cui si trova Onion Browser.
+- Aggiunta funzionalità: "Disabilita i segnalibri sulla pagina iniziale".
+- Ora contiene alcune stringhe User Agent popolari che gli utenti possono scegliere.
+- Aggiornamenti di traduzione.
