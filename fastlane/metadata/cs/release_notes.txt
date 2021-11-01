@@ -1,5 +1,7 @@
-- Aktualizovány arabská, irská a makedonská lokalizace.
-- Aktualizace Toru na verzi 0.4.5.9.
-- Aktualizován Snowflake na verzi 1.1.0.
-- Opravena chyba, kdy se po restartu nezobrazovala žádná karta a panel nástrojů byl také skrytý.
-- Přidány zásady obsahu "Velmi přísné" pro skutečné vypnutí JavaScriptu. Narušuje kontextovou nabídku, ale pro některé vzácné weby je to potřebné.
+- Tor aktualizován na verzi 0.4.5.10.
+- Přidána podpora autentizace pro onion služby v3
+- Opraveno zpracování přijatých URL adres. Nyní bude lépe spolupracovat s ostatními aplikacemi, bez ohledu na to, 
+v jakém stavu se Onion Browser nachází.
+- Přidána funkce: "Zakázání záložek na startovní stránce"
+- Nyní obsahuje některé oblíbené User Agent řetězce, které si uživatelé mohou vybrat.
+- Aktualizace překladů

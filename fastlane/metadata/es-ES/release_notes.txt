@@ -1,5 +1,7 @@
-- Traducciones actualizadas en Árabe, Irlandés y Macedonio.
-- Tor actualizado a la versión 0.4.5.9.
-- Snowflake actualizado a la versión 1.1.0.
-- Error eliminado, donde no se mostraba ninguna pestaña después de reiniciar, y también estaba oculta la barra de herramientas.
-- Se añadió la política de contenido "Muy Estricta" para desactivar realmente a JavaScript. Anula los menues contextuales, pero se necesita para algunos sitios raros.
+- Tor actualizado a la versión 0.4.5.10.
+- Soporte agregado para autenticación de servicios onion v3.
+- Se arregló el manejo de los URLs recibidos. Ahora funcionará mejor con otras aplicaciones, en cualquier
+ estado en que se encuentre Onion Browser.
+- Se agregó característica: 'Deshabilitar marcadores en la Página de Inicio'.
+- Ahora contiene algunas cadenas de texto para Agente de Usuario populares, para que los usuarios elijan.
+- Actualización de las traducciones.
