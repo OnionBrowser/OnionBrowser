@@ -8,6 +8,8 @@
 //
 
 import Foundation
+import Tor
+import IPtProxy
 
 protocol OnionManagerDelegate: AnyObject {
 

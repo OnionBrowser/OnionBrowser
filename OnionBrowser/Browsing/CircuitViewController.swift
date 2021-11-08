@@ -9,6 +9,7 @@
 //
 
 import UIKit
+import Tor
 
 class CircuitViewController: UIViewController, UIPopoverPresentationControllerDelegate,
 UITableViewDataSource, UITableViewDelegate {
