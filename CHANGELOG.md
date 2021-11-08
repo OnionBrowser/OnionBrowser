@@ -1,5 +1,10 @@
 #  Onion Browser 2 Changelog
 
+## 2.7.7
+
+- Finally added Greek to app translation. Not complete, yet, but mostly.
+- Actively migrate v2 onion default bookmarks to v3.
+- Added feedback, when bridge settings where changed during startup.
 
 ## 2.7.6
 
