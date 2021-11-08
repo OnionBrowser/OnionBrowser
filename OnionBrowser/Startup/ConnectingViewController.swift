@@ -141,6 +141,7 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate {
 	func torConnFinished() {
 		DispatchQueue.main.async {
 			Bookmark.firstRunSetup()
+			Bookmark.migrateToV3()
 
 			if self.autoClose {
 				return ConnectingViewController.start()

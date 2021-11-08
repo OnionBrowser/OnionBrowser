@@ -120,6 +120,15 @@ class Settings: NSObject {
 		}
 	}
 
+	class var bookmarksMigratedToOnionV3: Bool {
+		get {
+			return UserDefaults.standard.bool(forKey: "bookmarks_migrated_to_onion_v3")
+		}
+		set {
+			UserDefaults.standard.set(newValue, forKey: "bookmarks_migrated_to_onion_v3")
+		}
+	}
+
 	class var currentlyUsedBridges: BridgesType {
 		get {
 			return BridgesType(rawValue: UserDefaults.standard.integer(forKey: "use_bridges")) ?? .none
@@ -135,7 +144,6 @@ class Settings: NSObject {
 		}
 		set {
 			UserDefaults.standard.set(newValue, forKey: "custom_bridges")
-
 		}
 	}
 

@@ -43,7 +43,15 @@ open class Bookmark: NSObject {
 		defaults.append(Bookmark(name: "The Tor Project", url: "http://2gzyxa5ihm7nsggfxnu52rck2vv4rvmdlkiu3zzui5du4xyclen53wid.onion/"))
 
 		return defaults
-	}();
+	}()
+
+	private static let v2ToV3 = [
+		"https://3g2upl4pq6kufc4m.onion/": "https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/",
+		"https://bbcnewsv2vjtpsuy.onion/": "https://www.bbcnewsd73hkzno2ini43t4gblxvycyac5aw4gnv7t2rccijh7745uqd.onion/",
+		"https://m.facebookcorewwwi.onion/": "https://m.facebookwkhpilnemxj7asaniu7vnjjbiltxjqhye3mhbshg7kx5tfyd.onion/",
+		"https://www.propub3r6espa33w.onion/": "https://p53lf57qovyuvwsc6xnrppyply3vtqm7l6pcobkmyqsiofyeznfu5uqd.onion/",
+		"https://freedom.press/": "http://fpfjxcrmw437h6z2xl3w4czl55kvkmxpapg37bbopsafdu7q454byxid.onion/",
+		"http://expyuzz4wqqyqhjn.onion/": "http://2gzyxa5ihm7nsggfxnu52rck2vv4rvmdlkiu3zzui5du4xyclen53wid.onion/"]
 
 	private static var startPageNeedsUpdate = true
 
@@ -71,26 +79,56 @@ open class Bookmark: NSObject {
 	}()
 
 	class func firstRunSetup() {
-		if Settings.bookmarkFirstRunDone {
+		guard !Settings.bookmarkFirstRunDone else {
 			return
 		}
 
 		// Only set up default list of bookmarks, when there's no others.
-		if all.count < 1 {
-			all.append(contentsOf: defaultBookmarks)
+		guard all.count < 1 else {
+			Settings.bookmarkFirstRunDone = true
 
-			store()
+			return
+		}
 
-			DispatchQueue.global(qos: .background).async {
-				for bookmark in all {
-					bookmark.acquireIcon() {
-						store()
-					}
+		all.append(contentsOf: defaultBookmarks)
+
+		store()
+
+		DispatchQueue.global(qos: .background).async {
+			for bookmark in all {
+				bookmark.acquireIcon() {
+					store()
 				}
-				
-				Settings.bookmarkFirstRunDone = true
 			}
-        }
+
+			Settings.bookmarkFirstRunDone = true
+		}
+	}
+
+	class func migrateToV3() {
+		guard !Settings.bookmarksMigratedToOnionV3 else {
+			return
+		}
+
+		for bookmark in all {
+			if let v2 = bookmark.url?.absoluteString,
+			   let v3 = v2ToV3[v2]
+			{
+				bookmark.url = URL(string: v3)
+			}
+		}
+
+		store()
+
+		Settings.bookmarksMigratedToOnionV3 = true
+
+		DispatchQueue.global(qos: .background).async {
+			for bookmark in all {
+				bookmark.acquireIcon() {
+					store()
+				}
+			}
+		}
 	}
 
 	class func updateStartPage(force: Bool = false) {
