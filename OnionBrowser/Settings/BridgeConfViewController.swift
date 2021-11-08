@@ -162,6 +162,10 @@ BridgeConfDelegate {
 			OnionManager.shared.startTor(delegate: nil)
 
 			navigationController?.dismiss(animated: true)
+
+			if let vc = presentingViewController as? BridgeConfDelegate {
+				vc.connect()
+			}
 		}
 	}
 

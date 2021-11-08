@@ -10,7 +10,7 @@
 
 import UIKit
 
-class ConnectingViewController: UIViewController, OnionManagerDelegate {
+class ConnectingViewController: UIViewController, OnionManagerDelegate, BridgeConfDelegate {
 
 	class func start() {
 		let appDelegate = AppDelegate.shared
@@ -42,17 +42,11 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate {
 
 	@IBOutlet weak var troubleLb: UILabel! {
 		didSet {
-			let text = NSMutableAttributedString(
-				string: NSLocalizedString("We're having trouble.", comment: ""),
-				attributes: [.font: UIFont.boldSystemFont(ofSize: 24)])
-
-			text.append(NSAttributedString(string: "\n"))
-
-			text.append(NSAttributedString(string: NSLocalizedString(
-				"Close Onion Browser and restart or try using a bridge.",
-				comment: ""), attributes: [.font: UIFont.systemFont(ofSize: 15)]))
-
-			troubleLb.attributedText = text
+			updateTroubles(
+				NSLocalizedString("We're having trouble.", comment: ""),
+				NSLocalizedString(
+					"Close Onion Browser and restart or try using a bridge.",
+					comment: ""))
 		}
 	}
 	@IBOutlet weak var troubleLbHeight: NSLayoutConstraint!
@@ -178,6 +172,27 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate {
 	}
 
 
+	// MARK: BridgeConfDelegate
+
+	// Ignore, not used.
+	var bridgesType = Settings.BridgesType.none
+
+	// Ignore, not used.
+	var customBridges: [String]? = nil
+
+	func connect() {
+		guard !troubleLb.isHidden else {
+			return
+		}
+
+		updateTroubles(
+			NSLocalizedString("Trying a bridge…", comment: ""),
+			NSLocalizedString(
+				"This may take time. If it doesn't work after a while, choose a different bridge.",
+				comment: ""))
+	}
+
+
 	// MARK: Actions
 
 	@IBAction func next() {
@@ -219,5 +234,17 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate {
 		claimLb.textColor = claim.textColor
 		view.backgroundColor = claim.backgroundColor
 		image.image = claim.image
+	}
+
+	private func updateTroubles(_ header: String, _ body: String) {
+		let text = NSMutableAttributedString(
+			string: header, attributes: [.font: UIFont.boldSystemFont(ofSize: 24)])
+
+		text.append(NSAttributedString(string: "\n"))
+
+		text.append(NSAttributedString(
+			string: body, attributes: [.font: UIFont.systemFont(ofSize: 15)]))
+
+		troubleLb.attributedText = text
 	}
 }
