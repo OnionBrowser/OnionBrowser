@@ -282,8 +282,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 			let mgr = OnionManager.shared
 
 			if (mgr.state != .started && mgr.state != .connected) {
-				// Difficult situation to add a delegate here, so we never did.
-				// Turns out, it is no problem. Tor seems to always restart correctly.
 				mgr.startTor(delegate: self)
 			}
 			else {

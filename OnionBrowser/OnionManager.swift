@@ -577,7 +577,7 @@ class OnionManager : NSObject {
 		}
 
 		if args.count > 0 {
-			args.append(contentsOf: ["--UseBridges", "1"])
+			args += ["--UseBridges", "1"]
 		}
 
 		return args
