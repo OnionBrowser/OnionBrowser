@@ -1,7 +1,3 @@
-- Oppdatert Tor til versjon 0.4.5.10.
-- Lagt til støtte for onion service v3-autentisering.
-- Fast håndtering av mottatte URL-er. Vil nå fungere bedre med andre apper, uansett
-   av staten Onion Browser er i.
-- Lagt til funksjon: "Deaktiver bokmerker på startsiden".
-- Inneholder nå noen populære User Agent-strenger som brukerne kan velge.
-- Oversettelsesoppdateringer.
+- Endelig lagt til gresk til appoversettelse. Ikke komplett ennå, men stort sett.
+- Migrer aktivt v2 løk standard bokmerker til v3.
+- Lagt til tilbakemelding når broinnstillingene ble endret under oppstart.

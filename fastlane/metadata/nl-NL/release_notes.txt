@@ -1,7 +1,3 @@
-- Tor bijgewerkt naar versie 0.4.5.10.
-- Ondersteuning toegevoegd voor uienservice v3-authenticatie.
-- Vaste afhandeling van ontvangen URL's. Werkt nu beter met andere apps, ongeacht
-   van de staat waarin Onion Browser zich bevindt.
-- Functie toegevoegd: "Bladwijzers uitschakelen op startpagina".
-- Bevat nu enkele populaire User Agent-strings die gebruikers kunnen kiezen.
-- Vertaalupdates.
+- Eindelijk Grieks toegevoegd aan app-vertaling. Nog niet compleet, maar grotendeels.
+- Migreer actief v2 ui standaard bladwijzers naar v3.
+- Feedback toegevoegd, wanneer bridge-instellingen werden gewijzigd tijdens het opstarten.

@@ -1,7 +1,3 @@
-- Zaktualizowano Tora do wersji 0.4.5.10.
-— Dodano obsługę uwierzytelniania usługi cebuli v3.
-- Poprawiono obsługę otrzymanych adresów URL. Niezależnie od tego będzie teraz działać lepiej z innymi aplikacjami
-   stanu, w którym znajduje się Przeglądarka cebuli.
-- Dodano funkcję: "Wyłącz zakładki na stronie startowej".
-- Teraz zawiera kilka popularnych ciągów agenta użytkownika do wyboru przez użytkowników.
-- Aktualizacje tłumaczeń.
+- Wreszcie dodano tłumaczenie greckie do aplikacji. Jeszcze nie kompletna, ale przede wszystkim.
+- Aktywna migracja domyślnych zakładek cebulowych z wersji 2 do wersji 3.
+- Dodano informację zwrotną, gdy ustawienia mostka zostały zmienione podczas uruchamiania.

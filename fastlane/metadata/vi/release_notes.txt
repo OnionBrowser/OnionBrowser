@@ -1,7 +1,3 @@
-- Cập nhật Tor lên phiên bản 0.4.5.10.
-- Đã thêm hỗ trợ xác thực dịch vụ hành v3.
-- Đã sửa lỗi xử lý các URL đã nhận. Bây giờ sẽ hoạt động tốt hơn với các ứng dụng khác, bất kể
-   của trạng thái Trình duyệt Onion đang ở.
-- Đã thêm tính năng: "Vô hiệu hóa Dấu trang trên Trang Bắt đầu".
-- Bây giờ chứa một số chuỗi Tác nhân Người dùng phổ biến để người dùng lựa chọn.
-- Cập nhật bản dịch.
+- Cuối cùng đã thêm tiếng Hy Lạp vào bản dịch ứng dụng. Chưa hoàn thành, nhưng chủ yếu.
+- Tích cực di chuyển dấu trang mặc định của củ hành v2 sang phiên bản v3.
+- Đã thêm phản hồi, khi cài đặt cầu được thay đổi trong quá trình khởi động.

@@ -1,7 +1,3 @@
-- Tor atualizado para a versão 0.4.5.10.
-- Adicionado suporte para autenticação de serviço onion v3.
-- Corrigido tratamento de URLs recebidos. Agora funcionará melhor com outros aplicativos, independentemente
-   do estado em que o Onion Browser está.
-- Recurso adicionado: "Desativar favoritos na página inicial".
-- Agora contém algumas cadeias de caracteres populares do Agente do usuário para os usuários escolherem.
-- Atualizações de tradução.
+- Grego finalmente adicionado a tradução do aplicativo. Não está completo ainda, mas está quase.
+- Migração ativa dos favoritos padrão do onion v2 para o v3.
+- Adicionado comentários quando configurações de ponte for alterada durante a inicialização.
