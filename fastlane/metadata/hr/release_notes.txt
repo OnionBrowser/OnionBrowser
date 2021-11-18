@@ -1,7 +1,3 @@
-- Ažuriran Tor na verziju 0.4.5.10.
-- Dodana podrška za onion service v3 autentifikaciju.
-- Ispravljeno rukovanje primljenim URL-ovima. Sada će bolje raditi s drugim aplikacijama, bez obzira na to
-   države u kojoj se nalazi Onion Browser.
-- Dodana značajka: "Onemogući oznake na početnoj stranici".
-- Sada sadrži neke popularne nizove korisničkog agenta koje korisnici mogu odabrati.
-- Ažuriranja prijevoda.
+- Konačno je dodan grčki prijevod, ali prijevod još nije kompletan.
+- Aktivno migriranje onion v2 standardnih oznaka u v3.
+- Dodane su povratne informacije, kad se postavke mosta promijene tijekom pokretanja.

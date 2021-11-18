@@ -1,7 +1,3 @@
-- Tor aktualizován na verzi 0.4.5.10.
-- Přidána podpora autentizace pro onion služby v3
-- Opraveno zpracování přijatých URL adres. Nyní bude lépe spolupracovat s ostatními aplikacemi, bez ohledu na to, 
-v jakém stavu se Onion Browser nachází.
-- Přidána funkce: "Zakázání záložek na startovní stránce"
-- Nyní obsahuje některé oblíbené User Agent řetězce, které si uživatelé mohou vybrat.
-- Aktualizace překladů
+- Konečně jsme přidali překlad do řečtiny. Ještě ale není úplně kompletní.
+- Aktivní migrace v2 onion implicitních záložek na v3.
+- Přidána zpětná vazba při změně nastavení bridge během spuštění.

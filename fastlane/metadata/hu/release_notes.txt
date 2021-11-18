@@ -1,7 +1,3 @@
-- A Tor frissítve a 0.4.5.10-es verzióra.
-- Hozzáadott támogatás az onion service v3 hitelesítéshez.
-- A fogadott URL-ek kezelésének javítása. Ettől függetlenül most jobban fog működni más alkalmazásokkal
-   Az Onion Browser állapotában van.
-- Hozzáadott funkció: "Könyvjelzők letiltása a kezdőlapon".
-- Most néhány népszerű User Agent karakterláncot tartalmaz a felhasználók választhatnak.
-- Fordítási frissítések.
+- Végre a görög nyelv hozzáadásra került az alkalmazás fordításához. Nem teljes még, de majdnem az.
+- Aktív migrációja a v2 onion könyvjelzőknek v3-ra.
+- Visszajelzés hozzáadva, amikor a híd beállítások módosulnak az indítás során.

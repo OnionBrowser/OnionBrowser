@@ -1,7 +1,3 @@
-- Tor actualizado a la versión 0.4.5.10.
-- Soporte agregado para autenticación de servicios onion v3.
-- Se arregló el manejo de los URLs recibidos. Ahora funcionará mejor con otras aplicaciones, en cualquier
- estado en que se encuentre Onion Browser.
-- Se agregó característica: 'Deshabilitar marcadores en la Página de Inicio'.
-- Ahora contiene algunas cadenas de texto para Agente de Usuario populares, para que los usuarios elijan.
-- Actualización de las traducciones.
+- Finalmente se añadió Griego a la traducción de la aplicación. No está completo, aún, pero casi.
+- Migración activa de los marcadores onion v2 predeterminados a v3.
+- Se añadieron comentarios, cuando las configuracxiones de puentes fueron cambiadas durante el inicio.

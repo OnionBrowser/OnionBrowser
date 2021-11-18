@@ -1,7 +1,3 @@
-- Tor, 0.4.5.10 sürümüne güncellendi.
-- Onion hizmeti 3. sürüm kimlik doğrulaması desteği eklendi.
-- Alınan adreslerin işlenmesi düzeltildi. Artık Onion Browser ne durumda olursa olsun
-diğer uygulamalarla daha iyi çalışacak.
-- Özellik eklendi: "Başlangıç sayfasında yer imlerini devre dışı bırak".
-- Artık kullanıcıların seçebileceği bazı yaygın kullanıcı uygulaması dizgelerini içeriyor.
-- Çeviriler güncellendi.
+- Sonunda Yunanca çevirisi eklendi. Henüz tam değil ancak çoğu bitti.
+- 2. sürüm onion varsayılan yer imleri 3. sürüme aktarıldı.
+- Başlangıçta köprü ayarlarının değişmesi durumunda geri bildirim eklendi. 

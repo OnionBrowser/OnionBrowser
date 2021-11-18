@@ -1,7 +1,3 @@
-- S'ha actualitzat Tor a la versió 0.4.5.10.
-- S'ha afegit suport per a l'autenticació onion service v3.
-- S'ha corregit el maneig dels URL rebuts. Ara funcionarà millor amb altres aplicacions, independentment
-   de l'estat en què es troba el navegador Onion.
-- Funció afegida: "Desactiva les adreces d'interès a la pàgina d'inici".
-- Ara conté algunes cadenes d'agent d'usuari populars perquè els usuaris puguin triar.
-- Actualitzacions de traducció.
+- S'ha afegit finalment una traducció parcial de l'idioma grec a l'aplicació.
+- Migració activa de les adreces d'interès onion v2 a v3.
+- S'ha afegit comentaris si canvien les opcions del pont durant l'inici.
