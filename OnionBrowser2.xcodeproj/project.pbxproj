@@ -163,13 +163,13 @@
 		A0BF527D23AFC3580096624A /* SearchableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF523E23AFC3580096624A /* SearchableTableViewController.swift */; };
 		A0BF527E23AFC3580096624A /* UIButton+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF523F23AFC3580096624A /* UIButton+Helpers.swift */; };
 		A0BF527F23AFC3580096624A /* URL+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF524023AFC3580096624A /* URL+Helpers.swift */; };
-		A0BF528023AFC3580096624A /* Ipv6Tester.m in Sources */ = {isa = PBXBuildFile; fileRef = A0BF524123AFC3580096624A /* Ipv6Tester.m */; };
 		A0BF528123AFC3580096624A /* TabSecurity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF524223AFC3580096624A /* TabSecurity.swift */; };
 		A0BF528223AFC3580096624A /* String+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF524323AFC3580096624A /* String+Helpers.swift */; };
 		A0BF528523AFC6D10096624A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A0BF528323AFC6D10096624A /* InfoPlist.strings */; };
 		A0C26E4323D8650E00C4AF1C /* security-levels.html in Resources */ = {isa = PBXBuildFile; fileRef = A0C26E4523D8650E00C4AF1C /* security-levels.html */; };
 		A0C3770E1F47342C0039198E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0C3770D1F47342C0039198E /* CoreData.framework */; };
 		A0C9531A23C6426C006D7A35 /* FixedFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C9531923C6426C006D7A35 /* FixedFormViewController.swift */; };
+		A0D5344C2746B3690077FC21 /* IpSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D5344B2746B3690077FC21 /* IpSupport.swift */; };
 		A0D9008B24095F5C0046C9B3 /* AltSvcHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D9008A24095F5C0046C9B3 /* AltSvcHeader.swift */; };
 		A0F2FB062423AB92003CC61A /* AboutSecurityLevelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F2FB052423AB92003CC61A /* AboutSecurityLevelsViewController.swift */; };
 		F36B25B117E9D9EA29E69834 /* libPods-OnionBrowser2 Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF8741635ABE997F7A7EE40 /* libPods-OnionBrowser2 Tests.a */; };
@@ -744,12 +744,10 @@
 		A0BF523923AFC3580096624A /* Bundle+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Helpers.swift"; sourceTree = "<group>"; };
 		A0BF523A23AFC3580096624A /* AlertHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
 		A0BF523B23AFC3580096624A /* Formatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
-		A0BF523C23AFC3580096624A /* Ipv6Tester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ipv6Tester.h; sourceTree = "<group>"; };
 		A0BF523D23AFC3580096624A /* UIView+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Helpers.swift"; sourceTree = "<group>"; };
 		A0BF523E23AFC3580096624A /* SearchableTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchableTableViewController.swift; sourceTree = "<group>"; };
 		A0BF523F23AFC3580096624A /* UIButton+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Helpers.swift"; sourceTree = "<group>"; };
 		A0BF524023AFC3580096624A /* URL+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Helpers.swift"; sourceTree = "<group>"; };
-		A0BF524123AFC3580096624A /* Ipv6Tester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ipv6Tester.m; sourceTree = "<group>"; };
 		A0BF524223AFC3580096624A /* TabSecurity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabSecurity.swift; sourceTree = "<group>"; };
 		A0BF524323AFC3580096624A /* String+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Helpers.swift"; sourceTree = "<group>"; };
 		A0C26E4423D8650E00C4AF1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = "Base.lproj/security-levels.html"; sourceTree = "<group>"; };
@@ -807,6 +805,7 @@
 		A0D269DC261B06C90086F85C /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ko; path = "ko.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A0D269DD261B06CC0086F85C /* mk */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = mk; path = "mk.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A0D269DE261B06CF0086F85C /* fa */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = fa; path = "fa.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A0D5344B2746B3690077FC21 /* IpSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IpSupport.swift; sourceTree = "<group>"; };
 		A0D9008A24095F5C0046C9B3 /* AltSvcHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AltSvcHeader.swift; sourceTree = "<group>"; };
 		A0DB0F182518B94800B2D779 /* demo_user.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = demo_user.txt; sourceTree = "<group>"; };
 		A0DB0F192518B94800B2D779 /* notes.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = notes.txt; sourceTree = "<group>"; };
@@ -815,6 +814,7 @@
 		A0DB0F1C2518B94800B2D779 /* email_address.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = email_address.txt; sourceTree = "<group>"; };
 		A0DB0F1D2518B94800B2D779 /* first_name.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = first_name.txt; sourceTree = "<group>"; };
 		A0DB0F1E2518B94800B2D779 /* phone_number.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = phone_number.txt; sourceTree = "<group>"; };
+		A0DB59522747D36200B20436 /* Tor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Tor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0F2FB052423AB92003CC61A /* AboutSecurityLevelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutSecurityLevelsViewController.swift; sourceTree = "<group>"; };
 		A0F4A70E26122785002D0EEA /* sq */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = sq; path = "sq.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A0F4A70F2612278E002D0EEA /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ar; path = "ar.lproj/security-levels.html"; sourceTree = "<group>"; };
@@ -996,6 +996,7 @@
 		6CC21620E2AE7B4037C6401B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A0DB59522747D36200B20436 /* Tor.framework */,
 				A0C3770D1F47342C0039198E /* CoreData.framework */,
 				693145FD1D3EEAE400D08A6A /* Tor.framework */,
 				019516D01B7D8B400078586A /* libz.tbd */,
@@ -1980,8 +1981,7 @@
 				A0BF523923AFC3580096624A /* Bundle+Helpers.swift */,
 				A0C9531923C6426C006D7A35 /* FixedFormViewController.swift */,
 				A0BF523B23AFC3580096624A /* Formatter.swift */,
-				A0BF523C23AFC3580096624A /* Ipv6Tester.h */,
-				A0BF524123AFC3580096624A /* Ipv6Tester.m */,
+				A0D5344B2746B3690077FC21 /* IpSupport.swift */,
 				A0BF523E23AFC3580096624A /* SearchableTableViewController.swift */,
 				A06DF455241A60E700A07796 /* SecureEnclave.swift */,
 				A0BF523723AFC3580096624A /* SilenceWarnings.h */,
@@ -2028,8 +2028,8 @@
 				01801E8E1A32CA2A002B4718 /* Sources */,
 				01801E8F1A32CA2A002B4718 /* Frameworks */,
 				01801E901A32CA2A002B4718 /* Resources */,
-				3FD77C8B0E05AAF8570A84D7 /* [CP] Embed Pods Frameworks */,
 				D9FF86538B1D1A09599C3806 /* [CP] Copy Pods Resources */,
+				4E5A2CC1C1C91A0BB5A06AE7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2073,7 +2073,7 @@
 				TargetAttributes = {
 					01801E911A32CA2A002B4718 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = "$(DEVELOPMENT_TEAM)";
+						DevelopmentTeam = W36S8KLY7S;
 						LastSwiftMigration = 1020;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -2084,12 +2084,12 @@
 					};
 					018333D61A35727C00670CD1 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = "$(DEVELOPMENT_TEAM)";
+						DevelopmentTeam = W36S8KLY7S;
 						ProvisioningStyle = Manual;
 					};
 					8AC3B3A721700AD300E0CB4A = {
 						CreatedOnToolsVersion = 10.0;
-						DevelopmentTeam = "$(DEVELOPMENT_TEAM)";
+						DevelopmentTeam = W36S8KLY7S;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -2205,7 +2205,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3FD77C8B0E05AAF8570A84D7 /* [CP] Embed Pods Frameworks */ = {
+		4E5A2CC1C1C91A0BB5A06AE7 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2342,7 +2342,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A0BF526623AFC3580096624A /* BookmarksViewController.swift in Sources */,
-				A0BF528023AFC3580096624A /* Ipv6Tester.m in Sources */,
 				A0BF527923AFC3580096624A /* Bundle+Helpers.swift in Sources */,
 				A053136E22F1C737006655EC /* JAHPAuthenticatingHTTPProtocol.m in Sources */,
 				A031762323CE648200D75F2A /* ScanQrViewController.swift in Sources */,
@@ -2431,6 +2430,7 @@
 				A07B55FC23D736D60051663B /* CertificateViewController.swift in Sources */,
 				010EEA691A43C8CF001E8B65 /* CookieJar.m in Sources */,
 				A031761F23CE462300D75F2A /* BridgeConfViewController.swift in Sources */,
+				A0D5344C2746B3690077FC21 /* IpSupport.swift in Sources */,
 				A053136F22F1C73A006655EC /* JAHPCacheStoragePolicy.m in Sources */,
 				A0BF525723AFC3580096624A /* SecurityPopUpViewController.swift in Sources */,
 				A0696EAD2406C7D000512695 /* SyncViewController.swift in Sources */,

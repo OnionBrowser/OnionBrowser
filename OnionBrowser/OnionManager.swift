@@ -40,7 +40,9 @@ class OnionManager : NSObject {
 	*/
 	private static let torBaseConf: TorConfiguration = {
 		let conf = TorConfiguration()
+		conf.ignoreMissingTorrc = true
 		conf.cookieAuthentication = true
+		conf.autoControlPort = true
 
 		#if DEBUG
 		let log_loc = "notice stdout"
@@ -48,22 +50,12 @@ class OnionManager : NSObject {
 		let log_loc = "notice file /dev/null"
 		#endif
 
-		conf.arguments = [
-			"--allow-missing-torrc",
-			"--ignore-missing-torrc",
-			"--ClientOnly", "1",
-			"--AvoidDiskWrites", "1",
-			"--SocksPort", "127.0.0.1:39050",
-			"--ControlPort", "127.0.0.1:39060",
-			"--Log", log_loc,
-			"--ClientUseIPv6", "1",
-			"--ClientTransportPlugin", "obfs4 socks5 127.0.0.1:\(IPtProxyObfs4Port())",
-			"--ClientTransportPlugin", "meek_lite socks5 127.0.0.1:\(IPtProxyMeekPort())",
-			"--ClientTransportPlugin", "snowflake socks5 127.0.0.1:\(IPtProxySnowflakePort())",
-			"--GeoIPFile", Bundle.main.path(forResource: "geoip", ofType: nil) ?? "",
-			"--GeoIPv6File", Bundle.main.path(forResource: "geoip6", ofType: nil) ?? "",
-		]
-
+		conf.options["ClientOnly"] = "1"
+		conf.options["AvoidDiskWrites"] = "1"
+		conf.options["SocksPort"] = "127.0.0.1:39050"
+		conf.options["Log"] = log_loc
+		conf.options["GeoIPFile"] = Bundle.main.path(forResource: "geoip", ofType: nil) ?? ""
+		conf.options["GeoIPv6File"] = Bundle.main.path(forResource: "geoip6", ofType: nil) ?? ""
 
 		// Store data in <appdir>/Library/Caches/tor (Library/Caches/ is for things that can persist between
 		// launches -- which we'd like so we keep descriptors & etc -- but don't need to be backed up because
@@ -84,8 +76,7 @@ class OnionManager : NSObject {
 			try? FileManager.default.createDirectory(at: authDir, withIntermediateDirectories: true)
 
 			conf.dataDirectory = dataDir
-
-			conf.options["ClientOnionAuthDir"] = authDir.path 
+			conf.clientAuthDirectory = authDir
 		}
 
 		return conf
@@ -96,39 +87,17 @@ class OnionManager : NSObject {
 
 	static let obfs4Bridges = NSArray(contentsOfFile: Bundle.main.path(forResource: "obfs4-bridges", ofType: "plist")!) as! [String]
 
-	/**
-	Don't use anymore: Microsoft announced to start blocking domain fronting!
-
-	[Microsoft: Securing our approach to domain fronting within Azure](https://www.microsoft.com/security/blog/2021/03/26/securing-our-approach-to-domain-fronting-within-azure/)
-	*/
-	@available(*, deprecated)
-	static let meekAzureBridge = [
-		"meek_lite 0.0.2.0:3 97700DFE9F483596DDA6264C4D7DF7641E1E39CE url=https://meek.azureedge.net/ front=ajax.aspnetcdn.com"
-	]
-
-	static let snowflakeBridge = [
-		// BUGFIX: The fingerprint of flakey needs to be there, otherwise,
-		// bootstrapping Tor with Snowflake is impossible.
-		// https://gitlab.torproject.org/tpo/core/tor/-/issues/40360
-		//
-		// The IP address is a reserved one, btw. Only there to fulfill Tor Bridge line requirements.
-		// The actual config is done in #startSnowflake.
-		"snowflake 192.0.2.3:1 2B280B23E1107BB62ABFC40DDCC8824814F80A72"
-	]
-
 
 	// MARK: OnionManager instance
 
 	public var state = TorState.none
 
 	public lazy var onionAuth: TorOnionAuth? = {
-		guard let dir = OnionManager.torBaseConf.options?["ClientOnionAuthDir"],
-			  !dir.isEmpty
-		else {
+		guard let dir = Self.torBaseConf.clientAuthDirectory else {
 			return nil
 		}
 
-		return TorOnionAuth(dir: dir)
+		return TorOnionAuth(withPrivateDir: dir, andPublicDir: dir)
 	}()
 
 	private var torController: TorController?
@@ -140,56 +109,24 @@ class OnionManager : NSObject {
 	private var bridgesType = Settings.BridgesType.none
 	private var customBridges: [String]?
 	private var needsReconfiguration = false
+	private var ipStatus = IpSupport.Status.unknown
 
-	private var cookie: Data? {
-		if let cookieUrl = OnionManager.torBaseConf.dataDirectory?.appendingPathComponent("control_auth_cookie") {
-			return try? Data(contentsOf: cookieUrl)
-		}
-
-		return nil
-	}
 
 	override init() {
 		super.init()
 
-		NotificationCenter.default.addObserver(self, selector: #selector(networkChange),
-											   name: .reachabilityChanged, object: nil)
-	}
+		IpSupport.shared.start({ [weak self] status in
+			self?.ipStatus = status
 
+			if !(self?.torThread?.isCancelled ?? true) {
+				self?.torController?.setConfs(self?.getIpConfig(self!.asConf) ?? []) { success, error in
+					if let error = error {
+						print("[\(String(describing: type(of: self)))] error: \(error)")
+					}
 
-	// MARK: Reachability
-
-	@objc
-	func networkChange() {
-		print("[\(String(describing: type(of: self)))] ipv6_status: \(Ipv6Tester.ipv6_status())")
-		var confs:[Dictionary<String,String>] = []
-
-		if (Ipv6Tester.ipv6_status() == TOR_IPV6_CONN_ONLY) {
-			// We think we're on a IPv6-only DNS64/NAT64 network.
-			confs.append(["key": "ClientPreferIPv6ORPort", "value": "1"])
-
-			if (self.bridgesType != .none) {
-				// Bridges on, leave IPv4 on.
-				// User's bridge config contains all the IPs (v4 or v6)
-				// that we connect to, so we let _that_ setting override our
-				// "IPv6 only" self-test.
-				confs.append(["key": "ClientUseIPv4", "value": "1"])
+					self?.torReconnect()
+				}
 			}
-			else {
-				// Otherwise, for IPv6-only no-bridge state, disable IPv4
-				// connections from here to entry/guard nodes.
-				//(i.e. all outbound connections are IPv6 only.)
-				confs.append(["key": "ClientUseIPv4", "value": "0"])
-			}
-		} else {
-			// default mode
-			confs.append(["key": "ClientPreferIPv6DirPort", "value": "auto"])
-			confs.append(["key": "ClientPreferIPv6ORPort", "value": "auto"])
-			confs.append(["key": "ClientUseIPv4", "value": "1"])
-		}
-
-		torController?.setConfs(confs, completion: { _, _ in
-			self.torReconnect()
 		})
 	}
 
@@ -281,60 +218,27 @@ class OnionManager : NSObject {
 		cancelInitRetry()
 		state = .started
 
-		if (self.torController == nil) {
-			self.torController = TorController(socketHost: "127.0.0.1", port: 39060)
-		}
-
-		let reach = Reachability.forInternetConnection()
-		reach?.startNotifier()
-
 		if torThread?.isCancelled ?? true {
 			torThread = nil
 
-			let torConf = OnionManager.torBaseConf
-
-			var args = torConf.arguments!
+			let conf = Self.torBaseConf
 
 			// Add user-defined configuration.
-			args += Settings.advancedTorConf ?? []
+			conf.arguments += Settings.advancedTorConf ?? []
 
-			args += getBridgesAsArgs()
+			conf.arguments += getBridgeConfig(asArguments).joined()
 
 			// configure ipv4/ipv6
 			// Use Ipv6Tester. If we _think_ we're IPv6-only, tell Tor to prefer IPv6 ports.
 			// (Tor doesn't always guess this properly due to some internal IPv4 addresses being used,
 			// so "auto" sometimes fails to bootstrap.)
-			print("[\(String(describing: OnionManager.self))] ipv6_status: \(Ipv6Tester.ipv6_status())")
-			if (Ipv6Tester.ipv6_status() == TOR_IPV6_CONN_ONLY) {
-				args += ["--ClientPreferIPv6ORPort", "1"]
-
-				if bridgesType != .none {
-					// Bridges on, leave IPv4 on.
-					// User's bridge config contains all the IPs (v4 or v6)
-					// that we connect to, so we let _that_ setting override our
-					// "IPv6 only" self-test.
-					args += ["--ClientUseIPv4", "1"]
-				}
-				else {
-					// Otherwise, for IPv6-only no-bridge state, disable IPv4
-					// connections from here to entry/guard nodes.
-					// (i.e. all outbound connections are ipv6 only.)
-					args += ["--ClientUseIPv4", "0"]
-				}
-			}
-			else {
-				args += [
-					"--ClientPreferIPv6ORPort", "auto",
-					"--ClientUseIPv4", "1",
-				]
-			}
+			conf.arguments += getIpConfig(asArguments).joined()
 
 			#if DEBUG
-			print("[\(String(describing: type(of: self)))] arguments=\(String(describing: args))")
+			print("[\(String(describing: type(of: self)))] conf=\(conf.compile())")
 			#endif
 
-			torConf.arguments = args
-			torThread = TorThread(configuration: torConf)
+			torThread = TorThread(configuration: conf)
 			needsReconfiguration = false
 
 			torThread?.start()
@@ -343,17 +247,28 @@ class OnionManager : NSObject {
 		}
 		else {
 			if needsReconfiguration {
-				let conf = getBridgesAsConf()
+				torController?.resetConf(forKey: "UseBridges")
+				{ [weak self] success, error in
+					if !success {
+						return
+					}
 
-				torController?.resetConf(forKey: "Bridge")
+					self?.torController?.resetConf(forKey: "ClientTransportPlugin")
+					{ [weak self] success, error in
+						if !success {
+							return
+						}
 
-				if conf.count > 0 {
-					// Bridges need to be set *before* "UseBridges"="1"!
-					torController?.setConfs(conf)
-					torController?.setConfForKey("UseBridges", withValue: "1")
-				}
-				else {
-					torController?.setConfForKey("UseBridges", withValue: "0")
+						self?.torController?.resetConf(forKey: "Bridge")
+						{ [weak self] success, error in
+							if !success {
+								return
+							}
+
+							self?.torController?.setConfs(
+								self?.getBridgeConfig(self!.asConf) ?? [])
+						}
+					}
 				}
 			}
 		}
@@ -362,7 +277,7 @@ class OnionManager : NSObject {
 		// because Tor is already trying to connect; this is just the part that polls for
 		// progress.
 		DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-			if OnionManager.TOR_LOGGING {
+			if Self.TOR_LOGGING {
 				// Show Tor log in iOS' app log.
 				TORInstallTorLoggingCallback { severity, msg in
 					let s: String
@@ -411,15 +326,19 @@ class OnionManager : NSObject {
 				}
 			}
 
+			if self.torController == nil, let controlPortFile = Self.torBaseConf.controlPortFile {
+				self.torController = TorController(controlPortFile: controlPortFile)
+			}
+
 			if !(self.torController?.isConnected ?? false) {
 				do {
 					try self.torController?.connect()
 				} catch {
-					print("[\(String(describing: OnionManager.self))] error=\(error)")
+					print("[\(String(describing: Self.self))] error=\(error)")
 				}
 			}
 
-			guard let cookie = self.cookie else {
+			guard let cookie = Self.torBaseConf.cookie else {
 				print("[\(String(describing: type(of: self)))] Could not connect to Tor - cookie unreadable!")
 
 				return
@@ -452,7 +371,7 @@ class OnionManager : NSObject {
 						if type == "STATUS_CLIENT" && action == "BOOTSTRAP" {
 							let progress = Int(arguments!["PROGRESS"]!)!
 							#if DEBUG
-							print("[\(String(describing: OnionManager.self))] progress=\(progress)")
+							print("[\(String(describing: Self.self))] progress=\(progress)")
 							#endif
 
 							weakDelegate?.torConnProgress(progress)
@@ -538,59 +457,80 @@ class OnionManager : NSObject {
 
 	// MARK: Private Methods
 
-	/**
-	- returns: The list of bridges which is currently configured to be valid.
-	*/
-	private func getBridges() -> [String] {
-		#if DEBUG
-		print("[\(String(describing: type(of: self)))] bridgesId=\(bridgesType)")
-		#endif
+	private func asArguments(key: String, value: String) -> [String] {
+		return ["--\(key)", value]
+	}
+
+	private func asConf(key: String, value: String) -> [String: String] {
+		return ["key": key, "value": "\"\(value)\""]
+	}
+
+	private func getBridgeConfig<T>(_ cv: (String, String) -> T) -> [T] {
+		var arguments = [T]()
 
 		switch bridgesType {
-		case .obfs4:
+		case .obfs4, .custom:
+			stopSnowflake()
 			startObfs4proxy()
-			return OnionManager.obfs4Bridges
+
+			arguments.append(cv("ClientTransportPlugin", "obfs4 socks5 127.0.0.1:\(IPtProxyObfs4Port())"))
+
+			let bridges = bridgesType == .custom ? customBridges : Self.obfs4Bridges
+			arguments += bridges?.map({ cv("Bridge", $0) }) ?? []
+
+			arguments.append(cv("UseBridges", "1"))
 
 		case .snowflake:
+			stopObfs4proxy()
 			startSnowflake()
-			return OnionManager.snowflakeBridge
 
-		case .custom:
-			startObfs4proxy()
-			return customBridges ?? []
+			arguments.append(cv("ClientTransportPlugin", "snowflake socks5 127.0.0.1:\(IPtProxySnowflakePort())"))
+
+			// BUGFIX: The fingerprint of flakey needs to be there, otherwise,
+			// bootstrapping Tor with Snowflake is impossible.
+			// https://gitlab.torproject.org/tpo/core/tor/-/issues/40360
+			//
+			// The IP address is a reserved one, btw. Only there to fulfill Tor Bridge line requirements.
+			// The actual config is done in #startSnowflake.
+			arguments.append(cv("Bridge", "snowflake 192.0.2.3:1 2B280B23E1107BB62ABFC40DDCC8824814F80A72"))
+			arguments.append(cv("UseBridges", "1"))
 
 		default:
 			stopObfs4proxy()
 			stopSnowflake()
-			return []
-		}
-	}
 
-	/**
-	- returns: The list of bridges which is currently configured to be valid *as argument list* to be used on Tor startup.
-	*/
-	private func getBridgesAsArgs() -> [String] {
-		var args = [String]()
-
-		for bridge in getBridges() {
-			args += ["--Bridge", bridge]
+			arguments.append(cv("UseBridges", "0"))
 		}
 
-		if args.count > 0 {
-			args += ["--UseBridges", "1"]
+		return arguments
+	}
+
+	private func getIpConfig<T>(_ cv: (String, String) -> T) -> [T] {
+		var arguments = [T]()
+
+		if ipStatus == .ipV6Only {
+			arguments.append(cv("ClientPreferIPv6ORPort", "1"))
+
+			if bridgesType == .none {
+				// Switch off IPv4, if we're on a IPv6-only network.
+				arguments.append(cv("ClientUseIPv4", "0"))
+			}
+			else {
+				// ...but not, when we're using bridges. The bridge configuration
+				// lines are what is important, then.
+				arguments.append(cv("ClientUseIPv4", "1"))
+			}
+		}
+		else {
+			arguments.append(cv("ClientPreferIPv6ORPort", "auto"))
+			arguments.append(cv("ClientUseIPv4", "1"))
 		}
 
-		return args
+		arguments.append(cv("ClientUseIPv6", "1"))
+
+		return arguments
 	}
 
-	/**
-	Each bridge line needs to be wrapped in double-quotes (").
-
-	- returns: The list of bridges which is currently configured to be valid *as configuration list* to be used with `TORController#setConfs`.
-	*/
-	private func getBridgesAsConf() -> [[String: String]] {
-		return getBridges().map { ["key": "Bridge", "value": "\"\($0)\""] }
-	}
 
 	/**
 	Cancel the connection retry and fail guard.

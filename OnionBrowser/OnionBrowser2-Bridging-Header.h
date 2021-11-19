@@ -11,12 +11,9 @@
 #import <IPtProxy/IPtProxy.h>
 #import "OldBookmark.h"
 #import "Bridge.h"
-#import "Ipv6Tester.h"
-#import "Reachability.h"
 #import "JAHPAuthenticatingHTTPProtocol.h"
 #import "SSLCertificate.h"
 #import "TUSafariActivity.h"
-#import "Ipv6Tester.h"
 #import "URLBlockerRuleController.h"
 #import "HTTPSEverywhereRuleController.h"
 #import "DownloadHelper.h"

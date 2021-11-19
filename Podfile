@@ -15,13 +15,13 @@ target 'OnionBrowser2' do
 
   pod 'Eureka', '~> 5.3.2'
   pod 'ImageRow', '~> 4.0'
-  pod 'Reachability', '~> 3.2'
+  pod 'ReachabilitySwift', '~> 5.0'
   pod 'SDCAlertView', '~> 10'
   pod 'FavIcon', git: 'https://github.com/tladesignz/FavIcon.git', branch: 'swift-5'
   pod 'MBProgressHUD', '~> 1.2'
 
   pod 'IPtProxy', '~> 1.2' # :path => '../IPtProxy' #
-  pod 'Tor', podspec: 'https://raw.githubusercontent.com/iCepa/Tor.framework/v405.10.1/Tor.podspec'
+  pod 'Tor', '~> 406.8'
 end
 
 target 'OnionBrowser2 Tests' do

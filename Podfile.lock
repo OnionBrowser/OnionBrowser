@@ -3,21 +3,21 @@ PODS:
   - DTFoundation/Core (1.7.18)
   - DTFoundation/DTASN1 (1.7.18):
     - DTFoundation/Core
-  - Eureka (5.3.3)
+  - Eureka (5.3.4)
   - FavIcon (3.0.6)
   - ImageRow (4.0.0):
     - Eureka (~> 5.0)
   - IPtProxy (1.2.0)
   - MBProgressHUD (1.2.0)
-  - OCMock (3.8.1)
+  - OCMock (3.9.1)
   - OCSPCache (0.1.1):
     - OpenSSL-Universal (= 1.0.2.17)
     - ReactiveObjC (= 3.1.1)
   - OpenSSL-Universal (1.0.2.17)
-  - Reachability (3.2)
+  - ReachabilitySwift (5.0.0)
   - ReactiveObjC (3.1.1)
   - SDCAlertView (10.0)
-  - Tor (405.10.1)
+  - Tor (406.8.1)
   - TUSafariActivity (1.0.4)
   - VForceTouch (0.0.2)
 
@@ -31,9 +31,9 @@ DEPENDENCIES:
   - MBProgressHUD (~> 1.2)
   - OCMock
   - OCSPCache (from `https://github.com/Psiphon-Labs/OCSPCache`)
-  - Reachability (~> 3.2)
+  - ReachabilitySwift (~> 5.0)
   - SDCAlertView (~> 10)
-  - Tor (from `https://raw.githubusercontent.com/iCepa/Tor.framework/v405.10.1/Tor.podspec`)
+  - Tor (~> 406.8)
   - TUSafariActivity
   - VForceTouch
 
@@ -47,9 +47,10 @@ SPEC REPOS:
     - MBProgressHUD
     - OCMock
     - OpenSSL-Universal
-    - Reachability
+    - ReachabilitySwift
     - ReactiveObjC
     - SDCAlertView
+    - Tor
     - TUSafariActivity
     - VForceTouch
 
@@ -59,8 +60,6 @@ EXTERNAL SOURCES:
     :git: https://github.com/tladesignz/FavIcon.git
   OCSPCache:
     :git: https://github.com/Psiphon-Labs/OCSPCache
-  Tor:
-    :podspec: https://raw.githubusercontent.com/iCepa/Tor.framework/v405.10.1/Tor.podspec
 
 CHECKOUT OPTIONS:
   FavIcon:
@@ -73,21 +72,21 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   CSPHeader: b28ad862745eb26644109f3a3aa3f5e318dcb9fe
   DTFoundation: a53f8cda2489208cbc71c648be177f902ee17536
-  Eureka: e6d720290c56bb23333ad1a0e020b2a98a0e9a43
+  Eureka: 60cf058f86a8fb3ed26165ba5292b9850361b0a6
   FavIcon: 9fd386d96324ce0f6063732f8bf6c7f1d5bf17a3
   ImageRow: e65b2e1a33f89062bf2a553a2aad61d975eb7428
   IPtProxy: ab3cbf127f2e34e9c54ad5c5e818cf8cf93e0a7d
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
-  OCMock: 29f6e52085b4e7d9b075cbf03ed7c3112f82f934
+  OCMock: 9491e4bec59e0b267d52a9184ff5605995e74be8
   OCSPCache: 090d054dbf8f31602896d2527a8bd69d49515695
   OpenSSL-Universal: ff04c2e6befc3f1247ae039e60c93f76345b3b5a
-  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
+  ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
   SDCAlertView: 5fbc48cae6d7bf9781097e3f27883924ef3b922c
-  Tor: e06263f167b860e1f5d4f51fb81ff71c2a02a08b
+  Tor: 60f6c9067ded259d2dce2020f04c045dee96e8f8
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
   VForceTouch: b5c3a28625269e1818cf915728173bda9f669d6b
 
-PODFILE CHECKSUM: f6cb5235271f033a560a71f51eb11704cafc05a4
+PODFILE CHECKSUM: 32e14bb27c3bf239facb7013e19edd7f03fe93e9
 
 COCOAPODS: 1.11.2
