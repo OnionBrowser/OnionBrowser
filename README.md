@@ -5,7 +5,7 @@
  [![Sponsors on Open Collective](https://opencollective.com/OnionBrowser/sponsors/badge.svg)](#sponsors) 
   
 [Official Site][official] | [Support][help] | [Release History][releases] | [Donate][donate]  
-&copy; 2012-2020, Tigas Ventures, LLC ([Mike Tigas][miketigas])
+&copy; 2012-2021, Tigas Ventures, LLC ([Mike Tigas][miketigas])
 
 *This is the Onion Browser <strong>2.X branch</strong>, based on [Endless][endless]. The old version of Onion Browser can be found [here][1.X].*
 
@@ -25,7 +25,7 @@ Please see the [LICENSE][license] file for usage and redistribution terms.
 [official]: https://onionbrowser.com/
 [help]: https://github.com/OnionBrowser/OnionBrowser/wiki/Help
 [releases]: https://github.com/OnionBrowser/OnionBrowser/releases
-[changelog]: https://raw.github.com/OnionBrowser/OnionBrowser/2.X/CHANGES.txt
+[changelog]: https://raw.github.com/OnionBrowser/OnionBrowser/2.X/CHANGELOG.md
 [donate]: https://onionbrowser.com/donate
 [miketigas]: https://mike.tig.as/
 [license]: https://github.com/OnionBrowser/OnionBrowser/blob/2.X/LICENSE
