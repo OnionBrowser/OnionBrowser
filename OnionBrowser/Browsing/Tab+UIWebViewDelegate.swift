@@ -9,6 +9,7 @@
 //
 
 import UIKit
+import IPtProxyUI
 
 extension Tab: UIWebViewDelegate {
 

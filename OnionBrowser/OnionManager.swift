@@ -9,7 +9,7 @@
 
 import Foundation
 import Tor
-import IPtProxy
+import IPtProxyUI
 
 protocol OnionManagerDelegate: AnyObject {
 
@@ -83,11 +83,6 @@ class OnionManager : NSObject {
 	}()
 
 
-	// MARK: Built-in configuration options
-
-	static let obfs4Bridges = NSArray(contentsOfFile: Bundle.main.path(forResource: "obfs4-bridges", ofType: "plist")!) as! [String]
-
-
 	// MARK: OnionManager instance
 
 	public var state = TorState.none
@@ -106,7 +101,7 @@ class OnionManager : NSObject {
 
 	private var initRetry: DispatchWorkItem?
 
-	private var bridgesType = Settings.BridgesType.none
+	private var bridge = Bridge.none
 	private var customBridges: [String]?
 	private var needsReconfiguration = false
 	private var ipStatus = IpSupport.Status.unknown
@@ -119,7 +114,7 @@ class OnionManager : NSObject {
 			self?.ipStatus = status
 
 			if !(self?.torThread?.isCancelled ?? true) {
-				self?.torController?.setConfs(self?.getIpConfig(self!.asConf) ?? []) { success, error in
+				self?.torController?.setConfs(self?.getIpConfig(Bridge.asConf) ?? []) { success, error in
 					if let error = error {
 						print("[\(String(describing: type(of: self)))] error: \(error)")
 					}
@@ -140,8 +135,8 @@ class OnionManager : NSObject {
 	- parameter bridgesType: the selected ID as defined in OBSettingsConstants.
 	- parameter customBridges: a list of custom bridges the user configured.
 	*/
-	func setBridgeConfiguration(bridgesType: Settings.BridgesType, customBridges: [String]?) {
-		needsReconfiguration = bridgesType != self.bridgesType
+	func setBridgeConfiguration(bridgesType: IPtProxyUI.Bridge, customBridges: [String]?) {
+		needsReconfiguration = bridgesType != self.bridge
 
 		if !needsReconfiguration {
 			if let oldVal = self.customBridges, let newVal = customBridges {
@@ -153,7 +148,7 @@ class OnionManager : NSObject {
 			}
 		}
 
-		self.bridgesType = bridgesType
+		self.bridge = bridgesType
 		self.customBridges = customBridges
 	}
 
@@ -175,42 +170,6 @@ class OnionManager : NSObject {
 		torController?.getCircuits(callback)
 	}
 
-	func startObfs4proxy() {
-		#if DEBUG
-		let ennableLogging = true
-		#else
-		let ennableLogging = false
-		#endif
-
-		IPtProxyStartObfs4Proxy("DEBUG", ennableLogging, true, nil)
-
-		stopSnowflake()
-	}
-
-	func stopObfs4proxy() {
-		print("[\(String(describing: type(of: self)))] #stopObfs4proxy")
-
-		IPtProxyStopObfs4Proxy()
-	}
-
-	/**
-	See [Update domain front for Snowflake](https://gitlab.torproject.org/tpo/applications/tor-browser-build/-/commit/663a42c51fde05d7f0ee26e01c408a86f863622c)
-	*/
-	func startSnowflake() {
-		IPtProxyStartSnowflake(
-			"stun:stun.l.google.com:19302,stun:stun.voip.blackberry.com:3478,stun:stun.altar.com.pl:3478,stun:stun.antisip.com:3478,stun:stun.bluesip.net:3478,stun:stun.dus.net:3478,stun:stun.epygi.com:3478,stun:stun.sonetel.com:3478,stun:stun.sonetel.net:3478,stun:stun.stunprotocol.org:3478,stun:stun.uls.co.za:3478,stun:stun.voipgate.com:3478,stun:stun.voys.nl:3478",
-			"https://snowflake-broker.torproject.net.global.prod.fastly.net/",
-			"cdn.sstatic.net", nil, true, false, true, 1)
-
-		stopObfs4proxy()
-	}
-
-	func stopSnowflake() {
-		print("[\(String(describing: type(of: self)))] #stopSnowflake")
-
-		IPtProxyStopSnowflake()
-	}
-
 	func startTor(delegate: OnionManagerDelegate?) {
 		// Avoid a retain cycle. Only use the weakDelegate in closures!
 		weak var weakDelegate = delegate
@@ -226,13 +185,13 @@ class OnionManager : NSObject {
 			// Add user-defined configuration.
 			conf.arguments += Settings.advancedTorConf ?? []
 
-			conf.arguments += getBridgeConfig(asArguments).joined()
+			conf.arguments += getBridgeConfig(Bridge.asArguments).joined()
 
 			// configure ipv4/ipv6
 			// Use Ipv6Tester. If we _think_ we're IPv6-only, tell Tor to prefer IPv6 ports.
 			// (Tor doesn't always guess this properly due to some internal IPv4 addresses being used,
 			// so "auto" sometimes fails to bootstrap.)
-			conf.arguments += getIpConfig(asArguments).joined()
+			conf.arguments += getIpConfig(Bridge.asArguments).joined()
 
 			#if DEBUG
 			print("[\(String(describing: type(of: self)))] conf=\(conf.compile())")
@@ -266,7 +225,7 @@ class OnionManager : NSObject {
 							}
 
 							self?.torController?.setConfs(
-								self?.getBridgeConfig(self!.asConf) ?? [])
+								self?.getBridgeConfig(Bridge.asConf) ?? [])
 						}
 					}
 				}
@@ -395,7 +354,7 @@ class OnionManager : NSObject {
 		initRetry = DispatchWorkItem {
 			// Only do this, if we're not running over a bridge, it will close
 			// the connection to the bridge client which will close or break the bridge client!
-			if self.bridgesType == .none {
+			if self.bridge == .none {
 				#if DEBUG
 				print("[\(String(describing: type(of: self)))] Triggering Tor connection retry.")
 				#endif
@@ -430,8 +389,7 @@ class OnionManager : NSObject {
 		torThread?.cancel()
 		torThread = nil
 
-		stopObfs4proxy()
-		stopSnowflake()
+		bridge.stop()
 
 		state = .stopped
 	}
@@ -457,49 +415,28 @@ class OnionManager : NSObject {
 
 	// MARK: Private Methods
 
-	private func asArguments(key: String, value: String) -> [String] {
-		return ["--\(key)", value]
-	}
-
-	private func asConf(key: String, value: String) -> [String: String] {
-		return ["key": key, "value": "\"\(value)\""]
-	}
-
 	private func getBridgeConfig<T>(_ cv: (String, String) -> T) -> [T] {
-		var arguments = [T]()
 
-		switch bridgesType {
-		case .obfs4, .custom:
-			stopSnowflake()
-			startObfs4proxy()
+		if bridge == .snowflake {
+			Bridge.obfs4.stop()
+		}
+		else if bridge == .obfs4 || bridge == .custom {
+			Bridge.snowflake.stop()
+		}
 
-			arguments.append(cv("ClientTransportPlugin", "obfs4 socks5 127.0.0.1:\(IPtProxyObfs4Port())"))
+		bridge.start()
 
-			let bridges = bridgesType == .custom ? customBridges : Self.obfs4Bridges
-			arguments += bridges?.map({ cv("Bridge", $0) }) ?? []
+		var arguments = bridge.getConfiguration(cv)
 
-			arguments.append(cv("UseBridges", "1"))
+		if bridge == .custom, let bridgeLines = customBridges {
+			arguments += bridgeLines.map({ cv("Bridge", $0) })
+		}
 
-		case .snowflake:
-			stopObfs4proxy()
-			startSnowflake()
-
-			arguments.append(cv("ClientTransportPlugin", "snowflake socks5 127.0.0.1:\(IPtProxySnowflakePort())"))
-
-			// BUGFIX: The fingerprint of flakey needs to be there, otherwise,
-			// bootstrapping Tor with Snowflake is impossible.
-			// https://gitlab.torproject.org/tpo/core/tor/-/issues/40360
-			//
-			// The IP address is a reserved one, btw. Only there to fulfill Tor Bridge line requirements.
-			// The actual config is done in #startSnowflake.
-			arguments.append(cv("Bridge", "snowflake 192.0.2.3:1 2B280B23E1107BB62ABFC40DDCC8824814F80A72"))
-			arguments.append(cv("UseBridges", "1"))
-
-		default:
-			stopObfs4proxy()
-			stopSnowflake()
-
+		if bridge == .none {
 			arguments.append(cv("UseBridges", "0"))
+		}
+		else {
+			arguments.append(cv("UseBridges", "1"))
 		}
 
 		return arguments
@@ -511,7 +448,7 @@ class OnionManager : NSObject {
 		if ipStatus == .ipV6Only {
 			arguments.append(cv("ClientPreferIPv6ORPort", "1"))
 
-			if bridgesType == .none {
+			if bridge == .none {
 				// Switch off IPv4, if we're on a IPv6-only network.
 				arguments.append(cv("ClientUseIPv4", "0"))
 			}

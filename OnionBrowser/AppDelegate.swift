@@ -10,6 +10,7 @@
 
 import UIKit
 import AVFoundation
+import IPtProxyUI
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPProtocolDelegate, OnionManagerDelegate {

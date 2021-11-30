@@ -9,6 +9,7 @@
 //
 
 import UIKit
+import IPtProxyUI
 
 @objcMembers
 class SearchEngine: NSObject {
@@ -71,26 +72,29 @@ class Settings: NSObject {
 		}
 	}
 
-	enum BridgesType: Int {
-		case none = 0
-		case obfs4 = 1
+	private static let bridgeTypeTranslationTable = [
+		// Type .none is identical in IPtProxyUI and OnionBrowser.
+		0: 0,
+
+		// Type .obfs4 is identical in IPtProxyUI and OnionBrowser.
+		1: 1,
+
+		// Deprecated legacy type .meekamazon. Retaining this number for future use if meek-amazon comes back.
+		2: 0,
 
 		/**
-		Deprecated legacy. Retaining this number for future use if meek-amazon comes back.
-		*/
-		case meekamazon = 2
-
-		/**
-		Deprecated legacy. Retaining this number for future use if meek-azure comes back.
+		Deprecated legacy type .meekazure. Retaining this number for future use if meek-azure comes back.
 
 		Microsoft announced to start blocking domain fronting:
 		[Microsoft: Securing our approach to domain fronting within Azure](https://www.microsoft.com/security/blog/2021/03/26/securing-our-approach-to-domain-fronting-within-azure/)
 		*/
-		case meekazure = 3
+		3: 0,
 
-		case snowflake = 4
-		case custom = 99
-	}
+		// Type .snowflake is 4 in OnionBrowser and 2 in IPtProxyUI.
+		4: 2,
+
+		// Type .custom is 99 in OnionBrowser and 3 in IPtProxyUI.
+		99: 3]
 
 
 	class var stateRestoreLock: Bool {
@@ -129,12 +133,22 @@ class Settings: NSObject {
 		}
 	}
 
-	class var currentlyUsedBridges: BridgesType {
+	class var currentlyUsedBridges: IPtProxyUI.Bridge {
 		get {
-			return BridgesType(rawValue: UserDefaults.standard.integer(forKey: "use_bridges")) ?? .none
+			let obRaw = UserDefaults.standard.integer(forKey: "use_bridges")
+
+			guard let iptRaw = bridgeTypeTranslationTable[obRaw] else {
+				return .none
+			}
+
+			return Bridge(rawValue: iptRaw) ?? .none
 		}
 		set {
-			UserDefaults.standard.set(newValue.rawValue, forKey: "use_bridges")
+			let iptRaw = newValue.rawValue
+
+			let obRaw = bridgeTypeTranslationTable.first(where: { $0.value == iptRaw })?.key ?? 0
+
+			UserDefaults.standard.set(obRaw, forKey: "use_bridges")
 		}
 	}
 

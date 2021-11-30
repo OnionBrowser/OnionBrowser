@@ -58,9 +58,7 @@
 		A01D3BA323900D2800E536F2 /* RuleEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CBCD491E934249009D5352 /* RuleEditorController.m */; };
 		A024B39D23D38B9F007F9E68 /* AdvancedTorConfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A024B39C23D38B9F007F9E68 /* AdvancedTorConfViewController.swift */; };
 		A02CB2B523D0B0B300880720 /* AddBookmarkActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02CB2B423D0B0B300880720 /* AddBookmarkActivity.swift */; };
-		A031761F23CE462300D75F2A /* BridgeConfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A031761E23CE462300D75F2A /* BridgeConfViewController.swift */; };
-		A031762123CE51A200D75F2A /* CustomBridgesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A031762023CE51A200D75F2A /* CustomBridgesViewController.swift */; };
-		A031762323CE648200D75F2A /* ScanQrViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A031762223CE648200D75F2A /* ScanQrViewController.swift */; };
+		A031761F23CE462300D75F2A /* ObBridgeConfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A031761E23CE462300D75F2A /* ObBridgeConfViewController.swift */; };
 		A03DBCED22859B99001890C4 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = A03DBCEC22859B99001890C4 /* Config.m */; };
 		A03DBCEF22859B99001890C4 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = A03DBCEC22859B99001890C4 /* Config.m */; };
 		A053136E22F1C737006655EC /* JAHPAuthenticatingHTTPProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = A053136422F1C573006655EC /* JAHPAuthenticatingHTTPProtocol.m */; };
@@ -88,11 +86,6 @@
 		A08737E1221324B5005A68CC /* HostSettings_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = A08737DF2213235F005A68CC /* HostSettings_Tests.m */; };
 		A099B8B723CF60C800B50998 /* InitSecurityLevelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A099B8B523CF60C800B50998 /* InitSecurityLevelViewController.xib */; };
 		A099B8B823CF60C800B50998 /* InitSecurityLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A099B8B623CF60C800B50998 /* InitSecurityLevelViewController.swift */; };
-		A09EBC5A2422483C0084FEDB /* MoatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09EBC582422483C0084FEDB /* MoatViewController.swift */; };
-		A09EBC5C2422707A0084FEDB /* URLSession+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09EBC5B2422707A0084FEDB /* URLSession+Helpers.swift */; };
-		A09EBC5E242275730084FEDB /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09EBC5D242275730084FEDB /* ApiError.swift */; };
-		A09EBC61242285E10084FEDB /* CaptchaRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09EBC5F242285630084FEDB /* CaptchaRow.swift */; };
-		A09EBC62242285E60084FEDB /* CaptchaCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A09EBC60242285640084FEDB /* CaptchaCell.xib */; };
 		A0BF51E423AFBF250096624A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51A023AFBF250096624A /* Localizable.strings */; };
 		A0BF51E523AFBF250096624A /* urlblocker.json in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51AE23AFBF250096624A /* urlblocker.json */; };
 		A0BF51E623AFBF250096624A /* https-everywhere_rules.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51B223AFBF250096624A /* https-everywhere_rules.plist */; };
@@ -104,7 +97,6 @@
 		A0BF51EF23AFBF250096624A /* SearchEngines.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51D123AFBF250096624A /* SearchEngines.plist */; };
 		A0BF51F023AFBF250096624A /* https-everywhere_targets.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51D423AFBF250096624A /* https-everywhere_targets.plist */; };
 		A0BF51F123AFBF250096624A /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51D523AFBF250096624A /* Launch Screen.xib */; };
-		A0BF51F223AFBF250096624A /* obfs4-bridges.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51D623AFBF250096624A /* obfs4-bridges.plist */; };
 		A0BF51F423AFBF250096624A /* credits.html in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51DE23AFBF250096624A /* credits.html */; };
 		A0BF524523AFC3580096624A /* Migration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF51FA23AFC3580096624A /* Migration.swift */; };
 		A0BF524623AFC3580096624A /* OldBookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = A0BF51FB23AFC3580096624A /* OldBookmark.m */; };
@@ -157,7 +149,6 @@
 		A0BF527723AFC3580096624A /* BlurredSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF523623AFC3580096624A /* BlurredSnapshot.swift */; };
 		A0BF527823AFC3580096624A /* UIViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF523823AFC3580096624A /* UIViewController+Helpers.swift */; };
 		A0BF527923AFC3580096624A /* Bundle+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF523923AFC3580096624A /* Bundle+Helpers.swift */; };
-		A0BF527A23AFC3580096624A /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF523A23AFC3580096624A /* AlertHelper.swift */; };
 		A0BF527B23AFC3580096624A /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF523B23AFC3580096624A /* Formatter.swift */; };
 		A0BF527C23AFC3580096624A /* UIView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF523D23AFC3580096624A /* UIView+Helpers.swift */; };
 		A0BF527D23AFC3580096624A /* SearchableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF523E23AFC3580096624A /* SearchableTableViewController.swift */; };
@@ -168,7 +159,6 @@
 		A0BF528523AFC6D10096624A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A0BF528323AFC6D10096624A /* InfoPlist.strings */; };
 		A0C26E4323D8650E00C4AF1C /* security-levels.html in Resources */ = {isa = PBXBuildFile; fileRef = A0C26E4523D8650E00C4AF1C /* security-levels.html */; };
 		A0C3770E1F47342C0039198E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0C3770D1F47342C0039198E /* CoreData.framework */; };
-		A0C9531A23C6426C006D7A35 /* FixedFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C9531923C6426C006D7A35 /* FixedFormViewController.swift */; };
 		A0D5344C2746B3690077FC21 /* IpSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D5344B2746B3690077FC21 /* IpSupport.swift */; };
 		A0D9008B24095F5C0046C9B3 /* AltSvcHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D9008A24095F5C0046C9B3 /* AltSvcHeader.swift */; };
 		A0F2FB062423AB92003CC61A /* AboutSecurityLevelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F2FB052423AB92003CC61A /* AboutSecurityLevelsViewController.swift */; };
@@ -293,10 +283,7 @@
 		A024B39C23D38B9F007F9E68 /* AdvancedTorConfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedTorConfViewController.swift; sourceTree = "<group>"; };
 		A025F27421F62C100034B947 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		A02CB2B423D0B0B300880720 /* AddBookmarkActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookmarkActivity.swift; sourceTree = "<group>"; };
-		A031761E23CE462300D75F2A /* BridgeConfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeConfViewController.swift; sourceTree = "<group>"; };
-		A031762023CE51A200D75F2A /* CustomBridgesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBridgesViewController.swift; sourceTree = "<group>"; };
-		A031762223CE648200D75F2A /* ScanQrViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQrViewController.swift; sourceTree = "<group>"; };
-		A0323AC12396962A00B9DDA5 /* update-bridges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "update-bridges.swift"; sourceTree = "<group>"; };
+		A031761E23CE462300D75F2A /* ObBridgeConfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObBridgeConfViewController.swift; sourceTree = "<group>"; };
 		A0358EC825D5808100978699 /* subtitle.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = subtitle.txt; sourceTree = "<group>"; };
 		A0358EC925D5808100978699 /* keywords.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = keywords.txt; sourceTree = "<group>"; };
 		A0358ECB25D5808100978699 /* description.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = description.txt; sourceTree = "<group>"; };
@@ -664,11 +651,6 @@
 		A095B20626124D1D00727947 /* support_url.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = support_url.txt; sourceTree = "<group>"; };
 		A099B8B523CF60C800B50998 /* InitSecurityLevelViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InitSecurityLevelViewController.xib; sourceTree = "<group>"; };
 		A099B8B623CF60C800B50998 /* InitSecurityLevelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitSecurityLevelViewController.swift; sourceTree = "<group>"; };
-		A09EBC582422483C0084FEDB /* MoatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoatViewController.swift; sourceTree = "<group>"; };
-		A09EBC5B2422707A0084FEDB /* URLSession+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Helpers.swift"; sourceTree = "<group>"; };
-		A09EBC5D242275730084FEDB /* ApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
-		A09EBC5F242285630084FEDB /* CaptchaRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptchaRow.swift; sourceTree = "<group>"; };
-		A09EBC60242285640084FEDB /* CaptchaCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CaptchaCell.xib; sourceTree = "<group>"; };
 		A0B2240E23A92B2700EA2C47 /* OnionBrowser2_Tests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OnionBrowser2_Tests-Bridging-Header.h"; sourceTree = "<group>"; };
 		A0BF519C23AFBCFA0096624A /* convert_rules.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = convert_rules.rb; sourceTree = "<group>"; };
 		A0BF51AE23AFBF250096624A /* urlblocker.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = urlblocker.json; sourceTree = "<group>"; };
@@ -684,7 +666,6 @@
 		A0BF51D123AFBF250096624A /* SearchEngines.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SearchEngines.plist; sourceTree = "<group>"; };
 		A0BF51D423AFBF250096624A /* https-everywhere_targets.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "https-everywhere_targets.plist"; sourceTree = "<group>"; };
 		A0BF51D523AFBF250096624A /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
-		A0BF51D623AFBF250096624A /* obfs4-bridges.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "obfs4-bridges.plist"; sourceTree = "<group>"; };
 		A0BF51DE23AFBF250096624A /* credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = credits.html; sourceTree = "<group>"; };
 		A0BF51FA23AFC3580096624A /* Migration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Migration.swift; sourceTree = "<group>"; };
 		A0BF51FB23AFC3580096624A /* OldBookmark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OldBookmark.m; sourceTree = "<group>"; };
@@ -742,7 +723,6 @@
 		A0BF523723AFC3580096624A /* SilenceWarnings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SilenceWarnings.h; sourceTree = "<group>"; };
 		A0BF523823AFC3580096624A /* UIViewController+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Helpers.swift"; sourceTree = "<group>"; };
 		A0BF523923AFC3580096624A /* Bundle+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Helpers.swift"; sourceTree = "<group>"; };
-		A0BF523A23AFC3580096624A /* AlertHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
 		A0BF523B23AFC3580096624A /* Formatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
 		A0BF523D23AFC3580096624A /* UIView+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Helpers.swift"; sourceTree = "<group>"; };
 		A0BF523E23AFC3580096624A /* SearchableTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchableTableViewController.swift; sourceTree = "<group>"; };
@@ -759,7 +739,6 @@
 		A0C3FD0A2438A0B800FDB9BE /* promotional_text.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = promotional_text.txt; sourceTree = "<group>"; };
 		A0C3FD0B2438A0BD00FDB9BE /* name.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = name.txt; sourceTree = "<group>"; };
 		A0C3FD0C2438A0C200FDB9BE /* marketing_url.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = marketing_url.txt; sourceTree = "<group>"; };
-		A0C9531923C6426C006D7A35 /* FixedFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedFormViewController.swift; sourceTree = "<group>"; };
 		A0D045DD273953B3002F003B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = ../Resources/en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A0D045DE273953B7002F003B /* sq */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sq; path = ../Resources/sq.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A0D045DF273953BB002F003B /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ../Resources/ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -1387,7 +1366,6 @@
 				A07D655A2208A2540002D775 /* decimalize_git_hash.bash */,
 				A07D655B2208A2540002D775 /* minutes_since_date.bash */,
 				A07D655F2208A9B40002D775 /* get-geoip.sh */,
-				A0323AC12396962A00B9DDA5 /* update-bridges.swift */,
 			);
 			path = "build-util";
 			sourceTree = "<group>";
@@ -1848,7 +1826,6 @@
 				A0BF51B223AFBF250096624A /* https-everywhere_rules.plist */,
 				A0BF51D423AFBF250096624A /* https-everywhere_targets.plist */,
 				A0BF51C423AFBF250096624A /* hsts_preload.plist */,
-				A0BF51D623AFBF250096624A /* obfs4-bridges.plist */,
 				A0BF51D123AFBF250096624A /* SearchEngines.plist */,
 				A0550648271094A900922E18 /* ua-strings.plist */,
 				A0BF51DE23AFBF250096624A /* credits.html */,
@@ -1960,13 +1937,8 @@
 				A0BF522723AFC3580096624A /* CustomSitesViewController.swift */,
 				A0BF522E23AFC3580096624A /* AddSiteViewController.swift */,
 				A0BF522F23AFC3580096624A /* DonationViewController.swift */,
-				A031761E23CE462300D75F2A /* BridgeConfViewController.swift */,
-				A031762023CE51A200D75F2A /* CustomBridgesViewController.swift */,
-				A031762223CE648200D75F2A /* ScanQrViewController.swift */,
+				A031761E23CE462300D75F2A /* ObBridgeConfViewController.swift */,
 				A024B39C23D38B9F007F9E68 /* AdvancedTorConfViewController.swift */,
-				A09EBC582422483C0084FEDB /* MoatViewController.swift */,
-				A09EBC60242285640084FEDB /* CaptchaCell.xib */,
-				A09EBC5F242285630084FEDB /* CaptchaRow.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1974,12 +1946,9 @@
 		A0BF523523AFC3580096624A /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				A0BF523A23AFC3580096624A /* AlertHelper.swift */,
 				A0D9008A24095F5C0046C9B3 /* AltSvcHeader.swift */,
-				A09EBC5D242275730084FEDB /* ApiError.swift */,
 				A0BF523623AFC3580096624A /* BlurredSnapshot.swift */,
 				A0BF523923AFC3580096624A /* Bundle+Helpers.swift */,
-				A0C9531923C6426C006D7A35 /* FixedFormViewController.swift */,
 				A0BF523B23AFC3580096624A /* Formatter.swift */,
 				A0D5344B2746B3690077FC21 /* IpSupport.swift */,
 				A0BF523E23AFC3580096624A /* SearchableTableViewController.swift */,
@@ -1992,7 +1961,6 @@
 				A0BF523D23AFC3580096624A /* UIView+Helpers.swift */,
 				A0BF523823AFC3580096624A /* UIViewController+Helpers.swift */,
 				A0BF524023AFC3580096624A /* URL+Helpers.swift */,
-				A09EBC5B2422707A0084FEDB /* URLSession+Helpers.swift */,
 				A013DED92434E69A0087D12B /* UIImage+Helpers.swift */,
 			);
 			path = Helpers;
@@ -2024,7 +1992,6 @@
 			buildPhases = (
 				9F5722442F9CB3FF2F35FEEB /* [CP] Check Pods Manifest.lock */,
 				8ACB70CD1FA13676001E5588 /* ShellScript */,
-				A0323ACF2396CBC000B9DDA5 /* ShellScript */,
 				01801E8E1A32CA2A002B4718 /* Sources */,
 				01801E8F1A32CA2A002B4718 /* Frameworks */,
 				01801E901A32CA2A002B4718 /* Resources */,
@@ -2159,7 +2126,6 @@
 				A0BF51F423AFBF250096624A /* credits.html in Resources */,
 				A0550649271094A900922E18 /* ua-strings.plist in Resources */,
 				A07037C723C79AE500D670EC /* Media.xcassets in Resources */,
-				A09EBC62242285E60084FEDB /* CaptchaCell.xib in Resources */,
 				A0BF526723AFC3580096624A /* BookmarkCell.xib in Resources */,
 				A0BF51EE23AFBF250096624A /* injected.js in Resources */,
 				A0BF51E423AFBF250096624A /* Localizable.strings in Resources */,
@@ -2183,7 +2149,6 @@
 				A0BF526323AFC3580096624A /* BookmarksViewController.xib in Resources */,
 				A003A6BB23C94A4900BD2D20 /* ConnectingViewController.xib in Resources */,
 				A0BF51ED23AFBF250096624A /* start.html in Resources */,
-				A0BF51F223AFBF250096624A /* obfs4-bridges.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2297,23 +2262,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A0323ACF2396CBC000B9DDA5 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"$SRCROOT\"/build-util/update-bridges.swift\n";
-		};
 		D9FF86538B1D1A09599C3806 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2321,11 +2269,13 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-OnionBrowser2/Pods-OnionBrowser2-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/IPtProxyUI/IPtProxyUI.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/SDCAlertView/SDCAlertView.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/TUSafariActivity/TUSafariActivity.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IPtProxyUI.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SDCAlertView.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TUSafariActivity.bundle",
 			);
@@ -2344,13 +2294,11 @@
 				A0BF526623AFC3580096624A /* BookmarksViewController.swift in Sources */,
 				A0BF527923AFC3580096624A /* Bundle+Helpers.swift in Sources */,
 				A053136E22F1C737006655EC /* JAHPAuthenticatingHTTPProtocol.m in Sources */,
-				A031762323CE648200D75F2A /* ScanQrViewController.swift in Sources */,
 				A0BF526B23AFC3580096624A /* Settings.swift in Sources */,
 				A0BF525323AFC3580096624A /* Tab.swift in Sources */,
 				A0BF525D23AFC3580096624A /* LiveSearchViewController.swift in Sources */,
 				A0BF526C23AFC3580096624A /* CustomSitesViewController.swift in Sources */,
 				A0BF527C23AFC3580096624A /* UIView+Helpers.swift in Sources */,
-				A09EBC61242285E10084FEDB /* CaptchaRow.swift in Sources */,
 				A0BF524823AFC3580096624A /* Bridge.m in Sources */,
 				A053137822F1EC19006655EC /* DownloadHelper.m in Sources */,
 				A0BF525F23AFC3580096624A /* BrowsingViewController+UITextFieldDelegate.swift in Sources */,
@@ -2360,16 +2308,12 @@
 				A0BF526023AFC3580096624A /* BrowsingViewController+Toolbar.swift in Sources */,
 				A004FB2A241A782500451A9E /* SecureEnclave.swift in Sources */,
 				01F2AE391B7FEF5E00D5651A /* SSLCertificate.m in Sources */,
-				A0BF527A23AFC3580096624A /* AlertHelper.swift in Sources */,
-				A09EBC5A2422483C0084FEDB /* MoatViewController.swift in Sources */,
 				A0BF527623AFC3580096624A /* OnionManager.swift in Sources */,
 				A0D9008B24095F5C0046C9B3 /* AltSvcHeader.swift in Sources */,
 				A0BF527223AFC3580096624A /* SettingsViewController.swift in Sources */,
-				A09EBC5E242275730084FEDB /* ApiError.swift in Sources */,
 				A003A6BC23C94A4900BD2D20 /* ConnectingViewController.swift in Sources */,
 				A0BF526F23AFC3580096624A /* Storage1ViewController.swift in Sources */,
 				A0BF527723AFC3580096624A /* BlurredSnapshot.swift in Sources */,
-				A0C9531A23C6426C006D7A35 /* FixedFormViewController.swift in Sources */,
 				A099B8B823CF60C800B50998 /* InitSecurityLevelViewController.swift in Sources */,
 				A013DEDA2434E69A0087D12B /* UIImage+Helpers.swift in Sources */,
 				A07037C423C74E1100D670EC /* UIColor+Helpers.swift in Sources */,
@@ -2390,7 +2334,6 @@
 				A024B39D23D38B9F007F9E68 /* AdvancedTorConfViewController.swift in Sources */,
 				A0BF524723AFC3580096624A /* Settings.xcdatamodel in Sources */,
 				A0BF525E23AFC3580096624A /* BrowsingViewController+Tabs.swift in Sources */,
-				A09EBC5C2422707A0084FEDB /* URLSession+Helpers.swift in Sources */,
 				A0BF525223AFC3580096624A /* BrowsingViewController.swift in Sources */,
 				A0BF527F23AFC3580096624A /* URL+Helpers.swift in Sources */,
 				A0BF525C23AFC3580096624A /* Tab+Downloads.swift in Sources */,
@@ -2405,7 +2348,6 @@
 				A0BF527423AFC3580096624A /* DonationViewController.swift in Sources */,
 				A0BF526223AFC3580096624A /* FavIconRow.swift in Sources */,
 				A03DBCED22859B99001890C4 /* Config.m in Sources */,
-				A031762123CE51A200D75F2A /* CustomBridgesViewController.swift in Sources */,
 				A0BF525523AFC3580096624A /* Tab+UIWebViewDelegate.swift in Sources */,
 				A003A6B823C9480000BD2D20 /* BridgesViewController.swift in Sources */,
 				A0F2FB062423AB92003CC61A /* AboutSecurityLevelsViewController.swift in Sources */,
@@ -2429,7 +2371,7 @@
 				A0BF524B23AFC3580096624A /* CircuitNodeCell.swift in Sources */,
 				A07B55FC23D736D60051663B /* CertificateViewController.swift in Sources */,
 				010EEA691A43C8CF001E8B65 /* CookieJar.m in Sources */,
-				A031761F23CE462300D75F2A /* BridgeConfViewController.swift in Sources */,
+				A031761F23CE462300D75F2A /* ObBridgeConfViewController.swift in Sources */,
 				A0D5344C2746B3690077FC21 /* IpSupport.swift in Sources */,
 				A053136F22F1C73A006655EC /* JAHPCacheStoragePolicy.m in Sources */,
 				A0BF525723AFC3580096624A /* SecurityPopUpViewController.swift in Sources */,

@@ -142,7 +142,7 @@ UITableViewDataSource, UITableViewDelegate {
 	}
 
 	@IBAction func showBridgeSelection(_ sender: UIView) {
-		BridgeConfViewController.present(from: self)
+		ObBridgeConfViewController.present(from: self)
 	}
 
 

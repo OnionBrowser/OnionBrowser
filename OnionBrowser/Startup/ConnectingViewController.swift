@@ -9,6 +9,7 @@
 //
 
 import UIKit
+import IPtProxyUI
 
 class ConnectingViewController: UIViewController, OnionManagerDelegate, BridgeConfDelegate {
 
@@ -175,12 +176,12 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate, BridgeCo
 	// MARK: BridgeConfDelegate
 
 	// Ignore, not used.
-	var bridgesType = Settings.BridgesType.none
+	var bridgesType = Bridge.none
 
 	// Ignore, not used.
 	var customBridges: [String]? = nil
 
-	func connect() {
+	func save() {
 		guard !troubleLb.isHidden else {
 			return
 		}
@@ -205,7 +206,7 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate, BridgeCo
 	}
 
 	@IBAction func bridgeSettings() {
-		BridgeConfViewController.present(from: self)
+		ObBridgeConfViewController.present(from: self)
 	}
 
 	// MARK: Private methods

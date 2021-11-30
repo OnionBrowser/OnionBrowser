@@ -9,6 +9,7 @@
 //
 
 import Foundation
+import IPtProxyUI
 
 extension Tab: UIGestureRecognizerDelegate {
 

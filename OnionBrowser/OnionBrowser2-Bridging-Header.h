@@ -8,7 +8,6 @@
 //
 
 #import <Tor/Tor.h>
-#import <IPtProxy/IPtProxy.h>
 #import "OldBookmark.h"
 #import "Bridge.h"
 #import "JAHPAuthenticatingHTTPProtocol.h"

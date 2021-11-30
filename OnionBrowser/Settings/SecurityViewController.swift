@@ -11,6 +11,7 @@
 import UIKit
 import Eureka
 import SDCAlertView
+import IPtProxyUI
 
 class SecurityViewController: FixedFormViewController {
 

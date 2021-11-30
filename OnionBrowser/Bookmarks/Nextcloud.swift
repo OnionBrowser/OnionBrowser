@@ -9,6 +9,7 @@
 //
 
 import UIKit
+import IPtProxyUI
 
 /**
 Implementation of communication with Nextcloud Bookmarks plug-in.

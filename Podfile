@@ -13,14 +13,12 @@ target 'OnionBrowser2' do
 
   pod 'CSPHeader', '~> 0.6'
 
-  pod 'Eureka', '~> 5.3.2'
-  pod 'ImageRow', '~> 4.0'
   pod 'ReachabilitySwift', '~> 5.0'
   pod 'SDCAlertView', '~> 10'
   pod 'FavIcon', git: 'https://github.com/tladesignz/FavIcon.git', branch: 'swift-5'
-  pod 'MBProgressHUD', '~> 1.2'
+  pod 'MBProgressHUD', '~> 1.2', :modular_headers => true
 
-  pod 'IPtProxy', '~> 1.2' # :path => '../IPtProxy' #
+  pod 'IPtProxyUI', '~> 1.1'
   pod 'Tor', '~> 406.8'
 end
 

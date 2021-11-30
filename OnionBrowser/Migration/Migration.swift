@@ -158,9 +158,11 @@ class Migration: NSObject {
 
 		// Migrate users who used Meek to Snowflake.
 
-		print(Settings.currentlyUsedBridges)
+		let usedBridge = UserDefaults.standard.integer(forKey: "use_bridges")
 
-		if (Settings.currentlyUsedBridges == .meekazure || Settings.currentlyUsedBridges == .meekamazon) {
+		print(usedBridge)
+
+		if (usedBridge == 2 || usedBridge == 3) {
 			Settings.currentlyUsedBridges = .snowflake
 		}
 	}
