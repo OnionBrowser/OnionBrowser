@@ -1,5 +1,5 @@
 //
-//  ObBridgeConfViewController.swift
+//  ObBridgesConfViewController.swift
 //  OnionBrowser2
 //
 //  Created by Benjamin Erhart on 14.01.20.
@@ -12,16 +12,16 @@ import UIKit
 import Eureka
 import IPtProxyUI
 
-class ObBridgeConfViewController: BridgeConfViewController {
+class ObBridgesConfViewController: BridgesConfViewController {
 
 	class func present(from: UIViewController) {
-		from.present(UINavigationController(rootViewController: ObBridgeConfViewController()))
+		from.present(UINavigationController(rootViewController: ObBridgesConfViewController()))
 	}
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		bridgesType = Settings.currentlyUsedBridges
+		transport = Settings.transport
 		customBridges = Settings.customBridges
 
 		navigationItem.rightBarButtonItem = UIBarButtonItem(
@@ -45,14 +45,14 @@ class ObBridgeConfViewController: BridgeConfViewController {
 	}
 
 
-	// MARK: BridgeConfDelegate
+	// MARK: BridgesConfDelegate
 
 	override var saveButtonTitle: String? {
 		NSLocalizedString("Connect", comment: "")
 	}
 
 	override func startMeek() {
-		Bridge.obfs4.start()
+		Transport.obfs4.start()
 	}
 
 	override func stopMeek() {
@@ -70,7 +70,7 @@ class ObBridgeConfViewController: BridgeConfViewController {
 
 	@objc
 	override func save() {
-		Settings.currentlyUsedBridges = bridgesSection.selectedRow()?.value ?? .none
+		Settings.transport = transportSection.selectedRow()?.value ?? .none
 		Settings.customBridges = customBridges
 
 		if presentingViewController is BridgesViewController {
@@ -83,13 +83,13 @@ class ObBridgeConfViewController: BridgeConfViewController {
 			// find out, if another bridge setting (or no bridge) actually works afterwards.
 			// The user will find out, when she tries to continue browsing.
 
-			OnionManager.shared.setBridgeConfiguration(bridgesType: Settings.currentlyUsedBridges,
-													   customBridges: Settings.customBridges)
+			OnionManager.shared.setTransportConf(transport: Settings.transport,
+												 customBridges: Settings.customBridges)
 			OnionManager.shared.startTor(delegate: nil)
 
 			navigationController?.dismiss(animated: true)
 
-			if let vc = presentingViewController as? BridgeConfDelegate {
+			if let vc = presentingViewController as? BridgesConfDelegate {
 				vc.save()
 			}
 		}

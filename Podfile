@@ -18,7 +18,7 @@ target 'OnionBrowser2' do
   pod 'FavIcon', git: 'https://github.com/tladesignz/FavIcon.git', branch: 'swift-5'
   pod 'MBProgressHUD', '~> 1.2', :modular_headers => true
 
-  pod 'IPtProxyUI', '~> 1.1'
+  pod 'IPtProxyUI', '~> 1.2'
   pod 'Tor', '~> 406.8'
 end
 

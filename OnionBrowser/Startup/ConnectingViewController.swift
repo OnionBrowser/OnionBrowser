@@ -11,7 +11,7 @@
 import UIKit
 import IPtProxyUI
 
-class ConnectingViewController: UIViewController, OnionManagerDelegate, BridgeConfDelegate {
+class ConnectingViewController: UIViewController, OnionManagerDelegate, BridgesConfDelegate {
 
 	class func start() {
 		let appDelegate = AppDelegate.shared
@@ -102,8 +102,8 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate, BridgeCo
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		OnionManager.shared.setBridgeConfiguration(bridgesType: Settings.currentlyUsedBridges,
-												   customBridges: Settings.customBridges)
+		OnionManager.shared.setTransportConf(transport: Settings.transport,
+											 customBridges: Settings.customBridges)
 
 		OnionManager.shared.startTor(delegate: self)
 	}
@@ -176,7 +176,7 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate, BridgeCo
 	// MARK: BridgeConfDelegate
 
 	// Ignore, not used.
-	var bridgesType = Bridge.none
+	var transport = Transport.none
 
 	// Ignore, not used.
 	var customBridges: [String]? = nil
@@ -206,7 +206,7 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate, BridgeCo
 	}
 
 	@IBAction func bridgeSettings() {
-		ObBridgeConfViewController.present(from: self)
+		ObBridgesConfViewController.present(from: self)
 	}
 
 	// MARK: Private methods

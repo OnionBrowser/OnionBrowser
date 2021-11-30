@@ -72,7 +72,7 @@ class Settings: NSObject {
 		}
 	}
 
-	private static let bridgeTypeTranslationTable = [
+	private static let transportTranslationTable = [
 		// Type .none is identical in IPtProxyUI and OnionBrowser.
 		0: 0,
 
@@ -133,20 +133,20 @@ class Settings: NSObject {
 		}
 	}
 
-	class var currentlyUsedBridges: IPtProxyUI.Bridge {
+	class var transport: Transport {
 		get {
 			let obRaw = UserDefaults.standard.integer(forKey: "use_bridges")
 
-			guard let iptRaw = bridgeTypeTranslationTable[obRaw] else {
+			guard let iptRaw = transportTranslationTable[obRaw] else {
 				return .none
 			}
 
-			return Bridge(rawValue: iptRaw) ?? .none
+			return Transport(rawValue: iptRaw) ?? .none
 		}
 		set {
 			let iptRaw = newValue.rawValue
 
-			let obRaw = bridgeTypeTranslationTable.first(where: { $0.value == iptRaw })?.key ?? 0
+			let obRaw = transportTranslationTable.first(where: { $0.value == iptRaw })?.key ?? 0
 
 			UserDefaults.standard.set(obRaw, forKey: "use_bridges")
 		}

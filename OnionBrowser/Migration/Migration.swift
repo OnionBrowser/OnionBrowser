@@ -59,7 +59,7 @@ class Migration: NSObject {
 						newBridges.append(ob.conf)
 					}
 
-					Settings.currentlyUsedBridges = .custom
+					Settings.transport = .custom
 					Settings.customBridges = newBridges
 
 					settings.synchronize()
@@ -158,12 +158,12 @@ class Migration: NSObject {
 
 		// Migrate users who used Meek to Snowflake.
 
-		let usedBridge = UserDefaults.standard.integer(forKey: "use_bridges")
+		let transport = UserDefaults.standard.integer(forKey: "use_bridges")
 
-		print(usedBridge)
+		print(transport)
 
-		if (usedBridge == 2 || usedBridge == 3) {
-			Settings.currentlyUsedBridges = .snowflake
+		if (transport == 2 || transport == 3) {
+			Settings.transport = .snowflake
 		}
 	}
 }

@@ -101,7 +101,7 @@ class OnionManager : NSObject {
 
 	private var initRetry: DispatchWorkItem?
 
-	private var bridge = Bridge.none
+	private var transport = Transport.none
 	private var customBridges: [String]?
 	private var needsReconfiguration = false
 	private var ipStatus = IpSupport.Status.unknown
@@ -114,7 +114,7 @@ class OnionManager : NSObject {
 			self?.ipStatus = status
 
 			if !(self?.torThread?.isCancelled ?? true) {
-				self?.torController?.setConfs(self?.getIpConfig(Bridge.asConf) ?? []) { success, error in
+				self?.torController?.setConfs(self?.ipConf(Transport.asConf) ?? []) { success, error in
 					if let error = error {
 						print("[\(String(describing: type(of: self)))] error: \(error)")
 					}
@@ -132,11 +132,11 @@ class OnionManager : NSObject {
 	Set bridges configuration and evaluate, if the new configuration is actually different
 	then the old one.
 
-	- parameter bridgesType: the selected ID as defined in OBSettingsConstants.
+	- parameter transport: The selected transport.
 	- parameter customBridges: a list of custom bridges the user configured.
 	*/
-	func setBridgeConfiguration(bridgesType: IPtProxyUI.Bridge, customBridges: [String]?) {
-		needsReconfiguration = bridgesType != self.bridge
+	func setTransportConf(transport: Transport, customBridges: [String]?) {
+		needsReconfiguration = transport != self.transport
 
 		if !needsReconfiguration {
 			if let oldVal = self.customBridges, let newVal = customBridges {
@@ -148,7 +148,7 @@ class OnionManager : NSObject {
 			}
 		}
 
-		self.bridge = bridgesType
+		self.transport = transport
 		self.customBridges = customBridges
 	}
 
@@ -185,13 +185,13 @@ class OnionManager : NSObject {
 			// Add user-defined configuration.
 			conf.arguments += Settings.advancedTorConf ?? []
 
-			conf.arguments += getBridgeConfig(Bridge.asArguments).joined()
+			conf.arguments += transportConf(Transport.asArguments).joined()
 
 			// configure ipv4/ipv6
 			// Use Ipv6Tester. If we _think_ we're IPv6-only, tell Tor to prefer IPv6 ports.
 			// (Tor doesn't always guess this properly due to some internal IPv4 addresses being used,
 			// so "auto" sometimes fails to bootstrap.)
-			conf.arguments += getIpConfig(Bridge.asArguments).joined()
+			conf.arguments += ipConf(Transport.asArguments).joined()
 
 			#if DEBUG
 			print("[\(String(describing: type(of: self)))] conf=\(conf.compile())")
@@ -225,7 +225,7 @@ class OnionManager : NSObject {
 							}
 
 							self?.torController?.setConfs(
-								self?.getBridgeConfig(Bridge.asConf) ?? [])
+								self?.transportConf(Transport.asConf) ?? [])
 						}
 					}
 				}
@@ -354,7 +354,7 @@ class OnionManager : NSObject {
 		initRetry = DispatchWorkItem {
 			// Only do this, if we're not running over a bridge, it will close
 			// the connection to the bridge client which will close or break the bridge client!
-			if self.bridge == .none {
+			if self.transport == .none {
 				#if DEBUG
 				print("[\(String(describing: type(of: self)))] Triggering Tor connection retry.")
 				#endif
@@ -389,7 +389,7 @@ class OnionManager : NSObject {
 		torThread?.cancel()
 		torThread = nil
 
-		bridge.stop()
+		transport.stop()
 
 		state = .stopped
 	}
@@ -415,24 +415,24 @@ class OnionManager : NSObject {
 
 	// MARK: Private Methods
 
-	private func getBridgeConfig<T>(_ cv: (String, String) -> T) -> [T] {
+	private func transportConf<T>(_ cv: (String, String) -> T) -> [T] {
 
-		if bridge == .snowflake {
-			Bridge.obfs4.stop()
+		if transport == .snowflake {
+			Transport.obfs4.stop()
 		}
-		else if bridge == .obfs4 || bridge == .custom {
-			Bridge.snowflake.stop()
+		else if transport == .obfs4 || transport == .custom {
+			Transport.snowflake.stop()
 		}
 
-		bridge.start()
+		transport.start()
 
-		var arguments = bridge.getConfiguration(cv)
+		var arguments = transport.torConf(cv)
 
-		if bridge == .custom, let bridgeLines = customBridges {
+		if transport == .custom, let bridgeLines = customBridges {
 			arguments += bridgeLines.map({ cv("Bridge", $0) })
 		}
 
-		if bridge == .none {
+		if transport == .none {
 			arguments.append(cv("UseBridges", "0"))
 		}
 		else {
@@ -442,13 +442,13 @@ class OnionManager : NSObject {
 		return arguments
 	}
 
-	private func getIpConfig<T>(_ cv: (String, String) -> T) -> [T] {
+	private func ipConf<T>(_ cv: (String, String) -> T) -> [T] {
 		var arguments = [T]()
 
 		if ipStatus == .ipV6Only {
 			arguments.append(cv("ClientPreferIPv6ORPort", "1"))
 
-			if bridge == .none {
+			if transport == .none {
 				// Switch off IPv4, if we're on a IPv6-only network.
 				arguments.append(cv("ClientUseIPv4", "0"))
 			}
