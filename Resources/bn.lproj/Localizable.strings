@@ -1,9 +1,6 @@
 /* RuleEditorController */
 "%1$@ (Disabled: %2$@)" = "%1$@(নিষ্ক্রিয়: %2$@)";
 
-/* No comment provided by engineer. */
-"%d cookie(s)" = "%d cookie(s)";
-
 /* SecurityPresetsRow */
 "(not recommended)" = "(প্রস্তাবিত নয়)";
 

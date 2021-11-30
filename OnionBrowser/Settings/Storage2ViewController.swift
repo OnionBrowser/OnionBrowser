@@ -185,7 +185,7 @@ class Storage2ViewController: SearchableTableViewController {
 
 		if item.cookies > 0 {
 			detail.append(String.localizedStringWithFormat(
-				NSLocalizedString("%d cookie(s)", comment: ""), item.cookies))
+				NSLocalizedString("%d cookie(s)", comment: "#bc-ignore!"), item.cookies))
 		}
 
 		if item.storage > 0 {
