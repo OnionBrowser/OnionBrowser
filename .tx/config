@@ -4,13 +4,13 @@ host = https://www.transifex.com
 [onion-browser.localizablestrings]
 file_filter = Resources/<lang>.lproj/Localizable.strings
 minimum_perc = 50
-source_file = Resources/Base.lproj/Localizable.strings
+source_file = Resources/en.lproj/Localizable.strings
 source_lang = en_US
 trans.hu_HU = Resources/hu-HU.lproj/Localizable.strings
 trans.pt_BR = Resources/pt-BR.lproj/Localizable.strings
 trans.pt_PT = Resources/pt-PT.lproj/Localizable.strings
 trans.tr_TR = Resources/tr-TR.lproj/Localizable.strings
-type = STRING
+type = STRINGS
 
 [onion-browser.localizable-stringsdict]
 file_filter = Resources/<lang>.lproj/Localizable.stringsdict
@@ -37,7 +37,7 @@ type = STRINGS
 [onion-browser.security-levels]
 file_filter = Resources/<lang>.lproj/security-levels.html
 minimum_perc = 50
-source_file = Resources/Base.lproj/security-levels.html
+source_file = Resources/en.lproj/security-levels.html
 source_lang = en_US
 trans.hu_HU = Resources/hu-HU.lproj/security-levels.html
 trans.pt_BR = Resources/pt-BR.lproj/security-levels.html

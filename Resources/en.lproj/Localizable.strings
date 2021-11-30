@@ -1,0 +1,617 @@
+/* RuleEditorController */
+"%1$@ (Disabled: %2$@)" = "%1$@ (Disabled: %2$@)";
+
+/* No comment provided by engineer. */
+"%d cookie(s)" = "%d cookie(s)";
+
+/* SecurityPresetsRow */
+"(not recommended)" = "(not recommended)";
+
+/* Storage2ViewController */
+"(other cache data)" = "(other cache data)";
+
+/* ConnectingViewController */
+"__CLAIM_1__" = "Our diverse community is what makes Tor great!";
+
+/* ConnectingViewController */
+"__CLAIM_2__" = "Everyday people use Tor to avoid being followed by marketing ads.";
+
+/* ConnectingViewController */
+"__CLAIM_3__" = "People use Tor to safely stay connected with their friends and family.";
+
+/* ConnectingViewController */
+"__CLAIM_4__" = "Activists use Tor to freely express their opinions and beliefs.";
+
+/* ConnectingViewController */
+"__CLAIM_5__" = "Bloggers use Tor to rally people toward social reform.";
+
+/* ConnectingViewController */
+"__CLAIM_6__" = "Journalists use Tor to securely investigate stories they are reporting on.";
+
+/* ConnectingViewController */
+"__CLAIM_7__" = "Business people use Tor to keep their company strategies private.";
+
+/* ConnectingViewController */
+"__CLAIM_8__" = "Workers use Tor to fight for justice without fear of losing their job.";
+
+/* DonationViewController */
+"__DONATE_EXPLANATION_PARAGRAPH1__" = "Onion Browser is a free app, but it takes time and resources to develop and maintain.";
+
+/* DonationViewController */
+"__DONATE_EXPLANATION_PARAGRAPH2__" = "You can support the app by sending a small tip through an in-app purchase, below. This is a one-time, non-recurring transaction, but you can come back any time to send another. No information about your in-app purchase is collected or stored by the Onion Browser developers.";
+
+/* DonationViewController */
+"__DONATE_EXPLANATION_PARAGRAPH3__" = "You can learn about other ways to help (including Patreon, PayPal, Bitcoin, or Zcash) in the 'About' section of the 'Settings' page.";
+
+/* DonationViewController */
+"__DONATE_THANKS__" = "Thank you! Every little bit helps! Your payment of %@ helps ensure continuing development on Onion Browser and tools that make Tor easier to integrate into other iOS apps.";
+
+/* SettingsViewController */
+"About" = "About";
+
+/* AdvancedTorConfViewController */
+"Add additional command line options for Tor startup." = "Add additional command line options for Tor startup.";
+
+/* BookmarkViewController */
+"Add Bookmark" = "Add Bookmark";
+
+/* CustomSitesViewController, AddSiteViewController */
+"Add Site" = "Add Site";
+
+/* SyncViewController */
+"Additionally, all bookmarks not existing on the server but in Onion Browser will be created there." = "Additionally, all bookmarks not existing on the server but in Onion Browser will be created there.";
+
+/* BookmarkViewController */
+"Address" = "Address";
+
+/* SettingsViewController */
+"Advanced Tor Configuration" = "Advanced Tor Configuration";
+
+/* OBBridgesConfViewController */
+"Advanced Tor Configuration Removed" = "Advanced Tor Configuration Removed";
+
+/* RuleEditorController */
+"All rules" = "All rules";
+
+/* SettingsViewController */
+"Allow 3rd-Party Keyboards" = "Allow 3rd-Party Keyboards";
+
+/* SecurityViewController */
+"Allow hosts to access WebRTC functions." = "Allow hosts to access WebRTC functions.";
+
+/* SecurityViewController */
+"Allow hosts to permanently store cookies and local storage databases." = "Allow hosts to permanently store cookies and local storage databases.";
+
+/* SecurityViewController */
+"Allow HTTPS hosts to load page resources from non-HTTPS hosts. (Useful for RSS readers and other aggregators.)" = "Allow HTTPS hosts to load page resources from non-HTTPS hosts. (Useful for RSS readers and other aggregators.)";
+
+/* SecurityViewController */
+"Allow Persistent Cookies" = "Allow Persistent Cookies";
+
+/* Tab+UIWebViewDelegate */
+"Allow this page to close its tab?" = "Allow this page to close its tab?";
+
+/* Tab+Gestures */
+"An error occurred downloading image %@" = "An error occurred downloading image %@";
+
+/* DonationViewController */
+"Are you sure you want to send a %@ tip?" = "Are you sure you want to send a %@ tip?";
+
+/* AppDelegate */
+"Authentication Required" = "Authentication Required";
+
+/* SettingsViewController */
+"Auto-Complete Search Results" = "Auto-Complete Search Results";
+
+/* Storage1ViewController */
+"Auto-Sweep Interval" = "Auto-Sweep Interval";
+
+/* CertificateViewController */
+"Begins On" = "Begins On";
+
+/* URLBlockerRuleController */
+"Blocked 3rd-Party Hosts" = "Blocked 3rd-Party Hosts";
+
+/* BookmarksViewController */
+"Bookmarks" = "Bookmarks";
+
+/* CircuitViewController */
+"Bridge Configuration" = "Bridge Configuration";
+
+/* SecurityPresetsRow; a security level */
+"Bronze" = "Bronze";
+
+/* SecurityViewController */
+"By editing this setting, you have created a custom security setting." = "By editing this setting, you have created a custom security setting.";
+
+/* AlertHelper */
+"Cancel" = "Cancel";
+
+/* CertificateViewController */
+"Certificate Information" = "Certificate Information";
+
+/* SettingsViewController */
+"Changing this option requires restarting the app." = "Changing this option requires restarting the app.";
+
+/* SettingsViewController */
+"Choose how long app remembers open tabs." = "Choose how long app remembers open tabs.";
+
+/* CertificateViewController */
+"Cipher" = "Cipher";
+
+/* ConnectingViewController */
+"Close Onion Browser and restart or try using a bridge." = "Close Onion Browser and restart or try using a bridge.";
+
+/* AppDelegate */
+"Close Tab" = "Close Tab";
+
+/* BridgesViewController */
+"Configure Bridges" = "Configure Bridges";
+
+/* Tab+UIWebViewDelegate */
+"Confirm" = "Confirm";
+
+/* DonationViewController */
+"Confirm %@" = "Confirm %@";
+
+/* DonationViewController */
+"Confirm Purchase" = "Confirm Purchase";
+
+/* OBBridgesConfViewController */
+"Connect" = "Connect";
+
+/* CircuitViewController */
+"Connect to a website to see your circuit." = "Connect to a website to see your circuit.";
+
+/* BridgesViewController */
+"Connect to Tor" = "Connect to Tor";
+
+/* BridgesViewController */
+"Connect to Tor for private browsing." = "Connect to Tor for private browsing.";
+
+/* ConnectingViewController */
+"Connected!" = "Connected!";
+
+/* ConnectingViewController */
+"Connecting to Tor" = "Connecting to Tor";
+
+/* CertificateViewController */
+"Connection Information" = "Connection Information";
+
+/* SyncViewController */
+"Connection to Nextcloud Server Failed" = "Connection to Nextcloud Server Failed";
+
+/* SecurityViewController */
+"Content Policy" = "Content Policy";
+
+/* SettingsViewController, Storage1ViewController, Storage2ViewController */
+"Cookies and Local Storage" = "Cookies and Local Storage";
+
+/* Storage1ViewController */
+"Cookies and local storage data from non-allowlisted hosts will be cleared even from open tabs after not being accessed for this many minutes." = "Cookies and local storage data from non-allowlisted hosts will be cleared even from open tabs after not being accessed for this many minutes.";
+
+/* Tab+Gestures */
+"Copy URL" = "Copy URL";
+
+/* AppDelegate */
+"Create New Tab" = "Create New Tab";
+
+/* SecurityPresetsRow; a security level */
+"Custom" = "Custom";
+
+/* SettingsViewController, CustomSitesViewController */
+"Custom Site Security" = "Custom Site Security";
+
+/* SecurityViewController */
+"Custom user-agent string, or blank to use the default." = "Custom user-agent string, or blank to use the default.";
+
+/* SecurityPopUpViewController */
+"Customize" = "Customize";
+
+/* SecurityViewController */
+"Default Security" = "Default Security";
+
+/* CustomSitesViewController */
+"Define custom settings for specific sites." = "Define custom settings for specific sites.";
+
+/* InitSecurityLevelViewController */
+"Define Default Security Level" = "Define Default Security Level";
+
+/* RuleEditorController */
+"Disable" = "Disable";
+
+/* SettingsViewController */
+"Disable Bookmarks on Start Page" = "Disable Bookmarks on Start Page";
+
+/* RuleEditorController */
+"Disabled: %@" = "Disabled: %@";
+
+/* DonationViewController */
+"Donate" = "Donate";
+
+/* Bookmark, placeholder is app name "Onion Browser" */
+"Donate to %@" = "Donate to %@";
+
+/* BrowsingViewController */
+"Done" = "Done";
+
+/* SecurityPresetsRow */
+"Easy breezy. Though it could be dangerous." = "Easy breezy. Though it could be dangerous.";
+
+/* BookmarkViewController */
+"Edit Bookmark" = "Edit Bookmark";
+
+/* RuleEditorController */
+"Enable" = "Enable";
+
+/* AlertHelper */
+"Error" = "Error";
+
+/* CertificateViewController */
+"Expires After" = "Expires After";
+
+/* CertificateViewController */
+"Extended Validation: Organization" = "Extended Validation: Organization";
+
+/* AppDelegate */
+"Focus URL Field" = "Focus URL Field";
+
+/* SecurityViewController */
+"Follow Onion-Location Header Automatically" = "Follow Onion-Location Header Automatically";
+
+/* SettingsViewController */
+"Forget at Shutdown" = "Forget at Shutdown";
+
+/* SettingsViewController */
+"Forget in Background" = "Forget in Background";
+
+/* MainViewController */
+"Free to be you." = "Free to be you.";
+
+/* SettingsViewController */
+"Fund Development" = "Fund Development";
+
+/* AppDelegate */
+"Go Back" = "Go Back";
+
+/* AppDelegate */
+"Go Forward" = "Go Forward";
+
+/* SecurityPresetsRow; a security level */
+"Gold" = "Gold";
+
+/* CircuSitsViewController */
+"Guard" = "Guard";
+
+/* SecurityViewController */
+"Handle tapping on links in a non-standard way to avoid possibly opening external applications." = "Handle tapping on links in a non-standard way to avoid possibly opening external applications.";
+
+/* HistoryViewController */
+"History" = "History";
+
+/* AddSiteViewController, SyncViewController */
+"Host" = "Host";
+
+/* SettingsViewController */
+"HTTPS Everywhere" = "HTTPS Everywhere";
+
+/* HTTPSEverywhereRuleController */
+"HTTPS Everywhere Rules" = "HTTPS Everywhere Rules";
+
+/* BridgesViewController */
+"If you are in a country or using a connection that censors Tor, you might need to use bridges." = "If you are in a country or using a connection that censors Tor, you might need to use bridges.";
+
+/* SyncViewController */
+"If you sync, all bookmarks will be read from the server and added/updated in Onion Browser." = "If you sync, all bookmarks will be read from the server and added/updated in Onion Browser.";
+
+/* Tab+UIWebViewDelegate */
+"Ignore for this host" = "Ignore for this host";
+
+/* SecurityViewController */
+"Ignore TLS Errors" = "Ignore TLS Errors";
+
+/* CertificateViewController */
+"Issued By" = "Issued By";
+
+/* CertificateViewController */
+"Issued To" = "Issued To";
+
+/* SecurityPopUpViewController */
+"Learn More" = "Learn More";
+
+/* Bookmark, placeholder is app name "Onion Browser" */
+"Learn more about %@" = "Learn more about %@";
+
+/*MainViewController; placeholder is a angle bracket \u{276c} or \u{276d} depending on text direction. */
+"Let's go %@" = "Let's go %@";
+
+/* DonationViewController */
+"Loading in-app purchase data…" = "Loading in-app purchase data…";
+
+/* Storage2ViewController */
+"Local Storage" = "Local Storage";
+
+/* SettingsViewController */
+"Lock App with Touch ID/Face ID or Device Passcode" = "Lock App with Touch ID/Face ID or Device Passcode";
+
+/* AppDelegate */
+"Log In" = "Log In";
+
+/* SettingsViewController */
+"Minimum version of TLS required for hosts to negotiate HTTPS connections." = "Minimum version of TLS required for hosts to negotiate HTTPS connections.";
+
+/* SettingsViewController */
+"Miscellaneous" = "Miscellaneous";
+
+/* SecurityViewController */
+"Mixed-mode Resources" = "Mixed-mode Resources";
+
+/* SettingsViewController */
+"Mute Audio with Mute Switch" = "Mute Audio with Mute Switch";
+
+/* CircuSitsViewController */
+"New Circuit for this Site" = "New Circuit for this Site";
+
+/* ConnectingViewController */
+"Next" = "Next";
+
+/* SecurityViewController */
+"No XHR/WebSocket/Video connections" = "No XHR/WebSocket/Video connections";
+
+/* JAHPAuthenticatingHTTPProtocol, AlertHelper */
+"OK" = "OK";
+
+/* Tab+UIWebViewDelegate */
+"Onion Service v3 Auth Key" = "Onion Service v3 Auth Key";
+
+/* Tab+Gestures */
+"Open" = "Open";
+
+/* SecurityViewController */
+"Open (normal browsing mode)" = "Open (normal browsing mode)";
+
+/* Tab+Gestures */
+"Open in a New Tab" = "Open in a New Tab";
+
+/* Tab+Gestures */
+"Open in Background Tab" = "Open in Background Tab";
+
+/* Tab+Gestures */
+"Open in Safari" = "Open in Safari";
+
+/* SecurityViewController */
+"Other" = "Other";
+
+/* AppDelegate, SyncViewController */
+"Password" = "Password";
+
+/* DonationViewController */
+"Payment Sent" = "Payment Sent";
+
+/* CertificateViewController */
+"Period of Validity" = "Period of Validity";
+
+/* SecurityViewController */
+"Popular User Agents" = "Popular User Agents";
+
+/* SecurityViewController */
+"Privacy" = "Privacy";
+
+/* SettingsViewController */
+"Privacy & Security" = "Privacy & Security";
+
+/* CertificateViewController */
+"Protocol" = "Protocol";
+
+/* Tab */
+"Pull to Refresh Page" = "Pull to Refresh Page";
+
+/* DonationViewController */
+"Purchase Failure" = "Purchase Failure";
+
+/* OBBridgesConfViewController */
+"Quit. Then restart the app." = "Quit. Then restart the app.";
+
+/* SettingsViewController */
+"Rate on App Store" = "Rate on App Store";
+
+/* AdvancedTorConfViewController; placeholder is URL https://www.torproject.org/docs/tor-manual.html */
+"Refer to %@ for possible options." = "Refer to %@ for possible options.";
+
+/* AppDelegate */
+"Reload Tab" = "Reload Tab";
+
+/* TabSecurity */
+"Remember Tabs" = "Remember Tabs";
+
+/* OBBridgesConfViewController */
+"Remove Advanced Tor Conf" = "Remove Advanced Tor Conf";
+
+/* Storage2ViewController */
+"Remove All Local Storage" = "Remove All Local Storage";
+
+/* SettingsViewController */
+"Report a Bug" = "Report a Bug";
+
+/* SecurityViewController */
+"Restrictions on resources loaded from web pages." = "Restrictions on resources loaded from web pages.";
+
+/* RuleEditorController */
+"Rules in use on current page" = "Rules in use on current page";
+
+/* Tab+Gestures */
+"Save Image" = "Save Image";
+
+/* SettingsViewController */
+"Search" = "Search";
+
+/* SettingsViewController */
+"Search Engine" = "Search Engine";
+
+/* SecurityPopUpViewController */
+"Security Level for This Site" = "Security Level for This Site";
+
+/* SettingsViewController */
+"Send Do-Not-Track Header" = "Send Do-Not-Track Header";
+
+/* CertificateViewController */
+"Serial Number" = "Serial Number";
+
+/* SettingsViewController */
+"Settings" = "Settings";
+
+/* SecurityPresetsRow */
+"Settings have been customized." = "Settings have been customized.";
+
+/* Storage2ViewController */
+"Show All Sites" = "Show All Sites";
+
+/* AppDelegate */
+"Show Bookmarks" = "Show Bookmarks";
+
+/* CertificateViewController */
+"Signature Algorithm" = "Signature Algorithm";
+
+/* SecurityPresetsRow; a security level */
+"Silver" = "Silver";
+
+/* DonationViewController */
+"Sorry, in-app purchase is disabled on your device!" = "Sorry, in-app purchase is disabled on your device!";
+
+/* InitSecurityLevelViewController */
+"Start Browsing" = "Start Browsing";
+
+/* SettingsViewController */
+"Stop Auto-Complete at First Dot" = "Stop Auto-Complete at First Dot";
+
+/* SecurityViewController */
+"Strict (no JavaScript, video, etc.)" = "Strict (no JavaScript, video, etc.)";
+
+/* Bookmark */
+"Subscribe to Tor Newsletter" = "Subscribe to Tor Newsletter";
+
+/* SettingsViewController */
+"Support" = "Support";
+
+/* DonationViewController */
+"Support Onion Browser Development" = "Support Onion Browser Development";
+
+/* AppDelegate */
+"Switch to Tab %d" = "Switch to Tab %d";
+
+/* SyncViewController */
+"Sync Bookmarks" = "Sync Bookmarks";
+
+/* SyncViewController */
+"Sync Bookmarks with Nextcloud Server" = "Sync Bookmarks with Nextcloud Server";
+
+/* BookmarksViewController */
+"Sync with Nextcloud" = "Sync with Nextcloud";
+
+/* SettingsViewController */
+"Tab Security" = "Tab Security";
+
+/* InitSecurityLevelViewController */
+"The security level you choose for a website often has a direct impact on that site’s performance. Some of the protections can be overridden or modified by changing your security settings." = "The security level you choose for a website often has a direct impact on that site’s performance. Some of the protections can be overridden or modified by changing your security settings.";
+
+/* SecurityViewController */
+"These might change server behaviour. E.g. show or not show Captchas or return pages meant for desktop browsers." = "These might change server behaviour. E.g. show or not show Captchas or return pages meant for desktop browsers.";
+
+/* CircuitsViewController */
+"This browser" = "This browser";
+
+/* SecurityViewController, placeholder is app name "Onion Browser" */
+"This is your default security setting for every website you visit in %@." = "This is your default security setting for every website you visit in %@.";
+
+/* ConnectingViewController */
+"This may take time. If it doesn't work after a while, choose a different bridge." = "This may take time. If it doesn't work after a while, choose a different bridge.";
+
+/* Tab+UIWebViewDelegate */
+"This site may need authentication. If you received an authentication key for this site, please enter it here:" = "This site may need authentication. If you received an authentication key for this site, please enter it here:";
+
+/* DonationViewController */
+"Tip: %@" = "Tip: %@";
+
+/* BookmarkViewController */
+"Title" = "Title";
+
+/* SettingsViewController */
+"TLS 1.3 Only" = "TLS 1.3 Only";
+
+/* SettingsViewController */
+"TLS 1.3 or 1.2" = "TLS 1.3 or 1.2";
+
+/* SettingsViewController */
+"TLS 1.3, 1.2, 1.1 or 1.0" = "TLS 1.3, 1.2, 1.1 or 1.0";
+
+/* Tab+UIWebViewDelegate */
+"TLS certificate chain verification error (self-signed certificate?)" = "TLS certificate chain verification error (self-signed certificate?)";
+
+/* Tab+UIWebViewDelegate */
+"TLS handshake failed" = "TLS handshake failed";
+
+/* Tab+UIWebViewDelegate */
+"TLS protocol error" = "TLS protocol error";
+
+/* SettingsViewController */
+"TLS Version" = "TLS Version";
+
+/* AdvancedTorConfViewController */
+"To recover from a non working configuration, remove everything under \"Bridge Configuration\" on startup and restart the app." = "To recover from a non working configuration, remove everything under \"Bridge Configuration\" on startup and restart the app.";
+
+/* CircuitsViewController */
+"Tor Circuit" = "Tor Circuit";
+
+/* SyncViewController */
+"Try Again" = "Try Again";
+
+/* ConnectingViewController */
+"Trying a bridge…" = "Trying a bridge…";
+
+/* SecurityViewController */
+"Universal Link Protection" = "Universal Link Protection";
+
+/* SettingsViewController */
+"URL Blocker" = "URL Blocker";
+
+/* SecurityViewController */
+"User Agent" = "User Agent";
+
+/* RuleEditorController */
+"User disabled" = "User disabled";
+
+/* AppDelegate, SyncViewController */
+"Username" = "Username";
+
+/* CertificateViewController */
+"Version" = "Version";
+
+/* SettingsViewController */
+"Version %@" = "Version %@";
+
+/* SecurityViewController */
+"Very Strict (JavaScript completely off; no context menu)" = "Very Strict (JavaScript completely off; no context menu)";
+
+/* SyncViewController */
+"We couldn't sync your bookmarks at this time. Try again to make sure your information is synced." = "We couldn't sync your bookmarks at this time. Try again to make sure your information is synced.";
+
+/* ConnectingViewController */
+"We're having trouble." = "We're having trouble.";
+
+/* SecurityViewController */
+"WebRTC" = "WebRTC";
+
+/* SecurityPresetsRow */
+"Websites may break. But you get great security." = "Websites may break. But you get great security.";
+
+/* SettingsViewController */
+"When disabled, all text entered in search bar will be sent to the search engine unless it starts with \"http\"." = "When disabled, all text entered in search bar will be sent to the search engine unless it starts with \"http\".";
+
+/* SecurityPresetsRow */
+"Works pretty well. Your identity is mostly protected." = "Works pretty well. Your identity is mostly protected.";
+
+/* DonationViewController */
+"You most recently donated %1$@ on %2$@." = "You most recently donated %1$@ on %2$@.";
+
+/* CircuitViewController */
+"Your traffic goes to 3 different parts of the world." = "Your traffic goes to 3 different parts of the world.";

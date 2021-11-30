@@ -191,7 +191,7 @@ open class Bookmark: NSObject {
 
 		template = template
 			.replacingOccurrences(of: "{{ Onion Browser }}",
-								  with: NSLocalizedString(Bundle.main.displayName, comment: ""))
+								  with: Bundle.main.displayName)
 			.replacingOccurrences(of: "{{ Learn more about Onion Browser }}",
 								  with: String(format: NSLocalizedString("Learn more about %@", comment: ""), Bundle.main.displayName))
 			.replacingOccurrences(of: "{{ Donate to Onion Browser }}",
