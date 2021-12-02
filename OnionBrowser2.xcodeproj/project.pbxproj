@@ -89,9 +89,7 @@
 		A0BF51E423AFBF250096624A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51A023AFBF250096624A /* Localizable.strings */; };
 		A0BF51E523AFBF250096624A /* urlblocker.json in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51AE23AFBF250096624A /* urlblocker.json */; };
 		A0BF51E623AFBF250096624A /* https-everywhere_rules.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51B223AFBF250096624A /* https-everywhere_rules.plist */; };
-		A0BF51E823AFBF250096624A /* geoip6 in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51C023AFBF250096624A /* geoip6 */; };
 		A0BF51EA23AFBF250096624A /* hsts_preload.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51C423AFBF250096624A /* hsts_preload.plist */; };
-		A0BF51EC23AFBF250096624A /* geoip in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51C623AFBF250096624A /* geoip */; };
 		A0BF51ED23AFBF250096624A /* start.html in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51C723AFBF250096624A /* start.html */; };
 		A0BF51EE23AFBF250096624A /* injected.js in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51CC23AFBF250096624A /* injected.js */; };
 		A0BF51EF23AFBF250096624A /* SearchEngines.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51D123AFBF250096624A /* SearchEngines.plist */; };
@@ -441,7 +439,6 @@
 		A07D655B2208A2540002D775 /* minutes_since_date.bash */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = minutes_since_date.bash; sourceTree = "<group>"; };
 		A07D655C2208A4320002D775 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.markdown; };
 		A07D655D2208A6DA0002D775 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		A07D655F2208A9B40002D775 /* get-geoip.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "get-geoip.sh"; sourceTree = "<group>"; };
 		A085A1EC270DAB8600800A29 /* SECURITY.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = SECURITY.md; sourceTree = "<group>"; };
 		A08737DF2213235F005A68CC /* HostSettings_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HostSettings_Tests.m; sourceTree = "<group>"; };
 		A0894E36236AE7C800EE2743 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
@@ -685,10 +682,8 @@
 		A0BF51AE23AFBF250096624A /* urlblocker.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = urlblocker.json; sourceTree = "<group>"; };
 		A0BF51B223AFBF250096624A /* https-everywhere_rules.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "https-everywhere_rules.plist"; sourceTree = "<group>"; };
 		A0BF51BD23AFBF250096624A /* block_webrtc.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = block_webrtc.js; sourceTree = "<group>"; };
-		A0BF51C023AFBF250096624A /* geoip6 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = geoip6; sourceTree = "<group>"; };
 		A0BF51C423AFBF250096624A /* hsts_preload.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = hsts_preload.plist; sourceTree = "<group>"; };
 		A0BF51C523AFBF250096624A /* credits.html.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = credits.html.in; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.html; };
-		A0BF51C623AFBF250096624A /* geoip */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = geoip; sourceTree = "<group>"; };
 		A0BF51C723AFBF250096624A /* start.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = start.html; sourceTree = "<group>"; };
 		A0BF51CC23AFBF250096624A /* injected.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = injected.js; sourceTree = "<group>"; };
 		A0BF51D123AFBF250096624A /* SearchEngines.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SearchEngines.plist; sourceTree = "<group>"; };
@@ -1367,7 +1362,6 @@
 				A07D65592208A2540002D775 /* decode_bundle_version.sh */,
 				A07D655A2208A2540002D775 /* decimalize_git_hash.bash */,
 				A07D655B2208A2540002D775 /* minutes_since_date.bash */,
-				A07D655F2208A9B40002D775 /* get-geoip.sh */,
 			);
 			path = "build-util";
 			sourceTree = "<group>";
@@ -1837,8 +1831,6 @@
 				A0BF51BD23AFBF250096624A /* block_webrtc.js */,
 				A0BF51CC23AFBF250096624A /* injected.js */,
 				A0BF51AE23AFBF250096624A /* urlblocker.json */,
-				A0BF51C623AFBF250096624A /* geoip */,
-				A0BF51C023AFBF250096624A /* geoip6 */,
 				A0BF51D523AFBF250096624A /* Launch Screen.xib */,
 			);
 			path = Resources;
@@ -1993,7 +1985,6 @@
 			buildConfigurationList = 01801EB81A32CA2A002B4718 /* Build configuration list for PBXNativeTarget "OnionBrowser2" */;
 			buildPhases = (
 				9F5722442F9CB3FF2F35FEEB /* [CP] Check Pods Manifest.lock */,
-				8ACB70CD1FA13676001E5588 /* ShellScript */,
 				A06F5F4A275692870023622E /* ShellScript */,
 				01801E8E1A32CA2A002B4718 /* Sources */,
 				01801E8F1A32CA2A002B4718 /* Frameworks */,
@@ -2136,7 +2127,6 @@
 				A0BF51E523AFBF250096624A /* urlblocker.json in Resources */,
 				A0BF51EF23AFBF250096624A /* SearchEngines.plist in Resources */,
 				A0BF524C23AFC3580096624A /* CircuitViewController.xib in Resources */,
-				A0BF51E823AFBF250096624A /* geoip6 in Resources */,
 				A0BF51E623AFBF250096624A /* https-everywhere_rules.plist in Resources */,
 				A01B41722456D16100A490A9 /* Localizable.stringsdict in Resources */,
 				A0C26E4323D8650E00C4AF1C /* security-levels.html in Resources */,
@@ -2146,7 +2136,6 @@
 				A0BF51EA23AFBF250096624A /* hsts_preload.plist in Resources */,
 				A0BF525423AFC3580096624A /* BrowsingViewController.xib in Resources */,
 				A0BF524A23AFC3580096624A /* SecurityPopUpViewController.xib in Resources */,
-				A0BF51EC23AFBF250096624A /* geoip in Resources */,
 				A0BF524923AFC3580096624A /* CircuitNodeCell.xib in Resources */,
 				A0BF526323AFC3580096624A /* BookmarksViewController.xib in Resources */,
 				A003A6BB23C94A4900BD2D20 /* ConnectingViewController.xib in Resources */,
@@ -2229,19 +2218,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"$SRCROOT\"/build-util/mk_build_versions.sh\n";
 		};
-		8ACB70CD1FA13676001E5588 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/bash;
-			shellScript = "\"$SRCROOT\"/build-util/get-geoip.sh\n";
-		};
 		9F5722442F9CB3FF2F35FEEB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2291,12 +2267,14 @@
 				"${PODS_CONFIGURATION_BUILD_DIR}/IPtProxyUI/IPtProxyUI.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/SDCAlertView/SDCAlertView.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/TUSafariActivity/TUSafariActivity.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/Tor/GeoIP.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IPtProxyUI.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SDCAlertView.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TUSafariActivity.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GeoIP.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

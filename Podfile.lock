@@ -8,7 +8,7 @@ PODS:
   - ImageRow (4.0.0):
     - Eureka (~> 5.0)
   - IPtProxy (1.2.0)
-  - IPtProxyUI (1.2.0):
+  - IPtProxyUI (1.3.0):
     - Eureka (~> 5.3)
     - ImageRow (~> 4.0)
     - IPtProxy (~> 1.2)
@@ -22,7 +22,9 @@ PODS:
   - ReachabilitySwift (5.0.0)
   - ReactiveObjC (3.1.1)
   - SDCAlertView (10.0)
-  - Tor (406.8.1)
+  - Tor/Core (406.8.2)
+  - Tor/GeoIP (406.8.2):
+    - Tor/Core
   - TUSafariActivity (1.0.4)
   - VForceTouch (0.0.2)
 
@@ -36,7 +38,7 @@ DEPENDENCIES:
   - OCSPCache (from `https://github.com/Psiphon-Labs/OCSPCache`)
   - ReachabilitySwift (~> 5.0)
   - SDCAlertView (~> 10)
-  - Tor (~> 406.8)
+  - Tor/GeoIP (~> 406.8)
   - TUSafariActivity
   - VForceTouch
 
@@ -80,7 +82,7 @@ SPEC CHECKSUMS:
   FavIcon: 9fd386d96324ce0f6063732f8bf6c7f1d5bf17a3
   ImageRow: e65b2e1a33f89062bf2a553a2aad61d975eb7428
   IPtProxy: ab3cbf127f2e34e9c54ad5c5e818cf8cf93e0a7d
-  IPtProxyUI: 0ec5bf1772b9ade1111678643b3cb650c4cd2a1c
+  IPtProxyUI: 3dc6f74077670ed2a8c5e63701298947f7153820
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   OCMock: 9491e4bec59e0b267d52a9184ff5605995e74be8
   OCSPCache: 090d054dbf8f31602896d2527a8bd69d49515695
@@ -88,10 +90,10 @@ SPEC CHECKSUMS:
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
   SDCAlertView: 5fbc48cae6d7bf9781097e3f27883924ef3b922c
-  Tor: 60f6c9067ded259d2dce2020f04c045dee96e8f8
+  Tor: a1bab7ff724cce3621f0a840b0291c48f9888d6c
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
   VForceTouch: b5c3a28625269e1818cf915728173bda9f669d6b
 
-PODFILE CHECKSUM: b823fa8c8534da79cafb69ac2996cafcd8d0545b
+PODFILE CHECKSUM: 507ec51b5c26fc7916168873983c6aab4a9ccaf4
 
 COCOAPODS: 1.11.2

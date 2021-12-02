@@ -43,6 +43,11 @@ class OnionManager : NSObject {
 		conf.ignoreMissingTorrc = true
 		conf.cookieAuthentication = true
 		conf.autoControlPort = true
+		conf.clientOnly = true
+		conf.avoidDiskWrites = true
+
+		conf.geoipFile = Bundle.geoIp?.geoipFile
+		conf.geoip6File = Bundle.geoIp?.geoip6File
 
 		#if DEBUG
 		let log_loc = "notice stdout"
@@ -50,12 +55,8 @@ class OnionManager : NSObject {
 		let log_loc = "notice file /dev/null"
 		#endif
 
-		conf.options["ClientOnly"] = "1"
-		conf.options["AvoidDiskWrites"] = "1"
 		conf.options["SocksPort"] = "127.0.0.1:39050"
 		conf.options["Log"] = log_loc
-		conf.options["GeoIPFile"] = Bundle.main.path(forResource: "geoip", ofType: nil) ?? ""
-		conf.options["GeoIPv6File"] = Bundle.main.path(forResource: "geoip6", ofType: nil) ?? ""
 
 		// Store data in <appdir>/Library/Caches/tor (Library/Caches/ is for things that can persist between
 		// launches -- which we'd like so we keep descriptors & etc -- but don't need to be backed up because
@@ -92,7 +93,7 @@ class OnionManager : NSObject {
 			return nil
 		}
 
-		return TorOnionAuth(withPrivateDir: dir, andPublicDir: dir)
+		return TorOnionAuth(withPrivateDir: dir, andPublicDir: nil)
 	}()
 
 	private var torController: TorController?

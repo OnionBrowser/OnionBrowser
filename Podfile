@@ -19,7 +19,7 @@ target 'OnionBrowser2' do
   pod 'MBProgressHUD', '~> 1.2', :modular_headers => true
 
   pod 'IPtProxyUI', '~> 1.2'
-  pod 'Tor', '~> 406.8'
+  pod 'Tor/GeoIP', '~> 406.8'
 end
 
 target 'OnionBrowser2 Tests' do
