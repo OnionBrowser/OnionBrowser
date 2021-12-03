@@ -80,8 +80,7 @@ class HostSettings: NSObject {
     }
 
 	private static let fileUrl: URL? = {
-		return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-			.first?.appendingPathComponent("host_settings.plist")
+		return FileManager.default.docsDir?.appendingPathComponent("host_settings.plist")
 	}()
 
 	// Keys are left as-is to maintain backwards compatibility.

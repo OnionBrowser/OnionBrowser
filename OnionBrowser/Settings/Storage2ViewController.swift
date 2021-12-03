@@ -51,7 +51,7 @@ class Storage2ViewController: SearchableTableViewController {
 					let host = item.value as? String {
 
 					var item = data[host] ?? Item(host)
-					item.storage += (size(filepath) ?? 0)
+					item.storage += (FileManager.default.sizeOfItem(atPath: filepath) ?? 0)
 					data[host] = item
 				}
 			}
@@ -257,23 +257,5 @@ class Storage2ViewController: SearchableTableViewController {
 		}
 
         tableView.reloadData()
-	}
-
-
-	// MARK: Private Methods
-
-	/**
-	Get size in byte of a given file.
-
-	- parameter filepath: The path to the file.
-	- returns: File size in bytes.
-	*/
-	private func size(_ filepath: String?) -> Int64? {
-		if let filepath = filepath,
-			let attr = try? FileManager.default.attributesOfItem(atPath: filepath) {
-			return (attr[.size] as? NSNumber)?.int64Value
-		}
-
-		return nil
 	}
 }

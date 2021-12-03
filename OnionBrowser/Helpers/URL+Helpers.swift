@@ -20,7 +20,7 @@ extension URL {
 	static let aboutSecurityLevels = URL(string: "about:security-levels")!
 	static let securityLevels = Bundle.main.url(forResource: "security-levels", withExtension: "html")!
 
-	static let start = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).last!.appendingPathComponent("start.html")
+	static let start = FileManager.default.cacheDir!.appendingPathComponent("start.html")
 
 	var withFixedScheme: URL? {
 		switch scheme?.lowercased() {

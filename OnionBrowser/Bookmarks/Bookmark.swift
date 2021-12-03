@@ -26,7 +26,7 @@ open class Bookmark: NSObject {
 
 	private static let version = 2
 
-	private static var root = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last
+	private static var root = FileManager.default.docsDir
 	private static var bookmarkFilePath = root?.appendingPathComponent("bookmarks.plist")
 
 	private static let defaultBookmarks: [Bookmark] = {

@@ -25,8 +25,7 @@ class Migration: NSObject {
 	@objc class func migrate() {
 		let settings = UserDefaults.standard
 
-		let storeUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last?
-			.appendingPathComponent("Settings.sqlite")
+		let storeUrl = FileManager.default.docsDir?.appendingPathComponent("Settings.sqlite")
 
 		var isReachable = try? storeUrl?.checkResourceIsReachable()
 
@@ -96,8 +95,7 @@ class Migration: NSObject {
 			}
 		}
 
-		let settingsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-			.last?.appendingPathComponent("Settings.plist")
+		let settingsUrl = FileManager.default.docsDir?.appendingPathComponent("Settings.plist")
 
 		isReachable = try? settingsUrl?.checkResourceIsReachable()
 
