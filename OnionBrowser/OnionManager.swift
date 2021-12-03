@@ -105,7 +105,7 @@ class OnionManager : NSObject {
 	private var transport = Transport.none
 	private var customBridges: [String]?
 	private var needsReconfiguration = false
-	private var ipStatus = IpSupport.Status.unknown
+	private var ipStatus = IpSupport.Status.unavailable
 
 
 	override init() {
@@ -115,7 +115,8 @@ class OnionManager : NSObject {
 			self?.ipStatus = status
 
 			if !(self?.torThread?.isCancelled ?? true) {
-				self?.torController?.setConfs(self?.ipConf(Transport.asConf) ?? []) { success, error in
+				self?.torController?.setConfs(status.torConf(self?.transport ?? .none, Transport.asConf))
+				{ success, error in
 					if let error = error {
 						print("[\(String(describing: type(of: self)))] error: \(error)")
 					}
@@ -192,7 +193,7 @@ class OnionManager : NSObject {
 			// Use Ipv6Tester. If we _think_ we're IPv6-only, tell Tor to prefer IPv6 ports.
 			// (Tor doesn't always guess this properly due to some internal IPv4 addresses being used,
 			// so "auto" sometimes fails to bootstrap.)
-			conf.arguments += ipConf(Transport.asArguments).joined()
+			conf.arguments += ipStatus.torConf(transport, Transport.asArguments).joined()
 
 			#if DEBUG
 			print("[\(String(describing: type(of: self)))] conf=\(conf.compile())")
@@ -442,33 +443,6 @@ class OnionManager : NSObject {
 
 		return arguments
 	}
-
-	private func ipConf<T>(_ cv: (String, String) -> T) -> [T] {
-		var arguments = [T]()
-
-		if ipStatus == .ipV6Only {
-			arguments.append(cv("ClientPreferIPv6ORPort", "1"))
-
-			if transport == .none {
-				// Switch off IPv4, if we're on a IPv6-only network.
-				arguments.append(cv("ClientUseIPv4", "0"))
-			}
-			else {
-				// ...but not, when we're using bridges. The bridge configuration
-				// lines are what is important, then.
-				arguments.append(cv("ClientUseIPv4", "1"))
-			}
-		}
-		else {
-			arguments.append(cv("ClientPreferIPv6ORPort", "auto"))
-			arguments.append(cv("ClientUseIPv4", "1"))
-		}
-
-		arguments.append(cv("ClientUseIPv6", "1"))
-
-		return arguments
-	}
-
 
 	/**
 	Cancel the connection retry and fail guard.
