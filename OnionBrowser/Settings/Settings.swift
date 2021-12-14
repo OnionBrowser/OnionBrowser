@@ -93,6 +93,9 @@ class Settings: NSObject {
 		// Type .snowflake is 4 in OnionBrowser and 2 in IPtProxyUI.
 		4: 2,
 
+		// Type .snowflakeAmp is 5 in OnionBrowser and 4 in IPtProxyUI.
+		5: 4,
+
 		// Type .custom is 99 in OnionBrowser and 3 in IPtProxyUI.
 		99: 3]
 
