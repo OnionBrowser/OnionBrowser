@@ -1985,7 +1985,7 @@
 			buildConfigurationList = 01801EB81A32CA2A002B4718 /* Build configuration list for PBXNativeTarget "OnionBrowser2" */;
 			buildPhases = (
 				9F5722442F9CB3FF2F35FEEB /* [CP] Check Pods Manifest.lock */,
-				A06F5F4A275692870023622E /* ShellScript */,
+				A06F5F4A275692870023622E /* BartyCrouch */,
 				01801E8E1A32CA2A002B4718 /* Sources */,
 				01801E8F1A32CA2A002B4718 /* Frameworks */,
 				01801E901A32CA2A002B4718 /* Resources */,
@@ -2240,7 +2240,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A06F5F4A275692870023622E /* ShellScript */ = {
+		A06F5F4A275692870023622E /* BartyCrouch */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2249,6 +2249,7 @@
 			);
 			inputPaths = (
 			);
+			name = BartyCrouch;
 			outputFileListPaths = (
 			);
 			outputPaths = (
