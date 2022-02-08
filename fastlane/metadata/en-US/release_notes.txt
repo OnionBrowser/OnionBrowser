@@ -1,3 +1,4 @@
-- Finally added Greek to app translation. Not complete, yet, but mostly.
-- Actively migrate v2 onion default bookmarks to v3.
-- Added feedback, when bridge settings were changed during startup.
+- Improved app icon.
+- Translation updates.
+- Updated to Tor 0.4.6.9 and OpenSSL 1.1.1m.
+- Updated to latest Snowflake and Obfs4proxy containing fixes and improvements.

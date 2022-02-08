@@ -1,3 +1,4 @@
-- Griechisch als App-Übersetzung hinzugefügt. Noch nicht vollständig, aber fast.
-- Migriert jetzt aktiv die bekannten Standard-Lesezeichen von v2 auf v3 Onion Adressen.
-- Feedback hinzugefügt, wenn Brücken-Einstellungen während des Starts geändert werden.
+- Verbessertes App-Icon.
+- Übersetzungsaktualisierungen.
+- Aktualisiert auf Tor 0.4.6.9 und OpenSSL 1.1.1m.
+- Aktualisiert auf die neuesten Snowflake- und Obfs4proxy-Versionen mit Korrekturen und Verbesserungen.

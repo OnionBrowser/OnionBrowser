@@ -1,5 +1,14 @@
 #  Onion Browser 2 Changelog
 
+## 2.7.8
+- Improved app icon.
+- Introduced BartyCrouch tool for localization consolidation.
+- Translation updates.
+- Updated to Tor.framework 406.9.2 containing Tor 0.4.6.9 and OpenSSL 1.1.1m. 
+- Fixed build on Apple Silicon. 
+- Moved shared proxy config code to IPtProxyUI library.
+- Updated IPtProxy to 1.4.0 containing latest fixes to Snowflake and Obfs4proxy.
+
 ## 2.7.7
 
 - Finally added Greek to app translation. Not complete, yet, but mostly.
