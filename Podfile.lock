@@ -7,25 +7,24 @@ PODS:
   - FavIcon (3.1.0)
   - ImageRow (4.0.0):
     - Eureka (~> 5.0)
-  - IPtProxy (1.3.0)
-  - IPtProxyUI (1.5.0):
+  - IPtProxy (1.4.0)
+  - IPtProxyUI (1.6.0):
     - Eureka (~> 5.3)
     - ImageRow (~> 4.0)
-    - IPtProxy (~> 1.3)
+    - IPtProxy (~> 1.4)
     - MBProgressHUD (~> 1.2)
     - ReachabilitySwift (~> 5.0)
   - MBProgressHUD (1.2.0)
   - OCMock (3.9.1)
-  - OCSPCache (0.1.1):
-    - OpenSSL-Universal (= 1.0.2.17)
-    - ReactiveObjC (= 3.1.1)
-  - OpenSSL-Universal (1.0.2.17)
   - ReachabilitySwift (5.0.0)
   - ReactiveObjC (3.1.1)
   - SDCAlertView (10.0)
-  - Tor/Core (406.8.2)
-  - Tor/GeoIP (406.8.2):
+  - Tor/Core (406.9.2)
+  - Tor/GeoIP (406.9.2):
     - Tor/Core
+  - Tor/OCSPCache (406.9.2):
+    - ReactiveObjC (~> 3.1.1)
+    - Tor/GeoIP
   - TUSafariActivity (1.0.4)
   - VForceTouch (0.0.2)
 
@@ -33,12 +32,11 @@ DEPENDENCIES:
   - CSPHeader (~> 0.6)
   - DTFoundation/DTASN1
   - FavIcon (from `https://github.com/tladesignz/FavIcon.git`)
-  - IPtProxyUI (~> 1.5)
+  - IPtProxyUI (~> 1.6)
   - MBProgressHUD (~> 1.2)
   - OCMock
-  - OCSPCache (from `https://github.com/Psiphon-Labs/OCSPCache`)
   - SDCAlertView (~> 10)
-  - Tor/GeoIP (~> 406.8)
+  - Tor/OCSPCache (from `https://raw.githubusercontent.com/tladesignz/Tor.framework/ocspcache/Tor.podspec`)
   - TUSafariActivity
   - VForceTouch
 
@@ -52,27 +50,26 @@ SPEC REPOS:
     - IPtProxyUI
     - MBProgressHUD
     - OCMock
-    - OpenSSL-Universal
     - ReachabilitySwift
     - ReactiveObjC
     - SDCAlertView
-    - Tor
     - TUSafariActivity
     - VForceTouch
 
 EXTERNAL SOURCES:
   FavIcon:
     :git: https://github.com/tladesignz/FavIcon.git
-  OCSPCache:
-    :git: https://github.com/Psiphon-Labs/OCSPCache
+  Tor:
+    :podspec: https://raw.githubusercontent.com/tladesignz/Tor.framework/ocspcache/Tor.podspec
 
 CHECKOUT OPTIONS:
   FavIcon:
     :commit: 9969d1aaffced321facc66d20c82e7eab2a8aa98
     :git: https://github.com/tladesignz/FavIcon.git
-  OCSPCache:
-    :commit: 5149e736dc1cd292e13d93cbc69d91a8c3478d9c
-    :git: https://github.com/Psiphon-Labs/OCSPCache
+  Tor:
+    :commit: afcdef5485b79d01972668ffaf31c66c01f376d8
+    :git: https://github.com/tladesignz/Tor.framework.git
+    :submodules: true
 
 SPEC CHECKSUMS:
   CSPHeader: b28ad862745eb26644109f3a3aa3f5e318dcb9fe
@@ -80,19 +77,17 @@ SPEC CHECKSUMS:
   Eureka: 60cf058f86a8fb3ed26165ba5292b9850361b0a6
   FavIcon: 21651b47d8f6b33517973859f85e2cb6f9fcfaee
   ImageRow: e65b2e1a33f89062bf2a553a2aad61d975eb7428
-  IPtProxy: dfedd11a62c1428c67b2fa7cb0d272ae432cfc5f
-  IPtProxyUI: 02bd19a6ecd28bae38d90dfa9d2f6e08a6f74b09
+  IPtProxy: db05b9af523b0df1605e14ed4e234c7cc3b15b00
+  IPtProxyUI: 00f512d13cd9ba3ad1c8269c2a21f97718f1eaa7
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   OCMock: 9491e4bec59e0b267d52a9184ff5605995e74be8
-  OCSPCache: 090d054dbf8f31602896d2527a8bd69d49515695
-  OpenSSL-Universal: ff04c2e6befc3f1247ae039e60c93f76345b3b5a
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
   SDCAlertView: 5fbc48cae6d7bf9781097e3f27883924ef3b922c
-  Tor: a1bab7ff724cce3621f0a840b0291c48f9888d6c
+  Tor: 2eaa84af8cf95cb8c4ab564f6fbf9b7fa44dd6c7
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
   VForceTouch: b5c3a28625269e1818cf915728173bda9f669d6b
 
-PODFILE CHECKSUM: d624481fb5a1964c04127e927da4b050f8b0f0ab
+PODFILE CHECKSUM: 6727523b3b857185a12ce9fc40f49e4d8d616031
 
 COCOAPODS: 1.11.2

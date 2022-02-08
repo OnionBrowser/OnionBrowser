@@ -10,6 +10,7 @@
 
 import UIKit
 import IPtProxyUI
+import Tor
 
 extension Tab: UIWebViewDelegate {
 

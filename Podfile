@@ -1,3 +1,5 @@
+use_frameworks!
+
 platform :ios, '11.4'
 
 #source 'https://cdn.cocoapods.org/'
@@ -9,16 +11,15 @@ target 'OnionBrowser2' do
   pod 'TUSafariActivity'
   pod 'VForceTouch'
 
-  pod 'OCSPCache', :git => 'https://github.com/Psiphon-Labs/OCSPCache'
-
   pod 'CSPHeader', '~> 0.6'
 
   pod 'SDCAlertView', '~> 10'
   pod 'FavIcon', :git => 'https://github.com/tladesignz/FavIcon.git'
-  pod 'MBProgressHUD', '~> 1.2', :modular_headers => true
+  pod 'MBProgressHUD', '~> 1.2'
 
-  pod 'Tor/GeoIP', '~> 406.8'
-  pod 'IPtProxyUI', '~> 1.5'
+  pod 'Tor/OCSPCache', :podspec => 'https://raw.githubusercontent.com/tladesignz/Tor.framework/ocspcache/Tor.podspec' #:git => 'https://github.com/tladesignz/Tor.framework.git', :branch => 'ocspcache'
+
+  pod 'IPtProxyUI', '~> 1.6'
 end
 
 target 'OnionBrowser2 Tests' do
