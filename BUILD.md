@@ -2,11 +2,10 @@
 ## Build Dependencies
 Onion Browser uses [CocoaPods](https://cocoapods.org/) as its dependency manager.
 
-There's 2 dependencies, which contain precompiled frameworks. If you run into trouble, you 
-might want to investigate there:
+There is a dependency, which contains a precompiled framework. If you run into 
+trouble, you might want to investigate there:
 
 - [IPtProxy](https://cocoapods.org/pods/IPtProxy)
-- [Tor.framework](https://github.com/iCepa/Tor.framework)
 
 ## Steps to build Onion Browser 2.X
 
@@ -18,6 +17,12 @@ pod repo update
 pod install
 open OnionBrowser2.xcworkspace
 ```
+
+The latest [Tor.framework](https://github.com/iCepa/Tor.framework/blob/pure_pod/) 
+will compile Tor, OpenSSL, libevent and liblzma during the build process of the 
+depending app. So please also have a look at the 
+[build instructions over there](https://github.com/iCepa/Tor.framework/blob/pure_pod/README.md#Installation),
+for any required tooling which needs to be in place.  
 
 
 ## Edit Config.xcconfig
