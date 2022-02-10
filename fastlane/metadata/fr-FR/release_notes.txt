@@ -1,3 +1,4 @@
-– L’appli est finalement proposée en grec. La traduction n’est pas encore terminée, mais presque.
-– Migration active des marque-pages oignon par défaut de v2 à v3.
-– Une rétroaction est affichée si les paramètres de pont sont changés lors du démarrage.
+– Amélioration de l’icône de l’appli.
+– Mises à jour des traductions.
+– Mise à jour de Tor vers 0.4.6.9 et d’OpenSSL vers 1.1.1m.
+– Mise à jour vers les versions les plus récentes de Snowflake et d’Obfs4proxy avec correctifs et améliorations.

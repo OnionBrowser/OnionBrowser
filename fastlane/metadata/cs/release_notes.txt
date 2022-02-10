@@ -1,3 +1,4 @@
-- Konečně jsme přidali překlad do řečtiny. Ještě ale není úplně kompletní.
-- Aktivní migrace v2 onion implicitních záložek na v3.
-- Přidána zpětná vazba při změně nastavení bridge během spuštění.
+- Vylepšená ikona aplikace.
+- Aktualizace překladů
+- Aktualizován Tor na 0.4.6.9 a OpenSSL na 1.1.1.m.
+- Aktualizováno na nejnovější Snowflake a Obfs4proxy obsahuje opravy a vylepšení

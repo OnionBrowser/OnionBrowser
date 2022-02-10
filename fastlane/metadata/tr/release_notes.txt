@@ -1,3 +1,4 @@
-- Sonunda Yunanca çevirisi eklendi. Henüz tam değil ancak çoğu bitti.
-- 2. sürüm onion varsayılan yer imleri 3. sürüme aktarıldı.
-- Başlangıçta köprü ayarlarının değişmesi durumunda geri bildirim eklendi. 
+- Uygulama simgesi geliştirildi.
+- Çeviriler güncellendi.
+- Tor 0.4.6.9, OpenSSL 1.1.1m sürümüne güncellendi.
+- Snowflake ve Obfs4proxy güncel sürümlerine yükseltildi, düzeltme ve geliştirmeler yapıldı.
