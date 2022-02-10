@@ -7,11 +7,11 @@ PODS:
   - FavIcon (3.1.0)
   - ImageRow (4.0.0):
     - Eureka (~> 5.0)
-  - IPtProxy (1.4.0)
-  - IPtProxyUI (1.6.0):
+  - IPtProxy (1.5.0)
+  - IPtProxyUI (1.7.0):
     - Eureka (~> 5.3)
     - ImageRow (~> 4.0)
-    - IPtProxy (~> 1.4)
+    - IPtProxy (~> 1.5)
     - MBProgressHUD (~> 1.2)
     - ReachabilitySwift (~> 5.0)
   - MBProgressHUD (1.2.0)
@@ -32,7 +32,7 @@ DEPENDENCIES:
   - CSPHeader (~> 0.6)
   - DTFoundation/DTASN1
   - FavIcon (from `https://github.com/tladesignz/FavIcon.git`)
-  - IPtProxyUI (~> 1.6)
+  - IPtProxyUI (~> 1.7)
   - MBProgressHUD (~> 1.2)
   - OCMock
   - SDCAlertView (~> 10)
@@ -77,8 +77,8 @@ SPEC CHECKSUMS:
   Eureka: 60cf058f86a8fb3ed26165ba5292b9850361b0a6
   FavIcon: 21651b47d8f6b33517973859f85e2cb6f9fcfaee
   ImageRow: e65b2e1a33f89062bf2a553a2aad61d975eb7428
-  IPtProxy: db05b9af523b0df1605e14ed4e234c7cc3b15b00
-  IPtProxyUI: 00f512d13cd9ba3ad1c8269c2a21f97718f1eaa7
+  IPtProxy: 495462962af8a779365581dd5908118af3793e7b
+  IPtProxyUI: d62f08714bb925d2cf3f25967cec4d694e02d381
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   OCMock: 9491e4bec59e0b267d52a9184ff5605995e74be8
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
@@ -88,6 +88,6 @@ SPEC CHECKSUMS:
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
   VForceTouch: b5c3a28625269e1818cf915728173bda9f669d6b
 
-PODFILE CHECKSUM: 6727523b3b857185a12ce9fc40f49e4d8d616031
+PODFILE CHECKSUM: 570b52b9fe4eab7d52cf99c640f774987b1a78ce
 
 COCOAPODS: 1.11.2
