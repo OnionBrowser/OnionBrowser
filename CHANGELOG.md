@@ -8,6 +8,7 @@
 - Fixed build on Apple Silicon. 
 - Moved shared proxy config code to IPtProxyUI library.
 - Updated IPtProxy to 1.4.0 containing latest fixes to Snowflake and Obfs4proxy.
+- Added Khmer translation.
 
 ## 2.7.7
 
