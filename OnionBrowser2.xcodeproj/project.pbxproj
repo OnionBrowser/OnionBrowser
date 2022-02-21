@@ -804,6 +804,10 @@
 		A0DB0F1D2518B94800B2D779 /* first_name.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = first_name.txt; sourceTree = "<group>"; };
 		A0DB0F1E2518B94800B2D779 /* phone_number.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = phone_number.txt; sourceTree = "<group>"; };
 		A0DB59522747D36200B20436 /* Tor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Tor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0DDC9F227C3998A001EF090 /* km */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = km; path = km.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A0DDC9F327C3998A001EF090 /* km */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = km; path = km.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		A0DDC9F427C3998A001EF090 /* km */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = km; path = "km.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A0DDC9F527C3998A001EF090 /* km */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = km; path = ../Resources/km.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A0F2FB052423AB92003CC61A /* AboutSecurityLevelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutSecurityLevelsViewController.swift; sourceTree = "<group>"; };
 		A0F66E1724475B0C0094FEB2 /* release_notes.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = release_notes.txt; sourceTree = "<group>"; };
 		A0FD5A44265E434A00DF96EF /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = pl; path = pl.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
@@ -2094,6 +2098,7 @@
 				ko,
 				pl,
 				el,
+				km,
 			);
 			mainGroup = 01801E891A32CA2A002B4718;
 			productRefGroup = 01801E931A32CA2A002B4718 /* Products */;
@@ -2481,6 +2486,7 @@
 				A0FD5A53265E43BD00DF96EF /* th */,
 				A0FD5A54265E43BF00DF96EF /* tr-TR */,
 				A0FD5A55265E43C200DF96EF /* vi */,
+				A0DDC9F327C3998A001EF090 /* km */,
 			);
 			name = Localizable.stringsdict;
 			sourceTree = "<group>";
@@ -2521,6 +2527,7 @@
 				A021D56C2756CD590009F02A /* tr-TR */,
 				A021D56D2756CD5A0009F02A /* uk */,
 				A021D56E2756CD5C0009F02A /* vi */,
+				A0DDC9F227C3998A001EF090 /* km */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -2561,6 +2568,7 @@
 				A0D045FB27395421002F003B /* tr-TR */,
 				A0D045FC27395425002F003B /* uk */,
 				A0D045FD27395428002F003B /* vi */,
+				A0DDC9F527C3998A001EF090 /* km */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2595,6 +2603,7 @@
 				A021D5872756CE6D0009F02A /* th */,
 				A021D5882756CE6F0009F02A /* tr-TR */,
 				A021D5892756CE710009F02A /* vi */,
+				A0DDC9F427C3998A001EF090 /* km */,
 			);
 			name = "security-levels.html";
 			sourceTree = "<group>";

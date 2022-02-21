@@ -97,6 +97,8 @@ These people helped with translations. Thank you so much, folks!
   EllipticSet, Rhaal, RickDeckard, ryuw
 - Irish: 
   kscanne
+- Khmer:
+  Cantaloupe, PisethKONG, mosesngeth, rasy, sokty, sophatchy
 - Korean:
   MinGyu19, jmj050716, sector429
 - Japanese: 
