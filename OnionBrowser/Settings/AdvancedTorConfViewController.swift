@@ -80,7 +80,7 @@ class AdvancedTorConfViewController: FixedFormViewController {
 			header.textLabel?.text = NSLocalizedString("Add additional command line options for Tor startup.", comment: "")
 				+ "\n\n"
 				+ String(format: NSLocalizedString("Refer to %@ for possible options.", comment: ""),
-						 "https://www.torproject.org/docs/tor-manual.html")
+						 "https://2019.www.torproject.org/docs/tor-manual.html")
 				+ "\n\n"
 				+ NSLocalizedString("Changing this option requires restarting the app.", comment: "")
 				+ "\n\n"

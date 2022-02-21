@@ -412,7 +412,7 @@
 /* SettingsViewController */
 "Rate on App Store" = "Rate on App Store";
 
-/* AdvancedTorConfViewController; placeholder is URL https://www.torproject.org/docs/tor-manual.html */
+/* AdvancedTorConfViewController; placeholder is URL https://2019.www.torproject.org/docs/tor-manual.html */
 "Refer to %@ for possible options." = "Refer to %@ for possible options.";
 
 /* AppDelegate */
