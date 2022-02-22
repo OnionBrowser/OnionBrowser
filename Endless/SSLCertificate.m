@@ -108,9 +108,19 @@ static NSMutableDictionary <NSData *, NSMutableDictionary *> *certCache = nil;
 		return nil;
 	
 	NSArray *cData = [self safeFetchFromArray:cert atIndex:0 withType:[NSArray class]];
-	if (cData == nil)
-		return nil;
-	
+	if (cData == nil) {
+		NSDictionary *cDic = [self safeFetchFromArray:cert atIndex:0 withType:[NSDictionary class]];
+		if (cDic == nil) {
+			return nil;
+		}
+
+		cData = [self safeFetchFromArray:cDic[cDic.allKeys.firstObject] atIndex:0 withType:[NSArray class]];
+
+		if (cData == nil) {
+			return nil;
+		}
+	}
+
 	/* X.509 version (0-based - https://tools.ietf.org/html/rfc2459#section-4.1) */
 	NSNumber *tver = [self safeFetchFromArray:cData atIndex:0 withType:[NSNumber class]];
 	if (tver == nil)
@@ -256,7 +266,7 @@ static NSMutableDictionary <NSData *, NSMutableDictionary *> *certCache = nil;
 
 - (BOOL)isExpired
 {
-	return ([self validityNotAfter] > [NSDate date]);
+	return (NSDate.date > self.validityNotAfter);
 }
 
 - (BOOL)hasWeakSignatureAlgorithm
