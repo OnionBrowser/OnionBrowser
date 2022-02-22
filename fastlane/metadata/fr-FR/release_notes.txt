@@ -2,3 +2,4 @@
 – Mises à jour des traductions.
 – Mise à jour de Tor vers 0.4.6.9 et d’OpenSSL vers 1.1.1m.
 – Mise à jour vers les versions les plus récentes de Snowflake et d’Obfs4proxy avec correctifs et améliorations.
+– Ajout de la traduction en khmer.

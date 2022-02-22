@@ -2,3 +2,4 @@
 - Çeviriler güncellendi.
 - Tor 0.4.6.9, OpenSSL 1.1.1m sürümüne güncellendi.
 - Snowflake ve Obfs4proxy güncel sürümlerine yükseltildi, düzeltme ve geliştirmeler yapıldı.
+- Kmerce çevirisi eklendi.

@@ -1,3 +1,4 @@
-- Finalmente se añadió Griego a la traducción de la aplicación. No está completo, aún, pero casi.
-- Migración activa de los marcadores onion v2 predeterminados a v3.
-- Se añadieron comentarios, cuando las configuracxiones de puentes fueron cambiadas durante el inicio.
+- Ícono de la aplicación mejorado.
+- Actualización de las traducciones.
+- Actualización de Tor a 0.4.6.9 y OpenSSL a 1.1.1m.
+- Actualizado a los últimos Snowflake y Obfs4proxy conteniendo arreglos y mejoras.
