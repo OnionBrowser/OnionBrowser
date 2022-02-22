@@ -11,5 +11,6 @@
 #ifndef OnionBrowser2_Tests_Bridging_Header_h
 #define OnionBrowser2_Tests_Bridging_Header_h
 
+#import "NSString+IPAddress.h"
 
 #endif /* OnionBrowser2_Tests_Bridging_Header_h */

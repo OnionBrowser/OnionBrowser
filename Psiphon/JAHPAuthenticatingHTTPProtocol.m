@@ -47,7 +47,6 @@
  */
 
 #import "CookieJar.h"
-#import "HSTSCache.h"
 #import "HTTPSEverywhere.h"
 #import "OCSPAuthURLSessionDelegate.h"
 
@@ -597,7 +596,7 @@ static NSString * kJAHPRecursiveRequestFlagProperty = @"com.jivesoftware.JAHPAut
 	}
 
 	/* check HSTS cache first to see if scheme needs upgrading */
-	mutableRequest.URL = [AppDelegate.shared.hstsCache rewrittenURI:request.URL];
+	mutableRequest.URL = [AppDelegate.shared.hstsCache rewriteURL:request.URL];
 
 	/* then check HTTPS Everywhere (must pass all URLs since some rules are not just scheme changes */
 	NSArray *hteRules = [HTTPSEverywhere potentiallyApplicableRulesForHost:[[request URL] host]];
@@ -1489,10 +1488,10 @@ didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
 
 	if ([self.request.URL.scheme.lowercaseString isEqualToString:@"https"])
 	{
-		NSString *hsts = [self caseInsensitiveHeader:HSTS_HEADER inResponse:httpResponse];
+		NSString *hsts = [self caseInsensitiveHeader:HstsCache.hstsHeader inResponse:httpResponse];
 
-		if (hsts && ![hsts isEqualToString:@""]) {
-			[AppDelegate.shared.hstsCache parseHSTSHeader:hsts forHost:self.request.URL.host];
+		if (hsts.length > 0) {
+			[AppDelegate.shared.hstsCache parseHstsHeader:hsts for:self.request.URL.host];
 		}
 	}
 

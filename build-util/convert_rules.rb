@@ -6,8 +6,8 @@
 # See LICENSE file for redistribution terms.
 #
 
-require "active_support/core_ext/hash/conversions"
-require "plist"
+#require "active_support/core_ext/hash/conversions"
+#require "plist"
 require "json"
 require "net/https"
 require "uri"
@@ -121,4 +121,4 @@ def convert_hsts_preload
 end
 
 convert_https_e
-convert_hsts_preload
+# convert_hsts_preload

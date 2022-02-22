@@ -19,5 +19,5 @@
 #import "UIResponder+FirstResponder.h"
 #import "CookieJar.h"
 #import "CertificateAuthentication.h"
-#import "HSTSCache.h"
 #import "MBProgressHUD.h"
+#import "NSString+IPAddress.h"

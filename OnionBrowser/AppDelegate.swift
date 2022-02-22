@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 	let certificateAuthentication = CertificateAuthentication()
 
 	@objc
-	let hstsCache = HSTSCache.retrieve()
+	let hstsCache = HstsCache.shared
 
 	@objc
 	let cookieJar = BetterCookieJar()
@@ -214,7 +214,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 			DispatchQueue.global(qos: .background).async {
 				let taskId = application.beginBackgroundTask(expirationHandler: nil)
 
-				self.hstsCache?.persist()
+				self.hstsCache.persist()
 
 				application.endBackgroundTask(taskId)
 			}

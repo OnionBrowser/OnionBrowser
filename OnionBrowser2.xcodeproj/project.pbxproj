@@ -34,7 +34,6 @@
 		01F2AE461B827D3E00D5651A /* wildcard.pushover.net.crt in Resources */ = {isa = PBXBuildFile; fileRef = 01F2AE441B827D3E00D5651A /* wildcard.pushover.net.crt */; };
 		01F2AE481B82822600D5651A /* paypal.com.crt in Resources */ = {isa = PBXBuildFile; fileRef = 01F2AE471B82822600D5651A /* paypal.com.crt */; };
 		01F2AE4A1B82835A00D5651A /* expired.superblock.net.crt in Resources */ = {isa = PBXBuildFile; fileRef = 01F2AE491B82835A00D5651A /* expired.superblock.net.crt */; };
-		01F7CB491A5253DD00F42B73 /* HSTSCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F7CB481A5253DD00F42B73 /* HSTSCache.m */; };
 		01F7CB4B1A526B9C00F42B73 /* HSTSCache_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F7CB4A1A526B9C00F42B73 /* HSTSCache_Tests.m */; };
 		01F7CB4E1A52FC4E00F42B73 /* NSString+IPAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F7CB4D1A52FC4E00F42B73 /* NSString+IPAddress.m */; };
 		01F8793B1A4108DD00A63654 /* URLBlocker.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F8793A1A4108DD00A63654 /* URLBlocker.m */; };
@@ -74,7 +73,6 @@
 		A068DD9C240D392B00BF46E3 /* HTTPSEverywhere.m in Sources */ = {isa = PBXBuildFile; fileRef = 018333C91A3505FB00670CD1 /* HTTPSEverywhere.m */; };
 		A068DD9D240D393200BF46E3 /* HTTPSEverywhereRule.m in Sources */ = {isa = PBXBuildFile; fileRef = 018333D11A35291200670CD1 /* HTTPSEverywhereRule.m */; };
 		A068DD9E240D394900BF46E3 /* URLBlocker.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F8793A1A4108DD00A63654 /* URLBlocker.m */; };
-		A068DD9F240D395B00BF46E3 /* HSTSCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F7CB481A5253DD00F42B73 /* HSTSCache.m */; };
 		A068DDA0240D425200BF46E3 /* NSString+IPAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F7CB4D1A52FC4E00F42B73 /* NSString+IPAddress.m */; };
 		A0696EAD2406C7D000512695 /* SyncViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0696EAC2406C7D000512695 /* SyncViewController.swift */; };
 		A0696EAF2406D94200512695 /* Nextcloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0696EAE2406D94200512695 /* Nextcloud.swift */; };
@@ -86,6 +84,7 @@
 		A08737E1221324B5005A68CC /* HostSettings_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = A08737DF2213235F005A68CC /* HostSettings_Tests.m */; };
 		A099B8B723CF60C800B50998 /* InitSecurityLevelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A099B8B523CF60C800B50998 /* InitSecurityLevelViewController.xib */; };
 		A099B8B823CF60C800B50998 /* InitSecurityLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A099B8B623CF60C800B50998 /* InitSecurityLevelViewController.swift */; };
+		A0BD934127C4FABC00A76230 /* HstsCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CCF46327C3E7250003668A /* HstsCache.swift */; };
 		A0BF51E423AFBF250096624A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51A023AFBF250096624A /* Localizable.strings */; };
 		A0BF51E523AFBF250096624A /* urlblocker.json in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51AE23AFBF250096624A /* urlblocker.json */; };
 		A0BF51E623AFBF250096624A /* https-everywhere_rules.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51B223AFBF250096624A /* https-everywhere_rules.plist */; };
@@ -157,9 +156,12 @@
 		A0BF528523AFC6D10096624A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A0BF528323AFC6D10096624A /* InfoPlist.strings */; };
 		A0C26E4323D8650E00C4AF1C /* security-levels.html in Resources */ = {isa = PBXBuildFile; fileRef = A0C26E4523D8650E00C4AF1C /* security-levels.html */; };
 		A0C3770E1F47342C0039198E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0C3770D1F47342C0039198E /* CoreData.framework */; };
+		A0CCF46427C3E7250003668A /* HstsCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CCF46327C3E7250003668A /* HstsCache.swift */; };
 		A0D070FD275A513700922D70 /* FileManager+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D070FC275A513700922D70 /* FileManager+Helpers.swift */; };
 		A0D9008B24095F5C0046C9B3 /* AltSvcHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D9008A24095F5C0046C9B3 /* AltSvcHeader.swift */; };
 		A0F2FB062423AB92003CC61A /* AboutSecurityLevelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F2FB052423AB92003CC61A /* AboutSecurityLevelsViewController.swift */; };
+		A0F8BE8527C50549002D2999 /* FileManager+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D070FC275A513700922D70 /* FileManager+Helpers.swift */; };
+		A0F8BE8627C50586002D2999 /* AltSvcHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D9008A24095F5C0046C9B3 /* AltSvcHeader.swift */; };
 		C91B8EA8A49FB896C8934A05 /* Pods_OnionBrowser2_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC8170F2B3C02D5D8C8FAC99 /* Pods_OnionBrowser2_Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -218,8 +220,6 @@
 		01F2AE441B827D3E00D5651A /* wildcard.pushover.net.crt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = wildcard.pushover.net.crt; path = SSLCertificates/wildcard.pushover.net.crt; sourceTree = "<group>"; };
 		01F2AE471B82822600D5651A /* paypal.com.crt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = paypal.com.crt; path = SSLCertificates/paypal.com.crt; sourceTree = "<group>"; };
 		01F2AE491B82835A00D5651A /* expired.superblock.net.crt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = expired.superblock.net.crt; path = SSLCertificates/expired.superblock.net.crt; sourceTree = "<group>"; };
-		01F7CB471A5253DD00F42B73 /* HSTSCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSTSCache.h; sourceTree = "<group>"; };
-		01F7CB481A5253DD00F42B73 /* HSTSCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSTSCache.m; sourceTree = "<group>"; };
 		01F7CB4A1A526B9C00F42B73 /* HSTSCache_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSTSCache_Tests.m; sourceTree = "<group>"; };
 		01F7CB4C1A52FC4E00F42B73 /* NSString+IPAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+IPAddress.h"; sourceTree = "<group>"; };
 		01F7CB4D1A52FC4E00F42B73 /* NSString+IPAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+IPAddress.m"; sourceTree = "<group>"; };
@@ -440,6 +440,7 @@
 		A07D655C2208A4320002D775 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.markdown; };
 		A07D655D2208A6DA0002D775 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		A085A1EC270DAB8600800A29 /* SECURITY.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = SECURITY.md; sourceTree = "<group>"; };
+		A086A9AF27C3C79B00E6C0BB /* update-hsts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "update-hsts.swift"; sourceTree = "<group>"; };
 		A08737DF2213235F005A68CC /* HostSettings_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HostSettings_Tests.m; sourceTree = "<group>"; };
 		A0894E36236AE7C800EE2743 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		A08C092B24C2F7CD00C269FD /* subtitle.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = subtitle.txt; sourceTree = "<group>"; };
@@ -761,6 +762,7 @@
 		A0C3FD0A2438A0B800FDB9BE /* promotional_text.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = promotional_text.txt; sourceTree = "<group>"; };
 		A0C3FD0B2438A0BD00FDB9BE /* name.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = name.txt; sourceTree = "<group>"; };
 		A0C3FD0C2438A0C200FDB9BE /* marketing_url.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = marketing_url.txt; sourceTree = "<group>"; };
+		A0CCF46327C3E7250003668A /* HstsCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HstsCache.swift; sourceTree = "<group>"; };
 		A0D045DD273953B3002F003B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = ../Resources/en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A0D045DE273953B7002F003B /* sq */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sq; path = ../Resources/sq.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A0D045DF273953BB002F003B /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ../Resources/ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -892,8 +894,6 @@
 			children = (
 				010EEA671A43C8CF001E8B65 /* CookieJar.h */,
 				010EEA681A43C8CF001E8B65 /* CookieJar.m */,
-				01F7CB471A5253DD00F42B73 /* HSTSCache.h */,
-				01F7CB481A5253DD00F42B73 /* HSTSCache.m */,
 				018333C81A3505FB00670CD1 /* HTTPSEverywhere.h */,
 				018333C91A3505FB00670CD1 /* HTTPSEverywhere.m */,
 				018333D01A35291200670CD1 /* HTTPSEverywhereRule.h */,
@@ -1362,6 +1362,7 @@
 			isa = PBXGroup;
 			children = (
 				A0BF519C23AFBCFA0096624A /* convert_rules.rb */,
+				A086A9AF27C3C79B00E6C0BB /* update-hsts.swift */,
 				A07D65582208A2540002D775 /* mk_build_versions.sh */,
 				A07D65592208A2540002D775 /* decode_bundle_version.sh */,
 				A07D655A2208A2540002D775 /* decimalize_git_hash.bash */,
@@ -1850,6 +1851,7 @@
 				A0BF51F923AFC3580096624A /* Migration */,
 				A07037C523C7571B00D670EC /* AppDelegate.swift */,
 				A079A39E2705D85D00917CDB /* BetterCookieJar.swift */,
+				A0CCF46327C3E7250003668A /* HstsCache.swift */,
 				A0BF523323AFC3580096624A /* OnionManager.swift */,
 				A0BF523023AFC3580096624A /* OnionBrowser2-Bridging-Header.h */,
 				A0BF520023AFC3580096624A /* version.h */,
@@ -1990,6 +1992,7 @@
 			buildPhases = (
 				9F5722442F9CB3FF2F35FEEB /* [CP] Check Pods Manifest.lock */,
 				A06F5F4A275692870023622E /* BartyCrouch */,
+				A0F8BE8727C5123A002D2999 /* Update HSTS List */,
 				01801E8E1A32CA2A002B4718 /* Sources */,
 				01801E8F1A32CA2A002B4718 /* Frameworks */,
 				01801E901A32CA2A002B4718 /* Resources */,
@@ -2306,6 +2309,24 @@
 			shellPath = /bin/sh;
 			shellScript = "if which bartycrouch > /dev/null; then\n    bartycrouch update -x\n    bartycrouch lint -x\nelse\n    echo \"warning: BartyCrouch not installed, download it from https://github.com/Flinesoft/BartyCrouch\"\nfi\n";
 		};
+		A0F8BE8727C5123A002D2999 /* Update HSTS List */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Update HSTS List";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$SRCROOT\"/build-util/update-hsts.swift\n";
+		};
 		D9FF86538B1D1A09599C3806 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2337,6 +2358,7 @@
 				A0BF526B23AFC3580096624A /* Settings.swift in Sources */,
 				A0BF525323AFC3580096624A /* Tab.swift in Sources */,
 				A0BF525D23AFC3580096624A /* LiveSearchViewController.swift in Sources */,
+				A0CCF46427C3E7250003668A /* HstsCache.swift in Sources */,
 				A0BF526C23AFC3580096624A /* CustomSitesViewController.swift in Sources */,
 				A0BF527C23AFC3580096624A /* UIView+Helpers.swift in Sources */,
 				A0BF524823AFC3580096624A /* Bridge.m in Sources */,
@@ -2398,7 +2420,6 @@
 				018333CA1A3505FB00670CD1 /* HTTPSEverywhere.m in Sources */,
 				A07037C623C7571B00D670EC /* AppDelegate.swift in Sources */,
 				A0BF526823AFC3580096624A /* BookmarkCell.swift in Sources */,
-				01F7CB491A5253DD00F42B73 /* HSTSCache.m in Sources */,
 				A0BF526123AFC3580096624A /* BookmarkViewController.swift in Sources */,
 				A0BF526A23AFC3580096624A /* SecurityPresetsRow.swift in Sources */,
 				A0BF526E23AFC3580096624A /* Storage2ViewController.swift in Sources */,
@@ -2426,14 +2447,16 @@
 				A068DD9A240D37FB00BF46E3 /* HostSettings.swift in Sources */,
 				A03DBCEF22859B99001890C4 /* Config.m in Sources */,
 				A068DD9B240D391100BF46E3 /* SSLCertificate.m in Sources */,
+				A0F8BE8527C50549002D2999 /* FileManager+Helpers.swift in Sources */,
 				01F7CB4B1A526B9C00F42B73 /* HSTSCache_Tests.m in Sources */,
 				A068DD9D240D393200BF46E3 /* HTTPSEverywhereRule.m in Sources */,
 				A068DD99240D348300BF46E3 /* AltSvcHeader_Tests.swift in Sources */,
 				A068DD9C240D392B00BF46E3 /* HTTPSEverywhere.m in Sources */,
 				A08737E1221324B5005A68CC /* HostSettings_Tests.m in Sources */,
 				A068DD9E240D394900BF46E3 /* URLBlocker.m in Sources */,
-				A068DD9F240D395B00BF46E3 /* HSTSCache.m in Sources */,
+				A0F8BE8627C50586002D2999 /* AltSvcHeader.swift in Sources */,
 				018333DC1A35727C00670CD1 /* HTTPSEverywhere_Tests.m in Sources */,
+				A0BD934127C4FABC00A76230 /* HstsCache.swift in Sources */,
 				01F2AE421B827BC200D5651A /* SSLCertificate_Tests.m in Sources */,
 				A068DDA0240D425200BF46E3 /* NSString+IPAddress.m in Sources */,
 			);
