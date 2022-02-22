@@ -5,6 +5,8 @@
 //  Created by Benjamin Erhart on 30.09.21.
 //  Copyright © 2021 Tigas Ventures, LLC (Mike Tigas). All rights reserved.
 //
+//  This file is part of Onion Browser. See LICENSE file for redistribution terms.
+//
 
 import UIKit
 

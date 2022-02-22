@@ -76,7 +76,7 @@ class AltSvcHeader_Tests: XCTestCase {
 
 		XCTAssertNotNil(service)
 
-		print("maxAge=\(service?.maxAge), maxAgeAbsolute=\(service!.maxAgeAbsolute), timeIntervalSinceNow=\(service!.maxAgeAbsolute.timeIntervalSinceNow)")
+		print("maxAge=\(service!.maxAge), maxAgeAbsolute=\(service!.maxAgeAbsolute), timeIntervalSinceNow=\(service!.maxAgeAbsolute.timeIntervalSinceNow)")
 
 		XCTAssertGreaterThan(service!.maxAgeAbsolute.timeIntervalSinceNow, 0)
 	}
