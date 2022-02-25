@@ -1,3 +1,5 @@
-- Cuối cùng đã thêm tiếng Hy Lạp vào bản dịch ứng dụng. Chưa hoàn thành, nhưng chủ yếu.
-- Tích cực di chuyển dấu trang mặc định của củ hành v2 sang phiên bản v3.
-- Đã thêm phản hồi, khi cài đặt cầu được thay đổi trong quá trình khởi động.
+- Cải thiện biểu tượng ứng dụng.
+- Cập nhật bản dịch.
+- Cập nhật lên Tor 0.4.6.9 và OpenSSL 1.1.1m.
+- Cập nhật lên Snowflake và Obfs4proxy mới nhất chứa các bản sửa lỗi và cải tiến.
+- Đã thêm bản dịch tiếng Khmer.

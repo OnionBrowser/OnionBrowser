@@ -1,3 +1,5 @@
-- S'ha afegit finalment una traducció parcial de l'idioma grec a l'aplicació.
-- Migració activa de les adreces d'interès onion v2 a v3.
-- S'ha afegit comentaris si canvien les opcions del pont durant l'inici.
+- Icona de l'aplicació millorada.
+- Actualitzacions de traducció.
+- Actualitzat a Tor 0.4.6.9 i OpenSSL 1.1.1m.
+- Actualitzat a l'últim Floquet de neu i Obfs4proxy que contenen correccions i millores.
+- S'ha afegit traducció khmer.

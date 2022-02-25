@@ -1,4 +1,5 @@
 - Vylepšená ikona aplikace.
-- Aktualizace překladů
+- Aktualizace překladů.
 - Aktualizován Tor na 0.4.6.9 a OpenSSL na 1.1.1.m.
-- Aktualizováno na nejnovější Snowflake a Obfs4proxy obsahuje opravy a vylepšení
+- Aktualizováno na nejnovější Snowflake a Obfs4proxy obsahuje opravy a vylepšení.
+- Přidán překlad khmerštiny.

@@ -1,3 +1,5 @@
-- Grego finalmente adicionado a tradução do aplicativo. Não está completo ainda, mas está quase.
-- Migração ativa dos favoritos padrão do onion v2 para o v3.
-- Adicionado comentários quando configurações de ponte for alterada durante a inicialização.
+- Ícone do aplicativo aprimorado.
+- Atualizações de tradução.
+- Atualizado para Tor 0.4.6.9 e OpenSSL 1.1.1m.
+- Atualizado para o Snowflake e o Obfs4proxy mais recentes, contendo correções e melhorias.
+- Adicionado tradução Khmer.

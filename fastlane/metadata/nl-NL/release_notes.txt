@@ -1,3 +1,5 @@
-- Eindelijk Grieks toegevoegd aan app-vertaling. Nog niet compleet, maar grotendeels.
-- Migreer actief v2 ui standaard bladwijzers naar v3.
-- Feedback toegevoegd, wanneer bridge-instellingen werden gewijzigd tijdens het opstarten.
+- Verbeterd app-pictogram.
+- Vertaalupdates.
+- Bijgewerkt naar Tor 0.4.6.9 en OpenSSL 1.1.1m.
+- Bijgewerkt naar de nieuwste Snowflake en Obfs4proxy met fixes en verbeteringen.
+- Khmer-vertaling toegevoegd.

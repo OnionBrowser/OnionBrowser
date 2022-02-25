@@ -1,3 +1,5 @@
-- Végre a görög nyelv hozzáadásra került az alkalmazás fordításához. Nem teljes még, de majdnem az.
-- Aktív migrációja a v2 onion könyvjelzőknek v3-ra.
-- Visszajelzés hozzáadva, amikor a híd beállítások módosulnak az indítás során.
+- Továbbfejlesztett alkalmazásikon.
+- Fordítási frissítések.
+- Frissítve Tor 0.4.6.9-re és OpenSSL 1.1.1m-re.
+- Frissítve a legújabb Snowflake-re és Obfs4proxy-ra, amely javításokat és fejlesztéseket tartalmaz.
+- Khmer fordítás hozzáadva.

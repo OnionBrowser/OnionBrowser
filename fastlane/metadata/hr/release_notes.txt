@@ -1,3 +1,5 @@
-- Konačno je dodan grčki prijevod, ali prijevod još nije kompletan.
-- Aktivno migriranje onion v2 standardnih oznaka u v3.
-- Dodane su povratne informacije, kad se postavke mosta promijene tijekom pokretanja.
+- Poboljšana ikona aplikacije.
+- Ažuriranja prijevoda.
+- Ažurirano na Tor 0.4.6.9 i OpenSSL 1.1.1m.
+- Ažurirano na najnovije Snowflake i Obfs4proxy koji sadrže popravke i poboljšanja.
+- Dodan kmerski prijevod.

@@ -1,3 +1,5 @@
-- Wreszcie dodano tłumaczenie greckie do aplikacji. Jeszcze nie kompletna, ale przede wszystkim.
-- Aktywna migracja domyślnych zakładek cebulowych z wersji 2 do wersji 3.
-- Dodano informację zwrotną, gdy ustawienia mostka zostały zmienione podczas uruchamiania.
+- Ulepszona ikona aplikacji.
+- Aktualizacje tłumaczeń.
+- Zaktualizowano do Tor 0.4.6.9 i OpenSSL 1.1.1m.
+- Zaktualizowano do najnowszych Snowflake i Obfs4proxy zawierających poprawki i ulepszenia.
+- Dodano tłumaczenie Khmerów.

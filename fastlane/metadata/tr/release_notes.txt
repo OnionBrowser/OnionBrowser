@@ -1,5 +1,5 @@
-- Uygulama simgesi geliştirildi.
-- Çeviriler güncellendi.
-- Tor 0.4.6.9, OpenSSL 1.1.1m sürümüne güncellendi.
-- Snowflake ve Obfs4proxy güncel sürümlerine yükseltildi, düzeltme ve geliştirmeler yapıldı.
-- Kmerce çevirisi eklendi.
+- Geliştirilmiş uygulama simgesi.
+- Çeviri güncellemeleri.
+- Tor 0.4.6.9 ve OpenSSL 1.1.1m'ye güncellendi.
+- Düzeltmeler ve iyileştirmeler içeren en son Snowflake ve Obfs4proxy'ye güncellendi.
+- Kmerce çeviri eklendi.

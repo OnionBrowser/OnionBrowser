@@ -1,3 +1,5 @@
-- Finalmente aggiunto il greco alla traduzione dell'app. Non completo, ancora, ma soprattutto.
-- Migra attivamente i segnalibri predefiniti Onion v2 alla v3.
-- Aggiunto feedback, quando le impostazioni del bridge sono state modificate durante l'avvio.
+- Icona dell'app migliorata.
+- Aggiornamenti di traduzione.
+- Aggiornato a Tor 0.4.6.9 e OpenSSL 1.1.1m.
+- Aggiornato all'ultimo Snowflake e Obfs4proxy contenente correzioni e miglioramenti.
+- Aggiunta la traduzione Khmer.

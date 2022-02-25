@@ -1,3 +1,5 @@
-- Endelig lagt til gresk til appoversettelse. Ikke komplett ennå, men stort sett.
-- Migrer aktivt v2 løk standard bokmerker til v3.
-- Lagt til tilbakemelding når broinnstillingene ble endret under oppstart.
+- Forbedret app-ikon.
+- Oversettelsesoppdateringer.
+- Oppdatert til Tor 0.4.6.9 og OpenSSL 1.1.1m.
+- Oppdatert til nyeste Snowflake og Obfs4proxy som inneholder rettelser og forbedringer.
+- Lagt til Khmer-oversettelse.
