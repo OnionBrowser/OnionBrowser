@@ -409,6 +409,7 @@
 		A069961824376092007E2E91 /* NOTES.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = NOTES.md; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.markdown; };
 		A06DF455241A60E700A07796 /* SecureEnclave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureEnclave.swift; sourceTree = "<group>"; };
 		A06F5F49275692060023622E /* .bartycrouch.toml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .bartycrouch.toml; sourceTree = "<group>"; };
+		A06F787427CE448500876994 /* appicon_1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = appicon_1024.png; path = Resources/Media.xcassets/AppIcon.appiconset/appicon_1024.png; sourceTree = SOURCE_ROOT; };
 		A07037C223C74DC900D670EC /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		A07037C323C74E1100D670EC /* UIColor+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Helpers.swift"; sourceTree = "<group>"; };
 		A07037C523C7571B00D670EC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -452,7 +453,6 @@
 		A094CCFA2344CE2C00C77E55 /* marketing_url.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = marketing_url.txt; sourceTree = "<group>"; };
 		A094CCFB2344CE2C00C77E55 /* description.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = description.txt; sourceTree = "<group>"; };
 		A094CCFC2344CE2C00C77E55 /* copyright.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = copyright.txt; sourceTree = "<group>"; };
-		A094CCFD2344CE2C00C77E55 /* app_icon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = app_icon.jpg; sourceTree = "<group>"; };
 		A094CCFF2344CE2C00C77E55 /* privacy_url.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = privacy_url.txt; sourceTree = "<group>"; };
 		A094CD002344CE2C00C77E55 /* subtitle.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = subtitle.txt; sourceTree = "<group>"; };
 		A094CD012344CE2C00C77E55 /* support_url.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = support_url.txt; sourceTree = "<group>"; };
@@ -1406,7 +1406,7 @@
 		A094CCF02344CE2C00C77E55 /* metadata */ = {
 			isa = PBXGroup;
 			children = (
-				A094CCFD2344CE2C00C77E55 /* app_icon.jpg */,
+				A06F787427CE448500876994 /* appicon_1024.png */,
 				A094CCFC2344CE2C00C77E55 /* copyright.txt */,
 				A094CD662344CE2C00C77E55 /* primary_category.txt */,
 				A094CD652344CE2C00C77E55 /* primary_first_sub_category.txt */,
