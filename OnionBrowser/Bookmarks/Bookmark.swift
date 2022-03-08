@@ -39,6 +39,8 @@ open class Bookmark: NSObject {
 		defaults.append(Bookmark(name: "ProPublica", url: "https://p53lf57qovyuvwsc6xnrppyply3vtqm7l6pcobkmyqsiofyeznfu5uqd.onion/"))
 		defaults.append(Bookmark(name: "Freedom of the Press Foundation", url: "http://fpfjxcrmw437h6z2xl3w4czl55kvkmxpapg37bbopsafdu7q454byxid.onion/"))
 
+		defaults.append(Bookmark(name: "Deutsche Welle", url: "https://www.dwnewsgngmhlplxy6o2twtfgjnrnjxbegbwqx6wnotdhkzt562tszfid.onion/"))
+
 		defaults.append(Bookmark(name: "Onion Browser official site", url: "https://onionbrowser.com"))
 		defaults.append(Bookmark(name: "The Tor Project", url: "http://2gzyxa5ihm7nsggfxnu52rck2vv4rvmdlkiu3zzui5du4xyclen53wid.onion/"))
 
