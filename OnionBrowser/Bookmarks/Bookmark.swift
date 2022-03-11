@@ -35,11 +35,12 @@ open class Bookmark: NSObject {
 		defaults.append(Bookmark(name: "DuckDuckGo", url: "https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/"))
 		defaults.append(Bookmark(name: "New York Times", url: "https://mobile.nytimes3xbfgragh.onion/"))
 		defaults.append(Bookmark(name: "BBC", url: "https://www.bbcnewsd73hkzno2ini43t4gblxvycyac5aw4gnv7t2rccijh7745uqd.onion/"))
-		defaults.append(Bookmark(name: "Facebook", url: "https://m.facebookwkhpilnemxj7asaniu7vnjjbiltxjqhye3mhbshg7kx5tfyd.onion/"))
 		defaults.append(Bookmark(name: "ProPublica", url: "https://p53lf57qovyuvwsc6xnrppyply3vtqm7l6pcobkmyqsiofyeznfu5uqd.onion/"))
 		defaults.append(Bookmark(name: "Freedom of the Press Foundation", url: "http://fpfjxcrmw437h6z2xl3w4czl55kvkmxpapg37bbopsafdu7q454byxid.onion/"))
-
 		defaults.append(Bookmark(name: "Deutsche Welle", url: "https://www.dwnewsgngmhlplxy6o2twtfgjnrnjxbegbwqx6wnotdhkzt562tszfid.onion/"))
+
+		defaults.append(Bookmark(name: "Facebook", url: "https://m.facebookwkhpilnemxj7asaniu7vnjjbiltxjqhye3mhbshg7kx5tfyd.onion/"))
+		defaults.append(Bookmark(name: "Twitter", url: "https://twitter3e4tixl4xyajtrzo62zg5vztmjuricljdp2c5kshju4avyoid.onion/"))
 
 		defaults.append(Bookmark(name: "Onion Browser official site", url: "https://onionbrowser.com"))
 		defaults.append(Bookmark(name: "The Tor Project", url: "http://2gzyxa5ihm7nsggfxnu52rck2vv4rvmdlkiu3zzui5du4xyclen53wid.onion/"))
