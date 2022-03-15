@@ -20,7 +20,7 @@ class TabCell: UICollectionViewCell, UIGestureRecognizerDelegate {
         return UINib(nibName: String(describing: self), bundle: Bundle(for: self))
     }
 
-	static let reuseIdentifier = String(describing: self)
+	static let reuseIdentifier = String(describing: TabCell.self)
 
     @IBOutlet weak var title: UILabel!
 
