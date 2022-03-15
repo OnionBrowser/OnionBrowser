@@ -15,7 +15,7 @@ Please see the [LICENSE][license] file for usage and redistribution terms.
 
 ---
 
-* **Onion Browser**: 2.7.8 - See [official release history][releases] and [changelog][changelog].
+* **Onion Browser**: 2.7.9 - See [official release history][releases] and [changelog][changelog].
 * **[Tor.framework][Tor.framework]**: 406.10.1
 * **[Tor][tor]**: 0.4.6.10
 * **[libevent][libevent]**: 2.1.12
@@ -116,7 +116,7 @@ These people helped with translations. Thank you so much, folks!
 - Portuguese (Portugal): 
   manuelarodsilva,  Bk__13, mrBatsu
 - Russian: 
-  anm, dianazryn, emedvedev, Ifti, foxing29, neocaching
+  anm, dianazryn, emedvedev, Ifti, foxing29, neocaching, Pihjun, ZiPERR
 - Spanish: 
   arielbarbosa, Maria_Jose, emmapeel, strel, zakooch, Aetheria, Fabiola.mauriceh, Fitoschido, kodachi, lenazun, nosense, supermigue2000, vareli, antonela_
 - Thai:
@@ -124,7 +124,7 @@ These people helped with translations. Thank you so much, folks!
 - Turkish:  
   falcontr06, kayazeren, ali_demirtas
 - Ukrainian: 
-  Herenko, lyubomyr, MykolaBubelich
+  Herenko, lyubomyr, MykolaBubelich, Kataphan, Pihjun, gr3ttle
 - Vietnamese: 
   AshCopper, PMinhDuc, Shinigami
 

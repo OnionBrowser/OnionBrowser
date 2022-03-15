@@ -1,5 +1,12 @@
 #  Onion Browser 2 Changelog
 
+## 2.7.9
+- Updated to Tor.framework 406.10.1 containing Tor 0.4.6.10 and OpenSSL 1.1.1m.
+- Updated Ukrainian, Russian and traditional Chinese translations.
+- Updated NYT onion address.
+- Added DW and Twitter onion address to default bookmarks.
+- Updated HSTS list for automatic rewrites to HTTPS.
+
 ## 2.7.8
 - Improved app icon.
 - Introduced BartyCrouch tool for localization consolidation.

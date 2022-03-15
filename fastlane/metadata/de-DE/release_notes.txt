@@ -1,5 +1,5 @@
-- Verbessertes App-Icon.
-- Übersetzungsaktualisierungen.
-- Aktualisiert auf Tor 0.4.6.9 und OpenSSL 1.1.1m.
-- Aktualisiert auf die neuesten Snowflake- und Obfs4proxy-Versionen mit Korrekturen und Verbesserungen.
-- Khmer Übersetzung hinzugefügt.
+- Aktualisiert auf Tor.framework 406.10.1 mit Tor 0.4.6.10 und OpenSSL 1.1.1m.
+- Ukrainische, russische und traditionelle chinesische Übersetzungen aktualisiert.
+- NYT Onion-Addresse aktualisiert.
+- DW und Twitter Onion-Adresse zu den Standard-Lesezeichen hinzugefügt.
+- HSTS-Liste für automatisches Umschreiben auf HTTPS aktualisiert.

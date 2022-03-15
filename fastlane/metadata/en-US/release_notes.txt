@@ -1,5 +1,5 @@
-- Improved app icon.
-- Translation updates.
-- Updated to Tor 0.4.6.9 and OpenSSL 1.1.1m.
-- Updated to latest Snowflake and Obfs4proxy containing fixes and improvements.
-- Added Khmer translation.
+- Updated to Tor.framework 406.10.1 containing Tor 0.4.6.10 and OpenSSL 1.1.1m.
+- Updated Ukrainian, Russian and traditional Chinese translations.
+- Updated NYT onion address.
+- Added DW and Twitter onion address to default bookmarks.
+- Updated HSTS list for automatic rewrites to HTTPS.
