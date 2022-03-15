@@ -33,7 +33,7 @@
 <h2>Onion Browser</h2>
 <ul style="padding-left: 0">
 	<li>Version XX_OB_BUNDLE_SHORT_VERSION_STRING_XX (XX_OB_BUNDLE_VERSION_XX)</li>
-	<li><b>Tor</b>: 0.4.6.9</li>
+	<li><b>Tor</b>: 0.4.6.10</li>
 	<li><b>libevent</b>: 2.1.12</li>
 	<li><b>OpenSSL</b>: 1.1.1m</li>
 	<li><b>liblzma</b>: 5.2.5</li>

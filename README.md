@@ -16,8 +16,8 @@ Please see the [LICENSE][license] file for usage and redistribution terms.
 ---
 
 * **Onion Browser**: 2.7.8 - See [official release history][releases] and [changelog][changelog].
-* **[Tor.framework][Tor.framework]**: 406.9.2
-* **[Tor][tor]**: 0.4.6.9
+* **[Tor.framework][Tor.framework]**: 406.10.1
+* **[Tor][tor]**: 0.4.6.10
 * **[libevent][libevent]**: 2.1.12
 * **[OpenSSL][openssl]**: 1.1.1m
 * **[liblzma][liblzma]**: 5.2.5
