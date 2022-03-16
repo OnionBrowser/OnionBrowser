@@ -1,5 +1,5 @@
-– Amélioration de l’icône de l’appli.
-– Mises à jour des traductions.
-– Mise à jour de Tor vers 0.4.6.9 et d’OpenSSL vers 1.1.1m.
-– Mise à jour vers les versions les plus récentes de Snowflake et d’Obfs4proxy avec correctifs et améliorations.
-– Ajout de la traduction en khmer.
+– Mise à jour vers le cadriciel Tor.framework 406.10.1 qui comprend Tor 0.4.6.10 et OpenSSL 1.1.1m.
+– Mise à jour des traductions en ukrainien, en russe et en chinois traditionnel.
+– Mise à jour de l’adresse oignon NYT.
+– Ajout des adresses oignons de DW et Twitter au carnet d’adresses par défaut.
+- Mise à jour de la liste HSTS pour réécritures automatiques vers HTTPS.

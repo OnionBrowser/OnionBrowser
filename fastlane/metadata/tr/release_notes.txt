@@ -1,5 +1,5 @@
-- Geliştirilmiş uygulama simgesi.
-- Çeviri güncellemeleri.
-- Tor 0.4.6.9 ve OpenSSL 1.1.1m'ye güncellendi.
-- Düzeltmeler ve iyileştirmeler içeren en son Snowflake ve Obfs4proxy'ye güncellendi.
-- Kmerce çeviri eklendi.
+- Tor.framework, Tor 0.4.6.10 ve OpenSSL 1.1.1m içeren 406.10.1 sürümüne güncellendi.
+- Ukraynaca, Rusça ve Geleneksel Çince çevirileri güncellendi.
+- NYT onion adresi güncellendi.
+- Varsayılan yer imlerine DW ve Twitter onion adresleri eklendi.
+- Otomatik HTTPS yeniden yazmaları için HSTS listesi güncellendi.
