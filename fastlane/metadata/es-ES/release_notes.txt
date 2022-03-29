@@ -1,5 +1,5 @@
-- Ícono de la aplicación mejorado.
-- Actualización de las traducciones.
-- Actualización de Tor a 0.4.6.9 y OpenSSL a 1.1.1m.
-- Actualizado a los últimos Snowflake y Obfs4proxy conteniendo arreglos y mejoras.
-- Se agregó la traducción al jemer.
+- Actualizado a Tor.framework 406.10.1 conteniendo Tor 0.4.6.10 y OpenSSL 1.1.1m.
+- Traducciones actualizadas en ucraniano, ruso y chino tradicional.
+- Dirección onion para NYT actualizada.
+- Se agregaron direcciones onion para DW y Twitter a los marcadores por defecto.
+- Lista HSTS actualizada para reescrituras automáticas a HTTPS.
