@@ -1,5 +1,5 @@
-- Icona de l'aplicació millorada.
-- Actualitzacions de traducció.
-- Actualitzat a Tor 0.4.6.9 i OpenSSL 1.1.1m.
-- Actualitzat a l'últim Floquet de neu i Obfs4proxy que contenen correccions i millores.
-- S'ha afegit traducció khmer.
+- Actualitzat a Tor.framework 406.10.1 que conté Tor 0.4.6.10 i OpenSSL 1.1.1m.
+- Actualització de les traduccions d'ucraïnès, rus i xinès tradicional.
+- Adreça actualitzada de la ceba de NYT.
+- S'ha afegit l'adreça de DW i Twitter a les adreces d'interès predeterminades.
+- Llista HSTS actualitzada per a reescriptures automàtiques a HTTPS.

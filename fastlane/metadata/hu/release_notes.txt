@@ -1,5 +1,5 @@
-- Továbbfejlesztett alkalmazásikon.
-- Fordítási frissítések.
-- Frissítve Tor 0.4.6.9-re és OpenSSL 1.1.1m-re.
-- Frissítve a legújabb Snowflake-re és Obfs4proxy-ra, amely javításokat és fejlesztéseket tartalmaz.
-- Khmer fordítás hozzáadva.
+- Frissítve a Tor.framework 406.10.1-re, amely tartalmazza a Tor 0.4.6.10-et és az OpenSSL 1.1.1m-t.
+- Frissített ukrán, orosz és hagyományos kínai fordítások.
+- Frissített NYT onion cím.
+- DW és Twitter hagymacím hozzáadva az alapértelmezett könyvjelzőkhöz.
+- Frissített HSTS lista a HTTPS-re történő automatikus átíráshoz.

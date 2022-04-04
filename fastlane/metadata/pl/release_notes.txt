@@ -1,5 +1,5 @@
-- Ulepszona ikona aplikacji.
-- Aktualizacje tłumaczeń.
-- Zaktualizowano do Tor 0.4.6.9 i OpenSSL 1.1.1m.
-- Zaktualizowano do najnowszych Snowflake i Obfs4proxy zawierających poprawki i ulepszenia.
-- Dodano tłumaczenie Khmerów.
+- Zaktualizowano do Tor.framework 406.10.1 zawierającego Tor 0.4.6.10 i OpenSSL 1.1.1m.
+- Zaktualizowano tłumaczenia ukraińskie, rosyjskie i tradycyjne chińskie.
+- Zaktualizowany adres cebuli NYT.
+- Dodano adres cebuli DW i Twitter do domyślnych zakładek.
+- Zaktualizowano listę HSTS do automatycznego przepisywania do HTTPS.

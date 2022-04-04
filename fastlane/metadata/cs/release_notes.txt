@@ -1,5 +1,5 @@
-- Vylepšená ikona aplikace.
-- Aktualizace překladů.
-- Aktualizován Tor na 0.4.6.9 a OpenSSL na 1.1.1.m.
-- Aktualizováno na nejnovější Snowflake a Obfs4proxy obsahuje opravy a vylepšení.
-- Přidán překlad khmerštiny.
+- Aktualizováno na Tor.framework 406.10.1 obsahující Tor 0.4.6.10 a OpenSSL 1.1.1m.
+- Aktualizované ukrajinské, ruské a tradiční čínské překlady.
+- Aktualizovaná adresa cibule NYT.
+- Přidána adresa DW a Twitter cibule do výchozích záložek.
+- Aktualizovaný seznam HSTS pro automatické přepisy na HTTPS.

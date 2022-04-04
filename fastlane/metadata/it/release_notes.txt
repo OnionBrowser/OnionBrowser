@@ -1,5 +1,5 @@
-- Icona dell'app migliorata.
-- Aggiornamenti di traduzione.
-- Aggiornato a Tor 0.4.6.9 e OpenSSL 1.1.1m.
-- Aggiornato all'ultimo Snowflake e Obfs4proxy contenente correzioni e miglioramenti.
-- Aggiunta la traduzione Khmer.
+- Aggiornato a Tor.framework 406.10.1 contenente Tor 0.4.6.10 e OpenSSL 1.1.1m.
+- Traduzioni aggiornate in ucraino, russo e cinese tradizionale.
+- Indirizzo cipolla NYT aggiornato.
+- Aggiunto l'indirizzo onion DW e Twitter ai segnalibri predefiniti.
+- Aggiornato l'elenco HSTS per le riscritture automatiche su HTTPS.

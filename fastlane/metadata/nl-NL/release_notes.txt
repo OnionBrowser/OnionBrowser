@@ -1,5 +1,5 @@
-- Verbeterd app-pictogram.
-- Vertaalupdates.
-- Bijgewerkt naar Tor 0.4.6.9 en OpenSSL 1.1.1m.
-- Bijgewerkt naar de nieuwste Snowflake en Obfs4proxy met fixes en verbeteringen.
-- Khmer-vertaling toegevoegd.
+- Bijgewerkt naar Tor.framework 406.10.1 met Tor 0.4.6.10 en OpenSSL 1.1.1m.
+- Bijgewerkte Oekraïense, Russische en traditionele Chinese vertalingen.
+- Bijgewerkt NYT-ui-adres.
+- DW- en Twitter-ui-adres toegevoegd aan standaardbladwijzers.
+- Bijgewerkte HSTS-lijst voor automatische herschrijvingen naar HTTPS.
