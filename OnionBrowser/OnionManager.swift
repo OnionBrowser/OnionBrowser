@@ -399,11 +399,16 @@ class OnionManager : NSObject {
 
 	private func transportConf<T>(_ cv: (String, String) -> T) -> [T] {
 
-		if transport == .snowflake || transport == .snowflakeAmp {
+		switch transport {
+		case .none:
 			Transport.obfs4.stop()
-		}
-		else if transport == .obfs4 || transport == .custom {
 			Transport.snowflake.stop()
+
+		case .obfs4, .custom:
+			Transport.snowflake.stop()
+
+		case .snowflake, .snowflakeAmp:
+			Transport.obfs4.stop()
 		}
 
 		transport.start()
