@@ -16,8 +16,6 @@ import Foundation
 
 let url = URL(string: "https://chromium.googlesource.com/chromium/src/net/+/master/http/transport_security_state_static.json?format=TEXT")!
 
-let regex = try? NSRegularExpression(pattern: "\"(obfs4.+)\"", options: .caseInsensitive)
-
 let outfile = resolve("../Resources/hsts_preload.plist")
 
 
@@ -38,7 +36,7 @@ func resolve(_ path: String) -> URL {
 
 // MARK: Main
 
-let modified = (try? FileManager.default.attributesOfItem(atPath: outfile.path)[.modificationDate] as? Date) ?? Date(timeIntervalSince1970: 0)
+let modified = (try? outfile.resourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate) ?? Date(timeIntervalSince1970: 0)
 
 guard Calendar.current.dateComponents([.day], from: modified, to: Date()).day ?? 2 > 1 else {
 	print("File too young, won't update!")
@@ -98,7 +96,7 @@ let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, respon
 	}
 
 	do {
-		try output.write(to: outfile)
+		try output.write(to: outfile, options: .atomic)
 	}
 	catch {
 		return exit("Plist file could not be written! error=\(error)")
