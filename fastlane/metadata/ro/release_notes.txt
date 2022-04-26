@@ -1,0 +1,5 @@
+- Actualizat la Tor.framework 406.10.1 care conține Tor 0.4.6.10 și OpenSSL 1.1.1m.
+- Traduceri în ucraineană, rusă și chineză tradițională actualizate.
+- Adrese onion NYT actualizate.
+- Adresele onion ale DW și Twitter au fost adăugate la semnele de carte prestabilite.
+- Liste HSTS actualizate pentru rescrierea automată la HTTPS.

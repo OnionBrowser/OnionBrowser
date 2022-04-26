@@ -115,6 +115,8 @@ These people helped with translations. Thank you so much, folks!
   flaviove, CypherZnnb, Bk__13, CRCF, darkcrystal, eduaddadbr, leovasone, nopum, vmattos, Communia
 - Portuguese (Portugal): 
   manuelarodsilva,  Bk__13, mrBatsu
+- Romanian:
+  alex1lazar, libertatemes, tud0r
 - Russian: 
   anm, dianazryn, emedvedev, Ifti, foxing29, neocaching, Pihjun, ZiPERR
 - Spanish: 
