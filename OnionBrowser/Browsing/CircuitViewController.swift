@@ -82,7 +82,7 @@ UITableViewDataSource, UITableViewDelegate {
 	private var nodes = [Node]()
 	private var usedCircuits = [TorCircuit]()
 
-	private static let onionAddressRegex = try? NSRegularExpression(pattern: "^(.*).onion$", options: .caseInsensitive)
+	private static let onionAddressRegex = try? NSRegularExpression(pattern: "^(.*)\\.(onion|exit)$", options: .caseInsensitive)
 
 	private static let beginningOfTime = Date(timeIntervalSince1970: 0)
 
