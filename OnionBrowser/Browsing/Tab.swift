@@ -176,7 +176,19 @@ class Tab: UIView {
 		return refresher
 	}()
 
+	private var _snapshot: UIImage? = nil
 
+	var snapshot: UIImage? {
+			if _snapshot == nil {
+				_snapshot = layer.makeSnapshot(scale: 1.0)
+			}
+			return _snapshot!
+		}
+	
+	func resetSnapshot() {
+		_snapshot = nil
+	}
+	
 	init(restorationId: String?) {
 		super.init(frame: .zero)
 
@@ -197,7 +209,6 @@ class Tab: UIView {
 		if url == URL.start {
 			Bookmark.updateStartPage()
 		}
-
 		needsRefresh = false
 		skipHistory = true
 		webView.reload()

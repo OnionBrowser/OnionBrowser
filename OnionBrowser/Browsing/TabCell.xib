@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -52,13 +53,25 @@
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hdQ-GP-s1R">
                         <rect key="frame" x="0.0" y="24" width="325" height="247"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="B4a-JY-zhJ">
+                                <rect key="frame" x="0.0" y="0.0" width="325" height="247"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <accessibility key="accessibilityConfiguration">
                             <accessibilityTraits key="traits" notEnabled="YES"/>
                         </accessibility>
+                        <constraints>
+                            <constraint firstItem="B4a-JY-zhJ" firstAttribute="top" secondItem="hdQ-GP-s1R" secondAttribute="top" id="5js-w0-gAc"/>
+                            <constraint firstItem="B4a-JY-zhJ" firstAttribute="leading" secondItem="hdQ-GP-s1R" secondAttribute="leading" id="8r7-3P-09u"/>
+                            <constraint firstAttribute="trailing" secondItem="B4a-JY-zhJ" secondAttribute="trailing" id="UrT-HZ-kOm"/>
+                            <constraint firstAttribute="bottom" secondItem="B4a-JY-zhJ" secondAttribute="bottom" id="X5I-wA-Ihh"/>
+                        </constraints>
                     </view>
                 </subviews>
             </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <gestureRecognizers/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="Eej-Rl-uVU" secondAttribute="trailing" id="Bdk-br-xBC"/>
@@ -69,10 +82,10 @@
                 <constraint firstItem="hdQ-GP-s1R" firstAttribute="top" secondItem="Eej-Rl-uVU" secondAttribute="bottom" id="xM7-xV-4Ae"/>
                 <constraint firstAttribute="bottom" secondItem="hdQ-GP-s1R" secondAttribute="bottom" id="zlg-U3-Ckg"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="325" height="271"/>
             <connections>
                 <outlet property="container" destination="hdQ-GP-s1R" id="QH2-bH-Lt6"/>
+                <outlet property="preview" destination="B4a-JY-zhJ" id="iXm-fd-qh2"/>
                 <outlet property="title" destination="rP8-hS-ldO" id="QNi-Oy-PiV"/>
             </connections>
             <point key="canvasLocation" x="141.30434782608697" y="179.79910714285714"/>
@@ -80,5 +93,8 @@
     </objects>
     <resources>
         <image name="close" width="35" height="35"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

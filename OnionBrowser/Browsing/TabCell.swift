@@ -25,6 +25,7 @@ class TabCell: UICollectionViewCell, UIGestureRecognizerDelegate {
     @IBOutlet weak var title: UILabel!
 
     @IBOutlet weak var container: UIView!
+	@IBOutlet weak var preview: UIImageView!
 
     weak var delegate: TabCellDelegate?
 

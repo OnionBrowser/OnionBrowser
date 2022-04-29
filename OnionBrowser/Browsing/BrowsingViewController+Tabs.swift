@@ -20,7 +20,7 @@ UICollectionViewDropDelegate, TabCellDelegate {
 
 	@objc func showOverview() {
 		unfocusSearchField()
-
+		
 		self.tabsCollection.reloadData()
 
 		view.backgroundColor = .darkGray
@@ -72,8 +72,8 @@ UICollectionViewDropDelegate, TabCellDelegate {
 				let tab = tabs[indexPath.row]
 
 				cell.title.text = tab.title
-
-				tab.add(to: cell.container)
+				
+				cell.preview.image = tab.snapshot
 				tab.isHidden = false
 				tab.isUserInteractionEnabled = false
 			}
@@ -84,12 +84,12 @@ UICollectionViewDropDelegate, TabCellDelegate {
 		return cell
 	}
 
-
+	
 	// MARK: UICollectionViewDelegate
 
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		if let cell = collectionView.cellForItem(at: indexPath) as? TabCell {
-			currentTab = tabs.first { $0 == cell.container.subviews.first }
+			currentTab = tabs[indexPath.row]
 			hideOverview(completion: nil)
 		}
 	}
@@ -177,7 +177,7 @@ UICollectionViewDropDelegate, TabCellDelegate {
 	// MARK: Private Methods
 
 	private func hideOverview(completion: ((_ finished: Bool) -> Void)?) {
-
+		currentTab?.resetSnapshot()
 		// UIViews can only ever have one superview. Move back from tabsCollection to container now.
 		for tab in tabs {
 			tab.isHidden = tab != currentTab
