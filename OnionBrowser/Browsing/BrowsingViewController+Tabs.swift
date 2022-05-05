@@ -53,7 +53,15 @@ UICollectionViewDropDelegate, TabCellDelegate {
 		hideOverview(completion: nil)
 	}
 
+	private func cellSize() -> CGSize {
+		let size = UIScreen.main.bounds.size
 
+		// Could be 0 or less, so secure against becoming negative with minimum width of smallest iOS device.
+		let width = (min(max(320, size.width), max(320, size.height)) - 8 * 2 /* left and right inset */) / 2 - 8 /* spacing */
+
+		return CGSize(width: width, height: width / 4 * 3)
+	}
+	
 	// MARK: UICollectionViewDataSource
 
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -72,8 +80,8 @@ UICollectionViewDropDelegate, TabCellDelegate {
 				let tab = tabs[indexPath.row]
 
 				cell.title.text = tab.title
-				
-				cell.preview.image = tab.snapshot
+								
+				cell.preview.image = tab.snapshot?.topCropped(newSize: cellSize())
 				tab.isHidden = false
 			}
 
@@ -95,13 +103,7 @@ UICollectionViewDropDelegate, TabCellDelegate {
 
 	func collectionView(_ collectionView: UICollectionView, layout
 		collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-
-		let size = UIScreen.main.bounds.size
-
-		// Could be 0 or less, so secure against becoming negative with minimum width of smallest iOS device.
-		let width = (min(max(320, size.width), max(320, size.height)) - 8 * 2 /* left and right inset */) / 2 - 8 /* spacing */
-
-		return CGSize(width: width, height: width / 4 * 3)
+		return cellSize()
 	}
 
 
