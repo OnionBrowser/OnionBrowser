@@ -179,10 +179,10 @@ class Tab: UIView {
 	private var _snapshot: UIImage? = nil
 
 	var snapshot: UIImage? {
-			if _snapshot == nil {
-				_snapshot = layer.makeSnapshot(scale: 1.0)
-			}
-			return _snapshot!
+		if _snapshot == nil {
+			_snapshot = layer.makeSnapshot(scale: 1.0)
+		}
+		return _snapshot
 	}
 	
 	
