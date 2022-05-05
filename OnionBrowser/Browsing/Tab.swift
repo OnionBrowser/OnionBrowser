@@ -209,6 +209,7 @@ class Tab: UIView {
 		if url == URL.start {
 			Bookmark.updateStartPage()
 		}
+
 		needsRefresh = false
 		skipHistory = true
 		webView.reload()
