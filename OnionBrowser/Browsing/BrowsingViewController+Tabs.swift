@@ -87,10 +87,8 @@ UICollectionViewDropDelegate, TabCellDelegate {
 	// MARK: UICollectionViewDelegate
 
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-		if let cell = collectionView.cellForItem(at: indexPath) as? TabCell {
-			currentTab = tabs[indexPath.row]
-			hideOverview(completion: nil)
-		}
+		currentTab = tabs[indexPath.row]
+		hideOverview(completion: nil)
 	}
 
 	// MARK: UICollectionViewDelegateFlowLayout
