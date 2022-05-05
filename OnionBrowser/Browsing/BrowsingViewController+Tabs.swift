@@ -20,7 +20,7 @@ UICollectionViewDropDelegate, TabCellDelegate {
 
 	@objc func showOverview() {
 		unfocusSearchField()
-		
+
 		self.tabsCollection.reloadData()
 
 		view.backgroundColor = .darkGray
@@ -75,7 +75,6 @@ UICollectionViewDropDelegate, TabCellDelegate {
 				
 				cell.preview.image = tab.snapshot
 				tab.isHidden = false
-				tab.isUserInteractionEnabled = false
 			}
 
 			cell.delegate = self
@@ -181,7 +180,6 @@ UICollectionViewDropDelegate, TabCellDelegate {
 		// UIViews can only ever have one superview. Move back from tabsCollection to container now.
 		for tab in tabs {
 			tab.isHidden = tab != currentTab
-			tab.isUserInteractionEnabled = true
 			tab.add(to: container)
 		}
 
