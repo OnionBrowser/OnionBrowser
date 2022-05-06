@@ -36,4 +36,29 @@ extension UIImage {
 
 		return tintedImage ?? self
 	}
+	
+	func topCropped(newSize:CGSize) -> UIImage? {
+		var ratio: CGFloat = 0
+		var delta: CGFloat = 0
+		var drawRect = CGRect()
+
+		if newSize.width > newSize.height {
+			ratio = newSize.width / size.width
+			delta = (ratio * size.height) - newSize.height
+			drawRect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height + delta)
+		} else {
+			ratio = newSize.height / size.height
+			delta = (ratio * size.width) - newSize.width
+			drawRect = CGRect(x: 0, y: 0, width: newSize.width + delta, height: newSize.height)
+		}
+		defer {
+			UIGraphicsEndImageContext()
+		}
+		
+		UIGraphicsBeginImageContextWithOptions(newSize, true, 0.0)
+		draw(in: drawRect)
+		let newImage = UIGraphicsGetImageFromCurrentImageContext()
+		
+		return newImage
+	}
 }

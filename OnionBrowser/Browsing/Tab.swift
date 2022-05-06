@@ -176,7 +176,16 @@ class Tab: UIView {
 		return refresher
 	}()
 
+	private var _snapshot: UIImage? = nil
 
+	var snapshot: UIImage? {
+		if _snapshot == nil {
+			_snapshot = layer.makeSnapshot(scale: 1.0)
+		}
+		return _snapshot
+	}
+	
+	
 	init(restorationId: String?) {
 		super.init(frame: .zero)
 
@@ -325,8 +334,12 @@ class Tab: UIView {
 			DispatchQueue.main.sync(execute: block)
 		}
 	}
-
-
+	
+	func resetSnapshot() {
+		_snapshot = nil
+	}
+	
+	
 	// MARK: Private Methods
 
 	private func setup(_ restorationId: String? = nil) {

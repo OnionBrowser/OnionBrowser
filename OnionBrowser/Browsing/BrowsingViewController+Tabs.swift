@@ -53,7 +53,15 @@ UICollectionViewDropDelegate, TabCellDelegate {
 		hideOverview(completion: nil)
 	}
 
+	private func cellSize() -> CGSize {
+		let size = UIScreen.main.bounds.size
 
+		// Could be 0 or less, so secure against becoming negative with minimum width of smallest iOS device.
+		let width = (min(max(320, size.width), max(320, size.height)) - 8 * 2 /* left and right inset */) / 2 - 8 /* spacing */
+
+		return CGSize(width: width, height: width / 4 * 3)
+	}
+	
 	// MARK: UICollectionViewDataSource
 
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -72,10 +80,9 @@ UICollectionViewDropDelegate, TabCellDelegate {
 				let tab = tabs[indexPath.row]
 
 				cell.title.text = tab.title
-
-				tab.add(to: cell.container)
+								
+				cell.preview.image = tab.snapshot?.topCropped(newSize: cellSize())
 				tab.isHidden = false
-				tab.isUserInteractionEnabled = false
 			}
 
 			cell.delegate = self
@@ -84,27 +91,19 @@ UICollectionViewDropDelegate, TabCellDelegate {
 		return cell
 	}
 
-
+	
 	// MARK: UICollectionViewDelegate
 
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-		if let cell = collectionView.cellForItem(at: indexPath) as? TabCell {
-			currentTab = tabs.first { $0 == cell.container.subviews.first }
-			hideOverview(completion: nil)
-		}
+		currentTab = tabs[indexPath.row]
+		hideOverview(completion: nil)
 	}
 
 	// MARK: UICollectionViewDelegateFlowLayout
 
 	func collectionView(_ collectionView: UICollectionView, layout
 		collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-
-		let size = UIScreen.main.bounds.size
-
-		// Could be 0 or less, so secure against becoming negative with minimum width of smallest iOS device.
-		let width = (min(max(320, size.width), max(320, size.height)) - 8 * 2 /* left and right inset */) / 2 - 8 /* spacing */
-
-		return CGSize(width: width, height: width / 4 * 3)
+		return cellSize()
 	}
 
 
@@ -177,11 +176,10 @@ UICollectionViewDropDelegate, TabCellDelegate {
 	// MARK: Private Methods
 
 	private func hideOverview(completion: ((_ finished: Bool) -> Void)?) {
-
+		currentTab?.resetSnapshot()
 		// UIViews can only ever have one superview. Move back from tabsCollection to container now.
 		for tab in tabs {
 			tab.isHidden = tab != currentTab
-			tab.isUserInteractionEnabled = true
 			tab.add(to: container)
 		}
 
