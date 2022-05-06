@@ -22,9 +22,9 @@ class TabCell: UICollectionViewCell, UIGestureRecognizerDelegate {
 
 	static let reuseIdentifier = String(describing: TabCell.self)
 
+    @IBOutlet weak var header: UIView!
     @IBOutlet weak var title: UILabel!
 
-    @IBOutlet weak var container: UIView!
     @IBOutlet weak var preview: UIImageView!
 
     weak var delegate: TabCellDelegate?
