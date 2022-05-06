@@ -11,16 +11,20 @@
 import Foundation
 
 extension CALayer {
+
 	func makeSnapshot(scale: CGFloat = UIScreen.main.scale) -> UIImage? {
 		UIGraphicsBeginImageContextWithOptions(frame.size, false, scale)
+
 		defer {
 			UIGraphicsEndImageContext()
 		}
+
 		guard let context = UIGraphicsGetCurrentContext() else {
 			return nil
 		}
+
 		render(in: context)
-		let screenshot = UIGraphicsGetImageFromCurrentImageContext()
-		return screenshot
+
+		return UIGraphicsGetImageFromCurrentImageContext()
 	}
 }

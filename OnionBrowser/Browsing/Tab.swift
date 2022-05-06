@@ -176,16 +176,9 @@ class Tab: UIView {
 		return refresher
 	}()
 
-	private var _snapshot: UIImage? = nil
+	private var snapshot: UIImage?
 
-	var snapshot: UIImage? {
-		if _snapshot == nil {
-			_snapshot = layer.makeSnapshot(scale: 1.0)
-		}
-		return _snapshot
-	}
-	
-	
+
 	init(restorationId: String?) {
 		super.init(frame: .zero)
 
@@ -335,8 +328,28 @@ class Tab: UIView {
 		}
 	}
 	
-	func resetSnapshot() {
-		_snapshot = nil
+	func getSnapshot(size: CGSize) -> UIImage? {
+		if snapshot == nil {
+			let offset = scrollView.contentOffset
+			let frame = scrollView.frame
+
+			scrollView.contentOffset = .zero
+			scrollView.frame = CGRect(
+				x: 0, y: 0,
+				width: scrollView.contentSize.width,
+				height: scrollView.contentSize.height)
+
+			snapshot = scrollView.layer.makeSnapshot(scale: 1.0)?.topCropped(newSize: size)
+
+			scrollView.contentOffset = offset
+			scrollView.frame = frame
+		}
+
+		return snapshot
+	}
+
+	func clearSnapshot() {
+		snapshot = nil
 	}
 	
 	
@@ -376,6 +389,8 @@ class Tab: UIView {
 
 	@objc
 	private func progressEstimateChanged(_ notification: Notification) {
+		clearSnapshot()
+
 		progress = Float(notification.userInfo?["WebProgressEstimatedProgressKey"] as? Float ?? 0)
 	}
 

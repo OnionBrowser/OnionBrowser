@@ -22,43 +22,45 @@ extension UIImage {
 		let imageView = UIImageView(image: self.withRenderingMode(.alwaysTemplate))
 		imageView.tintColor = color
 
-		UIGraphicsBeginImageContextWithOptions(size, false, 0)
-
-		var tintedImage: UIImage? = nil
-
-		if let context = UIGraphicsGetCurrentContext() {
-			imageView.layer.render(in: context)
-
-			tintedImage = UIGraphicsGetImageFromCurrentImageContext()
-
-			UIGraphicsEndImageContext()
-		}
-
-		return tintedImage ?? self
-	}
-	
-	func topCropped(newSize:CGSize) -> UIImage? {
-		var ratio: CGFloat = 0
-		var delta: CGFloat = 0
-		var drawRect = CGRect()
-
-		if newSize.width > newSize.height {
-			ratio = newSize.width / size.width
-			delta = (ratio * size.height) - newSize.height
-			drawRect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height + delta)
-		} else {
-			ratio = newSize.height / size.height
-			delta = (ratio * size.width) - newSize.width
-			drawRect = CGRect(x: 0, y: 0, width: newSize.width + delta, height: newSize.height)
-		}
 		defer {
 			UIGraphicsEndImageContext()
 		}
-		
+
+		UIGraphicsBeginImageContextWithOptions(size, false, 0)
+
+		guard let context = UIGraphicsGetCurrentContext() else {
+			return self
+		}
+
+		imageView.layer.render(in: context)
+
+		return UIGraphicsGetImageFromCurrentImageContext() ?? self
+	}
+	
+	func topCropped(newSize: CGSize) -> UIImage? {
+		let drawRect: CGRect
+
+		if newSize.width > newSize.height {
+			let ratio = newSize.width / size.width
+			let delta = (ratio * size.height) - newSize.height
+
+			drawRect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height + delta)
+		}
+		else {
+			let ratio = newSize.height / size.height
+			let delta = (ratio * size.width) - newSize.width
+
+			drawRect = CGRect(x: 0, y: 0, width: newSize.width + delta, height: newSize.height)
+		}
+
+		defer {
+			UIGraphicsEndImageContext()
+		}
+
 		UIGraphicsBeginImageContextWithOptions(newSize, true, 0.0)
+
 		draw(in: drawRect)
-		let newImage = UIGraphicsGetImageFromCurrentImageContext()
-		
-		return newImage
+
+		return UIGraphicsGetImageFromCurrentImageContext()
 	}
 }

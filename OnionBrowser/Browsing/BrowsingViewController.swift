@@ -393,6 +393,10 @@ class BrowsingViewController: UIViewController, TabDelegate {
 		frwrdBt.isEnabled = tab.canGoForward
 		actionBt.isEnabled = !tab.url.isSpecial
 		updateTabCount()
+
+		if !tabsCollection.isHidden {
+			tabsCollection.reloadData()
+		}
 	}
 
 	@objc
