@@ -104,7 +104,9 @@ class HostSettings: NSObject {
 				_raw = NSDictionary(contentsOf: url) as? [String: [String: String]]
 
 				// Fix later introduced setting, which defaults to true.
-				_raw?[HostSettings.defaultHost]?[followOnionLocationHeaderKey] = HostSettings.true
+				if _raw?[HostSettings.defaultHost]?[followOnionLocationHeaderKey] == nil {
+					_raw?[HostSettings.defaultHost]?[followOnionLocationHeaderKey] = HostSettings.true
+				}
 			}
 
 			return _raw ?? [:]
