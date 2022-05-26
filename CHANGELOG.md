@@ -1,5 +1,12 @@
 #  Onion Browser 2 Changelog
 
+## 2.8.0
+- Updated to Tor.framework 407.7.1 containing Tor 0.4.7.7 and OpenSSL 1.1.1o.
+- Updated Spanish and Ukranian translation.
+- Added Romanian translation.
+- Fixed behaviour around Onion-Location redirects.
+- Improved tab overview. Use snapshots instead of small webviews. Big thanks to Alexey Kosylo!
+
 ## 2.7.9
 - Updated to Tor.framework 406.10.1 containing Tor 0.4.6.10 and OpenSSL 1.1.1m.
 - Updated Ukrainian, Russian and traditional Chinese translations.

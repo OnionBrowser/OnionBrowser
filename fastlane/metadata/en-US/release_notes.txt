@@ -1,5 +1,5 @@
-- Updated to Tor.framework 406.10.1 containing Tor 0.4.6.10 and OpenSSL 1.1.1m.
-- Updated Ukrainian, Russian and traditional Chinese translations.
-- Updated NYT onion address.
-- Added DW and Twitter onion address to default bookmarks.
-- Updated HSTS list for automatic rewrites to HTTPS.
+- Updated to Tor.framework 407.7.1 containing Tor 0.4.7.7 and OpenSSL 1.1.1o.
+- Updated Spanish and Ukranian translation.
+- Added Romanian translation.
+- Fixed behaviour around Onion-Location redirects.
+- Improved tab overview. Use snapshots instead of small webviews. Big thanks to Alexey Kosylo!
