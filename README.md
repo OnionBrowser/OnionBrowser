@@ -16,10 +16,10 @@ Please see the [LICENSE][license] file for usage and redistribution terms.
 ---
 
 * **Onion Browser**: 2.7.9 - See [official release history][releases] and [changelog][changelog].
-* **[Tor.framework][Tor.framework]**: 406.10.1
-* **[Tor][tor]**: 0.4.6.10
+* **[Tor.framework][Tor.framework]**: 407.7.1
+* **[Tor][tor]**: 0.4.7.7
 * **[libevent][libevent]**: 2.1.12
-* **[OpenSSL][openssl]**: 1.1.1m
+* **[OpenSSL][openssl]**: 1.1.1o
 * **[liblzma][liblzma]**: 5.2.5
 
 [official]: https://onionbrowser.com/
