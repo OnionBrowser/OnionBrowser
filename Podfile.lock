@@ -7,7 +7,7 @@ PODS:
   - FavIcon (3.1.0)
   - ImageRow (4.1.0):
     - Eureka (~> 5.3.5)
-  - IPtProxy (1.5.1)
+  - IPtProxy (1.6.0)
   - IPtProxyUI (1.7.5):
     - Eureka (~> 5.3)
     - ImageRow (~> 4.0)
@@ -77,7 +77,7 @@ SPEC CHECKSUMS:
   Eureka: 28ad9dec6286cd7cd601fdf8e8df39bb7356a8f4
   FavIcon: 21651b47d8f6b33517973859f85e2cb6f9fcfaee
   ImageRow: 880c0f052c5a89c80521b485c86ccf723a124e99
-  IPtProxy: f9a94b705cdea8474d7fb995a43a2771aa1b7076
+  IPtProxy: aa53cc8b97762be08a8009a2bd547058aa376627
   IPtProxyUI: 29a43bcd7678cf605c3b8d0efc56d6aca559b955
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   OCMock: 9491e4bec59e0b267d52a9184ff5605995e74be8
