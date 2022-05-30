@@ -2,6 +2,7 @@
 
 ## 2.8.0
 - Updated to Tor.framework 407.7.1 containing Tor 0.4.7.7 and OpenSSL 1.1.1o.
+- Updated to Snowflake 2.2.0.
 - Updated Spanish and Ukranian translation.
 - Added Romanian translation.
 - Fixed behaviour around Onion-Location redirects.

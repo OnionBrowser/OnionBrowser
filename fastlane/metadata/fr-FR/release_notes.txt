@@ -1,5 +1,5 @@
-– Mise à jour vers le cadriciel Tor.framework 406.10.1 qui comprend Tor 0.4.6.10 et OpenSSL 1.1.1m.
-– Mise à jour des traductions en ukrainien, en russe et en chinois traditionnel.
-– Mise à jour de l’adresse oignon NYT.
-– Ajout des adresses oignons de DW et Twitter au carnet d’adresses par défaut.
-- Mise à jour de la liste HSTS pour réécritures automatiques vers HTTPS.
+– Mise à jour vers le cadriciel Tor.framework 407.7.1 qui comprend Tor 0.4.7.7 et OpenSSL 1.1.1o.
+– Mise à jour des traductions en espagnol et en ukrainien.
+– Ajout de la traduction en roumain.
+– Correctif du comportement des redirections « Onion-Location »
+– Amélioration de l’aperçu des ongles. Des captures d’écran remplacent les vues Web. Un grand merci à Alexey Kosylo.
