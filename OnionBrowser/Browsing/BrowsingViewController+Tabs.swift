@@ -175,12 +175,12 @@ UICollectionViewDropDelegate, TabCellDelegate {
 			// the real size of `tabs`. No idea why that race condition happens, but
 			// we should at least not crash, if so.
 			if indexPath.row < tabs.count {
+				tabsCollection.performBatchUpdates({
+					tabsCollection.deleteItems(at: [indexPath])
+				})
+
 				removeTab(tabs[indexPath.row])
 			}
-
-			tabsCollection.performBatchUpdates({
-				tabsCollection.deleteItems(at: [indexPath])
-			})
 		}
 	}
 
