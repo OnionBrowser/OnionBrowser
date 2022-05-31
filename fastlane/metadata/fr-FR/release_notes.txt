@@ -1,4 +1,5 @@
 – Mise à jour vers le cadriciel Tor.framework 407.7.1 qui comprend Tor 0.4.7.7 et OpenSSL 1.1.1o.
+– Mise à jour vers Snowflake 2.2.0
 – Mise à jour des traductions en espagnol et en ukrainien.
 – Ajout de la traduction en roumain.
 – Correctif du comportement des redirections « Onion-Location »
