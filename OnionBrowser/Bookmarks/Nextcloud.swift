@@ -48,11 +48,11 @@ class Nextcloud: NSObject {
 			}
 
 			for item in items ?? [] {
-				guard let url = item["url"] as? String, !url.isEmpty else {
+				guard let url = item.url, !url.isEmpty else {
 					continue
 				}
 
-				let name = item["title"] as? String
+				let name = item.title
 
 				// Update title of existing.
 				if let bookmark = Bookmark.all.first(where: { $0.url?.absoluteString == url }) {
@@ -76,7 +76,7 @@ class Nextcloud: NSObject {
 					continue
 				}
 
-				if items?.first(where: { $0["url"] as? String == url }) == nil {
+				if items?.first(where: { $0.url == url }) == nil {
 					store(bookmark)
 				}
 			}
@@ -138,17 +138,12 @@ class Nextcloud: NSObject {
 		}
 
 		execute(request) { items, error in
-			guard let id = items?.first?["id"] else {
+			guard let id = items?.first?.id else {
 				completion?(nil)
 				return
 			}
 
-			if let id = id as? String {
-				completion?(id)
-			}
-			else if let id = id as? Int {
-				completion?(String(id))
-			}
+			completion?(String(id))
 		}
 	}
 
@@ -177,27 +172,45 @@ class Nextcloud: NSObject {
 		return request
 	}
 
-	private class func execute(_ request: URLRequest, _ completion: ((_ items: [[String: Any]]?, _ error: Error?) -> ())? = nil) {
-		let task = URLSession.shared.apiTask(with: request) { payload, error in
+	private class func execute(_ request: URLRequest, _ completion: ((_ items: [Item]?, _ error: Error?) -> ())? = nil) {
+		let task = URLSession.shared.apiTask(with: request) { (response: Response?, error) in
 			if let error = error {
 				completion?(nil, error)
 				return
 			}
 
-			guard payload["status"] as? String == "success" else {
-				completion?(nil, ApiError.notSuccess(status: payload["status"]))
+			guard response?.status == "success" else {
+				completion?(nil, ApiError.notSuccess(status: response?.status))
 				return
 			}
 
-			var items = payload["data"] as? [[String: Any]]
+			var items = response?.data
 
 			// TODO, can be unavailable (DELETE) or "data" (GET on collection)
-			if items == nil, let item = payload["item"] as? [String: Any] {
+			if items == nil, let item = response?.item {
 				items = [item]
 			}
 
 			completion?(items, nil)
 		}
 		task.resume()
+	}
+
+	private class Response: Codable {
+
+		var status: String?
+
+		var data: [Item]?
+
+		var item: Item?
+	}
+
+	private class Item: Codable {
+
+		var id: Int?
+
+		var title: String?
+
+		var url: String?
 	}
 }

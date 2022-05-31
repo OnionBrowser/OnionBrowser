@@ -59,8 +59,12 @@ class ObBridgesConfViewController: BridgesConfViewController {
 		// Ignore here - we don't stop Obfs4proxy here.
 	}
 
-	override func auth(request: NSMutableURLRequest) {
-		URLProtocol.setProperty(true, forKey: kJAHPMoatProperty, in: request)
+	override func auth(request: inout URLRequest) {
+		let mutableRequest = ((request as NSURLRequest).mutableCopy() as? NSMutableURLRequest)!
+
+		URLProtocol.setProperty(true, forKey: kJAHPMoatProperty, in: mutableRequest)
+
+		request = mutableRequest as URLRequest
 
 		JAHPAuthenticatingHTTPProtocol.temporarilyAllow(request.url)
 	}

@@ -19,7 +19,7 @@ target 'OnionBrowser2' do
 
   pod 'Tor/OCSPCache', :podspec => 'https://raw.githubusercontent.com/tladesignz/Tor.framework/ocspcache/Tor.podspec' #:git => 'https://github.com/tladesignz/Tor.framework.git', :branch => 'ocspcache'
 
-  pod 'IPtProxyUI', '~> 1.7'
+  pod 'IPtProxyUI', '~> 1.8'
 end
 
 target 'OnionBrowser2 Tests' do
