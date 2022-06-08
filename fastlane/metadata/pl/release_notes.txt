@@ -1,5 +1,6 @@
-- Zaktualizowano do Tor.framework 406.10.1 zawierającego Tor 0.4.6.10 i OpenSSL 1.1.1m.
-- Zaktualizowano tłumaczenia ukraińskie, rosyjskie i tradycyjne chińskie.
-- Zaktualizowany adres cebuli NYT.
-- Dodano adres cebuli DW i Twitter do domyślnych zakładek.
-- Zaktualizowano listę HSTS do automatycznego przepisywania do HTTPS.
+- Zaktualizowano do Tor.framework 407.7.1 zawierającego Tor 0.4.7.7 i OpenSSL 1.1.1o.
+- Zaktualizowano do wersji Snowflake 2.2.0.
+- Zaktualizowano tłumaczenie na język hiszpański i ukraiński.
+- Dodano tłumaczenie na język rumuński.
+- Naprawiono zachowanie wokół przekierowań Onion-Location.
+- Ulepszony przegląd zakładek. Używaj migawek zamiast małych widoków internetowych. Wielkie podziękowania dla Alexeya Kosylo!

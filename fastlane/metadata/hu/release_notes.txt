@@ -1,5 +1,6 @@
-- Frissítve a Tor.framework 406.10.1-re, amely tartalmazza a Tor 0.4.6.10-et és az OpenSSL 1.1.1m-t.
-- Frissített ukrán, orosz és hagyományos kínai fordítások.
-- Frissített NYT onion cím.
-- DW és Twitter hagymacím hozzáadva az alapértelmezett könyvjelzőkhöz.
-- Frissített HSTS lista a HTTPS-re történő automatikus átíráshoz.
+- Frissítve a Tor.framework 407.7.1-re, amely Tor 0.4.7.7-et és OpenSSL 1.1.1o-t tartalmaz.
+- Frissítve a Snowflake 2.2.0-ra.
+- Frissített spanyol és ukrán fordítás.
+- Hozzáadott román fordítás.
+- Javítva az Onion-Location átirányítások viselkedése.
+- Továbbfejlesztett lapáttekintés. Használjon pillanatképeket kis webnézetek helyett. Nagy köszönet Alexey Kosylo-nak!

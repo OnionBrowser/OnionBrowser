@@ -1,5 +1,6 @@
-- Ažurirano na Tor.framework 406.10.1 koji sadrži Tor 0.4.6.10 i OpenSSL 1.1.1m.
-- Ažurirani ukrajinski, ruski i tradicionalni kineski prijevodi.
-- Ažurirana NYT adresa luka.
-- Dodana adresa DW-a i Twitter luka u zadane oznake.
-- Ažuriran HSTS popis za automatsko prepisivanje na HTTPS.
+- Ažurirano na Tor.framework 407.7.1 koji sadrži Tor 0.4.7.7 i OpenSSL 1.1.1o.
+- Ažurirano na Snowflake 2.2.0.
+- Ažurirani prijevod na španjolski i ukrajinski.
+- Dodan prijevod na rumunjski.
+- Ispravljeno ponašanje oko preusmjeravanja Onion-Location.
+- Poboljšan pregled kartica. Koristite snimke umjesto malih web-prikaza. Veliko hvala Alexeyu Kosylu!

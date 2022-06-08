@@ -1,5 +1,6 @@
-- Aggiornato a Tor.framework 406.10.1 contenente Tor 0.4.6.10 e OpenSSL 1.1.1m.
-- Traduzioni aggiornate in ucraino, russo e cinese tradizionale.
-- Indirizzo cipolla NYT aggiornato.
-- Aggiunto l'indirizzo onion DW e Twitter ai segnalibri predefiniti.
-- Aggiornato l'elenco HSTS per le riscritture automatiche su HTTPS.
+- Aggiornato a Tor.framework 407.7.1 contenente Tor 0.4.7.7 e OpenSSL 1.1.1o.
+- Aggiornato a Snowflake 2.2.0.
+- Aggiornata la traduzione in spagnolo e ucraino.
+- Aggiunta la traduzione in rumeno.
+- Risolto il problema con i reindirizzamenti di Onion-Location.
+- Panoramica della scheda migliorata. Usa le istantanee invece di piccole visualizzazioni web. Grazie mille ad Alexey Kosylo!

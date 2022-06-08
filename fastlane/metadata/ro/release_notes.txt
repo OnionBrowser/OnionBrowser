@@ -1,5 +1,6 @@
-- Actualizat la Tor.framework 406.10.1 care conține Tor 0.4.6.10 și OpenSSL 1.1.1m.
-- Traduceri în ucraineană, rusă și chineză tradițională actualizate.
-- Adrese onion NYT actualizate.
-- Adresele onion ale DW și Twitter au fost adăugate la semnele de carte prestabilite.
-- Liste HSTS actualizate pentru rescrierea automată la HTTPS.
+- Actualizat la Tor.framework 407.7.1 care conține Tor 0.4.7.7 și OpenSSL 1.1.1o.
+- Actualizat la Snowflake 2.2.0.
+- Traducere actualizată în spaniolă și ucraineană.
+- S-a adăugat traducere în limba română.
+- S-a rezolvat comportamentul în jurul redirecționărilor Onion-Location.
+- Privire de ansamblu îmbunătățită a filei. Folosiți instantanee în loc de mici vizualizări web. Mulțumesc frumos lui Alexey Kosylo!

@@ -1,5 +1,6 @@
-- Bijgewerkt naar Tor.framework 406.10.1 met Tor 0.4.6.10 en OpenSSL 1.1.1m.
-- Bijgewerkte Oekraïense, Russische en traditionele Chinese vertalingen.
-- Bijgewerkt NYT-ui-adres.
-- DW- en Twitter-ui-adres toegevoegd aan standaardbladwijzers.
-- Bijgewerkte HSTS-lijst voor automatische herschrijvingen naar HTTPS.
+- Bijgewerkt naar Tor.framework 407.7.1 met Tor 0.4.7.7 en OpenSSL 1.1.1o.
+- Bijgewerkt naar Snowflake 2.2.0.
+- Bijgewerkte Spaanse en Oekraïense vertaling.
+- Roemeense vertaling toegevoegd.
+- Vast gedrag rond Onion-Location omleidingen.
+- Verbeterd tabbladoverzicht. Gebruik snapshots in plaats van kleine webviews. Grote dank aan Alexey Kosylo!

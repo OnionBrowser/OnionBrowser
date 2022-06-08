@@ -1,5 +1,6 @@
-- Aktualizováno na Tor.framework 406.10.1 obsahující Tor 0.4.6.10 a OpenSSL 1.1.1m.
-- Aktualizované ukrajinské, ruské a tradiční čínské překlady.
-- Aktualizovaná adresa cibule NYT.
-- Přidána adresa DW a Twitter cibule do výchozích záložek.
-- Aktualizovaný seznam HSTS pro automatické přepisy na HTTPS.
+- Aktualizováno na Tor.framework 407.7.1 obsahující Tor 0.4.7.7 a OpenSSL 1.1.1o.
+- Aktualizováno na Snowflake 2.2.0.
+- Aktualizovaný překlad do španělštiny a ukrajinštiny.
+- Přidán rumunský překlad.
+- Opraveno chování kolem přesměrování Onion-Location.
+- Vylepšený přehled karet. Místo malých zobrazení webu používejte snímky. Velké díky Alexey Kosylo!
