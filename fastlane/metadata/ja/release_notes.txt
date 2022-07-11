@@ -1,6 +1,1 @@
-- Tor 0.4.7.7 と OpenSSL 1.1.1o を使ったTor.framework 407.7.1 にアップデート
-- Snowflake2.2.0に更新しました。
-- スペイン語とウクライナ語をアップデート
-- ルーマニア語を追加
-- Onion-Locationリダイレクト周りを修正
-- タブオーバービューをスナップショットに更新。（Alexey Kosylo氏に感謝）
+-Tor0.4.7.8を含むTor.framework407.8.2に更新されました。

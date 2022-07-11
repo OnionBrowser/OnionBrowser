@@ -1,6 +1,1 @@
-- Cập nhật lên Tor.framework 407.7.1 chứa Tor 0.4.7.7 và OpenSSL 1.1.1o.
-- Cập nhật lên Snowflake 2.2.0.
-- Cập nhật bản dịch tiếng Tây Ban Nha và tiếng Ukraina.
-- Đã thêm bản dịch tiếng Rumani.
-- Đã sửa hành vi xung quanh chuyển hướng Hành tây-Vị trí.
-- Cải thiện tổng quan về tab. Sử dụng ảnh chụp nhanh thay vì chế độ xem web nhỏ. Xin chân thành cảm ơn Alexey Kosylo!
+- Cập nhật lên Tor.framework 407.8.2 chứa Tor 0.4.7.8.

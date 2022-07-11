@@ -1,5 +1,8 @@
 #  Onion Browser 2 Changelog
 
+## 2.8.1
+- Updated to Tor.framework 407.8.2 containing Tor 0.4.7.8.
+
 ## 2.8.0
 - Updated to Tor.framework 407.7.1 containing Tor 0.4.7.7 and OpenSSL 1.1.1o.
 - Updated to Snowflake 2.2.0.

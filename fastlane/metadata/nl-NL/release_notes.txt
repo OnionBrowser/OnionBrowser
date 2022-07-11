@@ -1,6 +1,1 @@
-- Bijgewerkt naar Tor.framework 407.7.1 met Tor 0.4.7.7 en OpenSSL 1.1.1o.
-- Bijgewerkt naar Snowflake 2.2.0.
-- Bijgewerkte Spaanse en Oekraïense vertaling.
-- Roemeense vertaling toegevoegd.
-- Vast gedrag rond Onion-Location omleidingen.
-- Verbeterd tabbladoverzicht. Gebruik snapshots in plaats van kleine webviews. Grote dank aan Alexey Kosylo!
+- Bijgewerkt naar Tor.framework 407.8.2 met Tor 0.4.7.8.

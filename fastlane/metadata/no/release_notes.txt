@@ -1,6 +1,1 @@
-- Oppdatert til Tor.framework 407.7.1 som inneholder Tor 0.4.7.7 og OpenSSL 1.1.1o.
-- Oppdatert til Snowflake 2.2.0.
-- Oppdatert spansk og ukrainsk oversettelse.
-- Lagt til rumensk oversettelse.
-- Rettet oppførsel rundt Onion-Location omdirigeringer.
-- Forbedret faneoversikt. Bruk øyeblikksbilder i stedet for små webvisninger. Stor takk til Alexey Kosylo!
+- Oppdatert til Tor.framework 407.8.2 som inneholder Tor 0.4.7.8.

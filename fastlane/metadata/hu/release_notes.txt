@@ -1,6 +1,1 @@
-- Frissítve a Tor.framework 407.7.1-re, amely Tor 0.4.7.7-et és OpenSSL 1.1.1o-t tartalmaz.
-- Frissítve a Snowflake 2.2.0-ra.
-- Frissített spanyol és ukrán fordítás.
-- Hozzáadott román fordítás.
-- Javítva az Onion-Location átirányítások viselkedése.
-- Továbbfejlesztett lapáttekintés. Használjon pillanatképeket kis webnézetek helyett. Nagy köszönet Alexey Kosylo-nak!
+- Frissítve a Tor.framework 407.8.2-re, amely tartalmazza a Tor 0.4.7.8-at.

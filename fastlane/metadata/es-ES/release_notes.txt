@@ -1,6 +1,1 @@
-- Actualizado a Tor.framework 407.7.1 que contiene Tor 0.4.7.7 y OpenSSL 1.1.1o.
-- Actualizado a Copo de nieve 2.2.0.
-- Traducción actualizada al español y al ucraniano.
-- Añadida traducción al rumano.
-- Se corrigió el comportamiento en torno a los redireccionamientos de Onion-Location.
-- Resumen de pestañas mejorado. Use instantáneas en lugar de pequeñas vistas web. ¡Muchas gracias a Alexey Kosylo!
+- Actualizado a Tor.framework 407.8.2 que contiene Tor 0.4.7.8.

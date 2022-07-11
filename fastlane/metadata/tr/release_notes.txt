@@ -1,6 +1,1 @@
-- Tor.framework, Tor 0.4.7.7 ve OpenSSL 1.1.1o içeren 407.7.1 sürümüne güncellendi.
-- Snowflake 2.2.0 sürümüne güncellendi.
-- İspanyolca ve Ukraynaca çevirileri güncellendi.
-- Romence çevirisi eklendi.
-- Onion-Location yönlendirme davranışları düzeltildi.
-- Sekme görünümü iyileştirildi. Küçük web görselleri yerine ekran görüntüleri kullanıldı. Teşekkürler Alexey Kosylo!
+- Tor 0.4.7.8 içeren Tor.framework 407.8.2'ye güncellendi.

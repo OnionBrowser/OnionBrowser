@@ -1,6 +1,1 @@
-- Actualitzat a Tor.framework 407.7.1 que conté Tor 0.4.7.7 i OpenSSL 1.1.1o.
-- Actualitzat a Snowflake 2.2.0.
-- Traducció actualitzada de l'espanyol i l'ucraïnès.
-- S'ha afegit una traducció al romanès.
-- S'ha corregit el comportament al voltant de les redireccions d'ubicació de la ceba.
-- Visió general de la pestanya millorada. Utilitzeu instantànies en lloc de petites visualitzacions web. Moltes gràcies a Alexey Kosylo!
+- Actualitzat a Tor.framework 407.8.2 que conté Tor 0.4.7.8.

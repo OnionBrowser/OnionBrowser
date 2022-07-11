@@ -1,6 +1,1 @@
-- Aktualizováno na Tor.framework 407.7.1 obsahující Tor 0.4.7.7 a OpenSSL 1.1.1o.
-- Aktualizováno na Snowflake 2.2.0.
-- Aktualizovaný překlad do španělštiny a ukrajinštiny.
-- Přidán rumunský překlad.
-- Opraveno chování kolem přesměrování Onion-Location.
-- Vylepšený přehled karet. Místo malých zobrazení webu používejte snímky. Velké díky Alexey Kosylo!
+- Aktualizováno na Tor.framework 407.8.2 obsahující Tor 0.4.7.8.

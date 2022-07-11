@@ -1,6 +1,1 @@
-- Aggiornato a Tor.framework 407.7.1 contenente Tor 0.4.7.7 e OpenSSL 1.1.1o.
-- Aggiornato a Snowflake 2.2.0.
-- Aggiornata la traduzione in spagnolo e ucraino.
-- Aggiunta la traduzione in rumeno.
-- Risolto il problema con i reindirizzamenti di Onion-Location.
-- Panoramica della scheda migliorata. Usa le istantanee invece di piccole visualizzazioni web. Grazie mille ad Alexey Kosylo!
+- Aggiornato a Tor.framework 407.8.2 contenente Tor 0.4.7.8.

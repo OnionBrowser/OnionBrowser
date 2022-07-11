@@ -1,6 +1,1 @@
-- Tor.framework auf Version 407.7.1 mit Tor 0.4.7.7 und OpenSSL 1.1.1o aktualisiert.
-- Snowflake auf Version 2.2.0 aktualisiert.
-- Spanische und ukrainische Übersetzung aktualisiert.
-- Rumänische Übersetzung hinzugefügt.
-- Verhalten bei Onion-Location-Umleitungen behoben.
-- Tab-Übersicht verbessert. Verwendet Schnappschüsse statt kleiner Webviews. Vielen Dank an Alexey Kosylo!
+- Tor.framework auf Version 407.8.2 mit Tor 0.4.7.8 aktualisiert.
