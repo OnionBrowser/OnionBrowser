@@ -3,17 +3,16 @@
 //  OnionBrowser2
 //
 //  Created by Benjamin Erhart on 09.01.20.
-//  Copyright © 2012 - 2021, Tigas Ventures, LLC (Mike Tigas)
+//  Copyright © 2012 - 2022, Tigas Ventures, LLC (Mike Tigas)
 //
 //  This file is part of Onion Browser. See LICENSE file for redistribution terms.
 //
 
 import UIKit
 import AVFoundation
-import IPtProxyUI
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPProtocolDelegate, OnionManagerDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, OnionManagerDelegate {
 
 	@objc
 	static let socksProxyPort = 39050
@@ -39,9 +38,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 
 	@objc
 	let sslCertCache = NSCache<NSString, SSLCertificate>()
-
-	@objc
-	let certificateAuthentication = CertificateAuthentication()
 
 	@objc
 	let hstsCache = HstsCache.shared
@@ -173,9 +169,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 
 	func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
 
-		JAHPAuthenticatingHTTPProtocol.setDelegate(self)
-		JAHPAuthenticatingHTTPProtocol.start()
-
 		migrate()
 
 		adjustMuteSwitchBehavior()
@@ -223,16 +216,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 		TabSecurity.handleBackgrounding()
 
 		application.ignoreSnapshotOnNextApplicationLaunch()
-
-		if OnionManager.shared.state != .stopped {
-			OnionManager.shared.stopTor()
-		}
 	}
 
 	private var openAfterRestore: URL? = nil
 
 	func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool
 	{
+		if let urlc = URLComponents(url: url, resolvingAgainstBaseURL: true),
+		   urlc.scheme == "onionbrowser"
+		{
+			if urlc.path == "token-callback",
+				let token = urlc.queryItems?.first(where: { $0.name == "token" })?.value
+			{
+					OnionManager.shared.tokenAlert?.textFields?.first?.text = token
+			}
+
+			return true
+		}
+
 		Settings.openNewUrlOnStart = url.withFixedScheme
 
 		return true
@@ -282,8 +283,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 		else {
 			let mgr = OnionManager.shared
 
-			if (mgr.state != .started && mgr.state != .connected) {
-				mgr.startTor(delegate: self)
+			if (mgr.lastInfo?.status != .started && mgr.lastInfo?.status != .starting) {
+				BlurredSnapshot.remove()
 			}
 			else {
 				self.torConnFinished()
@@ -357,24 +358,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 	}
 
 
-	// MARK: JAHPAuthenticatingHTTPProtocolDelegate
-
-	func authenticatingHTTPProtocol(_ authenticatingHTTPProtocol: JAHPAuthenticatingHTTPProtocol?,
-									logMessage message: String) {
-		print("[JAHPAuthenticatingHTTPProtocol] \(message)")
-	}
-
-	func authenticatingHTTPProtocol(_ authenticatingHTTPProtocol: JAHPAuthenticatingHTTPProtocol,
-									canAuthenticateAgainstProtectionSpace protectionSpace: URLProtectionSpace)
-		-> Bool {
-
-		return protectionSpace.authenticationMethod == NSURLAuthenticationMethodHTTPDigest
-			|| protectionSpace.authenticationMethod == NSURLAuthenticationMethodHTTPBasic
-	}
-
-	func authenticatingHTTPProtocol(_ authenticatingHTTPProtocol: JAHPAuthenticatingHTTPProtocol,
-									didReceive challenge: URLAuthenticationChallenge)
-		-> JAHPDidCancelAuthenticationChallengeHandler? {
+	func authenticatingHTTPProtocol(didReceive challenge: URLAuthenticationChallenge) {
 
 		let space = challenge.protectionSpace
 		let storage = URLCredentialStorage.shared
@@ -384,9 +368,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 			let credential = storage.credentials(for: space)?.first?.value {
 
 			storage.set(credential, for: space)
-			authenticatingHTTPProtocol.resolvePendingAuthenticationChallenge(with: credential)
+//			authenticatingHTTPProtocol.resolvePendingAuthenticationChallenge(with: credential)
 
-			return nil
+			return
 		}
 
 		DispatchQueue.main.async {
@@ -402,11 +386,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 
 			self.alert?.addAction(AlertHelper.cancelAction { _ in
 				challenge.sender?.cancel(challenge)
-				authenticatingHTTPProtocol.client?.urlProtocol(
-					authenticatingHTTPProtocol,
-					didFailWithError: NSError(domain: NSCocoaErrorDomain,
-											  code: NSUserCancelledError,
-											  userInfo: [ORIGIN_KEY: true]))
+//				authenticatingHTTPProtocol.client?.urlProtocol(
+//					authenticatingHTTPProtocol,
+//					didFailWithError: NSError(domain: NSCocoaErrorDomain,
+//											  code: NSUserCancelledError))
 			})
 
 			self.alert?.addAction(AlertHelper.defaultAction(NSLocalizedString("Log In", comment: "")) { _ in
@@ -425,21 +408,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 											   persistence: .forSession)
 
 				storage.set(credential, for: space)
-				authenticatingHTTPProtocol.resolvePendingAuthenticationChallenge(with: credential)
+//				authenticatingHTTPProtocol.resolvePendingAuthenticationChallenge(with: credential)
 			})
 
 			self.window?.rootViewController?.top.present(self.alert!)
 		}
 
-		return nil
-	}
-
-	func authenticatingHTTPProtocol(_ authenticatingHTTPProtocol: JAHPAuthenticatingHTTPProtocol,
-									didCancel challenge: URLAuthenticationChallenge) {
-
-		if (alert?.isViewLoaded ?? false) && alert?.view.window != nil {
-			alert?.dismiss(animated: false)
-		}
+		return
 	}
 
 

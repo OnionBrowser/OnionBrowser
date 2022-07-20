@@ -9,7 +9,6 @@
 //
 
 import UIKit
-import IPtProxyUI
 
 @objcMembers
 class SearchEngine: NSObject {
@@ -135,35 +134,6 @@ class Settings: NSObject {
 			UserDefaults.standard.set(newValue, forKey: "bookmarks_migrated_to_onion_v3")
 		}
 	}
-
-	class var transport: Transport {
-		get {
-			let obRaw = UserDefaults.standard.integer(forKey: "use_bridges")
-
-			guard let iptRaw = transportTranslationTable[obRaw] else {
-				return .none
-			}
-
-			return Transport(rawValue: iptRaw) ?? .none
-		}
-		set {
-			let iptRaw = newValue.rawValue
-
-			let obRaw = transportTranslationTable.first(where: { $0.value == iptRaw })?.key ?? 0
-
-			UserDefaults.standard.set(obRaw, forKey: "use_bridges")
-		}
-	}
-
-	class var customBridges: [String]? {
-		get {
-			return UserDefaults.standard.stringArray(forKey: "custom_bridges")
-		}
-		set {
-			UserDefaults.standard.set(newValue, forKey: "custom_bridges")
-		}
-	}
-
 
 	class var searchEngineName: String {
 		get {
@@ -384,6 +354,15 @@ class Settings: NSObject {
 		}
 		set {
 			UserDefaults.standard.set(newValue, forKey: "nextcloud_password")
+		}
+	}
+
+	class var orbotApiToken: String? {
+		get {
+			return UserDefaults.standard.string(forKey: "orbot_api_token")
+		}
+		set {
+			UserDefaults.standard.set(newValue, forKey: "orbot_api_token")
 		}
 	}
 }

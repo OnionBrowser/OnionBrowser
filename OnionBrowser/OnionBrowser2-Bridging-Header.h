@@ -9,7 +9,6 @@
 
 #import "OldBookmark.h"
 #import "Bridge.h"
-#import "JAHPAuthenticatingHTTPProtocol.h"
 #import "SSLCertificate.h"
 #import "TUSafariActivity.h"
 #import "URLBlockerRuleController.h"
@@ -18,6 +17,5 @@
 #import "VForceTouchGestureRecognizer.h"
 #import "UIResponder+FirstResponder.h"
 #import "CookieJar.h"
-#import "CertificateAuthentication.h"
 #import "MBProgressHUD.h"
 #import "NSString+IPAddress.h"

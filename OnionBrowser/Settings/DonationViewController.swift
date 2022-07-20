@@ -9,7 +9,6 @@
 
 import UIKit
 import StoreKit
-import IPtProxyUI
 
 @objc public class DonationViewController: UITableViewController, SKProductsRequestDelegate,
 	SKPaymentTransactionObserver {

@@ -1,12 +1,12 @@
 use_frameworks!
 
-platform :ios, '11.4'
+platform :ios, '15.0'
 
 #source 'https://cdn.cocoapods.org/'
 #source 'https://cocoapods-cdn.netlify.app/'
 source 'https://github.com/CocoaPods/Specs.git'
 
-target 'OnionBrowser2' do
+target 'OnionBrowser' do
   pod 'DTFoundation/DTASN1'
   pod 'TUSafariActivity'
   pod 'VForceTouch'
@@ -16,13 +16,13 @@ target 'OnionBrowser2' do
   pod 'SDCAlertView', '~> 10'
   pod 'FavIcon', :git => 'https://github.com/tladesignz/FavIcon.git'
   pod 'MBProgressHUD', '~> 1.2'
+	pod 'Eureka', '~> 5.3'
+	pod 'ImageRow', '~> 4.1'
 
-  pod 'Tor/OCSPCache', :podspec => 'https://raw.githubusercontent.com/tladesignz/Tor.framework/ocspcache/Tor.podspec' #:git => 'https://github.com/tladesignz/Tor.framework.git', :branch => 'ocspcache'
-
-  pod 'IPtProxyUI', '~> 1.8'
+	pod 'OrbotKit', '~> 0.2'
 end
 
-target 'OnionBrowser2 Tests' do
+target 'OnionBrowser Tests' do
   pod 'OCMock'
   pod 'DTFoundation/DTASN1'
 end

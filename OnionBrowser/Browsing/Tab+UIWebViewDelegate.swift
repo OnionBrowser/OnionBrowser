@@ -9,8 +9,6 @@
 //
 
 import UIKit
-import IPtProxyUI
-import Tor
 
 extension Tab: UIWebViewDelegate {
 
@@ -167,14 +165,6 @@ extension Tab: UIWebViewDelegate {
 			msg += "\n\n\(url)"
 		}
 
-		if let ok = error.userInfo[ORIGIN_KEY] as? NSNumber,
-			!ok.boolValue {
-
-			print("[Tab \(index)] not showing dialog for non-origin error: \(msg) (\(error))")
-
-			return webViewDidFinishLoad(webView)
-		}
-
 		print("[Tab \(index)] showing error dialog: \(msg) (\(error)")
 
 		var alert = AlertHelper.build(message: msg)
@@ -211,10 +201,6 @@ extension Tab: UIWebViewDelegate {
 					guard let key = alert.textFields?.first?.text, !key.isEmpty else {
 						return
 					}
-
-					OnionManager.shared.onionAuth?.set(TorAuthKey(private: key, forDomain: url))
-
-					OnionManager.shared.reloadTor()
 
 					// Retry after 1 second to give Tor some time to load the new auth key!
 					DispatchQueue.main.asyncAfter(deadline: .now() + 1) {

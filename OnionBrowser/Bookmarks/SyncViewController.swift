@@ -8,7 +8,6 @@
 
 import UIKit
 import Eureka
-import IPtProxyUI
 
 class SyncViewController: FixedFormViewController {
 

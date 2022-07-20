@@ -9,7 +9,6 @@
 //
 
 import UIKit
-import IPtProxyUI
 
 /**
 Implementation of communication with Nextcloud Bookmarks plug-in.
@@ -166,8 +165,6 @@ class Nextcloud: NSObject {
 		var request = URLRequest(url: url)
 		request.addValue("application/json", forHTTPHeaderField: "Content-Type")
 		request.addValue("Basic \(auth)", forHTTPHeaderField: "Authorization")
-
-		JAHPAuthenticatingHTTPProtocol.temporarilyAllow(url)
 
 		return request
 	}

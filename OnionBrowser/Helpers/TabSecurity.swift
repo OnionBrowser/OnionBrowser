@@ -44,14 +44,12 @@ class TabSecurity: NSObject {
 		let security = Settings.tabSecurity
 		let controller = AppDelegate.shared?.browsingUi
 		let cookieJar = AppDelegate.shared?.cookieJar
-		let ocspCache = AppDelegate.shared?.certificateAuthentication
 
 		if security == .clearOnBackground {
 			controller?.removeAllTabs()
 		}
 		else {
 			cookieJar?.clearAllOldNonWhitelistedData()
-			ocspCache?.persist()
 		}
 
 		if security == .alwaysRemember {

@@ -50,6 +50,5 @@ class BridgesViewController: UIViewController {
     }
     
 	@IBAction func config() {
-		ObBridgesConfViewController.present(from: self)
 	}
 }

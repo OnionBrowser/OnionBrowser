@@ -15,7 +15,6 @@ class BetterCookieJar: CookieJar {
 	func clearAllNonWhitelistedData() {
 		clearAllNonWhitelistedCookies(olderThan: 0)
 		clearAllNonWhitelistedLocalStorage(olderThan: 0)
-		clearAllNonWhitelistedAuthKeys(olderThan: 0)
 	}
 
 	func clearAllOldNonWhitelistedData() {
@@ -23,7 +22,6 @@ class BetterCookieJar: CookieJar {
 
 		clearAllNonWhitelistedCookies(olderThan: timeout)
 		clearAllNonWhitelistedLocalStorage(olderThan: timeout)
-		clearAllNonWhitelistedAuthKeys(olderThan: timeout)
 	}
 
 	private func clearAllNonWhitelistedCookies(olderThan timeout: TimeInterval) {
@@ -55,24 +53,6 @@ class BetterCookieJar: CookieJar {
 
 			if !inUse(host, timeout) {
 				try? FileManager.default.removeItem(atPath: file)
-			}
-		}
-	}
-
-	private func clearAllNonWhitelistedAuthKeys(olderThan timeout: TimeInterval) {
-		guard let onionAuth = OnionManager.shared.onionAuth else {
-			return
-		}
-
-		for key in onionAuth.keys {
-			guard let host = key.onionAddress?.host,
-				  !isHostWhitelisted(host)
-			else {
-				continue
-			}
-
-			if !inUse(host, timeout) {
-				onionAuth.removeKey(at: onionAuth.keys.firstIndex(of: key)!)
 			}
 		}
 	}

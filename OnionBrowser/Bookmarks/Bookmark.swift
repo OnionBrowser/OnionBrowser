@@ -63,11 +63,6 @@ open class Bookmark: NSObject {
 
 		// Init FavIcon config here, because all code having to do with bookmarks should come along here anyway.
 		FavIcon.downloadSession = URLSession.shared
-		FavIcon.authorize = { url in
-			JAHPAuthenticatingHTTPProtocol.temporarilyAllow(url)
-
-			return true
-		}
 
 		var bookmarks = [Bookmark]()
 

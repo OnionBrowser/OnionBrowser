@@ -35,11 +35,23 @@
 				<string>https</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>onionbrowser</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>OBBundleVersion</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>orbot</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -49,12 +61,12 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>Needed to read bridge addresses from displayed QR codes.</string>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Needed to store the selected image to your photos.</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>Needed, if you want to unlock the app with Face ID.</string>
 	<key>NSMainNibFile</key>
 	<string>Launch Screen</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Needed to store the selected image to your photos.</string>
 	<key>UIApplicationShortcutItems</key>
 	<array>
 		<dict>

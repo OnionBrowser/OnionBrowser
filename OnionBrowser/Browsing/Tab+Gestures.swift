@@ -9,7 +9,6 @@
 //
 
 import Foundation
-import IPtProxyUI
 
 extension Tab: UIGestureRecognizerDelegate {
 
@@ -140,8 +139,6 @@ extension Tab: UIGestureRecognizerDelegate {
 				title: NSLocalizedString("Save Image", comment: ""),
 				style: .default,
 				handler: { _ in
-					JAHPAuthenticatingHTTPProtocol.temporarilyAllow(img, forWebViewTab: self)
-
 					let task = URLSession.shared.dataTask(with: img!) { data, response, error in
 						if let data = data,
 							let image = UIImage(data: data) {

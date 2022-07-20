@@ -3,15 +3,15 @@
 //  OnionBrowser2
 //
 //  Created by Benjamin Erhart on 10.01.20.
-//  Copyright © 2012 - 2021, Tigas Ventures, LLC (Mike Tigas)
+//  Copyright © 2012 - 2022, Tigas Ventures, LLC (Mike Tigas)
 //
 //  This file is part of Onion Browser. See LICENSE file for redistribution terms.
 //
 
 import UIKit
-import IPtProxyUI
+import OrbotKit
 
-class ConnectingViewController: UIViewController, OnionManagerDelegate, BridgesConfDelegate {
+class ConnectingViewController: UIViewController, OnionManagerDelegate {
 
 	class func start() {
 		let appDelegate = AppDelegate.shared
@@ -99,21 +99,14 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate, BridgesC
 		Claim(NSLocalizedString("__CLAIM_8__", comment: ""), .black, "worker_bg", "worker"),
 	]
 
-	override func viewDidLoad() {
-		super.viewDidLoad()
-
-		OnionManager.shared.setTransportConf(transport: Settings.transport,
-											 customBridges: Settings.customBridges)
-
-		OnionManager.shared.startTor(delegate: self)
-	}
-
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 
 		showClaim(nil)
 		refresh = Timer.scheduledTimer(timeInterval: 3, target: self,
 									   selector: #selector(showClaim), userInfo: nil, repeats: true)
+
+		OnionManager.shared.ensureOrbotRunning(self)
 	}
 
 	override func viewWillDisappear(_ animated: Bool) {
@@ -173,27 +166,6 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate, BridgesC
 	}
 
 
-	// MARK: BridgeConfDelegate
-
-	// Ignore, not used.
-	var transport = Transport.none
-
-	// Ignore, not used.
-	var customBridges: [String]? = nil
-
-	func save() {
-		guard !troubleLb.isHidden else {
-			return
-		}
-
-		updateTroubles(
-			NSLocalizedString("Trying a bridge…", comment: ""),
-			NSLocalizedString(
-				"This may take time. If it doesn't work after a while, choose a different bridge.",
-				comment: ""))
-	}
-
-
 	// MARK: Actions
 
 	@IBAction func next() {
@@ -206,7 +178,6 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate, BridgesC
 	}
 
 	@IBAction func bridgeSettings() {
-		ObBridgesConfViewController.present(from: self)
 	}
 
 	// MARK: Private methods

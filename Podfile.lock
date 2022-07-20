@@ -7,36 +7,23 @@ PODS:
   - FavIcon (3.1.0)
   - ImageRow (4.1.0):
     - Eureka (~> 5.3.5)
-  - IPtProxy (1.6.0)
-  - IPtProxyUI (1.8.4):
-    - Eureka (~> 5.3)
-    - ImageRow (~> 4.0)
-    - IPtProxy (~> 1.5)
-    - MBProgressHUD (~> 1.2)
-    - ReachabilitySwift (~> 5.0)
   - MBProgressHUD (1.2.0)
   - OCMock (3.9.1)
-  - ReachabilitySwift (5.0.0)
-  - ReactiveObjC (3.1.1)
+  - OrbotKit (0.2.1)
   - SDCAlertView (10.0)
-  - Tor/Core (407.8.2)
-  - Tor/GeoIP (407.8.2):
-    - Tor/Core
-  - Tor/OCSPCache (407.8.2):
-    - ReactiveObjC (~> 3.1.1)
-    - Tor/GeoIP
   - TUSafariActivity (1.0.4)
   - VForceTouch (0.0.2)
 
 DEPENDENCIES:
   - CSPHeader (~> 0.6)
   - DTFoundation/DTASN1
+  - Eureka (~> 5.3)
   - FavIcon (from `https://github.com/tladesignz/FavIcon.git`)
-  - IPtProxyUI (~> 1.8)
+  - ImageRow (~> 4.1)
   - MBProgressHUD (~> 1.2)
   - OCMock
+  - OrbotKit (~> 0.2)
   - SDCAlertView (~> 10)
-  - Tor/OCSPCache (from `https://raw.githubusercontent.com/tladesignz/Tor.framework/ocspcache/Tor.podspec`)
   - TUSafariActivity
   - VForceTouch
 
@@ -46,12 +33,9 @@ SPEC REPOS:
     - DTFoundation
     - Eureka
     - ImageRow
-    - IPtProxy
-    - IPtProxyUI
     - MBProgressHUD
     - OCMock
-    - ReachabilitySwift
-    - ReactiveObjC
+    - OrbotKit
     - SDCAlertView
     - TUSafariActivity
     - VForceTouch
@@ -59,17 +43,11 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   FavIcon:
     :git: https://github.com/tladesignz/FavIcon.git
-  Tor:
-    :podspec: https://raw.githubusercontent.com/tladesignz/Tor.framework/ocspcache/Tor.podspec
 
 CHECKOUT OPTIONS:
   FavIcon:
     :commit: 9969d1aaffced321facc66d20c82e7eab2a8aa98
     :git: https://github.com/tladesignz/FavIcon.git
-  Tor:
-    :commit: c9966b57a03013b4dad51e15aa8bdab9a09802ba
-    :git: https://github.com/tladesignz/Tor.framework.git
-    :submodules: true
 
 SPEC CHECKSUMS:
   CSPHeader: b28ad862745eb26644109f3a3aa3f5e318dcb9fe
@@ -77,17 +55,13 @@ SPEC CHECKSUMS:
   Eureka: 28ad9dec6286cd7cd601fdf8e8df39bb7356a8f4
   FavIcon: 21651b47d8f6b33517973859f85e2cb6f9fcfaee
   ImageRow: 880c0f052c5a89c80521b485c86ccf723a124e99
-  IPtProxy: aa53cc8b97762be08a8009a2bd547058aa376627
-  IPtProxyUI: 862316bccbca5ad23d871bbbea10e1718254860d
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   OCMock: 9491e4bec59e0b267d52a9184ff5605995e74be8
-  ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
-  ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
+  OrbotKit: 777a774df8551613a41efe402cee59a355545fb6
   SDCAlertView: 5fbc48cae6d7bf9781097e3f27883924ef3b922c
-  Tor: b25bb7737f1e0e525c5135dd2a4070e0148f11ec
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
   VForceTouch: b5c3a28625269e1818cf915728173bda9f669d6b
 
-PODFILE CHECKSUM: 38fef1eef4e5c3cf9f2e7a27094730991e326d6a
+PODFILE CHECKSUM: 5f7f0c55b551c51e7a92c7311e6b028e5ef90442
 
 COCOAPODS: 1.11.3

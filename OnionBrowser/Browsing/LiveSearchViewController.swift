@@ -119,9 +119,6 @@ class LiveSearchViewController: UITableViewController {
 
 		self.tab = tab
 
-		// Allow request without a tab.
-		JAHPAuthenticatingHTTPProtocol.temporarilyAllow(request.url, forWebViewTab: tab)
-
 		let task = URLSession.shared.dataTask(with: request) { data, response, error in
 			if let error = error {
 				print("[\(String(describing: type(of: self)))] failed auto-completing: \(error)")

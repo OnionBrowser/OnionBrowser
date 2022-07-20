@@ -3,13 +3,13 @@
 //  OnionBrowser2
 //
 //  Created by Benjamin Erhart on 04.12.19.
-//  Copyright © 2012 - 2021, Tigas Ventures, LLC (Mike Tigas)
+//  Copyright © 2012 - 2022, Tigas Ventures, LLC (Mike Tigas)
 //
 //  This file is part of Onion Browser. See LICENSE file for redistribution terms.
 //
 
 import UIKit
-import Tor
+import OrbotKit
 
 class CircuitViewController: UIViewController, UIPopoverPresentationControllerDelegate,
 UITableViewDataSource, UITableViewDelegate {
@@ -25,7 +25,7 @@ UITableViewDataSource, UITableViewDelegate {
 			self.note = note
 		}
 
-		init(_ torNode: TorNode) {
+		init(_ torNode: OrbotKit.TorNode) {
 			self.title = torNode.localizedCountryName ?? torNode.countryCode ?? torNode.nickName ?? ""
 			self.ip = torNode.ipv4Address?.isEmpty ?? true ? torNode.ipv6Address : torNode.ipv4Address
 		}
@@ -80,7 +80,7 @@ UITableViewDataSource, UITableViewDelegate {
 	}
 
 	private var nodes = [Node]()
-	private var usedCircuits = [TorCircuit]()
+	private var usedCircuits = [OrbotKit.TorCircuit]()
 
 	private static let onionAddressRegex = try? NSRegularExpression(pattern: "^(.*)\\.(onion|exit)$", options: .caseInsensitive)
 
@@ -142,7 +142,6 @@ UITableViewDataSource, UITableViewDelegate {
 	}
 
 	@IBAction func showBridgeSelection(_ sender: UIView) {
-		ObBridgesConfViewController.present(from: self)
 	}
 
 
@@ -156,7 +155,7 @@ UITableViewDataSource, UITableViewDelegate {
 				// so the user can close them and get fresh ones on #newCircuits.
 				self.usedCircuits = circuits.filter { !($0.socksUsername?.isEmpty ?? true) }
 
-				var candidates = [TorCircuit]()
+				var candidates = [OrbotKit.TorCircuit]()
 				var query: String?
 
 				if let host = self.currentUrl?.host {
@@ -168,29 +167,6 @@ UITableViewDataSource, UITableViewDelegate {
 						let nsRange = matches?.first?.range(at: 1),
 						let range = Range(nsRange, in: host) {
 						query = String(host[range])
-					}
-				}
-
-				// Circuits used for .onion addresses can be identified by their
-				// rendQuery, which is equal to the "domain".
-				if let query = query {
-					for circuit in circuits {
-						if circuit.purpose == TorCircuit.purposeHsClientRend
-							&& circuit.rendQuery == query {
-
-							candidates.append(circuit)
-						}
-					}
-				}
-				else {
-					for circuit in circuits {
-						if circuit.purpose == TorCircuit.purposeGeneral
-							&& !(circuit.socksUsername?.isEmpty ?? true)
-							&& !(circuit.buildFlags?.contains(TorCircuit.buildFlagIsInternal) ?? false)
-							&& !(circuit.buildFlags?.contains(TorCircuit.buildFlagOneHopTunnel) ?? false) {
-
-							candidates.append(circuit)
-						}
 					}
 				}
 

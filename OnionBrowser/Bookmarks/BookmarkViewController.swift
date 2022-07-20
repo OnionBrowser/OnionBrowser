@@ -10,7 +10,6 @@
 
 import UIKit
 import Eureka
-import IPtProxyUI
 
 class BookmarkViewController: FixedFormViewController {
 
