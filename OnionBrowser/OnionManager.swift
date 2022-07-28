@@ -42,6 +42,29 @@ class OnionManager : NSObject {
 	// MARK: Public Methods
 
 	func closeCircuits(_ circuits: [OrbotKit.TorCircuit], _ callback: @escaping ((_ success: Bool) -> Void)) {
+		let group = DispatchGroup()
+		var suc = false
+
+		for circuit in circuits {
+			group.enter()
+
+			OrbotKit.shared.closeCircuit(circuit: circuit) { success, error in
+				if let error = error {
+					print("[\(String(describing: type(of: self)))]#closeCircuits error=\(error)")
+				}
+
+				// If only one call succeeds, we count that as a success.
+				if success {
+					suc = true
+				}
+
+				group.leave()
+			}
+		}
+
+		group.wait()
+
+		callback(suc)
 	}
 
 	/**
@@ -50,7 +73,14 @@ class OnionManager : NSObject {
 	- parameter callback: Called, when all info is available.
 	- parameter circuits: A list of circuits and the nodes they consist of.
 	*/
-	func getCircuits(_ callback: @escaping ((_ circuits: [OrbotKit.TorCircuit]) -> Void)) {
+	func getCircuits(host: String?, _ callback: @escaping ((_ circuits: [OrbotKit.TorCircuit]) -> Void)) {
+		OrbotKit.shared.circuits(host: host) { circuits, error in
+			if let error = error {
+				print("[\(String(describing: type(of: self)))]#getCircuits error=\(error)")
+			}
+
+			callback(circuits ?? [])
+		}
 	}
 
 	func ensureOrbotRunning(_ vc: UIViewController) {
@@ -105,7 +135,6 @@ class OnionManager : NSObject {
 				(vc as? OnionManagerDelegate)?.torConnFinished()
 			}
 		}
-
 	}
 
 	func alertOrbotNotInstalled(_ vc: UIViewController) {

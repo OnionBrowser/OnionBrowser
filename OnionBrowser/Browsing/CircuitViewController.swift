@@ -149,38 +149,18 @@ UITableViewDataSource, UITableViewDelegate {
 
 	private func reloadCircuits() {
 		DispatchQueue.global(qos: .userInitiated).async {
-            OnionManager.shared.getCircuits { circuits in
+			OnionManager.shared.getCircuits(host: self.currentUrl?.host) { circuits in
 
 				// Store in-use circuits (identified by having a SOCKS username,
 				// so the user can close them and get fresh ones on #newCircuits.
-				self.usedCircuits = circuits.filter { !($0.socksUsername?.isEmpty ?? true) }
+				self.usedCircuits = circuits
 
-				var candidates = [OrbotKit.TorCircuit]()
-				var query: String?
-
-				if let host = self.currentUrl?.host {
-					let matches = CircuitViewController.onionAddressRegex?.matches(
-						in: host, options: [],
-						range: NSRange(host.startIndex ..< host.endIndex, in: host))
-
-					if matches?.first?.numberOfRanges ?? 0 > 1,
-						let nsRange = matches?.first?.range(at: 1),
-						let range = Range(nsRange, in: host) {
-						query = String(host[range])
-					}
-				}
-
-				// Oldest first! This is sometimes wrong, but our best guess.
-				// Often times there are newer ones created after a request
-				// but the main page was requested via the oldest one.
-				candidates.sort { $0.timeCreated ?? CircuitViewController.beginningOfTime
-					< $1.timeCreated ?? CircuitViewController.beginningOfTime }
 
 				self.nodes.removeAll()
 
 				self.nodes.append(Node(title: NSLocalizedString("This browser", comment: "")))
 
-				for node in candidates.first?.nodes ?? [] {
+				for node in circuits.first?.nodes ?? [] {
 					self.nodes.append(Node(node))
 				}
 				if self.nodes.count > 1 {

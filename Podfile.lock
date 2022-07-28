@@ -9,7 +9,7 @@ PODS:
     - Eureka (~> 5.3.5)
   - MBProgressHUD (1.2.0)
   - OCMock (3.9.1)
-  - OrbotKit (0.2.1)
+  - OrbotKit (0.2.2)
   - SDCAlertView (10.0)
   - TUSafariActivity (1.0.4)
   - VForceTouch (0.0.2)
@@ -57,7 +57,7 @@ SPEC CHECKSUMS:
   ImageRow: 880c0f052c5a89c80521b485c86ccf723a124e99
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   OCMock: 9491e4bec59e0b267d52a9184ff5605995e74be8
-  OrbotKit: 777a774df8551613a41efe402cee59a355545fb6
+  OrbotKit: 33dd047aa0d14812d7a08618f68ab1f0874e97f2
   SDCAlertView: 5fbc48cae6d7bf9781097e3f27883924ef3b922c
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
   VForceTouch: b5c3a28625269e1818cf915728173bda9f669d6b
