@@ -10,30 +10,34 @@
 
 import Foundation
 import MobileCoreServices
+import UniformTypeIdentifiers
 
 extension Tab: UIActivityItemSource {
 
-	private var uti: String? {
-		return try? downloadedFile?.resourceValues(forKeys: [URLResourceKey.typeIdentifierKey]).typeIdentifier
+	private var uti: UTType? {
+		guard let id = try? downloadedFile?.resourceValues(forKeys: [.typeIdentifierKey]).typeIdentifier else {
+			return nil
+		}
+
+		return UTType(id)
 	}
 
 	private var isImageOrAv: Bool {
-		if let uti = uti as CFString? {
-			return UTTypeConformsTo(uti, kUTTypeImage)
-				|| UTTypeConformsTo(uti, kUTTypeAudiovisualContent)
+		guard let uti = uti else {
+			return false
 		}
 
-		return false
+		return uti.conforms(to: .image) || uti.conforms(to: .audiovisualContent)
 	}
 
 	private var isDocument: Bool {
-		if let uti = uti as CFString? {
-			return UTTypeConformsTo(uti, kUTTypeData)
-				&& !UTTypeConformsTo(uti, kUTTypeHTML)
-				&& !UTTypeConformsTo(uti, kUTTypeXML)
+		guard let uti = uti else {
+			return false
 		}
 
-		return false
+		return uti.conforms(to: .data)
+			&& !uti.conforms(to: .html)
+			&& !uti.conforms(to: .xml)
 	}
 
 
@@ -84,7 +88,7 @@ extension Tab: UIActivityItemSource {
 	func activityViewController(_ activityViewController: UIActivityViewController,
 								dataTypeIdentifierForActivityType activityType: UIActivity.ActivityType?) -> String {
 
-		return uti ?? kUTTypeURL as String
+		return (uti ?? .url).identifier
 	}
 
 	func activityViewController(_ activityViewController: UIActivityViewController,

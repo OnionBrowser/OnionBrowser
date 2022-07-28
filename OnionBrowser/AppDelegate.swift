@@ -65,26 +65,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OnionManagerDelegate {
 		}
 
 		var commands = [
-			UIKeyCommand(input: "[", modifierFlags: .command, action: #selector(handle(_:)),
-						 discoverabilityTitle: NSLocalizedString("Go Back", comment: "")),
-			UIKeyCommand(input: "]", modifierFlags: .command, action: #selector(handle(_:)),
-						 discoverabilityTitle: NSLocalizedString("Go Forward", comment: "")),
-			UIKeyCommand(input: "b", modifierFlags: .command, action: #selector(handle(_:)),
-						 discoverabilityTitle: NSLocalizedString("Show Bookmarks", comment: "")),
-			UIKeyCommand(input: "l", modifierFlags: .command, action: #selector(handle(_:)),
-						 discoverabilityTitle: NSLocalizedString("Focus URL Field", comment: "")),
-			UIKeyCommand(input: "r", modifierFlags: .command, action: #selector(handle(_:)),
-						 discoverabilityTitle: NSLocalizedString("Reload Tab", comment: "")),
-			UIKeyCommand(input: "t", modifierFlags: .command, action: #selector(handle(_:)),
-						 discoverabilityTitle: NSLocalizedString("Create New Tab", comment: "")),
-			UIKeyCommand(input: "w", modifierFlags: .command, action: #selector(handle(_:)),
-						 discoverabilityTitle: NSLocalizedString("Close Tab", comment: "")),
+			UIKeyCommand(title: NSLocalizedString("Go Back", comment: ""),
+						 action: #selector(handle(_:)), input: "[", modifierFlags: .command),
+			UIKeyCommand(title: NSLocalizedString("Go Forward", comment: ""),
+						 action: #selector(handle(_:)), input: "]", modifierFlags: .command),
+			UIKeyCommand(title: NSLocalizedString("Show Bookmarks", comment: ""),
+						 action: #selector(handle(_:)), input: "b", modifierFlags: .command),
+			UIKeyCommand(title: NSLocalizedString("Focus URL Field", comment: ""),
+						 action: #selector(handle(_:)), input: "l", modifierFlags: .command),
+			UIKeyCommand(title: NSLocalizedString("Reload Tab", comment: ""),
+						 action: #selector(handle(_:)), input: "r", modifierFlags: .command),
+			UIKeyCommand(title: NSLocalizedString("Create New Tab", comment: ""),
+						 action: #selector(handle(_:)), input: "t", modifierFlags: .command),
+			UIKeyCommand(title: NSLocalizedString("Close Tab", comment: ""),
+						 action: #selector(handle(_:)), input: "w", modifierFlags: .command),
 		]
 
 		for i in 1 ... 10 {
 			commands.append(UIKeyCommand(
-				input: String(i % 10), modifierFlags: .command, action: #selector(handle(_:)),
-				discoverabilityTitle: String(format: NSLocalizedString("Switch to Tab %d", comment: ""), i)))
+				title: String(format: NSLocalizedString("Switch to Tab %d", comment: ""), i),
+				action: #selector(handle(_:)), input: String(i % 10), modifierFlags: .command))
 		}
 
 		if UIResponder.currentFirstResponder() is WKWebView {
