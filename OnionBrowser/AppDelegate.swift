@@ -10,6 +10,7 @@
 
 import UIKit
 import AVFoundation
+import WebKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, OnionManagerDelegate {
@@ -86,7 +87,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OnionManagerDelegate {
 				discoverabilityTitle: String(format: NSLocalizedString("Switch to Tab %d", comment: ""), i)))
 		}
 
-		if UIResponder.currentFirstResponder() is UIWebView {
+		if UIResponder.currentFirstResponder() is WKWebView {
 			commands.append(contentsOf: allKeyBindings)
 		}
 
@@ -99,26 +100,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OnionManagerDelegate {
 	 from "Mozilla/5.0 (iPhone; CPU iPhone OS 8_4_1 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Mobile/12H321"
 	 to   "Mozilla/5.0 (iPhone; CPU iPhone OS 8_4_1 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12H321 Safari/600.1.4"
 	 */
-	let defaultUserAgent: String? = {
-		var uaparts = UIWebView(frame: .zero)
-			.stringByEvaluatingJavaScript(from: "navigator.userAgent")?
-			.components(separatedBy: " ")
-
-		// Assume Safari major version will match iOS major.
-		let osv = UIDevice.current.systemVersion.components(separatedBy: ".")
-		let index = (uaparts?.endIndex ?? 1) - 1
-		uaparts?.insert("Version/\(osv.first ?? "0").0", at: index)
-
-		// Now tack on "Safari/XXX.X.X" from WebKit version.
-		for p in uaparts ?? [] {
-			if p.contains("AppleWebKit/") {
-				uaparts?.append(p.replacingOccurrences(of: "AppleWebKit", with: "Safari"))
-				break
-			}
-		}
-
-		return uaparts?.joined(separator: " ")
-	}()
+	private(set) var defaultUserAgent: String?
 
 	private var inStartupPhase = true
 
@@ -155,8 +137,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OnionManagerDelegate {
 		return bindings
 	}()
 
-	private var alert: UIAlertController?
-
 	/**
 	Flag, if biometric/password authentication after activation was successful.
 
@@ -168,6 +148,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OnionManagerDelegate {
 	// MARK: UIApplicationDelegate
 
 	func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+
+		evaluateUserAgent()
 
 		migrate()
 
@@ -358,66 +340,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OnionManagerDelegate {
 	}
 
 
-	func authenticatingHTTPProtocol(didReceive challenge: URLAuthenticationChallenge) {
-
-		let space = challenge.protectionSpace
-		let storage = URLCredentialStorage.shared
-
-		// If we have existing credentials for this realm, try them first.
-		if challenge.previousFailureCount < 1,
-			let credential = storage.credentials(for: space)?.first?.value {
-
-			storage.set(credential, for: space)
-//			authenticatingHTTPProtocol.resolvePendingAuthenticationChallenge(with: credential)
-
-			return
-		}
-
-		DispatchQueue.main.async {
-			self.alert = AlertHelper.build(
-				message: (space.realm?.isEmpty ?? true) ? space.host : "\(space.host): \"\(space.realm!)\"",
-				title: NSLocalizedString("Authentication Required", comment: ""))
-
-			AlertHelper.addTextField(self.alert!, placeholder:
-				NSLocalizedString("Username", comment: ""))
-
-			AlertHelper.addPasswordField(self.alert!, placeholder:
-				NSLocalizedString("Password", comment: ""))
-
-			self.alert?.addAction(AlertHelper.cancelAction { _ in
-				challenge.sender?.cancel(challenge)
-//				authenticatingHTTPProtocol.client?.urlProtocol(
-//					authenticatingHTTPProtocol,
-//					didFailWithError: NSError(domain: NSCocoaErrorDomain,
-//											  code: NSUserCancelledError))
-			})
-
-			self.alert?.addAction(AlertHelper.defaultAction(NSLocalizedString("Log In", comment: "")) { _ in
-				// We only want one set of credentials per protectionSpace.
-				// In case we stored incorrect credentials on the previous
-				// login attempt, purge stored credentials for the
-				// protectionSpace before storing new ones.
-				for c in storage.credentials(for: space) ?? [:] {
-					storage.remove(c.value, for: space)
-				}
-
-				let textFields = self.alert?.textFields
-
-				let credential = URLCredential(user: textFields?.first?.text ?? "",
-											   password: textFields?.last?.text ?? "",
-											   persistence: .forSession)
-
-				storage.set(credential, for: space)
-//				authenticatingHTTPProtocol.resolvePendingAuthenticationChallenge(with: credential)
-			})
-
-			self.window?.rootViewController?.top.present(self.alert!)
-		}
-
-		return
-	}
-
-
 	// MARK: OnionManagerDelegate
 
 	func torConnProgress(_ progress: Int) {
@@ -450,7 +372,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OnionManagerDelegate {
 	// MARK: Public Methods
 
 	/**
-	Setting `AVAudioSessionCategoryAmbient` will prevent audio from `UIWebView` from pausing
+	Setting `AVAudioSessionCategoryAmbient` will prevent audio from `WKWebView` from pausing
 	already-playing audio from other apps.
 	*/
 	func adjustMuteSwitchBehavior() {
@@ -483,6 +405,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OnionManagerDelegate {
 
 
 	// MARK: Private Methods
+
+	private func evaluateUserAgent() {
+		WKWebView(frame: .zero).evaluateJavaScript("navigator.userAgent") { result, error in
+			var uaparts = (result as? String)?.components(separatedBy: " ")
+
+			// Assume Safari major version will match iOS major.
+			let osv = UIDevice.current.systemVersion.components(separatedBy: ".")
+			let index = (uaparts?.endIndex ?? 1) - 1
+			uaparts?.insert("Version/\(osv.first ?? "0").0", at: index)
+
+			// Now tack on "Safari/XXX.X.X" from WebKit version.
+			for p in uaparts ?? [] {
+				if p.contains("AppleWebKit/") {
+					uaparts?.append(p.replacingOccurrences(of: "AppleWebKit", with: "Safari"))
+					break
+				}
+			}
+
+			self.defaultUserAgent = uaparts?.joined(separator: " ")
+		}
+	}
 
 	/**
 	Handle per-version upgrades or migrations.

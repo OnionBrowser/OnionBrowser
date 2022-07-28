@@ -160,6 +160,6 @@ extension Tab {
 		print("[Tab \(index)] hardware keyboard input: \"\(command.input ?? "")\", keycode=\(keycode), keypressKeycode=\(keypressKeycode), modifierFlags=\(command.modifierFlags): shiftKey=\(shiftKey), ctrlKey=\(ctrlKey), altKey=\(altKey), cmdKey=\(cmdKey)")
 		print("[Tab \(index)] injected JS: \(js)")
 
-		stringByEvaluatingJavaScript(from: js)
+		stringByEvaluatingJavaScript(from: js) { _ in }
 	}
 }

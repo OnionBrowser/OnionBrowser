@@ -3,13 +3,14 @@
 //  OnionBrowser2
 //
 //  Created by Benjamin Erhart on 22.11.19.
-//  Copyright © 2012 - 2021, Tigas Ventures, LLC (Mike Tigas)
+//  Copyright © 2012 - 2022, Tigas Ventures, LLC (Mike Tigas)
 //
 //  This file is part of Onion Browser. See LICENSE file for redistribution terms.
 //
 
 import UIKit
 import QuickLook
+import WebKit
 
 protocol TabDelegate: AnyObject {
 	func updateChrome()
@@ -51,7 +52,7 @@ class Tab: UIView {
 			return downloadedFile.lastPathComponent
 		}
 
-		if let title = stringByEvaluatingJavaScript(from: "document.title") {
+		if let title = webView.title {
 			if !title.isEmpty {
 				return title
 			}
@@ -125,12 +126,19 @@ class Tab: UIView {
 		}
 	}
 
-	private(set) lazy var webView: UIWebView = {
-		let view = UIWebView()
+	/**
+	 https://www.hackingwithswift.com/articles/112/the-ultimate-guide-to-wkwebview
+	 */
+	private(set) lazy var webView: WKWebView = {
+		let conf = WKWebViewConfiguration()
+		conf.allowsAirPlayForMediaPlayback = true
+		conf.allowsInlineMediaPlayback = true
+		conf.allowsPictureInPictureMediaPlayback = true
 
-		view.delegate = self
-		view.scalesPageToFit = true
-		view.allowsInlineMediaPlayback = true
+		let view = WKWebView(frame: .zero, configuration: conf)
+
+		view.uiDelegate = self
+		view.navigationDelegate = self
 
 		return view.add(to: self)
 	}()
@@ -191,6 +199,14 @@ class Tab: UIView {
 		setup()
 	}
 
+	override func observeValue(forKeyPath keyPath: String?, of object: Any?,
+							   change: [NSKeyValueChangeKey : Any]?,
+							   context: UnsafeMutableRawPointer?)
+	{
+		if keyPath == "estimatedProgress" {
+			progress = Float(webView.estimatedProgress)
+		}
+	}
 
 	// MARK: Public Methods
 
@@ -238,7 +254,7 @@ class Tab: UIView {
 		}
 
 		DispatchQueue.main.async {
-			self.webView.loadRequest(request)
+			self.webView.load(request)
 		}
 	}
 
@@ -273,9 +289,35 @@ class Tab: UIView {
 		}
 	}
 
-	@discardableResult
+	func stringByEvaluatingJavaScript(from script: String, _ completion: @escaping (String?) -> Void) {
+		webView.evaluateJavaScript(script) { result, error in
+			let string = result as? String
+
+			if let error = error {
+				print("[\(String(describing: type(of: self)))]#stringByEvaluatingJavaScript error=\(error)")
+			}
+
+			completion(string)
+		}
+	}
+
 	func stringByEvaluatingJavaScript(from script: String) -> String? {
-		return webView.stringByEvaluatingJavaScript(from: script)
+		var string: String?
+
+		let group = DispatchGroup()
+		group.enter()
+
+		webView.evaluateJavaScript(script) { result, error in
+			string = result as? String
+
+			if let error = error {
+				print("[\(String(describing: type(of: self)))]#stringByEvaluatingJavaScript error=\(error)")
+			}
+		}
+
+		group.wait()
+
+		return string
 	}
 
 	/**
@@ -289,7 +331,8 @@ class Tab: UIView {
 
 			self.tabDelegate = nil
 			self.scrollView.delegate = nil
-			self.webView.delegate = nil
+			self.webView.uiDelegate = nil
+			self.webView.navigationDelegate = nil
 
 			for gr in self.webView.gestureRecognizers ?? [] {
 				self.webView.removeGestureRecognizer(gr)
@@ -315,7 +358,7 @@ class Tab: UIView {
 			self.stop()
 
 			// Will empty the webView, but keep the URL and doesn't create a history entry.
-			self.stringByEvaluatingJavaScript(from: "document.open()")
+			self.stringByEvaluatingJavaScript(from: "document.open()") { _ in }
 			
 			self.needsRefresh = true
 		}
@@ -356,7 +399,7 @@ class Tab: UIView {
 	// MARK: Private Methods
 
 	private func setup(_ restorationId: String? = nil) {
-		// Re-register user agent with our hash, which should only affect this UIWebView.
+		// Re-register user agent with our hash, which should only affect this WKWebView.
 		UserDefaults.standard.register(defaults: ["UserAgent": "\(AppDelegate.shared?.defaultUserAgent ?? "")/\(hash)"])
 
 		if restorationId != nil {
@@ -364,34 +407,14 @@ class Tab: UIView {
 			needsRefresh = true
 		}
 
-		NotificationCenter.default.addObserver(
-			self, selector: #selector(progressEstimateChanged(_:)),
-			name: NSNotification.Name(rawValue: "WebProgressEstimateChangedNotification"),
-			object: webView.value(forKeyPath: "documentView.webView"))
+		webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil)
 
 		// Immediately refresh the page if its host settings were changed, so
 		// users sees the impact of their changes.
 		NotificationCenter.default.addObserver(self, selector: #selector(hostSettingsChanged(_:)),
 											   name: .hostSettingsChanged, object: nil)
 
-		// This doubles as a way to force the webview to initialize itself,
-		// otherwise the UA doesn't seem to set right before refreshing a previous
-		// restoration state.
-		let hashInUa = stringByEvaluatingJavaScript(from: "navigator.userAgent")?.split(separator: "/").last
-
-		if hashInUa?.compare(String(hash)) != ComparisonResult.orderedSame {
-			print("[Tab \(index)] Aborting, not equal! hashInUa=\(String(describing: hashInUa)), hash=\(hash)")
-			abort()
-		}
-
 		setupGestureRecognizers()
-	}
-
-	@objc
-	private func progressEstimateChanged(_ notification: Notification) {
-		clearSnapshot()
-
-		progress = Float(notification.userInfo?["WebProgressEstimatedProgressKey"] as? Float ?? 0)
 	}
 
 	@objc

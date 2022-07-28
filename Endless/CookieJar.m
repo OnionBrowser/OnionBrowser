@@ -34,7 +34,7 @@
 #define LOCAL_STORAGE_REGEX_HOSTNAME_GROUP 3
 
 /* files we'll exclude from a deep-clean of the cache directory */
-#define CACHE_EXCLUSIONS_REGEX @"^(%@(/(HSTS\\.plist|com\\.apple\\.(metal|opengl)(/.*)?|(Databases|Cache)\\.db(-shm|-wal)?))?|Snapshots(/.*)?|start.html)$"
+#define CACHE_EXCLUSIONS_REGEX @"^(%@(/(HSTS\\.plist|com\\.apple\\.(metal|opengl)(/.*)?|(Databases|Cache)\\.db(-shm|-wal)?|WebKit(/.*)?|fsCachedData))?|Snapshots(/.*)?|start.html|com\\.apple\\.WebKit\\.(Networking|WebContent)(/.*)?)$"
 
 @implementation CookieJar {
 	AppDelegate *appDelegate;

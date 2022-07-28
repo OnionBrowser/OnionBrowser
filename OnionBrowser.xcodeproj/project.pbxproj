@@ -113,7 +113,6 @@
 		A0BF525223AFC3580096624A /* BrowsingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF520B23AFC3580096624A /* BrowsingViewController.swift */; };
 		A0BF525323AFC3580096624A /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF520C23AFC3580096624A /* Tab.swift */; };
 		A0BF525423AFC3580096624A /* BrowsingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0BF520D23AFC3580096624A /* BrowsingViewController.xib */; };
-		A0BF525523AFC3580096624A /* Tab+UIWebViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF520E23AFC3580096624A /* Tab+UIWebViewDelegate.swift */; };
 		A0BF525623AFC3580096624A /* SecurityLevelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF520F23AFC3580096624A /* SecurityLevelCell.swift */; };
 		A0BF525723AFC3580096624A /* SecurityPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF521023AFC3580096624A /* SecurityPopUpViewController.swift */; };
 		A0BF525823AFC3580096624A /* TabCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0BF521123AFC3580096624A /* TabCell.xib */; };
@@ -159,6 +158,7 @@
 		A0C26E4323D8650E00C4AF1C /* security-levels.html in Resources */ = {isa = PBXBuildFile; fileRef = A0C26E4523D8650E00C4AF1C /* security-levels.html */; };
 		A0C3770E1F47342C0039198E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0C3770D1F47342C0039198E /* CoreData.framework */; };
 		A0CCF46427C3E7250003668A /* HstsCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CCF46327C3E7250003668A /* HstsCache.swift */; };
+		A0CD36982890194900628DA6 /* Tab+WKDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CD36972890194900628DA6 /* Tab+WKDelegates.swift */; };
 		A0D070FD275A513700922D70 /* FileManager+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D070FC275A513700922D70 /* FileManager+Helpers.swift */; };
 		A0D9008B24095F5C0046C9B3 /* AltSvcHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D9008A24095F5C0046C9B3 /* AltSvcHeader.swift */; };
 		A0F2FB062423AB92003CC61A /* AboutSecurityLevelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F2FB052423AB92003CC61A /* AboutSecurityLevelsViewController.swift */; };
@@ -399,7 +399,6 @@
 		A0BF520B23AFC3580096624A /* BrowsingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowsingViewController.swift; sourceTree = "<group>"; };
 		A0BF520C23AFC3580096624A /* Tab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
 		A0BF520D23AFC3580096624A /* BrowsingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BrowsingViewController.xib; sourceTree = "<group>"; };
-		A0BF520E23AFC3580096624A /* Tab+UIWebViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Tab+UIWebViewDelegate.swift"; sourceTree = "<group>"; };
 		A0BF520F23AFC3580096624A /* SecurityLevelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecurityLevelCell.swift; sourceTree = "<group>"; };
 		A0BF521023AFC3580096624A /* SecurityPopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecurityPopUpViewController.swift; sourceTree = "<group>"; };
 		A0BF521123AFC3580096624A /* TabCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabCell.xib; sourceTree = "<group>"; };
@@ -430,7 +429,7 @@
 		A0BF522D23AFC3580096624A /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A0BF522E23AFC3580096624A /* AddSiteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSiteViewController.swift; sourceTree = "<group>"; };
 		A0BF522F23AFC3580096624A /* DonationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonationViewController.swift; sourceTree = "<group>"; };
-		A0BF523023AFC3580096624A /* OnionBrowser2-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OnionBrowser2-Bridging-Header.h"; sourceTree = "<group>"; };
+		A0BF523023AFC3580096624A /* OnionBrowser-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OnionBrowser-Bridging-Header.h"; sourceTree = "<group>"; };
 		A0BF523323AFC3580096624A /* OnionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnionManager.swift; sourceTree = "<group>"; };
 		A0BF523623AFC3580096624A /* BlurredSnapshot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurredSnapshot.swift; sourceTree = "<group>"; };
 		A0BF523723AFC3580096624A /* SilenceWarnings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SilenceWarnings.h; sourceTree = "<group>"; };
@@ -445,6 +444,7 @@
 		A0BF524323AFC3580096624A /* String+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Helpers.swift"; sourceTree = "<group>"; };
 		A0C3770D1F47342C0039198E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		A0CCF46327C3E7250003668A /* HstsCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HstsCache.swift; sourceTree = "<group>"; };
+		A0CD36972890194900628DA6 /* Tab+WKDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tab+WKDelegates.swift"; sourceTree = "<group>"; };
 		A0D045DD273953B3002F003B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = ../Resources/en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A0D045DE273953B7002F003B /* sq */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sq; path = ../Resources/sq.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A0D045DF273953BB002F003B /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ../Resources/ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -765,7 +765,7 @@
 				A079A39E2705D85D00917CDB /* BetterCookieJar.swift */,
 				A0CCF46327C3E7250003668A /* HstsCache.swift */,
 				A0BF523323AFC3580096624A /* OnionManager.swift */,
-				A0BF523023AFC3580096624A /* OnionBrowser2-Bridging-Header.h */,
+				A0BF523023AFC3580096624A /* OnionBrowser-Bridging-Header.h */,
 				A0BF520023AFC3580096624A /* version.h */,
 				A0BF523523AFC3580096624A /* Helpers */,
 			);
@@ -801,7 +801,7 @@
 				A0BF521523AFC3580096624A /* Tab+Downloads.swift */,
 				A0BF521423AFC3580096624A /* Tab+Gestures.swift */,
 				A0BF520623AFC3580096624A /* Tab+Keyboard.swift */,
-				A0BF520E23AFC3580096624A /* Tab+UIWebViewDelegate.swift */,
+				A0CD36972890194900628DA6 /* Tab+WKDelegates.swift */,
 				A0BF520323AFC3580096624A /* SecurityPopUpViewController.xib */,
 				A0BF521023AFC3580096624A /* SecurityPopUpViewController.swift */,
 				A0BF520723AFC3580096624A /* SecurityLevelCell.xib */,
@@ -1231,6 +1231,7 @@
 			files = (
 				A0BF526623AFC3580096624A /* BookmarksViewController.swift in Sources */,
 				A0BF527923AFC3580096624A /* Bundle+Helpers.swift in Sources */,
+				A0CD36982890194900628DA6 /* Tab+WKDelegates.swift in Sources */,
 				A0172C74288828D8008D42CD /* URLSession+Helpers.swift in Sources */,
 				A0BF526B23AFC3580096624A /* Settings.swift in Sources */,
 				A0BF525323AFC3580096624A /* Tab.swift in Sources */,
@@ -1290,7 +1291,6 @@
 				A0BF526223AFC3580096624A /* FavIconRow.swift in Sources */,
 				A03DBCED22859B99001890C4 /* Config.m in Sources */,
 				A0172C6E2888247C008D42CD /* AlertHelper.swift in Sources */,
-				A0BF525523AFC3580096624A /* Tab+UIWebViewDelegate.swift in Sources */,
 				A003A6B823C9480000BD2D20 /* BridgesViewController.swift in Sources */,
 				A0F2FB062423AB92003CC61A /* AboutSecurityLevelsViewController.swift in Sources */,
 				A02CB2B523D0B0B300880720 /* AddBookmarkActivity.swift in Sources */,
@@ -1651,7 +1651,7 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "$(PROVISIONING_PROFILE_SPECIFIER_MAIN)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "OnionBrowser/OnionBrowser2-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "OnionBrowser/OnionBrowser-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1676,7 +1676,7 @@
 				PRODUCT_NAME = OnionBrowser;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "$(PROVISIONING_PROFILE_SPECIFIER_MAIN)";
-				SWIFT_OBJC_BRIDGING_HEADER = "OnionBrowser/OnionBrowser2-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "OnionBrowser/OnionBrowser-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
