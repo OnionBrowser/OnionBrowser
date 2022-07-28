@@ -155,7 +155,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OnionManagerDelegate {
 
 		adjustMuteSwitchBehavior()
 
-		DownloadHelper.deleteDownloadsDirectory()
+		DownloadHelper.purge()
 
 		return true
 	}
@@ -276,7 +276,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OnionManagerDelegate {
 
 	func applicationWillTerminate(_ application: UIApplication) {
 		cookieJar.clearAllNonWhitelistedData()
-		DownloadHelper.deleteDownloadsDirectory()
+		DownloadHelper.purge()
 
 		application.ignoreSnapshotOnNextApplicationLaunch()
 	}

@@ -151,15 +151,40 @@ extension Tab: WKUIDelegate, WKNavigationDelegate {
 		if !iframe {
 			reset(navigationAction.request.mainDocumentURL)
 		}
-		cancelDownload()
 
-		decisionHandler(.allow)
+		if navigationAction.shouldPerformDownload {
+			decisionHandler(.download)
+		}
+		else {
+			cancelDownload()
+
+			decisionHandler(.allow)
+		}
+	}
+
+	func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse,
+				 decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void)
+	{
+		if navigationResponse.canShowMIMEType {
+			decisionHandler(.allow)
+		}
+		else {
+			decisionHandler(.download)
+		}
 	}
 
 	func webView(_ webView: WKWebView, didCommit navigation: WKNavigation?) {
 		url = webView.url ?? URL.start
 
 		tabDelegate?.updateChrome()
+	}
+
+	func webView(_ webView: WKWebView, navigationAction: WKNavigationAction, didBecome download: WKDownload) {
+		download.delegate = self
+	}
+
+	func webView(_ webView: WKWebView, navigationResponse: WKNavigationResponse, didBecome download: WKDownload) {
+		download.delegate = self
 	}
 
 	func webView(_ webView: WKWebView, didFinish navigation: WKNavigation?) {

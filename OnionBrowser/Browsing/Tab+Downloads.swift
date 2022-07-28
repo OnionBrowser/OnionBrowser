@@ -3,15 +3,16 @@
 //  OnionBrowser2
 //
 //  Created by Benjamin Erhart on 22.11.19.
-//  Copyright © 2012 - 2021, Tigas Ventures, LLC (Mike Tigas)
+//  Copyright © 2012 - 2022, Tigas Ventures, LLC (Mike Tigas)
 //
 //  This file is part of Onion Browser. See LICENSE file for redistribution terms.
 //
 
 import Foundation
 import QuickLook
+import WebKit
 
-extension Tab: DownloadTaskDelegate, QLPreviewControllerDelegate, QLPreviewControllerDataSource {
+extension Tab: WKDownloadDelegate, QLPreviewControllerDelegate, QLPreviewControllerDataSource {
 
 	/**
 	Should be called whenever navigation occurs or
@@ -20,7 +21,7 @@ extension Tab: DownloadTaskDelegate, QLPreviewControllerDelegate, QLPreviewContr
 	func cancelDownload() {
 		if downloadedFile != nil {
 			// Delete the temporary file.
-			try? FileManager.default.removeItem(atPath: downloadedFile!.path)
+			try? FileManager.default.removeItem(at: downloadedFile!)
 
 			downloadedFile = nil
 		}
@@ -35,23 +36,46 @@ extension Tab: DownloadTaskDelegate, QLPreviewControllerDelegate, QLPreviewContr
 	}
 
 
-	// MARK: DownloadTaskDelegate
+	// MARK: WKDownloadDelegate
 
-	func didStartDownloadingFile() {
-		// Nothing to do here.
+	func download(_ download: WKDownload, decideDestinationUsing response: URLResponse,
+				  suggestedFilename: String, completionHandler: @escaping (URL?) -> Void)
+	{
+		guard let dir = DownloadHelper.getDirectory() else {
+			downloadedFile = nil
+			completionHandler(nil)
+
+			return
+		}
+
+		downloadedFile = dir.appendingPathComponent(suggestedFilename, isDirectory: false)
+
+		// Remove old file, if it does exist.
+		if (try? downloadedFile?.checkResourceIsReachable()) ?? false {
+			try? FileManager.default.removeItem(at: downloadedFile!)
+		}
+
+		completionHandler(downloadedFile)
 	}
 
-	func didFinishDownloading(to location: URL?) {
-		DispatchQueue.main.async {
-			if location != nil {
-				self.downloadedFile = location;
-				self.showDownload()
-			}
+	func download(_ download: WKDownload, didReceive challenge: URLAuthenticationChallenge,
+				  completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void)
+	{
+		webView(webView, didReceive: challenge) { disposition, credential in
+			completionHandler(disposition, credential)
 		}
 	}
 
-	func setProgress(_ pr: NSNumber?) {
-		progress = pr?.floatValue ?? 0
+	func download(_ download: WKDownload, didFailWithError error: Error, resumeData: Data?) {
+		print(error)
+	}
+
+	func downloadDidFinish(_ download: WKDownload) {
+		DispatchQueue.main.async {
+			if (try? self.downloadedFile?.checkResourceIsReachable()) ?? false {
+				self.showDownload()
+			}
+		}
 	}
 
 

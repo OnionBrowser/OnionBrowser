@@ -340,9 +340,7 @@
 	JAHPQNSURLSessionDemuxTaskInfo *    taskInfo;
 	NSURL *newLocation; // must move to a new location before returning, see comment above function declaration
 	if ([downloadTask.response.suggestedFilename length] > 0) {
-		newLocation = [DownloadHelper moveFileToDownloadsDirectory:location withFilename:downloadTask.response.suggestedFilename];
 	} else {
-		newLocation = [DownloadHelper moveFileToDownloadsDirectory:location withFilename:downloadTask.currentRequest.URL.lastPathComponent];
 	}
 	taskInfo = [self taskInfoForTask:downloadTask];
 	if (taskInfo && [taskInfo.delegate respondsToSelector:@selector(URLSession:downloadTask:didFinishDownloadingToURL:)]) {
