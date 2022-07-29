@@ -1,9 +1,9 @@
 //
 //  TabSecurity.swift
-//  OnionBrowser2
+//  OnionBrowser
 //
 //  Created by Benjamin Erhart on 03.05.19.
-//  Copyright © 2012 - 2021, Tigas Ventures, LLC (Mike Tigas)
+//  Copyright © 2012 - 2022, Tigas Ventures, LLC (Mike Tigas)
 //
 //  This file is part of Onion Browser. See LICENSE file for redistribution terms.
 //
@@ -43,13 +43,9 @@ class TabSecurity: NSObject {
 	class func handleBackgrounding() {
 		let security = Settings.tabSecurity
 		let controller = AppDelegate.shared?.browsingUi
-		let cookieJar = AppDelegate.shared?.cookieJar
 
 		if security == .clearOnBackground {
 			controller?.removeAllTabs()
-		}
-		else {
-			cookieJar?.clearAllOldNonWhitelistedData()
 		}
 
 		if security == .alwaysRemember {

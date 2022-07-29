@@ -1,9 +1,11 @@
 //
 //  BrowsingViewController+UITextFieldDelegate.swift
-//  OnionBrowser2
+//  OnionBrowser
 //
 //  Created by Benjamin Erhart on 06.11.19.
-//  Copyright © 2019 jcs. All rights reserved.
+//  Copyright © 2012 - 2022, Tigas Ventures, LLC (Mike Tigas)
+//
+//  This file is part of Onion Browser. See LICENSE file for redistribution terms.
 //
 
 import Foundation
@@ -30,7 +32,7 @@ extension BrowsingViewController: UITextFieldDelegate {
 			textField.resignFirstResponder()
 
 			// User is shifting to a new place. Probably a good time to clear old data.
-			AppDelegate.shared?.cookieJar.clearAllNonWhitelistedData()
+			WebsiteStorage.shared.cleanup()
 
 			if let url = self.parseSearch(search) {
 				self.debug("#textFieldShouldReturn url=\(url)")

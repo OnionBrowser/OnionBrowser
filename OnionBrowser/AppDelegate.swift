@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  OnionBrowser2
+//  OnionBrowser
 //
 //  Created by Benjamin Erhart on 09.01.20.
 //  Copyright © 2012 - 2022, Tigas Ventures, LLC (Mike Tigas)
@@ -42,9 +42,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OnionManagerDelegate {
 
 	@objc
 	let hstsCache = HstsCache.shared
-
-	@objc
-	let cookieJar = BetterCookieJar()
 
 	@objc
 	var browsingUi: BrowsingViewController?
@@ -275,7 +272,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OnionManagerDelegate {
 	}
 
 	func applicationWillTerminate(_ application: UIApplication) {
-		cookieJar.clearAllNonWhitelistedData()
+		WebsiteStorage.shared.cleanup()
+
 		DownloadHelper.purge()
 
 		application.ignoreSnapshotOnNextApplicationLaunch()
@@ -456,7 +454,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OnionManagerDelegate {
 			dismissModalsAndCall {
 				self.browsingUi?.removeAllTabs()
 				Settings.openTabs = nil
-				self.cookieJar.clearAllNonWhitelistedData()
+
+				WebsiteStorage.shared.cleanup()
+
 				completion?()
 			}
 		}

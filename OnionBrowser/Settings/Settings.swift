@@ -1,9 +1,9 @@
 //
 //  Settings.swift
-//  OnionBrowser2
+//  OnionBrowser
 //
 //  Created by Benjamin Erhart on 18.10.19.
-//  Copyright © 2012 - 2021, Tigas Ventures, LLC (Mike Tigas)
+//  Copyright © 2012 - 2022, Tigas Ventures, LLC (Mike Tigas)
 //
 //  This file is part of Onion Browser. See LICENSE file for redistribution terms.
 //
@@ -289,22 +289,6 @@ class Settings: NSObject {
 		}
 		set {
 			UserDefaults.standard.set(newValue, forKey: "third_party_keyboards")
-		}
-	}
-
-	class var cookieAutoSweepInterval: TimeInterval {
-		get {
-			// Defaults to 30 minutes.
-			if UserDefaults.standard.object(forKey: "old_data_sweep_mins") == nil {
-				return 30 * 60
-			}
-
-			return UserDefaults.standard.double(forKey: "old_data_sweep_mins") * 60
-		}
-		set {
-			UserDefaults.standard.set(newValue / 60, forKey: "old_data_sweep_mins")
-			
-			AppDelegate.shared?.cookieJar.oldDataSweepTimeout = NSNumber(value: newValue / 60)
 		}
 	}
 

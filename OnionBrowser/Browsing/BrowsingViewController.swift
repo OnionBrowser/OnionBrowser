@@ -1,9 +1,9 @@
 //
 //  BrowsingViewController.swift
-//  OnionBrowser2
+//  OnionBrowser
 //
 //  Created by Benjamin Erhart on 29.10.19.
-//  Copyright © 2012 - 2021, Tigas Ventures, LLC (Mike Tigas)
+//  Copyright © 2012 - 2022, Tigas Ventures, LLC (Mike Tigas)
 //
 //  This file is part of Onion Browser. See LICENSE file for redistribution terms.
 //
@@ -465,12 +465,8 @@ class BrowsingViewController: UIViewController, TabDelegate {
 		}) { _ in
 			self.currentTab = focus ?? self.tabs.last
 
-			let hash = tab.hash
-
 			tab.close()
 			self.tabs.removeAll { $0 == tab }
-
-			AppDelegate.shared?.cookieJar.clearNonWhitelistedData(forTab: UInt(hash))
 
 			self.updateChrome()
 		}
@@ -560,7 +556,7 @@ class BrowsingViewController: UIViewController, TabDelegate {
 
 		currentTab = nil
 
-		AppDelegate.shared?.cookieJar.clearAllNonWhitelistedData()
+		WebsiteStorage.shared.cleanup()
 
 		self.updateChrome()
 	}

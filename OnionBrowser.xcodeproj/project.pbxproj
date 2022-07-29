@@ -21,7 +21,6 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		010EEA691A43C8CF001E8B65 /* CookieJar.m in Sources */ = {isa = PBXBuildFile; fileRef = 010EEA681A43C8CF001E8B65 /* CookieJar.m */; };
 		016B2FCD1A5648AE002D2730 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016B2FCC1A5648AE002D2730 /* WebKit.framework */; };
 		0182AD9B1AACC55400F3B7ED /* HTTPSEverywhereRuleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0182AD9A1AACC55400F3B7ED /* HTTPSEverywhereRuleController.m */; };
 		018333CA1A3505FB00670CD1 /* HTTPSEverywhere.m in Sources */ = {isa = PBXBuildFile; fileRef = 018333C91A3505FB00670CD1 /* HTTPSEverywhere.m */; };
@@ -61,6 +60,8 @@
 		A01B41722456D16100A490A9 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = A01B41742456D16100A490A9 /* Localizable.stringsdict */; };
 		A01D3BA323900D2800E536F2 /* RuleEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CBCD491E934249009D5352 /* RuleEditorController.m */; };
 		A024B39D23D38B9F007F9E68 /* AdvancedTorConfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A024B39C23D38B9F007F9E68 /* AdvancedTorConfViewController.swift */; };
+		A02885802893FA23007D5AE8 /* WebsiteStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A028857F2893FA23007D5AE8 /* WebsiteStorage.swift */; };
+		A028858228940B93007D5AE8 /* Storage2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A028858128940B93007D5AE8 /* Storage2ViewController.swift */; };
 		A02CB2B523D0B0B300880720 /* AddBookmarkActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02CB2B423D0B0B300880720 /* AddBookmarkActivity.swift */; };
 		A03CFA042892B05500F01DB5 /* DownloadHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03CFA032892B05500F01DB5 /* DownloadHelper.swift */; };
 		A03DBCED22859B99001890C4 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = A03DBCEC22859B99001890C4 /* Config.m */; };
@@ -78,7 +79,6 @@
 		A07037C423C74E1100D670EC /* UIColor+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07037C323C74E1100D670EC /* UIColor+Helpers.swift */; };
 		A07037C623C7571B00D670EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07037C523C7571B00D670EC /* AppDelegate.swift */; };
 		A07037C723C79AE500D670EC /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A07037C223C74DC900D670EC /* Media.xcassets */; };
-		A079A39F2705D85D00917CDB /* BetterCookieJar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A079A39E2705D85D00917CDB /* BetterCookieJar.swift */; };
 		A07B55FC23D736D60051663B /* CertificateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07B55FB23D736D60051663B /* CertificateViewController.swift */; };
 		A08737E1221324B5005A68CC /* HostSettings_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = A08737DF2213235F005A68CC /* HostSettings_Tests.m */; };
 		A099B8B723CF60C800B50998 /* InitSecurityLevelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A099B8B523CF60C800B50998 /* InitSecurityLevelViewController.xib */; };
@@ -133,8 +133,7 @@
 		A0BF526B23AFC3580096624A /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF522623AFC3580096624A /* Settings.swift */; };
 		A0BF526C23AFC3580096624A /* CustomSitesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF522723AFC3580096624A /* CustomSitesViewController.swift */; };
 		A0BF526D23AFC3580096624A /* SecurityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF522823AFC3580096624A /* SecurityViewController.swift */; };
-		A0BF526E23AFC3580096624A /* Storage2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF522923AFC3580096624A /* Storage2ViewController.swift */; };
-		A0BF526F23AFC3580096624A /* Storage1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF522A23AFC3580096624A /* Storage1ViewController.swift */; };
+		A0BF526E23AFC3580096624A /* Storage1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF522923AFC3580096624A /* Storage1ViewController.swift */; };
 		A0BF527023AFC3580096624A /* HostSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF522B23AFC3580096624A /* HostSettings.swift */; };
 		A0BF527123AFC3580096624A /* SecurityShield.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF522C23AFC3580096624A /* SecurityShield.swift */; };
 		A0BF527223AFC3580096624A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF522D23AFC3580096624A /* SettingsViewController.swift */; };
@@ -194,8 +193,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		010EEA671A43C8CF001E8B65 /* CookieJar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CookieJar.h; sourceTree = "<group>"; };
-		010EEA681A43C8CF001E8B65 /* CookieJar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CookieJar.m; sourceTree = "<group>"; };
 		016B2FCC1A5648AE002D2730 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		01801E921A32CA2A002B4718 /* OnionBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnionBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01801E961A32CA2A002B4718 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -211,7 +208,6 @@
 		018333DB1A35727C00670CD1 /* HTTPSEverywhere_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTTPSEverywhere_Tests.m; sourceTree = "<group>"; };
 		018333EB1A357D8B00670CD1 /* libPods-OCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-OCMock.a"; path = "Pods/build/Debug-iphoneos/libPods-OCMock.a"; sourceTree = "<group>"; };
 		019516D01B7D8B400078586A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
-		01D741291A45EDD1007B7033 /* CookieJar_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CookieJar_Tests.m; sourceTree = "<group>"; };
 		01F2AE371B7FEF5E00D5651A /* SSLCertificate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSLCertificate.h; sourceTree = "<group>"; };
 		01F2AE381B7FEF5E00D5651A /* SSLCertificate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSLCertificate.m; sourceTree = "<group>"; };
 		01F2AE411B827BC200D5651A /* SSLCertificate_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSLCertificate_Tests.m; sourceTree = "<group>"; };
@@ -319,6 +315,8 @@
 		A021D5882756CE6F0009F02A /* tr-TR */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "tr-TR"; path = "tr-TR.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A024B39C23D38B9F007F9E68 /* AdvancedTorConfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedTorConfViewController.swift; sourceTree = "<group>"; };
 		A025F27421F62C100034B947 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		A028857F2893FA23007D5AE8 /* WebsiteStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsiteStorage.swift; sourceTree = "<group>"; };
+		A028858128940B93007D5AE8 /* Storage2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage2ViewController.swift; sourceTree = "<group>"; };
 		A02CB2B423D0B0B300880720 /* AddBookmarkActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookmarkActivity.swift; sourceTree = "<group>"; };
 		A03A5C05EE3C1632DC4828FF /* Pods-OnionBrowser Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnionBrowser Tests.debug.xcconfig"; path = "Target Support Files/Pods-OnionBrowser Tests/Pods-OnionBrowser Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		A03CFA032892B05500F01DB5 /* DownloadHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadHelper.swift; sourceTree = "<group>"; };
@@ -334,7 +332,6 @@
 		A07037C323C74E1100D670EC /* UIColor+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Helpers.swift"; sourceTree = "<group>"; };
 		A07037C523C7571B00D670EC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A0759DEA20975DDE000DFBFE /* config */ = {isa = PBXFileReference; lastKnownFileType = text; name = config; path = .tx/config; sourceTree = "<group>"; };
-		A079A39E2705D85D00917CDB /* BetterCookieJar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetterCookieJar.swift; sourceTree = "<group>"; };
 		A07B55FB23D736D60051663B /* CertificateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateViewController.swift; sourceTree = "<group>"; };
 		A07D65582208A2540002D775 /* mk_build_versions.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = mk_build_versions.sh; sourceTree = "<group>"; };
 		A07D65592208A2540002D775 /* decode_bundle_version.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = decode_bundle_version.sh; sourceTree = "<group>"; };
@@ -412,8 +409,7 @@
 		A0BF522623AFC3580096624A /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		A0BF522723AFC3580096624A /* CustomSitesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSitesViewController.swift; sourceTree = "<group>"; };
 		A0BF522823AFC3580096624A /* SecurityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecurityViewController.swift; sourceTree = "<group>"; };
-		A0BF522923AFC3580096624A /* Storage2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage2ViewController.swift; sourceTree = "<group>"; };
-		A0BF522A23AFC3580096624A /* Storage1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage1ViewController.swift; sourceTree = "<group>"; };
+		A0BF522923AFC3580096624A /* Storage1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage1ViewController.swift; sourceTree = "<group>"; };
 		A0BF522B23AFC3580096624A /* HostSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HostSettings.swift; sourceTree = "<group>"; };
 		A0BF522C23AFC3580096624A /* SecurityShield.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecurityShield.swift; sourceTree = "<group>"; };
 		A0BF522D23AFC3580096624A /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -563,8 +559,6 @@
 		01801E941A32CA2A002B4718 /* Endless */ = {
 			isa = PBXGroup;
 			children = (
-				010EEA671A43C8CF001E8B65 /* CookieJar.h */,
-				010EEA681A43C8CF001E8B65 /* CookieJar.m */,
 				018333C81A3505FB00670CD1 /* HTTPSEverywhere.h */,
 				018333C91A3505FB00670CD1 /* HTTPSEverywhere.m */,
 				018333D01A35291200670CD1 /* HTTPSEverywhereRule.h */,
@@ -604,7 +598,6 @@
 			isa = PBXGroup;
 			children = (
 				A068DD98240D348300BF46E3 /* AltSvcHeader_Tests.swift */,
-				01D741291A45EDD1007B7033 /* CookieJar_Tests.m */,
 				A08737DF2213235F005A68CC /* HostSettings_Tests.m */,
 				01F7CB4A1A526B9C00F42B73 /* HSTSCache_Tests.m */,
 				018333DB1A35727C00670CD1 /* HTTPSEverywhere_Tests.m */,
@@ -736,7 +729,6 @@
 				A0BF522423AFC3580096624A /* Settings */,
 				A0BF51F923AFC3580096624A /* Migration */,
 				A07037C523C7571B00D670EC /* AppDelegate.swift */,
-				A079A39E2705D85D00917CDB /* BetterCookieJar.swift */,
 				A0CCF46327C3E7250003668A /* HstsCache.swift */,
 				A0BF523323AFC3580096624A /* OnionManager.swift */,
 				A0BF523023AFC3580096624A /* OnionBrowser-Bridging-Header.h */,
@@ -818,8 +810,8 @@
 				A0BF522823AFC3580096624A /* SecurityViewController.swift */,
 				A0BF522523AFC3580096624A /* SecurityPresetsRow.swift */,
 				A0BF522C23AFC3580096624A /* SecurityShield.swift */,
-				A0BF522A23AFC3580096624A /* Storage1ViewController.swift */,
-				A0BF522923AFC3580096624A /* Storage2ViewController.swift */,
+				A0BF522923AFC3580096624A /* Storage1ViewController.swift */,
+				A028858128940B93007D5AE8 /* Storage2ViewController.swift */,
 				A0BF522723AFC3580096624A /* CustomSitesViewController.swift */,
 				A0BF522E23AFC3580096624A /* AddSiteViewController.swift */,
 				A0BF522F23AFC3580096624A /* DonationViewController.swift */,
@@ -853,6 +845,7 @@
 				A0BF524023AFC3580096624A /* URL+Helpers.swift */,
 				A013DED92434E69A0087D12B /* UIImage+Helpers.swift */,
 				A0172C73288828D8008D42CD /* URLSession+Helpers.swift */,
+				A028857F2893FA23007D5AE8 /* WebsiteStorage.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1216,10 +1209,10 @@
 				A0BF527C23AFC3580096624A /* UIView+Helpers.swift in Sources */,
 				A0BF524823AFC3580096624A /* Bridge.m in Sources */,
 				54F7DBC8281C189700CBEFDB /* CALayer+Helpers.swift in Sources */,
+				A02885802893FA23007D5AE8 /* WebsiteStorage.swift in Sources */,
 				A0BF525F23AFC3580096624A /* BrowsingViewController+UITextFieldDelegate.swift in Sources */,
 				69CBCD521E9347B8009D5352 /* UIResponder+FirstResponder.m in Sources */,
 				A0BF528123AFC3580096624A /* TabSecurity.swift in Sources */,
-				A079A39F2705D85D00917CDB /* BetterCookieJar.swift in Sources */,
 				A0BF526023AFC3580096624A /* BrowsingViewController+Toolbar.swift in Sources */,
 				A004FB2A241A782500451A9E /* SecureEnclave.swift in Sources */,
 				01F2AE391B7FEF5E00D5651A /* SSLCertificate.m in Sources */,
@@ -1227,7 +1220,6 @@
 				A0D9008B24095F5C0046C9B3 /* AltSvcHeader.swift in Sources */,
 				A0BF527223AFC3580096624A /* SettingsViewController.swift in Sources */,
 				A003A6BC23C94A4900BD2D20 /* ConnectingViewController.swift in Sources */,
-				A0BF526F23AFC3580096624A /* Storage1ViewController.swift in Sources */,
 				A0BF527723AFC3580096624A /* BlurredSnapshot.swift in Sources */,
 				A099B8B823CF60C800B50998 /* InitSecurityLevelViewController.swift in Sources */,
 				A013DEDA2434E69A0087D12B /* UIImage+Helpers.swift in Sources */,
@@ -1266,6 +1258,7 @@
 				A0172C6E2888247C008D42CD /* AlertHelper.swift in Sources */,
 				A003A6B823C9480000BD2D20 /* BridgesViewController.swift in Sources */,
 				A0F2FB062423AB92003CC61A /* AboutSecurityLevelsViewController.swift in Sources */,
+				A028858228940B93007D5AE8 /* Storage2ViewController.swift in Sources */,
 				A02CB2B523D0B0B300880720 /* AddBookmarkActivity.swift in Sources */,
 				A0BF525023AFC3580096624A /* Tab+Activity.swift in Sources */,
 				A003A6B423C9430300BD2D20 /* MainViewController.swift in Sources */,
@@ -1275,7 +1268,7 @@
 				A0BF526823AFC3580096624A /* BookmarkCell.swift in Sources */,
 				A0BF526123AFC3580096624A /* BookmarkViewController.swift in Sources */,
 				A0BF526A23AFC3580096624A /* SecurityPresetsRow.swift in Sources */,
-				A0BF526E23AFC3580096624A /* Storage2ViewController.swift in Sources */,
+				A0BF526E23AFC3580096624A /* Storage1ViewController.swift in Sources */,
 				69CBCD471E934228009D5352 /* URLBlockerRuleController.m in Sources */,
 				01F7CB4E1A52FC4E00F42B73 /* NSString+IPAddress.m in Sources */,
 				A0BF525B23AFC3580096624A /* Tab+Gestures.swift in Sources */,
@@ -1284,7 +1277,6 @@
 				A0BF527B23AFC3580096624A /* Formatter.swift in Sources */,
 				A0BF524B23AFC3580096624A /* CircuitNodeCell.swift in Sources */,
 				A07B55FC23D736D60051663B /* CertificateViewController.swift in Sources */,
-				010EEA691A43C8CF001E8B65 /* CookieJar.m in Sources */,
 				A0172C72288827E1008D42CD /* ApiError.swift in Sources */,
 				A0BF525723AFC3580096624A /* SecurityPopUpViewController.swift in Sources */,
 				A0696EAD2406C7D000512695 /* SyncViewController.swift in Sources */,

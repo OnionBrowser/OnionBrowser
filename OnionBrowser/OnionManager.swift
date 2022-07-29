@@ -1,6 +1,6 @@
 //
 //  OnionManager.swift
-//  OnionBrowser2
+//  OnionBrowser
 //
 //  Copyright © 2012 - 2022, Tigas Ventures, LLC (Mike Tigas)
 //
@@ -62,9 +62,9 @@ class OnionManager : NSObject {
 			}
 		}
 
-		group.wait()
-
-		callback(suc)
+		group.notify(queue: .main) {
+			callback(suc)
+		}
 	}
 
 	/**
@@ -84,6 +84,9 @@ class OnionManager : NSObject {
 	}
 
 	func ensureOrbotRunning(_ vc: UIViewController) {
+		(vc as? OnionManagerDelegate)?.torConnFinished()
+		return
+
 		if !OrbotKit.shared.installed {
 			OnionManager.shared.alertOrbotNotInstalled(vc)
 		}
