@@ -44,6 +44,35 @@ class Tab: UIView {
 		case secureEv
 	}
 
+	/**
+	 Some sites do mobile detection by looking for Safari in the UA, so make us look like Mobile Safari
+
+	 from "Mozilla/5.0 (iPhone; CPU iPhone OS 8_4_1 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Mobile/12H321"
+	 to   "Mozilla/5.0 (iPhone; CPU iPhone OS 8_4_1 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12H321 Safari/600.1.4"
+	 */
+	private static var defaultUserAgent = "" {
+		didSet {
+			var uaparts = defaultUserAgent.components(separatedBy: " ")
+
+			// Assume Safari major version will match iOS major.
+			let osv = UIDevice.current.systemVersion.components(separatedBy: ".")
+			let index = (uaparts.endIndex) - 1
+			uaparts.insert("Version/\(osv.first ?? "0").0", at: index)
+
+			// Now tack on "Safari/XXX.X.X" from WebKit version.
+			for p in uaparts {
+				if p.contains("AppleWebKit/") {
+					uaparts.append(p.replacingOccurrences(of: "AppleWebKit", with: "Safari"))
+					break
+				}
+			}
+
+			print("[\(String(describing: self))] defaultUserAgent old=\(defaultUserAgent), new=\(uaparts.joined(separator: " "))")
+
+			defaultUserAgent = uaparts.joined(separator: " ")
+		}
+	}
+
 
 	weak var tabDelegate: TabDelegate?
 
@@ -254,6 +283,16 @@ class Tab: UIView {
 		}
 
 		DispatchQueue.main.async {
+			var userAgent = HostSettings.for(request.url?.host).userAgent
+
+			if userAgent.isEmpty {
+				userAgent = Self.defaultUserAgent
+			}
+
+			if !userAgent.isEmpty {
+				self.webView.customUserAgent = userAgent
+			}
+
 			self.webView.load(request)
 		}
 	}
@@ -313,9 +352,11 @@ class Tab: UIView {
 			if let error = error {
 				print("[\(String(describing: type(of: self)))]#stringByEvaluatingJavaScript error=\(error)")
 			}
+
+			group.leave()
 		}
 
-		group.wait()
+		_ = group.wait(timeout: .now() + 2)
 
 		return string
 	}
@@ -399,8 +440,17 @@ class Tab: UIView {
 	// MARK: Private Methods
 
 	private func setup(_ restorationId: String? = nil) {
-		// Re-register user agent with our hash, which should only affect this WKWebView.
-		UserDefaults.standard.register(defaults: ["UserAgent": "\(AppDelegate.shared?.defaultUserAgent ?? "")/\(hash)"])
+		if Self.defaultUserAgent.isEmpty {
+			webView.evaluateJavaScript("navigator.userAgent") { result, error in
+				if let error = error {
+					print("[\(String(describing: type(of: self)))] evaluate 'navigator.userAgent' error: \(error)")
+				}
+
+				if let ua = result as? String, !ua.isEmpty {
+					Self.defaultUserAgent = ua
+				}
+			}
+		}
 
 		if restorationId != nil {
 			restorationIdentifier = restorationId

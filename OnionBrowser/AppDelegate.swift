@@ -91,14 +91,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OnionManagerDelegate {
 		return commands
 	}
 
-	/**
-	 Some sites do mobile detection by looking for Safari in the UA, so make us look like Mobile Safari
-
-	 from "Mozilla/5.0 (iPhone; CPU iPhone OS 8_4_1 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Mobile/12H321"
-	 to   "Mozilla/5.0 (iPhone; CPU iPhone OS 8_4_1 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12H321 Safari/600.1.4"
-	 */
-	private(set) var defaultUserAgent: String?
-
 	private var inStartupPhase = true
 
 	private let allKeyBindings: [UIKeyCommand] = {
@@ -145,8 +137,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OnionManagerDelegate {
 	// MARK: UIApplicationDelegate
 
 	func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-
-		evaluateUserAgent()
 
 		migrate()
 
@@ -403,27 +393,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OnionManagerDelegate {
 
 
 	// MARK: Private Methods
-
-	private func evaluateUserAgent() {
-		WKWebView(frame: .zero).evaluateJavaScript("navigator.userAgent") { result, error in
-			var uaparts = (result as? String)?.components(separatedBy: " ")
-
-			// Assume Safari major version will match iOS major.
-			let osv = UIDevice.current.systemVersion.components(separatedBy: ".")
-			let index = (uaparts?.endIndex ?? 1) - 1
-			uaparts?.insert("Version/\(osv.first ?? "0").0", at: index)
-
-			// Now tack on "Safari/XXX.X.X" from WebKit version.
-			for p in uaparts ?? [] {
-				if p.contains("AppleWebKit/") {
-					uaparts?.append(p.replacingOccurrences(of: "AppleWebKit", with: "Safari"))
-					break
-				}
-			}
-
-			self.defaultUserAgent = uaparts?.joined(separator: " ")
-		}
-	}
 
 	/**
 	Handle per-version upgrades or migrations.
