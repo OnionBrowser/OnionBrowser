@@ -117,34 +117,6 @@ class SettingsViewController: FixedFormViewController {
 				Storage1ViewController(), animated: true)
 		}
 
-		<<< PushRow<Settings.TlsVersion>() {
-			$0.title = NSLocalizedString("TLS Version", comment: "Option title")
-			$0.selectorTitle = $0.title
-			$0.options = [Settings.TlsVersion.tls13,
-						  Settings.TlsVersion.tls12,
-						  Settings.TlsVersion.tls10]
-
-			$0.value = Settings.tlsVersion
-
-			$0.cell.textLabel?.numberOfLines = 0
-		}
-		.onPresent { vc, selectorVc in
-			// This is just to trigger the usage of #sectionFooterTitleForKey
-			selectorVc.sectionKeyForValue = { value in
-				return NSLocalizedString("TLS Version", comment: "Option title")
-			}
-
-			selectorVc.sectionFooterTitleForKey = { key in
-				return NSLocalizedString("Minimum version of TLS required for hosts to negotiate HTTPS connections.",
-										 comment: "Option description")
-			}
-		}
-		.onChange { row in
-			if let value = row.value {
-				Settings.tlsVersion = value
-			}
-		}
-
 		<<< SwitchRow() {
 			$0.title = NSLocalizedString("Lock App with Touch ID/Face ID or Device Passcode", comment: "")
 			$0.value = SecureEnclave.loadKey() != nil

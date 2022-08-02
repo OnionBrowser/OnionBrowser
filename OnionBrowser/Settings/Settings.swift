@@ -39,38 +39,6 @@ class SearchEngine: NSObject {
 @objcMembers
 class Settings: NSObject {
 
-	enum TlsVersion: String, CustomStringConvertible {
-		case tls10 = "tls_10"
-		case tls12 = "tls_12"
-		case tls13 = "tls_13"
-
-		var description: String {
-			switch self {
-			case .tls10:
-				return NSLocalizedString("TLS 1.3, 1.2, 1.1 or 1.0", comment: "Minimal TLS version")
-
-			case .tls12:
-				return NSLocalizedString("TLS 1.3 or 1.2", comment: "Minimal TLS version")
-
-			default:
-				return NSLocalizedString("TLS 1.3 Only", comment: "Minimal TLS version")
-			}
-		}
-
-		var `protocol`: SSLProtocol {
-			switch self {
-			case .tls10:
-				return .tlsProtocol1
-
-			case .tls12:
-				return .tlsProtocol12
-
-			default:
-				return .tlsProtocol13
-			}
-		}
-	}
-
 	private static let transportTranslationTable = [
 		// Type .none is identical in IPtProxyUI and OnionBrowser.
 		0: 0,
@@ -205,28 +173,6 @@ class Settings: NSObject {
 		set {
 			UserDefaults.standard.set(newValue, forKey: "send_gpc")
 		}
-	}
-
-	class var tlsVersion: TlsVersion {
-		get {
-			if let value = UserDefaults.standard.object(forKey: "tls_version") as? String,
-				let version = TlsVersion(rawValue: value) {
-
-				return version
-			}
-
-			return .tls10
-		}
-		set {
-			UserDefaults.standard.set(newValue.rawValue, forKey: "tls_version")
-		}
-	}
-
-	/**
-	Proxy getter for Objective-C.
-	*/
-	class var minimumSupportedProtocol: SSLProtocol {
-		return tlsVersion.protocol
 	}
 
 	class var tabSecurity: TabSecurity.Level {
