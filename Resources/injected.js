@@ -300,13 +300,6 @@ var __endless = {
 	console.warn = function() { console._log("warn", arguments); };
 	console.error = function() { console._log("error", arguments); };
 
-	if ("##BLOCK_WEBRTC##") {
- 		navigator.mediaDevices = null;
- 		navigator.getUserMedia = null;
-		window.RTCPeerConnection = null;
-		window.webkitRTCPeerConnection = null;
-	}
- 
 	if (document.readyState == "complete" || document.readyState == "interactive")
 		__endless.onLoad();
 	else

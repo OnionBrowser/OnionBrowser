@@ -33,12 +33,6 @@ class SecurityViewController: FixedFormViewController {
 		$0.options = [.open, .blockXhr, .strict, .reallyStrict]
 	}
 
-	private let webRtcRow = SwitchRow() {
-		$0.title = NSLocalizedString("WebRTC", comment: "Option title")
-		$0.cell.switchControl.onTintColor = .accent
-		$0.cell.textLabel?.numberOfLines = 0
-	}
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,8 +50,6 @@ class SecurityViewController: FixedFormViewController {
 
 		contentPolicyRow.value = hostSettings.contentPolicy
 
-		webRtcRow.value = hostSettings.webRtc
-
 
         form
 		+++ (host != nil ? Section() : Section("to be replaced in #willDisplayHeaderView to avoid capitalization"))
@@ -66,20 +58,17 @@ class SecurityViewController: FixedFormViewController {
 		.onChange { [weak self] row in
 			// Only change other settings, if a non-custom preset was chosen.
 			// Do nothing, if it was unselected.
-			if let values = row.value?.values {
+			if let contentPolicy = row.value?.contentPolicy {
 
 				// Force-set this, because #onChange callbacks are only called,
 				// when values actually change. So this might lead to a host
 				// still being configured for default values, although these should
 				// be set hard.
-				self?.hostSettings.contentPolicy = values.csp
-				self?.hostSettings.webRtc = values.webRtc
+				self?.hostSettings.contentPolicy = contentPolicy
 
-				self?.contentPolicyRow.value = values.csp
-				self?.webRtcRow.value = values.webRtc
+				self?.contentPolicyRow.value = contentPolicy
 
 				self?.contentPolicyRow.updateCell()
-				self?.webRtcRow.updateCell()
 			}
 		}
 
@@ -103,18 +92,9 @@ class SecurityViewController: FixedFormViewController {
 			}
 		}
 		.onChange { [weak self] row in
-			if let hostSettings = self?.hostSettings {
-				let csp = row.value ?? .strict
-				var webRtc = hostSettings.webRtc
+			let csp = row.value ?? .strict
 
-				// Cannot have WebRTC while blocking everything besides images and styles.
-				// So need to restriction there, too.
-				if csp == .strict && webRtc {
-					webRtc = false
-				}
-
-				self?.alertBeforeChange(csp, webRtc)
-			}
+			self?.alertBeforeChange(csp)
 		}
 
 		<<< SwitchRow() {
@@ -125,25 +105,6 @@ class SecurityViewController: FixedFormViewController {
 		}
 		.onChange { [weak self] row in
 			self?.hostSettings.universalLinkProtection = row.value ?? false
-		}
-
-		+++ Section(footer: NSLocalizedString("Allow hosts to access WebRTC functions.",
-											  comment: "Option description"))
-
-		<<< webRtcRow
-		.onChange { [weak self] row in
-			if let hostSettings = self?.hostSettings {
-				let webRtc = row.value ?? false
-				var csp = hostSettings.contentPolicy
-
-				// Cannot have WebRTC while blocking everything besides images and styles.
-				// So need to lift restrictions there, too.
-				if webRtc && csp == .strict {
-					csp = .blockXhr
-				}
-
-				self?.alertBeforeChange(csp, webRtc)
-			}
 		}
 
 		+++ Section(header: NSLocalizedString("Privacy", comment: "Section title"),
@@ -262,26 +223,18 @@ class SecurityViewController: FixedFormViewController {
 
 	private var calledTwice = false
 
-	private func alertBeforeChange(_ csp: HostSettings.ContentPolicy, _ webRtc: Bool) {
+	private func alertBeforeChange(_ csp: HostSettings.ContentPolicy) {
 
-		let preset = SecurityPreset(csp, webRtc)
+		let preset = SecurityPreset(csp)
 
 		let okHandler = { [weak self] in
 			self?.hostSettings.contentPolicy = csp
-			self?.hostSettings.webRtc = webRtc
 
 			// Could have been modified by webRtcRow.
 			if csp != self?.contentPolicyRow.value {
 				self?.calledTwice = true
 				self?.contentPolicyRow.value = csp
 				self?.contentPolicyRow.updateCell()
-			}
-
-			// Could have been modified by contentPolicyRow.
-			if webRtc != self?.webRtcRow.value {
-				self?.calledTwice = true
-				self?.webRtcRow.value = webRtc
-				self?.webRtcRow.updateCell()
 			}
 
 			self?.securityPresetsRow.value = SecurityPreset(self?.hostSettings)
@@ -291,10 +244,8 @@ class SecurityViewController: FixedFormViewController {
 		if !calledTwice && preset == .custom && securityPresetsRow.value != .custom {
 			let cancelHandler = { [weak self] in
 				self?.contentPolicyRow.value = self?.hostSettings.contentPolicy
-				self?.webRtcRow.value = self?.hostSettings.webRtc
 
 				self?.contentPolicyRow.updateCell()
-				self?.webRtcRow.updateCell()
 
 				self?.calledTwice = false
 			}

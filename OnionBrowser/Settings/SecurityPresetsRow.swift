@@ -86,16 +86,16 @@ enum SecurityPreset: Int, CustomStringConvertible {
 		}
 	}
 
-	var values: (csp: HostSettings.ContentPolicy, webRtc: Bool)? {
+	var contentPolicy: HostSettings.ContentPolicy? {
 		switch self {
 		case .insecure:
-			return (.open, true)
+			return .open
 
 		case .medium:
-			return (.blockXhr, false)
+			return .blockXhr
 
 		case .secure:
-			return (.strict, false)
+			return .strict
 
 		default:
 			return nil
@@ -107,16 +107,14 @@ enum SecurityPreset: Int, CustomStringConvertible {
 	case medium = 1
 	case secure = 2
 
-	init(_ csp: HostSettings.ContentPolicy?, _ webRtc: Bool?) {
-		let webRtc = webRtc ?? false
-
-		if csp == .open && webRtc {
+	init(_ csp: HostSettings.ContentPolicy?) {
+		if csp == .open {
 			self = .insecure
 		}
-		else if csp == .blockXhr && !webRtc {
+		else if csp == .blockXhr {
 			self = .medium
 		}
-		else if csp == .strict && !webRtc {
+		else if csp == .strict {
 			self = .secure
 		}
 		else {
@@ -125,8 +123,7 @@ enum SecurityPreset: Int, CustomStringConvertible {
 	}
 
 	init(_ settings: HostSettings?) {
-		self = .init(settings?.contentPolicy,
-					 settings?.webRtc)
+		self = .init(settings?.contentPolicy)
 	}
 }
 

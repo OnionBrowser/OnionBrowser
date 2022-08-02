@@ -132,8 +132,7 @@ UITableViewDataSource, UITableViewDelegate {
 
 		current = presets[indexPath.row]
 
-		hostSettings.contentPolicy = current.values?.csp ?? .strict
-		hostSettings.webRtc = current.values?.webRtc ?? false
+		hostSettings.contentPolicy = current.contentPolicy ?? .strict
 
 		// Trigger creation, save and store of HostSettings for this host.
 		hostSettings.save().store()

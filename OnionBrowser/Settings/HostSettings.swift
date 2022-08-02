@@ -90,7 +90,6 @@ class HostSettings: NSObject {
 	private static let `false` = "0"
 	private static let ignoreTlsErrorsKey = "ignore_tls_errors"
 	private static let whitelistCookiesKey = "whitelist_cookies"
-	private static let webRtcKey = "allow_webrtc"
 	private static let universalLinkProtectionKey = "universal_link_protection"
 	private static let followOnionLocationHeaderKey = "follow_onion_location_header"
 	private static let userAgentKey = "user_agent"
@@ -246,24 +245,6 @@ class HostSettings: NSObject {
 	}
 
 	/**
-	True, if WebRTC should be allowed. Will walk up the domain levels ending at the default settings,
-	if not explicitly set for this host.
-
-	Setting this will always set the value explicitly for this host.
-	*/
-	@objc
-	var webRtc: Bool {
-		get {
-			return get(HostSettings.webRtcKey) == HostSettings.true
-		}
-		set {
-			raw[HostSettings.webRtcKey] = newValue
-				? HostSettings.true
-				: HostSettings.false
-		}
-	}
-
-	/**
 	True, if universal link protection should be applied. Will walk up the domain levels ending at the default settings,
 	if not explicitly set for this host.
 
@@ -354,7 +335,6 @@ class HostSettings: NSObject {
 			raw = [
 				HostSettings.ignoreTlsErrorsKey: HostSettings.false,
 				HostSettings.whitelistCookiesKey: HostSettings.false,
-				HostSettings.webRtcKey: HostSettings.false,
 				HostSettings.universalLinkProtectionKey: HostSettings.true,
 				HostSettings.followOnionLocationHeaderKey: HostSettings.true,
 				HostSettings.userAgentKey: "",
