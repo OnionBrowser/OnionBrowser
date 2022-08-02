@@ -164,6 +164,11 @@ class Tab: UIView {
 		conf.allowsInlineMediaPlayback = true
 		conf.allowsPictureInPictureMediaPlayback = true
 
+		if Settings.sendGpc {
+			let script = WKUserScript(source: "navigator.globalPrivacyControl = true", injectionTime: .atDocumentStart, forMainFrameOnly: false)
+			conf.userContentController.addUserScript(script)
+		}
+
 		let view = WKWebView(frame: .zero, configuration: conf)
 
 		view.uiDelegate = self
@@ -272,7 +277,12 @@ class Tab: UIView {
 
 		reset()
 
-		let request = request ?? URLRequest(url: URL.start)
+		var request = request ?? URLRequest(url: URL.start)
+
+		// https://globalprivacycontrol.github.io/gpc-spec/
+		if Settings.sendGpc {
+			request.setValue("1", forHTTPHeaderField: "Sec-GPC")
+		}
 
 		if let url = request.url {
 			if url == URL.start {

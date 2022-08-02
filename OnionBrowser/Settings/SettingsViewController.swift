@@ -95,14 +95,14 @@ class SettingsViewController: FixedFormViewController {
 		}
 
 		<<< SwitchRow() {
-			$0.title = NSLocalizedString("Send Do-Not-Track Header", comment: "Option title")
-			$0.value = Settings.sendDnt
+			$0.title = NSLocalizedString("Tell websites that you object to processing and selling of your personal data", comment: "Option title")
+			$0.value = Settings.sendGpc
 			$0.cell.switchControl.onTintColor = .accent
 			$0.cell.textLabel?.numberOfLines = 0
 		}
 		.onChange { row in
 			if let value = row.value {
-				Settings.sendDnt = value
+				Settings.sendGpc = value
 			}
 		}
 

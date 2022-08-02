@@ -193,12 +193,17 @@ class Settings: NSObject {
 		}
 	}
 
-	class var sendDnt: Bool {
+	/**
+	 The successor of Do-Not-Track is "Global Privacy Control".
+
+	 https://globalprivacycontrol.github.io/gpc-spec/
+	 */
+	class var sendGpc: Bool {
 		get {
-			return UserDefaults.standard.bool(forKey: "send_dnt")
+			return UserDefaults.standard.bool(forKey: "send_gpc")
 		}
 		set {
-			UserDefaults.standard.set(newValue, forKey: "send_dnt")
+			UserDefaults.standard.set(newValue, forKey: "send_gpc")
 		}
 	}
 
