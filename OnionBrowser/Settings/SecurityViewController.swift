@@ -39,12 +39,6 @@ class SecurityViewController: FixedFormViewController {
 		$0.cell.textLabel?.numberOfLines = 0
 	}
 
-	private let mixedModeRow = SwitchRow() {
-		$0.title = NSLocalizedString("Mixed-mode Resources", comment: "Option title")
-		$0.cell.switchControl.onTintColor = .accent
-		$0.cell.textLabel?.numberOfLines = 0
-	}
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,8 +58,6 @@ class SecurityViewController: FixedFormViewController {
 
 		webRtcRow.value = hostSettings.webRtc
 
-		mixedModeRow.value = hostSettings.mixedMode
-
 
         form
 		+++ (host != nil ? Section() : Section("to be replaced in #willDisplayHeaderView to avoid capitalization"))
@@ -82,15 +74,12 @@ class SecurityViewController: FixedFormViewController {
 				// be set hard.
 				self?.hostSettings.contentPolicy = values.csp
 				self?.hostSettings.webRtc = values.webRtc
-				self?.hostSettings.mixedMode = values.mixedMode
 
 				self?.contentPolicyRow.value = values.csp
 				self?.webRtcRow.value = values.webRtc
-				self?.mixedModeRow.value = values.mixedMode
 
 				self?.contentPolicyRow.updateCell()
 				self?.webRtcRow.updateCell()
-				self?.mixedModeRow.updateCell()
 			}
 		}
 
@@ -124,7 +113,7 @@ class SecurityViewController: FixedFormViewController {
 					webRtc = false
 				}
 
-				self?.alertBeforeChange(csp, webRtc, hostSettings.mixedMode)
+				self?.alertBeforeChange(csp, webRtc)
 			}
 		}
 
@@ -153,18 +142,7 @@ class SecurityViewController: FixedFormViewController {
 					csp = .blockXhr
 				}
 
-				self?.alertBeforeChange(csp, webRtc, hostSettings.mixedMode)
-			}
-		}
-
-		+++ Section(footer: NSLocalizedString("Allow HTTPS hosts to load page resources from non-HTTPS hosts. (Useful for RSS readers and other aggregators.)",
-											  comment: "Option description"))
-
-		<<< mixedModeRow
-		.onChange { [weak self] row in
-			if let hostSettings = self?.hostSettings {
-				self?.alertBeforeChange(hostSettings.contentPolicy,
-									   hostSettings.webRtc, row.value ?? false)
+				self?.alertBeforeChange(csp, webRtc)
 			}
 		}
 
@@ -284,14 +262,13 @@ class SecurityViewController: FixedFormViewController {
 
 	private var calledTwice = false
 
-	private func alertBeforeChange(_ csp: HostSettings.ContentPolicy, _ webRtc: Bool, _ mixedMode: Bool) {
+	private func alertBeforeChange(_ csp: HostSettings.ContentPolicy, _ webRtc: Bool) {
 
-		let preset = SecurityPreset(csp, webRtc, mixedMode)
+		let preset = SecurityPreset(csp, webRtc)
 
 		let okHandler = { [weak self] in
 			self?.hostSettings.contentPolicy = csp
 			self?.hostSettings.webRtc = webRtc
-			self?.hostSettings.mixedMode = mixedMode
 
 			// Could have been modified by webRtcRow.
 			if csp != self?.contentPolicyRow.value {
@@ -315,11 +292,9 @@ class SecurityViewController: FixedFormViewController {
 			let cancelHandler = { [weak self] in
 				self?.contentPolicyRow.value = self?.hostSettings.contentPolicy
 				self?.webRtcRow.value = self?.hostSettings.webRtc
-				self?.mixedModeRow.value = self?.hostSettings.mixedMode
 
 				self?.contentPolicyRow.updateCell()
 				self?.webRtcRow.updateCell()
-				self?.mixedModeRow.updateCell()
 
 				self?.calledTwice = false
 			}

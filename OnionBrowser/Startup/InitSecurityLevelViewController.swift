@@ -115,7 +115,6 @@ class InitSecurityLevelViewController: UIViewController, UITableViewDataSource, 
 
 		hs.contentPolicy = preset.values?.csp ?? .strict
 		hs.webRtc = preset.values?.webRtc ?? false
-		hs.mixedMode = preset.values?.mixedMode ?? false
 
 		// Trigger creation, save and store of default HostSettings.
 		hs.save().store()

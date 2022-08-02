@@ -134,7 +134,6 @@ UITableViewDataSource, UITableViewDelegate {
 
 		hostSettings.contentPolicy = current.values?.csp ?? .strict
 		hostSettings.webRtc = current.values?.webRtc ?? false
-		hostSettings.mixedMode = current.values?.mixedMode ?? false
 
 		// Trigger creation, save and store of HostSettings for this host.
 		hostSettings.save().store()

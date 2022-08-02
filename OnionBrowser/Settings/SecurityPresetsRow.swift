@@ -86,16 +86,16 @@ enum SecurityPreset: Int, CustomStringConvertible {
 		}
 	}
 
-	var values: (csp: HostSettings.ContentPolicy, webRtc: Bool, mixedMode: Bool)? {
+	var values: (csp: HostSettings.ContentPolicy, webRtc: Bool)? {
 		switch self {
 		case .insecure:
-			return (.open, true, true)
+			return (.open, true)
 
 		case .medium:
-			return (.blockXhr, false, false)
+			return (.blockXhr, false)
 
 		case .secure:
-			return (.strict, false, false)
+			return (.strict, false)
 
 		default:
 			return nil
@@ -107,17 +107,16 @@ enum SecurityPreset: Int, CustomStringConvertible {
 	case medium = 1
 	case secure = 2
 
-	init(_ csp: HostSettings.ContentPolicy?, _ webRtc: Bool?, _ mixedMode: Bool?) {
+	init(_ csp: HostSettings.ContentPolicy?, _ webRtc: Bool?) {
 		let webRtc = webRtc ?? false
-		let mixedMode = mixedMode ?? false
 
-		if csp == .open && webRtc && mixedMode {
+		if csp == .open && webRtc {
 			self = .insecure
 		}
-		else if csp == .blockXhr && !webRtc && !mixedMode {
+		else if csp == .blockXhr && !webRtc {
 			self = .medium
 		}
-		else if csp == .strict && !webRtc && !mixedMode {
+		else if csp == .strict && !webRtc {
 			self = .secure
 		}
 		else {
@@ -127,8 +126,7 @@ enum SecurityPreset: Int, CustomStringConvertible {
 
 	init(_ settings: HostSettings?) {
 		self = .init(settings?.contentPolicy,
-					 settings?.webRtc,
-					 settings?.mixedMode)
+					 settings?.webRtc)
 	}
 }
 
