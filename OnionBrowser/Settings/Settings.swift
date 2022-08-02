@@ -243,15 +243,6 @@ class Settings: NSObject {
 		}
 	}
 
-	class var advancedTorConf: [String]? {
-		get {
-			return UserDefaults.standard.stringArray(forKey: "advanced_tor_conf")
-		}
-		set {
-			UserDefaults.standard.set(newValue, forKey: "advanced_tor_conf")
-		}
-	}
-
 	class var openNewUrlOnStart: URL? {
 		get {
 			if let url = UserDefaults.standard.string(forKey: "open_new_url_on_start") {
