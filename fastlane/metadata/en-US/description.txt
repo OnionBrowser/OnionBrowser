@@ -8,7 +8,6 @@ FEATURES:
 • Browse the internet over Tor:
 - Protect your privacy from website tracking
 - Secure your traffic from insecure wireless networks and ISPs
-- Support for HTTPS Everywhere, an automatic switch to HTTPS enabled websites
 - Access .onion sites that are only accessible over Tor.
 
 • Fight online tracking: block scripts and automatically clear cookies and tabs, based on your preferences.

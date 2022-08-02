@@ -72,10 +72,6 @@ static NSCache *ruleCache;
 		NSString *path = [[self class] disabledTargetsPath];
 		if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
 			_disabledTargets = [NSMutableDictionary dictionaryWithContentsOfFile:path];
-			
-#ifdef TRACE_HTTPS_EVERYWHERE
-			NSLog(@"[URLBlocker] loaded %lu disabled targets", [_disabledTargets count]);
-#endif
 		}
 		else {
 			_disabledTargets = [[NSMutableDictionary alloc] init];

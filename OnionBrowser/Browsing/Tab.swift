@@ -67,8 +67,6 @@ class Tab: UIView {
 				}
 			}
 
-			print("[\(String(describing: self))] defaultUserAgent old=\(defaultUserAgent), new=\(uaparts.joined(separator: " "))")
-
 			defaultUserAgent = uaparts.joined(separator: " ")
 		}
 	}
@@ -103,9 +101,6 @@ class Tab: UIView {
 	}
 
 	private(set) var needsRefresh = false
-
-	@objc(applicableHTTPSEverywhereRules)
-	var applicableHttpsEverywhereRules = NSMutableDictionary()
 
 	@objc(applicableURLBlockerTargets)
 	var applicableUrlBlockerTargets = NSMutableDictionary()
@@ -311,7 +306,6 @@ class Tab: UIView {
 	}
 
 	func reset(_ url: URL? = nil) {
-		applicableHttpsEverywhereRules.removeAllObjects()
 		applicableUrlBlockerTargets.removeAllObjects()
 		tlsCertificate = nil
 		self.url = url ?? URL.start

@@ -22,10 +22,6 @@
 
 /* Begin PBXBuildFile section */
 		016B2FCD1A5648AE002D2730 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016B2FCC1A5648AE002D2730 /* WebKit.framework */; };
-		0182AD9B1AACC55400F3B7ED /* HTTPSEverywhereRuleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0182AD9A1AACC55400F3B7ED /* HTTPSEverywhereRuleController.m */; };
-		018333CA1A3505FB00670CD1 /* HTTPSEverywhere.m in Sources */ = {isa = PBXBuildFile; fileRef = 018333C91A3505FB00670CD1 /* HTTPSEverywhere.m */; };
-		018333D21A35291200670CD1 /* HTTPSEverywhereRule.m in Sources */ = {isa = PBXBuildFile; fileRef = 018333D11A35291200670CD1 /* HTTPSEverywhereRule.m */; };
-		018333DC1A35727C00670CD1 /* HTTPSEverywhere_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 018333DB1A35727C00670CD1 /* HTTPSEverywhere_Tests.m */; };
 		019516D11B7D8B400078586A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 019516D01B7D8B400078586A /* libz.tbd */; };
 		01F2AE391B7FEF5E00D5651A /* SSLCertificate.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F2AE381B7FEF5E00D5651A /* SSLCertificate.m */; };
 		01F2AE421B827BC200D5651A /* SSLCertificate_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F2AE411B827BC200D5651A /* SSLCertificate_Tests.m */; };
@@ -36,8 +32,6 @@
 		01F7CB4B1A526B9C00F42B73 /* HSTSCache_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F7CB4A1A526B9C00F42B73 /* HSTSCache_Tests.m */; };
 		01F7CB4E1A52FC4E00F42B73 /* NSString+IPAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F7CB4D1A52FC4E00F42B73 /* NSString+IPAddress.m */; };
 		01F8793B1A4108DD00A63654 /* URLBlocker.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F8793A1A4108DD00A63654 /* URLBlocker.m */; };
-		01F879441A41140D00A63654 /* https-everywhere_mock_rules.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01F879421A41140D00A63654 /* https-everywhere_mock_rules.plist */; };
-		01F879451A41140D00A63654 /* https-everywhere_mock_targets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01F879431A41140D00A63654 /* https-everywhere_mock_targets.plist */; };
 		01F879481A41141800A63654 /* urlblocker_mock_rules.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01F879461A41141800A63654 /* urlblocker_mock_rules.plist */; };
 		01F879491A41141800A63654 /* urlblocker_mock_targets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01F879471A41141800A63654 /* urlblocker_mock_targets.plist */; };
 		3E5C6BF218A52D07DF55A6FE /* Pods_OnionBrowser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7CE50C2429233D841D5F1C1 /* Pods_OnionBrowser.framework */; };
@@ -70,8 +64,6 @@
 		A068DD99240D348300BF46E3 /* AltSvcHeader_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A068DD98240D348300BF46E3 /* AltSvcHeader_Tests.swift */; };
 		A068DD9A240D37FB00BF46E3 /* HostSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF522B23AFC3580096624A /* HostSettings.swift */; };
 		A068DD9B240D391100BF46E3 /* SSLCertificate.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F2AE381B7FEF5E00D5651A /* SSLCertificate.m */; };
-		A068DD9C240D392B00BF46E3 /* HTTPSEverywhere.m in Sources */ = {isa = PBXBuildFile; fileRef = 018333C91A3505FB00670CD1 /* HTTPSEverywhere.m */; };
-		A068DD9D240D393200BF46E3 /* HTTPSEverywhereRule.m in Sources */ = {isa = PBXBuildFile; fileRef = 018333D11A35291200670CD1 /* HTTPSEverywhereRule.m */; };
 		A068DD9E240D394900BF46E3 /* URLBlocker.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F8793A1A4108DD00A63654 /* URLBlocker.m */; };
 		A068DDA0240D425200BF46E3 /* NSString+IPAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F7CB4D1A52FC4E00F42B73 /* NSString+IPAddress.m */; };
 		A0696EAD2406C7D000512695 /* SyncViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0696EAC2406C7D000512695 /* SyncViewController.swift */; };
@@ -86,12 +78,10 @@
 		A0BD934127C4FABC00A76230 /* HstsCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CCF46327C3E7250003668A /* HstsCache.swift */; };
 		A0BF51E423AFBF250096624A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51A023AFBF250096624A /* Localizable.strings */; };
 		A0BF51E523AFBF250096624A /* urlblocker.json in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51AE23AFBF250096624A /* urlblocker.json */; };
-		A0BF51E623AFBF250096624A /* https-everywhere_rules.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51B223AFBF250096624A /* https-everywhere_rules.plist */; };
 		A0BF51EA23AFBF250096624A /* hsts_preload.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51C423AFBF250096624A /* hsts_preload.plist */; };
 		A0BF51ED23AFBF250096624A /* start.html in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51C723AFBF250096624A /* start.html */; };
 		A0BF51EE23AFBF250096624A /* injected.js in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51CC23AFBF250096624A /* injected.js */; };
 		A0BF51EF23AFBF250096624A /* SearchEngines.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51D123AFBF250096624A /* SearchEngines.plist */; };
-		A0BF51F023AFBF250096624A /* https-everywhere_targets.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51D423AFBF250096624A /* https-everywhere_targets.plist */; };
 		A0BF51F123AFBF250096624A /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51D523AFBF250096624A /* Launch Screen.xib */; };
 		A0BF51F423AFBF250096624A /* credits.html in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51DE23AFBF250096624A /* credits.html */; };
 		A0BF524523AFC3580096624A /* Migration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF51FA23AFC3580096624A /* Migration.swift */; };
@@ -196,16 +186,9 @@
 		016B2FCC1A5648AE002D2730 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		01801E921A32CA2A002B4718 /* OnionBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnionBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01801E961A32CA2A002B4718 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0182AD991AACC55400F3B7ED /* HTTPSEverywhereRuleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPSEverywhereRuleController.h; sourceTree = "<group>"; };
-		0182AD9A1AACC55400F3B7ED /* HTTPSEverywhereRuleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPSEverywhereRuleController.m; sourceTree = "<group>"; };
-		018333C81A3505FB00670CD1 /* HTTPSEverywhere.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPSEverywhere.h; sourceTree = "<group>"; };
-		018333C91A3505FB00670CD1 /* HTTPSEverywhere.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPSEverywhere.m; sourceTree = "<group>"; };
 		018333CF1A351B3B00670CD1 /* Endless-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Endless-Prefix.pch"; sourceTree = "<group>"; };
-		018333D01A35291200670CD1 /* HTTPSEverywhereRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPSEverywhereRule.h; sourceTree = "<group>"; };
-		018333D11A35291200670CD1 /* HTTPSEverywhereRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPSEverywhereRule.m; sourceTree = "<group>"; };
 		018333D71A35727C00670CD1 /* OnionBrowser Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "OnionBrowser Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		018333DA1A35727C00670CD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		018333DB1A35727C00670CD1 /* HTTPSEverywhere_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTTPSEverywhere_Tests.m; sourceTree = "<group>"; };
 		018333EB1A357D8B00670CD1 /* libPods-OCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-OCMock.a"; path = "Pods/build/Debug-iphoneos/libPods-OCMock.a"; sourceTree = "<group>"; };
 		019516D01B7D8B400078586A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		01F2AE371B7FEF5E00D5651A /* SSLCertificate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSLCertificate.h; sourceTree = "<group>"; };
@@ -221,8 +204,6 @@
 		01F879391A4108DD00A63654 /* URLBlocker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLBlocker.h; sourceTree = "<group>"; };
 		01F8793A1A4108DD00A63654 /* URLBlocker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLBlocker.m; sourceTree = "<group>"; };
 		01F879401A4112E500A63654 /* URLBlocker_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLBlocker_Tests.m; sourceTree = "<group>"; };
-		01F879421A41140D00A63654 /* https-everywhere_mock_rules.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "https-everywhere_mock_rules.plist"; sourceTree = "<group>"; };
-		01F879431A41140D00A63654 /* https-everywhere_mock_targets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "https-everywhere_mock_targets.plist"; sourceTree = "<group>"; };
 		01F879461A41141800A63654 /* urlblocker_mock_rules.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = urlblocker_mock_rules.plist; sourceTree = "<group>"; };
 		01F879471A41141800A63654 /* urlblocker_mock_targets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = urlblocker_mock_targets.plist; sourceTree = "<group>"; };
 		0B6C8A679F0E1774945F3777 /* Pods-OnionBrowser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnionBrowser.release.xcconfig"; path = "Target Support Files/Pods-OnionBrowser/Pods-OnionBrowser.release.xcconfig"; sourceTree = "<group>"; };
@@ -357,14 +338,12 @@
 		A0B2240E23A92B2700EA2C47 /* OnionBrowser2_Tests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OnionBrowser2_Tests-Bridging-Header.h"; sourceTree = "<group>"; };
 		A0BF519C23AFBCFA0096624A /* convert_rules.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = convert_rules.rb; sourceTree = "<group>"; };
 		A0BF51AE23AFBF250096624A /* urlblocker.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = urlblocker.json; sourceTree = "<group>"; };
-		A0BF51B223AFBF250096624A /* https-everywhere_rules.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "https-everywhere_rules.plist"; sourceTree = "<group>"; };
 		A0BF51BD23AFBF250096624A /* block_webrtc.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = block_webrtc.js; sourceTree = "<group>"; };
 		A0BF51C423AFBF250096624A /* hsts_preload.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = hsts_preload.plist; sourceTree = "<group>"; };
 		A0BF51C523AFBF250096624A /* credits.html.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = credits.html.in; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.html; };
 		A0BF51C723AFBF250096624A /* start.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = start.html; sourceTree = "<group>"; };
 		A0BF51CC23AFBF250096624A /* injected.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = injected.js; sourceTree = "<group>"; };
 		A0BF51D123AFBF250096624A /* SearchEngines.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SearchEngines.plist; sourceTree = "<group>"; };
-		A0BF51D423AFBF250096624A /* https-everywhere_targets.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "https-everywhere_targets.plist"; sourceTree = "<group>"; };
 		A0BF51D523AFBF250096624A /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		A0BF51DE23AFBF250096624A /* credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = credits.html; sourceTree = "<group>"; };
 		A0BF51FA23AFC3580096624A /* Migration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Migration.swift; sourceTree = "<group>"; };
@@ -559,12 +538,6 @@
 		01801E941A32CA2A002B4718 /* Endless */ = {
 			isa = PBXGroup;
 			children = (
-				018333C81A3505FB00670CD1 /* HTTPSEverywhere.h */,
-				018333C91A3505FB00670CD1 /* HTTPSEverywhere.m */,
-				018333D01A35291200670CD1 /* HTTPSEverywhereRule.h */,
-				018333D11A35291200670CD1 /* HTTPSEverywhereRule.m */,
-				0182AD991AACC55400F3B7ED /* HTTPSEverywhereRuleController.h */,
-				0182AD9A1AACC55400F3B7ED /* HTTPSEverywhereRuleController.m */,
 				01F7CB4C1A52FC4E00F42B73 /* NSString+IPAddress.h */,
 				01F7CB4D1A52FC4E00F42B73 /* NSString+IPAddress.m */,
 				69CBCD481E934249009D5352 /* RuleEditorController.h */,
@@ -600,7 +573,6 @@
 				A068DD98240D348300BF46E3 /* AltSvcHeader_Tests.swift */,
 				A08737DF2213235F005A68CC /* HostSettings_Tests.m */,
 				01F7CB4A1A526B9C00F42B73 /* HSTSCache_Tests.m */,
-				018333DB1A35727C00670CD1 /* HTTPSEverywhere_Tests.m */,
 				01F2AE411B827BC200D5651A /* SSLCertificate_Tests.m */,
 				01F879401A4112E500A63654 /* URLBlocker_Tests.m */,
 				018333D91A35727C00670CD1 /* Supporting Files */,
@@ -616,8 +588,6 @@
 				01F2AE431B827D3E00D5651A /* lobste.rs.crt */,
 				01F2AE471B82822600D5651A /* paypal.com.crt */,
 				01F2AE441B827D3E00D5651A /* wildcard.pushover.net.crt */,
-				01F879421A41140D00A63654 /* https-everywhere_mock_rules.plist */,
-				01F879431A41140D00A63654 /* https-everywhere_mock_targets.plist */,
 				01F879461A41141800A63654 /* urlblocker_mock_rules.plist */,
 				01F879471A41141800A63654 /* urlblocker_mock_targets.plist */,
 				018333DA1A35727C00670CD1 /* Info.plist */,
@@ -703,8 +673,6 @@
 				A0BF51A023AFBF250096624A /* Localizable.strings */,
 				A01B41742456D16100A490A9 /* Localizable.stringsdict */,
 				A07037C223C74DC900D670EC /* Media.xcassets */,
-				A0BF51B223AFBF250096624A /* https-everywhere_rules.plist */,
-				A0BF51D423AFBF250096624A /* https-everywhere_targets.plist */,
 				A0BF51C423AFBF250096624A /* hsts_preload.plist */,
 				A0BF51D123AFBF250096624A /* SearchEngines.plist */,
 				A0550648271094A900922E18 /* ua-strings.plist */,
@@ -988,7 +956,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A003A6B723C9480000BD2D20 /* BridgesViewController.xib in Resources */,
-				A0BF51F023AFBF250096624A /* https-everywhere_targets.plist in Resources */,
 				A0BF524E23AFC3580096624A /* SecurityLevelCell.xib in Resources */,
 				A0BF528523AFC6D10096624A /* InfoPlist.strings in Resources */,
 				A0BF51F123AFBF250096624A /* Launch Screen.xib in Resources */,
@@ -1003,7 +970,6 @@
 				A0BF51E523AFBF250096624A /* urlblocker.json in Resources */,
 				A0BF51EF23AFBF250096624A /* SearchEngines.plist in Resources */,
 				A0BF524C23AFC3580096624A /* CircuitViewController.xib in Resources */,
-				A0BF51E623AFBF250096624A /* https-everywhere_rules.plist in Resources */,
 				A01B41722456D16100A490A9 /* Localizable.stringsdict in Resources */,
 				A0C26E4323D8650E00C4AF1C /* security-levels.html in Resources */,
 				A0BF525A23AFC3580096624A /* BrowsingViewController-iPad.xib in Resources */,
@@ -1024,12 +990,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				01F2AE461B827D3E00D5651A /* wildcard.pushover.net.crt in Resources */,
-				01F879451A41140D00A63654 /* https-everywhere_mock_targets.plist in Resources */,
 				01F879481A41141800A63654 /* urlblocker_mock_rules.plist in Resources */,
 				01F2AE481B82822600D5651A /* paypal.com.crt in Resources */,
 				01F879491A41141800A63654 /* urlblocker_mock_targets.plist in Resources */,
 				01F2AE451B827D3E00D5651A /* lobste.rs.crt in Resources */,
-				01F879441A41140D00A63654 /* https-everywhere_mock_rules.plist in Resources */,
 				01F2AE4A1B82835A00D5651A /* expired.superblock.net.crt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1231,7 +1195,6 @@
 				A0BF525123AFC3580096624A /* HistoryViewController.swift in Sources */,
 				A01D3BA323900D2800E536F2 /* RuleEditorController.m in Sources */,
 				A0BF524F23AFC3580096624A /* CircuitViewController.swift in Sources */,
-				018333D21A35291200670CD1 /* HTTPSEverywhereRule.m in Sources */,
 				A0BF524623AFC3580096624A /* OldBookmark.m in Sources */,
 				A0BF527E23AFC3580096624A /* UIButton+Helpers.swift in Sources */,
 				A0BF526423AFC3580096624A /* Bookmark.swift in Sources */,
@@ -1262,7 +1225,6 @@
 				A02CB2B523D0B0B300880720 /* AddBookmarkActivity.swift in Sources */,
 				A0BF525023AFC3580096624A /* Tab+Activity.swift in Sources */,
 				A003A6B423C9430300BD2D20 /* MainViewController.swift in Sources */,
-				018333CA1A3505FB00670CD1 /* HTTPSEverywhere.m in Sources */,
 				A03CFA042892B05500F01DB5 /* DownloadHelper.swift in Sources */,
 				A07037C623C7571B00D670EC /* AppDelegate.swift in Sources */,
 				A0BF526823AFC3580096624A /* BookmarkCell.swift in Sources */,
@@ -1273,7 +1235,6 @@
 				01F7CB4E1A52FC4E00F42B73 /* NSString+IPAddress.m in Sources */,
 				A0BF525B23AFC3580096624A /* Tab+Gestures.swift in Sources */,
 				A0BF524523AFC3580096624A /* Migration.swift in Sources */,
-				0182AD9B1AACC55400F3B7ED /* HTTPSEverywhereRuleController.m in Sources */,
 				A0BF527B23AFC3580096624A /* Formatter.swift in Sources */,
 				A0BF524B23AFC3580096624A /* CircuitNodeCell.swift in Sources */,
 				A07B55FC23D736D60051663B /* CertificateViewController.swift in Sources */,
@@ -1292,13 +1253,10 @@
 				A068DD9B240D391100BF46E3 /* SSLCertificate.m in Sources */,
 				A0F8BE8527C50549002D2999 /* FileManager+Helpers.swift in Sources */,
 				01F7CB4B1A526B9C00F42B73 /* HSTSCache_Tests.m in Sources */,
-				A068DD9D240D393200BF46E3 /* HTTPSEverywhereRule.m in Sources */,
 				A068DD99240D348300BF46E3 /* AltSvcHeader_Tests.swift in Sources */,
-				A068DD9C240D392B00BF46E3 /* HTTPSEverywhere.m in Sources */,
 				A08737E1221324B5005A68CC /* HostSettings_Tests.m in Sources */,
 				A068DD9E240D394900BF46E3 /* URLBlocker.m in Sources */,
 				A0F8BE8627C50586002D2999 /* AltSvcHeader.swift in Sources */,
-				018333DC1A35727C00670CD1 /* HTTPSEverywhere_Tests.m in Sources */,
 				A0BD934127C4FABC00A76230 /* HstsCache.swift in Sources */,
 				01F2AE421B827BC200D5651A /* SSLCertificate_Tests.m in Sources */,
 				A068DDA0240D425200BF46E3 /* NSString+IPAddress.m in Sources */,

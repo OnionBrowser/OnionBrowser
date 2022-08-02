@@ -34,11 +34,6 @@ class DownloadHelper {
 	}
 
 	class func purge() {
-		do {
-			try FileManager.default.removeItem(at: directory)
-		}
-		catch {
-			print("[\(String(describing: self))]#purge error=\(error)")
-		}
+		try? FileManager.default.removeItem(at: directory)
 	}
 }

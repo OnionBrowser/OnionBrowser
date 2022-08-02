@@ -189,16 +189,6 @@ class SettingsViewController: FixedFormViewController {
 			self?.navigationController?.pushViewController(URLBlockerRuleController(), animated: true)
 		}
 
-		<<< LabelRow() {
-			$0.title = NSLocalizedString("HTTPS Everywhere", comment: "Option label")
-			$0.cell.textLabel?.numberOfLines = 0
-			$0.cell.accessoryType = .disclosureIndicator
-			$0.cell.selectionStyle = .default
-		}
-		.onCellSelection { [weak self] _, _ in
-			self?.navigationController?.pushViewController(HTTPSEverywhereRuleController(), animated: true)
-		}
-
 		<<< SwitchRow() {
 			$0.title = NSLocalizedString("Mute Audio with Mute Switch", comment: "Option title")
 			$0.value = Settings.muteWithSwitch
