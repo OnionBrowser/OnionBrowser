@@ -110,13 +110,12 @@ class Tab: UIView {
 	@objc(applicableURLBlockerTargets)
 	var applicableUrlBlockerTargets = NSMutableDictionary()
 
-	@objc(SSLCertificate)
-	var sslCertificate: SSLCertificate? {
+	var tlsCertificate: SSLCertificate? {
 		didSet {
-			if sslCertificate == nil {
+			if tlsCertificate == nil {
 				secureMode = .insecure
 			}
-			else if sslCertificate?.isEV ?? false {
+			else if tlsCertificate?.isEV ?? false {
 				secureMode = .secureEv
 			}
 			else {
@@ -125,7 +124,6 @@ class Tab: UIView {
 		}
 	}
 
-	@objc
 	var secureMode = SecureMode.insecure
 
 	@nonobjc
@@ -315,7 +313,7 @@ class Tab: UIView {
 	func reset(_ url: URL? = nil) {
 		applicableHttpsEverywhereRules.removeAllObjects()
 		applicableUrlBlockerTargets.removeAllObjects()
-		sslCertificate = nil
+		tlsCertificate = nil
 		self.url = url ?? URL.start
 	}
 

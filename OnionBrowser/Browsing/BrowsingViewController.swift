@@ -262,8 +262,8 @@ class BrowsingViewController: UIViewController, TabDelegate {
 			present(vc, sender)
 
 		case encryptionBt:
-			guard let certificate = currentTab?.sslCertificate else {
-					return
+			guard let certificate = currentTab?.tlsCertificate else {
+				return
 			}
 
 			let vc = CertificateViewController()

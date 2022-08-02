@@ -38,9 +38,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OnionManagerDelegate {
 	}
 
 	@objc
-	let sslCertCache = NSCache<NSString, SSLCertificate>()
-
-	@objc
 	let hstsCache = HstsCache.shared
 
 	@objc

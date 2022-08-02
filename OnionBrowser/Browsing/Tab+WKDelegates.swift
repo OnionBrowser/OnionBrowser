@@ -238,6 +238,10 @@ extension Tab: WKUIDelegate, WKNavigationDelegate {
 				completionHandler(.performDefaultHandling, nil)
 			}
 
+			if let trust = challenge.protectionSpace.serverTrust {
+				tlsCertificate = SSLCertificate(secTrustRef: trust)
+			}
+
 		case NSURLAuthenticationMethodHTTPBasic, NSURLAuthenticationMethodHTTPDigest:
 			let storage = URLCredentialStorage.shared
 
