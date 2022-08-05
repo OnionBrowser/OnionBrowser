@@ -9,6 +9,7 @@
 //
 
 import UIKit
+import WebKit
 
 class BrowsingViewController: UIViewController, TabDelegate {
 
@@ -401,17 +402,18 @@ class BrowsingViewController: UIViewController, TabDelegate {
 
 	@objc
 	@discardableResult
-	func addNewTab(_ url: URL? = nil) -> Tab? {
-		return addNewTab(url, forRestoration: false)
+	func addNewTab(_ url: URL? = nil, configuration: WKWebViewConfiguration? = nil) -> Tab? {
+		return addNewTab(url, forRestoration: false, configuration: configuration)
 	}
 
 	@discardableResult
 	func addNewTab(_ url: URL? = nil, forRestoration: Bool = false,
-				   transition: Transition = .default, completion: ((Bool) -> Void)? = nil) -> Tab? {
-
+				   transition: Transition = .default, configuration: WKWebViewConfiguration? = nil,
+				   completion: ((Bool) -> Void)? = nil) -> Tab?
+	{
 		debug("#addNewTab url=\(String(describing: url)), forRestoration=\(forRestoration), transition=\(transition), completion=\(String(describing: completion))")
 
-		let tab = Tab(restorationId: forRestoration ? url?.absoluteString : nil)
+		let tab = Tab(restorationId: forRestoration ? url?.absoluteString : nil, configuration: configuration)
 
 		if !forRestoration {
 			tab.load(url)

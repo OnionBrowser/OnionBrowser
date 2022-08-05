@@ -33,6 +33,8 @@ class HostSettings: NSObject {
 	private static let followOnionLocationHeaderKey = "follow_onion_location_header"
 	private static let userAgentKey = "user_agent"
 	private static let javaScriptKey = "javascript"
+	private static let orientationAndMotionKey = "orientation_and_motion"
+	private static let mediaCaptureKey = "media_capture"
 
 	private static var _raw: [String: [String: String]]?
 	private static var raw: [String: [String: String]] {
@@ -238,6 +240,28 @@ class HostSettings: NSObject {
 		}
 	}
 
+	var orientationAndMotion: Bool {
+		get {
+			return get(HostSettings.orientationAndMotionKey) == HostSettings.true
+		}
+		set {
+			raw[HostSettings.orientationAndMotionKey] = newValue
+				? HostSettings.true
+				: HostSettings.false
+		}
+	}
+
+	var mediaCapture: Bool {
+		get {
+			return get(HostSettings.mediaCaptureKey) == HostSettings.true
+		}
+		set {
+			raw[HostSettings.mediaCaptureKey] = newValue
+				? HostSettings.true
+				: HostSettings.false
+		}
+	}
+
 	/**
 	Will be used by `HostSettings.for()`.
 
@@ -266,12 +290,14 @@ class HostSettings: NSObject {
 
 		if host == HostSettings.defaultHost {
 			raw = [
-				HostSettings.ignoreTlsErrorsKey: HostSettings.false,
-				HostSettings.whitelistCookiesKey: HostSettings.false,
-				HostSettings.universalLinkProtectionKey: HostSettings.true,
-				HostSettings.followOnionLocationHeaderKey: HostSettings.true,
-				HostSettings.userAgentKey: "",
-				HostSettings.javaScriptKey: HostSettings.true,
+				Self.ignoreTlsErrorsKey: Self.false,
+				Self.whitelistCookiesKey: Self.false,
+				Self.universalLinkProtectionKey: Self.true,
+				Self.followOnionLocationHeaderKey: Self.true,
+				Self.userAgentKey: "",
+				Self.javaScriptKey: Self.true,
+				Self.orientationAndMotionKey: Self.true,
+				Self.mediaCaptureKey: Self.true,
 			]
 		}
 		else {

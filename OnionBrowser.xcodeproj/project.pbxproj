@@ -137,9 +137,10 @@
 		A0BF528123AFC3580096624A /* TabSecurity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF524223AFC3580096624A /* TabSecurity.swift */; };
 		A0BF528223AFC3580096624A /* String+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF524323AFC3580096624A /* String+Helpers.swift */; };
 		A0BF528523AFC6D10096624A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A0BF528323AFC6D10096624A /* InfoPlist.strings */; };
+		A0BFD3E9289D4F5200CB9F6D /* Tab+WKUIDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BFD3E8289D4F5200CB9F6D /* Tab+WKUIDelegate.swift */; };
 		A0C26E4323D8650E00C4AF1C /* security-levels.html in Resources */ = {isa = PBXBuildFile; fileRef = A0C26E4523D8650E00C4AF1C /* security-levels.html */; };
 		A0C3770E1F47342C0039198E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0C3770D1F47342C0039198E /* CoreData.framework */; };
-		A0CD36982890194900628DA6 /* Tab+WKDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CD36972890194900628DA6 /* Tab+WKDelegates.swift */; };
+		A0CD36982890194900628DA6 /* Tab+WKNavigationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CD36972890194900628DA6 /* Tab+WKNavigationDelegate.swift */; };
 		A0D070FD275A513700922D70 /* FileManager+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D070FC275A513700922D70 /* FileManager+Helpers.swift */; };
 		A0D9008B24095F5C0046C9B3 /* AltSvcHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D9008A24095F5C0046C9B3 /* AltSvcHeader.swift */; };
 		A0F2FB062423AB92003CC61A /* AboutSecurityLevelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F2FB052423AB92003CC61A /* AboutSecurityLevelsViewController.swift */; };
@@ -396,8 +397,10 @@
 		A0BF524023AFC3580096624A /* URL+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Helpers.swift"; sourceTree = "<group>"; };
 		A0BF524223AFC3580096624A /* TabSecurity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabSecurity.swift; sourceTree = "<group>"; };
 		A0BF524323AFC3580096624A /* String+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Helpers.swift"; sourceTree = "<group>"; };
+		A0BFD3E8289D4F5200CB9F6D /* Tab+WKUIDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tab+WKUIDelegate.swift"; sourceTree = "<group>"; };
+		A0BFD3EA289D6D9100CB9F6D /* testpage */ = {isa = PBXFileReference; lastKnownFileType = folder; path = testpage; sourceTree = "<group>"; };
 		A0C3770D1F47342C0039198E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		A0CD36972890194900628DA6 /* Tab+WKDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tab+WKDelegates.swift"; sourceTree = "<group>"; };
+		A0CD36972890194900628DA6 /* Tab+WKNavigationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tab+WKNavigationDelegate.swift"; sourceTree = "<group>"; };
 		A0D045DD273953B3002F003B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = ../Resources/en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A0D045DE273953B7002F003B /* sq */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sq; path = ../Resources/sq.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A0D045DF273953BB002F003B /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ../Resources/ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -628,6 +631,7 @@
 		A07D65572208A2540002D775 /* build-util */ = {
 			isa = PBXGroup;
 			children = (
+				A0BFD3EA289D6D9100CB9F6D /* testpage */,
 				A07D65582208A2540002D775 /* mk_build_versions.sh */,
 				A07D65592208A2540002D775 /* decode_bundle_version.sh */,
 				A07D655A2208A2540002D775 /* decimalize_git_hash.bash */,
@@ -717,7 +721,8 @@
 				A0BF521523AFC3580096624A /* Tab+Downloads.swift */,
 				A0BF521423AFC3580096624A /* Tab+Gestures.swift */,
 				A0BF520623AFC3580096624A /* Tab+Keyboard.swift */,
-				A0CD36972890194900628DA6 /* Tab+WKDelegates.swift */,
+				A0BFD3E8289D4F5200CB9F6D /* Tab+WKUIDelegate.swift */,
+				A0CD36972890194900628DA6 /* Tab+WKNavigationDelegate.swift */,
 				A0BF520323AFC3580096624A /* SecurityPopUpViewController.xib */,
 				A0BF521023AFC3580096624A /* SecurityPopUpViewController.swift */,
 				A0BF520723AFC3580096624A /* SecurityLevelCell.xib */,
@@ -1122,7 +1127,7 @@
 			files = (
 				A0BF526623AFC3580096624A /* BookmarksViewController.swift in Sources */,
 				A0BF527923AFC3580096624A /* Bundle+Helpers.swift in Sources */,
-				A0CD36982890194900628DA6 /* Tab+WKDelegates.swift in Sources */,
+				A0CD36982890194900628DA6 /* Tab+WKNavigationDelegate.swift in Sources */,
 				A0172C74288828D8008D42CD /* URLSession+Helpers.swift in Sources */,
 				A0BF526B23AFC3580096624A /* Settings.swift in Sources */,
 				A0BF525323AFC3580096624A /* Tab.swift in Sources */,
@@ -1183,6 +1188,7 @@
 				A0BF525023AFC3580096624A /* Tab+Activity.swift in Sources */,
 				A003A6B423C9430300BD2D20 /* MainViewController.swift in Sources */,
 				A03CFA042892B05500F01DB5 /* DownloadHelper.swift in Sources */,
+				A0BFD3E9289D4F5200CB9F6D /* Tab+WKUIDelegate.swift in Sources */,
 				A07037C623C7571B00D670EC /* AppDelegate.swift in Sources */,
 				A0BF526823AFC3580096624A /* BookmarkCell.swift in Sources */,
 				A0BF526123AFC3580096624A /* BookmarkViewController.swift in Sources */,

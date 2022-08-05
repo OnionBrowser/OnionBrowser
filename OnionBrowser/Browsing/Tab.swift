@@ -15,10 +15,11 @@ import WebKit
 protocol TabDelegate: AnyObject {
 	func updateChrome()
 
-	func addNewTab(_ url: URL?) -> Tab?
+	func addNewTab(_ url: URL?, configuration: WKWebViewConfiguration?) -> Tab?
 
 	func addNewTab(_ url: URL?, forRestoration: Bool,
 				   transition: BrowsingViewController.Transition,
+				   configuration: WKWebViewConfiguration?,
 				   completion: ((Bool) -> Void)?) -> Tab?
 
 	func removeTab(_ tab: Tab, focus: Tab?)
@@ -148,21 +149,13 @@ class Tab: UIView {
 		}
 	}
 
+	private var configuration: WKWebViewConfiguration!
+
 	/**
 	 https://www.hackingwithswift.com/articles/112/the-ultimate-guide-to-wkwebview
 	 */
 	private(set) lazy var webView: WKWebView = {
-		let conf = WKWebViewConfiguration()
-		conf.allowsAirPlayForMediaPlayback = true
-		conf.allowsInlineMediaPlayback = true
-		conf.allowsPictureInPictureMediaPlayback = true
-
-		if Settings.sendGpc {
-			let script = WKUserScript(source: "navigator.globalPrivacyControl = true", injectionTime: .atDocumentStart, forMainFrameOnly: false)
-			conf.userContentController.addUserScript(script)
-		}
-
-		let view = WKWebView(frame: .zero, configuration: conf)
+		let view = WKWebView(frame: .zero, configuration: configuration)
 
 		view.uiDelegate = self
 		view.navigationDelegate = self
@@ -214,10 +207,10 @@ class Tab: UIView {
 	private var snapshot: UIImage?
 
 
-	init(restorationId: String?) {
+	init(restorationId: String?, configuration: WKWebViewConfiguration? = nil) {
 		super.init(frame: .zero)
 
-		setup(restorationId)
+		setup(restorationId, configuration: configuration)
 	}
 
 	required init?(coder: NSCoder) {
@@ -441,7 +434,22 @@ class Tab: UIView {
 	
 	// MARK: Private Methods
 
-	private func setup(_ restorationId: String? = nil) {
+	private func setup(_ restorationId: String? = nil, configuration: WKWebViewConfiguration? = nil) {
+		if configuration == nil {
+			self.configuration = WKWebViewConfiguration()
+			self.configuration.allowsAirPlayForMediaPlayback = true
+			self.configuration.allowsInlineMediaPlayback = true
+			self.configuration.allowsPictureInPictureMediaPlayback = true
+		}
+		else {
+			self.configuration = configuration
+		}
+
+		if Settings.sendGpc {
+			   let script = WKUserScript(source: "navigator.globalPrivacyControl = true", injectionTime: .atDocumentStart, forMainFrameOnly: false)
+			   self.configuration.userContentController.addUserScript(script)
+		   }
+
 		if Self.defaultUserAgent.isEmpty {
 			webView.evaluateJavaScript("navigator.userAgent") { result, error in
 				if let error = error {

@@ -1,6 +1,6 @@
 //
-//  Tab+WKDelegates.swift
-//  OnionBrowser2
+//  Tab+WKNavigationDelegate.swift
+//  OnionBrowser
 //
 //  Created by Benjamin Erhart on 27.07.22.
 //  Copyright (c) 2012-2022, Tigas Ventures, LLC (Mike Tigas)
@@ -8,11 +8,10 @@
 //  This file is part of Onion Browser. See LICENSE file for redistribution terms.
 //
 
-import Foundation
 import WebKit
 import OrbotKit
 
-extension Tab: WKUIDelegate, WKNavigationDelegate {
+extension Tab: WKNavigationDelegate {
 
 	/**
 	Must match injected.js
@@ -23,79 +22,6 @@ extension Tab: WKUIDelegate, WKNavigationDelegate {
 
 	private static let universalLinksWorkaroundKey = "yayprivacy"
 
-
-	// WKUIDelegate
-
-	func webViewDidClose(_ webView: WKWebView) {
-		AppDelegate.shared?.browsingUi?.removeTab(self)
-	}
-
-	func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String,
-				 initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void)
-	{
-		if let tabDelegate = tabDelegate {
-			let alert = AlertHelper.build(message: message, title: url.host, actions: [
-				AlertHelper.defaultAction { _ in
-					completionHandler()
-				}
-			])
-
-			tabDelegate.present(alert, nil)
-		}
-		else {
-			completionHandler()
-		}
-	}
-
-	func webView(_ webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String,
-				 initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (Bool) -> Void)
-	{
-		if let tabDelegate = tabDelegate {
-			let alert = AlertHelper.build(message: message, title: url.host, actions: [
-				AlertHelper.defaultAction { _ in
-					completionHandler(true)
-				},
-				AlertHelper.cancelAction { _ in
-					completionHandler(false)
-				}
-			])
-
-			tabDelegate.present(alert, nil)
-		}
-		else {
-			completionHandler(false)
-		}
-	}
-
-	func webView(_ webView: WKWebView, runJavaScriptTextInputPanelWithPrompt prompt: String,
-				 defaultText: String?, initiatedByFrame frame: WKFrameInfo,
-				 completionHandler: @escaping (String?) -> Void)
-	{
-		if let tabDelegate = tabDelegate {
-			let alert = AlertHelper.build(
-				message: prompt,
-				title: url.host,
-				actions: [
-					AlertHelper.cancelAction() { _ in
-						completionHandler(nil)
-					}
-				])
-
-			AlertHelper.addTextField(alert, placeholder: defaultText)
-
-			alert.addAction(AlertHelper.defaultAction { _ in
-				completionHandler(alert.textFields?.first?.text)
-			})
-
-			tabDelegate.present(alert, nil)
-		}
-		else {
-			completionHandler(nil)
-		}
-	}
-
-
-	// WKNavigationDelegate
 
 	func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction,
 				 preferences: WKWebpagePreferences,
@@ -328,6 +254,13 @@ extension Tab: WKUIDelegate, WKNavigationDelegate {
 		}
 	}
 
+	// TODO
+//	func webView(_ webView: WKWebView, authenticationChallenge challenge: URLAuthenticationChallenge,
+//				 shouldAllowDeprecatedTLS decisionHandler: @escaping (Bool) -> Void)
+//	{
+//		// TODO
+//	}
+
 
 	// MARK: Private Methods
 
@@ -481,7 +414,7 @@ extension Tab: WKUIDelegate, WKNavigationDelegate {
 		case "window.open":
 			// Only allow windows to be opened from mouse/touch events, like a normal browser's popup blocker.
 			if navigationType == .linkActivated {
-				let child = tabDelegate?.addNewTab(nil)
+				let child = tabDelegate?.addNewTab(nil, configuration: nil)
 				child?.parentId = hash
 				child?.ipcId = param1
 

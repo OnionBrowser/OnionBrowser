@@ -113,7 +113,10 @@ class InitSecurityLevelViewController: UIViewController, UITableViewDataSource, 
 
 		let hs = HostSettings.forDefault()
 
-		hs.javaScript = preset.javaScript
+		let values = preset.values
+		hs.javaScript = values?.javaScript ?? false
+		hs.orientationAndMotion = values?.orientationAndMotion ?? false
+		hs.mediaCapture = values?.mediaCapture ?? false
 
 		// Trigger creation, save and store of default HostSettings.
 		hs.save().store()

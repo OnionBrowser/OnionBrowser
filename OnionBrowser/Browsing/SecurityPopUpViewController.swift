@@ -132,7 +132,10 @@ UITableViewDataSource, UITableViewDelegate {
 
 		current = presets[indexPath.row]
 
-		hostSettings.javaScript = current.javaScript
+		let values = current.values
+		hostSettings.javaScript = values?.javaScript ?? false
+		hostSettings.orientationAndMotion = values?.orientationAndMotion ?? false
+		hostSettings.mediaCapture = values?.mediaCapture ?? false
 
 		// Trigger creation, save and store of HostSettings for this host.
 		hostSettings.save().store()

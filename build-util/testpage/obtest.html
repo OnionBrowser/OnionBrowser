@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Onion Browser WKWebView Test Page</title>
+</head>
+<body>
+  <form>
+    <p>
+      <button type="button" id="btTestOpen">Test Open</button>
+    </p>
+
+    <p>
+      <button type="button" id="btTestClose">Test Close</button>
+    </p>
+
+    <p>
+      <button type="button" id="btTestAlert">Test Alert</button>
+    </p>
+
+    <p>
+      <button type="button" id="btTestConfirm">Test Confirm</button>
+    </p>
+
+    <p>
+      <button type="button" id="btTestPrompt">Test Prompt</button>
+    </p>
+
+    <p>
+      <button type="button" id="btTestOrientation">Test Orientation</button>
+    </p>
+  </form>
+
+  <script>
+    document.getElementById("btTestOpen").onclick = openWindow;
+    document.getElementById("btTestClose").onclick = closeWindow;
+    document.getElementById("btTestAlert").onclick = showAlert;
+    document.getElementById("btTestConfirm").onclick = showConfirm;
+    document.getElementById("btTestPrompt").onclick = showPrompt;
+    document.getElementById("btTestOrientation").onclick = askOrientation;
+
+    let childWindow;
+
+    function openWindow() {
+        childWindow = open("https://benjaminerhart.com/", "_blank", "width=100,height=200,left=5,top=10");
+    }
+
+    function closeWindow() {
+        childWindow.close();
+    }
+
+    function showAlert() {
+        alert("Test Alert");
+    }
+
+    function showConfirm() {
+        console.log(confirm("Test Confirm"));
+    }
+
+    function showPrompt() {
+        console.log(prompt("Test Prompt", "default value"));
+    }
+
+    function askOrientation() {
+      DeviceOrientationEvent.requestPermission().then(permissionState => {
+        if (permissionState === 'granted') {
+          window.addEventListener("deviceorientation", function (event) {
+            console.log(event.alpha);
+          })
+        }
+      })
+      .catch(console.error);
+    }
+  </script>
+</body>
+</html>

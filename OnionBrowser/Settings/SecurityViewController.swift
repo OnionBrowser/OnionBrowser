@@ -32,6 +32,18 @@ class SecurityViewController: FixedFormViewController {
 		$0.cell.textLabel?.numberOfLines = 0
 	}
 
+	private let orientationAndMotionRow = SwitchRow() {
+		$0.title = NSLocalizedString("Allow Access to Orientation and Motion Data", comment: "Option title")
+		$0.cell.switchControl.onTintColor = .accent
+		$0.cell.textLabel?.numberOfLines = 0
+	}
+
+	private let mediaCaptureRow = SwitchRow() {
+		$0.title = NSLocalizedString("Allow Access to Microphone and Video", comment: "Option title")
+		$0.cell.switchControl.onTintColor = .accent
+		$0.cell.textLabel?.numberOfLines = 0
+	}
+
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -48,6 +60,8 @@ class SecurityViewController: FixedFormViewController {
 		securityPresetsRow.value = SecurityPreset(hostSettings)
 
 		javaScriptRow.value = hostSettings.javaScript
+		orientationAndMotionRow.value = hostSettings.orientationAndMotion
+		mediaCaptureRow.value = hostSettings.mediaCapture
 
 
 		form
@@ -57,29 +71,64 @@ class SecurityViewController: FixedFormViewController {
 		.onChange { [weak self] row in
 			// Only change other settings, if a non-custom preset was chosen.
 			// Do nothing, if it was unselected.
-			if let javaScript = row.value?.javaScript {
+			if let values = row.value?.values {
 
 				// Force-set this, because #onChange callbacks are only called,
 				// when values actually change. So this might lead to a host
 				// still being configured for default values, although these should
 				// be set hard.
-				self?.hostSettings.javaScript = javaScript
+				self?.hostSettings.javaScript = values.javaScript
+				self?.hostSettings.orientationAndMotion = values.orientationAndMotion
+				self?.hostSettings.mediaCapture = values.mediaCapture
 
-				self?.javaScriptRow.value = javaScript
+				self?.javaScriptRow.value = values.javaScript
+				self?.orientationAndMotionRow.value = values.orientationAndMotion
+				self?.mediaCaptureRow.value = values.mediaCapture
 
 				self?.javaScriptRow.updateCell()
+				self?.orientationAndMotionRow.updateCell()
+				self?.mediaCaptureRow.updateCell()
 			}
+		}
+
+		+++ javaScriptRow
+		.onChange { [weak self] row in
+			guard let hostSettings = self?.hostSettings else {
+				return
+			}
+
+			self?.alertBeforeChange(
+				row.value ?? false,
+				hostSettings.orientationAndMotion,
+				hostSettings.mediaCapture)
+		}
+
+		<<< orientationAndMotionRow
+		.onChange { [weak self] row in
+			guard let hostSettings = self?.hostSettings else {
+				return
+			}
+
+			self?.alertBeforeChange(
+				hostSettings.javaScript,
+				row.value ?? false,
+				hostSettings.mediaCapture)
+		}
+
+		<<< mediaCaptureRow
+		.onChange { [weak self] row in
+			guard let hostSettings = self?.hostSettings else {
+				return
+			}
+
+			self?.alertBeforeChange(
+				hostSettings.javaScript,
+				hostSettings.orientationAndMotion,
+				row.value ?? false)
 		}
 
 		+++ Section(footer: NSLocalizedString("Handle tapping on links in a non-standard way to avoid possibly opening external applications.",
 											  comment: "Option description"))
-
-		<<< javaScriptRow
-		.onChange { [weak self] row in
-			let javaScript = row.value ?? false
-
-			self?.alertBeforeChange(javaScript)
-		}
 
 		<<< SwitchRow() {
 			$0.title = NSLocalizedString("Universal Link Protection", comment: "Option title")
@@ -207,19 +256,14 @@ class SecurityViewController: FixedFormViewController {
 
 	private var calledTwice = false
 
-	private func alertBeforeChange(_ javaScript: Bool) {
+	private func alertBeforeChange(_ javaScript: Bool, _ orientationAndMotion: Bool, _ mediaCapture: Bool) {
 
-		let preset = SecurityPreset(javaScript)
+		let preset = SecurityPreset(javaScript, orientationAndMotion, mediaCapture)
 
 		let okHandler = { [weak self] in
 			self?.hostSettings.javaScript = javaScript
-
-			// Could have been modified by webRtcRow.
-			if javaScript != self?.javaScriptRow.value {
-				self?.calledTwice = true
-				self?.javaScriptRow.value = javaScript
-				self?.javaScriptRow.updateCell()
-			}
+			self?.hostSettings.orientationAndMotion = orientationAndMotion
+			self?.hostSettings.mediaCapture = mediaCapture
 
 			self?.securityPresetsRow.value = SecurityPreset(self?.hostSettings)
 			self?.securityPresetsRow.updateCell()
@@ -228,8 +272,12 @@ class SecurityViewController: FixedFormViewController {
 		if !calledTwice && preset == .custom && securityPresetsRow.value != .custom {
 			let cancelHandler = { [weak self] in
 				self?.javaScriptRow.value = self?.hostSettings.javaScript
+				self?.orientationAndMotionRow.value = self?.hostSettings.orientationAndMotion
+				self?.mediaCaptureRow.value = self?.hostSettings.mediaCapture
 
 				self?.javaScriptRow.updateCell()
+				self?.orientationAndMotionRow.updateCell()
+				self?.mediaCaptureRow.updateCell()
 
 				self?.calledTwice = false
 			}

@@ -111,7 +111,7 @@ extension Tab: UIGestureRecognizerDelegate {
 				title: NSLocalizedString("Open in a New Tab", comment: ""),
 				style: .default,
 				handler: { _ in
-					let child = self.tabDelegate?.addNewTab(url)
+					let child = self.tabDelegate?.addNewTab(url, configuration: nil)
 					child?.parentId = self.hash
 			}))
 
@@ -120,7 +120,7 @@ extension Tab: UIGestureRecognizerDelegate {
 				style: .default,
 				handler: { _ in
 					let child = self.tabDelegate?.addNewTab(
-						url, forRestoration: false, transition: .inBackground, completion: nil)
+						url, forRestoration: false, transition: .inBackground, configuration: nil, completion: nil)
 					child?.parentId = self.hash
 			}))
 
@@ -195,7 +195,7 @@ extension Tab: UIGestureRecognizerDelegate {
 		let (href, img, _) = analyzeTappedElements(gr)
 
 		if let url = href ?? img {
-			let child = tabDelegate?.addNewTab(url)
+			let child = tabDelegate?.addNewTab(url, configuration: nil)
 			child?.parentId = hash
 		}
 	}
