@@ -11,8 +11,6 @@ target 'OnionBrowser' do
   pod 'TUSafariActivity'
   pod 'VForceTouch'
 
-  pod 'CSPHeader', '~> 0.6'
-
   pod 'SDCAlertView', '~> 10'
   pod 'FavIcon', :git => 'https://github.com/tladesignz/FavIcon.git'
   pod 'MBProgressHUD', '~> 1.2'

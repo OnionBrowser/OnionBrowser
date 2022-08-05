@@ -50,8 +50,6 @@ The following features are new to Onion Browser, by way of the upstream work on 
 
 - Per-site cookie handling
 
-- HTTP Strict Transport Security (HSTS) support, pre-loaded with the [Chromium ruleset](https://hstspreload.org/)
-
 - Ability to view SSL certificate information, to allow manual verification of SSL certificates
 
 

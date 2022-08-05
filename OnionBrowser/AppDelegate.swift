@@ -38,9 +38,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OnionManagerDelegate {
 	}
 
 	@objc
-	let hstsCache = HstsCache.shared
-
-	@objc
 	var browsingUi: BrowsingViewController?
 
 	var testing: Bool {
@@ -172,8 +169,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OnionManagerDelegate {
 			// again under heavy usage and would then block restart again.
 			DispatchQueue.global(qos: .background).async {
 				let taskId = application.beginBackgroundTask(expirationHandler: nil)
-
-				self.hstsCache.persist()
 
 				application.endBackgroundTask(taskId)
 			}
