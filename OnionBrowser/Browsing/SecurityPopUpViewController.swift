@@ -132,7 +132,7 @@ UITableViewDataSource, UITableViewDelegate {
 
 		current = presets[indexPath.row]
 
-		hostSettings.contentPolicy = current.contentPolicy ?? .strict
+		hostSettings.javaScript = current.javaScript
 
 		// Trigger creation, save and store of HostSettings for this host.
 		hostSettings.save().store()

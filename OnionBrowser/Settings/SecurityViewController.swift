@@ -26,16 +26,15 @@ class SecurityViewController: FixedFormViewController {
 
 	private let securityPresetsRow = SecurityPresetsRow()
 
-	private let contentPolicyRow = PushRow<HostSettings.ContentPolicy>() {
-		$0.title = NSLocalizedString("Content Policy", comment: "Option title")
-		$0.selectorTitle = $0.title
-
-		$0.options = [.open, .blockXhr, .strict, .reallyStrict]
+	private let javaScriptRow = SwitchRow() {
+		$0.title = NSLocalizedString("Allow JavaScript", comment: "Option title")
+		$0.cell.switchControl.onTintColor = .accent
+		$0.cell.textLabel?.numberOfLines = 0
 	}
 
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+	override func viewDidLoad() {
+		super.viewDidLoad()
 
 		navigationItem.title = host ?? NSLocalizedString("Default Security", comment: "Scene title")
 
@@ -48,53 +47,38 @@ class SecurityViewController: FixedFormViewController {
 
 		securityPresetsRow.value = SecurityPreset(hostSettings)
 
-		contentPolicyRow.value = hostSettings.contentPolicy
+		javaScriptRow.value = hostSettings.javaScript
 
 
-        form
+		form
 		+++ (host != nil ? Section() : Section("to be replaced in #willDisplayHeaderView to avoid capitalization"))
 
 		<<< securityPresetsRow
 		.onChange { [weak self] row in
 			// Only change other settings, if a non-custom preset was chosen.
 			// Do nothing, if it was unselected.
-			if let contentPolicy = row.value?.contentPolicy {
+			if let javaScript = row.value?.javaScript {
 
 				// Force-set this, because #onChange callbacks are only called,
 				// when values actually change. So this might lead to a host
 				// still being configured for default values, although these should
 				// be set hard.
-				self?.hostSettings.contentPolicy = contentPolicy
+				self?.hostSettings.javaScript = javaScript
 
-				self?.contentPolicyRow.value = contentPolicy
+				self?.javaScriptRow.value = javaScript
 
-				self?.contentPolicyRow.updateCell()
+				self?.javaScriptRow.updateCell()
 			}
 		}
 
 		+++ Section(footer: NSLocalizedString("Handle tapping on links in a non-standard way to avoid possibly opening external applications.",
 											  comment: "Option description"))
 
-		<<< contentPolicyRow
-		.onPresent { vc, selectorVc in
-			// This is just to trigger the usage of #sectionFooterTitleForKey
-			selectorVc.sectionKeyForValue = { value in
-				return NSLocalizedString("Content Policy", comment: "Option title")
-			}
-
-			selectorVc.sectionFooterTitleForKey = { key in
-				return NSLocalizedString("Restrictions on resources loaded from web pages.",
-										 comment: "Option description")
-			}
-
-			selectorVc.selectableRowCellSetup = { (cell, _) in
-				cell.textLabel?.numberOfLines = 0
-			}
-		}
+		<<< javaScriptRow
 		.onChange { [weak self] row in
-			let csp = row.value ?? .strict
+			let javaScript = row.value ?? false
 
-			self?.alertBeforeChange(csp)
+			self?.alertBeforeChange(javaScript)
 		}
 
 		<<< SwitchRow() {
@@ -223,18 +207,18 @@ class SecurityViewController: FixedFormViewController {
 
 	private var calledTwice = false
 
-	private func alertBeforeChange(_ csp: HostSettings.ContentPolicy) {
+	private func alertBeforeChange(_ javaScript: Bool) {
 
-		let preset = SecurityPreset(csp)
+		let preset = SecurityPreset(javaScript)
 
 		let okHandler = { [weak self] in
-			self?.hostSettings.contentPolicy = csp
+			self?.hostSettings.javaScript = javaScript
 
 			// Could have been modified by webRtcRow.
-			if csp != self?.contentPolicyRow.value {
+			if javaScript != self?.javaScriptRow.value {
 				self?.calledTwice = true
-				self?.contentPolicyRow.value = csp
-				self?.contentPolicyRow.updateCell()
+				self?.javaScriptRow.value = javaScript
+				self?.javaScriptRow.updateCell()
 			}
 
 			self?.securityPresetsRow.value = SecurityPreset(self?.hostSettings)
@@ -243,9 +227,9 @@ class SecurityViewController: FixedFormViewController {
 
 		if !calledTwice && preset == .custom && securityPresetsRow.value != .custom {
 			let cancelHandler = { [weak self] in
-				self?.contentPolicyRow.value = self?.hostSettings.contentPolicy
+				self?.javaScriptRow.value = self?.hostSettings.javaScript
 
-				self?.contentPolicyRow.updateCell()
+				self?.javaScriptRow.updateCell()
 
 				self?.calledTwice = false
 			}

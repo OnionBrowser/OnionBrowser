@@ -16,68 +16,7 @@ extension NSNotification.Name {
 
 class HostSettings: NSObject {
 
-	@objc
 	static let hostSettingsChanged = "host_settings_changed"
-
-	@objc
-	enum ContentPolicy: Int, CustomStringConvertible {
-        case open
-        case blockXhr
-        case strict
-        case reallyStrict
-
-		var key: String {
-			switch self {
-			case .open:
-				return "open"
-
-			case .blockXhr:
-				return "block_connect"
-
-			case .reallyStrict:
-				return "really_strict"
-
-			default:
-				return "strict"
-			}
-		}
-
-		var description: String {
-			switch self {
-			case .open:
-				return NSLocalizedString("Open (normal browsing mode)",
-				comment: "Content policy option")
-
-			case .blockXhr:
-				return NSLocalizedString("No XHR/WebSocket/Video connections",
-				comment: "Content policy option")
-
-			case .reallyStrict:
-				return NSLocalizedString("Very Strict (JavaScript completely off; no context menu)",
-				comment: "Content policy option")
-
-			default:
-				return NSLocalizedString("Strict (no JavaScript, video, etc.)",
-				comment: "Content policy option")
-			}
-		}
-
-		init(_ value: String?) {
-			switch value {
-			case ContentPolicy.open.key:
-				self = .open
-
-			case ContentPolicy.blockXhr.key:
-				self = .blockXhr
-
-			case ContentPolicy.reallyStrict.key:
-				self = .reallyStrict
-
-			default:
-				self = .strict
-			}
-		}
-    }
 
 	private static let fileUrl: URL? = {
 		return FileManager.default.docsDir?.appendingPathComponent("host_settings.plist")
@@ -93,7 +32,7 @@ class HostSettings: NSObject {
 	private static let universalLinkProtectionKey = "universal_link_protection"
 	private static let followOnionLocationHeaderKey = "follow_onion_location_header"
 	private static let userAgentKey = "user_agent"
-	private static let contentPolicyKey = "content_policy"
+	private static let javaScriptKey = "javascript"
 
 	private static var _raw: [String: [String: String]]?
 	private static var raw: [String: [String: String]] {
@@ -135,7 +74,6 @@ class HostSettings: NSObject {
 	- parameter host: The host name. Can be `nil` which will return the default settings.
 	- returns: Settings for the given host.
 	*/
-	@objc
 	class func `for`(_ host: String?) -> HostSettings {
 		// If no host given, return default host settings.
 		guard let host = host, !host.isEmpty else {
@@ -194,7 +132,6 @@ class HostSettings: NSObject {
 	/**
 	Persists all settings to disk.
 	*/
-	@objc
 	class func store() {
 		if let url = fileUrl {
 			(raw as NSDictionary).write(to: url, atomically: true)
@@ -214,7 +151,6 @@ class HostSettings: NSObject {
 
 	Setting this will always set the value explicitly for this host.
 	*/
-	@objc
 	var ignoreTlsErrors: Bool {
 		get {
 			return get(HostSettings.ignoreTlsErrorsKey) == HostSettings.true
@@ -232,7 +168,6 @@ class HostSettings: NSObject {
 
 	Setting this will always set the value explicitly for this host.
 	*/
-	@objc
 	var whitelistCookies: Bool {
 		get {
 			return get(HostSettings.whitelistCookiesKey) == HostSettings.true
@@ -261,7 +196,6 @@ class HostSettings: NSObject {
 		}
 	}
 
-	@objc
 	var followOnionLocationHeader: Bool {
 		get {
 			get(HostSettings.followOnionLocationHeaderKey) == HostSettings.true
@@ -279,7 +213,6 @@ class HostSettings: NSObject {
 
 	Setting this will always set the value explicitly for this host.
 	*/
-	@objc
 	var userAgent: String {
 		get {
 			return get(HostSettings.userAgentKey)
@@ -290,18 +223,18 @@ class HostSettings: NSObject {
 	}
 
 	/**
-	Content policy to apply. Will walk up the domain levels ending at the default settings,
-	if not explicitly set for this host.
+	 True, if JavaScript should be allowed.
 
 	Setting this will always set the value explicitly for this host.
 	*/
-	@objc
-	var contentPolicy: ContentPolicy {
+	var javaScript: Bool {
 		get {
-			return ContentPolicy(get(HostSettings.contentPolicyKey))
+			return get(HostSettings.javaScriptKey) == HostSettings.true
 		}
 		set {
-			raw[HostSettings.contentPolicyKey] = newValue.key
+			raw[HostSettings.javaScriptKey] = newValue
+				? HostSettings.true
+				: HostSettings.false
 		}
 	}
 
@@ -338,7 +271,7 @@ class HostSettings: NSObject {
 				HostSettings.universalLinkProtectionKey: HostSettings.true,
 				HostSettings.followOnionLocationHeaderKey: HostSettings.true,
 				HostSettings.userAgentKey: "",
-				HostSettings.contentPolicyKey: HostSettings.ContentPolicy.strict.key,
+				HostSettings.javaScriptKey: HostSettings.true,
 			]
 		}
 		else {

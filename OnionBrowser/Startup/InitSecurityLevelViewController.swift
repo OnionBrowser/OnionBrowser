@@ -113,7 +113,7 @@ class InitSecurityLevelViewController: UIViewController, UITableViewDataSource, 
 
 		let hs = HostSettings.forDefault()
 
-		hs.contentPolicy = preset.contentPolicy ?? .strict
+		hs.javaScript = preset.javaScript
 
 		// Trigger creation, save and store of default HostSettings.
 		hs.save().store()

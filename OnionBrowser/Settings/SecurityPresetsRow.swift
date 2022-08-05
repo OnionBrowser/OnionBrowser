@@ -86,19 +86,19 @@ enum SecurityPreset: Int, CustomStringConvertible {
 		}
 	}
 
-	var contentPolicy: HostSettings.ContentPolicy? {
+	var javaScript: Bool {
 		switch self {
 		case .insecure:
-			return .open
+			return true
 
 		case .medium:
-			return .blockXhr
+			return true
 
 		case .secure:
-			return .strict
+			return false
 
 		default:
-			return nil
+			return true
 		}
 	}
 
@@ -107,14 +107,11 @@ enum SecurityPreset: Int, CustomStringConvertible {
 	case medium = 1
 	case secure = 2
 
-	init(_ csp: HostSettings.ContentPolicy?) {
-		if csp == .open {
-			self = .insecure
-		}
-		else if csp == .blockXhr {
+	init(_ javaScript: Bool?) {
+		if javaScript == true {
 			self = .medium
 		}
-		else if csp == .strict {
+		else if javaScript == false {
 			self = .secure
 		}
 		else {
@@ -123,7 +120,7 @@ enum SecurityPreset: Int, CustomStringConvertible {
 	}
 
 	init(_ settings: HostSettings?) {
-		self = .init(settings?.contentPolicy)
+		self = .init(settings?.javaScript)
 	}
 }
 

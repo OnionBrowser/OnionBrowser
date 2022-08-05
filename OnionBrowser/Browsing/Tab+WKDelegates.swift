@@ -98,17 +98,18 @@ extension Tab: WKUIDelegate, WKNavigationDelegate {
 	// WKNavigationDelegate
 
 	func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction,
-				 decisionHandler: @escaping (WKNavigationActionPolicy) -> Void)
+				 preferences: WKWebpagePreferences,
+				 decisionHandler: @escaping (WKNavigationActionPolicy, WKWebpagePreferences) -> Void)
 	{
 		guard let url = navigationAction.request.url else {
-			return decisionHandler(.cancel)
+			return decisionHandler(.cancel, preferences)
 		}
 
 		if let blocker = URLBlocker.blockingTarget(for: url, fromMainDocumentURL: self.url) {
 
 			self.applicableUrlBlockerTargets[blocker] = true
 
-			return decisionHandler(.cancel)
+			return decisionHandler(.cancel, preferences)
 		}
 
 		let navigationType = navigationAction.navigationType
@@ -116,7 +117,7 @@ extension Tab: WKUIDelegate, WKNavigationDelegate {
 		if url.scheme?.lowercased() == "endlessipc" {
 			handleIpc(url, navigationType)
 
-			return decisionHandler(.cancel)
+			return decisionHandler(.cancel, preferences)
 		}
 
 		// Try to prevent universal links from triggering by refusing the initial request and starting a new one.
@@ -140,7 +141,7 @@ extension Tab: WKUIDelegate, WKNavigationDelegate {
 
 					load(tr as URLRequest)
 
-					return decisionHandler(.cancel)
+					return decisionHandler(.cancel, preferences)
 				}
 			}
 		}
@@ -152,13 +153,15 @@ extension Tab: WKUIDelegate, WKNavigationDelegate {
 			reset(navigationAction.request.mainDocumentURL)
 		}
 
+		preferences.allowsContentJavaScript = HostSettings.for(url.host).javaScript
+
 		if navigationAction.shouldPerformDownload {
-			decisionHandler(.download)
+			decisionHandler(.download, preferences)
 		}
 		else {
 			cancelDownload()
 
-			decisionHandler(.allow)
+			decisionHandler(.allow, preferences)
 		}
 	}
 
