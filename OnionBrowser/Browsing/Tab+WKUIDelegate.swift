@@ -90,18 +90,68 @@ extension Tab: WKUIDelegate {
 				 elementInfo: WKContextMenuElementInfo,
 				 completionHandler: @escaping (UIContextMenuConfiguration?) -> Void)
 	{
-		// TODO
-	}
+		guard let url = elementInfo.linkURL else {
+			return completionHandler(nil)
+		}
 
-	func webView(_ webView: WKWebView, contextMenuForElement elementInfo: WKContextMenuElementInfo,
-				 willCommitWithAnimator animator: UIContextMenuInteractionCommitAnimating)
-	{
-		// TODO
-	}
+		completionHandler(UIContextMenuConfiguration(
+			identifier: nil,
+			previewProvider: {
+				let vc = UIViewController()
 
-	func webView(_ webView: WKWebView, contextMenuDidEndForElement elementInfo: WKContextMenuElementInfo)
-	{
-		// TODO
+				let label = UILabel()
+				label.translatesAutoresizingMaskIntoConstraints = false
+				label.text = url.host
+				label.font = .preferredFont(forTextStyle: .caption1)
+				label.textColor = .systemGray
+
+				vc.view.addSubview(label)
+				label.topAnchor.constraint(equalTo: vc.view.topAnchor, constant: 16).isActive = true
+				label.leadingAnchor.constraint(equalTo: vc.view.leadingAnchor, constant: 16).isActive = true
+				label.trailingAnchor.constraint(equalTo: vc.view.trailingAnchor, constant: -16).isActive = true
+
+				let webView = WKWebView()
+				webView.translatesAutoresizingMaskIntoConstraints = false
+				webView.load(URLRequest(url: url))
+
+				vc.view.addSubview(webView)
+				webView.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 16).isActive = true
+				webView.leadingAnchor.constraint(equalTo: vc.view.leadingAnchor).isActive = true
+				webView.trailingAnchor.constraint(equalTo: vc.view.trailingAnchor).isActive = true
+				webView.bottomAnchor.constraint(equalTo: vc.view.bottomAnchor).isActive = true
+
+				return vc
+			},
+			actionProvider: { (elements: [UIMenuElement]) -> UIMenu? in
+				var elements = elements
+
+				elements.insert(UIAction(
+					title: NSLocalizedString("Open in a New Tab", comment: ""),
+					image: UIImage(systemName: "plus.square.on.square"),
+					handler: { _ in
+						let child = self.tabDelegate?.addNewTab(url, configuration: nil)
+						child?.parentId = self.hash
+					}), at: 1)
+
+				elements.insert(UIAction(
+					title: NSLocalizedString("Open in Background Tab", comment: ""),
+					image: UIImage(systemName: "rectangle.stack.badge.plus"),
+					handler: { _ in
+						let child = self.tabDelegate?.addNewTab(
+							url, forRestoration: false, transition: .inBackground,
+							configuration: nil, completion: nil)
+						child?.parentId = self.hash
+					}), at: 2)
+
+				elements.insert(UIAction(
+					title: NSLocalizedString("Open in Safari", comment: ""),
+					image: UIImage(systemName: "arrow.up.forward.app"),
+					handler: { _ in
+						UIApplication.shared.open(url)
+					}), at: 3)
+
+				return UIMenu(title: "", children: elements)
+			}))
 	}
 
 	func webView(_ webView: WKWebView, requestDeviceOrientationAndMotionPermissionFor origin: WKSecurityOrigin,

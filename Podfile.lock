@@ -11,7 +11,6 @@ PODS:
   - OrbotKit (0.2.2)
   - SDCAlertView (10.0)
   - TUSafariActivity (1.0.4)
-  - VForceTouch (0.0.2)
 
 DEPENDENCIES:
   - DTFoundation/DTASN1
@@ -23,7 +22,6 @@ DEPENDENCIES:
   - OrbotKit (~> 0.2)
   - SDCAlertView (~> 10)
   - TUSafariActivity
-  - VForceTouch
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -35,7 +33,6 @@ SPEC REPOS:
     - OrbotKit
     - SDCAlertView
     - TUSafariActivity
-    - VForceTouch
 
 EXTERNAL SOURCES:
   FavIcon:
@@ -56,8 +53,7 @@ SPEC CHECKSUMS:
   OrbotKit: 33dd047aa0d14812d7a08618f68ab1f0874e97f2
   SDCAlertView: 5fbc48cae6d7bf9781097e3f27883924ef3b922c
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
-  VForceTouch: b5c3a28625269e1818cf915728173bda9f669d6b
 
-PODFILE CHECKSUM: 1bed61896e1beb0aa4275a50fcbb8aafa56c2d4f
+PODFILE CHECKSUM: 980b7f387cdc1cee4c2097a252b9158d66f0882a
 
 COCOAPODS: 1.11.3
