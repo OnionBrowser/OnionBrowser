@@ -13,13 +13,6 @@ import OrbotKit
 
 extension Tab: WKNavigationDelegate {
 
-	/**
-	Must match injected.js
-	*/
-	private static let validParams = ["hash", "hostname", "href", "pathname",
-									  "port", "protocol", "search", "username",
-									  "password", "origin"]
-
 	private static let universalLinksWorkaroundKey = "yayprivacy"
 
 
@@ -39,12 +32,6 @@ extension Tab: WKNavigationDelegate {
 		}
 
 		let navigationType = navigationAction.navigationType
-
-		if url.scheme?.lowercased() == "endlessipc" {
-			handleIpc(url, navigationType)
-
-			return decisionHandler(.cancel, preferences)
-		}
 
 		// Try to prevent universal links from triggering by refusing the initial request and starting a new one.
 		let iframe = url.absoluteString != navigationAction.request.mainDocumentURL?.absoluteString
@@ -380,148 +367,5 @@ extension Tab: WKNavigationDelegate {
 		tabDelegate?.present(alert, nil)
 
 		self.webView(webView, didFinish: navigation)
-	}
-
-	/**
-	Handles all IPC calls from JavaScript.
-
-	Calls look like this: `endlessipc://<action>[/<param1>][/<param2>][?<value>]`
-
-	- parameter URL: The IPC URL
-	- parameter navigationType: The navigation type as given by webView:shouldStartLoadWith:navigationType:
-	*/
-	private func handleIpc(_ url: URL, _ navigationType: WKNavigationType) {
-
-		let action = url.host
-		let param1 = url.pathComponents.count > 1 ? url.pathComponents[1] : nil
-		let param2 = url.pathComponents.count > 2 ? url.pathComponents[2] : nil
-		let value = url.query?.replacingOccurrences(of: "+", with: " ").removingPercentEncoding
-
-		if action == "console.log" {
-			print("[Tab \(index)] [console.\(param1 ?? "log")] \(value ?? "(nil)")")
-			// No callback needed.
-			return
-		}
-
-		print("[Tab \(index)] [IPC]: action=\(action ?? "(nil)"), param1=\(param1 ?? "(nil)"), param2=\(param2 ?? "(nil)"), value=\(value ?? "(nil)")")
-
-		switch action {
-		case "noop":
-			ipcCallback("")
-
-			return
-
-		case "window.open":
-			// Only allow windows to be opened from mouse/touch events, like a normal browser's popup blocker.
-			if navigationType == .linkActivated {
-				let child = tabDelegate?.addNewTab(nil, configuration: nil)
-				child?.parentId = hash
-				child?.ipcId = param1
-
-				if let param1 = param1?.escapedForJavaScript {
-					ipcCallback("__endless.openedTabs[\"\(param1)\"].opened = true;")
-				}
-				else {
-					ipcCallback("")
-				}
-			}
-			else {
-				// TODO: Show a "popup blocked" warning?
-				print("[Tab \(index)] blocked non-touch window.open() (nav type \(navigationType))");
-
-				if let param1 = param1?.escapedForJavaScript {
-					ipcCallback("__endless.openedTabs[\"\(param1)\"].opened = false;")
-				}
-				else {
-					ipcCallback("")
-				}
-			}
-
-			return
-
-		case "window.close":
-			let alert = AlertHelper.build(
-				message: NSLocalizedString("Allow this page to close its tab?", comment: ""),
-				title: NSLocalizedString("Confirm", comment: ""),
-				actions: [
-					AlertHelper.defaultAction(handler: { _ in self.tabDelegate?.removeTab(self, focus: nil) }),
-					AlertHelper.cancelAction()
-			])
-
-			tabDelegate?.present(alert, nil)
-
-			ipcCallback("")
-
-			return
-
-		case "showDonate":
-			let navC = AppDelegate.shared?.browsingUi?.showSettings()
-			navC?.pushViewController(DonationViewController(), animated: false)
-
-			return
-
-		default:
-			break
-		}
-
-		if action?.hasPrefix("fakeWindow.") ?? false {
-			guard let tab = tabDelegate?.getTab(ipcId: param1) else {
-				if let param1 = param1?.escapedForJavaScript {
-					ipcCallback("delete __endless.openedTabs[\"\(param1)\"];")
-				}
-				else {
-					ipcCallback("")
-				}
-
-				return
-			}
-
-			switch action {
-			case "fakeWindow.setName":
-				// Setters, just write into target webview.
-				if let value = value?.escapedForJavaScript {
-					tab.stringByEvaluatingJavaScript(from: "window.name = \"\(value)\";") { _ in }
-				}
-
-				ipcCallback("")
-
-			case "fakeWindow.setLocation":
-				if let value = value?.escapedForJavaScript {
-					tab.stringByEvaluatingJavaScript(from: "window.location = \"\(value)\";") { _ in }
-				}
-
-				ipcCallback("")
-
-			case "fakeWindow.setLocationParam":
-				if let param2 = param2, Tab.validParams.contains(param2),
-					let value = value?.escapedForJavaScript {
-
-					tab.stringByEvaluatingJavaScript(from: "window.location.\(param2) = \"\(value)\";") { _ in }
-				}
-				else {
-					print("[Tab \(index)] window.\(param2 ?? "(nil)") not implemented");
-				}
-
-				ipcCallback("")
-
-			case "fakeWindow.close":
-				tabDelegate?.removeTab(tab, focus: nil)
-
-				ipcCallback("")
-
-			default:
-				break
-			}
-		}
-
-		return
-	}
-
-	private func ipcCallback(_ payload: String) {
-		let callback = "(function() { \(payload) __endless.ipcDone = (new Date()).getTime(); })();"
-
-		print("[Tab \(index)] [IPC]: calling back with: \(callback)")
-
-		stringByEvaluatingJavaScript(from: callback) { _ in }
 	}
 }

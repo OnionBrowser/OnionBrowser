@@ -73,10 +73,10 @@
 		A08737E1221324B5005A68CC /* HostSettings_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = A08737DF2213235F005A68CC /* HostSettings_Tests.m */; };
 		A099B8B723CF60C800B50998 /* InitSecurityLevelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A099B8B523CF60C800B50998 /* InitSecurityLevelViewController.xib */; };
 		A099B8B823CF60C800B50998 /* InitSecurityLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A099B8B623CF60C800B50998 /* InitSecurityLevelViewController.swift */; };
+		A0A83AC228A14CAB005C15C9 /* Tab+WKScriptMessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A83AC128A14CAB005C15C9 /* Tab+WKScriptMessageHandler.swift */; };
 		A0BF51E423AFBF250096624A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51A023AFBF250096624A /* Localizable.strings */; };
 		A0BF51E523AFBF250096624A /* urlblocker.json in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51AE23AFBF250096624A /* urlblocker.json */; };
 		A0BF51ED23AFBF250096624A /* start.html in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51C723AFBF250096624A /* start.html */; };
-		A0BF51EE23AFBF250096624A /* injected.js in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51CC23AFBF250096624A /* injected.js */; };
 		A0BF51EF23AFBF250096624A /* SearchEngines.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51D123AFBF250096624A /* SearchEngines.plist */; };
 		A0BF51F123AFBF250096624A /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51D523AFBF250096624A /* Launch Screen.xib */; };
 		A0BF51F423AFBF250096624A /* credits.html in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51DE23AFBF250096624A /* credits.html */; };
@@ -88,7 +88,6 @@
 		A0BF524A23AFC3580096624A /* SecurityPopUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0BF520323AFC3580096624A /* SecurityPopUpViewController.xib */; };
 		A0BF524B23AFC3580096624A /* CircuitNodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF520423AFC3580096624A /* CircuitNodeCell.swift */; };
 		A0BF524C23AFC3580096624A /* CircuitViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0BF520523AFC3580096624A /* CircuitViewController.xib */; };
-		A0BF524D23AFC3580096624A /* Tab+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF520623AFC3580096624A /* Tab+Keyboard.swift */; };
 		A0BF524E23AFC3580096624A /* SecurityLevelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0BF520723AFC3580096624A /* SecurityLevelCell.xib */; };
 		A0BF524F23AFC3580096624A /* CircuitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF520823AFC3580096624A /* CircuitViewController.swift */; };
 		A0BF525023AFC3580096624A /* Tab+Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF520923AFC3580096624A /* Tab+Activity.swift */; };
@@ -328,11 +327,11 @@
 		A0A4F6A0281849E70089E7D5 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ro; path = "ro.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A0A4F6A1281849E80089E7D5 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ../Resources/ro.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A0A4F6A42818530E0089E7D5 /* fastlane */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fastlane; sourceTree = "<group>"; };
+		A0A83AC128A14CAB005C15C9 /* Tab+WKScriptMessageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tab+WKScriptMessageHandler.swift"; sourceTree = "<group>"; };
 		A0B2240E23A92B2700EA2C47 /* OnionBrowser2_Tests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OnionBrowser2_Tests-Bridging-Header.h"; sourceTree = "<group>"; };
 		A0BF51AE23AFBF250096624A /* urlblocker.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = urlblocker.json; sourceTree = "<group>"; };
 		A0BF51C523AFBF250096624A /* credits.html.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = credits.html.in; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.html; };
 		A0BF51C723AFBF250096624A /* start.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = start.html; sourceTree = "<group>"; };
-		A0BF51CC23AFBF250096624A /* injected.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = injected.js; sourceTree = "<group>"; };
 		A0BF51D123AFBF250096624A /* SearchEngines.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SearchEngines.plist; sourceTree = "<group>"; };
 		A0BF51D523AFBF250096624A /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		A0BF51DE23AFBF250096624A /* credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = credits.html; sourceTree = "<group>"; };
@@ -347,7 +346,6 @@
 		A0BF520323AFC3580096624A /* SecurityPopUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SecurityPopUpViewController.xib; sourceTree = "<group>"; };
 		A0BF520423AFC3580096624A /* CircuitNodeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircuitNodeCell.swift; sourceTree = "<group>"; };
 		A0BF520523AFC3580096624A /* CircuitViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CircuitViewController.xib; sourceTree = "<group>"; };
-		A0BF520623AFC3580096624A /* Tab+Keyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Tab+Keyboard.swift"; sourceTree = "<group>"; };
 		A0BF520723AFC3580096624A /* SecurityLevelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SecurityLevelCell.xib; sourceTree = "<group>"; };
 		A0BF520823AFC3580096624A /* CircuitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircuitViewController.swift; sourceTree = "<group>"; };
 		A0BF520923AFC3580096624A /* Tab+Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Tab+Activity.swift"; sourceTree = "<group>"; };
@@ -668,7 +666,6 @@
 				A0BF51C523AFBF250096624A /* credits.html.in */,
 				A0C26E4523D8650E00C4AF1C /* security-levels.html */,
 				A0BF51C723AFBF250096624A /* start.html */,
-				A0BF51CC23AFBF250096624A /* injected.js */,
 				A0BF51AE23AFBF250096624A /* urlblocker.json */,
 				A0BF51D523AFBF250096624A /* Launch Screen.xib */,
 			);
@@ -720,9 +717,9 @@
 				A0BF520923AFC3580096624A /* Tab+Activity.swift */,
 				A0BF521523AFC3580096624A /* Tab+Downloads.swift */,
 				A0BF521423AFC3580096624A /* Tab+Gestures.swift */,
-				A0BF520623AFC3580096624A /* Tab+Keyboard.swift */,
 				A0BFD3E8289D4F5200CB9F6D /* Tab+WKUIDelegate.swift */,
 				A0CD36972890194900628DA6 /* Tab+WKNavigationDelegate.swift */,
+				A0A83AC128A14CAB005C15C9 /* Tab+WKScriptMessageHandler.swift */,
 				A0BF520323AFC3580096624A /* SecurityPopUpViewController.xib */,
 				A0BF521023AFC3580096624A /* SecurityPopUpViewController.swift */,
 				A0BF520723AFC3580096624A /* SecurityLevelCell.xib */,
@@ -948,7 +945,6 @@
 				A0550649271094A900922E18 /* ua-strings.plist in Resources */,
 				A07037C723C79AE500D670EC /* Media.xcassets in Resources */,
 				A0BF526723AFC3580096624A /* BookmarkCell.xib in Resources */,
-				A0BF51EE23AFBF250096624A /* injected.js in Resources */,
 				A0BF51E423AFBF250096624A /* Localizable.strings in Resources */,
 				A0BF526523AFC3580096624A /* FavIconCell.xib in Resources */,
 				A0BF525823AFC3580096624A /* TabCell.xib in Resources */,
@@ -1163,6 +1159,7 @@
 				01F8793B1A4108DD00A63654 /* URLBlocker.m in Sources */,
 				A0BF528223AFC3580096624A /* String+Helpers.swift in Sources */,
 				A0172C70288824BD008D42CD /* FixedFormViewController.swift in Sources */,
+				A0A83AC228A14CAB005C15C9 /* Tab+WKScriptMessageHandler.swift in Sources */,
 				A0BF524723AFC3580096624A /* Settings.xcdatamodel in Sources */,
 				A0BF525E23AFC3580096624A /* BrowsingViewController+Tabs.swift in Sources */,
 				A0BF525223AFC3580096624A /* BrowsingViewController.swift in Sources */,
@@ -1170,7 +1167,6 @@
 				A0BF525C23AFC3580096624A /* Tab+Downloads.swift in Sources */,
 				A0BF525923AFC3580096624A /* TabCell.swift in Sources */,
 				A0BF527823AFC3580096624A /* UIViewController+Helpers.swift in Sources */,
-				A0BF524D23AFC3580096624A /* Tab+Keyboard.swift in Sources */,
 				A0BF525623AFC3580096624A /* SecurityLevelCell.swift in Sources */,
 				A0BF527023AFC3580096624A /* HostSettings.swift in Sources */,
 				A0BF527D23AFC3580096624A /* SearchableTableViewController.swift in Sources */,

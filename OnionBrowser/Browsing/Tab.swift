@@ -149,7 +149,7 @@ class Tab: UIView {
 		}
 	}
 
-	private var configuration: WKWebViewConfiguration!
+	private(set) var configuration: WKWebViewConfiguration!
 
 	/**
 	 https://www.hackingwithswift.com/articles/112/the-ultimate-guide-to-wkwebview
@@ -445,10 +445,7 @@ class Tab: UIView {
 			self.configuration = configuration
 		}
 
-		if Settings.sendGpc {
-			   let script = WKUserScript(source: "navigator.globalPrivacyControl = true", injectionTime: .atDocumentStart, forMainFrameOnly: false)
-			   self.configuration.userContentController.addUserScript(script)
-		   }
+		setupJsInjections()
 
 		if Self.defaultUserAgent.isEmpty {
 			webView.evaluateJavaScript("navigator.userAgent") { result, error in

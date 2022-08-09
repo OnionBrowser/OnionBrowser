@@ -19,9 +19,6 @@
 /* be verbose about host-specific settings management */
 #define TRACE_HOST_SETTINGS
 
-/* be verbose about javascript IPC */
-#define TRACE_IPC
-
 /* be verbose about URL blocking */
 #define TRACE_URL_BLOCKER
 

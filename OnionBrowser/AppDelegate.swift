@@ -10,7 +10,6 @@
 
 import UIKit
 import AVFoundation
-import WebKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, OnionManagerDelegate {
@@ -78,47 +77,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OnionManagerDelegate {
 				action: #selector(handle(_:)), input: String(i % 10), modifierFlags: .command))
 		}
 
-		if UIResponder.currentFirstResponder() is WKWebView {
-			commands.append(contentsOf: allKeyBindings)
-		}
-
 		return commands
 	}
 
 	private var inStartupPhase = true
-
-	private let allKeyBindings: [UIKeyCommand] = {
-		let modPermutations: [UIKeyModifierFlags] = [
-			.alphaShift,
-			.shift,
-			.control,
-			.alternate,
-			.command,
-			[.command, .alternate],
-			[.command, .control],
-			[.control, .alternate],
-			[.control, .command],
-			[.control, .alternate, .command],
-			[]
-		]
-
-		var chars = "`1234567890-=\tqwertyuiop[]\\asdfghjkl;'\rzxcvbnm,./ "
-		chars.append(UIKeyCommand.inputEscape)
-		chars.append(UIKeyCommand.inputUpArrow)
-		chars.append(UIKeyCommand.inputDownArrow)
-		chars.append(UIKeyCommand.inputLeftArrow)
-		chars.append(UIKeyCommand.inputRightArrow)
-
-		var bindings = [UIKeyCommand]()
-
-		for mod in modPermutations {
-			for char in chars {
-				bindings.append(UIKeyCommand(input: String(char), modifierFlags: mod, action: #selector(handle(_:))))
-			}
-		}
-
-		return bindings
-	}()
 
 	/**
 	Flag, if biometric/password authentication after activation was successful.
@@ -485,7 +447,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OnionManagerDelegate {
 				}
 			}
 		}
-
-		browsingUi?.currentTab?.handleKeyCommand(keyCommand)
 	}
 }
