@@ -176,7 +176,9 @@ class Tab: UIView {
 	}
 
 	var isLoading: Bool {
-		return webView.isLoading
+		// BUGFIX: Sometimes, isLoading still shows true, even if progress is already at 100%.
+		// So check that, too, to fix reload/cancel button display.
+		return webView.isLoading && progress < 1
 	}
 
 	var previewController: QLPreviewController?
