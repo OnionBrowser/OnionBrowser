@@ -142,6 +142,7 @@ UITableViewDataSource, UITableViewDelegate {
 	}
 
 	@IBAction func showBridgeSelection(_ sender: UIView) {
+		OrbotKit.shared.open(.bridges)
 	}
 
 
