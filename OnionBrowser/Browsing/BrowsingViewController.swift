@@ -601,7 +601,13 @@ class BrowsingViewController: UIViewController, TabDelegate {
 		}
 
 		// 2+2 in vertical direction is correction for double-frame icon
+		// Ignore deprecation. UIButton.Configuration doesn't provide the vertical insets we need.
 		tabsBt.titleEdgeInsets = UIEdgeInsets(top: 2, left: offset, bottom: -2, right: -offset)
+
+		// Half-way, in fresh style:
+		// var conf = UIButton.Configuration.plain()
+		// conf.imagePadding = offset
+		// tabsBt.configuration = conf
 	}
 
 	/**
