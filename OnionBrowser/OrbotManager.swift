@@ -1,5 +1,5 @@
 //
-//  OnionManager.swift
+//  OrbotManager.swift
 //  OnionBrowser
 //
 //  Copyright © 2012 - 2022, Tigas Ventures, LLC (Mike Tigas)
@@ -10,18 +10,14 @@
 import Foundation
 import OrbotKit
 
-protocol OnionManagerDelegate: AnyObject {
-
-	func torConnProgress(_ progress: Int)
+protocol OrbotManagerDelegate: AnyObject {
 
 	func torConnFinished()
-
-	func torConnDifficulties()
 }
 
-class OnionManager : NSObject {
+class OrbotManager : NSObject {
 
-	static let shared = OnionManager()
+	static let shared = OrbotManager()
 
 	// Show Tor log in iOS' app log.
 	private static let TOR_LOGGING = false
@@ -84,18 +80,15 @@ class OnionManager : NSObject {
 	}
 
 	func ensureOrbotRunning(_ vc: UIViewController) {
-		(vc as? OnionManagerDelegate)?.torConnFinished()
-		return
-
 		if !OrbotKit.shared.installed {
-			OnionManager.shared.alertOrbotNotInstalled(vc)
+			alertOrbotNotInstalled(vc)
 		}
 		else {
 			OrbotKit.shared.apiToken = Settings.orbotApiToken
 
 			OrbotKit.shared.info { info, error in
 				if case OrbotKit.Errors.httpError(statusCode: 403)? = error {
-					OnionManager.shared.alertOrbotNoAccess(vc)
+					self.alertOrbotNoAccess(vc)
 
 					return
 				}
@@ -135,7 +128,7 @@ class OnionManager : NSObject {
 					return
 				}
 
-				(vc as? OnionManagerDelegate)?.torConnFinished()
+				(vc as? OrbotManagerDelegate)?.torConnFinished()
 			}
 		}
 	}
@@ -197,7 +190,7 @@ class OnionManager : NSObject {
 										Settings.orbotApiToken = self?.tokenAlert?.textFields?.first?.text
 										OrbotKit.shared.apiToken = Settings.orbotApiToken
 
-										(vc as? OnionManagerDelegate)?.torConnFinished()
+										(vc as? OrbotManagerDelegate)?.torConnFinished()
 									})
 
 									vc.present(alert, animated: false)

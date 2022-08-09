@@ -134,7 +134,7 @@ UITableViewDataSource, UITableViewDelegate {
 	// MARK: Actions
 
 	@IBAction func newCircuits() {
-		OnionManager.shared.closeCircuits(usedCircuits) { _ in
+		OrbotManager.shared.closeCircuits(usedCircuits) { _ in
 			AppDelegate.shared?.browsingUi?.currentTab?.refresh()
 
 			self.dismiss(animated: true)
@@ -150,7 +150,7 @@ UITableViewDataSource, UITableViewDelegate {
 
 	private func reloadCircuits() {
 		DispatchQueue.global(qos: .userInitiated).async {
-			OnionManager.shared.getCircuits(host: self.currentUrl?.host) { circuits in
+			OrbotManager.shared.getCircuits(host: self.currentUrl?.host) { circuits in
 
 				// Store in-use circuits (identified by having a SOCKS username,
 				// so the user can close them and get fresh ones on #newCircuits.

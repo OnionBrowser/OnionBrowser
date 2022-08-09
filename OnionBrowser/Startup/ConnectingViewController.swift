@@ -11,7 +11,7 @@
 import UIKit
 import OrbotKit
 
-class ConnectingViewController: UIViewController, OnionManagerDelegate {
+class ConnectingViewController: UIViewController, OrbotManagerDelegate {
 
 	class func start() {
 		let appDelegate = AppDelegate.shared
@@ -106,7 +106,7 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate {
 		refresh = Timer.scheduledTimer(timeInterval: 3, target: self,
 									   selector: #selector(showClaim), userInfo: nil, repeats: true)
 
-		OnionManager.shared.ensureOrbotRunning(self)
+		OrbotManager.shared.ensureOrbotRunning(self)
 	}
 
 	override func viewWillDisappear(_ animated: Bool) {
@@ -117,7 +117,7 @@ class ConnectingViewController: UIViewController, OnionManagerDelegate {
 	}
 
 
-	// MARK: OnionManagerDelegate
+	// MARK: OrbotManagerDelegate
 
 	func torConnProgress(_ progress: Int) {
 		DispatchQueue.main.async {

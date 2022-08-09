@@ -124,7 +124,7 @@
 		A0BF527223AFC3580096624A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF522D23AFC3580096624A /* SettingsViewController.swift */; };
 		A0BF527323AFC3580096624A /* AddSiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF522E23AFC3580096624A /* AddSiteViewController.swift */; };
 		A0BF527423AFC3580096624A /* DonationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF522F23AFC3580096624A /* DonationViewController.swift */; };
-		A0BF527623AFC3580096624A /* OnionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF523323AFC3580096624A /* OnionManager.swift */; };
+		A0BF527623AFC3580096624A /* OrbotManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF523323AFC3580096624A /* OrbotManager.swift */; };
 		A0BF527723AFC3580096624A /* BlurredSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF523623AFC3580096624A /* BlurredSnapshot.swift */; };
 		A0BF527823AFC3580096624A /* UIViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF523823AFC3580096624A /* UIViewController+Helpers.swift */; };
 		A0BF527923AFC3580096624A /* Bundle+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF523923AFC3580096624A /* Bundle+Helpers.swift */; };
@@ -383,7 +383,7 @@
 		A0BF522E23AFC3580096624A /* AddSiteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSiteViewController.swift; sourceTree = "<group>"; };
 		A0BF522F23AFC3580096624A /* DonationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonationViewController.swift; sourceTree = "<group>"; };
 		A0BF523023AFC3580096624A /* OnionBrowser-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OnionBrowser-Bridging-Header.h"; sourceTree = "<group>"; };
-		A0BF523323AFC3580096624A /* OnionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnionManager.swift; sourceTree = "<group>"; };
+		A0BF523323AFC3580096624A /* OrbotManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrbotManager.swift; sourceTree = "<group>"; };
 		A0BF523623AFC3580096624A /* BlurredSnapshot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurredSnapshot.swift; sourceTree = "<group>"; };
 		A0BF523723AFC3580096624A /* SilenceWarnings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SilenceWarnings.h; sourceTree = "<group>"; };
 		A0BF523823AFC3580096624A /* UIViewController+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Helpers.swift"; sourceTree = "<group>"; };
@@ -681,7 +681,7 @@
 				A0BF522423AFC3580096624A /* Settings */,
 				A0BF51F923AFC3580096624A /* Migration */,
 				A07037C523C7571B00D670EC /* AppDelegate.swift */,
-				A0BF523323AFC3580096624A /* OnionManager.swift */,
+				A0BF523323AFC3580096624A /* OrbotManager.swift */,
 				A0BF523023AFC3580096624A /* OnionBrowser-Bridging-Header.h */,
 				A0BF520023AFC3580096624A /* version.h */,
 				A0BF523523AFC3580096624A /* Helpers */,
@@ -1137,7 +1137,7 @@
 				A0BF526023AFC3580096624A /* BrowsingViewController+Toolbar.swift in Sources */,
 				A004FB2A241A782500451A9E /* SecureEnclave.swift in Sources */,
 				01F2AE391B7FEF5E00D5651A /* SSLCertificate.m in Sources */,
-				A0BF527623AFC3580096624A /* OnionManager.swift in Sources */,
+				A0BF527623AFC3580096624A /* OrbotManager.swift in Sources */,
 				A0D9008B24095F5C0046C9B3 /* AltSvcHeader.swift in Sources */,
 				A0BF527223AFC3580096624A /* SettingsViewController.swift in Sources */,
 				A003A6BC23C94A4900BD2D20 /* ConnectingViewController.swift in Sources */,

@@ -12,7 +12,7 @@ import UIKit
 import AVFoundation
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, OnionManagerDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, OrbotManagerDelegate {
 
 	@objc
 	static let socksProxyPort = 39050
@@ -151,7 +151,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OnionManagerDelegate {
 			if urlc.path == "token-callback",
 				let token = urlc.queryItems?.first(where: { $0.name == "token" })?.value
 			{
-					OnionManager.shared.tokenAlert?.textFields?.first?.text = token
+					OrbotManager.shared.tokenAlert?.textFields?.first?.text = token
 			}
 
 			return true
@@ -204,7 +204,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OnionManagerDelegate {
 			inStartupPhase = false
 		}
 		else {
-			let mgr = OnionManager.shared
+			let mgr = OrbotManager.shared
 
 			if (mgr.lastInfo?.status != .started && mgr.lastInfo?.status != .starting) {
 				BlurredSnapshot.remove()
@@ -282,11 +282,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OnionManagerDelegate {
 	}
 
 
-	// MARK: OnionManagerDelegate
-
-	func torConnProgress(_ progress: Int) {
-		// Ignored.
-	}
+	// MARK: OrbotManagerDelegate
 
 	func torConnFinished() {
 		DispatchQueue.main.async {
@@ -302,12 +298,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OnionManagerDelegate {
 				self.browsingUi?.becomesVisible()
 			}
 		}
-	}
-
-	func torConnDifficulties() {
-		// This should not happen, as Tor is expected to always restart
-		// very quickly. Anyhow, show the UI at least.
-		torConnFinished()
 	}
 
 
