@@ -260,7 +260,7 @@ static CFIndex FixEmptyPath(NSURL *url, NSMutableData *urlData, CFIndex bytesIns
 	range = CFURLGetByteRangeForComponent( (CFURLRef) url, kCFURLComponentPath, &rangeWithSeparator);
 	// The following is not a typo.  We use rangeWithSeparator to find where to insert the
 	// "/" and the range length to decide whether we /need/ to insert the "/".
-	if ( (rangeWithSeparator.location != kCFNotFound) && (range.length == 0) ) {
+	if (rangeWithSeparator.location != kCFNotFound && range.location != kCFNotFound && range.length == 0) {
 		assert(range.location >= 0);
 		assert(range.length >= 0);
 		assert(rangeWithSeparator.location >= 0);
@@ -269,6 +269,7 @@ static CFIndex FixEmptyPath(NSURL *url, NSMutableData *urlData, CFIndex bytesIns
 		[urlData replaceBytesInRange:NSMakeRange( (NSUInteger) rangeWithSeparator.location + (NSUInteger) bytesInserted, 0) withBytes:"/" length:1];
 		bytesInserted += 1;
 	}
+
 	return bytesInserted;
 }
 
