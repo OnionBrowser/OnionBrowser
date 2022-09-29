@@ -1,1 +1,4 @@
-- Tor.framework auf Version 407.8.2 mit Tor 0.4.7.8 aktualisiert.
+- Tor.framework auf Version 407.10.2 mit Tor 0.4.7.10 aktualisiert.
+- Snowflake auf Version 2.3.0 aktualisiert.
+- Absturz beim Ändern von Lesezeichen-URLs behoben.
+- Kleinere Updates verschiedener Übersetzungen.

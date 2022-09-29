@@ -1,5 +1,11 @@
 #  Onion Browser 2 Changelog
 
+## 2.8.2
+- Updated to Tor.framework 407.10.2 containing Tor 0.4.7.10.
+- Updated Snowflake to version 2.3.0.
+- Fixed crash when editing a bookmark URL.
+- Minor translation updates.
+
 ## 2.8.1
 - Updated to Tor.framework 407.8.2 containing Tor 0.4.7.8.
 
