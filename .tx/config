@@ -128,7 +128,7 @@ type = TXT
 
 [onion-browser.release-notes]
 file_filter = fastlane/metadata/<lang>/release_notes.txt
-minimum_perc = 75
+minimum_perc = 25
 source_file = fastlane/metadata/en-US/release_notes.txt
 source_lang = en_US
 trans.ar = fastlane/metadata/ar-SA/release_notes.txt

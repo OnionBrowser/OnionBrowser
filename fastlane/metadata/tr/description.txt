@@ -5,23 +5,23 @@ Onion Browser iOS için Tor ağını kullanan, özgün, özgür ve açık kaynak
 The New York Times, The Guardian, Salon, TechCrunch, Gizmodo, Boing Boing, Lifehacker, Macworld, The Daily Dot ve diğer basın organlarında yayınlandı.
 
 ÖZELLİKLER:
-• İnternet'de Tor üzerinden gezinin:
+• Tor ile İnternet üzerinden gezinin:
 - Kişisel gizliliğinizi web sitelerinin izlemesinden koruyun.
-- Ağ trafiğinizi güvensiz kablosuz ağlardan ve ISS'lerden koruyun.
-- HTTPS Everywhere desteği, HTTPS destekleyen sitelerde otomatik olarak geçiş.
-- Sadece Tor üzerinden erişilebilir olan .onion sitelerine erişin.
+- Ağ trafiğinizi güvenli olmayan kablosuz ağlar ve internet hizmeti sağlayıcılara karşı güvenli kılın.
+- HTTPS Everywhere desteği. Destekleyen sitelerde otomatik olarak HTTPS kullanılmasını sağlar
+- Yalnızca Tor üzerinden erişilebilen .onion sitelerine erişin.
 
-• Çevrimiçi takiple savaşın: Tercihlerinize bağlı olarak betikleri engelleyin, çerezleri ve sekmeleri otomatik olarak temizleyin.
+• Çevrimiçi izlemeye karşı koyun: İsteğinize bağlı olarak betikleri engelleyin, çerezleri ve sekmeleri otomatik olarak temizleyin.
 
-• Ve diğer gizlilik arttıran özellikler!
+• Ve kişisel gizliliği arttıran diğer özellikler!
 
-FERAGATNAME:
-- İnternet gezintileri normal İnternet tarayıcılarından veya VPN'den daha yavaştır, bunun nedeni ağ trafiğinizin şifrelenip Tor ağı üzerinden aktarılmasıdır.
+SORUMLULUK REDDİ:
+- İnternet gezinmesi normal web tarayıcılarından ya da VPN kullanımından daha yavaştır. Bu durum ağ trafiğinizin şifrelenip Tor ağı üzerinden aktarılmasından kaynaklanır.
 
-- Multimedya içerikleri genellikle Tor'u aşıp gizliliğinizi ifşa eder; video dosyaları ve akışları varsayılan olarak engellenir ve Onion Browser tarafından desteklenmemektedir.
+- Çoklu ortam içerikleri genellikle Tor ağını aşarak kişisel gizliliğinizin korunmasını engeller. Varsayılan olarak video dosyaları ve akışları engellenir ve Onion Browser tarafından desteklenmez.
 
-- Onion Browser gelişmiş ağ kısıtlama yöntemlerinin kullanıldığı ağlarda çalışmayabilir. Eğer uygulama bağlanmazsa, köprü kullanmayı (veya farklı bir köprü türü) deneyin, kapatın, ve sonra uygulamayı yeniden başlatın.
+- Onion Browser gelişmiş ağ kısıtlama yöntemlerinin kullanıldığı ağlarda çalışmayabilir. Uygulama bağlantı kuramazsa, bir köprü kullanmayı (ya da farklı bir köprü türü) deneyin. Uygulamayı kapatıp yeniden başlatın.
 
 - Onion Browser uygulamasını kullanmanızdan doğabilecek tüm riskler size aittir; önemli kişisel verilerin bir mobil aygıt üzerinde bulundurulması her zaman uygun olmayabilir.
 
-** Onion Browser özgür ve açık kaynaklı bir yazılımdır. Onion browser hakkında daha fazla bilgi edinmek için ve iOS'da Tor'un gelişimine nasıl katkıda bulunacağınızı öğrenmek için onionbrowser.com adresini ziyaret edebilirsiniz **
+** Onion Browser özgür ve açık kaynaklı bir yazılımdır. Onion browser hakkında daha fazla bilgi edinmek için ve iOS üzerinde Tor gelişimine nasıl katkıda bulunacağınızı öğrenmek için onionbrowser.com adresini ziyaret edebilirsiniz **
