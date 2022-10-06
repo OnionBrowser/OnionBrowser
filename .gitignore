@@ -27,3 +27,5 @@ fastlane/metadata/review_information
 fastlane/metadata/trade_representative_contact_information
 
 fastlane/Preview.html
+fastlane/README.md
+fastlane/report.xml
