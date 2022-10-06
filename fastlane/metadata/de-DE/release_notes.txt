@@ -1,4 +1,6 @@
 - Tor.framework auf Version 407.10.2 mit Tor 0.4.7.10 aktualisiert.
-- Snowflake auf Version 2.3.0 aktualisiert.
+- Snowflake auf Version 2.3.1 aktualisiert.
+- Obfs4proxy auf Version 0.0.14 aktualisiert.
 - Absturz beim Ändern von Lesezeichen-URLs behoben.
 - Kleinere Updates verschiedener Übersetzungen.
+- Die "Wir haben ein Problem beim Verbinden"-Logik verbessert.

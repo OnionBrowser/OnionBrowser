@@ -1,1 +1,6 @@
-- Cập nhật lên Tor.framework 407.8.2 chứa Tor 0.4.7.8.
+- Cập nhật lên Tor.framework 407.10.2 chứa Tor 0.4.7.10.
+- Đã cập nhật Snowflake lên phiên bản 2.3.1.
+- Cập nhật Obfs4proxy lên phiên bản 0.0.14.
+- Đã khắc phục sự cố khi chỉnh sửa URL đánh dấu.
+- Cập nhật bản dịch nhỏ.
+- Cải thiện logic "chúng tôi gặp sự cố khi kết nối".

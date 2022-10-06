@@ -1,1 +1,6 @@
-- Mise à jour vers Tor.framework 407.8.2 contenant Tor 0.4.7.8.
+- Mise à jour vers Tor.framework 407.10.2 contenant Tor 0.4.7.10.
+- Mise à jour de Snowflake vers la version 2.3.1.
+- Mise à jour d'Obfs4proxy vers la version 0.0.14.
+- Correction d'un crash lors de la modification d'une URL de signet.
+- Mises à jour mineures de la traduction.
+- Amélioration de la logique "nous avons des problèmes de connexion".

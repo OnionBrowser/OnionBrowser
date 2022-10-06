@@ -1,1 +1,6 @@
-- Bijgewerkt naar Tor.framework 407.8.2 met Tor 0.4.7.8.
+- Bijgewerkt naar Tor.framework 407.10.2 met Tor 0.4.7.10.
+- Sneeuwvlok bijgewerkt naar versie 2.3.1.
+- Obfs4proxy bijgewerkt naar versie 0.0.14.
+- Crash opgelost bij het bewerken van een bladwijzer-URL.
+- Kleine vertaalupdates.
+- Verbeterde logica "we hebben problemen met verbinden".

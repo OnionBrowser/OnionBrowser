@@ -1,1 +1,6 @@
-- Frissítve a Tor.framework 407.8.2-re, amely tartalmazza a Tor 0.4.7.8-at.
+- Frissítve a Tor.framework 407.10.2-re, amely tartalmazza a Tor 0.4.7.10-et.
+- A Snowflake frissítve a 2.3.1-es verzióra.
+- Az Obfs4proxy frissítve a 0.0.14-es verzióra.
+- Javítva az összeomlás a könyvjelző URL-jének szerkesztésekor.
+- Kisebb fordítási frissítések.
+- Továbbfejlesztett „problémák vannak a csatlakozással” logika.

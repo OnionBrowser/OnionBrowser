@@ -1,1 +1,6 @@
-- Oppdatert til Tor.framework 407.8.2 som inneholder Tor 0.4.7.8.
+- Oppdatert til Tor.framework 407.10.2 som inneholder Tor 0.4.7.10.
+- Oppdatert Snowflake til versjon 2.3.1.
+- Oppdatert Obfs4proxy til versjon 0.0.14.
+- Rettet krasj ved redigering av en bokmerke-URL.
+- Mindre oversettelsesoppdateringer.
+– Forbedret «vi har problemer med å koble til»-logikk.

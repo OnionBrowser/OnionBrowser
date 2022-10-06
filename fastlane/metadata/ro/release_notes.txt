@@ -1,1 +1,6 @@
-- Actualizat la Tor.framework 407.8.2 care conține Tor 0.4.7.8.
+- Actualizat la Tor.framework 407.10.2 care conține Tor 0.4.7.10.
+- S-a actualizat Snowflake la versiunea 2.3.1.
+- Actualizat Obfs4proxy la versiunea 0.0.14.
+- S-a remediat blocarea la editarea unui URL de marcaj.
+- Actualizări minore de traducere.
+- Logica îmbunătățită „avem probleme de conectare”.
