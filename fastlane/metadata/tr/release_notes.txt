@@ -1,1 +1,4 @@
-- Tor 0.4.7.8 içeren Tor.framework 407.8.2'ye güncellendi.
+- Tor.framework, Tor 0.4.7.10 407.10.2 sürümüne güncellendi.
+- Snowflake, 2.3.0 sürümüne güncellendi.
+- Bir yer imi adresi düzenlenirken oluşan çökme düzeltildi.
+- Küçük çeviri güncellemeler.
