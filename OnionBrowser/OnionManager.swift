@@ -80,7 +80,8 @@ class OnionManager : NSObject {
 
 	private var torThread: TorThread?
 
-	private var initRetry: DispatchWorkItem?
+	private var connectionGuard: DispatchSourceTimer?
+	private var connectionTimeout = DispatchTime.now()
 
 	private var transport = Transport.none
 	private var customBridges: [String]?
@@ -156,7 +157,7 @@ class OnionManager : NSObject {
 		// Avoid a retain cycle. Only use the weakDelegate in closures!
 		weak var weakDelegate = delegate
 
-		cancelInitRetry()
+		stopConnectionGuard()
 		state = .started
 
 		if torThread?.isCancelled ?? true {
@@ -217,7 +218,7 @@ class OnionManager : NSObject {
 		// Wait long enough for Tor itself to have started. It's OK to wait for this
 		// because Tor is already trying to connect; this is just the part that polls for
 		// progress.
-		DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+		DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 			if Self.TOR_LOGGING {
 				// Show Tor log in iOS' app log.
 				TORInstallTorLoggingCallback { severity, msg in
@@ -296,7 +297,7 @@ class OnionManager : NSObject {
 						if established {
 							self.state = .connected
 							self.torController?.removeObserver(completeObs)
-							self.cancelInitRetry()
+							self.stopConnectionGuard()
 							#if DEBUG
 							print("[\(String(describing: type(of: self)))] Connection established!")
 							#endif
@@ -310,6 +311,8 @@ class OnionManager : NSObject {
 						(type: String, severity: String, action: String, arguments: [String : String]?) -> Bool in
 
 						if type == "STATUS_CLIENT" && action == "BOOTSTRAP" {
+							self.connectionAlive()
+
 							let progress = Int(arguments!["PROGRESS"]!)!
 							#if DEBUG
 							print("[\(String(describing: Self.self))] progress=\(progress)")
@@ -331,28 +334,40 @@ class OnionManager : NSObject {
 					print("[\(String(describing: type(of: self)))] Didn't connect to control port.")
 				}
 			}) // controller authenticate
-		}) //delay
+		} //delay
 
-		initRetry = DispatchWorkItem {
-			// Only do this, if we're not running over a bridge, it will close
-			// the connection to the bridge client which will close or break the bridge client!
-			if self.transport == .none {
-				#if DEBUG
-				print("[\(String(describing: type(of: self)))] Triggering Tor connection retry.")
-				#endif
+		// Assume everything's fine for the next 15 seconds.
+		connectionAlive()
 
-				self.torController?.setConfForKey("DisableNetwork", withValue: "1")
-				self.torController?.setConfForKey("DisableNetwork", withValue: "0")
+		// Create new connection guard.
+		connectionGuard = DispatchSource.makeTimerSource(queue: .global(qos: .background))
+		connectionGuard?.schedule(deadline: .now() + 1, repeating: .seconds(1))
+
+		// If Tor's progress doesn't move within 15 seconds,
+		// HUP tor once in case we have partially bootstrapped but got stuck.
+		// Also inform delegate about connection difficulties.
+		connectionGuard?.setEventHandler { [weak self] in
+			if DispatchTime.now() > self?.connectionTimeout ?? DispatchTime.now() {
+				// Only do this, if we're not running over a bridge, it will close
+				// the connection to the bridge client which will close or break the bridge client!
+				if self?.transport == Transport.none {
+					#if DEBUG
+					print("[\(String(describing: type(of: self)))] Triggering Tor connection retry.")
+					#endif
+
+					self?.torController?.setConfForKey("DisableNetwork", withValue: "1")
+					self?.torController?.setConfForKey("DisableNetwork", withValue: "0")
+				}
+
+				DispatchQueue.main.async {
+					delegate?.torConnDifficulties()
+				}
+
+				self?.stopConnectionGuard()
 			}
-
-			// Hint user that they might need to use a bridge.
-			delegate?.torConnDifficulties()
 		}
 
-		// On first load: If Tor hasn't finished bootstrap in 30 seconds,
-		// HUP tor once in case we have partially bootstrapped but got stuck.
-		DispatchQueue.main.asyncAfter(deadline: .now() + 15, execute: initRetry!)
-
+		connectionGuard?.resume()
 	}// startTor
 
 	/**
@@ -425,10 +440,14 @@ class OnionManager : NSObject {
 	}
 
 	/**
-	Cancel the connection retry and fail guard.
-	*/
-	private func cancelInitRetry() {
-		initRetry?.cancel()
-		initRetry = nil
+	 Give connection guard another 15 seconds to assume everything's ok.
+	 */
+	private func connectionAlive() {
+		connectionTimeout = .now() + 15
+	}
+
+	private func stopConnectionGuard() {
+		connectionGuard?.cancel()
+		connectionGuard = nil
 	}
 }
