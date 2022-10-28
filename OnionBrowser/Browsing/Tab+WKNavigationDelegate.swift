@@ -185,7 +185,9 @@ extension Tab: WKNavigationDelegate {
 			}
 
 			if let trust = challenge.protectionSpace.serverTrust {
-				tlsCertificate = SSLCertificate(secTrustRef: trust)
+				DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+					self?.tlsCertificate = SSLCertificate(secTrustRef: trust)
+				}
 			}
 
 		case NSURLAuthenticationMethodHTTPBasic, NSURLAuthenticationMethodHTTPDigest:
