@@ -13,13 +13,25 @@ target 'OnionBrowser' do
   pod 'SDCAlertView', '~> 10'
   pod 'FavIcon', :git => 'https://github.com/tladesignz/FavIcon.git'
   pod 'MBProgressHUD', '~> 1.2'
-	pod 'Eureka', '~> 5.3'
-	pod 'ImageRow', '~> 4.1'
+  pod 'Eureka', '~> 5.3'
+  pod 'ImageRow', '~> 4.1'
 
-	pod 'OrbotKit', '~> 0.2'
+  pod 'OrbotKit', '~> 0.2'
 end
 
 target 'OnionBrowser Tests' do
   pod 'OCMock'
   pod 'DTFoundation/DTASN1'
+end
+
+# Fix Xcode 14 code signing issues with bundles.
+# See https://github.com/CocoaPods/CocoaPods/issues/8891#issuecomment-1249151085
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    if target.respond_to?(:product_type) and target.product_type == "com.apple.product-type.bundle"
+      target.build_configurations.each do |config|
+        config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
+      end
+    end
+  end
 end
