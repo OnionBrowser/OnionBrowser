@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
@@ -43,10 +43,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RJ2-NH-hB6">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                    <rect key="frame" x="0.0" y="48" width="414" height="42"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SP4-s8-0b8">
-                            <rect key="frame" x="8" y="40" width="24" height="30"/>
+                            <rect key="frame" x="8" y="2" width="24" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="24" id="HAO-jD-k0c"/>
                                 <constraint firstAttribute="height" constant="30" id="uDj-0Y-Wjq"/>
@@ -61,7 +61,7 @@
                             </connections>
                         </button>
                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M16-AT-yxd">
-                            <rect key="frame" x="40" y="38" width="328" height="34"/>
+                            <rect key="frame" x="40" y="0.0" width="328" height="34"/>
                             <subviews>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="mql-7P-9gx">
                                     <rect key="frame" x="8" y="0.0" width="320" height="34"/>
@@ -88,7 +88,7 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4n6-Gc-zi4">
-                            <rect key="frame" x="376" y="40" width="30" height="30"/>
+                            <rect key="frame" x="376" y="2" width="30" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="30" id="FiD-RS-QJq"/>
                                 <constraint firstAttribute="height" constant="30" id="xaV-BG-kNi"/>
@@ -100,7 +100,7 @@
                             </connections>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N7h-ch-TdU">
-                            <rect key="frame" x="0.0" y="79" width="414" height="1"/>
+                            <rect key="frame" x="0.0" y="41" width="414" height="1"/>
                             <color key="backgroundColor" systemColor="systemGrayColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="CQZ-JN-Xw2"/>
@@ -110,7 +110,7 @@
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstItem="SP4-s8-0b8" firstAttribute="leading" secondItem="RJ2-NH-hB6" secondAttribute="leadingMargin" id="2Ir-X5-HdU"/>
-                        <constraint firstAttribute="height" constant="80" id="4Et-fm-zpa"/>
+                        <constraint firstAttribute="height" constant="42" id="4Et-fm-zpa"/>
                         <constraint firstItem="4n6-Gc-zi4" firstAttribute="trailing" secondItem="RJ2-NH-hB6" secondAttribute="trailingMargin" id="8RA-V8-RpP"/>
                         <constraint firstAttribute="bottom" secondItem="M16-AT-yxd" secondAttribute="bottom" constant="8" id="8fI-cO-JGu"/>
                         <constraint firstItem="N7h-ch-TdU" firstAttribute="leading" secondItem="RJ2-NH-hB6" secondAttribute="leading" id="8yN-xl-M3O"/>
@@ -123,14 +123,14 @@
                     </constraints>
                 </view>
                 <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Af6-aJ-isr">
-                    <rect key="frame" x="0.0" y="76" width="414" height="4"/>
+                    <rect key="frame" x="0.0" y="86" width="414" height="4"/>
                 </progressView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VpS-hG-MKQ">
-                    <rect key="frame" x="0.0" y="80" width="414" height="733"/>
+                    <rect key="frame" x="0.0" y="90" width="414" height="723"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </view>
                 <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Q4p-od-FKg">
-                    <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                    <rect key="frame" x="0.0" y="48" width="414" height="765"/>
                     <color key="backgroundColor" systemColor="scrollViewTexturedBackgroundColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="8" minimumInteritemSpacing="8" id="UbB-FU-EXR">
                         <size key="itemSize" width="50" height="50"/>
@@ -255,7 +255,7 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Q4p-od-FKg" secondAttribute="trailing" id="CoL-su-p2Q"/>
                 <constraint firstItem="VpS-hG-MKQ" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="Cr0-3o-Gu9"/>
                 <constraint firstItem="LVl-ag-DII" firstAttribute="top" secondItem="VpS-hG-MKQ" secondAttribute="bottom" id="FXZ-Kt-2zq"/>
-                <constraint firstItem="RJ2-NH-hB6" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="L6o-B5-oU3"/>
+                <constraint firstItem="RJ2-NH-hB6" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="L6o-B5-oU3"/>
                 <constraint firstItem="LVl-ag-DII" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="LFv-hw-KD4"/>
                 <constraint firstAttribute="trailing" secondItem="RJ2-NH-hB6" secondAttribute="trailing" id="O2E-P9-dN9"/>
                 <constraint firstItem="VpS-hG-MKQ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="TIv-Sa-8N4"/>
@@ -268,7 +268,7 @@
                 <constraint firstAttribute="trailing" secondItem="Af6-aJ-isr" secondAttribute="trailing" id="suE-MZ-BKY"/>
                 <constraint firstItem="RJ2-NH-hB6" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="uYS-If-aan"/>
             </constraints>
-            <point key="canvasLocation" x="-57.971014492753625" y="152.67857142857142"/>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
         </view>
         <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="ed4-6N-Nf3">
             <connections>
