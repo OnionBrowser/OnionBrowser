@@ -14,7 +14,7 @@ import Foundation
 
 // MARK: Config
 
-let url = URL(string: "https://chromium.googlesource.com/chromium/src/net/+/master/http/transport_security_state_static.json?format=TEXT")!
+let url = URL(string: "https://chromium.googlesource.com/chromium/src/net/+/refs/heads/main/http/transport_security_state_static.json?format=TEXT")!
 
 let outfile = resolve("../Resources/hsts_preload.plist")
 
