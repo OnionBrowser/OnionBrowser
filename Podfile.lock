@@ -7,11 +7,11 @@ PODS:
   - FavIcon (3.1.0)
   - ImageRow (4.1.0):
     - Eureka (~> 5.3.5)
-  - IPtProxy (1.8.0)
-  - IPtProxyUI (1.10.2):
+  - IPtProxy (1.8.1)
+  - IPtProxyUI (1.10.3):
     - Eureka (~> 5.3)
     - ImageRow (~> 4.0)
-    - IPtProxy (~> 1.8)
+    - IPtProxy (~> 1.8.1)
     - MBProgressHUD (~> 1.2)
     - ReachabilitySwift (~> 5.0)
   - MBProgressHUD (1.2.0)
@@ -19,10 +19,10 @@ PODS:
   - ReachabilitySwift (5.0.0)
   - ReactiveObjC (3.1.1)
   - SDCAlertView (10.0)
-  - Tor/Core (407.10.3)
-  - Tor/GeoIP (407.10.3):
+  - Tor/Core (407.11.1)
+  - Tor/GeoIP (407.11.1):
     - Tor/Core
-  - Tor/OCSPCache (407.10.3):
+  - Tor/OCSPCache (407.11.1):
     - ReactiveObjC (~> 3.1.1)
     - Tor/GeoIP
   - TUSafariActivity (1.0.4)
@@ -67,7 +67,7 @@ CHECKOUT OPTIONS:
     :commit: 9969d1aaffced321facc66d20c82e7eab2a8aa98
     :git: https://github.com/tladesignz/FavIcon.git
   Tor:
-    :commit: 1235e5b78325392463bfbf844d995686b5075a83
+    :commit: f445018167b95dbfce18750797a42a890e892f3d
     :git: https://github.com/tladesignz/Tor.framework.git
     :submodules: true
 
@@ -77,14 +77,14 @@ SPEC CHECKSUMS:
   Eureka: 28ad9dec6286cd7cd601fdf8e8df39bb7356a8f4
   FavIcon: 21651b47d8f6b33517973859f85e2cb6f9fcfaee
   ImageRow: 880c0f052c5a89c80521b485c86ccf723a124e99
-  IPtProxy: e180e0f4381a893b52ae12626fbd0d40cbabe746
-  IPtProxyUI: 6a4b9ba6d646d093e79e7168206d8b9e34e13665
+  IPtProxy: d0b15e7ed4fc83d8eb9247bf413c2dafcbae46e5
+  IPtProxyUI: 309cfd15554826cc467aa7f1b9db03430f14122c
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   OCMock: 9491e4bec59e0b267d52a9184ff5605995e74be8
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
   SDCAlertView: 5fbc48cae6d7bf9781097e3f27883924ef3b922c
-  Tor: 94c3a27c2e6e6f6456960ae2d8c049c528a7e21b
+  Tor: 51ea23a4ee0c7aa174b9f9b3e30080ca87d2bcda
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
   VForceTouch: b5c3a28625269e1818cf915728173bda9f669d6b
 
