@@ -1,5 +1,10 @@
 #  Onion Browser 2 Changelog
 
+## 2.8.3
+- Updated to Tor.framework 407.11.1 containing Tor 0.4.7.11.
+- Support custom search engines.
+- Translation updates.
+
 ## 2.8.2
 - Updated to Tor.framework 407.10.2 containing Tor 0.4.7.10.
 - Updated Snowflake to version 2.3.1.

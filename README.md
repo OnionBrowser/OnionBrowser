@@ -15,12 +15,12 @@ Please see the [LICENSE][license] file for usage and redistribution terms.
 
 ---
 
-* **Onion Browser**: 2.8.2 - See [official release history][releases] and [changelog][changelog].
-* **[Tor.framework][Tor.framework]**: 407.10.2
-* **[Tor][tor]**: 0.4.7.10
+* **Onion Browser**: 2.8.3 - See [official release history][releases] and [changelog][changelog].
+* **[Tor.framework][Tor.framework]**: 407.11.1
+* **[Tor][tor]**: 0.4.7.11
 * **[libevent][libevent]**: 2.1.12
-* **[OpenSSL][openssl]**: 1.1.1q
-* **[liblzma][liblzma]**: 5.2.6
+* **[OpenSSL][openssl]**: 1.1.1s
+* **[liblzma][liblzma]**: 5.2.7
 
 [official]: https://onionbrowser.com/
 [help]: https://github.com/OnionBrowser/OnionBrowser/wiki/Help
