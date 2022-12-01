@@ -11,29 +11,96 @@
 import UIKit
 import IPtProxyUI
 
-@objcMembers
-class SearchEngine: NSObject {
+struct SearchEngine: Equatable {
+
+	enum EngineType: Int {
+		case builtIn
+		case custom
+	}
+
 
 	let name: String
 
-	let searchUrl: String?
+	let type: EngineType
 
-	let homepageUrl: String?
+	var details: Details? {
+		switch type {
+		case .builtIn:
+			return Settings.builtInSearchEngines[name]
 
-	let autocompleteUrl: String?
+		case .custom:
+			return Settings.customSearchEngines[name]
+		}
+	}
 
-	let postParams: [String: String]?
 
-	init(_ name: String, _ data: [String: Any]) {
-		self.name = name
+	func set(details: Details?) {
+		switch type {
+		case .custom:
+			Settings.customSearchEngines[name] = details
 
-		searchUrl = data["search_url"] as? String
+		default:
+			// Default engines cannot be changed.
+			break
+		}
+	}
 
-		homepageUrl = data["homepage_url"] as? String
 
-		autocompleteUrl = data["autocomplete_url"] as? String
+	struct Details: Codable {
 
-		postParams = data["post_params"] as? [String: String]
+		enum CodingKeys: String, CodingKey {
+			case searchUrl = "search_url"
+			case homepageUrl = "homepage_url"
+			case autocompleteUrl = "autocomplete_url"
+			case postParams = "post_params"
+		}
+
+
+		let searchUrl: String?
+
+		let homepageUrl: String?
+
+		let autocompleteUrl: String?
+
+		let postParams: [String: String]?
+
+
+		init(searchUrl: String? = nil, homepageUrl: String? = nil, autocompleteUrl: String? = nil, postParams: [String : String]? = nil) {
+			self.searchUrl = searchUrl
+			self.homepageUrl = homepageUrl
+			self.autocompleteUrl = autocompleteUrl
+			self.postParams = postParams
+		}
+
+		init(from dict: [String: Any]) {
+			searchUrl = dict[CodingKeys.searchUrl.rawValue] as? String
+			homepageUrl = dict[CodingKeys.homepageUrl.rawValue] as? String
+			autocompleteUrl = dict[CodingKeys.autocompleteUrl.rawValue] as? String
+			postParams = dict[CodingKeys.postParams.rawValue] as? [String: String]
+		}
+
+
+		func toDict() -> [String: Any] {
+			var dict = [String: Any]()
+
+			if let searchUrl = searchUrl {
+				dict[CodingKeys.searchUrl.rawValue] = searchUrl
+			}
+
+			if let homepageUrl = homepageUrl {
+				dict[CodingKeys.homepageUrl.rawValue] = homepageUrl
+			}
+
+			if let autocompleteUrl = autocompleteUrl {
+				dict[CodingKeys.autocompleteUrl.rawValue] = autocompleteUrl
+			}
+
+			if let postParams = postParams {
+				dict[CodingKeys.postParams.rawValue] = postParams
+			}
+
+			return dict
+		}
 	}
 }
 
@@ -102,7 +169,7 @@ class Settings: NSObject {
 
 	class var stateRestoreLock: Bool {
 		get {
-			return UserDefaults.standard.bool(forKey: "state_restore_lock")
+			UserDefaults.standard.bool(forKey: "state_restore_lock")
 		}
 		set {
 			UserDefaults.standard.set(newValue, forKey: "state_restore_lock")
@@ -111,7 +178,7 @@ class Settings: NSObject {
 
 	class var didIntro: Bool {
 		get {
-			return UserDefaults.standard.bool(forKey: "did_intro")
+			UserDefaults.standard.bool(forKey: "did_intro")
 		}
 		set {
 			UserDefaults.standard.set(newValue, forKey: "did_intro")
@@ -120,7 +187,7 @@ class Settings: NSObject {
 
 	class var bookmarkFirstRunDone: Bool {
 		get {
-			return UserDefaults.standard.bool(forKey: "did_first_run_bookmarks")
+			UserDefaults.standard.bool(forKey: "did_first_run_bookmarks")
 		}
 		set {
 			UserDefaults.standard.set(newValue, forKey: "did_first_run_bookmarks")
@@ -129,7 +196,7 @@ class Settings: NSObject {
 
 	class var bookmarksMigratedToOnionV3: Bool {
 		get {
-			return UserDefaults.standard.bool(forKey: "bookmarks_migrated_to_onion_v3")
+			UserDefaults.standard.bool(forKey: "bookmarks_migrated_to_onion_v3")
 		}
 		set {
 			UserDefaults.standard.set(newValue, forKey: "bookmarks_migrated_to_onion_v3")
@@ -157,7 +224,7 @@ class Settings: NSObject {
 
 	class var customBridges: [String]? {
 		get {
-			return UserDefaults.standard.stringArray(forKey: "custom_bridges")
+			UserDefaults.standard.stringArray(forKey: "custom_bridges")
 		}
 		set {
 			UserDefaults.standard.set(newValue, forKey: "custom_bridges")
@@ -165,44 +232,54 @@ class Settings: NSObject {
 	}
 
 
-	class var searchEngineName: String {
+	class var searchEngine: SearchEngine {
 		get {
-			return UserDefaults.standard.object(forKey: "search_engine") as? String
-				?? allSearchEngineNames.first
-				?? ""
-		}
-		set {
-			UserDefaults.standard.set(newValue, forKey: "search_engine")
-		}
-	}
+			let type = SearchEngine.EngineType(rawValue: UserDefaults.standard.integer(forKey: "search_engine_type")) ?? .builtIn
 
-	class var searchEngine: SearchEngine? {
-		return allSearchEngines[searchEngineName]
-	}
+			let name = UserDefaults.standard.object(forKey: "search_engine") as? String
 
-	class var allSearchEngineNames: [String] {
-		return allSearchEngines.keys.sorted()
-	}
-
-	private static let allSearchEngines: [String: SearchEngine] = {
-		if let path = Bundle.main.path(forResource: "SearchEngines", ofType: "plist"),
-			let data = NSDictionary(contentsOfFile: path) as? [String: [String: Any]] {
-
-			var searchEngines = [String: SearchEngine]()
-
-			for engine in data {
-				searchEngines[engine.key] = SearchEngine(engine.key, engine.value)
+			if name == nil, let defaultEngine = searchEngines.first {
+				return defaultEngine
 			}
 
+			return SearchEngine(name: name ?? "", type: type)
+		}
+		set {
+			UserDefaults.standard.set(newValue.name, forKey: "search_engine")
+			UserDefaults.standard.set(newValue.type.rawValue, forKey: "search_engine_type")
+		}
+	}
+
+	class var searchEngines: [SearchEngine] {
+		return builtInSearchEngines.keys.sorted().map { SearchEngine(name: $0, type: .builtIn) }
+			+ customSearchEngines.keys.sorted().map({ SearchEngine(name: $0, type: .custom) })
+	}
+
+	fileprivate static let builtInSearchEngines: [String: SearchEngine.Details] = {
+		if let url = Bundle.main.url(forResource: "SearchEngines.plist", withExtension: nil),
+		   let data = try? Data(contentsOf: url),
+		   let searchEngines = try? PropertyListDecoder().decode([String: SearchEngine.Details].self, from: data)
+		{
 			return searchEngines
 		}
 
 		return [:]
 	}()
 
+	fileprivate class var customSearchEngines: [String: SearchEngine.Details] {
+		get {
+			(UserDefaults.standard.object(forKey: "custom_search_engines") as? [String: [String: Any]])?.mapValues({
+				SearchEngine.Details(from: $0)
+			}) ?? [:]
+		}
+		set {
+			UserDefaults.standard.set(newValue.mapValues({ $0.toDict() }), forKey: "custom_search_engines")
+		}
+	}
+
 	class var searchLive: Bool {
 		get {
-			return UserDefaults.standard.bool(forKey: "search_engine_live")
+			UserDefaults.standard.bool(forKey: "search_engine_live")
 		}
 		set {
 			UserDefaults.standard.set(newValue, forKey: "search_engine_live")
@@ -225,7 +302,7 @@ class Settings: NSObject {
 
 	class var sendDnt: Bool {
 		get {
-			return UserDefaults.standard.bool(forKey: "send_dnt")
+			UserDefaults.standard.bool(forKey: "send_dnt")
 		}
 		set {
 			UserDefaults.standard.set(newValue, forKey: "send_dnt")
@@ -306,7 +383,7 @@ class Settings: NSObject {
 
 	class var disableBookmarksOnStartPage: Bool {
 		get {
-			return UserDefaults.standard.bool(forKey: "disable_bookmarks_on_start_page")
+			UserDefaults.standard.bool(forKey: "disable_bookmarks_on_start_page")
 		}
 		set {
 			UserDefaults.standard.set(newValue, forKey: "disable_bookmarks_on_start_page")
@@ -315,7 +392,7 @@ class Settings: NSObject {
 
 	class var thirdPartyKeyboards: Bool {
 		get {
-			return UserDefaults.standard.bool(forKey: "third_party_keyboards")
+			UserDefaults.standard.bool(forKey: "third_party_keyboards")
 		}
 		set {
 			UserDefaults.standard.set(newValue, forKey: "third_party_keyboards")
@@ -340,7 +417,7 @@ class Settings: NSObject {
 
 	class var advancedTorConf: [String]? {
 		get {
-			return UserDefaults.standard.stringArray(forKey: "advanced_tor_conf")
+			UserDefaults.standard.stringArray(forKey: "advanced_tor_conf")
 		}
 		set {
 			UserDefaults.standard.set(newValue, forKey: "advanced_tor_conf")
@@ -362,7 +439,7 @@ class Settings: NSObject {
 
 	class var nextcloudServer: String? {
 		get {
-			return UserDefaults.standard.string(forKey: "nextcloud_server")
+			UserDefaults.standard.string(forKey: "nextcloud_server")
 		}
 		set {
 			UserDefaults.standard.set(newValue, forKey: "nextcloud_server")
@@ -371,7 +448,7 @@ class Settings: NSObject {
 
 	class var nextcloudUsername: String? {
 		get {
-			return UserDefaults.standard.string(forKey: "nextcloud_username")
+			UserDefaults.standard.string(forKey: "nextcloud_username")
 		}
 		set {
 			UserDefaults.standard.set(newValue, forKey: "nextcloud_username")
@@ -380,7 +457,7 @@ class Settings: NSObject {
 
 	class var nextcloudPassword: String? {
 		get {
-			return UserDefaults.standard.string(forKey: "nextcloud_password")
+			UserDefaults.standard.string(forKey: "nextcloud_password")
 		}
 		set {
 			UserDefaults.standard.set(newValue, forKey: "nextcloud_password")

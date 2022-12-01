@@ -21,6 +21,14 @@ class SettingsViewController: FixedFormViewController {
 		$0.cell.selectionStyle = .default
 	}
 
+	private let searchEngineRow = LabelRow() {
+		$0.title = NSLocalizedString("Search Engine", comment: "Option title")
+		$0.value = Settings.searchEngine.name
+		$0.cell.textLabel?.numberOfLines = 0
+		$0.cell.accessoryType = .disclosureIndicator
+		$0.cell.selectionStyle = .default
+	}
+
 
 	@objc
 	class func instantiate() -> UINavigationController {
@@ -45,17 +53,9 @@ class SettingsViewController: FixedFormViewController {
 					footer: NSLocalizedString("When disabled, all text entered in search bar will be sent to the search engine unless it starts with \"http\".",
 											  comment: "Explanation in section footer"))
 
-		<<< PushRow<String>() {
-			$0.title = NSLocalizedString("Search Engine", comment: "Option title")
-			$0.selectorTitle = $0.title
-			$0.options = Settings.allSearchEngineNames
-			$0.value = Settings.searchEngineName
-			$0.cell.textLabel?.numberOfLines = 0
-		}
-		.onChange { row in
-			if let value = row.value {
-				Settings.searchEngineName = value
-			}
+		<<< searchEngineRow
+		.onCellSelection { [weak self] _, _ in
+			self?.navigationController?.pushViewController(SearchEnginesViewController(), animated: true)
 		}
 
 		<<< SwitchRow() {
@@ -352,6 +352,9 @@ class SettingsViewController: FixedFormViewController {
 
 		defaultSecurityRow.value = SecurityPreset(HostSettings.forDefault()).description
 		defaultSecurityRow.updateCell()
+
+		searchEngineRow.value = Settings.searchEngine.name
+		searchEngineRow.updateCell()
 	}
 
 	@objc private func dismsiss_() {

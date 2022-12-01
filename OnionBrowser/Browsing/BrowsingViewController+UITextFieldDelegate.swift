@@ -67,7 +67,7 @@ extension BrowsingViewController: UITextFieldDelegate {
 	// MARK: Actions
 
 	@IBAction func searchDidChange() {
-		guard Settings.searchLive else {
+		guard Settings.searchLive && !(Settings.searchEngine.details?.autocompleteUrl?.isEmpty ?? true) else {
 			return
 		}
 

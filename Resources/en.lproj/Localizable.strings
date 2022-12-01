@@ -46,11 +46,20 @@
 /* SettingsViewController */
 "About" = "About";
 
+/* SearchEnginesViewController, AddSearchEngineViewController */
+"Add" = "Add";
+
+/* AddSearchEngineViewController */
+"Add \"%@\" as the search term placeholder!" = "Add \"%@\" as the search term placeholder!";
+
 /* AdvancedTorConfViewController */
 "Add additional command line options for Tor startup." = "Add additional command line options for Tor startup.";
 
 /* BookmarkViewController */
 "Add Bookmark" = "Add Bookmark";
+
+/* AddSearchEngineViewController */
+"Add Search Engine" = "Add Search Engine";
 
 /* CustomSitesViewController, AddSiteViewController */
 "Add Site" = "Add Site";
@@ -102,6 +111,9 @@
 
 /* Storage1ViewController */
 "Auto-Sweep Interval" = "Auto-Sweep Interval";
+
+/* AddSearchEngineViewController */
+"Autocomplete URL" = "Autocomplete URL";
 
 /* CertificateViewController */
 "Begins On" = "Begins On";
@@ -214,6 +226,9 @@
 /* InitSecurityLevelViewController */
 "Define Default Security Level" = "Define Default Security Level";
 
+/* SearchEnginesViewController */
+"Delete" = "Delete";
+
 /* RuleEditorController */
 "Disable" = "Disable";
 
@@ -237,6 +252,9 @@
 
 /* BookmarkViewController */
 "Edit Bookmark" = "Edit Bookmark";
+
+/* AddSearchEngineViewController */
+"Edit Search Engine" = "Edit Search Engine";
 
 /* RuleEditorController */
 "Enable" = "Enable";
@@ -346,6 +364,12 @@
 /* SettingsViewController */
 "Mute Audio with Mute Switch" = "Mute Audio with Mute Switch";
 
+/* AddSearchEngineViewController */
+"My Search Engine" = "My Search Engine";
+
+/* AddSearchEngineViewController */
+"Name" = "Name";
+
 /* CircuSitsViewController */
 "New Circuit for this Site" = "New Circuit for this Site";
 
@@ -444,6 +468,9 @@
 
 /* SettingsViewController */
 "Search Engine" = "Search Engine";
+
+/* AddSearchEngineViewController */
+"Search URL" = "Search URL";
 
 /* SecurityPopUpViewController */
 "Security Level for This Site" = "Security Level for This Site";
@@ -567,6 +594,9 @@
 
 /* SecurityViewController */
 "Universal Link Protection" = "Universal Link Protection";
+
+/* AddSearchEngineViewController */
+"Update" = "Update";
 
 /* SettingsViewController */
 "URL Blocker" = "URL Blocker";

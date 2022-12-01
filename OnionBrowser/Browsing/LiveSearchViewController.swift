@@ -113,7 +113,7 @@ class LiveSearchViewController: UITableViewController {
 			return
 		}
 
-		guard let request = LiveSearchViewController.constructRequest(query, autocomplete: true) else {
+		guard let request = Self.constructRequest(query, autocomplete: true) else {
 			return
 		}
 
@@ -178,7 +178,7 @@ class LiveSearchViewController: UITableViewController {
 	- returns: a `URLRequest`, if a request can be constructed for that query.
 	*/
 	class func constructRequest(_ query: String?, autocomplete: Bool = false) -> URLRequest? {
-		guard let se = Settings.searchEngine,
+		guard let se = Settings.searchEngine.details,
 			var searchUrl = autocomplete ? se.autocompleteUrl : se.searchUrl,
 			let query = query?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
 			return nil
