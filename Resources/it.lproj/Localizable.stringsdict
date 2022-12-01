@@ -14,6 +14,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>%d cookies</string>
+			<key>many</key>
+			<string>%d cookies</string>
 			<key>other</key>
 			<string>%d cookies</string>
 		</dict>
