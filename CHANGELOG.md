@@ -4,6 +4,7 @@
 - Updated to Tor.framework 407.11.1 containing Tor 0.4.7.11.
 - Support custom search engines.
 - Translation updates.
+- Added setting to control background-hiding.
 
 ## 2.8.2
 - Updated to Tor.framework 407.10.2 containing Tor 0.4.7.10.
