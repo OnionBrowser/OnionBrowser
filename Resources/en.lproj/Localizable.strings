@@ -301,6 +301,9 @@
 /* SecurityViewController */
 "Handle tapping on links in a non-standard way to avoid possibly opening external applications." = "Handle tapping on links in a non-standard way to avoid possibly opening external applications.";
 
+/* SettingsViewController */
+"Hide App Content when in Background" = "Hide App Content when in Background";
+
 /* HistoryViewController */
 "History" = "History";
 
@@ -347,7 +350,13 @@
 "Local Storage" = "Local Storage";
 
 /* SettingsViewController */
-"Lock App with Touch ID/Face ID or Device Passcode" = "Lock App with Touch ID/Face ID or Device Passcode";
+"Lock App with Device Passcode" = "Lock App with Device Passcode";
+
+/* SettingsViewController */
+"Lock App with Face ID or Device Passcode" = "Lock App with Face ID or Device Passcode";
+
+/* SettingsViewController */
+"Lock App with Touch ID or Device Passcode" = "Lock App with Touch ID or Device Passcode";
 
 /* AppDelegate */
 "Log In" = "Log In";

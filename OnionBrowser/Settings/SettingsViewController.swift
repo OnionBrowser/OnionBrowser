@@ -147,7 +147,17 @@ class SettingsViewController: FixedFormViewController {
 		}
 
 		<<< SwitchRow() {
-			$0.title = NSLocalizedString("Lock App with Touch ID/Face ID or Device Passcode", comment: "")
+			switch SecureEnclave.biometryType() {
+			case .touchID:
+				$0.title = NSLocalizedString("Lock App with Touch ID or Device Passcode", comment: "")
+
+			case .faceID:
+				$0.title = NSLocalizedString("Lock App with Face ID or Device Passcode", comment: "")
+
+			default:
+				$0.title = NSLocalizedString("Lock App with Device Passcode", comment: "")
+			}
+
 			$0.value = SecureEnclave.loadKey() != nil
 			$0.cell.switchControl.onTintColor = .accent
 			$0.cell.textLabel?.numberOfLines = 0
@@ -176,6 +186,16 @@ class SettingsViewController: FixedFormViewController {
 				self?.form.delegate = self // Enable callback again.
 			}
 		}
+
+		<<< SwitchRow() {
+			$0.title = NSLocalizedString("Hide App Content when in Background", comment: "")
+			$0.value = Settings.hideContent
+			$0.cell.switchControl.onTintColor = .accent
+			$0.cell.textLabel?.numberOfLines = 0
+		}
+		.onChange({ row in
+			Settings.hideContent = row.value ?? false
+		})
 
 		<<< PushRow<TabSecurity.Level>() {
 			$0.title = NSLocalizedString("Tab Security", comment: "Option title")

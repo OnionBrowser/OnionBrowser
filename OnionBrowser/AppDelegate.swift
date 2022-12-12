@@ -198,7 +198,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, JAHPAuthenticatingHTTPPro
 		application.ignoreSnapshotOnNextApplicationLaunch()
 		browsingUi?.unfocusSearchField()
 
-		BlurredSnapshot.create()
+		if Settings.hideContent {
+			BlurredSnapshot.create()
+		}
 	}
 
 	func applicationDidEnterBackground(_ application: UIApplication) {
