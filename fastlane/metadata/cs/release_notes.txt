@@ -1,6 +1,4 @@
-- Aktualizováno na Tor.framework 407.10.2 obsahující Tor 0.4.7.10.
-- Aktualizace Snowflake na verzi 2.3.1.
-- Aktualizováno Obfs4proxy na verzi 0.0.14.
-- Opraven pád při úpravě URL záložky.
-- Drobné aktualizace překladů.
-- Vylepšená logika "máme problémy s připojením".
+- Aktualizováno na Tor.framework 407.11.1 obsahující Tor 0.4.7.11.
+- Podpora vlastních vyhledávačů.
+- Aktualizace překladů.
+- Přidáno nastavení pro ovládání skrývání pozadí.

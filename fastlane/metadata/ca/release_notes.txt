@@ -1,6 +1,4 @@
-- Actualitzat a Tor.framework 407.10.2 que conté Tor 0.4.7.10.
-- S'ha actualitzat Snowflake a la versió 2.3.1.
-- S'ha actualitzat Obfs4proxy a la versió 0.0.14.
-- S'ha solucionat l'error en editar l'URL d'un marcador.
-- Actualitzacions menors de traducció.
-- S'ha millorat la lògica "tenim problemes per connectar".
+- Actualitzat a Tor.framework 407.11.1 que conté Tor 0.4.7.11.
+- Suport a motors de cerca personalitzats.
+- Actualitzacions de traducció.
+- S'ha afegit una configuració per controlar l'ocultació de fons.

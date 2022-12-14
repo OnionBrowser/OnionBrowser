@@ -1,6 +1,4 @@
-- Tor.framework, Tor 0.4.7.10 407.10.2 sürümüne güncellendi.
-- Snowflake, 2.3.1 sürümüne güncellendi.
-- Obfs4proxy, 0.0.14 sürümüne güncellendi.
-- Bir yer imi adresi düzenlenirken oluşan çökme düzeltildi.
-- Küçük çeviri güncellemeler.
-- "Bağlantı kurmakta sorun yaşıyoruz" mantığı iyileştirildi.
+- Tor 0.4.7.11 içeren Tor.framework 407.11.1'e güncellendi.
+- Özel arama motorlarını destekleyin.
+- Çeviri güncellemeleri.
+- Arka plan gizlemeyi kontrol etmek için ayar eklendi.

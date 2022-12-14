@@ -1,6 +1,4 @@
-- Ažurirano na Tor.framework 407.10.2 koji sadrži Tor 0.4.7.10.
-- Snowflake je ažuriran na verziju 2.3.1.
-- Obfs4proxy ažuriran na verziju 0.0.14.
-- Popravljeno rušenje prilikom uređivanja URL-a oznake.
-- Manja ažuriranja prijevoda.
-- Poboljšana logika "imamo problema s povezivanjem".
+- Aktualizirano na Tor.framework 407.11.1, sadrži Tor 0.4.7.11.
+- Podrška za prilagođene tražilice.
+- Aktualiziranja prijevoda.
+- Dodane su postavke za upravljanje skrivanja u pozadini.
