@@ -59,14 +59,14 @@ class AddBookmarkActivity: UIActivity {
 					Nextcloud.store(b, id: id)
 				}
 
-				var done = false
+				let group = DispatchGroup()
+				group.enter()
+
 				b.acquireIcon {
-					done = true
+					group.leave()
 				}
 
-				while !done {
-					Thread.sleep(forTimeInterval: 0.2)
-				}
+				group.wait()
 
 				// Second store, so the user sees the icon, too.
 				Bookmark.store()
