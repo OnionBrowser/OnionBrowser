@@ -7,11 +7,11 @@ PODS:
   - FavIcon (3.1.0)
   - ImageRow (4.1.0):
     - Eureka (~> 5.3.5)
-  - IPtProxy (1.8.1)
-  - IPtProxyUI (1.10.3):
+  - IPtProxy (1.9.0)
+  - IPtProxyUI (1.10.5):
     - Eureka (~> 5.3)
     - ImageRow (~> 4.0)
-    - IPtProxy (~> 1.8.1)
+    - IPtProxy (~> 1.9.0)
     - MBProgressHUD (~> 1.2)
     - ReachabilitySwift (~> 5.0)
   - MBProgressHUD (1.2.0)
@@ -77,8 +77,8 @@ SPEC CHECKSUMS:
   Eureka: 28ad9dec6286cd7cd601fdf8e8df39bb7356a8f4
   FavIcon: 21651b47d8f6b33517973859f85e2cb6f9fcfaee
   ImageRow: 880c0f052c5a89c80521b485c86ccf723a124e99
-  IPtProxy: d0b15e7ed4fc83d8eb9247bf413c2dafcbae46e5
-  IPtProxyUI: 309cfd15554826cc467aa7f1b9db03430f14122c
+  IPtProxy: 1a871c46b4c877ed284183404803b1666781c3b8
+  IPtProxyUI: c5e5f6b0bb674b7676db62cfed49730711d36bb8
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   OCMock: 9491e4bec59e0b267d52a9184ff5605995e74be8
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
