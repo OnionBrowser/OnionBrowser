@@ -120,7 +120,7 @@ The documentation is taken from the top of the source file, which contains this.
  */
 struct Hsts: Codable {
 
-	var pinsets: [Pinset]
+	var pinsets: [Pinset]?
 
 	var entries: [Entry]
 }
