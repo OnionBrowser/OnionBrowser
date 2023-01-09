@@ -59,17 +59,12 @@ class AddBookmarkActivity: UIActivity {
 					Nextcloud.store(b, id: id)
 				}
 
-				let group = DispatchGroup()
-				group.enter()
-
-				b.acquireIcon {
-					group.leave()
+				b.acquireIcon { updated in
+					if updated {
+						// Second store, so the user sees the icon, too.
+						Bookmark.store()
+					}
 				}
-
-				group.wait()
-
-				// Second store, so the user sees the icon, too.
-				Bookmark.store()
 			}
 
 			DispatchQueue.main.async {

@@ -233,6 +233,15 @@ class Tab: UIView {
 			if url == URL.start {
 				Bookmark.updateStartPage()
 			}
+			else if let bookmark = Bookmark.all.first(where: { $0.url == url }) {
+				DispatchQueue.global(qos: .utility).async {
+					bookmark.acquireIcon { updated in
+						if updated {
+							Bookmark.store()
+						}
+					}
+				}
+			}
 
 			self.url = url
 		}

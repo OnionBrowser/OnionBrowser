@@ -23,6 +23,7 @@ open class Bookmark: NSObject {
 	private static let keyName = "name"
 	private static let keyUrl = "url"
 	private static let keyIcon = "icon"
+	private static let keyLastUpdated = "last_updated"
 
 	private static let version = 2
 
@@ -100,8 +101,10 @@ open class Bookmark: NSObject {
 
 		DispatchQueue.global(qos: .background).async {
 			for bookmark in all {
-				bookmark.acquireIcon() {
-					store()
+				bookmark.acquireIcon() { updated in
+					if updated {
+						store()
+					}
 				}
 			}
 
@@ -128,8 +131,10 @@ open class Bookmark: NSObject {
 
 		DispatchQueue.global(qos: .background).async {
 			for bookmark in all {
-				bookmark.acquireIcon() {
-					store()
+				bookmark.acquireIcon() { updated in
+					if updated {
+						store()
+					}
 				}
 			}
 		}
@@ -258,6 +263,8 @@ open class Bookmark: NSObject {
 
 	private var iconName = ""
 
+	private var lastUpdated = Date(timeIntervalSince1970: 0)
+
 	private var _icon: UIImage?
 	var icon: UIImage? {
 		get {
@@ -281,15 +288,23 @@ open class Bookmark: NSObject {
 				}
 
 				iconName = ""
+				lastUpdated = Date(timeIntervalSince1970: 0)
 			}
-
-			if _icon != nil {
+			else {
 				if iconName.isEmpty {
 					iconName = UUID().uuidString
 				}
 
-				if let path = Bookmark.root?.appendingPathComponent(iconName) {
-					try? _icon?.pngData()?.write(to: path)
+				if let path = Bookmark.root?.appendingPathComponent(iconName),
+				   let data = _icon?.pngData()
+				{
+					do {
+						try data.write(to: path)
+						lastUpdated = Date()
+					}
+					catch {
+						// Ignored.
+					}
 				}
 			}
 		}
@@ -307,7 +322,7 @@ open class Bookmark: NSObject {
 		self.icon = icon
 	}
 
-	init(name: String?, url: String?, iconName: String) {
+	init(name: String?, url: String?, iconName: String, lastUpdated: Date) {
 		super.init()
 
 		self.name = name
@@ -317,36 +332,45 @@ open class Bookmark: NSObject {
 		}
 
 		self.iconName = iconName
+		self.lastUpdated = lastUpdated
 	}
 
 	convenience init(_ dic: NSDictionary) {
 		self.init(name: dic[Bookmark.keyName] as? String,
 				  url: dic[Bookmark.keyUrl] as? String,
-				  iconName: dic[Bookmark.keyIcon] as? String ?? "")
+				  iconName: dic[Bookmark.keyIcon] as? String ?? "",
+				  lastUpdated: Date(timeIntervalSince1970: dic[Bookmark.keyLastUpdated] as? TimeInterval ?? 0))
 	}
 
 
 	// MARK: Public Methods
 
 	class func icon(for url: URL, _ completion: @escaping (_ image: UIImage?) -> Void) {
-		try! FavIcon.downloadPreferred(url, width: 128, height: 128) { result in
-			if case let .success(image) = result {
-				completion(image)
-			}
-			else {
-				completion(nil)
+		do {
+			try FavIcon.downloadPreferred(url, width: 128, height: 128) { result in
+				if case let .success(image) = result {
+					completion(image)
+				}
+				else {
+					completion(nil)
+				}
 			}
 		}
-
+		catch {
+			completion(nil)
+		}
 	}
 
-	func acquireIcon(_ completion: @escaping () -> Void) {
-		if let url = url {
+	func acquireIcon(_ completion: @escaping (_ updated: Bool) -> Void) {
+		if let url = url, lastUpdated < Date() - 60 * 60 * 24 {
 			Bookmark.icon(for: url) { image in
 				self.icon = image
 
-				completion()
+				completion(true)
 			}
+		}
+		else {
+			completion(false)
 		}
 	}
 
@@ -358,6 +382,7 @@ open class Bookmark: NSObject {
 			Bookmark.keyName: name ?? "",
 			Bookmark.keyUrl: url?.absoluteString ?? "",
 			Bookmark.keyIcon: iconName,
+			Bookmark.keyLastUpdated: lastUpdated.timeIntervalSince1970,
 		])
 	}
 }

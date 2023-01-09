@@ -72,8 +72,10 @@ class Migration: NSObject {
 
 					if let oldBookmarks = try? moc.fetch(request) {
 						for ob in oldBookmarks {
-							Bookmark.add(ob.title, ob.url).acquireIcon {
-								Bookmark.store()
+							Bookmark.add(ob.title, ob.url).acquireIcon { updated in
+								if updated {
+									Bookmark.store()
+								}
 							}
 						}
 
