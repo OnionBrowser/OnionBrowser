@@ -79,6 +79,8 @@ These people helped with translations. Thank you so much, folks!
   Plarome, Lumeriol, hernikplays
 - Dutch: 
   SilverXp, biancahey, kwadronaut, pljmn, Meteor0id, ChillT, lucasz10
+- Finnish:
+  PyryL, RJuho, olavinto
 - French: 
   yahoe.001
 - German: 

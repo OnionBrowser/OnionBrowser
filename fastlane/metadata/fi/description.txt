@@ -1,0 +1,27 @@
+Onion-selain on iOS-alustan alkuperäinen, ilmainen, avoimen lähdekoodin Toria käyttävä selain. Onion-selain auttaa sinua käyttämään Internetiä turvallisemmin ja yksityisemmin, ilman ylimääräisiä kustannuksia.
+
+“Tämän hetken paras Tor-vaihtoehto iOS:llä on Onion-selain” - The Daily Dot, 14. lokakuuta 2015.
+
+Mainittu mm. julkaisuissa The New York Times, The Guardian, Salon, TechCrunch, Gizmodo, Boing Boing, Lifehacker, Macworld ja The Daily Dot.
+
+OMINAISUUDET:
+• Selaa Internetiä Torin välityksellä:
+- Suojaa yksityisyyttäsi verkkosivustojen seurannalta
+- Suojaa tietoliikenteesiturvattomilta langattomilta verkoilta ja operaattoreilta
+- Tukee HTTPS kaikkialla -toimintoa, joka käyttää automaattisesti HTTPS-sivustoja
+- Käytä .onion-sivustoja, jotka toimivat vain Tor-verkossa.
+
+• Taistele verkkoseurantaa vastaan: Estä skriptejä ja tyhjennä evästeet ja välilehdet automaattisesti omien asetustesi perusteella.
+
+• Ja muita yksityisyyskeskeisiä ominaisuuksia!
+
+VASTUUVAPAUSLAUSEKKEET:
+- Verkkoselaus on paljon normaaleja selaimia tai VPN-yhteyksiä hitaampaa, koska tietoliikenteesi salataan ja ohjataan Tor-verkon kautta.
+
+- Multimedia ohittaa usein Torin ja vaarantaa yksityisyytesi. Oletusarvoisesti videotiedostot ja -virrat estetään, eikä Onion-selain tue niitä.
+
+- Onion-selain ei välttämättä toimi verkoissa, joissa on edistyneitä rajoituksia. Jos sovellus ei voi muodostaa yhteyttä, kokeile siltoja (tai erityyppisiä siltoja), sulje sovellus täysin ja avaa se sitten uudelleen.
+
+- Käytä Onion-selainta omalla vastuullasi. Muista, että arkaluonteiset tiedot eivät aina kuulu mobiililaitteelle.
+
+** Onion-selain on ilmainen, avointa lähdekoodia oleva ohjelmisto. Voit lukea onionbrowser.com-sivustolta lisää Onion-selaimesta ja siitä, miten tuet Tor-kehitystä iOS:llä.
