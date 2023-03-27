@@ -415,15 +415,15 @@ class OnionManager : NSObject {
 	private func transportConf<T>(_ cv: (String, String) -> T) -> [T] {
 
 		switch transport {
-		case .none:
-			Transport.obfs4.stop()
-			Transport.snowflake.stop()
-
 		case .obfs4, .custom:
 			Transport.snowflake.stop()
 
 		case .snowflake, .snowflakeAmp:
 			Transport.obfs4.stop()
+
+		default:
+			Transport.obfs4.stop()
+			Transport.snowflake.stop()
 		}
 
 		transport.start()
