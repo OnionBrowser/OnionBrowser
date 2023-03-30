@@ -26,10 +26,12 @@ PODS:
   - ReachabilitySwift (5.0.0)
   - ReactiveObjC (3.1.1)
   - SDCAlertView (10.0)
-  - Tor/Core (407.11.1)
-  - Tor/GeoIP (407.11.1):
+  - Tor/Core (407.13.1)
+  - Tor/CTor (407.13.1):
     - Tor/Core
-  - Tor/OCSPCache (407.11.1):
+  - Tor/GeoIP (407.13.1):
+    - Tor/CTor
+  - Tor/OCSPCache (407.13.1):
     - ReactiveObjC (~> 3.1.1)
     - Tor/GeoIP
   - TUSafariActivity (1.0.4)
@@ -74,7 +76,7 @@ CHECKOUT OPTIONS:
     :commit: 9969d1aaffced321facc66d20c82e7eab2a8aa98
     :git: https://github.com/tladesignz/FavIcon.git
   Tor:
-    :commit: f445018167b95dbfce18750797a42a890e892f3d
+    :commit: 16956140312819f39faffdf81f679f11c0ac5bff
     :git: https://github.com/tladesignz/Tor.framework.git
     :submodules: true
 
@@ -91,7 +93,7 @@ SPEC CHECKSUMS:
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
   SDCAlertView: 5fbc48cae6d7bf9781097e3f27883924ef3b922c
-  Tor: 51ea23a4ee0c7aa174b9f9b3e30080ca87d2bcda
+  Tor: dd2be16f305b18a27b18b14dcc3a18cecb6c9c72
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
   VForceTouch: b5c3a28625269e1818cf915728173bda9f669d6b
 
