@@ -57,7 +57,7 @@ class SecureEnclave: NSObject {
 			kSecPrivateKeyAttrs: [
 				kSecAttrIsPermanent: true,
 				kSecAttrApplicationTag: tag,
-				kSecAttrAccessControl: access]]
+				kSecAttrAccessControl: access] as [CFString : Any]]
 
 		return SecKeyCreateRandomKey(parameters as CFDictionary, nil)
 	}
