@@ -1,1 +1,4 @@
-- Oppdatert til Tor.framework 407.8.2 som inneholder Tor 0.4.7.8.
+- Oppdatert til Tor.framework 407.11.1 som inneholder Tor 0.4.7.11.
+- Støtte tilpassede søkemotorer.
+- Oversettelsesoppdateringer.
+- Lagt til innstilling for å kontrollere bakgrunnsskjuling.

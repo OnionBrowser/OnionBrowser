@@ -20,6 +20,14 @@ class SettingsViewController: FixedFormViewController {
 		$0.cell.selectionStyle = .default
 	}
 
+	private let searchEngineRow = LabelRow() {
+		$0.title = NSLocalizedString("Search Engine", comment: "Option title")
+		$0.value = Settings.searchEngine.name
+		$0.cell.textLabel?.numberOfLines = 0
+		$0.cell.accessoryType = .disclosureIndicator
+		$0.cell.selectionStyle = .default
+	}
+
 
 	@objc
 	class func instantiate() -> UINavigationController {
@@ -44,17 +52,9 @@ class SettingsViewController: FixedFormViewController {
 					footer: NSLocalizedString("When disabled, all text entered in search bar will be sent to the search engine unless it starts with \"http\".",
 											  comment: "Explanation in section footer"))
 
-		<<< PushRow<String>() {
-			$0.title = NSLocalizedString("Search Engine", comment: "Option title")
-			$0.selectorTitle = $0.title
-			$0.options = Settings.allSearchEngineNames
-			$0.value = Settings.searchEngineName
-			$0.cell.textLabel?.numberOfLines = 0
-		}
-		.onChange { row in
-			if let value = row.value {
-				Settings.searchEngineName = value
-			}
+		<<< searchEngineRow
+		.onCellSelection { [weak self] _, _ in
+			self?.navigationController?.pushViewController(SearchEnginesViewController(), animated: true)
 		}
 
 		<<< SwitchRow() {
@@ -118,7 +118,17 @@ class SettingsViewController: FixedFormViewController {
 		}
 
 		<<< SwitchRow() {
-			$0.title = NSLocalizedString("Lock App with Touch ID/Face ID or Device Passcode", comment: "")
+			switch SecureEnclave.biometryType() {
+			case .touchID:
+				$0.title = NSLocalizedString("Lock App with Touch ID or Device Passcode", comment: "")
+
+			case .faceID:
+				$0.title = NSLocalizedString("Lock App with Face ID or Device Passcode", comment: "")
+
+			default:
+				$0.title = NSLocalizedString("Lock App with Device Passcode", comment: "")
+			}
+
 			$0.value = SecureEnclave.loadKey() != nil
 			$0.cell.switchControl.onTintColor = .accent
 			$0.cell.textLabel?.numberOfLines = 0
@@ -147,6 +157,16 @@ class SettingsViewController: FixedFormViewController {
 				self?.form.delegate = self // Enable callback again.
 			}
 		}
+
+		<<< SwitchRow() {
+			$0.title = NSLocalizedString("Hide App Content when in Background", comment: "")
+			$0.value = Settings.hideContent
+			$0.cell.switchControl.onTintColor = .accent
+			$0.cell.textLabel?.numberOfLines = 0
+		}
+		.onChange({ row in
+			Settings.hideContent = row.value ?? false
+		})
 
 		<<< PushRow<TabSecurity.Level>() {
 			$0.title = NSLocalizedString("Tab Security", comment: "Option title")
@@ -303,6 +323,9 @@ class SettingsViewController: FixedFormViewController {
 
 		defaultSecurityRow.value = SecurityPreset(HostSettings.forDefault()).description
 		defaultSecurityRow.updateCell()
+
+		searchEngineRow.value = Settings.searchEngine.name
+		searchEngineRow.updateCell()
 	}
 
 	@objc private func dismsiss_() {

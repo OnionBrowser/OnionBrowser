@@ -1,5 +1,19 @@
 #  Onion Browser 2 Changelog
 
+## 2.8.3
+- Updated to Tor.framework 407.11.1 containing Tor 0.4.7.11.
+- Support custom search engines.
+- Translation updates.
+- Added setting to control background-hiding.
+
+## 2.8.2
+- Updated to Tor.framework 407.10.2 containing Tor 0.4.7.10.
+- Updated Snowflake to version 2.3.1.
+- Updated Obfs4proxy to version 0.0.14.
+- Fixed crash when editing a bookmark URL.
+- Minor translation updates.
+- Improved "we have problems connecting" logic.
+
 ## 2.8.1
 - Updated to Tor.framework 407.8.2 containing Tor 0.4.7.8.
 

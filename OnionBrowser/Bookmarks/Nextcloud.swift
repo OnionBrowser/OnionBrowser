@@ -61,8 +61,10 @@ class Nextcloud: NSObject {
 				}
 					// Add non-existing.
 				else {
-					Bookmark.add(name, url).acquireIcon {
-						Bookmark.store()
+					Bookmark.add(name, url).acquireIcon { updated in
+						if updated {
+							Bookmark.store()
+						}
 					}
 				}
 			}
@@ -157,8 +159,8 @@ class Nextcloud: NSObject {
 			let password = Settings.nextcloudPassword,
 			!password.isEmpty,
 			let auth = "\(username):\(password)".data(using: .utf8)?.base64EncodedString(),
-			let url = URL(string: "https://\(server)/index.php/apps/bookmarks/public/rest/v2/bookmark\(id != nil ? "/\(id!)" : "")\(query.isEmpty ? "" : "?\(query)")") else {
-
+			let url = URL(string: "https://\(server)/index.php/apps/bookmarks/public/rest/v2/bookmark\(id != nil ? "/\(id!)" : "")\(query.isEmpty ? "" : "?\(query)")")
+		else {
 				return nil
 		}
 

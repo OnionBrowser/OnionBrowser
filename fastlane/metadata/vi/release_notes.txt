@@ -1,1 +1,4 @@
-- Cập nhật lên Tor.framework 407.8.2 chứa Tor 0.4.7.8.
+- Đã cập nhật lên Tor.framework 407.11.1 chứa Tor 0.4.7.11.
+- Hỗ trợ công cụ tìm kiếm tùy chỉnh.
+- Cập nhật bản dịch.
+- Đã thêm cài đặt để kiểm soát ẩn nền.

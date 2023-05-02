@@ -1,1 +1,4 @@
-- Actualizado a Tor.framework 407.8.2 que contiene Tor 0.4.7.8.
+- Actualizado a Tor.framework 407.11.1 que contiene Tor 0.4.7.11.
+- Soporta motores de búsqueda personalizados.
+- Actualizaciones de traducción.
+- Añadido ajuste para controlar el ocultamiento del fondo.

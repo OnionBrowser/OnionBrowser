@@ -1,1 +1,4 @@
-- Actualizat la Tor.framework 407.8.2 care conține Tor 0.4.7.8.
+- Actualizat la Tor.framework 407.11.1 care conține Tor 0.4.7.11.
+- Suportă motoare de căutare personalizate.
+- Actualizări de traducere.
+- Adăugată setarea pentru a controla ascunderea fundalului.

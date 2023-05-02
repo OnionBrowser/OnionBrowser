@@ -14,6 +14,8 @@
 			<string>d</string>
 			<key>one</key>
 			<string>%d témoin</string>
+			<key>many</key>
+			<string>%d témoins</string>
 			<key>other</key>
 			<string>%d témoins</string>
 		</dict>

@@ -116,7 +116,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OrbotManagerDelegate {
 		application.ignoreSnapshotOnNextApplicationLaunch()
 		browsingUi?.unfocusSearchField()
 
-		BlurredSnapshot.create()
+		if Settings.hideContent {
+			BlurredSnapshot.create()
+		}
 	}
 
 	func applicationDidEnterBackground(_ application: UIApplication) {

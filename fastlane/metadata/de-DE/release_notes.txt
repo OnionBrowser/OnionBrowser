@@ -1,1 +1,4 @@
-- Tor.framework auf Version 407.8.2 mit Tor 0.4.7.8 aktualisiert.
+- Tor.framework auf Version 407.11.1 mit Tor 0.4.7.11 aktualisiert.
+- Unterstützung für eigene Suchmaschinen.
+- Übersetzungen aktualisiert.
+- Einstellung hinzugefügt, um das Verstecken des Hintergrunds zu kontrollieren.

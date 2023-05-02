@@ -1,1 +1,5 @@
-- Aggiornato a Tor.framework 407.8.2 contenente Tor 0.4.7.8.
+- Aggiornato a Tor.framework 407.11.1 contenente Tor 0.4.7.11.
+- Supporto di motori di ricerca personalizzati.
+- Aggiornamenti delle traduzioni.
+- Aggiunta un'impostazione per il controllo del nascondimento dello sfondo.
+

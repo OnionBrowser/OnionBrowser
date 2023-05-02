@@ -1,1 +1,4 @@
-- Aktualizováno na Tor.framework 407.8.2 obsahující Tor 0.4.7.8.
+- Aktualizováno na Tor.framework 407.11.1 obsahující Tor 0.4.7.11.
+- Podpora vlastních vyhledávačů.
+- Aktualizace překladů.
+- Přidáno nastavení pro ovládání skrývání pozadí.

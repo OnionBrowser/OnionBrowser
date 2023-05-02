@@ -1,1 +1,4 @@
-- Frissítve a Tor.framework 407.8.2-re, amely tartalmazza a Tor 0.4.7.8-at.
+- Frissítve a Tor.framework 407.11.1-re, amely a Tor 0.4.7.11-et tartalmazza.
+- Egyéni keresőmotorok támogatása.
+- Fordítási frissítések.
+- Hozzáadott beállítás a háttér elrejtésének vezérléséhez.

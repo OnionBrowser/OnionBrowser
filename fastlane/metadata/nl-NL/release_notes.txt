@@ -1,1 +1,4 @@
-- Bijgewerkt naar Tor.framework 407.8.2 met Tor 0.4.7.8.
+- Bijgewerkt naar Tor.framework 407.11.1 met Tor 0.4.7.11.
+- Ondersteuning aangepaste zoekmachines.
+- Vertaal updates.
+- Instelling toegevoegd om het verbergen van de achtergrond te controleren.

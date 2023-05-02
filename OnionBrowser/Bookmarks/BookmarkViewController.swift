@@ -175,6 +175,11 @@ class BookmarkViewController: FixedFormViewController {
 		// Users enter domains here most likely, though.
 		if urlc?.host?.isEmpty ?? true {
 			let host = urlc?.path
+
+			if host?.isEmpty ?? true {
+				return nil
+			}
+
 			urlc?.host = host
 			urlc?.path = "/"
 		}

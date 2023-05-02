@@ -1,11 +1,14 @@
 /* RuleEditorController */
 "%1$@ (Disabled: %2$@)" = "%1$@ (Disabled: %2$@)";
 
+/* No comment provided by engineer. */
+"%@ is dedicated to run together with Orbot, only.\n\nPlease install Orbot!" = "%@ is dedicated to run together with Orbot, only.\n\nPlease install Orbot!";
+
+/* No comment provided by engineer. */
+"%@ is dedicated to run together with Orbot, only.\n\nPlease start Orbot!" = "%@ is dedicated to run together with Orbot, only.\n\nPlease start Orbot!";
+
 /* SecurityPresetsRow */
 "(not recommended)" = "(not recommended)";
-
-/* Storage2ViewController */
-"(other cache data)" = "(other cache data)";
 
 /* ConnectingViewController */
 "__CLAIM_1__" = "Our diverse community is what makes Tor great!";
@@ -46,14 +49,26 @@
 /* SettingsViewController */
 "About" = "About";
 
-/* AdvancedTorConfViewController */
-"Add additional command line options for Tor startup." = "Add additional command line options for Tor startup.";
+/* No comment provided by engineer. */
+"Access Token" = "Access Token";
+
+/* SearchEnginesViewController, AddSearchEngineViewController */
+"Add" = "Add";
+
+/* AddSearchEngineViewController */
+"Add \"%@\" as the search term placeholder!" = "Add \"%@\" as the search term placeholder!";
 
 /* BookmarkViewController */
 "Add Bookmark" = "Add Bookmark";
 
+/* AddSearchEngineViewController */
+"Add Search Engine" = "Add Search Engine";
+
 /* CustomSitesViewController, AddSiteViewController */
 "Add Site" = "Add Site";
+
+/* No comment provided by engineer. */
+"Add to Orbot" = "Add to Orbot";
 
 /* SyncViewController */
 "Additionally, all bookmarks not existing on the server but in Onion Browser will be created there." = "Additionally, all bookmarks not existing on the server but in Onion Browser will be created there.";
@@ -61,35 +76,29 @@
 /* BookmarkViewController */
 "Address" = "Address";
 
-/* SettingsViewController */
-"Advanced Tor Configuration" = "Advanced Tor Configuration";
-
-/* OBBridgesConfViewController */
-"Advanced Tor Configuration Removed" = "Advanced Tor Configuration Removed";
-
 /* RuleEditorController */
 "All rules" = "All rules";
 
 /* SettingsViewController */
 "Allow 3rd-Party Keyboards" = "Allow 3rd-Party Keyboards";
 
-/* SecurityViewController */
-"Allow hosts to access WebRTC functions." = "Allow hosts to access WebRTC functions.";
+/* Option title */
+"Allow Access to Microphone and Video" = "Allow Access to Microphone and Video";
+
+/* Option title */
+"Allow Access to Orientation and Motion Data" = "Allow Access to Orientation and Motion Data";
 
 /* SecurityViewController */
 "Allow hosts to permanently store cookies and local storage databases." = "Allow hosts to permanently store cookies and local storage databases.";
 
-/* SecurityViewController */
-"Allow HTTPS hosts to load page resources from non-HTTPS hosts. (Useful for RSS readers and other aggregators.)" = "Allow HTTPS hosts to load page resources from non-HTTPS hosts. (Useful for RSS readers and other aggregators.)";
+/* Option title */
+"Allow JavaScript" = "Allow JavaScript";
 
 /* SecurityViewController */
 "Allow Persistent Cookies" = "Allow Persistent Cookies";
 
-/* Tab+UIWebViewDelegate */
-"Allow this page to close its tab?" = "Allow this page to close its tab?";
-
-/* Tab+Gestures */
-"An error occurred downloading image %@" = "An error occurred downloading image %@";
+/* No comment provided by engineer. */
+"App Store" = "App Store";
 
 /* DonationViewController */
 "Are you sure you want to send a %@ tip?" = "Are you sure you want to send a %@ tip?";
@@ -100,8 +109,8 @@
 /* SettingsViewController */
 "Auto-Complete Search Results" = "Auto-Complete Search Results";
 
-/* Storage1ViewController */
-"Auto-Sweep Interval" = "Auto-Sweep Interval";
+/* AddSearchEngineViewController */
+"Autocomplete URL" = "Autocomplete URL";
 
 /* CertificateViewController */
 "Begins On" = "Begins On";
@@ -145,17 +154,11 @@
 /* BridgesViewController */
 "Configure Bridges" = "Configure Bridges";
 
-/* Tab+UIWebViewDelegate */
-"Confirm" = "Confirm";
-
 /* DonationViewController */
 "Confirm %@" = "Confirm %@";
 
 /* DonationViewController */
 "Confirm Purchase" = "Confirm Purchase";
-
-/* OBBridgesConfViewController */
-"Connect" = "Connect";
 
 /* CircuitViewController */
 "Connect to a website to see your circuit." = "Connect to a website to see your circuit.";
@@ -178,17 +181,14 @@
 /* SyncViewController */
 "Connection to Nextcloud Server Failed" = "Connection to Nextcloud Server Failed";
 
-/* SecurityViewController */
-"Content Policy" = "Content Policy";
+/* No comment provided by engineer. */
+"Cookies" = "Cookies";
 
 /* SettingsViewController, Storage1ViewController, Storage2ViewController */
 "Cookies and Local Storage" = "Cookies and Local Storage";
 
-/* Storage1ViewController */
-"Cookies and local storage data from non-allowlisted hosts will be cleared even from open tabs after not being accessed for this many minutes." = "Cookies and local storage data from non-allowlisted hosts will be cleared even from open tabs after not being accessed for this many minutes.";
-
-/* Tab+Gestures */
-"Copy URL" = "Copy URL";
+/* No comment provided by engineer. */
+"Couldn't understand server response." = "Couldn't understand server response.";
 
 /* AppDelegate */
 "Create New Tab" = "Create New Tab";
@@ -214,6 +214,9 @@
 /* InitSecurityLevelViewController */
 "Define Default Security Level" = "Define Default Security Level";
 
+/* SearchEnginesViewController */
+"Delete" = "Delete";
+
 /* RuleEditorController */
 "Disable" = "Disable";
 
@@ -222,6 +225,9 @@
 
 /* RuleEditorController */
 "Disabled: %@" = "Disabled: %@";
+
+/* No comment provided by engineer. */
+"Disk Cache" = "Disk Cache";
 
 /* DonationViewController */
 "Donate" = "Donate";
@@ -238,17 +244,26 @@
 /* BookmarkViewController */
 "Edit Bookmark" = "Edit Bookmark";
 
+/* AddSearchEngineViewController */
+"Edit Search Engine" = "Edit Search Engine";
+
 /* RuleEditorController */
 "Enable" = "Enable";
 
 /* AlertHelper */
 "Error" = "Error";
 
+/* No comment provided by engineer. */
+"Exit" = "Exit";
+
 /* CertificateViewController */
 "Expires After" = "Expires After";
 
 /* CertificateViewController */
 "Extended Validation: Organization" = "Extended Validation: Organization";
+
+/* No comment provided by engineer. */
+"Fetch Cache" = "Fetch Cache";
 
 /* AppDelegate */
 "Focus URL Field" = "Focus URL Field";
@@ -283,17 +298,14 @@
 /* SecurityViewController */
 "Handle tapping on links in a non-standard way to avoid possibly opening external applications." = "Handle tapping on links in a non-standard way to avoid possibly opening external applications.";
 
+/* SettingsViewController */
+"Hide App Content when in Background" = "Hide App Content when in Background";
+
 /* HistoryViewController */
 "History" = "History";
 
 /* AddSiteViewController, SyncViewController */
 "Host" = "Host";
-
-/* SettingsViewController */
-"HTTPS Everywhere" = "HTTPS Everywhere";
-
-/* HTTPSEverywhereRuleController */
-"HTTPS Everywhere Rules" = "HTTPS Everywhere Rules";
 
 /* BridgesViewController */
 "If you are in a country or using a connection that censors Tor, you might need to use bridges." = "If you are in a country or using a connection that censors Tor, you might need to use bridges.";
@@ -306,6 +318,9 @@
 
 /* SecurityViewController */
 "Ignore TLS Errors" = "Ignore TLS Errors";
+
+/* No comment provided by engineer. */
+"IndexedDB Databases" = "IndexedDB Databases";
 
 /* CertificateViewController */
 "Issued By" = "Issued By";
@@ -329,22 +344,31 @@
 "Local Storage" = "Local Storage";
 
 /* SettingsViewController */
-"Lock App with Touch ID/Face ID or Device Passcode" = "Lock App with Touch ID/Face ID or Device Passcode";
+"Lock App with Device Passcode" = "Lock App with Device Passcode";
+
+/* SettingsViewController */
+"Lock App with Face ID or Device Passcode" = "Lock App with Face ID or Device Passcode";
+
+/* SettingsViewController */
+"Lock App with Touch ID or Device Passcode" = "Lock App with Touch ID or Device Passcode";
 
 /* AppDelegate */
 "Log In" = "Log In";
 
-/* SettingsViewController */
-"Minimum version of TLS required for hosts to negotiate HTTPS connections." = "Minimum version of TLS required for hosts to negotiate HTTPS connections.";
+/* No comment provided by engineer. */
+"Memory Cache" = "Memory Cache";
 
 /* SettingsViewController */
 "Miscellaneous" = "Miscellaneous";
 
-/* SecurityViewController */
-"Mixed-mode Resources" = "Mixed-mode Resources";
-
 /* SettingsViewController */
 "Mute Audio with Mute Switch" = "Mute Audio with Mute Switch";
+
+/* AddSearchEngineViewController */
+"My Search Engine" = "My Search Engine";
+
+/* AddSearchEngineViewController */
+"Name" = "Name";
 
 /* CircuSitsViewController */
 "New Circuit for this Site" = "New Circuit for this Site";
@@ -352,20 +376,17 @@
 /* ConnectingViewController */
 "Next" = "Next";
 
-/* SecurityViewController */
-"No XHR/WebSocket/Video connections" = "No XHR/WebSocket/Video connections";
+/* No comment provided by engineer. */
+"No success, but \"%@\" instead." = "No success, but \"%@\" instead.";
+
+/* No comment provided by engineer. */
+"No valid HTTP response." = "No valid HTTP response.";
+
+/* No comment provided by engineer. */
+"Offline Web Application Cache" = "Offline Web Application Cache";
 
 /* JAHPAuthenticatingHTTPProtocol, AlertHelper */
 "OK" = "OK";
-
-/* Tab+UIWebViewDelegate */
-"Onion Service v3 Auth Key" = "Onion Service v3 Auth Key";
-
-/* Tab+Gestures */
-"Open" = "Open";
-
-/* SecurityViewController */
-"Open (normal browsing mode)" = "Open (normal browsing mode)";
 
 /* Tab+Gestures */
 "Open in a New Tab" = "Open in a New Tab";
@@ -376,11 +397,23 @@
 /* Tab+Gestures */
 "Open in Safari" = "Open in Safari";
 
+/* No comment provided by engineer. */
+"Orbot could not be opened!" = "Orbot could not be opened!";
+
+/* No comment provided by engineer. */
+"Orbot Not Installed" = "Orbot Not Installed";
+
+/* No comment provided by engineer. */
+"Orbot not Started" = "Orbot not Started";
+
 /* SecurityViewController */
 "Other" = "Other";
 
 /* AppDelegate, SyncViewController */
 "Password" = "Password";
+
+/* No comment provided by engineer. */
+"Paste API token here" = "Paste API token here";
 
 /* DonationViewController */
 "Payment Sent" = "Payment Sent";
@@ -406,14 +439,8 @@
 /* DonationViewController */
 "Purchase Failure" = "Purchase Failure";
 
-/* OBBridgesConfViewController */
-"Quit. Then restart the app." = "Quit. Then restart the app.";
-
 /* SettingsViewController */
 "Rate on App Store" = "Rate on App Store";
-
-/* AdvancedTorConfViewController; placeholder is URL https://2019.www.torproject.org/docs/tor-manual.html */
-"Refer to %@ for possible options." = "Refer to %@ for possible options.";
 
 /* AppDelegate */
 "Reload Tab" = "Reload Tab";
@@ -421,23 +448,29 @@
 /* TabSecurity */
 "Remember Tabs" = "Remember Tabs";
 
-/* OBBridgesConfViewController */
-"Remove Advanced Tor Conf" = "Remove Advanced Tor Conf";
-
 /* Storage2ViewController */
 "Remove All Local Storage" = "Remove All Local Storage";
 
 /* SettingsViewController */
 "Report a Bug" = "Report a Bug";
 
-/* SecurityViewController */
-"Restrictions on resources loaded from web pages." = "Restrictions on resources loaded from web pages.";
+/* No comment provided by engineer. */
+"Request API Access" = "Request API Access";
+
+/* No comment provided by engineer. */
+"Request could not be formed. Please check host and username/password!" = "Request could not be formed. Please check host and username/password!";
+
+/* No comment provided by engineer. */
+"Response body missing." = "Response body missing.";
+
+/* No comment provided by engineer. */
+"Retry" = "Retry";
+
+/* No comment provided by engineer. */
+"Retry after you added the authentication key to Orbot." = "Retry after you added the authentication key to Orbot.";
 
 /* RuleEditorController */
 "Rules in use on current page" = "Rules in use on current page";
-
-/* Tab+Gestures */
-"Save Image" = "Save Image";
 
 /* SettingsViewController */
 "Search" = "Search";
@@ -445,14 +478,20 @@
 /* SettingsViewController */
 "Search Engine" = "Search Engine";
 
+/* AddSearchEngineViewController */
+"Search URL" = "Search URL";
+
 /* SecurityPopUpViewController */
 "Security Level for This Site" = "Security Level for This Site";
 
-/* SettingsViewController */
-"Send Do-Not-Track Header" = "Send Do-Not-Track Header";
-
 /* CertificateViewController */
 "Serial Number" = "Serial Number";
+
+/* No comment provided by engineer. */
+"Service Worker Registrations" = "Service Worker Registrations";
+
+/* No comment provided by engineer. */
+"Session Storage" = "Session Storage";
 
 /* SettingsViewController */
 "Settings" = "Settings";
@@ -478,11 +517,11 @@
 /* InitSecurityLevelViewController */
 "Start Browsing" = "Start Browsing";
 
+/* No comment provided by engineer. */
+"Start Orbot" = "Start Orbot";
+
 /* SettingsViewController */
 "Stop Auto-Complete at First Dot" = "Stop Auto-Complete at First Dot";
-
-/* SecurityViewController */
-"Strict (no JavaScript, video, etc.)" = "Strict (no JavaScript, video, etc.)";
 
 /* Bookmark */
 "Subscribe to Tor Newsletter" = "Subscribe to Tor Newsletter";
@@ -508,6 +547,9 @@
 /* SettingsViewController */
 "Tab Security" = "Tab Security";
 
+/* Option title */
+"Tell websites that you object to processing and selling of your personal data" = "Tell websites that you object to processing and selling of your personal data";
+
 /* InitSecurityLevelViewController */
 "The security level you choose for a website often has a direct impact on that site’s performance. Some of the protections can be overridden or modified by changing your security settings." = "The security level you choose for a website often has a direct impact on that site’s performance. Some of the protections can be overridden or modified by changing your security settings.";
 
@@ -520,26 +562,14 @@
 /* SecurityViewController, placeholder is app name "Onion Browser" */
 "This is your default security setting for every website you visit in %@." = "This is your default security setting for every website you visit in %@.";
 
-/* ConnectingViewController */
-"This may take time. If it doesn't work after a while, choose a different bridge." = "This may take time. If it doesn't work after a while, choose a different bridge.";
-
-/* Tab+UIWebViewDelegate */
-"This site may need authentication. If you received an authentication key for this site, please enter it here:" = "This site may need authentication. If you received an authentication key for this site, please enter it here:";
+/* No comment provided by engineer. */
+"This site may need authentication. If you received an authentication key for this site, add it to Orbot!" = "This site may need authentication. If you received an authentication key for this site, add it to Orbot!";
 
 /* DonationViewController */
 "Tip: %@" = "Tip: %@";
 
 /* BookmarkViewController */
 "Title" = "Title";
-
-/* SettingsViewController */
-"TLS 1.3 Only" = "TLS 1.3 Only";
-
-/* SettingsViewController */
-"TLS 1.3 or 1.2" = "TLS 1.3 or 1.2";
-
-/* SettingsViewController */
-"TLS 1.3, 1.2, 1.1 or 1.0" = "TLS 1.3, 1.2, 1.1 or 1.0";
 
 /* Tab+UIWebViewDelegate */
 "TLS certificate chain verification error (self-signed certificate?)" = "TLS certificate chain verification error (self-signed certificate?)";
@@ -550,23 +580,17 @@
 /* Tab+UIWebViewDelegate */
 "TLS protocol error" = "TLS protocol error";
 
-/* SettingsViewController */
-"TLS Version" = "TLS Version";
-
-/* AdvancedTorConfViewController */
-"To recover from a non working configuration, remove everything under \"Bridge Configuration\" on startup and restart the app." = "To recover from a non working configuration, remove everything under \"Bridge Configuration\" on startup and restart the app.";
-
 /* CircuitsViewController */
 "Tor Circuit" = "Tor Circuit";
 
 /* SyncViewController */
 "Try Again" = "Try Again";
 
-/* ConnectingViewController */
-"Trying a bridge…" = "Trying a bridge…";
-
 /* SecurityViewController */
 "Universal Link Protection" = "Universal Link Protection";
+
+/* AddSearchEngineViewController */
+"Update" = "Update";
 
 /* SettingsViewController */
 "URL Blocker" = "URL Blocker";
@@ -586,20 +610,17 @@
 /* SettingsViewController */
 "Version %@" = "Version %@";
 
-/* SecurityViewController */
-"Very Strict (JavaScript completely off; no context menu)" = "Very Strict (JavaScript completely off; no context menu)";
-
 /* SyncViewController */
 "We couldn't sync your bookmarks at this time. Try again to make sure your information is synced." = "We couldn't sync your bookmarks at this time. Try again to make sure your information is synced.";
 
 /* ConnectingViewController */
 "We're having trouble." = "We're having trouble.";
 
-/* SecurityViewController */
-"WebRTC" = "WebRTC";
-
 /* SecurityPresetsRow */
 "Websites may break. But you get great security." = "Websites may break. But you get great security.";
+
+/* No comment provided by engineer. */
+"WebSQL Databases" = "WebSQL Databases";
 
 /* SettingsViewController */
 "When disabled, all text entered in search bar will be sent to the search engine unless it starts with \"http\"." = "When disabled, all text entered in search bar will be sent to the search engine unless it starts with \"http\".";
@@ -609,6 +630,9 @@
 
 /* DonationViewController */
 "You most recently donated %1$@ on %2$@." = "You most recently donated %1$@ on %2$@.";
+
+/* No comment provided by engineer. */
+"You need to request API access with Orbot, in order for %@ to work while Orbot is running." = "You need to request API access with Orbot, in order for %@ to work while Orbot is running.";
 
 /* CircuitViewController */
 "Your traffic goes to 3 different parts of the world." = "Your traffic goes to 3 different parts of the world.";

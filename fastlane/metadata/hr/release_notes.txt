@@ -1,1 +1,4 @@
-- Ažurirano na Tor.framework 407.8.2 koji sadrži Tor 0.4.7.8.
+- Aktualizirano na Tor.framework 407.11.1, sadrži Tor 0.4.7.11.
+- Podrška za prilagođene tražilice.
+- Aktualiziranja prijevoda.
+- Dodane su postavke za upravljanje skrivanja u pozadini.

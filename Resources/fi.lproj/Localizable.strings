@@ -1,0 +1,638 @@
+/* RuleEditorController */
+"%1$@ (Disabled: %2$@)" = "%1$@ (ei käytössä: %2$@)";
+
+/* No comment provided by engineer. */
+"%@ is dedicated to run together with Orbot, only.\n\nPlease install Orbot!" = "%@ is dedicated to run together with Orbot, only.\n\nPlease install Orbot!";
+
+/* No comment provided by engineer. */
+"%@ is dedicated to run together with Orbot, only.\n\nPlease start Orbot!" = "%@ is dedicated to run together with Orbot, only.\n\nPlease start Orbot!";
+
+/* SecurityPresetsRow */
+"(not recommended)" = "(ei suositella)";
+
+/* ConnectingViewController */
+"__CLAIM_1__" = "Monimuotoinen yhteisömme tekee Torista suuren!";
+
+/* ConnectingViewController */
+"__CLAIM_2__" = "Toria käytetään markkinointiseurannan välttämiseen päivittäin.";
+
+/* ConnectingViewController */
+"__CLAIM_3__" = "Torilla pidetään turvallisesti yhteyttä kevereihin ja perheisiin.";
+
+/* ConnectingViewController */
+"__CLAIM_4__" = "Aktivistit käyttävät Toria vapaaseen mielipiteiden ja uskomusten ilmaisuun.";
+
+/* ConnectingViewController */
+"__CLAIM_5__" = "Bloggaajat käyttävät Toria sosiaalisten uudistusten pariin houkutteluun.";
+
+/* ConnectingViewController */
+"__CLAIM_6__" = "Toimittajat käyttävät Toria raportoimiensa aiheiden turvalliseen tutkintaan.";
+
+/* ConnectingViewController */
+"__CLAIM_7__" = "Yritykset käyttävät Toria strategioidensa suojaukseen.";
+
+/* ConnectingViewController */
+"__CLAIM_8__" = "Työntekijät käyttävät Toria oikeuksien puolesta taisteluun ilman pelkoa työpaikan menetyksestä.";
+
+/* DonationViewController */
+"__DONATE_EXPLANATION_PARAGRAPH1__" = "Onion-selain on ilmainen sovellus, mutta sen kehitys vaatii aikaa ja resursseja.";
+
+/* DonationViewController */
+"__DONATE_EXPLANATION_PARAGRAPH2__" = "Voit tukea sovellusta lähettämällä alta pienen tipin sovelluksen sisäisellä ostolla. Tämä on kertaluonteinen, toistumaton tapahtuma, mutta milloin lähettää sen uudelleen. Onion-selaimen kehittäjät eivät kerää tai tallenna tietoja sovelluksen sisäisistä ostoista.";
+
+/* DonationViewController */
+"__DONATE_EXPLANATION_PARAGRAPH3__" = "Voit lukea muista auttamistavoista (mukaan lukien Patreonin, PayPalin, Bitcoinin tai Zcashin) \"Asetukset\" -sivun \"Tietoja\" -osiosta.";
+
+/* DonationViewController */
+"__DONATE_THANKS__" = "Kiitos! Jokainen pala auttaa! %@ maksusi varmistaa Onion-selaimen ja Torin iOS-sovellusintegraatiota helpottavien työkalujen jatkuvan kehityksen.";
+
+/* SettingsViewController */
+"About" = "Tietoja";
+
+/* No comment provided by engineer. */
+"Access Token" = "Access Token";
+
+/* SearchEnginesViewController, AddSearchEngineViewController */
+"Add" = "Lisää";
+
+/* AddSearchEngineViewController */
+"Add \"%@\" as the search term placeholder!" = "Lisää \"%@\" hakulausekkeen muuttujaksi!";
+
+/* BookmarkViewController */
+"Add Bookmark" = "Lisää kirjamerkki";
+
+/* AddSearchEngineViewController */
+"Add Search Engine" = "Lisää hakukone";
+
+/* CustomSitesViewController, AddSiteViewController */
+"Add Site" = "Lisää sivusto";
+
+/* No comment provided by engineer. */
+"Add to Orbot" = "Add to Orbot";
+
+/* SyncViewController */
+"Additionally, all bookmarks not existing on the server but in Onion Browser will be created there." = "Lisäksi kaikki kirjamerkit, jotka ovat Onion Broserissa, mutteivät palvelimella, luodaan sinne.";
+
+/* BookmarkViewController */
+"Address" = "Osoite";
+
+/* RuleEditorController */
+"All rules" = "Lisää sääntöjä";
+
+/* SettingsViewController */
+"Allow 3rd-Party Keyboards" = "Salli ulkopuoliset näppäimistöt";
+
+/* Option title */
+"Allow Access to Microphone and Video" = "Allow Access to Microphone and Video";
+
+/* Option title */
+"Allow Access to Orientation and Motion Data" = "Allow Access to Orientation and Motion Data";
+
+/* SecurityViewController */
+"Allow hosts to permanently store cookies and local storage databases." = "Salli palvelinten tallentaa pysyviä evästeitä ja paikallisia tietokantoja.";
+
+/* Option title */
+"Allow JavaScript" = "Allow JavaScript";
+
+/* SecurityViewController */
+"Allow Persistent Cookies" = "Salli pysyvät evästeet";
+
+/* No comment provided by engineer. */
+"App Store" = "App Store";
+
+/* DonationViewController */
+"Are you sure you want to send a %@ tip?" = "Haluatko varmasti lähettää %@ tipin?";
+
+/* AppDelegate */
+"Authentication Required" = "Todennus vaaditaan";
+
+/* SettingsViewController */
+"Auto-Complete Search Results" = "Hakutulosten automaattitäyttö";
+
+/* AddSearchEngineViewController */
+"Autocomplete URL" = "URL-automaattitäyttö";
+
+/* CertificateViewController */
+"Begins On" = "Alkaa";
+
+/* URLBlockerRuleController */
+"Blocked 3rd-Party Hosts" = "Ulkoiset palvelimet estetty";
+
+/* BookmarksViewController */
+"Bookmarks" = "Kirjamerkit";
+
+/* CircuitViewController */
+"Bridge Configuration" = "Silltamääritys";
+
+/* SecurityPresetsRow; a security level */
+"Bronze" = "Pronssi";
+
+/* SecurityViewController */
+"By editing this setting, you have created a custom security setting." = "Tätä muuttamalla olet luonut mukatetun suojausasetuksen.";
+
+/* AlertHelper */
+"Cancel" = "Peruuta";
+
+/* CertificateViewController */
+"Certificate Information" = "Varmenteen tiedot";
+
+/* SettingsViewController */
+"Changing this option requires restarting the app." = "Valinnan muutos vaatii sovelluksen uudelleenkäynnistyksen.";
+
+/* SettingsViewController */
+"Choose how long app remembers open tabs." = "Valitse miten kauan sovellus muistaa avoimet välilehdet.";
+
+/* CertificateViewController */
+"Cipher" = "Salaus";
+
+/* ConnectingViewController */
+"Close Onion Browser and restart or try using a bridge." = "Sulje ja käynnistä Onion Browser uudelleen tai kokeile siltaa.";
+
+/* AppDelegate */
+"Close Tab" = "Sulje välilehti";
+
+/* BridgesViewController */
+"Configure Bridges" = "Määritä sillat";
+
+/* DonationViewController */
+"Confirm %@" = "Vahvista %@";
+
+/* DonationViewController */
+"Confirm Purchase" = "Vahvista osto";
+
+/* CircuitViewController */
+"Connect to a website to see your circuit." = "Yhdistä sivustoon nähdäksesi ketjusi.";
+
+/* BridgesViewController */
+"Connect to Tor" = "Yhdistä Toriin";
+
+/* BridgesViewController */
+"Connect to Tor for private browsing." = "Yhdistä Toriin yksityistä selausta varten.";
+
+/* ConnectingViewController */
+"Connected!" = "Yhdistetty!";
+
+/* ConnectingViewController */
+"Connecting to Tor" = "Yhdistetään Toriin";
+
+/* CertificateViewController */
+"Connection Information" = "Yhteystiedot";
+
+/* SyncViewController */
+"Connection to Nextcloud Server Failed" = "Yhteyden muodostus Nextcloud-palvelimeen epäonnistui";
+
+/* No comment provided by engineer. */
+"Cookies" = "Cookies";
+
+/* SettingsViewController, Storage1ViewController, Storage2ViewController */
+"Cookies and Local Storage" = "Evästeet ja paikallinen tallennustila";
+
+/* No comment provided by engineer. */
+"Couldn't understand server response." = "Couldn't understand server response.";
+
+/* AppDelegate */
+"Create New Tab" = "Luo uusi välilehti";
+
+/* SecurityPresetsRow; a security level */
+"Custom" = "Mukautettu";
+
+/* SettingsViewController, CustomSitesViewController */
+"Custom Site Security" = "Mukautettu sivuston suojaus";
+
+/* SecurityViewController */
+"Custom user-agent string, or blank to use the default." = "Oma User-Agent-otsake. Oletus on tyhjä.";
+
+/* SecurityPopUpViewController */
+"Customize" = "Mukauta";
+
+/* SecurityViewController */
+"Default Security" = "Oletussuojaus";
+
+/* CustomSitesViewController */
+"Define custom settings for specific sites." = "Määritä omia asetuksia sivustokohtaisesti.";
+
+/* InitSecurityLevelViewController */
+"Define Default Security Level" = "Määritä oletusarvoinen suojaustaso";
+
+/* SearchEnginesViewController */
+"Delete" = "Poista";
+
+/* RuleEditorController */
+"Disable" = "Poista käytöstä";
+
+/* SettingsViewController */
+"Disable Bookmarks on Start Page" = "Ei kirjamerkkejä aloitussivulla";
+
+/* RuleEditorController */
+"Disabled: %@" = "Ei käytössä: %@";
+
+/* No comment provided by engineer. */
+"Disk Cache" = "Disk Cache";
+
+/* DonationViewController */
+"Donate" = "Lahjoita";
+
+/* Bookmark, placeholder is app name "Onion Browser" */
+"Donate to %@" = "Lahjoita %@ille";
+
+/* BrowsingViewController */
+"Done" = "Valmis";
+
+/* SecurityPresetsRow */
+"Easy breezy. Though it could be dangerous." = "Helppo nakki. Joskin se saattaa olla vaarallista.";
+
+/* BookmarkViewController */
+"Edit Bookmark" = "Muokkaa kirjamerkkiä";
+
+/* AddSearchEngineViewController */
+"Edit Search Engine" = "Muokkaa hakukonetta";
+
+/* RuleEditorController */
+"Enable" = "Ota käyttöön";
+
+/* AlertHelper */
+"Error" = "Virhe";
+
+/* No comment provided by engineer. */
+"Exit" = "Exit";
+
+/* CertificateViewController */
+"Expires After" = "Erääntyy kun on kulunut";
+
+/* CertificateViewController */
+"Extended Validation: Organization" = "Laajennettu vahvistus: Organisaatio";
+
+/* No comment provided by engineer. */
+"Fetch Cache" = "Fetch Cache";
+
+/* AppDelegate */
+"Focus URL Field" = "Kohdista URL-kenttä";
+
+/* SecurityViewController */
+"Follow Onion-Location Header Automatically" = "Seuraa Onion-Location-otsakkeita automaattisesti";
+
+/* SettingsViewController */
+"Forget at Shutdown" = "Unohda suljettaessa";
+
+/* SettingsViewController */
+"Forget in Background" = "Unohda taustalla";
+
+/* MainViewController */
+"Free to be you." = "Sinulle ilmainen.";
+
+/* SettingsViewController */
+"Fund Development" = "Rahoita kehitystä";
+
+/* AppDelegate */
+"Go Back" = "Palaa takaisin";
+
+/* AppDelegate */
+"Go Forward" = "Siirry eteenpäin";
+
+/* SecurityPresetsRow; a security level */
+"Gold" = "Kulta";
+
+/* CircuSitsViewController */
+"Guard" = "Vartija";
+
+/* SecurityViewController */
+"Handle tapping on links in a non-standard way to avoid possibly opening external applications." = "Käsittele linkkien napautukset vakiosta poikkeavalla tavalla välttääksesi niiden mahdollisen avautumisen ulkoisissa sovelluksissa.";
+
+/* SettingsViewController */
+"Hide App Content when in Background" = "Piilota sovelluksen sisältö sen ollessa taustalla";
+
+/* HistoryViewController */
+"History" = "Historia";
+
+/* AddSiteViewController, SyncViewController */
+"Host" = "Palvelin";
+
+/* BridgesViewController */
+"If you are in a country or using a connection that censors Tor, you might need to use bridges." = "Jos olet maassa tai käytät yhteyttä, joka sensuroi Tor-yhteydet, saattaa olla tarpeen käyttää siltoja.";
+
+/* SyncViewController */
+"If you sync, all bookmarks will be read from the server and added/updated in Onion Browser." = "Jos synkronoit, luetaan kaikki kirjamerkit palvelimelta ja lisätään/päivitetään Onion Browseriin.";
+
+/* Tab+UIWebViewDelegate */
+"Ignore for this host" = "Älä huomoi tällä palvelimella";
+
+/* SecurityViewController */
+"Ignore TLS Errors" = "Älä huomioi TLS-virheitä";
+
+/* No comment provided by engineer. */
+"IndexedDB Databases" = "IndexedDB Databases";
+
+/* CertificateViewController */
+"Issued By" = "Myöntänyt";
+
+/* CertificateViewController */
+"Issued To" = "Saaja";
+
+/* SecurityPopUpViewController */
+"Learn More" = "Lue lisää";
+
+/* Bookmark, placeholder is app name "Onion Browser" */
+"Learn more about %@" = "Lue lisää %@ista";
+
+/*MainViewController; placeholder is a angle bracket \u{276c} or \u{276d} depending on text direction. */
+"Let's go %@" = "Mennään %@";
+
+/* DonationViewController */
+"Loading in-app purchase data…" = "Ladataan sovelluksen sisäisen oston tietoja...";
+
+/* Storage2ViewController */
+"Local Storage" = "Paikallinen tallennustila";
+
+/* SettingsViewController */
+"Lock App with Device Passcode" = "Lukitse sovellus laitteen pääsykoodilla";
+
+/* SettingsViewController */
+"Lock App with Face ID or Device Passcode" = "Lukitse sovellus Face ID:llä tai laitteen pääsykoodilla";
+
+/* SettingsViewController */
+"Lock App with Touch ID or Device Passcode" = "Lukitse sovellus Touch ID:llä tai laitteen pääsykoodilla";
+
+/* AppDelegate */
+"Log In" = "Kirjaudu";
+
+/* No comment provided by engineer. */
+"Memory Cache" = "Memory Cache";
+
+/* SettingsViewController */
+"Miscellaneous" = "Sekalaiset";
+
+/* SettingsViewController */
+"Mute Audio with Mute Switch" = "Mykistä ääni mykistyskytkimellä";
+
+/* AddSearchEngineViewController */
+"My Search Engine" = "Oma hakukone";
+
+/* AddSearchEngineViewController */
+"Name" = "Nimi";
+
+/* CircuSitsViewController */
+"New Circuit for this Site" = "Uusi ketju tälle sivustolle";
+
+/* ConnectingViewController */
+"Next" = "Seuraava";
+
+/* No comment provided by engineer. */
+"No success, but \"%@\" instead." = "No success, but \"%@\" instead.";
+
+/* No comment provided by engineer. */
+"No valid HTTP response." = "No valid HTTP response.";
+
+/* No comment provided by engineer. */
+"Offline Web Application Cache" = "Offline Web Application Cache";
+
+/* JAHPAuthenticatingHTTPProtocol, AlertHelper */
+"OK" = "OK";
+
+/* Tab+Gestures */
+"Open in a New Tab" = "Avaa uuteen välilehteen";
+
+/* Tab+Gestures */
+"Open in Background Tab" = "Avaa taustavälilehteen";
+
+/* Tab+Gestures */
+"Open in Safari" = "Avaa Safarissa";
+
+/* No comment provided by engineer. */
+"Orbot could not be opened!" = "Orbot could not be opened!";
+
+/* No comment provided by engineer. */
+"Orbot Not Installed" = "Orbot Not Installed";
+
+/* No comment provided by engineer. */
+"Orbot not Started" = "Orbot not Started";
+
+/* SecurityViewController */
+"Other" = "Muut";
+
+/* AppDelegate, SyncViewController */
+"Password" = "Salasana";
+
+/* No comment provided by engineer. */
+"Paste API token here" = "Paste API token here";
+
+/* DonationViewController */
+"Payment Sent" = "Maksu lähetetty";
+
+/* CertificateViewController */
+"Period of Validity" = "Voimassaoloaika";
+
+/* SecurityViewController */
+"Popular User Agents" = "Suosittuja User-Agent-otsakkeita";
+
+/* SecurityViewController */
+"Privacy" = "Yksityisyys";
+
+/* SettingsViewController */
+"Privacy & Security" = "Tietosuoja ja -turva";
+
+/* CertificateViewController */
+"Protocol" = "Protokolla";
+
+/* Tab */
+"Pull to Refresh Page" = "Päivitä sivu vetämällä";
+
+/* DonationViewController */
+"Purchase Failure" = "Osto epäonnistui";
+
+/* SettingsViewController */
+"Rate on App Store" = "Arvioi App Storessa";
+
+/* AppDelegate */
+"Reload Tab" = "Lataa välilehti uudelleen";
+
+/* TabSecurity */
+"Remember Tabs" = "Muista välilehdet";
+
+/* Storage2ViewController */
+"Remove All Local Storage" = "Tyhjennä paikallinen tallennustila";
+
+/* SettingsViewController */
+"Report a Bug" = "Ilmoita viasta";
+
+/* No comment provided by engineer. */
+"Request API Access" = "Request API Access";
+
+/* No comment provided by engineer. */
+"Request could not be formed. Please check host and username/password!" = "Request could not be formed. Please check host and username/password!";
+
+/* No comment provided by engineer. */
+"Response body missing." = "Response body missing.";
+
+/* No comment provided by engineer. */
+"Retry" = "Retry";
+
+/* No comment provided by engineer. */
+"Retry after you added the authentication key to Orbot." = "Retry after you added the authentication key to Orbot.";
+
+/* RuleEditorController */
+"Rules in use on current page" = "Nyikyisellä sivulla käytetyt säännöt";
+
+/* SettingsViewController */
+"Search" = "Haku";
+
+/* SettingsViewController */
+"Search Engine" = "Hakukone";
+
+/* AddSearchEngineViewController */
+"Search URL" = "Haku-URL";
+
+/* SecurityPopUpViewController */
+"Security Level for This Site" = "Tämän sivuston suojaustaso";
+
+/* CertificateViewController */
+"Serial Number" = "Sarjanumero";
+
+/* No comment provided by engineer. */
+"Service Worker Registrations" = "Service Worker Registrations";
+
+/* No comment provided by engineer. */
+"Session Storage" = "Session Storage";
+
+/* SettingsViewController */
+"Settings" = "Asetukset";
+
+/* SecurityPresetsRow */
+"Settings have been customized." = "Asetuksia on muutettu.";
+
+/* Storage2ViewController */
+"Show All Sites" = "Näytä kaikki sivustot";
+
+/* AppDelegate */
+"Show Bookmarks" = "Näytä kirjanmerkit";
+
+/* CertificateViewController */
+"Signature Algorithm" = "Allekirjoitusalgoritmi";
+
+/* SecurityPresetsRow; a security level */
+"Silver" = "Hopea";
+
+/* DonationViewController */
+"Sorry, in-app purchase is disabled on your device!" = "Valitettavasti sovelluksen sisäiset ostot eivät ole käytössä laitteessasi!";
+
+/* InitSecurityLevelViewController */
+"Start Browsing" = "Aloita selaaminen";
+
+/* No comment provided by engineer. */
+"Start Orbot" = "Start Orbot";
+
+/* SettingsViewController */
+"Stop Auto-Complete at First Dot" = "Lopeta automaattitäyttö ensimmäisestä pisteestä";
+
+/* Bookmark */
+"Subscribe to Tor Newsletter" = "Tilaa Tor-uutiskirje";
+
+/* SettingsViewController */
+"Support" = "Tuki";
+
+/* DonationViewController */
+"Support Onion Browser Development" = "Tue Onion-selaimen kehitystä";
+
+/* AppDelegate */
+"Switch to Tab %d" = "Vaihda välilehteen %d";
+
+/* SyncViewController */
+"Sync Bookmarks" = "Synkronoi kirjamerkit";
+
+/* SyncViewController */
+"Sync Bookmarks with Nextcloud Server" = "Synkronoi kirjanmerkit Nextcloud-palvelimelle";
+
+/* BookmarksViewController */
+"Sync with Nextcloud" = "Synkronoi Nextcloudiin";
+
+/* SettingsViewController */
+"Tab Security" = "Välilehtien suojaus";
+
+/* Option title */
+"Tell websites that you object to processing and selling of your personal data" = "Tell websites that you object to processing and selling of your personal data";
+
+/* InitSecurityLevelViewController */
+"The security level you choose for a website often has a direct impact on that site’s performance. Some of the protections can be overridden or modified by changing your security settings." = "Verkkosivustolle valitsemallasi suojaustasolla on usein suora vaikutus sivuston toimivuuteen. Joitakin suojauksia voidaan ohittaa tai muokata suojausasetuksia muuttamalla.";
+
+/* SecurityViewController */
+"These might change server behaviour. E.g. show or not show Captchas or return pages meant for desktop browsers." = "Nämä saattavat vaikuttaa palvelimen toimintaan. Esim. Captcha-vahvistusten tai työpöytäselaimille tarkoitettujen sivujen näkyminen.";
+
+/* CircuitsViewController */
+"This browser" = "Tämä selain";
+
+/* SecurityViewController, placeholder is app name "Onion Browser" */
+"This is your default security setting for every website you visit in %@." = "Tämä on oletusarvoinen suojausasetus kaikille %@issa avatuille sivustoille.";
+
+/* No comment provided by engineer. */
+"This site may need authentication. If you received an authentication key for this site, add it to Orbot!" = "This site may need authentication. If you received an authentication key for this site, add it to Orbot!";
+
+/* DonationViewController */
+"Tip: %@" = "Tippi: %@";
+
+/* BookmarkViewController */
+"Title" = "Nimi";
+
+/* Tab+UIWebViewDelegate */
+"TLS certificate chain verification error (self-signed certificate?)" = "TLS-varmenneketjun vahvistusvirhe (itse allekirjoitettu varmenne?)";
+
+/* Tab+UIWebViewDelegate */
+"TLS handshake failed" = "TLS-kättely epäonnistui";
+
+/* Tab+UIWebViewDelegate */
+"TLS protocol error" = "TLS-protokollavirhe";
+
+/* CircuitsViewController */
+"Tor Circuit" = "Tor-ketju";
+
+/* SyncViewController */
+"Try Again" = "Yritä uudelleen";
+
+/* SecurityViewController */
+"Universal Link Protection" = "Universaali linkkisuojaus";
+
+/* AddSearchEngineViewController */
+"Update" = "Päivitä";
+
+/* SettingsViewController */
+"URL Blocker" = "URL-estäjä";
+
+/* SecurityViewController */
+"User Agent" = "User-Agent-otsake";
+
+/* RuleEditorController */
+"User disabled" = "Käyttäjä poistettu käytöstä";
+
+/* AppDelegate, SyncViewController */
+"Username" = "Käyttäjätunnus";
+
+/* CertificateViewController */
+"Version" = "Versio";
+
+/* SettingsViewController */
+"Version %@" = "Versio %@";
+
+/* SyncViewController */
+"We couldn't sync your bookmarks at this time. Try again to make sure your information is synced." = "Kirjamerkkejäsi ei voitu tällä kertaa synkronoida. Kokeile uudelleen varmistaaksesi tietojesi ajantasaisuuden.";
+
+/* ConnectingViewController */
+"We're having trouble." = "Kohtaamme ongelmia.";
+
+/* SecurityPresetsRow */
+"Websites may break. But you get great security." = "Verkkosivustot saattavat rikkoutua, mutta saat vahvan suojauksen.";
+
+/* No comment provided by engineer. */
+"WebSQL Databases" = "WebSQL Databases";
+
+/* SettingsViewController */
+"When disabled, all text entered in search bar will be sent to the search engine unless it starts with \"http\"." = "Kun ei käytössä, lähetetään kaikki hakupalkkiin kirjoitettu teksti hakukoneelle, ellei teksti ala \"http\".";
+
+/* SecurityPresetsRow */
+"Works pretty well. Your identity is mostly protected." = "Toimii varsin hyvin. Identiteettisi on pääosin suojattu.";
+
+/* DonationViewController */
+"You most recently donated %1$@ on %2$@." = "Lahjoitit viimeksi %1$@ %2$@.";
+
+/* No comment provided by engineer. */
+"You need to request API access with Orbot, in order for %@ to work while Orbot is running." = "You need to request API access with Orbot, in order for %@ to work while Orbot is running.";
+
+/* CircuitViewController */
+"Your traffic goes to 3 different parts of the world." = "Tietoliikenteesi kiertää 3 eri puolilla maailma olevan kohteen kautta.";

@@ -1,0 +1,4 @@
+- Päivitettiin Tor.framework versioon 407.11.1, joka sisältää Tor-version 0.4.7.11.
+- Tuki omille hakukoneille.
+- Käännöspäivityksiä.
+- Lisättiin asetus taustanäkyvyyden hallintaan.

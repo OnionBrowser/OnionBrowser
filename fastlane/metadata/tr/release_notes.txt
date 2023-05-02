@@ -1,1 +1,4 @@
-- Tor 0.4.7.8 içeren Tor.framework 407.8.2'ye güncellendi.
+- Tor 0.4.7.11 içeren Tor.framework 407.11.1'e güncellendi.
+- Özel arama motorlarını destekleyin.
+- Çeviri güncellemeleri.
+- Arka plan gizlemeyi kontrol etmek için ayar eklendi.

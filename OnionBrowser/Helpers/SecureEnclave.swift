@@ -8,7 +8,8 @@
 //  This file is part of Onion Browser. See LICENSE file for redistribution terms.
 //
 
-import UIKit
+import Foundation
+import LocalAuthentication
 
 /**
 Encapsulates all cryptography where the secure enclave is used.
@@ -23,6 +24,8 @@ class SecureEnclave: NSObject {
 	Tag of the single private key we're using.
 	*/
 	static let tag = "Onion Browser".data(using: .utf8)!
+
+	private static let laContext = LAContext()
 
 	/**
 	Create a private/public key pair using our one tag inside the secure enclave.
@@ -145,5 +148,15 @@ class SecureEnclave: NSObject {
 	*/
 	class func getNonce() -> Data? {
 		return UUID().uuidString.data(using: .utf8)
+	}
+
+	class func deviceSecured() -> Bool {
+		laContext.canEvaluatePolicy(.deviceOwnerAuthentication, error: nil)
+	}
+
+	class func biometryType() -> LABiometryType {
+		_ = deviceSecured() // Needs to be called, first, in order for the next value to be set.
+
+		return laContext.biometryType
 	}
 }
