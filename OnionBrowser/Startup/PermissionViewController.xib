@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="body1Lb" destination="kO6-fg-zbJ" id="gcD-gr-Vmc"/>
                 <outlet property="body2Lb" destination="Xli-bc-FBf" id="UNW-5m-FIO"/>
+                <outlet property="body2Top" destination="iId-Xw-94c" id="p6C-Ri-4Ac"/>
                 <outlet property="body3Lb" destination="Sga-kK-Vku" id="TqQ-QD-UD0"/>
                 <outlet property="body4Lb" destination="xmu-ek-pwH" id="9G3-sI-CLL"/>
                 <outlet property="requestAccessBt" destination="fmb-CL-Xz8" id="wpy-2S-7KR"/>
@@ -174,7 +175,7 @@
                     <viewLayoutGuide key="contentLayoutGuide" id="vrC-2z-rll"/>
                     <viewLayoutGuide key="frameLayoutGuide" id="FFh-rS-thM"/>
                 </scrollView>
-                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" currentPage="2" translatesAutoresizingMaskIntoConstraints="NO" id="ifb-UF-LVr">
+                <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" currentPage="2" translatesAutoresizingMaskIntoConstraints="NO" id="ifb-UF-LVr">
                     <rect key="frame" x="93" y="542" width="134.5" height="26"/>
                     <color key="pageIndicatorTintColor" systemColor="systemGray3Color"/>
                     <color key="currentPageIndicatorTintColor" name="Accent"/>

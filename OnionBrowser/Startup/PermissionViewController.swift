@@ -47,6 +47,12 @@ class PermissionViewController: UIViewController, WhyDelegate {
 		}
 	}
 
+	@IBOutlet weak var body2Top: NSLayoutConstraint!
+
+	private lazy var body20Height: NSLayoutConstraint = {
+		body2Lb.heightAnchor.constraint(equalToConstant: 0)
+	}()
+
 	@IBOutlet weak var body3Lb: UILabel! {
 		didSet {
 			body3Lb.text = String(
@@ -55,6 +61,10 @@ class PermissionViewController: UIViewController, WhyDelegate {
 		}
 	}
 
+	private lazy var body30Height: NSLayoutConstraint = {
+		body3Lb.heightAnchor.constraint(equalToConstant: 0)
+	}()
+
 	@IBOutlet weak var body4Lb: UILabel! {
 		didSet {
 			body4Lb.text = String(
@@ -62,6 +72,10 @@ class PermissionViewController: UIViewController, WhyDelegate {
 				"•")
 		}
 	}
+
+	private lazy var body40Height: NSLayoutConstraint = {
+		body4Lb.heightAnchor.constraint(equalToConstant: 0)
+	}()
 
 	@IBOutlet weak var requestAccessBt: UIButton! {
 		didSet {
@@ -99,10 +113,14 @@ class PermissionViewController: UIViewController, WhyDelegate {
 			}
 			else {
 				body2Lb.isHidden = true
+				body2Top?.constant = 0
+				body20Height.isActive = true
 			}
 
 			body3Lb.isHidden = true
+			body30Height.isActive = true
 			body4Lb.isHidden = true
+			body40Height.isActive = true
 		}
 	}
 

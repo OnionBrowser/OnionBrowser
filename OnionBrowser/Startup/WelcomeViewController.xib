@@ -98,7 +98,7 @@
                     <viewLayoutGuide key="contentLayoutGuide" id="qRI-0h-f58"/>
                     <viewLayoutGuide key="frameLayoutGuide" id="Z4d-dx-Riz"/>
                 </scrollView>
-                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="O8i-ir-T21">
+                <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="O8i-ir-T21">
                     <rect key="frame" x="93" y="542" width="134.5" height="26"/>
                     <color key="pageIndicatorTintColor" systemColor="systemGray3Color"/>
                     <color key="currentPageIndicatorTintColor" name="Accent"/>

@@ -127,7 +127,7 @@
                     <viewLayoutGuide key="contentLayoutGuide" id="6Ux-rt-f9z"/>
                     <viewLayoutGuide key="frameLayoutGuide" id="7o1-vu-TWw"/>
                 </scrollView>
-                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" currentPage="3" translatesAutoresizingMaskIntoConstraints="NO" id="uY7-bf-Wkc">
+                <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" currentPage="3" translatesAutoresizingMaskIntoConstraints="NO" id="uY7-bf-Wkc">
                     <rect key="frame" x="93" y="542" width="134.5" height="26"/>
                     <color key="pageIndicatorTintColor" systemColor="systemGray3Color"/>
                     <color key="currentPageIndicatorTintColor" name="Accent"/>
