@@ -17,6 +17,7 @@
                 <outlet property="body3Lb" destination="Sga-kK-Vku" id="TqQ-QD-UD0"/>
                 <outlet property="body4Lb" destination="xmu-ek-pwH" id="9G3-sI-CLL"/>
                 <outlet property="requestAccessBt" destination="fmb-CL-Xz8" id="wpy-2S-7KR"/>
+                <outlet property="statusIv" destination="A6e-KQ-z5Q" id="zRU-MA-nUf"/>
                 <outlet property="titleLb" destination="Zmu-a0-CCn" id="eNV-10-prU"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="whyBt" destination="hia-Rp-vCe" id="taX-tY-Qaq"/>

@@ -13,6 +13,8 @@ class PermissionViewController: UIViewController, WhyDelegate {
 
 	var error: Error?
 
+	@IBOutlet weak var statusIv: UIImageView!
+
 	@IBOutlet weak var titleLb: UILabel! {
 		didSet {
 			titleLb.text = String(format: NSLocalizedString("%@ installed! One more step.", comment: ""),
@@ -83,6 +85,9 @@ class PermissionViewController: UIViewController, WhyDelegate {
 			if case OrbotKit.Errors.httpError(statusCode: 403) = error {
 				description = nil
 			}
+
+			statusIv.tintColor = .error
+			statusIv.image = .init(systemName: "nosign")
 
 			titleLb.text = String(format: NSLocalizedString("Access to %@ was Denied", comment: ""),
 								  InstallViewController.orbot)
