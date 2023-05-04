@@ -37,10 +37,35 @@ class StartViewController: UIViewController, WhyDelegate {
 	}
 
 
+	private var info: OrbotKit.Info? {
+		OrbotManager.shared.lastInfo
+	}
+
+
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+
+		if info?.onionOnly ?? false {
+			bodyLb.attributedText = NSAttributedString(
+				string: String(
+					format: NSLocalizedString(
+						"%1$@ runs in onion-only mode. This is dangerous and %2$@ does not support it. Switch it off to use %2$@!",
+						comment: ""),
+					InstallViewController.orbot, Bundle.main.displayName),
+				attributes: [.foregroundColor: UIColor.error!])
+		}
+	}
+
+
 	// MARK: WhyDelegate
 
 	var buttonTitle: String {
-		NSLocalizedString("Start Tor", comment: "")
+		if info?.onionOnly ?? false {
+			return String(format: NSLocalizedString("Go to %@", comment: ""),
+						  InstallViewController.orbot)
+		}
+
+		return NSLocalizedString("Start Tor", comment: "")
 	}
 
 
@@ -48,7 +73,12 @@ class StartViewController: UIViewController, WhyDelegate {
 
 	@IBAction
 	func action() {
-		OrbotKit.shared.open(.start)
+		if info?.status == .stopped {
+			OrbotKit.shared.open(.start)
+		}
+		else {
+			OrbotKit.shared.open(.settings)
+		}
 	}
 
 	@IBAction

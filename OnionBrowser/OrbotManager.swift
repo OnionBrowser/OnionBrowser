@@ -111,7 +111,7 @@ class OrbotManager : NSObject, OrbotStatusChangeListener {
 			return vc
 		}
 
-		if lastInfo?.status == .stopped {
+		if lastInfo?.status == .stopped || lastInfo?.onionOnly ?? false {
 			return StartViewController()
 		}
 
@@ -124,7 +124,7 @@ class OrbotManager : NSObject, OrbotStatusChangeListener {
 	// MARK: OrbotStatusChangeListener
 
 	func orbotStatusChanged(info: OrbotKit.Info) {
-		guard lastInfo?.status != info.status else {
+		guard lastInfo?.status != info.status || lastInfo?.onionOnly != info.onionOnly else {
 			lastInfo = info
 
 			return
@@ -133,7 +133,7 @@ class OrbotManager : NSObject, OrbotStatusChangeListener {
 		lastInfo = info
 
 		DispatchQueue.main.async {
-			if info.status == .stopped {
+			if info.status == .stopped || info.onionOnly {
 				self.fullStop()
 
 				AppDelegate.shared?.show(StartViewController())

@@ -5,6 +5,9 @@
 "%1$@ relies on %2$@ for a secure connection to Tor. Install the %2$@ app to continue." = "%1$@ relies on %2$@ for a secure connection to Tor. Install the %2$@ app to continue.";
 
 /* No comment provided by engineer. */
+"%1$@ runs in onion-only mode. This is dangerous and %2$@ does not support it. Switch it off to use %2$@!" = "%1$@ runs in onion-only mode. This is dangerous and %2$@ does not support it. Switch it off to use %2$@!";
+
+/* No comment provided by engineer. */
 "%1$@ Use %2$@ to connect to the official Tor network." = "%1$@ Use %2$@ to connect to the official Tor network.";
 
 /* No comment provided by engineer. */
@@ -267,6 +270,9 @@
 
 /* AppDelegate */
 "Go Forward" = "Prosegui";
+
+/* No comment provided by engineer. */
+"Go to %@" = "Go to %@";
 
 /* SecurityPresetsRow; a security level */
 "Gold" = "Oro";
