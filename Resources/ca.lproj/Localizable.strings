@@ -2,37 +2,34 @@
 "%1$@ (Disabled: %2$@)" = "%1$@ (Desactivat: %2$@)";
 
 /* No comment provided by engineer. */
-"%@ is dedicated to run together with Orbot, only.\n\nPlease install Orbot!" = "%@ is dedicated to run together with Orbot, only.\n\nPlease install Orbot!";
+"%1$@ relies on %2$@ for a secure connection to Tor. Install the %2$@ app to continue." = "%1$@ relies on %2$@ for a secure connection to Tor. Install the %2$@ app to continue.";
 
 /* No comment provided by engineer. */
-"%@ is dedicated to run together with Orbot, only.\n\nPlease start Orbot!" = "%@ is dedicated to run together with Orbot, only.\n\nPlease start Orbot!";
+"%1$@ Use %2$@ to connect to the official Tor network." = "%1$@ Use %2$@ to connect to the official Tor network.";
+
+/* No comment provided by engineer. */
+"%@ a little more speed" = "%@ a little more speed";
+
+/* No comment provided by engineer. */
+"%@ alone provides a VPN proxy. It will hide apps from network monitoring and give you access when they are blocked." = "%@ alone provides a VPN proxy. It will hide apps from network monitoring and give you access when they are blocked.";
+
+/* No comment provided by engineer. */
+"%@ Get updates on the status of the connection." = "%@ Get updates on the status of the connection.";
+
+/* No comment provided by engineer. */
+"%@ installed! One more step." = "%@ installed! One more step.";
+
+/* No comment provided by engineer. */
+"%@ more protection from IP leaks" = "%@ more protection from IP leaks";
+
+/* No comment provided by engineer. */
+"%@ new standards" = "%@ new standards";
+
+/* No comment provided by engineer. */
+"%@ video and audio streaming" = "%@ video and audio streaming";
 
 /* SecurityPresetsRow */
 "(not recommended)" = "(no recomanat)";
-
-/* ConnectingViewController */
-"__CLAIM_1__" = "La nostra comunitat és el que fa al Tor gran!";
-
-/* ConnectingViewController */
-"__CLAIM_2__" = "La gent utilitza el Tor tots els dies per a evitar que els anuncis publicitaris els rastregin.";
-
-/* ConnectingViewController */
-"__CLAIM_3__" = "La gent utilitza el Tor per a connectar-se de manera segura amb la família i els amics.";
-
-/* ConnectingViewController */
-"__CLAIM_4__" = "Els activistes utilitzen el Tor per a expressar amb llibertat les seves opinions i creences.";
-
-/* ConnectingViewController */
-"__CLAIM_5__" = "Els bloguers utilitzen el Tor per a congregar la gent envers reformes socials.";
-
-/* ConnectingViewController */
-"__CLAIM_6__" = "Els periodistes utilitzen el Tor per a investigar de manera segura les seves històries.";
-
-/* ConnectingViewController */
-"__CLAIM_7__" = "Els empresaris utilitzen el Tor per a mantenir privades les estratègies de les seves companyies.";
-
-/* ConnectingViewController */
-"__CLAIM_8__" = "Els treballador utilitzen el Tor per a lluitar per la justícia sense por de perdre la feina.";
 
 /* DonationViewController */
 "__DONATE_EXPLANATION_PARAGRAPH1__" = "L'Onion Browser és una aplicació gratuïta, però calen temps i recursos per a desenvolupar-la i mantenir-la.";
@@ -50,7 +47,7 @@
 "About" = "Quant a";
 
 /* No comment provided by engineer. */
-"Access Token" = "Access Token";
+"Access to %@ was Denied" = "Access to %@ was Denied";
 
 /* SearchEnginesViewController, AddSearchEngineViewController */
 "Add" = "Afegeix";
@@ -97,11 +94,14 @@
 /* SecurityViewController */
 "Allow Persistent Cookies" = "Permet galetes persistents";
 
-/* No comment provided by engineer. */
-"App Store" = "App Store";
-
 /* DonationViewController */
 "Are you sure you want to send a %@ tip?" = "Segur que voleu enviar una propina de %@?";
+
+/* No comment provided by engineer. */
+"Ask %@ for permission to access it." = "Ask %@ for permission to access it.";
+
+/* No comment provided by engineer. */
+"Ask again to continue." = "Ask again to continue.";
 
 /* AppDelegate */
 "Authentication Required" = "Cal una autentificació";
@@ -120,6 +120,9 @@
 
 /* BookmarksViewController */
 "Bookmarks" = "Marcadors";
+
+/* No comment provided by engineer. */
+"Both are free to use. Free of tracking. Code is open source." = "Both are free to use. Free of tracking. Code is open source.";
 
 /* CircuitViewController */
 "Bridge Configuration" = "Configuració dels ponts";
@@ -145,14 +148,8 @@
 /* CertificateViewController */
 "Cipher" = "Xifra";
 
-/* ConnectingViewController */
-"Close Onion Browser and restart or try using a bridge." = "Reinicia l'Onion Browser utilitzant un pont.";
-
 /* AppDelegate */
 "Close Tab" = "Tanca la pestanya";
-
-/* BridgesViewController */
-"Configure Bridges" = "Configura els ponts";
 
 /* DonationViewController */
 "Confirm %@" = "Confirma %@";
@@ -162,18 +159,6 @@
 
 /* CircuitViewController */
 "Connect to a website to see your circuit." = "Connecteu a un lloc web per a veure el vostre circuit.";
-
-/* BridgesViewController */
-"Connect to Tor" = "Connecta a Tor";
-
-/* BridgesViewController */
-"Connect to Tor for private browsing." = "Connecteu a Tor per a una navegació privada.";
-
-/* ConnectingViewController */
-"Connected!" = "S'ha connectat!";
-
-/* ConnectingViewController */
-"Connecting to Tor" = "Connexió a Tor";
 
 /* CertificateViewController */
 "Connection Information" = "Informació de la connexió";
@@ -210,9 +195,6 @@
 
 /* CustomSitesViewController */
 "Define custom settings for specific sites." = "Definiu configuracions personalitzades per a llocs específics.";
-
-/* InitSecurityLevelViewController */
-"Define Default Security Level" = "Estableix el nivell de seguretat predeterminada";
 
 /* SearchEnginesViewController */
 "Delete" = "Esborra";
@@ -253,9 +235,6 @@
 /* AlertHelper */
 "Error" = "Error";
 
-/* No comment provided by engineer. */
-"Exit" = "Exit";
-
 /* CertificateViewController */
 "Expires After" = "Expiració";
 
@@ -277,11 +256,11 @@
 /* SettingsViewController */
 "Forget in Background" = "Oblida-ho en segon pla";
 
-/* MainViewController */
-"Free to be you." = "Sigueu vós mateix.";
-
 /* SettingsViewController */
 "Fund Development" = "Financeu el desenvolupament";
+
+/* No comment provided by engineer. */
+"Get %@" = "Get %@";
 
 /* AppDelegate */
 "Go Back" = "Torna enrere";
@@ -307,9 +286,6 @@
 /* AddSiteViewController, SyncViewController */
 "Host" = "Amfitrió";
 
-/* BridgesViewController */
-"If you are in a country or using a connection that censors Tor, you might need to use bridges." = "Si sou en un país o feu servir una connexió que censura Tor, potser us cal usar ponts.";
-
 /* SyncViewController */
 "If you sync, all bookmarks will be read from the server and added/updated in Onion Browser." = "Si sincronitzeu, es llegiran tots els marcadors del servidor i s'afegiran o actualitzaran a l'Onion Browser.";
 
@@ -322,6 +298,9 @@
 /* No comment provided by engineer. */
 "IndexedDB Databases" = "IndexedDB Databases";
 
+/* No comment provided by engineer. */
+"Install %@" = "Install %@";
+
 /* CertificateViewController */
 "Issued By" = "Emès per";
 
@@ -333,9 +312,6 @@
 
 /* Bookmark, placeholder is app name "Onion Browser" */
 "Learn more about %@" = "Més informació sobre %@";
-
-/*MainViewController; placeholder is a angle bracket \u{276c} or \u{276d} depending on text direction. */
-"Let's go %@" = "Som-hi %@";
 
 /* DonationViewController */
 "Loading in-app purchase data…" = "S'estan carregant les dades internes de compres...";
@@ -373,8 +349,8 @@
 /* CircuSitsViewController */
 "New Circuit for this Site" = "Circuit nou per a aquest lloc";
 
-/* ConnectingViewController */
-"Next" = "Següent";
+/* No comment provided by engineer. */
+"Next" = "Next";
 
 /* No comment provided by engineer. */
 "No success, but \"%@\" instead." = "No success, but \"%@\" instead.";
@@ -397,23 +373,11 @@
 /* Tab+Gestures */
 "Open in Safari" = "Obre al Safari";
 
-/* No comment provided by engineer. */
-"Orbot could not be opened!" = "Orbot could not be opened!";
-
-/* No comment provided by engineer. */
-"Orbot Not Installed" = "Orbot Not Installed";
-
-/* No comment provided by engineer. */
-"Orbot not Started" = "Orbot not Started";
-
 /* SecurityViewController */
 "Other" = "Altres";
 
 /* AppDelegate, SyncViewController */
 "Password" = "Contrasenya";
-
-/* No comment provided by engineer. */
-"Paste API token here" = "Paste API token here";
 
 /* DonationViewController */
 "Payment Sent" = "S'ha enviat el pagament";
@@ -455,7 +419,7 @@
 "Report a Bug" = "Notifiqueu un error";
 
 /* No comment provided by engineer. */
-"Request API Access" = "Request API Access";
+"Request Access" = "Request Access";
 
 /* No comment provided by engineer. */
 "Request could not be formed. Please check host and username/password!" = "Request could not be formed. Please check host and username/password!";
@@ -511,14 +475,17 @@
 /* SecurityPresetsRow; a security level */
 "Silver" = "Plata";
 
+/* No comment provided by engineer. */
+"So that you can do more with Tor on iOS! In %1$@, %2$@ improves the browsing experience with:" = "So that you can do more with Tor on iOS! In %1$@, %2$@ improves the browsing experience with:";
+
 /* DonationViewController */
 "Sorry, in-app purchase is disabled on your device!" = "Les compres integrades es troben desactivades al vostre dispositiu.";
 
-/* InitSecurityLevelViewController */
-"Start Browsing" = "Comença a navegar";
+/* No comment provided by engineer. */
+"Start Tor" = "Start Tor";
 
 /* No comment provided by engineer. */
-"Start Orbot" = "Start Orbot";
+"Start Tor in %@." = "Start Tor in %@.";
 
 /* SettingsViewController */
 "Stop Auto-Complete at First Dot" = "Deixa d'emplenar automàticament al primer punt";
@@ -550,8 +517,8 @@
 /* Option title */
 "Tell websites that you object to processing and selling of your personal data" = "Tell websites that you object to processing and selling of your personal data";
 
-/* InitSecurityLevelViewController */
-"The security level you choose for a website often has a direct impact on that site’s performance. Some of the protections can be overridden or modified by changing your security settings." = "El nivell de seguretat que trieu per a un lloc web sovint té un impacte directe en el rendiment del lloc. Algunes de les proteccions poden eludir-se o modificar-se si canvieu la configuració de seguretat.";
+/* No comment provided by engineer. */
+"Then come back for private browsing." = "Then come back for private browsing.";
 
 /* SecurityViewController */
 "These might change server behaviour. E.g. show or not show Captchas or return pages meant for desktop browsers." = "Això pot canviar el comportament del servidor. (p. ex.: Obtenció [o no] de serveis Captcha o mostrar pàgines no vàlides per a dispositius d'escriptori).";
@@ -564,6 +531,9 @@
 
 /* No comment provided by engineer. */
 "This site may need authentication. If you received an authentication key for this site, add it to Orbot!" = "This site may need authentication. If you received an authentication key for this site, add it to Orbot!";
+
+/* No comment provided by engineer. */
+"This will allow %@ to:" = "This will allow %@ to:";
 
 /* DonationViewController */
 "Tip: %@" = "Propina: %@";
@@ -613,17 +583,23 @@
 /* SyncViewController */
 "We couldn't sync your bookmarks at this time. Try again to make sure your information is synced." = "S'ha produït un error en sincronitzar les adreces d'interès. Torneu a provar per assegurar-vos que la vostra informació se sincronitza correctament.";
 
-/* ConnectingViewController */
-"We're having trouble." = "S'ha produït un error.";
-
 /* SecurityPresetsRow */
 "Websites may break. But you get great security." = "Els lloc web poden deixar de funcionar. Però obteniu una gran seguretat.";
 
 /* No comment provided by engineer. */
 "WebSQL Databases" = "WebSQL Databases";
 
+/* No comment provided by engineer. */
+"Welcome to %@" = "Welcome to %@";
+
 /* SettingsViewController */
 "When disabled, all text entered in search bar will be sent to the search engine unless it starts with \"http\"." = "Quan està desactivat, tot el text que introduïu a la barra de cerca s'enviarà al motor de cerca, excepte si comença per «http».";
+
+/* No comment provided by engineer. */
+"Why" = "Why";
+
+/* No comment provided by engineer. */
+"Why %1$@ needs %2$@" = "Why %1$@ needs %2$@";
 
 /* SecurityPresetsRow */
 "Works pretty well. Your identity is mostly protected." = "Funciona força bé. La vostra identitat està majoritàriament protegida.";
@@ -632,7 +608,7 @@
 "You most recently donated %1$@ on %2$@." = "Fa poc heu donat %1$@ al%2$@.";
 
 /* No comment provided by engineer. */
-"You need to request API access with Orbot, in order for %@ to work while Orbot is running." = "You need to request API access with Orbot, in order for %@ to work while Orbot is running.";
+"You're one step closer to private browsing." = "You're one step closer to private browsing.";
 
 /* CircuitViewController */
 "Your traffic goes to 3 different parts of the world." = "El trànsit va per 3 parts diferents del món.";

@@ -12,7 +12,7 @@ import UIKit
 import AVFoundation
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, OrbotManagerDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	@objc
 	static let socksProxyPort = 39050
@@ -79,8 +79,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OrbotManagerDelegate {
 
 		return commands
 	}
-
-	private var inStartupPhase = true
 
 	/**
 	Flag, if biometric/password authentication after activation was successful.
@@ -153,7 +151,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OrbotManagerDelegate {
 			if urlc.path == "token-callback",
 				let token = urlc.queryItems?.first(where: { $0.name == "token" })?.value
 			{
-					OrbotManager.shared.tokenAlert?.textFields?.first?.text = token
+				Settings.orbotApiToken = token
 			}
 
 			return true
@@ -200,21 +198,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OrbotManagerDelegate {
 
 		verified = false
 
-		if inStartupPhase {
-			show(MainViewController())
+		BlurredSnapshot.remove()
 
-			inStartupPhase = false
-		}
-		else {
-			let mgr = OrbotManager.shared
-
-			if (mgr.lastInfo?.status != .started && mgr.lastInfo?.status != .starting) {
-				BlurredSnapshot.remove()
-			}
-			else {
-				self.torConnFinished()
-			}
-		}
+		show(OrbotManager.shared.checkStatus())
 	}
 
 	func applicationWillTerminate(_ application: UIApplication) {
@@ -284,25 +270,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OrbotManagerDelegate {
 	}
 
 
-	// MARK: OrbotManagerDelegate
-
-	func torConnFinished() {
-		DispatchQueue.main.async {
-			BlurredSnapshot.remove()
-
-			// Close modal dialogs, if there are URLs to open.
-			if Settings.openNewUrlOnStart != nil {
-				self.dismissModalsAndCall {
-					self.browsingUi?.becomesVisible()
-				}
-			}
-			else {
-				self.browsingUi?.becomesVisible()
-			}
-		}
-	}
-
-
 	// MARK: Public Methods
 
 	/**
@@ -321,15 +288,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate, OrbotManagerDelegate {
 		}
 	}
 
-	func show(_ viewController: UIViewController?, _ completion: ((Bool) -> Void)? = nil) {
+	func show(_ viewController: UIViewController? = nil, _ completion: ((Bool) -> Void)? = nil) {
 		if window == nil {
 			window = UIWindow(frame: UIScreen.main.bounds)
 			window?.backgroundColor = .accent
 		}
 
+		var viewController = viewController
+		var completion = completion
+
+		if viewController == nil || viewController is BrowsingViewController {
+			if browsingUi == nil {
+				browsingUi = (viewController as? BrowsingViewController) ?? BrowsingViewController()
+			}
+
+			viewController = browsingUi
+
+			let outerCompletion = completion
+
+			completion = { finished in
+				TabSecurity.restore()
+
+				// Close modal dialogs, if there are URLs to open.
+				if Settings.openNewUrlOnStart != nil {
+					self.dismissModalsAndCall {
+						self.browsingUi?.becomesVisible()
+					}
+				}
+				else {
+					self.browsingUi?.becomesVisible()
+				}
+
+				outerCompletion?(finished)
+			}
+		}
+
 		if viewController?.restorationIdentifier == nil {
 			viewController?.restorationIdentifier = String(describing: type(of: viewController))
 		}
+
 		window?.rootViewController = viewController
 		window?.makeKeyAndVisible()
 

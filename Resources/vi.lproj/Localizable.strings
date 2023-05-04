@@ -2,37 +2,34 @@
 "%1$@ (Disabled: %2$@)" = "%1$@ (Vô hiệu hóa: %2$@)";
 
 /* No comment provided by engineer. */
-"%@ is dedicated to run together with Orbot, only.\n\nPlease install Orbot!" = "%@ is dedicated to run together with Orbot, only.\n\nPlease install Orbot!";
+"%1$@ relies on %2$@ for a secure connection to Tor. Install the %2$@ app to continue." = "%1$@ relies on %2$@ for a secure connection to Tor. Install the %2$@ app to continue.";
 
 /* No comment provided by engineer. */
-"%@ is dedicated to run together with Orbot, only.\n\nPlease start Orbot!" = "%@ is dedicated to run together with Orbot, only.\n\nPlease start Orbot!";
+"%1$@ Use %2$@ to connect to the official Tor network." = "%1$@ Use %2$@ to connect to the official Tor network.";
+
+/* No comment provided by engineer. */
+"%@ a little more speed" = "%@ a little more speed";
+
+/* No comment provided by engineer. */
+"%@ alone provides a VPN proxy. It will hide apps from network monitoring and give you access when they are blocked." = "%@ alone provides a VPN proxy. It will hide apps from network monitoring and give you access when they are blocked.";
+
+/* No comment provided by engineer. */
+"%@ Get updates on the status of the connection." = "%@ Get updates on the status of the connection.";
+
+/* No comment provided by engineer. */
+"%@ installed! One more step." = "%@ installed! One more step.";
+
+/* No comment provided by engineer. */
+"%@ more protection from IP leaks" = "%@ more protection from IP leaks";
+
+/* No comment provided by engineer. */
+"%@ new standards" = "%@ new standards";
+
+/* No comment provided by engineer. */
+"%@ video and audio streaming" = "%@ video and audio streaming";
 
 /* SecurityPresetsRow */
 "(not recommended)" = "(không khuyến nghị)";
-
-/* ConnectingViewController */
-"__CLAIM_1__" = "Cộng đồng chúng ta đã giúp Tor trở nên tuyệt vời!";
-
-/* ConnectingViewController */
-"__CLAIM_2__" = "Nhiều người sử dụng Tor mỗi ngày để tránh bị quảng cáo đeo bám.";
-
-/* ConnectingViewController */
-"__CLAIM_3__" = "Người khác lại dùng Tor để kết nối an toàn với bạn bè và người thân.";
-
-/* ConnectingViewController */
-"__CLAIM_4__" = "Những nhà hoạt động nhân quyền dùng Tor để bày tỏ ý kiến và niềm tin. ";
-
-/* ConnectingViewController */
-"__CLAIM_5__" = "Blogger dùng Tor để kêu gọi người dân hướng tới cải cách xã hội.";
-
-/* ConnectingViewController */
-"__CLAIM_6__" = "Nhà báo dùng Tor để điều tra những câu chuyện một cách an toàn.";
-
-/* ConnectingViewController */
-"__CLAIM_7__" = "Thương gia dùng Tor để đảm bảo bí mật chiến lược phát triển công ty.";
-
-/* ConnectingViewController */
-"__CLAIM_8__" = "Công nhân dùng Tor để chiến đấu đòi công lý mà không sợ mất việc.";
 
 /* DonationViewController */
 "__DONATE_EXPLANATION_PARAGRAPH1__" = "Onion Browser là ứng dụng miễn phí, nhưng tất nhiên vẫn cần thời gian và chi phí để phát triển và tu sửa.";
@@ -50,7 +47,7 @@
 "About" = "Thông tin";
 
 /* No comment provided by engineer. */
-"Access Token" = "Access Token";
+"Access to %@ was Denied" = "Access to %@ was Denied";
 
 /* SearchEnginesViewController, AddSearchEngineViewController */
 "Add" = "Thêm";
@@ -97,11 +94,14 @@
 /* SecurityViewController */
 "Allow Persistent Cookies" = "Cho phép Cookie vĩnh viễn";
 
-/* No comment provided by engineer. */
-"App Store" = "App Store";
-
 /* DonationViewController */
 "Are you sure you want to send a %@ tip?" = "Bạn có chắc muốn ủng hộ %@?";
+
+/* No comment provided by engineer. */
+"Ask %@ for permission to access it." = "Ask %@ for permission to access it.";
+
+/* No comment provided by engineer. */
+"Ask again to continue." = "Ask again to continue.";
 
 /* AppDelegate */
 "Authentication Required" = "Cần xác thực";
@@ -120,6 +120,9 @@
 
 /* BookmarksViewController */
 "Bookmarks" = "Dấu trang";
+
+/* No comment provided by engineer. */
+"Both are free to use. Free of tracking. Code is open source." = "Both are free to use. Free of tracking. Code is open source.";
 
 /* CircuitViewController */
 "Bridge Configuration" = "Cài đặt Cầu nối";
@@ -145,14 +148,8 @@
 /* CertificateViewController */
 "Cipher" = "Mã hóa";
 
-/* ConnectingViewController */
-"Close Onion Browser and restart or try using a bridge." = "Khởi động lại Onion Browser hoặc thử dùng cầu nối khác.";
-
 /* AppDelegate */
 "Close Tab" = "Đóng cửa sổ";
-
-/* BridgesViewController */
-"Configure Bridges" = "Cài đặt cầu nối";
 
 /* DonationViewController */
 "Confirm %@" = "Xác nhận %@";
@@ -162,18 +159,6 @@
 
 /* CircuitViewController */
 "Connect to a website to see your circuit." = "Kết nối tới một trang web để xem mạch Tor của bạn.";
-
-/* BridgesViewController */
-"Connect to Tor" = "Kết nối tới Tor";
-
-/* BridgesViewController */
-"Connect to Tor for private browsing." = "Kết nối tới Tor để duyệt web riêng tư.";
-
-/* ConnectingViewController */
-"Connected!" = "Đã kết nối!";
-
-/* ConnectingViewController */
-"Connecting to Tor" = "Đang kết nối tới Tor";
 
 /* CertificateViewController */
 "Connection Information" = "Thông tin kết nối";
@@ -210,9 +195,6 @@
 
 /* CustomSitesViewController */
 "Define custom settings for specific sites." = "Tùy chọn thiết đặt cho từng trang web.";
-
-/* InitSecurityLevelViewController */
-"Define Default Security Level" = "Chọn cấp bảo mật mặc định";
 
 /* SearchEnginesViewController */
 "Delete" = "Xoá";
@@ -253,9 +235,6 @@
 /* AlertHelper */
 "Error" = "Lỗi";
 
-/* No comment provided by engineer. */
-"Exit" = "Exit";
-
 /* CertificateViewController */
 "Expires After" = "Hết hạn sau";
 
@@ -277,11 +256,11 @@
 /* SettingsViewController */
 "Forget in Background" = "Quên khi ở dưới nền";
 
-/* MainViewController */
-"Free to be you." = "Tự do là chính mình.";
-
 /* SettingsViewController */
 "Fund Development" = "Ủng hộ phát triển";
+
+/* No comment provided by engineer. */
+"Get %@" = "Get %@";
 
 /* AppDelegate */
 "Go Back" = "Quay lại";
@@ -307,9 +286,6 @@
 /* AddSiteViewController, SyncViewController */
 "Host" = "Tên miền";
 
-/* BridgesViewController */
-"If you are in a country or using a connection that censors Tor, you might need to use bridges." = "Nếu bạn sống ở nơi mà Tor bị kiểm duyệt, bạn có thể sẽ cần dùng cầu nối.";
-
 /* SyncViewController */
 "If you sync, all bookmarks will be read from the server and added/updated in Onion Browser." = "Nếu bạn đồng bộ, tất cả dấu trang sẽ được đọc từ máy chủ và thêm/cập nhật vào Onion Browser.";
 
@@ -322,6 +298,9 @@
 /* No comment provided by engineer. */
 "IndexedDB Databases" = "IndexedDB Databases";
 
+/* No comment provided by engineer. */
+"Install %@" = "Install %@";
+
 /* CertificateViewController */
 "Issued By" = "Cấp bởi";
 
@@ -333,9 +312,6 @@
 
 /* Bookmark, placeholder is app name "Onion Browser" */
 "Learn more about %@" = "Tìm hiểu thêm về %@";
-
-/*MainViewController; placeholder is a angle bracket \u{276c} or \u{276d} depending on text direction. */
-"Let's go %@" = "Đi nào %@";
 
 /* DonationViewController */
 "Loading in-app purchase data…" = "Đang tải dữ liệu mua trong ứng dụng...";
@@ -373,8 +349,8 @@
 /* CircuSitsViewController */
 "New Circuit for this Site" = "Thêm mạch cho trang web này";
 
-/* ConnectingViewController */
-"Next" = "Tiếp theo";
+/* No comment provided by engineer. */
+"Next" = "Next";
 
 /* No comment provided by engineer. */
 "No success, but \"%@\" instead." = "No success, but \"%@\" instead.";
@@ -397,23 +373,11 @@
 /* Tab+Gestures */
 "Open in Safari" = "Mở trong Safari";
 
-/* No comment provided by engineer. */
-"Orbot could not be opened!" = "Orbot could not be opened!";
-
-/* No comment provided by engineer. */
-"Orbot Not Installed" = "Orbot Not Installed";
-
-/* No comment provided by engineer. */
-"Orbot not Started" = "Orbot not Started";
-
 /* SecurityViewController */
 "Other" = "Khác";
 
 /* AppDelegate, SyncViewController */
 "Password" = "Mật khẩu";
-
-/* No comment provided by engineer. */
-"Paste API token here" = "Paste API token here";
 
 /* DonationViewController */
 "Payment Sent" = "Đã thanh toán";
@@ -455,7 +419,7 @@
 "Report a Bug" = "Báo cáo lỗi";
 
 /* No comment provided by engineer. */
-"Request API Access" = "Request API Access";
+"Request Access" = "Request Access";
 
 /* No comment provided by engineer. */
 "Request could not be formed. Please check host and username/password!" = "Request could not be formed. Please check host and username/password!";
@@ -511,14 +475,17 @@
 /* SecurityPresetsRow; a security level */
 "Silver" = "Bạc";
 
+/* No comment provided by engineer. */
+"So that you can do more with Tor on iOS! In %1$@, %2$@ improves the browsing experience with:" = "So that you can do more with Tor on iOS! In %1$@, %2$@ improves the browsing experience with:";
+
 /* DonationViewController */
 "Sorry, in-app purchase is disabled on your device!" = "Xin lỗi, mua hàng trong ứng dụng đã bị tắt trên thiết bị này!";
 
-/* InitSecurityLevelViewController */
-"Start Browsing" = "Bắt đầu duyệt web";
+/* No comment provided by engineer. */
+"Start Tor" = "Start Tor";
 
 /* No comment provided by engineer. */
-"Start Orbot" = "Start Orbot";
+"Start Tor in %@." = "Start Tor in %@.";
 
 /* SettingsViewController */
 "Stop Auto-Complete at First Dot" = "Tắt Tự động điền sau dấu chấm đầu tiên";
@@ -550,8 +517,8 @@
 /* Option title */
 "Tell websites that you object to processing and selling of your personal data" = "Tell websites that you object to processing and selling of your personal data";
 
-/* InitSecurityLevelViewController */
-"The security level you choose for a website often has a direct impact on that site’s performance. Some of the protections can be overridden or modified by changing your security settings." = "Thông thường, cấp độ bảo mật bạn chọn cho từng trang web có ảnh hưởng trực tiếp đến hiệu suất trang web. Một số lớp bảo vệ có thể được bỏ qua hoặc sửa đổi bằng cách sửa cài đặt bảo mật của bạn.";
+/* No comment provided by engineer. */
+"Then come back for private browsing." = "Then come back for private browsing.";
 
 /* SecurityViewController */
 "These might change server behaviour. E.g. show or not show Captchas or return pages meant for desktop browsers." = "These might change server behaviour. E.g. show or not show Captchas or return pages meant for desktop browsers.";
@@ -564,6 +531,9 @@
 
 /* No comment provided by engineer. */
 "This site may need authentication. If you received an authentication key for this site, add it to Orbot!" = "This site may need authentication. If you received an authentication key for this site, add it to Orbot!";
+
+/* No comment provided by engineer. */
+"This will allow %@ to:" = "This will allow %@ to:";
 
 /* DonationViewController */
 "Tip: %@" = "Mẹo: %@";
@@ -613,17 +583,23 @@
 /* SyncViewController */
 "We couldn't sync your bookmarks at this time. Try again to make sure your information is synced." = "Hiện thời chúng tôi không thể đồng bộ dấu trang cho bạn. Hãy thử lại để đảm bảo rằng thông tin của bạn được đồng bộ.";
 
-/* ConnectingViewController */
-"We're having trouble." = "Chúng tôi đang gặp khó khăn.";
-
 /* SecurityPresetsRow */
 "Websites may break. But you get great security." = "Các trang web có thể sẽ hỏng. Nhưng bạn đạt được độ bảo mật cao.";
 
 /* No comment provided by engineer. */
 "WebSQL Databases" = "WebSQL Databases";
 
+/* No comment provided by engineer. */
+"Welcome to %@" = "Welcome to %@";
+
 /* SettingsViewController */
 "When disabled, all text entered in search bar will be sent to the search engine unless it starts with \"http\"." = "Khi tắt, tất cả kí tự điền trên thanh tìm kiếm sẽ được gửi đến công cụ tìm kiếm trừ khi bắt đầu bằng \"http\".";
+
+/* No comment provided by engineer. */
+"Why" = "Why";
+
+/* No comment provided by engineer. */
+"Why %1$@ needs %2$@" = "Why %1$@ needs %2$@";
 
 /* SecurityPresetsRow */
 "Works pretty well. Your identity is mostly protected." = "Hoạt động khá tốt. Danh tính của bạn được gần như được bảo vệ hoàn toàn.";
@@ -632,7 +608,7 @@
 "You most recently donated %1$@ on %2$@." = "Gần đây bạn đã ủng hộ %1$@ vào %2$@.";
 
 /* No comment provided by engineer. */
-"You need to request API access with Orbot, in order for %@ to work while Orbot is running." = "You need to request API access with Orbot, in order for %@ to work while Orbot is running.";
+"You're one step closer to private browsing." = "You're one step closer to private browsing.";
 
 /* CircuitViewController */
 "Your traffic goes to 3 different parts of the world." = "Lưu lượng của bạn đi qua 3 nơi trên thế giới.";

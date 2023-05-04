@@ -2,37 +2,34 @@
 "%1$@ (Disabled: %2$@)" = "%1$@ (Díchumasaithe: %2$@)";
 
 /* No comment provided by engineer. */
-"%@ is dedicated to run together with Orbot, only.\n\nPlease install Orbot!" = "%@ is dedicated to run together with Orbot, only.\n\nPlease install Orbot!";
+"%1$@ relies on %2$@ for a secure connection to Tor. Install the %2$@ app to continue." = "%1$@ relies on %2$@ for a secure connection to Tor. Install the %2$@ app to continue.";
 
 /* No comment provided by engineer. */
-"%@ is dedicated to run together with Orbot, only.\n\nPlease start Orbot!" = "%@ is dedicated to run together with Orbot, only.\n\nPlease start Orbot!";
+"%1$@ Use %2$@ to connect to the official Tor network." = "%1$@ Use %2$@ to connect to the official Tor network.";
+
+/* No comment provided by engineer. */
+"%@ a little more speed" = "%@ a little more speed";
+
+/* No comment provided by engineer. */
+"%@ alone provides a VPN proxy. It will hide apps from network monitoring and give you access when they are blocked." = "%@ alone provides a VPN proxy. It will hide apps from network monitoring and give you access when they are blocked.";
+
+/* No comment provided by engineer. */
+"%@ Get updates on the status of the connection." = "%@ Get updates on the status of the connection.";
+
+/* No comment provided by engineer. */
+"%@ installed! One more step." = "%@ installed! One more step.";
+
+/* No comment provided by engineer. */
+"%@ more protection from IP leaks" = "%@ more protection from IP leaks";
+
+/* No comment provided by engineer. */
+"%@ new standards" = "%@ new standards";
+
+/* No comment provided by engineer. */
+"%@ video and audio streaming" = "%@ video and audio streaming";
 
 /* SecurityPresetsRow */
 "(not recommended)" = "(ní mholtar é seo)";
-
-/* ConnectingViewController */
-"__CLAIM_1__" = "Is é ár bpobal ó chúlraí éagsúla an rud is fearr faoi Tor!";
-
-/* ConnectingViewController */
-"__CLAIM_2__" = "Úsáideann daoine Tor gach lá chun lorgairí margaíochta a sheachaint.";
-
-/* ConnectingViewController */
-"__CLAIM_3__" = "Úsáideann daoine Tor chun fanacht i dteagmháil le cairde agus lena muintir go slán sábháilte.";
-
-/* ConnectingViewController */
-"__CLAIM_4__" = "Úsáideann gníomhaígh Tor chun a gcuid tuairimí a nochtadh gan srian.";
-
-/* ConnectingViewController */
-"__CLAIM_5__" = "Úsáideann blagálaithe Tor chun an pobal a spreagadh i dtreo leasaithe sóisialta.";
-
-/* ConnectingViewController */
-"__CLAIM_6__" = "Úsáideann iriseoirí Tor chun taighde a dhéanamh ar scéalta nuachta go sábháilte.";
-
-/* ConnectingViewController */
-"__CLAIM_7__" = "Úsáideann lucht gnó Tor lena gcuid straitéisí a choinneáil faoi rún.";
-
-/* ConnectingViewController */
-"__CLAIM_8__" = "Úsáideann lucht oibre Tor chun cothrom na Féinne a bhaint amach gan eagla go mbrisfí as a bpost iad.";
 
 /* DonationViewController */
 "__DONATE_EXPLANATION_PARAGRAPH1__" = "Tá Brabhsálaí Onion ar fáil saor in aisce, ach tógann sé am agus acmhainní é a fhorbairt agus a chothú.";
@@ -50,7 +47,7 @@
 "About" = "Maidir leis";
 
 /* No comment provided by engineer. */
-"Access Token" = "Access Token";
+"Access to %@ was Denied" = "Access to %@ was Denied";
 
 /* SearchEnginesViewController, AddSearchEngineViewController */
 "Add" = "Add";
@@ -97,11 +94,14 @@
 /* SecurityViewController */
 "Allow Persistent Cookies" = "Ceadaigh fianáin sheasmhacha";
 
-/* No comment provided by engineer. */
-"App Store" = "App Store";
-
 /* DonationViewController */
 "Are you sure you want to send a %@ tip?" = "An bhfuil tú cinnte gur mhaith leat séisín a thabhairt do %@?";
+
+/* No comment provided by engineer. */
+"Ask %@ for permission to access it." = "Ask %@ for permission to access it.";
+
+/* No comment provided by engineer. */
+"Ask again to continue." = "Ask again to continue.";
 
 /* AppDelegate */
 "Authentication Required" = "Fíordheimhniú de dhíth";
@@ -120,6 +120,9 @@
 
 /* BookmarksViewController */
 "Bookmarks" = "Leabharmharcanna";
+
+/* No comment provided by engineer. */
+"Both are free to use. Free of tracking. Code is open source." = "Both are free to use. Free of tracking. Code is open source.";
 
 /* CircuitViewController */
 "Bridge Configuration" = "Cumraíocht Droichid";
@@ -145,14 +148,8 @@
 /* CertificateViewController */
 "Cipher" = "Sifear";
 
-/* ConnectingViewController */
-"Close Onion Browser and restart or try using a bridge." = "Dún Brabhsálaí Onion agus atosaigh é, nó bain triail as droichead.";
-
 /* AppDelegate */
 "Close Tab" = "Dún an Cluaisín";
-
-/* BridgesViewController */
-"Configure Bridges" = "Cumraigh Droichid";
 
 /* DonationViewController */
 "Confirm %@" = "Deimhnigh %@";
@@ -162,18 +159,6 @@
 
 /* CircuitViewController */
 "Connect to a website to see your circuit." = "Ceangail le suíomh Gréasáin chun an ciorcad a fheiceáil.";
-
-/* BridgesViewController */
-"Connect to Tor" = "Ceangail le Tor";
-
-/* BridgesViewController */
-"Connect to Tor for private browsing." = "Ceangail le Tor chun brabhsáil go príobháideach.";
-
-/* ConnectingViewController */
-"Connected!" = "Ceangailte!";
-
-/* ConnectingViewController */
-"Connecting to Tor" = "Ag ceangal le Tor";
 
 /* CertificateViewController */
 "Connection Information" = "Eolas faoin Cheangal";
@@ -210,9 +195,6 @@
 
 /* CustomSitesViewController */
 "Define custom settings for specific sites." = "Roghnaigh socruithe speisialta ar shuímh ar leith.";
-
-/* InitSecurityLevelViewController */
-"Define Default Security Level" = "Socraigh an Leibhéal Réamhshocraithe Slándála";
 
 /* SearchEnginesViewController */
 "Delete" = "Delete";
@@ -253,9 +235,6 @@
 /* AlertHelper */
 "Error" = "Earráid";
 
-/* No comment provided by engineer. */
-"Exit" = "Exit";
-
 /* CertificateViewController */
 "Expires After" = "Dáta Éagtha";
 
@@ -277,11 +256,11 @@
 /* SettingsViewController */
 "Forget in Background" = "Dearmad sa Chúlra";
 
-/* MainViewController */
-"Free to be you." = "Tá cead do chinn agat.";
-
 /* SettingsViewController */
 "Fund Development" = "Tacaigh leis an bhForbairt";
+
+/* No comment provided by engineer. */
+"Get %@" = "Get %@";
 
 /* AppDelegate */
 "Go Back" = "Ar Ais";
@@ -307,9 +286,6 @@
 /* AddSiteViewController, SyncViewController */
 "Host" = "Óstach";
 
-/* BridgesViewController */
-"If you are in a country or using a connection that censors Tor, you might need to use bridges." = "Má tá tú lonnaithe i dtír nó ag baint úsáide as ceangal a dhéanann cinsireacht ar Tor, seans gur gá duit droichead a úsáid.";
-
 /* SyncViewController */
 "If you sync, all bookmarks will be read from the server and added/updated in Onion Browser." = "Má dhéanann tú sioncronú, léifear gach leabharmharc ón bhfreastalaí agus cuirfear le Brabhsálaí Onion iad.";
 
@@ -322,6 +298,9 @@
 /* No comment provided by engineer. */
 "IndexedDB Databases" = "IndexedDB Databases";
 
+/* No comment provided by engineer. */
+"Install %@" = "Install %@";
+
 /* CertificateViewController */
 "Issued By" = "Eisithe Ag";
 
@@ -333,9 +312,6 @@
 
 /* Bookmark, placeholder is app name "Onion Browser" */
 "Learn more about %@" = "Tuilleadh eolais maidir le %@";
-
-/*MainViewController; placeholder is a angle bracket \u{276c} or \u{276d} depending on text direction. */
-"Let's go %@" = "Ar aghaidh linn %@";
 
 /* DonationViewController */
 "Loading in-app purchase data…" = "Sonraí maidir le ceannacháin san aip á lódáil...";
@@ -373,8 +349,8 @@
 /* CircuSitsViewController */
 "New Circuit for this Site" = "Ciorcad Nua don Suíomh Seo";
 
-/* ConnectingViewController */
-"Next" = "Ar Aghaidh";
+/* No comment provided by engineer. */
+"Next" = "Next";
 
 /* No comment provided by engineer. */
 "No success, but \"%@\" instead." = "No success, but \"%@\" instead.";
@@ -397,23 +373,11 @@
 /* Tab+Gestures */
 "Open in Safari" = "Oscail in Safari";
 
-/* No comment provided by engineer. */
-"Orbot could not be opened!" = "Orbot could not be opened!";
-
-/* No comment provided by engineer. */
-"Orbot Not Installed" = "Orbot Not Installed";
-
-/* No comment provided by engineer. */
-"Orbot not Started" = "Orbot not Started";
-
 /* SecurityViewController */
 "Other" = "Eile";
 
 /* AppDelegate, SyncViewController */
 "Password" = "Focal Faire";
-
-/* No comment provided by engineer. */
-"Paste API token here" = "Paste API token here";
 
 /* DonationViewController */
 "Payment Sent" = "Seoladh an Íocaíocht";
@@ -455,7 +419,7 @@
 "Report a Bug" = "Déan tuairisc ar fhabht";
 
 /* No comment provided by engineer. */
-"Request API Access" = "Request API Access";
+"Request Access" = "Request Access";
 
 /* No comment provided by engineer. */
 "Request could not be formed. Please check host and username/password!" = "Request could not be formed. Please check host and username/password!";
@@ -511,14 +475,17 @@
 /* SecurityPresetsRow; a security level */
 "Silver" = "Airgead";
 
+/* No comment provided by engineer. */
+"So that you can do more with Tor on iOS! In %1$@, %2$@ improves the browsing experience with:" = "So that you can do more with Tor on iOS! In %1$@, %2$@ improves the browsing experience with:";
+
 /* DonationViewController */
 "Sorry, in-app purchase is disabled on your device!" = "Ár leithscéal; díchumasaíodh ceannacháin san aip ar an ngléas seo!";
 
-/* InitSecurityLevelViewController */
-"Start Browsing" = "Brabhsáil Anois";
+/* No comment provided by engineer. */
+"Start Tor" = "Start Tor";
 
 /* No comment provided by engineer. */
-"Start Orbot" = "Start Orbot";
+"Start Tor in %@." = "Start Tor in %@.";
 
 /* SettingsViewController */
 "Stop Auto-Complete at First Dot" = "Stop uathlíonadh ag an chéad phonc";
@@ -550,8 +517,8 @@
 /* Option title */
 "Tell websites that you object to processing and selling of your personal data" = "Tell websites that you object to processing and selling of your personal data";
 
-/* InitSecurityLevelViewController */
-"The security level you choose for a website often has a direct impact on that site’s performance. Some of the protections can be overridden or modified by changing your security settings." = "Imríonn an leibhéal slándála a roghnaíonn tú ar shuíomh áirithe tionchar ar fheidhmíocht an tsuímh sin. Is féidir roinnt de na cosaintí a shárú nó a athrú sna socruithe slándála.";
+/* No comment provided by engineer. */
+"Then come back for private browsing." = "Then come back for private browsing.";
 
 /* SecurityViewController */
 "These might change server behaviour. E.g. show or not show Captchas or return pages meant for desktop browsers." = "These might change server behaviour. E.g. show or not show Captchas or return pages meant for desktop browsers.";
@@ -564,6 +531,9 @@
 
 /* No comment provided by engineer. */
 "This site may need authentication. If you received an authentication key for this site, add it to Orbot!" = "This site may need authentication. If you received an authentication key for this site, add it to Orbot!";
+
+/* No comment provided by engineer. */
+"This will allow %@ to:" = "This will allow %@ to:";
 
 /* DonationViewController */
 "Tip: %@" = "Séisín: %@";
@@ -613,17 +583,23 @@
 /* SyncViewController */
 "We couldn't sync your bookmarks at this time. Try again to make sure your information is synced." = "Níorbh fhéidir linn do chuid leabharmharcanna a shioncrónú. Bain triail eile as le bheith cinnte go bhfuil siad sioncrónaithe.";
 
-/* ConnectingViewController */
-"We're having trouble." = "Tá fadhb ann.";
-
 /* SecurityPresetsRow */
 "Websites may break. But you get great security." = "Tá seans ann go mbrisfidh suímh áirithe. Ach gheobhaidh tú cosaint den chéad scoth.";
 
 /* No comment provided by engineer. */
 "WebSQL Databases" = "WebSQL Databases";
 
+/* No comment provided by engineer. */
+"Welcome to %@" = "Welcome to %@";
+
 /* SettingsViewController */
 "When disabled, all text entered in search bar will be sent to the search engine unless it starts with \"http\"." = "Gan an rogha seo, seolfar aon téacs a chuireann tú sa mbarra cuardaigh chuig an inneall cuardaigh, seachas aon téacs a thosaíonn le \"http\".";
+
+/* No comment provided by engineer. */
+"Why" = "Why";
+
+/* No comment provided by engineer. */
+"Why %1$@ needs %2$@" = "Why %1$@ needs %2$@";
 
 /* SecurityPresetsRow */
 "Works pretty well. Your identity is mostly protected." = "Slándáil measartha maith. Tá d'aitheantas cosanta den chuid is mó.";
@@ -632,7 +608,7 @@
 "You most recently donated %1$@ on %2$@." = "An deontas deireanach a thug tú: %1$@ ar %2$@.";
 
 /* No comment provided by engineer. */
-"You need to request API access with Orbot, in order for %@ to work while Orbot is running." = "You need to request API access with Orbot, in order for %@ to work while Orbot is running.";
+"You're one step closer to private browsing." = "You're one step closer to private browsing.";
 
 /* CircuitViewController */
 "Your traffic goes to 3 different parts of the world." = "Téann do chuid tráchta trí 3 fhreastalaí éagsúla timpeall an domhain.";

@@ -143,12 +143,12 @@ class Settings: NSObject {
 		}
 	}
 
-	class var didIntro: Bool {
+	class var didWelcome: Bool {
 		get {
-			UserDefaults.standard.bool(forKey: "did_intro")
+			UserDefaults.standard.bool(forKey: "did_welcome")
 		}
 		set {
-			UserDefaults.standard.set(newValue, forKey: "did_intro")
+			UserDefaults.standard.set(newValue, forKey: "did_welcome")
 		}
 	}
 

@@ -38,12 +38,6 @@
 		69CBCD471E934228009D5352 /* URLBlockerRuleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CBCD461E934228009D5352 /* URLBlockerRuleController.m */; };
 		69CBCD4D1E934249009D5352 /* RuleEditorRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CBCD4B1E934249009D5352 /* RuleEditorRow.m */; };
 		69CBCD521E9347B8009D5352 /* UIResponder+FirstResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CBCD511E9347B8009D5352 /* UIResponder+FirstResponder.m */; };
-		A003A6B323C9430300BD2D20 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A003A6B123C9430300BD2D20 /* MainViewController.xib */; };
-		A003A6B423C9430300BD2D20 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A003A6B223C9430300BD2D20 /* MainViewController.swift */; };
-		A003A6B723C9480000BD2D20 /* BridgesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A003A6B523C9480000BD2D20 /* BridgesViewController.xib */; };
-		A003A6B823C9480000BD2D20 /* BridgesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A003A6B623C9480000BD2D20 /* BridgesViewController.swift */; };
-		A003A6BB23C94A4900BD2D20 /* ConnectingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A003A6B923C94A4900BD2D20 /* ConnectingViewController.xib */; };
-		A003A6BC23C94A4900BD2D20 /* ConnectingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A003A6BA23C94A4900BD2D20 /* ConnectingViewController.swift */; };
 		A004FB2A241A782500451A9E /* SecureEnclave.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06DF455241A60E700A07796 /* SecureEnclave.swift */; };
 		A013DEDA2434E69A0087D12B /* UIImage+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A013DED92434E69A0087D12B /* UIImage+Helpers.swift */; };
 		A0172C6E2888247C008D42CD /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0172C6D2888247C008D42CD /* AlertHelper.swift */; };
@@ -52,6 +46,8 @@
 		A0172C74288828D8008D42CD /* URLSession+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0172C73288828D8008D42CD /* URLSession+Helpers.swift */; };
 		A01B41722456D16100A490A9 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		A01D3BA323900D2800E536F2 /* RuleEditorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69CBCD491E934249009D5352 /* RuleEditorController.m */; };
+		A02414372A0260B1009AEE25 /* WhyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A02414352A0260B1009AEE25 /* WhyViewController.xib */; };
+		A02414382A0260B1009AEE25 /* WhyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02414362A0260B1009AEE25 /* WhyViewController.swift */; };
 		A02885802893FA23007D5AE8 /* WebsiteStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A028857F2893FA23007D5AE8 /* WebsiteStorage.swift */; };
 		A028858228940B93007D5AE8 /* Storage2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A028858128940B93007D5AE8 /* Storage2ViewController.swift */; };
 		A02CB2B523D0B0B300880720 /* AddBookmarkActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02CB2B423D0B0B300880720 /* AddBookmarkActivity.swift */; };
@@ -59,6 +55,10 @@
 		A03CFA042892B05500F01DB5 /* DownloadHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03CFA032892B05500F01DB5 /* DownloadHelper.swift */; };
 		A03DBCED22859B99001890C4 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = A03DBCEC22859B99001890C4 /* Config.m */; };
 		A03DBCEF22859B99001890C4 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = A03DBCEC22859B99001890C4 /* Config.m */; };
+		A043B9522A02897A008025A7 /* PermissionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A043B9502A02897A008025A7 /* PermissionViewController.xib */; };
+		A043B9532A02897A008025A7 /* PermissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A043B9512A02897A008025A7 /* PermissionViewController.swift */; };
+		A043B9562A029FC3008025A7 /* StartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A043B9542A029FC3008025A7 /* StartViewController.xib */; };
+		A043B9572A029FC3008025A7 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A043B9552A029FC3008025A7 /* StartViewController.swift */; };
 		A0550649271094A900922E18 /* ua-strings.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0550648271094A900922E18 /* ua-strings.plist */; };
 		A068DD99240D348300BF46E3 /* AltSvcHeader_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A068DD98240D348300BF46E3 /* AltSvcHeader_Tests.swift */; };
 		A068DD9A240D37FB00BF46E3 /* HostSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF522B23AFC3580096624A /* HostSettings.swift */; };
@@ -72,8 +72,7 @@
 		A07037C723C79AE500D670EC /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A07037C223C74DC900D670EC /* Media.xcassets */; };
 		A07B55FC23D736D60051663B /* CertificateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07B55FB23D736D60051663B /* CertificateViewController.swift */; };
 		A08737E1221324B5005A68CC /* HostSettings_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = A08737DF2213235F005A68CC /* HostSettings_Tests.m */; };
-		A099B8B723CF60C800B50998 /* InitSecurityLevelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A099B8B523CF60C800B50998 /* InitSecurityLevelViewController.xib */; };
-		A099B8B823CF60C800B50998 /* InitSecurityLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A099B8B623CF60C800B50998 /* InitSecurityLevelViewController.swift */; };
+		A0A1A35A2A03DAB800DE4991 /* security-levels.html in Resources */ = {isa = PBXBuildFile; fileRef = A0A1A3582A03DAB800DE4991 /* security-levels.html */; };
 		A0A83AC228A14CAB005C15C9 /* Tab+WKScriptMessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A83AC128A14CAB005C15C9 /* Tab+WKScriptMessageHandler.swift */; };
 		A0BF51E423AFBF250096624A /* (null) in Resources */ = {isa = PBXBuildFile; };
 		A0BF51E523AFBF250096624A /* urlblocker.json in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51AE23AFBF250096624A /* urlblocker.json */; };
@@ -143,11 +142,13 @@
 		A0D070FD275A513700922D70 /* FileManager+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D070FC275A513700922D70 /* FileManager+Helpers.swift */; };
 		A0D9008B24095F5C0046C9B3 /* AltSvcHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D9008A24095F5C0046C9B3 /* AltSvcHeader.swift */; };
 		A0E8E8B12938CDFB00DC2A2F /* SearchEnginesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E8E8B02938CDFB00DC2A2F /* SearchEnginesViewController.swift */; };
-		A0F2FB062423AB92003CC61A /* AboutSecurityLevelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F2FB052423AB92003CC61A /* AboutSecurityLevelsViewController.swift */; };
-		A0F3579929C4991A002E7D62 /* security-levels.html in Resources */ = {isa = PBXBuildFile; fileRef = A0F3579729C4991A002E7D62 /* security-levels.html */; };
 		A0F357BD29C4998F002E7D62 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A0F357BB29C4998F002E7D62 /* InfoPlist.strings */; };
 		A0F8BE8527C50549002D2999 /* FileManager+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D070FC275A513700922D70 /* FileManager+Helpers.swift */; };
 		A0F8BE8627C50586002D2999 /* AltSvcHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D9008A24095F5C0046C9B3 /* AltSvcHeader.swift */; };
+		A0FA965D2A015EBB005EDC3F /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0FA965B2A015EBB005EDC3F /* WelcomeViewController.xib */; };
+		A0FA965E2A015EBB005EDC3F /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0FA965C2A015EBB005EDC3F /* WelcomeViewController.swift */; };
+		A0FA96612A0161DA005EDC3F /* InstallViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0FA965F2A0161DA005EDC3F /* InstallViewController.xib */; };
+		A0FA96622A0161DA005EDC3F /* InstallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0FA96602A0161DA005EDC3F /* InstallViewController.swift */; };
 		E6311B9040FEC20B68B89A24 /* Pods_OnionBrowser_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12570C301D8FEF51AB9F5CDD /* Pods_OnionBrowser_Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -217,12 +218,6 @@
 		69CBCD4B1E934249009D5352 /* RuleEditorRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RuleEditorRow.m; sourceTree = "<group>"; };
 		69CBCD501E9347B8009D5352 /* UIResponder+FirstResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIResponder+FirstResponder.h"; sourceTree = "<group>"; };
 		69CBCD511E9347B8009D5352 /* UIResponder+FirstResponder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+FirstResponder.m"; sourceTree = "<group>"; };
-		A003A6B123C9430300BD2D20 /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
-		A003A6B223C9430300BD2D20 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		A003A6B523C9480000BD2D20 /* BridgesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BridgesViewController.xib; sourceTree = "<group>"; };
-		A003A6B623C9480000BD2D20 /* BridgesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgesViewController.swift; sourceTree = "<group>"; };
-		A003A6B923C94A4900BD2D20 /* ConnectingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConnectingViewController.xib; sourceTree = "<group>"; };
-		A003A6BA23C94A4900BD2D20 /* ConnectingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectingViewController.swift; sourceTree = "<group>"; usesTabs = 1; };
 		A004360B1E81856F0067652D /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A004360C1E81856F0067652D /* Podfile.lock */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile.lock; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A010FA171E7986DE00E04222 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -232,6 +227,8 @@
 		A0172C6F288824BD008D42CD /* FixedFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixedFormViewController.swift; sourceTree = "<group>"; };
 		A0172C71288827E1008D42CD /* ApiError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
 		A0172C73288828D8008D42CD /* URLSession+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLSession+Helpers.swift"; sourceTree = "<group>"; };
+		A02414352A0260B1009AEE25 /* WhyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WhyViewController.xib; sourceTree = "<group>"; };
+		A02414362A0260B1009AEE25 /* WhyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhyViewController.swift; sourceTree = "<group>"; };
 		A025F27421F62C100034B947 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		A028857F2893FA23007D5AE8 /* WebsiteStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsiteStorage.swift; sourceTree = "<group>"; };
 		A028858128940B93007D5AE8 /* Storage2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage2ViewController.swift; sourceTree = "<group>"; };
@@ -241,6 +238,10 @@
 		A03CFA032892B05500F01DB5 /* DownloadHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadHelper.swift; sourceTree = "<group>"; };
 		A03DBCEB22859B99001890C4 /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		A03DBCEC22859B99001890C4 /* Config.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Config.m; sourceTree = "<group>"; };
+		A043B9502A02897A008025A7 /* PermissionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PermissionViewController.xib; sourceTree = "<group>"; };
+		A043B9512A02897A008025A7 /* PermissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionViewController.swift; sourceTree = "<group>"; };
+		A043B9542A029FC3008025A7 /* StartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StartViewController.xib; sourceTree = "<group>"; };
+		A043B9552A029FC3008025A7 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		A0550648271094A900922E18 /* ua-strings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ua-strings.plist"; sourceTree = "<group>"; };
 		A068DD98240D348300BF46E3 /* AltSvcHeader_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AltSvcHeader_Tests.swift; sourceTree = "<group>"; };
 		A0696EAC2406C7D000512695 /* SyncViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncViewController.swift; sourceTree = "<group>"; };
@@ -261,8 +262,37 @@
 		A085A1EC270DAB8600800A29 /* SECURITY.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = SECURITY.md; sourceTree = "<group>"; };
 		A08737DF2213235F005A68CC /* HostSettings_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HostSettings_Tests.m; sourceTree = "<group>"; };
 		A0894E36236AE7C800EE2743 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
-		A099B8B523CF60C800B50998 /* InitSecurityLevelViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InitSecurityLevelViewController.xib; sourceTree = "<group>"; };
-		A099B8B623CF60C800B50998 /* InitSecurityLevelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitSecurityLevelViewController.swift; sourceTree = "<group>"; };
+		A0A1A3592A03DAB800DE4991 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = en; path = "en.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A0A1A35D2A03DAF500DE4991 /* sq */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = sq; path = "sq.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A0A1A35E2A03DAF700DE4991 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ar; path = "ar.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A0A1A35F2A03DAFE00DE4991 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ca; path = "ca.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A0A1A3602A03DB0000DE4991 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hans"; path = "zh-Hans.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A0A1A3612A03DB0300DE4991 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hant"; path = "zh-Hant.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A0A1A3622A03DB0600DE4991 /* hr */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = hr; path = "hr.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A0A1A3632A03DB0900DE4991 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = cs; path = "cs.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A0A1A3642A03DB1200DE4991 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = fi; path = "fi.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A0A1A3652A03DB1400DE4991 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = fr; path = "fr.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A0A1A3662A03DB1600DE4991 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = de; path = "de.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A0A1A3682A03DB2100DE4991 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = he; path = "he.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A0A1A36A2A03DB2D00DE4991 /* hu-HU */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "hu-HU"; path = "hu-HU.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A0A1A36B2A03DB2F00DE4991 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = is; path = "is.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A0A1A36C2A03DB3200DE4991 /* ga */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ga; path = "ga.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A0A1A36D2A03DB3400DE4991 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = it; path = "it.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A0A1A36E2A03DB3600DE4991 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ja; path = "ja.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A0A1A36F2A03DB3800DE4991 /* km */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = km; path = "km.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A0A1A3702A03DB3B00DE4991 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ko; path = "ko.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A0A1A3712A03DB3D00DE4991 /* mk */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = mk; path = "mk.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A0A1A3732A03DB4700DE4991 /* fa */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = fa; path = "fa.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A0A1A3742A03DB4800DE4991 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = pl; path = "pl.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A0A1A3752A03DB4B00DE4991 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "pt-BR"; path = "pt-BR.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A0A1A3762A03DB4C00DE4991 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "pt-PT"; path = "pt-PT.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A0A1A3772A03DB4F00DE4991 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ro; path = "ro.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A0A1A3782A03DB5000DE4991 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ru; path = "ru.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A0A1A3792A03DB5100DE4991 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = es; path = "es.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A0A1A37A2A03DB5300DE4991 /* th */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = th; path = "th.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A0A1A37B2A03DB5600DE4991 /* tr-TR */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "tr-TR"; path = "tr-TR.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A0A1A37C2A03DB5800DE4991 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = uk; path = "uk.lproj/security-levels.html"; sourceTree = "<group>"; };
+		A0A1A37D2A03DB5A00DE4991 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = vi; path = "vi.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A0A4F6A42818530E0089E7D5 /* fastlane */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fastlane; sourceTree = "<group>"; };
 		A0A83AC128A14CAB005C15C9 /* Tab+WKScriptMessageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tab+WKScriptMessageHandler.swift"; sourceTree = "<group>"; };
 		A0B2240E23A92B2700EA2C47 /* OnionBrowser2_Tests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OnionBrowser2_Tests-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -340,7 +370,10 @@
 		A0D9008A24095F5C0046C9B3 /* AltSvcHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AltSvcHeader.swift; sourceTree = "<group>"; };
 		A0DB59522747D36200B20436 /* Tor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Tor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0E8E8B02938CDFB00DC2A2F /* SearchEnginesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEnginesViewController.swift; sourceTree = "<group>"; };
-		A0F2FB052423AB92003CC61A /* AboutSecurityLevelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutSecurityLevelsViewController.swift; sourceTree = "<group>"; };
+		A0FA965B2A015EBB005EDC3F /* WelcomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WelcomeViewController.xib; sourceTree = "<group>"; };
+		A0FA965C2A015EBB005EDC3F /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		A0FA965F2A0161DA005EDC3F /* InstallViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InstallViewController.xib; sourceTree = "<group>"; };
+		A0FA96602A0161DA005EDC3F /* InstallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallViewController.swift; sourceTree = "<group>"; };
 		A7CE50C2429233D841D5F1C1 /* Pods_OnionBrowser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OnionBrowser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -384,7 +417,6 @@
 				01801E931A32CA2A002B4718 /* Products */,
 				6CC21620E2AE7B4037C6401B /* Frameworks */,
 				1D12FDC84D38C4B31A5E3DFB /* Pods */,
-				A0FA965A2A015B71005EDC3F /* Recovered References */,
 			);
 			sourceTree = "<group>";
 			usesTabs = 1;
@@ -514,15 +546,16 @@
 		A0A8E5F523C88FFB007E5FAD /* Startup */ = {
 			isa = PBXGroup;
 			children = (
-				A003A6B123C9430300BD2D20 /* MainViewController.xib */,
-				A003A6B223C9430300BD2D20 /* MainViewController.swift */,
-				A003A6B523C9480000BD2D20 /* BridgesViewController.xib */,
-				A003A6B623C9480000BD2D20 /* BridgesViewController.swift */,
-				A003A6B923C94A4900BD2D20 /* ConnectingViewController.xib */,
-				A003A6BA23C94A4900BD2D20 /* ConnectingViewController.swift */,
-				A099B8B523CF60C800B50998 /* InitSecurityLevelViewController.xib */,
-				A099B8B623CF60C800B50998 /* InitSecurityLevelViewController.swift */,
-				A0F2FB052423AB92003CC61A /* AboutSecurityLevelsViewController.swift */,
+				A0FA965B2A015EBB005EDC3F /* WelcomeViewController.xib */,
+				A0FA965C2A015EBB005EDC3F /* WelcomeViewController.swift */,
+				A0FA965F2A0161DA005EDC3F /* InstallViewController.xib */,
+				A0FA96602A0161DA005EDC3F /* InstallViewController.swift */,
+				A02414352A0260B1009AEE25 /* WhyViewController.xib */,
+				A02414362A0260B1009AEE25 /* WhyViewController.swift */,
+				A043B9502A02897A008025A7 /* PermissionViewController.xib */,
+				A043B9512A02897A008025A7 /* PermissionViewController.swift */,
+				A043B9542A029FC3008025A7 /* StartViewController.xib */,
+				A043B9552A029FC3008025A7 /* StartViewController.swift */,
 			);
 			path = Startup;
 			sourceTree = "<group>";
@@ -536,6 +569,7 @@
 				A07037C223C74DC900D670EC /* Media.xcassets */,
 				A0BF51D123AFBF250096624A /* SearchEngines.plist */,
 				A0550648271094A900922E18 /* ua-strings.plist */,
+				A0A1A3582A03DAB800DE4991 /* security-levels.html */,
 				A0BF51DE23AFBF250096624A /* credits.html */,
 				A0BF51C523AFBF250096624A /* credits.html.in */,
 				A0BF51C723AFBF250096624A /* start.html */,
@@ -676,14 +710,6 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		A0FA965A2A015B71005EDC3F /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				A0F3579729C4991A002E7D62 /* security-levels.html */,
-			);
-			name = "Recovered References";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -822,8 +848,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A003A6B723C9480000BD2D20 /* BridgesViewController.xib in Resources */,
+				A0FA96612A0161DA005EDC3F /* InstallViewController.xib in Resources */,
 				A0BF524E23AFC3580096624A /* SecurityLevelCell.xib in Resources */,
+				A043B9562A029FC3008025A7 /* StartViewController.xib in Resources */,
+				A0A1A35A2A03DAB800DE4991 /* security-levels.html in Resources */,
 				A0BF51F123AFBF250096624A /* Launch Screen.xib in Resources */,
 				A0BF51F423AFBF250096624A /* credits.html in Resources */,
 				A0550649271094A900922E18 /* ua-strings.plist in Resources */,
@@ -833,20 +861,19 @@
 				A0BF526523AFC3580096624A /* FavIconCell.xib in Resources */,
 				A0BF525823AFC3580096624A /* TabCell.xib in Resources */,
 				A0BF51E523AFBF250096624A /* urlblocker.json in Resources */,
+				A02414372A0260B1009AEE25 /* WhyViewController.xib in Resources */,
 				A0BF51EF23AFBF250096624A /* SearchEngines.plist in Resources */,
 				A0F357BD29C4998F002E7D62 /* InfoPlist.strings in Resources */,
 				A0BF524C23AFC3580096624A /* CircuitViewController.xib in Resources */,
 				A01B41722456D16100A490A9 /* (null) in Resources */,
 				A0C26E4323D8650E00C4AF1C /* (null) in Resources */,
 				A0BF525A23AFC3580096624A /* BrowsingViewController-iPad.xib in Resources */,
-				A0F3579929C4991A002E7D62 /* security-levels.html in Resources */,
-				A099B8B723CF60C800B50998 /* InitSecurityLevelViewController.xib in Resources */,
-				A003A6B323C9430300BD2D20 /* MainViewController.xib in Resources */,
+				A0FA965D2A015EBB005EDC3F /* WelcomeViewController.xib in Resources */,
 				A0BF525423AFC3580096624A /* BrowsingViewController.xib in Resources */,
 				A0BF524A23AFC3580096624A /* SecurityPopUpViewController.xib in Resources */,
 				A0BF524923AFC3580096624A /* CircuitNodeCell.xib in Resources */,
+				A043B9522A02897A008025A7 /* PermissionViewController.xib in Resources */,
 				A0BF526323AFC3580096624A /* BookmarksViewController.xib in Resources */,
-				A003A6BB23C94A4900BD2D20 /* ConnectingViewController.xib in Resources */,
 				A0BF51ED23AFBF250096624A /* start.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1015,6 +1042,7 @@
 				A0BF526B23AFC3580096624A /* Settings.swift in Sources */,
 				A0BF525323AFC3580096624A /* Tab.swift in Sources */,
 				A0BF525D23AFC3580096624A /* LiveSearchViewController.swift in Sources */,
+				A02414382A0260B1009AEE25 /* WhyViewController.swift in Sources */,
 				A0BF526C23AFC3580096624A /* CustomSitesViewController.swift in Sources */,
 				A0BF527C23AFC3580096624A /* UIView+Helpers.swift in Sources */,
 				A0BF524823AFC3580096624A /* Bridge.m in Sources */,
@@ -1030,9 +1058,7 @@
 				A0BF527623AFC3580096624A /* OrbotManager.swift in Sources */,
 				A0D9008B24095F5C0046C9B3 /* AltSvcHeader.swift in Sources */,
 				A0BF527223AFC3580096624A /* SettingsViewController.swift in Sources */,
-				A003A6BC23C94A4900BD2D20 /* ConnectingViewController.swift in Sources */,
 				A0BF527723AFC3580096624A /* BlurredSnapshot.swift in Sources */,
-				A099B8B823CF60C800B50998 /* InitSecurityLevelViewController.swift in Sources */,
 				A013DEDA2434E69A0087D12B /* UIImage+Helpers.swift in Sources */,
 				A0D070FD275A513700922D70 /* FileManager+Helpers.swift in Sources */,
 				A07037C423C74E1100D670EC /* UIColor+Helpers.swift in Sources */,
@@ -1055,23 +1081,23 @@
 				A0BF525E23AFC3580096624A /* BrowsingViewController+Tabs.swift in Sources */,
 				A0BF525223AFC3580096624A /* BrowsingViewController.swift in Sources */,
 				A0BF527F23AFC3580096624A /* URL+Helpers.swift in Sources */,
+				A0FA965E2A015EBB005EDC3F /* WelcomeViewController.swift in Sources */,
 				A0BF525C23AFC3580096624A /* Tab+Downloads.swift in Sources */,
 				A0BF525923AFC3580096624A /* TabCell.swift in Sources */,
 				A0BF527823AFC3580096624A /* UIViewController+Helpers.swift in Sources */,
 				A0BF525623AFC3580096624A /* SecurityLevelCell.swift in Sources */,
 				A0BF527023AFC3580096624A /* HostSettings.swift in Sources */,
 				A0BF527D23AFC3580096624A /* SearchableTableViewController.swift in Sources */,
+				A043B9532A02897A008025A7 /* PermissionViewController.swift in Sources */,
+				A043B9572A029FC3008025A7 /* StartViewController.swift in Sources */,
 				A0BF527323AFC3580096624A /* AddSiteViewController.swift in Sources */,
 				A0BF527423AFC3580096624A /* DonationViewController.swift in Sources */,
 				A0BF526223AFC3580096624A /* FavIconRow.swift in Sources */,
 				A03DBCED22859B99001890C4 /* Config.m in Sources */,
 				A0172C6E2888247C008D42CD /* AlertHelper.swift in Sources */,
-				A003A6B823C9480000BD2D20 /* BridgesViewController.swift in Sources */,
-				A0F2FB062423AB92003CC61A /* AboutSecurityLevelsViewController.swift in Sources */,
 				A028858228940B93007D5AE8 /* Storage2ViewController.swift in Sources */,
 				A02CB2B523D0B0B300880720 /* AddBookmarkActivity.swift in Sources */,
 				A0BF525023AFC3580096624A /* Tab+Activity.swift in Sources */,
-				A003A6B423C9430300BD2D20 /* MainViewController.swift in Sources */,
 				A03CFA042892B05500F01DB5 /* DownloadHelper.swift in Sources */,
 				A0BFD3E9289D4F5200CB9F6D /* Tab+WKUIDelegate.swift in Sources */,
 				A07037C623C7571B00D670EC /* AppDelegate.swift in Sources */,
@@ -1083,6 +1109,7 @@
 				01F7CB4E1A52FC4E00F42B73 /* NSString+IPAddress.m in Sources */,
 				A0BF525B23AFC3580096624A /* Tab+Gestures.swift in Sources */,
 				A0BF524523AFC3580096624A /* Migration.swift in Sources */,
+				A0FA96622A0161DA005EDC3F /* InstallViewController.swift in Sources */,
 				A0BF527B23AFC3580096624A /* Formatter.swift in Sources */,
 				A0BF524B23AFC3580096624A /* CircuitNodeCell.swift in Sources */,
 				A07B55FC23D736D60051663B /* CertificateViewController.swift in Sources */,
@@ -1125,6 +1152,44 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		A0A1A3582A03DAB800DE4991 /* security-levels.html */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A0A1A3592A03DAB800DE4991 /* en */,
+				A0A1A35D2A03DAF500DE4991 /* sq */,
+				A0A1A35E2A03DAF700DE4991 /* ar */,
+				A0A1A35F2A03DAFE00DE4991 /* ca */,
+				A0A1A3602A03DB0000DE4991 /* zh-Hans */,
+				A0A1A3612A03DB0300DE4991 /* zh-Hant */,
+				A0A1A3622A03DB0600DE4991 /* hr */,
+				A0A1A3632A03DB0900DE4991 /* cs */,
+				A0A1A3642A03DB1200DE4991 /* fi */,
+				A0A1A3652A03DB1400DE4991 /* fr */,
+				A0A1A3662A03DB1600DE4991 /* de */,
+				A0A1A3682A03DB2100DE4991 /* he */,
+				A0A1A36A2A03DB2D00DE4991 /* hu-HU */,
+				A0A1A36B2A03DB2F00DE4991 /* is */,
+				A0A1A36C2A03DB3200DE4991 /* ga */,
+				A0A1A36D2A03DB3400DE4991 /* it */,
+				A0A1A36E2A03DB3600DE4991 /* ja */,
+				A0A1A36F2A03DB3800DE4991 /* km */,
+				A0A1A3702A03DB3B00DE4991 /* ko */,
+				A0A1A3712A03DB3D00DE4991 /* mk */,
+				A0A1A3732A03DB4700DE4991 /* fa */,
+				A0A1A3742A03DB4800DE4991 /* pl */,
+				A0A1A3752A03DB4B00DE4991 /* pt-BR */,
+				A0A1A3762A03DB4C00DE4991 /* pt-PT */,
+				A0A1A3772A03DB4F00DE4991 /* ro */,
+				A0A1A3782A03DB5000DE4991 /* ru */,
+				A0A1A3792A03DB5100DE4991 /* es */,
+				A0A1A37A2A03DB5300DE4991 /* th */,
+				A0A1A37B2A03DB5600DE4991 /* tr-TR */,
+				A0A1A37C2A03DB5800DE4991 /* uk */,
+				A0A1A37D2A03DB5A00DE4991 /* vi */,
+			);
+			name = "security-levels.html";
+			sourceTree = "<group>";
+		};
 		A0F3574B29C4985D002E7D62 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1137,13 +1202,6 @@
 			children = (
 			);
 			name = Localizable.stringsdict;
-			sourceTree = "<group>";
-		};
-		A0F3579729C4991A002E7D62 /* security-levels.html */ = {
-			isa = PBXVariantGroup;
-			children = (
-			);
-			name = "security-levels.html";
 			sourceTree = "<group>";
 		};
 		A0F357BB29C4998F002E7D62 /* InfoPlist.strings */ = {

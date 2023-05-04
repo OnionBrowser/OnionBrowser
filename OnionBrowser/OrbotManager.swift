@@ -10,11 +10,6 @@
 import Foundation
 import OrbotKit
 
-protocol OrbotManagerDelegate: AnyObject {
-
-	func torConnFinished()
-}
-
 class OrbotManager : NSObject {
 
 	static let shared = OrbotManager()
@@ -28,7 +23,7 @@ class OrbotManager : NSObject {
 
 	public private(set) var lastInfo: OrbotKit.Info?
 
-	public var tokenAlert: UIAlertController?
+	public private(set) var lastError: Error?
 
 	private var initRetry: DispatchWorkItem?
 
@@ -79,126 +74,50 @@ class OrbotManager : NSObject {
 		}
 	}
 
-	func ensureOrbotRunning(_ vc: UIViewController) {
+	/**
+	 Check's Orbot's status, and if not working, returns a view controller to show instead of the browser UI.
+
+	 - returns: A view controller to show instead of the browser UI, if status is not good.
+	 */
+	func checkStatus() -> UIViewController? {
+		if !Settings.didWelcome {
+			return WelcomeViewController()
+		}
+
 		if !OrbotKit.shared.installed {
-			alertOrbotNotInstalled(vc)
+			return InstallViewController()
 		}
-		else {
-			OrbotKit.shared.apiToken = Settings.orbotApiToken
 
-			OrbotKit.shared.info { info, error in
-				if case OrbotKit.Errors.httpError(statusCode: 403)? = error {
-					self.alertOrbotNoAccess(vc)
-
-					return
-				}
-
-				if let error = error {
-					DispatchQueue.main.async {
-						AlertHelper.present(vc, message: error.localizedDescription)
-					}
-
-					return
-				}
-
-				self.lastInfo = info
-
-				if info?.status == .stopped {
-					DispatchQueue.main.async {
-						AlertHelper.present(
-							vc,
-							message: String(format: NSLocalizedString(
-								"%@ is dedicated to run together with Orbot, only.\n\nPlease start Orbot!",
-						  comment: ""), Bundle.main.displayName),
-							title: NSLocalizedString("Orbot not Started", comment: ""),
-							actions: [
-								AlertHelper.cancelAction(
-									NSLocalizedString("Exit", comment: ""),
-									handler: { _ in
-										exit(0)
-									}),
-								AlertHelper.defaultAction(
-									NSLocalizedString("Start Orbot", comment: ""),
-									handler: { _ in
-										OrbotKit.shared.open(.start)
-									})
-							])
-					}
-
-					return
-				}
-
-				(vc as? OrbotManagerDelegate)?.torConnFinished()
-			}
+		if Settings.orbotApiToken?.isEmpty ?? true {
+			return PermissionViewController()
 		}
-	}
 
-	func alertOrbotNotInstalled(_ vc: UIViewController) {
-		DispatchQueue.main.async {
-			AlertHelper.present(
-				vc,
-				message: String(format: NSLocalizedString(
-					"%@ is dedicated to run together with Orbot, only.\n\nPlease install Orbot!",
-					comment: ""), Bundle.main.displayName),
-				title: NSLocalizedString("Orbot Not Installed", comment: ""),
-				actions: [
-					AlertHelper.cancelAction(
-						NSLocalizedString("Exit", comment: ""),
-						handler: { _ in
-							exit(0)
-						}),
-					AlertHelper.defaultAction(
-						NSLocalizedString("App Store", comment: ""),
-						handler: { _ in
-							UIApplication.shared.open(OrbotKit.appStoreLink)
-						})
-				])
+		OrbotKit.shared.apiToken = Settings.orbotApiToken
+
+		let group = DispatchGroup()
+		group.enter()
+
+		OrbotKit.shared.info { info, error in
+			self.lastInfo = info
+			self.lastError = error
+
+			group.leave()
 		}
-	}
 
-	func alertOrbotNoAccess(_ vc: UIViewController) {
-		DispatchQueue.main.async {
-			AlertHelper.present(
-				vc,
-				message: String(format: NSLocalizedString(
-					"You need to request API access with Orbot, in order for %@ to work while Orbot is running.",
-					comment: ""), Bundle.main.displayName),
-				title: NSLocalizedString("Request API Access", comment: ""),
-				actions: [
-					AlertHelper.cancelAction(
-						NSLocalizedString("Exit", comment: ""),
-						handler: { _ in
-							exit(0)
-						}),
-					AlertHelper.defaultAction(
-						NSLocalizedString("Request API Access", comment: ""),
-						handler: { [weak self] _ in
-							OrbotKit.shared.open(.requestApiToken(needBypass: false, callback: URL(string: "onionbrowser:token-callback"))) { success in
-								if !success {
-									AlertHelper.present(vc, message: NSLocalizedString("Orbot could not be opened!", comment: ""))
+		let result = group.wait(timeout: .now() + 1)
 
-									return
-								}
+		if result == .timedOut || lastError != nil {
+			let vc = PermissionViewController()
+			vc.error = lastError
 
-								self?.tokenAlert = AlertHelper.build(title: NSLocalizedString("Access Token", comment: ""),
-																	 actions: [AlertHelper.cancelAction()])
-
-								if let alert = self?.tokenAlert {
-									AlertHelper.addTextField(alert, placeholder: NSLocalizedString("Paste API token here", comment: ""))
-
-									alert.addAction(AlertHelper.defaultAction() { _ in
-										Settings.orbotApiToken = self?.tokenAlert?.textFields?.first?.text
-										OrbotKit.shared.apiToken = Settings.orbotApiToken
-
-										(vc as? OrbotManagerDelegate)?.torConnFinished()
-									})
-
-									vc.present(alert, animated: false)
-								}
-							}
-						})
-				])
+			return vc
 		}
+
+		if lastInfo?.status == .stopped {
+			return StartViewController()
+		}
+		
+		return nil
 	}
 
 

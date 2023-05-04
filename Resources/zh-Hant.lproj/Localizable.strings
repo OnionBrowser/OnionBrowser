@@ -2,37 +2,34 @@
 "%1$@ (Disabled: %2$@)" = "%1$@（已停用：%2$@）";
 
 /* No comment provided by engineer. */
-"%@ is dedicated to run together with Orbot, only.\n\nPlease install Orbot!" = "%@ is dedicated to run together with Orbot, only.\n\nPlease install Orbot!";
+"%1$@ relies on %2$@ for a secure connection to Tor. Install the %2$@ app to continue." = "%1$@ relies on %2$@ for a secure connection to Tor. Install the %2$@ app to continue.";
 
 /* No comment provided by engineer. */
-"%@ is dedicated to run together with Orbot, only.\n\nPlease start Orbot!" = "%@ is dedicated to run together with Orbot, only.\n\nPlease start Orbot!";
+"%1$@ Use %2$@ to connect to the official Tor network." = "%1$@ Use %2$@ to connect to the official Tor network.";
+
+/* No comment provided by engineer. */
+"%@ a little more speed" = "%@ a little more speed";
+
+/* No comment provided by engineer. */
+"%@ alone provides a VPN proxy. It will hide apps from network monitoring and give you access when they are blocked." = "%@ alone provides a VPN proxy. It will hide apps from network monitoring and give you access when they are blocked.";
+
+/* No comment provided by engineer. */
+"%@ Get updates on the status of the connection." = "%@ Get updates on the status of the connection.";
+
+/* No comment provided by engineer. */
+"%@ installed! One more step." = "%@ installed! One more step.";
+
+/* No comment provided by engineer. */
+"%@ more protection from IP leaks" = "%@ more protection from IP leaks";
+
+/* No comment provided by engineer. */
+"%@ new standards" = "%@ new standards";
+
+/* No comment provided by engineer. */
+"%@ video and audio streaming" = "%@ video and audio streaming";
 
 /* SecurityPresetsRow */
 "(not recommended)" = "(不建議)";
-
-/* ConnectingViewController */
-"__CLAIM_1__" = "多元社群成就 Tor 的出色不凡！";
-
-/* ConnectingViewController */
-"__CLAIM_2__" = "每天人們使用 Tor 以避免被行銷廣告騷擾。";
-
-/* ConnectingViewController */
-"__CLAIM_3__" = "人們利用 Tor 與家人和朋友保持安全的連繫。";
-
-/* ConnectingViewController */
-"__CLAIM_4__" = "社會行動人士使用 Tor 以自由地表達意見和信念。";
-
-/* ConnectingViewController */
-"__CLAIM_5__" = "部落客使用 Tor 號召人們進行社會改革。";
-
-/* ConnectingViewController */
-"__CLAIM_6__" = "新聞記者利用 Tor 以安全地調查他們報導的事件。";
-
-/* ConnectingViewController */
-"__CLAIM_7__" = "商人使用 Tor 來保持公司策略隱密。";
-
-/* ConnectingViewController */
-"__CLAIM_8__" = "工人使用 Tor 來爭取公義而無須擔心因此失去工作。";
 
 /* DonationViewController */
 "__DONATE_EXPLANATION_PARAGRAPH1__" = "Onion Browser 是免費軟體，但開發與維護相當費時費力。";
@@ -50,7 +47,7 @@
 "About" = "關於";
 
 /* No comment provided by engineer. */
-"Access Token" = "Access Token";
+"Access to %@ was Denied" = "Access to %@ was Denied";
 
 /* SearchEnginesViewController, AddSearchEngineViewController */
 "Add" = "新增";
@@ -97,11 +94,14 @@
 /* SecurityViewController */
 "Allow Persistent Cookies" = "允許持久性 cookies";
 
-/* No comment provided by engineer. */
-"App Store" = "App Store";
-
 /* DonationViewController */
 "Are you sure you want to send a %@ tip?" = "確定要傳送 %@ 的小費？";
+
+/* No comment provided by engineer. */
+"Ask %@ for permission to access it." = "Ask %@ for permission to access it.";
+
+/* No comment provided by engineer. */
+"Ask again to continue." = "Ask again to continue.";
 
 /* AppDelegate */
 "Authentication Required" = "要求驗證";
@@ -120,6 +120,9 @@
 
 /* BookmarksViewController */
 "Bookmarks" = "書籤";
+
+/* No comment provided by engineer. */
+"Both are free to use. Free of tracking. Code is open source." = "Both are free to use. Free of tracking. Code is open source.";
 
 /* CircuitViewController */
 "Bridge Configuration" = "橋接器設定";
@@ -145,14 +148,8 @@
 /* CertificateViewController */
 "Cipher" = "密碼";
 
-/* ConnectingViewController */
-"Close Onion Browser and restart or try using a bridge." = "選擇 Onion 瀏覽器與重新開始，或是使用橋接設定。";
-
 /* AppDelegate */
 "Close Tab" = "關閉分頁";
-
-/* BridgesViewController */
-"Configure Bridges" = "設定橋接器";
 
 /* DonationViewController */
 "Confirm %@" = "確認 %@";
@@ -162,18 +159,6 @@
 
 /* CircuitViewController */
 "Connect to a website to see your circuit." = "連到某個網站以查看您的迴路狀況。";
-
-/* BridgesViewController */
-"Connect to Tor" = "連線到 Tor 網路";
-
-/* BridgesViewController */
-"Connect to Tor for private browsing." = "連線到 Tor 網路以私密瀏覽";
-
-/* ConnectingViewController */
-"Connected!" = "已連線！";
-
-/* ConnectingViewController */
-"Connecting to Tor" = "正在連線到 Tor 網路";
 
 /* CertificateViewController */
 "Connection Information" = "連線資訊";
@@ -210,9 +195,6 @@
 
 /* CustomSitesViewController */
 "Define custom settings for specific sites." = "定義指定網站的自訂設定。";
-
-/* InitSecurityLevelViewController */
-"Define Default Security Level" = "定義預設安全性等級";
 
 /* SearchEnginesViewController */
 "Delete" = "刪除";
@@ -253,9 +235,6 @@
 /* AlertHelper */
 "Error" = "錯誤";
 
-/* No comment provided by engineer. */
-"Exit" = "Exit";
-
 /* CertificateViewController */
 "Expires After" = "到期日";
 
@@ -277,11 +256,11 @@
 /* SettingsViewController */
 "Forget in Background" = "程式於背景執行時清除資料";
 
-/* MainViewController */
-"Free to be you." = "自由作自己";
-
 /* SettingsViewController */
 "Fund Development" = "贊助開發";
+
+/* No comment provided by engineer. */
+"Get %@" = "Get %@";
 
 /* AppDelegate */
 "Go Back" = "上一步";
@@ -307,9 +286,6 @@
 /* AddSiteViewController, SyncViewController */
 "Host" = "主機";
 
-/* BridgesViewController */
-"If you are in a country or using a connection that censors Tor, you might need to use bridges." = "若您所在的國家或使用的網路連線封鎖 Tor，就可能需要使用橋接器。";
-
 /* SyncViewController */
 "If you sync, all bookmarks will be read from the server and added/updated in Onion Browser." = "若同步則全部的書籤可從伺服器讀取並在 Onion 瀏覽器上新增與更新。";
 
@@ -322,6 +298,9 @@
 /* No comment provided by engineer. */
 "IndexedDB Databases" = "IndexedDB Databases";
 
+/* No comment provided by engineer. */
+"Install %@" = "Install %@";
+
 /* CertificateViewController */
 "Issued By" = "憑證發行單位";
 
@@ -333,9 +312,6 @@
 
 /* Bookmark, placeholder is app name "Onion Browser" */
 "Learn more about %@" = "進一步了解 %@";
-
-/*MainViewController; placeholder is a angle bracket \u{276c} or \u{276d} depending on text direction. */
-"Let's go %@" = "走吧 %@";
 
 /* DonationViewController */
 "Loading in-app purchase data…" = "載入程式內購買資料...";
@@ -373,8 +349,8 @@
 /* CircuSitsViewController */
 "New Circuit for this Site" = "此網站的新線路";
 
-/* ConnectingViewController */
-"Next" = "下一步";
+/* No comment provided by engineer. */
+"Next" = "Next";
 
 /* No comment provided by engineer. */
 "No success, but \"%@\" instead." = "No success, but \"%@\" instead.";
@@ -397,23 +373,11 @@
 /* Tab+Gestures */
 "Open in Safari" = "在 Safari 中開啟";
 
-/* No comment provided by engineer. */
-"Orbot could not be opened!" = "Orbot could not be opened!";
-
-/* No comment provided by engineer. */
-"Orbot Not Installed" = "Orbot Not Installed";
-
-/* No comment provided by engineer. */
-"Orbot not Started" = "Orbot not Started";
-
 /* SecurityViewController */
 "Other" = "其它";
 
 /* AppDelegate, SyncViewController */
 "Password" = "密碼";
-
-/* No comment provided by engineer. */
-"Paste API token here" = "Paste API token here";
 
 /* DonationViewController */
 "Payment Sent" = "送出付款";
@@ -455,7 +419,7 @@
 "Report a Bug" = "回報錯誤";
 
 /* No comment provided by engineer. */
-"Request API Access" = "Request API Access";
+"Request Access" = "Request Access";
 
 /* No comment provided by engineer. */
 "Request could not be formed. Please check host and username/password!" = "Request could not be formed. Please check host and username/password!";
@@ -511,14 +475,17 @@
 /* SecurityPresetsRow; a security level */
 "Silver" = "銀牌等級";
 
+/* No comment provided by engineer. */
+"So that you can do more with Tor on iOS! In %1$@, %2$@ improves the browsing experience with:" = "So that you can do more with Tor on iOS! In %1$@, %2$@ improves the browsing experience with:";
+
 /* DonationViewController */
 "Sorry, in-app purchase is disabled on your device!" = "抱歉，您的裝置停用了程式內購買功能。";
 
-/* InitSecurityLevelViewController */
-"Start Browsing" = "開始瀏覽";
+/* No comment provided by engineer. */
+"Start Tor" = "Start Tor";
 
 /* No comment provided by engineer. */
-"Start Orbot" = "Start Orbot";
+"Start Tor in %@." = "Start Tor in %@.";
 
 /* SettingsViewController */
 "Stop Auto-Complete at First Dot" = "在第一個句點上停止自動完成";
@@ -550,8 +517,8 @@
 /* Option title */
 "Tell websites that you object to processing and selling of your personal data" = "Tell websites that you object to processing and selling of your personal data";
 
-/* InitSecurityLevelViewController */
-"The security level you choose for a website often has a direct impact on that site’s performance. Some of the protections can be overridden or modified by changing your security settings." = "為網站所挑選的安全等級往往會直接影響到讓網站的效能表現，有些保護可透過安全設定來來改寫或修正。";
+/* No comment provided by engineer. */
+"Then come back for private browsing." = "Then come back for private browsing.";
 
 /* SecurityViewController */
 "These might change server behaviour. E.g. show or not show Captchas or return pages meant for desktop browsers." = "這可能會改變伺服器端行為，例如：顯示或隱藏機器人驗證，或顯示桌面瀏覽器版本的網頁。";
@@ -564,6 +531,9 @@
 
 /* No comment provided by engineer. */
 "This site may need authentication. If you received an authentication key for this site, add it to Orbot!" = "This site may need authentication. If you received an authentication key for this site, add it to Orbot!";
+
+/* No comment provided by engineer. */
+"This will allow %@ to:" = "This will allow %@ to:";
 
 /* DonationViewController */
 "Tip: %@" = "小費：%@";
@@ -613,17 +583,23 @@
 /* SyncViewController */
 "We couldn't sync your bookmarks at this time. Try again to make sure your information is synced." = "此次無法同步您的書籤，請重試確認您的資訊已同步處理。";
 
-/* ConnectingViewController */
-"We're having trouble." = "遇到一些狀況";
-
 /* SecurityPresetsRow */
 "Websites may break. But you get great security." = "網站可能壤掉了，不過您仍然很安全。";
 
 /* No comment provided by engineer. */
 "WebSQL Databases" = "WebSQL Databases";
 
+/* No comment provided by engineer. */
+"Welcome to %@" = "Welcome to %@";
+
 /* SettingsViewController */
 "When disabled, all text entered in search bar will be sent to the search engine unless it starts with \"http\"." = "當停用時，除非是以 \"http\" 開頭的文字，否則所有文字都會被傳送到搜尋引擎。";
+
+/* No comment provided by engineer. */
+"Why" = "Why";
+
+/* No comment provided by engineer. */
+"Why %1$@ needs %2$@" = "Why %1$@ needs %2$@";
 
 /* SecurityPresetsRow */
 "Works pretty well. Your identity is mostly protected." = "運作正常，已完善地保護您的身份識別資料";
@@ -632,7 +608,7 @@
 "You most recently donated %1$@ on %2$@." = "您最近在 %1$@ 捐款了 %2$@ 元。";
 
 /* No comment provided by engineer. */
-"You need to request API access with Orbot, in order for %@ to work while Orbot is running." = "You need to request API access with Orbot, in order for %@ to work while Orbot is running.";
+"You're one step closer to private browsing." = "You're one step closer to private browsing.";
 
 /* CircuitViewController */
 "Your traffic goes to 3 different parts of the world." = "您的流量會分散到 3 個不同地方。";

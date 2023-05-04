@@ -2,37 +2,34 @@
 "%1$@ (Disabled: %2$@)" = "%1$@ (Çaktivizuar: %2$@)";
 
 /* No comment provided by engineer. */
-"%@ is dedicated to run together with Orbot, only.\n\nPlease install Orbot!" = "%@ is dedicated to run together with Orbot, only.\n\nPlease install Orbot!";
+"%1$@ relies on %2$@ for a secure connection to Tor. Install the %2$@ app to continue." = "%1$@ relies on %2$@ for a secure connection to Tor. Install the %2$@ app to continue.";
 
 /* No comment provided by engineer. */
-"%@ is dedicated to run together with Orbot, only.\n\nPlease start Orbot!" = "%@ is dedicated to run together with Orbot, only.\n\nPlease start Orbot!";
+"%1$@ Use %2$@ to connect to the official Tor network." = "%1$@ Use %2$@ to connect to the official Tor network.";
+
+/* No comment provided by engineer. */
+"%@ a little more speed" = "%@ a little more speed";
+
+/* No comment provided by engineer. */
+"%@ alone provides a VPN proxy. It will hide apps from network monitoring and give you access when they are blocked." = "%@ alone provides a VPN proxy. It will hide apps from network monitoring and give you access when they are blocked.";
+
+/* No comment provided by engineer. */
+"%@ Get updates on the status of the connection." = "%@ Get updates on the status of the connection.";
+
+/* No comment provided by engineer. */
+"%@ installed! One more step." = "%@ installed! One more step.";
+
+/* No comment provided by engineer. */
+"%@ more protection from IP leaks" = "%@ more protection from IP leaks";
+
+/* No comment provided by engineer. */
+"%@ new standards" = "%@ new standards";
+
+/* No comment provided by engineer. */
+"%@ video and audio streaming" = "%@ video and audio streaming";
 
 /* SecurityPresetsRow */
 "(not recommended)" = "(nuk rekomandohet)";
-
-/* ConnectingViewController */
-"__CLAIM_1__" = "Ajo që e bën Tor-in të fuqishëm është bashkësia jonë e larmishme!";
-
-/* ConnectingViewController */
-"__CLAIM_2__" = "Njerëzit e zakonshëm e përdorin Tor-in për të shmangur ndjekjen prej reklama marketingu.";
-
-/* ConnectingViewController */
-"__CLAIM_3__" = "Njerëzit e përdorin Tor-in për mbajtur lidhjet me shokët dhe familjen.";
-
-/* ConnectingViewController */
-"__CLAIM_4__" = "Aktivistët e përdorin Tor-in për të shprehur hapur mendimet dhe bindjet e tyre.";
-
-/* ConnectingViewController */
-"__CLAIM_5__" = "Bloguesit e përdorin Tor-in për të bashkuar njerëzit drejt reformash shoqërore.";
-
-/* ConnectingViewController */
-"__CLAIM_6__" = "Gazetarët e përdorin Tor-in për të hetuar ngjarjet mbi të cilat raportojnë.";
-
-/* ConnectingViewController */
-"__CLAIM_7__" = "Bizneset e përdorin Tor-in për të mbajtur private strategjitë e kompanive.";
-
-/* ConnectingViewController */
-"__CLAIM_8__" = "Punëtorët e përdorin Tor-in për të luftuar për drejtësi, pa patur frikë se humbin vendin e punës.";
 
 /* DonationViewController */
 "__DONATE_EXPLANATION_PARAGRAPH1__" = "Shfletuesi Onion është një aplikacion i lirë, por kërkon kohë dhe burime për ta zhvilluar dhe mirëmbajtur.";
@@ -50,7 +47,7 @@
 "About" = "Mbi";
 
 /* No comment provided by engineer. */
-"Access Token" = "Access Token";
+"Access to %@ was Denied" = "Access to %@ was Denied";
 
 /* SearchEnginesViewController, AddSearchEngineViewController */
 "Add" = "Shto";
@@ -97,11 +94,14 @@
 /* SecurityViewController */
 "Allow Persistent Cookies" = "Lejo Cookies të Qëndrueshme";
 
-/* No comment provided by engineer. */
-"App Store" = "App Store";
-
 /* DonationViewController */
 "Are you sure you want to send a %@ tip?" = "Jeni të sigurt se doni të dërgoni %@ dhuratë?";
+
+/* No comment provided by engineer. */
+"Ask %@ for permission to access it." = "Ask %@ for permission to access it.";
+
+/* No comment provided by engineer. */
+"Ask again to continue." = "Ask again to continue.";
 
 /* AppDelegate */
 "Authentication Required" = "Nevojitet autorizim";
@@ -120,6 +120,9 @@
 
 /* BookmarksViewController */
 "Bookmarks" = "Fletëshënues";
+
+/* No comment provided by engineer. */
+"Both are free to use. Free of tracking. Code is open source." = "Both are free to use. Free of tracking. Code is open source.";
 
 /* CircuitViewController */
 "Bridge Configuration" = "Formësim Ure";
@@ -145,14 +148,8 @@
 /* CertificateViewController */
 "Cipher" = "Shifër";
 
-/* ConnectingViewController */
-"Close Onion Browser and restart or try using a bridge." = "Mbylleni Shfletuesin Onion dhe riniseni, ose provoni të përdorni një urë.";
-
 /* AppDelegate */
 "Close Tab" = "Mbylle Skedën";
-
-/* BridgesViewController */
-"Configure Bridges" = "Formësoni Ura";
 
 /* DonationViewController */
 "Confirm %@" = "Ripohoni %@";
@@ -162,18 +159,6 @@
 
 /* CircuitViewController */
 "Connect to a website to see your circuit." = "Që të shihni qarkun tuaj, lidhuni me një sajt.";
-
-/* BridgesViewController */
-"Connect to Tor" = "Lidhuni me Tor-in";
-
-/* BridgesViewController */
-"Connect to Tor for private browsing." = "Lidhuni me Tor-in, për shfletim privat.";
-
-/* ConnectingViewController */
-"Connected!" = "U lidh!";
-
-/* ConnectingViewController */
-"Connecting to Tor" = "Po lidhet me Tor-in";
 
 /* CertificateViewController */
 "Connection Information" = "Të dhëna Lidhjeje";
@@ -210,9 +195,6 @@
 
 /* CustomSitesViewController */
 "Define custom settings for specific sites." = "Përcaktoni rregullime vetjake për sajte të caktuar.";
-
-/* InitSecurityLevelViewController */
-"Define Default Security Level" = "Përcaktoni Shkallë Parazgjedhje Sigurie";
 
 /* SearchEnginesViewController */
 "Delete" = "Fshije";
@@ -253,9 +235,6 @@
 /* AlertHelper */
 "Error" = "Gabim";
 
-/* No comment provided by engineer. */
-"Exit" = "Exit";
-
 /* CertificateViewController */
 "Expires After" = "Skadon Pas";
 
@@ -277,11 +256,11 @@
 /* SettingsViewController */
 "Forget in Background" = "Harroje në Prapaskenë";
 
-/* MainViewController */
-"Free to be you." = "I lirë të jeni vetja.";
-
 /* SettingsViewController */
 "Fund Development" = "Financoni Zhvillimin";
+
+/* No comment provided by engineer. */
+"Get %@" = "Get %@";
 
 /* AppDelegate */
 "Go Back" = "Shko Prapa";
@@ -307,9 +286,6 @@
 /* AddSiteViewController, SyncViewController */
 "Host" = "Strehë";
 
-/* BridgesViewController */
-"If you are in a country or using a connection that censors Tor, you might need to use bridges." = "Nëse gjendeni në një vend, ose po përdorni një lidhje, që censuron Tor-in, mund t’ju duhet të përdorni ura.";
-
 /* SyncViewController */
 "If you sync, all bookmarks will be read from the server and added/updated in Onion Browser." = "Nëse bëni njëkohësim, krejt faqerojtësit do të lexohen prej shërbyesit dhe shtohen/përditësohen në Shfletuesin Onion.";
 
@@ -322,6 +298,9 @@
 /* No comment provided by engineer. */
 "IndexedDB Databases" = "IndexedDB Databases";
 
+/* No comment provided by engineer. */
+"Install %@" = "Install %@";
+
 /* CertificateViewController */
 "Issued By" = "Lëshuar Nga";
 
@@ -333,9 +312,6 @@
 
 /* Bookmark, placeholder is app name "Onion Browser" */
 "Learn more about %@" = "Mësoni më tepër mbi %@";
-
-/*MainViewController; placeholder is a angle bracket \u{276c} or \u{276d} depending on text direction. */
-"Let's go %@" = "Shkojmë %@";
 
 /* DonationViewController */
 "Loading in-app purchase data…" = "Po ngarkohen të dhëna blerjeje in-app…";
@@ -373,8 +349,8 @@
 /* CircuSitsViewController */
 "New Circuit for this Site" = "Qark i ri për këtë Sajt";
 
-/* ConnectingViewController */
-"Next" = "Pasuesi";
+/* No comment provided by engineer. */
+"Next" = "Next";
 
 /* No comment provided by engineer. */
 "No success, but \"%@\" instead." = "No success, but \"%@\" instead.";
@@ -397,23 +373,11 @@
 /* Tab+Gestures */
 "Open in Safari" = "Hap në Safari";
 
-/* No comment provided by engineer. */
-"Orbot could not be opened!" = "Orbot could not be opened!";
-
-/* No comment provided by engineer. */
-"Orbot Not Installed" = "Orbot Not Installed";
-
-/* No comment provided by engineer. */
-"Orbot not Started" = "Orbot not Started";
-
 /* SecurityViewController */
 "Other" = "Të tjera";
 
 /* AppDelegate, SyncViewController */
 "Password" = "Fjalëkalimi";
-
-/* No comment provided by engineer. */
-"Paste API token here" = "Paste API token here";
 
 /* DonationViewController */
 "Payment Sent" = "Pagesa u Dërgua";
@@ -455,7 +419,7 @@
 "Report a Bug" = "Njoftoni një të Metë";
 
 /* No comment provided by engineer. */
-"Request API Access" = "Request API Access";
+"Request Access" = "Request Access";
 
 /* No comment provided by engineer. */
 "Request could not be formed. Please check host and username/password!" = "Request could not be formed. Please check host and username/password!";
@@ -511,14 +475,17 @@
 /* SecurityPresetsRow; a security level */
 "Silver" = "E argjendtë";
 
+/* No comment provided by engineer. */
+"So that you can do more with Tor on iOS! In %1$@, %2$@ improves the browsing experience with:" = "So that you can do more with Tor on iOS! In %1$@, %2$@ improves the browsing experience with:";
+
 /* DonationViewController */
 "Sorry, in-app purchase is disabled on your device!" = "Na ndjeni, blerja in-app është e çaktivizuar në pajisjen tuaj!";
 
-/* InitSecurityLevelViewController */
-"Start Browsing" = "Nisni Shfletimin";
+/* No comment provided by engineer. */
+"Start Tor" = "Start Tor";
 
 /* No comment provided by engineer. */
-"Start Orbot" = "Start Orbot";
+"Start Tor in %@." = "Start Tor in %@.";
 
 /* SettingsViewController */
 "Stop Auto-Complete at First Dot" = "Ndale Vetëplotësimin në Pikën e Parë";
@@ -550,8 +517,8 @@
 /* Option title */
 "Tell websites that you object to processing and selling of your personal data" = "Tell websites that you object to processing and selling of your personal data";
 
-/* InitSecurityLevelViewController */
-"The security level you choose for a website often has a direct impact on that site’s performance. Some of the protections can be overridden or modified by changing your security settings." = "Shkalla e sigurisë që zgjidhni për një sajt, shpesh ka ndikim të drejtpërdrejtë mbi funksionimin e atij sajti. Disa nga mbrojtjet mund të anashkalohet ose të ndryshohen duke ndryshuar rregullimet tuaja për sigurinë.";
+/* No comment provided by engineer. */
+"Then come back for private browsing." = "Then come back for private browsing.";
 
 /* SecurityViewController */
 "These might change server behaviour. E.g. show or not show Captchas or return pages meant for desktop browsers." = "Këto mund të ndryshojnë sjelljen e shërbyesit. p.sh., të shfaqen apo jo Captcha, apo të sillen faqe të menduara për shfletues desktopi.";
@@ -564,6 +531,9 @@
 
 /* No comment provided by engineer. */
 "This site may need authentication. If you received an authentication key for this site, add it to Orbot!" = "This site may need authentication. If you received an authentication key for this site, add it to Orbot!";
+
+/* No comment provided by engineer. */
+"This will allow %@ to:" = "This will allow %@ to:";
 
 /* DonationViewController */
 "Tip: %@" = "Dhuroni: %@";
@@ -613,17 +583,23 @@
 /* SyncViewController */
 "We couldn't sync your bookmarks at this time. Try again to make sure your information is synced." = "S’i njëkohësuam dot faqerojtësit tuaj këtë herë. Riprovoni, për t’u siguruar që të dhënat tuaja të jenë të njëkohësuara.";
 
-/* ConnectingViewController */
-"We're having trouble." = "Kemi probleme.";
-
 /* SecurityPresetsRow */
 "Websites may break. But you get great security." = "Mund të preket funksionimi për disa sajte. Por përfitoni siguri më të madhe.";
 
 /* No comment provided by engineer. */
 "WebSQL Databases" = "WebSQL Databases";
 
+/* No comment provided by engineer. */
+"Welcome to %@" = "Welcome to %@";
+
 /* SettingsViewController */
 "When disabled, all text entered in search bar will be sent to the search engine unless it starts with \"http\"." = "Kur çaktivizohet, krejt teksti i dhënë te shtylla e kërkimeve do t’i dërgohet motorit të kërkimeve, veç në nistë me \"http\".";
+
+/* No comment provided by engineer. */
+"Why" = "Why";
+
+/* No comment provided by engineer. */
+"Why %1$@ needs %2$@" = "Why %1$@ needs %2$@";
 
 /* SecurityPresetsRow */
 "Works pretty well. Your identity is mostly protected." = "Funksionon goxha mirë. Identiteti juaj, në pjesën më të madhe, është i mbrojtur.";
@@ -632,7 +608,7 @@
 "You most recently donated %1$@ on %2$@." = "Herën e fundit dhuruat %1$@ në %2$@.";
 
 /* No comment provided by engineer. */
-"You need to request API access with Orbot, in order for %@ to work while Orbot is running." = "You need to request API access with Orbot, in order for %@ to work while Orbot is running.";
+"You're one step closer to private browsing." = "You're one step closer to private browsing.";
 
 /* CircuitViewController */
 "Your traffic goes to 3 different parts of the world." = "Trafiku juaj kalon në 3 anë të ndryshme të botës.";

@@ -2,37 +2,34 @@
 "%1$@ (Disabled: %2$@)" = "%1$@ (Disabled: %2$@)";
 
 /* No comment provided by engineer. */
-"%@ is dedicated to run together with Orbot, only.\n\nPlease install Orbot!" = "%@ is dedicated to run together with Orbot, only.\n\nPlease install Orbot!";
+"%1$@ relies on %2$@ for a secure connection to Tor. Install the %2$@ app to continue." = "%1$@ relies on %2$@ for a secure connection to Tor. Install the %2$@ app to continue.";
 
 /* No comment provided by engineer. */
-"%@ is dedicated to run together with Orbot, only.\n\nPlease start Orbot!" = "%@ is dedicated to run together with Orbot, only.\n\nPlease start Orbot!";
+"%1$@ Use %2$@ to connect to the official Tor network." = "%1$@ Use %2$@ to connect to the official Tor network.";
+
+/* No comment provided by engineer. */
+"%@ a little more speed" = "%@ a little more speed";
+
+/* No comment provided by engineer. */
+"%@ alone provides a VPN proxy. It will hide apps from network monitoring and give you access when they are blocked." = "%@ alone provides a VPN proxy. It will hide apps from network monitoring and give you access when they are blocked.";
+
+/* No comment provided by engineer. */
+"%@ Get updates on the status of the connection." = "%@ Get updates on the status of the connection.";
+
+/* No comment provided by engineer. */
+"%@ installed! One more step." = "%@ installed! One more step.";
+
+/* No comment provided by engineer. */
+"%@ more protection from IP leaks" = "%@ more protection from IP leaks";
+
+/* No comment provided by engineer. */
+"%@ new standards" = "%@ new standards";
+
+/* No comment provided by engineer. */
+"%@ video and audio streaming" = "%@ video and audio streaming";
 
 /* SecurityPresetsRow */
 "(not recommended)" = "(not recommended)";
-
-/* ConnectingViewController */
-"__CLAIM_1__" = "Our diverse community is what makes Tor great!";
-
-/* ConnectingViewController */
-"__CLAIM_2__" = "Everyday people use Tor to avoid being followed by marketing ads.";
-
-/* ConnectingViewController */
-"__CLAIM_3__" = "People use Tor to safely stay connected with their friends and family.";
-
-/* ConnectingViewController */
-"__CLAIM_4__" = "Activists use Tor to freely express their opinions and beliefs.";
-
-/* ConnectingViewController */
-"__CLAIM_5__" = "Bloggers use Tor to rally people toward social reform.";
-
-/* ConnectingViewController */
-"__CLAIM_6__" = "Journalists use Tor to securely investigate stories they are reporting on.";
-
-/* ConnectingViewController */
-"__CLAIM_7__" = "Business people use Tor to keep their company strategies private.";
-
-/* ConnectingViewController */
-"__CLAIM_8__" = "Workers use Tor to fight for justice without fear of losing their job.";
 
 /* DonationViewController */
 "__DONATE_EXPLANATION_PARAGRAPH1__" = "Onion Browser is a free app, but it takes time and resources to develop and maintain.";
@@ -50,7 +47,7 @@
 "About" = "About";
 
 /* No comment provided by engineer. */
-"Access Token" = "Access Token";
+"Access to %@ was Denied" = "Access to %@ was Denied";
 
 /* SearchEnginesViewController, AddSearchEngineViewController */
 "Add" = "Add";
@@ -97,11 +94,14 @@
 /* SecurityViewController */
 "Allow Persistent Cookies" = "Allow Persistent Cookies";
 
-/* No comment provided by engineer. */
-"App Store" = "App Store";
-
 /* DonationViewController */
 "Are you sure you want to send a %@ tip?" = "Are you sure you want to send a %@ tip?";
+
+/* No comment provided by engineer. */
+"Ask %@ for permission to access it." = "Ask %@ for permission to access it.";
+
+/* No comment provided by engineer. */
+"Ask again to continue." = "Ask again to continue.";
 
 /* AppDelegate */
 "Authentication Required" = "Authentication Required";
@@ -120,6 +120,9 @@
 
 /* BookmarksViewController */
 "Bookmarks" = "Bookmarks";
+
+/* No comment provided by engineer. */
+"Both are free to use. Free of tracking. Code is open source." = "Both are free to use. Free of tracking. Code is open source.";
 
 /* CircuitViewController */
 "Bridge Configuration" = "Bridge Configuration";
@@ -145,14 +148,8 @@
 /* CertificateViewController */
 "Cipher" = "Cipher";
 
-/* ConnectingViewController */
-"Close Onion Browser and restart or try using a bridge." = "Close Onion Browser and restart or try using a bridge.";
-
 /* AppDelegate */
 "Close Tab" = "Close Tab";
-
-/* BridgesViewController */
-"Configure Bridges" = "Configure Bridges";
 
 /* DonationViewController */
 "Confirm %@" = "Confirm %@";
@@ -162,18 +159,6 @@
 
 /* CircuitViewController */
 "Connect to a website to see your circuit." = "Connect to a website to see your circuit.";
-
-/* BridgesViewController */
-"Connect to Tor" = "Connect to Tor";
-
-/* BridgesViewController */
-"Connect to Tor for private browsing." = "Connect to Tor for private browsing.";
-
-/* ConnectingViewController */
-"Connected!" = "Connected!";
-
-/* ConnectingViewController */
-"Connecting to Tor" = "Connecting to Tor";
 
 /* CertificateViewController */
 "Connection Information" = "Connection Information";
@@ -210,9 +195,6 @@
 
 /* CustomSitesViewController */
 "Define custom settings for specific sites." = "Define custom settings for specific sites.";
-
-/* InitSecurityLevelViewController */
-"Define Default Security Level" = "Define Default Security Level";
 
 /* SearchEnginesViewController */
 "Delete" = "Delete";
@@ -253,9 +235,6 @@
 /* AlertHelper */
 "Error" = "Error";
 
-/* No comment provided by engineer. */
-"Exit" = "Exit";
-
 /* CertificateViewController */
 "Expires After" = "Expires After";
 
@@ -277,11 +256,11 @@
 /* SettingsViewController */
 "Forget in Background" = "Forget in Background";
 
-/* MainViewController */
-"Free to be you." = "Free to be you.";
-
 /* SettingsViewController */
 "Fund Development" = "Fund Development";
+
+/* No comment provided by engineer. */
+"Get %@" = "Get %@";
 
 /* AppDelegate */
 "Go Back" = "Go Back";
@@ -307,9 +286,6 @@
 /* AddSiteViewController, SyncViewController */
 "Host" = "Host";
 
-/* BridgesViewController */
-"If you are in a country or using a connection that censors Tor, you might need to use bridges." = "If you are in a country or using a connection that censors Tor, you might need to use bridges.";
-
 /* SyncViewController */
 "If you sync, all bookmarks will be read from the server and added/updated in Onion Browser." = "If you sync, all bookmarks will be read from the server and added/updated in Onion Browser.";
 
@@ -322,6 +298,9 @@
 /* No comment provided by engineer. */
 "IndexedDB Databases" = "IndexedDB Databases";
 
+/* No comment provided by engineer. */
+"Install %@" = "Install %@";
+
 /* CertificateViewController */
 "Issued By" = "Issued By";
 
@@ -333,9 +312,6 @@
 
 /* Bookmark, placeholder is app name "Onion Browser" */
 "Learn more about %@" = "Learn more about %@";
-
-/*MainViewController; placeholder is a angle bracket \u{276c} or \u{276d} depending on text direction. */
-"Let's go %@" = "Let's go %@";
 
 /* DonationViewController */
 "Loading in-app purchase data…" = "Loading in-app purchase data…";
@@ -373,7 +349,7 @@
 /* CircuSitsViewController */
 "New Circuit for this Site" = "New Circuit for this Site";
 
-/* ConnectingViewController */
+/* No comment provided by engineer. */
 "Next" = "Next";
 
 /* No comment provided by engineer. */
@@ -397,23 +373,11 @@
 /* Tab+Gestures */
 "Open in Safari" = "Open in Safari";
 
-/* No comment provided by engineer. */
-"Orbot could not be opened!" = "Orbot could not be opened!";
-
-/* No comment provided by engineer. */
-"Orbot Not Installed" = "Orbot Not Installed";
-
-/* No comment provided by engineer. */
-"Orbot not Started" = "Orbot not Started";
-
 /* SecurityViewController */
 "Other" = "Other";
 
 /* AppDelegate, SyncViewController */
 "Password" = "Password";
-
-/* No comment provided by engineer. */
-"Paste API token here" = "Paste API token here";
 
 /* DonationViewController */
 "Payment Sent" = "Payment Sent";
@@ -455,7 +419,7 @@
 "Report a Bug" = "Report a Bug";
 
 /* No comment provided by engineer. */
-"Request API Access" = "Request API Access";
+"Request Access" = "Request Access";
 
 /* No comment provided by engineer. */
 "Request could not be formed. Please check host and username/password!" = "Request could not be formed. Please check host and username/password!";
@@ -511,14 +475,17 @@
 /* SecurityPresetsRow; a security level */
 "Silver" = "Silver";
 
+/* No comment provided by engineer. */
+"So that you can do more with Tor on iOS! In %1$@, %2$@ improves the browsing experience with:" = "So that you can do more with Tor on iOS! In %1$@, %2$@ improves the browsing experience with:";
+
 /* DonationViewController */
 "Sorry, in-app purchase is disabled on your device!" = "Sorry, in-app purchase is disabled on your device!";
 
-/* InitSecurityLevelViewController */
-"Start Browsing" = "Start Browsing";
+/* No comment provided by engineer. */
+"Start Tor" = "Start Tor";
 
 /* No comment provided by engineer. */
-"Start Orbot" = "Start Orbot";
+"Start Tor in %@." = "Start Tor in %@.";
 
 /* SettingsViewController */
 "Stop Auto-Complete at First Dot" = "Stop Auto-Complete at First Dot";
@@ -550,8 +517,8 @@
 /* Option title */
 "Tell websites that you object to processing and selling of your personal data" = "Tell websites that you object to processing and selling of your personal data";
 
-/* InitSecurityLevelViewController */
-"The security level you choose for a website often has a direct impact on that site’s performance. Some of the protections can be overridden or modified by changing your security settings." = "The security level you choose for a website often has a direct impact on that site’s performance. Some of the protections can be overridden or modified by changing your security settings.";
+/* No comment provided by engineer. */
+"Then come back for private browsing." = "Then come back for private browsing.";
 
 /* SecurityViewController */
 "These might change server behaviour. E.g. show or not show Captchas or return pages meant for desktop browsers." = "These might change server behaviour. E.g. show or not show Captchas or return pages meant for desktop browsers.";
@@ -564,6 +531,9 @@
 
 /* No comment provided by engineer. */
 "This site may need authentication. If you received an authentication key for this site, add it to Orbot!" = "This site may need authentication. If you received an authentication key for this site, add it to Orbot!";
+
+/* No comment provided by engineer. */
+"This will allow %@ to:" = "This will allow %@ to:";
 
 /* DonationViewController */
 "Tip: %@" = "Tip: %@";
@@ -613,17 +583,23 @@
 /* SyncViewController */
 "We couldn't sync your bookmarks at this time. Try again to make sure your information is synced." = "We couldn't sync your bookmarks at this time. Try again to make sure your information is synced.";
 
-/* ConnectingViewController */
-"We're having trouble." = "We're having trouble.";
-
 /* SecurityPresetsRow */
 "Websites may break. But you get great security." = "Websites may break. But you get great security.";
 
 /* No comment provided by engineer. */
 "WebSQL Databases" = "WebSQL Databases";
 
+/* No comment provided by engineer. */
+"Welcome to %@" = "Welcome to %@";
+
 /* SettingsViewController */
 "When disabled, all text entered in search bar will be sent to the search engine unless it starts with \"http\"." = "When disabled, all text entered in search bar will be sent to the search engine unless it starts with \"http\".";
+
+/* No comment provided by engineer. */
+"Why" = "Why";
+
+/* No comment provided by engineer. */
+"Why %1$@ needs %2$@" = "Why %1$@ needs %2$@";
 
 /* SecurityPresetsRow */
 "Works pretty well. Your identity is mostly protected." = "Works pretty well. Your identity is mostly protected.";
@@ -632,7 +608,7 @@
 "You most recently donated %1$@ on %2$@." = "You most recently donated %1$@ on %2$@.";
 
 /* No comment provided by engineer. */
-"You need to request API access with Orbot, in order for %@ to work while Orbot is running." = "You need to request API access with Orbot, in order for %@ to work while Orbot is running.";
+"You're one step closer to private browsing." = "You're one step closer to private browsing.";
 
 /* CircuitViewController */
 "Your traffic goes to 3 different parts of the world." = "Your traffic goes to 3 different parts of the world.";

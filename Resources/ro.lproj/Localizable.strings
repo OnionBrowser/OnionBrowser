@@ -2,37 +2,34 @@
 "%1$@ (Disabled: %2$@)" = "1%1$@ (Dezactivat:  %2$@)";
 
 /* No comment provided by engineer. */
-"%@ is dedicated to run together with Orbot, only.\n\nPlease install Orbot!" = "%@ is dedicated to run together with Orbot, only.\n\nPlease install Orbot!";
+"%1$@ relies on %2$@ for a secure connection to Tor. Install the %2$@ app to continue." = "%1$@ relies on %2$@ for a secure connection to Tor. Install the %2$@ app to continue.";
 
 /* No comment provided by engineer. */
-"%@ is dedicated to run together with Orbot, only.\n\nPlease start Orbot!" = "%@ is dedicated to run together with Orbot, only.\n\nPlease start Orbot!";
+"%1$@ Use %2$@ to connect to the official Tor network." = "%1$@ Use %2$@ to connect to the official Tor network.";
+
+/* No comment provided by engineer. */
+"%@ a little more speed" = "%@ a little more speed";
+
+/* No comment provided by engineer. */
+"%@ alone provides a VPN proxy. It will hide apps from network monitoring and give you access when they are blocked." = "%@ alone provides a VPN proxy. It will hide apps from network monitoring and give you access when they are blocked.";
+
+/* No comment provided by engineer. */
+"%@ Get updates on the status of the connection." = "%@ Get updates on the status of the connection.";
+
+/* No comment provided by engineer. */
+"%@ installed! One more step." = "%@ installed! One more step.";
+
+/* No comment provided by engineer. */
+"%@ more protection from IP leaks" = "%@ more protection from IP leaks";
+
+/* No comment provided by engineer. */
+"%@ new standards" = "%@ new standards";
+
+/* No comment provided by engineer. */
+"%@ video and audio streaming" = "%@ video and audio streaming";
 
 /* SecurityPresetsRow */
 "(not recommended)" = "(nu se recomandă)";
-
-/* ConnectingViewController */
-"__CLAIM_1__" = "Comunitatea noastră diversă este ce face Tor minunat!";
-
-/* ConnectingViewController */
-"__CLAIM_2__" = "Oamenii de rând folosesc Tor pentru a evita să fie urmăriți de reclame de marketing.";
-
-/* ConnectingViewController */
-"__CLAIM_3__" = "Persoanele folosesc Tor pentru a rămâne conectați în siguranță cu prietenii și familia.";
-
-/* ConnectingViewController */
-"__CLAIM_4__" = "Activiștii folosesc Tor pentru a-și exprima opiniile în mod liber.";
-
-/* ConnectingViewController */
-"__CLAIM_5__" = "Bloggerii folosesc Tor pentru a atrage oamenii spre reformă socială.";
-
-/* ConnectingViewController */
-"__CLAIM_6__" = "Jurnaliștii folosesc Tor pentru a investiga în siguranță poveștile pe care raportează.";
-
-/* ConnectingViewController */
-"__CLAIM_7__" = "Oamenii de afaceri folosesc Tor pentru a-și menține strategiile private.";
-
-/* ConnectingViewController */
-"__CLAIM_8__" = "Angajații folosesc Tor pentru a lupta pentru justiție fără frica de a fi concediați.";
 
 /* DonationViewController */
 "__DONATE_EXPLANATION_PARAGRAPH1__" = "Onion Browser este o aplicație gratuită, dar necesită timp și resurse pentru dezvoltare și mentenanță.";
@@ -50,7 +47,7 @@
 "About" = "Despre";
 
 /* No comment provided by engineer. */
-"Access Token" = "Access Token";
+"Access to %@ was Denied" = "Access to %@ was Denied";
 
 /* SearchEnginesViewController, AddSearchEngineViewController */
 "Add" = "Adăugare";
@@ -97,11 +94,14 @@
 /* SecurityViewController */
 "Allow Persistent Cookies" = "Permite Cookie-uri Persistente";
 
-/* No comment provided by engineer. */
-"App Store" = "App Store";
-
 /* DonationViewController */
 "Are you sure you want to send a %@ tip?" = "Sigur dorești să trimiți un bacșiș de %@?";
+
+/* No comment provided by engineer. */
+"Ask %@ for permission to access it." = "Ask %@ for permission to access it.";
+
+/* No comment provided by engineer. */
+"Ask again to continue." = "Ask again to continue.";
 
 /* AppDelegate */
 "Authentication Required" = "Autentificarea este necesară";
@@ -120,6 +120,9 @@
 
 /* BookmarksViewController */
 "Bookmarks" = "Semne de carte";
+
+/* No comment provided by engineer. */
+"Both are free to use. Free of tracking. Code is open source." = "Both are free to use. Free of tracking. Code is open source.";
 
 /* CircuitViewController */
 "Bridge Configuration" = "Configurație Pod";
@@ -145,14 +148,8 @@
 /* CertificateViewController */
 "Cipher" = "Cifru";
 
-/* ConnectingViewController */
-"Close Onion Browser and restart or try using a bridge." = "Închide Onion Browser și redeschide-l sau încearcă să folosești un pod.";
-
 /* AppDelegate */
 "Close Tab" = "Închide Fereastra";
-
-/* BridgesViewController */
-"Configure Bridges" = "Configurare Poduri";
 
 /* DonationViewController */
 "Confirm %@" = "Confirmă %@";
@@ -162,18 +159,6 @@
 
 /* CircuitViewController */
 "Connect to a website to see your circuit." = "Conectează-te la un site web pentru a-ți vedea circuitul.";
-
-/* BridgesViewController */
-"Connect to Tor" = "Conectează-te la Tor";
-
-/* BridgesViewController */
-"Connect to Tor for private browsing." = "Conectează-te la Tor pentru navigare privată.";
-
-/* ConnectingViewController */
-"Connected!" = "Conectat(ă)!";
-
-/* ConnectingViewController */
-"Connecting to Tor" = "Se conectează la Tor...";
 
 /* CertificateViewController */
 "Connection Information" = "Informații despre conexiune";
@@ -210,9 +195,6 @@
 
 /* CustomSitesViewController */
 "Define custom settings for specific sites." = "Definește setări personalizate pentru site-uri specifice.";
-
-/* InitSecurityLevelViewController */
-"Define Default Security Level" = "Alege Nivelul de Securitate Prestabilit";
 
 /* SearchEnginesViewController */
 "Delete" = "Ștergeți";
@@ -253,9 +235,6 @@
 /* AlertHelper */
 "Error" = "Eroare";
 
-/* No comment provided by engineer. */
-"Exit" = "Exit";
-
 /* CertificateViewController */
 "Expires After" = "Expiră după";
 
@@ -277,11 +256,11 @@
 /* SettingsViewController */
 "Forget in Background" = "Uită în Fundal";
 
-/* MainViewController */
-"Free to be you." = "Liber să fii tu.";
-
 /* SettingsViewController */
 "Fund Development" = "Fond de Dezvoltare";
+
+/* No comment provided by engineer. */
+"Get %@" = "Get %@";
 
 /* AppDelegate */
 "Go Back" = "Mergi Înapoi";
@@ -307,9 +286,6 @@
 /* AddSiteViewController, SyncViewController */
 "Host" = "Gazdă";
 
-/* BridgesViewController */
-"If you are in a country or using a connection that censors Tor, you might need to use bridges." = "Dacă te afli într-o țară sau folosești o conexiune care cenzurează Tor, s-ar putea să ai nevoie de poduri.";
-
 /* SyncViewController */
 "If you sync, all bookmarks will be read from the server and added/updated in Onion Browser." = "Dacă sincronizezi, toate semnele de carte vor fi citite de la server și adăugate/actualizate în Onion Browser.";
 
@@ -322,6 +298,9 @@
 /* No comment provided by engineer. */
 "IndexedDB Databases" = "IndexedDB Databases";
 
+/* No comment provided by engineer. */
+"Install %@" = "Install %@";
+
 /* CertificateViewController */
 "Issued By" = "Emis de";
 
@@ -333,9 +312,6 @@
 
 /* Bookmark, placeholder is app name "Onion Browser" */
 "Learn more about %@" = "Află mai multe despre %@";
-
-/*MainViewController; placeholder is a angle bracket \u{276c} or \u{276d} depending on text direction. */
-"Let's go %@" = "Hai să începem %@";
 
 /* DonationViewController */
 "Loading in-app purchase data…" = "Informațiile achiziției se încarcă...";
@@ -373,8 +349,8 @@
 /* CircuSitsViewController */
 "New Circuit for this Site" = "Circuit nou pentru acest site";
 
-/* ConnectingViewController */
-"Next" = "Următorul";
+/* No comment provided by engineer. */
+"Next" = "Next";
 
 /* No comment provided by engineer. */
 "No success, but \"%@\" instead." = "No success, but \"%@\" instead.";
@@ -397,23 +373,11 @@
 /* Tab+Gestures */
 "Open in Safari" = "Deschide în Safari";
 
-/* No comment provided by engineer. */
-"Orbot could not be opened!" = "Orbot could not be opened!";
-
-/* No comment provided by engineer. */
-"Orbot Not Installed" = "Orbot Not Installed";
-
-/* No comment provided by engineer. */
-"Orbot not Started" = "Orbot not Started";
-
 /* SecurityViewController */
 "Other" = "Altele";
 
 /* AppDelegate, SyncViewController */
 "Password" = "Parolă";
-
-/* No comment provided by engineer. */
-"Paste API token here" = "Paste API token here";
 
 /* DonationViewController */
 "Payment Sent" = "Plată Trimisă";
@@ -455,7 +419,7 @@
 "Report a Bug" = "Raportează o problemă";
 
 /* No comment provided by engineer. */
-"Request API Access" = "Request API Access";
+"Request Access" = "Request Access";
 
 /* No comment provided by engineer. */
 "Request could not be formed. Please check host and username/password!" = "Request could not be formed. Please check host and username/password!";
@@ -511,14 +475,17 @@
 /* SecurityPresetsRow; a security level */
 "Silver" = "Argint";
 
+/* No comment provided by engineer. */
+"So that you can do more with Tor on iOS! In %1$@, %2$@ improves the browsing experience with:" = "So that you can do more with Tor on iOS! In %1$@, %2$@ improves the browsing experience with:";
+
 /* DonationViewController */
 "Sorry, in-app purchase is disabled on your device!" = "Ne pare rău, achizițiile în aplicație sunt dezactivate pe dispozitivul tău!";
 
-/* InitSecurityLevelViewController */
-"Start Browsing" = "Începe să navighezi!";
+/* No comment provided by engineer. */
+"Start Tor" = "Start Tor";
 
 /* No comment provided by engineer. */
-"Start Orbot" = "Start Orbot";
+"Start Tor in %@." = "Start Tor in %@.";
 
 /* SettingsViewController */
 "Stop Auto-Complete at First Dot" = "Oprește auto-completarea la primul punct";
@@ -550,8 +517,8 @@
 /* Option title */
 "Tell websites that you object to processing and selling of your personal data" = "Tell websites that you object to processing and selling of your personal data";
 
-/* InitSecurityLevelViewController */
-"The security level you choose for a website often has a direct impact on that site’s performance. Some of the protections can be overridden or modified by changing your security settings." = "Nivelul de securitate ales pentru un site web are adesea impact direct asupra performanței acelui site. Câteva dintre protecții pot fi modificate prin schimbarea setărilor de securitate.";
+/* No comment provided by engineer. */
+"Then come back for private browsing." = "Then come back for private browsing.";
 
 /* SecurityViewController */
 "These might change server behaviour. E.g. show or not show Captchas or return pages meant for desktop browsers." = "Acestea s-ar putea să schimbe comportamentul serverului. Ex: afișează sau nu afișă Captcha-uri sau pagini de întoarcere menite pentru navigatoare pentru desktop-uri.";
@@ -564,6 +531,9 @@
 
 /* No comment provided by engineer. */
 "This site may need authentication. If you received an authentication key for this site, add it to Orbot!" = "This site may need authentication. If you received an authentication key for this site, add it to Orbot!";
+
+/* No comment provided by engineer. */
+"This will allow %@ to:" = "This will allow %@ to:";
 
 /* DonationViewController */
 "Tip: %@" = "Bacșiș: %@";
@@ -613,17 +583,23 @@
 /* SyncViewController */
 "We couldn't sync your bookmarks at this time. Try again to make sure your information is synced." = "Nu am putut să-ți sincronizăm semnele de carte pe moment. Reîncearcă ca să asiguri sincronizarea informațiilor.";
 
-/* ConnectingViewController */
-"We're having trouble." = "Întâmpinăm niște probleme.";
-
 /* SecurityPresetsRow */
 "Websites may break. But you get great security." = "Site-urile s-ar putea să devină defective, dar beneficiezi de securitate avansată.";
 
 /* No comment provided by engineer. */
 "WebSQL Databases" = "WebSQL Databases";
 
+/* No comment provided by engineer. */
+"Welcome to %@" = "Welcome to %@";
+
 /* SettingsViewController */
 "When disabled, all text entered in search bar will be sent to the search engine unless it starts with \"http\"." = "Când este dezactivat, tot textul introdus în bara de căutare va fi trimis către motorul de căutare, cu excepția prezenței prefixului \"http\".";
+
+/* No comment provided by engineer. */
+"Why" = "Why";
+
+/* No comment provided by engineer. */
+"Why %1$@ needs %2$@" = "Why %1$@ needs %2$@";
 
 /* SecurityPresetsRow */
 "Works pretty well. Your identity is mostly protected." = "Funcționează foarte bine. Identitatea tea este în mare parte protejată.";
@@ -632,7 +608,7 @@
 "You most recently donated %1$@ on %2$@." = "Cel mai recent ai donat %1$@ pe datat de %2$@.";
 
 /* No comment provided by engineer. */
-"You need to request API access with Orbot, in order for %@ to work while Orbot is running." = "You need to request API access with Orbot, in order for %@ to work while Orbot is running.";
+"You're one step closer to private browsing." = "You're one step closer to private browsing.";
 
 /* CircuitViewController */
 "Your traffic goes to 3 different parts of the world." = "Traficul tău merge în 3 părți diferite ale lumii.";
