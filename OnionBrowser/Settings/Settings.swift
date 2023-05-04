@@ -379,4 +379,6 @@ class Settings: NSObject {
 			UserDefaults.standard.set(newValue, forKey: "orbot_api_token")
 		}
 	}
+
+	static let orbotAccessDenied = "***DENIED***"
 }

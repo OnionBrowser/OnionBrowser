@@ -148,10 +148,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		if let urlc = URLComponents(url: url, resolvingAgainstBaseURL: true),
 		   urlc.scheme == "onionbrowser"
 		{
-			if urlc.path == "token-callback",
+			if urlc.path == "token-callback" {
 				let token = urlc.queryItems?.first(where: { $0.name == "token" })?.value
-			{
-				Settings.orbotApiToken = token
+
+				Settings.orbotApiToken = token?.isEmpty ?? true ? Settings.orbotAccessDenied : token
 			}
 
 			return true

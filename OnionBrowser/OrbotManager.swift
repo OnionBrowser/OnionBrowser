@@ -84,7 +84,9 @@ class OrbotManager : NSObject, OrbotStatusChangeListener {
 			return InstallViewController()
 		}
 
-		if Settings.orbotApiToken?.isEmpty ?? true {
+		if Settings.orbotApiToken?.isEmpty ?? true
+			|| Settings.orbotApiToken == Settings.orbotAccessDenied
+		{
 			return PermissionViewController()
 		}
 

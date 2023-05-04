@@ -79,10 +79,10 @@ class PermissionViewController: UIViewController, WhyDelegate {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 
-		if let error = error {
-			var description: String? = error.localizedDescription
+		if error != nil || Settings.orbotApiToken == Settings.orbotAccessDenied {
+			var description = error?.localizedDescription
 
-			if case OrbotKit.Errors.httpError(statusCode: 403) = error {
+			if case OrbotKit.Errors.httpError(statusCode: 403)? = error {
 				description = nil
 			}
 
