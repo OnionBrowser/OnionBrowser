@@ -245,6 +245,9 @@ class Tab: UIView {
 
 	func stop() {
 		webView.stopLoading()
+
+		// Seems not to update correctly via the #observeValue path.
+		progress = 1
 	}
 
 	@objc

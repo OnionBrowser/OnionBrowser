@@ -10,13 +10,9 @@
 import Foundation
 import OrbotKit
 
-class OrbotManager : NSObject {
+class OrbotManager : NSObject, OrbotStatusChangeListener {
 
 	static let shared = OrbotManager()
-
-	// Show Tor log in iOS' app log.
-	private static let TOR_LOGGING = false
-
 
 
 	// MARK: OnionManager instance
@@ -24,10 +20,6 @@ class OrbotManager : NSObject {
 	public private(set) var lastInfo: OrbotKit.Info?
 
 	public private(set) var lastError: Error?
-
-	private var initRetry: DispatchWorkItem?
-
-	private var needsReconfiguration = false
 
 
 	// MARK: Public Methods
@@ -77,9 +69,13 @@ class OrbotManager : NSObject {
 	/**
 	 Check's Orbot's status, and if not working, returns a view controller to show instead of the browser UI.
 
+	 Starts a continuous Orbot status change check, if successful.
+
 	 - returns: A view controller to show instead of the browser UI, if status is not good.
 	 */
 	func checkStatus() -> UIViewController? {
+		OrbotKit.shared.removeStatusChangeListener(self)
+
 		if !Settings.didWelcome {
 			return WelcomeViewController()
 		}
@@ -116,18 +112,55 @@ class OrbotManager : NSObject {
 		if lastInfo?.status == .stopped {
 			return StartViewController()
 		}
+
+		OrbotKit.shared.notifyOnStatusChanges(self)
 		
 		return nil
+	}
+
+
+	// MARK: OrbotStatusChangeListener
+
+	func orbotStatusChanged(info: OrbotKit.Info) {
+		guard lastInfo?.status != info.status else {
+			lastInfo = info
+
+			return
+		}
+
+		lastInfo = info
+
+		DispatchQueue.main.async {
+			if info.status == .stopped {
+				self.fullStop()
+
+				AppDelegate.shared?.show(StartViewController())
+			}
+			else {
+				AppDelegate.shared?.show()
+			}
+		}
+	}
+
+	func statusChangeListeningStopped(error: Error) {
+		lastError = error
+
+		DispatchQueue.main.async {
+			self.fullStop()
+
+			AppDelegate.shared?.show(self.checkStatus())
+		}
 	}
 
 
 	// MARK: Private Methods
 
 	/**
-	Cancel the connection retry and fail guard.
+	Cancel all connections and re-evalutate Orbot situation and show respective UI.
 	*/
-	private func cancelInitRetry() {
-		initRetry?.cancel()
-		initRetry = nil
+	private func fullStop() {
+		for tab in AppDelegate.shared?.browsingUi?.tabs ?? [] {
+			tab.stop()
+		}
 	}
 }

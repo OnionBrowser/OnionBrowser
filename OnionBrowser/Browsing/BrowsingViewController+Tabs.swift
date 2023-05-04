@@ -176,10 +176,10 @@ UICollectionViewDropDelegate, TabCellDelegate {
 			// we should at least not crash, if so.
 			if indexPath.row < tabs.count {
 				tabsCollection.performBatchUpdates({
+					removeTab(tabs[indexPath.row])
+
 					tabsCollection.deleteItems(at: [indexPath])
 				})
-
-				removeTab(tabs[indexPath.row])
 			}
 		}
 	}
