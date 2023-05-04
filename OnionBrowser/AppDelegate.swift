@@ -200,7 +200,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 		BlurredSnapshot.remove()
 
-		show(OrbotManager.shared.checkStatus())
+		let vc = OrbotManager.shared.checkStatus()
+
+		show(vc)
+
+		// Seems, we're running via Tor. Set up bookmarks, if not done, yet.
+		if vc == nil {
+			Bookmark.firstRunSetup()
+			Bookmark.migrateToV3()
+		}
 	}
 
 	func applicationWillTerminate(_ application: UIApplication) {

@@ -114,7 +114,7 @@ class OrbotManager : NSObject, OrbotStatusChangeListener {
 		}
 
 		OrbotKit.shared.notifyOnStatusChanges(self)
-		
+
 		return nil
 	}
 
