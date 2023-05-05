@@ -26,11 +26,14 @@ extension Tab: WKUIDelegate {
 				 initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void)
 	{
 		if let tabDelegate = tabDelegate {
-			let alert = AlertHelper.build(message: message, title: url.host, actions: [
-				AlertHelper.defaultAction { _ in
-					completionHandler()
-				}
-			])
+			let alert = AlertHelper.build(
+				message: message,
+				title: frame.request.url?.host ?? url.host,
+				actions: [
+					AlertHelper.defaultAction { _ in
+						completionHandler()
+					}
+				])
 
 			tabDelegate.present(alert, nil)
 		}
@@ -43,14 +46,17 @@ extension Tab: WKUIDelegate {
 				 initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (Bool) -> Void)
 	{
 		if let tabDelegate = tabDelegate {
-			let alert = AlertHelper.build(message: message, title: url.host, actions: [
-				AlertHelper.defaultAction { _ in
-					completionHandler(true)
-				},
-				AlertHelper.cancelAction { _ in
-					completionHandler(false)
-				}
-			])
+			let alert = AlertHelper.build(
+				message: message,
+				title: frame.request.url?.host ?? url.host,
+				actions: [
+					AlertHelper.defaultAction { _ in
+						completionHandler(true)
+					},
+					AlertHelper.cancelAction { _ in
+						completionHandler(false)
+					}
+				])
 
 			tabDelegate.present(alert, nil)
 		}
@@ -66,7 +72,7 @@ extension Tab: WKUIDelegate {
 		if let tabDelegate = tabDelegate {
 			let alert = AlertHelper.build(
 				message: prompt,
-				title: url.host,
+				title: frame.request.url?.host ?? url.host,
 				actions: [
 					AlertHelper.cancelAction() { _ in
 						completionHandler(nil)
@@ -144,7 +150,7 @@ extension Tab: WKUIDelegate {
 					}), at: 2)
 
 				elements.insert(UIAction(
-					title: NSLocalizedString("Open in Safari", comment: ""),
+					title: NSLocalizedString("Open in Default Browser", comment: ""),
 					image: UIImage(systemName: "arrow.up.forward.app"),
 					handler: { _ in
 						UIApplication.shared.open(url)

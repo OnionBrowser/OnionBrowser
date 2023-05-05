@@ -376,8 +376,8 @@
 /* Tab+Gestures */
 "Open in Background Tab" = "បើក​នៅក្នុង​ផ្ទាំង​ខាងក្នុង";
 
-/* Tab+Gestures */
-"Open in Safari" = "បើក​នៅក្នុង Safari";
+/* No comment provided by engineer. */
+"Open in Default Browser" = "Open in Default Browser";
 
 /* SecurityViewController */
 "Other" = "ផ្សេងៗ";
@@ -524,6 +524,9 @@
 "Tell websites that you object to processing and selling of your personal data" = "Tell websites that you object to processing and selling of your personal data";
 
 /* No comment provided by engineer. */
+"The encryption method for this server is outdated." = "The encryption method for this server is outdated.";
+
+/* No comment provided by engineer. */
 "Then come back for private browsing." = "Then come back for private browsing.";
 
 /* SecurityViewController */
@@ -609,6 +612,9 @@
 
 /* SecurityPresetsRow */
 "Works pretty well. Your identity is mostly protected." = "ដំណើរការ​ល្អណាស់។ អត្តសញ្ញាណ​របស់​អ្នក​ភាគច្រើន​ត្រូវបាន​ការពារ។";
+
+/* Placeholder is server domain */
+"You might be connecting to a server that is pretending to be \"%@\" which could put your confidential information at risk." = "You might be connecting to a server that is pretending to be \"%@\" which could put your confidential information at risk.";
 
 /* DonationViewController */
 "You most recently donated %1$@ on %2$@." = "អ្នក​បានបរិច្ចាគ​ថ្មីៗ​នេះ %1$@នៅលើ %2$@។";

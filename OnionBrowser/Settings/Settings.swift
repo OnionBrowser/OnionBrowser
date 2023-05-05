@@ -239,15 +239,15 @@ class Settings: NSObject {
 	}
 
 	class var hideContent: Bool {
-	 get {
-		 UserDefaults.standard.object(forKey: "hide_content") == nil
-			 ? true
-			 : UserDefaults.standard.bool(forKey: "hide_content")
-	 }
-	 set {
-		 UserDefaults.standard.set(newValue, forKey: "hide_content")
-	 }
- }
+		get {
+			UserDefaults.standard.object(forKey: "hide_content") == nil
+				? true
+				: UserDefaults.standard.bool(forKey: "hide_content")
+		}
+		set {
+			UserDefaults.standard.set(newValue, forKey: "hide_content")
+		}
+	}
 
 	/**
 	 The successor of Do-Not-Track is "Global Privacy Control".

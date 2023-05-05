@@ -376,8 +376,8 @@
 /* Tab+Gestures */
 "Open in Background Tab" = "Apri in una scheda background";
 
-/* Tab+Gestures */
-"Open in Safari" = "Apri in Safari";
+/* No comment provided by engineer. */
+"Open in Default Browser" = "Open in Default Browser";
 
 /* SecurityViewController */
 "Other" = "Altro";
@@ -524,6 +524,9 @@
 "Tell websites that you object to processing and selling of your personal data" = "Tell websites that you object to processing and selling of your personal data";
 
 /* No comment provided by engineer. */
+"The encryption method for this server is outdated." = "The encryption method for this server is outdated.";
+
+/* No comment provided by engineer. */
 "Then come back for private browsing." = "Then come back for private browsing.";
 
 /* SecurityViewController */
@@ -609,6 +612,9 @@
 
 /* SecurityPresetsRow */
 "Works pretty well. Your identity is mostly protected." = "Funziona molto bene. La tua identità è principalmente protetta.";
+
+/* Placeholder is server domain */
+"You might be connecting to a server that is pretending to be \"%@\" which could put your confidential information at risk." = "You might be connecting to a server that is pretending to be \"%@\" which could put your confidential information at risk.";
 
 /* DonationViewController */
 "You most recently donated %1$@ on %2$@." = "Di ricente hai donato %1$@ su %2$@.";

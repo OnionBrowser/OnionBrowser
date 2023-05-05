@@ -376,8 +376,8 @@
 /* Tab+Gestures */
 "Open in Background Tab" = "Отвори во позадински таб";
 
-/* Tab+Gestures */
-"Open in Safari" = "Отвори со Safari";
+/* No comment provided by engineer. */
+"Open in Default Browser" = "Open in Default Browser";
 
 /* SecurityViewController */
 "Other" = "Друго";
@@ -524,6 +524,9 @@
 "Tell websites that you object to processing and selling of your personal data" = "Tell websites that you object to processing and selling of your personal data";
 
 /* No comment provided by engineer. */
+"The encryption method for this server is outdated." = "The encryption method for this server is outdated.";
+
+/* No comment provided by engineer. */
 "Then come back for private browsing." = "Then come back for private browsing.";
 
 /* SecurityViewController */
@@ -609,6 +612,9 @@
 
 /* SecurityPresetsRow */
 "Works pretty well. Your identity is mostly protected." = "Работи доста добро. Вашиот идентитет е најчесто заштитен.";
+
+/* Placeholder is server domain */
+"You might be connecting to a server that is pretending to be \"%@\" which could put your confidential information at risk." = "You might be connecting to a server that is pretending to be \"%@\" which could put your confidential information at risk.";
 
 /* DonationViewController */
 "You most recently donated %1$@ on %2$@." = "Вашата најскорешна донација %1$@ на %2$@.";

@@ -46,7 +46,9 @@ extension Tab: WKNavigationDelegate {
 			else if navigationType == .formSubmitted {
 				print("[Tab \(index)] not doing universal link workaround for form submission to \(url).")
 			}
-			else if (url.scheme?.lowercased().hasPrefix("http") ?? false) && (URLProtocol.property(forKey: Tab.universalLinksWorkaroundKey, in: navigationAction.request) == nil) {
+			else if (url.scheme?.lowercased().hasPrefix("http") ?? false)
+						&& (URLProtocol.property(forKey: Tab.universalLinksWorkaroundKey, in: navigationAction.request) == nil)
+			{
 				if let tr = navigationAction.request as? NSMutableURLRequest {
 					URLProtocol.setProperty(true, forKey: Tab.universalLinksWorkaroundKey, in: tr)
 
@@ -243,16 +245,50 @@ extension Tab: WKNavigationDelegate {
 		}
 	}
 
-	// TODO
-//	func webView(_ webView: WKWebView, authenticationChallenge challenge: URLAuthenticationChallenge,
-//				 shouldAllowDeprecatedTLS decisionHandler: @escaping (Bool) -> Void)
-//	{
-//		// TODO
-//	}
+	func webView(_ webView: WKWebView, authenticationChallenge challenge: URLAuthenticationChallenge,
+				 shouldAllowDeprecatedTLS decisionHandler: @escaping (Bool) -> Void)
+	{
+		let space = challenge.protectionSpace
+
+		guard space.authenticationMethod == NSURLAuthenticationMethodServerTrust
+		else {
+			return decisionHandler(false)
+		}
+
+		if HostSettings.for(space.host).ignoreTlsErrors {
+			return decisionHandler(true)
+		}
+
+		let msg = NSLocalizedString("The encryption method for this server is outdated.", comment: "")
+			+ "\n\n"
+			+ String(
+				format: NSLocalizedString(
+					"You might be connecting to a server that is pretending to be \"%@\" which could put your confidential information at risk.",
+					comment: "Placeholder is server domain"),
+				space.host)
+
+		let alert = AlertHelper.build(message: msg, actions: [
+			AlertHelper.defaultAction() { _ in
+				decisionHandler(false)
+			},
+			AlertHelper.destructiveAction(NSLocalizedString("Ignore for this host", comment: "")) { _ in
+				let hs = HostSettings.for(space.host)
+				hs.ignoreTlsErrors = true
+				hs.save().store()
+
+				decisionHandler(true)
+			}
+		])
+
+		tabDelegate?.present(alert, nil)
+	}
 
 
 	// MARK: Private Methods
 
+	/**
+	 TLS testing site: https://badssl.com/
+	 */
 	private func handle(error: Error, _ navigation: WKNavigation?) {
 		if let url = webView.url {
 			self.url = url

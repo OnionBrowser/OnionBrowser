@@ -376,8 +376,8 @@
 /* Tab+Gestures */
 "Open in Background Tab" = "백그라운드 탭에서 열기";
 
-/* Tab+Gestures */
-"Open in Safari" = "Safari에서 열기";
+/* No comment provided by engineer. */
+"Open in Default Browser" = "Open in Default Browser";
 
 /* SecurityViewController */
 "Other" = "기타";
@@ -524,6 +524,9 @@
 "Tell websites that you object to processing and selling of your personal data" = "Tell websites that you object to processing and selling of your personal data";
 
 /* No comment provided by engineer. */
+"The encryption method for this server is outdated." = "The encryption method for this server is outdated.";
+
+/* No comment provided by engineer. */
 "Then come back for private browsing." = "Then come back for private browsing.";
 
 /* SecurityViewController */
@@ -609,6 +612,9 @@
 
 /* SecurityPresetsRow */
 "Works pretty well. Your identity is mostly protected." = "꽤 잘 작동합니다. 당신의 신원은 대부분 보호받고 있습니다.";
+
+/* Placeholder is server domain */
+"You might be connecting to a server that is pretending to be \"%@\" which could put your confidential information at risk." = "You might be connecting to a server that is pretending to be \"%@\" which could put your confidential information at risk.";
 
 /* DonationViewController */
 "You most recently donated %1$@ on %2$@." = "최근에 %2$@에 %1$@를 기부했습니다.";
