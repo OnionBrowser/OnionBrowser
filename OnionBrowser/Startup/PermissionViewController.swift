@@ -21,7 +21,7 @@ class PermissionViewController: UIViewController, WhyDelegate {
 				format: NSLocalizedString(
 					"%@ installed! One more step.",
 					comment: "Placeholder is 'Orbot'"),
-				InstallViewController.orbot)
+				OrbotManager.orbot)
 		}
 	}
 
@@ -31,7 +31,7 @@ class PermissionViewController: UIViewController, WhyDelegate {
 				format: NSLocalizedString(
 					"Ask %@ for permission to access it.",
 					comment: "Placeholder is 'Orbot'"),
-				InstallViewController.orbot)
+				OrbotManager.orbot)
 		}
 	}
 
@@ -67,7 +67,7 @@ class PermissionViewController: UIViewController, WhyDelegate {
 				format: NSLocalizedString(
 					"%1$@ Use %2$@ to connect to the official Tor network.",
 					comment: "Placeholder 1 is bullet point, placeholder 2 is 'Orbot'"),
-				"•", InstallViewController.orbot)
+				"•", OrbotManager.orbot)
 		}
 	}
 
@@ -119,7 +119,7 @@ class PermissionViewController: UIViewController, WhyDelegate {
 				format: NSLocalizedString(
 					"Access to %@ was Denied",
 					comment: "Placeholder is 'Orbot'"),
-				InstallViewController.orbot)
+				OrbotManager.orbot)
 
 			body1Lb.text = NSLocalizedString("Ask again to continue.", comment: "")
 

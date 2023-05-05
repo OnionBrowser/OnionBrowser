@@ -11,13 +11,10 @@ import OrbotKit
 
 class InstallViewController: UIViewController, WhyDelegate {
 
-	static let orbot = "Orbot"
-
-
 	@IBOutlet weak var titleLb: UILabel! {
 		didSet {
 			titleLb.text = String(format: NSLocalizedString(
-				"Install %@", comment: "Placeholder is 'Orbot'"), Self.orbot)
+				"Install %@", comment: "Placeholder is 'Orbot'"), OrbotManager.orbot)
 		}
 	}
 
@@ -28,7 +25,7 @@ class InstallViewController: UIViewController, WhyDelegate {
 					"%1$@ relies on %2$@ for a secure connection to Tor. Install the %2$@ app to continue.",
 					comment: "Placeholder 1 is 'Onion Browser', placeholder 2 is 'Orbot'"),
 				Bundle.main.displayName,
-				Self.orbot)
+				OrbotManager.orbot)
 		}
 	}
 
@@ -48,7 +45,7 @@ class InstallViewController: UIViewController, WhyDelegate {
 	// MARK: WhyDelegate
 
 	var buttonTitle: String {
-		String(format: NSLocalizedString("Get %@", comment: "Placeholder is 'Orbot'"), Self.orbot)
+		String(format: NSLocalizedString("Get %@", comment: "Placeholder is 'Orbot'"), OrbotManager.orbot)
 	}
 
 
