@@ -296,8 +296,8 @@ class HostSettings: NSObject {
 				Self.followOnionLocationHeaderKey: Self.true,
 				Self.userAgentKey: "",
 				Self.javaScriptKey: Self.true,
-				Self.orientationAndMotionKey: Self.true,
-				Self.mediaCaptureKey: Self.true,
+				Self.orientationAndMotionKey: Self.false,
+				Self.mediaCaptureKey: Self.false,
 			]
 		}
 		else {
