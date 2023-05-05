@@ -14,6 +14,9 @@ class OrbotManager : NSObject, OrbotStatusChangeListener {
 
 	static let shared = OrbotManager()
 
+#if DEBUG
+	private static let simulatorIgnoreOrbot = true
+#endif
 
 	// MARK: OnionManager instance
 
@@ -111,9 +114,15 @@ class OrbotManager : NSObject, OrbotStatusChangeListener {
 			return vc
 		}
 
+#if DEBUG
+		if !Self.simulatorIgnoreOrbot && lastInfo?.status == .stopped || lastInfo?.onionOnly ?? false {
+			return StartViewController()
+		}
+#else
 		if lastInfo?.status == .stopped || lastInfo?.onionOnly ?? false {
 			return StartViewController()
 		}
+#endif
 
 		OrbotKit.shared.notifyOnStatusChanges(self)
 
