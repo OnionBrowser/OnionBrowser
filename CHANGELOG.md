@@ -1,5 +1,15 @@
 #  Onion Browser 2 Changelog
 
+## 3.0.0
+- Onion Browser now relies on Orbot for Tor network access.
+  Orbot handles all network routing and Onion Browser just makes sure that all requests get cancelled, when Orbot stops.
+- Replaced old `UIWebView` with newer `WKWebView`. Parallelized loading, newer web standards support.
+- Finally supports media streaming over Tor!
+- Minimum iOS version is now 15, as that's what Orbot supports.
+- Removed HTTPSEverywhere. That's built into iOS 15, already.
+- Removed WebRTC blocking. Not a danger anymore.
+- Replaced outdated DNT header ("Do-Not-Track") with new GPC header ("Global-Privacy-Control").
+
 ## 2.8.3
 - Updated to Tor.framework 407.11.1 containing Tor 0.4.7.11.
 - Support custom search engines.

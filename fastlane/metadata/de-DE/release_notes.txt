@@ -1,4 +1,8 @@
-- Tor.framework auf Version 407.11.1 mit Tor 0.4.7.11 aktualisiert.
-- Unterstützung für eigene Suchmaschinen.
-- Übersetzungen aktualisiert.
-- Einstellung hinzugefügt, um das Verstecken des Hintergrunds zu kontrollieren.
+- Onion Browser stützt sich jetzt auf Orbot für den Zugang zum Tor-Netzwerk.
+  Orbot kümmert sich um das gesamte Netzwerk-Routing und Onion Browser sorgt nur dafür, dass alle Anfragen abgebrochen werden, wenn Orbot stoppt.
+- Altes `UIWebView` durch das neuere `WKWebView` ersetzt. Parallelisiertes Laden, Unterstützung neuerer Web-Standards.
+- Unterstützt endlich Medien-Streaming über Tor!
+- Die minimale iOS-Version ist jetzt 15, da Orbot diese Version unterstützt.
+- HTTPSEverywhere wurde entfernt. Bereits in iOS 15 integriert.
+- WebRTC-Blockierung wurde entfernt. Keine Gefahr mehr.
+- Der veraltete DNT-Header ("Do-Not-Track") wurde durch den neuen GPC-Header ("Global-Privacy-Control") ersetzt.
