@@ -115,14 +115,14 @@ class OrbotManager : NSObject, OrbotStatusChangeListener {
 		}
 
 #if DEBUG
-		if !Self.simulatorIgnoreOrbot && lastInfo?.status == .stopped || lastInfo?.onionOnly ?? false {
-			return StartViewController()
+		if Self.simulatorIgnoreOrbot {
+			return nil
 		}
-#else
+#endif
+
 		if lastInfo?.status == .stopped || lastInfo?.onionOnly ?? false {
 			return StartViewController()
 		}
-#endif
 
 		OrbotKit.shared.notifyOnStatusChanges(self)
 
