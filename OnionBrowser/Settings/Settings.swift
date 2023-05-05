@@ -281,7 +281,7 @@ class Settings: NSObject {
 	class var openTabs: [URL]? {
 		get {
 			if let data = UserDefaults.standard.object(forKey: "open_tabs") as? Data {
-				return try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [URL]
+				return try? NSKeyedUnarchiver.unarchivedObject(ofClasses: [NSArray.self, NSURL.self], from: data) as? [URL]
 			}
 
 			return nil
