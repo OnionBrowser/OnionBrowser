@@ -73,13 +73,13 @@
 		A08563142A04E9D900A3A7FF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A08563122A04E9D800A3A7FF /* Localizable.strings */; };
 		A085633A2A04EA1E00A3A7FF /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = A08563382A04EA1E00A3A7FF /* Localizable.stringsdict */; };
 		A08563602A04EA8C00A3A7FF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A085635E2A04EA8C00A3A7FF /* InfoPlist.strings */; };
+		A08563852A05419000A3A7FF /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A08563842A05419000A3A7FF /* Launch Screen.storyboard */; };
 		A08737E1221324B5005A68CC /* HostSettings_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = A08737DF2213235F005A68CC /* HostSettings_Tests.m */; };
 		A0A1A35A2A03DAB800DE4991 /* security-levels.html in Resources */ = {isa = PBXBuildFile; fileRef = A0A1A3582A03DAB800DE4991 /* security-levels.html */; };
 		A0A83AC228A14CAB005C15C9 /* Tab+WKScriptMessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A83AC128A14CAB005C15C9 /* Tab+WKScriptMessageHandler.swift */; };
 		A0BF51E523AFBF250096624A /* urlblocker.json in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51AE23AFBF250096624A /* urlblocker.json */; };
 		A0BF51ED23AFBF250096624A /* start.html in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51C723AFBF250096624A /* start.html */; };
 		A0BF51EF23AFBF250096624A /* SearchEngines.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51D123AFBF250096624A /* SearchEngines.plist */; };
-		A0BF51F123AFBF250096624A /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51D523AFBF250096624A /* Launch Screen.xib */; };
 		A0BF51F423AFBF250096624A /* credits.html in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51DE23AFBF250096624A /* credits.html */; };
 		A0BF524523AFC3580096624A /* Migration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF51FA23AFC3580096624A /* Migration.swift */; };
 		A0BF524623AFC3580096624A /* OldBookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = A0BF51FB23AFC3580096624A /* OldBookmark.m */; };
@@ -363,6 +363,7 @@
 		A08563812A04EAC400A3A7FF /* tr-TR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "tr-TR"; path = "tr-TR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		A08563822A04EAC600A3A7FF /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A08563832A04EAC700A3A7FF /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A08563842A05419000A3A7FF /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		A085A1EC270DAB8600800A29 /* SECURITY.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = SECURITY.md; sourceTree = "<group>"; };
 		A08737DF2213235F005A68CC /* HostSettings_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HostSettings_Tests.m; sourceTree = "<group>"; };
 		A0894E36236AE7C800EE2743 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
@@ -404,7 +405,6 @@
 		A0BF51C523AFBF250096624A /* credits.html.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = credits.html.in; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.html; };
 		A0BF51C723AFBF250096624A /* start.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = start.html; sourceTree = "<group>"; };
 		A0BF51D123AFBF250096624A /* SearchEngines.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SearchEngines.plist; sourceTree = "<group>"; };
-		A0BF51D523AFBF250096624A /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		A0BF51DE23AFBF250096624A /* credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = credits.html; sourceTree = "<group>"; };
 		A0BF51FA23AFC3580096624A /* Migration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Migration.swift; sourceTree = "<group>"; };
 		A0BF51FB23AFC3580096624A /* OldBookmark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OldBookmark.m; sourceTree = "<group>"; };
@@ -678,7 +678,7 @@
 				A0BF51C523AFBF250096624A /* credits.html.in */,
 				A0BF51C723AFBF250096624A /* start.html */,
 				A0BF51AE23AFBF250096624A /* urlblocker.json */,
-				A0BF51D523AFBF250096624A /* Launch Screen.xib */,
+				A08563842A05419000A3A7FF /* Launch Screen.storyboard */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -955,8 +955,8 @@
 				A0FA96612A0161DA005EDC3F /* InstallViewController.xib in Resources */,
 				A0BF524E23AFC3580096624A /* SecurityLevelCell.xib in Resources */,
 				A043B9562A029FC3008025A7 /* StartViewController.xib in Resources */,
+				A08563852A05419000A3A7FF /* Launch Screen.storyboard in Resources */,
 				A0A1A35A2A03DAB800DE4991 /* security-levels.html in Resources */,
-				A0BF51F123AFBF250096624A /* Launch Screen.xib in Resources */,
 				A0BF51F423AFBF250096624A /* credits.html in Resources */,
 				A0550649271094A900922E18 /* ua-strings.plist in Resources */,
 				A07037C723C79AE500D670EC /* Media.xcassets in Resources */,

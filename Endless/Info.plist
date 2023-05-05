@@ -63,8 +63,6 @@
 	<string>Needed to read bridge addresses from displayed QR codes.</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>Needed, if you want to unlock the app with Face ID.</string>
-	<key>NSMainNibFile</key>
-	<string>Launch Screen</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Needed to store the selected image to your photos.</string>
 	<key>UIApplicationShortcutItems</key>
@@ -91,7 +89,7 @@
 	<key>UIFileSharingEnabled</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
-	<string>Launch Screen</string>
+	<string>Launch Screen.storyboard</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
