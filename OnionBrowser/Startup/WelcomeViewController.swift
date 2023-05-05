@@ -12,7 +12,7 @@ class WelcomeViewController: UIViewController {
 
 	@IBOutlet weak var titleLb: UILabel! {
 		didSet {
-			titleLb.text = String(format: NSLocalizedString("Welcome to %@", comment: ""), Bundle.main.displayName)
+			titleLb.text = String(format: NSLocalizedString("Welcome to %@", comment: "Placeholder is 'Onion Browser'"), Bundle.main.displayName)
 		}
 	}
 

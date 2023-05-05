@@ -17,22 +17,30 @@ class PermissionViewController: UIViewController, WhyDelegate {
 
 	@IBOutlet weak var titleLb: UILabel! {
 		didSet {
-			titleLb.text = String(format: NSLocalizedString("%@ installed! One more step.", comment: ""),
-								  InstallViewController.orbot)
+			titleLb.text = String(
+				format: NSLocalizedString(
+					"%@ installed! One more step.",
+					comment: "Placeholder is 'Orbot'"),
+				InstallViewController.orbot)
 		}
 	}
 
 	@IBOutlet weak var body1Lb: UILabel! {
 		didSet {
-			body1Lb.text = String(format: NSLocalizedString("Ask %@ for permission to access it.", comment: ""),
-								  InstallViewController.orbot)
+			body1Lb.text = String(
+				format: NSLocalizedString(
+					"Ask %@ for permission to access it.",
+					comment: "Placeholder is 'Orbot'"),
+				InstallViewController.orbot)
 		}
 	}
 
 	@IBOutlet weak var body2Lb: UILabel! {
 		didSet {
 			let text = NSMutableAttributedString(string: String(
-				format: NSLocalizedString("This will allow %@ to:", comment: ""),
+				format: NSLocalizedString(
+					"This will allow %@ to:",
+					comment: "Placeholder is 'Onion Browser'"),
 				Bundle.main.displayName))
 
 			if let range = text.string.range(of: Bundle.main.displayName),
@@ -56,7 +64,9 @@ class PermissionViewController: UIViewController, WhyDelegate {
 	@IBOutlet weak var body3Lb: UILabel! {
 		didSet {
 			body3Lb.text = String(
-				format: NSLocalizedString("%1$@ Use %2$@ to connect to the official Tor network.", comment: ""),
+				format: NSLocalizedString(
+					"%1$@ Use %2$@ to connect to the official Tor network.",
+					comment: "Placeholder 1 is bullet point, placeholder 2 is 'Orbot'"),
 				"•", InstallViewController.orbot)
 		}
 	}
@@ -68,7 +78,9 @@ class PermissionViewController: UIViewController, WhyDelegate {
 	@IBOutlet weak var body4Lb: UILabel! {
 		didSet {
 			body4Lb.text = String(
-				format: NSLocalizedString("%@ Get updates on the status of the connection.", comment: ""),
+				format: NSLocalizedString(
+					"%@ Get updates on the status of the connection.",
+					comment: "Placeholder is bullet point"),
 				"•")
 		}
 	}
@@ -103,8 +115,11 @@ class PermissionViewController: UIViewController, WhyDelegate {
 			statusIv.tintColor = .error
 			statusIv.image = .init(systemName: "nosign")
 
-			titleLb.text = String(format: NSLocalizedString("Access to %@ was Denied", comment: ""),
-								  InstallViewController.orbot)
+			titleLb.text = String(
+				format: NSLocalizedString(
+					"Access to %@ was Denied",
+					comment: "Placeholder is 'Orbot'"),
+				InstallViewController.orbot)
 
 			body1Lb.text = NSLocalizedString("Ask again to continue.", comment: "")
 

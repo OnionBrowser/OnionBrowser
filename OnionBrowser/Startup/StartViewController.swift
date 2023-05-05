@@ -13,8 +13,11 @@ class StartViewController: UIViewController, WhyDelegate {
 
 	@IBOutlet weak var titleLb: UILabel! {
 		didSet {
-			titleLb.text = String(format: NSLocalizedString("Start Tor in %@.", comment: ""),
-								  InstallViewController.orbot)
+			titleLb.text = String(
+				format: NSLocalizedString(
+					"Start Tor in %@.",
+					comment: "Placeholder is 'Orbot'"),
+				InstallViewController.orbot)
 		}
 	}
 
@@ -50,7 +53,7 @@ class StartViewController: UIViewController, WhyDelegate {
 				string: String(
 					format: NSLocalizedString(
 						"%1$@ runs in onion-only mode. This is dangerous and %2$@ does not support it. Switch it off to use %2$@!",
-						comment: ""),
+						comment: "Placeholder 1 is 'Orbot', placeholder 2 is 'Onion Browser'"),
 					InstallViewController.orbot, Bundle.main.displayName),
 				attributes: [.foregroundColor: UIColor.error!])
 		}
@@ -61,8 +64,11 @@ class StartViewController: UIViewController, WhyDelegate {
 
 	var buttonTitle: String {
 		if info?.onionOnly ?? false {
-			return String(format: NSLocalizedString("Go to %@", comment: ""),
-						  InstallViewController.orbot)
+			return String(
+				format: NSLocalizedString(
+					"Go to %@",
+					comment: "Placeholder is 'Orbot'"),
+				InstallViewController.orbot)
 		}
 
 		return NSLocalizedString("Start Tor", comment: "")

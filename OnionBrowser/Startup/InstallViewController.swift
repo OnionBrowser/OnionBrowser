@@ -16,14 +16,17 @@ class InstallViewController: UIViewController, WhyDelegate {
 
 	@IBOutlet weak var titleLb: UILabel! {
 		didSet {
-			titleLb.text = String(format: NSLocalizedString("Install %@", comment: ""), Self.orbot)
+			titleLb.text = String(format: NSLocalizedString(
+				"Install %@", comment: "Placeholder is 'Orbot'"), Self.orbot)
 		}
 	}
 
 	@IBOutlet weak var bodyLb: UILabel! {
 		didSet {
 			bodyLb.text = String(
-				format: NSLocalizedString("%1$@ relies on %2$@ for a secure connection to Tor. Install the %2$@ app to continue.", comment: ""),
+				format: NSLocalizedString(
+					"%1$@ relies on %2$@ for a secure connection to Tor. Install the %2$@ app to continue.",
+					comment: "Placeholder 1 is 'Onion Browser', placeholder 2 is 'Orbot'"),
 				Bundle.main.displayName,
 				Self.orbot)
 		}
@@ -45,7 +48,7 @@ class InstallViewController: UIViewController, WhyDelegate {
 	// MARK: WhyDelegate
 
 	var buttonTitle: String {
-		String(format: NSLocalizedString("Get %@", comment: ""), Self.orbot)
+		String(format: NSLocalizedString("Get %@", comment: "Placeholder is 'Orbot'"), Self.orbot)
 	}
 
 
