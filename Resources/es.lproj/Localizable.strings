@@ -1,37 +1,37 @@
 /* RuleEditorController */
 "%1$@ (Disabled: %2$@)" = "%1$@ (Deshabilitado: %2$@)";
 
-/* No comment provided by engineer. */
+/* Placeholder 1 is 'Onion Browser', placeholder 2 is 'Orbot' */
 "%1$@ relies on %2$@ for a secure connection to Tor. Install the %2$@ app to continue." = "%1$@ relies on %2$@ for a secure connection to Tor. Install the %2$@ app to continue.";
 
-/* No comment provided by engineer. */
+/* Placeholder 1 is 'Orbot', placeholder 2 is 'Onion Browser' */
 "%1$@ runs in onion-only mode. This is dangerous and %2$@ does not support it. Switch it off to use %2$@!" = "%1$@ runs in onion-only mode. This is dangerous and %2$@ does not support it. Switch it off to use %2$@!";
 
-/* No comment provided by engineer. */
+/* Placeholder 1 is bullet point, placeholder 2 is 'Orbot' */
 "%1$@ Use %2$@ to connect to the official Tor network." = "%1$@ Use %2$@ to connect to the official Tor network.";
 
-/* No comment provided by engineer. */
+/* Placeholder is bullet point */
 "%@ a little more speed" = "%@ a little more speed";
 
-/* No comment provided by engineer. */
+/* Placeholder is 'Orbot' */
 "%@ alone provides a VPN proxy. It will hide apps from network monitoring and give you access when they are blocked." = "%@ alone provides a VPN proxy. It will hide apps from network monitoring and give you access when they are blocked.";
 
-/* No comment provided by engineer. */
+/* Placeholder is bullet point */
 "%@ Get updates on the status of the connection." = "%@ Get updates on the status of the connection.";
 
-/* No comment provided by engineer. */
+/* Placeholder is 'Orbot' */
 "%@ installed! One more step." = "%@ installed! One more step.";
 
-/* No comment provided by engineer. */
+/* Placeholder is bullet point */
 "%@ more protection from IP leaks" = "%@ more protection from IP leaks";
 
-/* No comment provided by engineer. */
+/* Placeholder is bullet point */
 "%@ new standards" = "%@ new standards";
 
-/* No comment provided by engineer. */
+/* Placeholder is bullet point */
 "%@ video and audio streaming" = "%@ video and audio streaming";
 
-/* SecurityPresetsRow */
+/* No comment provided by engineer. */
 "(not recommended)" = "(no recomendado)";
 
 /* DonationViewController */
@@ -49,7 +49,7 @@
 /* SettingsViewController */
 "About" = "Acerca de";
 
-/* No comment provided by engineer. */
+/* Placeholder is 'Orbot' */
 "Access to %@ was Denied" = "Access to %@ was Denied";
 
 /* SearchEnginesViewController, AddSearchEngineViewController */
@@ -67,8 +67,8 @@
 /* CustomSitesViewController, AddSiteViewController */
 "Add Site" = "Agregar sitio web";
 
-/* No comment provided by engineer. */
-"Add to Orbot" = "Add to Orbot";
+/* Placeholder is 'Orbot' */
+"Add to %@" = "Add to %@";
 
 /* SyncViewController */
 "Additionally, all bookmarks not existing on the server but in Onion Browser will be created there." = "Adicionalmente, todos los marcadores que no existen en el servidor pero sí en Onion Browser serán creados ahí. ";
@@ -100,7 +100,7 @@
 /* DonationViewController */
 "Are you sure you want to send a %@ tip?" = "Estas segura(o) que quieres enviar una propina a%@ ?";
 
-/* No comment provided by engineer. */
+/* Placeholder is 'Orbot' */
 "Ask %@ for permission to access it." = "Ask %@ for permission to access it.";
 
 /* No comment provided by engineer. */
@@ -176,7 +176,7 @@
 "Cookies and Local Storage" = "Cookies y almacenamiento local";
 
 /* No comment provided by engineer. */
-"Couldn't understand server response." = "Couldn't understand server response.";
+"Couldn't understand server response." = "No se pudo entender la respuesta del servidor.";
 
 /* AppDelegate */
 "Create New Tab" = "Crear nueva pestaña";
@@ -262,7 +262,7 @@
 /* SettingsViewController */
 "Fund Development" = "Financia el Desarrollo";
 
-/* No comment provided by engineer. */
+/* Placeholder is 'Orbot' */
 "Get %@" = "Get %@";
 
 /* AppDelegate */
@@ -271,7 +271,7 @@
 /* AppDelegate */
 "Go Forward" = "Adelante";
 
-/* No comment provided by engineer. */
+/* Placeholder is 'Orbot' */
 "Go to %@" = "Go to %@";
 
 /* SecurityPresetsRow; a security level */
@@ -304,7 +304,7 @@
 /* No comment provided by engineer. */
 "IndexedDB Databases" = "IndexedDB Databases";
 
-/* No comment provided by engineer. */
+/* Placeholder is 'Orbot' */
 "Install %@" = "Install %@";
 
 /* CertificateViewController */
@@ -356,13 +356,13 @@
 "New Circuit for this Site" = "Circuito Nuevo para este Sitio";
 
 /* No comment provided by engineer. */
-"Next" = "Next";
+"Next" = "Siguiente";
 
 /* No comment provided by engineer. */
-"No success, but \"%@\" instead." = "No success, but \"%@\" instead.";
+"No success, but \"%@\" instead." = "Sin éxito, pero \"%@\" en su lugar.";
 
 /* No comment provided by engineer. */
-"No valid HTTP response." = "No valid HTTP response.";
+"No valid HTTP response." = "Respuesta HTTP no válida.";
 
 /* No comment provided by engineer. */
 "Offline Web Application Cache" = "Offline Web Application Cache";
@@ -428,16 +428,16 @@
 "Request Access" = "Request Access";
 
 /* No comment provided by engineer. */
-"Request could not be formed. Please check host and username/password!" = "Request could not be formed. Please check host and username/password!";
+"Request could not be formed. Please check host and username/password!" = "La solicitud no pudo formarse. ¡Por favor comprueba el servidor y nombre de usuaria(o)/contraseña!";
 
 /* No comment provided by engineer. */
-"Response body missing." = "Response body missing.";
+"Response body missing." = "Falta el cuerpo de la respuesta.";
 
 /* No comment provided by engineer. */
-"Retry" = "Retry";
+"Retry" = "Reintentar";
 
-/* No comment provided by engineer. */
-"Retry after you added the authentication key to Orbot." = "Retry after you added the authentication key to Orbot.";
+/* Placeholder is 'Orbot' */
+"Retry after you added the authentication key to %@." = "Retry after you added the authentication key to %@.";
 
 /* RuleEditorController */
 "Rules in use on current page" = "Reglas en uso en la página actual";
@@ -481,7 +481,7 @@
 /* SecurityPresetsRow; a security level */
 "Silver" = "Plata";
 
-/* No comment provided by engineer. */
+/* Placeholder 1 is 'Onion Browser', placeholder 2 is 'Orbot' */
 "So that you can do more with Tor on iOS! In %1$@, %2$@ improves the browsing experience with:" = "So that you can do more with Tor on iOS! In %1$@, %2$@ improves the browsing experience with:";
 
 /* DonationViewController */
@@ -490,7 +490,7 @@
 /* No comment provided by engineer. */
 "Start Tor" = "Start Tor";
 
-/* No comment provided by engineer. */
+/* Placeholder is 'Orbot' */
 "Start Tor in %@." = "Start Tor in %@.";
 
 /* SettingsViewController */
@@ -538,10 +538,10 @@
 /* SecurityViewController, placeholder is app name "Onion Browser" */
 "This is your default security setting for every website you visit in %@." = "Esta es tu configuración predeterminada para cada sitio web que visitas en %@.";
 
-/* No comment provided by engineer. */
-"This site may need authentication. If you received an authentication key for this site, add it to Orbot!" = "This site may need authentication. If you received an authentication key for this site, add it to Orbot!";
+/* Placeholder is 'Orbot' */
+"This site may need authentication. If you received an authentication key for this site, add it to %@!" = "This site may need authentication. If you received an authentication key for this site, add it to %@!";
 
-/* No comment provided by engineer. */
+/* Placeholder is 'Onion Browser' */
 "This will allow %@ to:" = "This will allow %@ to:";
 
 /* DonationViewController */
@@ -598,7 +598,7 @@
 /* No comment provided by engineer. */
 "WebSQL Databases" = "WebSQL Databases";
 
-/* No comment provided by engineer. */
+/* Placeholder is 'Onion Browser' */
 "Welcome to %@" = "Welcome to %@";
 
 /* SettingsViewController */
@@ -607,7 +607,7 @@
 /* No comment provided by engineer. */
 "Why" = "Why";
 
-/* No comment provided by engineer. */
+/* Placeholder 1 is 'Onion Browser', placeholder 2 is 'Orbot' */
 "Why %1$@ needs %2$@" = "Why %1$@ needs %2$@";
 
 /* SecurityPresetsRow */

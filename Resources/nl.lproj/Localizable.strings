@@ -67,8 +67,8 @@
 /* CustomSitesViewController, AddSiteViewController */
 "Add Site" = "Website toevoegen";
 
-/* No comment provided by engineer. */
-"Add to Orbot" = "Add to Orbot";
+/* Placeholder is 'Orbot' */
+"Add to %@" = "Add to %@";
 
 /* SyncViewController */
 "Additionally, all bookmarks not existing on the server but in Onion Browser will be created there." = "Additionally, all bookmarks not existing on the server but in Onion Browser will be created there.";
@@ -436,8 +436,8 @@
 /* No comment provided by engineer. */
 "Retry" = "Retry";
 
-/* No comment provided by engineer. */
-"Retry after you added the authentication key to Orbot." = "Retry after you added the authentication key to Orbot.";
+/* Placeholder is 'Orbot' */
+"Retry after you added the authentication key to %@." = "Retry after you added the authentication key to %@.";
 
 /* RuleEditorController */
 "Rules in use on current page" = "Regels in gebruik op huidige pagina";
@@ -538,8 +538,8 @@
 /* SecurityViewController, placeholder is app name "Onion Browser" */
 "This is your default security setting for every website you visit in %@." = "This is your default security setting for every website you visit in %@.";
 
-/* No comment provided by engineer. */
-"This site may need authentication. If you received an authentication key for this site, add it to Orbot!" = "This site may need authentication. If you received an authentication key for this site, add it to Orbot!";
+/* Placeholder is 'Orbot' */
+"This site may need authentication. If you received an authentication key for this site, add it to %@!" = "This site may need authentication. If you received an authentication key for this site, add it to %@!";
 
 /* No comment provided by engineer. */
 "This will allow %@ to:" = "This will allow %@ to:";
