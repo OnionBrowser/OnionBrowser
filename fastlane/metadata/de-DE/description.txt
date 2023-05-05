@@ -8,7 +8,6 @@ FUNKTIONEN:
 • Greife auf das Internet über Tor zu:
 - Schütze Deine Privatsphäre vor Webseiten-Nachverfolgung.
 - Sichere Deinen Datentraffic aus unsicheren WLAN-Netzen und ISPs.
-- Unterstützung für HTTPS-Everywhere, ein Dienst zum automatischen Umschalten auf die HTTPS-Version von Webseiten.
 - Greife auf auf .onion Adressen zu, die nur über Tor zugänglich sind.
 
 • Online-Nachverfolgung bekämpfen: Skripte blockieren und automatisch Cookies und Tabs löschen, basierend auf Ihren Vorlieben.
@@ -17,8 +16,6 @@ FUNKTIONEN:
 
 HAFTUNGSAUSSCHLÜSSE:
 - Der Internetzugriff ist wesentlich langsamer, als bei normalem Surfen oder über VPNs, da der Datenverkehr verschlüsselt und durch das Tor-Netzwerk geleitet wird.
-
-- Viele Multimedia-Funktionen kompromitieren deine Sicherheit, da sie versuchen an Tor vorbeizuarbeiten; Videodateien und Videostreams sind standardmäßig deaktiviert und werden von Onion Browser nicht unterstützt.
 
 - Onion Browser funktioniert möglicherweise nicht in Netzwerken mit erweiterten Netzwerkeinschränkungen. Wenn sich die App nicht verbindet, versuche es mit Brücken (oder eine andere Art von Brücke), beende die App, und starte sie neu.
 

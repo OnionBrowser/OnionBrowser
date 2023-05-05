@@ -8,7 +8,6 @@ CARACTERÍSTIQUES:
 • Navegueu per Internet mitjançant Tor:
 - Protegiu la vostra privadesa enfront el rastreig dels webs.
 - Feu segur el tràfic en utilitzar xarxes sense fils o proveïdors d'Internet no segurs.
-- Compatibilitat amb l'HTTPS Everywhere, que activa automàticament l'HTTPS als llocs web.
 - Accediu a llocs web .onion, que només són accessibles mitjançant Tor.
 
 • Lluiteu contra el rastreig en línia: bloqueu scripts i esborreu automàticament les galetes i les pestanyes, segons les vostres preferències.
@@ -17,8 +16,6 @@ CARACTERÍSTIQUES:
 
 AVÍS D'EXEMPCIÓ DE RESPONSABILITATS:
 - Navegar per Internet resulta més lent que a través d'un navegador normal o d'una VPN perquè el tràfic es xifra i es tramet per la xarxa Tor.
-
-- Moltes vegades, els fitxers multimèdia circumval·len la xarxa Tor i comprometen la vostra privadesa; els fitxers de vídeo i les transmissions de vídeo en temps real estan blocades de forma predeterminada i no són compatibles amb l'Onion Browser.
 
 - L'Onion Browser podria no funcionar en xarxes amb restriccions avançades. Si l'aplicació no pot connectar-se, proveu d'utilitzar ponts (o un tipus diferent de pont), forceu el tancament i reinicieu l'aplicació.
 

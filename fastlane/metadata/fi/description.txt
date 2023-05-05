@@ -8,7 +8,6 @@ OMINAISUUDET:
 • Selaa Internetiä Torin välityksellä:
 - Suojaa yksityisyyttäsi verkkosivustojen seurannalta
 - Suojaa tietoliikenteesiturvattomilta langattomilta verkoilta ja operaattoreilta
-- Tukee HTTPS kaikkialla -toimintoa, joka käyttää automaattisesti HTTPS-sivustoja
 - Käytä .onion-sivustoja, jotka toimivat vain Tor-verkossa.
 
 • Taistele verkkoseurantaa vastaan: Estä skriptejä ja tyhjennä evästeet ja välilehdet automaattisesti omien asetustesi perusteella.
@@ -17,8 +16,6 @@ OMINAISUUDET:
 
 VASTUUVAPAUSLAUSEKKEET:
 - Verkkoselaus on paljon normaaleja selaimia tai VPN-yhteyksiä hitaampaa, koska tietoliikenteesi salataan ja ohjataan Tor-verkon kautta.
-
-- Multimedia ohittaa usein Torin ja vaarantaa yksityisyytesi. Oletusarvoisesti videotiedostot ja -virrat estetään, eikä Onion-selain tue niitä.
 
 - Onion-selain ei välttämättä toimi verkoissa, joissa on edistyneitä rajoituksia. Jos sovellus ei voi muodostaa yhteyttä, kokeile siltoja (tai erityyppisiä siltoja), sulje sovellus täysin ja avaa se sitten uudelleen.
 

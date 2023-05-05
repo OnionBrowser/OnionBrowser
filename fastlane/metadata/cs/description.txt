@@ -8,7 +8,6 @@ FUNKCE:
 • Surfujte na internetu přes Tor:
 - Chraňte své soukromí před sledováním na webových stránkách.
 - Zabezpečte svoji aktivitu online, na nedůvěryhodných bezdrátových sítích, ale i před poskytovateli internetového připojení.
-- Podpora HTTPS Everywhere, automatické přepínání na stránky s HTTPS.
 - Přistupte na .onion stránky, které jsou dostupné jen přes Tor.
 
 • Bojujte proti sledování online: zablokujte skripty a automaticky mažte cookies a panely podle vašich předvoleb.
@@ -17,8 +16,6 @@ FUNKCE:
 
 UPOZORNĚNÍ:
 - Surfování na internetu je daleko pomalejší než přes normální prohlížeč nebo VPN, protože jsou stránky šifrovány a vedeny přes síť Tor.
-
-- Multimédia často obchází Tor a narušují vaše soukromí; video soubory a streamy jsou zablokovány ve výchozím nastavení a nejsou podporovány v Onion Browseru.
 
 - Je možné, že Onion Browser nebude fungovat v sítích s pokročiým síťovým omezením. Pokud se aplikace nemůže připojit, zkuste použít mosty (nebo jiný typ mostu), vynutit ukončení a poté restart aplikace.
 

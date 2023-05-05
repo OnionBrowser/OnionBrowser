@@ -8,7 +8,6 @@ CARACTÉRISTIQUES :
 • Naviguer sur Internet avec Tor :
 – Protéger vos données personnelles contre le pistage des sites Web.
 – Sécuriser votre trafic face aux réseaux sans fil et aux FAI non fiables.
-– Prendre en charge « HTTPS partout » pour une connexion automatique aux sites Web HTTPS.
 – Accéder aux sites .onion qui ne sont accessibles que par Tor.
 
 • Combattre le pistage en ligne : bloquer les scripts et nettoyer automatiquement les témoins et les onglets selon vos préférences.
@@ -17,8 +16,6 @@ CARACTÉRISTIQUES :
 
 AVERTISSEMENTS :
 – La navigation Web est beaucoup plus lente qu’avec un navigateur Web et un RPV normaux, car votre trafic est chiffré et relayé par le réseau Tor.
-
-– Le contenu multimédia contourne souvent Tor et compromet votre confidentialité ; les fichiers vidéo et les flux vidéo sont bloqués par défaut et ne sont pas pris en charge par le Navigateur Onion.
 
 – Le Navigateur Onion pourrait ne pas fonctionner sur les réseaux qui appliquent des restrictions réseau sophistiquées. Si l’appli ne se connecte pas, essayez d’utiliser des ponts (ou un type de pont différent), forcez la fermeture et redémarrez l’appli.
 

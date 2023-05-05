@@ -8,7 +8,6 @@ CARATTERISTICHE:
 Naviga in Internet attraverso Tor:
 - Proteggi la tua privacy dal tracciamento dei siti web
 - Metti in sicurezza il tuo traffico dati da reti wireless insicure e ISPs
-- Supporto per HTTPS Ovunque, con passaggio automatico ai siti web HTTPS
 - Accesso ai siti. onion solamente raggiungibili attraverso Tor.
 
 • Combatti il tracking online: blocco degli script e pulizia cookie automatici, in base alle tue preferenze.
@@ -17,8 +16,6 @@ Naviga in Internet attraverso Tor:
 
 DICHIARAZIONE DI RESPONSABILITÀ:
 - La navigazione web è molto più lenta di un normale browser web o di una VPN perchè della crittografia il tuo traffico dati è crittografato e ritrasmesso attraverso le rete Tor.
-
-- I dati multimediali spesso aggirano Tor e compromettono la tua privacy; i files video e lo streaming video sono bloccati in predefinito e non sono supportati da Onion Browser.
 
 - Onion Browsser potrebbe non funzionare sulle reti con avanzati restrizioni. Se l'app non si connette, prova usano i bridges (oppure un tipo different di bridge), forza l'uscita, quindi riavvia l'app.
 

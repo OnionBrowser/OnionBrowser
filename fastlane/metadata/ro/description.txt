@@ -8,7 +8,6 @@ FUNCȚII:
 • Navighează pe Internet cu Tor:
 - Protejează-ți intimitatea de urmăritorii din pagini web
 - Securizează-ți traficul de rețele wireless nesigure și ISP-uri
-- Suport pentru HTTPS Everywhere, un întrerupător automat care activează HTTPS automat pe site-urile web
 - Accesează site-uri .onion care sunt accesibile doar prin Tor.
 
 • Luptă contra urmăririi digitale: blochează scripturilor și curăță cookie-urile și ferestrele automat, depinde de preferințele tale.
@@ -17,8 +16,6 @@ FUNCȚII:
 
 AVERTISMENTE:
 - Navigarea pe web este mult mai înceată comparativ cu un navigator web normal sau cu un VPN deoarece traficul este criptat și transmis prin rețeaua Tor.
-
-- Fișiere multimedia pot ocoli Tor și îți pot compromite intimitatea; fișiere video si stream-urile video sunt blocate în mod prestabilit și nu sunt suportate de Onion Browser.
 
 - Onion Browser s-ar putea să nu funcționeze pe rețele cu restricții avansate. Dacă aplicația nu se conectează, încearcă să folosești podurile (sau un tip diferit de pod), să închizi forțat și apoi să redeschizi aplicația.
 

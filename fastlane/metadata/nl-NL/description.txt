@@ -8,7 +8,6 @@ FUNCTIES:
 • Surf op het internet via Tor:
 - Bescherm uw privacy van website tracking.
 - Beveilig uw verkeer van onveilige draadloze netwerken en ISP’s.
-- Ondersteuning voor HTTPS Everywhere, schakelt automatisch over naar de HTTPS-versie van websites, indien aanwezig.
 - Krijg toegang tot .onion-sites die alleen toegankelijk zijn via Tor.
 
 • Vecht tegen online tracking: blokkeer scripts en leeg automatisch cookies en tabbladen, gebaseerd op uw voorkeuren.
@@ -17,8 +16,6 @@ FUNCTIES:
 
 DISCLAIMERS:
 - Surfen op het web is veel trager dan via een normale webbrowser of VPN, omdat uw verkeer versleuteld wordt, en omgeleid wordt door het Tor-netwerk.
-
-- Multimedia omzeilen Tor vaak en maken inbreuk op uw privacy; videobestanden en videostreams zijn standaard geblokkeerd en worden niet door de Onion Browser ondersteund.
 
 - Onion Browser werkt wellicht niet op netwerken met geavanceerde netwerkbeperkingen. Als de app niet kan verbinden, probeer dan bridges (of een andere soort bridge) te gebruiken, geforceerd af te sluiten en dan de app opnieuw op te starten.
 

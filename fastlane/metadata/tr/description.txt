@@ -8,7 +8,6 @@ The New York Times, The Guardian, Salon, TechCrunch, Gizmodo, Boing Boing, Lifeh
 • Tor ile İnternet üzerinden gezinin:
 - Kişisel gizliliğinizi web sitelerinin izlemesinden koruyun.
 - Ağ trafiğinizi güvenli olmayan kablosuz ağlar ve internet hizmeti sağlayıcılara karşı güvenli kılın.
-- HTTPS Everywhere desteği. Destekleyen sitelerde otomatik olarak HTTPS kullanılmasını sağlar
 - Yalnızca Tor üzerinden erişilebilen .onion sitelerine erişin.
 
 • Çevrimiçi izlemeye karşı koyun: İsteğinize bağlı olarak betikleri engelleyin, çerezleri ve sekmeleri otomatik olarak temizleyin.
@@ -17,8 +16,6 @@ The New York Times, The Guardian, Salon, TechCrunch, Gizmodo, Boing Boing, Lifeh
 
 SORUMLULUK REDDİ:
 - İnternet gezinmesi normal web tarayıcılarından ya da VPN kullanımından daha yavaştır. Bu durum ağ trafiğinizin şifrelenip Tor ağı üzerinden aktarılmasından kaynaklanır.
-
-- Çoklu ortam içerikleri genellikle Tor ağını aşarak kişisel gizliliğinizin korunmasını engeller. Varsayılan olarak video dosyaları ve akışları engellenir ve Onion Browser tarafından desteklenmez.
 
 - Onion Browser gelişmiş ağ kısıtlama yöntemlerinin kullanıldığı ağlarda çalışmayabilir. Uygulama bağlantı kuramazsa, bir köprü kullanmayı (ya da farklı bir köprü türü) deneyin. Uygulamayı kapatıp yeniden başlatın.
 

@@ -8,7 +8,6 @@ FUNKCIÓK:
 • Az internet Tor-on keresztüli elérése:
 - A személyes adatainak védelme a weboldal nyomkövetés ellen
 - Tegye biztonságossá kapcsolatát nem biztonságos vezeték nélküli hálózatokon és szolgáltatók használata során.
-- A HTTPS Everywhere támogatása,  automatikus váltás HTTPS támogatott weboldalakra.
 - .onion oldalak elérése, amik csak a Tor alatt érhetők el.
 
 • Harcoljon az online követés ellen: tiltson le szkripteket és automatikusan takarítsa a cookie-kat és füleket a beállításai alapján.
@@ -17,8 +16,6 @@ FUNKCIÓK:
 
 FIGYELMEZTETÉSEK:
 - A böngésző sokkal lassabb, mint a normál böngésző vagy a VPN, mert a forgalma titkosított és a Tor hálózaton kerül átküldésre.
-
-- A multimédia gyakran megkerüli a Tor-t és sérti az adatbiztonságot; a videó fájlok és videó streamek alapból tiltottak és nem támogatottak az Onion Böngésző által.
 
 - Az Onion Böngésző nem biztos, hogy működik olyan hálózatokon, ahol speciális hálózati beállítások vannak. Ha az app nem csatlakozik, próbáljon használni hidakat (vagy más típusú hídat), lépjen ki erőltetve és indítsa újra az alkalmazást.
 

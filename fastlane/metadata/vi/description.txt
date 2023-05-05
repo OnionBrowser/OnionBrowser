@@ -8,7 +8,6 @@ TÍNH NĂNG:
 • Duyệt web qua mạng lưới Tor:
 - Bảo vệ quyền riêng tư của bạn khỏi sự theo dõi
 - Bảo mật lưu lượng của bạn khỏi nhà mạng và mạng không dây kém bảo mật.
-- Hỗ trợ HTTPS Everywhere, tính năng tự động chuyển lên HTTPS nếu trang web hỗ trợ
 - Truy cập trang web đuôi .onion qua mạng lưới Tor.
 
 • Chiến đấu chống theo dõi trực tuyến: Chặn script, tự động xóa cookie và cửa sổ, dựa trên tùy chỉnh của bạn.
@@ -17,8 +16,6 @@ TÍNH NĂNG:
 
 TỪ CHỐI TRÁCH NHIỆM:
 - Duyệt web sẽ chậm hơn nhiều so với duyệt web thông thường hay VPN vì lưu lượng của bạn sẽ được mã hóa và luân chuyển trên mạng lưới Tor.
-
-- Tệp đa phương tiện thường thoát khỏi Tor và gây ảnh hưởng đến độ riêng tư của bạn; Tệp video và phát video bị chặn theo mặc định và không hỗ trợ bởi Onion Browser.
 
 - Onion Browser có thể không hoạt động trên mạng bị kiểm duyệt. Nếu ứng dụng không kết nối, hãy thử dùng cầu nối (hoặc chuyển sang cầu nối khác), đóng rồi khởi động lại ứng dụng.
 
