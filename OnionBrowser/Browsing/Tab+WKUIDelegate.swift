@@ -25,43 +25,37 @@ extension Tab: WKUIDelegate {
 	func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String,
 				 initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void)
 	{
-		if let tabDelegate = tabDelegate {
-			let alert = AlertHelper.build(
-				message: message,
-				title: frame.request.url?.host ?? url.host,
-				actions: [
-					AlertHelper.defaultAction { _ in
-						completionHandler()
-					}
-				])
+		let alert = AlertHelper.build(
+			message: message,
+			title: frame.request.url?.host ?? url.host,
+			actions: [
+				AlertHelper.defaultAction { _ in
+					completionHandler()
+				}
+			])
 
-			tabDelegate.present(alert, nil)
-		}
-		else {
-			completionHandler()
+		guard tabDelegate?.present(alert, nil) ?? false else {
+			return completionHandler()
 		}
 	}
 
 	func webView(_ webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String,
 				 initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (Bool) -> Void)
 	{
-		if let tabDelegate = tabDelegate {
-			let alert = AlertHelper.build(
-				message: message,
-				title: frame.request.url?.host ?? url.host,
-				actions: [
-					AlertHelper.defaultAction { _ in
-						completionHandler(true)
-					},
-					AlertHelper.cancelAction { _ in
-						completionHandler(false)
-					}
-				])
+		let alert = AlertHelper.build(
+			message: message,
+			title: frame.request.url?.host ?? url.host,
+			actions: [
+				AlertHelper.defaultAction { _ in
+					completionHandler(true)
+				},
+				AlertHelper.cancelAction { _ in
+					completionHandler(false)
+				}
+			])
 
-			tabDelegate.present(alert, nil)
-		}
-		else {
-			completionHandler(false)
+		guard tabDelegate?.present(alert, nil) ?? false else {
+			return completionHandler(false)
 		}
 	}
 
@@ -69,26 +63,23 @@ extension Tab: WKUIDelegate {
 				 defaultText: String?, initiatedByFrame frame: WKFrameInfo,
 				 completionHandler: @escaping (String?) -> Void)
 	{
-		if let tabDelegate = tabDelegate {
-			let alert = AlertHelper.build(
-				message: prompt,
-				title: frame.request.url?.host ?? url.host,
-				actions: [
-					AlertHelper.cancelAction() { _ in
-						completionHandler(nil)
-					}
-				])
+		let alert = AlertHelper.build(
+			message: prompt,
+			title: frame.request.url?.host ?? url.host,
+			actions: [
+				AlertHelper.cancelAction() { _ in
+					completionHandler(nil)
+				}
+			])
 
-			AlertHelper.addTextField(alert, placeholder: defaultText)
+		AlertHelper.addTextField(alert, placeholder: defaultText)
 
-			alert.addAction(AlertHelper.defaultAction { _ in
-				completionHandler(alert.textFields?.first?.text)
-			})
+		alert.addAction(AlertHelper.defaultAction { _ in
+			completionHandler(alert.textFields?.first?.text)
+		})
 
-			tabDelegate.present(alert, nil)
-		}
-		else {
-			completionHandler(nil)
+		guard tabDelegate?.present(alert, nil) ?? false else {
+			return completionHandler(nil)
 		}
 	}
 

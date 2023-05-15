@@ -236,7 +236,9 @@ extension Tab: WKNavigationDelegate {
 				})
 
 				DispatchQueue.main.async { [weak self] in
-					self?.tabDelegate?.present(alert, nil)
+					guard self?.tabDelegate?.present(alert, nil) ?? false else {
+						return completionHandler(.rejectProtectionSpace, nil)
+					}
 				}
 			}
 
@@ -280,7 +282,9 @@ extension Tab: WKNavigationDelegate {
 			}
 		])
 
-		tabDelegate?.present(alert, nil)
+		guard tabDelegate?.present(alert, nil) ?? false else {
+			return decisionHandler(false)
+		}
 	}
 
 

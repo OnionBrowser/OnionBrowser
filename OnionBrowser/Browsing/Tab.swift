@@ -30,7 +30,8 @@ protocol TabDelegate: AnyObject {
 
 	func getIndex(of tab: Tab) -> Int?
 
-	func present(_ vc: UIViewController, _ sender: UIView?)
+	@discardableResult
+	func present(_ vc: UIViewController, _ sender: UIView?) -> Bool
 
 	func unfocusSearchField()
 }

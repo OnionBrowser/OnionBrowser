@@ -47,8 +47,14 @@ extension UIViewController {
 
 	- parameter vc: The view controller to present.
 	- parameter sender: The `UIView` with which the user triggered this operation.
+	- returns: `true` if view controller could be presented, `false`, if there's already one presenting.
 	*/
-	func present(_ vc: UIViewController, _ sender: UIView? = nil) {
+	@discardableResult
+	func present(_ vc: UIViewController, _ sender: UIView? = nil) -> Bool {
+		guard self.presentedViewController == nil else {
+			return false
+		}
+
 		if let sender = sender {
 			vc.modalPresentationStyle = .popover
 			vc.popoverPresentationController?.sourceView = sender.superview
@@ -60,5 +66,7 @@ extension UIViewController {
 		}
 
 		present(vc, animated: true)
+
+		return true
 	}
 }
