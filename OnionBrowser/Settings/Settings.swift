@@ -103,6 +103,27 @@ struct SearchEngine: Equatable {
 	}
 }
 
+enum TabSecurityLevel: String, CustomStringConvertible {
+
+	case alwaysRemember = "always_remember"
+	case forgetOnShutdown = "forget_on_shutdown"
+	case clearOnBackground = "clear_on_background"
+
+	var description: String {
+		switch self {
+		case .alwaysRemember:
+			return NSLocalizedString("Remember Tabs", comment: "Tab security level")
+
+		case .forgetOnShutdown:
+			return NSLocalizedString("Forget at Shutdown", comment: "Tab security level")
+
+		default:
+			return NSLocalizedString("Forget in Background", comment: "Tab security level")
+		}
+	}
+}
+
+
 @objcMembers
 class Settings: NSObject {
 
@@ -263,10 +284,10 @@ class Settings: NSObject {
 		}
 	}
 
-	class var tabSecurity: TabSecurity.Level {
+	class var tabSecurity: TabSecurityLevel {
 		get {
 			if let value = UserDefaults.standard.object(forKey: "tab_security") as? String,
-				let level = TabSecurity.Level(rawValue: value) {
+				let level = TabSecurityLevel(rawValue: value) {
 
 				return level
 			}
@@ -328,19 +349,6 @@ class Settings: NSObject {
 		}
 		set {
 			UserDefaults.standard.set(newValue, forKey: "third_party_keyboards")
-		}
-	}
-
-	class var openNewUrlOnStart: URL? {
-		get {
-			if let url = UserDefaults.standard.string(forKey: "open_new_url_on_start") {
-				return URL(string: url)
-			}
-
-			return nil
-		}
-		set {
-			UserDefaults.standard.set(newValue?.absoluteString, forKey: "open_new_url_on_start")
 		}
 	}
 

@@ -8,7 +8,7 @@
 //  This file is part of Onion Browser. See LICENSE file for redistribution terms.
 //
 
-import Foundation
+import UIKit
 
 extension BrowsingViewController: UIScrollViewDelegate, UIGestureRecognizerDelegate {
 
@@ -62,17 +62,17 @@ extension BrowsingViewController: UIScrollViewDelegate, UIGestureRecognizerDeleg
         if show {
             toolbar?.isHidden = false
 			toolbarHeightConstraint?.constant = toolbarHeight ?? 0
-			containerBottomConstraint2Superview.isActive = false
+			containerBottomConstraint2Superview?.isActive = false
 
 			// This goes away when deactivated for an unkown reason.
 			if containerBottomConstraint2Toolbar == nil {
-				containerBottomConstraint2Toolbar = container.bottomAnchor.constraint(equalTo: toolbar!.topAnchor)
+				containerBottomConstraint2Toolbar = container?.bottomAnchor.constraint(equalTo: toolbar!.topAnchor)
 			}
 
 			containerBottomConstraint2Toolbar?.isActive = true
 
 			// Fix for workaround when collapsing the toolbar. (See below.)
-			tabsBt.setTitleColor(tabsBt.tintColor, for: .normal)
+			tabsBt?.setTitleColor(tabsBt?.tintColor, for: .normal)
 
 			if animated {
 				UIView.animate(withDuration: 0.25) {
@@ -86,13 +86,13 @@ extension BrowsingViewController: UIScrollViewDelegate, UIGestureRecognizerDeleg
 			 // This goes away when deactivated for an unkown reason.
             containerBottomConstraint2Toolbar?.isActive = false
 
-			containerBottomConstraint2Superview.isActive = true
+			containerBottomConstraint2Superview?.isActive = true
 
 			if animated {
 				// Workaround: If we don't do this, the tab count number stays roughly
 				// at the same place until the end of the animation, when it is
 				// removed suddenly.
-				tabsBt.setTitleColor(.clear, for: .normal)
+				tabsBt?.setTitleColor(.clear, for: .normal)
 
 				UIView.animate(withDuration: 0.25,
 							   animations: { self.view.layoutIfNeeded() })

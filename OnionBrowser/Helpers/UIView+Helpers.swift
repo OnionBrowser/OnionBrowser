@@ -12,6 +12,10 @@ import UIKit
 
 extension UIView {
 
+	var sceneDelegate: SceneDelegate? {
+		window?.windowScene?.delegate as? SceneDelegate
+	}
+
 	@discardableResult
 	func add(to superview: UIView?) -> Self {
 		if let superview = superview {

@@ -22,4 +22,8 @@ public extension Bundle {
 		return object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
 			?? "unknown"
 	}
+
+	var activityType: String? {
+		(infoDictionary?["NSUserActivityTypes"] as? Array)?.first
+	}
 }

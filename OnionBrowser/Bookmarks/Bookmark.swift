@@ -223,7 +223,7 @@ open class Bookmark: NSObject {
 			// Trigger update of start page when things changed.
 			startPageNeedsUpdate = true
 
-			for tab in AppDelegate.shared?.browsingUi?.tabs ?? [] {
+			for tab in AppDelegate.shared?.allOpenTabs ?? [] {
 				if tab.url == URL.start {
 					DispatchQueue.main.async {
 						tab.refresh()

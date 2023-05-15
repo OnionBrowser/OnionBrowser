@@ -31,7 +31,7 @@ class AddSiteViewController: FixedFormViewController {
 		navigationItem.rightBarButtonItem?.isEnabled = false
 
 		// Prefill with current tab's host.
-		if let info = AddSiteViewController.getCurrentTabInfo() {
+		if let info = AddSiteViewController.getCurrentTabInfo(view.sceneDelegate) {
 			hostRow.value = info.url.host ?? info.url.path
 			navigationItem.rightBarButtonItem?.isEnabled = true
 		}
@@ -55,6 +55,8 @@ class AddSiteViewController: FixedFormViewController {
 			}
 
 			if var vcs = navigationController?.viewControllers {
+				AppDelegate.shared?.dismissModals(of: SecurityViewController.self)
+
 				vcs.removeLast()
 
 				let vc = SecurityViewController()
@@ -71,13 +73,12 @@ class AddSiteViewController: FixedFormViewController {
 
 	- returns: nil if current tab contains no valid URL, or the URL and possibly the tab title.
 	*/
-	public class func getCurrentTabInfo() -> (url: URL, title: String?)? {
-		if let tab = AppDelegate.shared?.browsingUi?.currentTab,
-			let scheme = tab.url.scheme?.lowercased() {
-
-			if scheme == "http" || scheme == "https" {
-				return (url: tab.url, title: tab.title)
-			}
+	public class func getCurrentTabInfo(_ sceneDelegate: SceneDelegate?) -> (url: URL, title: String?)? {
+		if let tab = sceneDelegate?.browsingUi.currentTab,
+		   let scheme = tab.url.scheme?.lowercased(),
+		   scheme == "http" || scheme == "https"
+		{
+			return (url: tab.url, title: tab.title)
 		}
 
 		return nil

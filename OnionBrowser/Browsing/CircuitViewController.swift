@@ -134,10 +134,10 @@ UITableViewDataSource, UITableViewDelegate {
 	// MARK: Actions
 
 	@IBAction func newCircuits() {
-		OrbotManager.shared.closeCircuits(usedCircuits) { _ in
-			AppDelegate.shared?.browsingUi?.currentTab?.refresh()
+		OrbotManager.shared.closeCircuits(usedCircuits) { [weak self] _ in
+			self?.view.sceneDelegate?.browsingUi.currentTab?.refresh()
 
-			self.dismiss(animated: true)
+			self?.dismiss(animated: true)
 		}
 	}
 

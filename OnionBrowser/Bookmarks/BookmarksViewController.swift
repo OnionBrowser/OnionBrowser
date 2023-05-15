@@ -140,10 +140,10 @@ UITableViewDelegate, UISearchResultsUpdating, BookmarksViewControllerDelegate {
 			else {
 				let bookmark = Bookmark.all[index]
 
-				AppDelegate.shared?.browsingUi?.addNewTab(
-				bookmark.url, transition: .notAnimated) { _ in
-					self.dismiss_()
-				}
+				view.sceneDelegate?.browsingUi.addNewTab(
+					bookmark.url, transition: .notAnimated) { [weak self] _ in
+						self?.dismiss_()
+					}
 			}
 		}
 

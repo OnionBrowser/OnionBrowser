@@ -17,7 +17,7 @@ protocol TabDelegate: AnyObject {
 
 	func addNewTab(_ url: URL?, configuration: WKWebViewConfiguration?) -> Tab?
 
-	func addNewTab(_ url: URL?, forRestoration: Bool,
+	func addNewTab(_ url: URL?,
 				   transition: BrowsingViewController.Transition,
 				   configuration: WKWebViewConfiguration?,
 				   completion: ((Bool) -> Void)?) -> Tab?

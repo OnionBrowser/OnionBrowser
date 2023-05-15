@@ -36,6 +36,6 @@ class WelcomeViewController: UIViewController {
 
 	@IBAction
 	func next() {
-		AppDelegate.shared?.show(OrbotManager.shared.checkStatus())
+		view.sceneDelegate?.show(OrbotManager.shared.checkStatus())
 	}
 }

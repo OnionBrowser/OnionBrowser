@@ -159,6 +159,8 @@ UITableViewDataSource, UITableViewDelegate {
 		// Trigger creation, save and store of HostSettings for this host.
 		hostSettings.save().store()
 
+		AppDelegate.shared?.dismissModals(of: SecurityViewController.self)
+
 		let vc = SecurityViewController()
 		vc.host = host
 
@@ -166,7 +168,7 @@ UITableViewDataSource, UITableViewDelegate {
 	}
 
 	@IBAction func learnMore() {
-		AppDelegate.shared?.browsingUi?.addNewTab(URL.aboutSecurityLevels)
+		view.sceneDelegate?.browsingUi.addNewTab(URL.aboutSecurityLevels)
 
 		dismiss(animated: true)
 	}

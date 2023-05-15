@@ -23,17 +23,17 @@ class BrowsingViewController: UIViewController, TabDelegate {
 	private static let reloadImg = UIImage(named: "reload")
 	private static let stopImg = UIImage(named: "close")
 
-	@IBOutlet weak var searchBar: UIView!
-	@IBOutlet weak var searchBarHeightConstraint: NSLayoutConstraint! {
+	@IBOutlet weak var searchBar: UIView?
+	@IBOutlet weak var searchBarHeightConstraint: NSLayoutConstraint? {
 		didSet {
-			searchBarHeight = searchBarHeightConstraint.constant
+			searchBarHeight = searchBarHeightConstraint?.constant
 		}
 	}
-	@IBOutlet weak var securityBt: UIButton!
-	@IBOutlet weak var searchFl: UITextField! {
+	@IBOutlet weak var securityBt: UIButton?
+	@IBOutlet weak var searchFl: UITextField? {
 		didSet {
-			searchFl.leftView = encryptionBt
-			searchFl.rightView = reloadBt
+			searchFl?.leftView = encryptionBt
+			searchFl?.rightView = reloadBt
 		}
 	}
 
@@ -66,14 +66,14 @@ class BrowsingViewController: UIViewController, TabDelegate {
 		return button
 	}()
 
-	@IBOutlet weak var torBt: UIButton!
-	@IBOutlet weak var progress: UIProgressView!
-	@IBOutlet weak var container: UIView!
+	@IBOutlet weak var torBt: UIButton?
+	@IBOutlet weak var progress: UIProgressView?
+	@IBOutlet weak var container: UIView?
 	@IBOutlet weak var containerBottomConstraint2Toolbar: NSLayoutConstraint? // Not available on iPad
 
-	@IBOutlet weak var tabsCollection: UICollectionView! {
+	@IBOutlet weak var tabsCollection: UICollectionView? {
 		didSet {
-			tabsCollection.dragInteractionEnabled = true
+			tabsCollection?.dragInteractionEnabled = true
 		}
 	}
 
@@ -84,29 +84,29 @@ class BrowsingViewController: UIViewController, TabDelegate {
 		}
 	}
 	@IBOutlet weak var mainTools: UIStackView? // Not available on iPad
-	@IBOutlet weak var tabsTools: UIView!
-	@IBOutlet weak var backBt: UIButton!
-	@IBOutlet weak var frwrdBt: UIButton!
-	@IBOutlet weak var actionBt: UIButton!
-	@IBOutlet weak var bookmarksBt: UIButton!
+	@IBOutlet weak var tabsTools: UIView?
+	@IBOutlet weak var backBt: UIButton?
+	@IBOutlet weak var frwrdBt: UIButton?
+	@IBOutlet weak var actionBt: UIButton?
+	@IBOutlet weak var bookmarksBt: UIButton?
 	@IBOutlet weak var newTabBt: UIButton?
-	@IBOutlet weak var tabsBt: UIButton! {
+	@IBOutlet weak var tabsBt: UIButton? {
 		didSet {
-			tabsBt.setTitleColor(tabsBt.tintColor, for: .normal)
+			tabsBt?.setTitleColor(tabsBt?.tintColor, for: .normal)
 
-			tabsBt.addTarget(self, action: #selector(showOverview), for: .touchUpInside)
+			tabsBt?.addTarget(self, action: #selector(showOverview), for: .touchUpInside)
 		}
 	}
-	@IBOutlet weak var settingsBt: UIButton!
-	@IBOutlet weak var newTabFromOverviewBt: UIButton! {
+	@IBOutlet weak var settingsBt: UIButton?
+	@IBOutlet weak var newTabFromOverviewBt: UIButton? {
 		didSet {
-			newTabFromOverviewBt.addTarget(self, action: #selector(newTabFromOverview), for: .touchUpInside)
+			newTabFromOverviewBt?.addTarget(self, action: #selector(newTabFromOverview), for: .touchUpInside)
 		}
 	}
-	@IBOutlet weak var hideOverviewBt: UIButton! {
+	@IBOutlet weak var hideOverviewBt: UIButton? {
 		didSet {
-			hideOverviewBt.setTitle(NSLocalizedString("Done", comment: ""))
-			hideOverviewBt.addTarget(self, action: #selector(hideOverview), for: .touchUpInside)
+			hideOverviewBt?.setTitle(NSLocalizedString("Done", comment: ""))
+			hideOverviewBt?.addTarget(self, action: #selector(hideOverview), for: .touchUpInside)
 		}
 	}
 
@@ -137,8 +137,8 @@ class BrowsingViewController: UIViewController, TabDelegate {
 	var searchBarHeight: CGFloat!
 	var toolbarHeight: CGFloat? // Not available on iPad
 
-	lazy var containerBottomConstraint2Superview: NSLayoutConstraint
-		= container.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+	lazy var containerBottomConstraint2Superview: NSLayoutConstraint?
+		= container?.bottomAnchor.constraint(equalTo: view.bottomAnchor)
 
 	lazy var liveSearchVc = LiveSearchViewController()
 
@@ -160,7 +160,7 @@ class BrowsingViewController: UIViewController, TabDelegate {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		tabsCollection.register(TabCell.nib, forCellWithReuseIdentifier: TabCell.reuseIdentifier)
+		tabsCollection?.register(TabCell.nib, forCellWithReuseIdentifier: TabCell.reuseIdentifier)
 
 		// There could have been tabs added before XIB was initialized.
 		for tab in tabs {
@@ -204,35 +204,50 @@ class BrowsingViewController: UIViewController, TabDelegate {
 	override func encodeRestorableState(with coder: NSCoder) {
 		super.encodeRestorableState(with: coder)
 
-		var tabInfo = [[String: Any]]()
-
-		for tab in tabs {
-			tabInfo.append(["url": tab.url])
-
-			// TODO: From old code. Why here this side effect?
-			// Looks strange.
-			tab.restorationIdentifier = tab.url.absoluteString
-		}
-
-		coder.encode(tabInfo, forKey: "webViewTabs")
+		coder.encode(tabs.map({ $0.url.clean }), forKey: "webViewTabs")
 		coder.encode(NSNumber(value: currentTabIndex), forKey: "curTabIndex")
+	}
+
+	func encodeRestorableState(with activity: NSUserActivity) {
+		if !(currentTab?.url.isFileURL ?? true) {
+			activity.webpageURL = currentTab?.url.clean
+			activity.title = currentTab?.title
+		}
+		activity.userInfo = ["webViewTabs": tabs.map({ $0.url.clean }),
+							 "curTabIndex": NSNumber(value: currentTabIndex)]
 	}
 
 	override func decodeRestorableState(with coder: NSCoder) {
 		super.decodeRestorableState(with: coder)
 
-		let tabInfo = coder.decodeObject(forKey: "webViewTabs") as? [[String: Any]]
+		var urls = coder.decodeObject(forKey: "webViewTabs") as? [URL?]
 
-		for info in tabInfo ?? [] {
-			debug("Try restoring tab with \(info).")
-
-			if let url = info["url"] as? URL {
-				addNewTab(url, forRestoration: true, transition: .notAnimated)
-			}
+		// Legacy support.
+		if urls == nil {
+			urls = (coder.decodeObject(forKey: "webViewTabs") as? [[String: Any]])?
+				.map { $0["url"] as? URL }
 		}
 
-		if let index = coder.decodeObject(forKey: "curTabIndex") as? NSNumber {
-			currentTabIndex = index.intValue
+		decodeRestorableState(
+			urls,
+			coder.decodeObject(forKey: "curTabIndex") as? NSNumber)
+	}
+
+	func decodeRestorableState(with activity: NSUserActivity) {
+		decodeRestorableState(
+			activity.userInfo?["webViewTabs"] as? [URL?],
+			activity.userInfo?["curTabIndex"] as? NSNumber)
+	}
+
+	func decodeRestorableState(_ urls: [URL?]?, _ currentTabIndex: NSNumber?) {
+		for url in urls ?? [] {
+			debug("Try restoring tab with \(url?.absoluteString ?? "(nil)").")
+
+			addNewTab(url, transition: .notAnimated)
+		}
+
+		if let currentTabIndex = currentTabIndex {
+			self.currentTabIndex = currentTabIndex.intValue
 		}
 
 		for tab in tabs {
@@ -316,12 +331,16 @@ class BrowsingViewController: UIViewController, TabDelegate {
 	@IBAction func showBookmarks() {
 		unfocusSearchField()
 
+		AppDelegate.shared?.dismissModals(of: BookmarksViewController.self)
+
 		present(BookmarksViewController.instantiate(), bookmarksBt)
 	}
 
 	@discardableResult
 	@objc
 	func showSettings() -> UINavigationController {
+		AppDelegate.shared?.dismissModals(of: SettingsViewController.self)
+
 		let navC = SettingsViewController.instantiate()
 
 		present(navC)
@@ -369,10 +388,10 @@ class BrowsingViewController: UIViewController, TabDelegate {
 
 		// The last non-hidden should be the one which is showing.
 		guard let tab = tabs.last(where: { !$0.isHidden }) else {
-			securityBt.setTitle(nil)
-			backBt.isEnabled = false
-			frwrdBt.isEnabled = false
-			actionBt.isEnabled = false
+			securityBt?.setTitle(nil)
+			backBt?.isEnabled = false
+			frwrdBt?.isEnabled = false
+			actionBt?.isEnabled = false
 			updateTabCount()
 
 			return
@@ -381,43 +400,42 @@ class BrowsingViewController: UIViewController, TabDelegate {
 		let preset = SecurityPreset(HostSettings.for(tab.url.host))
 
 		if preset == .custom {
-			securityBt.setBackgroundImage(SecurityLevelCell.customShieldImage, for: .normal)
-			securityBt.setTitle(nil)
+			securityBt?.setBackgroundImage(SecurityLevelCell.customShieldImage, for: .normal)
+			securityBt?.setTitle(nil)
 		}
 		else {
-			securityBt.setBackgroundImage(SecurityLevelCell.shieldImage?.tinted(with: preset.color), for: .normal)
-			securityBt.setTitle(preset.shortcode)
+			securityBt?.setBackgroundImage(SecurityLevelCell.shieldImage?.tinted(with: preset.color), for: .normal)
+			securityBt?.setTitle(preset.shortcode)
 		}
 
 		updateEncryptionBt(tab.secureMode)
-		backBt.isEnabled = tab.canGoBack
-		frwrdBt.isEnabled = tab.canGoForward
-		actionBt.isEnabled = !tab.url.isSpecial
+		backBt?.isEnabled = tab.canGoBack
+		frwrdBt?.isEnabled = tab.canGoForward
+		actionBt?.isEnabled = !tab.url.isSpecial
 		updateTabCount()
 
-		if !tabsCollection.isHidden {
-			tabsCollection.reloadData()
+		if !(tabsCollection?.isHidden ?? true) {
+			tabsCollection?.reloadData()
 		}
 	}
 
 	@objc
 	@discardableResult
 	func addNewTab(_ url: URL? = nil, configuration: WKWebViewConfiguration? = nil) -> Tab? {
-		return addNewTab(url, forRestoration: false, configuration: configuration)
+		return addNewTab(url, transition: .default, configuration: configuration)
 	}
 
 	@discardableResult
-	func addNewTab(_ url: URL? = nil, forRestoration: Bool = false,
-				   transition: Transition = .default, configuration: WKWebViewConfiguration? = nil,
+	func addNewTab(_ url: URL? = nil,
+				   transition: Transition = .default,
+				   configuration: WKWebViewConfiguration? = nil,
 				   completion: ((Bool) -> Void)? = nil) -> Tab?
 	{
-		debug("#addNewTab url=\(String(describing: url)), forRestoration=\(forRestoration), transition=\(transition), completion=\(String(describing: completion))")
+		debug("#addNewTab url=\(String(describing: url)), transition=\(transition), completion=\(String(describing: completion))")
 
-		let tab = Tab(restorationId: forRestoration ? url?.absoluteString : nil, configuration: configuration)
+		let tab = Tab(restorationId: url?.absoluteString, configuration: configuration)
 
-		if !forRestoration {
-			tab.load(url)
-		}
+		tab.load(url)
 
 		tab.tabDelegate = self
 
@@ -450,7 +468,7 @@ class BrowsingViewController: UIViewController, TabDelegate {
 			completion?(true)
 
 		default:
-			container.transition(animations, completionForeground)
+			container?.transition(animations, completionForeground)
 		}
 
 		return tab
@@ -461,7 +479,7 @@ class BrowsingViewController: UIViewController, TabDelegate {
 
 		unfocusSearchField()
 
-		container.transition({
+		container?.transition({
 			tab.isHidden = true
 			(focus ?? self.tabs.last)?.isHidden = false
 		}) { _ in
@@ -487,8 +505,8 @@ class BrowsingViewController: UIViewController, TabDelegate {
 	}
 
 	func unfocusSearchField() {
-		if searchFl.isFirstResponder {
-			searchFl.resignFirstResponder()
+		if searchFl?.isFirstResponder ?? false {
+			searchFl?.resignFirstResponder()
 		}
 	}
 
@@ -497,19 +515,7 @@ class BrowsingViewController: UIViewController, TabDelegate {
 
 	@objc
 	func becomesVisible() {
-		if let newUrl = Settings.openNewUrlOnStart {
-			Settings.openNewUrlOnStart = nil
-
-			if newUrl == URL.blank {
-				// Workaround for showing an empty tab.
-				// See AppDelegate#handle:
-				addEmptyTabAndFocus()
-			}
-			else {
-				addNewTab(newUrl, transition: .notAnimated)
-			}
-		}
-		else if tabs.count < 1 {
+		if tabs.count < 1 {
 			addNewTab()
 		}
 	}
@@ -529,7 +535,7 @@ class BrowsingViewController: UIViewController, TabDelegate {
 
 		let focussing = tabs[index]
 
-		container.transition({
+		container?.transition({
 			for tab in self.tabs {
 				tab.isHidden = tab != focussing
 			}
@@ -565,8 +571,8 @@ class BrowsingViewController: UIViewController, TabDelegate {
 
 	@objc
 	func focusSearchField() {
-		if !searchFl.isFirstResponder {
-			searchFl.becomeFirstResponder()
+		if !(searchFl?.isFirstResponder ?? false) {
+			searchFl?.becomeFirstResponder()
 		}
 	}
 
@@ -583,12 +589,12 @@ class BrowsingViewController: UIViewController, TabDelegate {
 	Honors right-to-left languages.
 	*/
 	private func updateTabCount() {
-		tabsBt.setTitle(Formatter.localize(tabs.count))
+		tabsBt?.setTitle(Formatter.localize(tabs.count))
 
 		var offset: CGFloat = 0
 
-		if let titleLabel = tabsBt.titleLabel, let imageView = tabsBt.imageView {
-			if UIView.userInterfaceLayoutDirection(for: tabsBt.semanticContentAttribute) == .rightToLeft {
+		if let titleLabel = tabsBt?.titleLabel, let imageView = tabsBt?.imageView {
+			if UIView.userInterfaceLayoutDirection(for: tabsBt!.semanticContentAttribute) == .rightToLeft {
 				offset = imageView.intrinsicContentSize.width / 2 // Move right edge to center of image.
 					+ titleLabel.intrinsicContentSize.width / 2 // Move center of text to center of image.
 					+ 3 // Correct for double-frame icon.
@@ -602,7 +608,7 @@ class BrowsingViewController: UIViewController, TabDelegate {
 
 		// 2+2 in vertical direction is correction for double-frame icon
 		// Ignore deprecation. UIButton.Configuration doesn't provide the vertical insets we need.
-		tabsBt.titleEdgeInsets = UIEdgeInsets(top: 2, left: offset, bottom: -2, right: -offset)
+		tabsBt?.titleEdgeInsets = UIEdgeInsets(top: 2, left: offset, bottom: -2, right: -offset)
 
 		// Half-way, in fresh style:
 		// var conf = UIButton.Configuration.plain()

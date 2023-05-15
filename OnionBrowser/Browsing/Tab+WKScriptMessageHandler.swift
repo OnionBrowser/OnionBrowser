@@ -84,7 +84,7 @@ extension Tab: WKScriptMessageHandler {
 			print("[Tab \(index)] [\(args?["severity"] as? String ?? "log")] \(args?["arguments"] ?? "(nil)")")
 
 		case "showDonate":
-			let navC = AppDelegate.shared?.browsingUi?.showSettings()
+			let navC = sceneDelegate?.browsingUi.showSettings()
 			navC?.pushViewController(DonationViewController(), animated: false)
 
 		default:

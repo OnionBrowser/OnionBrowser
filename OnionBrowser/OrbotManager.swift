@@ -17,7 +17,7 @@ class OrbotManager : NSObject, OrbotStatusChangeListener {
 	static let shared = OrbotManager()
 
 #if DEBUG
-	private static let simulatorIgnoreOrbot = true
+	private static let simulatorIgnoreOrbot = false
 #endif
 
 	// MARK: OnionManager instance
@@ -147,10 +147,14 @@ class OrbotManager : NSObject, OrbotStatusChangeListener {
 			if info.status == .stopped || info.onionOnly {
 				self.fullStop()
 
-				AppDelegate.shared?.show(StartViewController())
+				for delegate in AppDelegate.shared?.sceneDelegates ?? [] {
+					delegate.show(StartViewController())
+				}
 			}
 			else {
-				AppDelegate.shared?.show()
+				for delegate in AppDelegate.shared?.sceneDelegates ?? [] {
+					delegate.show()
+				}
 			}
 		}
 	}
@@ -161,7 +165,9 @@ class OrbotManager : NSObject, OrbotStatusChangeListener {
 		DispatchQueue.main.async {
 			self.fullStop()
 
-			AppDelegate.shared?.show(self.checkStatus())
+			for delegate in AppDelegate.shared?.sceneDelegates ?? [] {
+				delegate.show(self.checkStatus())
+			}
 		}
 	}
 
@@ -172,7 +178,7 @@ class OrbotManager : NSObject, OrbotStatusChangeListener {
 	Cancel all connections and re-evalutate Orbot situation and show respective UI.
 	*/
 	private func fullStop() {
-		for tab in AppDelegate.shared?.browsingUi?.tabs ?? [] {
+		for tab in AppDelegate.shared?.allOpenTabs ?? [] {
 			tab.stop()
 		}
 	}

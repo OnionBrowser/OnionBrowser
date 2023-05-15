@@ -144,7 +144,7 @@ extension Tab: WKUIDelegate {
 					image: UIImage(systemName: "rectangle.stack.badge.plus"),
 					handler: { _ in
 						let child = self.tabDelegate?.addNewTab(
-							url, forRestoration: false, transition: .inBackground,
+							url, transition: .inBackground,
 							configuration: nil, completion: nil)
 						child?.parentId = self.hash
 					}), at: 2)

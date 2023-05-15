@@ -42,7 +42,7 @@ class BookmarkViewController: FixedFormViewController {
 		if index == nil {
 
 			// Check, if we have a valid URL in the current tab. If so, prefill with that.
-			if let info = AddSiteViewController.getCurrentTabInfo() {
+			if let info = AddSiteViewController.getCurrentTabInfo(view.sceneDelegate) {
 
 				// Check, if this page is already bookmarked. If so, edit that.
 				if let bookmark = Bookmark.all.first(where: { $0.url == info.url }) {

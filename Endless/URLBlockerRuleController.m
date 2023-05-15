@@ -19,10 +19,17 @@
 	self.sortedRuleRows = [[NSMutableArray alloc] initWithCapacity:[[URLBlocker targets] count]];
 	self.inUseRuleRows = [[NSMutableArray alloc] init];
 	
-	NSDictionary *inUse = nil;
-	if (AppDelegate.shared.browsingUi.currentTab != nil)
-	{
-		inUse = AppDelegate.shared.browsingUi.currentTab.applicableURLBlockerTargets;
+	NSMutableDictionary *inUse = [NSMutableDictionary new];
+
+	for (BrowsingViewController *vc in AppDelegate.shared.browsingUis) {
+		Tab *tab = vc.currentTab;
+
+		if (tab != nil)
+		{
+			for (NSString *blocker in tab.applicableURLBlockerTargets.allKeys) {
+				inUse[blocker] = @YES;
+			}
+		}
 	}
 	
 	for (NSString *k in [[[URLBlocker targets] allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]) {

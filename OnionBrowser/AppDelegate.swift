@@ -12,13 +12,7 @@ import UIKit
 import AVFoundation
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
-	@objc
-	static let socksProxyPort = 39050
-
-	@objc
-	static let httpProxyPort = 0
+class AppDelegate: NSObject, UIApplicationDelegate {
 
 	@objc
 	class var shared: AppDelegate? {
@@ -36,64 +30,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		return delegate as? AppDelegate
 	}
 
+	var sceneDelegates: [SceneDelegate] {
+		UIApplication.shared.connectedScenes.compactMap {
+			$0.delegate as? SceneDelegate
+		}
+	}
+
 	@objc
-	var browsingUi: BrowsingViewController?
+	var browsingUis: [BrowsingViewController] {
+		sceneDelegates.compactMap { $0.browsingUi }
+	}
+
+	var allOpenTabs: [Tab] {
+		browsingUis.flatMap { $0.tabs }
+	}
 
 	var testing: Bool {
 		return NSClassFromString("XCTestProbe") != nil
 			|| ProcessInfo.processInfo.environment["ARE_UI_TESTING"] != nil
 	}
 
-	var window: UIWindow?
-
-	override var keyCommands: [UIKeyCommand]? {
-		// If settings are up or something else, ignore shortcuts.
-		if !(window?.rootViewController is BrowsingViewController)
-			|| browsingUi?.presentedViewController != nil {
-
-			return nil
-		}
-
-		var commands = [
-			UIKeyCommand(title: NSLocalizedString("Go Back", comment: ""),
-						 action: #selector(handle(_:)), input: "[", modifierFlags: .command),
-			UIKeyCommand(title: NSLocalizedString("Go Forward", comment: ""),
-						 action: #selector(handle(_:)), input: "]", modifierFlags: .command),
-			UIKeyCommand(title: NSLocalizedString("Show Bookmarks", comment: ""),
-						 action: #selector(handle(_:)), input: "b", modifierFlags: .command),
-			UIKeyCommand(title: NSLocalizedString("Focus URL Field", comment: ""),
-						 action: #selector(handle(_:)), input: "l", modifierFlags: .command),
-			UIKeyCommand(title: NSLocalizedString("Reload Tab", comment: ""),
-						 action: #selector(handle(_:)), input: "r", modifierFlags: .command),
-			UIKeyCommand(title: NSLocalizedString("Create New Tab", comment: ""),
-						 action: #selector(handle(_:)), input: "t", modifierFlags: .command),
-			UIKeyCommand(title: NSLocalizedString("Close Tab", comment: ""),
-						 action: #selector(handle(_:)), input: "w", modifierFlags: .command),
-		]
-
-		for i in 1 ... 10 {
-			commands.append(UIKeyCommand(
-				title: String(format: NSLocalizedString("Switch to Tab %d", comment: ""), i),
-				action: #selector(handle(_:)), input: String(i % 10), modifierFlags: .command))
-		}
-
-		return commands
-	}
-
-	/**
-	Flag, if biometric/password authentication after activation was successful.
-
-	Return to false immediately after positive check, otherwise, security issues will arise!
-	*/
-	private var verified = false
+	var firstScene = true
 
 
 	// MARK: UIApplicationDelegate
 
-	func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-
-		migrate()
-
+	func application(_ application: UIApplication, willFinishLaunchingWithOptions
+					 launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool
+	{
 		adjustMuteSwitchBehavior()
 
 		DownloadHelper.purge()
@@ -101,25 +65,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		return true
 	}
 
-	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-
-		if let shortcut = launchOptions?[.shortcutItem] as? UIApplicationShortcutItem {
-			handle(shortcut)
-		}
-
-		return true
-	}
-
-	func applicationWillResignActive(_ application: UIApplication) {
+	func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>)
+	{
 		application.ignoreSnapshotOnNextApplicationLaunch()
-		browsingUi?.unfocusSearchField()
-
-		if Settings.hideContent {
-			BlurredSnapshot.create()
-		}
 	}
 
-	func applicationDidEnterBackground(_ application: UIApplication) {
+	func applicationWillTerminate(_ application: UIApplication)
+	{
 		if !testing {
 			HostSettings.store()
 
@@ -136,82 +88,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			}
 		}
 
-		TabSecurity.handleBackgrounding()
-
-		application.ignoreSnapshotOnNextApplicationLaunch()
-	}
-
-	private var openAfterRestore: URL? = nil
-
-	func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool
-	{
-		if let urlc = URLComponents(url: url, resolvingAgainstBaseURL: true),
-		   urlc.scheme == "onionbrowser"
-		{
-			if urlc.path == "token-callback" {
-				let token = urlc.queryItems?.first(where: { $0.name == "token" })?.value
-
-				Settings.orbotApiToken = token?.isEmpty ?? true ? Settings.orbotAccessDenied : token
-			}
-
-			return true
-		}
-
-		Settings.openNewUrlOnStart = url.withFixedScheme
-
-		return true
-	}
-
-	func applicationDidBecomeActive(_ application: UIApplication) {
-
-		// Note: If restart is slow (and even crashes), it could be, that
-		// #applicationDidEnterBackground isn't finished, yet!
-
-		if !verified, let privateKey = SecureEnclave.loadKey() {
-			var counter = 0
-
-			repeat {
-				let nonce = SecureEnclave.getNonce()
-
-				verified = SecureEnclave.verify(
-					nonce, signature: SecureEnclave.sign(nonce, with: privateKey),
-					with: SecureEnclave.getPublicKey(privateKey))
-
-				counter += 1
-			} while !verified && counter < 3
-
-			if !verified {
-				applicationWillResignActive(application)
-				applicationDidEnterBackground(application)
-				applicationWillTerminate(application)
-
-				exit(0)
-			}
-
-			// Always return here, as the SecureEnclave operations will always
-			// trigger a user identification and therefore the app becomes inactive
-			// and then active again. So #applicationDidBecomeActive will be
-			// called again. Therefore, we store the result of the verification
-			// in an object property and check that on re-entry.
-			return
-		}
-
-		verified = false
-
-		BlurredSnapshot.remove()
-
-		let vc = OrbotManager.shared.checkStatus()
-
-		show(vc)
-
-		// Seems, we're running via Tor. Set up bookmarks, if not done, yet.
-		if vc == nil {
-			Bookmark.firstRunSetup()
-			Bookmark.migrateToV3()
-		}
-	}
-
-	func applicationWillTerminate(_ application: UIApplication) {
 		WebsiteStorage.shared.cleanup()
 
 		DownloadHelper.purge()
@@ -219,15 +95,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		application.ignoreSnapshotOnNextApplicationLaunch()
 	}
 
-	func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
-
-		handle(shortcutItem) {
-			completionHandler(true)
-		}
-	}
-
-	func application(_ application: UIApplication, shouldAllowExtensionPointIdentifier extensionPointIdentifier: UIApplication.ExtensionPointIdentifier) -> Bool {
-
+	func application(_ application: UIApplication, shouldAllowExtensionPointIdentifier
+					 extensionPointIdentifier: UIApplication.ExtensionPointIdentifier) -> Bool
+	{
 		if extensionPointIdentifier == .keyboard {
 			return Settings.thirdPartyKeyboards
 		}
@@ -235,12 +105,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		return true
 	}
 
-	func application(_ application: UIApplication, shouldRestoreSecureApplicationState coder: NSCoder) -> Bool {
+	func application(_ application: UIApplication, shouldRestoreSecureApplicationState coder: NSCoder) -> Bool
+	{
 		return self.application(application, shouldRestoreApplicationState: coder)
 	}
 
-	func application(_ application: UIApplication, shouldRestoreApplicationState coder: NSCoder) -> Bool {
-
+	func application(_ application: UIApplication, shouldRestoreApplicationState coder: NSCoder) -> Bool
+	{
 		if testing {
 			return false
 		}
@@ -258,21 +129,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		return true
 	}
 
-	func application(_ application: UIApplication, shouldSaveApplicationState coder: NSCoder) -> Bool {
-		return !testing && !TabSecurity.isClearOnBackground
+	func application(_ application: UIApplication, shouldSaveApplicationState coder: NSCoder) -> Bool
+	{
+		return !testing && Settings.tabSecurity != .clearOnBackground
 	}
 
-	func application(_ application: UIApplication, shouldSaveSecureApplicationState coder: NSCoder) -> Bool {
+	func application(_ application: UIApplication, shouldSaveSecureApplicationState coder: NSCoder) -> Bool
+	{
 		return self.application(application, shouldSaveApplicationState: coder)
 	}
 
 	/**
 	Unload all webviews of background tabs, if OS says, we're using too much memory.
 	*/
-	func applicationDidReceiveMemoryWarning(_ application: UIApplication) {
-		for tab in browsingUi?.tabs ?? [] {
-			if tab != browsingUi?.currentTab {
-				tab.empty()
+	func applicationDidReceiveMemoryWarning(_ application: UIApplication)
+	{
+		for vc in browsingUis {
+			for tab in vc.tabs {
+				if tab != vc.currentTab {
+					tab.empty()
+				}
 			}
 		}
 	}
@@ -296,151 +172,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		}
 	}
 
-	func show(_ viewController: UIViewController? = nil, _ completion: ((Bool) -> Void)? = nil) {
-		if window == nil {
-			window = UIWindow(frame: UIScreen.main.bounds)
-			window?.backgroundColor = .accent
-		}
-
-		var viewController = viewController
-		var completion = completion
-
-		if viewController == nil || viewController is BrowsingViewController {
-			if browsingUi == nil {
-				browsingUi = (viewController as? BrowsingViewController) ?? BrowsingViewController()
-			}
-
-			viewController = browsingUi
-
-			let outerCompletion = completion
-
-			completion = { finished in
-				TabSecurity.restore()
-
-				// Close modal dialogs, if there are URLs to open.
-				if Settings.openNewUrlOnStart != nil {
-					self.dismissModalsAndCall {
-						self.browsingUi?.becomesVisible()
+	func dismissModals<T: UIViewController>(of type: T.Type, in vcs: [UIViewController]? = nil) {
+		for vc in vcs ?? browsingUis {
+			if let pvc = vc.presentedViewController {
+				if pvc is T {
+					vc.dismiss(animated: true)
+				}
+				else if let navC = pvc as? UINavigationController {
+					if navC.viewControllers.first is T {
+						vc.dismiss(animated: true)
+					}
+					else if let i = navC.viewControllers.firstIndex(where: { $0 is T }) {
+						navC.popToViewController(navC.viewControllers[i - 1], animated: true)
 					}
 				}
 				else {
-					self.browsingUi?.becomesVisible()
-				}
-
-				outerCompletion?(finished)
-			}
-		}
-
-		if viewController?.restorationIdentifier == nil {
-			viewController?.restorationIdentifier = String(describing: type(of: viewController))
-		}
-
-		window?.rootViewController = viewController
-		window?.makeKeyAndVisible()
-
-		UIView.transition(with: window!, duration: 0.3, options: .transitionCrossDissolve,
-						  animations: {}, completion: completion)
-	}
-
-
-	// MARK: Private Methods
-
-	/**
-	Handle per-version upgrades or migrations.
-	*/
-	private func migrate() {
-		let lastBuild = UserDefaults.standard.double(forKey: "last_build")
-
-		let thisBuild = Double(Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "") ?? 0
-
-		// thisBuild is not necessarily bigger than lastBuild. Just different,
-		// due to the way we create it in mk_build_versions.sh
-		if lastBuild != thisBuild {
-			print("[\(String(describing: type(of: self)))] migrating from build \(lastBuild) -> \(thisBuild)")
-
-			Migration.migrate()
-
-			UserDefaults.standard.set(thisBuild, forKey: "last_build")
-		}
-	}
-
-	private func handle(_ shortcut: UIApplicationShortcutItem, completion: (() -> Void)? = nil) {
-		if shortcut.type.contains("OpenNewTab") {
-			Settings.openNewUrlOnStart = URL.blank
-
-			completion?()
-		}
-		else if shortcut.type.contains("ClearData") {
-			dismissModalsAndCall {
-				self.browsingUi?.removeAllTabs()
-				Settings.openTabs = nil
-
-				WebsiteStorage.shared.cleanup()
-
-				completion?()
-			}
-		}
-		else {
-			print("[\(String(describing: type(of: self)))] Unable to handle shortcut type '\(shortcut.type)'!")
-			completion?()
-		}
-	}
-
-	/**
-	In case, a modal view controller is overlaying the `BrowsingViewController`, we close it
-	*before* adding a new tab.
-
-	- parameter completion: Callback when dismiss is done or immediately when no dismiss was necessary.
-	*/
-	private func dismissModalsAndCall(completion: @escaping () -> Void) {
-		if browsingUi?.presentedViewController != nil {
-			browsingUi?.dismiss(animated: true, completion: completion)
-		}
-		// If there's no modal view controller, however, the completion block
-		// would never be called.
-		else {
-			completion()
-		}
-	}
-
-	@objc
-	private func handle(_ keyCommand: UIKeyCommand) {
-		if keyCommand.modifierFlags == .command {
-			switch keyCommand.input {
-			case "b":
-				browsingUi?.showBookmarks()
-				return
-
-			case "l":
-				browsingUi?.focusSearchField()
-				return
-
-			case "r":
-				browsingUi?.currentTab?.refresh()
-				return
-
-			case "t":
-				browsingUi?.addEmptyTabAndFocus()
-				return
-
-			case "w":
-				browsingUi?.removeCurrentTab()
-				return
-
-			case "[":
-				browsingUi?.currentTab?.goBack()
-				return
-
-			case "]":
-				browsingUi?.currentTab?.goForward()
-				return
-
-			default:
-				for i in 0 ... 9 {
-					if keyCommand.input == String(i), let browsingUi = browsingUi {
-						browsingUi.switchToTab(i == 0 ? browsingUi.tabs.count - 1 : i - 1)
-						return
-					}
+					dismissModals(of: type, in: [pvc])
 				}
 			}
 		}

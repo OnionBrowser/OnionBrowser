@@ -128,6 +128,8 @@ class CustomSitesViewController: SearchableTableViewController {
 
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		if indexPath.section == 0 {
+			AppDelegate.shared?.dismissModals(of: SecurityViewController.self)
+
 			let vc = SecurityViewController()
 			vc.host = (isFiltering ? filtered : hosts)[indexPath.row]
 

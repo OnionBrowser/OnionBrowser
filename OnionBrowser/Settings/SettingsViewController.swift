@@ -44,6 +44,8 @@ class SettingsViewController: FixedFormViewController {
 		form
 		+++ defaultSecurityRow
 		.onCellSelection { [weak self] _, _ in
+			AppDelegate.shared?.dismissModals(of: SecurityViewController.self)
+
 			self?.navigationController?.pushViewController(
 				SecurityViewController(), animated: true)
 		}
@@ -168,12 +170,12 @@ class SettingsViewController: FixedFormViewController {
 			Settings.hideContent = row.value ?? false
 		})
 
-		<<< PushRow<TabSecurity.Level>() {
+		<<< PushRow<TabSecurityLevel>() {
 			$0.title = NSLocalizedString("Tab Security", comment: "Option title")
 			$0.selectorTitle = $0.title
-			$0.options = [TabSecurity.Level.alwaysRemember,
-						  TabSecurity.Level.forgetOnShutdown,
-						  TabSecurity.Level.clearOnBackground]
+			$0.options = [TabSecurityLevel.alwaysRemember,
+						  TabSecurityLevel.forgetOnShutdown,
+						  TabSecurityLevel.clearOnBackground]
 
 			$0.value = Settings.tabSecurity
 
@@ -233,7 +235,7 @@ class SettingsViewController: FixedFormViewController {
 
 				Bookmark.updateStartPage(force: true)
 
-				for tab in AppDelegate.shared?.browsingUi?.tabs ?? [] {
+				for tab in AppDelegate.shared?.allOpenTabs ?? [] {
 					if tab.url == URL.start {
 						tab.refresh()
 					}
@@ -269,7 +271,7 @@ class SettingsViewController: FixedFormViewController {
 			cell.textLabel?.textAlignment = .natural
 		}
 		.onCellSelection { [weak self] _, _ in
-			AppDelegate.shared?.browsingUi?.addNewTab(
+			self?.view.sceneDelegate?.browsingUi.addNewTab(
 				URL(string: "https://github.com/OnionBrowser/OnionBrowser/issues"),
 				transition: .notAnimated)
 
@@ -311,8 +313,8 @@ class SettingsViewController: FixedFormViewController {
 			cell.textLabel?.textAlignment = .natural
 		}
 		.onCellSelection { [weak self] _, _ in
-			AppDelegate.shared?.browsingUi?.addNewTab(URL.aboutOnionBrowser,
-													   transition: .notAnimated)
+			self?.view.sceneDelegate?.browsingUi.addNewTab(
+				URL.aboutOnionBrowser, transition: .notAnimated)
 
 			self?.dismsiss_()
 		}

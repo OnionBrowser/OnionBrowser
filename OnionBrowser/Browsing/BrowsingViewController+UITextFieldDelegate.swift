@@ -8,7 +8,7 @@
 //  This file is part of Onion Browser. See LICENSE file for redistribution terms.
 //
 
-import Foundation
+import UIKit
 
 extension BrowsingViewController: UITextFieldDelegate {
 
@@ -25,7 +25,7 @@ extension BrowsingViewController: UITextFieldDelegate {
 	}
 
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-		let search = searchFl.text
+		let search = searchFl?.text
 
 		DispatchQueue.main.async {
 			self.liveSearchVc.hide()
@@ -73,7 +73,7 @@ extension BrowsingViewController: UITextFieldDelegate {
 			return
 		}
 
-		if parseSearch(searchFl.text) != nil {
+		if parseSearch(searchFl?.text) != nil {
 			// That's not a search, that's a valid URL. -> Remove live search results.
 
 			return liveSearchVc.hide()
@@ -90,14 +90,17 @@ extension BrowsingViewController: UITextFieldDelegate {
 				view.addSubview(liveSearchVc.view)
 				liveSearchVc.view.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
 				liveSearchVc.view.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-				liveSearchVc.view.topAnchor.constraint(equalTo: searchBar.bottomAnchor).isActive = true
 				liveSearchVc.view.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+
+				if let searchBar = searchBar {
+					liveSearchVc.view.topAnchor.constraint(equalTo: searchBar.bottomAnchor).isActive = true
+				}
 			}
 
 			liveSearchVc.searchOngoing = true
 		}
 
-		liveSearchVc.update(searchFl.text, tab: currentTab)
+		liveSearchVc.update(searchFl?.text, tab: currentTab)
 	}
 
 
@@ -107,28 +110,28 @@ extension BrowsingViewController: UITextFieldDelegate {
 	Renders the `searchFl` depending on if it currently has focus.
 	*/
 	func updateSearchField() {
-		if searchFl.isFirstResponder {
-			if searchFl.textAlignment == .natural {
+		if searchFl?.isFirstResponder ?? false {
+			if searchFl?.textAlignment == .natural {
 				// Seems already set correctly. Don't mess with it, while user
 				// edits it actively!
 				return
 			}
 
-			searchFl.text = currentTab?.url.clean?.absoluteString
+			searchFl?.text = currentTab?.url.clean?.absoluteString
 
 			// .unlessEditing would be such a great state, if it wouldn't show
 			// while editing an empty field. Argh.
-			searchFl.leftViewMode = .never
-			searchFl.rightViewMode = .never
+			searchFl?.leftViewMode = .never
+			searchFl?.rightViewMode = .never
 
-			searchFl.textAlignment = .natural
+			searchFl?.textAlignment = .natural
 		}
 		else {
-			searchFl.text = BrowsingViewController.prettyTitle(currentTab?.url)
-			searchFl.leftViewMode = encryptionBt.image(for: .normal) == nil ? .never : .always
-			searchFl.rightViewMode = searchFl.text?.isEmpty ?? true ? .never : .always
+			searchFl?.text = BrowsingViewController.prettyTitle(currentTab?.url)
+			searchFl?.leftViewMode = encryptionBt.image(for: .normal) == nil ? .never : .always
+			searchFl?.rightViewMode = searchFl?.text?.isEmpty ?? true ? .never : .always
 
-			searchFl.textAlignment = .center
+			searchFl?.textAlignment = .center
 		}
 	}
 
@@ -165,7 +168,7 @@ extension BrowsingViewController: UITextFieldDelegate {
 		}
 
 		encryptionBt.setImage(encryptionIcon, for: .normal)
-		searchFl.leftViewMode = searchFl.isFirstResponder || encryptionIcon == nil ? .never : .always
+		searchFl?.leftViewMode = searchFl?.isFirstResponder ?? false || encryptionIcon == nil ? .never : .always
 	}
 
 

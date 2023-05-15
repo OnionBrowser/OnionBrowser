@@ -42,7 +42,7 @@ class AddBookmarkActivity: UIActivity {
 
 	override func perform() {
 		DispatchQueue.global(qos: .userInitiated).async {
-			let tabs = AppDelegate.shared?.browsingUi?.tabs
+			let tabs = AppDelegate.shared?.allOpenTabs
 
 			for url in self.urls ?? [] {
 				var title: String?

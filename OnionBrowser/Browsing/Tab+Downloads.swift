@@ -99,11 +99,11 @@ extension Tab: WKDownloadDelegate, QLPreviewControllerDelegate, QLPreviewControl
 		previewController?.delegate = self
 		previewController?.dataSource = self
 
-		AppDelegate.shared?.browsingUi?.addChild(previewController!)
+		sceneDelegate?.browsingUi.addChild(previewController!)
 
 		previewController?.view.add(to: self)
 
-		previewController?.didMove(toParent: AppDelegate.shared?.browsingUi)
+		previewController?.didMove(toParent: sceneDelegate?.browsingUi)
 
 		// Positively show toolbar, as users can't scroll it back up.
 		scrollView.delegate?.scrollViewDidScrollToTop?(scrollView)

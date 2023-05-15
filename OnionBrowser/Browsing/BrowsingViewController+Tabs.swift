@@ -8,7 +8,7 @@
 //  This file is part of Onion Browser. See LICENSE file for redistribution terms.
 //
 
-import Foundation
+import UIKit
 
 extension BrowsingViewController: UICollectionViewDataSource, UICollectionViewDelegate,
 UICollectionViewDelegateFlowLayout, UICollectionViewDragDelegate,
@@ -32,7 +32,7 @@ UICollectionViewDropDelegate, TabCellDelegate {
 	@objc func showOverview() {
 		unfocusSearchField()
 
-		self.tabsCollection.reloadData()
+		self.tabsCollection?.reloadData()
 
 		view.backgroundColor = .darkGray
 
@@ -43,19 +43,19 @@ UICollectionViewDropDelegate, TabCellDelegate {
 		}
 
 		view.transition({
-			self.searchBar.isHidden = true
-			self.progress.isHidden = true
-			self.container.isHidden = true
-			self.tabsCollection.isHidden = false
+			self.searchBar?.isHidden = true
+			self.progress?.isHidden = true
+			self.container?.isHidden = true
+			self.tabsCollection?.isHidden = false
 			self.mainTools?.isHidden = true
-			self.tabsTools.isHidden = false
+			self.tabsTools?.isHidden = false
 		})
 	}
 
 	@objc func newTabFromOverview() {
 		addNewTab(transition: .notAnimated) { _ in
 			self.hideOverview() { _ in
-				self.searchFl.becomeFirstResponder()
+				self.searchFl?.becomeFirstResponder()
 			}
 		}
 	}
@@ -68,7 +68,7 @@ UICollectionViewDropDelegate, TabCellDelegate {
 	// MARK: UICollectionViewDataSource
 
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return tabsCollection.isHidden ? 0 : tabs.count
+		return tabsCollection?.isHidden ?? true ? 0 : tabs.count
 	}
 
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -139,7 +139,7 @@ UICollectionViewDropDelegate, TabCellDelegate {
 		session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?)
 		-> UICollectionViewDropProposal {
 
-			if tabsCollection.hasActiveDrag {
+			if tabsCollection?.hasActiveDrag ?? false {
 				return UICollectionViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
 			}
 
@@ -169,16 +169,16 @@ UICollectionViewDropDelegate, TabCellDelegate {
 	// MARK: TabCellDelegate
 
 	func close(_ sender: TabCell) {
-		if let indexPath = tabsCollection.indexPath(for: sender), indexPath.row > -1 {
+		if let indexPath = tabsCollection?.indexPath(for: sender), indexPath.row > -1 {
 
 			// Crash reports show, that indexPath.row can sometimes be different then
 			// the real size of `tabs`. No idea why that race condition happens, but
 			// we should at least not crash, if so.
 			if indexPath.row < tabs.count {
-				tabsCollection.performBatchUpdates({
+				tabsCollection?.performBatchUpdates({
 					removeTab(tabs[indexPath.row])
 
-					tabsCollection.deleteItems(at: [indexPath])
+					tabsCollection?.deleteItems(at: [indexPath])
 				})
 			}
 		}
@@ -208,10 +208,10 @@ UICollectionViewDropDelegate, TabCellDelegate {
 		}
 
 		view.transition({
-			self.searchBar.isHidden = false
-			self.tabsCollection.isHidden = true
-			self.container.isHidden = false
-			self.tabsTools.isHidden = true
+			self.searchBar?.isHidden = false
+			self.tabsCollection?.isHidden = true
+			self.container?.isHidden = false
+			self.tabsTools?.isHidden = true
 			self.mainTools?.isHidden = false
 		}, completion)
 	}
