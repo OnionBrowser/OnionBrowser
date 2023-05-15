@@ -9,6 +9,7 @@
 - Removed HTTPSEverywhere. That's built into iOS 15, already.
 - Removed WebRTC blocking. Not a danger anymore.
 - Replaced outdated DNT header ("Do-Not-Track") with new GPC header ("Global-Privacy-Control").
+- Added support for multiple windows on iPad.
 
 ## 2.8.3
 - Updated to Tor.framework 407.11.1 containing Tor 0.4.7.11.

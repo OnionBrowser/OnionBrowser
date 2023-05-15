@@ -6,4 +6,4 @@
 - Removed HTTPSEverywhere. That's built into iOS 15, already.
 - Removed WebRTC blocking. Not a danger anymore.
 - Replaced outdated DNT header ("Do-Not-Track") with new GPC header ("Global-Privacy-Control").
-
+- Added support for multiple windows on iPad.
