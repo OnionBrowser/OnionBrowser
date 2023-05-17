@@ -209,7 +209,7 @@ class BrowsingViewController: UIViewController, TabDelegate {
 	}
 
 	func encodeRestorableState(with activity: NSUserActivity) {
-		if !(currentTab?.url.isFileURL ?? true) {
+		if !(currentTab?.url.isSpecial ?? true) {
 			activity.webpageURL = currentTab?.url.clean
 			activity.title = currentTab?.title
 		}
