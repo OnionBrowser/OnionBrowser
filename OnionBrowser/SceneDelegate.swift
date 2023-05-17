@@ -129,6 +129,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 					Settings.orbotApiToken = token?.isEmpty ?? true ? Settings.orbotAccessDenied : token
 				}
+				else if urlc.path == "main" {
+					// Ignore. We just returned from Orbot.
+					// Do nothing more than already done: show the app.
+				}
 			}
 			else {
 				browsingUi.addNewTab(context.url.withFixedScheme)

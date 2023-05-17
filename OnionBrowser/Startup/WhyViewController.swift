@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import OrbotKit
 
 protocol WhyDelegate: AnyObject {
 
@@ -32,7 +33,7 @@ class WhyViewController: UIViewController {
 				format: NSLocalizedString(
 					"Why %1$@ needs %2$@",
 					comment: "Placeholder 1 is 'Onion Browser', placeholder 2 is 'Orbot'"),
-				Bundle.main.displayName, OrbotManager.orbot)
+				Bundle.main.displayName, OrbotKit.orbotName)
 		}
 	}
 
@@ -42,7 +43,7 @@ class WhyViewController: UIViewController {
 				format: NSLocalizedString(
 					"So that you can do more with Tor on iOS! In %1$@, %2$@ improves the browsing experience with:",
 					comment: "Placeholder 1 is 'Onion Browser', placeholder 2 is 'Orbot'"),
-				Bundle.main.displayName, OrbotManager.orbot)
+				Bundle.main.displayName, OrbotKit.orbotName)
 		}
 	}
 
@@ -76,7 +77,7 @@ class WhyViewController: UIViewController {
 				format: NSLocalizedString(
 					"%@ alone provides a VPN proxy. It will hide apps from network monitoring and give you access when they are blocked.",
 					comment: "Placeholder is 'Orbot'"),
-				OrbotManager.orbot)
+				OrbotKit.orbotName)
 		}
 	}
 

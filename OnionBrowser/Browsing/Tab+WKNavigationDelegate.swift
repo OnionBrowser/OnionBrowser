@@ -386,13 +386,13 @@ extension Tab: WKNavigationDelegate {
 			msg += String(format: NSLocalizedString(
 				"This site may need authentication. If you received an authentication key for this site, add it to %@!",
 				comment: "Placeholder is 'Orbot'"),
-						  OrbotManager.orbot)
+						  OrbotKit.orbotName)
 
 			alert = AlertHelper.build(message: msg, actions: [
 				AlertHelper.cancelAction(),
 				AlertHelper.defaultAction(String(
 					format: NSLocalizedString("Add to %@", comment: "Placeholder is 'Orbot'"),
-					OrbotManager.orbot)
+					OrbotKit.orbotName)
 				) { [weak self] _ in
 					OrbotKit.shared.open(.addAuth(url: host, key: ""))
 
@@ -401,7 +401,7 @@ extension Tab: WKNavigationDelegate {
 							format: NSLocalizedString(
 								"Retry after you added the authentication key to %@.",
 								comment: "Placeholder is 'Orbot'"),
-							OrbotManager.orbot),
+							OrbotKit.orbotName),
 						actions: [
 							AlertHelper.cancelAction(),
 							AlertHelper.defaultAction(NSLocalizedString("Retry", comment: ""), handler: { _ in

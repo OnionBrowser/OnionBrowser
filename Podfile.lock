@@ -8,7 +8,7 @@ PODS:
     - Eureka (~> 5.3.5)
   - MBProgressHUD (1.2.0)
   - OCMock (3.9.1)
-  - OrbotKit (0.2.2)
+  - OrbotKit (1.0.0)
   - SDCAlertView (10.0)
   - TUSafariActivity (1.0.4)
 
@@ -19,7 +19,7 @@ DEPENDENCIES:
   - ImageRow (~> 4.1)
   - MBProgressHUD (~> 1.2)
   - OCMock
-  - OrbotKit (~> 0.2)
+  - OrbotKit (~> 1.0)
   - SDCAlertView (~> 10)
   - TUSafariActivity
 
@@ -50,10 +50,10 @@ SPEC CHECKSUMS:
   ImageRow: 880c0f052c5a89c80521b485c86ccf723a124e99
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   OCMock: 9491e4bec59e0b267d52a9184ff5605995e74be8
-  OrbotKit: 33dd047aa0d14812d7a08618f68ab1f0874e97f2
+  OrbotKit: 13a0a0d94f18f94d77dcf81e7c70c93b7e618f3d
   SDCAlertView: 5fbc48cae6d7bf9781097e3f27883924ef3b922c
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
 
-PODFILE CHECKSUM: 964889379b371fa46fd240c2041bd98beac35332
+PODFILE CHECKSUM: e902c2aa319cff08b62f8e55e677119b311028db
 
 COCOAPODS: 1.12.1

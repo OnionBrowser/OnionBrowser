@@ -16,7 +16,7 @@ target 'OnionBrowser' do
   pod 'Eureka', '~> 5.3'
   pod 'ImageRow', '~> 4.1'
 
-  pod 'OrbotKit', '~> 0.2'
+  pod 'OrbotKit', '~> 1.0'
 end
 
 target 'OnionBrowser Tests' do

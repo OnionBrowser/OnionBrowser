@@ -17,7 +17,7 @@ class StartViewController: UIViewController, WhyDelegate {
 				format: NSLocalizedString(
 					"Start Tor in %@.",
 					comment: "Placeholder is 'Orbot'"),
-				OrbotManager.orbot)
+				OrbotKit.orbotName)
 		}
 	}
 
@@ -54,7 +54,7 @@ class StartViewController: UIViewController, WhyDelegate {
 					format: NSLocalizedString(
 						"%1$@ runs in onion-only mode. This is dangerous and %2$@ does not support it. Switch it off to use %2$@!",
 						comment: "Placeholder 1 is 'Orbot', placeholder 2 is 'Onion Browser'"),
-					OrbotManager.orbot, Bundle.main.displayName),
+					OrbotKit.orbotName, Bundle.main.displayName),
 				attributes: [.foregroundColor: UIColor.error!])
 		}
 	}
@@ -68,7 +68,7 @@ class StartViewController: UIViewController, WhyDelegate {
 				format: NSLocalizedString(
 					"Go to %@",
 					comment: "Placeholder is 'Orbot'"),
-				OrbotManager.orbot)
+				OrbotKit.orbotName)
 		}
 
 		return NSLocalizedString("Start Tor", comment: "")
@@ -80,7 +80,7 @@ class StartViewController: UIViewController, WhyDelegate {
 	@IBAction
 	func action() {
 		if info?.status == .stopped {
-			OrbotKit.shared.open(.start)
+			OrbotKit.shared.open(.start(callback: URL(string: "onionbrowser:main")))
 		}
 		else {
 			OrbotKit.shared.open(.settings)

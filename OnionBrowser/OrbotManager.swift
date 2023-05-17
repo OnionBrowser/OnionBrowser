@@ -12,8 +12,6 @@ import OrbotKit
 
 class OrbotManager : NSObject, OrbotStatusChangeListener {
 
-	static let orbot = "Orbot"
-
 	static let shared = OrbotManager()
 
 #if DEBUG
