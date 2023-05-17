@@ -20,7 +20,10 @@ extension Tab: WKNavigationDelegate {
 				 preferences: WKWebpagePreferences,
 				 decisionHandler: @escaping (WKNavigationActionPolicy, WKWebpagePreferences) -> Void)
 	{
-		guard let url = navigationAction.request.url else {
+		guard let info = OrbotManager.shared.lastInfo,
+			  info.status != .stopped,
+			  let url = navigationAction.request.url
+		else {
 			return decisionHandler(.cancel, preferences)
 		}
 
