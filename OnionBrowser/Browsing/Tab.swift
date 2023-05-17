@@ -241,7 +241,13 @@ class Tab: UIView {
 
 		needsRefresh = false
 		skipHistory = true
-		webView.reload()
+
+		if webView.url != nil {
+			webView.reload()
+		}
+		else {
+			load(url)
+		}
 	}
 
 	func stop() {
