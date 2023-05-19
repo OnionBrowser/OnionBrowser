@@ -76,6 +76,7 @@
 		A08563602A04EA8C00A3A7FF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A085635E2A04EA8C00A3A7FF /* InfoPlist.strings */; };
 		A08563852A05419000A3A7FF /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A08563842A05419000A3A7FF /* Launch Screen.storyboard */; };
 		A08737E1221324B5005A68CC /* HostSettings_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = A08737DF2213235F005A68CC /* HostSettings_Tests.m */; };
+		A09A39622A17BE61008CC06A /* DownloadActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09A39612A17BE61008CC06A /* DownloadActivity.swift */; };
 		A0A1A35A2A03DAB800DE4991 /* security-levels.html in Resources */ = {isa = PBXBuildFile; fileRef = A0A1A3582A03DAB800DE4991 /* security-levels.html */; };
 		A0A83AC228A14CAB005C15C9 /* Tab+WKScriptMessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A83AC128A14CAB005C15C9 /* Tab+WKScriptMessageHandler.swift */; };
 		A0AF2C062A123E65000BCC85 /* BrowsingViewController+UIResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AF2C052A123E65000BCC85 /* BrowsingViewController+UIResponder.swift */; };
@@ -365,6 +366,7 @@
 		A085A1EC270DAB8600800A29 /* SECURITY.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = SECURITY.md; sourceTree = "<group>"; };
 		A08737DF2213235F005A68CC /* HostSettings_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HostSettings_Tests.m; sourceTree = "<group>"; };
 		A0894E36236AE7C800EE2743 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
+		A09A39612A17BE61008CC06A /* DownloadActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadActivity.swift; sourceTree = "<group>"; };
 		A0A1A3592A03DAB800DE4991 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = en; path = "en.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A0A1A35D2A03DAF500DE4991 /* sq */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = sq; path = "sq.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A0A1A35E2A03DAF700DE4991 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ar; path = "ar.lproj/security-levels.html"; sourceTree = "<group>"; };
@@ -722,6 +724,7 @@
 				A0BF520223AFC3580096624A /* CircuitNodeCell.xib */,
 				A0BF520423AFC3580096624A /* CircuitNodeCell.swift */,
 				A0BF520A23AFC3580096624A /* HistoryViewController.swift */,
+				A09A39612A17BE61008CC06A /* DownloadActivity.swift */,
 			);
 			path = Browsing;
 			sourceTree = "<group>";
@@ -1178,6 +1181,7 @@
 				A0BF525023AFC3580096624A /* Tab+Activity.swift in Sources */,
 				A03CFA042892B05500F01DB5 /* DownloadHelper.swift in Sources */,
 				A0BFD3E9289D4F5200CB9F6D /* Tab+WKUIDelegate.swift in Sources */,
+				A09A39622A17BE61008CC06A /* DownloadActivity.swift in Sources */,
 				A07037C623C7571B00D670EC /* AppDelegate.swift in Sources */,
 				A0BF526823AFC3580096624A /* BookmarkCell.swift in Sources */,
 				A0BF526123AFC3580096624A /* BookmarkViewController.swift in Sources */,

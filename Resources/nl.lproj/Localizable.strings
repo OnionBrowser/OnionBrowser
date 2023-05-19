@@ -223,6 +223,9 @@
 /* BrowsingViewController */
 "Done" = "Klaar";
 
+/* No comment provided by engineer. */
+"Download" = "Download";
+
 /* SecurityPresetsRow */
 "Easy breezy. Though it could be dangerous." = "Easy breezy. Though it could be dangerous.";
 
