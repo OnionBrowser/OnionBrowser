@@ -20,12 +20,23 @@ extension Tab: WKNavigationDelegate {
 				 preferences: WKWebpagePreferences,
 				 decisionHandler: @escaping (WKNavigationActionPolicy, WKWebpagePreferences) -> Void)
 	{
-		guard let info = OrbotManager.shared.lastInfo,
-			  info.status != .stopped,
-			  let url = navigationAction.request.url
+		guard let url = navigationAction.request.url else {
+			return decisionHandler(.cancel, preferences)
+		}
+
+		let info = OrbotManager.shared.lastInfo
+
+#if DEBUG
+		guard OrbotManager.simulatorIgnoreOrbot || info?.status == .starting || info?.status == .started
 		else {
 			return decisionHandler(.cancel, preferences)
 		}
+#else
+			guard info?.status == .starting || info?.status == .started
+			else {
+				return decisionHandler(.cancel, preferences)
+			}
+#endif
 
 		if let blocker = URLBlocker.blockingTarget(for: url, fromMainDocumentURL: self.url) {
 
