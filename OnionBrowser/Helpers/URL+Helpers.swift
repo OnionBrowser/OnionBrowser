@@ -79,6 +79,10 @@ extension URL {
 			return false
 		}
 	}
+
+	var exists: Bool {
+		(try? self.checkResourceIsReachable()) ?? false
+	}
 }
 
 @objc

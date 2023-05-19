@@ -51,7 +51,7 @@ extension Tab: WKDownloadDelegate, QLPreviewControllerDelegate, QLPreviewControl
 		downloadedFile = dir.appendingPathComponent(suggestedFilename, isDirectory: false)
 
 		// Remove old file, if it does exist.
-		if (try? downloadedFile?.checkResourceIsReachable()) ?? false {
+		if downloadedFile?.exists ?? false {
 			try? FileManager.default.removeItem(at: downloadedFile!)
 		}
 
@@ -72,7 +72,7 @@ extension Tab: WKDownloadDelegate, QLPreviewControllerDelegate, QLPreviewControl
 
 	func downloadDidFinish(_ download: WKDownload) {
 		DispatchQueue.main.async {
-			if (try? self.downloadedFile?.checkResourceIsReachable()) ?? false {
+			if self.downloadedFile?.exists ?? false {
 				self.showDownload()
 			}
 		}

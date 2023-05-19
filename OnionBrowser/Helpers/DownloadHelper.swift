@@ -19,7 +19,7 @@ class DownloadHelper {
 
 	class func getDirectory() -> URL? {
 		// Create directory, if it doesn't exist.
-		if !((try? directory.checkResourceIsReachable()) ?? false) {
+		if !directory.exists {
 			do {
 				try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: false)
 			}
