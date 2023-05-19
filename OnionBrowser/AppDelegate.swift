@@ -30,17 +30,26 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 		return delegate as? AppDelegate
 	}
 
+	/**
+	 ATTENTION: Needs to be called from main thread!
+	 */
 	var sceneDelegates: [SceneDelegate] {
 		UIApplication.shared.connectedScenes.compactMap {
 			$0.delegate as? SceneDelegate
 		}
 	}
 
+	/**
+	 ATTENTION: Needs to be called from main thread!
+	 */
 	@objc
 	var browsingUis: [BrowsingViewController] {
 		sceneDelegates.compactMap { $0.browsingUi }
 	}
 
+	/**
+	 ATTENTION: Needs to be called from main thread!
+	 */
 	var allOpenTabs: [Tab] {
 		browsingUis.flatMap { $0.tabs }
 	}

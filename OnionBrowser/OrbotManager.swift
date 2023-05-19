@@ -176,8 +176,10 @@ class OrbotManager : NSObject, OrbotStatusChangeListener {
 	Cancel all connections and re-evalutate Orbot situation and show respective UI.
 	*/
 	private func fullStop() {
-		for tab in AppDelegate.shared?.allOpenTabs ?? [] {
-			tab.stop()
+		DispatchQueue.main.async {
+			for tab in AppDelegate.shared?.allOpenTabs ?? [] {
+				tab.stop()
+			}
 		}
 	}
 }
