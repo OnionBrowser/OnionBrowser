@@ -344,6 +344,16 @@ class Tab: UIView {
 		}
 	}
 
+	func toggleFind() {
+		if #available(iOS 16.0, *) {
+			webView.isFindInteractionEnabled = !(webView.isFindInteractionEnabled && webView.findInteraction?.isFindNavigatorVisible ?? false)
+
+			if webView.isFindInteractionEnabled {
+				webView.findInteraction?.presentFindNavigator(showingReplace: false)
+			}
+		}
+	}
+
 	func stringByEvaluatingJavaScript(from script: String, _ completion: @escaping (String?) -> Void) {
 		webView.evaluateJavaScript(script) { result, error in
 			let string = result as? String

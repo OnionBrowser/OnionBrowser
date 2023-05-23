@@ -87,6 +87,36 @@ class BrowsingViewController: UIViewController, TabDelegate {
 	@IBOutlet weak var tabsTools: UIView?
 	@IBOutlet weak var backBt: UIButton?
 	@IBOutlet weak var frwrdBt: UIButton?
+
+	@IBOutlet weak var findBt: UIButton? {
+		didSet {
+			if #available(iOS 16.0, *) {
+				// No change.
+			}
+			else {
+				// We do not support find below iOS 16.
+				findBt?.isHidden = true
+
+				// Reduce used width and height to 0.
+				for constraint in findBt?.constraints ?? [] {
+					if constraint.firstAnchor is NSLayoutAnchor<NSLayoutDimension> {
+						constraint.constant = 0
+					}
+				}
+
+				// Reduce one margin constraint to 0.
+				for constraint in findBt?.superview?.constraints ?? [] {
+					if let item = constraint.firstItem as? UIButton,
+						item == findBt,
+						constraint.secondItem is UIButton
+					{
+						constraint.constant = 0
+					}
+				}
+			}
+		}
+	}
+
 	@IBOutlet weak var actionBt: UIButton?
 	@IBOutlet weak var bookmarksBt: UIButton?
 	@IBOutlet weak var newTabBt: UIButton?
@@ -307,6 +337,9 @@ class BrowsingViewController: UIViewController, TabDelegate {
 		case frwrdBt:
 			currentTab?.goForward()
 
+		case findBt:
+			currentTab?.toggleFind()
+
 		case actionBt:
 			guard let currentTab = currentTab else {
 				return
@@ -391,6 +424,7 @@ class BrowsingViewController: UIViewController, TabDelegate {
 			securityBt?.setTitle(nil)
 			backBt?.isEnabled = false
 			frwrdBt?.isEnabled = false
+			findBt?.isEnabled = false
 			actionBt?.isEnabled = false
 			updateTabCount()
 
@@ -411,7 +445,8 @@ class BrowsingViewController: UIViewController, TabDelegate {
 		updateEncryptionBt(tab.secureMode)
 		backBt?.isEnabled = tab.canGoBack
 		frwrdBt?.isEnabled = tab.canGoForward
-		actionBt?.isEnabled = !tab.url.isSpecial
+		findBt?.isEnabled = !tab.url.isSpecial
+		actionBt?.isEnabled = tab.url.isSearchable
 		updateTabCount()
 
 		if !(tabsCollection?.isHidden ?? true) {

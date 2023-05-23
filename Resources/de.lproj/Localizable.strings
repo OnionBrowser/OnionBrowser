@@ -250,6 +250,9 @@
 /* No comment provided by engineer. */
 "Fetch Cache" = "Fetch-Cache";
 
+/* No comment provided by engineer. */
+"Find in Page" = "Auf Seite finden";
+
 /* AppDelegate */
 "Focus URL Field" = "URL Feld fokusieren";
 

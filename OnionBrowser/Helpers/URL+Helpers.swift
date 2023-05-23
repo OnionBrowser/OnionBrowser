@@ -80,6 +80,16 @@ extension URL {
 		}
 	}
 
+	var isSearchable: Bool {
+		switch self {
+		case URL.blank, URL.start:
+			return false
+
+		default:
+			return true
+		}
+	}
+
 	var exists: Bool {
 		(try? self.checkResourceIsReachable()) ?? false
 	}

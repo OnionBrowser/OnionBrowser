@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
@@ -18,6 +18,7 @@
                 <outlet property="bookmarksBt" destination="fgM-cO-WGo" id="fMF-W3-WBh"/>
                 <outlet property="container" destination="VpS-hG-MKQ" id="mUx-9g-Kbs"/>
                 <outlet property="containerBottomConstraint2Toolbar" destination="FXZ-Kt-2zq" id="YxH-yQ-lhV"/>
+                <outlet property="findBt" destination="oWF-77-k76" id="drJ-Ah-L5B"/>
                 <outlet property="frwrdBt" destination="nTb-gO-JY9" id="vGl-0a-eyt"/>
                 <outlet property="hideOverviewBt" destination="K4r-Tu-xYl" id="Q0w-M9-pF0"/>
                 <outlet property="mainTools" destination="jzs-tH-FB8" id="UYo-Ry-Ru2"/>
@@ -160,7 +161,7 @@
                             <rect key="frame" x="0.0" y="1" width="414" height="48"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BdK-kV-qOx">
-                                    <rect key="frame" x="0.0" y="0.0" width="62.5" height="48"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="52.5" height="48"/>
                                     <state key="normal" image="back"/>
                                     <connections>
                                         <action selector="action:" destination="-1" eventType="touchUpInside" id="9zO-Ra-GOt"/>
@@ -168,33 +169,40 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nTb-gO-JY9">
-                                    <rect key="frame" x="70.5" y="0.0" width="62" height="48"/>
+                                    <rect key="frame" x="60.5" y="0.0" width="52" height="48"/>
                                     <state key="normal" image="forward"/>
                                     <connections>
                                         <action selector="action:" destination="-1" eventType="touchUpInside" id="xdi-IO-5ZS"/>
                                     </connections>
                                 </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oWF-77-k76">
+                                    <rect key="frame" x="120.5" y="0.0" width="52.5" height="48"/>
+                                    <state key="normal" image="magnifyingglass" catalog="system"/>
+                                    <connections>
+                                        <action selector="action:" destination="-1" eventType="touchUpInside" id="ga5-RM-aZ9"/>
+                                    </connections>
+                                </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1VD-Cu-Lj9">
-                                    <rect key="frame" x="140.5" y="0.0" width="62.5" height="48"/>
+                                    <rect key="frame" x="181" y="0.0" width="52" height="48"/>
                                     <state key="normal" image="share"/>
                                     <connections>
                                         <action selector="action:" destination="-1" eventType="touchUpInside" id="x39-N3-FcG"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fgM-cO-WGo">
-                                    <rect key="frame" x="211" y="0.0" width="62.5" height="48"/>
+                                    <rect key="frame" x="241" y="0.0" width="52.5" height="48"/>
                                     <state key="normal" image="bookmarks"/>
                                     <connections>
                                         <action selector="showBookmarks" destination="-1" eventType="touchUpInside" id="ihV-YB-Wbs"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tXa-df-pw3">
-                                    <rect key="frame" x="281.5" y="0.0" width="62" height="48"/>
+                                    <rect key="frame" x="301.5" y="0.0" width="52" height="48"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                     <state key="normal" image="tabs"/>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yK9-fq-stu">
-                                    <rect key="frame" x="351.5" y="0.0" width="62.5" height="48"/>
+                                    <rect key="frame" x="361.5" y="0.0" width="52.5" height="48"/>
                                     <state key="normal" image="settings"/>
                                     <connections>
                                         <action selector="action:" destination="-1" eventType="touchUpInside" id="wc0-KH-M46"/>
@@ -281,6 +289,7 @@
         <image name="back" width="11" height="19"/>
         <image name="bookmarks" width="14" height="18"/>
         <image name="forward" width="11" height="19"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="onion" width="19" height="21"/>
         <image name="settings" width="21" height="20"/>
         <image name="share" width="17" height="22"/>
