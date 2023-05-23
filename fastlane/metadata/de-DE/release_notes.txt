@@ -6,4 +6,6 @@
 - HTTPSEverywhere wurde entfernt. Bereits in iOS 15 integriert.
 - WebRTC-Blockierung wurde entfernt. Keine Gefahr mehr.
 - Der veraltete DNT-Header ("Do-Not-Track") wurde durch den neuen GPC-Header ("Global-Privacy-Control") ersetzt.
-Unterstützung für mehrere Fenster auf dem iPad hinzugefügt.
+- Unterstützung für mehrere Fenster auf dem iPad hinzugefügt.
+- Unterstützung hinzugefügt um jeden Inhalt herunterzuladen.
+- "Auf Seite finden" für iOS 16 und neuer hinzugefügt.

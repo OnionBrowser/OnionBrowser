@@ -10,6 +10,8 @@
 - Removed WebRTC blocking. Not a danger anymore.
 - Replaced outdated DNT header ("Do-Not-Track") with new GPC header ("Global-Privacy-Control").
 - Added support for multiple windows on iPad.
+- Added support to download all content.
+- Added "Find in Page" for iOS 16 and newer.
 
 ## 2.8.3
 - Updated to Tor.framework 407.11.1 containing Tor 0.4.7.11.

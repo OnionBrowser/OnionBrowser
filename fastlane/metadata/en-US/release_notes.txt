@@ -7,3 +7,5 @@
 - Removed WebRTC blocking. Not a danger anymore.
 - Replaced outdated DNT header ("Do-Not-Track") with new GPC header ("Global-Privacy-Control").
 - Added support for multiple windows on iPad.
+- Added support to download all content.
+- Added "Find in Page" for iOS 16 and newer.
