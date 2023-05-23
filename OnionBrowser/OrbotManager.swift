@@ -15,7 +15,7 @@ class OrbotManager : NSObject, OrbotStatusChangeListener {
 	static let shared = OrbotManager()
 
 #if DEBUG
-	private static let simulatorIgnoreOrbot = false
+	static let simulatorIgnoreOrbot = false
 #endif
 
 	// MARK: OnionManager instance
