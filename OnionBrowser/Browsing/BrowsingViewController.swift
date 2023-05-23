@@ -483,10 +483,11 @@ class BrowsingViewController: UIViewController, TabDelegate {
 			tab.isHidden = true
 			(focus ?? self.tabs.last)?.isHidden = false
 		}) { _ in
-			self.currentTab = focus ?? self.tabs.last
-
 			tab.close()
 			self.tabs.removeAll { $0 == tab }
+
+			self.currentTab = focus ?? self.tabs.last
+			self.currentTab?.isHidden = false
 
 			self.updateChrome()
 		}
