@@ -7,3 +7,5 @@ Orbot, tüm ağ yöneltmesini yönetiyor ve Onion Browser, Orbot durduğunda tü
 - Artık bir tehlike oluşturmadığından WebRTC engellemesi kaldırıldı.
 - Eski DNT üst bilgisi ("Do-Not-Track") yeni GPC üst bilgi ("Global-Privacy-Control") ile değiştirildi.
 - iPad üzerinde çok pencere desteği eklendi.
+- Tüm içeriği indirme özelliği eklendi.
+- iOS 16 ve üzeri iin "Sayfada bul" özelliği eklendi.
