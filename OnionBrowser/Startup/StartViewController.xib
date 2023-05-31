@@ -127,19 +127,12 @@
                     <viewLayoutGuide key="contentLayoutGuide" id="6Ux-rt-f9z"/>
                     <viewLayoutGuide key="frameLayoutGuide" id="7o1-vu-TWw"/>
                 </scrollView>
-                <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" currentPage="3" translatesAutoresizingMaskIntoConstraints="NO" id="uY7-bf-Wkc">
-                    <rect key="frame" x="93" y="542" width="134.5" height="26"/>
-                    <color key="pageIndicatorTintColor" systemColor="systemGray3Color"/>
-                    <color key="currentPageIndicatorTintColor" name="Accent"/>
-                </pageControl>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="uY7-bf-Wkc" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="3X5-vp-amh"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="top" secondItem="LG7-uK-taa" secondAttribute="top" id="CU8-5t-ixG"/>
                 <constraint firstItem="LG7-uK-taa" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="NRf-EY-Yj4"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="uY7-bf-Wkc" secondAttribute="bottom" id="hDX-8c-Bxx"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="LG7-uK-taa" secondAttribute="bottom" id="lGu-58-cf3"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="LG7-uK-taa" secondAttribute="trailing" id="qpX-zA-4XO"/>
             </constraints>
@@ -153,9 +146,6 @@
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray3Color">
-            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray4Color">
             <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

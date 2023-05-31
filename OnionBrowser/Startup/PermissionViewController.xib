@@ -175,11 +175,6 @@
                     <viewLayoutGuide key="contentLayoutGuide" id="vrC-2z-rll"/>
                     <viewLayoutGuide key="frameLayoutGuide" id="FFh-rS-thM"/>
                 </scrollView>
-                <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" currentPage="2" translatesAutoresizingMaskIntoConstraints="NO" id="ifb-UF-LVr">
-                    <rect key="frame" x="93" y="542" width="134.5" height="26"/>
-                    <color key="pageIndicatorTintColor" systemColor="systemGray3Color"/>
-                    <color key="currentPageIndicatorTintColor" name="Accent"/>
-                </pageControl>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -187,9 +182,7 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="top" secondItem="OaI-MM-tIF" secondAttribute="top" id="08s-U3-add"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="OaI-MM-tIF" secondAttribute="trailing" id="9T6-Sc-ON1"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="OaI-MM-tIF" secondAttribute="bottom" id="Fpn-6t-fp5"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="ifb-UF-LVr" secondAttribute="bottom" id="jZZ-Kp-pkL"/>
                 <constraint firstItem="OaI-MM-tIF" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="oD5-az-iAz"/>
-                <constraint firstItem="ifb-UF-LVr" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="vmN-9A-Wjb"/>
             </constraints>
             <point key="canvasLocation" x="74" y="-11"/>
         </view>
@@ -205,9 +198,6 @@
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray3Color">
-            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray4Color">
             <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

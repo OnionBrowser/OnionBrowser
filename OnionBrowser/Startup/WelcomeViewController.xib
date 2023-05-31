@@ -98,11 +98,6 @@
                     <viewLayoutGuide key="contentLayoutGuide" id="qRI-0h-f58"/>
                     <viewLayoutGuide key="frameLayoutGuide" id="Z4d-dx-Riz"/>
                 </scrollView>
-                <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="O8i-ir-T21">
-                    <rect key="frame" x="93" y="542" width="134.5" height="26"/>
-                    <color key="pageIndicatorTintColor" systemColor="systemGray3Color"/>
-                    <color key="currentPageIndicatorTintColor" name="Accent"/>
-                </pageControl>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -111,8 +106,6 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="top" secondItem="gML-At-7SO" secondAttribute="top" id="MfT-B9-mVe"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="gML-At-7SO" secondAttribute="trailing" id="eMW-L4-RdZ"/>
                 <constraint firstItem="gML-At-7SO" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="fZd-Kw-oD7"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="O8i-ir-T21" secondAttribute="bottom" id="mTg-Am-MGw"/>
-                <constraint firstItem="O8i-ir-T21" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="vE9-BN-dyN"/>
             </constraints>
             <point key="canvasLocation" x="131.25" y="-11.619718309859156"/>
         </view>
@@ -124,9 +117,6 @@
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray3Color">
-            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

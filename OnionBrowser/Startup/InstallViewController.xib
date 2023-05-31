@@ -149,17 +149,10 @@
                     <viewLayoutGuide key="contentLayoutGuide" id="9SR-qP-f28"/>
                     <viewLayoutGuide key="frameLayoutGuide" id="Gnj-N0-Wrh"/>
                 </scrollView>
-                <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" currentPage="1" translatesAutoresizingMaskIntoConstraints="NO" id="6hU-Ww-HuV">
-                    <rect key="frame" x="93" y="542" width="134.5" height="26"/>
-                    <color key="pageIndicatorTintColor" systemColor="systemGray3Color"/>
-                    <color key="currentPageIndicatorTintColor" name="Accent"/>
-                </pageControl>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="6hU-Ww-HuV" secondAttribute="bottom" id="56j-ne-QjY"/>
-                <constraint firstItem="6hU-Ww-HuV" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="LNQ-j3-7vR"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="top" secondItem="JMK-wq-xKd" secondAttribute="top" id="Wdh-M5-NcI"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="JMK-wq-xKd" secondAttribute="trailing" id="aYO-Wj-rRX"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="JMK-wq-xKd" secondAttribute="bottom" id="eG5-BH-64Q"/>
@@ -176,9 +169,6 @@
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray3Color">
-            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray4Color">
             <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
