@@ -57,8 +57,9 @@ extension Tab: WKScriptMessageHandler {
 
 
 	func setupJsInjections() {
-		register(script: Self.errorScript, for: "error")
-		register(script: Self.logScript, for: "log")
+		// Disabled for now. One or both of these seem to cause random crashes.
+//		register(script: Self.errorScript, for: "error")
+//		register(script: Self.logScript, for: "log")
 		register(script: Self.donateScript, for: "showDonate", forMainFrameOnly: true)
 
 		if Settings.sendGpc {
