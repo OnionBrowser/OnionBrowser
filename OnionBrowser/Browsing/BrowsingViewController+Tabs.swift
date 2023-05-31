@@ -32,6 +32,12 @@ UICollectionViewDropDelegate, TabCellDelegate {
 	@objc func showOverview() {
 		unfocusSearchField()
 
+		// Reset before showing the overview. Would become cumbersome,
+		// if we'd call everywhere, where a tab might change.
+		for tab in tabs {
+			tab.clearSnapshot()
+		}
+
 		self.tabsCollection?.reloadData()
 
 		view.backgroundColor = .darkGray
