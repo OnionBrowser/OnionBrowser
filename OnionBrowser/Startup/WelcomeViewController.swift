@@ -28,14 +28,10 @@ class WelcomeViewController: UIViewController {
 		}
 	}
 
-	override func viewDidAppear(_ animated: Bool) {
-		super.viewDidAppear(animated)
-
-		Settings.didWelcome = true
-	}
-
 	@IBAction
 	func next() {
+		Settings.didWelcome = true
+
 		view.sceneDelegate?.show(OrbotManager.shared.checkStatus())
 	}
 }
