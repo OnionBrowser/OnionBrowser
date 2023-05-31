@@ -42,6 +42,13 @@ class InstallViewController: UIViewController, WhyDelegate {
 	}
 
 
+	override func viewDidLoad() {
+		super.viewDidLoad()
+
+		Settings.orbotWasAlreadyInstalled = false
+	}
+
+
 	// MARK: WhyDelegate
 
 	var buttonTitle: String {

@@ -2,6 +2,9 @@
 "%1$@ (Disabled: %2$@)" = "%1$@ (Deaktiviert: %2$@)";
 
 /* Placeholder 1 is 'Onion Browser', placeholder 2 is 'Orbot' */
+"%1$@ now relies on %2$@ for a secure connection to Tor." = "%1$@ benötigt jetzt %2$@ für eine sichere Verbindung zum Tor-Netzwerk.";
+
+/* Placeholder 1 is 'Onion Browser', placeholder 2 is 'Orbot' */
 "%1$@ relies on %2$@ for a secure connection to Tor. Install the %2$@ app to continue." = "%1$@ benötigt %2$@ für eine sichere Verbindung zum Tor-Netzwerk. Installiere die %2$@-App um weiter zu machen.";
 
 /* Placeholder 1 is 'Orbot', placeholder 2 is 'Onion Browser' */

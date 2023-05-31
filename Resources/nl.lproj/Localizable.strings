@@ -1,6 +1,9 @@
 /* RuleEditorController */
 "%1$@ (Disabled: %2$@)" = "%1$@ (Uitgeschakeld: %2$@)";
 
+/* Placeholder 1 is 'Onion Browser', placeholder 2 is 'Orbot' */
+"%1$@ now relies on %2$@ for a secure connection to Tor." = "%1$@ now relies on %2$@ for a secure connection to Tor.";
+
 /* No comment provided by engineer. */
 "%1$@ relies on %2$@ for a secure connection to Tor. Install the %2$@ app to continue." = "%1$@ relies on %2$@ for a secure connection to Tor. Install the %2$@ app to continue.";
 
@@ -249,6 +252,9 @@
 
 /* No comment provided by engineer. */
 "Fetch Cache" = "Fetch Cache";
+
+/* No comment provided by engineer. */
+"Find in Page" = "Find in Page";
 
 /* AppDelegate */
 "Focus URL Field" = "Focus URL-veld";

@@ -164,12 +164,15 @@ class Settings: NSObject {
 		}
 	}
 
+	/**
+	 Don't show this for updating 2.x users. Reuse an old key to achieve this.
+	 */
 	class var didWelcome: Bool {
 		get {
-			UserDefaults.standard.bool(forKey: "did_welcome")
+			UserDefaults.standard.bool(forKey: "did_intro")
 		}
 		set {
-			UserDefaults.standard.set(newValue, forKey: "did_welcome")
+			UserDefaults.standard.set(newValue, forKey: "did_intro")
 		}
 	}
 
@@ -381,10 +384,24 @@ class Settings: NSObject {
 
 	class var orbotApiToken: String? {
 		get {
-			return UserDefaults.standard.string(forKey: "orbot_api_token")
+			UserDefaults.standard.string(forKey: "orbot_api_token")
 		}
 		set {
 			UserDefaults.standard.set(newValue, forKey: "orbot_api_token")
+		}
+	}
+
+	class var orbotWasAlreadyInstalled: Bool {
+		get {
+			// Defaults to true!
+			if UserDefaults.standard.object(forKey: "orbot_was_already_installed") == nil {
+				return true
+			}
+
+			return UserDefaults.standard.bool(forKey: "orbot_was_already_installed")
+		}
+		set {
+			UserDefaults.standard.set(newValue, forKey: "orbot_was_already_installed")
 		}
 	}
 

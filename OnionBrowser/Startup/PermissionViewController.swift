@@ -137,6 +137,13 @@ class PermissionViewController: UIViewController, WhyDelegate {
 			body4Lb.isHidden = true
 			body40Height.isActive = true
 		}
+		else if Settings.orbotWasAlreadyInstalled {
+			titleLb.text = String(
+				format: NSLocalizedString(
+					"%1$@ now relies on %2$@ for a secure connection to Tor.",
+					comment: "Placeholder 1 is 'Onion Browser', placeholder 2 is 'Orbot'"),
+				Bundle.main.displayName, OrbotKit.orbotName)
+		}
 	}
 
 
