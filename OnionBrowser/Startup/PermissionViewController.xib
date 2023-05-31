@@ -82,19 +82,19 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This will allow %@ to:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xli-bc-FBf">
-                                    <rect key="frame" x="16" y="294.5" width="288" height="20.5"/>
+                                    <rect key="frame" x="22" y="294.5" width="276.5" height="20.5"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%1$@ Use %2$@ to connect to the official Tor network." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sga-kK-Vku">
-                                    <rect key="frame" x="16" y="323" width="288" height="42.5"/>
+                                    <rect key="frame" x="22" y="323" width="276.5" height="42.5"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%@ Get updates on the status of the connection." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xmu-ek-pwH">
-                                    <rect key="frame" x="16" y="373.5" width="288" height="42.5"/>
+                                    <rect key="frame" x="22" y="373.5" width="276.5" height="42.5"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -139,28 +139,33 @@
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstItem="Zmu-a0-CCn" firstAttribute="top" secondItem="Xeq-d5-e11" secondAttribute="bottom" constant="8" symbolic="YES" id="8uL-eo-v88"/>
+                                <constraint firstItem="Xli-bc-FBf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="GUD-3I-mA1" secondAttribute="leading" constant="20" symbolic="YES" id="Grl-pJ-ZGp"/>
                                 <constraint firstItem="Xeq-d5-e11" firstAttribute="leading" secondItem="GUD-3I-mA1" secondAttribute="leading" constant="16" id="IRe-Bv-Nli"/>
                                 <constraint firstAttribute="trailing" secondItem="kO6-fg-zbJ" secondAttribute="trailing" constant="16" id="IZ3-yr-x6X"/>
+                                <constraint firstItem="Sga-kK-Vku" firstAttribute="centerX" secondItem="GUD-3I-mA1" secondAttribute="centerX" id="J8j-Io-tQQ"/>
+                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Sga-kK-Vku" secondAttribute="trailing" constant="20" symbolic="YES" id="KPV-48-qNB"/>
                                 <constraint firstItem="kO6-fg-zbJ" firstAttribute="leading" secondItem="GUD-3I-mA1" secondAttribute="leading" constant="16" id="Lg3-w2-c2r"/>
+                                <constraint firstItem="Sga-kK-Vku" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="GUD-3I-mA1" secondAttribute="leading" constant="20" symbolic="YES" id="OSb-O2-r92"/>
                                 <constraint firstItem="kO6-fg-zbJ" firstAttribute="top" secondItem="Zmu-a0-CCn" secondAttribute="bottom" constant="8" symbolic="YES" id="PxO-4j-a1K"/>
-                                <constraint firstItem="Xli-bc-FBf" firstAttribute="leading" secondItem="GUD-3I-mA1" secondAttribute="leading" constant="16" id="SiT-Tf-uPD"/>
                                 <constraint firstItem="hia-Rp-vCe" firstAttribute="top" secondItem="fmb-CL-Xz8" secondAttribute="bottom" constant="8" symbolic="YES" id="TGc-br-FIQ"/>
+                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="xmu-ek-pwH" secondAttribute="trailing" constant="20" symbolic="YES" id="U9x-0z-KgP"/>
                                 <constraint firstItem="xmu-ek-pwH" firstAttribute="top" secondItem="Sga-kK-Vku" secondAttribute="bottom" constant="8" symbolic="YES" id="VBW-c8-hfs"/>
+                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Xli-bc-FBf" secondAttribute="trailing" constant="20" symbolic="YES" id="XV6-VA-n6X"/>
+                                <constraint firstItem="Xli-bc-FBf" firstAttribute="centerX" secondItem="GUD-3I-mA1" secondAttribute="centerX" id="YKN-9d-8PI"/>
                                 <constraint firstItem="hia-Rp-vCe" firstAttribute="centerX" secondItem="GUD-3I-mA1" secondAttribute="centerX" id="Ysl-d3-nlz"/>
+                                <constraint firstItem="Xli-bc-FBf" firstAttribute="width" secondItem="Sga-kK-Vku" secondAttribute="width" id="eBV-vB-ixl"/>
                                 <constraint firstItem="fmb-CL-Xz8" firstAttribute="top" secondItem="xmu-ek-pwH" secondAttribute="bottom" constant="32" id="eQV-Rs-Cnu"/>
-                                <constraint firstAttribute="trailing" secondItem="Sga-kK-Vku" secondAttribute="trailing" constant="16" id="ebb-KX-Cea"/>
                                 <constraint firstItem="Xeq-d5-e11" firstAttribute="top" secondItem="GUD-3I-mA1" secondAttribute="top" constant="64" id="ec8-bp-Eu3"/>
-                                <constraint firstItem="xmu-ek-pwH" firstAttribute="leading" secondItem="GUD-3I-mA1" secondAttribute="leading" constant="16" id="f8v-vr-agd"/>
                                 <constraint firstAttribute="trailing" secondItem="Xeq-d5-e11" secondAttribute="trailing" constant="16" id="g9E-NB-bGc"/>
                                 <constraint firstItem="Sga-kK-Vku" firstAttribute="top" secondItem="Xli-bc-FBf" secondAttribute="bottom" constant="8" symbolic="YES" id="hKN-aI-sC3"/>
-                                <constraint firstAttribute="trailing" secondItem="xmu-ek-pwH" secondAttribute="trailing" constant="16" id="hb8-gM-f3S"/>
                                 <constraint firstItem="Xli-bc-FBf" firstAttribute="top" secondItem="kO6-fg-zbJ" secondAttribute="bottom" constant="32" id="iId-Xw-94c"/>
                                 <constraint firstItem="fmb-CL-Xz8" firstAttribute="centerX" secondItem="GUD-3I-mA1" secondAttribute="centerX" id="jJv-g6-fGs"/>
-                                <constraint firstAttribute="trailing" secondItem="Xli-bc-FBf" secondAttribute="trailing" constant="16" id="mMP-P3-ytV"/>
                                 <constraint firstAttribute="trailing" secondItem="Zmu-a0-CCn" secondAttribute="trailing" constant="16" id="n29-BH-wpB"/>
                                 <constraint firstAttribute="bottom" secondItem="hia-Rp-vCe" secondAttribute="bottom" constant="20" symbolic="YES" id="nJf-lg-TzK"/>
-                                <constraint firstItem="Sga-kK-Vku" firstAttribute="leading" secondItem="GUD-3I-mA1" secondAttribute="leading" constant="16" id="osJ-ED-pQk"/>
+                                <constraint firstItem="xmu-ek-pwH" firstAttribute="centerX" secondItem="GUD-3I-mA1" secondAttribute="centerX" id="obd-LV-c4N"/>
                                 <constraint firstItem="Zmu-a0-CCn" firstAttribute="leading" secondItem="GUD-3I-mA1" secondAttribute="leading" constant="16" id="qUp-20-vtH"/>
+                                <constraint firstItem="xmu-ek-pwH" firstAttribute="width" secondItem="Sga-kK-Vku" secondAttribute="width" id="rT9-Fk-pG0"/>
+                                <constraint firstItem="xmu-ek-pwH" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="GUD-3I-mA1" secondAttribute="leading" constant="20" symbolic="YES" id="teT-1i-zyM"/>
                                 <constraint firstItem="hia-Rp-vCe" firstAttribute="width" secondItem="fmb-CL-Xz8" secondAttribute="width" id="wXM-v3-HLn"/>
                             </constraints>
                         </view>
