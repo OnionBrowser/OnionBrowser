@@ -261,7 +261,7 @@ class Tab: UIView {
 	func load(_ url: URL?) {
 		var request: URLRequest?
 
-		if let url = url?.withFixedScheme?.real {
+		if let url = url?.withFixedScheme?.real, !url.absoluteString.isEmpty {
 			request = URLRequest(url: url)
 		}
 
