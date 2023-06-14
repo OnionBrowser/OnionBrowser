@@ -1,4 +1,11 @@
-- Đã cập nhật lên Tor.framework 407.11.1 chứa Tor 0.4.7.11.
-- Hỗ trợ công cụ tìm kiếm tùy chỉnh.
-- Cập nhật bản dịch.
-- Đã thêm cài đặt để kiểm soát ẩn nền.
+- Onion Browser hiện dựa vào Orbot để truy cập mạng Tor.
+   Orbot xử lý tất cả định tuyến mạng và Trình duyệt Onion chỉ đảm bảo rằng tất cả các yêu cầu đều bị hủy khi Orbot dừng.
+- Đã thay thế `UIWebView` cũ bằng `WKWebView` mới hơn. Tải song song, hỗ trợ các tiêu chuẩn web mới hơn.
+- Cuối cùng hỗ trợ truyền phát phương tiện qua Tor!
+- Phiên bản iOS tối thiểu hiện là 15, vì đó là những gì Orbot hỗ trợ.
+- Đã xóa HTTPSEverywhere. Điều đó đã được tích hợp vào iOS 15 rồi.
+- Đã xóa chặn WebRTC. Không còn nguy hiểm nữa.
+- Đã thay thế tiêu đề DNT lỗi thời ("Không theo dõi") bằng tiêu đề GPC mới ("Kiểm soát quyền riêng tư toàn cầu").
+- Đã thêm hỗ trợ cho nhiều cửa sổ trên iPad.
+- Đã thêm hỗ trợ để tải xuống tất cả nội dung.
+- Đã thêm "Tìm trong trang" cho iOS 16 trở lên.

@@ -1,4 +1,11 @@
-- Actualizat la Tor.framework 407.11.1 care conține Tor 0.4.7.11.
-- Suportă motoare de căutare personalizate.
-- Actualizări de traducere.
-- Adăugată setarea pentru a controla ascunderea fundalului.
+- Onion Browser se bazează acum pe Orbot pentru accesul la rețeaua Tor.
+  Orbot se ocupă de toate rutele de rețea, iar Onion Browser se asigură doar că toate cererile sunt anulate atunci când Orbot se oprește.
+- Înlocuit vechiul `UIWebView` cu noul `WKWebView`. Încărcare paralelizată, suport pentru standarde web mai noi.
+- În sfârșit, suportă streaming media prin Tor!
+- Versiunea minimă de iOS este acum 15, deoarece aceasta este cea pe care Orbot o suportă.
+- Eliminat HTTPSEverywhere. Acesta este deja încorporat în iOS 15, deja.
+- Eliminat blocarea WebRTC. Nu mai reprezintă un pericol.
+- Înlocuit antetul învechit DNT ("Do-Not-Track") cu noul antet GPC ("Global-Privacy-Control").
+- Adăugat suport pentru ferestre multiple pe iPad.
+- Adăugat suport pentru descărcarea întregului conținut.
+- Adăugat "Găsire în pagină" pentru iOS 16 și mai nou.
