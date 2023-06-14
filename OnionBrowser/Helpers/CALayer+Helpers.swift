@@ -3,7 +3,7 @@
 //  OnionBrowser2
 //
 //  Created by alexey kosylo on 29/04/2022.
-//  Copyright © 2022 Tigas Ventures, LLC (Mike Tigas). All rights reserved.
+//  Copyright © 2022 - 2023 Tigas Ventures, LLC (Mike Tigas)
 //
 //  This file is part of Onion Browser. See LICENSE file for redistribution terms.
 //

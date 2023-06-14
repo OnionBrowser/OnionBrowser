@@ -1,26 +1,20 @@
 # Onion Browser
 
-[![Build Status](https://travis-ci.org/OnionBrowser/OnionBrowser.svg?branch=2.X)](https://travis-ci.org/OnionBrowser/OnionBrowser) 
 [![Backers on Open Collective](https://opencollective.com/OnionBrowser/backers/badge.svg)](#backers)
  [![Sponsors on Open Collective](https://opencollective.com/OnionBrowser/sponsors/badge.svg)](#sponsors) 
   
 [Official Site][official] | [Support][help] | [Release History][releases] | [Donate][donate]  
-&copy; 2012-2021, Tigas Ventures, LLC ([Mike Tigas][miketigas])
+&copy; 2012-2023, Tigas Ventures, LLC ([Mike Tigas][miketigas])
 
-*This is the Onion Browser <strong>2.X branch</strong>, based on [Endless][endless]. The old version of Onion Browser can be found [here][1.X].*
+*This is the Onion Browser <strong>3.X branch</strong>. The old version of Onion Browser can be found [here][2.X].*
 
-**Onion Browser** is a free web browser for iPhone and iPad that encrypts and tunnels web traffic through the [Tor network][tor]. See the [official site][official] for more details and App Store links.
+**Onion Browser** is a free web browser for iPhone and iPad that encrypts and tunnels web traffic through the [Tor network][tor] with the help of [Orbot iOS][orbot]. See the [official site][official] for more details and App Store links.
 
 Please see the [LICENSE][license] file for usage and redistribution terms.
 
 ---
 
-* **Onion Browser**: 2.8.3 - See [official release history][releases] and [changelog][changelog].
-* **[Tor.framework][Tor.framework]**: 407.11.1
-* **[Tor][tor]**: 0.4.7.11
-* **[libevent][libevent]**: 2.1.12
-* **[OpenSSL][openssl]**: 1.1.1s
-* **[liblzma][liblzma]**: 5.2.7
+* **Onion Browser**: 3.0.0 - See [official release history][releases] and [changelog][changelog].
 
 [official]: https://onionbrowser.com/
 [help]: https://github.com/OnionBrowser/OnionBrowser/wiki/Help
@@ -28,30 +22,25 @@ Please see the [LICENSE][license] file for usage and redistribution terms.
 [changelog]: https://raw.github.com/OnionBrowser/OnionBrowser/2.X/CHANGELOG.md
 [donate]: https://onionbrowser.com/donate
 [miketigas]: https://mike.tig.as/
-[license]: https://github.com/OnionBrowser/OnionBrowser/blob/2.X/LICENSE
-[Tor.framework]: https://github.com/iCepa/Tor.framework
+[license]: https://github.com/OnionBrowser/OnionBrowser/blob/3.X/LICENSE
+[orbot](https://orbot.app/)
 [tor]: https://www.torproject.org/
-[libevent]: http://libevent.org/
-[openssl]: https://www.openssl.org/
-[liblzma]: https://tukaani.org/xz/
-[iobfs]: https://github.com/mtigas/iObfs
-[endless]: https://github.com/jcs/endless
+[2.X]: https://github.com/OnionBrowser/OnionBrowser/tree/2.X
 [1.X]: https://github.com/OnionBrowser/OnionBrowser/tree/1.X
 
-## Notable 2.X Features
+## Notable 3.X Features
 
-The following features are new to Onion Browser, by way of the upstream work on [Endless][endless]:
+The following features are new to Onion Browser, mostly by leveraging [Orbot iOS][orbot]:
 
-- Multiple tab support
+- Use of newer, more secure, faster rendering engine `WKWebView`. 
 
-- Search from URL bar
+- Finally all traffic, including audio/video streams tunneled through Tor.
 
-- Ability to configure security and privacy settings (script blocking, etc) on a per-site basis
+- Everything downloadable now, including web pages.
 
-- Per-site cookie handling
+- Search in page from iOS 16 and up.
 
-- Ability to view SSL certificate information, to allow manual verification of SSL certificates
-
+- Multiple windows support on iPad.
 
 ## Acknowledgements
 

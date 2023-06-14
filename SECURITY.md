@@ -23,7 +23,8 @@ and we'll work hard to fix it, but please be aware, that
 on iOS, there's a lot outside of our control.
 
 Onion Browser is basically browser chrome around the Webkit
-rendering engine bundled up with Tor and some bridge clients.
+rendering engine and some code to make sure, all traffic is going
+through Orbot's Tor Network Extension.
 
 If it turns out, you really found a security problem, you'll
 of course will get full credits.

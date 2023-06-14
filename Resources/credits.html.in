@@ -33,10 +33,6 @@
 <h2>Onion Browser</h2>
 <ul style="padding-left: 0">
 	<li>Version XX_OB_BUNDLE_SHORT_VERSION_STRING_XX (XX_OB_BUNDLE_VERSION_XX)</li>
-	<li><b>Tor</b>: 0.4.7.11</li>
-	<li><b>libevent</b>: 2.1.12</li>
-	<li><b>OpenSSL</b>: 1.1.1s</li>
-	<li><b>liblzma</b>: 5.2.7</li>
 </ul>
 
 <p><strong>Official Site</strong><br>
@@ -45,7 +41,7 @@
 <a href="https://github.com/OnionBrowser/OnionBrowser/wiki/Help">https://github.com/OnionBrowser/OnionBrowser/wiki/Help</a>
 </p>
 
-<p>Onion Browser is developed by Mike Tigas (<a href="https://mike.tig.as/">https://mike.tig.as/</a>) with assistance from the Guardian Project (<a href="https://guardianproject.info/">guardianproject.info</a>). Benjamin Erhart (<a href="https://die.netzarchitekten.com/">Die Netzarchitekten</a>) and Carrie Winfrey (<a href="http://okthankscreative.com/">okthankscreative.com</a>) contributed additional design and development effort for Onion Browser 2.0.</p>
+<p>Onion Browser is developed by Mike Tigas (<a href="https://mike.tig.as/">https://mike.tig.as/</a>) with assistance from the Guardian Project (<a href="https://guardianproject.info/">guardianproject.info</a>). Benjamin Erhart (<a href="https://die.netzarchitekten.com/">Die Netzarchitekten</a>) and Carrie Winfrey (<a href="http://okthankscreative.com/">okthankscreative.com</a>) contributed additional design and development effort for Onion Browser 2 and 3.</p>
 <p>Work on Onion Browser is supported by individual donors and organizations
 committed to furthering free speech and digital privacy. Please consider donating to support continued development of Onion Browser and other Tor iOS initiatives:<br><a href="https://onionbrowser.com/donate">https://onionbrowser.com/donate</a></p>
 <p>Onion Browser 2.0 and newer is based on the open-source Endless Browser; special thanks to joshua stein for creating Endless and for granting permission to use it in Onion Browser.</p>
@@ -60,7 +56,7 @@ committed to furthering free speech and digital privacy. Please consider donatin
 </p>
 <h1>Special Thanks</h1>
 <p>Onion Browser is supported by a wide community of users and organizations that believe in the importance of improving Tor access on mobile platforms.</p>
-<p>Special thanks to the Guardian Project for providing financial support toward the development of iObfs, Onion Browser 2, and other improvements.</p>
+<p>Special thanks to the Guardian Project for providing financial support toward the development of Onion Browser 2 and 3, and other improvements.</p>
 <p>Thanks to all of the Patreon supporters, and those who’ve donated via PayPal or Bitcoin!</p>
 <p>Thanks to the following Patreon supporters:</p>
 <ul id="patrons">
@@ -164,7 +160,7 @@ committed to furthering free speech and digital privacy. Please consider donatin
 Onion Browser (version 2.0 and newer) is based on code from Endless and is distributed, with permission, under the terms of the Endless License. The Endless License is reproduced in full below the Onion Browser License.
 
 <strong>Onion Browser</strong> - <a href="https://onionbrowser.com">onionbrowser.com</a>
-Copyright &copy; 2012-2021, Tigas Ventures LLC
+Copyright &copy; 2012-2023, Tigas Ventures LLC
 
 Redistribution and use in source form, with or without modification, and use in binary form, is permitted provided that the following conditions are met:
 
@@ -342,6 +338,66 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+</pre>
+
+<p>
+<hr>
+</p>
+
+<pre>
+<strong>Matej Bukovinski</strong> (<b>MBProgressHUD</b> library)
+<a href="https://github.com/jdg/MBProgressHUD">github.com/jdg/MBProgressHUD</a>
+
+Copyright © 2009-2020 Matej Bukovinski
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+</pre>
+
+<p>
+<hr>
+</p>
+
+<pre>
+<strong>Guardian Project</strong> (<b>OrbotKit</b> library)
+<a href="https://github.com/guardianproject/orbotkit">github.com/guardianproject/orbotkit</a>
+
+MIT License
+
+Copyright (c) 2022 Guardian Project
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 </pre>
 
 </body>
