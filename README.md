@@ -6,7 +6,7 @@
 [Official Site][official] | [Support][help] | [Release History][releases] | [Donate][donate]  
 &copy; 2012-2023, Tigas Ventures, LLC ([Mike Tigas][miketigas])
 
-*This is the Onion Browser <strong>3.X branch</strong>. The old version of Onion Browser can be found [here][2.X].*
+*This is the Onion Browser <strong>3.X branch</strong>. The older versions of Onion Browser can be found [here][2.X] and [here][1.X].*
 
 **Onion Browser** is a free web browser for iPhone and iPad that encrypts and tunnels web traffic through the [Tor network][tor] with the help of [Orbot iOS][orbot]. See the [official site][official] for more details and App Store links.
 
@@ -23,7 +23,7 @@ Please see the [LICENSE][license] file for usage and redistribution terms.
 [donate]: https://onionbrowser.com/donate
 [miketigas]: https://mike.tig.as/
 [license]: https://github.com/OnionBrowser/OnionBrowser/blob/3.X/LICENSE
-[orbot](https://orbot.app/)
+[orbot]: https://orbot.app/
 [tor]: https://www.torproject.org/
 [2.X]: https://github.com/OnionBrowser/OnionBrowser/tree/2.X
 [1.X]: https://github.com/OnionBrowser/OnionBrowser/tree/1.X
