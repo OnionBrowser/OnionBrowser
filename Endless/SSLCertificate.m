@@ -33,7 +33,7 @@ static NSMutableDictionary <NSData *, NSMutableDictionary *> *certCache = nil;
 
 - (id)initWithSecTrustRef:(SecTrustRef)secTrustRef
 {
-	SecCertificateRef cert = SecTrustGetCertificateAtIndex(secTrustRef, 0);
+	SecCertificateRef cert = (SecCertificateRef)CFArrayGetValueAtIndex(SecTrustCopyCertificateChain(secTrustRef), 0);
 	NSData *data = (__bridge_transfer NSData *)SecCertificateCopyData(cert);
 	
 	if (!(self = [self initWithData:data]))
