@@ -1,11 +1,3 @@
-- Onion Browser er nå avhengig av Orbot for tilgang til Tor-nettverket.
-  Orbot håndterer all nettverksruting, og Onion Browser sørger bare for at alle forespørsler blir kansellert når Orbot stopper.
-- Erstattet gamle `UIWebView` med nyere `WKWebView`. Parallellisert lasting, støtte for nyere nettstandarder.
-- Støtter endelig mediestrømming over Tor!
-- Minimum iOS-versjon er nå 15, siden det er det Orbot støtter.
-- Fjernet HTTPSEverywhere. Det er allerede innebygd i iOS 15.
-- Fjernet WebRTC-blokkering. Ingen fare lenger.
-- Erstattet utdatert DNT-header ("Do-Not-Track") med ny GPC-header ("Global-Privacy-Control").
-- Lagt til støtte for flere vinduer på iPad.
-- Lagt til støtte for nedlasting av alt innhold.
-- Lagt til "Finn på siden" for iOS 16 og nyere.
+- Løste et problem der nettsiden fortsatt ble vist når man gikk tilbake til appen,
+  selv om sikkerhetsinnstillingen "glem i bakgrunnen" var valgt.
+- Oppdatert den spanske oversettelsen.

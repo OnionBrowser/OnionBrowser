@@ -1,5 +1,10 @@
 #  Onion Browser 2 Changelog
 
+## 3.0.1
+- Fixed problem, where webpage was still showing when returning to the app,
+  although "forget in background" security setting was selected.
+- Updated Spanish translation.
+
 ## 3.0.0
 - Onion Browser now relies on Orbot for Tor network access.
   Orbot handles all network routing and Onion Browser just makes sure that all requests get cancelled, when Orbot stops.

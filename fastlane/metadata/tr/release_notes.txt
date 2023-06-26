@@ -1,11 +1,3 @@
-- Onion Browser artık Tor ağına erişmek için Orbot kullanıyor.
-Orbot, tüm ağ yöneltmesini yönetiyor ve Onion Browser, Orbot durduğunda tüm isteklerin iptal edildiğinden emin oluyor.
-- Eski `UIWebView` daha yeni `WKWebView` ile değiştirildi. Paralel yükleme ve daha yeni internet standartları desteği eklendi.
-- Sonunda Tor üzerinden ortam akışını desteği eklendi!
-- Orbot tarafınden desteklenen en düşük iOS sürümü 15 oldu.
-- Artık iOS 15 üzerinde bulunduğundan HTTPSEverywhere kaldırıldı.
-- Artık bir tehlike oluşturmadığından WebRTC engellemesi kaldırıldı.
-- Eski DNT üst bilgisi ("Do-Not-Track") yeni GPC üst bilgi ("Global-Privacy-Control") ile değiştirildi.
-- iPad üzerinde çok pencere desteği eklendi.
-- Tüm içeriği indirme özelliği eklendi.
-- iOS 16 ve üzeri iin "Sayfada bul" özelliği eklendi.
+- Uygulamaya geri dönüldüğünde web sayfasının hala gösterilmesi sorunu düzeltildi,
+  "arka planda unut" güvenlik ayarı seçili olmasına rağmen.
+- İspanyolca çeviri güncellendi.

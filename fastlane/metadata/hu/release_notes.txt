@@ -1,11 +1,3 @@
-- Az Onion Browser mostantól az Orbotra támaszkodik a Tor hálózati hozzáféréshez.
-  Az Orbot kezeli az összes hálózati útválasztást, az Onion Browser pedig csak arról gondoskodik, hogy minden kérés törlődjön, amikor az Orbot leáll.
-- A régi `UIWebView`-t lecserélte az újabb `WKWebView`-ra. Párhuzamosított betöltés, újabb webes szabványok támogatása.
-- Végre támogatja a média streaminget a Toron keresztül!
-- A minimális iOS verzió mostantól 15, mivel az Orbot ezt támogatja.
-- Eltávolítottuk a HTTPSEverywhere-t. Ez már be van építve az iOS 15-be.
-- Eltávolították a WebRTC blokkolást. Már nem jelent veszélyt.
-- Az elavult DNT fejlécet ("Do-Not-Track") lecserélte az új GPC fejlécre ("Global-Privacy-Control").
-- Hozzáadva a több ablak támogatását iPad-en.
-- Hozzáadva az összes tartalom letöltésének támogatása.
-- Hozzáadva a "Keresés az oldalon" funkciót iOS 16 és újabb operációs rendszerekhez.
+- Javítottuk azt a problémát, hogy az alkalmazásba való visszatéréskor még mindig a weboldal jelent meg,
+  annak ellenére, hogy a "háttérben felejtés" biztonsági beállítás be volt jelölve.
+- Frissített spanyol fordítás.
