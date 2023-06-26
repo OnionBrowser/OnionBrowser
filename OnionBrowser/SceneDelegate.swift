@@ -145,6 +145,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 	func sceneWillResignActive(_ scene: UIScene) {
 		browsingUi.unfocusSearchField()
 
+		// A scene doesn't always need to be restored. It can still be in RAM,
+		// when the user comes back.
+		// In that case, we need to make sure, the tabs are gone when
+		// the scene is becoming active again.
+		if Settings.tabSecurity == .clearOnBackground {
+			browsingUi.removeAllTabs()
+		}
+
 		if Settings.hideContent {
 			BlurredSnapshot.create(window)
 		}
