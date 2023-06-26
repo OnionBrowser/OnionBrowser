@@ -14,6 +14,7 @@ extension NSNotification.Name {
 	static let hostSettingsChanged = NSNotification.Name(rawValue: HostSettings.hostSettingsChanged)
 }
 
+@objcMembers
 class HostSettings: NSObject {
 
 	static let hostSettingsChanged = "host_settings_changed"

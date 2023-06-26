@@ -9,27 +9,27 @@
 - (void)setUp
 {
 	[super setUp];
-	
-	HostSettings *hs = [HostSettings for:nil]; // Default host.
+
+	HostSettings *hs = [HostSettings forDefault]; // Default host.
 	[hs save];
 }
 
 - (void)testJavascriptDefault
 {
-	HostSettings *hs = [HostSettings for:nil];
-	hs.contentPolicy = ContentPolicyStrict;
+	HostSettings *hs = [HostSettings forDefault];
+	hs.javaScript = NO;
 	[hs save];
 	
 	/* not present, should use defaults */
 	HostSettings *blhs = [HostSettings for:@"browserleaks.com"];
-	XCTAssertEqual(blhs.contentPolicy, ContentPolicyStrict);
+	XCTAssertEqual(blhs.javaScript, NO);
 
 	/* present but not changed, should still use defaults */
 	HostSettings *blhs2 = [[HostSettings alloc] initFor:@"browserleaks.com" withDefaults:NO];
 	[blhs2 save];
 	
 	HostSettings *blhs3 = [HostSettings for:@"browserleaks.com"];
-	XCTAssertEqual(blhs3.contentPolicy, ContentPolicyStrict);
+	XCTAssertEqual(blhs3.javaScript, NO);
 }
 
 @end
