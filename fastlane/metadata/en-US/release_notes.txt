@@ -1,3 +1,2 @@
-- Fixed problem, where webpage was still showing when returning to the app,
-  although "forget in background" security setting was selected.
-- Updated Spanish translation.
+- Improved communication with Orbot.
+- Updated Hungarian translation.

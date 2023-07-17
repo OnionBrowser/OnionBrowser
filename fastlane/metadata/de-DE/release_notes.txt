@@ -1,3 +1,2 @@
-- Problem behoben, bei dem die Webseite immer noch angezeigt wurde, wenn man zur App zurückkehrte,
-  obwohl die Sicherheitseinstellung "Im Hintergrund vergessen" ausgewählt war.
-- Spanische Übersetzung aktualisiert.
+- Verbesserte Kommunikation mit Orbot.
+- Aktualisierte ungarische Übersetzung.

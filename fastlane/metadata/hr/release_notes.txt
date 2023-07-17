@@ -1,3 +1,2 @@
-- Riješen problem, gdje se web stranica još uvijek prikazivala pri povratku u aplikaciju,
-   iako je odabrana sigurnosna postavka "zaboravi u pozadini".
-- Ažurirani španjolski prijevod.
+- Poboljšana komunikacija s Orbotom.
+- Ažurirani mađarski prijevod.

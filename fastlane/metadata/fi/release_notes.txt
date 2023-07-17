@@ -1,3 +1,2 @@
-- Korjattu ongelma, jossa verkkosivu näkyi edelleen sovellukseen palattaessa,
-  vaikka "unohda taustalla" -turva-asetus oli valittu.
-- Päivitetty espanjankielinen käännös.
+- Parempi viestintä Orbotin kanssa.
+- Päivitetty unkarinkielinen käännös.

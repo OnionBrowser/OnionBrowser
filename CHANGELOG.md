@@ -1,5 +1,9 @@
 #  Onion Browser 2 Changelog
 
+## 3.0.2
+- Improved communication with Orbot.
+- Updated Hungarian translation.
+
 ## 3.0.1
 - Fixed problem, where webpage was still showing when returning to the app,
   although "forget in background" security setting was selected.

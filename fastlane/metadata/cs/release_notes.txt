@@ -1,3 +1,2 @@
-- Opraven problém, kdy se po návratu do aplikace stále zobrazovala webová stránka,
-  i když bylo vybráno nastavení zabezpečení "zapomenout na pozadí".
-- Aktualizován překlad do španělštiny.
+- Zlepšení komunikace se společností Orbot.
+- Aktualizovaný maďarský překlad.

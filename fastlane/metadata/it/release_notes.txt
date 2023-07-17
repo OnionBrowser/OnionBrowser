@@ -1,3 +1,2 @@
-- È stato risolto il problema per cui la pagina web continuava a essere visualizzata quando si tornava all'app,
-  nonostante fosse selezionata l'impostazione di sicurezza "dimentica in background".
-- Aggiornata la traduzione in spagnolo.
+- Miglioramento della comunicazione con Orbot.
+- Aggiornamento della traduzione in ungherese.

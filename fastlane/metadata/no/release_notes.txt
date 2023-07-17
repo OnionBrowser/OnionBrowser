@@ -1,3 +1,2 @@
-- Løste et problem der nettsiden fortsatt ble vist når man gikk tilbake til appen,
-  selv om sikkerhetsinnstillingen "glem i bakgrunnen" var valgt.
-- Oppdatert den spanske oversettelsen.
+- Forbedret kommunikasjon med Orbot.
+- Oppdatert ungarsk oversettelse.

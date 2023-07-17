@@ -1,3 +1,2 @@
-- Correction d'un problème qui faisait que la page web s'affichait toujours lorsque l'on revenait à l'application, bien que le paramètre de sécurité "oublier en arrière-plan" ait été sélectionné,
-  bien que le paramètre de sécurité "oublier en arrière-plan" ait été sélectionné.
-- Mise à jour de la traduction espagnole.
+- Amélioration de la communication avec Orbot.
+- Mise à jour de la traduction en hongrois.

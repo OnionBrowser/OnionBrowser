@@ -1,3 +1,2 @@
-- Probleem verholpen waarbij webpagina nog steeds werd weergegeven bij terugkeer naar de app,
-  ook al was de beveiligingsinstelling "Op achtergrond vergeten" geselecteerd.
-- Spaanse vertaling bijgewerkt.
+- Verbeterde communicatie met Orbot.
+- Hongaarse vertaling bijgewerkt.

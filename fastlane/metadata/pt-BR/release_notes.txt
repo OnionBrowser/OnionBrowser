@@ -1,3 +1,2 @@
-- Corrigido o problema em que a página da Web continuava sendo exibida ao retornar ao aplicativo,
-  embora a configuração de segurança "esquecer em segundo plano" estivesse selecionada.
-- Atualização da tradução para o espanhol.
+- Melhoria na comunicação com a Orbot.
+- Atualização da tradução para o húngaro.

@@ -1,3 +1,2 @@
-- Đã khắc phục sự cố, trong đó trang web vẫn hiển thị khi quay lại ứng dụng,
-   mặc dù cài đặt bảo mật "quên ở chế độ nền" đã được chọn.
-- Cập nhật bản dịch tiếng Tây Ban Nha.
+- Cải thiện giao tiếp với Orbot.
+- Cập nhật bản dịch tiếng Hungary.

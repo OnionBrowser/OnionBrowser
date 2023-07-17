@@ -1,3 +1,2 @@
-- Javítottuk azt a problémát, hogy az alkalmazásba való visszatéréskor még mindig a weboldal jelent meg,
-  annak ellenére, hogy a "háttérben felejtés" biztonsági beállítás be volt jelölve.
-- Frissített spanyol fordítás.
+- Javított kommunikáció az Orbottal.
+- Frissített magyar fordítás.

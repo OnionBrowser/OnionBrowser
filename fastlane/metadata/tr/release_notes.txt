@@ -1,3 +1,2 @@
-- Uygulamaya dönerken site sayfasının hala görünmesi sorunu düzeltildi,
- "arka planda unut" güvenlik ayarı seçili olmasına rağmen.
-- İspanyolca çevirisi güncellendi.
+- Orbot ile iletişim geliştirildi.
+- Macarca çeviri güncellendi.

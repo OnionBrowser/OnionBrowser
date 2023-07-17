@@ -1,3 +1,2 @@
-- Naprawiono problem, w którym strona internetowa była nadal wyświetlana po powrocie do aplikacji,
-  mimo wybrania opcji "zapomnij w tle".
-- Zaktualizowano tłumaczenie na język hiszpański.
+- Poprawiono komunikację z Orbot.
+- Zaktualizowano tłumaczenie na język węgierski.

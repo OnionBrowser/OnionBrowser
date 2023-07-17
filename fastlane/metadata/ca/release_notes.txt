@@ -1,3 +1,2 @@
-- S'ha solucionat el problema, on la pàgina web encara es mostrava en tornar a l'aplicació,
-   tot i que s'ha seleccionat la configuració de seguretat "oblida't en segon pla".
-- Traducció espanyola actualitzada.
+- Millora de la comunicació amb Orbot.
+- Traducció a l'hongarès actualitzada.

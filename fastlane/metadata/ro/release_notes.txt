@@ -1,3 +1,2 @@
-- A fost rezolvată problema în care pagina web era afișată în continuare la revenirea la aplicație,
-  deși era selectată setarea de securitate "Uită în fundal".
-- A fost actualizată traducerea în limba spaniolă.
+- Îmbunătățirea comunicării cu Orbot.
+- Traducere în limba maghiară actualizată.
