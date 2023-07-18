@@ -53,8 +53,6 @@
 		A02CB2B523D0B0B300880720 /* AddBookmarkActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02CB2B423D0B0B300880720 /* AddBookmarkActivity.swift */; };
 		A036C3B22937A06C0035AA4F /* AddSearchEngineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A036C3B12937A06C0035AA4F /* AddSearchEngineViewController.swift */; };
 		A03CFA042892B05500F01DB5 /* DownloadHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03CFA032892B05500F01DB5 /* DownloadHelper.swift */; };
-		A03DBCED22859B99001890C4 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = A03DBCEC22859B99001890C4 /* Config.m */; };
-		A03DBCEF22859B99001890C4 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = A03DBCEC22859B99001890C4 /* Config.m */; };
 		A043B9522A02897A008025A7 /* PermissionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A043B9502A02897A008025A7 /* PermissionViewController.xib */; };
 		A043B9532A02897A008025A7 /* PermissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A043B9512A02897A008025A7 /* PermissionViewController.swift */; };
 		A043B9562A029FC3008025A7 /* StartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A043B9542A029FC3008025A7 /* StartViewController.xib */; };
@@ -234,13 +232,13 @@
 		A036C3B12937A06C0035AA4F /* AddSearchEngineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSearchEngineViewController.swift; sourceTree = "<group>"; };
 		A03A5C05EE3C1632DC4828FF /* Pods-OnionBrowser Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnionBrowser Tests.debug.xcconfig"; path = "Target Support Files/Pods-OnionBrowser Tests/Pods-OnionBrowser Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		A03CFA032892B05500F01DB5 /* DownloadHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadHelper.swift; sourceTree = "<group>"; };
-		A03DBCEB22859B99001890C4 /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
-		A03DBCEC22859B99001890C4 /* Config.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Config.m; sourceTree = "<group>"; };
 		A043B9502A02897A008025A7 /* PermissionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PermissionViewController.xib; sourceTree = "<group>"; };
 		A043B9512A02897A008025A7 /* PermissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionViewController.swift; sourceTree = "<group>"; };
 		A043B9542A029FC3008025A7 /* StartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StartViewController.xib; sourceTree = "<group>"; };
 		A043B9552A029FC3008025A7 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		A0550648271094A900922E18 /* ua-strings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ua-strings.plist"; sourceTree = "<group>"; };
+		A06881D02A66ADF60084D26D /* release.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = release.entitlements; sourceTree = "<group>"; };
+		A06881D12A66B0070084D26D /* debug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = debug.entitlements; sourceTree = "<group>"; };
 		A068DD98240D348300BF46E3 /* AltSvcHeader_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AltSvcHeader_Tests.swift; sourceTree = "<group>"; };
 		A0696EAC2406C7D000512695 /* SyncViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncViewController.swift; sourceTree = "<group>"; };
 		A0696EAE2406D94200512695 /* Nextcloud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nextcloud.swift; sourceTree = "<group>"; };
@@ -504,13 +502,10 @@
 				A010FA171E7986DE00E04222 /* README.md */,
 				A085A1EC270DAB8600800A29 /* SECURITY.md */,
 				A025F27421F62C100034B947 /* Config.xcconfig */,
-				A03DBCEB22859B99001890C4 /* Config.h */,
-				A03DBCEC22859B99001890C4 /* Config.m */,
 				A00436111E8185AA0067652D /* Build */,
 				01801E941A32CA2A002B4718 /* Endless */,
 				A0BF51F523AFC3580096624A /* OnionBrowser */,
 				A0BF519D23AFBF250096624A /* Resources */,
-				01801E951A32CA2A002B4718 /* Supporting Files */,
 				018333D81A35727C00670CD1 /* Endless Tests */,
 				01801E931A32CA2A002B4718 /* Products */,
 				6CC21620E2AE7B4037C6401B /* Frameworks */,
@@ -545,17 +540,8 @@
 				01F8793A1A4108DD00A63654 /* URLBlocker.m */,
 				69CBCD451E934228009D5352 /* URLBlockerRuleController.h */,
 				69CBCD461E934228009D5352 /* URLBlockerRuleController.m */,
-			);
-			path = Endless;
-			sourceTree = "<group>";
-		};
-		01801E951A32CA2A002B4718 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
 				018333CF1A351B3B00670CD1 /* Endless-Prefix.pch */,
-				01801E961A32CA2A002B4718 /* Info.plist */,
 			);
-			name = "Supporting Files";
 			path = Endless;
 			sourceTree = "<group>";
 		};
@@ -673,6 +659,9 @@
 				A0BF51C723AFBF250096624A /* start.html */,
 				A0BF51AE23AFBF250096624A /* urlblocker.json */,
 				A08563842A05419000A3A7FF /* Launch Screen.storyboard */,
+				A06881D02A66ADF60084D26D /* release.entitlements */,
+				A06881D12A66B0070084D26D /* debug.entitlements */,
+				01801E961A32CA2A002B4718 /* Info.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1174,7 +1163,6 @@
 				A0BF527323AFC3580096624A /* AddSiteViewController.swift in Sources */,
 				A0BF527423AFC3580096624A /* DonationViewController.swift in Sources */,
 				A0BF526223AFC3580096624A /* FavIconRow.swift in Sources */,
-				A03DBCED22859B99001890C4 /* Config.m in Sources */,
 				A0172C6E2888247C008D42CD /* AlertHelper.swift in Sources */,
 				A028858228940B93007D5AE8 /* Storage2ViewController.swift in Sources */,
 				A02CB2B523D0B0B300880720 /* AddBookmarkActivity.swift in Sources */,
@@ -1207,7 +1195,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A068DD9A240D37FB00BF46E3 /* HostSettings.swift in Sources */,
-				A03DBCEF22859B99001890C4 /* Config.m in Sources */,
 				A068DD9B240D391100BF46E3 /* SSLCertificate.m in Sources */,
 				A0F8BE8527C50549002D2999 /* FileManager+Helpers.swift in Sources */,
 				A068DD99240D348300BF46E3 /* AltSvcHeader_Tests.swift in Sources */,
@@ -1521,21 +1508,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Resources/debug.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
 				GCC_NO_COMMON_BLOCKS = NO;
-				INFOPLIST_FILE = Endless/Info.plist;
+				INFOPLIST_FILE = Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "$(OB_APP_BUNDLE_ID)";
 				PRODUCT_NAME = OnionBrowser;
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "$(PROVISIONING_PROFILE_SPECIFIER_MAIN)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OBJC_BRIDGING_HEADER = "OnionBrowser/OnionBrowser-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1550,21 +1535,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Resources/release.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
 				GCC_NO_COMMON_BLOCKS = NO;
-				INFOPLIST_FILE = Endless/Info.plist;
+				INFOPLIST_FILE = Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "$(OB_APP_BUNDLE_ID)";
 				PRODUCT_NAME = OnionBrowser;
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "$(PROVISIONING_PROFILE_SPECIFIER_MAIN)";
 				SWIFT_OBJC_BRIDGING_HEADER = "OnionBrowser/OnionBrowser-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1577,7 +1560,6 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -1602,12 +1584,14 @@
 					XCTest,
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "$(OB_APP_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "Endless Tests/OnionBrowser2_Tests-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "OnionBrowser-Swift.h";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1617,7 +1601,6 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "$(DEVELOPMENT_TEAM)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -1638,12 +1621,14 @@
 					XCTest,
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "$(OB_APP_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "Endless Tests/OnionBrowser2_Tests-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "OnionBrowser-Swift.h";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

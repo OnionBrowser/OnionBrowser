@@ -107,7 +107,7 @@
 	<true/>
 	<key>NSUserActivityTypes</key>
 	<array>
-		<string>$(OB_APP_BUNDLE_ID).view</string>
+		<string>$(PRODUCT_BUNDLE_IDENTIFIER).view</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
