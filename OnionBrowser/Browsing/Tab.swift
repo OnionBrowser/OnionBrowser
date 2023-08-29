@@ -209,6 +209,8 @@ class Tab: UIView {
 
 	private var snapshot: UIImage?
 
+	private var closing = false
+
 
 	init(restorationId: String?, configuration: WKWebViewConfiguration? = nil) {
 		super.init(frame: .zero)
@@ -391,6 +393,13 @@ class Tab: UIView {
 	Call this before giving up the tab, otherwise memory leaks will occur!
 	*/
 	func close() {
+		// Avoid closing loops which might crash the app.
+		if closing {
+			return
+		}
+
+		closing = true
+
 		cancelDownload()
 
 		let block = {
@@ -471,12 +480,14 @@ class Tab: UIView {
 			self.configuration.allowsAirPlayForMediaPlayback = true
 			self.configuration.allowsInlineMediaPlayback = true
 			self.configuration.allowsPictureInPictureMediaPlayback = true
+
+			// BUGFIX #438: Popups already have a configuration from their parent tab,
+			// injecting this a second time crashes the app.
+			setupJsInjections()
 		}
 		else {
 			self.configuration = configuration
 		}
-
-		setupJsInjections()
 
 		if Self.defaultUserAgent.isEmpty {
 			webView.evaluateJavaScript("navigator.userAgent") { result, error in

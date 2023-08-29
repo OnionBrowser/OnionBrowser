@@ -71,6 +71,14 @@ extension URL {
 	}
 
 	var isSpecial: Bool {
+		switch scheme {
+		case "http", "https", "onionhttp", "onionhttps":
+			break
+
+		default:
+			return true
+		}
+
 		switch self {
 		case URL.blank, URL.aboutOnionBrowser, URL.credits, URL.aboutSecurityLevels, URL.securityLevels, URL.start:
 			return true
