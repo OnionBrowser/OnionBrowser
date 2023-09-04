@@ -108,6 +108,8 @@ These people helped with translations. Thank you so much, folks!
   anm, dianazryn, emedvedev, Ifti, foxing29, neocaching, Pihjun, ZiPERR
 - Spanish: 
   arielbarbosa, Maria_Jose, emmapeel, strel, zakooch, Aetheria, Fabiola.mauriceh, Fitoschido, kodachi, lenazun, nosense, supermigue2000, vareli, antonela_
+- Tatar:
+  seber
 - Thai:
   bact'
 - Turkish:  

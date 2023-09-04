@@ -1,2 +1,2 @@
-- Javított kommunikáció az Orbottal.
-- Frissített magyar fordítás.
+- Javított kommunikáció az Orbot-tal.
+- Frissített magyar fordítás

@@ -228,6 +228,10 @@
 		A025F27421F62C100034B947 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		A028857F2893FA23007D5AE8 /* WebsiteStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsiteStorage.swift; sourceTree = "<group>"; };
 		A028858128940B93007D5AE8 /* Storage2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage2ViewController.swift; sourceTree = "<group>"; };
+		A02AB5C12AA5F34000CC6779 /* tt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tt; path = tt.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A02AB5C22AA5F34000CC6779 /* tt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = tt; path = tt.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		A02AB5C32AA5F34000CC6779 /* tt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tt; path = tt.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A02AB5C42AA5F34000CC6779 /* tt */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = tt; path = "tt.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A02CB2B423D0B0B300880720 /* AddBookmarkActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookmarkActivity.swift; sourceTree = "<group>"; };
 		A036C3B12937A06C0035AA4F /* AddSearchEngineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSearchEngineViewController.swift; sourceTree = "<group>"; };
 		A03A5C05EE3C1632DC4828FF /* Pods-OnionBrowser Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnionBrowser Tests.debug.xcconfig"; path = "Target Support Files/Pods-OnionBrowser Tests/Pods-OnionBrowser Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -905,6 +909,7 @@
 				km,
 				ro,
 				fi,
+				tt,
 			);
 			mainGroup = 01801E891A32CA2A002B4718;
 			productRefGroup = 01801E931A32CA2A002B4718 /* Products */;
@@ -1261,6 +1266,7 @@
 				A08563352A04EA0B00A3A7FF /* tr-TR */,
 				A08563362A04EA0C00A3A7FF /* uk */,
 				A08563372A04EA0D00A3A7FF /* vi */,
+				A02AB5C12AA5F34000CC6779 /* tt */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1301,6 +1307,7 @@
 				A085635B2A04EA7800A3A7FF /* tr-TR */,
 				A085635C2A04EA7A00A3A7FF /* uk */,
 				A085635D2A04EA7B00A3A7FF /* vi */,
+				A02AB5C22AA5F34000CC6779 /* tt */,
 			);
 			name = Localizable.stringsdict;
 			sourceTree = "<group>";
@@ -1344,6 +1351,7 @@
 				A08563812A04EAC400A3A7FF /* tr-TR */,
 				A08563822A04EAC600A3A7FF /* uk */,
 				A08563832A04EAC700A3A7FF /* vi */,
+				A02AB5C32AA5F34000CC6779 /* tt */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1382,6 +1390,7 @@
 				A0A1A37B2A03DB5600DE4991 /* tr-TR */,
 				A0A1A37C2A03DB5800DE4991 /* uk */,
 				A0A1A37D2A03DB5A00DE4991 /* vi */,
+				A02AB5C42AA5F34000CC6779 /* tt */,
 			);
 			name = "security-levels.html";
 			sourceTree = "<group>";
