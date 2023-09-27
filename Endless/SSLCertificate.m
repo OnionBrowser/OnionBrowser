@@ -44,10 +44,10 @@ static NSMutableDictionary <NSData *, NSMutableDictionary *> *certCache = nil;
 	 * iOS already knows this and is updated with new ones, so just let it determine EV for us.
 	 */
 	NSDictionary *trust = (__bridge_transfer NSDictionary *)SecTrustCopyResult(secTrustRef);
-	id ev = [trust objectForKey:(__bridge NSString *)kSecTrustExtendedValidation];
+	id ev = trust[(__bridge NSString *)kSecTrustExtendedValidation];
 	if (ev != nil && (__bridge CFBooleanRef)ev == kCFBooleanTrue) {
 		_isEV = true;
-		_evOrgName = (NSString *)[trust objectForKey:(__bridge NSString *)kSecTrustOrganizationName];
+		_evOrgName = (NSString *)trust[(__bridge NSString *)kSecTrustOrganizationName];
 	}
 	
 	return self;
@@ -84,11 +84,11 @@ static NSMutableDictionary <NSData *, NSMutableDictionary *> *certCache = nil;
 	
 	NSData *certHash = [data dataWithSHA1Hash];
 	
-	NSMutableDictionary *ocdef = [certCache objectForKey:certHash];
+	NSMutableDictionary *ocdef = certCache[certHash];
 	if (ocdef) {
-		SSLCertificate *oc = [ocdef objectForKey:CERT_CACHE_KEY_CERT];
+		SSLCertificate *oc = ocdef[CERT_CACHE_KEY_CERT];
 #ifdef TRACE
-		NSLog(@"[SSLCertificate] certificate for %@ cached", [[oc subject] objectForKey:X509_KEY_CN]);
+		NSLog(@"[SSLCertificate] certificate for %@ cached", oc.subject[X509_KEY_CN]);
 #endif
 		[ocdef setValue:[NSDate date] forKey:CERT_CACHE_KEY_TIME];
 		return oc;
@@ -96,7 +96,7 @@ static NSMutableDictionary <NSData *, NSMutableDictionary *> *certCache = nil;
 
 	NSArray *oidtree;
 	NSObject *t = [DTASN1Serialization objectWithData:data];
-	if (t == nil || ![t isKindOfClass:[NSArray class]]) {
+	if (t == nil || ![t isKindOfClass:NSArray.class]) {
 		NSLog(@"[SSLCertificate] OID tree fetching failed, returned %@", t);
 		return nil;
 	}
@@ -125,11 +125,11 @@ static NSMutableDictionary <NSData *, NSMutableDictionary *> *certCache = nil;
 	NSNumber *tver = [self safeFetchFromArray:cData atIndex:0 withType:[NSNumber class]];
 	if (tver == nil)
 		return nil;
-	if ([tver intValue] == 0x0)
+	if (tver.intValue == 0x0)
 		_version = @1;
-	else if ([tver intValue] == 0x1)
+	else if (tver.intValue == 0x1)
 		_version = @2;
-	else if ([tver intValue] == 0x2)
+	else if (tver.intValue == 0x2)
 		_version = @3;
 	
 	/* certificate serial number (string of hex bytes) */
@@ -141,7 +141,7 @@ static NSMutableDictionary <NSData *, NSMutableDictionary *> *certCache = nil;
 			[tserial addObject:[NSString stringWithFormat:@"%02lx", (ttn & 0xff)]];
 			ttn >>= 8;
 		}
-		tserial = [[NSMutableArray alloc] initWithArray:[[tserial reverseObjectEnumerator] allObjects]];
+		tserial = [[NSMutableArray alloc] initWithArray:tserial.reverseObjectEnumerator.allObjects];
 	}
 	else if (tt != nil && [tt isKindOfClass:[NSData class]]) {
 		u_char *tbytes = (u_char *)[(NSData *)tt bytes];
@@ -244,23 +244,23 @@ static NSMutableDictionary <NSData *, NSMutableDictionary *> *certCache = nil;
 	_subject = tsubject;
 	
 #ifdef TRACE
-	NSLog(@"[SSLCertificate] parsed certificate for %@: version=%@, serial=%@, sigalg=%@, issuer=%@, valid=%@ to %@", [_subject objectForKey:X509_KEY_CN], _version, _serialNumber, _signatureAlgorithm, [_issuer objectForKey:X509_KEY_CN], _validityNotBefore, _validityNotAfter);
+	NSLog(@"[SSLCertificate] parsed certificate for %@: version=%@, serial=%@, sigalg=%@, issuer=%@, valid=%@ to %@", _subject[X509_KEY_CN], _version, _serialNumber, _signatureAlgorithm, _issuer[X509_KEY_CN], _validityNotBefore, _validityNotAfter);
 #endif
 	
-	if ([certCache count] >= CERT_CACHE_SIZE) {
-		NSArray *sortedCerts = [[certCache allKeys] sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
-			NSDate *da = [[certCache objectForKey:a] objectForKey:CERT_CACHE_KEY_TIME];
-			NSDate *db = [[certCache objectForKey:b] objectForKey:CERT_CACHE_KEY_TIME];
-			return [da compare:db];
+	if (certCache.count >= CERT_CACHE_SIZE) {
+		NSArray *sortedCerts = [certCache.allKeys sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+			return [certCache[a][CERT_CACHE_KEY_TIME] compare:certCache[b][CERT_CACHE_KEY_TIME]];
 		}];
 		
-		for (int i = 0; i < ([certCache count] - (CERT_CACHE_SIZE / 2)); i++)
-			[certCache removeObjectForKey:[sortedCerts objectAtIndex:i]];
+		for (int i = 0; i < sortedCerts.count - CERT_CACHE_SIZE / 2; i++)
+		{
+			[certCache removeObjectForKey:sortedCerts[i]];
+		}
 	}
 
 	ocdef = [[NSMutableDictionary alloc] initWithObjectsAndKeys:self, CERT_CACHE_KEY_CERT, [NSDate date], CERT_CACHE_KEY_TIME, nil];
-	[certCache setObject:ocdef forKey:certHash];
-	
+	certCache[certHash] = ocdef;
+
 	return self;
 }
 
@@ -271,7 +271,7 @@ static NSMutableDictionary <NSData *, NSMutableDictionary *> *certCache = nil;
 
 - (BOOL)hasWeakSignatureAlgorithm
 {
-	return ([self signatureAlgorithm] != nil && [[[self signatureAlgorithm] lowercaseString] containsString:@"sha1"]);
+	return (self.signatureAlgorithm != nil && [self.signatureAlgorithm.lowercaseString containsString:@"sha1"]);
 }
 
 - (id)safeFetchFromArray:(NSArray *)arr atIndex:(NSInteger)index withType:(Class)cType
@@ -281,14 +281,14 @@ static NSMutableDictionary <NSData *, NSMutableDictionary *> *certCache = nil;
 		return nil;
 	}
 	
-	if (index > ([arr count] - 1)) {
-		NSLog(@"[SSLCertificate] array count is %lu, need index %lu", (unsigned long)[arr count], (long)index);
+	if (index > (arr.count - 1)) {
+		NSLog(@"[SSLCertificate] array count is %lu, need index %lu", (unsigned long)arr.count, (long)index);
 		return nil;
 	}
 	
 	NSObject *ret;
 	@try {
-		ret = [arr objectAtIndex:index];
+		ret = arr[index];
 		if (ret == nil) {
 			NSLog(@"[SSLCertificate] array object at index %lu is nil", (long)index);
 			return nil;
@@ -312,37 +312,60 @@ static NSMutableDictionary <NSData *, NSMutableDictionary *> *certCache = nil;
 	/* TODO: what to do about conflicts?  some certs have two OUs */
 
 	if ([oid isEqualToString:@"2.5.4.3"])
-		[dict setObject:val forKey:X509_KEY_CN]; /* CN=commonName */
+	{
+		dict[X509_KEY_CN] = val; /* CN=commonName */
+	}
 	else if ([oid isEqualToString:@"2.5.4.4"])
-		[dict setObject:val forKey:X509_KEY_SN]; /* SN=serial */
+	{
+		dict[X509_KEY_SN] = val; /* SN=serial */
+	}
 	else if ([oid isEqualToString:@"2.5.4.5"])
-		[dict setObject:val forKey:X509_KEY_SERIAL]; /* SERIALNUMBER */
+	{
+		dict[X509_KEY_SERIAL] = val; /* SERIALNUMBER */
+	}
 	else if ([oid isEqualToString:@"2.5.4.6"])
-		[dict setObject:val forKey:X509_KEY_C]; /* C=country */
+	{
+		dict[X509_KEY_C] = val; /* C=country */
+	}
 	else if ([oid isEqualToString:@"2.5.4.7"])
-		[dict setObject:val forKey:X509_KEY_L]; /* L=locality */
+	{
+		dict[X509_KEY_L] = val; /* L=locality */
+	}
 	else if ([oid isEqualToString:@"2.5.4.8"])
-		[dict setObject:val forKey:X509_KEY_ST]; /* ST=state/province */
+	{
+		dict[X509_KEY_ST] = val; /* ST=state/province */
+	}
 	else if ([oid isEqualToString:@"2.5.4.9"])
-		[dict setObject:val forKey:X509_KEY_STREET]; /* ST=state/province */
+	{
+		dict[X509_KEY_STREET] = val; /* ST=state/province */
+	}
 	else if ([oid isEqualToString:@"2.5.4.10"])
-		[dict setObject:val forKey:X509_KEY_O]; /* O=organization */
+	{
+		dict[X509_KEY_O] = val; /* O=organization */
+	}
 	else if ([oid isEqualToString:@"2.5.4.11"])
-		[dict setObject:val forKey:X509_KEY_OU]; /* OU=org unit */
+	{
+		dict[X509_KEY_OU] = val; /* OU=org unit */
+	}
 	else if ([oid isEqualToString:@"2.5.4.15"])
-		[dict setObject:val forKey:X509_KEY_BUSCAT];
+	{
+		dict[X509_KEY_BUSCAT] = val;
+	}
 	else if ([oid isEqualToString:@"2.5.4.17"])
-		[dict setObject:val forKey:X509_KEY_ZIP];
+	{
+		dict[X509_KEY_ZIP] = val;
+	}
+	else if (!dict[oid])
+	{
+		dict[[NSString stringWithFormat:@"Object Identifier %@", oid]] = val;
+	}
 
-	else if (![dict objectForKey:oid])
-		[dict setObject:val forKey:[NSString stringWithFormat:@"Object Identifier %@", oid]];
-	
 	return;
 }
 
 - (NSString *)negotiatedProtocolString
 {
-	switch ([self negotiatedProtocol]) {
+	switch (self.negotiatedProtocol) {
 	case kSSLProtocol2:
 		return @"SSL 2.0";
 	case kSSLProtocol3:
@@ -692,7 +715,7 @@ static NSMutableDictionary <NSData *, NSMutableDictionary *> *certCache = nil;
 	case SSL_NO_SUCH_CIPHERSUITE:
 		return @"SSL_NO_SUCH_CIPHERSUITE";
 	default:
-		return [NSString stringWithFormat:@"Unknown (%d)", [self negotiatedCipher]];
+		return [NSString stringWithFormat:@"Unknown (%d)", self.negotiatedCipher];
 	}
 }
 
