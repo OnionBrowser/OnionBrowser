@@ -1,2 +1,4 @@
-- Verbesserte Kommunikation mit Orbot.
-- Aktualisierte ungarische Übersetzung.
+- Absturz bei Popups gefixt.
+- Erlaube, daß Onion Browser als Standard-Webbrowser verwendet wird.
+- Tatar Übersetzung hinzugefügt.
+- Viele andere Übersetzungen aktualisiert.

@@ -1,2 +1,4 @@
-- Improved communication with Orbot.
-- Updated Hungarian translation.
+- Fixed crashes in popups.
+- Allow Onion Browser to become the default webbrowser.
+- Added Tatar translation.
+- Updated many other translations.

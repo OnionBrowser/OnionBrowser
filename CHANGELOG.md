@@ -1,5 +1,11 @@
 #  Onion Browser 2 Changelog
 
+## 3.0.3
+- Fixed crashes in popups.
+- Allow Onion Browser to become the default webbrowser.
+- Added Tatar translation.
+- Updated many other translations.
+
 ## 3.0.2
 - Improved communication with Orbot.
 - Updated Hungarian translation.
