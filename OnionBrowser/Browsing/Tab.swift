@@ -481,6 +481,13 @@ class Tab: UIView {
 			self.configuration.allowsInlineMediaPlayback = true
 			self.configuration.allowsPictureInPictureMediaPlayback = true
 
+			if #available(iOS 17.0, *) {
+				if let proxy = AppDelegate.shared?.torSocks5 {
+					self.configuration.websiteDataStore.proxyConfigurations
+						.append(ProxyConfiguration(socksv5Proxy: proxy))
+				}
+			}
+
 			// BUGFIX #438: Popups already have a configuration from their parent tab,
 			// injecting this a second time crashes the app.
 			setupJsInjections()
