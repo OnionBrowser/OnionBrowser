@@ -228,7 +228,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		else if shortcut.type.contains("ClearData")
 		{
 			for scene in UIApplication.shared.connectedScenes {
-				UIApplication.shared.requestSceneSessionDestruction(scene.session, options: nil)
+				// This will only work on an iPad. On an iPhone, this will trigger
+				// "Invalid attempt to call -[UIApplication requestSceneSessionDestruction:] from an unsupported device."
+				// In that case, we'll just remove all tabs from the scene ourselves.
+				UIApplication.shared.requestSceneSessionDestruction(scene.session, options: nil) { _ in
+					(scene.delegate as? SceneDelegate)?.browsingUi.removeAllTabs()
+				}
 			}
 
 			WebsiteStorage.shared.cleanup()
