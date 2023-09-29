@@ -1,7 +1,8 @@
-#  Onion Browser 2 Changelog
+#  Onion Browser Changelog
 
 ## 3.0.3
 - Fixed crashes in popups.
+- Fixed "Clear Data" shortcut on iPhones.
 - Allow Onion Browser to become the default webbrowser.
 - Added Tatar translation.
 - Updated many other translations.

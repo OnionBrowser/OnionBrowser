@@ -1,4 +1,5 @@
 - Absturz bei Popups gefixt.
+- Fehler beim "Alles löschen"-Shortcut auf iPhones behoben.
 - Erlaube, daß Onion Browser als Standard-Webbrowser verwendet wird.
 - Tatar Übersetzung hinzugefügt.
 - Viele andere Übersetzungen aktualisiert.
