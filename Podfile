@@ -34,18 +34,14 @@ target 'OnionBrowser Tests' do
   pod 'DTFoundation/DTASN1'
 end
 
-# Fix Xcode 14 code signing issues with bundles.
-# See https://github.com/CocoaPods/CocoaPods/issues/8891#issuecomment-1249151085
+# Fix Xcode 15 compile issues.
 post_install do |installer|
   installer.pods_project.targets.each do |target|
-    if target.respond_to?(:product_type) and target.product_type == "com.apple.product-type.bundle"
-      target.build_configurations.each do |config|
-        config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
-      end
-    end
     if target.respond_to?(:name) and !target.name.start_with?("Pods-")
       target.build_configurations.each do |config|
-        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
+        if config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'].to_f < 12
+          config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
+        end
       end
     end
   end

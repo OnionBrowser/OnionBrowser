@@ -20,7 +20,7 @@ PODS:
   - MBProgressHUD (1.2.0)
   - OCMock (3.9.1)
   - OrbotKit (1.1.0)
-  - ProgressHUD (13.8.1)
+  - ProgressHUD (13.8.2)
   - SDCAlertView (10.0)
   - Tor/Core (408.4.1)
   - Tor/CTor (408.4.1):
@@ -77,11 +77,11 @@ SPEC CHECKSUMS:
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   OCMock: 9491e4bec59e0b267d52a9184ff5605995e74be8
   OrbotKit: 5e69508dee1943144fefa18a197fbf2030dfbe36
-  ProgressHUD: ffb1b702ed797ec0ea320fecdd3fa6d1105083f3
+  ProgressHUD: 68d53be14b14eb3ae391a2ab03f4df1f0340b5d4
   SDCAlertView: 5fbc48cae6d7bf9781097e3f27883924ef3b922c
   Tor: 5fb3cd5e663aa1d6f19b1ade30f8b208b21d26ea
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
 
-PODFILE CHECKSUM: 944033be9b7ce5844a043fd4c6e384999b0f96f1
+PODFILE CHECKSUM: 6ecc4bc6e842ab265a9e5cfab95de2b0799d35ab
 
 COCOAPODS: 1.13.0
