@@ -6,27 +6,10 @@ PODS:
   - FavIcon (3.1.0)
   - ImageRow (4.1.0):
     - Eureka (~> 5.3.5)
-  - IPtProxy (3.1.1)
-  - IPtProxyUI (4.0.0):
-    - Eureka (~> 5.3)
-    - ImageRow (~> 4.0)
-    - IPtProxy (~> 3.1.1)
-    - IPtProxyUI/App (= 4.0.0)
-  - IPtProxyUI/App (4.0.0):
-    - Eureka (~> 5.3)
-    - ImageRow (~> 4.0)
-    - IPtProxy (~> 3.1.1)
-    - ProgressHUD (~> 13.6)
   - MBProgressHUD (1.2.0)
   - OCMock (3.9.1)
   - OrbotKit (1.1.0)
-  - ProgressHUD (13.8.2)
   - SDCAlertView (10.0)
-  - Tor/Core (408.4.1)
-  - Tor/CTor (408.4.1):
-    - Tor/Core
-  - Tor/GeoIP (408.4.1):
-    - Tor/CTor
   - TUSafariActivity (1.0.4)
 
 DEPENDENCIES:
@@ -34,12 +17,10 @@ DEPENDENCIES:
   - Eureka (~> 5.3)
   - FavIcon (from `https://github.com/tladesignz/FavIcon.git`)
   - ImageRow (~> 4.1)
-  - IPtProxyUI (~> 4.0)
   - MBProgressHUD (~> 1.2)
   - OCMock
   - OrbotKit (~> 1.1)
   - SDCAlertView (~> 10)
-  - Tor/GeoIP (from `../Tor.framework`)
   - TUSafariActivity
 
 SPEC REPOS:
@@ -47,20 +28,15 @@ SPEC REPOS:
     - DTFoundation
     - Eureka
     - ImageRow
-    - IPtProxy
-    - IPtProxyUI
     - MBProgressHUD
     - OCMock
     - OrbotKit
-    - ProgressHUD
     - SDCAlertView
     - TUSafariActivity
 
 EXTERNAL SOURCES:
   FavIcon:
     :git: https://github.com/tladesignz/FavIcon.git
-  Tor:
-    :path: "../Tor.framework"
 
 CHECKOUT OPTIONS:
   FavIcon:
@@ -72,16 +48,12 @@ SPEC CHECKSUMS:
   Eureka: 28ad9dec6286cd7cd601fdf8e8df39bb7356a8f4
   FavIcon: 21651b47d8f6b33517973859f85e2cb6f9fcfaee
   ImageRow: 880c0f052c5a89c80521b485c86ccf723a124e99
-  IPtProxy: 264799227d5d83a4a583e66bd4ea846510554025
-  IPtProxyUI: c606e88ec4d7e8ffda4eea8640dcdde909489374
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   OCMock: 9491e4bec59e0b267d52a9184ff5605995e74be8
   OrbotKit: 5e69508dee1943144fefa18a197fbf2030dfbe36
-  ProgressHUD: 68d53be14b14eb3ae391a2ab03f4df1f0340b5d4
   SDCAlertView: 5fbc48cae6d7bf9781097e3f27883924ef3b922c
-  Tor: 5fb3cd5e663aa1d6f19b1ade30f8b208b21d26ea
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
 
-PODFILE CHECKSUM: 6ecc4bc6e842ab265a9e5cfab95de2b0799d35ab
+PODFILE CHECKSUM: 55fb1449e9cc4e8980653ce38e99e63614dd7d37
 
 COCOAPODS: 1.13.0

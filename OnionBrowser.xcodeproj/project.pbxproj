@@ -69,7 +69,6 @@
 		A07037C623C7571B00D670EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07037C523C7571B00D670EC /* AppDelegate.swift */; };
 		A07037C723C79AE500D670EC /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A07037C223C74DC900D670EC /* Media.xcassets */; };
 		A07B55FC23D736D60051663B /* CertificateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07B55FB23D736D60051663B /* CertificateViewController.swift */; };
-		A07DD6B52AC5914B00441B48 /* TorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07DD6B42AC5914B00441B48 /* TorManager.swift */; };
 		A08563142A04E9D900A3A7FF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A08563122A04E9D800A3A7FF /* Localizable.strings */; };
 		A085633A2A04EA1E00A3A7FF /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = A08563382A04EA1E00A3A7FF /* Localizable.stringsdict */; };
 		A08563602A04EA8C00A3A7FF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A085635E2A04EA8C00A3A7FF /* InfoPlist.strings */; };
@@ -805,7 +804,6 @@
 				01801E8F1A32CA2A002B4718 /* Frameworks */,
 				01801E901A32CA2A002B4718 /* Resources */,
 				75010C1DF4431D7C131B801C /* [CP] Embed Pods Frameworks */,
-				C7A7B074F5D6E06CD06D85F5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1012,10 +1010,8 @@
 				"${BUILT_PRODUCTS_DIR}/ImageRow/ImageRow.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/OrbotKit/OrbotKit.framework",
-				"${BUILT_PRODUCTS_DIR}/ProgressHUD/ProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SDCAlertView/SDCAlertView.framework",
 				"${BUILT_PRODUCTS_DIR}/TUSafariActivity/TUSafariActivity.framework",
-				"${BUILT_PRODUCTS_DIR}/Tor/Tor.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1025,10 +1021,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ImageRow.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OrbotKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDCAlertView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TUSafariActivity.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Tor.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1071,24 +1065,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if [ -f /opt/homebrew/bin/bartycrouch ]; then\n    /opt/homebrew/bin/bartycrouch update -x\n    /opt/homebrew/bin/bartycrouch lint -x\nelse\n    echo \"warning: BartyCrouch not installed. Download it form https://github.com/Flinesoft/BartyCrouch\"\nfi\n";
-		};
-		C7A7B074F5D6E06CD06D85F5 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-OnionBrowser/Pods-OnionBrowser-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/IPtProxyUI/IPtProxyUI.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IPtProxyUI.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OnionBrowser/Pods-OnionBrowser-resources.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		C8C76E728A4BA9CC9C2E5513 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1178,7 +1154,6 @@
 				A0BF528223AFC3580096624A /* String+Helpers.swift in Sources */,
 				A0172C70288824BD008D42CD /* FixedFormViewController.swift in Sources */,
 				A0A83AC228A14CAB005C15C9 /* Tab+WKScriptMessageHandler.swift in Sources */,
-				A07DD6B52AC5914B00441B48 /* TorManager.swift in Sources */,
 				A0E8E8B12938CDFB00DC2A2F /* SearchEnginesViewController.swift in Sources */,
 				A0BF525E23AFC3580096624A /* BrowsingViewController+Tabs.swift in Sources */,
 				A0BF525223AFC3580096624A /* BrowsingViewController.swift in Sources */,
