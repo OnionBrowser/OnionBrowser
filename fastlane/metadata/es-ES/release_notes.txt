@@ -1,2 +1,5 @@
-- Mejora de la comunicación con Orbot.
-- Traducción al húngaro actualizada.
+- Corregidos los fallos en las ventanas emergentes.
+- Corregido el acceso directo "Borrar datos" en iPhones.
+- Permitir que Onion Browser se convierta en el navegador por defecto.
+- Añadida traducción al tártaro.
+- Actualizadas muchas otras traducciones.

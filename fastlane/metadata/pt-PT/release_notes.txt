@@ -1,2 +1,5 @@
-- Melhoria da comunicação com o Orbot.
-- Tradução húngara actualizada.
+- Correção de falhas em popups.
+- Corrigido o atalho "Limpar dados" nos iPhones.
+- Permitir que o Onion Browser se torne o navegador Web predefinido.
+- Adicionada a tradução para tártaro.
+- Actualizadas muitas outras traduções.

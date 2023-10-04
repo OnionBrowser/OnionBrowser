@@ -1,2 +1,5 @@
-- Poboljšana komunikacija s Orbotom.
-- Ažurirani mađarski prijevod.
+- Popravljena rušenja u skočnim prozorima.
+- Popravljen prečac "Obriši podatke" na iPhone uređajima.
+- Dopustite Onion Browseru da postane zadani web preglednik.
+- Dodan prijevod na tatarski.
+- Ažurirani mnogi drugi prijevodi.

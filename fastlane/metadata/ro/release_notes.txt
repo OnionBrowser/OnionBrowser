@@ -1,2 +1,5 @@
-- Îmbunătățirea comunicării cu Orbot.
-- Traducere în limba maghiară actualizată.
+- A fost reparat blocajul în pop-up-uri.
+- A fost reparată comanda rapidă "Ștergere date" pe iPhone.
+- Permiteți ca Onion Browser să devină browserul web implicit.
+- Adăugată traducerea în limba tătară.
+- Actualizat multe alte traduceri.

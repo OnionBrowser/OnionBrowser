@@ -1,2 +1,5 @@
-- Cải thiện giao tiếp với Orbot.
-- Cập nhật bản dịch tiếng Hungary.
+- Đã sửa lỗi sự cố trong cửa sổ bật lên.
+- Đã sửa lỗi phím tắt "Xóa dữ liệu" trên iPhone.
+- Cho phép Onion Browser trở thành trình duyệt web mặc định.
+- Đã thêm bản dịch tiếng Tatar.
+- Cập nhật nhiều bản dịch khác.

@@ -1,2 +1,5 @@
-- Millora de la comunicació amb Orbot.
-- Traducció a l'hongarès actualitzada.
+- S'han corregit errors a les finestres emergents.
+- S'ha solucionat la drecera "Esborra les dades" als iPhones.
+- Permet que el navegador Onion es converteixi en el navegador web predeterminat.
+- S'ha afegit traducció tàtara.
+- S'han actualitzat moltes altres traduccions.

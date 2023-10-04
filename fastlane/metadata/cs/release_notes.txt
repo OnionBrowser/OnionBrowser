@@ -1,2 +1,5 @@
-- Zlepšení komunikace se společností Orbot.
-- Aktualizovaný maďarský překlad.
+- Opraveny pády vyskakovacích oken.
+- Opravena zkratka "Vymazat data" na telefonech iPhone.
+- Umožněno, aby se prohlížeč Onion Browser stal výchozím webovým prohlížečem.
+- Přidán překlad do tatarštiny.
+- Aktualizováno mnoho dalších překladů.

@@ -1,2 +1,5 @@
-- Parempi viestintä Orbotin kanssa.
-- Päivitetty unkarinkielinen käännös.
+- Korjattu ponnahdusikkunoiden kaatumiset.
+- Korjattu "Tyhjennä tiedot" -pikakuvake iPhonessa.
+- Salli Onion Browserin muuttuminen oletusarvoiseksi selaimeksi.
+- Lisätty tataarinkielinen käännös.
+- Päivitetty monia muita käännöksiä.

@@ -1,2 +1,5 @@
-- Amélioration de la communication avec Orbot.
-- Mise à jour de la traduction en hongrois.
+- Correction des plantages dans les fenêtres contextuelles.
+- Correction du raccourci "Effacer les données" sur les iPhones.
+- Permettre à Onion Browser de devenir le navigateur par défaut.
+- Ajout d'une traduction en tatar.
+- Mise à jour de nombreuses autres traductions.

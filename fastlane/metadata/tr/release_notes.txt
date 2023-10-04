@@ -1,2 +1,5 @@
-- Orbot ile iletişim geliştirildi.
-- Macarca çeviri güncellendi.
+- Açılan pencere çökmeleri düzeltildi.
+- iPhone üzerindeki "Verileri temizle" kısayolu düzeltildi.
+- Onion Browser uygulamasının varsayılan tarayıcı olması sağlandı. 
+- Tatarca çevirisi eklendi.
+- Pek çok çeviri güncellendi.

@@ -1,2 +1,5 @@
-- Javított kommunikáció az Orbot-tal.
-- Frissített magyar fordítás
+- Javítottuk a felugró ablakok összeomlását.
+- Javítottuk az "Adatok törlése" parancsikont iPhone-on.
+- Lehetővé tette, hogy az Onion Browser legyen az alapértelmezett webböngésző.
+- Tatár fordítás hozzáadása.
+- Frissített sok más fordítást.

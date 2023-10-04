@@ -1,2 +1,5 @@
-- Poprawiono komunikację z Orbot.
-- Zaktualizowano tłumaczenie na język węgierski.
+- Naprawiono awarie wyskakujących okienek.
+- Naprawiono skrót "Wyczyść dane" na iPhone'ach.
+- Umożliwiono przeglądarce Onion Browser stanie się domyślną przeglądarką.
+- Dodano tłumaczenie na język tatarski.
+- Zaktualizowano wiele innych tłumaczeń.

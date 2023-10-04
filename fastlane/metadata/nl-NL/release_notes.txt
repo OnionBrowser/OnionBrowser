@@ -1,2 +1,5 @@
-- Verbeterde communicatie met Orbot.
-- Hongaarse vertaling bijgewerkt.
+- Crashes in pop-ups opgelost.
+- Snelkoppeling "Gegevens wissen" op iPhones hersteld.
+- Onion Browser kan de standaard webbrowser worden.
+- Tataarse vertaling toegevoegd.
+- Veel andere vertalingen bijgewerkt.

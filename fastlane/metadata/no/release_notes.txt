@@ -1,2 +1,5 @@
-- Forbedret kommunikasjon med Orbot.
-- Oppdatert ungarsk oversettelse.
+- Fikset krasj i popup-vinduer.
+- Fikset snarveien "Tøm data" på iPhone.
+- Lar Onion Browser bli standard nettleser.
+- Lagt til tatarisk oversettelse.
+- Oppdatert mange andre oversettelser.

@@ -1,2 +1,5 @@
-- Miglioramento della comunicazione con Orbot.
-- Aggiornamento della traduzione in ungherese.
+- Corretti gli arresti anomali nei popup.
+- Corretta la scorciatoia "Cancella dati" sugli iPhone.
+- Consentire a Onion Browser di diventare il browser predefinito.
+- Aggiunta la traduzione in tataro.
+- Aggiornate molte altre traduzioni.
