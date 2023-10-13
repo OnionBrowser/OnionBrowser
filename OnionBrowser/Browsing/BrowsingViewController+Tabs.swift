@@ -200,12 +200,7 @@ UICollectionViewDropDelegate, TabCellDelegate {
 
 		updateChrome()
 
-		if #available(iOS 13.0, *) {
-			self.view.backgroundColor = .systemBackground
-		}
-		else {
-			self.view.backgroundColor = .white
-		}
+		self.view.backgroundColor = .systemBackground
 
 		UIView.animate(withDuration: 0.5, animations: {
 			self.view.setNeedsLayout()

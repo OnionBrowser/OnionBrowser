@@ -50,13 +50,7 @@ class BrowsingViewController: UIViewController, TabDelegate {
 		let button = UIButton(type: .custom)
 		button.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
 		button.setImage(BrowsingViewController.reloadImg, for: .normal)
-
-		if #available(iOS 13, *) {
-			button.tintColor = .label
-		}
-		else {
-			button.tintColor = .black
-		}
+		button.tintColor = .label
 
 		button.widthAnchor.constraint(equalToConstant: 24).isActive = true
 		button.heightAnchor.constraint(equalToConstant: 24).isActive = true

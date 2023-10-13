@@ -25,10 +25,7 @@ class Nextcloud: NSObject {
 
 	private static let encoder: JSONEncoder = {
 		let encoder = JSONEncoder()
-
-		if #available(iOS 13.0, *) {
-			encoder.outputFormatting = .withoutEscapingSlashes
-		}
+		encoder.outputFormatting = .withoutEscapingSlashes
 
 		return encoder
 	}()
