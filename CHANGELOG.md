@@ -1,5 +1,10 @@
 #  Onion Browser Changelog
 
+## 3.1.0
+- Added built-in Tor again to use with new `WKWebView` proxy settings in iOS 17.
+  This supports scenarios, where Orbot is too unreliable because of memory constraints
+  or when users want to use it over another VPN.
+
 ## 3.0.3
 - Fixed crashes in popups.
 - Fixed "Clear Data" shortcut on iPhones.
