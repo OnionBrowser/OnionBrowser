@@ -24,19 +24,15 @@ extension Tab: WKNavigationDelegate {
 			return decisionHandler(.cancel, preferences)
 		}
 
-		let info = OrbotManager.shared.lastInfo
-
-#if DEBUG
-		guard OrbotManager.simulatorIgnoreOrbot || info?.status == .starting || info?.status == .started
-		else {
+		guard OrbotManager.shared.allowRequests() else {
 			return decisionHandler(.cancel, preferences)
 		}
-#else
-			guard info?.status == .starting || info?.status == .started
-			else {
+
+		if Settings.useBuiltInTor ?? false, #available(iOS 17.0, *) {
+			guard !webView.configuration.websiteDataStore.proxyConfigurations.isEmpty else {
 				return decisionHandler(.cancel, preferences)
 			}
-#endif
+		}
 
 		if let blocker = URLBlocker.blockingTarget(for: url, fromMainDocumentURL: self.url) {
 
@@ -177,16 +173,20 @@ extension Tab: WKNavigationDelegate {
 	}
 
 	func webView(_ webView: WKWebView, didFail navigation: WKNavigation?, withError error: Error) {
-		handle(error: error, navigation)
+		handle(error: error, webView, navigation)
 	}
 
 	func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation?, withError error: Error) {
-		handle(error: error, navigation)
+		handle(error: error, webView, navigation)
 	}
 
 	func webView(_ webView: WKWebView, didReceive challenge: URLAuthenticationChallenge,
 				 completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void)
 	{
+		handle(challenge: challenge, completionHandler)
+	}
+
+	func handle(challenge: URLAuthenticationChallenge, _ completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
 		let space = challenge.protectionSpace
 
 		switch space.authenticationMethod {
@@ -307,7 +307,7 @@ extension Tab: WKNavigationDelegate {
 	/**
 	 TLS testing site: https://badssl.com/
 	 */
-	private func handle(error: Error, _ navigation: WKNavigation?) {
+	private func handle(error: Error, _ webView: WKWebView, _ navigation: WKNavigation?) {
 		if let url = webView.url {
 			self.url = url
 		}

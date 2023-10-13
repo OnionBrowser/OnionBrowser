@@ -81,10 +81,8 @@ class Tab: UIView {
 			return downloadedFile.lastPathComponent
 		}
 
-		if let title = webView.title {
-			if !title.isEmpty {
-				return title
-			}
+		if let title = webView?.title, !title.isEmpty {
+			return title
 		}
 
 		return BrowsingViewController.prettyTitle(url)
@@ -102,7 +100,7 @@ class Tab: UIView {
 		return tabDelegate?.getIndex(of: self) ?? -1
 	}
 
-	private(set) var needsRefresh = false
+	var needsRefresh = false
 
 	@objc(applicableURLBlockerTargets)
 	var applicableUrlBlockerTargets = NSMutableDictionary()
@@ -150,36 +148,51 @@ class Tab: UIView {
 		}
 	}
 
-	private(set) var configuration: WKWebViewConfiguration!
+	private var _conf: WKWebViewConfiguration?
+	private var conf: WKWebViewConfiguration {
+		get {
+			if let conf = _conf {
+				return conf
+			}
 
+			let conf = WKWebViewConfiguration()
+			conf.allowsAirPlayForMediaPlayback = true
+			conf.allowsInlineMediaPlayback = true
+			conf.allowsPictureInPictureMediaPlayback = true
+
+			// BUGFIX #438: Popups already have a configuration from their parent tab,
+			// injecting this a second time crashes the app.
+			setupJsInjections(conf)
+
+			return conf
+		}
+		set {
+			_conf = newValue
+		}
+	}
 	/**
 	 https://www.hackingwithswift.com/articles/112/the-ultimate-guide-to-wkwebview
 	 */
-	private(set) lazy var webView: WKWebView = {
-		let view = WKWebView(frame: .zero, configuration: configuration)
+	private(set) var webView: WKWebView?
 
-		view.uiDelegate = self
-		view.navigationDelegate = self
-
-		return view.add(to: self)
-	}()
-
-	var scrollView: UIScrollView {
-		return webView.scrollView
+	var scrollView: UIScrollView? {
+		return webView?.scrollView
 	}
 
+	weak var scrollViewDelegate: UIScrollViewDelegate?
+
 	var canGoBack: Bool {
-		return  parentId != nil || webView.canGoBack
+		return  parentId != nil || webView?.canGoBack ?? false
 	}
 
 	var canGoForward: Bool {
-		return webView.canGoForward
+		return webView?.canGoForward ?? false
 	}
 
 	var isLoading: Bool {
 		// BUGFIX: Sometimes, isLoading still shows true, even if progress is already at 100%.
 		// So check that, too, to fix reload/cancel button display.
-		return webView.isLoading && progress < 1
+		return (webView?.isLoading ?? false) && progress < 1
 	}
 
 	var previewController: QLPreviewController?
@@ -215,7 +228,16 @@ class Tab: UIView {
 	init(restorationId: String?, configuration: WKWebViewConfiguration? = nil) {
 		super.init(frame: .zero)
 
-		setup(restorationId, configuration: configuration)
+		if restorationId != nil {
+			restorationIdentifier = restorationId
+			needsRefresh = true
+		}
+
+		if let configuration = configuration {
+			conf = configuration
+		}
+
+		setup()
 	}
 
 	required init?(coder: NSCoder) {
@@ -229,7 +251,7 @@ class Tab: UIView {
 							   context: UnsafeMutableRawPointer?)
 	{
 		if keyPath == "estimatedProgress" {
-			progress = Float(webView.estimatedProgress)
+			progress = Float(webView?.estimatedProgress ?? 0)
 		}
 	}
 
@@ -244,8 +266,8 @@ class Tab: UIView {
 		needsRefresh = false
 		skipHistory = true
 
-		if webView.url != nil {
-			webView.reload()
+		if webView?.url != nil {
+			webView?.reload()
 		}
 		else {
 			load(url)
@@ -253,7 +275,7 @@ class Tab: UIView {
 	}
 
 	func stop() {
-		webView.stopLoading()
+		webView?.stopLoading()
 
 		// Seems not to update correctly via the #observeValue path.
 		progress = 1
@@ -272,7 +294,7 @@ class Tab: UIView {
 
 	func load(_ request: URLRequest?) {
 		DispatchQueue.main.async {
-			self.webView.stopLoading()
+			self.webView?.stopLoading()
 		}
 
 		reset()
@@ -309,10 +331,10 @@ class Tab: UIView {
 			}
 
 			if !userAgent.isEmpty {
-				self.webView.customUserAgent = userAgent
+				self.webView?.customUserAgent = userAgent
 			}
 
-			self.webView.load(request)
+			self.webView?.load(request)
 		}
 	}
 
@@ -329,9 +351,9 @@ class Tab: UIView {
 
 	@objc
 	func goBack() {
-		if webView.canGoBack {
+		if webView?.canGoBack ?? false {
 			skipHistory = true
-			webView.goBack()
+			webView?.goBack()
 		}
 		else if let parentId = parentId {
 			tabDelegate?.removeTab(self, focus: tabDelegate?.getTab(hash: parentId))
@@ -340,23 +362,27 @@ class Tab: UIView {
 
 	@objc
 	func goForward() {
-		if webView.canGoForward {
+		if webView?.canGoForward ?? false {
 			skipHistory = true
-			webView.goForward()
+			webView?.goForward()
 		}
 	}
 
 	func toggleFind() {
 		if #available(iOS 16.0, *) {
-			webView.isFindInteractionEnabled = !(webView.isFindInteractionEnabled && webView.findInteraction?.isFindNavigatorVisible ?? false)
+			webView?.isFindInteractionEnabled = !((webView?.isFindInteractionEnabled ?? false) && webView?.findInteraction?.isFindNavigatorVisible ?? false)
 
-			if webView.isFindInteractionEnabled {
-				webView.findInteraction?.presentFindNavigator(showingReplace: false)
+			if webView?.isFindInteractionEnabled ?? false {
+				webView?.findInteraction?.presentFindNavigator(showingReplace: false)
 			}
 		}
 	}
 
 	func stringByEvaluatingJavaScript(from script: String, _ completion: @escaping (String?) -> Void) {
+		guard let webView = webView else {
+			return completion(nil)
+		}
+
 		webView.evaluateJavaScript(script) { result, error in
 			let string = result as? String
 
@@ -366,27 +392,6 @@ class Tab: UIView {
 
 			completion(string)
 		}
-	}
-
-	func stringByEvaluatingJavaScript(from script: String) -> String? {
-		var string: String?
-
-		let group = DispatchGroup()
-		group.enter()
-
-		webView.evaluateJavaScript(script) { result, error in
-			string = result as? String
-
-			if let error = error {
-				print("[\(String(describing: type(of: self)))]#stringByEvaluatingJavaScript error=\(error)")
-			}
-
-			group.leave()
-		}
-
-		_ = group.wait(timeout: .now() + 2)
-
-		return string
 	}
 
 	/**
@@ -403,21 +408,10 @@ class Tab: UIView {
 		cancelDownload()
 
 		let block = {
-			NotificationCenter.default.removeObserver(self)
-
 			self.tabDelegate = nil
-			self.scrollView.delegate = nil
-			self.webView.uiDelegate = nil
-			self.webView.navigationDelegate = nil
 
-			for gr in self.webView.gestureRecognizers ?? [] {
-				self.webView.removeGestureRecognizer(gr)
-			}
+			self.destructWebView()
 
-			self.stop()
-			self.webView.loadHTMLString("", baseURL: nil)
-
-			self.webView.removeFromSuperview()
 			self.removeFromSuperview()
 		}
 
@@ -448,7 +442,7 @@ class Tab: UIView {
 	}
 	
 	func getSnapshot(size: CGSize) -> UIImage? {
-		if snapshot == nil {
+		if snapshot == nil, let scrollView = scrollView {
 			let offset = scrollView.contentOffset
 			let frame = scrollView.frame
 
@@ -470,57 +464,69 @@ class Tab: UIView {
 	func clearSnapshot() {
 		snapshot = nil
 	}
-	
+
+	func reinitWebView() {
+		destructWebView()
+		setup()
+
+		needsRefresh = true
+	}
+
 	
 	// MARK: Private Methods
 
-	private func setup(_ restorationId: String? = nil, configuration: WKWebViewConfiguration? = nil) {
-		if configuration == nil {
-			self.configuration = WKWebViewConfiguration()
-			self.configuration.allowsAirPlayForMediaPlayback = true
-			self.configuration.allowsInlineMediaPlayback = true
-			self.configuration.allowsPictureInPictureMediaPlayback = true
-
-			if #available(iOS 17.0, *) {
-				if let proxy = AppDelegate.shared?.torSocks5 {
-					self.configuration.websiteDataStore.proxyConfigurations
-						.append(ProxyConfiguration(socksv5Proxy: proxy))
-				}
+	private func setup() {
+		if #available(iOS 17.0, *), Settings.useBuiltInTor == true {
+			if let proxy = TorManager.shared.torSocks5 {
+				conf.websiteDataStore.proxyConfigurations.removeAll()
+				conf.websiteDataStore.proxyConfigurations.append(ProxyConfiguration(socksv5Proxy: proxy))
 			}
+			else {
+				// Delay setup until we have Tor available and somebody tells us.
+				return
+			}
+		}
 
-			// BUGFIX #438: Popups already have a configuration from their parent tab,
-			// injecting this a second time crashes the app.
-			setupJsInjections()
-		}
-		else {
-			self.configuration = configuration
-		}
+		webView = WKWebView(frame: .zero, configuration: conf)
+
+		webView?.uiDelegate = self
+		webView?.navigationDelegate = self
+		webView?.scrollView.delegate = scrollViewDelegate
+
+		webView?.add(to: self)
+
+		webView?.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil)
+
+		setupGestureRecognizers()
 
 		if Self.defaultUserAgent.isEmpty {
-			webView.evaluateJavaScript("navigator.userAgent") { result, error in
-				if let error = error {
-					print("[\(String(describing: type(of: self)))] evaluate 'navigator.userAgent' error: \(error)")
-				}
-
-				if let ua = result as? String, !ua.isEmpty {
+			stringByEvaluatingJavaScript(from: "navigator.userAgent") { ua in
+				if let ua = ua, !ua.isEmpty {
 					Self.defaultUserAgent = ua
 				}
 			}
 		}
 
-		if restorationId != nil {
-			restorationIdentifier = restorationId
-			needsRefresh = true
-		}
-
-		webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil)
-
 		// Immediately refresh the page if its host settings were changed, so
 		// users sees the impact of their changes.
-		NotificationCenter.default.addObserver(self, selector: #selector(hostSettingsChanged(_:)),
+		NotificationCenter.default.addObserver(self, selector: #selector(hostSettingsChanged),
 											   name: .hostSettingsChanged, object: nil)
+	}
 
-		setupGestureRecognizers()
+	private func destructWebView() {
+		NotificationCenter.default.removeObserver(self)
+
+		self.scrollView?.delegate = nil
+		self.webView?.uiDelegate = nil
+		self.webView?.navigationDelegate = nil
+
+		self.removeGestureRecognizers()
+
+		self.stop()
+		self.webView?.loadHTMLString("", baseURL: nil)
+
+		self.webView?.removeFromSuperview()
+		self.webView = nil
 	}
 
 	@objc

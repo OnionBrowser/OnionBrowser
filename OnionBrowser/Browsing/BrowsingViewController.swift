@@ -214,6 +214,10 @@ class BrowsingViewController: UIViewController, TabDelegate {
 
 		// We made it this far, remove lock on previous startup.
 		Settings.stateRestoreLock = false
+
+		if currentTab?.needsRefresh ?? false {
+			currentTab?.refresh()
+		}
 	}
 
 	override func viewWillDisappear(_ animated: Bool) {
@@ -470,7 +474,7 @@ class BrowsingViewController: UIViewController, TabDelegate {
 
 		tabs.append(tab)
 
-		tab.scrollView.delegate = self
+		tab.scrollViewDelegate = self
 		tab.isHidden = true
 		tab.add(to: container)
 

@@ -56,14 +56,14 @@ extension Tab: WKScriptMessageHandler {
 	"""
 
 
-	func setupJsInjections() {
+	func setupJsInjections(_ configuration: WKWebViewConfiguration) {
 		// Disabled for now. One or both of these seem to cause random crashes.
-//		register(script: Self.errorScript, for: "error")
-//		register(script: Self.logScript, for: "log")
-		register(script: Self.donateScript, for: "showDonate", forMainFrameOnly: true)
+//		register(script: Self.errorScript, for: "error", in: configuration)
+//		register(script: Self.logScript, for: "log", in: configuration)
+		register(script: Self.donateScript, for: "showDonate", forMainFrameOnly: true, in: configuration)
 
 		if Settings.sendGpc {
-			register(script: Self.gpcScript)
+			register(script: Self.gpcScript, in: configuration)
 		}
 	}
 
@@ -96,12 +96,21 @@ extension Tab: WKScriptMessageHandler {
 
 	// MARK: Private Methods
 
-	private func register(script: String, for name: String? = nil, forMainFrameOnly: Bool = false) {
-		configuration.userContentController.addUserScript(WKUserScript(
-			source: script, injectionTime: .atDocumentStart, forMainFrameOnly: forMainFrameOnly))
+	private func register(script: String, for name: String? = nil, forMainFrameOnly: Bool = false, in configuration: WKWebViewConfiguration) {
+		let block = {
+			configuration.userContentController.addUserScript(WKUserScript(
+				source: script, injectionTime: .atDocumentStart, forMainFrameOnly: forMainFrameOnly))
 
-		if let name = name {
-			configuration.userContentController.add(self, name: name)
+			if let name = name {
+				configuration.userContentController.add(self, name: name)
+			}
+		}
+
+		if Thread.isMainThread {
+			block()
+		}
+		else {
+			DispatchQueue.main.async(execute: block)
 		}
 	}
 }

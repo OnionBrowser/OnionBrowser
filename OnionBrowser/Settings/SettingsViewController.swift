@@ -10,6 +10,7 @@
 
 import UIKit
 import Eureka
+import OrbotKit
 
 class SettingsViewController: FixedFormViewController {
 
@@ -40,6 +41,22 @@ class SettingsViewController: FixedFormViewController {
 		navigationItem.leftBarButtonItem = UIBarButtonItem(
 			barButtonSystemItem: .done, target: self, action: #selector(dismsiss_))
 		navigationItem.title = NSLocalizedString("Settings", comment: "Scene title")
+
+		if Settings.useBuiltInTor == true {
+			form
+			+++ ButtonRow {
+				$0.title = String(format: NSLocalizedString("Switch back to %@", comment: "Placeholder is 'Orbot'"), OrbotKit.orbotName)
+			}
+			.onCellSelection { [weak self] _, _ in
+				TorManager.shared.stop()
+
+				AppDelegate.shared?.allOpenTabs.forEach({ $0.reinitWebView() })
+
+				Settings.useBuiltInTor = false
+
+				self?.view.sceneDelegate?.show(OrbotManager.shared.checkStatus())
+			}
+		}
 
 		form
 		+++ defaultSecurityRow

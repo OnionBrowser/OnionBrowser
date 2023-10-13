@@ -61,9 +61,7 @@ extension Tab: WKDownloadDelegate, QLPreviewControllerDelegate, QLPreviewControl
 	func download(_ download: WKDownload, didReceive challenge: URLAuthenticationChallenge,
 				  completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void)
 	{
-		webView(webView, didReceive: challenge) { disposition, credential in
-			completionHandler(disposition, credential)
-		}
+		handle(challenge: challenge, completionHandler)
 	}
 
 	func download(_ download: WKDownload, didFailWithError error: Error, resumeData: Data?) {
@@ -106,6 +104,8 @@ extension Tab: WKDownloadDelegate, QLPreviewControllerDelegate, QLPreviewControl
 		previewController?.didMove(toParent: sceneDelegate?.browsingUi)
 
 		// Positively show toolbar, as users can't scroll it back up.
-		scrollView.delegate?.scrollViewDidScrollToTop?(scrollView)
+		if let scrollView = scrollView {
+			scrollView.delegate?.scrollViewDidScrollToTop?(scrollView)
+		}
 	}
 }

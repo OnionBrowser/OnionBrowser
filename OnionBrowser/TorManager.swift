@@ -9,6 +9,7 @@
 import NetworkExtension
 import Tor
 import IPtProxyUI
+import Network
 
 
 class TorManager {
@@ -44,6 +45,8 @@ class TorManager {
 	static let localhost = "127.0.0.1"
 
 	var status = Status.stopped
+
+	var torSocks5: Network.NWEndpoint? = nil
 
 	private var torThread: Thread?
 
@@ -85,7 +88,7 @@ class TorManager {
 
 	func start(_ transport: Transport,
 			   _ progressCallback: @escaping (_ progress: Int?) -> Void,
-			   _ completion: @escaping (Error?, _ socksAddr: String?) -> Void)
+			   _ completion: @escaping (Error?) -> Void)
 	{
 		status = .starting
 
@@ -120,7 +123,7 @@ class TorManager {
 
 					self.status = .stopped
 
-					return completion(error, nil)
+					return completion(error)
 				}
 			}
 
@@ -129,16 +132,16 @@ class TorManager {
 
 				self.status = .stopped
 
-				return completion(Errors.cookieUnreadable, nil)
+				return completion(Errors.cookieUnreadable)
 			}
 
 			self.torController?.authenticate(with: cookie) { success, error in
 				if let error = error {
 					self.log("#startTunnel error=\(error)")
 
-					self.status = .stopped
+					self.stop()
 
-					return completion(error, nil)
+					return completion(error)
 				}
 
 				self.progressObs = self.torController?.addObserver(forStatusEvents: {
@@ -177,15 +180,22 @@ class TorManager {
 					self?.torController?.removeObserver(self?.progressObs)
 
 					self?.torController?.getInfoForKeys(["net/listeners/socks"]) { response in
-						guard let socksAddr = response.first, !socksAddr.isEmpty else {
-							self?.status = .stopped
+						guard let parts = response.first?.split(separator: ":"),
+							  let host = parts.first,
+							  let host = IPv4Address(String(host)),
+							  let port = parts.last,
+							  let port = NWEndpoint.Port(String(port))
+						else {
+							self?.stop()
 
-							return completion(Errors.noSocksAddr, nil)
+							return completion(Errors.noSocksAddr)
 						}
+
+						self?.torSocks5 = .hostPort(host: NWEndpoint.Host.ipv4(host), port: port)
 
 						self?.status = .started
 
-						completion(nil, socksAddr)
+						completion(nil)
 					}
 				})
 			}
@@ -195,6 +205,10 @@ class TorManager {
 	func updateConfig(_ transport: Transport) {
 		self.transport = transport
 
+		guard let torController = torController else {
+			return
+		}
+
 		let group = DispatchGroup()
 
 		let resetKeys = ["UseBridges", "ClientTransportPlugin", "Bridge",
@@ -203,7 +217,7 @@ class TorManager {
 		for key in resetKeys {
 			group.enter()
 
-			torController?.resetConf(forKey: key) { _, error in
+			torController.resetConf(forKey: key) { _, error in
 				if let error = error {
 					debugPrint(error)
 				}
@@ -214,7 +228,7 @@ class TorManager {
 			group.wait()
 		}
 
-		torController?.setConfs(transportConf(Transport.asConf))
+		torController.setConfs(transportConf(Transport.asConf))
 	}
 
 	func stop() {
@@ -306,9 +320,9 @@ class TorManager {
 
 		var arguments = transport.torConf(cv)
 
-//		if transport == .custom, let bridgeLines = Settings.customBridges {
-//			arguments += bridgeLines.map({ cv("Bridge", $0) })
-//		}
+		if transport == .custom, let bridgeLines = Settings.customBridges {
+			arguments += bridgeLines.map({ cv("Bridge", $0) })
+		}
 
 		arguments.append(cv("UseBridges", transport == .none ? "0" : "1"))
 

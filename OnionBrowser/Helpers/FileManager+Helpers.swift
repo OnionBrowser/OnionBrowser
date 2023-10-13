@@ -46,6 +46,16 @@ public extension FileManager {
 		return url
 	}
 
+	var ptDir: URL? {
+		guard let url = torDir?.appendingPathComponent("pt_state", isDirectory: true) else {
+			return nil
+		}
+
+		try? createSecureDirIfNotExists(at: url)
+
+		return url
+	}
+
 
 	func createSecureDirIfNotExists(at url: URL) throws {
 		// Try to remove it, if it is *not* a directory.

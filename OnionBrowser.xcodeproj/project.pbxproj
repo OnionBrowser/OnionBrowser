@@ -50,13 +50,18 @@
 		A02414382A0260B1009AEE25 /* WhyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02414362A0260B1009AEE25 /* WhyViewController.swift */; };
 		A02885802893FA23007D5AE8 /* WebsiteStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A028857F2893FA23007D5AE8 /* WebsiteStorage.swift */; };
 		A028858228940B93007D5AE8 /* Storage2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A028858128940B93007D5AE8 /* Storage2ViewController.swift */; };
+		A02A09082AD6B92800A9334C /* TorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07DD6B42AC5914B00441B48 /* TorManager.swift */; };
+		A02A090F2AD6BA9600A9334C /* OrbotOrBuiltInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02A090D2AD6BA9600A9334C /* OrbotOrBuiltInViewController.swift */; };
+		A02A09122AD6CAF000A9334C /* StartTorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02A09112AD6CAF000A9334C /* StartTorViewController.swift */; };
+		A02A09132AD6D17B00A9334C /* OrbotOrBuiltInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A02A090E2AD6BA9600A9334C /* OrbotOrBuiltInViewController.xib */; };
+		A02A09142AD6E8C000A9334C /* StartTorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A02A09102AD6CAF000A9334C /* StartTorViewController.xib */; };
 		A02CB2B523D0B0B300880720 /* AddBookmarkActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02CB2B423D0B0B300880720 /* AddBookmarkActivity.swift */; };
 		A036C3B22937A06C0035AA4F /* AddSearchEngineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A036C3B12937A06C0035AA4F /* AddSearchEngineViewController.swift */; };
 		A03CFA042892B05500F01DB5 /* DownloadHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03CFA032892B05500F01DB5 /* DownloadHelper.swift */; };
 		A043B9522A02897A008025A7 /* PermissionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A043B9502A02897A008025A7 /* PermissionViewController.xib */; };
 		A043B9532A02897A008025A7 /* PermissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A043B9512A02897A008025A7 /* PermissionViewController.swift */; };
-		A043B9562A029FC3008025A7 /* StartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A043B9542A029FC3008025A7 /* StartViewController.xib */; };
-		A043B9572A029FC3008025A7 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A043B9552A029FC3008025A7 /* StartViewController.swift */; };
+		A043B9562A029FC3008025A7 /* StartOrbotViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A043B9542A029FC3008025A7 /* StartOrbotViewController.xib */; };
+		A043B9572A029FC3008025A7 /* StartOrbotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A043B9552A029FC3008025A7 /* StartOrbotViewController.swift */; };
 		A0550649271094A900922E18 /* ua-strings.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0550648271094A900922E18 /* ua-strings.plist */; };
 		A068DD99240D348300BF46E3 /* AltSvcHeader_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A068DD98240D348300BF46E3 /* AltSvcHeader_Tests.swift */; };
 		A068DD9A240D37FB00BF46E3 /* HostSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF522B23AFC3580096624A /* HostSettings.swift */; };
@@ -75,6 +80,7 @@
 		A08563852A05419000A3A7FF /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A08563842A05419000A3A7FF /* Launch Screen.storyboard */; };
 		A08737E1221324B5005A68CC /* HostSettings_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = A08737DF2213235F005A68CC /* HostSettings_Tests.m */; };
 		A09A39622A17BE61008CC06A /* DownloadActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09A39612A17BE61008CC06A /* DownloadActivity.swift */; };
+		A09F7ADD2AD80A1A00F7072F /* TorCircuit+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09F7ADC2AD80A1A00F7072F /* TorCircuit+Helper.swift */; };
 		A0A1A35A2A03DAB800DE4991 /* security-levels.html in Resources */ = {isa = PBXBuildFile; fileRef = A0A1A3582A03DAB800DE4991 /* security-levels.html */; };
 		A0A83AC228A14CAB005C15C9 /* Tab+WKScriptMessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A83AC128A14CAB005C15C9 /* Tab+WKScriptMessageHandler.swift */; };
 		A0AF2C062A123E65000BCC85 /* BrowsingViewController+UIResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AF2C052A123E65000BCC85 /* BrowsingViewController+UIResponder.swift */; };
@@ -228,6 +234,10 @@
 		A025F27421F62C100034B947 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		A028857F2893FA23007D5AE8 /* WebsiteStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsiteStorage.swift; sourceTree = "<group>"; };
 		A028858128940B93007D5AE8 /* Storage2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage2ViewController.swift; sourceTree = "<group>"; };
+		A02A090D2AD6BA9600A9334C /* OrbotOrBuiltInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbotOrBuiltInViewController.swift; sourceTree = "<group>"; };
+		A02A090E2AD6BA9600A9334C /* OrbotOrBuiltInViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrbotOrBuiltInViewController.xib; sourceTree = "<group>"; };
+		A02A09102AD6CAF000A9334C /* StartTorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StartTorViewController.xib; sourceTree = "<group>"; };
+		A02A09112AD6CAF000A9334C /* StartTorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTorViewController.swift; sourceTree = "<group>"; };
 		A02AB5C12AA5F34000CC6779 /* tt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tt; path = tt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A02AB5C22AA5F34000CC6779 /* tt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = tt; path = tt.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		A02AB5C32AA5F34000CC6779 /* tt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tt; path = tt.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -238,8 +248,8 @@
 		A03CFA032892B05500F01DB5 /* DownloadHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadHelper.swift; sourceTree = "<group>"; };
 		A043B9502A02897A008025A7 /* PermissionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PermissionViewController.xib; sourceTree = "<group>"; };
 		A043B9512A02897A008025A7 /* PermissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionViewController.swift; sourceTree = "<group>"; };
-		A043B9542A029FC3008025A7 /* StartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StartViewController.xib; sourceTree = "<group>"; };
-		A043B9552A029FC3008025A7 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		A043B9542A029FC3008025A7 /* StartOrbotViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StartOrbotViewController.xib; sourceTree = "<group>"; };
+		A043B9552A029FC3008025A7 /* StartOrbotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartOrbotViewController.swift; sourceTree = "<group>"; };
 		A0550648271094A900922E18 /* ua-strings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ua-strings.plist"; sourceTree = "<group>"; };
 		A06881D02A66ADF60084D26D /* release.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = release.entitlements; sourceTree = "<group>"; };
 		A06881D12A66B0070084D26D /* debug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = debug.entitlements; sourceTree = "<group>"; };
@@ -370,6 +380,7 @@
 		A08737DF2213235F005A68CC /* HostSettings_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HostSettings_Tests.m; sourceTree = "<group>"; };
 		A0894E36236AE7C800EE2743 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		A09A39612A17BE61008CC06A /* DownloadActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadActivity.swift; sourceTree = "<group>"; };
+		A09F7ADC2AD80A1A00F7072F /* TorCircuit+Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TorCircuit+Helper.swift"; sourceTree = "<group>"; };
 		A0A1A3592A03DAB800DE4991 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = en; path = "en.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A0A1A35D2A03DAF500DE4991 /* sq */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = sq; path = "sq.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A0A1A35E2A03DAF700DE4991 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ar; path = "ar.lproj/security-levels.html"; sourceTree = "<group>"; };
@@ -637,14 +648,18 @@
 			children = (
 				A0FA965B2A015EBB005EDC3F /* WelcomeViewController.xib */,
 				A0FA965C2A015EBB005EDC3F /* WelcomeViewController.swift */,
+				A02A090E2AD6BA9600A9334C /* OrbotOrBuiltInViewController.xib */,
+				A02A090D2AD6BA9600A9334C /* OrbotOrBuiltInViewController.swift */,
 				A0FA965F2A0161DA005EDC3F /* InstallViewController.xib */,
 				A0FA96602A0161DA005EDC3F /* InstallViewController.swift */,
 				A02414352A0260B1009AEE25 /* WhyViewController.xib */,
 				A02414362A0260B1009AEE25 /* WhyViewController.swift */,
 				A043B9502A02897A008025A7 /* PermissionViewController.xib */,
 				A043B9512A02897A008025A7 /* PermissionViewController.swift */,
-				A043B9542A029FC3008025A7 /* StartViewController.xib */,
-				A043B9552A029FC3008025A7 /* StartViewController.swift */,
+				A02A09102AD6CAF000A9334C /* StartTorViewController.xib */,
+				A02A09112AD6CAF000A9334C /* StartTorViewController.swift */,
+				A043B9542A029FC3008025A7 /* StartOrbotViewController.xib */,
+				A043B9552A029FC3008025A7 /* StartOrbotViewController.swift */,
 			);
 			path = Startup;
 			sourceTree = "<group>";
@@ -779,6 +794,7 @@
 				A06DF455241A60E700A07796 /* SecureEnclave.swift */,
 				A0BF523723AFC3580096624A /* SilenceWarnings.h */,
 				A0BF524323AFC3580096624A /* String+Helpers.swift */,
+				A09F7ADC2AD80A1A00F7072F /* TorCircuit+Helper.swift */,
 				A0BF523F23AFC3580096624A /* UIButton+Helpers.swift */,
 				A07037C323C74E1100D670EC /* UIColor+Helpers.swift */,
 				A0BF523D23AFC3580096624A /* UIView+Helpers.swift */,
@@ -804,6 +820,7 @@
 				01801E8F1A32CA2A002B4718 /* Frameworks */,
 				01801E901A32CA2A002B4718 /* Resources */,
 				75010C1DF4431D7C131B801C /* [CP] Embed Pods Frameworks */,
+				70CCEB16D2A53C9C6667F80E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -932,7 +949,7 @@
 			files = (
 				A0FA96612A0161DA005EDC3F /* InstallViewController.xib in Resources */,
 				A0BF524E23AFC3580096624A /* SecurityLevelCell.xib in Resources */,
-				A043B9562A029FC3008025A7 /* StartViewController.xib in Resources */,
+				A043B9562A029FC3008025A7 /* StartOrbotViewController.xib in Resources */,
 				A08563852A05419000A3A7FF /* Launch Screen.storyboard in Resources */,
 				A0A1A35A2A03DAB800DE4991 /* security-levels.html in Resources */,
 				A0BF51F423AFBF250096624A /* credits.html in Resources */,
@@ -950,10 +967,12 @@
 				A085633A2A04EA1E00A3A7FF /* Localizable.stringsdict in Resources */,
 				A0BF525A23AFC3580096624A /* BrowsingViewController-iPad.xib in Resources */,
 				A0FA965D2A015EBB005EDC3F /* WelcomeViewController.xib in Resources */,
+				A02A09132AD6D17B00A9334C /* OrbotOrBuiltInViewController.xib in Resources */,
 				A0BF525423AFC3580096624A /* BrowsingViewController.xib in Resources */,
 				A0BF524A23AFC3580096624A /* SecurityPopUpViewController.xib in Resources */,
 				A0BF524923AFC3580096624A /* CircuitNodeCell.xib in Resources */,
 				A043B9522A02897A008025A7 /* PermissionViewController.xib in Resources */,
+				A02A09142AD6E8C000A9334C /* StartTorViewController.xib in Resources */,
 				A0BF526323AFC3580096624A /* BookmarksViewController.xib in Resources */,
 				A0BF51ED23AFBF250096624A /* start.html in Resources */,
 			);
@@ -997,6 +1016,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		70CCEB16D2A53C9C6667F80E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-OnionBrowser/Pods-OnionBrowser-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/IPtProxyUI/IPtProxyUI.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IPtProxyUI.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OnionBrowser/Pods-OnionBrowser-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		75010C1DF4431D7C131B801C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1010,8 +1047,10 @@
 				"${BUILT_PRODUCTS_DIR}/ImageRow/ImageRow.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/OrbotKit/OrbotKit.framework",
+				"${BUILT_PRODUCTS_DIR}/ProgressHUD/ProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SDCAlertView/SDCAlertView.framework",
 				"${BUILT_PRODUCTS_DIR}/TUSafariActivity/TUSafariActivity.framework",
+				"${BUILT_PRODUCTS_DIR}/Tor/Tor.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1021,8 +1060,10 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ImageRow.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OrbotKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDCAlertView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TUSafariActivity.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Tor.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1131,9 +1172,11 @@
 				A02885802893FA23007D5AE8 /* WebsiteStorage.swift in Sources */,
 				A0BF525F23AFC3580096624A /* BrowsingViewController+UITextFieldDelegate.swift in Sources */,
 				69CBCD521E9347B8009D5352 /* UIResponder+FirstResponder.m in Sources */,
+				A09F7ADD2AD80A1A00F7072F /* TorCircuit+Helper.swift in Sources */,
 				A0BF526023AFC3580096624A /* BrowsingViewController+Toolbar.swift in Sources */,
 				A004FB2A241A782500451A9E /* SecureEnclave.swift in Sources */,
 				01F2AE391B7FEF5E00D5651A /* SSLCertificate.m in Sources */,
+				A02A09122AD6CAF000A9334C /* StartTorViewController.swift in Sources */,
 				A0BF527623AFC3580096624A /* OrbotManager.swift in Sources */,
 				A0D9008B24095F5C0046C9B3 /* AltSvcHeader.swift in Sources */,
 				A0BF527223AFC3580096624A /* SettingsViewController.swift in Sources */,
@@ -1154,6 +1197,7 @@
 				A0BF528223AFC3580096624A /* String+Helpers.swift in Sources */,
 				A0172C70288824BD008D42CD /* FixedFormViewController.swift in Sources */,
 				A0A83AC228A14CAB005C15C9 /* Tab+WKScriptMessageHandler.swift in Sources */,
+				A02A09082AD6B92800A9334C /* TorManager.swift in Sources */,
 				A0E8E8B12938CDFB00DC2A2F /* SearchEnginesViewController.swift in Sources */,
 				A0BF525E23AFC3580096624A /* BrowsingViewController+Tabs.swift in Sources */,
 				A0BF525223AFC3580096624A /* BrowsingViewController.swift in Sources */,
@@ -1166,7 +1210,7 @@
 				A0BF527023AFC3580096624A /* HostSettings.swift in Sources */,
 				A0BF527D23AFC3580096624A /* SearchableTableViewController.swift in Sources */,
 				A043B9532A02897A008025A7 /* PermissionViewController.swift in Sources */,
-				A043B9572A029FC3008025A7 /* StartViewController.swift in Sources */,
+				A043B9572A029FC3008025A7 /* StartOrbotViewController.swift in Sources */,
 				A0BF527323AFC3580096624A /* AddSiteViewController.swift in Sources */,
 				A0BF527423AFC3580096624A /* DonationViewController.swift in Sources */,
 				A0BF526223AFC3580096624A /* FavIconRow.swift in Sources */,
@@ -1187,6 +1231,7 @@
 				01F7CB4E1A52FC4E00F42B73 /* NSString+IPAddress.m in Sources */,
 				A0BF525B23AFC3580096624A /* Tab+Gestures.swift in Sources */,
 				A0FA96622A0161DA005EDC3F /* InstallViewController.swift in Sources */,
+				A02A090F2AD6BA9600A9334C /* OrbotOrBuiltInViewController.swift in Sources */,
 				A0BF527B23AFC3580096624A /* Formatter.swift in Sources */,
 				A0BF524B23AFC3580096624A /* CircuitNodeCell.swift in Sources */,
 				A003A1932A0D1628008D8845 /* SceneDelegate.swift in Sources */,

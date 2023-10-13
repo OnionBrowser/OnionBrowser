@@ -9,6 +9,7 @@
 //
 
 import UIKit
+import IPtProxyUI
 
 struct SearchEngine: Equatable {
 
@@ -125,7 +126,7 @@ enum TabSecurityLevel: String, CustomStringConvertible {
 
 
 @objcMembers
-class Settings: NSObject {
+class Settings: IPtProxyUI.Settings {
 
 	private static let transportTranslationTable = [
 		// Type .none is identical in IPtProxyUI and OnionBrowser.
@@ -402,6 +403,19 @@ class Settings: NSObject {
 		}
 		set {
 			UserDefaults.standard.set(newValue, forKey: "orbot_was_already_installed")
+		}
+	}
+
+	class var useBuiltInTor: Bool? {
+		get {
+			if UserDefaults.standard.object(forKey: "use_builtin_tor") == nil {
+				return nil
+			}
+
+			return UserDefaults.standard.bool(forKey: "use_builtin_tor")
+		}
+		set {
+			UserDefaults.standard.setValue(newValue, forKey: "use_builtin_tor")
 		}
 	}
 

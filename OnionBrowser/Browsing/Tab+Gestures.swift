@@ -13,6 +13,10 @@ import Foundation
 extension Tab {
 
 	func setupGestureRecognizers() {
+		guard let webView = webView else {
+			return
+		}
+
 		let isRtl = UIView.userInterfaceLayoutDirection(for: webView.semanticContentAttribute) == .rightToLeft
 
 		// Swipe to go back one page.
@@ -27,7 +31,13 @@ extension Tab {
 
 		// Pull down to refresh.
 		refresher.addTarget(self, action: #selector(refresherTriggered), for: .valueChanged)
-		scrollView.addSubview(refresher)
+		scrollView?.addSubview(refresher)
+	}
+
+	func removeGestureRecognizers() {
+		for gr in webView?.gestureRecognizers ?? [] {
+			webView?.removeGestureRecognizer(gr)
+		}
 	}
 
 

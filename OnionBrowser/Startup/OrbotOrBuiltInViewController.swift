@@ -1,8 +1,8 @@
 //
-//  InstallViewController.swift
+//  OrbotOrBuiltInViewController.swift
 //  OnionBrowser
 //
-//  Created by Benjamin Erhart on 02.05.23.
+//  Created by Benjamin Erhart on 11.10.23.
 //  Copyright © 2023 Tigas Ventures, LLC (Mike Tigas)
 //
 //  This file is part of Onion Browser. See LICENSE file for redistribution terms.
@@ -11,12 +11,12 @@
 import UIKit
 import OrbotKit
 
-class InstallViewController: UIViewController, WhyDelegate {
+class OrbotOrBuiltInViewController: UIViewController, WhyDelegate {
 
 	@IBOutlet weak var titleLb: UILabel! {
 		didSet {
 			titleLb.text = String(format: NSLocalizedString(
-				"Install %@", comment: "Placeholder is 'Orbot'"), OrbotKit.orbotName)
+				"%@ or built-in Tor", comment: "Placeholder is 'Orbot'"), OrbotKit.orbotName)
 		}
 	}
 
@@ -24,16 +24,22 @@ class InstallViewController: UIViewController, WhyDelegate {
 		didSet {
 			bodyLb.text = String(
 				format: NSLocalizedString(
-					"%1$@ relies on %2$@ for a secure connection to Tor. Install the %2$@ app to continue.",
+					"%1$@ can either rely on %2$@ for a secure connection to Tor or run its own built-in Tor. The built-in Tor has security problems.",
 					comment: "Placeholder 1 is 'Onion Browser', placeholder 2 is 'Orbot'"),
 				Bundle.main.displayName,
 				OrbotKit.orbotName)
 		}
 	}
 
-	@IBOutlet weak var getOrbotBt: UIButton! {
+	@IBOutlet weak var useOrbotBt: UIButton! {
 		didSet {
-			getOrbotBt.setTitle(buttonTitle1)
+			useOrbotBt.setTitle(buttonTitle1)
+		}
+	}
+
+	@IBOutlet weak var useBuiltInTor: UIButton! {
+		didSet {
+			useBuiltInTor.setTitle(buttonTitle2)
 		}
 	}
 
@@ -54,26 +60,28 @@ class InstallViewController: UIViewController, WhyDelegate {
 	// MARK: WhyDelegate
 
 	var buttonTitle1: String {
-		String(format: NSLocalizedString("Get %@", comment: "Placeholder is 'Orbot'"), OrbotKit.orbotName)
+		String(format: NSLocalizedString("Use %@", comment: "Placeholder is 'Orbot'"), OrbotKit.orbotName)
 	}
 
 	var buttonTitle2: String? {
-		nil
+		NSLocalizedString("Use built-in Tor", comment: "")
 	}
 
 	func run(useBuiltInTor: Bool) {
-		action()
+		Settings.useBuiltInTor = useBuiltInTor
+
+		view.sceneDelegate?.show(OrbotManager.shared.checkStatus())
 	}
 
 
 	// MARK: Actions
 
-	@IBAction
-	func action() {
-		UIApplication.shared.open(OrbotKit.appStoreLink)
-	}
+    @IBAction 
+	func action(_ sender: UIButton) {
+		run(useBuiltInTor: sender == useBuiltInTor)
+    }
 
-	@IBAction
+    @IBAction
 	func why() {
 		present(WhyViewController.instantiate(self))
 	}

@@ -93,7 +93,7 @@ class PermissionViewController: UIViewController, WhyDelegate {
 
 	@IBOutlet weak var requestAccessBt: UIButton! {
 		didSet {
-			requestAccessBt.setTitle(buttonTitle)
+			requestAccessBt.setTitle(buttonTitle1)
 		}
 	}
 
@@ -151,8 +151,16 @@ class PermissionViewController: UIViewController, WhyDelegate {
 
 	// MARK: WhyDelegate
 
-	var buttonTitle: String {
+	var buttonTitle1: String {
 		NSLocalizedString("Request Access", comment: "")
+	}
+
+	var buttonTitle2: String? {
+		nil
+	}
+
+	func run(useBuiltInTor: Bool) {
+		action()
 	}
 
 

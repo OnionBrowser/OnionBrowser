@@ -10,7 +10,7 @@
 
 import UIKit
 import AVFoundation
-import Network
+import IPtProxyUI
 
 @UIApplicationMain
 class AppDelegate: NSObject, UIApplicationDelegate {
@@ -62,8 +62,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 	var firstScene = true
 
-	var torSocks5: NWEndpoint?
-
 
 	// MARK: UIApplicationDelegate
 
@@ -74,22 +72,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 		DownloadHelper.purge()
 
-//		TorManager.shared.start(.none) { progress in
-//			print("[\(String(describing: type(of: self)))] progress=\(progress ?? -1)")
-//		} _: { error, socksAddr in
-//			guard error == nil,
-//				  let parts = socksAddr?.split(separator: ":"),
-//				  let host = parts.first,
-//				  let host = IPv4Address(String(host)),
-//				  let port = parts.last,
-//				  let port = NWEndpoint.Port(String(port))
-//			else {
-//				print("[\(String(describing: type(of: self)))] error=\(error ?? TorManager.Errors.noSocksAddr)")
-//				return
-//			}
-//
-//			self.torSocks5 = .hostPort(host: NWEndpoint.Host.ipv4(host), port: port)
-//		}
+		Settings.stateLocation = FileManager.default.ptDir!
 
 		return true
 	}
@@ -120,6 +103,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 		WebsiteStorage.shared.cleanup()
 
 		DownloadHelper.purge()
+
+		TorManager.shared.stop()
 
 		application.ignoreSnapshotOnNextApplicationLaunch()
 	}

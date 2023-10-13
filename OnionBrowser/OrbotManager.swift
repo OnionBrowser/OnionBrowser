@@ -83,31 +83,63 @@ class OrbotManager : NSObject, OrbotStatusChangeListener {
 			return WelcomeViewController()
 		}
 
+		if #available(iOS 17.0, *) {
+			if let useBuiltinTor = Settings.useBuiltInTor {
+				if useBuiltinTor {
+					// User wants to use built-in Tor.
+
+					if OrbotKit.shared.installed {
+						// But Orbot is installed.
+
+						if !hasOrbotPermission() {
+							// ...and we cannot access it. That needs to change.
+
+							let vc = PermissionViewController()
+							vc.error = lastError
+
+							return vc
+						}
+
+						// NOTE: lastInfo should be filled as a side effect of `hasOrbotPermission()`!
+						if lastInfo?.status != .stopped {
+							if lastInfo?.onionOnly ?? false {
+								// Uh-oh. No onion-only mode allowed.
+								return StartOrbotViewController()
+							}
+
+							// User has a running Orbot. Just use that.
+							Settings.useBuiltInTor = false
+
+							OrbotKit.shared.notifyOnStatusChanges(self)
+
+							return nil
+						}
+					}
+
+					if TorManager.shared.status == .started {
+						// No Orbot running, but built-in Tor. Also ok.
+						return nil
+					}
+
+					// No Orbot running, no built-in Tor. Let the user start it!
+					return StartTorViewController()
+				}
+
+				// User decided against built-in Tor.
+				// Continue with Orbot flow.
+			}
+			else {
+				// User did not decide, yet.
+
+				return OrbotOrBuiltInViewController()
+			}
+		}
+
 		if !OrbotKit.shared.installed {
 			return InstallViewController()
 		}
 
-		if Settings.orbotApiToken?.isEmpty ?? true
-			|| Settings.orbotApiToken == Settings.orbotAccessDenied
-		{
-			return PermissionViewController()
-		}
-
-		OrbotKit.shared.apiToken = Settings.orbotApiToken
-
-		let group = DispatchGroup()
-		group.enter()
-
-		OrbotKit.shared.info { info, error in
-			self.lastInfo = info
-			self.lastError = error
-
-			group.leave()
-		}
-
-		let result = group.wait(timeout: .now() + 1)
-
-		if result == .timedOut || lastError != nil {
+		if !hasOrbotPermission() {
 			let vc = PermissionViewController()
 			vc.error = lastError
 
@@ -121,12 +153,28 @@ class OrbotManager : NSObject, OrbotStatusChangeListener {
 #endif
 
 		if lastInfo?.status == .stopped || lastInfo?.onionOnly ?? false {
-			return StartViewController()
+			return StartOrbotViewController()
 		}
 
 		OrbotKit.shared.notifyOnStatusChanges(self)
 
 		return nil
+	}
+
+	func allowRequests() -> Bool {
+		if Settings.useBuiltInTor == true, #available(iOS 17.0, *) {
+			return TorManager.shared.status == .started
+		}
+		else {
+#if DEBUG
+			if Self.simulatorIgnoreOrbot {
+				return true
+			}
+#endif
+
+			let status = lastInfo?.status
+			return status == .starting || status == .started
+		}
 	}
 
 
@@ -146,7 +194,7 @@ class OrbotManager : NSObject, OrbotStatusChangeListener {
 				self.fullStop()
 
 				for delegate in AppDelegate.shared?.sceneDelegates ?? [] {
-					delegate.show(StartViewController())
+					delegate.show(self.checkStatus())
 				}
 			}
 			else {
@@ -171,6 +219,30 @@ class OrbotManager : NSObject, OrbotStatusChangeListener {
 
 
 	// MARK: Private Methods
+
+	private func hasOrbotPermission() -> Bool {
+		let token = Settings.orbotApiToken
+
+		if token?.isEmpty ?? true || token == Settings.orbotAccessDenied {
+			return false
+		}
+
+		OrbotKit.shared.apiToken = token
+
+		let group = DispatchGroup()
+		group.enter()
+
+		OrbotKit.shared.info { info, error in
+			self.lastInfo = info
+			self.lastError = error
+
+			group.leave()
+		}
+
+		let result = group.wait(timeout: .now() + 1)
+
+		return result != .timedOut && lastError == nil
+	}
 
 	/**
 	Cancel all connections and re-evalutate Orbot situation and show respective UI.

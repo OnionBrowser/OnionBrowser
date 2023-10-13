@@ -13,9 +13,11 @@ import OrbotKit
 
 protocol WhyDelegate: AnyObject {
 
-	var buttonTitle: String { get }
+	var buttonTitle1: String { get }
 
-	func action()
+	var buttonTitle2: String? { get }
+
+	func run(useBuiltInTor: Bool)
 }
 
 class WhyViewController: UIViewController {
@@ -29,9 +31,9 @@ class WhyViewController: UIViewController {
 
 	weak var delegate: WhyDelegate?
 
-	@IBOutlet weak var titleLb: UILabel! {
+	@IBOutlet weak var title1Lb: UILabel! {
 		didSet {
-			titleLb.text = String(
+			title1Lb.text = String(
 				format: NSLocalizedString(
 					"Why %1$@ needs %2$@",
 					comment: "Placeholder 1 is 'Onion Browser', placeholder 2 is 'Orbot'"),
@@ -89,9 +91,62 @@ class WhyViewController: UIViewController {
 		}
 	}
 
-	@IBOutlet weak var button: UIButton! {
+	@IBOutlet weak var button1: UIButton! {
 		didSet {
-			button.setTitle(delegate?.buttonTitle)
+			button1.setTitle(delegate?.buttonTitle1)
+		}
+	}
+
+	@IBOutlet weak var title2Lb: UILabel! {
+		didSet {
+			eventuallyHide(title2Lb)
+			title2Lb.text = NSLocalizedString("Reasons to use the built-in Tor (iOS 17 only)", comment: "")
+		}
+	}
+
+	@IBOutlet weak var body8Lb: UILabel! {
+		didSet {
+			eventuallyHide(body8Lb)
+			body8Lb.text = String(format: NSLocalizedString("%1$@ If you have connectivity issues with %2$@", comment: "Placeholder 1 is bullet point, placeholder 2 is 'Orbot'"), "•", OrbotKit.orbotName)
+		}
+	}
+
+	@IBOutlet weak var body9Lb: UILabel! {
+		didSet {
+			eventuallyHide(body9Lb)
+			body9Lb.text = String(format: NSLocalizedString("%1$@ if you want to use %2$@ over another VPN", comment: "Placeholder 1 is bullet point, Placeholder 2 is 'Onion Browser'"), "•", Bundle.main.displayName)
+		}
+	}
+
+	@IBOutlet weak var body10Lb: UILabel! {
+		didSet {
+			eventuallyHide(body10Lb)
+			body10Lb.text = NSLocalizedString("Drawbacks:", comment: "")
+		}
+	}
+
+	@IBOutlet weak var body11Lb: UILabel! {
+		didSet {
+			eventuallyHide(body11Lb)
+			body11Lb.text = String(format: NSLocalizedString(
+				"%@ video and audio streams don't go through Tor and might get blocked",
+				comment: "Placeholder is bullet point"), "•")
+		}
+	}
+
+	@IBOutlet weak var body12Lb: UILabel! {
+		didSet {
+			eventuallyHide(body12Lb)
+			body12Lb.text = String(format: NSLocalizedString(
+				"%@ Websites can uncover your real IP address using JavaScript",
+				comment: "Placeholder is bullet point"), "•")
+		}
+	}
+
+	@IBOutlet weak var button2: UIButton! {
+		didSet {
+			eventuallyHide(button2)
+			button2.setTitle(delegate?.buttonTitle2)
 		}
 	}
 
@@ -104,14 +159,29 @@ class WhyViewController: UIViewController {
 	}
 
 	@IBAction
-	func action() {
+	func action(_ sender: UIButton) {
 		dismiss(animated: true) {
-			self.delegate?.action()
+			self.delegate?.run(useBuiltInTor: sender == self.button2)
 		}
 	}
 
 	@objc
 	func close() {
 		dismiss(animated: true)
+	}
+
+
+	private func eventuallyHide(_ view: UIView) {
+		if #available(iOS 17.0, *) {
+			guard delegate?.buttonTitle2?.isEmpty ?? true else {
+				return
+			}
+		}
+
+		view.isHidden = true
+
+		view.constraints.forEach { $0.isActive = false }
+
+		view.heightAnchor.constraint(equalToConstant: 0).isActive = true
 	}
 }

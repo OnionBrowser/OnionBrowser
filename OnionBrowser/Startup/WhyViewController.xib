@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_0" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_72" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -12,6 +12,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WhyViewController" customModule="OnionBrowser" customModuleProvider="target">
             <connections>
+                <outlet property="body10Lb" destination="zQa-4n-1ht" id="9DJ-52-dEQ"/>
+                <outlet property="body11Lb" destination="1re-7a-aih" id="v7F-cM-y9q"/>
+                <outlet property="body12Lb" destination="efO-1f-M1z" id="9Z6-LO-x0o"/>
                 <outlet property="body1Lb" destination="JiZ-ny-5Lj" id="BcZ-yb-byy"/>
                 <outlet property="body2Lb" destination="0vv-ru-inL" id="GFb-he-JxG"/>
                 <outlet property="body3Lb" destination="8jn-aO-y8q" id="kEI-U2-pOD"/>
@@ -19,27 +22,31 @@
                 <outlet property="body5Lb" destination="0Ge-41-vXS" id="FMR-ln-Bsz"/>
                 <outlet property="body6Lb" destination="nFa-bJ-6Py" id="f5A-qm-NCE"/>
                 <outlet property="body7Lb" destination="jPU-ZR-u7d" id="h8b-0r-x1X"/>
-                <outlet property="button" destination="LKJ-Kz-eqW" id="ZVn-w7-4e3"/>
-                <outlet property="titleLb" destination="tGw-9l-gi9" id="Dae-Xx-nBx"/>
+                <outlet property="body8Lb" destination="Z7q-s0-DY8" id="UeF-M0-3vI"/>
+                <outlet property="body9Lb" destination="fEk-zh-gS8" id="zb2-H6-teM"/>
+                <outlet property="button1" destination="LKJ-Kz-eqW" id="ZVn-w7-4e3"/>
+                <outlet property="button2" destination="w6I-PL-TEy" id="rGC-PS-7Wz"/>
+                <outlet property="title1Lb" destination="tGw-9l-gi9" id="Dae-Xx-nBx"/>
+                <outlet property="title2Lb" destination="l1o-3m-Zog" id="8w4-ge-CXf"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aXl-of-5Fo">
-                    <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                    <rect key="frame" x="0.0" y="59" width="430" height="839"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QhA-k7-OTj">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="588.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="430" height="947.33333333333337"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4dY-5A-efk">
-                                    <rect key="frame" x="16" y="20" width="288" height="64"/>
+                                    <rect key="frame" x="16" y="20" width="398" height="64"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-onion-browser" translatesAutoresizingMaskIntoConstraints="NO" id="FmA-Aw-nI6">
-                                            <rect key="frame" x="61.5" y="0.0" width="64" height="64"/>
+                                            <rect key="frame" x="116.66666666666666" y="0.0" width="64" height="64"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="FmA-Aw-nI6" secondAttribute="height" multiplier="1:1" id="RX9-g2-TR4"/>
                                                 <constraint firstAttribute="width" constant="64" id="aBb-lz-iOu"/>
@@ -51,13 +58,13 @@
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2lV-Mt-g1p">
-                                            <rect key="frame" x="133.5" y="11.5" width="21" height="41"/>
+                                            <rect key="frame" x="188.66666666666666" y="11.666666666666671" width="21" height="41"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-orbot" translatesAutoresizingMaskIntoConstraints="NO" id="OMf-TS-Xud">
-                                            <rect key="frame" x="154.5" y="-8" width="80" height="80"/>
+                                            <rect key="frame" x="209.66666666666666" y="-8" width="79.999999999999972" height="80"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="80" id="OyU-pl-PnL"/>
                                                 <constraint firstAttribute="width" secondItem="OMf-TS-Xud" secondAttribute="height" multiplier="1:1" id="l94-PJ-OLb"/>
@@ -75,56 +82,56 @@
                                         <constraint firstItem="2lV-Mt-g1p" firstAttribute="leading" secondItem="FmA-Aw-nI6" secondAttribute="trailing" constant="8" id="z1c-B0-Gpc"/>
                                     </constraints>
                                 </view>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Why Onion Browser needs Orbot" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tGw-9l-gi9">
-                                    <rect key="frame" x="16" y="100" width="288" height="41"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Why Onion Browser needs Orbot" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tGw-9l-gi9">
+                                    <rect key="frame" x="20" y="100" width="390" height="81.666666666666686"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="So that you can do more with Tor on iOS! In %1$@, %2$@ improves the browsing experience with:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JiZ-ny-5Lj">
-                                    <rect key="frame" x="16" y="157" width="288" height="64.5"/>
+                                    <rect key="frame" x="16" y="197.66666666666669" width="398" height="42.333333333333343"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%@ a little more speed" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0vv-ru-inL">
-                                    <rect key="frame" x="20" y="229.5" width="280" height="20.5"/>
+                                    <rect key="frame" x="20" y="248.00000000000003" width="390" height="20.333333333333343"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%@ new standards" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8jn-aO-y8q">
-                                    <rect key="frame" x="20" y="258" width="280" height="20.5"/>
+                                    <rect key="frame" x="20" y="276.33333333333331" width="390" height="20.333333333333314"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%@ video and audio streaming" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IH2-nw-Wgh">
-                                    <rect key="frame" x="20" y="286.5" width="280" height="20.5"/>
+                                    <rect key="frame" x="20" y="304.66666666666669" width="390" height="20.333333333333314"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%@ more protection from IP leaks" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ge-41-vXS">
-                                    <rect key="frame" x="20" y="315" width="280" height="20.5"/>
+                                    <rect key="frame" x="20" y="333" width="390" height="20.333333333333314"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%@ alone provides a VPN proxy. It will hide apps from network monitoring and give you access when they are blocked." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nFa-bJ-6Py">
-                                    <rect key="frame" x="20" y="351.5" width="280" height="86.5"/>
+                                    <rect key="frame" x="20" y="369.33333333333331" width="390" height="64.333333333333314"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Both are free to use. Free of tracking. Code is open source." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jPU-ZR-u7d">
-                                    <rect key="frame" x="20" y="454" width="280" height="42.5"/>
+                                    <rect key="frame" x="20" y="449.66666666666669" width="390" height="42.333333333333314"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" role="primary" translatesAutoresizingMaskIntoConstraints="NO" id="LKJ-Kz-eqW">
-                                    <rect key="frame" x="96" y="528.5" width="128" height="40"/>
+                                    <rect key="frame" x="151" y="524" width="128" height="40"/>
                                     <constraints>
                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="128" id="7Uz-Zk-1vU"/>
                                         <constraint firstAttribute="height" constant="40" id="OzD-E8-bM3"/>
@@ -138,29 +145,99 @@
                                         <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </buttonConfiguration>
                                     <connections>
-                                        <action selector="action" destination="-1" eventType="touchUpInside" id="S0V-XQ-9Ie"/>
+                                        <action selector="action:" destination="-1" eventType="touchUpInside" id="W0V-ps-e4Q"/>
+                                    </connections>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reasons to use the built-in Tor (iOS 17 only)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l1o-3m-Zog">
+                                    <rect key="frame" x="20" y="580" width="390" height="81.666666666666629"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%1$@ If you have connectivity issues with %2$@" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z7q-s0-DY8">
+                                    <rect key="frame" x="20" y="677.66666666666663" width="390" height="20.333333333333371"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%1$@ if you want to use %2$@ over another VPN" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fEk-zh-gS8">
+                                    <rect key="frame" x="20" y="706" width="390" height="20.333333333333371"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Drawbacks:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zQa-4n-1ht">
+                                    <rect key="frame" x="20" y="734.33333333333337" width="390" height="20.333333333333371"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%@ video and audio streams don't go through Tor and might get blocked" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1re-7a-aih">
+                                    <rect key="frame" x="20" y="762.66666666666663" width="390" height="42.333333333333371"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%@ Websites can uncover your real IP address using JavaScript" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="efO-1f-M1z">
+                                    <rect key="frame" x="20" y="813" width="390" height="42.333333333333371"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" role="primary" translatesAutoresizingMaskIntoConstraints="NO" id="w6I-PL-TEy">
+                                    <rect key="frame" x="138" y="887.33333333333337" width="154.33333333333337" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="128" id="ALq-t6-hzy"/>
+                                        <constraint firstAttribute="height" constant="40" id="yTk-54-lOe"/>
+                                    </constraints>
+                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" title="Start built-in Tor">
+                                        <backgroundConfiguration key="background">
+                                            <color key="backgroundColor" name="Accent"/>
+                                        </backgroundConfiguration>
+                                        <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </buttonConfiguration>
+                                    <connections>
+                                        <action selector="action:" destination="-1" eventType="touchUpInside" id="KrP-Mh-ogP"/>
                                     </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
-                                <constraint firstAttribute="trailing" secondItem="tGw-9l-gi9" secondAttribute="trailing" constant="16" id="2tf-7x-z7y"/>
+                                <constraint firstItem="1re-7a-aih" firstAttribute="leading" secondItem="QhA-k7-OTj" secondAttribute="leading" constant="20" symbolic="YES" id="0Fw-ZJ-Wnr"/>
+                                <constraint firstItem="l1o-3m-Zog" firstAttribute="top" secondItem="LKJ-Kz-eqW" secondAttribute="bottom" constant="16" id="1X1-0q-mBl"/>
+                                <constraint firstItem="l1o-3m-Zog" firstAttribute="leading" secondItem="QhA-k7-OTj" secondAttribute="leading" constant="20" symbolic="YES" id="26v-AC-7ek"/>
+                                <constraint firstAttribute="trailing" secondItem="tGw-9l-gi9" secondAttribute="trailing" constant="20" symbolic="YES" id="2tf-7x-z7y"/>
+                                <constraint firstAttribute="trailing" secondItem="efO-1f-M1z" secondAttribute="trailing" constant="20" symbolic="YES" id="3Te-ue-pkr"/>
+                                <constraint firstItem="zQa-4n-1ht" firstAttribute="leading" secondItem="QhA-k7-OTj" secondAttribute="leading" constant="20" symbolic="YES" id="3gN-Mc-UFU"/>
+                                <constraint firstAttribute="trailing" secondItem="fEk-zh-gS8" secondAttribute="trailing" constant="20" symbolic="YES" id="5Gm-sF-aAv"/>
+                                <constraint firstItem="efO-1f-M1z" firstAttribute="leading" secondItem="QhA-k7-OTj" secondAttribute="leading" constant="20" symbolic="YES" id="66x-88-thP"/>
                                 <constraint firstItem="LKJ-Kz-eqW" firstAttribute="top" secondItem="jPU-ZR-u7d" secondAttribute="bottom" constant="32" id="73s-y2-HBm"/>
                                 <constraint firstItem="8jn-aO-y8q" firstAttribute="top" secondItem="0vv-ru-inL" secondAttribute="bottom" constant="8" symbolic="YES" id="83j-ky-WSA"/>
+                                <constraint firstItem="efO-1f-M1z" firstAttribute="top" secondItem="1re-7a-aih" secondAttribute="bottom" constant="8" symbolic="YES" id="8I3-IR-MQD"/>
                                 <constraint firstAttribute="trailing" secondItem="4dY-5A-efk" secondAttribute="trailing" constant="16" id="9fQ-eG-wWh"/>
                                 <constraint firstItem="0Ge-41-vXS" firstAttribute="top" secondItem="IH2-nw-Wgh" secondAttribute="bottom" constant="8" symbolic="YES" id="BAN-6g-dqk"/>
                                 <constraint firstItem="nFa-bJ-6Py" firstAttribute="top" secondItem="0Ge-41-vXS" secondAttribute="bottom" constant="16" id="EC9-gY-aIe"/>
                                 <constraint firstItem="LKJ-Kz-eqW" firstAttribute="centerX" secondItem="QhA-k7-OTj" secondAttribute="centerX" id="FFp-ur-cSs"/>
-                                <constraint firstAttribute="bottom" secondItem="LKJ-Kz-eqW" secondAttribute="bottom" constant="20" symbolic="YES" id="Iny-pY-XCA"/>
+                                <constraint firstAttribute="trailing" secondItem="l1o-3m-Zog" secondAttribute="trailing" constant="20" symbolic="YES" id="IYx-Gl-rBc"/>
+                                <constraint firstAttribute="trailing" secondItem="1re-7a-aih" secondAttribute="trailing" constant="20" symbolic="YES" id="IaN-BB-d3F"/>
+                                <constraint firstItem="fEk-zh-gS8" firstAttribute="top" secondItem="Z7q-s0-DY8" secondAttribute="bottom" constant="8" symbolic="YES" id="J6O-wT-XMO"/>
+                                <constraint firstAttribute="bottom" secondItem="w6I-PL-TEy" secondAttribute="bottom" constant="20" symbolic="YES" id="KOC-CT-ZfE"/>
+                                <constraint firstItem="Z7q-s0-DY8" firstAttribute="leading" secondItem="QhA-k7-OTj" secondAttribute="leading" constant="20" symbolic="YES" id="Ke5-S6-8cT"/>
                                 <constraint firstAttribute="trailing" secondItem="jPU-ZR-u7d" secondAttribute="trailing" constant="20" symbolic="YES" id="LGD-FS-KCp"/>
+                                <constraint firstItem="Z7q-s0-DY8" firstAttribute="top" secondItem="l1o-3m-Zog" secondAttribute="bottom" constant="16" id="MTP-V4-Zp0"/>
                                 <constraint firstItem="jPU-ZR-u7d" firstAttribute="top" secondItem="nFa-bJ-6Py" secondAttribute="bottom" constant="16" id="MVc-8W-ghh"/>
+                                <constraint firstAttribute="trailing" secondItem="Z7q-s0-DY8" secondAttribute="trailing" constant="20" symbolic="YES" id="NDL-S9-qlK"/>
                                 <constraint firstAttribute="trailing" secondItem="0vv-ru-inL" secondAttribute="trailing" constant="20" symbolic="YES" id="Nr2-iM-cNm"/>
                                 <constraint firstItem="8jn-aO-y8q" firstAttribute="leading" secondItem="QhA-k7-OTj" secondAttribute="leading" constant="20" symbolic="YES" id="Osr-VQ-tlO"/>
                                 <constraint firstItem="0vv-ru-inL" firstAttribute="top" secondItem="JiZ-ny-5Lj" secondAttribute="bottom" constant="8" symbolic="YES" id="TUZ-sh-nqS"/>
+                                <constraint firstItem="w6I-PL-TEy" firstAttribute="top" secondItem="efO-1f-M1z" secondAttribute="bottom" constant="32" id="ThK-OH-ctt"/>
                                 <constraint firstAttribute="trailing" secondItem="0Ge-41-vXS" secondAttribute="trailing" constant="20" symbolic="YES" id="WIV-90-9JI"/>
                                 <constraint firstItem="4dY-5A-efk" firstAttribute="top" secondItem="QhA-k7-OTj" secondAttribute="top" constant="20" symbolic="YES" id="XKa-tz-zkG"/>
                                 <constraint firstItem="4dY-5A-efk" firstAttribute="leading" secondItem="QhA-k7-OTj" secondAttribute="leading" constant="16" id="Y8n-9f-GWS"/>
                                 <constraint firstItem="0vv-ru-inL" firstAttribute="leading" secondItem="QhA-k7-OTj" secondAttribute="leading" constant="20" symbolic="YES" id="YNf-aD-ZAX"/>
+                                <constraint firstItem="1re-7a-aih" firstAttribute="top" secondItem="zQa-4n-1ht" secondAttribute="bottom" constant="8" symbolic="YES" id="buA-c1-LIy"/>
                                 <constraint firstItem="0Ge-41-vXS" firstAttribute="leading" secondItem="QhA-k7-OTj" secondAttribute="leading" constant="20" symbolic="YES" id="cbe-jo-ZkR"/>
                                 <constraint firstAttribute="trailing" secondItem="JiZ-ny-5Lj" secondAttribute="trailing" constant="16" id="exb-pm-INC"/>
                                 <constraint firstItem="jPU-ZR-u7d" firstAttribute="leading" secondItem="QhA-k7-OTj" secondAttribute="leading" constant="20" symbolic="YES" id="fyG-GR-IoV"/>
@@ -168,9 +245,13 @@
                                 <constraint firstItem="tGw-9l-gi9" firstAttribute="top" secondItem="4dY-5A-efk" secondAttribute="bottom" constant="16" id="ip5-6P-Kyp"/>
                                 <constraint firstAttribute="trailing" secondItem="8jn-aO-y8q" secondAttribute="trailing" constant="20" symbolic="YES" id="kiN-Km-9nE"/>
                                 <constraint firstItem="nFa-bJ-6Py" firstAttribute="leading" secondItem="QhA-k7-OTj" secondAttribute="leading" constant="20" symbolic="YES" id="nYU-kQ-hvB"/>
-                                <constraint firstItem="tGw-9l-gi9" firstAttribute="leading" secondItem="QhA-k7-OTj" secondAttribute="leading" constant="16" id="na2-QL-ZMP"/>
+                                <constraint firstItem="tGw-9l-gi9" firstAttribute="leading" secondItem="QhA-k7-OTj" secondAttribute="leading" constant="20" symbolic="YES" id="na2-QL-ZMP"/>
+                                <constraint firstItem="w6I-PL-TEy" firstAttribute="centerX" secondItem="QhA-k7-OTj" secondAttribute="centerX" id="pnI-ir-ksv"/>
                                 <constraint firstAttribute="trailing" secondItem="nFa-bJ-6Py" secondAttribute="trailing" constant="20" symbolic="YES" id="q5q-Rb-1a8"/>
                                 <constraint firstAttribute="trailing" secondItem="IH2-nw-Wgh" secondAttribute="trailing" constant="20" symbolic="YES" id="qU3-13-dbr"/>
+                                <constraint firstItem="fEk-zh-gS8" firstAttribute="leading" secondItem="QhA-k7-OTj" secondAttribute="leading" constant="20" symbolic="YES" id="sl9-Mc-vtW"/>
+                                <constraint firstItem="zQa-4n-1ht" firstAttribute="top" secondItem="fEk-zh-gS8" secondAttribute="bottom" constant="8" symbolic="YES" id="uum-fn-ReK"/>
+                                <constraint firstAttribute="trailing" secondItem="zQa-4n-1ht" secondAttribute="trailing" constant="20" symbolic="YES" id="ux7-xx-kR0"/>
                                 <constraint firstItem="JiZ-ny-5Lj" firstAttribute="top" secondItem="tGw-9l-gi9" secondAttribute="bottom" constant="16" id="vHe-yu-Uf7"/>
                                 <constraint firstItem="JiZ-ny-5Lj" firstAttribute="leading" secondItem="QhA-k7-OTj" secondAttribute="leading" constant="16" id="x0C-th-PZm"/>
                                 <constraint firstItem="IH2-nw-Wgh" firstAttribute="top" secondItem="8jn-aO-y8q" secondAttribute="bottom" constant="8" symbolic="YES" id="yN9-dA-diI"/>
@@ -200,8 +281,8 @@
         </view>
     </objects>
     <resources>
-        <image name="icon-onion-browser" width="64" height="64"/>
-        <image name="icon-orbot" width="64" height="64"/>
+        <image name="icon-onion-browser" width="85.333335876464844" height="85.333335876464844"/>
+        <image name="icon-orbot" width="85.333335876464844" height="85.333335876464844"/>
         <namedColor name="Accent">
             <color red="0.24699999392032623" green="0.16899999976158142" blue="0.31000000238418579" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

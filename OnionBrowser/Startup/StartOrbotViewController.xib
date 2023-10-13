@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StartViewController" customModule="OnionBrowser" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StartOrbotViewController" customModule="OnionBrowser" customModuleProvider="target">
             <connections>
                 <outlet property="bodyLb" destination="EJ7-sA-2Uv" id="Bne-Ti-mNO"/>
-                <outlet property="startTorBt" destination="7KW-SG-qx1" id="kVb-x2-loN"/>
+                <outlet property="startBuiltInTorBt" destination="qMu-qx-R6K" id="6fl-nH-2nD"/>
+                <outlet property="startOrbotBt" destination="8Pv-Mj-edr" id="Z1f-j7-KAG"/>
                 <outlet property="titleLb" destination="hwR-Pv-mPu" id="Ouf-gA-tDx"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="whyBt" destination="NXW-fV-jtm" id="Cfu-ji-wRS"/>
@@ -60,24 +61,57 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" role="primary" translatesAutoresizingMaskIntoConstraints="NO" id="7KW-SG-qx1">
-                                    <rect key="frame" x="96" y="253.5" width="128" height="40"/>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Avn-xo-xFr">
+                                    <rect key="frame" x="14.5" y="253.5" width="291" height="40"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" role="primary" translatesAutoresizingMaskIntoConstraints="NO" id="8Pv-Mj-edr">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="128" id="Cpv-Mg-U4d"/>
+                                                <constraint firstAttribute="height" constant="40" id="Dmc-9A-a2D"/>
+                                            </constraints>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" title="Start Orbot">
+                                                <backgroundConfiguration key="background">
+                                                    <color key="backgroundColor" name="Accent"/>
+                                                </backgroundConfiguration>
+                                                <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </buttonConfiguration>
+                                            <connections>
+                                                <action selector="action:" destination="-1" eventType="touchUpInside" id="2Ps-sc-VyB"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" role="primary" translatesAutoresizingMaskIntoConstraints="NO" id="qMu-qx-R6K">
+                                            <rect key="frame" x="136" y="0.0" width="155" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="128" id="CeL-Hy-LBq"/>
+                                                <constraint firstAttribute="height" constant="40" id="sfe-UO-H4c"/>
+                                            </constraints>
+                                            <color key="tintColor" name="Accent"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" title="Use built-In Tor">
+                                                <color key="titleColor" name="Accent"/>
+                                            </state>
+                                            <buttonConfiguration key="configuration" style="plain" title="Start built-in Tor">
+                                                <color key="baseForegroundColor" name="Accent"/>
+                                            </buttonConfiguration>
+                                            <connections>
+                                                <action selector="action:" destination="-1" eventType="touchUpInside" id="2Qg-Me-ddC"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="128" id="ItL-TI-YJg"/>
-                                        <constraint firstAttribute="height" constant="40" id="Tes-c3-FhF"/>
+                                        <constraint firstItem="8Pv-Mj-edr" firstAttribute="top" secondItem="Avn-xo-xFr" secondAttribute="top" id="BfO-gX-2j3"/>
+                                        <constraint firstAttribute="bottom" secondItem="8Pv-Mj-edr" secondAttribute="bottom" id="F42-e4-in8"/>
+                                        <constraint firstAttribute="trailing" secondItem="qMu-qx-R6K" secondAttribute="trailing" id="QXe-w4-o6I"/>
+                                        <constraint firstItem="8Pv-Mj-edr" firstAttribute="leading" secondItem="Avn-xo-xFr" secondAttribute="leading" id="ZXP-7T-Lnj"/>
+                                        <constraint firstAttribute="bottom" secondItem="qMu-qx-R6K" secondAttribute="bottom" id="Zud-oZ-zfn"/>
+                                        <constraint firstItem="qMu-qx-R6K" firstAttribute="top" secondItem="Avn-xo-xFr" secondAttribute="top" id="fdw-cq-oaB"/>
+                                        <constraint firstItem="qMu-qx-R6K" firstAttribute="leading" secondItem="8Pv-Mj-edr" secondAttribute="trailing" constant="8" symbolic="YES" id="x8i-SW-Qwf"/>
                                     </constraints>
-                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain" title="Start Tor">
-                                        <backgroundConfiguration key="background">
-                                            <color key="backgroundColor" name="Accent"/>
-                                        </backgroundConfiguration>
-                                        <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </buttonConfiguration>
-                                    <connections>
-                                        <action selector="action" destination="-1" eventType="touchUpInside" id="z0g-Jg-40X"/>
-                                    </connections>
-                                </button>
+                                </view>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" role="primary" translatesAutoresizingMaskIntoConstraints="NO" id="NXW-fV-jtm">
                                     <rect key="frame" x="96" y="301.5" width="128" height="40"/>
                                     <constraints>
@@ -99,19 +133,18 @@
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
-                                <constraint firstItem="7KW-SG-qx1" firstAttribute="top" secondItem="EJ7-sA-2Uv" secondAttribute="bottom" constant="32" id="1e5-xN-8KE"/>
                                 <constraint firstAttribute="bottom" secondItem="NXW-fV-jtm" secondAttribute="bottom" constant="20" symbolic="YES" id="1lz-4u-Rxj"/>
                                 <constraint firstAttribute="trailing" secondItem="EJ7-sA-2Uv" secondAttribute="trailing" constant="16" id="4u5-Qp-93C"/>
                                 <constraint firstItem="CWD-Ze-r2F" firstAttribute="leading" secondItem="84y-VJ-pf9" secondAttribute="leading" constant="16" id="7Vd-Qr-qFT"/>
+                                <constraint firstItem="Avn-xo-xFr" firstAttribute="centerX" secondItem="84y-VJ-pf9" secondAttribute="centerX" id="JZh-CF-7FJ"/>
                                 <constraint firstAttribute="trailing" secondItem="hwR-Pv-mPu" secondAttribute="trailing" constant="16" id="JbC-td-w4t"/>
                                 <constraint firstItem="EJ7-sA-2Uv" firstAttribute="top" secondItem="hwR-Pv-mPu" secondAttribute="bottom" constant="8" symbolic="YES" id="Jvh-7Q-K0u"/>
                                 <constraint firstAttribute="trailing" secondItem="CWD-Ze-r2F" secondAttribute="trailing" constant="16" id="MN9-rY-7C4"/>
-                                <constraint firstItem="NXW-fV-jtm" firstAttribute="top" secondItem="7KW-SG-qx1" secondAttribute="bottom" constant="8" symbolic="YES" id="OxZ-AC-gVz"/>
+                                <constraint firstItem="NXW-fV-jtm" firstAttribute="top" secondItem="Avn-xo-xFr" secondAttribute="bottom" constant="8" symbolic="YES" id="MmV-PW-8to"/>
                                 <constraint firstItem="hwR-Pv-mPu" firstAttribute="leading" secondItem="84y-VJ-pf9" secondAttribute="leading" constant="16" id="Pnz-nZ-B5K"/>
                                 <constraint firstItem="NXW-fV-jtm" firstAttribute="centerX" secondItem="84y-VJ-pf9" secondAttribute="centerX" id="SBm-LA-f2E"/>
-                                <constraint firstItem="7KW-SG-qx1" firstAttribute="centerX" secondItem="84y-VJ-pf9" secondAttribute="centerX" id="Snl-ZZ-lZe"/>
-                                <constraint firstItem="NXW-fV-jtm" firstAttribute="width" secondItem="7KW-SG-qx1" secondAttribute="width" id="aes-le-evR"/>
                                 <constraint firstItem="EJ7-sA-2Uv" firstAttribute="leading" secondItem="84y-VJ-pf9" secondAttribute="leading" constant="16" id="dUT-vz-hn9"/>
+                                <constraint firstItem="Avn-xo-xFr" firstAttribute="top" secondItem="EJ7-sA-2Uv" secondAttribute="bottom" constant="32" id="gtp-z1-Iif"/>
                                 <constraint firstItem="CWD-Ze-r2F" firstAttribute="top" secondItem="84y-VJ-pf9" secondAttribute="top" constant="64" id="pRi-8o-Rdm"/>
                                 <constraint firstItem="hwR-Pv-mPu" firstAttribute="top" secondItem="CWD-Ze-r2F" secondAttribute="bottom" constant="8" symbolic="YES" id="zbD-Le-XLz"/>
                             </constraints>
@@ -148,7 +181,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray4Color">
-            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

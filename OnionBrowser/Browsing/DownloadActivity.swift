@@ -88,14 +88,14 @@ class DownloadActivity: UIActivity, URLSessionDownloadDelegate {
 
 	override func perform() {
 		guard let url = url,
-			  let tab = tab
+			  let webView = tab?.webView
 		else {
 			return activityDidFinish(false)
 		}
 
 		hud.show(animated: true)
 
-		tab.webView.configuration.websiteDataStore.httpCookieStore.getAllCookies { cookies in
+		webView.configuration.websiteDataStore.httpCookieStore.getAllCookies { cookies in
 
 			let conf = URLSessionConfiguration.ephemeral
 			conf.httpCookieStorage?.setCookies(cookies, for: url, mainDocumentURL: nil)
@@ -123,7 +123,7 @@ class DownloadActivity: UIActivity, URLSessionDownloadDelegate {
 			return completionHandler(.cancelAuthenticationChallenge, nil)
 		}
 
-		tab.webView(tab.webView, didReceive: challenge, completionHandler: completionHandler)
+		tab.handle(challenge: challenge, completionHandler)
 	}
 
 	func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {

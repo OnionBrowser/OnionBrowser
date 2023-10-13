@@ -10,9 +10,12 @@
 
 import UIKit
 import OrbotKit
+import Tor
+import IPtProxyUI
 
 class CircuitViewController: UIViewController, UIPopoverPresentationControllerDelegate,
-UITableViewDataSource, UITableViewDelegate {
+							 UITableViewDataSource, UITableViewDelegate, BridgesConfDelegate 
+{
 
 	struct Node {
 		var title: String
@@ -131,48 +134,126 @@ UITableViewDataSource, UITableViewDelegate {
 	}
 
 
+	// MARK: BridgesConfDelegate
+
+	var transport: IPtProxyUI.Transport {
+		get {
+			Settings.transport
+		}
+		set {
+			Settings.transport = newValue
+		}
+	}
+
+	var customBridges: [String]? {
+		get {
+			Settings.customBridges
+		}
+		set {
+			Settings.customBridges = newValue
+		}
+	}
+
+	func save() {
+		TorManager.shared.updateConfig(Settings.transport)
+	}
+
+
 	// MARK: Actions
 
 	@IBAction func newCircuits() {
-		OrbotManager.shared.closeCircuits(usedCircuits) { [weak self] _ in
+		let completion = { [weak self] (_: Bool) in
 			self?.view.sceneDelegate?.browsingUi.currentTab?.refresh()
 
 			self?.dismiss(animated: true)
 		}
+
+		if Settings.useBuiltInTor == true {
+			TorManager.shared.close(usedCircuits.compactMap({ $0.circuitId }), completion)
+		}
+		else {
+			OrbotManager.shared.closeCircuits(usedCircuits, completion)
+		}
 	}
 
 	@IBAction func showBridgeSelection(_ sender: UIView) {
-		OrbotKit.shared.open(.bridges)
+		if Settings.useBuiltInTor == true {
+			let vc = BridgesConfViewController()
+			vc.delegate = self
+
+			present(UINavigationController(rootViewController: vc))
+		}
+		else {
+			OrbotKit.shared.open(.bridges)
+		}
 	}
 
-
-	// MARK: Private Methods
-
 	private func reloadCircuits() {
+		// TODO: A lot of this needs to move to Tor.framework for better reuse!
+		let completion = { (circuits: [OrbotKit.TorCircuit]) in
+			// Store in-use circuits (identified by having a SOCKS username,
+			// so the user can close them and get fresh ones on #newCircuits.
+			self.usedCircuits = circuits
+
+
+			self.nodes.removeAll()
+
+			self.nodes.append(Node(title: NSLocalizedString("This browser", comment: "")))
+
+			for node in circuits.first?.nodes ?? [] {
+				self.nodes.append(Node(node))
+			}
+			if self.nodes.count > 1 {
+				self.nodes[1].note = NSLocalizedString("Guard", comment: "")
+			}
+
+			self.nodes.append(Node(title: BrowsingViewController.prettyTitle(self.currentUrl)))
+
+			DispatchQueue.main.async {
+				self.tableView.reloadData()
+			}
+		}
+
 		DispatchQueue.global(qos: .userInitiated).async {
-			OrbotManager.shared.getCircuits(host: self.currentUrl?.host) { circuits in
+			let host = self.currentUrl?.host
 
-				// Store in-use circuits (identified by having a SOCKS username,
-				// so the user can close them and get fresh ones on #newCircuits.
-				self.usedCircuits = circuits
+			if Settings.useBuiltInTor == true {
+				TorManager.shared.getCircuits { circuits in
+					var candidates = TorCircuit.filter(circuits)
 
+					if let host = host {
+						var query: String?
 
-				self.nodes.removeAll()
+						let matches = Self.onionAddressRegex?.matches(
+							in: host, options: [],
+							range: NSRange(host.startIndex ..< host.endIndex, in: host))
 
-				self.nodes.append(Node(title: NSLocalizedString("This browser", comment: "")))
+						if matches?.first?.numberOfRanges ?? 0 > 1,
+							let nsRange = matches?.first?.range(at: 1),
+							let range = Range(nsRange, in: host) {
+							query = String(host[range])
+						}
 
-				for node in circuits.first?.nodes ?? [] {
-					self.nodes.append(Node(node))
+						// Circuits used for .onion addresses can be identified by their
+						// rendQuery, which is equal to the "domain".
+						if let query = query {
+							candidates = candidates.filter { circuit in
+								circuit.purpose == TorCircuit.purposeHsClientRend
+								&& circuit.rendQuery == query
+							}
+						}
+						else {
+							candidates = candidates.filter { circuit in
+								circuit.purpose == TorCircuit.purposeGeneral || circuit.purpose == "CONFLUX_LINKED"
+							}
+						}
+					}
+
+					completion(candidates.compactMap({ $0.toOrbotKitType() }))
 				}
-				if self.nodes.count > 1 {
-					self.nodes[1].note = NSLocalizedString("Guard", comment: "")
-				}
-
-				self.nodes.append(Node(title: BrowsingViewController.prettyTitle(self.currentUrl)))
-
-				DispatchQueue.main.async {
-					self.tableView.reloadData()
-				}
+			}
+			else {
+				OrbotManager.shared.getCircuits(host: host, completion)
 			}
 		}
 	}

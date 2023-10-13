@@ -102,7 +102,7 @@ extension Tab: UIActivityItemSource {
 				previewController?.view.layer.render(in: context)
 			}
 			else {
-				webView.layer.render(in: context)
+				webView?.layer.render(in: context)
 			}
 		}
 
