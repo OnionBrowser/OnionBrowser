@@ -2,6 +2,15 @@
 "%1$@ (Disabled: %2$@)" = "%1$@ (Uitgeschakeld: %2$@)";
 
 /* Placeholder 1 is 'Onion Browser', placeholder 2 is 'Orbot' */
+"%1$@ can either rely on %2$@ for a secure connection to Tor or run its own built-in Tor. The built-in Tor has security problems." = "%1$@ can either rely on %2$@ for a secure connection to Tor or run its own built-in Tor. The built-in Tor has security problems.";
+
+/* Placeholder 1 is bullet point, placeholder 2 is 'Orbot' */
+"%1$@ If you have connectivity issues with %2$@" = "%1$@ If you have connectivity issues with %2$@";
+
+/* Placeholder 1 is bullet point, Placeholder 2 is 'Onion Browser' */
+"%1$@ if you want to use %2$@ over another VPN" = "%1$@ if you want to use %2$@ over another VPN";
+
+/* Placeholder 1 is 'Onion Browser', placeholder 2 is 'Orbot' */
 "%1$@ now relies on %2$@ for a secure connection to Tor." = "%1$@ now relies on %2$@ for a secure connection to Tor.";
 
 /* No comment provided by engineer. */
@@ -31,8 +40,17 @@
 /* No comment provided by engineer. */
 "%@ new standards" = "%@ new standards";
 
+/* Placeholder is 'Orbot' */
+"%@ or built-in Tor" = "%@ or built-in Tor";
+
 /* No comment provided by engineer. */
 "%@ video and audio streaming" = "%@ video and audio streaming";
+
+/* Placeholder is bullet point */
+"%@ video and audio streams don't go through Tor and might get blocked" = "%@ video and audio streams don't go through Tor and might get blocked";
+
+/* Placeholder is bullet point */
+"%@ Websites can uncover your real IP address using JavaScript" = "%@ Websites can uncover your real IP address using JavaScript";
 
 /* SecurityPresetsRow */
 "(not recommended)" = "(niet aanbevolen)";
@@ -157,6 +175,9 @@
 /* AppDelegate */
 "Close Tab" = "Tabblad sluiten";
 
+/* No comment provided by engineer. */
+"Configure Bridges" = "Configure Bridges";
+
 /* DonationViewController */
 "Confirm %@" = "Bevestig %@";
 
@@ -228,6 +249,9 @@
 
 /* No comment provided by engineer. */
 "Download" = "Download";
+
+/* No comment provided by engineer. */
+"Drawbacks:" = "Drawbacks:";
 
 /* SecurityPresetsRow */
 "Easy breezy. Though it could be dangerous." = "Easy breezy. Though it could be dangerous.";
@@ -421,6 +445,9 @@
 /* SettingsViewController */
 "Rate on App Store" = "Beoordelen in de App Store";
 
+/* No comment provided by engineer. */
+"Reasons to use the built-in Tor (iOS 17 only)" = "Reasons to use the built-in Tor (iOS 17 only)";
+
 /* AppDelegate */
 "Reload Tab" = "Tab Herladen";
 
@@ -496,11 +523,17 @@
 /* DonationViewController */
 "Sorry, in-app purchase is disabled on your device!" = "Sorry, in-app aankopen zijn uitgeschakeld op je apparaat!";
 
+/* Placeholder is 'Orbot' */
+"Start %@" = "Start %@";
+
 /* No comment provided by engineer. */
-"Start Tor" = "Start Tor";
+"Start built-in Tor" = "Start built-in Tor";
 
 /* No comment provided by engineer. */
 "Start Tor in %@." = "Start Tor in %@.";
+
+/* No comment provided by engineer. */
+"Starting Tor…" = "Starting Tor…";
 
 /* SettingsViewController */
 "Stop Auto-Complete at First Dot" = "Automatisch aanvullen stoppen bij eerste punt";
@@ -513,6 +546,9 @@
 
 /* DonationViewController */
 "Support Onion Browser Development" = "Steun Onion Browser ontwikkeling";
+
+/* Placeholder is 'Orbot' */
+"Switch back to %@" = "Switch back to %@";
 
 /* AppDelegate */
 "Switch to Tab %d" = "Wissel naar tabblad %d";
@@ -582,6 +618,12 @@
 
 /* SettingsViewController */
 "URL Blocker" = "URL-blokkering";
+
+/* Placeholder is 'Orbot' */
+"Use %@" = "Use %@";
+
+/* No comment provided by engineer. */
+"Use built-in Tor" = "Use built-in Tor";
 
 /* SecurityViewController */
 "User Agent" = "Gebruikersagent";
