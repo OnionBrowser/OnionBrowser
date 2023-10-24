@@ -1,5 +1,5 @@
-- Korjattu ponnahdusikkunoiden kaatumiset.
+- Korjattu ponnahdusten virheet.
 - Korjattu "Tyhjennä tiedot" -pikakuvake iPhonessa.
-- Salli Onion Browserin muuttuminen oletusarvoiseksi selaimeksi.
-- Lisätty tataarinkielinen käännös.
+- Salli Onion-selaimen määritys oletusarvoiseksi selaimeksi.
+- Lisätty tataarinkielen käännös.
 - Päivitetty monia muita käännöksiä.
