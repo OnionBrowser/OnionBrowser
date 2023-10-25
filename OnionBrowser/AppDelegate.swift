@@ -19,13 +19,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 	class var shared: AppDelegate? {
 		var delegate: UIApplicationDelegate?
 
-		if Thread.isMainThread {
+		Thread.performOnMain {
 			delegate = UIApplication.shared.delegate
-		}
-		else {
-			DispatchQueue.main.sync {
-				delegate = UIApplication.shared.delegate
-			}
 		}
 
 		return delegate as? AppDelegate
@@ -203,6 +198,14 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 				else {
 					dismissModals(of: type, in: [pvc])
 				}
+			}
+		}
+	}
+
+	func maybeStopTor() {
+		Thread.performOnMain {
+			if self.sceneDelegates.isEmpty {
+				TorManager.shared.stop()
 			}
 		}
 	}

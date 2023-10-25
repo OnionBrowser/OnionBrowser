@@ -407,37 +407,23 @@ class Tab: UIView {
 
 		cancelDownload()
 
-		let block = {
+		Thread.performOnMain {
 			self.tabDelegate = nil
 
 			self.destructWebView()
 
 			self.removeFromSuperview()
 		}
-
-		if Thread.isMainThread {
-			block()
-		}
-		else {
-			DispatchQueue.main.sync(execute: block)
-		}
 	}
 
 	func empty() {
-		let block = {
+		Thread.performOnMain {
 			self.stop()
 
 			// Will empty the webView, but keep the URL and doesn't create a history entry.
 			self.stringByEvaluatingJavaScript(from: "document.open()") { _ in }
 			
 			self.needsRefresh = true
-		}
-
-		if Thread.isMainThread {
-			block()
-		}
-		else {
-			DispatchQueue.main.sync(execute: block)
 		}
 	}
 	

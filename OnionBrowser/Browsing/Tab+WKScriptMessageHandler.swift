@@ -97,20 +97,13 @@ extension Tab: WKScriptMessageHandler {
 	// MARK: Private Methods
 
 	private func register(script: String, for name: String? = nil, forMainFrameOnly: Bool = false, in configuration: WKWebViewConfiguration) {
-		let block = {
+		Thread.performOnMain(async: true) {
 			configuration.userContentController.addUserScript(WKUserScript(
 				source: script, injectionTime: .atDocumentStart, forMainFrameOnly: forMainFrameOnly))
 
 			if let name = name {
 				configuration.userContentController.add(self, name: name)
 			}
-		}
-
-		if Thread.isMainThread {
-			block()
-		}
-		else {
-			DispatchQueue.main.async(execute: block)
 		}
 	}
 }

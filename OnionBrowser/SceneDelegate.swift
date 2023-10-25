@@ -158,6 +158,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		}
 	}
 
+	func sceneDidDisconnect(_ scene: UIScene) {
+		// Stop Tor, if no other scenes around anymore.
+		AppDelegate.shared?.maybeStopTor()
+	}
+
 	func stateRestorationActivity(for scene: UIScene) -> NSUserActivity? {
 		guard Settings.tabSecurity != .clearOnBackground,
 			  !browsingUi.tabs.isEmpty,
