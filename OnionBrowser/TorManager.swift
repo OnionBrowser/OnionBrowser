@@ -95,6 +95,8 @@ class TorManager {
 		self.transport = transport
 
 		if !torRunning {
+			startTransport()
+
 			torConf = getTorConf()
 
 //			if let debug = torConf?.compile().joined(separator: ", ") {
@@ -205,6 +207,8 @@ class TorManager {
 	func updateConfig(_ transport: Transport) {
 		self.transport = transport
 
+		startTransport()
+
 		guard let torController = torController else {
 			return
 		}
@@ -244,6 +248,8 @@ class TorManager {
 		torThread = nil
 
 		torConf = nil
+
+		transport.stop()
 	}
 
 	func getCircuits(_ completion: @escaping ([TorCircuit]) -> Void) {
@@ -327,5 +333,21 @@ class TorManager {
 		arguments.append(cv("UseBridges", transport == .none ? "0" : "1"))
 
 		return arguments
+	}
+
+	private func startTransport() {
+		switch transport {
+		case .obfs4, .custom, .meekAzure:
+			Transport.snowflake.stop()
+
+		case .snowflake, .snowflakeAmp:
+			Transport.obfs4.stop()
+
+		default:
+			Transport.obfs4.stop()
+			Transport.snowflake.stop()
+		}
+
+		transport.start()
 	}
 }
