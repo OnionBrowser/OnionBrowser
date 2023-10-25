@@ -17,14 +17,13 @@ target 'OnionBrowser' do
   pod 'ImageRow', '~> 4.1'
 
   pod 'Tor/GeoIP',
-  # '~> 408.4'
-  :path => '../Tor.framework'
+    '~> 408.7'
+#    :path => '../Tor.framework'
 
   pod 'IPtProxyUI',
-  '~> 4.0'
-  # :git => 'https://github.com/tladesignz/IPtProxyUI-ios'
-  # :path => '../IPtProxyUI-ios'
-
+    '~> 4.1'
+#    :git => 'https://github.com/tladesignz/IPtProxyUI-ios'
+#    :path => '../IPtProxyUI-ios'
 
   pod 'OrbotKit', '~> 1.1'
 end
