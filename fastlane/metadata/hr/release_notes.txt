@@ -1,5 +1,3 @@
-- Popravljena rušenja u skočnim prozorima.
-- Popravljen prečac "Obriši podatke" na iPhone uređajima.
-- Dopustite Onion Browseru da postane zadani web preglednik.
-- Dodan prijevod na tatarski.
-- Ažurirani mnogi drugi prijevodi.
+- Ponovno dodan ugrađeni Tor za korištenje s novim proxy postavkama `WKWebView` u iOS-u 17.
+   Ovo podržava scenarije u kojima je Orbot previše nepouzdan zbog ograničenja memorije
+   ili kada ga korisnici žele koristiti preko drugog VPN-a.

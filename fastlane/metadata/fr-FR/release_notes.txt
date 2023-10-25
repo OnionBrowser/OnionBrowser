@@ -1,5 +1,3 @@
-- Correction des plantages dans les fenêtres contextuelles.
-- Correction du raccourci "Effacer les données" sur les iPhones.
-- Permettre à Onion Browser de devenir le navigateur par défaut.
-- Ajout d'une traduction en tatar.
-- Mise à jour de nombreuses autres traductions.
+- Ajout de Tor intégré pour l'utiliser avec les nouveaux paramètres de proxy `WKWebView` dans iOS 17.
+  Cela permet de gérer les scénarios dans lesquels Orbot est trop peu fiable en raison de contraintes de mémoire
+  ou lorsque les utilisateurs veulent l'utiliser avec un autre VPN.

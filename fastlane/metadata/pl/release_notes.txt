@@ -1,5 +1,3 @@
-- Naprawiono awarie wyskakujących okienek.
-- Naprawiono skrót "Wyczyść dane" na iPhone'ach.
-- Umożliwiono przeglądarce Onion Browser stanie się domyślną przeglądarką.
-- Dodano tłumaczenie na język tatarski.
-- Zaktualizowano wiele innych tłumaczeń.
+- Dodano ponownie wbudowany Tor do użytku z nowymi ustawieniami proxy `WKWebView` w iOS 17.
+  Obsługuje to scenariusze, w których Orbot jest zbyt zawodny z powodu ograniczeń pamięci
+  lub gdy użytkownicy chcą korzystać z niego za pośrednictwem innej sieci VPN.

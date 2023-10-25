@@ -1,5 +1,3 @@
-- Crashes in pop-ups opgelost.
-- Snelkoppeling "Gegevens wissen" op iPhones hersteld.
-- Onion Browser kan de standaard webbrowser worden.
-- Tataarse vertaling toegevoegd.
-- Veel andere vertalingen bijgewerkt.
+- Ingebouwde Tor weer toegevoegd voor gebruik met nieuwe `WKWebView` proxy-instellingen in iOS 17.
+  Dit ondersteunt scenario's waarbij Orbot te onbetrouwbaar is vanwege geheugenbeperkingen
+  of wanneer gebruikers het via een andere VPN willen gebruiken.

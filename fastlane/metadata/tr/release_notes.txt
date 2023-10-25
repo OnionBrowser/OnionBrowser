@@ -1,5 +1,3 @@
-- Açılan pencere çökmeleri düzeltildi.
-- iPhone üzerindeki "Verileri temizle" kısayolu düzeltildi.
-- Onion Browser uygulamasının varsayılan tarayıcı olması sağlandı. 
-- Tatarca çevirisi eklendi.
-- Pek çok çeviri güncellendi.
+- iOS 17'deki yeni `WKWebView` proxy ayarlarıyla kullanmak için yerleşik Tor tekrar eklendi.
+  Bu, Orbot'un bellek kısıtlamaları nedeniyle çok güvenilmez olduğu senaryoları destekler
+  veya kullanıcılar başka bir VPN üzerinden kullanmak istediklerinde.

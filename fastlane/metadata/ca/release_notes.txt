@@ -1,5 +1,3 @@
-- S'han corregit errors a les finestres emergents.
-- S'ha solucionat la drecera "Esborra les dades" als iPhones.
-- Permet que el navegador Onion es converteixi en el navegador web predeterminat.
-- S'ha afegit traducció tàtara.
-- S'han actualitzat moltes altres traduccions.
+- S'ha tornat a afegir Tor integrat per utilitzar-lo amb la nova configuració del servidor intermediari "WKWebView" a iOS 17.
+   Això admet escenaris en què Orbot és massa poc fiable a causa de les limitacions de memòria
+   o quan els usuaris volen utilitzar-lo a través d'una altra VPN.

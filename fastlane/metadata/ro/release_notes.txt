@@ -1,5 +1,3 @@
-- A fost reparat blocajul în pop-up-uri.
-- A fost reparată comanda rapidă "Ștergere date" pe iPhone.
-- Permiteți ca Onion Browser să devină browserul web implicit.
-- Adăugată traducerea în limba tătară.
-- Actualizat multe alte traduceri.
+- Adăugat din nou Tor încorporat pentru a fi utilizat cu noile setări proxy `WKWebView` din iOS 17.
+  Acest lucru susține scenarii, în care Orbot este prea puțin fiabil din cauza constrângerilor de memorie
+  sau atunci când utilizatorii doresc să îl folosească peste un alt VPN.

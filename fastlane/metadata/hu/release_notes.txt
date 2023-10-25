@@ -1,5 +1,3 @@
-- Javítottuk a felugró ablakok összeomlását.
-- Javítottuk az "Adatok törlése" parancsikont iPhone-on.
-- Lehetővé tette, hogy az Onion Browser legyen az alapértelmezett webböngésző.
-- Tatár fordítás hozzáadása.
-- Frissített sok más fordítást.
+- Újra hozzáadtuk a beépített Tor-t az iOS 17 új `WKWebView` proxy beállításaihoz.
+  Ez támogatja azokat a forgatókönyveket, ahol az Orbot túl megbízhatatlan a memória korlátok miatt.
+  vagy amikor a felhasználók egy másik VPN-en keresztül szeretnék használni.

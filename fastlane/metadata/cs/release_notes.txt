@@ -1,5 +1,3 @@
-- Opraveny pády vyskakovacích oken.
-- Opravena zkratka "Vymazat data" na telefonech iPhone.
-- Umožněno, aby se prohlížeč Onion Browser stal výchozím webovým prohlížečem.
-- Přidán překlad do tatarštiny.
-- Aktualizováno mnoho dalších překladů.
+- Znovu přidán integrovaný Tor pro použití s novým nastavením proxy serveru `WKWebView` v systému iOS 17.
+  To podporuje scénáře, kdy je Orbot příliš nespolehlivý kvůli omezení paměti.
+  nebo když jej uživatelé chtějí používat přes jinou síť VPN.

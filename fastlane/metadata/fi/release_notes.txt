@@ -1,5 +1,3 @@
-- Korjattu ponnahdusten virheet.
-- Korjattu "Tyhjennä tiedot" -pikakuvake iPhonessa.
-- Salli Onion-selaimen määritys oletusarvoiseksi selaimeksi.
-- Lisätty tataarinkielen käännös.
-- Päivitetty monia muita käännöksiä.
+- Lisätty sisäänrakennettu Tor jälleen käytettäväksi iOS 17:n uusien `WKWebView`-välityspalvelinasetusten kanssa.
+  Tämä tukee skenaarioita, joissa Orbot on liian epäluotettava muistirajoitusten vuoksi.
+  tai kun käyttäjät haluavat käyttää sitä toisen VPN:n yli.

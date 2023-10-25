@@ -1,5 +1,3 @@
-- Đã sửa lỗi sự cố trong cửa sổ bật lên.
-- Đã sửa lỗi phím tắt "Xóa dữ liệu" trên iPhone.
-- Cho phép Onion Browser trở thành trình duyệt web mặc định.
-- Đã thêm bản dịch tiếng Tatar.
-- Cập nhật nhiều bản dịch khác.
+- Đã thêm lại Tor tích hợp để sử dụng với cài đặt proxy `WKWebView` mới trong iOS 17.
+   Điều này hỗ trợ các tình huống trong đó Orbot quá không đáng tin cậy do hạn chế về bộ nhớ
+   hoặc khi người dùng muốn sử dụng nó qua một VPN khác.
