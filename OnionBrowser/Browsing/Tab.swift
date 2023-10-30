@@ -475,6 +475,12 @@ class Tab: UIView {
 
 		webView = WKWebView(frame: .zero, configuration: conf)
 
+#if DEBUG
+		if #available(iOS 16.4, *) {
+			webView?.isInspectable = true
+		}
+#endif
+
 		webView?.uiDelegate = self
 		webView?.navigationDelegate = self
 		webView?.scrollView.delegate = scrollViewDelegate
