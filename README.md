@@ -152,3 +152,8 @@ Support this project by becoming a sponsor. Your logo will show up here with a l
 ## How to build yourself
 
 Build instructions can be found in [BUILD.md](BUILD.md).
+
+
+## Further reading
+
+https://tordev.guardianproject.info
