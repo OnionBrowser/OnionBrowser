@@ -107,7 +107,7 @@ extension Tab: WKUIDelegate {
 				label.leadingAnchor.constraint(equalTo: vc.view.leadingAnchor, constant: 16).isActive = true
 				label.trailingAnchor.constraint(equalTo: vc.view.trailingAnchor, constant: -16).isActive = true
 
-				let webView = WKWebView()
+				let webView = WKWebView(frame: .zero, configuration: webView.configuration)
 				webView.translatesAutoresizingMaskIntoConstraints = false
 				webView.load(URLRequest(url: url))
 
