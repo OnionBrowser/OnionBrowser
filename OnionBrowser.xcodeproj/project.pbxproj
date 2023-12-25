@@ -864,7 +864,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1120;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 1510;
 				ORGANIZATIONNAME = "Tigas Ventures, LLC (Mike Tigas)";
 				TargetAttributes = {
 					01801E911A32CA2A002B4718 = {
