@@ -11,7 +11,7 @@
 
 UISearchController *searchController;
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (instancetype)initWithStyle:(UITableViewStyle)style
 {
 	self = [super initWithStyle:style];
 	
@@ -55,11 +55,11 @@ UISearchController *searchController;
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 	if (section == 0)
-		return [self.inUseRuleRows count];
+		return (self.inUseRuleRows).count;
 	else if ([self isFiltering])
-		return [self.searchResult count];
+		return (self.searchResult).count;
 	else
-		return [self.sortedRuleRows count];
+		return (self.sortedRuleRows).count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -73,7 +73,7 @@ UISearchController *searchController;
 	
 	RuleEditorRow *row = [self ruleForTableView:tableView atIndexPath:indexPath];
 
-	cell.textLabel.text = [row textLabel];
+	cell.textLabel.text = row.textLabel;
 	
 	NSString *disabled = [self ruleDisabledReason:row];
 	if (disabled == nil) {
@@ -86,14 +86,14 @@ UISearchController *searchController;
 			cell.detailTextLabel.textColor = UIColor.darkGrayColor;
 		}
 
-		cell.detailTextLabel.text = [row detailTextLabel];
+		cell.detailTextLabel.text = row.detailTextLabel;
 	}
 	else {
 		cell.textLabel.textColor = UIColor.systemRedColor;
-		if ([row detailTextLabel] == nil || [[row detailTextLabel] isEqualToString:@""])
+		if (row.detailTextLabel == nil || [row.detailTextLabel isEqualToString:@""])
 			cell.detailTextLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Disabled: %@", nil), disabled];
 		else
-			cell.detailTextLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%1$@ (Disabled: %2$@)", nil), [row detailTextLabel], disabled];
+			cell.detailTextLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%1$@ (Disabled: %2$@)", nil), row.detailTextLabel, disabled];
 		cell.detailTextLabel.textColor = UIColor.systemRedColor;
 	}
 	
@@ -152,16 +152,16 @@ UISearchController *searchController;
 	[self.searchResult removeAllObjects];
 
 	for (RuleEditorRow *row in self.sortedRuleRows) {
-		if ([row textLabel] != nil) {
-			NSRange range = [[row textLabel] rangeOfString:search options:NSCaseInsensitiveSearch];
+		if (row.textLabel != nil) {
+			NSRange range = [row.textLabel rangeOfString:search options:NSCaseInsensitiveSearch];
 
 			if (range.length > 0) {
 				[self.searchResult addObject:row];
 				continue;
 			}
 		}
-		if ([row detailTextLabel] != nil) {
-			NSRange range = [[row detailTextLabel] rangeOfString:search options:NSCaseInsensitiveSearch];
+		if (row.detailTextLabel != nil) {
+			NSRange range = [row.detailTextLabel rangeOfString:search options:NSCaseInsensitiveSearch];
 
 			if (range.length > 0) {
 				[self.searchResult addObject:row];
@@ -198,15 +198,15 @@ UISearchController *searchController;
 {
 	NSMutableArray *group;
 
-	if ([indexPath section] == 0)
-		group = [self inUseRuleRows];
+	if (indexPath.section == 0)
+		group = self.inUseRuleRows;
 	else if ([self isFiltering])
-		group = [self searchResult];
+		group = self.searchResult;
 	else
-		group = [self sortedRuleRows];
+		group = self.sortedRuleRows;
 
-	if (group && [group count] > [indexPath row])
-		return [group objectAtIndex:indexPath.row];
+	if (group && group.count > indexPath.row)
+		return group[indexPath.row];
 	else
 		return nil;
 }

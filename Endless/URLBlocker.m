@@ -17,7 +17,7 @@ static NSCache *ruleCache;
 
 + (NSString *)disabledTargetsPath
 {
-	NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+	NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject;
 	return [path stringByAppendingPathComponent:@"url_blocker_disabled.plist"];
 }
 
@@ -43,23 +43,23 @@ static NSCache *ruleCache;
 			
 			/* convert from { "desc" => [ "host1", "host2" ] } to { "host1" => "desc", "host2" => "desc" } */
 			NSMutableDictionary *ttargets = [[NSMutableDictionary alloc] init];
-			for (NSString *key in [blockers allKeys]) {
-				NSArray *doms = [blockers objectForKey:key];
+			for (NSString *key in blockers.allKeys) {
+				NSArray *doms = blockers[key];
 				for (NSString *dom in doms)
-					[ttargets setObject:key forKey:dom];
+					ttargets[dom] = key;
 			}
 			
 			_targets = [NSDictionary dictionaryWithDictionary:ttargets];
 		}
 		
-		if (!_targets || ![_targets count]) {
+		if (!_targets || !_targets.count) {
 			NSLog(@"[URLBlocker] couldn't read %@", path);
 			_targets = @{};
 			return _targets;
 		}
 		
 #ifdef TRACE_URL_BLOCKER
-		NSLog(@"[URLBlocker] locked and loaded with %lu target domains", [_targets count]);
+		NSLog(@"[URLBlocker] locked and loaded with %lu target domains", _targets.count);
 #endif
 	}
 	
@@ -101,18 +101,18 @@ static NSCache *ruleCache;
 	NSString *blocker;
 	
 	if (!(ruleCache && (blocker = [ruleCache objectForKey:url]))) {
-		NSString *host = [[url host] lowercaseString];
+		NSString *host = url.host.lowercaseString;
 		
-		if ([[[self class] targets] objectForKey:host])
+		if ([[self class] targets][host])
 			blocker = host;
 		else {
 			/* now for x.y.z.example.com, try *.y.z.example.com, *.z.example.com, *.example.com, etc. */
 			/* TODO: should we skip the last component for obviously non-matching things like "*.com", "*.net"? */
 			NSArray *hostp = [host componentsSeparatedByString:@"."];
-			for (int i = 1; i < [hostp count]; i++) {
-				NSString *wc = [[hostp subarrayWithRange:NSMakeRange(i, [hostp count] - i)] componentsJoinedByString:@"."];
+			for (int i = 1; i < hostp.count; i++) {
+				NSString *wc = [[hostp subarrayWithRange:NSMakeRange(i, hostp.count - i)] componentsJoinedByString:@"."];
 				
-				if ([[[self class] targets] objectForKey:wc]) {
+				if ([[self class] targets][wc]) {
 					blocker = wc;
 					break;
 				}
@@ -120,7 +120,7 @@ static NSCache *ruleCache;
 		}
 	}
 	
-	if (blocker && [[URLBlocker disabledTargets] objectForKey:blocker] != nil)
+	if (blocker && [URLBlocker disabledTargets][blocker] != nil)
 		return nil;
 	
 	if (blocker)
@@ -161,7 +161,7 @@ static NSCache *ruleCache;
 
 + (void)disableTargetByHost:(NSString *)target withReason:(NSString *)reason
 {
-	[[[self class] disabledTargets] setObject:reason forKey:target];
+	[[self class] disabledTargets][target] = reason;
 	[[self class] saveDisabledTargets];
 }
 

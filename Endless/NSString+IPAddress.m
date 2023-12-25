@@ -15,7 +15,7 @@
 {
 	struct in_addr dst;
 	int success;
-	const char *utf8 = [self UTF8String];
+	const char *utf8 = self.UTF8String;
 
 	success = inet_pton(AF_INET, utf8, &dst);
 	if (success != 1) {

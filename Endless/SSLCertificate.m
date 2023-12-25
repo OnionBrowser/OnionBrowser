@@ -19,7 +19,7 @@ static NSMutableDictionary <NSData *, NSMutableDictionary *> *certCache = nil;
 #define CERT_CACHE_KEY_CERT @"key"
 #define CERT_CACHE_KEY_TIME @"time"
 
-- (id)init {
+- (instancetype)init {
 	if (!(self = [super init]))
 		return nil;
 	
@@ -31,7 +31,7 @@ static NSMutableDictionary <NSData *, NSMutableDictionary *> *certCache = nil;
 	return self;
 }
 
-- (id)initWithSecTrustRef:(SecTrustRef)secTrustRef
+- (instancetype)initWithSecTrustRef:(SecTrustRef)secTrustRef
 {
 	SecCertificateRef cert = (SecCertificateRef)CFArrayGetValueAtIndex(SecTrustCopyCertificateChain(secTrustRef), 0);
 	NSData *data = (__bridge_transfer NSData *)SecCertificateCopyData(cert);
@@ -53,7 +53,7 @@ static NSMutableDictionary <NSData *, NSMutableDictionary *> *certCache = nil;
 	return self;
 }
 
-- (id)initWithData:(NSData *)data
+- (instancetype)initWithData:(NSData *)data
 {
 	/* x509 cert structure:
 
@@ -82,7 +82,7 @@ static NSMutableDictionary <NSData *, NSMutableDictionary *> *certCache = nil;
 	if (!(self = [self init]))
 		return nil;
 	
-	NSData *certHash = [data dataWithSHA1Hash];
+	NSData *certHash = data.dataWithSHA1Hash;
 	
 	NSMutableDictionary *ocdef = certCache[certHash];
 	if (ocdef) {
@@ -136,7 +136,7 @@ static NSMutableDictionary <NSData *, NSMutableDictionary *> *certCache = nil;
 	NSObject *tt = [self safeFetchFromArray:cert atIndex:1 withType:nil];
 	NSMutableArray *tserial = [[NSMutableArray alloc] initWithCapacity:16];
 	if (tt != nil && [tt isKindOfClass:[NSNumber class]]) {
-		long ttn = [(NSNumber *)tt longValue];
+		long ttn = ((NSNumber *)tt).longValue;
 		while (ttn > 0) {
 			[tserial addObject:[NSString stringWithFormat:@"%02lx", (ttn & 0xff)]];
 			ttn >>= 8;
@@ -144,8 +144,8 @@ static NSMutableDictionary <NSData *, NSMutableDictionary *> *certCache = nil;
 		tserial = [[NSMutableArray alloc] initWithArray:tserial.reverseObjectEnumerator.allObjects];
 	}
 	else if (tt != nil && [tt isKindOfClass:[NSData class]]) {
-		u_char *tbytes = (u_char *)[(NSData *)tt bytes];
-		for (int i = 0; i < [(NSData *)tt length]; i++)
+		u_char *tbytes = (u_char *)((NSData *)tt).bytes;
+		for (int i = 0; i < ((NSData *)tt).length; i++)
 			[tserial addObject:[NSString stringWithFormat:@"%02x", tbytes[i]]];
 	}
 	_serialNumber = [tserial componentsJoinedByString:@":"];
@@ -185,12 +185,12 @@ static NSMutableDictionary <NSData *, NSMutableDictionary *> *certCache = nil;
 	if (issuerData == nil)
 		return nil;
 	NSMutableDictionary *tissuer = [@{} mutableCopy];
-	for (int i = 0; i < [issuerData count]; i++) {
+	for (int i = 0; i < issuerData.count; i++) {
 		NSArray *pairA = [self safeFetchFromArray:issuerData atIndex:i withType:[NSArray class]];
 		if (pairA == nil)
 			continue;
 		
-		for (int j = 0; j < [pairA count]; j++) {
+		for (int j = 0; j < pairA.count; j++) {
 			NSArray *oidPair = [self safeFetchFromArray:pairA atIndex:j withType:[NSArray class]];
 			if (oidPair == nil)
 				return nil;
@@ -221,12 +221,12 @@ static NSMutableDictionary <NSData *, NSMutableDictionary *> *certCache = nil;
 	NSArray *tsubjectData = [self safeFetchFromArray:cert atIndex:5 withType:[NSArray class]];
 	if (tsubjectData == nil)
 		return nil;
-	for (int i = 0; i < [tsubjectData count]; i++) {
+	for (int i = 0; i < tsubjectData.count; i++) {
 		NSArray *pairA = [self safeFetchFromArray:tsubjectData atIndex:i withType:[NSArray class]];
 		if (pairA == nil)
 			continue;
 		
-		for (int j = 0; j < [pairA count]; j++) {
+		for (int j = 0; j < pairA.count; j++) {
 			NSArray *oidPair = [self safeFetchFromArray:pairA atIndex:j withType:[NSArray class]];
 			if (oidPair == nil)
 				return nil;
@@ -379,13 +379,13 @@ static NSMutableDictionary <NSData *, NSMutableDictionary *> *certCache = nil;
 	case kTLSProtocol13:
 		return @"TLS 1.3";
 	default:
-		return [NSString stringWithFormat:@"Unknown (%d)", [self negotiatedProtocol]];
+		return [NSString stringWithFormat:@"Unknown (%d)", self.negotiatedProtocol];
 	}
 }
 
 - (NSString *)negotiatedCipherString
 {
-	switch ([self negotiatedCipher]) {
+	switch (self.negotiatedCipher) {
 	case SSL_NULL_WITH_NULL_NULL:
 		return @"SSL_NULL_WITH_NULL_NULL";
 	case SSL_RSA_WITH_NULL_MD5:

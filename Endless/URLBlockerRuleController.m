@@ -12,11 +12,11 @@
 
 @implementation URLBlockerRuleController
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (instancetype)initWithStyle:(UITableViewStyle)style
 {
 	self = [super initWithStyle:style];
 	
-	self.sortedRuleRows = [[NSMutableArray alloc] initWithCapacity:[[URLBlocker targets] count]];
+	self.sortedRuleRows = [[NSMutableArray alloc] initWithCapacity:[URLBlocker targets].count];
 	self.inUseRuleRows = [[NSMutableArray alloc] init];
 	
 	NSMutableDictionary *inUse = [NSMutableDictionary new];
@@ -32,13 +32,13 @@
 		}
 	}
 	
-	for (NSString *k in [[[URLBlocker targets] allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]) {
+	for (NSString *k in [[URLBlocker targets].allKeys sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)]) {
 		RuleEditorRow *row = [[RuleEditorRow alloc] init];
 		row.key = k;
 		row.textLabel = k;
-		row.detailTextLabel = [[URLBlocker targets] objectForKey:k];
+		row.detailTextLabel = [URLBlocker targets][k];
 		
-		if (inUse && [inUse objectForKey:k])
+		if (inUse && inUse[k])
 			[self.inUseRuleRows addObject:row];
 		else
 			[self.sortedRuleRows addObject:row];
@@ -54,17 +54,17 @@
 
 - (NSString *)ruleDisabledReason:(RuleEditorRow *)row
 {
-	return [[URLBlocker disabledTargets] objectForKey:[row key]];
+	return [URLBlocker disabledTargets][row.key];
 }
 
 - (void)disableRuleForRow:(RuleEditorRow *)row withReason:(NSString *)reason
 {
-	[URLBlocker disableTargetByHost:[row key] withReason:reason];
+	[URLBlocker disableTargetByHost:row.key withReason:reason];
 }
 
 - (void)enableRuleForRow:(RuleEditorRow *)row
 {
-	[URLBlocker enableTargetByHost:[row key]];
+	[URLBlocker enableTargetByHost:row.key];
 }
 
 @end
