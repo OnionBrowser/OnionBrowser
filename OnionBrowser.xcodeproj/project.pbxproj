@@ -70,7 +70,6 @@
 		A068DDA0240D425200BF46E3 /* NSString+IPAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F7CB4D1A52FC4E00F42B73 /* NSString+IPAddress.m */; };
 		A0696EAD2406C7D000512695 /* SyncViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0696EAC2406C7D000512695 /* SyncViewController.swift */; };
 		A0696EAF2406D94200512695 /* Nextcloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0696EAE2406D94200512695 /* Nextcloud.swift */; };
-		A07037C423C74E1100D670EC /* UIColor+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07037C323C74E1100D670EC /* UIColor+Helpers.swift */; };
 		A07037C623C7571B00D670EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07037C523C7571B00D670EC /* AppDelegate.swift */; };
 		A07037C723C79AE500D670EC /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A07037C223C74DC900D670EC /* Media.xcassets */; };
 		A07B55FC23D736D60051663B /* CertificateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07B55FB23D736D60051663B /* CertificateViewController.swift */; };
@@ -260,7 +259,6 @@
 		A06DF455241A60E700A07796 /* SecureEnclave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureEnclave.swift; sourceTree = "<group>"; };
 		A06F5F49275692060023622E /* .bartycrouch.toml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .bartycrouch.toml; sourceTree = "<group>"; };
 		A07037C223C74DC900D670EC /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
-		A07037C323C74E1100D670EC /* UIColor+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Helpers.swift"; sourceTree = "<group>"; };
 		A07037C523C7571B00D670EC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A0759DEA20975DDE000DFBFE /* config */ = {isa = PBXFileReference; lastKnownFileType = text; name = config; path = .tx/config; sourceTree = "<group>"; };
 		A07B55FB23D736D60051663B /* CertificateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateViewController.swift; sourceTree = "<group>"; };
@@ -799,7 +797,6 @@
 				A0C582572AE9136200A81084 /* Thread+Helpers.swift */,
 				A09F7ADC2AD80A1A00F7072F /* TorCircuit+Helper.swift */,
 				A0BF523F23AFC3580096624A /* UIButton+Helpers.swift */,
-				A07037C323C74E1100D670EC /* UIColor+Helpers.swift */,
 				A0BF523D23AFC3580096624A /* UIView+Helpers.swift */,
 				A0BF523823AFC3580096624A /* UIViewController+Helpers.swift */,
 				A0BF524023AFC3580096624A /* URL+Helpers.swift */,
@@ -864,7 +861,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1120;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 1520;
 				ORGANIZATIONNAME = "Tigas Ventures, LLC (Mike Tigas)";
 				TargetAttributes = {
 					01801E911A32CA2A002B4718 = {
@@ -1186,7 +1183,6 @@
 				A0BF527723AFC3580096624A /* BlurredSnapshot.swift in Sources */,
 				A013DEDA2434E69A0087D12B /* UIImage+Helpers.swift in Sources */,
 				A0D070FD275A513700922D70 /* FileManager+Helpers.swift in Sources */,
-				A07037C423C74E1100D670EC /* UIColor+Helpers.swift in Sources */,
 				A0BF527123AFC3580096624A /* SecurityShield.swift in Sources */,
 				69CBCD4D1E934249009D5352 /* RuleEditorRow.m in Sources */,
 				A0BF526D23AFC3580096624A /* SecurityViewController.swift in Sources */,
@@ -1454,6 +1450,7 @@
 			baseConfigurationReference = A025F27421F62C100034B947 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1513,6 +1510,7 @@
 			baseConfigurationReference = A025F27421F62C100034B947 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";

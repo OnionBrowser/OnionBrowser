@@ -72,7 +72,7 @@ class SecurityShield: UIView {
 
 		view.translatesAutoresizingMaskIntoConstraints = false
 
-		view.layer.borderColor = UIColor.accent?.cgColor
+		view.layer.borderColor = UIColor.accent.cgColor
 		view.layer.cornerRadius = 12
 		view.layer.borderWidth = 1
 		view.clipsToBounds = true

@@ -48,7 +48,7 @@ class PermissionViewController: UIViewController, WhyDelegate {
 			if let range = text.string.range(of: Bundle.main.displayName),
 			   let descriptor = body2Lb.font.fontDescriptor.withSymbolicTraits(.traitBold)
 			{
-				text.setAttributes([.foregroundColor: UIColor.accent!,
+				text.setAttributes([.foregroundColor: UIColor.accent,
 									.font: UIFont(descriptor: descriptor, size: 0)],
 								   range: NSRange(range, in: text.string))
 			}
@@ -126,7 +126,7 @@ class PermissionViewController: UIViewController, WhyDelegate {
 			body1Lb.text = NSLocalizedString("Ask again to continue.", comment: "")
 
 			if let description = description {
-				body2Lb.attributedText = .init(string: description, attributes: [.foregroundColor: UIColor.error!])
+				body2Lb.attributedText = .init(string: description, attributes: [.foregroundColor: UIColor.error])
 			}
 			else {
 				body2Lb.isHidden = true

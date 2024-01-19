@@ -83,7 +83,7 @@ class StartOrbotViewController: UIViewController, WhyDelegate {
 						"%1$@ runs in onion-only mode. This is dangerous and %2$@ does not support it. Switch it off to use %2$@!",
 						comment: "Placeholder 1 is 'Orbot', placeholder 2 is 'Onion Browser'"),
 					OrbotKit.orbotName, Bundle.main.displayName),
-				attributes: [.foregroundColor: UIColor.error!])
+				attributes: [.foregroundColor: UIColor.error])
 		}
 	}
 

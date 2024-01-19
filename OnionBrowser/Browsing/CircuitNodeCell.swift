@@ -45,7 +45,7 @@ class CircuitNodeCell: UITableViewCell {
 		if let note = node.note {
 			text.append(NSAttributedString(string: " "))
 			text.append(NSAttributedString(string: note, attributes: [
-				.foregroundColor: UIColor.accent ?? UIColor.systemPurple,
+				.foregroundColor: UIColor.accent,
 				.font: UIFont.systemFont(ofSize: textLb.font.pointSize, weight: .black)
 			]))
 		}

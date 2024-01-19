@@ -39,7 +39,7 @@ class SecurityLevelCell: UITableViewCell {
     @IBOutlet weak var explanationLb: UILabel!
 	@IBOutlet weak var radioLb: UILabel! {
 		didSet {
-			radioLb.layer.borderColor = UIColor.accent?.cgColor
+			radioLb.layer.borderColor = UIColor.accent.cgColor
 		}
 	}
 
