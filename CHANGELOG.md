@@ -1,5 +1,10 @@
 #  Onion Browser Changelog
 
+## 3.1.1
+- Updated built-in Tor to latest version 0.4.8.10.
+- Updated built-in Snowflake to latest version 2.8.1.
+- Updated translations.
+
 ## 3.1.0
 - Added built-in Tor again to use with new `WKWebView` proxy settings in iOS 17.
   This supports scenarios, where Orbot is too unreliable because of memory constraints
