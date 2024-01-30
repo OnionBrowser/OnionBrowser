@@ -13,18 +13,13 @@ import UIKit
 extension CALayer {
 
 	func makeSnapshot(scale: CGFloat = UIScreen.main.scale) -> UIImage? {
-		UIGraphicsBeginImageContextWithOptions(frame.size, false, scale)
+		let format = UIGraphicsImageRendererFormat.default()
+		format.scale = scale
 
-		defer {
-			UIGraphicsEndImageContext()
+		let renderer = UIGraphicsImageRenderer(size: frame.size, format: format)
+
+		return renderer.image { [weak self] context in
+			self?.render(in: context.cgContext)
 		}
-
-		guard let context = UIGraphicsGetCurrentContext() else {
-			return nil
-		}
-
-		render(in: context)
-
-		return UIGraphicsGetImageFromCurrentImageContext()
 	}
 }
