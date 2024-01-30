@@ -1,3 +1,4 @@
-- Znovu přidán integrovaný Tor pro použití s novým nastavením proxy serveru `WKWebView` v systému iOS 17.
-  To podporuje scénáře, kdy je Orbot příliš nespolehlivý kvůli omezení paměti.
-  nebo když jej uživatelé chtějí používat přes jinou síť VPN.
+- Aktualizace vestavěného Tor na nejnovější verzi 0.4.8.10.
+- Aktualizováno integrované rozhraní Snowflake na nejnovější verzi 2.8.1.
+- Aktualizovány překlady.
+- Opraven pád.

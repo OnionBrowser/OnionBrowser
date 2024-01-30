@@ -1,3 +1,4 @@
-- Újra hozzáadtuk a beépített Tor-t az iOS 17 új `WKWebView` proxy beállításaihoz.
-  Ez támogatja azokat a forgatókönyveket, ahol az Orbot túl megbízhatatlan a memória korlátok miatt.
-  vagy amikor a felhasználók egy másik VPN-en keresztül szeretnék használni.
+- Frissítettük a beépített Tor-t a legújabb, 0.4.8.10-es verzióra.
+- A beépített Snowflake frissítve a legújabb, 2.8.1-es verzióra.
+- Frissített fordítások.
+- Javítottuk az összeomlást.

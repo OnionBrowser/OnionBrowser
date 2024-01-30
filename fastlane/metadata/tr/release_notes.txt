@@ -1,3 +1,4 @@
-- iOS 17'deki yeni `WKWebView` proxy ayarlarıyla kullanmak için yerleşik Tor tekrar eklendi.
-  Bu, Orbot'un bellek kısıtlamaları nedeniyle çok güvenilmez olduğu senaryoları destekler
-  veya kullanıcılar başka bir VPN üzerinden kullanmak istediklerinde.
+- Yerleşik Tor en son 0.4.8.10 sürümüne güncellendi.
+- Yerleşik Snowflake en son 2.8.1 sürümüne güncellendi.
+- Çeviriler güncellendi.
+- Kilitlenme düzeltildi.

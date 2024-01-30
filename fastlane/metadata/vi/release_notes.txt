@@ -1,3 +1,4 @@
-- Đã thêm lại Tor tích hợp để sử dụng với cài đặt proxy `WKWebView` mới trong iOS 17.
-   Điều này hỗ trợ các tình huống trong đó Orbot quá không đáng tin cậy do hạn chế về bộ nhớ
-   hoặc khi người dùng muốn sử dụng nó qua một VPN khác.
+- Đã cập nhật Tor tích hợp lên phiên bản mới nhất 0.4.8.10.
+- Đã cập nhật Snowflake tích hợp lên phiên bản mới nhất 2.8.1.
+- Cập nhật bản dịch.
+- Đã sửa lỗi sự cố.

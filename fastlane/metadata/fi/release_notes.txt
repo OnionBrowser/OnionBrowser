@@ -1,3 +1,4 @@
-- Lisätty sisäänrakennettu Tor jälleen käytettäväksi iOS 17:n uusien `WKWebView`-välityspalvelinasetusten kanssa.
-  Tämä tukee skenaarioita, joissa Orbot on liian epäluotettava muistirajoitusten vuoksi.
-  tai kun käyttäjät haluavat käyttää sitä toisen VPN:n yli.
+- Sisäänrakennettu Tor päivitetty uusimpaan versioon 0.4.8.10.
+- Sisäänrakennettu Snowflake päivitetty uusimpaan versioon 2.8.1.
+- Päivitetyt käännökset.
+- Korjattu kaatuminen.

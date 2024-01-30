@@ -1,3 +1,4 @@
-- S'ha tornat a afegir Tor integrat per utilitzar-lo amb la nova configuració del servidor intermediari "WKWebView" a iOS 17.
-   Això admet escenaris en què Orbot és massa poc fiable a causa de les limitacions de memòria
-   o quan els usuaris volen utilitzar-lo a través d'una altra VPN.
+- S'ha actualitzat Tor integrat a la darrera versió 0.4.8.10.
+- S'ha actualitzat el Floquet de neu integrat a la darrera versió 2.8.1.
+- Traduccions actualitzades.
+- S'ha solucionat l'error.
