@@ -132,7 +132,7 @@ class TorManager {
 			guard let cookie = self.torConf?.cookie else {
 				self.log("#startTunnel cookie unreadable")
 
-				self.status = .stopped
+				self.stop()
 
 				return completion(Errors.cookieUnreadable)
 			}
