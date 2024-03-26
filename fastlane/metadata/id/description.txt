@@ -1,0 +1,24 @@
+Peramban web Onion adalah peramban web yang didukung oleh Tor dan gratis untuk iOS. Peramban Web Onion membantu Anda dalam mengakses internet dengan lebih aman dan melindungi informasi pengguna, dan tidak ada biaya tambahan untuk Anda.
+
+“Penawaran terbaik yang berkaitan dengan Tor di iOS saat ini adalah Peramban Web Onion” - The Daily Dot, 14 Oktober 2015.
+
+Telah ditampilkan di: The New York Times, The Guardian, Salon, TechCrunch, Gizmodo, Boing Boing, Lifehacker, Macworld, The Daily Dot, & lainnya.
+
+Fitur
+• Jelajahi internet melalui Tor:
+Lindungi privasi Anda dari pelacakan
+Amankan jejak Anda dari ketidakamanan jaringan layanan dan penyedia layanan
+Akses situs .onion hanya dapat dilakukan melalui Tor
+
+Lawan pelacakan online: memblokir skrip dan secara otomatis menghapus cookie dan tab, berdasarkan pilihan Anda.
+
+• Dan lebih banyak fitur peningkatan privasi!
+
+Pernyataan:
+- Penjelajahan web jauh lebih lambat daripada melalui peramban web biasa atau VPN karena lalu lintas Anda dienkripsi dan diteruskan melalui jaringan Tor.
+
+- Onion Browser mungkin tidak berfungsi pada jaringan dengan pembatasan jaringan tingkat lanjut. Jika aplikasi tidak terhubung, coba gunakan jembatan (atau jenis jembatan lain), tutup paksa, lalu mulai ulang aplikasi.
+
+- Penggunaan Onion Browser adalah risiko Anda sendiri; ingat bahwa data sensitif tidak selalu ada di perangkat seluler.
+
+** Peramban Web Onion adalah perangkat lunak sumber terbuka atau gratis. Anda dapat membaca lebih lanjut tentang Peramban Web Onion dan bagaimana cara untuk ikut mendukung pengembangan Tor di iOS dengan mengunjungi onionbrowser.com **
