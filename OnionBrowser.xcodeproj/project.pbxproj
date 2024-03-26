@@ -222,7 +222,7 @@
 		A003A1922A0D1628008D8845 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A004360B1E81856F0067652D /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A004360C1E81856F0067652D /* Podfile.lock */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile.lock; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A010FA171E7986DE00E04222 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		A010FA171E7986DE00E04222 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; };
 		A010FA191E798C0400E04222 /* BUILD.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = BUILD.md; sourceTree = "<group>"; };
 		A013DED92434E69A0087D12B /* UIImage+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Helpers.swift"; sourceTree = "<group>"; };
 		A0172C6D2888247C008D42CD /* AlertHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
@@ -378,6 +378,10 @@
 		A085A1EC270DAB8600800A29 /* SECURITY.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = SECURITY.md; sourceTree = "<group>"; };
 		A08737DF2213235F005A68CC /* HostSettings_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HostSettings_Tests.m; sourceTree = "<group>"; };
 		A0894E36236AE7C800EE2743 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
+		A0970A462BB31E4C00176402 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A0970A472BB31E4C00176402 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = id; path = id.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		A0970A482BB31E4C00176402 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A0970A492BB31E4C00176402 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = id; path = "id.lproj/security-levels.html"; sourceTree = "<group>"; };
 		A09A39612A17BE61008CC06A /* DownloadActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadActivity.swift; sourceTree = "<group>"; };
 		A09F7ADC2AD80A1A00F7072F /* TorCircuit+Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TorCircuit+Helper.swift"; sourceTree = "<group>"; };
 		A0A1A3592A03DAB800DE4991 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = en; path = "en.lproj/security-levels.html"; sourceTree = "<group>"; };
@@ -929,6 +933,7 @@
 				ro,
 				fi,
 				tt,
+				id,
 			);
 			mainGroup = 01801E891A32CA2A002B4718;
 			productRefGroup = 01801E931A32CA2A002B4718 /* Products */;
@@ -1314,6 +1319,7 @@
 				A08563362A04EA0C00A3A7FF /* uk */,
 				A08563372A04EA0D00A3A7FF /* vi */,
 				A02AB5C12AA5F34000CC6779 /* tt */,
+				A0970A462BB31E4C00176402 /* id */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1355,6 +1361,7 @@
 				A085635C2A04EA7A00A3A7FF /* uk */,
 				A085635D2A04EA7B00A3A7FF /* vi */,
 				A02AB5C22AA5F34000CC6779 /* tt */,
+				A0970A472BB31E4C00176402 /* id */,
 			);
 			name = Localizable.stringsdict;
 			sourceTree = "<group>";
@@ -1399,6 +1406,7 @@
 				A08563822A04EAC600A3A7FF /* uk */,
 				A08563832A04EAC700A3A7FF /* vi */,
 				A02AB5C32AA5F34000CC6779 /* tt */,
+				A0970A482BB31E4C00176402 /* id */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1438,6 +1446,7 @@
 				A0A1A37C2A03DB5800DE4991 /* uk */,
 				A0A1A37D2A03DB5A00DE4991 /* vi */,
 				A02AB5C42AA5F34000CC6779 /* tt */,
+				A0970A492BB31E4C00176402 /* id */,
 			);
 			name = "security-levels.html";
 			sourceTree = "<group>";

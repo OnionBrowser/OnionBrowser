@@ -80,10 +80,12 @@ These people helped with translations. Thank you so much, folks!
   benewfy, vargaviktor
 - Icelandic: 
   anarchodin, sveinki
-- Italian:
-  EllipticSet, Rhaal, RickDeckard, ryuw
+- Indonesian:
+  myusuffin, Kholidraf, Razmawardhana, andika, ic.debora77, icaldua, khrlzhfr, kiwed
 - Irish: 
   kscanne
+- Italian:
+  EllipticSet, Rhaal, RickDeckard, ryuw
 - Khmer:
   Cantaloupe, PisethKONG, mosesngeth, rasy, sokty, sophatchy
 - Korean:
