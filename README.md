@@ -4,7 +4,7 @@
  [![Sponsors on Open Collective](https://opencollective.com/OnionBrowser/sponsors/badge.svg)](#sponsors) 
   
 [Official Site][official] | [Support][help] | [Release History][releases] | [Donate][donate]  
-&copy; 2012-2023, Tigas Ventures, LLC ([Mike Tigas][miketigas])
+&copy; 2012-2024, Tigas Ventures, LLC ([Mike Tigas][miketigas])
 
 *This is the Onion Browser <strong>3.X branch</strong>. The older versions of Onion Browser can be found [here][2.X] and [here][1.X].*
 
