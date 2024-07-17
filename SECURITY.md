@@ -27,7 +27,7 @@ rendering engine and some code to make sure, all traffic is going
 through Orbot's Tor Network Extension.
 
 If it turns out, you really found a security problem, you'll
-of course will get full credits.
+of course get full credits.
 
 Regarding disclosure, we'd be very happy, if you would follow
 responsible disclosure guidelines.
