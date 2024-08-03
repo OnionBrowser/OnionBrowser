@@ -19,7 +19,7 @@ Please see the [LICENSE][license] file for usage and redistribution terms.
 [official]: https://onionbrowser.com/
 [help]: https://github.com/OnionBrowser/OnionBrowser/wiki/Help
 [releases]: https://github.com/OnionBrowser/OnionBrowser/releases
-[changelog]: https://raw.github.com/OnionBrowser/OnionBrowser/2.X/CHANGELOG.md
+[changelog]: https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/3.X/CHANGELOG.md
 [donate]: https://onionbrowser.com/donate
 [miketigas]: https://mike.tig.as/
 [license]: https://github.com/OnionBrowser/OnionBrowser/blob/3.X/LICENSE
