@@ -51,8 +51,6 @@
 
 /* Placeholder is bullet point */
 "%@ websites can uncover your real IP address using JavaScript" = "%@ Websites können Deine richtige IP-Adresse mittels JavaScript ermitteln";
-
-/* No comment provided by engineer. */
 "(not recommended)" = "(nicht empfohlen)";
 
 /* DonationViewController */
@@ -129,8 +127,6 @@
 
 /* Placeholder is 'Orbot' */
 "Ask %@ for permission to access it." = "Frag %@ nach der Erlaubnis es zu benutzen.";
-
-/* No comment provided by engineer. */
 "Ask again to continue." = "Frag nochmal, um weiter zu machen.";
 
 /* AppDelegate */
@@ -141,8 +137,6 @@
 
 /* AddSearchEngineViewController */
 "Autocomplete URL" = "Vorschläge-URL";
-
-/* No comment provided by engineer. */
 "Back" = "Zurück";
 
 /* CertificateViewController */
@@ -156,8 +150,6 @@
 
 /* BookmarksViewController */
 "Bookmarks" = "Lesezeichen";
-
-/* No comment provided by engineer. */
 "Both are free to use. Free of tracking. Code is open source." = "Beide sind kostenlos nutzbar und frei von Tracking. Der Quellcode ist öffentlich verfügbar.";
 
 /* CircuitViewController */
@@ -180,14 +172,10 @@
 
 /* SettingsViewController */
 "Choose how long app remembers open tabs." = "Wie lange soll sich die App an offene Reiter erinnern?";
-
-/* No comment provided by engineer. */
 "Choose your preferred blocklist:" = "Wähle Deine bevorzugte Blockliste:";
 
 /* AppDelegate */
 "Close Tab" = "Schließe Reiter";
-
-/* No comment provided by engineer. */
 "Configure Bridges" = "Konfiguriere Brücken";
 
 /* DonationViewController */
@@ -201,14 +189,10 @@
 
 /* SyncViewController */
 "Connection to Nextcloud Server Failed" = "Verbindung zum Nextcloud Server fehlgeschlagen";
-
-/* No comment provided by engineer. */
 "Cookies" = "Cookies";
 
 /* SettingsViewController, Storage1ViewController, Storage2ViewController */
 "Cookies and Local Storage" = "Cookies und Website-Daten";
-
-/* No comment provided by engineer. */
 "Couldn't understand server response." = "Serverantwort unverständlich.";
 
 /* AppDelegate */
@@ -243,8 +227,6 @@
 
 /* RuleEditorController */
 "Disabled: %@" = "Deaktiviert: %@";
-
-/* No comment provided by engineer. */
 "Disk Cache" = "Disk-Cache";
 
 /* DonationViewController */
@@ -255,11 +237,7 @@
 
 /* BrowsingViewController */
 "Done" = "Fertig";
-
-/* No comment provided by engineer. */
 "Download" = "Herunterladen";
-
-/* No comment provided by engineer. */
 "Drawbacks:" = "Nachteile:";
 
 /* SecurityPresetsRow */
@@ -288,15 +266,11 @@
 
 /* CertificateViewController */
 "Extended Validation: Organization" = "Erweiterte Validierung: Organisation";
-
-/* No comment provided by engineer. */
 "Fetch Cache" = "Fetch-Cache";
-
-/* No comment provided by engineer. */
 "Find in Page" = "Auf Seite finden";
 
 /* AppDelegate */
-"Focus URL Field" = "URL Feld fokusieren";
+"Focus URL Field" = "URL Feld fokussieren";
 
 /* SecurityViewController */
 "Follow Onion-Location Header Automatically" = "Onion-Location Header automatisch folgen";
@@ -354,8 +328,6 @@
 
 /* BookmarksViewController */
 "Import Bookmarks" = "Lesezeichen importieren";
-
-/* No comment provided by engineer. */
 "IndexedDB Databases" = "IndexedDB Datenbanken";
 
 /* Placeholder is 'Orbot' */
@@ -393,8 +365,6 @@
 
 /* AppDelegate */
 "Log In" = "Einloggen";
-
-/* No comment provided by engineer. */
 "Memory Cache" = "Speicher-Cache";
 
 /* SettingsViewController */
@@ -411,20 +381,10 @@
 
 /* CircuSitsViewController */
 "New Circuit for this Site" = "Neuer Kanal für diese Seite";
-
-/* No comment provided by engineer. */
 "New Security Features" = "Neue Sicherheits-Features";
-
-/* No comment provided by engineer. */
 "Next" = "Weiter";
-
-/* No comment provided by engineer. */
 "No success, but \"%@\" instead." = "Kein Erfolg, stattdessen: \"%@\".";
-
-/* No comment provided by engineer. */
 "No valid HTTP response." = "Keine gültige HTTP-Antwort.";
-
-/* No comment provided by engineer. */
 "Offline Web Application Cache" = "Offline Web-App-Cache";
 
 /* AlertHelper */
@@ -435,8 +395,6 @@
 
 /* Tab+Gestures */
 "Open in Background Tab" = "Im Hintergrund öffnen";
-
-/* No comment provided by engineer. */
 "Open in Default Browser" = "Im Standard-Browser öffnen";
 
 /* SecurityViewController */
@@ -468,8 +426,6 @@
 
 /* SettingsViewController */
 "Rate on App Store" = "Im App Store bewerten";
-
-/* No comment provided by engineer. */
 "Reasons to use the built-in Tor (iOS 17 only)" = "Gründe, um das eingebaute Tor zu verwenden (ab iOS 17)";
 
 /* AppDelegate */
@@ -483,17 +439,9 @@
 
 /* SettingsViewController */
 "Report a Bug" = "Fehler melden";
-
-/* No comment provided by engineer. */
 "Request Access" = "Fordere Zugriff an";
-
-/* No comment provided by engineer. */
 "Request could not be formed. Please check host and username/password!" = "Anfrage konnte nicht erstellt werden. Bitte Host und Benutzername/Passwort prüfen!";
-
-/* No comment provided by engineer. */
 "Response body missing." = "Antwort-Body fehlt.";
-
-/* No comment provided by engineer. */
 "Retry" = "Erneut versuchen";
 
 /* Placeholder is 'Orbot' */
@@ -516,11 +464,7 @@
 
 /* CertificateViewController */
 "Serial Number" = "Seriennummer";
-
-/* No comment provided by engineer. */
 "Service Worker Registrations" = "Service-Worker-Registrierungen";
-
-/* No comment provided by engineer. */
 "Session Storage" = "Session-Speicher";
 
 /* SettingsViewController */
@@ -549,21 +493,17 @@
 
 /* Placeholder is 'Orbot' */
 "Start %@" = "Starte %@";
-
-/* No comment provided by engineer. */
 "Start built-in Tor" = "Starte eingebautes Tor";
 
 /* Placeholder is 'Orbot' */
 "Start Tor in %@." = "Starte Tor in %@.";
-
-/* No comment provided by engineer. */
 "Starting Tor…" = "Starte Tor…";
 
 /* SettingsViewController */
 "Stop Auto-Complete at First Dot" = "Auto-Vervollständigung endet bei erstem Punkt";
 
 /* Bookmark */
-"Subscribe to Tor Newsletter" = "Tor Newsletter abonieren";
+"Subscribe to Tor Newsletter" = "Tor Newsletter abonnieren";
 
 /* SettingsViewController */
 "Support" = "Unterstützung";
@@ -594,11 +534,7 @@
 
 /* Option title */
 "Tell websites that you object to processing and selling of your personal data" = "Widerspreche der Verarbeitung und dem Verkauf Deiner persönlichen Daten auf Webseiten";
-
-/* No comment provided by engineer. */
 "The encryption method for this server is outdated." = "Die Verschlüsselungsmethode für diesen Server ist veraltet.";
-
-/* No comment provided by engineer. */
 "Then come back for private browsing." = "Dann komm zurück um privat zu Surfen.";
 
 /* SecurityViewController */
@@ -642,8 +578,6 @@
 
 /* AddSearchEngineViewController */
 "Update" = "Ändern";
-
-/* No comment provided by engineer. */
 "Update Blocklist" = "Blockliste erneuern";
 
 /* SettingsViewController */
@@ -651,11 +585,7 @@
 
 /* Placeholder is 'Orbot' */
 "Use %@" = "Benutze %@";
-
-/* No comment provided by engineer. */
 "Use built-in Tor" = "Benutze eingebautes Tor";
-
-/* No comment provided by engineer. */
 "Use URL Blocker" = "Benutze URL Blocker";
 
 /* SecurityViewController */
@@ -678,8 +608,6 @@
 
 /* SecurityPresetsRow */
 "Websites may break. But you get great security." = "Websites sind oft kaputt. Aber super-sicher.";
-
-/* No comment provided by engineer. */
 "WebSQL Databases" = "WebSQL-Datenbanken";
 
 /* Placeholder is 'Onion Browser' */
@@ -687,8 +615,6 @@
 
 /* SettingsViewController */
 "When disabled, all text entered in search bar will be sent to the search engine unless it starts with \"http\"." = "Falls deaktiviert, wird der gesamte eingegebene Text in der Suchleiste zur Suchmaschine gesendet, außer er beginnt mit \"http\".";
-
-/* No comment provided by engineer. */
 "Why" = "Warum";
 
 /* Placeholder 1 is 'Onion Browser', placeholder 2 is 'Orbot' */
@@ -702,8 +628,6 @@
 
 /* DonationViewController */
 "You most recently donated %1$@ on %2$@." = "Du hast als letztes %1$@ am %2$@ gespendet.";
-
-/* No comment provided by engineer. */
 "You're one step closer to private browsing." = "Du bist einen Schritt näher am privaten Surfen.";
 
 /* CircuitViewController */

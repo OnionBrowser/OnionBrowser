@@ -8,7 +8,7 @@ FUNKTIONEN:
 • Greife auf das Internet über Tor zu:
 - Schütze Deine Privatsphäre vor Webseiten-Nachverfolgung.
 - Sichere Deinen Datentraffic aus unsicheren WLAN-Netzen und ISPs.
-- Greife auf auf .onion Adressen zu, die nur über Tor zugänglich sind.
+- Greife auf .onion Adressen zu, die nur über Tor zugänglich sind.
 
 • Online-Nachverfolgung bekämpfen: Skripte blockieren und automatisch Cookies und Tabs löschen, basierend auf Ihren Vorlieben.
 

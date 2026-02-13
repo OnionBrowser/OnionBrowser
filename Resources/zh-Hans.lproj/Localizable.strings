@@ -51,8 +51,6 @@
 
 /* Placeholder is bullet point */
 "%@ websites can uncover your real IP address using JavaScript" = "%@ websites can uncover your real IP address using JavaScript";
-
-/* No comment provided by engineer. */
 "(not recommended)" = "（不推荐）";
 
 /* DonationViewController */
@@ -129,8 +127,6 @@
 
 /* Placeholder is 'Orbot' */
 "Ask %@ for permission to access it." = "请向 %@ 申请访问权限。";
-
-/* No comment provided by engineer. */
 "Ask again to continue." = "请再次申请以继续。";
 
 /* AppDelegate */
@@ -141,8 +137,6 @@
 
 /* AddSearchEngineViewController */
 "Autocomplete URL" = "自动完成 URL";
-
-/* No comment provided by engineer. */
 "Back" = "Back";
 
 /* CertificateViewController */
@@ -156,8 +150,6 @@
 
 /* BookmarksViewController */
 "Bookmarks" = "书签";
-
-/* No comment provided by engineer. */
 "Both are free to use. Free of tracking. Code is open source." = "两者都完全自由且免费使用。无需担心被追踪。源代码也是开放的。";
 
 /* CircuitViewController */
@@ -180,14 +172,10 @@
 
 /* SettingsViewController */
 "Choose how long app remembers open tabs." = "选择应用记住打开的标签页多久";
-
-/* No comment provided by engineer. */
 "Choose your preferred blocklist:" = "Choose your preferred blocklist:";
 
 /* AppDelegate */
 "Close Tab" = "关闭标签页";
-
-/* No comment provided by engineer. */
 "Configure Bridges" = "配置网桥";
 
 /* DonationViewController */
@@ -201,14 +189,10 @@
 
 /* SyncViewController */
 "Connection to Nextcloud Server Failed" = "与 Nextcloud 服务器连接失败";
-
-/* No comment provided by engineer. */
 "Cookies" = "Cookies";
 
 /* SettingsViewController, Storage1ViewController, Storage2ViewController */
 "Cookies and Local Storage" = "cookie 和本地存储";
-
-/* No comment provided by engineer. */
 "Couldn't understand server response." = "无法解析服务器回应。";
 
 /* AppDelegate */
@@ -243,8 +227,6 @@
 
 /* RuleEditorController */
 "Disabled: %@" = "已禁用：%@";
-
-/* No comment provided by engineer. */
 "Disk Cache" = "硬盘缓存";
 
 /* DonationViewController */
@@ -255,11 +237,7 @@
 
 /* BrowsingViewController */
 "Done" = "完成";
-
-/* No comment provided by engineer. */
 "Download" = "下载";
-
-/* No comment provided by engineer. */
 "Drawbacks:" = "缺点：";
 
 /* SecurityPresetsRow */
@@ -288,11 +266,7 @@
 
 /* CertificateViewController */
 "Extended Validation: Organization" = "额外验证：组织";
-
-/* No comment provided by engineer. */
 "Fetch Cache" = "获取缓存";
-
-/* No comment provided by engineer. */
 "Find in Page" = "在网页中搜索";
 
 /* AppDelegate */
@@ -354,8 +328,6 @@
 
 /* BookmarksViewController */
 "Import Bookmarks" = "Import Bookmarks";
-
-/* No comment provided by engineer. */
 "IndexedDB Databases" = "IndexedDB 数据库";
 
 /* Placeholder is 'Orbot' */
@@ -393,8 +365,6 @@
 
 /* AppDelegate */
 "Log In" = "登录";
-
-/* No comment provided by engineer. */
 "Memory Cache" = "内存中的缓存";
 
 /* SettingsViewController */
@@ -411,20 +381,10 @@
 
 /* CircuSitsViewController */
 "New Circuit for this Site" = "为此站点启用新的链路";
-
-/* No comment provided by engineer. */
 "New Security Features" = "New Security Features";
-
-/* No comment provided by engineer. */
 "Next" = "下一步";
-
-/* No comment provided by engineer. */
 "No success, but \"%@\" instead." = "服务器返回%@而不是成功执行。";
-
-/* No comment provided by engineer. */
 "No valid HTTP response." = "无有效 HTTP 响应。";
-
-/* No comment provided by engineer. */
 "Offline Web Application Cache" = "离线网页应用程序缓存";
 
 /* AlertHelper */
@@ -435,8 +395,6 @@
 
 /* Tab+Gestures */
 "Open in Background Tab" = "在背景标签页中打开";
-
-/* No comment provided by engineer. */
 "Open in Default Browser" = "用默认浏览器打开";
 
 /* SecurityViewController */
@@ -468,8 +426,6 @@
 
 /* SettingsViewController */
 "Rate on App Store" = "在应用商店评价";
-
-/* No comment provided by engineer. */
 "Reasons to use the built-in Tor (iOS 17 only)" = "使用内置 Tor 的理由 （仅iOS 17）";
 
 /* AppDelegate */
@@ -483,17 +439,9 @@
 
 /* SettingsViewController */
 "Report a Bug" = "报告错误";
-
-/* No comment provided by engineer. */
 "Request Access" = "请求访问";
-
-/* No comment provided by engineer. */
 "Request could not be formed. Please check host and username/password!" = "无法生成请求。请检查主机名和用户名/密码！";
-
-/* No comment provided by engineer. */
 "Response body missing." = "回复的主体部分丢失。";
-
-/* No comment provided by engineer. */
 "Retry" = "重试";
 
 /* Placeholder is 'Orbot' */
@@ -516,11 +464,7 @@
 
 /* CertificateViewController */
 "Serial Number" = "序列号";
-
-/* No comment provided by engineer. */
 "Service Worker Registrations" = "已注册的 Service Worker";
-
-/* No comment provided by engineer. */
 "Session Storage" = "会话存储";
 
 /* SettingsViewController */
@@ -549,14 +493,10 @@
 
 /* Placeholder is 'Orbot' */
 "Start %@" = "启动 %@";
-
-/* No comment provided by engineer. */
 "Start built-in Tor" = "启动内置Tor";
 
 /* Placeholder is 'Orbot' */
 "Start Tor in %@." = "从 %@ 启动 Tor。";
-
-/* No comment provided by engineer. */
 "Starting Tor…" = "启动Tor";
 
 /* SettingsViewController */
@@ -594,11 +534,7 @@
 
 /* Option title */
 "Tell websites that you object to processing and selling of your personal data" = "告诉网站您拒绝其处理与贩卖您的个人资料";
-
-/* No comment provided by engineer. */
 "The encryption method for this server is outdated." = "该服务器的加密方式已过时。";
-
-/* No comment provided by engineer. */
 "Then come back for private browsing." = "然后回来享受私密浏览。";
 
 /* SecurityViewController */
@@ -642,8 +578,6 @@
 
 /* AddSearchEngineViewController */
 "Update" = "更新";
-
-/* No comment provided by engineer. */
 "Update Blocklist" = "Update Blocklist";
 
 /* SettingsViewController */
@@ -651,11 +585,7 @@
 
 /* Placeholder is 'Orbot' */
 "Use %@" = "使用 %@";
-
-/* No comment provided by engineer. */
 "Use built-in Tor" = "使用内置Tor";
-
-/* No comment provided by engineer. */
 "Use URL Blocker" = "Use URL Blocker";
 
 /* SecurityViewController */
@@ -678,8 +608,6 @@
 
 /* SecurityPresetsRow */
 "Websites may break. But you get great security." = "网页可能损坏。但您能得到更高的安全性。";
-
-/* No comment provided by engineer. */
 "WebSQL Databases" = "WebSQL 数据库";
 
 /* Placeholder is 'Onion Browser' */
@@ -687,8 +615,6 @@
 
 /* SettingsViewController */
 "When disabled, all text entered in search bar will be sent to the search engine unless it starts with \"http\"." = "若禁用，在搜索框输入的全部文本将发送至搜索引擎，“http”开头的除外";
-
-/* No comment provided by engineer. */
 "Why" = "为什么";
 
 /* Placeholder 1 is 'Onion Browser', placeholder 2 is 'Orbot' */
@@ -702,8 +628,6 @@
 
 /* DonationViewController */
 "You most recently donated %1$@ on %2$@." = "你最近捐助了 %1$@ 给 %2$@。";
-
-/* No comment provided by engineer. */
 "You're one step closer to private browsing." = "您离私密浏览更近了一步。";
 
 /* CircuitViewController */

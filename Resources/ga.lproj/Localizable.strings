@@ -51,8 +51,6 @@
 
 /* Placeholder is bullet point */
 "%@ websites can uncover your real IP address using JavaScript" = "%@ websites can uncover your real IP address using JavaScript";
-
-/* No comment provided by engineer. */
 "(not recommended)" = "(ní mholtar é seo)";
 
 /* DonationViewController */
@@ -129,8 +127,6 @@
 
 /* Placeholder is 'Orbot' */
 "Ask %@ for permission to access it." = "Ask %@ for permission to access it.";
-
-/* No comment provided by engineer. */
 "Ask again to continue." = "Ask again to continue.";
 
 /* AppDelegate */
@@ -141,8 +137,6 @@
 
 /* AddSearchEngineViewController */
 "Autocomplete URL" = "Autocomplete URL";
-
-/* No comment provided by engineer. */
 "Back" = "Back";
 
 /* CertificateViewController */
@@ -156,8 +150,6 @@
 
 /* BookmarksViewController */
 "Bookmarks" = "Leabharmharcanna";
-
-/* No comment provided by engineer. */
 "Both are free to use. Free of tracking. Code is open source." = "Both are free to use. Free of tracking. Code is open source.";
 
 /* CircuitViewController */
@@ -180,14 +172,10 @@
 
 /* SettingsViewController */
 "Choose how long app remembers open tabs." = "Cé chomh fada is a mheabhraíonn an aip cluaisíní oscailte.";
-
-/* No comment provided by engineer. */
 "Choose your preferred blocklist:" = "Choose your preferred blocklist:";
 
 /* AppDelegate */
 "Close Tab" = "Dún an Cluaisín";
-
-/* No comment provided by engineer. */
 "Configure Bridges" = "Cumraigh Droichid";
 
 /* DonationViewController */
@@ -201,14 +189,10 @@
 
 /* SyncViewController */
 "Connection to Nextcloud Server Failed" = "Theip ar cheangal le freastalaí Nextcloud";
-
-/* No comment provided by engineer. */
 "Cookies" = "Cookies";
 
 /* SettingsViewController, Storage1ViewController, Storage2ViewController */
 "Cookies and Local Storage" = "Fianáin agus Stóras Áitiúil";
-
-/* No comment provided by engineer. */
 "Couldn't understand server response." = "Níor tuigeadh an freagra ón bhfreastalaí.";
 
 /* AppDelegate */
@@ -243,8 +227,6 @@
 
 /* RuleEditorController */
 "Disabled: %@" = "Díchumasaithe: %@";
-
-/* No comment provided by engineer. */
 "Disk Cache" = "Disk Cache";
 
 /* DonationViewController */
@@ -255,11 +237,7 @@
 
 /* BrowsingViewController */
 "Done" = "Déanta";
-
-/* No comment provided by engineer. */
 "Download" = "Download";
-
-/* No comment provided by engineer. */
 "Drawbacks:" = "Drawbacks:";
 
 /* SecurityPresetsRow */
@@ -288,11 +266,7 @@
 
 /* CertificateViewController */
 "Extended Validation: Organization" = "Bailíochtú Breise: Eagraíocht";
-
-/* No comment provided by engineer. */
 "Fetch Cache" = "Fetch Cache";
-
-/* No comment provided by engineer. */
 "Find in Page" = "Find in Page";
 
 /* AppDelegate */
@@ -354,8 +328,6 @@
 
 /* BookmarksViewController */
 "Import Bookmarks" = "Import Bookmarks";
-
-/* No comment provided by engineer. */
 "IndexedDB Databases" = "IndexedDB Databases";
 
 /* Placeholder is 'Orbot' */
@@ -393,8 +365,6 @@
 
 /* AppDelegate */
 "Log In" = "Logáil isteach";
-
-/* No comment provided by engineer. */
 "Memory Cache" = "Memory Cache";
 
 /* SettingsViewController */
@@ -411,20 +381,10 @@
 
 /* CircuSitsViewController */
 "New Circuit for this Site" = "Ciorcad Nua don Suíomh Seo";
-
-/* No comment provided by engineer. */
 "New Security Features" = "New Security Features";
-
-/* No comment provided by engineer. */
 "Next" = "Ar Aghaidh";
-
-/* No comment provided by engineer. */
 "No success, but \"%@\" instead." = "Tharla earráid: %@";
-
-/* No comment provided by engineer. */
 "No valid HTTP response." = "Ní bhfuarthas freagra bailí HTTP.";
-
-/* No comment provided by engineer. */
 "Offline Web Application Cache" = "Offline Web Application Cache";
 
 /* AlertHelper */
@@ -435,8 +395,6 @@
 
 /* Tab+Gestures */
 "Open in Background Tab" = "Oscail i gCluaisín Cúlra";
-
-/* No comment provided by engineer. */
 "Open in Default Browser" = "Open in Default Browser";
 
 /* SecurityViewController */
@@ -468,8 +426,6 @@
 
 /* SettingsViewController */
 "Rate on App Store" = "Rátáil san App Store";
-
-/* No comment provided by engineer. */
 "Reasons to use the built-in Tor (iOS 17 only)" = "Reasons to use the built-in Tor (iOS 17 only)";
 
 /* AppDelegate */
@@ -483,17 +439,9 @@
 
 /* SettingsViewController */
 "Report a Bug" = "Déan tuairisc ar fhabht";
-
-/* No comment provided by engineer. */
 "Request Access" = "Request Access";
-
-/* No comment provided by engineer. */
 "Request could not be formed. Please check host and username/password!" = "Theip orainn an t-iarratas a chruthú. Deimhnigh an t-óstainm, an t-ainm úsáideora, agus an focal faire!";
-
-/* No comment provided by engineer. */
 "Response body missing." = "Corp an fhreagra ar iarraidh.";
-
-/* No comment provided by engineer. */
 "Retry" = "Retry";
 
 /* Placeholder is 'Orbot' */
@@ -516,11 +464,7 @@
 
 /* CertificateViewController */
 "Serial Number" = "Sraithuimhir";
-
-/* No comment provided by engineer. */
 "Service Worker Registrations" = "Service Worker Registrations";
-
-/* No comment provided by engineer. */
 "Session Storage" = "Session Storage";
 
 /* SettingsViewController */
@@ -549,14 +493,10 @@
 
 /* Placeholder is 'Orbot' */
 "Start %@" = "Start %@";
-
-/* No comment provided by engineer. */
 "Start built-in Tor" = "Start built-in Tor";
 
 /* Placeholder is 'Orbot' */
 "Start Tor in %@." = "Start Tor in %@.";
-
-/* No comment provided by engineer. */
 "Starting Tor…" = "Starting Tor…";
 
 /* SettingsViewController */
@@ -594,11 +534,7 @@
 
 /* Option title */
 "Tell websites that you object to processing and selling of your personal data" = "Tell websites that you object to processing and selling of your personal data";
-
-/* No comment provided by engineer. */
 "The encryption method for this server is outdated." = "The encryption method for this server is outdated.";
-
-/* No comment provided by engineer. */
 "Then come back for private browsing." = "Then come back for private browsing.";
 
 /* SecurityViewController */
@@ -642,8 +578,6 @@
 
 /* AddSearchEngineViewController */
 "Update" = "Update";
-
-/* No comment provided by engineer. */
 "Update Blocklist" = "Update Blocklist";
 
 /* SettingsViewController */
@@ -651,11 +585,7 @@
 
 /* Placeholder is 'Orbot' */
 "Use %@" = "Use %@";
-
-/* No comment provided by engineer. */
 "Use built-in Tor" = "Use built-in Tor";
-
-/* No comment provided by engineer. */
 "Use URL Blocker" = "Use URL Blocker";
 
 /* SecurityViewController */
@@ -678,8 +608,6 @@
 
 /* SecurityPresetsRow */
 "Websites may break. But you get great security." = "Tá seans ann go mbrisfidh suímh áirithe. Ach gheobhaidh tú cosaint den chéad scoth.";
-
-/* No comment provided by engineer. */
 "WebSQL Databases" = "WebSQL Databases";
 
 /* Placeholder is 'Onion Browser' */
@@ -687,8 +615,6 @@
 
 /* SettingsViewController */
 "When disabled, all text entered in search bar will be sent to the search engine unless it starts with \"http\"." = "Gan an rogha seo, seolfar aon téacs a chuireann tú sa mbarra cuardaigh chuig an inneall cuardaigh, seachas aon téacs a thosaíonn le \"http\".";
-
-/* No comment provided by engineer. */
 "Why" = "Why";
 
 /* Placeholder 1 is 'Onion Browser', placeholder 2 is 'Orbot' */
@@ -702,8 +628,6 @@
 
 /* DonationViewController */
 "You most recently donated %1$@ on %2$@." = "An deontas deireanach a thug tú: %1$@ ar %2$@.";
-
-/* No comment provided by engineer. */
 "You're one step closer to private browsing." = "You're one step closer to private browsing.";
 
 /* CircuitViewController */

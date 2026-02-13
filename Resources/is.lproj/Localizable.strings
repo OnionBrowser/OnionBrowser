@@ -51,8 +51,6 @@
 
 /* Placeholder is bullet point */
 "%@ websites can uncover your real IP address using JavaScript" = "%@ vefsvæði geta flett ofan af raunverulegu IP-vistfangi þínu með JavaScript";
-
-/* No comment provided by engineer. */
 "(not recommended)" = "(ekki er mælt með þessu)";
 
 /* DonationViewController */
@@ -129,8 +127,6 @@
 
 /* Placeholder is 'Orbot' */
 "Ask %@ for permission to access it." = "Spyrðu %@ um heimild til að fá aðgang að því.";
-
-/* No comment provided by engineer. */
 "Ask again to continue." = "Spyrja aftur til að halda áfram.";
 
 /* AppDelegate */
@@ -141,8 +137,6 @@
 
 /* AddSearchEngineViewController */
 "Autocomplete URL" = "Sjálfvirk klárun vefslóða";
-
-/* No comment provided by engineer. */
 "Back" = "Til baka";
 
 /* CertificateViewController */
@@ -156,8 +150,6 @@
 
 /* BookmarksViewController */
 "Bookmarks" = "Bókamerki";
-
-/* No comment provided by engineer. */
 "Both are free to use. Free of tracking. Code is open source." = "Bæði eru öllum frjálst til afnota. Laust við rekjara. Opinn grunnkóði.";
 
 /* CircuitViewController */
@@ -180,14 +172,10 @@
 
 /* SettingsViewController */
 "Choose how long app remembers open tabs." = "Veldu hve lengi forritið man opna flipa.";
-
-/* No comment provided by engineer. */
 "Choose your preferred blocklist:" = "Veldu þér útilokunarlista:";
 
 /* AppDelegate */
 "Close Tab" = "Loka flipa";
-
-/* No comment provided by engineer. */
 "Configure Bridges" = "Stilla brýr";
 
 /* DonationViewController */
@@ -201,14 +189,10 @@
 
 /* SyncViewController */
 "Connection to Nextcloud Server Failed" = "Tenging við Nextcloud-þjón gekk ekki";
-
-/* No comment provided by engineer. */
 "Cookies" = "Vefkökur";
 
 /* SettingsViewController, Storage1ViewController, Storage2ViewController */
 "Cookies and Local Storage" = "Vefkökur og gagnageymslur á tæki";
-
-/* No comment provided by engineer. */
 "Couldn't understand server response." = "Skildi ekki svar netþjónsins.\n";
 
 /* AppDelegate */
@@ -243,8 +227,6 @@
 
 /* RuleEditorController */
 "Disabled: %@" = "Óvirkt: %@";
-
-/* No comment provided by engineer. */
 "Disk Cache" = "Diskminni";
 
 /* DonationViewController */
@@ -255,11 +237,7 @@
 
 /* BrowsingViewController */
 "Done" = "Lokið";
-
-/* No comment provided by engineer. */
 "Download" = "Sækja";
-
-/* No comment provided by engineer. */
 "Drawbacks:" = "Ágallar:";
 
 /* SecurityPresetsRow */
@@ -288,11 +266,7 @@
 
 /* CertificateViewController */
 "Extended Validation: Organization" = "Útvíkkað gildi: Stofnun";
-
-/* No comment provided by engineer. */
 "Fetch Cache" = "Sækja skyndiminni";
-
-/* No comment provided by engineer. */
 "Find in Page" = "Finna á síðu";
 
 /* AppDelegate */
@@ -354,8 +328,6 @@
 
 /* BookmarksViewController */
 "Import Bookmarks" = "Flytja inn bókamerki";
-
-/* No comment provided by engineer. */
 "IndexedDB Databases" = "IndexedDB-gagnagrunnar";
 
 /* Placeholder is 'Orbot' */
@@ -393,8 +365,6 @@
 
 /* AppDelegate */
 "Log In" = "Skrá inn";
-
-/* No comment provided by engineer. */
 "Memory Cache" = "Skyndiminni";
 
 /* SettingsViewController */
@@ -411,20 +381,10 @@
 
 /* CircuSitsViewController */
 "New Circuit for this Site" = "Ný rás fyrir þetta vefsvæði";
-
-/* No comment provided by engineer. */
 "New Security Features" = "Nýir öryggiseiginleikar";
-
-/* No comment provided by engineer. */
 "Next" = "Næsta";
-
-/* No comment provided by engineer. */
 "No success, but \"%@\" instead." = "Tókst ekki, en \"%@\" í staðinn.";
-
-/* No comment provided by engineer. */
 "No valid HTTP response." = "Ekki gilt HTTP-svar.";
-
-/* No comment provided by engineer. */
 "Offline Web Application Cache" = "Skyndiminni ónettengdra vefforrita";
 
 /* AlertHelper */
@@ -435,8 +395,6 @@
 
 /* Tab+Gestures */
 "Open in Background Tab" = "Opna í bakgrunnsflipa";
-
-/* No comment provided by engineer. */
 "Open in Default Browser" = "Opna í sjálfgefnum vafra";
 
 /* SecurityViewController */
@@ -468,8 +426,6 @@
 
 /* SettingsViewController */
 "Rate on App Store" = "Gefa einkunn í App Store";
-
-/* No comment provided by engineer. */
 "Reasons to use the built-in Tor (iOS 17 only)" = "Ástæður til þess að nota innbyggt Tor (einungis iOS 17)";
 
 /* AppDelegate */
@@ -483,17 +439,9 @@
 
 /* SettingsViewController */
 "Report a Bug" = "Tilkynna um villu";
-
-/* No comment provided by engineer. */
 "Request Access" = "Biðja um aðgang";
-
-/* No comment provided by engineer. */
 "Request could not be formed. Please check host and username/password!" = "Mistókst að forma beiðni. Athugaðu hýsilvél og notandanafn/lykilorðið þitt!";
-
-/* No comment provided by engineer. */
 "Response body missing." = "Meginmál svars vantar.";
-
-/* No comment provided by engineer. */
 "Retry" = "Reyna aftur";
 
 /* Placeholder is 'Orbot' */
@@ -516,11 +464,7 @@
 
 /* CertificateViewController */
 "Serial Number" = "Raðnúmer";
-
-/* No comment provided by engineer. */
 "Service Worker Registrations" = "Skráningar þjónustuverkferla";
-
-/* No comment provided by engineer. */
 "Session Storage" = "Geymslurými setu";
 
 /* SettingsViewController */
@@ -549,14 +493,10 @@
 
 /* Placeholder is 'Orbot' */
 "Start %@" = "Ræsa %@";
-
-/* No comment provided by engineer. */
 "Start built-in Tor" = "Ræsa innbyggt Tor";
 
 /* Placeholder is 'Orbot' */
 "Start Tor in %@." = "Ræsa Tor í %@.";
-
-/* No comment provided by engineer. */
 "Starting Tor…" = "Ræsi Tor…";
 
 /* SettingsViewController */
@@ -594,11 +534,7 @@
 
 /* Option title */
 "Tell websites that you object to processing and selling of your personal data" = "Segðu vefsvæðum að þú hafnir vinnslu og sölu á persónuupplýsingum þínum";
-
-/* No comment provided by engineer. */
 "The encryption method for this server is outdated." = "Dulritunaraðferðin fyrir þennan netþjón er úrelt.";
-
-/* No comment provided by engineer. */
 "Then come back for private browsing." = "Komdu svo til baka í huliðsvafur.";
 
 /* SecurityViewController */
@@ -642,8 +578,6 @@
 
 /* AddSearchEngineViewController */
 "Update" = "Uppfæra";
-
-/* No comment provided by engineer. */
 "Update Blocklist" = "Uppfæra útilokunarlista";
 
 /* SettingsViewController */
@@ -651,11 +585,7 @@
 
 /* Placeholder is 'Orbot' */
 "Use %@" = "Nota %@";
-
-/* No comment provided by engineer. */
 "Use built-in Tor" = "Nota innbyggt Tor";
-
-/* No comment provided by engineer. */
 "Use URL Blocker" = "Nota útilokun URL-slóða";
 
 /* SecurityViewController */
@@ -678,8 +608,6 @@
 
 /* SecurityPresetsRow */
 "Websites may break. But you get great security." = "Vefsvæði gætu bilað. En þú munt njóta aukins öryggis.";
-
-/* No comment provided by engineer. */
 "WebSQL Databases" = "WebSQL-gagnagrunnar";
 
 /* Placeholder is 'Onion Browser' */
@@ -687,8 +615,6 @@
 
 /* SettingsViewController */
 "When disabled, all text entered in search bar will be sent to the search engine unless it starts with \"http\"." = "Ef þetta er óvirkt verður allur texti sem sleginn er í leitarreitinn verður sendur til leitarvélarinnar nema hann byrji með \"http\".";
-
-/* No comment provided by engineer. */
 "Why" = "Af hverju";
 
 /* Placeholder 1 is 'Onion Browser', placeholder 2 is 'Orbot' */
@@ -702,8 +628,6 @@
 
 /* DonationViewController */
 "You most recently donated %1$@ on %2$@." = "Þú gafst nýlega %1$@ þann %2$@.";
-
-/* No comment provided by engineer. */
 "You're one step closer to private browsing." = "Þú ert einu skrefi nær því að hefja huliðsvafur.";
 
 /* CircuitViewController */

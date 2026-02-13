@@ -51,8 +51,6 @@
 
 /* Placeholder is bullet point */
 "%@ websites can uncover your real IP address using JavaScript" = "%@ websites can uncover your real IP address using JavaScript";
-
-/* No comment provided by engineer. */
 "(not recommended)" = "(no recomanat)";
 
 /* DonationViewController */
@@ -129,8 +127,6 @@
 
 /* Placeholder is 'Orbot' */
 "Ask %@ for permission to access it." = "Demaneu a %@ permís per a accedir-hi.";
-
-/* No comment provided by engineer. */
 "Ask again to continue." = "Demana-ho de nou per a continuar.";
 
 /* AppDelegate */
@@ -141,8 +137,6 @@
 
 /* AddSearchEngineViewController */
 "Autocomplete URL" = "Completa automàticament els URL";
-
-/* No comment provided by engineer. */
 "Back" = "Back";
 
 /* CertificateViewController */
@@ -156,8 +150,6 @@
 
 /* BookmarksViewController */
 "Bookmarks" = "Marcadors";
-
-/* No comment provided by engineer. */
 "Both are free to use. Free of tracking. Code is open source." = "Ambdós són d'ús lliure. Lliures de rastreig. El codi font és obert.";
 
 /* CircuitViewController */
@@ -180,14 +172,10 @@
 
 /* SettingsViewController */
 "Choose how long app remembers open tabs." = "Trieu quant de temps recorda l'aplicació les pestanyes obertes.";
-
-/* No comment provided by engineer. */
 "Choose your preferred blocklist:" = "Choose your preferred blocklist:";
 
 /* AppDelegate */
 "Close Tab" = "Tanca la pestanya";
-
-/* No comment provided by engineer. */
 "Configure Bridges" = "Configura els ponts";
 
 /* DonationViewController */
@@ -201,14 +189,10 @@
 
 /* SyncViewController */
 "Connection to Nextcloud Server Failed" = "Ha fallat la connexió amb el servidor del Nextcloud";
-
-/* No comment provided by engineer. */
 "Cookies" = "Galetes";
 
 /* SettingsViewController, Storage1ViewController, Storage2ViewController */
 "Cookies and Local Storage" = "Galetes i emmagatzematge local";
-
-/* No comment provided by engineer. */
 "Couldn't understand server response." = "No es pot interpretar la resposta del servidor.";
 
 /* AppDelegate */
@@ -243,8 +227,6 @@
 
 /* RuleEditorController */
 "Disabled: %@" = "Desactivat: %@";
-
-/* No comment provided by engineer. */
 "Disk Cache" = "Memòria cau del disc";
 
 /* DonationViewController */
@@ -255,11 +237,7 @@
 
 /* BrowsingViewController */
 "Done" = "Fet";
-
-/* No comment provided by engineer. */
 "Download" = "Baixa";
-
-/* No comment provided by engineer. */
 "Drawbacks:" = "Inconvenients:";
 
 /* SecurityPresetsRow */
@@ -288,11 +266,7 @@
 
 /* CertificateViewController */
 "Extended Validation: Organization" = "Validació ampliada: organització";
-
-/* No comment provided by engineer. */
 "Fetch Cache" = "Enxampa la memòria cau";
-
-/* No comment provided by engineer. */
 "Find in Page" = "Troba a la pàgina";
 
 /* AppDelegate */
@@ -354,8 +328,6 @@
 
 /* BookmarksViewController */
 "Import Bookmarks" = "Import Bookmarks";
-
-/* No comment provided by engineer. */
 "IndexedDB Databases" = "Bases de dades IndexedDB";
 
 /* Placeholder is 'Orbot' */
@@ -393,8 +365,6 @@
 
 /* AppDelegate */
 "Log In" = "Inicieu la sessió";
-
-/* No comment provided by engineer. */
 "Memory Cache" = "Memòria cau";
 
 /* SettingsViewController */
@@ -411,20 +381,10 @@
 
 /* CircuSitsViewController */
 "New Circuit for this Site" = "Circuit nou per a aquest lloc";
-
-/* No comment provided by engineer. */
 "New Security Features" = "New Security Features";
-
-/* No comment provided by engineer. */
 "Next" = "Següent";
-
-/* No comment provided by engineer. */
 "No success, but \"%@\" instead." = "No s'ha pogut completar. S'ha obtingut «%@».";
-
-/* No comment provided by engineer. */
 "No valid HTTP response." = "No és una resposta HTTP vàlida.";
-
-/* No comment provided by engineer. */
 "Offline Web Application Cache" = "Memòria web fora de línia de l'aplicació";
 
 /* AlertHelper */
@@ -435,8 +395,6 @@
 
 /* Tab+Gestures */
 "Open in Background Tab" = "Obre la pestanya en segon pla";
-
-/* No comment provided by engineer. */
 "Open in Default Browser" = "Obre al navegador predefinit";
 
 /* SecurityViewController */
@@ -468,8 +426,6 @@
 
 /* SettingsViewController */
 "Rate on App Store" = "Valora-la a l'App Store";
-
-/* No comment provided by engineer. */
 "Reasons to use the built-in Tor (iOS 17 only)" = "Raons per usar el Tor integrat (només iOS 17)";
 
 /* AppDelegate */
@@ -483,17 +439,9 @@
 
 /* SettingsViewController */
 "Report a Bug" = "Notifiqueu un error";
-
-/* No comment provided by engineer. */
 "Request Access" = "Demana accés";
-
-/* No comment provided by engineer. */
 "Request could not be formed. Please check host and username/password!" = "S'ha produït un error amb la petició. Verifiqueu les dades del servidor i l'usuari/contrasenya!";
-
-/* No comment provided by engineer. */
 "Response body missing." = "Manca el cos de la resposta.";
-
-/* No comment provided by engineer. */
 "Retry" = "Torna-ho a intentar";
 
 /* Placeholder is 'Orbot' */
@@ -516,11 +464,7 @@
 
 /* CertificateViewController */
 "Serial Number" = "Número de sèrie";
-
-/* No comment provided by engineer. */
 "Service Worker Registrations" = "Registraments del Service Worker";
-
-/* No comment provided by engineer. */
 "Session Storage" = "Emmagatzematge de la sessió";
 
 /* SettingsViewController */
@@ -549,14 +493,10 @@
 
 /* Placeholder is 'Orbot' */
 "Start %@" = "Inicia %@";
-
-/* No comment provided by engineer. */
 "Start built-in Tor" = "Inicia el Tor integrat";
 
 /* Placeholder is 'Orbot' */
 "Start Tor in %@." = "Inicia el Tor en %@.";
-
-/* No comment provided by engineer. */
 "Starting Tor…" = "S'està iniciant el Tor…";
 
 /* SettingsViewController */
@@ -594,11 +534,7 @@
 
 /* Option title */
 "Tell websites that you object to processing and selling of your personal data" = "Tell websites that you object to processing and selling of your personal data";
-
-/* No comment provided by engineer. */
 "The encryption method for this server is outdated." = "The encryption method for this server is outdated.";
-
-/* No comment provided by engineer. */
 "Then come back for private browsing." = "Then come back for private browsing.";
 
 /* SecurityViewController */
@@ -642,8 +578,6 @@
 
 /* AddSearchEngineViewController */
 "Update" = "Update";
-
-/* No comment provided by engineer. */
 "Update Blocklist" = "Update Blocklist";
 
 /* SettingsViewController */
@@ -651,11 +585,7 @@
 
 /* Placeholder is 'Orbot' */
 "Use %@" = "Use %@";
-
-/* No comment provided by engineer. */
 "Use built-in Tor" = "Use built-in Tor";
-
-/* No comment provided by engineer. */
 "Use URL Blocker" = "Use URL Blocker";
 
 /* SecurityViewController */
@@ -678,8 +608,6 @@
 
 /* SecurityPresetsRow */
 "Websites may break. But you get great security." = "Els lloc web poden deixar de funcionar. Però obteniu una gran seguretat.";
-
-/* No comment provided by engineer. */
 "WebSQL Databases" = "WebSQL Databases";
 
 /* Placeholder is 'Onion Browser' */
@@ -687,8 +615,6 @@
 
 /* SettingsViewController */
 "When disabled, all text entered in search bar will be sent to the search engine unless it starts with \"http\"." = "Quan està desactivat, tot el text que introduïu a la barra de cerca s'enviarà al motor de cerca, excepte si comença per «http».";
-
-/* No comment provided by engineer. */
 "Why" = "Why";
 
 /* Placeholder 1 is 'Onion Browser', placeholder 2 is 'Orbot' */
@@ -702,8 +628,6 @@
 
 /* DonationViewController */
 "You most recently donated %1$@ on %2$@." = "Fa poc heu donat %1$@ al%2$@.";
-
-/* No comment provided by engineer. */
 "You're one step closer to private browsing." = "You're one step closer to private browsing.";
 
 /* CircuitViewController */

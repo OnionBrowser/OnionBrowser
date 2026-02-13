@@ -51,8 +51,6 @@
 
 /* Placeholder is bullet point */
 "%@ websites can uncover your real IP address using JavaScript" = "%@ websites can uncover your real IP address using JavaScript";
-
-/* No comment provided by engineer. */
 "(not recommended)" = "(киңәш ителми)";
 
 /* DonationViewController */
@@ -129,8 +127,6 @@
 
 /* Placeholder is 'Orbot' */
 "Ask %@ for permission to access it." = "%@-ка керү өчен рөхсәт сорагыз.";
-
-/* No comment provided by engineer. */
 "Ask again to continue." = "Дәвам итү өчен кабат сорау.";
 
 /* AppDelegate */
@@ -141,8 +137,6 @@
 
 /* AddSearchEngineViewController */
 "Autocomplete URL" = "URL адресын автотөгәлләү";
-
-/* No comment provided by engineer. */
 "Back" = "Back";
 
 /* CertificateViewController */
@@ -156,8 +150,6 @@
 
 /* BookmarksViewController */
 "Bookmarks" = "Кыстыргычлар";
-
-/* No comment provided by engineer. */
 "Both are free to use. Free of tracking. Code is open source." = "Икесе дә кулланырга ирекле. Күзәтүдән ирекле. Ачык чыганаклы код.";
 
 /* CircuitViewController */
@@ -180,14 +172,10 @@
 
 /* SettingsViewController */
 "Choose how long app remembers open tabs." = "Кушымта ачык кыстыргычларны хәтерли озаккамы икәнен сайлагыз.";
-
-/* No comment provided by engineer. */
 "Choose your preferred blocklist:" = "Choose your preferred blocklist:";
 
 /* AppDelegate */
 "Close Tab" = "Табны ябу";
-
-/* No comment provided by engineer. */
 "Configure Bridges" = "Күперләрне көйләү";
 
 /* DonationViewController */
@@ -201,14 +189,10 @@
 
 /* SyncViewController */
 "Connection to Nextcloud Server Failed" = "Nextcloud серверга тоташу уңышсыз";
-
-/* No comment provided by engineer. */
 "Cookies" = "Кукилар";
 
 /* SettingsViewController, Storage1ViewController, Storage2ViewController */
 "Cookies and Local Storage" = "Кукилар һәм локаль саклагыч";
-
-/* No comment provided by engineer. */
 "Couldn't understand server response." = "Серверның җавапын аңлый алмадым.";
 
 /* AppDelegate */
@@ -243,8 +227,6 @@
 
 /* RuleEditorController */
 "Disabled: %@" = "Cүндерелгән: %@";
-
-/* No comment provided by engineer. */
 "Disk Cache" = "Диск кәше";
 
 /* DonationViewController */
@@ -255,11 +237,7 @@
 
 /* BrowsingViewController */
 "Done" = "Әзер";
-
-/* No comment provided by engineer. */
 "Download" = "Йөкләп алу";
-
-/* No comment provided by engineer. */
 "Drawbacks:" = "Җитешмәүләр:";
 
 /* SecurityPresetsRow */
@@ -288,11 +266,7 @@
 
 /* CertificateViewController */
 "Extended Validation: Organization" = "Киңәйтелгән тикшерү: Оешма";
-
-/* No comment provided by engineer. */
 "Fetch Cache" = "Кәшне алу";
-
-/* No comment provided by engineer. */
 "Find in Page" = "Биттә табу";
 
 /* AppDelegate */
@@ -354,8 +328,6 @@
 
 /* BookmarksViewController */
 "Import Bookmarks" = "Import Bookmarks";
-
-/* No comment provided by engineer. */
 "IndexedDB Databases" = "IndexedDB мәгълүмат базалары";
 
 /* Placeholder is 'Orbot' */
@@ -393,8 +365,6 @@
 
 /* AppDelegate */
 "Log In" = "Керү";
-
-/* No comment provided by engineer. */
 "Memory Cache" = "Хәтер кәше";
 
 /* SettingsViewController */
@@ -411,20 +381,10 @@
 
 /* CircuSitsViewController */
 "New Circuit for this Site" = "Бу сайт өчен яңа чылбыр";
-
-/* No comment provided by engineer. */
 "New Security Features" = "New Security Features";
-
-/* No comment provided by engineer. */
 "Next" = "Киләсе";
-
-/* No comment provided by engineer. */
 "No success, but \"%@\" instead." = "Уңышсыз, ләкин урынында \"%@\" алды.";
-
-/* No comment provided by engineer. */
 "No valid HTTP response." = "Дөрес HTTP җавап юк.";
-
-/* No comment provided by engineer. */
 "Offline Web Application Cache" = "Автоном веб-кушымта кәше";
 
 /* AlertHelper */
@@ -435,8 +395,6 @@
 
 /* Tab+Gestures */
 "Open in Background Tab" = "Фондагы табта ачу";
-
-/* No comment provided by engineer. */
 "Open in Default Browser" = "Стандарт браузерда ачу";
 
 /* SecurityViewController */
@@ -468,8 +426,6 @@
 
 /* SettingsViewController */
 "Rate on App Store" = "App Store-да бәяләү";
-
-/* No comment provided by engineer. */
 "Reasons to use the built-in Tor (iOS 17 only)" = "Кушымта эчендә булган Tor-ны куллану сәбәпләре (iOS 17 гына)";
 
 /* AppDelegate */
@@ -483,17 +439,9 @@
 
 /* SettingsViewController */
 "Report a Bug" = "Хата турында белдерү";
-
-/* No comment provided by engineer. */
 "Request Access" = "Рөхсәтне сорау";
-
-/* No comment provided by engineer. */
 "Request could not be formed. Please check host and username/password!" = "Сорау төзеп булмады. Зинһар, хостны һәм кулланучы исемен/серсүзне тикшерегез!";
-
-/* No comment provided by engineer. */
 "Response body missing." = "Җавап гәүдәсе юк.";
-
-/* No comment provided by engineer. */
 "Retry" = "Кабатлау";
 
 /* Placeholder is 'Orbot' */
@@ -516,11 +464,7 @@
 
 /* CertificateViewController */
 "Serial Number" = "Серия номеры";
-
-/* No comment provided by engineer. */
 "Service Worker Registrations" = "Service Worker теркәлүләре";
-
-/* No comment provided by engineer. */
 "Session Storage" = "Сеанслар саклагычы";
 
 /* SettingsViewController */
@@ -549,14 +493,10 @@
 
 /* Placeholder is 'Orbot' */
 "Start %@" = "%@-ны башлау";
-
-/* No comment provided by engineer. */
 "Start built-in Tor" = "Кушымта эчендә булган Tor-ны башлау";
 
 /* Placeholder is 'Orbot' */
 "Start Tor in %@." = "Tor-ны %@ кушымтасындагы башлау.";
-
-/* No comment provided by engineer. */
 "Starting Tor…" = "Tor-ны башла...";
 
 /* SettingsViewController */
@@ -594,11 +534,7 @@
 
 /* Option title */
 "Tell websites that you object to processing and selling of your personal data" = "Шәхси мәгълүматыгызны эшкәртүгә һәм сатуга каршы килүегезне сайтларга хәбәр итегез";
-
-/* No comment provided by engineer. */
 "The encryption method for this server is outdated." = "Бу сервер өчен шифрлау ысулы искергән.";
-
-/* No comment provided by engineer. */
 "Then come back for private browsing." = "Аннары хосусый гизү өчен кире кайтыгыз.";
 
 /* SecurityViewController */
@@ -642,8 +578,6 @@
 
 /* AddSearchEngineViewController */
 "Update" = "Яңарту";
-
-/* No comment provided by engineer. */
 "Update Blocklist" = "Update Blocklist";
 
 /* SettingsViewController */
@@ -651,11 +585,7 @@
 
 /* Placeholder is 'Orbot' */
 "Use %@" = "%@ куллану ";
-
-/* No comment provided by engineer. */
 "Use built-in Tor" = "Кушымта эчендә булган Tor-ны куллану";
-
-/* No comment provided by engineer. */
 "Use URL Blocker" = "Use URL Blocker";
 
 /* SecurityViewController */
@@ -678,8 +608,6 @@
 
 /* SecurityPresetsRow */
 "Websites may break. But you get great security." = "Кайбер сайтлар дөрес эшләмәскә мөмкин. Ләкин сез яхшы хәвефсезлек аласыз.";
-
-/* No comment provided by engineer. */
 "WebSQL Databases" = "WebSQL мәгълүмат базалары";
 
 /* Placeholder is 'Onion Browser' */
@@ -687,8 +615,6 @@
 
 /* SettingsViewController */
 "When disabled, all text entered in search bar will be sent to the search engine unless it starts with \"http\"." = "Опция сүндерелгәндә, эзләү юлына кертелгән барлык текст, әгәр ул \"http\" белән башланмаса, эзләү системасына җибәреләчәк";
-
-/* No comment provided by engineer. */
 "Why" = "Ни өчен";
 
 /* Placeholder 1 is 'Onion Browser', placeholder 2 is 'Orbot' */
@@ -702,8 +628,6 @@
 
 /* DonationViewController */
 "You most recently donated %1$@ on %2$@." = "%1$@ өчен соңгы тапкыр %2$@ көнне иганә итегез.";
-
-/* No comment provided by engineer. */
 "You're one step closer to private browsing." = "Сез хосусый гизү өчен бер адым якынрак.";
 
 /* CircuitViewController */

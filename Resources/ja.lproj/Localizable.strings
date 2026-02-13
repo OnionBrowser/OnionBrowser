@@ -51,8 +51,6 @@
 
 /* Placeholder is bullet point */
 "%@ websites can uncover your real IP address using JavaScript" = "%@ websites can uncover your real IP address using JavaScript";
-
-/* No comment provided by engineer. */
 "(not recommended)" = "（非推奨）";
 
 /* DonationViewController */
@@ -129,8 +127,6 @@
 
 /* Placeholder is 'Orbot' */
 "Ask %@ for permission to access it." = "%@ から許可をもらってください";
-
-/* No comment provided by engineer. */
 "Ask again to continue." = "もう一度許可を求めてください。";
 
 /* AppDelegate */
@@ -141,8 +137,6 @@
 
 /* AddSearchEngineViewController */
 "Autocomplete URL" = "URLを自動補完";
-
-/* No comment provided by engineer. */
 "Back" = "戻る";
 
 /* CertificateViewController */
@@ -156,8 +150,6 @@
 
 /* BookmarksViewController */
 "Bookmarks" = "お気に入り";
-
-/* No comment provided by engineer. */
 "Both are free to use. Free of tracking. Code is open source." = "いずれも無料です。トラッキングの恐れがなく、オープンソースです。";
 
 /* CircuitViewController */
@@ -180,14 +172,10 @@
 
 /* SettingsViewController */
 "Choose how long app remembers open tabs." = "タブの記憶期間を選択";
-
-/* No comment provided by engineer. */
 "Choose your preferred blocklist:" = "Choose your preferred blocklist:";
 
 /* AppDelegate */
 "Close Tab" = "タブを閉じる";
-
-/* No comment provided by engineer. */
 "Configure Bridges" = "ブリッジの設定";
 
 /* DonationViewController */
@@ -201,14 +189,10 @@
 
 /* SyncViewController */
 "Connection to Nextcloud Server Failed" = "NextCloudサーバーへの接続に失敗しました。";
-
-/* No comment provided by engineer. */
 "Cookies" = "Cookies";
 
 /* SettingsViewController, Storage1ViewController, Storage2ViewController */
 "Cookies and Local Storage" = "クッキーとローカル・ストレージ";
-
-/* No comment provided by engineer. */
 "Couldn't understand server response." = "サーバーのレスポンスが理解できませんでした";
 
 /* AppDelegate */
@@ -243,8 +227,6 @@
 
 /* RuleEditorController */
 "Disabled: %@" = "無効: %@";
-
-/* No comment provided by engineer. */
 "Disk Cache" = "ディスクキャッシュ";
 
 /* DonationViewController */
@@ -255,11 +237,7 @@
 
 /* BrowsingViewController */
 "Done" = "完了";
-
-/* No comment provided by engineer. */
 "Download" = "ダウンロード";
-
-/* No comment provided by engineer. */
 "Drawbacks:" = "欠点:";
 
 /* SecurityPresetsRow */
@@ -288,11 +266,7 @@
 
 /* CertificateViewController */
 "Extended Validation: Organization" = "EV証明書: 組織";
-
-/* No comment provided by engineer. */
 "Fetch Cache" = "キャッシュを取得";
-
-/* No comment provided by engineer. */
 "Find in Page" = "ページを検索";
 
 /* AppDelegate */
@@ -354,8 +328,6 @@
 
 /* BookmarksViewController */
 "Import Bookmarks" = "Import Bookmarks";
-
-/* No comment provided by engineer. */
 "IndexedDB Databases" = "IndexedDBデータベース";
 
 /* Placeholder is 'Orbot' */
@@ -393,8 +365,6 @@
 
 /* AppDelegate */
 "Log In" = "ログイン";
-
-/* No comment provided by engineer. */
 "Memory Cache" = "メモリキャッシュ";
 
 /* SettingsViewController */
@@ -411,20 +381,10 @@
 
 /* CircuSitsViewController */
 "New Circuit for this Site" = "新経路を設定する";
-
-/* No comment provided by engineer. */
 "New Security Features" = "新セキュリティ機能";
-
-/* No comment provided by engineer. */
 "Next" = "次に";
-
-/* No comment provided by engineer. */
 "No success, but \"%@\" instead." = "成功なし: \"%@\"";
-
-/* No comment provided by engineer. */
 "No valid HTTP response." = "有効なHTTPレスポンスがありません";
-
-/* No comment provided by engineer. */
 "Offline Web Application Cache" = "オフラインキャッシュ";
 
 /* AlertHelper */
@@ -435,8 +395,6 @@
 
 /* Tab+Gestures */
 "Open in Background Tab" = "バックグラウンドで開く";
-
-/* No comment provided by engineer. */
 "Open in Default Browser" = "デフォルトブラウザで開く";
 
 /* SecurityViewController */
@@ -468,8 +426,6 @@
 
 /* SettingsViewController */
 "Rate on App Store" = "App Storeでレビューする";
-
-/* No comment provided by engineer. */
 "Reasons to use the built-in Tor (iOS 17 only)" = "組み込みTorを使う理由（iOS 17のみ）";
 
 /* AppDelegate */
@@ -483,17 +439,9 @@
 
 /* SettingsViewController */
 "Report a Bug" = "バグを報告";
-
-/* No comment provided by engineer. */
 "Request Access" = "アクセス許可を求める";
-
-/* No comment provided by engineer. */
 "Request could not be formed. Please check host and username/password!" = "ブリッジ依頼を形成できませんでした。ホスト名・ユーザー名などを確認してください。";
-
-/* No comment provided by engineer. */
 "Response body missing." = "レスポンスが空です";
-
-/* No comment provided by engineer. */
 "Retry" = "再試行";
 
 /* Placeholder is 'Orbot' */
@@ -516,11 +464,7 @@
 
 /* CertificateViewController */
 "Serial Number" = "シリアルナンバー";
-
-/* No comment provided by engineer. */
 "Service Worker Registrations" = "サービスワーカー登録";
-
-/* No comment provided by engineer. */
 "Session Storage" = "セッションストレージ";
 
 /* SettingsViewController */
@@ -549,14 +493,10 @@
 
 /* Placeholder is 'Orbot' */
 "Start %@" = "%@を開始";
-
-/* No comment provided by engineer. */
 "Start built-in Tor" = "組み込みTorを開始";
 
 /* Placeholder is 'Orbot' */
 "Start Tor in %@." = "%@でTorを開始";
-
-/* No comment provided by engineer. */
 "Starting Tor…" = "Torを開始…";
 
 /* SettingsViewController */
@@ -594,11 +534,7 @@
 
 /* Option title */
 "Tell websites that you object to processing and selling of your personal data" = "あなたの個人情報を処理したり転売することに反対であることをサイトに伝える";
-
-/* No comment provided by engineer. */
 "The encryption method for this server is outdated." = "このサーバーの暗号方式は旧式です。";
-
-/* No comment provided by engineer. */
 "Then come back for private browsing." = "プライベートブラウジングができるようになります。";
 
 /* SecurityViewController */
@@ -642,8 +578,6 @@
 
 /* AddSearchEngineViewController */
 "Update" = "アップデート";
-
-/* No comment provided by engineer. */
 "Update Blocklist" = "Update Blocklist";
 
 /* SettingsViewController */
@@ -651,11 +585,7 @@
 
 /* Placeholder is 'Orbot' */
 "Use %@" = "%@を使う";
-
-/* No comment provided by engineer. */
 "Use built-in Tor" = "組み込みTorを使う";
-
-/* No comment provided by engineer. */
 "Use URL Blocker" = "Use URL Blocker";
 
 /* SecurityViewController */
@@ -678,8 +608,6 @@
 
 /* SecurityPresetsRow */
 "Websites may break. But you get great security." = "最高度のセキュリティですが、サイトによっては機能しない場合があります。";
-
-/* No comment provided by engineer. */
 "WebSQL Databases" = "WebSQLデータベース";
 
 /* Placeholder is 'Onion Browser' */
@@ -687,8 +615,6 @@
 
 /* SettingsViewController */
 "When disabled, all text entered in search bar will be sent to the search engine unless it starts with \"http\"." = "無効にすると、\"http\"で始まらない限り、検索バーに入力されたテキストがすべて検索エンジンに送信されます";
-
-/* No comment provided by engineer. */
 "Why" = "理由は？";
 
 /* Placeholder 1 is 'Onion Browser', placeholder 2 is 'Orbot' */
@@ -702,8 +628,6 @@
 
 /* DonationViewController */
 "You most recently donated %1$@ on %2$@." = "前回は %1$@ を %2$@ に寄付しています。";
-
-/* No comment provided by engineer. */
 "You're one step closer to private browsing." = "プライベートブラウジングまであと一歩";
 
 /* CircuitViewController */

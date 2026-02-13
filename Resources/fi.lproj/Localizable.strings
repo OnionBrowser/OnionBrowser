@@ -51,8 +51,6 @@
 
 /* Placeholder is bullet point */
 "%@ websites can uncover your real IP address using JavaScript" = "%@ websites can uncover your real IP address using JavaScript";
-
-/* No comment provided by engineer. */
 "(not recommended)" = "(ei suositella)";
 
 /* DonationViewController */
@@ -129,8 +127,6 @@
 
 /* Placeholder is 'Orbot' */
 "Ask %@ for permission to access it." = "Pyydä %@ilta oikeutta käyttää sitä.";
-
-/* No comment provided by engineer. */
 "Ask again to continue." = "Jatka pyytämällä uudelleen";
 
 /* AppDelegate */
@@ -141,8 +137,6 @@
 
 /* AddSearchEngineViewController */
 "Autocomplete URL" = "URL-automaattitäyttö";
-
-/* No comment provided by engineer. */
 "Back" = "Back";
 
 /* CertificateViewController */
@@ -156,8 +150,6 @@
 
 /* BookmarksViewController */
 "Bookmarks" = "Kirjamerkit";
-
-/* No comment provided by engineer. */
 "Both are free to use. Free of tracking. Code is open source." = "Molemmat ovat ilmaisia käyttää, seurantavapaita ja avointa lähdekoodia.";
 
 /* CircuitViewController */
@@ -180,14 +172,10 @@
 
 /* SettingsViewController */
 "Choose how long app remembers open tabs." = "Valitse miten kauan sovellus muistaa avoimet välilehdet.";
-
-/* No comment provided by engineer. */
 "Choose your preferred blocklist:" = "Choose your preferred blocklist:";
 
 /* AppDelegate */
 "Close Tab" = "Sulje välilehti";
-
-/* No comment provided by engineer. */
 "Configure Bridges" = "Määritä sillat";
 
 /* DonationViewController */
@@ -201,14 +189,10 @@
 
 /* SyncViewController */
 "Connection to Nextcloud Server Failed" = "Yhteyden muodostus Nextcloud-palvelimeen epäonnistui";
-
-/* No comment provided by engineer. */
 "Cookies" = "Evästeet";
 
 /* SettingsViewController, Storage1ViewController, Storage2ViewController */
 "Cookies and Local Storage" = "Evästeet ja paikallinen tallennustila";
-
-/* No comment provided by engineer. */
 "Couldn't understand server response." = "Palvelimen vastausta ei ymmärretty";
 
 /* AppDelegate */
@@ -243,8 +227,6 @@
 
 /* RuleEditorController */
 "Disabled: %@" = "Ei käytössä: %@";
-
-/* No comment provided by engineer. */
 "Disk Cache" = "Levyvälimuisti";
 
 /* DonationViewController */
@@ -255,11 +237,7 @@
 
 /* BrowsingViewController */
 "Done" = "Valmis";
-
-/* No comment provided by engineer. */
 "Download" = "Lataa";
-
-/* No comment provided by engineer. */
 "Drawbacks:" = "Haitat:";
 
 /* SecurityPresetsRow */
@@ -288,11 +266,7 @@
 
 /* CertificateViewController */
 "Extended Validation: Organization" = "Laajennettu vahvistus: Organisaatio";
-
-/* No comment provided by engineer. */
 "Fetch Cache" = "Nouda välimuisti";
-
-/* No comment provided by engineer. */
 "Find in Page" = "Etsi sivulta";
 
 /* AppDelegate */
@@ -354,8 +328,6 @@
 
 /* BookmarksViewController */
 "Import Bookmarks" = "Import Bookmarks";
-
-/* No comment provided by engineer. */
 "IndexedDB Databases" = "IndexedDB-tietokannat";
 
 /* Placeholder is 'Orbot' */
@@ -393,8 +365,6 @@
 
 /* AppDelegate */
 "Log In" = "Kirjaudu";
-
-/* No comment provided by engineer. */
 "Memory Cache" = "Muistivälimuisti";
 
 /* SettingsViewController */
@@ -411,20 +381,10 @@
 
 /* CircuSitsViewController */
 "New Circuit for this Site" = "Uusi ketju tälle sivustolle";
-
-/* No comment provided by engineer. */
 "New Security Features" = "New Security Features";
-
-/* No comment provided by engineer. */
 "Next" = "Seuraava";
-
-/* No comment provided by engineer. */
 "No success, but \"%@\" instead." = " onnistunut, mutta \"%@\" sen sijaan.";
-
-/* No comment provided by engineer. */
 "No valid HTTP response." = "Ei kelvollista HTTP-vastausta.";
-
-/* No comment provided by engineer. */
 "Offline Web Application Cache" = "Yhteydettömien verkkosovellusten välimuisti";
 
 /* AlertHelper */
@@ -435,8 +395,6 @@
 
 /* Tab+Gestures */
 "Open in Background Tab" = "Avaa taustavälilehteen";
-
-/* No comment provided by engineer. */
 "Open in Default Browser" = "Avaa oletusselaimessa";
 
 /* SecurityViewController */
@@ -468,8 +426,6 @@
 
 /* SettingsViewController */
 "Rate on App Store" = "Arvioi App Storessa";
-
-/* No comment provided by engineer. */
 "Reasons to use the built-in Tor (iOS 17 only)" = "Syitä käyttää sisäänrakennettua Tor-ratkaisua (vain iOS 17)";
 
 /* AppDelegate */
@@ -483,17 +439,9 @@
 
 /* SettingsViewController */
 "Report a Bug" = "Ilmoita viasta";
-
-/* No comment provided by engineer. */
 "Request Access" = "Pyydä käyttöoikeutta";
-
-/* No comment provided by engineer. */
 "Request could not be formed. Please check host and username/password!" = "Pyyntöä ei voitu muodostaa. Tarkista palvelin, käyttäjätunnus ja salasana.";
-
-/* No comment provided by engineer. */
 "Response body missing." = "Vastauksen sisältö puuttuu.";
-
-/* No comment provided by engineer. */
 "Retry" = "Yritä uudelleen";
 
 /* Placeholder is 'Orbot' */
@@ -516,11 +464,7 @@
 
 /* CertificateViewController */
 "Serial Number" = "Sarjanumero";
-
-/* No comment provided by engineer. */
 "Service Worker Registrations" = "Service Worker -liitännät";
-
-/* No comment provided by engineer. */
 "Session Storage" = "Istuntomuisti";
 
 /* SettingsViewController */
@@ -549,14 +493,10 @@
 
 /* Placeholder is 'Orbot' */
 "Start %@" = "Käynnistä %@";
-
-/* No comment provided by engineer. */
 "Start built-in Tor" = "Käynnistä sisäänrakennettu Tor";
 
 /* Placeholder is 'Orbot' */
 "Start Tor in %@." = "Käynnistä Tor %@issa.";
-
-/* No comment provided by engineer. */
 "Starting Tor…" = "Käynnistetään Tor…";
 
 /* SettingsViewController */
@@ -594,11 +534,7 @@
 
 /* Option title */
 "Tell websites that you object to processing and selling of your personal data" = "Kerro verkkosivustoille, että vastustat henkilökohtaisten tietojesi käsittelyä ja myyntiä.";
-
-/* No comment provided by engineer. */
 "The encryption method for this server is outdated." = "Palvelimen salaustapa on vanhentunut.";
-
-/* No comment provided by engineer. */
 "Then come back for private browsing." = "Ja palaa sen jälkeen selaamaan yksityisesti.";
 
 /* SecurityViewController */
@@ -642,8 +578,6 @@
 
 /* AddSearchEngineViewController */
 "Update" = "Päivitä";
-
-/* No comment provided by engineer. */
 "Update Blocklist" = "Update Blocklist";
 
 /* SettingsViewController */
@@ -651,11 +585,7 @@
 
 /* Placeholder is 'Orbot' */
 "Use %@" = "Käyttää %@ia";
-
-/* No comment provided by engineer. */
 "Use built-in Tor" = "Käyttää sisäänrakennettua Toria";
-
-/* No comment provided by engineer. */
 "Use URL Blocker" = "Use URL Blocker";
 
 /* SecurityViewController */
@@ -678,8 +608,6 @@
 
 /* SecurityPresetsRow */
 "Websites may break. But you get great security." = "Verkkosivustot saattavat rikkoutua, mutta saat vahvan suojauksen.";
-
-/* No comment provided by engineer. */
 "WebSQL Databases" = "WebSQL-tietokannat";
 
 /* Placeholder is 'Onion Browser' */
@@ -687,8 +615,6 @@
 
 /* SettingsViewController */
 "When disabled, all text entered in search bar will be sent to the search engine unless it starts with \"http\"." = "Kun ei käytössä, lähetetään kaikki hakupalkkiin kirjoitettu teksti hakukoneelle, ellei teksti ala \"http\".";
-
-/* No comment provided by engineer. */
 "Why" = "Miksi";
 
 /* Placeholder 1 is 'Onion Browser', placeholder 2 is 'Orbot' */
@@ -702,8 +628,6 @@
 
 /* DonationViewController */
 "You most recently donated %1$@ on %2$@." = "Lahjoitit viimeksi %1$@ %2$@.";
-
-/* No comment provided by engineer. */
 "You're one step closer to private browsing." = "Olet askeleen lähempänä yksityistä selausta.";
 
 /* CircuitViewController */
