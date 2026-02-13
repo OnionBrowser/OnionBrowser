@@ -7,9 +7,9 @@
 //
 //  This file is part of Onion Browser. See LICENSE file for redistribution terms.
 //
-"NSPhotoLibraryAddUsageDescription" = "Nötig, um das ausgewählte Bild zu ihren Fotos zu speichern.";
-"NSCameraUsageDescription" = "Nötig, um Brückenadressen in angezeigten QR Codes zu lesen.";
-"NSFaceIDUsageDescription" = "Nötig, um die App mit Face ID zu entsperren.";
+NSPhotoLibraryAddUsageDescription = "Nötig, um das ausgewählte Bild zu ihren Fotos zu speichern.";
+NSCameraUsageDescription = "Nötig, um Brückenadressen in angezeigten QR Codes zu lesen.";
+NSFaceIDUsageDescription = "Nötig, um die App mit Face ID zu entsperren.";
 "New Tab" = "Neuer Reiter";
 "Clear Data" = "Alles löschen";
 "Close tabs and clear data" = "Reiter schließen und alle Daten löschen";
