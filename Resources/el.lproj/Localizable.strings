@@ -51,6 +51,8 @@
 
 /* Placeholder is bullet point */
 "%@ websites can uncover your real IP address using JavaScript" = "%@ websites can uncover your real IP address using JavaScript";
+
+/* No comment provided by engineer. */
 "(not recommended)" = "(δεν προτείνεται)";
 
 /* DonationViewController */
@@ -127,6 +129,8 @@
 
 /* Placeholder is 'Orbot' */
 "Ask %@ for permission to access it." = "Ask %@ for permission to access it.";
+
+/* No comment provided by engineer. */
 "Ask again to continue." = "Ask again to continue.";
 
 /* AppDelegate */
@@ -137,6 +141,8 @@
 
 /* AddSearchEngineViewController */
 "Autocomplete URL" = "Autocomplete URL";
+
+/* VoiceOver */
 "Back" = "Back";
 
 /* CertificateViewController */
@@ -150,6 +156,8 @@
 
 /* BookmarksViewController */
 "Bookmarks" = "Σελιδοδείκτες";
+
+/* No comment provided by engineer. */
 "Both are free to use. Free of tracking. Code is open source." = "Both are free to use. Free of tracking. Code is open source.";
 
 /* CircuitViewController */
@@ -172,10 +180,14 @@
 
 /* SettingsViewController */
 "Choose how long app remembers open tabs." = "Επιλέξτε για πόσο χρόνο θα θυμάται η εφαρμογή τις ανοιχτές καρτέλες.";
+
+/* No comment provided by engineer. */
 "Choose your preferred blocklist:" = "Choose your preferred blocklist:";
 
 /* AppDelegate */
 "Close Tab" = "Κλείσιμο καρτέλας";
+
+/* No comment provided by engineer. */
 "Configure Bridges" = "Διαμόρφωση γεφυρών";
 
 /* DonationViewController */
@@ -189,10 +201,14 @@
 
 /* SyncViewController */
 "Connection to Nextcloud Server Failed" = "Απέτυχε η σύνδεση στον Nextcloud Server";
+
+/* No comment provided by engineer. */
 "Cookies" = "Cookies";
 
 /* SettingsViewController, Storage1ViewController, Storage2ViewController */
 "Cookies and Local Storage" = "Cookies και Τοπικά δεδομένα";
+
+/* No comment provided by engineer. */
 "Couldn't understand server response." = "Η απάντηση του σέρβερ δεν ήταν κατανοητή.";
 
 /* AppDelegate */
@@ -227,6 +243,8 @@
 
 /* RuleEditorController */
 "Disabled: %@" = "Απενεργοποιημένο: %@";
+
+/* No comment provided by engineer. */
 "Disk Cache" = "Disk Cache";
 
 /* DonationViewController */
@@ -237,7 +255,11 @@
 
 /* BrowsingViewController */
 "Done" = "Τέλος";
+
+/* No comment provided by engineer. */
 "Download" = "Download";
+
+/* No comment provided by engineer. */
 "Drawbacks:" = "Drawbacks:";
 
 /* SecurityPresetsRow */
@@ -266,7 +288,11 @@
 
 /* CertificateViewController */
 "Extended Validation: Organization" = "Επιπρόσθετη επικύρωση: Οργάνωση";
+
+/* No comment provided by engineer. */
 "Fetch Cache" = "Fetch Cache";
+
+/* No comment provided by engineer. */
 "Find in Page" = "Find in Page";
 
 /* AppDelegate */
@@ -328,6 +354,8 @@
 
 /* BookmarksViewController */
 "Import Bookmarks" = "Import Bookmarks";
+
+/* No comment provided by engineer. */
 "IndexedDB Databases" = "IndexedDB Databases";
 
 /* Placeholder is 'Orbot' */
@@ -365,6 +393,8 @@
 
 /* AppDelegate */
 "Log In" = "Σύνδεση";
+
+/* No comment provided by engineer. */
 "Memory Cache" = "Memory Cache";
 
 /* SettingsViewController */
@@ -381,10 +411,20 @@
 
 /* CircuSitsViewController */
 "New Circuit for this Site" = "Νέο κύκλωμα για αυτήν την ιστοσελίδα";
+
+/* No comment provided by engineer. */
 "New Security Features" = "New Security Features";
+
+/* No comment provided by engineer. */
 "Next" = "Επόμενο";
+
+/* No comment provided by engineer. */
 "No success, but \"%@\" instead." = "Χωρίς επιτυχία, αλλά \"%@\" αντ' αυτού.";
+
+/* No comment provided by engineer. */
 "No valid HTTP response." = "Μη έγκυρη απόκριση HTTP.";
+
+/* No comment provided by engineer. */
 "Offline Web Application Cache" = "Offline Web Application Cache";
 
 /* AlertHelper */
@@ -395,6 +435,8 @@
 
 /* Tab+Gestures */
 "Open in Background Tab" = "Άνοιγμα σε καρτέλα στο παρασκήνιο";
+
+/* No comment provided by engineer. */
 "Open in Default Browser" = "Open in Default Browser";
 
 /* SecurityViewController */
@@ -426,6 +468,8 @@
 
 /* SettingsViewController */
 "Rate on App Store" = "Βαθμολογήστε στο App Store";
+
+/* No comment provided by engineer. */
 "Reasons to use the built-in Tor (iOS 17 only)" = "Reasons to use the built-in Tor (iOS 17 only)";
 
 /* AppDelegate */
@@ -439,9 +483,17 @@
 
 /* SettingsViewController */
 "Report a Bug" = "Αναφορά σφάλματος";
+
+/* No comment provided by engineer. */
 "Request Access" = "Request Access";
+
+/* No comment provided by engineer. */
 "Request could not be formed. Please check host and username/password!" = "Request could not be formed. Please check host and username/password!";
+
+/* No comment provided by engineer. */
 "Response body missing." = "Λείπει το σώμα απόκρισης.";
+
+/* No comment provided by engineer. */
 "Retry" = "Επαναπροσπάθεια";
 
 /* Placeholder is 'Orbot' */
@@ -464,7 +516,11 @@
 
 /* CertificateViewController */
 "Serial Number" = "Σειριακός αριθμός";
+
+/* No comment provided by engineer. */
 "Service Worker Registrations" = "Service Worker Registrations";
+
+/* No comment provided by engineer. */
 "Session Storage" = "Session Storage";
 
 /* SettingsViewController */
@@ -493,10 +549,14 @@
 
 /* Placeholder is 'Orbot' */
 "Start %@" = "Start %@";
+
+/* No comment provided by engineer. */
 "Start built-in Tor" = "Start built-in Tor";
 
 /* Placeholder is 'Orbot' */
 "Start Tor in %@." = "Start Tor in %@.";
+
+/* No comment provided by engineer. */
 "Starting Tor…" = "Starting Tor…";
 
 /* SettingsViewController */
@@ -534,7 +594,11 @@
 
 /* Option title */
 "Tell websites that you object to processing and selling of your personal data" = "Tell websites that you object to processing and selling of your personal data";
+
+/* No comment provided by engineer. */
 "The encryption method for this server is outdated." = "The encryption method for this server is outdated.";
+
+/* No comment provided by engineer. */
 "Then come back for private browsing." = "Then come back for private browsing.";
 
 /* SecurityViewController */
@@ -578,6 +642,8 @@
 
 /* AddSearchEngineViewController */
 "Update" = "Update";
+
+/* No comment provided by engineer. */
 "Update Blocklist" = "Update Blocklist";
 
 /* SettingsViewController */
@@ -585,7 +651,11 @@
 
 /* Placeholder is 'Orbot' */
 "Use %@" = "Use %@";
+
+/* No comment provided by engineer. */
 "Use built-in Tor" = "Use built-in Tor";
+
+/* No comment provided by engineer. */
 "Use URL Blocker" = "Use URL Blocker";
 
 /* SecurityViewController */
@@ -608,6 +678,8 @@
 
 /* SecurityPresetsRow */
 "Websites may break. But you get great security." = "Websites may break. But you get great security.";
+
+/* No comment provided by engineer. */
 "WebSQL Databases" = "WebSQL Databases";
 
 /* Placeholder is 'Onion Browser' */
@@ -615,6 +687,8 @@
 
 /* SettingsViewController */
 "When disabled, all text entered in search bar will be sent to the search engine unless it starts with \"http\"." = "Όταν είναι απενεργοποιημένο, όλα τα κείμενα που πληκτρολογούνται στη μπάρα αναζήτησης θα στέλνονται στη μηχανή αναζήτησης, εκτός αν ξεκινούν με \"http\".";
+
+/* No comment provided by engineer. */
 "Why" = "Why";
 
 /* Placeholder 1 is 'Onion Browser', placeholder 2 is 'Orbot' */
@@ -628,6 +702,8 @@
 
 /* DonationViewController */
 "You most recently donated %1$@ on %2$@." = "You most recently donated %1$@ on %2$@.";
+
+/* No comment provided by engineer. */
 "You're one step closer to private browsing." = "You're one step closer to private browsing.";
 
 /* CircuitViewController */

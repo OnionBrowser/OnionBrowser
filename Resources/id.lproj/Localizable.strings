@@ -51,6 +51,8 @@
 
 /* Placeholder is bullet point */
 "%@ websites can uncover your real IP address using JavaScript" = "%@ websites can uncover your real IP address using JavaScript";
+
+/* No comment provided by engineer. */
 "(not recommended)" = "(tidak direkomendasikan)";
 
 /* DonationViewController */
@@ -127,6 +129,8 @@
 
 /* Placeholder is 'Orbot' */
 "Ask %@ for permission to access it." = "Ask %@ for permission to access it.";
+
+/* No comment provided by engineer. */
 "Ask again to continue." = "Ask again to continue.";
 
 /* AppDelegate */
@@ -137,6 +141,8 @@
 
 /* AddSearchEngineViewController */
 "Autocomplete URL" = "Autocomplete URL";
+
+/* VoiceOver */
 "Back" = "Back";
 
 /* CertificateViewController */
@@ -150,6 +156,8 @@
 
 /* BookmarksViewController */
 "Bookmarks" = "Penanda";
+
+/* No comment provided by engineer. */
 "Both are free to use. Free of tracking. Code is open source." = "Both are free to use. Free of tracking. Code is open source.";
 
 /* CircuitViewController */
@@ -172,10 +180,14 @@
 
 /* SettingsViewController */
 "Choose how long app remembers open tabs." = "Pilih berapa lama aplikasi mengingat tab yang terbuka.";
+
+/* No comment provided by engineer. */
 "Choose your preferred blocklist:" = "Choose your preferred blocklist:";
 
 /* AppDelegate */
 "Close Tab" = "Tutup Tab";
+
+/* No comment provided by engineer. */
 "Configure Bridges" = "Konfigurasikan Jembatan";
 
 /* DonationViewController */
@@ -189,10 +201,14 @@
 
 /* SyncViewController */
 "Connection to Nextcloud Server Failed" = "Koneksi ke Server Nextcloud Gagal";
+
+/* No comment provided by engineer. */
 "Cookies" = "Cookie";
 
 /* SettingsViewController, Storage1ViewController, Storage2ViewController */
 "Cookies and Local Storage" = "Cookie and Penyimpanan Lokal";
+
+/* No comment provided by engineer. */
 "Couldn't understand server response." = "Tidak dapat memahami respons server.";
 
 /* AppDelegate */
@@ -227,6 +243,8 @@
 
 /* RuleEditorController */
 "Disabled: %@" = "Dinonaktifkan: %@";
+
+/* No comment provided by engineer. */
 "Disk Cache" = "Singgahan Diska";
 
 /* DonationViewController */
@@ -237,7 +255,11 @@
 
 /* BrowsingViewController */
 "Done" = "Selesai";
+
+/* No comment provided by engineer. */
 "Download" = "Unduh";
+
+/* No comment provided by engineer. */
 "Drawbacks:" = "Kekurangan:";
 
 /* SecurityPresetsRow */
@@ -266,7 +288,11 @@
 
 /* CertificateViewController */
 "Extended Validation: Organization" = "Extended Validation: Organisasi";
+
+/* No comment provided by engineer. */
 "Fetch Cache" = "Ambil Singgahan";
+
+/* No comment provided by engineer. */
 "Find in Page" = "Cari di Halaman";
 
 /* AppDelegate */
@@ -328,6 +354,8 @@
 
 /* BookmarksViewController */
 "Import Bookmarks" = "Import Bookmarks";
+
+/* No comment provided by engineer. */
 "IndexedDB Databases" = "IndexedDB Databases";
 
 /* Placeholder is 'Orbot' */
@@ -365,6 +393,8 @@
 
 /* AppDelegate */
 "Log In" = "Masuk";
+
+/* No comment provided by engineer. */
 "Memory Cache" = "Memory Cache";
 
 /* SettingsViewController */
@@ -381,10 +411,20 @@
 
 /* CircuSitsViewController */
 "New Circuit for this Site" = "Sirkuit Baru bagi Situs ini";
+
+/* No comment provided by engineer. */
 "New Security Features" = "New Security Features";
+
+/* No comment provided by engineer. */
 "Next" = "Berikutnya";
+
+/* No comment provided by engineer. */
 "No success, but \"%@\" instead." = "Tidak berhasil, tetapi \"%@\" sebagai gantinya.";
+
+/* No comment provided by engineer. */
 "No valid HTTP response." = "Tidak ada respons HTTP yang valid.";
+
+/* No comment provided by engineer. */
 "Offline Web Application Cache" = "Offline Web Application Cache";
 
 /* AlertHelper */
@@ -395,6 +435,8 @@
 
 /* Tab+Gestures */
 "Open in Background Tab" = "Buka di Tab Latar Belakang";
+
+/* No comment provided by engineer. */
 "Open in Default Browser" = "Open in Default Browser";
 
 /* SecurityViewController */
@@ -426,6 +468,8 @@
 
 /* SettingsViewController */
 "Rate on App Store" = "Beri peringkat di App Store";
+
+/* No comment provided by engineer. */
 "Reasons to use the built-in Tor (iOS 17 only)" = "Reasons to use the built-in Tor (iOS 17 only)";
 
 /* AppDelegate */
@@ -439,9 +483,17 @@
 
 /* SettingsViewController */
 "Report a Bug" = "Laporkan Bug";
+
+/* No comment provided by engineer. */
 "Request Access" = "Minta Akses";
+
+/* No comment provided by engineer. */
 "Request could not be formed. Please check host and username/password!" = "Permintaan tidak dapat dibentuk. Silakan periksa host dan nama pengguna/kata sandi!";
+
+/* No comment provided by engineer. */
 "Response body missing." = "Badan respon menghilang.";
+
+/* No comment provided by engineer. */
 "Retry" = "Coba Lagi";
 
 /* Placeholder is 'Orbot' */
@@ -464,7 +516,11 @@
 
 /* CertificateViewController */
 "Serial Number" = "Nomor Seri";
+
+/* No comment provided by engineer. */
 "Service Worker Registrations" = "Service Worker Registrations";
+
+/* No comment provided by engineer. */
 "Session Storage" = "Penyimpanan Sesi";
 
 /* SettingsViewController */
@@ -493,10 +549,14 @@
 
 /* Placeholder is 'Orbot' */
 "Start %@" = "Start %@";
+
+/* No comment provided by engineer. */
 "Start built-in Tor" = "Start built-in Tor";
 
 /* Placeholder is 'Orbot' */
 "Start Tor in %@." = "Start Tor in %@.";
+
+/* No comment provided by engineer. */
 "Starting Tor…" = "Starting Tor…";
 
 /* SettingsViewController */
@@ -534,7 +594,11 @@
 
 /* Option title */
 "Tell websites that you object to processing and selling of your personal data" = "Tell websites that you object to processing and selling of your personal data";
+
+/* No comment provided by engineer. */
 "The encryption method for this server is outdated." = "The encryption method for this server is outdated.";
+
+/* No comment provided by engineer. */
 "Then come back for private browsing." = "Then come back for private browsing.";
 
 /* SecurityViewController */
@@ -578,6 +642,8 @@
 
 /* AddSearchEngineViewController */
 "Update" = "Perbarui";
+
+/* No comment provided by engineer. */
 "Update Blocklist" = "Update Blocklist";
 
 /* SettingsViewController */
@@ -585,7 +651,11 @@
 
 /* Placeholder is 'Orbot' */
 "Use %@" = "Pakai %@";
+
+/* No comment provided by engineer. */
 "Use built-in Tor" = "Pakai Tor bawaan";
+
+/* No comment provided by engineer. */
 "Use URL Blocker" = "Use URL Blocker";
 
 /* SecurityViewController */
@@ -608,6 +678,8 @@
 
 /* SecurityPresetsRow */
 "Websites may break. But you get great security." = "Situs web mungkin rusak. Tapi Anda mendapatkan keamanan yang baik.";
+
+/* No comment provided by engineer. */
 "WebSQL Databases" = "Basis Data WebSQL";
 
 /* Placeholder is 'Onion Browser' */
@@ -615,6 +687,8 @@
 
 /* SettingsViewController */
 "When disabled, all text entered in search bar will be sent to the search engine unless it starts with \"http\"." = "Ketika dinonaktifkan, semua teks yang dimasukkan di bilah pencarian akan dikirim ke mesin pencarian kecuali diawali dengan \"http\".";
+
+/* No comment provided by engineer. */
 "Why" = "Mengapa";
 
 /* Placeholder 1 is 'Onion Browser', placeholder 2 is 'Orbot' */
@@ -628,6 +702,8 @@
 
 /* DonationViewController */
 "You most recently donated %1$@ on %2$@." = "Anda baru saja mendonasikan %1$@pada %2$@";
+
+/* No comment provided by engineer. */
 "You're one step closer to private browsing." = "You're one step closer to private browsing.";
 
 /* CircuitViewController */

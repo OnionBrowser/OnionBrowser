@@ -51,6 +51,8 @@
 
 /* Placeholder is bullet point */
 "%@ websites can uncover your real IP address using JavaScript" = "%@ وب‌سایت‌ها می‌توانند با استفاده از جاوااسکریپت آدرس IP واقعی شما را آشکار کنند.";
+
+/* No comment provided by engineer. */
 "(not recommended)" = "(توصیه نمی‌شود)";
 
 /* DonationViewController */
@@ -127,6 +129,8 @@
 
 /* Placeholder is 'Orbot' */
 "Ask %@ for permission to access it." = " از %@ درخواست دسترسی کنید.";
+
+/* No comment provided by engineer. */
 "Ask again to continue." = " برای ادامه، دوباره درخواست کنید.";
 
 /* AppDelegate */
@@ -137,6 +141,8 @@
 
 /* AddSearchEngineViewController */
 "Autocomplete URL" = "تکمیل خودکار آدرس";
+
+/* VoiceOver */
 "Back" = "بازگشت";
 
 /* CertificateViewController */
@@ -150,6 +156,8 @@
 
 /* BookmarksViewController */
 "Bookmarks" = "بوکمارک‌ها";
+
+/* No comment provided by engineer. */
 "Both are free to use. Free of tracking. Code is open source." = " هر دو رایگان هستند. بدون ردیابی. کد منبع باز است.";
 
 /* CircuitViewController */
@@ -172,10 +180,14 @@
 
 /* SettingsViewController */
 "Choose how long app remembers open tabs." = "انتخاب کنید که برنامه چه مدت پنجره‌های باز را به خاطر بسپارد.";
+
+/* No comment provided by engineer. */
 "Choose your preferred blocklist:" = "لیست بلاک ترجیحی خود را انتخاب کنید.";
 
 /* AppDelegate */
 "Close Tab" = "بستن تب";
+
+/* No comment provided by engineer. */
 "Configure Bridges" = "پیکربندی پل‌ها";
 
 /* DonationViewController */
@@ -189,10 +201,14 @@
 
 /* SyncViewController */
 "Connection to Nextcloud Server Failed" = "اتصال به سرور Nextcloud انجام نشد.";
+
+/* No comment provided by engineer. */
 "Cookies" = "کوکی ها";
 
 /* SettingsViewController, Storage1ViewController, Storage2ViewController */
 "Cookies and Local Storage" = "کوکی‌ها و حافظه داخلی";
+
+/* No comment provided by engineer. */
 "Couldn't understand server response." = "پاسخ سرور را نمی‌توان درک کرد.";
 
 /* AppDelegate */
@@ -227,6 +243,8 @@
 
 /* RuleEditorController */
 "Disabled: %@" = "غیرفعال شد: %@";
+
+/* No comment provided by engineer. */
 "Disk Cache" = "کش حافظه";
 
 /* DonationViewController */
@@ -237,7 +255,11 @@
 
 /* BrowsingViewController */
 "Done" = "انجام شد";
+
+/* No comment provided by engineer. */
 "Download" = "دانلود";
+
+/* No comment provided by engineer. */
 "Drawbacks:" = "معایب:";
 
 /* SecurityPresetsRow */
@@ -266,7 +288,11 @@
 
 /* CertificateViewController */
 "Extended Validation: Organization" = "اعتبار تمدید شده: سازمان";
+
+/* No comment provided by engineer. */
 "Fetch Cache" = "فراخوانی کش";
+
+/* No comment provided by engineer. */
 "Find in Page" = " جستجو در صفحه";
 
 /* AppDelegate */
@@ -328,6 +354,8 @@
 
 /* BookmarksViewController */
 "Import Bookmarks" = "Import Bookmarks";
+
+/* No comment provided by engineer. */
 "IndexedDB Databases" = "پایگاه های داده ی IndexedDB";
 
 /* Placeholder is 'Orbot' */
@@ -365,6 +393,8 @@
 
 /* AppDelegate */
 "Log In" = "ورود";
+
+/* No comment provided by engineer. */
 "Memory Cache" = "کش حافظه";
 
 /* SettingsViewController */
@@ -381,10 +411,20 @@
 
 /* CircuSitsViewController */
 "New Circuit for this Site" = "مداری جدید برای این سایت";
+
+/* No comment provided by engineer. */
 "New Security Features" = " قابلیت‌های جدید امنیتی";
+
+/* No comment provided by engineer. */
 "Next" = "بعدی";
+
+/* No comment provided by engineer. */
 "No success, but \"%@\" instead." = "موفقیتی حاصل نشد، اما در عوض \"%@\".";
+
+/* No comment provided by engineer. */
 "No valid HTTP response." = "پاسخ HTTP معتبری وجود ندارد.";
+
+/* No comment provided by engineer. */
 "Offline Web Application Cache" = " ذخیره‌سازی آفلاین اپلیکیشن‌های وب";
 
 /* AlertHelper */
@@ -395,6 +435,8 @@
 
 /* Tab+Gestures */
 "Open in Background Tab" = "بازکردن در صفحه زمینه";
+
+/* No comment provided by engineer. */
 "Open in Default Browser" = " باز کردن در مرورگر پیش‌فرض";
 
 /* SecurityViewController */
@@ -426,6 +468,8 @@
 
 /* SettingsViewController */
 "Rate on App Store" = "در اپ‌استور به ما امتیاز دهید.";
+
+/* No comment provided by engineer. */
 "Reasons to use the built-in Tor (iOS 17 only)" = " دلایل استفاده از Tor داخلی (فقط در iOS 17)";
 
 /* AppDelegate */
@@ -439,9 +483,17 @@
 
 /* SettingsViewController */
 "Report a Bug" = "گزارش مشکل و یا خطا";
+
+/* No comment provided by engineer. */
 "Request Access" = "درخواست دسترسی";
+
+/* No comment provided by engineer. */
 "Request could not be formed. Please check host and username/password!" = "درخواست امکان‌پذیر نیست. لطفا میزبان و نام کاربری/گذرواژه را بررسی کنید!";
+
+/* No comment provided by engineer. */
 "Response body missing." = "بدنه پاسخ یافت نشد.";
+
+/* No comment provided by engineer. */
 "Retry" = "تلاش دوباره";
 
 /* Placeholder is 'Orbot' */
@@ -464,7 +516,11 @@
 
 /* CertificateViewController */
 "Serial Number" = "سریال نامبر";
+
+/* No comment provided by engineer. */
 "Service Worker Registrations" = " ثبت‌های Service Worker";
+
+/* No comment provided by engineer. */
 "Session Storage" = " ذخیره‌سازی نشست (Session Storage)";
 
 /* SettingsViewController */
@@ -493,10 +549,14 @@
 
 /* Placeholder is 'Orbot' */
 "Start %@" = "اجرای %@";
+
+/* No comment provided by engineer. */
 "Start built-in Tor" = " اجرای Tor داخلی";
 
 /* Placeholder is 'Orbot' */
 "Start Tor in %@." = " Tor را در %@ اجرا کنید.";
+
+/* No comment provided by engineer. */
 "Starting Tor…" = " در حال راه‌اندازی Tor…";
 
 /* SettingsViewController */
@@ -534,7 +594,11 @@
 
 /* Option title */
 "Tell websites that you object to processing and selling of your personal data" = " به وب‌سایت‌ها اعلام کنید که با پردازش و فروش داده‌های شخصی خود مخالف هستید.";
+
+/* No comment provided by engineer. */
 "The encryption method for this server is outdated." = " روش رمزگذاری این سرور قدیمی است.";
+
+/* No comment provided by engineer. */
 "Then come back for private browsing." = "سپس برای مرور خصوصی بازگردید.";
 
 /* SecurityViewController */
@@ -578,6 +642,8 @@
 
 /* AddSearchEngineViewController */
 "Update" = "به‌روز‌رسانی";
+
+/* No comment provided by engineer. */
 "Update Blocklist" = "بلاک‌لیست خود را آپدیت کنید.";
 
 /* SettingsViewController */
@@ -585,7 +651,11 @@
 
 /* Placeholder is 'Orbot' */
 "Use %@" = " استفاده از %@";
+
+/* No comment provided by engineer. */
 "Use built-in Tor" = " استفاده از Tor داخلی";
+
+/* No comment provided by engineer. */
 "Use URL Blocker" = "استفاده از مسدود کننده ی نشانی اینترنتی";
 
 /* SecurityViewController */
@@ -608,6 +678,8 @@
 
 /* SecurityPresetsRow */
 "Websites may break. But you get great security." = "ممکن است وبسایت خراب شود. اما شما بهترین امنیت را خواهید داشت.";
+
+/* No comment provided by engineer. */
 "WebSQL Databases" = " پایگاه‌های داده WebSQL";
 
 /* Placeholder is 'Onion Browser' */
@@ -615,6 +687,8 @@
 
 /* SettingsViewController */
 "When disabled, all text entered in search bar will be sent to the search engine unless it starts with \"http\"." = "اگر غیرفعال باشد، هر متنی که در نوار جستجو نوشته شود، به موتور جستجو ارسال می‌شود مگر اینکه با \"http\" آغاز شود.";
+
+/* No comment provided by engineer. */
 "Why" = "چرا";
 
 /* Placeholder 1 is 'Onion Browser', placeholder 2 is 'Orbot' */
@@ -628,6 +702,8 @@
 
 /* DonationViewController */
 "You most recently donated %1$@ on %2$@." = "شما به‌‎تازگی %1$@ را در %2$@ اهدا کردید.";
+
+/* No comment provided by engineer. */
 "You're one step closer to private browsing." = " فقط یک قدم تا مرور خصوصی فاصله دارید.";
 
 /* CircuitViewController */

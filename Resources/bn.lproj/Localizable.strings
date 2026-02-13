@@ -51,6 +51,8 @@
 
 /* Placeholder is bullet point */
 "%@ websites can uncover your real IP address using JavaScript" = "%@ websites can uncover your real IP address using JavaScript";
+
+/* No comment provided by engineer. */
 "(not recommended)" = "(ব্যবহার অনুচিত)";
 
 /* DonationViewController */
@@ -127,6 +129,8 @@
 
 /* Placeholder is 'Orbot' */
 "Ask %@ for permission to access it." = "%@ ব্যবহার করার জন্য সেটির কাছ থেকে অনুমতি নিন।";
+
+/* No comment provided by engineer. */
 "Ask again to continue." = "পরবর্তী ধাপে যেতে চাইলে আবার অনুমতি চেয়ে পাঠান।";
 
 /* AppDelegate */
@@ -137,6 +141,8 @@
 
 /* AddSearchEngineViewController */
 "Autocomplete URL" = "Autocomplete URL";
+
+/* VoiceOver */
 "Back" = "Back";
 
 /* CertificateViewController */
@@ -150,6 +156,8 @@
 
 /* BookmarksViewController */
 "Bookmarks" = "বুকমার্কসমূহ";
+
+/* No comment provided by engineer. */
 "Both are free to use. Free of tracking. Code is open source." = "এই দুটিই ফ্রি। এগুলোতে কোনোরকম নজরদারির ব্যবস্থা নেই। কোড ওপেনসোর্স।";
 
 /* CircuitViewController */
@@ -172,10 +180,14 @@
 
 /* SettingsViewController */
 "Choose how long app remembers open tabs." = "অ্যাপে খোলা ট্যাবগুলো কতক্ষণ মনে রাখা হবে তা চয়ন করুন।";
+
+/* No comment provided by engineer. */
 "Choose your preferred blocklist:" = "Choose your preferred blocklist:";
 
 /* AppDelegate */
 "Close Tab" = "ট্যাব বন্ধ করুন";
+
+/* No comment provided by engineer. */
 "Configure Bridges" = "ব্রিজগুলি কনফিগার করুন";
 
 /* DonationViewController */
@@ -189,10 +201,14 @@
 
 /* SyncViewController */
 "Connection to Nextcloud Server Failed" = "Connection to Nextcloud Server Failed";
+
+/* No comment provided by engineer. */
 "Cookies" = "কুকি";
 
 /* SettingsViewController, Storage1ViewController, Storage2ViewController */
 "Cookies and Local Storage" = "কুকিজ এবং স্থানীয় স্টোরেজ";
+
+/* No comment provided by engineer. */
 "Couldn't understand server response." = "সার্ভারের দেওয়া জবাব বোঝা যায় নি।";
 
 /* AppDelegate */
@@ -227,6 +243,8 @@
 
 /* RuleEditorController */
 "Disabled: %@" = "নিস্ক্রিয় করা হয়েছে: %@";
+
+/* No comment provided by engineer. */
 "Disk Cache" = "Disk Cache";
 
 /* DonationViewController */
@@ -237,7 +255,11 @@
 
 /* BrowsingViewController */
 "Done" = "সম্পন্ন";
+
+/* No comment provided by engineer. */
 "Download" = "Download";
+
+/* No comment provided by engineer. */
 "Drawbacks:" = "Drawbacks:";
 
 /* SecurityPresetsRow */
@@ -266,7 +288,11 @@
 
 /* CertificateViewController */
 "Extended Validation: Organization" = "বর্ধিত বৈধকরণ: সংস্থা";
+
+/* No comment provided by engineer. */
 "Fetch Cache" = "Fetch Cache";
+
+/* No comment provided by engineer. */
 "Find in Page" = "Find in Page";
 
 /* AppDelegate */
@@ -328,6 +354,8 @@
 
 /* BookmarksViewController */
 "Import Bookmarks" = "Import Bookmarks";
+
+/* No comment provided by engineer. */
 "IndexedDB Databases" = "IndexedDB Databases";
 
 /* Placeholder is 'Orbot' */
@@ -365,6 +393,8 @@
 
 /* AppDelegate */
 "Log In" = "প্রবেশ";
+
+/* No comment provided by engineer. */
 "Memory Cache" = "Memory Cache";
 
 /* SettingsViewController */
@@ -381,10 +411,20 @@
 
 /* CircuSitsViewController */
 "New Circuit for this Site" = "এই সাইটের জন্য নতুন সার্কিট";
+
+/* No comment provided by engineer. */
 "New Security Features" = "New Security Features";
+
+/* No comment provided by engineer. */
 "Next" = "তারপর";
+
+/* No comment provided by engineer. */
 "No success, but \"%@\" instead." = "সফল হয় নি, বরং \"%@\" পাওয়া গেছে।";
+
+/* No comment provided by engineer. */
 "No valid HTTP response." = "সঠিক কোনো HTTP রেসপন্স আসে নি।";
+
+/* No comment provided by engineer. */
 "Offline Web Application Cache" = "Offline Web Application Cache";
 
 /* AlertHelper */
@@ -395,6 +435,8 @@
 
 /* Tab+Gestures */
 "Open in Background Tab" = "ব্যাকগ্রাউন্ড ট্যাবে খুলব";
+
+/* No comment provided by engineer. */
 "Open in Default Browser" = "ডিফল্ট ব্রাউজারে খুলব";
 
 /* SecurityViewController */
@@ -426,6 +468,8 @@
 
 /* SettingsViewController */
 "Rate on App Store" = "অ্যাপস্টোরে রেটিং দিন";
+
+/* No comment provided by engineer. */
 "Reasons to use the built-in Tor (iOS 17 only)" = "Reasons to use the built-in Tor (iOS 17 only)";
 
 /* AppDelegate */
@@ -439,9 +483,17 @@
 
 /* SettingsViewController */
 "Report a Bug" = "সমস্যার কথা জানান";
+
+/* No comment provided by engineer. */
 "Request Access" = "অনুমতি চাই";
+
+/* No comment provided by engineer. */
 "Request could not be formed. Please check host and username/password!" = "রিকোয়েস্ট তৈরি করা সম্ভব হয় নি। অনুগ্রহ করে দেখে নিন হোস্ট ও ইউজারনেম/পাসওয়ার্ড ঠিক আছে কি না।";
+
+/* No comment provided by engineer. */
 "Response body missing." = "রেসপন্সের বডি নেই।";
+
+/* No comment provided by engineer. */
 "Retry" = "পূনরায় চেষ্টা করুন";
 
 /* Placeholder is 'Orbot' */
@@ -464,7 +516,11 @@
 
 /* CertificateViewController */
 "Serial Number" = "ক্রমিক নম্বর";
+
+/* No comment provided by engineer. */
 "Service Worker Registrations" = "Service Worker Registrations";
+
+/* No comment provided by engineer. */
 "Session Storage" = "Session Storage";
 
 /* SettingsViewController */
@@ -493,10 +549,14 @@
 
 /* Placeholder is 'Orbot' */
 "Start %@" = "Start %@";
+
+/* No comment provided by engineer. */
 "Start built-in Tor" = "Start built-in Tor";
 
 /* Placeholder is 'Orbot' */
 "Start Tor in %@." = "%@ দিয়ে টর চালু করুন।";
+
+/* No comment provided by engineer. */
 "Starting Tor…" = "Starting Tor…";
 
 /* SettingsViewController */
@@ -534,7 +594,11 @@
 
 /* Option title */
 "Tell websites that you object to processing and selling of your personal data" = "Tell websites that you object to processing and selling of your personal data";
+
+/* No comment provided by engineer. */
 "The encryption method for this server is outdated." = "The encryption method for this server is outdated.";
+
+/* No comment provided by engineer. */
 "Then come back for private browsing." = "তারপর একান্ত (প্রাইভেট) ব্রাউজিং ব্যবহার করতে আবার এখানে ফিরে আসুন।";
 
 /* SecurityViewController */
@@ -578,6 +642,8 @@
 
 /* AddSearchEngineViewController */
 "Update" = "Update";
+
+/* No comment provided by engineer. */
 "Update Blocklist" = "Update Blocklist";
 
 /* SettingsViewController */
@@ -585,7 +651,11 @@
 
 /* Placeholder is 'Orbot' */
 "Use %@" = "Use %@";
+
+/* No comment provided by engineer. */
 "Use built-in Tor" = "Use built-in Tor";
+
+/* No comment provided by engineer. */
 "Use URL Blocker" = "Use URL Blocker";
 
 /* SecurityViewController */
@@ -608,6 +678,8 @@
 
 /* SecurityPresetsRow */
 "Websites may break. But you get great security." = "কিছু ওয়েবসাইট ঠিকমতো নাও চলতে পারে। তবে সুরক্ষাব্যবস্থা দারুণ হবে।";
+
+/* No comment provided by engineer. */
 "WebSQL Databases" = "WebSQL Databases";
 
 /* Placeholder is 'Onion Browser' */
@@ -615,6 +687,8 @@
 
 /* SettingsViewController */
 "When disabled, all text entered in search bar will be sent to the search engine unless it starts with \"http\"." = "এটি বন্ধ থাকলে সার্চ বারে লেখা সবকিছুই সার্চ ইঞ্জিনের কাছে পাঠানো হবে, তবে যদি না শুরুতে \"http\" থাকে।";
+
+/* No comment provided by engineer. */
 "Why" = "কেন?";
 
 /* Placeholder 1 is 'Onion Browser', placeholder 2 is 'Orbot' */
@@ -628,6 +702,8 @@
 
 /* DonationViewController */
 "You most recently donated %1$@ on %2$@." = "সম্প্রতি সর্বশেষ %2$@ তারিখে আপনি %1$@ দান করেছেন।";
+
+/* No comment provided by engineer. */
 "You're one step closer to private browsing." = "একান্ত ব্রাউজিং এখন আগের চেয়ে আরেকটু সহজ।";
 
 /* CircuitViewController */

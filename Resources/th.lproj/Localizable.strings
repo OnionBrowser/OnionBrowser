@@ -51,6 +51,8 @@
 
 /* Placeholder is bullet point */
 "%@ websites can uncover your real IP address using JavaScript" = "%@ websites can uncover your real IP address using JavaScript";
+
+/* No comment provided by engineer. */
 "(not recommended)" = "(ไม่แนะนำ)";
 
 /* DonationViewController */
@@ -127,6 +129,8 @@
 
 /* Placeholder is 'Orbot' */
 "Ask %@ for permission to access it." = "สอบถาม %@ เพื่อขออนุญาตเข้าถึงมัน";
+
+/* No comment provided by engineer. */
 "Ask again to continue." = "ถามอีกครั้งเพื่อทำต่อ";
 
 /* AppDelegate */
@@ -137,6 +141,8 @@
 
 /* AddSearchEngineViewController */
 "Autocomplete URL" = "Autocomplete URL";
+
+/* VoiceOver */
 "Back" = "Back";
 
 /* CertificateViewController */
@@ -150,6 +156,8 @@
 
 /* BookmarksViewController */
 "Bookmarks" = "ที่คั่นหน้า";
+
+/* No comment provided by engineer. */
 "Both are free to use. Free of tracking. Code is open source." = "Both are free to use. Free of tracking. Code is open source.";
 
 /* CircuitViewController */
@@ -172,10 +180,14 @@
 
 /* SettingsViewController */
 "Choose how long app remembers open tabs." = "เลือกว่าจะให้แอปจำแท็บที่เปิดไว้นานแค่ไหน";
+
+/* No comment provided by engineer. */
 "Choose your preferred blocklist:" = "Choose your preferred blocklist:";
 
 /* AppDelegate */
 "Close Tab" = "ปิดแถบ";
+
+/* No comment provided by engineer. */
 "Configure Bridges" = "Configure Bridges";
 
 /* DonationViewController */
@@ -189,10 +201,14 @@
 
 /* SyncViewController */
 "Connection to Nextcloud Server Failed" = "Connection to Nextcloud Server Failed";
+
+/* No comment provided by engineer. */
 "Cookies" = "คุกกี้";
 
 /* SettingsViewController, Storage1ViewController, Storage2ViewController */
 "Cookies and Local Storage" = "คุกกี้และการจัดเก็บข้อมูลในเครื่องท้องถิ่น";
+
+/* No comment provided by engineer. */
 "Couldn't understand server response." = "ไม่เข้าใจคำตอบสนองจากเซิร์ฟเวอร์";
 
 /* AppDelegate */
@@ -227,6 +243,8 @@
 
 /* RuleEditorController */
 "Disabled: %@" = "ปิดใช้แล้ว: %@";
+
+/* No comment provided by engineer. */
 "Disk Cache" = "แคชดิสก์";
 
 /* DonationViewController */
@@ -237,7 +255,11 @@
 
 /* BrowsingViewController */
 "Done" = "เสร็จสิ้น";
+
+/* No comment provided by engineer. */
 "Download" = "ดาวน์โหลด";
+
+/* No comment provided by engineer. */
 "Drawbacks:" = "Drawbacks:";
 
 /* SecurityPresetsRow */
@@ -266,7 +288,11 @@
 
 /* CertificateViewController */
 "Extended Validation: Organization" = "Extended Validation: Organization";
+
+/* No comment provided by engineer. */
 "Fetch Cache" = "Fetch Cache";
+
+/* No comment provided by engineer. */
 "Find in Page" = "หาในหน้า";
 
 /* AppDelegate */
@@ -328,6 +354,8 @@
 
 /* BookmarksViewController */
 "Import Bookmarks" = "Import Bookmarks";
+
+/* No comment provided by engineer. */
 "IndexedDB Databases" = "ฐานข้อมูล IndexedDB";
 
 /* Placeholder is 'Orbot' */
@@ -365,6 +393,8 @@
 
 /* AppDelegate */
 "Log In" = "ลงชื่อเข้า";
+
+/* No comment provided by engineer. */
 "Memory Cache" = "แคชหน่วยความจำ";
 
 /* SettingsViewController */
@@ -381,10 +411,20 @@
 
 /* CircuSitsViewController */
 "New Circuit for this Site" = "New Circuit for this Site";
+
+/* No comment provided by engineer. */
 "New Security Features" = "New Security Features";
+
+/* No comment provided by engineer. */
 "Next" = "ถัดไป";
+
+/* No comment provided by engineer. */
 "No success, but \"%@\" instead." = "ไม่สำเร็จ แต่ \"%@\" แทน";
+
+/* No comment provided by engineer. */
 "No valid HTTP response." = "ไม่ใช่การตอบสนอง HTTP ที่ถูกรูปแบบ";
+
+/* No comment provided by engineer. */
 "Offline Web Application Cache" = "แคชเว็บแอปออฟไลน์";
 
 /* AlertHelper */
@@ -395,6 +435,8 @@
 
 /* Tab+Gestures */
 "Open in Background Tab" = "เปิดในแถบด้านหลัง";
+
+/* No comment provided by engineer. */
 "Open in Default Browser" = "เปิดในเบราว์เซอร์ปริยาย";
 
 /* SecurityViewController */
@@ -426,6 +468,8 @@
 
 /* SettingsViewController */
 "Rate on App Store" = "ให้คะแนนใน App Store";
+
+/* No comment provided by engineer. */
 "Reasons to use the built-in Tor (iOS 17 only)" = "Reasons to use the built-in Tor (iOS 17 only)";
 
 /* AppDelegate */
@@ -439,9 +483,17 @@
 
 /* SettingsViewController */
 "Report a Bug" = "แจ้งข้อผิดพลาด";
+
+/* No comment provided by engineer. */
 "Request Access" = "ขอเข้าถึง";
+
+/* No comment provided by engineer. */
 "Request could not be formed. Please check host and username/password!" = "ไม่สามารถสร้างคำร้องได้ กรุณาตรวจสอบชื่อโฮสต์และชื่อผู้ใช้/รหัสผ่าน!";
+
+/* No comment provided by engineer. */
 "Response body missing." = "เนื้อความตอบกลับหายไป";
+
+/* No comment provided by engineer. */
 "Retry" = "ลองใหม่";
 
 /* Placeholder is 'Orbot' */
@@ -464,7 +516,11 @@
 
 /* CertificateViewController */
 "Serial Number" = "เลขอนุกรม";
+
+/* No comment provided by engineer. */
 "Service Worker Registrations" = "Service Worker Registrations";
+
+/* No comment provided by engineer. */
 "Session Storage" = "Session Storage";
 
 /* SettingsViewController */
@@ -493,10 +549,14 @@
 
 /* Placeholder is 'Orbot' */
 "Start %@" = "Start %@";
+
+/* No comment provided by engineer. */
 "Start built-in Tor" = "Start built-in Tor";
 
 /* Placeholder is 'Orbot' */
 "Start Tor in %@." = "เริ่ม Tor ใน %@";
+
+/* No comment provided by engineer. */
 "Starting Tor…" = "Starting Tor…";
 
 /* SettingsViewController */
@@ -534,7 +594,11 @@
 
 /* Option title */
 "Tell websites that you object to processing and selling of your personal data" = "Tell websites that you object to processing and selling of your personal data";
+
+/* No comment provided by engineer. */
 "The encryption method for this server is outdated." = "The encryption method for this server is outdated.";
+
+/* No comment provided by engineer. */
 "Then come back for private browsing." = "Then come back for private browsing.";
 
 /* SecurityViewController */
@@ -578,6 +642,8 @@
 
 /* AddSearchEngineViewController */
 "Update" = "ปรับปรุง";
+
+/* No comment provided by engineer. */
 "Update Blocklist" = "Update Blocklist";
 
 /* SettingsViewController */
@@ -585,7 +651,11 @@
 
 /* Placeholder is 'Orbot' */
 "Use %@" = "Use %@";
+
+/* No comment provided by engineer. */
 "Use built-in Tor" = "Use built-in Tor";
+
+/* No comment provided by engineer. */
 "Use URL Blocker" = "Use URL Blocker";
 
 /* SecurityViewController */
@@ -608,6 +678,8 @@
 
 /* SecurityPresetsRow */
 "Websites may break. But you get great security." = "เว็บไซต์อาจใช้งานไม่ได้ตามปกติ แต่คุณจะได้ความมั่นคงปลอดภัยที่ดี";
+
+/* No comment provided by engineer. */
 "WebSQL Databases" = "ฐานข้อมูล WebSQL";
 
 /* Placeholder is 'Onion Browser' */
@@ -615,6 +687,8 @@
 
 /* SettingsViewController */
 "When disabled, all text entered in search bar will be sent to the search engine unless it starts with \"http\"." = "When disabled, all text entered in search bar will be sent to the search engine unless it starts with \"http\".";
+
+/* No comment provided by engineer. */
 "Why" = "ทำไม";
 
 /* Placeholder 1 is 'Onion Browser', placeholder 2 is 'Orbot' */
@@ -628,6 +702,8 @@
 
 /* DonationViewController */
 "You most recently donated %1$@ on %2$@." = "คุณได้บริจาคล่าสุด %1$@ บน %2$@";
+
+/* No comment provided by engineer. */
 "You're one step closer to private browsing." = "คุณเข้าใกล้การท่องเว็บแบบส่วนตัวไปอีกขั้น";
 
 /* CircuitViewController */
