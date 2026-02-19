@@ -1,53 +1,27 @@
 "Ad- and Pop-up Blocking:" = "Werbe- und Pop-up Blockierung:";
-
 "Allows microphone and video access" = "Erlaubt Zugriff auf Mikrofon und Video";
-
 "Allows orientation and motion data access" = "Erlaubt Zugriff auf Kompass und Bewegungsdaten";
-
 "Disables microphone and video access" = "Kein Zugriff auf Mikrofon und Video";
-
 "Disables orientation and motion data access" = "Kein Zugriff auf Kompass und Bewegungsdaten";
-
 "Easy breezy. Though it could be dangerous." = "Ganz easy. Aber könnte gefährlich sein.";
-
 "JavaScript allowed" = "JavaScript erlaubt";
-
 "Lockdown Mode disabled" = "Blockierungsmodus deaktiviert";
-
 "Lockdown Mode enabled (iOS 16 an later)" = "Blockierungsmodus aktiv (iOS 16 und neuer)";
-
 "Many website features are disabled." = "Viele Website-Features werden unterbunden.";
-
 "Many websites won't work or will display poorly, but your identity is protected from all but the most aggressive adversaries." = "Viele Websites werden nicht richtig funktionieren oder schlecht aussehen, aber Deine Identität wird vor allen, außer den alleraggressivsten Gegnern geschützt.";
-
 "Most website features are allowed." = "Die meisten Website-Funktionen sind erlaubt.";
-
 "No JavaScript allowed" = "Kein JavaScript erlaubt";
-
 "Security Levels" = "Sicherheitsniveaus";
-
 "Some of the protections can be overridden or modified by changing your security settings." = "Das Sicherheitsniveau kann im Detail individualisiert und für einzelne Seiten überschrieben werden.";
-
 "Some website features are disabled." = "Manche Website-Features werden unterbunden.";
-
 "The security level you choose for a website often has a direct impact on that site’s performance." = "Das Sicherheitsniveau hat Einfluß auf das Verhalten von Websites.";
-
 "These are the specific implications for each level." = "Hier wird erklärt, was die einzelnen Niveaus bedeuten.";
-
 "Universal Link Protection:" = "Universeller Linkschutz:";
-
 "Use when you need to evade censorship and prevent someone from monitoring your activity, but are less concerned about leakage of your identity to adversaries." = "Benutze dies, wenn Du Zensur umgehen musst und andere davon abhalten willst, Deine Aktivitäten zu verfolgen, aber nicht darüber besorgt bist, daß Gegner manche Deiner Aktivitäten dennoch sehen werden.";
-
-"Use when you’re concerned about adversaries discovering your identity and monitoring or censoring your activity." = "Benutze dies, wenn Du ernsthaft über Gegner besorgt bist, die Deine Identität herausfinden und Deine Aktiviäten verfolgen wollen.";
-
+"Use when you’re concerned about adversaries discovering your identity and monitoring or censoring your activity." = "Benutze dies, wenn Du ernsthaft über Gegner besorgt bist, die Deine Identität herausfinden und Deine Aktivitäten verfolgen wollen.";
 "Use when you’re concerned about your activity being logged, but accept that some of it might be monitored." = "Benutze dies, wenn Du grundsätzlich verhindern willst, daß Deine Aktivitäten beobachtet werden, aber akzeptierst, daß manchmal etwas davon durchdringt.";
-
 "Websites may break. But you get great security." = "Websites sind oft kaputt. Aber super-sicher.";
-
 "When to Use:" = "Wann benutzen:";
-
 "Works pretty well. Your identity is mostly protected." = "Funktioniert sehr gut. Deine Identität ist größtenteils geschützt.";
-
 "Yes" = "Ja";
-
 "Yes (website links can't open apps on the device)" = "Ja (Links öffnen nicht in anderen Apps)";
