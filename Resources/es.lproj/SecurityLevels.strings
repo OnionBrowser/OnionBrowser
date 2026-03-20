@@ -1,8 +1,8 @@
 "Ad- and Pop-up Blocking:" = "Bloqueo de Anuncios y Emergentes:";
 
-"Allows microphone and video access" = "Permite el acceso al micrófono y al video.";
+"Allows microphone and video access" = "Permite el acceso al micrófono y al video";
 
-"Allows orientation and motion data access" = "Permite el acceso a datos de orientación y movimiento.";
+"Allows orientation and motion data access" = "Permite el acceso a datos de orientación y movimiento";
 
 "Disables microphone and video access" = "Deshabilita el acceso al micrófono y al video";
 
@@ -12,9 +12,9 @@
 
 "JavaScript allowed" = "JavaScript permitida";
 
-"Lockdown Mode disabled" = "Lockdown Mode disabled";
+"Lockdown Mode disabled" = "Modo de bloqueo desactivado";
 
-"Lockdown Mode enabled (iOS 16 an later)" = "Lockdown Mode enabled (iOS 16 an later)";
+"Lockdown Mode enabled (iOS 16 an later)" = "Modo de bloqueo activado (iOS 16 y versiones posteriores)";
 
 "Many website features are disabled." = "Muchas funciones del sitio web están deshabilitadas.";
 
@@ -36,11 +36,11 @@
 
 "Universal Link Protection:" = "Protección Universal de Enlace:";
 
-"Use when you need to evade censorship and prevent someone from monitoring your activity, but are less concerned about leakage of your identity to adversaries." = "Úsalo cuando necesites evadir la censura y prevenir que alguien monitoree tu actividad, pero estás menos preocupada(o) por la filtración de tu identidad a adversaria(o)s.";
+"Use when you need to evade censorship and prevent someone from monitoring your activity, but are less concerned about leakage of your identity to adversaries." = "Úsalo cuando necesites evadir la censura y prevenir que alguien monitoree tu actividad, pero estás menos preocupado por la filtración de tu identidad a adversarios.";
 
 "Use when you’re concerned about adversaries discovering your identity and monitoring or censoring your activity." = "Utilízalo cuando te preocupe que adversarios descubran tu identidad y monitoreen o censuren tu actividad.";
 
-"Use when you’re concerned about your activity being logged, but accept that some of it might be monitored." = "Úsalo cuando te preocupa que se registre tu actividad, pero acepta que algo de ella puede ser monitoreada.";
+"Use when you’re concerned about your activity being logged, but accept that some of it might be monitored." = "Úsalo cuando te preocupa que se registre tu actividad, pero acepta que algo de ella puede ser monitoreado.";
 
 "Websites may break. But you get great security." = "Los sitios web pueden romperse. Pero obtienes una gran seguridad.";
 
