@@ -1,0 +1,35 @@
+{
+  "fill" : {
+    "solid" : "display-p3:0.18824,0.13725,0.23922,1.00000"
+  },
+  "groups" : [
+    {
+      "layers" : [
+        {
+          "image-name" : "logo-svg.svg",
+          "name" : "logo-svg",
+          "position" : {
+            "scale" : 15.55,
+            "translation-in-points" : [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.5
+      },
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.5
+      }
+    }
+  ],
+  "supported-platforms" : {
+    "squares" : [
+      "iOS"
+    ]
+  }
+}
