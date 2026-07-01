@@ -159,6 +159,7 @@
 		A0FA965E2A015EBB005EDC3F /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0FA965C2A015EBB005EDC3F /* WelcomeViewController.swift */; };
 		A0FA96612A0161DA005EDC3F /* InstallViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0FA965F2A0161DA005EDC3F /* InstallViewController.xib */; };
 		A0FA96622A0161DA005EDC3F /* InstallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0FA96602A0161DA005EDC3F /* InstallViewController.swift */; };
+		CEDA353A2FF5099400F2292B /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = CEDA35392FF5099400F2292B /* AppIcon.icon */; };
 		E6311B9040FEC20B68B89A24 /* Pods_OnionBrowser_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12570C301D8FEF51AB9F5CDD /* Pods_OnionBrowser_Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -503,6 +504,7 @@
 		A0FA965F2A0161DA005EDC3F /* InstallViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InstallViewController.xib; sourceTree = "<group>"; };
 		A0FA96602A0161DA005EDC3F /* InstallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallViewController.swift; sourceTree = "<group>"; };
 		A7CE50C2429233D841D5F1C1 /* Pods_OnionBrowser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OnionBrowser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEDA35392FF5099400F2292B /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -676,6 +678,7 @@
 		A0BF519D23AFBF250096624A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CEDA35392FF5099400F2292B /* AppIcon.icon */,
 				A08563122A04E9D800A3A7FF /* Localizable.strings */,
 				A08563382A04EA1E00A3A7FF /* Localizable.stringsdict */,
 				A085635E2A04EA8C00A3A7FF /* InfoPlist.strings */,
@@ -997,6 +1000,7 @@
 				A0BF526723AFC3580096624A /* BookmarkCell.xib in Resources */,
 				A0BF526523AFC3580096624A /* FavIconCell.xib in Resources */,
 				A0BF525823AFC3580096624A /* TabCell.xib in Resources */,
+				CEDA353A2FF5099400F2292B /* AppIcon.icon in Resources */,
 				A02414372A0260B1009AEE25 /* WhyViewController.xib in Resources */,
 				A0BF51EF23AFBF250096624A /* SearchEngines.plist in Resources */,
 				A01A1CAE2F471F1500D4591D /* SecurityLevels.strings in Resources */,
