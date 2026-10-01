@@ -1,3 +1,2 @@
-- Kijavítottuk a Mysk által észlelt, a DNS-előtöltés során fellépő IP-szivárgásokat.
-- Frissítettük a libevent-et a 2.1.13-as verzióra.
-- Frissítettük a japán és a pastu nyelvű fordításokat.
+- Kijavítottuk a DNSTT-híd értelmezésével kapcsolatos hibát.
+- Frissítettük a Tor-t a 0.4.9.13-as verzióra, az OpenSSL-t a 3.6.4-es verzióra, a liblzma-t pedig az 5.8.4-es verzióra.

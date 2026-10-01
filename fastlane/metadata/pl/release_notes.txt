@@ -1,3 +1,2 @@
-- Naprawiono wycieki adresów IP występujące podczas wstępnego pobierania danych DNS, wykryte przez użytkownika Mysk.
-- Zaktualizowano bibliotekę libevent do wersji 2.1.13.
-- Zaktualizowano tłumaczenia na język japoński i paszto.
+- Naprawiono błąd związany z analizowaniem mostka DNSTT.
+- Zaktualizowano Tor do wersji 0.4.9.13, OpenSSL do wersji 3.6.4 oraz liblzma do wersji 5.8.4.

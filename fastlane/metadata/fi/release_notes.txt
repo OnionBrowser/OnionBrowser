@@ -1,3 +1,2 @@
-- Korjattiin Myskin havaitsemat IP-osoitteiden vuotamiset DNS-ennakkolatausvaiheessa.
-- Päivitettiin libevent-kirjasto versioon 2.1.13.
-- Päivitettiin japanin- ja pashtokieliset käännökset.
+- Korjattu virhe DNSTT-sillan jäsentämisessä.
+- Päivitetty Tor versioon 0.4.9.13, OpenSSL versioon 3.6.4 ja liblzma versioon 5.8.4.

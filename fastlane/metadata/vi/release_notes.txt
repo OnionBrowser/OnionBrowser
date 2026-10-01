@@ -1,3 +1,2 @@
-- Đã khắc phục lỗi rò rỉ địa chỉ IP xảy ra trong quá trình tải trước DNS do Mysk phát hiện.
-- Đã cập nhật libevent lên phiên bản 2.1.13.
-- Đã cập nhật bản dịch tiếng Nhật và tiếng Pashto.
+- Đã khắc phục lỗi liên quan đến việc phân tích cú pháp cầu nối DNSTT.
+- Đã cập nhật Tor lên phiên bản 0.4.9.13, OpenSSL lên phiên bản 3.6.4 và liblzma lên phiên bản 5.8.4.

@@ -1,3 +1,2 @@
-- Corrigidos vazamentos de IP durante o pré-carregamento de DNS identificados por Mysk.
-- Atualizada a libevent para a versão 2.1.13.
-- Atualizadas as traduções para o japonês e o pashto.
+- Corrigido um erro na análise da ponte DNSTT.
+- Atualizado o Tor para a versão 0.4.9.13, o OpenSSL para a versão 3.6.4 e a liblzma para a versão 5.8.4.

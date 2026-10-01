@@ -1,3 +1,2 @@
-- Risolti i problemi di perdita di indirizzi IP durante il prefetch DNS individuati da Mysk.
-- Aggiornata libevent alla versione 2.1.13.
-- Aggiornate le traduzioni in giapponese e pashto.
+- Risolto un bug relativo all'analisi del bridge DNSTT.
+- Aggiornato Tor alla versione 0.4.9.13, OpenSSL alla versione 3.6.4 e liblzma alla versione 5.8.4.

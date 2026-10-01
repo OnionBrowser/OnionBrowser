@@ -1,3 +1,2 @@
-- Von Mysk entdeckte IP-Lecks beim DNS-Prefetch wurden behoben.
-- libevent wurde auf Version 2.1.13 aktualisiert.
-- Die Übersetzungen ins Japanische und Paschtu wurden aktualisiert.
+- Fehler beim Parsen der DNSTT-Bridge behoben.
+- Tor auf 0.4.9.13, OpenSSL auf 3.6.4 und liblzma auf 5.8.4 aktualisiert.

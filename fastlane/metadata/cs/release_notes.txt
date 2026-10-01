@@ -1,3 +1,2 @@
-- Opraveny úniky IP adres během přednačítání DNS, na které upozornil Mysk.
-- Aktualizována knihovna libevent na verzi 2.1.13.
-- Aktualizovány překlady do japonštiny a paštštiny.
+- Opravena chyba při analýze DNSTT bridge.
+- Aktualizován Tor na verzi 0.4.9.13, OpenSSL na verzi 3.6.4 a liblzma na verzi 5.8.4.

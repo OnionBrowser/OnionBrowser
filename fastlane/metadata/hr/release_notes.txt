@@ -1,3 +1,2 @@
-- Popravljeno curenje IP adresa tijekom DNS prefetcha koje je otkrio Mysk.
-- Ažurirana libevent na verziju 2.1.13.
-- Ažurirani japanski i paštunski prijevodi.
+- Ispravljena greška u parsiranju DNSTT mostova.
+- Ažurirano Tor na verziju 0.4.9.13, OpenSSL na 3.6.4 i liblzma na 5.8.4.

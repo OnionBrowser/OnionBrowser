@@ -1,5 +1,9 @@
 #  Onion Browser Changelog
 
+## 3.4.2
+- Fixed bug wtih DNSTT bridge parsing.
+- Updated Tor to 0.4.9.13, OpenSSL to 3.6.4 and liblzma to 5.8.4.
+
 ## 3.4.1
 - Fixed IP leaks during DNS prefetch found by Mysk: https://mysk.blog/2026/08/04/webkit-proxy-icloud-private-relay-ip-leak/
   (The other leaks are mitigated by Lockdown Mode in Onion Browser, included in Silver and Gold security levels.)

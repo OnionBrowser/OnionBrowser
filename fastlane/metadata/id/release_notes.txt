@@ -1,3 +1,2 @@
-- Masalah kebocoran alamat IP selama proses prefetch DNS yang ditemukan oleh Mysk telah diperbaiki.
-- libevent telah diperbarui ke versi 2.1.13.
-- Terjemahan dalam bahasa Jepang dan Pashto telah diperbarui.
+- Telah diperbaiki bug terkait pemrosesan DNSTT bridge.
+- Tor telah diperbarui ke versi 0.4.9.13, OpenSSL ke versi 3.6.4, dan liblzma ke versi 5.8.4.

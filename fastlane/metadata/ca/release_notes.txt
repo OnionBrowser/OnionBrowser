@@ -1,3 +1,2 @@
-- S'han corregit les fugues d'IP descobertes per Mysk durant el prefetch de DNS.
-- S'ha actualitzat libevent a la versió 2.1.13.
-- S'han actualitzat les traduccions al japonès i al pashtó.
+- S'ha corregit un error en l'anàlisi del pont DNSTT.
+- S'ha actualitzat Tor a la versió 0.4.9.13, OpenSSL a la 3.6.4 i liblzma a la 5.8.4.

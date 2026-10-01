@@ -1,3 +1,2 @@
-- Fixed IP leaks during DNS prefetch found by Mysk.
-- Updated libevent to 2.1.13.
-- Updated Japanese and Pashto translations.
+- Fixed bug wtih DNSTT bridge parsing.
+- Updated Tor to 0.4.9.13, OpenSSL to 3.6.4 and liblzma to 5.8.4.

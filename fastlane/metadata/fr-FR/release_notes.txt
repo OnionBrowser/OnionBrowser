@@ -1,3 +1,2 @@
-- Correction des fuites d'adresse IP survenant lors de la prélecture DNS, signalées par Mysk.
-- Mise à jour de libevent vers la version 2.1.13.
-- Mise à jour des traductions en japonais et en pachto.
+- Correction d'un bug lié à l'analyse du pont DNSTT.
+- Mise à jour de Tor vers la version 0.4.9.13, d'OpenSSL vers la version 3.6.4 et de liblzma vers la version 5.8.4.

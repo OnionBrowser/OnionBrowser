@@ -1,3 +1,2 @@
-- S-au remediat scurgerile de adrese IP apărute în timpul preîncărcării DNS, identificate de Mysk.
-- S-a actualizat libevent la versiunea 2.1.13.
-- S-au actualizat traducerile în japoneză și pașto.
+- S-a remediat o eroare legată de analizarea podului DNSTT.
+- S-au actualizat Tor la versiunea 0.4.9.13, OpenSSL la versiunea 3.6.4 și liblzma la versiunea 5.8.4.

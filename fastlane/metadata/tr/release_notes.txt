@@ -1,3 +1,2 @@
-- Mysk tarafından tespit edilen DNS önbellekleme sırasında meydana gelen IP sızıntıları giderildi.
-- libevent 2.1.13 sürümüne güncellendi.
-- Japonca ve Peştuca çeviriler güncellendi.
+- DNSTT köprüsünün ayrıştırılmasıyla ilgili hata düzeltildi.
+- Tor 0.4.9.13'e, OpenSSL 3.6.4'e ve liblzma 5.8.4'e güncellendi.

@@ -1,3 +1,2 @@
-- Løst problemet med IP-lekkasjer under DNS-forhåndshenting, oppdaget av Mysk.
-- Oppdatert libevent til versjon 2.1.13.
-- Oppdatert oversettelsene til japansk og pashto.
+- Rettet en feil i tolkningen av DNSTT-broen.
+- Oppdatert Tor til versjon 0.4.9.13, OpenSSL til versjon 3.6.4 og liblzma til versjon 5.8.4.
