@@ -10,6 +10,7 @@
 
 import UIKit
 import Eureka
+import ProgressHUD
 
 class SyncViewController: FixedFormViewController {
 
@@ -90,25 +91,21 @@ class SyncViewController: FixedFormViewController {
 					Settings.nextcloudUsername = (self?.form.rowBy(tag: "username") as? AccountRow)?.value
 					Settings.nextcloudPassword = (self?.form.rowBy(tag: "password") as? PasswordRow)?.value
 
-					let hud = MBProgressHUD.showAdded(to: vc.navigationController?.view ?? vc.view, animated: true)
+					ProgressHUD.animate()
 
 					Task {
 						do {
 							try await NcServer.sync()
 
 							await MainActor.run {
-								hud.mode = .customView
-								hud.customView = UIImageView(image: UIImage(systemName: "checkmark"))
-								hud.hide(animated: true, afterDelay: 1)
+								ProgressHUD.succeed()
 
 								vc.delegate?.needsReload()
 							}
 						}
 						catch {
 							await MainActor.run {
-								hud.mode = .customView
-								hud.customView = UIImageView(image: UIImage(systemName: "xmark"))
-								hud.hide(animated: true, afterDelay: 1)
+								ProgressHUD.failed()
 
 								let message = NSLocalizedString("We couldn't sync your bookmarks at this time. Try again to make sure your information is synced.", comment: "")
 								+ "\n\n"

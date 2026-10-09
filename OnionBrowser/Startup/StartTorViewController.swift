@@ -9,7 +9,7 @@
 //
 
 import UIKit
-import IPtProxyUI
+import IPtProxyUI_iOS
 
 class StartTorViewController: UIViewController, BridgesConfDelegate {
 
@@ -47,7 +47,7 @@ class StartTorViewController: UIViewController, BridgesConfDelegate {
 
 	// MARK: BridgesConfDelegate
 
-	var transport: IPtProxyUI.Transport {
+	var transport: IPtProxyUI_Shared.Transport {
 		get {
 			Settings.transport
 		}

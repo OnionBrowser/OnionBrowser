@@ -9,6 +9,7 @@
 //
 
 import UIKit
+import ProgressHUD
 
 protocol BookmarksViewControllerDelegate {
 
@@ -306,9 +307,7 @@ class BookmarksViewController: UIViewController, UITableViewDataSource,
 			return
 		}
 
-		let hud = MBProgressHUD.showAdded(to: view, animated: true)
-		hud.mode = .indeterminate
-		hud.label.numberOfLines = 0
+		ProgressHUD.animate()
 
 		Task {
 			var err: Error? = nil
@@ -329,12 +328,10 @@ class BookmarksViewController: UIViewController, UITableViewDataSource,
 
 			await MainActor.run {
 				if let err {
-					hud.mode = .text
-					hud.label.text = err.localizedDescription
-					hud.hide(animated: true, afterDelay: 3)
+					ProgressHUD.error(err.localizedDescription, delay: 3)
 				}
 				else {
-					hud.hide(animated: true)
+					ProgressHUD.succeed()
 				}
 
 				tableView.reloadData()

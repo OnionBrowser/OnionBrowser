@@ -13,7 +13,6 @@ target 'OnionBrowser' do
   pod 'SDCAlertView', '~> 12'
   pod 'FavIcon', :git => 'https://github.com/tladesignz/FavIcon.git'
   pod 'MBProgressHUD', '~> 1.2'
-  pod 'Eureka', '~> 5.5'
   pod 'ImageRow', :git => 'https://github.com/erickyim/ImageRow.git', :commit => 'd38369b8894425a9225ccf1e267226833b1950f0'
 
   pod 'SwiftSoup', '~> 2.7'
@@ -22,11 +21,6 @@ target 'OnionBrowser' do
 #    :podspec => 'https://raw.githubusercontent.com/iCepa/Tor.framework/refs/heads/pure_pod/Arti.podspec'
     '~> 409.13'
 #    :path => '../Tor.framework'
-
-  pod 'IPtProxyUI',
-    '~> 5.4'
-#    :git => 'https://github.com/tladesignz/IPtProxyUI-ios'
-#    :path => '../IPtProxyUI'
 
   pod 'OrbotKit', '~> 1.1'
 end

@@ -10,7 +10,7 @@
 
 import UIKit
 import AVFoundation
-import IPtProxyUI
+import IPtProxyUI_iOS
 
 @UIApplicationMain
 class AppDelegate: NSObject, UIApplicationDelegate {

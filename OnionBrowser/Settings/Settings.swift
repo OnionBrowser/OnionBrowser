@@ -9,7 +9,7 @@
 //
 
 import UIKit
-import IPtProxyUI
+import IPtProxyUI_iOS
 
 struct SearchEngine: Equatable {
 
@@ -126,7 +126,7 @@ enum TabSecurityLevel: String, CustomStringConvertible {
 
 
 @objcMembers
-class Settings: IPtProxyUI.Settings {
+class Settings: IPtProxyUI_Shared.Settings {
 
 	private static let transportTranslationTable = [
 		// Type .none is identical in IPtProxyUI and OnionBrowser.

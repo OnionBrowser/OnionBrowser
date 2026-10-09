@@ -148,6 +148,8 @@
 		A0C1FB182D50FC9A00AE97A7 /* TlsCertificate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C1FB172D50FC9A00AE97A7 /* TlsCertificate.swift */; };
 		A0C1FB192D50FC9A00AE97A7 /* TlsCertificate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C1FB172D50FC9A00AE97A7 /* TlsCertificate.swift */; };
 		A0C3770E1F47342C0039198E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0C3770D1F47342C0039198E /* CoreData.framework */; };
+		A0C4C93D307913200077EABC /* IPtProxyUI-iOS in Frameworks */ = {isa = PBXBuildFile; productRef = A0C4C93C307913200077EABC /* IPtProxyUI-iOS */; };
+		A0C4CAD23079240B0077EABC /* IPtProxyUI-iOS in Frameworks */ = {isa = PBXBuildFile; productRef = A0C4CAD13079240B0077EABC /* IPtProxyUI-iOS */; };
 		A0C582582AE9136200A81084 /* Thread+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C582572AE9136200A81084 /* Thread+Helpers.swift */; };
 		A0CD36982890194900628DA6 /* Tab+WKNavigationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CD36972890194900628DA6 /* Tab+WKNavigationDelegate.swift */; };
 		A0CD76DE2EAB7A4400DA1AFB /* NcServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CD76DD2EAB7A4400DA1AFB /* NcServer.swift */; };
@@ -532,6 +534,8 @@
 			files = (
 				A0C3770E1F47342C0039198E /* CoreData.framework in Frameworks */,
 				019516D11B7D8B400078586A /* libz.tbd in Frameworks */,
+				A0C4C93D307913200077EABC /* IPtProxyUI-iOS in Frameworks */,
+				A0C4CAD23079240B0077EABC /* IPtProxyUI-iOS in Frameworks */,
 				016B2FCD1A5648AE002D2730 /* WebKit.framework in Frameworks */,
 				3E5C6BF218A52D07DF55A6FE /* Pods_OnionBrowser.framework in Frameworks */,
 			);
@@ -862,7 +866,6 @@
 				01801E8F1A32CA2A002B4718 /* Frameworks */,
 				01801E901A32CA2A002B4718 /* Resources */,
 				75010C1DF4431D7C131B801C /* [CP] Embed Pods Frameworks */,
-				70CCEB16D2A53C9C6667F80E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -873,6 +876,10 @@
 				A0CEE4762EA9273600F278A0 /* AppIntents */,
 			);
 			name = OnionBrowser;
+			packageProductDependencies = (
+				A0C4C93C307913200077EABC /* IPtProxyUI-iOS */,
+				A0C4CAD13079240B0077EABC /* IPtProxyUI-iOS */,
+			);
 			productName = Endless;
 			productReference = 01801E921A32CA2A002B4718 /* OnionBrowser.app */;
 			productType = "com.apple.product-type.application";
@@ -977,6 +984,9 @@
 				ps,
 			);
 			mainGroup = 01801E891A32CA2A002B4718;
+			packageReferences = (
+				A0C4CAD03079240B0077EABC /* XCRemoteSwiftPackageReference "IPtProxyUI-ios" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 01801E931A32CA2A002B4718 /* Products */;
 			projectDirPath = "";
@@ -1067,27 +1077,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		70CCEB16D2A53C9C6667F80E /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-OnionBrowser/Pods-OnionBrowser-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-OnionBrowser/Pods-OnionBrowser-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OnionBrowser/Pods-OnionBrowser-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		75010C1DF4431D7C131B801C /* [CP] Embed Pods Frameworks */ = {
@@ -1819,6 +1808,29 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A0C4CAD03079240B0077EABC /* XCRemoteSwiftPackageReference "IPtProxyUI-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/tladesignz/IPtProxyUI-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A0C4C93C307913200077EABC /* IPtProxyUI-iOS */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = "IPtProxyUI-iOS";
+		};
+		A0C4CAD13079240B0077EABC /* IPtProxyUI-iOS */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0C4CAD03079240B0077EABC /* XCRemoteSwiftPackageReference "IPtProxyUI-ios" */;
+			productName = "IPtProxyUI-iOS";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 01801E8A1A32CA2A002B4718 /* Project object */;
 }

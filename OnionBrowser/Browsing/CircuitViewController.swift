@@ -11,7 +11,8 @@
 import UIKit
 import OrbotKit
 import Tor
-import IPtProxyUI
+import IPtProxyUI_iOS
+
 
 class CircuitViewController: UIViewController, UIPopoverPresentationControllerDelegate,
 							 UITableViewDataSource, UITableViewDelegate, BridgesConfDelegate 
@@ -136,7 +137,7 @@ class CircuitViewController: UIViewController, UIPopoverPresentationControllerDe
 
 	// MARK: BridgesConfDelegate
 
-	var transport: IPtProxyUI.Transport {
+	var transport: IPtProxyUI_Shared.Transport {
 		get {
 			Settings.transport
 		}

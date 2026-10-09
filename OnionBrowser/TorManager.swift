@@ -8,7 +8,7 @@
 
 import NetworkExtension
 import Tor
-import IPtProxyUI
+import IPtProxyUI_iOS
 import Network
 
 

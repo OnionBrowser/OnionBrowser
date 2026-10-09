@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ProgressHUD
 
 class BlocklistViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
 
@@ -256,17 +257,13 @@ class BlocklistViewController: UIViewController, UITableViewDelegate, UITableVie
 			return
 		}
 
-		let hud = MBProgressHUD.showAdded(to: view, animated: true)
-		hud.mode = .indeterminate
-		hud.label.numberOfLines = 0
+		ProgressHUD.animate()
 
 		let task = TorManager.shared.session().apiTask(with: .init(url: url)) { [weak self] (data: Data?, error: Error?) in
 			if let error = error {
 				Log.error(for: Self.self, error.localizedDescription)
 
-				hud.mode = .text
-				hud.label.text = error.localizedDescription
-				hud.hide(animated: true, afterDelay: 3)
+				ProgressHUD.error(error.localizedDescription, delay: 3)
 
 				return
 			}
@@ -276,7 +273,7 @@ class BlocklistViewController: UIViewController, UITableViewDelegate, UITableVie
 
 				UrlBlocker.shared.reload()
 
-				hud.hide(animated: true)
+				ProgressHUD.succeed()
 
 				// DO NOT RELOAD SECTIONS! Would be way too slow with the numbers of hosts from the HaGeZi blocklists!
 				self?.tableView.reloadData()
@@ -284,9 +281,7 @@ class BlocklistViewController: UIViewController, UITableViewDelegate, UITableVie
 			catch {
 				Log.error(for: Self.self, error.localizedDescription)
 
-				hud.mode = .text
-				hud.label.text = error.localizedDescription
-				hud.hide(animated: true, afterDelay: 3)
+				ProgressHUD.error(error.localizedDescription, delay: 3)
 			}
 		}
 		task.resume()
