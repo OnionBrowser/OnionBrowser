@@ -19,7 +19,7 @@ target 'OnionBrowser' do
 
   pod 'Tor/GeoIP',
 #    :podspec => 'https://raw.githubusercontent.com/iCepa/Tor.framework/refs/heads/pure_pod/Arti.podspec'
-    '~> 409.13'
+    '~> 409.14'
 #    :path => '../Tor.framework'
 
   pod 'OrbotKit', '~> 1.1'

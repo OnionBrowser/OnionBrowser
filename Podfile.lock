@@ -11,10 +11,10 @@ PODS:
   - OrbotKit (1.2.0)
   - SDCAlertView (12.0.5)
   - SwiftSoup (2.11.3)
-  - Tor/Core (409.13.1)
-  - Tor/CTor (409.13.1):
+  - Tor/Core (409.14.1)
+  - Tor/CTor (409.14.1):
     - Tor/Core
-  - Tor/GeoIP (409.13.1):
+  - Tor/GeoIP (409.14.1):
     - Tor/CTor
   - TUSafariActivity (1.0.4)
 
@@ -27,7 +27,7 @@ DEPENDENCIES:
   - OrbotKit (~> 1.1)
   - SDCAlertView (~> 12)
   - SwiftSoup (~> 2.7)
-  - Tor/GeoIP (~> 409.13)
+  - Tor/GeoIP (~> 409.14)
   - TUSafariActivity
 
 SPEC REPOS:
@@ -67,9 +67,9 @@ SPEC CHECKSUMS:
   OrbotKit: e932cc741c18e9a39242ae1c61eea6d54e54bd87
   SDCAlertView: c9042ba201897da46d833193b8462a186f79c47c
   SwiftSoup: 959c9ac70d7053fbf476341bfac90ab228523f2a
-  Tor: f1e98bb24efec33ff4ad3bb335d141025b26d1b0
+  Tor: 885bab50ebad5e6580f7b05b0df623aebfc598cb
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
 
-PODFILE CHECKSUM: 8709f5d0bfba56f6a22e3bd2d720a09bdb72da31
+PODFILE CHECKSUM: d6a44e45c678dc0301bfbd0311e3a41777d1eb42
 
 COCOAPODS: 1.17.0
