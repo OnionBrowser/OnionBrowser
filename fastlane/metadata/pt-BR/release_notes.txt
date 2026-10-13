@@ -1,2 +1,3 @@
-- Corrigido um erro na análise da ponte DNSTT.
-- Atualizado o Tor para a versão 0.4.9.13, o OpenSSL para a versão 3.6.4 e a liblzma para a versão 5.8.4.
+- Atualizamos o Tor para a versão 0.4.9.14 e o OpenSSL para a versão 3.6.5.
+- Atualizamos o Snowflake para a versão 2.15.1.
+- Atualizamos o Lyrebird para a versão 0.9.0.

@@ -1,2 +1,3 @@
-- Rettet en feil i tolkningen av DNSTT-broen.
-- Oppdatert Tor til versjon 0.4.9.13, OpenSSL til versjon 3.6.4 og liblzma til versjon 5.8.4.
+- Oppdatert Tor til 0.4.9.14 og OpenSSL til 3.6.5.
+- Oppdatert Snowflake til 2.15.1.
+- Oppdatert Lyrebird til versjon 0.9.0.

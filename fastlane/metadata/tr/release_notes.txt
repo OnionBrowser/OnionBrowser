@@ -1,2 +1,3 @@
-- DNSTT köprüsünün ayrıştırılmasıyla ilgili hata düzeltildi.
-- Tor 0.4.9.13'e, OpenSSL 3.6.4'e ve liblzma 5.8.4'e güncellendi.
+- Tor 0.4.9.14 sürümüne, OpenSSL ise 3.6.5 sürümüne güncellendi.
+- Snowflake 2.15.1 sürümüne güncellendi.
+- Lyrebird 0.9.0 sürümüne güncellendi.

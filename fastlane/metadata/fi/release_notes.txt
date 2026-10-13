@@ -1,2 +1,3 @@
-- Korjattu virhe DNSTT-sillan jäsentämisessä.
-- Päivitetty Tor versioon 0.4.9.13, OpenSSL versioon 3.6.4 ja liblzma versioon 5.8.4.
+- Tor päivitettiin versioon 0.4.9.14 ja OpenSSL versioon 3.6.5.
+- Snowflake päivitettiin versioon 2.15.1.
+- Lyrebird päivitettiin versioon 0.9.0.

@@ -1,2 +1,3 @@
-- 修正了 DNSTT 橋接解析的錯誤。
-- 將 Tor 更新至 0.4.9.13、OpenSSL 更新至 3.6.4，以及 liblzma 更新至 5.8.4。
+- 將 Tor 更新至 0.4.9.14，並將 OpenSSL 更新至 3.6.5。
+- 將 Snowflake 更新至 2.15.1。
+- 將 Lyrebird 更新至 0.9.0 版。

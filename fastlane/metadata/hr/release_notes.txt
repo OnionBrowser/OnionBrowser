@@ -1,2 +1,3 @@
-- Ispravljena greška u parsiranju DNSTT mostova.
-- Ažurirano Tor na verziju 0.4.9.13, OpenSSL na 3.6.4 i liblzma na 5.8.4.
+- Ažuriran Tor na verziju 0.4.9.14 i OpenSSL na verziju 3.6.5.
+- Ažuriran Snowflake na verziju 2.15.1.
+- Ažuriran Lyrebird na verziju 0.9.0.

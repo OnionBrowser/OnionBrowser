@@ -1,2 +1,3 @@
-- Een fout bij het parseren van de DNSTT-bridge is verholpen.
-- Tor is bijgewerkt naar versie 0.4.9.13, OpenSSL naar 3.6.4 en liblzma naar 5.8.4.
+- Tor is bijgewerkt naar versie 0.4.9.14 en OpenSSL naar versie 3.6.5.
+- Snowflake is bijgewerkt naar versie 2.15.1.
+- Lyrebird is bijgewerkt naar versie 0.9.0.
