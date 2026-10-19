@@ -2,10 +2,7 @@ PODS:
   - DTFoundation/Core (1.7.19)
   - DTFoundation/DTASN1 (1.7.19):
     - DTFoundation/Core
-  - Eureka (5.5.0)
   - FavIcon (3.1.0)
-  - ImageRow (4.1.0):
-    - Eureka (~> 5.0)
   - MBProgressHUD (1.2.0)
   - OCMock (3.9.4)
   - OrbotKit (1.2.0)
@@ -21,7 +18,6 @@ PODS:
 DEPENDENCIES:
   - DTFoundation/DTASN1
   - FavIcon (from `https://github.com/tladesignz/FavIcon.git`)
-  - ImageRow (from `https://github.com/erickyim/ImageRow.git`, commit `d38369b8894425a9225ccf1e267226833b1950f0`)
   - MBProgressHUD (~> 1.2)
   - OCMock
   - OrbotKit (~> 1.1)
@@ -33,7 +29,6 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - DTFoundation
-    - Eureka
     - MBProgressHUD
     - OCMock
     - OrbotKit
@@ -45,23 +40,15 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   FavIcon:
     :git: https://github.com/tladesignz/FavIcon.git
-  ImageRow:
-    :commit: d38369b8894425a9225ccf1e267226833b1950f0
-    :git: https://github.com/erickyim/ImageRow.git
 
 CHECKOUT OPTIONS:
   FavIcon:
     :commit: 9969d1aaffced321facc66d20c82e7eab2a8aa98
     :git: https://github.com/tladesignz/FavIcon.git
-  ImageRow:
-    :commit: d38369b8894425a9225ccf1e267226833b1950f0
-    :git: https://github.com/erickyim/ImageRow.git
 
 SPEC CHECKSUMS:
   DTFoundation: 76b624967cf5bcaae6bb057d622c536c36ef36d0
-  Eureka: 1c18c7fcd8f772cc2ca42d6be36292dffa77eecb
   FavIcon: 21651b47d8f6b33517973859f85e2cb6f9fcfaee
-  ImageRow: b438fec4f4b68b367c5161bbb6bc372baaa49cc4
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   OCMock: 589f2c84dacb1f5aaf6e4cec1f292551fe748e74
   OrbotKit: e932cc741c18e9a39242ae1c61eea6d54e54bd87
@@ -70,6 +57,6 @@ SPEC CHECKSUMS:
   Tor: 885bab50ebad5e6580f7b05b0df623aebfc598cb
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
 
-PODFILE CHECKSUM: d6a44e45c678dc0301bfbd0311e3a41777d1eb42
+PODFILE CHECKSUM: 3b059c7054524fee3db9289003462698796a98e5
 
 COCOAPODS: 1.17.0

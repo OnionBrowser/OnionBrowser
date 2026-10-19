@@ -1,5 +1,5 @@
 {
-  "originHash" : "371e44bec39838600838a8f9f824c5bf1e7741c095d9761c60f94779357631e0",
+  "originHash" : "1652f5d60e6ed925d3302755ed87b6acfd0f4dfbc5cb96b95c24ea5f5b2b0c06",
   "pins" : [
     {
       "identity" : "eureka",
@@ -8,6 +8,15 @@
       "state" : {
         "revision" : "028ef8e3191a256b8f6b8bb6b9496efcb0762dbc",
         "version" : "5.5.0"
+      }
+    },
+    {
+      "identity" : "imagerow",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/EurekaCommunity/ImageRow",
+      "state" : {
+        "revision" : "5682215c037bc5ff9b9b9ddb219f906f078e4c25",
+        "version" : "4.1.0"
       }
     },
     {

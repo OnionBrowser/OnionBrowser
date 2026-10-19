@@ -86,6 +86,7 @@
 		A08563852A05419000A3A7FF /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A08563842A05419000A3A7FF /* Launch Screen.storyboard */; };
 		A08737E1221324B5005A68CC /* HostSettings_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = A08737DF2213235F005A68CC /* HostSettings_Tests.m */; };
 		A09A39622A17BE61008CC06A /* DownloadActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09A39612A17BE61008CC06A /* DownloadActivity.swift */; };
+		A09CCF83308629550014FB5F /* ImageRow in Frameworks */ = {isa = PBXBuildFile; productRef = A09CCF82308629550014FB5F /* ImageRow */; };
 		A09F7ADD2AD80A1A00F7072F /* TorCircuit+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09F7ADC2AD80A1A00F7072F /* TorCircuit+Helper.swift */; };
 		A0A83AC228A14CAB005C15C9 /* Tab+WKScriptMessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A83AC128A14CAB005C15C9 /* Tab+WKScriptMessageHandler.swift */; };
 		A0AF2C062A123E65000BCC85 /* BrowsingViewController+UIResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AF2C052A123E65000BCC85 /* BrowsingViewController+UIResponder.swift */; };
@@ -517,11 +518,15 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		A03CBD982F3B98EA00B22D96 /* misc */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = misc;
 			sourceTree = "<group>";
 		};
 		A0CEE4762EA9273600F278A0 /* AppIntents */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = AppIntents;
 			sourceTree = "<group>";
 		};
@@ -536,6 +541,7 @@
 				019516D11B7D8B400078586A /* libz.tbd in Frameworks */,
 				A0C4C93D307913200077EABC /* IPtProxyUI-iOS in Frameworks */,
 				A0C4CAD23079240B0077EABC /* IPtProxyUI-iOS in Frameworks */,
+				A09CCF83308629550014FB5F /* ImageRow in Frameworks */,
 				016B2FCD1A5648AE002D2730 /* WebKit.framework in Frameworks */,
 				3E5C6BF218A52D07DF55A6FE /* Pods_OnionBrowser.framework in Frameworks */,
 			);
@@ -879,6 +885,7 @@
 			packageProductDependencies = (
 				A0C4C93C307913200077EABC /* IPtProxyUI-iOS */,
 				A0C4CAD13079240B0077EABC /* IPtProxyUI-iOS */,
+				A09CCF82308629550014FB5F /* ImageRow */,
 			);
 			productName = Endless;
 			productReference = 01801E921A32CA2A002B4718 /* OnionBrowser.app */;
@@ -986,6 +993,7 @@
 			mainGroup = 01801E891A32CA2A002B4718;
 			packageReferences = (
 				A0C4CAD03079240B0077EABC /* XCRemoteSwiftPackageReference "IPtProxyUI-ios" */,
+				A09CCF81308629550014FB5F /* XCRemoteSwiftPackageReference "ImageRow" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 01801E931A32CA2A002B4718 /* Products */;
@@ -1087,13 +1095,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-OnionBrowser/Pods-OnionBrowser-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-OnionBrowser/Pods-OnionBrowser-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1187,13 +1191,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-OnionBrowser Tests/Pods-OnionBrowser Tests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-OnionBrowser Tests/Pods-OnionBrowser Tests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1810,6 +1810,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		A09CCF81308629550014FB5F /* XCRemoteSwiftPackageReference "ImageRow" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/EurekaCommunity/ImageRow";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.1.0;
+			};
+		};
 		A0C4CAD03079240B0077EABC /* XCRemoteSwiftPackageReference "IPtProxyUI-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/tladesignz/IPtProxyUI-ios";
@@ -1821,6 +1829,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A09CCF82308629550014FB5F /* ImageRow */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A09CCF81308629550014FB5F /* XCRemoteSwiftPackageReference "ImageRow" */;
+			productName = ImageRow;
+		};
 		A0C4C93C307913200077EABC /* IPtProxyUI-iOS */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = "IPtProxyUI-iOS";
