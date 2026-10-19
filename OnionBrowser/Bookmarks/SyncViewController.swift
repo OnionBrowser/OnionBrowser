@@ -133,4 +133,10 @@ class SyncViewController: FixedFormViewController {
 				}
 			}
 	}
+
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+
+		ProgressHUD.dismiss()
+	}
 }

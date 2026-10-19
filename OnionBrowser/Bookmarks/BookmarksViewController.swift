@@ -98,6 +98,12 @@ class BookmarksViewController: UIViewController, UITableViewDataSource,
 		}
 	}
 
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+
+		ProgressHUD.dismiss()
+	}
+
 
 	// MARK: UITableViewDataSource
 

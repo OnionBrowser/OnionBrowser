@@ -57,6 +57,12 @@ class BlocklistViewController: UIViewController, UITableViewDelegate, UITableVie
 		enableSw.isOn = Settings.enableUrlBlocker
 	}
 
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+
+		ProgressHUD.dismiss()
+	}
+
 
 	// MARK: UITableViewDataSource
 
