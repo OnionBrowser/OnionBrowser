@@ -1,3 +1,1 @@
-- S'ha actualitzat Tor a la versió 0.4.9.14 i OpenSSL a la 3.6.5.
-- S'ha actualitzat Snowflake a la versió 2.15.1.
-- S'ha actualitzat Lyrebird a la versió 0.9.0.
+S'ha corregit un bloqueig en intentar crear o editar un marcador.

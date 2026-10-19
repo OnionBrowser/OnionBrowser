@@ -1,3 +1,1 @@
-- Ažuriran Tor na verziju 0.4.9.14 i OpenSSL na verziju 3.6.5.
-- Ažuriran Snowflake na verziju 2.15.1.
-- Ažuriran Lyrebird na verziju 0.9.0.
+Popravljen je pad pri pokušaju stvaranja ili uređivanja oznake.

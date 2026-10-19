@@ -1,3 +1,1 @@
-- Zaktualizowano Tor do wersji 0.4.9.14 oraz OpenSSL do wersji 3.6.5.
-- Zaktualizowano Snowflake do wersji 2.15.1.
-- Zaktualizowano Lyrebird do wersji 0.9.0.
+Naprawiono awarię występującą podczas próby utworzenia lub edycji zakładki.

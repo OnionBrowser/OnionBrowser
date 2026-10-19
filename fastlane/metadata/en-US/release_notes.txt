@@ -1,3 +1,1 @@
-- Updated Tor to 0.4.9.14 and OpenSSL to 3.6.5.
-- Updated Snowflake to 2.15.1.
-- Updated Lyrebird to version 0.9.0.
+Fixed crash when trying to create or edit a bookmark.

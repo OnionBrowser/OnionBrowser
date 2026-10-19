@@ -1,3 +1,1 @@
-- Aggiornato Tor alla versione 0.4.9.14 e OpenSSL alla versione 3.6.5.
-- Aggiornato Snowflake alla versione 2.15.1.
-- Aggiornato Lyrebird alla versione 0.9.0.
+È stato risolto il problema che causava un arresto anomalo durante il tentativo di creare o modificare un segnalibro.

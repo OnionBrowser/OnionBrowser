@@ -1,3 +1,1 @@
-- Tor 0.4.9.14 sürümüne, OpenSSL ise 3.6.5 sürümüne güncellendi.
-- Snowflake 2.15.1 sürümüne güncellendi.
-- Lyrebird 0.9.0 sürümüne güncellendi.
+Yer imi oluşturmaya veya düzenlemeye çalışırken meydana gelen çökme sorunu giderildi.

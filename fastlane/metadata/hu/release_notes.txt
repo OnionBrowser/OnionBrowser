@@ -1,3 +1,1 @@
-- A Tor-t 0.4.9.14-es verzióra, az OpenSSL-t pedig 3.6.5-ös verzióra frissítettük.
-- A Snowflake-et 2.15.1-es verzióra frissítettük.
-- A Lyrebird-öt 0.9.0-s verzióra frissítettük.
+Kijavítottuk azt a hibát, amely a könyvjelző létrehozása vagy szerkesztése közben összeomlást okozott.

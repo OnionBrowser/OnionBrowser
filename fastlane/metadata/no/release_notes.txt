@@ -1,3 +1,1 @@
-- Oppdatert Tor til 0.4.9.14 og OpenSSL til 3.6.5.
-- Oppdatert Snowflake til 2.15.1.
-- Oppdatert Lyrebird til versjon 0.9.0.
+Det er løst et programkrasj som oppstod ved forsøk på å opprette eller redigere et bokmerke.

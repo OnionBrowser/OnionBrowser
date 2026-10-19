@@ -1,5 +1,8 @@
 #  Onion Browser Changelog
 
+## 3.4.4
+- Fixed crash when trying to create or edit a bookmark.
+
 ## 3.4.3
 - Updated Tor to 0.4.9.14 and OpenSSL to 3.6.5.
 - Updated Snowflake to 2.15.1.

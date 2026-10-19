@@ -1,3 +1,1 @@
-- Đã cập nhật Tor lên phiên bản 0.4.9.14 và OpenSSL lên phiên bản 3.6.5.
-- Đã cập nhật Snowflake lên phiên bản 2.15.1.
-- Đã cập nhật Lyrebird lên phiên bản 0.9.0.
+Đã khắc phục lỗi ứng dụng bị treo khi cố gắng tạo hoặc chỉnh sửa dấu trang.

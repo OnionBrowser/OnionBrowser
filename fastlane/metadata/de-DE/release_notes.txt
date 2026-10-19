@@ -1,3 +1,1 @@
-- Tor wurde auf Version 0.4.9.14 und OpenSSL auf Version 3.6.5 aktualisiert.
-- Snowflake wurde auf Version 2.15.1 aktualisiert.
-- Lyrebird wurde auf Version 0.9.0 aktualisiert.
+Ein Absturz beim Versuch, ein Lesezeichen zu erstellen oder zu bearbeiten, wurde behoben.
