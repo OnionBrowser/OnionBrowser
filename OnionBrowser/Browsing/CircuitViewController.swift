@@ -10,7 +10,7 @@
 
 import UIKit
 import OrbotKit
-import Tor
+import TorCore
 import IPtProxyUI_iOS
 
 

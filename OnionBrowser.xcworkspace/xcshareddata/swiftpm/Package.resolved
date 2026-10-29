@@ -1,5 +1,5 @@
 {
-  "originHash" : "1652f5d60e6ed925d3302755ed87b6acfd0f4dfbc5cb96b95c24ea5f5b2b0c06",
+  "originHash" : "95c0f8e62a0f96d25591e7f038f7d12e257c00f1269fbb5927407239d4d504b2",
   "pins" : [
     {
       "identity" : "eureka",
@@ -44,6 +44,15 @@
       "state" : {
         "revision" : "2ebecc236508c6d325a36aeeadfc8930dccd07f6",
         "version" : "14.1.5"
+      }
+    },
+    {
+      "identity" : "tor.framework",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/iCepa/Tor.framework",
+      "state" : {
+        "revision" : "6bb8b0ce479040edbcc14d02095c3a334ad6b3b7",
+        "version" : "409.15.2"
       }
     }
   ],

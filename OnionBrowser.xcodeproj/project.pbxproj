@@ -156,6 +156,9 @@
 		A0CD76DE2EAB7A4400DA1AFB /* NcServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CD76DD2EAB7A4400DA1AFB /* NcServer.swift */; };
 		A0CD76E02EAB8BB500DA1AFB /* FolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CD76DF2EAB8BB500DA1AFB /* FolderViewController.swift */; };
 		A0D070FD275A513700922D70 /* FileManager+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D070FC275A513700922D70 /* FileManager+Helpers.swift */; };
+		A0D846A23093C406007886E8 /* CTor in Frameworks */ = {isa = PBXBuildFile; productRef = A0D846A13093C406007886E8 /* CTor */; };
+		A0D8470A3093C5BA007886E8 /* geoip in Resources */ = {isa = PBXBuildFile; fileRef = A0D847083093C5BA007886E8 /* geoip */; };
+		A0D8470B3093C5BA007886E8 /* geoip6 in Resources */ = {isa = PBXBuildFile; fileRef = A0D847093093C5BA007886E8 /* geoip6 */; };
 		A0D9008B24095F5C0046C9B3 /* AltSvcHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D9008A24095F5C0046C9B3 /* AltSvcHeader.swift */; };
 		A0DDCCCD2ECDCD7B00907CE1 /* MozillaBookmarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DDCCCC2ECDCD7B00907CE1 /* MozillaBookmarks.swift */; };
 		A0E8E8B12938CDFB00DC2A2F /* SearchEnginesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E8E8B02938CDFB00DC2A2F /* SearchEnginesViewController.swift */; };
@@ -503,6 +506,8 @@
 		A0CD76DD2EAB7A4400DA1AFB /* NcServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NcServer.swift; sourceTree = "<group>"; };
 		A0CD76DF2EAB8BB500DA1AFB /* FolderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderViewController.swift; sourceTree = "<group>"; };
 		A0D070FC275A513700922D70 /* FileManager+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Helpers.swift"; sourceTree = "<group>"; };
+		A0D847083093C5BA007886E8 /* geoip */ = {isa = PBXFileReference; lastKnownFileType = text; path = geoip; sourceTree = "<group>"; };
+		A0D847093093C5BA007886E8 /* geoip6 */ = {isa = PBXFileReference; lastKnownFileType = text; path = geoip6; sourceTree = "<group>"; };
 		A0D9008A24095F5C0046C9B3 /* AltSvcHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AltSvcHeader.swift; sourceTree = "<group>"; };
 		A0DB59522747D36200B20436 /* Tor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Tor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0DDCCCC2ECDCD7B00907CE1 /* MozillaBookmarks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MozillaBookmarks.swift; sourceTree = "<group>"; };
@@ -518,15 +523,11 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		A03CBD982F3B98EA00B22D96 /* misc */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = misc;
 			sourceTree = "<group>";
 		};
 		A0CEE4762EA9273600F278A0 /* AppIntents */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = AppIntents;
 			sourceTree = "<group>";
 		};
@@ -541,6 +542,7 @@
 				019516D11B7D8B400078586A /* libz.tbd in Frameworks */,
 				A0C4C93D307913200077EABC /* IPtProxyUI-iOS in Frameworks */,
 				A0C4CAD23079240B0077EABC /* IPtProxyUI-iOS in Frameworks */,
+				A0D846A23093C406007886E8 /* CTor in Frameworks */,
 				A09CCF83308629550014FB5F /* ImageRow in Frameworks */,
 				016B2FCD1A5648AE002D2730 /* WebKit.framework in Frameworks */,
 				3E5C6BF218A52D07DF55A6FE /* Pods_OnionBrowser.framework in Frameworks */,
@@ -712,6 +714,8 @@
 				A06881D12A66B0070084D26D /* debug.entitlements */,
 				01801E961A32CA2A002B4718 /* Info.plist */,
 				A06EC2A02BBA0C71003A9944 /* PrivacyInfo.xcprivacy */,
+				A0D847083093C5BA007886E8 /* geoip */,
+				A0D847093093C5BA007886E8 /* geoip6 */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -870,6 +874,7 @@
 				A02640D52E33A9B2003D2C60 /* Load Blocklist */,
 				01801E8E1A32CA2A002B4718 /* Sources */,
 				01801E8F1A32CA2A002B4718 /* Frameworks */,
+				A0D8469F3093C0BD007886E8 /* Load GeoIP files */,
 				01801E901A32CA2A002B4718 /* Resources */,
 				75010C1DF4431D7C131B801C /* [CP] Embed Pods Frameworks */,
 			);
@@ -886,6 +891,7 @@
 				A0C4C93C307913200077EABC /* IPtProxyUI-iOS */,
 				A0C4CAD13079240B0077EABC /* IPtProxyUI-iOS */,
 				A09CCF82308629550014FB5F /* ImageRow */,
+				A0D846A13093C406007886E8 /* CTor */,
 			);
 			productName = Endless;
 			productReference = 01801E921A32CA2A002B4718 /* OnionBrowser.app */;
@@ -994,6 +1000,7 @@
 			packageReferences = (
 				A0C4CAD03079240B0077EABC /* XCRemoteSwiftPackageReference "IPtProxyUI-ios" */,
 				A09CCF81308629550014FB5F /* XCRemoteSwiftPackageReference "ImageRow" */,
+				A0D846A03093C406007886E8 /* XCRemoteSwiftPackageReference "Tor" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 01801E931A32CA2A002B4718 /* Products */;
@@ -1031,6 +1038,8 @@
 				A01A1CAE2F471F1500D4591D /* SecurityLevels.strings in Resources */,
 				A0BF524C23AFC3580096624A /* CircuitViewController.xib in Resources */,
 				A08563142A04E9D900A3A7FF /* Localizable.strings in Resources */,
+				A0D8470A3093C5BA007886E8 /* geoip in Resources */,
+				A0D8470B3093C5BA007886E8 /* geoip6 in Resources */,
 				A08563602A04EA8C00A3A7FF /* InfoPlist.strings in Resources */,
 				A02640D72E33A9EE003D2C60 /* light-onlydomains.txt in Resources */,
 				A085633A2A04EA1E00A3A7FF /* Localizable.stringsdict in Resources */,
@@ -1095,9 +1104,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-OnionBrowser/Pods-OnionBrowser-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-OnionBrowser/Pods-OnionBrowser-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1160,6 +1173,25 @@
 			shellPath = /bin/sh;
 			shellScript = "if [ -f /opt/homebrew/bin/bartycrouch ]; then\n    /opt/homebrew/bin/bartycrouch update -x\n    /opt/homebrew/bin/bartycrouch lint -x\nelse\n    echo \"warning: BartyCrouch not installed. Download it form https://github.com/Flinesoft/BartyCrouch\"\nfi\n";
 		};
+		A0D8469F3093C0BD007886E8 /* Load GeoIP files */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Load GeoIP files";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/sh\n\nDEST=\"$PROJECT_DIR/Resources\"\n\nmkdir -p \"$DEST\"\ncd \"$DEST\"\n\n# Test if file is older then 1 week.\nOLD=\"$(find geoip -mmin +10080 2>/dev/null)\"\n\n# Only download, if files are not existing or older than 1 week.\nif [ ! -f geoip -o ! -z \"$OLD\" ]; then\n    curl --remote-name --location https://gitlab.torproject.org/tpo/core/tor/-/raw/main/src/config/geoip\n    curl --remote-name --location https://gitlab.torproject.org/tpo/core/tor/-/raw/main/src/config/geoip6\nfi\n";
+		};
 		C8C76E728A4BA9CC9C2E5513 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -1191,9 +1223,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-OnionBrowser Tests/Pods-OnionBrowser Tests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-OnionBrowser Tests/Pods-OnionBrowser Tests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1826,6 +1862,14 @@
 				minimumVersion = 6.0.0;
 			};
 		};
+		A0D846A03093C406007886E8 /* XCRemoteSwiftPackageReference "Tor" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/iCepa/Tor.framework";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 409.15.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1842,6 +1886,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A0C4CAD03079240B0077EABC /* XCRemoteSwiftPackageReference "IPtProxyUI-ios" */;
 			productName = "IPtProxyUI-iOS";
+		};
+		A0D846A13093C406007886E8 /* CTor */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0D846A03093C406007886E8 /* XCRemoteSwiftPackageReference "Tor" */;
+			productName = CTor;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

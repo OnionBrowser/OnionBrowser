@@ -8,7 +8,7 @@
 //  This file is part of Onion Browser. See LICENSE file for redistribution terms.
 //
 
-import Tor
+import TorCore
 import OrbotKit
 
 extension TorCircuit: @retroactive Encodable {

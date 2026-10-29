@@ -30,3 +30,5 @@ fastlane/report.xml
 .idea/
 
 Resources/light-onlydomains.txt
+Resources/geoip
+Resources/geoip6

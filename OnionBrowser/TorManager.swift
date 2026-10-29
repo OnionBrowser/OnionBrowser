@@ -7,7 +7,7 @@
 //
 
 import NetworkExtension
-import Tor
+import CTor
 import IPtProxyUI_iOS
 import Network
 
@@ -359,8 +359,8 @@ class TorManager {
 		conf.clientAuthDirectory = FileManager.default.authDir
 
 		// GeoIP files for circuit node country display.
-		conf.geoipFile = Bundle.geoIp?.geoipFile
-		conf.geoip6File = Bundle.geoIp?.geoip6File
+		conf.geoipFile = Bundle.main.url(forResource: "geoip", withExtension: nil)
+		conf.geoip6File = Bundle.main.url(forResource: "geoip6", withExtension: nil)
 
 		var arguments = [String]()
 		arguments.append(contentsOf: transportConf(Transport.asArguments).joined())
