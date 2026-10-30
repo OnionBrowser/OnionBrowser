@@ -7,8 +7,6 @@ platform :ios, '15.0'
 source 'https://github.com/CocoaPods/Specs.git'
 
 target 'OnionBrowser' do
-  pod 'DTFoundation/DTASN1'
-
   pod 'FavIcon', :git => 'https://github.com/tladesignz/FavIcon.git'
   pod 'MBProgressHUD', '~> 1.2'
 
@@ -17,7 +15,6 @@ end
 
 target 'OnionBrowser Tests' do
   pod 'OCMock'
-  pod 'DTFoundation/DTASN1'
 end
 
 # Fix Xcode 15 compile issues.

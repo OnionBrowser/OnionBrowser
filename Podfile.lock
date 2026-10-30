@@ -1,14 +1,10 @@
 PODS:
-  - DTFoundation/Core (1.7.19)
-  - DTFoundation/DTASN1 (1.7.19):
-    - DTFoundation/Core
   - FavIcon (3.1.0)
   - MBProgressHUD (1.2.0)
   - OCMock (3.9.4)
   - OrbotKit (1.2.0)
 
 DEPENDENCIES:
-  - DTFoundation/DTASN1
   - FavIcon (from `https://github.com/tladesignz/FavIcon.git`)
   - MBProgressHUD (~> 1.2)
   - OCMock
@@ -16,7 +12,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
-    - DTFoundation
     - MBProgressHUD
     - OCMock
     - OrbotKit
@@ -31,12 +26,11 @@ CHECKOUT OPTIONS:
     :git: https://github.com/tladesignz/FavIcon.git
 
 SPEC CHECKSUMS:
-  DTFoundation: 76b624967cf5bcaae6bb057d622c536c36ef36d0
   FavIcon: 21651b47d8f6b33517973859f85e2cb6f9fcfaee
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   OCMock: 589f2c84dacb1f5aaf6e4cec1f292551fe748e74
   OrbotKit: e932cc741c18e9a39242ae1c61eea6d54e54bd87
 
-PODFILE CHECKSUM: db27c25bce11dc7b5f986852789551d8b6bb03d0
+PODFILE CHECKSUM: 8dc24a354854af73c2aee6d666c18a2f0eecfb26
 
 COCOAPODS: 1.17.0

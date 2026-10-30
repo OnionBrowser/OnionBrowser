@@ -93,6 +93,8 @@
 		A0B517793094CBD40064131E /* SafariActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B517783094CBD40064131E /* SafariActivity.swift */; };
 		A0B518343094D7370064131E /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = A0B518333094D7370064131E /* SwiftSoup */; };
 		A0B518373094D9DB0064131E /* SDCAlertView in Frameworks */ = {isa = PBXBuildFile; productRef = A0B518363094D9DB0064131E /* SDCAlertView */; };
+		A0B518963094DE680064131E /* DTFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = A0B518953094DE680064131E /* DTFoundation */; };
+		A0B519523094DF1F0064131E /* DTFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = A0B519513094DF1F0064131E /* DTFoundation */; };
 		A0BF51ED23AFBF250096624A /* start.html in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51C723AFBF250096624A /* start.html */; };
 		A0BF51EF23AFBF250096624A /* SearchEngines.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51D123AFBF250096624A /* SearchEngines.plist */; };
 		A0BF51F423AFBF250096624A /* credits.html in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51DE23AFBF250096624A /* credits.html */; };
@@ -544,6 +546,7 @@
 			files = (
 				A0C3770E1F47342C0039198E /* CoreData.framework in Frameworks */,
 				019516D11B7D8B400078586A /* libz.tbd in Frameworks */,
+				A0B518963094DE680064131E /* DTFoundation in Frameworks */,
 				A0C4C93D307913200077EABC /* IPtProxyUI-iOS in Frameworks */,
 				A0C4CAD23079240B0077EABC /* IPtProxyUI-iOS in Frameworks */,
 				A0D846A23093C406007886E8 /* CTor in Frameworks */,
@@ -560,6 +563,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E6311B9040FEC20B68B89A24 /* Pods_OnionBrowser_Tests.framework in Frameworks */,
+				A0B519523094DF1F0064131E /* DTFoundation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -901,6 +905,7 @@
 				A0D846A13093C406007886E8 /* CTor */,
 				A0B518333094D7370064131E /* SwiftSoup */,
 				A0B518363094D9DB0064131E /* SDCAlertView */,
+				A0B518953094DE680064131E /* DTFoundation */,
 			);
 			productName = Endless;
 			productReference = 01801E921A32CA2A002B4718 /* OnionBrowser.app */;
@@ -923,6 +928,9 @@
 				018333DE1A35727C00670CD1 /* PBXTargetDependency */,
 			);
 			name = "OnionBrowser Tests";
+			packageProductDependencies = (
+				A0B519513094DF1F0064131E /* DTFoundation */,
+			);
 			productName = "Endless Tests";
 			productReference = 018333D71A35727C00670CD1 /* OnionBrowser Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -1012,6 +1020,7 @@
 				A0D846A03093C406007886E8 /* XCRemoteSwiftPackageReference "Tor" */,
 				A0B518323094D7370064131E /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 				A0B518353094D9DB0064131E /* XCRemoteSwiftPackageReference "SDCAlertView" */,
+				A0B518943094DE680064131E /* XCRemoteSwiftPackageReference "DTFoundation" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 01801E931A32CA2A002B4718 /* Products */;
@@ -1882,6 +1891,14 @@
 				minimumVersion = 12.0.5;
 			};
 		};
+		A0B518943094DE680064131E /* XCRemoteSwiftPackageReference "DTFoundation" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Cocoanetics/DTFoundation";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.7.19;
+			};
+		};
 		A0C4CAD03079240B0077EABC /* XCRemoteSwiftPackageReference "IPtProxyUI-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/tladesignz/IPtProxyUI-ios";
@@ -1915,6 +1932,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A0B518353094D9DB0064131E /* XCRemoteSwiftPackageReference "SDCAlertView" */;
 			productName = SDCAlertView;
+		};
+		A0B518953094DE680064131E /* DTFoundation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0B518943094DE680064131E /* XCRemoteSwiftPackageReference "DTFoundation" */;
+			productName = DTFoundation;
+		};
+		A0B519513094DF1F0064131E /* DTFoundation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0B518943094DE680064131E /* XCRemoteSwiftPackageReference "DTFoundation" */;
+			productName = DTFoundation;
 		};
 		A0C4C93C307913200077EABC /* IPtProxyUI-iOS */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -1,6 +1,15 @@
 {
-  "originHash" : "b3099e5105d1ab30c2acc1b7f57dfcd0e9a24d02a890aa6b6a8eee64fd439a92",
+  "originHash" : "efdfe85b0883c2de5aeee8a09ea41caca031bc2a3fa6e744c9c3eff5b2cdc1b0",
   "pins" : [
+    {
+      "identity" : "dtfoundation",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Cocoanetics/DTFoundation",
+      "state" : {
+        "revision" : "a61be65dd7d5b2cde3acabd13bf320b71f2907a5",
+        "version" : "1.7.19"
+      }
+    },
     {
       "identity" : "eureka",
       "kind" : "remoteSourceControl",
