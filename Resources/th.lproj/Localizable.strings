@@ -442,6 +442,9 @@
 /* No comment provided by engineer. */
 "Open in Default Browser" = "เปิดในเบราว์เซอร์ปริยาย";
 
+/* No comment provided by engineer. */
+"Open in Safari" = "Open in Safari";
+
 /* SecurityViewController */
 "Other" = "อื่นๆ";
 

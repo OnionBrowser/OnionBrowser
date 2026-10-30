@@ -442,6 +442,9 @@
 /* No comment provided by engineer. */
 "Open in Default Browser" = "기본 브라우저로 열기";
 
+/* No comment provided by engineer. */
+"Open in Safari" = "Safari로 열기";
+
 /* SecurityViewController */
 "Other" = "기타";
 

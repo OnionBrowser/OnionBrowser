@@ -442,6 +442,9 @@
 /* No comment provided by engineer. */
 "Open in Default Browser" = "在默认浏览器中打开";
 
+/* No comment provided by engineer. */
+"Open in Safari" = "在 Safari 中打开";
+
 /* SecurityViewController */
 "Other" = "其他";
 

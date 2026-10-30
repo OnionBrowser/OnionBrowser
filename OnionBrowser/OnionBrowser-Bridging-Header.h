@@ -7,5 +7,4 @@
 //  This file is part of Onion Browser. See LICENSE file for redistribution terms.
 //
 
-#import "TUSafariActivity.h"
 #import "MBProgressHUD.h"

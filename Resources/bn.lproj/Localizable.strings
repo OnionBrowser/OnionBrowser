@@ -442,6 +442,9 @@
 /* No comment provided by engineer. */
 "Open in Default Browser" = "ডিফল্ট ব্রাউজারে খুলব";
 
+/* No comment provided by engineer. */
+"Open in Safari" = "Open in Safari";
+
 /* SecurityViewController */
 "Other" = "অন্যান্য";
 

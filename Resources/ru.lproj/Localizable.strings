@@ -442,6 +442,9 @@
 /* No comment provided by engineer. */
 "Open in Default Browser" = "Открыть в браузере по умолчанию";
 
+/* No comment provided by engineer. */
+"Open in Safari" = "Открыть в Safari";
+
 /* SecurityViewController */
 "Other" = "Другое";
 
