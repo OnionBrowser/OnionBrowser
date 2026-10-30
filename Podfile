@@ -8,7 +8,6 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 target 'OnionBrowser' do
   pod 'FavIcon', :git => 'https://github.com/tladesignz/FavIcon.git'
-  pod 'MBProgressHUD', '~> 1.2'
 
   pod 'OrbotKit', '~> 1.1'
 end

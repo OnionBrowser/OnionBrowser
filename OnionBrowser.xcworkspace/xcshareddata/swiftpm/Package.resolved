@@ -1,5 +1,5 @@
 {
-  "originHash" : "efdfe85b0883c2de5aeee8a09ea41caca031bc2a3fa6e744c9c3eff5b2cdc1b0",
+  "originHash" : "657f9eb65d8546c3dd1c0c8e3ecba6e8415a51fd59f4d1e3500baed1d1fe87aa",
   "pins" : [
     {
       "identity" : "dtfoundation",
@@ -44,6 +44,15 @@
       "state" : {
         "revision" : "85c21e90a5457cfd6ca87a34a154e38843cef4e3",
         "version" : "6.0.0"
+      }
+    },
+    {
+      "identity" : "mbprogresshud",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/matej/MBProgressHUD",
+      "state" : {
+        "revision" : "bca42b801100b2b3a4eda0ba8dd33d858c780b0d",
+        "version" : "1.2.0"
       }
     },
     {

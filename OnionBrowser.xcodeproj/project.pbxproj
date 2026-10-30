@@ -95,6 +95,7 @@
 		A0B518373094D9DB0064131E /* SDCAlertView in Frameworks */ = {isa = PBXBuildFile; productRef = A0B518363094D9DB0064131E /* SDCAlertView */; };
 		A0B518963094DE680064131E /* DTFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = A0B518953094DE680064131E /* DTFoundation */; };
 		A0B519523094DF1F0064131E /* DTFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = A0B519513094DF1F0064131E /* DTFoundation */; };
+		A0B519553094DF7F0064131E /* MBProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = A0B519543094DF7F0064131E /* MBProgressHUD */; };
 		A0BF51ED23AFBF250096624A /* start.html in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51C723AFBF250096624A /* start.html */; };
 		A0BF51EF23AFBF250096624A /* SearchEngines.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51D123AFBF250096624A /* SearchEngines.plist */; };
 		A0BF51F423AFBF250096624A /* credits.html in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51DE23AFBF250096624A /* credits.html */; };
@@ -488,7 +489,6 @@
 		A0BF522D23AFC3580096624A /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A0BF522E23AFC3580096624A /* AddSiteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSiteViewController.swift; sourceTree = "<group>"; };
 		A0BF522F23AFC3580096624A /* DonationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonationViewController.swift; sourceTree = "<group>"; };
-		A0BF523023AFC3580096624A /* OnionBrowser-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OnionBrowser-Bridging-Header.h"; sourceTree = "<group>"; };
 		A0BF523323AFC3580096624A /* OrbotManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrbotManager.swift; sourceTree = "<group>"; };
 		A0BF523623AFC3580096624A /* BlurredSnapshot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurredSnapshot.swift; sourceTree = "<group>"; };
 		A0BF523823AFC3580096624A /* UIViewController+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Helpers.swift"; sourceTree = "<group>"; };
@@ -550,6 +550,7 @@
 				A0C4C93D307913200077EABC /* IPtProxyUI-iOS in Frameworks */,
 				A0C4CAD23079240B0077EABC /* IPtProxyUI-iOS in Frameworks */,
 				A0D846A23093C406007886E8 /* CTor in Frameworks */,
+				A0B519553094DF7F0064131E /* MBProgressHUD in Frameworks */,
 				A0B518373094D9DB0064131E /* SDCAlertView in Frameworks */,
 				A09CCF83308629550014FB5F /* ImageRow in Frameworks */,
 				016B2FCD1A5648AE002D2730 /* WebKit.framework in Frameworks */,
@@ -743,7 +744,6 @@
 				A003A1922A0D1628008D8845 /* SceneDelegate.swift */,
 				A0BF523323AFC3580096624A /* OrbotManager.swift */,
 				A07DD6B42AC5914B00441B48 /* TorManager.swift */,
-				A0BF523023AFC3580096624A /* OnionBrowser-Bridging-Header.h */,
 				A0BF520023AFC3580096624A /* version.h */,
 				A0BF523523AFC3580096624A /* Helpers */,
 			);
@@ -906,6 +906,7 @@
 				A0B518333094D7370064131E /* SwiftSoup */,
 				A0B518363094D9DB0064131E /* SDCAlertView */,
 				A0B518953094DE680064131E /* DTFoundation */,
+				A0B519543094DF7F0064131E /* MBProgressHUD */,
 			);
 			productName = Endless;
 			productReference = 01801E921A32CA2A002B4718 /* OnionBrowser.app */;
@@ -1021,6 +1022,7 @@
 				A0B518323094D7370064131E /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 				A0B518353094D9DB0064131E /* XCRemoteSwiftPackageReference "SDCAlertView" */,
 				A0B518943094DE680064131E /* XCRemoteSwiftPackageReference "DTFoundation" */,
+				A0B519533094DF7F0064131E /* XCRemoteSwiftPackageReference "MBProgressHUD" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 01801E931A32CA2A002B4718 /* Products */;
@@ -1701,7 +1703,6 @@
 				PRODUCT_NAME = OnionBrowser;
 				PROVISIONING_PROFILE = "";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "OnionBrowser/OnionBrowser-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1727,7 +1728,6 @@
 				);
 				PRODUCT_NAME = OnionBrowser;
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "OnionBrowser/OnionBrowser-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1899,6 +1899,14 @@
 				minimumVersion = 1.7.19;
 			};
 		};
+		A0B519533094DF7F0064131E /* XCRemoteSwiftPackageReference "MBProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/matej/MBProgressHUD";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.0;
+			};
+		};
 		A0C4CAD03079240B0077EABC /* XCRemoteSwiftPackageReference "IPtProxyUI-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/tladesignz/IPtProxyUI-ios";
@@ -1942,6 +1950,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A0B518943094DE680064131E /* XCRemoteSwiftPackageReference "DTFoundation" */;
 			productName = DTFoundation;
+		};
+		A0B519543094DF7F0064131E /* MBProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0B519533094DF7F0064131E /* XCRemoteSwiftPackageReference "MBProgressHUD" */;
+			productName = MBProgressHUD;
 		};
 		A0C4C93C307913200077EABC /* IPtProxyUI-iOS */ = {
 			isa = XCSwiftPackageProductDependency;

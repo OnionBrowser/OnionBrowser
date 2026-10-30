@@ -6,6 +6,7 @@
 //  Copyright © 2025 Tigas Ventures, LLC (Mike Tigas). All rights reserved.
 //
 
+import UIKit
 import AppIntents
 
 @available(iOS 18.0, *)
