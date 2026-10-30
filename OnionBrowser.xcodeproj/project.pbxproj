@@ -92,6 +92,7 @@
 		A0AF2C062A123E65000BCC85 /* BrowsingViewController+UIResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AF2C052A123E65000BCC85 /* BrowsingViewController+UIResponder.swift */; };
 		A0B517793094CBD40064131E /* SafariActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B517783094CBD40064131E /* SafariActivity.swift */; };
 		A0B518343094D7370064131E /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = A0B518333094D7370064131E /* SwiftSoup */; };
+		A0B518373094D9DB0064131E /* SDCAlertView in Frameworks */ = {isa = PBXBuildFile; productRef = A0B518363094D9DB0064131E /* SDCAlertView */; };
 		A0BF51ED23AFBF250096624A /* start.html in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51C723AFBF250096624A /* start.html */; };
 		A0BF51EF23AFBF250096624A /* SearchEngines.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51D123AFBF250096624A /* SearchEngines.plist */; };
 		A0BF51F423AFBF250096624A /* credits.html in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51DE23AFBF250096624A /* credits.html */; };
@@ -546,6 +547,7 @@
 				A0C4C93D307913200077EABC /* IPtProxyUI-iOS in Frameworks */,
 				A0C4CAD23079240B0077EABC /* IPtProxyUI-iOS in Frameworks */,
 				A0D846A23093C406007886E8 /* CTor in Frameworks */,
+				A0B518373094D9DB0064131E /* SDCAlertView in Frameworks */,
 				A09CCF83308629550014FB5F /* ImageRow in Frameworks */,
 				016B2FCD1A5648AE002D2730 /* WebKit.framework in Frameworks */,
 				3E5C6BF218A52D07DF55A6FE /* Pods_OnionBrowser.framework in Frameworks */,
@@ -898,6 +900,7 @@
 				A09CCF82308629550014FB5F /* ImageRow */,
 				A0D846A13093C406007886E8 /* CTor */,
 				A0B518333094D7370064131E /* SwiftSoup */,
+				A0B518363094D9DB0064131E /* SDCAlertView */,
 			);
 			productName = Endless;
 			productReference = 01801E921A32CA2A002B4718 /* OnionBrowser.app */;
@@ -1008,6 +1011,7 @@
 				A09CCF81308629550014FB5F /* XCRemoteSwiftPackageReference "ImageRow" */,
 				A0D846A03093C406007886E8 /* XCRemoteSwiftPackageReference "Tor" */,
 				A0B518323094D7370064131E /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+				A0B518353094D9DB0064131E /* XCRemoteSwiftPackageReference "SDCAlertView" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 01801E931A32CA2A002B4718 /* Products */;
@@ -1870,6 +1874,14 @@
 				minimumVersion = 2.14.3;
 			};
 		};
+		A0B518353094D9DB0064131E /* XCRemoteSwiftPackageReference "SDCAlertView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sberrevoets/SDCAlertView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.0.5;
+			};
+		};
 		A0C4CAD03079240B0077EABC /* XCRemoteSwiftPackageReference "IPtProxyUI-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/tladesignz/IPtProxyUI-ios";
@@ -1898,6 +1910,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A0B518323094D7370064131E /* XCRemoteSwiftPackageReference "SwiftSoup" */;
 			productName = SwiftSoup;
+		};
+		A0B518363094D9DB0064131E /* SDCAlertView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0B518353094D9DB0064131E /* XCRemoteSwiftPackageReference "SDCAlertView" */;
+			productName = SDCAlertView;
 		};
 		A0C4C93C307913200077EABC /* IPtProxyUI-iOS */ = {
 			isa = XCSwiftPackageProductDependency;

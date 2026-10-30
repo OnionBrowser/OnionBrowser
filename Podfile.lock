@@ -6,7 +6,6 @@ PODS:
   - MBProgressHUD (1.2.0)
   - OCMock (3.9.4)
   - OrbotKit (1.2.0)
-  - SDCAlertView (12.0.5)
 
 DEPENDENCIES:
   - DTFoundation/DTASN1
@@ -14,7 +13,6 @@ DEPENDENCIES:
   - MBProgressHUD (~> 1.2)
   - OCMock
   - OrbotKit (~> 1.1)
-  - SDCAlertView (~> 12)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -22,7 +20,6 @@ SPEC REPOS:
     - MBProgressHUD
     - OCMock
     - OrbotKit
-    - SDCAlertView
 
 EXTERNAL SOURCES:
   FavIcon:
@@ -39,8 +36,7 @@ SPEC CHECKSUMS:
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   OCMock: 589f2c84dacb1f5aaf6e4cec1f292551fe748e74
   OrbotKit: e932cc741c18e9a39242ae1c61eea6d54e54bd87
-  SDCAlertView: c9042ba201897da46d833193b8462a186f79c47c
 
-PODFILE CHECKSUM: 3ad72ce617faecf5e6f2eab97f25c6dd4c4bdbc7
+PODFILE CHECKSUM: db27c25bce11dc7b5f986852789551d8b6bb03d0
 
 COCOAPODS: 1.17.0

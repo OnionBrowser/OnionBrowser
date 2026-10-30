@@ -9,7 +9,6 @@ source 'https://github.com/CocoaPods/Specs.git'
 target 'OnionBrowser' do
   pod 'DTFoundation/DTASN1'
 
-  pod 'SDCAlertView', '~> 12'
   pod 'FavIcon', :git => 'https://github.com/tladesignz/FavIcon.git'
   pod 'MBProgressHUD', '~> 1.2'
 

@@ -1,5 +1,5 @@
 {
-  "originHash" : "be3e77d6794749087e0308b19be0d82f128b7a33057a97ee63b3cf3f7e0f83b8",
+  "originHash" : "b3099e5105d1ab30c2acc1b7f57dfcd0e9a24d02a890aa6b6a8eee64fd439a92",
   "pins" : [
     {
       "identity" : "eureka",
@@ -44,6 +44,15 @@
       "state" : {
         "revision" : "2ebecc236508c6d325a36aeeadfc8930dccd07f6",
         "version" : "14.1.5"
+      }
+    },
+    {
+      "identity" : "sdcalertview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sberrevoets/SDCAlertView",
+      "state" : {
+        "revision" : "eda84764885b55b30c334384afee5f8f06ac48de",
+        "version" : "12.0.5"
       }
     },
     {
