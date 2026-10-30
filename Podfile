@@ -13,8 +13,6 @@ target 'OnionBrowser' do
   pod 'FavIcon', :git => 'https://github.com/tladesignz/FavIcon.git'
   pod 'MBProgressHUD', '~> 1.2'
 
-  pod 'SwiftSoup', '~> 2.7'
-
   pod 'OrbotKit', '~> 1.1'
 end
 

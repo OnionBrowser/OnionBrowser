@@ -7,7 +7,6 @@ PODS:
   - OCMock (3.9.4)
   - OrbotKit (1.2.0)
   - SDCAlertView (12.0.5)
-  - SwiftSoup (2.11.3)
 
 DEPENDENCIES:
   - DTFoundation/DTASN1
@@ -16,7 +15,6 @@ DEPENDENCIES:
   - OCMock
   - OrbotKit (~> 1.1)
   - SDCAlertView (~> 12)
-  - SwiftSoup (~> 2.7)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -25,7 +23,6 @@ SPEC REPOS:
     - OCMock
     - OrbotKit
     - SDCAlertView
-    - SwiftSoup
 
 EXTERNAL SOURCES:
   FavIcon:
@@ -43,8 +40,7 @@ SPEC CHECKSUMS:
   OCMock: 589f2c84dacb1f5aaf6e4cec1f292551fe748e74
   OrbotKit: e932cc741c18e9a39242ae1c61eea6d54e54bd87
   SDCAlertView: c9042ba201897da46d833193b8462a186f79c47c
-  SwiftSoup: 959c9ac70d7053fbf476341bfac90ab228523f2a
 
-PODFILE CHECKSUM: 13049bea201cd5f672b298213111e516c3d6631a
+PODFILE CHECKSUM: 3ad72ce617faecf5e6f2eab97f25c6dd4c4bdbc7
 
 COCOAPODS: 1.17.0

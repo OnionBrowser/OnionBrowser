@@ -91,6 +91,7 @@
 		A0A83AC228A14CAB005C15C9 /* Tab+WKScriptMessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A83AC128A14CAB005C15C9 /* Tab+WKScriptMessageHandler.swift */; };
 		A0AF2C062A123E65000BCC85 /* BrowsingViewController+UIResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AF2C052A123E65000BCC85 /* BrowsingViewController+UIResponder.swift */; };
 		A0B517793094CBD40064131E /* SafariActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B517783094CBD40064131E /* SafariActivity.swift */; };
+		A0B518343094D7370064131E /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = A0B518333094D7370064131E /* SwiftSoup */; };
 		A0BF51ED23AFBF250096624A /* start.html in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51C723AFBF250096624A /* start.html */; };
 		A0BF51EF23AFBF250096624A /* SearchEngines.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51D123AFBF250096624A /* SearchEngines.plist */; };
 		A0BF51F423AFBF250096624A /* credits.html in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51DE23AFBF250096624A /* credits.html */; };
@@ -525,15 +526,11 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		A03CBD982F3B98EA00B22D96 /* misc */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = misc;
 			sourceTree = "<group>";
 		};
 		A0CEE4762EA9273600F278A0 /* AppIntents */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = AppIntents;
 			sourceTree = "<group>";
 		};
@@ -552,6 +549,7 @@
 				A09CCF83308629550014FB5F /* ImageRow in Frameworks */,
 				016B2FCD1A5648AE002D2730 /* WebKit.framework in Frameworks */,
 				3E5C6BF218A52D07DF55A6FE /* Pods_OnionBrowser.framework in Frameworks */,
+				A0B518343094D7370064131E /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -899,6 +897,7 @@
 				A0C4CAD13079240B0077EABC /* IPtProxyUI-iOS */,
 				A09CCF82308629550014FB5F /* ImageRow */,
 				A0D846A13093C406007886E8 /* CTor */,
+				A0B518333094D7370064131E /* SwiftSoup */,
 			);
 			productName = Endless;
 			productReference = 01801E921A32CA2A002B4718 /* OnionBrowser.app */;
@@ -1007,7 +1006,8 @@
 			packageReferences = (
 				A0C4CAD03079240B0077EABC /* XCRemoteSwiftPackageReference "IPtProxyUI-ios" */,
 				A09CCF81308629550014FB5F /* XCRemoteSwiftPackageReference "ImageRow" */,
-				A0D846A03093C406007886E8 /* XCRemoteSwiftPackageReference "Tor.framework" */,
+				A0D846A03093C406007886E8 /* XCRemoteSwiftPackageReference "Tor" */,
+				A0B518323094D7370064131E /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 01801E931A32CA2A002B4718 /* Products */;
@@ -1111,9 +1111,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-OnionBrowser/Pods-OnionBrowser-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-OnionBrowser/Pods-OnionBrowser-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1226,9 +1230,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-OnionBrowser Tests/Pods-OnionBrowser Tests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-OnionBrowser Tests/Pods-OnionBrowser Tests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1854,6 +1862,14 @@
 				minimumVersion = 4.1.0;
 			};
 		};
+		A0B518323094D7370064131E /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.14.3;
+			};
+		};
 		A0C4CAD03079240B0077EABC /* XCRemoteSwiftPackageReference "IPtProxyUI-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/tladesignz/IPtProxyUI-ios";
@@ -1862,7 +1878,7 @@
 				minimumVersion = 6.0.0;
 			};
 		};
-		A0D846A03093C406007886E8 /* XCRemoteSwiftPackageReference "Tor.framework" */ = {
+		A0D846A03093C406007886E8 /* XCRemoteSwiftPackageReference "Tor" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/iCepa/Tor.framework";
 			requirement = {
@@ -1878,6 +1894,11 @@
 			package = A09CCF81308629550014FB5F /* XCRemoteSwiftPackageReference "ImageRow" */;
 			productName = ImageRow;
 		};
+		A0B518333094D7370064131E /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0B518323094D7370064131E /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
 		A0C4C93C307913200077EABC /* IPtProxyUI-iOS */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = "IPtProxyUI-iOS";
@@ -1889,7 +1910,7 @@
 		};
 		A0D846A13093C406007886E8 /* CTor */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A0D846A03093C406007886E8 /* XCRemoteSwiftPackageReference "Tor.framework" */;
+			package = A0D846A03093C406007886E8 /* XCRemoteSwiftPackageReference "Tor" */;
 			productName = CTor;
 		};
 /* End XCSwiftPackageProductDependency section */
