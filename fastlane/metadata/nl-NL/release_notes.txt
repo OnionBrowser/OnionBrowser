@@ -1,1 +1,1 @@
-Een crash bij het aanmaken of bewerken van een bladwijzer is verholpen.
+- Tor bijgewerkt naar versie 0.4.9.15.

@@ -1,1 +1,1 @@
-Corrigimos a falha que ocorria ao tentar criar ou editar um marcador.
+- Atualizei o Tor para a versão 0.4.9.15.

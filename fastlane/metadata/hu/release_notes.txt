@@ -1,1 +1,1 @@
-Kijavítottuk azt a hibát, amely a könyvjelző létrehozása vagy szerkesztése közben összeomlást okozott.
+- A Tor-t 0.4.9.15-ös verzióra frissítettem.

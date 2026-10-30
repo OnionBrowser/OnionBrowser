@@ -1,1 +1,1 @@
-Đã khắc phục lỗi ứng dụng bị treo khi cố gắng tạo hoặc chỉnh sửa dấu trang.
+- Đã cập nhật Tor lên phiên bản 0.4.9.15.

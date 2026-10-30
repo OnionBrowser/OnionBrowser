@@ -1,5 +1,8 @@
 #  Onion Browser Changelog
 
+## 3.4.5
+- Updated Tor to 0.4.9.15.
+
 ## 3.4.4
 - Fixed crash when trying to create or edit a bookmark.
 

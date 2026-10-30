@@ -1,1 +1,1 @@
-Correction d'un plantage survenant lors de la création ou de la modification d'un signet.
+- Mise à jour de Tor vers la version 0.4.9.15.

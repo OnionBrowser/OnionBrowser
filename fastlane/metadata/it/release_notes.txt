@@ -1,1 +1,1 @@
-È stato risolto il problema che causava un arresto anomalo durante il tentativo di creare o modificare un segnalibro.
+- Ho aggiornato Tor alla versione 0.4.9.15.

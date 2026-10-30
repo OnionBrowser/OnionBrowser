@@ -1,1 +1,1 @@
-Ein Absturz beim Versuch, ein Lesezeichen zu erstellen oder zu bearbeiten, wurde behoben.
+- Tor wurde auf Version 0.4.9.15 aktualisiert.

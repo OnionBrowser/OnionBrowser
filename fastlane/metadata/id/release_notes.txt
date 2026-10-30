@@ -1,1 +1,1 @@
-Telah diperbaiki masalah crash saat mencoba membuat atau mengedit bookmark.
+- Tor telah diperbarui ke versi 0.4.9.15.

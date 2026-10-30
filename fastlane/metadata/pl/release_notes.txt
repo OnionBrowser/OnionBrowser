@@ -1,1 +1,1 @@
-Naprawiono awarię występującą podczas próby utworzenia lub edycji zakładki.
+- Zaktualizowano program Tor do wersji 0.4.9.15.

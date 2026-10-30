@@ -1,1 +1,1 @@
-Yer imi oluşturmaya veya düzenlemeye çalışırken meydana gelen çökme sorunu giderildi.
+- Tor'u 0.4.9.15 sürümüne güncellendi.

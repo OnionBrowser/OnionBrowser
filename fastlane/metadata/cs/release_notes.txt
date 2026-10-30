@@ -1,1 +1,1 @@
-Byla opravena chyba, která způsobovala pád aplikace při pokusu o vytvoření nebo úpravu záložky.
+- Aktualizoval jsem Tor na verzi 0.4.9.15.

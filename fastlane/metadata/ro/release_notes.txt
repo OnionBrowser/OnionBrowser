@@ -1,1 +1,1 @@
-S-a remediat eroarea care ducea la blocarea aplicației la încercarea de a crea sau edita un marcaj.
+- Am actualizat Tor la versiunea 0.4.9.15.

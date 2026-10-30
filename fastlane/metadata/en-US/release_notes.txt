@@ -1,1 +1,1 @@
-Fixed crash when trying to create or edit a bookmark.
+- Updated Tor to 0.4.9.15.
