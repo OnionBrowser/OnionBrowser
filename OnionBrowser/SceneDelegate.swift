@@ -267,14 +267,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 	private func handle(urlContexts: Set<UIOpenURLContext>) {
 		for context in urlContexts {
 			if let urlc = URLComponents(url: context.url, resolvingAgainstBaseURL: true),
-			   urlc.scheme == "onionbrowser"
+			   urlc.scheme == "https",
+			   urlc.host == "onionbrowser.com",
+			   urlc.path == "/orbot/token-callback" || urlc.path == "/orbot/main"
 			{
-				if urlc.path == "token-callback" {
+				if urlc.path == "/orbot/token-callback" {
 					let token = urlc.queryItems?.first(where: { $0.name == "token" })?.value
 
 					Settings.orbotApiToken = token?.isEmpty ?? true ? Settings.orbotAccessDenied : token
 				}
-				else if urlc.path == "main" {
+				else if urlc.path == "/orbot/main" {
 					// Ignore. We just returned from Orbot.
 					// Do nothing more than already done: show the app.
 				}
