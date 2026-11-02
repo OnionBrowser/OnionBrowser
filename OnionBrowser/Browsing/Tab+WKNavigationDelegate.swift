@@ -389,7 +389,9 @@ extension Tab: WKNavigationDelegate {
 					format: NSLocalizedString("Add to %@", comment: "Placeholder is 'Orbot'"),
 					OrbotKit.orbotName)
 				) { [weak self] _ in
-					OrbotKit.shared.open(.addAuth(url: host, key: ""))
+					Task {
+						await OrbotKit.shared.open(.addAuth(url: host, key: ""))
+					}
 
 					let alert2 = AlertHelper.build(
 						message: String(
@@ -400,10 +402,8 @@ extension Tab: WKNavigationDelegate {
 						actions: [
 							AlertHelper.cancelAction(),
 							AlertHelper.defaultAction(NSLocalizedString("Retry", comment: ""), handler: { _ in
-								Task {
-									await MainActor.run {
-										self?.load(failedUrl)
-									}
+								Task { @MainActor in
+									self?.load(failedUrl)
 								}
 							})
 						])

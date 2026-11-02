@@ -78,7 +78,9 @@ class InstallViewController: UIViewController, WhyDelegate {
 	func back() {
 		Settings.useBuiltInTor = nil
 
-		view.sceneDelegate?.show(OrbotManager.shared.checkStatus())
+		Task {
+			view.sceneDelegate?.show(await OrbotManager.shared.checkStatus())
+		}
 	}
 
 	@IBAction

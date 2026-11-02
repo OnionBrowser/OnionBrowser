@@ -176,12 +176,16 @@ class PermissionViewController: UIViewController, WhyDelegate {
 	func back() {
 		Settings.useBuiltInTor = nil
 
-		view.sceneDelegate?.show(OrbotManager.shared.checkStatus())
+		Task {
+			view.sceneDelegate?.show(await OrbotManager.shared.checkStatus())
+		}
 	}
 
 	@IBAction
 	func action() {
-		OrbotKit.shared.open(.requestApiToken(needBypass: false, callback: URL(string: "onionbrowser:token-callback")))
+		Task {
+			await OrbotKit.shared.open(.requestApiToken(needBypass: false, callback: URL(string: "onionbrowser:token-callback")))
+		}
 	}
 
 	@IBAction

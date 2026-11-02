@@ -196,7 +196,9 @@ class CircuitViewController: UIViewController, UIPopoverPresentationControllerDe
 			present(UINavigationController(rootViewController: vc))
 		}
 		else {
-			OrbotKit.shared.open(.bridges)
+			Task {
+				await OrbotKit.shared.open(.bridges)
+			}
 		}
 	}
 

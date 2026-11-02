@@ -46,6 +46,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 	/**
 	 ATTENTION: Needs to be called from main thread!
 	 */
+	@MainActor
 	var allOpenTabs: [Tab] {
 		browsingUis.flatMap { $0.tabs }
 	}

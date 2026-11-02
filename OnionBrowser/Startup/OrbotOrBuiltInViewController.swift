@@ -70,7 +70,9 @@ class OrbotOrBuiltInViewController: UIViewController, WhyDelegate {
 	func run(useBuiltInTor: Bool) {
 		Settings.useBuiltInTor = useBuiltInTor
 
-		view.sceneDelegate?.show(OrbotManager.shared.checkStatus())
+		Task {
+			view.sceneDelegate?.show(await OrbotManager.shared.checkStatus())
+		}
 	}
 
 

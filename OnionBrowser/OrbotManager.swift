@@ -7,7 +7,7 @@
 //  This file is part of Onion Browser. See LICENSE file for redistribution terms.
 //
 
-import Foundation
+import UIKit
 import OrbotKit
 
 class OrbotManager : NSObject, OrbotStatusChangeListener {
@@ -32,14 +32,13 @@ class OrbotManager : NSObject, OrbotStatusChangeListener {
 		var groupSuccess = false
 
 		for circuit in circuits {
-			let singleSuccess: Bool = await withCheckedContinuation { continuation in
-				OrbotKit.shared.closeCircuit(circuit: circuit) { success, error in
-					if let error = error {
-						Log.error(for: Self.self, "#closeCircuits error=\(error)")
-					}
+			var singleSuccess = false
 
-					continuation.resume(returning: success)
-				}
+			do {
+				singleSuccess = try await OrbotKit.shared.closeCircuit(circuit: circuit)
+			}
+			catch {
+				Log.error(for: Self.self, "#closeCircuits error=\(error)")
 			}
 
 			// If only one call succeeds, we count that as a success.
@@ -59,15 +58,7 @@ class OrbotManager : NSObject, OrbotStatusChangeListener {
 	*/
 	func getCircuits(host: String?) async -> [OrbotKit.TorCircuit] {
 		do {
-			return try await withCheckedThrowingContinuation { continuation in
-				OrbotKit.shared.circuits { circuits, error in
-					if let error {
-						return continuation.resume(throwing: error)
-					}
-
-					continuation.resume(returning: circuits ?? [])
-				}
-			}
+			return try await OrbotKit.shared.circuits() ?? []
 		}
 		catch {
 			Log.error(for: Self.self, "#getCircuits error=\(error)")
@@ -83,7 +74,8 @@ class OrbotManager : NSObject, OrbotStatusChangeListener {
 
 	 - returns: A view controller to show instead of the browser UI, if status is not good.
 	 */
-	func checkStatus() -> UIViewController? {
+	@MainActor
+	func checkStatus() async -> UIViewController? {
 		OrbotKit.shared.removeStatusChangeListener(self)
 
 		if !Settings.didWelcome {
@@ -98,7 +90,7 @@ class OrbotManager : NSObject, OrbotStatusChangeListener {
 					if OrbotKit.shared.installed {
 						// But Orbot is installed.
 
-						if !hasOrbotPermission() {
+						if await !hasOrbotPermission() {
 							// ...and we cannot access it. That needs to change.
 
 							let vc = PermissionViewController()
@@ -146,7 +138,7 @@ class OrbotManager : NSObject, OrbotStatusChangeListener {
 			return InstallViewController()
 		}
 
-		if !hasOrbotPermission() {
+		if await !hasOrbotPermission() {
 			let vc = PermissionViewController()
 			vc.error = lastError
 
@@ -196,19 +188,17 @@ class OrbotManager : NSObject, OrbotStatusChangeListener {
 
 		lastInfo = info
 
-		Task {
-			await MainActor.run {
-				if info.status == .stopped || info.onionOnly {
-					fullStop()
+		Task { @MainActor in
+			if info.status == .stopped || info.onionOnly {
+				fullStop()
 
-					for delegate in AppDelegate.shared?.sceneDelegates ?? [] {
-						delegate.show(checkStatus())
-					}
+				for delegate in AppDelegate.shared?.sceneDelegates ?? [] {
+					delegate.show(await checkStatus())
 				}
-				else {
-					for delegate in AppDelegate.shared?.sceneDelegates ?? [] {
-						delegate.show()
-					}
+			}
+			else {
+				for delegate in AppDelegate.shared?.sceneDelegates ?? [] {
+					delegate.show()
 				}
 			}
 		}
@@ -217,13 +207,11 @@ class OrbotManager : NSObject, OrbotStatusChangeListener {
 	func statusChangeListeningStopped(error: Error) {
 		lastError = error
 
-		Task {
-			await MainActor.run {
-				fullStop()
+		Task { @MainActor in
+			fullStop()
 
-				for delegate in AppDelegate.shared?.sceneDelegates ?? [] {
-					delegate.show(checkStatus())
-				}
+			for delegate in AppDelegate.shared?.sceneDelegates ?? [] {
+				delegate.show(await checkStatus())
 			}
 		}
 	}
@@ -231,7 +219,7 @@ class OrbotManager : NSObject, OrbotStatusChangeListener {
 
 	// MARK: Private Methods
 
-	private func hasOrbotPermission() -> Bool {
+	private func hasOrbotPermission() async -> Bool {
 		let token = Settings.orbotApiToken
 
 		if token?.isEmpty ?? true || token == Settings.orbotAccessDenied {
@@ -240,19 +228,14 @@ class OrbotManager : NSObject, OrbotStatusChangeListener {
 
 		OrbotKit.shared.apiToken = token
 
-		let group = DispatchGroup()
-		group.enter()
-
-		OrbotKit.shared.info { info, error in
-			self.lastInfo = info
-			self.lastError = error
-
-			group.leave()
+		do {
+			lastInfo = try await OrbotKit.shared.info()
+		}
+		catch {
+			lastError = error
 		}
 
-		let result = group.wait(timeout: .now() + 1)
-
-		return result != .timedOut && lastError == nil
+		return lastError == nil
 	}
 
 	/**

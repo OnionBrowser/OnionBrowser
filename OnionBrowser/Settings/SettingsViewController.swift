@@ -54,7 +54,9 @@ class SettingsViewController: FixedFormViewController {
 
 				Settings.useBuiltInTor = false
 
-				self?.view.sceneDelegate?.show(OrbotManager.shared.checkStatus())
+				Task {
+					self?.view.sceneDelegate?.show(await OrbotManager.shared.checkStatus())
+				}
 			}
 		}
 

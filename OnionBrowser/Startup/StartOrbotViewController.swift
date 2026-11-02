@@ -109,19 +109,21 @@ class StartOrbotViewController: UIViewController, WhyDelegate {
 	func run(useBuiltInTor: Bool) {
 		Settings.useBuiltInTor = useBuiltInTor
 
-		if useBuiltInTor {
-			view.sceneDelegate?.show(OrbotManager.shared.checkStatus())
-		}
-		else {
-			if info?.status == .stopped {
-				// Tabs where already initialized but blocked. They'll need a refresh
-				// when the user comes back.
-				AppDelegate.shared?.allOpenTabs.forEach { $0.needsRefresh = true }
-
-				OrbotKit.shared.open(.start(callback: URL(string: "onionbrowser:main")))
+		Task {
+			if useBuiltInTor {
+				view.sceneDelegate?.show(await OrbotManager.shared.checkStatus())
 			}
 			else {
-				OrbotKit.shared.open(.settings)
+				if info?.status == .stopped {
+					// Tabs where already initialized but blocked. They'll need a refresh
+					// when the user comes back.
+					AppDelegate.shared?.allOpenTabs.forEach { $0.needsRefresh = true }
+
+					await OrbotKit.shared.open(.start(callback: URL(string: "onionbrowser:main")))
+				}
+				else {
+					await OrbotKit.shared.open(.settings)
+				}
 			}
 		}
 	}
