@@ -34,7 +34,15 @@ jobs:
             -derivedDataPath build \
             -skipPackagePluginValidation -skipMacroValidation \
             CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
-            build
+            build 2>&1 | tee build.log
+
+      - name: Show errors
+        if: failure()
+        run: |
+          echo "===== ERRORS ====="
+          grep -n -E "error:|BUILD FAILED|fatal error|Command .* failed" build.log | head -n 40 || true
+          echo "===== LAST LINES ====="
+          tail -n 30 build.log
 
       - name: Package IPA
         run: |
