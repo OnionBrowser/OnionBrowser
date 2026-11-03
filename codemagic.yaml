@@ -1,0 +1,38 @@
+workflows:
+  cibula-ipa:
+    name: Cibula IPA
+    instance_type: mac_mini_m2
+    max_build_duration: 60
+    environment:
+      xcode: latest
+      cocoapods: default
+    scripts:
+      - name: Install pods
+        script: pod install --repo-update
+      - name: Fetch Tor.framework
+        script: git clone --depth 1 https://github.com/iCepa/Tor.framework.git ../Tor.framework
+      - name: Build unsigned app
+        script: |
+          set -o pipefail
+          xcodebuild \
+            -workspace OnionBrowser.xcworkspace \
+            -scheme OnionBrowser \
+            -configuration Release \
+            -sdk iphoneos \
+            -destination 'generic/platform=iOS' \
+            -derivedDataPath build \
+            -skipPackagePluginValidation -skipMacroValidation \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
+            build 2>&1 | tee build.log || {
+              echo "===== ERRORS ====="
+              grep -n -E "error:|BUILD FAILED|fatal error" build.log | head -n 40
+              exit 1
+            }
+      - name: Package IPA
+        script: |
+          APP=$(find build/Build/Products/Release-iphoneos -maxdepth 1 -name "*.app" | head -n1)
+          mkdir Payload
+          cp -R "$APP" Payload/
+          zip -qry Cibula.ipa Payload
+    artifacts:
+      - Cibula.ipa
