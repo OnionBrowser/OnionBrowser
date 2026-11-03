@@ -1,0 +1,39 @@
+name: Build IPA
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: macos-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install pods
+        run: pod install --repo-update
+
+      - name: Build unsigned app
+        run: |
+          set -o pipefail
+          xcodebuild \
+            -workspace OnionBrowser.xcworkspace \
+            -scheme OnionBrowser \
+            -configuration Release \
+            -sdk iphoneos \
+            -destination 'generic/platform=iOS' \
+            -derivedDataPath build \
+            -skipPackagePluginValidation -skipMacroValidation \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
+            build
+
+      - name: Package IPA
+        run: |
+          APP=$(find build/Build/Products/Release-iphoneos -maxdepth 1 -name "*.app" | head -n1)
+          echo "Found: $APP"
+          mkdir Payload
+          cp -R "$APP" Payload/
+          zip -qry Cibula.ipa Payload
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Cibula-ipa
+          path: Cibula.ipa
