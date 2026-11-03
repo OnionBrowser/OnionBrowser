@@ -11,10 +11,17 @@ workflows:
         script: pod install --repo-update
       - name: Fetch Tor.framework
         script: git clone --depth 1 https://github.com/iCepa/Tor.framework.git ../Tor.framework
+      - name: Prepare version.h
+        script: |
+          if [ ! -f OnionBrowser/version.h ]; then
+            echo "version.h missing, references in project:"
+            grep -rIn "version\.h" --include=project.pbxproj --include=*.xcconfig --include=*.sh --include=.gitignore --include=*.plist . 2>/dev/null | grep -v "^./Pods" | head -n 15
+            printf '/* placeholder generated in CI */\n' > OnionBrowser/version.h
+          fi
+          ls -la OnionBrowser/version.h
       - name: Build unsigned app
         script: |
-          set -o pipefail
-          xcodebuild \
+          xcodebuild -quiet \
             -workspace OnionBrowser.xcworkspace \
             -scheme OnionBrowser \
             -configuration Release \
@@ -23,11 +30,13 @@ workflows:
             -derivedDataPath build \
             -skipPackagePluginValidation -skipMacroValidation \
             CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
-            build 2>&1 | tee build.log || {
-              echo "===== ERRORS ====="
-              grep -n -E "error:|BUILD FAILED|fatal error" build.log | head -n 40
-              exit 1
-            }
+            build > build.log 2>&1
+          STATUS=$?
+          if [ $STATUS -ne 0 ]; then
+            echo "===== ERRORS ====="
+            grep -n -E "error:|BUILD FAILED" build.log | head -n 20
+            exit $STATUS
+          fi
       - name: Package IPA
         script: |
           APP=$(find build/Build/Products/Release-iphoneos -maxdepth 1 -name "*.app" | head -n1)
