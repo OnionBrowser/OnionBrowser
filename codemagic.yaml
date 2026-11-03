@@ -16,6 +16,13 @@ workflows:
           if [ ! -f OnionBrowser/version.h ]; then
             printf '/* placeholder generated in CI */\n' > OnionBrowser/version.h
           fi
+      - name: Rename to Cibula
+        script: |
+          find . -type f \( -name "*.swift" -o -name "*.m" -o -name "*.h" -o -name "*.strings" -o -name "*.stringsdict" -o -name "*.plist" -o -name "*.html" \) \
+            -not -path "./.git/*" -not -path "./build/*" -not -path "*.xcodeproj/*" -print0 \
+            | xargs -0 perl -pi -e 's/Onion Browser/Cibula/g; s/ONION BROWSER/CIBULA/g'
+          echo "Renamed. Remaining mentions:"
+          grep -rIl "Onion Browser" --include=*.strings --include=*.plist . 2>/dev/null | head -n 5
       - name: Build unsigned app
         script: |
           xcodebuild -quiet \
@@ -26,6 +33,7 @@ workflows:
             -destination 'generic/platform=iOS' \
             -derivedDataPath build \
             -skipPackagePluginValidation -skipMacroValidation \
+            MARKETING_VERSION=1.0 CURRENT_PROJECT_VERSION=1 \
             CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
             build > build.log 2>&1
           STATUS=$?
