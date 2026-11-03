@@ -3,14 +3,22 @@ on:
   workflow_dispatch:
 jobs:
   build:
-    runs-on: macos-15
+    runs-on: macos-26
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
 
+      - name: Select newest Xcode
+        run: |
+          XC=$(ls -d /Applications/Xcode_*.app | grep -vi beta | sort -V | tail -n1)
+          echo "Using $XC"
+          sudo xcode-select -s "$XC"
+          xcodebuild -version
+          swift --version
+
       - name: Install pods
         run: pod install --repo-update
-        
+
       - name: Fetch Tor.framework
         run: git clone --depth 1 https://github.com/iCepa/Tor.framework.git ../Tor.framework
 
