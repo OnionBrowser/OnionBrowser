@@ -14,11 +14,8 @@ workflows:
       - name: Prepare version.h
         script: |
           if [ ! -f OnionBrowser/version.h ]; then
-            echo "version.h missing, references in project:"
-            grep -rIn "version\.h" --include=project.pbxproj --include=*.xcconfig --include=*.sh --include=.gitignore --include=*.plist . 2>/dev/null | grep -v "^./Pods" | head -n 15
             printf '/* placeholder generated in CI */\n' > OnionBrowser/version.h
           fi
-          ls -la OnionBrowser/version.h
       - name: Build unsigned app
         script: |
           xcodebuild -quiet \
@@ -43,5 +40,6 @@ workflows:
           mkdir Payload
           cp -R "$APP" Payload/
           zip -qry Cibula.ipa Payload
+          cp Cibula.ipa Cibula-ipa.zip
     artifacts:
-      - Cibula.ipa
+      - Cibula-ipa.zip
