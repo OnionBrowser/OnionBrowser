@@ -68,11 +68,10 @@ class OrbotManager : NSObject, OrbotStatusChangeListener {
 	}
 
 	/**
-	 Check's Orbot's status, and if not working, returns a view controller to show instead of the browser UI.
+	 Checks the Tor status and, if Tor is not running, returns a view controller
+	 to show instead of the browser UI.
 
-	 Starts a continuous Orbot status change check, if successful.
-
-	 - returns: A view controller to show instead of the browser UI, if status is not good.
+	 Cibula always uses its built-in Tor. There is no Orbot choice anymore.
 	 */
 	@MainActor
 	func checkStatus() async -> UIViewController? {
@@ -83,97 +82,34 @@ class OrbotManager : NSObject, OrbotStatusChangeListener {
 		}
 
 		if #available(iOS 17.0, *) {
-			if let useBuiltinTor = Settings.useBuiltInTor {
-				if useBuiltinTor {
-					// User wants to use built-in Tor.
+			// Built-in Tor is the only option.
+			Settings.useBuiltInTor = true
 
-					if OrbotKit.shared.installed {
-						// But Orbot is installed.
-
-						if await !hasOrbotPermission() {
-							// ...and we cannot access it. That needs to change.
-
-							let vc = PermissionViewController()
-							vc.error = lastError
-
-							return vc
-						}
-
-						// NOTE: lastInfo should be filled as a side effect of `hasOrbotPermission()`!
-						if lastInfo?.status != .stopped {
-							if lastInfo?.onionOnly ?? false {
-								// Uh-oh. No onion-only mode allowed.
-								return StartOrbotViewController()
-							}
-
-							// User has a running Orbot. Just use that.
-							Settings.useBuiltInTor = false
-
-							OrbotKit.shared.notifyOnStatusChanges(self)
-
-							return nil
-						}
-					}
-
-					if TorManager.shared.status == .started {
-						// No Orbot running, but built-in Tor. Also ok.
-						return nil
-					}
-
-					// No Orbot running, no built-in Tor. Let the user start it!
-					return StartTorViewController()
-				}
-
-				// User decided against built-in Tor.
-				// Continue with Orbot flow.
+			if TorManager.shared.status == .started {
+				return nil
 			}
-			else {
-				// User did not decide, yet.
 
-				return OrbotOrBuiltInViewController()
-			}
+			// Tor is not running yet. Let the user start it!
+			return StartTorViewController()
 		}
 
-		if !OrbotKit.shared.installed {
-			return InstallViewController()
-		}
+		// Built-in Tor needs iOS 17 or newer.
+		return InstallViewController()
+	}
 
-		if await !hasOrbotPermission() {
-			let vc = PermissionViewController()
-			vc.error = lastError
-
-			return vc
+	func allowRequests() -> Bool {
+		if #available(iOS 17.0, *) {
+			return TorManager.shared.status == .started
 		}
 
 #if DEBUG
 		if Self.simulatorIgnoreOrbot {
-			return nil
+			return true
 		}
 #endif
 
-		if lastInfo?.status == .stopped || lastInfo?.onionOnly ?? false {
-			return StartOrbotViewController()
-		}
-
-		OrbotKit.shared.notifyOnStatusChanges(self)
-
-		return nil
-	}
-
-	func allowRequests() -> Bool {
-		if Settings.useBuiltInTor == true, #available(iOS 17.0, *) {
-			return TorManager.shared.status == .started
-		}
-		else {
-#if DEBUG
-			if Self.simulatorIgnoreOrbot {
-				return true
-			}
-#endif
-
-			let status = lastInfo?.status
-			return status == .starting || status == .started
-		}
+		let status = lastInfo?.status
+		return status == .starting || status == .started
 	}
 
 
@@ -219,27 +155,8 @@ class OrbotManager : NSObject, OrbotStatusChangeListener {
 
 	// MARK: Private Methods
 
-	private func hasOrbotPermission() async -> Bool {
-		let token = Settings.orbotApiToken
-
-		if token?.isEmpty ?? true || token == Settings.orbotAccessDenied {
-			return false
-		}
-
-		OrbotKit.shared.apiToken = token
-
-		do {
-			lastInfo = try await OrbotKit.shared.info()
-		}
-		catch {
-			lastError = error
-		}
-
-		return lastError == nil
-	}
-
 	/**
-	Cancel all connections and re-evalutate Orbot situation and show respective UI.
+	Cancel all connections and re-evalutate the Tor situation and show respective UI.
 	*/
 	@MainActor
 	private func fullStop() {
