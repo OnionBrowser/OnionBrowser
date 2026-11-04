@@ -53,6 +53,12 @@ UICollectionViewDropDelegate, TabCellDelegate {
 			tab.clearSnapshot()
 		}
 
+		// Reordering by drag and drop. On iPhone this is off by default.
+		tabsCollection?.dragDelegate = self
+		tabsCollection?.dropDelegate = self
+		tabsCollection?.dragInteractionEnabled = true
+		tabsCollection?.reorderingCadence = .immediate
+
 		self.tabsCollection?.reloadData()
 
 		view.backgroundColor = overviewBackground
@@ -62,6 +68,9 @@ UICollectionViewDropDelegate, TabCellDelegate {
 		// A page loading in the background would show its progress bar again,
 		// even when hidden. Transparent stays invisible.
 		progress?.alpha = 0
+
+		// The old bottom bar container would leave a grey strip behind our floating bar.
+		toolbar?.alpha = 0
 
 		showOverviewBar()
 
@@ -116,7 +125,7 @@ UICollectionViewDropDelegate, TabCellDelegate {
 				cell.header.backgroundColor = tab == currentTab
 					? UIColor(red: 0.55, green: 0.17, blue: 0.96, alpha: 0.6)
 					: UIColor(red: 0.10, green: 0.03, blue: 0.20, alpha: 0.6)
-				cell.title.text = tab.title
+				cell.setName(displayName(for: tab))
 
 				var size = cellSize
 				size.height -= 24 // header height
@@ -157,12 +166,23 @@ UICollectionViewDropDelegate, TabCellDelegate {
 	func collectionView(_ collectionView: UICollectionView, itemsForBeginning
 		session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
 
+		guard indexPath.row > -1 && indexPath.row < tabs.count else {
+			return []
+		}
+
+		// Haptic feedback, when a tab gets lifted.
+		UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+
 		let tab = tabs[indexPath.row]
 
 		let dragItem = UIDragItem(itemProvider: NSItemProvider(object: tab.url.absoluteString as NSString))
 		dragItem.localObject = tab
 
 		return [dragItem]
+	}
+
+	func collectionView(_ collectionView: UICollectionView, dragPreviewParametersForItemAt indexPath: IndexPath) -> UIDragPreviewParameters? {
+		return roundedPreview(collectionView, indexPath)
 	}
 
 
@@ -183,19 +203,32 @@ UICollectionViewDropDelegate, TabCellDelegate {
 		if coordinator.proposal.operation == .move,
 			let item = coordinator.items.first,
 			let source = item.sourceIndexPath,
-			let destination = coordinator.destinationIndexPath {
+			let destination = coordinator.destinationIndexPath,
+			source.row > -1 && source.row < tabs.count {
+
+			var target = destination
 
 			collectionView.performBatchUpdates({
 				let tab = tabs.remove(at: source.row)
-				tabs.insert(tab, at: destination.row)
+
+				let row = min(max(destination.row, 0), tabs.count)
+				target = IndexPath(item: row, section: destination.section)
+
+				tabs.insert(tab, at: row)
 				currentTab = tab
 
 				collectionView.deleteItems(at: [source])
-				collectionView.insertItems(at: [destination])
+				collectionView.insertItems(at: [target])
 			})
 
-			coordinator.drop(item.dragItem, toItemAt: destination)
+			coordinator.drop(item.dragItem, toItemAt: target)
+
+			UIImpactFeedbackGenerator(style: .light).impactOccurred()
 		}
+	}
+
+	func collectionView(_ collectionView: UICollectionView, dropPreviewParametersForItemAt indexPath: IndexPath) -> UIDragPreviewParameters? {
+		return roundedPreview(collectionView, indexPath)
 	}
 
 
@@ -219,6 +252,33 @@ UICollectionViewDropDelegate, TabCellDelegate {
 
 
 	// MARK: Private Methods
+
+	/// The title of a tab. The start page and empty tabs have none, so we make one up.
+	private func displayName(for tab: Tab) -> String {
+		let raw = (tab.title as String?)?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+
+		if !raw.isEmpty {
+			return raw
+		}
+
+		if tab.url == URL.start {
+			return "Cibula"
+		}
+
+		return tab.url.host ?? ""
+	}
+
+	private func roundedPreview(_ collectionView: UICollectionView, _ indexPath: IndexPath) -> UIDragPreviewParameters? {
+		guard let cell = collectionView.cellForItem(at: indexPath) else {
+			return nil
+		}
+
+		let parameters = UIDragPreviewParameters()
+		parameters.backgroundColor = .clear
+		parameters.visiblePath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: 20)
+
+		return parameters
+	}
 
 	/// Floating glass bar with "+" and "Done", replaces the old grey toolbar.
 	private func showOverviewBar() {
@@ -303,8 +363,9 @@ UICollectionViewDropDelegate, TabCellDelegate {
 
 		updateChrome()
 
-		// Make the progress bar visible again for normal browsing.
+		// Make the progress bar and the bottom bar visible again for normal browsing.
 		progress?.alpha = 1
+		toolbar?.alpha = 1
 
 		view.viewWithTag(overviewBarTag)?.isHidden = true
 
