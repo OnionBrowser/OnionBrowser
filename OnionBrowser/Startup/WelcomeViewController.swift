@@ -80,7 +80,7 @@ class WelcomeViewController: UIViewController {
 		}
 
 		let button = UIButton(configuration: config)
-		button.addTarget(self, action: #selector(next), for: .touchUpInside)
+		button.addTarget(self, action: #selector(nextTapped), for: .touchUpInside)
 		button.translatesAutoresizingMaskIntoConstraints = false
 
 		view.addSubview(rings)
