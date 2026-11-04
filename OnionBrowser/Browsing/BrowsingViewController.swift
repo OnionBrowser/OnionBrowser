@@ -20,10 +20,14 @@ class BrowsingViewController: UIViewController, TabDelegate {
 		case inBackground
 	}
 
+	/// UserDefaults key of the "merge bars like Safari" switch in the settings.
+	static let mergedBarsKey = "CibulaMergedBars"
+
 	private static let reloadImg = UIImage(systemName: "arrow.clockwise")
 	private static let stopImg = UIImage(systemName: "xmark")
 
 	private let barGlassTag = 7702
+	private let backdropTag = 7703
 
 	@IBOutlet weak var searchBar: UIView?
 	@IBOutlet weak var searchBarHeightConstraint: NSLayoutConstraint? {
@@ -661,86 +665,212 @@ class BrowsingViewController: UIViewController, TabDelegate {
 	// MARK: Private Methods
 
 	/**
-	Gives the top and bottom bars a glass look. Only colors and backgrounds are touched,
-	never sizes or positions, so the layout from the XIB stays intact.
+	Gives the top and bottom bars a floating liquid glass look, like Safari.
+	Optionally merges both bars into one at the bottom.
 	*/
 	private func styleChrome() {
 		let lilac = UIColor(red: 0.90, green: 0.82, blue: 1, alpha: 1)
 
-		// Top bar.
-		if let bar = searchBar {
-			addGlass(to: bar, atTop: false)
+		let isPhone = UIDevice.current.userInterfaceIdiom != .pad
+		let merged = isPhone && toolbar != nil && UserDefaults.standard.bool(forKey: Self.mergedBarsKey)
 
-			bar.tintColor = lilac
+		addBackdrop()
+
+		if merged {
+			mergeBars()
 		}
+
+		if let bar = searchBar, !merged {
+			floatBar(bar, atTop: true)
+		}
+
+		if let bar = toolbar {
+			floatBar(bar, atTop: false)
+		}
+
+		searchBar?.tintColor = lilac
+		toolbar?.tintColor = lilac
+		mainTools?.tintColor = lilac
+		tabsBt?.tintColor = lilac
+		tabsBt?.setTitleColor(lilac, for: .normal)
 
 		if let field = searchFl {
 			field.overrideUserInterfaceStyle = .dark
 			field.borderStyle = .none
-			field.backgroundColor = UIColor.white.withAlphaComponent(0.10)
-			field.layer.cornerRadius = 14
-			field.layer.cornerCurve = .continuous
-			field.layer.masksToBounds = true
 			field.textColor = .white
 			field.tintColor = lilac
+
+			if merged {
+				// Inside the shared capsule the address field needs its own soft box.
+				field.backgroundColor = UIColor.white.withAlphaComponent(0.10)
+				field.layer.cornerRadius = 14
+				field.layer.cornerCurve = .continuous
+				field.layer.masksToBounds = true
+			}
+			else {
+				field.backgroundColor = .clear
+			}
 		}
 
 		reloadBt.tintColor = lilac
 
-		// Bottom bar. Not available on iPad.
-		if let bar = toolbar {
-			addGlass(to: bar, atTop: true)
+		view.layoutIfNeeded()
+	}
 
-			bar.tintColor = lilac
-			mainTools?.tintColor = lilac
-			tabsBt?.setTitleColor(lilac, for: .normal)
+	/// Dark purple background behind the floating bars.
+	private func addBackdrop() {
+		if view.viewWithTag(backdropTag) != nil {
+			return
+		}
+
+		let backdrop = GradientBackdropView()
+		backdrop.tag = backdropTag
+		backdrop.isUserInteractionEnabled = false
+		backdrop.translatesAutoresizingMaskIntoConstraints = false
+		view.insertSubview(backdrop, at: 0)
+
+		NSLayoutConstraint.activate([
+			backdrop.topAnchor.constraint(equalTo: view.topAnchor),
+			backdrop.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+			backdrop.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+			backdrop.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+		])
+	}
+
+	/**
+	Moves the address bar from the top into the bottom bar, above the buttons.
+	The bottom bar grows by the height of the address bar.
+	*/
+	private func mergeBars() {
+		guard let top = searchBar, let bottom = toolbar else {
+			return
+		}
+
+		let topHeight: CGFloat = searchBarHeight ?? 44
+
+		top.removeFromSuperview()
+		bottom.addSubview(top)
+		top.translatesAutoresizingMaskIntoConstraints = false
+
+		NSLayoutConstraint.activate([
+			top.topAnchor.constraint(equalTo: bottom.topAnchor, constant: 2),
+			top.leadingAnchor.constraint(equalTo: bottom.leadingAnchor),
+			top.trailingAnchor.constraint(equalTo: bottom.trailingAnchor)
+		])
+
+		let newHeight = (toolbarHeight ?? toolbarHeightConstraint?.constant ?? 49) + topHeight + 2
+		toolbarHeight = newHeight
+		toolbarHeightConstraint?.constant = newHeight
+
+		// Buttons stay in the lower part.
+		mainTools?.isLayoutMarginsRelativeArrangement = true
+		mainTools?.layoutMargins = UIEdgeInsets(top: topHeight + 2, left: 0, bottom: 0, right: 0)
+
+		// The page now starts at the top of the screen. Soft priority, so an existing
+		// constraint from the layout file wins, if there is one left.
+		let pinned: [UIView?] = [container, progress]
+
+		for item in pinned {
+			guard let item = item else {
+				continue
+			}
+
+			let constraint = item.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+			constraint.priority = UILayoutPriority(750)
+			constraint.isActive = true
 		}
 	}
 
-	private func addGlass(to bar: UIView, atTop: Bool) {
+	/**
+	Pulls a bar away from the screen edges (if the layout file pins it there)
+	and puts a rounded glass capsule behind its content.
+	*/
+	private func floatBar(_ bar: UIView, atTop: Bool) {
 		if bar.viewWithTag(barGlassTag) != nil {
 			return
+		}
+
+		let sideInset: CGFloat = 12
+		let edgeGap: CGFloat = 6
+
+		for constraint in view.constraints where constraint.isActive {
+			let barIsFirst = constraint.firstItem === bar
+			let barIsSecond = constraint.secondItem === bar
+
+			if barIsFirst == barIsSecond {
+				continue
+			}
+
+			let other: AnyObject? = barIsFirst ? constraint.secondItem : constraint.firstItem
+			let attribute = barIsFirst ? constraint.firstAttribute : constraint.secondAttribute
+			let otherAttribute = barIsFirst ? constraint.secondAttribute : constraint.firstAttribute
+
+			guard attribute == otherAttribute, isScreenEdge(other) else {
+				continue
+			}
+
+			var inward: CGFloat = 0
+
+			switch attribute {
+			case .leading, .left:
+				inward = sideInset
+
+			case .trailing, .right:
+				inward = -sideInset
+
+			case .top:
+				inward = atTop ? edgeGap : 0
+
+			case .bottom:
+				inward = atTop ? 0 : -edgeGap
+
+			default:
+				break
+			}
+
+			if inward != 0 {
+				constraint.constant += barIsFirst ? inward : -inward
+			}
 		}
 
 		bar.backgroundColor = .clear
 		bar.overrideUserInterfaceStyle = .dark
 
-		let effectView: UIVisualEffectView
+		let effect: UIVisualEffect
 
 		if #available(iOS 26.0, *) {
-			effectView = UIVisualEffectView(effect: UIGlassEffect())
+			effect = UIGlassEffect()
 		}
 		else {
-			effectView = UIVisualEffectView(effect: UIBlurEffect(style: .systemUltraThinMaterialDark))
+			effect = UIBlurEffect(style: .systemUltraThinMaterialDark)
 		}
 
-		effectView.tag = barGlassTag
-		effectView.frame = bar.bounds
-		effectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-		effectView.isUserInteractionEnabled = false
+		let glass = CapsuleGlassView(effect: effect)
+		glass.tag = barGlassTag
+		glass.frame = bar.bounds
+		glass.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+		glass.isUserInteractionEnabled = false
+		glass.clipsToBounds = true
+		glass.layer.cornerCurve = .continuous
+		glass.layer.borderWidth = 0.5
+		glass.layer.borderColor = UIColor(red: 0.85, green: 0.70, blue: 1, alpha: 0.35).cgColor
 
 		// Light purple tint on top of the glass.
-		effectView.contentView.backgroundColor = UIColor(red: 0.30, green: 0.08, blue: 0.55, alpha: 0.28)
+		glass.contentView.backgroundColor = UIColor(red: 0.30, green: 0.08, blue: 0.55, alpha: 0.28)
 
-		bar.insertSubview(effectView, at: 0)
+		bar.insertSubview(glass, at: 0)
+	}
 
-		// Thin light edge towards the page.
-		let line = UIView()
-		line.backgroundColor = UIColor(red: 0.85, green: 0.70, blue: 1, alpha: 0.35)
-		line.translatesAutoresizingMaskIntoConstraints = false
-		effectView.contentView.addSubview(line)
+	private func isScreenEdge(_ item: AnyObject?) -> Bool {
+		if let item = item as? UIView {
+			return item === view
+		}
 
-		var constraints = [
-			line.leadingAnchor.constraint(equalTo: effectView.contentView.leadingAnchor),
-			line.trailingAnchor.constraint(equalTo: effectView.contentView.trailingAnchor),
-			line.heightAnchor.constraint(equalToConstant: 0.5)
-		]
+		if let guide = item as? UILayoutGuide {
+			return guide.owningView === view
+		}
 
-		constraints.append(atTop
-			? line.topAnchor.constraint(equalTo: effectView.contentView.topAnchor)
-			: line.bottomAnchor.constraint(equalTo: effectView.contentView.bottomAnchor))
-
-		NSLayoutConstraint.activate(constraints)
+		return false
 	}
 
 	/**
@@ -788,5 +918,48 @@ class BrowsingViewController: UIViewController, TabDelegate {
 			reloadBt.setImage(BrowsingViewController.reloadImg, for: .normal)
 			reloadBt.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
 		}
+	}
+}
+
+
+/// Glass view with fully rounded ends.
+private final class CapsuleGlassView: UIVisualEffectView {
+
+	override func layoutSubviews() {
+		super.layoutSubviews()
+
+		layer.cornerRadius = min(bounds.height / 2, 28)
+	}
+}
+
+
+/// Dark purple gradient, drawn behind everything.
+private final class GradientBackdropView: UIView {
+
+	override class var layerClass: AnyClass {
+		CAGradientLayer.self
+	}
+
+	override init(frame: CGRect) {
+		super.init(frame: frame)
+
+		configure()
+	}
+
+	required init?(coder: NSCoder) {
+		super.init(coder: coder)
+
+		configure()
+	}
+
+	private func configure() {
+		guard let gradient = layer as? CAGradientLayer else {
+			return
+		}
+
+		gradient.colors = [UIColor(red: 0.05, green: 0.00, blue: 0.10, alpha: 1).cgColor,
+						   UIColor(red: 0.16, green: 0.04, blue: 0.32, alpha: 1).cgColor]
+		gradient.startPoint = CGPoint(x: 0.2, y: 0)
+		gradient.endPoint = CGPoint(x: 0.8, y: 1)
 	}
 }
