@@ -32,7 +32,7 @@ UICollectionViewDropDelegate, TabCellDelegate {
 			ratio = c.bounds.height / c.bounds.width
 		}
 
-		ratio = min(max(ratio, 1.2), 1.9)
+		ratio = min(max(ratio, 1.2), 1.75)
 
 		return CGSize(width: width, height: width * ratio + 24 /* header height */)
 	}
@@ -65,11 +65,14 @@ UICollectionViewDropDelegate, TabCellDelegate {
 		tabsCollection?.backgroundColor = .clear
 		tabsCollection?.contentInset.bottom = 100
 
+		// The page insets for the floating bars are not needed in the overview.
+		updateFloatingMetrics(overview: true)
+
 		// A page loading in the background would show its progress bar again,
 		// even when hidden. Transparent stays invisible.
 		progress?.alpha = 0
 
-		// The old bottom bar container would leave a grey strip behind our floating bar.
+		// The old bottom bar would stay visible behind our floating bar.
 		toolbar?.alpha = 0
 
 		showOverviewBar()
@@ -363,9 +366,12 @@ UICollectionViewDropDelegate, TabCellDelegate {
 
 		updateChrome()
 
-		// Make the progress bar and the bottom bar visible again for normal browsing.
+		// Back to normal browsing: page insets for the floating bars, bars visible again.
+		updateFloatingMetrics(overview: false)
+
 		progress?.alpha = 1
 		toolbar?.alpha = 1
+		showToolbar(true, false)
 
 		view.viewWithTag(overviewBarTag)?.isHidden = true
 
