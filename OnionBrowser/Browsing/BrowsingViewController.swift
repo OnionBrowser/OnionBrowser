@@ -23,6 +23,8 @@ class BrowsingViewController: UIViewController, TabDelegate {
 	private static let reloadImg = UIImage(systemName: "arrow.clockwise")
 	private static let stopImg = UIImage(systemName: "xmark")
 
+	private let barGlassTag = 7702
+
 	@IBOutlet weak var searchBar: UIView?
 	@IBOutlet weak var searchBarHeightConstraint: NSLayoutConstraint? {
 		didSet {
@@ -221,6 +223,8 @@ class BrowsingViewController: UIViewController, TabDelegate {
 		for tab in tabs {
 			tab.add(to: container)
 		}
+
+		styleChrome()
 
 		updateChrome()
 	}
@@ -655,6 +659,89 @@ class BrowsingViewController: UIViewController, TabDelegate {
 
 
 	// MARK: Private Methods
+
+	/**
+	Gives the top and bottom bars a glass look. Only colors and backgrounds are touched,
+	never sizes or positions, so the layout from the XIB stays intact.
+	*/
+	private func styleChrome() {
+		let lilac = UIColor(red: 0.90, green: 0.82, blue: 1, alpha: 1)
+
+		// Top bar.
+		if let bar = searchBar {
+			addGlass(to: bar, atTop: false)
+
+			bar.tintColor = lilac
+		}
+
+		if let field = searchFl {
+			field.overrideUserInterfaceStyle = .dark
+			field.borderStyle = .none
+			field.backgroundColor = UIColor.white.withAlphaComponent(0.10)
+			field.layer.cornerRadius = 14
+			field.layer.cornerCurve = .continuous
+			field.layer.masksToBounds = true
+			field.textColor = .white
+			field.tintColor = lilac
+		}
+
+		reloadBt.tintColor = lilac
+
+		// Bottom bar. Not available on iPad.
+		if let bar = toolbar {
+			addGlass(to: bar, atTop: true)
+
+			bar.tintColor = lilac
+			mainTools?.tintColor = lilac
+			tabsBt?.setTitleColor(lilac, for: .normal)
+		}
+	}
+
+	private func addGlass(to bar: UIView, atTop: Bool) {
+		if bar.viewWithTag(barGlassTag) != nil {
+			return
+		}
+
+		bar.backgroundColor = .clear
+		bar.overrideUserInterfaceStyle = .dark
+
+		let effectView: UIVisualEffectView
+
+		if #available(iOS 26.0, *) {
+			effectView = UIVisualEffectView(effect: UIGlassEffect())
+		}
+		else {
+			effectView = UIVisualEffectView(effect: UIBlurEffect(style: .systemUltraThinMaterialDark))
+		}
+
+		effectView.tag = barGlassTag
+		effectView.frame = bar.bounds
+		effectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+		effectView.isUserInteractionEnabled = false
+
+		// Light purple tint on top of the glass.
+		effectView.contentView.backgroundColor = UIColor(red: 0.30, green: 0.08, blue: 0.55, alpha: 0.28)
+
+		bar.insertSubview(effectView, at: 0)
+
+		// Thin light edge towards the page.
+		let line = UIView()
+		line.backgroundColor = UIColor(red: 0.85, green: 0.70, blue: 1, alpha: 0.35)
+		line.translatesAutoresizingMaskIntoConstraints = false
+		effectView.contentView.addSubview(line)
+
+		var constraints = [
+			line.leadingAnchor.constraint(equalTo: effectView.contentView.leadingAnchor),
+			line.trailingAnchor.constraint(equalTo: effectView.contentView.trailingAnchor),
+			line.heightAnchor.constraint(equalToConstant: 0.5)
+		]
+
+		constraints.append(atTop
+			? line.topAnchor.constraint(equalTo: effectView.contentView.topAnchor)
+			: line.bottomAnchor.constraint(equalTo: effectView.contentView.bottomAnchor))
+
+		NSLayoutConstraint.activate(constraints)
+	}
 
 	/**
 	Update and center tab count in `tabsBt`.
