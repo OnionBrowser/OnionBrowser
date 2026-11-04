@@ -33,7 +33,9 @@ class TabCell: UICollectionViewCell, UIGestureRecognizerDelegate {
 
 	private let glass = UIVisualEffectView(effect: UIBlurEffect(style: .systemUltraThinMaterialDark))
 
-	private let closeButton = UIButton(type: .system)
+	private let closeButton = CloseButton(type: .system)
+
+	private let nameLabel = UILabel()
 
 	private lazy var panGr: UIPanGestureRecognizer = {
 		let gr = UIPanGestureRecognizer(target: self, action: #selector(pan(_:)))
@@ -66,6 +68,23 @@ class TabCell: UICollectionViewCell, UIGestureRecognizerDelegate {
 		layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: Self.cornerRadius).cgPath
 	}
 
+	/**
+	While the system drag (tab reordering) is running, our own swipe-to-close must stay out of the way.
+	*/
+	override func dragStateDidChange(_ dragState: UICollectionViewCell.DragState) {
+		super.dragStateDidChange(dragState)
+
+		panGr.isEnabled = dragState == .none
+	}
+
+
+	// MARK: Public Methods
+
+	func setName(_ text: String?) {
+		nameLabel.text = text
+		title?.text = text
+	}
+
 
 	// MARK: Actions
 
@@ -78,11 +97,12 @@ class TabCell: UICollectionViewCell, UIGestureRecognizerDelegate {
 
 	/**
 	First step: Allow scrolling gestures on the UICollectionView simultanously.
+	Only the scroll pan is meant here, not the long press which lifts a tab for reordering.
 	*/
 	func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
 
-		return (gestureRecognizer == panGr && otherGestureRecognizer.view is UICollectionView)
-			|| (gestureRecognizer.view is UICollectionView && otherGestureRecognizer == panGr)
+		return (gestureRecognizer == panGr && otherGestureRecognizer.view is UICollectionView && otherGestureRecognizer is UIPanGestureRecognizer)
+			|| (gestureRecognizer.view is UICollectionView && gestureRecognizer is UIPanGestureRecognizer && otherGestureRecognizer == panGr)
 	}
 
 	/**
@@ -90,7 +110,7 @@ class TabCell: UICollectionViewCell, UIGestureRecognizerDelegate {
 	*/
 	func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
 
-		return (gestureRecognizer == panGr && otherGestureRecognizer.view is UICollectionView)
+		return gestureRecognizer == panGr && otherGestureRecognizer.view is UICollectionView && otherGestureRecognizer is UIPanGestureRecognizer
 	}
 
 
@@ -127,32 +147,50 @@ class TabCell: UICollectionViewCell, UIGestureRecognizerDelegate {
 			glass.isUserInteractionEnabled = false
 			header.insertSubview(glass, at: 0)
 
-			// Hide the close button from the layout file, we use our own on the right side.
+			// Hide the close button and title from the layout file, we use our own.
 			for button in header.subviews.compactMap({ $0 as? UIButton }) {
 				button.isHidden = true
 			}
 
+			title?.isHidden = true
+
+			// Small round close button with an outline, like in macOS.
 			var config = UIButton.Configuration.plain()
 			config.image = UIImage(systemName: "xmark",
-								   withConfiguration: UIImage.SymbolConfiguration(pointSize: 13, weight: .bold))
-			config.baseForegroundColor = UIColor(red: 0.90, green: 0.82, blue: 1, alpha: 1)
+								   withConfiguration: UIImage.SymbolConfiguration(pointSize: 8, weight: .heavy))
+			config.baseForegroundColor = UIColor(red: 0.92, green: 0.86, blue: 1, alpha: 1)
 			config.contentInsets = .zero
+
+			var background = UIBackgroundConfiguration.clear()
+			background.backgroundColor = UIColor.white.withAlphaComponent(0.12)
+			background.cornerRadius = 9
+			background.strokeColor = UIColor(red: 0.85, green: 0.70, blue: 1, alpha: 0.75)
+			background.strokeWidth = 1
+			config.background = background
 
 			closeButton.configuration = config
 			closeButton.addTarget(self, action: #selector(close), for: .touchUpInside)
 			closeButton.translatesAutoresizingMaskIntoConstraints = false
 			header.addSubview(closeButton)
 
+			nameLabel.font = .systemFont(ofSize: 13, weight: .semibold)
+			nameLabel.textColor = .white
+			nameLabel.lineBreakMode = .byTruncatingTail
+			nameLabel.numberOfLines = 1
+			nameLabel.translatesAutoresizingMaskIntoConstraints = false
+			header.addSubview(nameLabel)
+
 			NSLayoutConstraint.activate([
-				closeButton.trailingAnchor.constraint(equalTo: header.trailingAnchor, constant: -6),
-				closeButton.topAnchor.constraint(equalTo: header.topAnchor),
-				closeButton.bottomAnchor.constraint(equalTo: header.bottomAnchor),
-				closeButton.widthAnchor.constraint(equalToConstant: 40)
+				closeButton.trailingAnchor.constraint(equalTo: header.trailingAnchor, constant: -10),
+				closeButton.centerYAnchor.constraint(equalTo: header.centerYAnchor),
+				closeButton.widthAnchor.constraint(equalToConstant: 18),
+				closeButton.heightAnchor.constraint(equalToConstant: 18),
+
+				nameLabel.leadingAnchor.constraint(equalTo: header.leadingAnchor, constant: 12),
+				nameLabel.trailingAnchor.constraint(equalTo: closeButton.leadingAnchor, constant: -8),
+				nameLabel.centerYAnchor.constraint(equalTo: header.centerYAnchor)
 			])
 		}
-
-		title?.textColor = .white
-		title?.font = .systemFont(ofSize: 13, weight: .semibold)
 	}
 
 	private var originalCenter: CGPoint!
@@ -189,7 +227,18 @@ class TabCell: UICollectionViewCell, UIGestureRecognizerDelegate {
 			}
 
 		default:
-			center = originalCenter
+			if originalCenter != nil {
+				center = originalCenter
+			}
 		}
+	}
+}
+
+
+/// A close button with a bigger touch area than its small round look.
+private final class CloseButton: UIButton {
+
+	override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+		return bounds.insetBy(dx: -14, dy: -14).contains(point)
 	}
 }
