@@ -25,13 +25,23 @@ UICollectionViewDropDelegate, TabCellDelegate {
 		// Could be 0 or less, so secure against becoming negative with minimum width of smallest iOS device.
 		let width = (min(max(320, size.width), max(320, size.height)) - 8 * 2 /* left and right inset */) / 2 - 8 /* spacing */
 
-		// Tall cards, like in Safari.
-		return CGSize(width: width, height: width * 1.3)
+		// Use the real proportions of the page area, so the thumbnail fills the card.
+		var ratio: CGFloat = 1.5
+
+		if let c = container, c.bounds.width > 0, c.bounds.height > 0 {
+			ratio = c.bounds.height / c.bounds.width
+		}
+
+		ratio = min(max(ratio, 1.2), 1.9)
+
+		return CGSize(width: width, height: width * ratio + 24 /* header height */)
 	}
 
 	private var overviewBackground: UIColor {
 		UIColor(red: 0.08, green: 0.02, blue: 0.16, alpha: 1)
 	}
+
+	private var overviewBarTag: Int { 7701 }
 
 
 	@objc func showOverview() {
@@ -47,8 +57,13 @@ UICollectionViewDropDelegate, TabCellDelegate {
 
 		view.backgroundColor = overviewBackground
 		tabsCollection?.backgroundColor = .clear
+		tabsCollection?.contentInset.bottom = 100
 
-		styleTabsTools()
+		// A page loading in the background would show its progress bar again,
+		// even when hidden. Transparent stays invisible.
+		progress?.alpha = 0
+
+		showOverviewBar()
 
 		UIView.animate(withDuration: 0.5, animations: {
 			self.view.setNeedsLayout()
@@ -62,7 +77,8 @@ UICollectionViewDropDelegate, TabCellDelegate {
 			self.container?.isHidden = true
 			self.tabsCollection?.isHidden = false
 			self.mainTools?.isHidden = true
-			self.tabsTools?.isHidden = false
+			// The old bar is replaced by our floating glass bar.
+			self.tabsTools?.isHidden = true
 		})
 	}
 
@@ -204,26 +220,80 @@ UICollectionViewDropDelegate, TabCellDelegate {
 
 	// MARK: Private Methods
 
-	private func styleTabsTools() {
-		let tools: UIView? = tabsTools
+	/// Floating glass bar with "+" and "Done", replaces the old grey toolbar.
+	private func showOverviewBar() {
+		if let existing = view.viewWithTag(overviewBarTag) {
+			existing.isHidden = false
+			view.bringSubviewToFront(existing)
 
-		guard let bar = tools as? UIToolbar else {
 			return
 		}
 
-		bar.tintColor = UIColor(red: 0.85, green: 0.70, blue: 1, alpha: 1)
+		let bar: UIVisualEffectView
 
-		// On iOS 26 and newer the system draws its own glass bar. Leave that alone.
-		if #unavailable(iOS 26.0) {
-			let appearance = UIToolbarAppearance()
-			appearance.configureWithTransparentBackground()
-			appearance.backgroundEffect = UIBlurEffect(style: .systemUltraThinMaterialDark)
-			appearance.backgroundColor = UIColor(red: 0.16, green: 0.04, blue: 0.32, alpha: 0.35)
-
-			bar.standardAppearance = appearance
-			bar.scrollEdgeAppearance = appearance
-			bar.compactAppearance = appearance
+		if #available(iOS 26.0, *) {
+			let glass = UIGlassEffect()
+			glass.isInteractive = true
+			bar = UIVisualEffectView(effect: glass)
 		}
+		else {
+			bar = UIVisualEffectView(effect: UIBlurEffect(style: .systemUltraThinMaterialDark))
+			bar.backgroundColor = UIColor(red: 0.16, green: 0.04, blue: 0.32, alpha: 0.35)
+		}
+
+		bar.tag = overviewBarTag
+		bar.layer.cornerRadius = 28
+		bar.layer.cornerCurve = .continuous
+		bar.clipsToBounds = true
+		bar.translatesAutoresizingMaskIntoConstraints = false
+
+		let tint = UIColor(red: 0.90, green: 0.82, blue: 1, alpha: 1)
+
+		var plusConfig = UIButton.Configuration.plain()
+		plusConfig.image = UIImage(systemName: "plus",
+								   withConfiguration: UIImage.SymbolConfiguration(pointSize: 22, weight: .semibold))
+		plusConfig.baseForegroundColor = tint
+
+		let plus = UIButton(configuration: plusConfig, primaryAction: UIAction { [weak self] _ in
+			self?.newTabFromOverview()
+		})
+		plus.translatesAutoresizingMaskIntoConstraints = false
+
+		let isRussian = (Locale.preferredLanguages.first ?? "").hasPrefix("ru")
+
+		var doneConfig = UIButton.Configuration.plain()
+		doneConfig.title = isRussian ? "Готово" : "Done"
+		doneConfig.baseForegroundColor = tint
+		doneConfig.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
+			var outgoing = incoming
+			outgoing.font = .systemFont(ofSize: 18, weight: .semibold)
+			return outgoing
+		}
+
+		let done = UIButton(configuration: doneConfig, primaryAction: UIAction { [weak self] _ in
+			self?.hideOverview()
+		})
+		done.translatesAutoresizingMaskIntoConstraints = false
+
+		bar.contentView.addSubview(plus)
+		bar.contentView.addSubview(done)
+		view.addSubview(bar)
+
+		NSLayoutConstraint.activate([
+			bar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+			bar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+			bar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -12),
+			bar.heightAnchor.constraint(equalToConstant: 56),
+
+			plus.leadingAnchor.constraint(equalTo: bar.contentView.leadingAnchor, constant: 14),
+			plus.centerYAnchor.constraint(equalTo: bar.contentView.centerYAnchor),
+			plus.widthAnchor.constraint(equalToConstant: 48),
+			plus.heightAnchor.constraint(equalToConstant: 48),
+
+			done.trailingAnchor.constraint(equalTo: bar.contentView.trailingAnchor, constant: -14),
+			done.centerYAnchor.constraint(equalTo: bar.contentView.centerYAnchor),
+			done.heightAnchor.constraint(equalToConstant: 48)
+		])
 	}
 
 	private func hideOverview(completion: ((_ finished: Bool) -> Void)?) {
@@ -232,6 +302,11 @@ UICollectionViewDropDelegate, TabCellDelegate {
 		}
 
 		updateChrome()
+
+		// Make the progress bar visible again for normal browsing.
+		progress?.alpha = 1
+
+		view.viewWithTag(overviewBarTag)?.isHidden = true
 
 		self.view.backgroundColor = .systemBackground
 
