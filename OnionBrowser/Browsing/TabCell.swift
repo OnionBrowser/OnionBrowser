@@ -11,23 +11,27 @@
 import UIKit
 
 protocol TabCellDelegate: AnyObject {
-    func close(_ sender: TabCell)
+	func close(_ sender: TabCell)
 }
 
 class TabCell: UICollectionViewCell, UIGestureRecognizerDelegate {
 
-    class var nib: UINib {
-        return UINib(nibName: String(describing: self), bundle: Bundle(for: self))
-    }
+	class var nib: UINib {
+		return UINib(nibName: String(describing: self), bundle: Bundle(for: self))
+	}
 
 	static let reuseIdentifier = String(describing: TabCell.self)
 
-    @IBOutlet weak var header: UIView!
-    @IBOutlet weak var title: UILabel!
+	private static let cornerRadius: CGFloat = 20
 
-    @IBOutlet weak var preview: UIImageView!
+	@IBOutlet weak var header: UIView!
+	@IBOutlet weak var title: UILabel!
 
-    weak var delegate: TabCellDelegate?
+	@IBOutlet weak var preview: UIImageView!
+
+	weak var delegate: TabCellDelegate?
+
+	private let glass = UIVisualEffectView(effect: UIBlurEffect(style: .systemUltraThinMaterialDark))
 
 	private lazy var panGr: UIPanGestureRecognizer = {
 		let gr = UIPanGestureRecognizer(target: self, action: #selector(pan(_:)))
@@ -48,12 +52,24 @@ class TabCell: UICollectionViewCell, UIGestureRecognizerDelegate {
 		setup()
 	}
 
+	override func awakeFromNib() {
+		super.awakeFromNib()
+
+		styleCell()
+	}
+
+	override func layoutSubviews() {
+		super.layoutSubviews()
+
+		layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: Self.cornerRadius).cgPath
+	}
+
 
 	// MARK: Actions
 
-    @IBAction func close() {
-        delegate?.close(self)
-    }
+	@IBAction func close() {
+		delegate?.close(self)
+	}
 
 
 	// MARK: UIGestureRecognizerDelegate
@@ -79,13 +95,43 @@ class TabCell: UICollectionViewCell, UIGestureRecognizerDelegate {
 	// MARK: Private Methods
 
 	private func setup() {
-		layer.shadowColor = UIColor.black.cgColor
-		layer.shadowOffset = CGSize(width: -1, height: 1)
-		layer.shadowOpacity = 0.5
-		layer.shadowRadius = 8
+		// Purple glow instead of a plain black shadow.
+		layer.shadowColor = UIColor(red: 0.55, green: 0.17, blue: 0.96, alpha: 1).cgColor
+		layer.shadowOffset = CGSize(width: 0, height: 6)
+		layer.shadowOpacity = 0.45
+		layer.shadowRadius = 14
 		layer.masksToBounds = false
 
 		addGestureRecognizer(panGr)
+	}
+
+	private func styleCell() {
+		contentView.backgroundColor = UIColor(red: 0.10, green: 0.03, blue: 0.20, alpha: 1)
+		contentView.layer.cornerRadius = Self.cornerRadius
+		contentView.layer.cornerCurve = .continuous
+		contentView.layer.masksToBounds = true
+		contentView.layer.borderWidth = 1
+		contentView.layer.borderColor = UIColor(red: 0.77, green: 0.55, blue: 1, alpha: 0.35).cgColor
+
+		preview?.contentMode = .scaleAspectFill
+		preview?.clipsToBounds = true
+
+		if let header = header {
+			// Glass header.
+			header.backgroundColor = .clear
+
+			glass.frame = header.bounds
+			glass.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+			glass.isUserInteractionEnabled = false
+			header.insertSubview(glass, at: 0)
+
+			for button in header.subviews.compactMap({ $0 as? UIButton }) {
+				button.tintColor = UIColor(red: 0.90, green: 0.82, blue: 1, alpha: 1)
+			}
+		}
+
+		title?.textColor = .white
+		title?.font = .systemFont(ofSize: 13, weight: .semibold)
 	}
 
 	private var originalCenter: CGPoint!
