@@ -10,7 +10,6 @@
 
 import UIKit
 import Eureka
-import OrbotKit
 
 class SettingsViewController: FixedFormViewController {
 
@@ -41,24 +40,6 @@ class SettingsViewController: FixedFormViewController {
 		navigationItem.leftBarButtonItem = UIBarButtonItem(
 			barButtonSystemItem: .done, target: self, action: #selector(dismsiss_))
 		navigationItem.title = NSLocalizedString("Settings", comment: "Scene title")
-
-		if Settings.useBuiltInTor == true {
-			form
-			+++ ButtonRow {
-				$0.title = String(format: NSLocalizedString("Switch back to %@", comment: "Placeholder is 'Orbot'"), OrbotKit.orbotName)
-			}
-			.onCellSelection { [weak self] _, _ in
-				TorManager.shared.stop()
-
-				AppDelegate.shared?.allOpenTabs.forEach({ $0.reinitWebView() })
-
-				Settings.useBuiltInTor = false
-
-				Task {
-					self?.view.sceneDelegate?.show(await OrbotManager.shared.checkStatus())
-				}
-			}
-		}
 
 		form
 		+++ defaultSecurityRow
@@ -271,55 +252,12 @@ class SettingsViewController: FixedFormViewController {
 			}
 		}
 
-
-		let section = Section(header: NSLocalizedString("Support", comment: "Section header"),
-							  footer: String(
-								format: NSLocalizedString("Version %@", comment: "Version info at end of scene"),
-								Bundle.main.version))
-
+		// Last section: only "About" and the version. No header.
 		form
-		+++ section
-		<<< ButtonRow() {
-			$0.title = NSLocalizedString("Report a Bug", comment: "Button title")
-			$0.cell.textLabel?.numberOfLines = 0
-		}
-		.cellUpdate { cell, _ in
-			cell.textLabel?.textAlignment = .natural
-		}
-		.onCellSelection { [weak self] _, _ in
-			self?.view.sceneDelegate?.browsingUi.addNewTab(
-				URL(string: "https://github.com/OnionBrowser/OnionBrowser/issues"),
-				transition: .notAnimated)
-
-			self?.dismsiss_()
-		}
-
-		if let url = URL(string: "itms-apps://itunes.apple.com/app/id519296448"),
-			UIApplication.shared.canOpenURL(url) {
-
-			section
-			<<< ButtonRow() {
-				$0.title = NSLocalizedString("Rate on App Store", comment: "Button title")
-				$0.cell.textLabel?.numberOfLines = 0
-			}
-			.cellUpdate { cell, _ in
-				cell.textLabel?.textAlignment = .natural
-			}
-			.onCellSelection { _, _ in
-				UIApplication.shared.open(url, options: [:])
-			}
-		}
-
-		section
-		<<< LabelRow() {
-			$0.title = NSLocalizedString("Fund Development", comment: "Button title")
-			$0.cell.textLabel?.numberOfLines = 0
-			$0.cell.accessoryType = .disclosureIndicator
-			$0.cell.selectionStyle = .default
-		}
-		.onCellSelection { [weak self] _, _ in
-			self?.navigationController?.pushViewController(DonationViewController(), animated: true)
-		}
+		+++ Section(header: "",
+					footer: String(
+						format: NSLocalizedString("Version %@", comment: "Version info at end of scene"),
+						Bundle.main.version))
 
 		<<< ButtonRow() {
 			$0.title = NSLocalizedString("About", comment: "Button title")
