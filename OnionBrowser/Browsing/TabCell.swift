@@ -33,6 +33,8 @@ class TabCell: UICollectionViewCell, UIGestureRecognizerDelegate {
 
 	private let glass = UIVisualEffectView(effect: UIBlurEffect(style: .systemUltraThinMaterialDark))
 
+	private let closeButton = UIButton(type: .system)
+
 	private lazy var panGr: UIPanGestureRecognizer = {
 		let gr = UIPanGestureRecognizer(target: self, action: #selector(pan(_:)))
 		gr.delegate = self
@@ -125,9 +127,28 @@ class TabCell: UICollectionViewCell, UIGestureRecognizerDelegate {
 			glass.isUserInteractionEnabled = false
 			header.insertSubview(glass, at: 0)
 
+			// Hide the close button from the layout file, we use our own on the right side.
 			for button in header.subviews.compactMap({ $0 as? UIButton }) {
-				button.tintColor = UIColor(red: 0.90, green: 0.82, blue: 1, alpha: 1)
+				button.isHidden = true
 			}
+
+			var config = UIButton.Configuration.plain()
+			config.image = UIImage(systemName: "xmark",
+								   withConfiguration: UIImage.SymbolConfiguration(pointSize: 13, weight: .bold))
+			config.baseForegroundColor = UIColor(red: 0.90, green: 0.82, blue: 1, alpha: 1)
+			config.contentInsets = .zero
+
+			closeButton.configuration = config
+			closeButton.addTarget(self, action: #selector(close), for: .touchUpInside)
+			closeButton.translatesAutoresizingMaskIntoConstraints = false
+			header.addSubview(closeButton)
+
+			NSLayoutConstraint.activate([
+				closeButton.trailingAnchor.constraint(equalTo: header.trailingAnchor, constant: -6),
+				closeButton.topAnchor.constraint(equalTo: header.topAnchor),
+				closeButton.bottomAnchor.constraint(equalTo: header.bottomAnchor),
+				closeButton.widthAnchor.constraint(equalToConstant: 40)
+			])
 		}
 
 		title?.textColor = .white
