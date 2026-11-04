@@ -21,8 +21,34 @@ workflows:
           find . -type f \( -name "*.swift" -o -name "*.m" -o -name "*.h" -o -name "*.strings" -o -name "*.stringsdict" -o -name "*.plist" -o -name "*.html" \) \
             -not -path "./.git/*" -not -path "./build/*" -not -path "*.xcodeproj/*" -print0 \
             | xargs -0 perl -pi -e 's/Onion Browser/Cibula/g; s/ONION BROWSER/CIBULA/g'
-          echo "Renamed. Remaining mentions:"
-          grep -rIl "Onion Browser" --include=*.strings --include=*.plist . 2>/dev/null | head -n 5
+      - name: Purple accent colors
+        script: |
+          write_color () {
+            cat > "$1/Contents.json" <<EOF
+          {
+            "colors" : [
+              {
+                "color" : {
+                  "color-space" : "srgb",
+                  "components" : { "alpha" : "1.000", "red" : "$2", "green" : "$3", "blue" : "$4" }
+                },
+                "idiom" : "universal"
+              }
+            ],
+            "info" : { "author" : "xcode", "version" : 1 }
+          }
+          EOF
+          }
+          FOUND=0
+          for d in $(find . -type d -iname "*accent*.colorset" -not -path "./Pods/*" -not -path "./build/*"); do
+            FOUND=1
+            case "$(basename "$d" | tr 'A-Z' 'a-z')" in
+              *light*) write_color "$d" 0.790 0.600 1.000 ;;
+              *) write_color "$d" 0.545 0.173 0.961 ;;
+            esac
+            echo "Recolored: $d"
+          done
+          [ "$FOUND" = "0" ] && echo "No accent colorsets found" || true
       - name: Build unsigned app
         script: |
           xcodebuild -quiet \
