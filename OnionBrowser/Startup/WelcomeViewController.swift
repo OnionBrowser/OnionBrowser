@@ -39,6 +39,8 @@ class WelcomeViewController: UIViewController {
 		// when this installation is an update.
 		Settings.updateAdvertiseLockdownMode = true
 
-		view.sceneDelegate?.show(OrbotManager.shared.checkStatus())
+		Task {
+			view.sceneDelegate?.show(await OrbotManager.shared.checkStatus())
+		}
 	}
 }

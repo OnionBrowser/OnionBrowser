@@ -1,5 +1,5 @@
 {
-  "originHash" : "657f9eb65d8546c3dd1c0c8e3ecba6e8415a51fd59f4d1e3500baed1d1fe87aa",
+  "originHash" : "4166510c4083f007b83ecf5edf095196e5639d74e3485ab0c5542eb6580492ef",
   "pins" : [
     {
       "identity" : "dtfoundation",
@@ -56,6 +56,15 @@
       }
     },
     {
+      "identity" : "orbotkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/guardianproject/orbotkit",
+      "state" : {
+        "revision" : "82838e4e36c70a08189feca0a9b3ef160ea19330",
+        "version" : "2.0.0"
+      }
+    },
+    {
       "identity" : "progresshud",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/relatedcode/ProgressHUD.git",
@@ -80,15 +89,6 @@
       "state" : {
         "revision" : "e7f85f4d3dd91ca9a1e94d3328aa1ed5120a8c0f",
         "version" : "2.14.3"
-      }
-    },
-    {
-      "identity" : "tor.framework",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/iCepa/Tor.framework",
-      "state" : {
-        "revision" : "6bb8b0ce479040edbcc14d02095c3a334ad6b3b7",
-        "version" : "409.15.2"
       }
     }
   ],

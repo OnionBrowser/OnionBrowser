@@ -119,9 +119,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 		BlurredSnapshot.remove()
 
-		let vc = OrbotManager.shared.checkStatus()
+		Task {
+			let vc = await OrbotManager.shared.checkStatus()
 
-		show(vc)
+			show(vc)
+		}
 	}
 
 	func windowScene(_ windowScene: UIWindowScene,
@@ -177,6 +179,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 	// MARK: Public Methods
 
+	@MainActor
 	func show(_ viewController: UIViewController? = nil, _ completion: ((Bool) -> Void)? = nil) {
 		if window == nil {
 			window = UIWindow(frame: UIScreen.main.bounds)

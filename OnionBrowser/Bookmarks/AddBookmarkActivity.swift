@@ -41,9 +41,9 @@ class AddBookmarkActivity: UIActivity {
 	}
 
 	override func perform() {
-		let tabs = AppDelegate.shared?.allOpenTabs
-
 		Task {
+			let tabs = await AppDelegate.shared?.allOpenTabs
+
 			for url in urls ?? [] {
 				let title = await MainActor.run {
 					// .title contains a call which needs the UI thread.

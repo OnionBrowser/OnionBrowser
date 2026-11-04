@@ -110,28 +110,24 @@ class StartTorViewController: UIViewController, BridgesConfDelegate {
 				}
 			}
 		} _: { [weak self] error in
-			Task {
+			Task { @MainActor in
 				guard error == nil else {
-					await MainActor.run {
-						self?.activityIndicator.isHidden = true
-						self?.retryBt.isHidden = false
-						self?.statusLb.text = (error ?? TorManager.Errors.noSocksAddr).localizedDescription
-						self?.statusLb.textColor = .systemRed
-						self?.statusLb.isHidden = false
+					self?.activityIndicator.isHidden = true
+					self?.retryBt.isHidden = false
+					self?.statusLb.text = (error ?? TorManager.Errors.noSocksAddr).localizedDescription
+					self?.statusLb.textColor = .systemRed
+					self?.statusLb.isHidden = false
 
-						UIAccessibility.post(notification: .announcement, argument: self?.statusLb.text)
-					}
+					UIAccessibility.post(notification: .announcement, argument: self?.statusLb.text)
 
 					return
 				}
 
-				await MainActor.run {
-					AppDelegate.shared?.allOpenTabs.forEach { tab in
-						tab.reinitWebView()
-					}
-
-					self?.view.sceneDelegate?.show(OrbotManager.shared.checkStatus())
+				AppDelegate.shared?.allOpenTabs.forEach { tab in
+					tab.reinitWebView()
 				}
+
+				self?.view.sceneDelegate?.show(await OrbotManager.shared.checkStatus())
 			}
 		}
 	}

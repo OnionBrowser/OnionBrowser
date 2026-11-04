@@ -96,6 +96,7 @@
 		A0B518963094DE680064131E /* DTFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = A0B518953094DE680064131E /* DTFoundation */; };
 		A0B519523094DF1F0064131E /* DTFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = A0B519513094DF1F0064131E /* DTFoundation */; };
 		A0B519553094DF7F0064131E /* MBProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = A0B519543094DF7F0064131E /* MBProgressHUD */; };
+		A0B8B4CE3094ED8000031932 /* CTor in Frameworks */ = {isa = PBXBuildFile; productRef = A0B8B4CD3094ED8000031932 /* CTor */; };
 		A0BF51ED23AFBF250096624A /* start.html in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51C723AFBF250096624A /* start.html */; };
 		A0BF51EF23AFBF250096624A /* SearchEngines.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51D123AFBF250096624A /* SearchEngines.plist */; };
 		A0BF51F423AFBF250096624A /* credits.html in Resources */ = {isa = PBXBuildFile; fileRef = A0BF51DE23AFBF250096624A /* credits.html */; };
@@ -162,12 +163,12 @@
 		A0CD76DE2EAB7A4400DA1AFB /* NcServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CD76DD2EAB7A4400DA1AFB /* NcServer.swift */; };
 		A0CD76E02EAB8BB500DA1AFB /* FolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CD76DF2EAB8BB500DA1AFB /* FolderViewController.swift */; };
 		A0D070FD275A513700922D70 /* FileManager+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D070FC275A513700922D70 /* FileManager+Helpers.swift */; };
-		A0D846A23093C406007886E8 /* CTor in Frameworks */ = {isa = PBXBuildFile; productRef = A0D846A13093C406007886E8 /* CTor */; };
 		A0D8470A3093C5BA007886E8 /* geoip in Resources */ = {isa = PBXBuildFile; fileRef = A0D847083093C5BA007886E8 /* geoip */; };
 		A0D8470B3093C5BA007886E8 /* geoip6 in Resources */ = {isa = PBXBuildFile; fileRef = A0D847093093C5BA007886E8 /* geoip6 */; };
 		A0D9008B24095F5C0046C9B3 /* AltSvcHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D9008A24095F5C0046C9B3 /* AltSvcHeader.swift */; };
 		A0DDCCCD2ECDCD7B00907CE1 /* MozillaBookmarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DDCCCC2ECDCD7B00907CE1 /* MozillaBookmarks.swift */; };
 		A0E8E8B12938CDFB00DC2A2F /* SearchEnginesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E8E8B02938CDFB00DC2A2F /* SearchEnginesViewController.swift */; };
+		A0EE558E3098EA6500A9D41D /* OrbotKit in Frameworks */ = {isa = PBXBuildFile; productRef = A0EE558D3098EA6500A9D41D /* OrbotKit */; };
 		A0F8BE8527C50549002D2999 /* FileManager+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D070FC275A513700922D70 /* FileManager+Helpers.swift */; };
 		A0F8BE8627C50586002D2999 /* AltSvcHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D9008A24095F5C0046C9B3 /* AltSvcHeader.swift */; };
 		A0FA965D2A015EBB005EDC3F /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0FA965B2A015EBB005EDC3F /* WelcomeViewController.xib */; };
@@ -545,11 +546,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				A0C3770E1F47342C0039198E /* CoreData.framework in Frameworks */,
+				A0EE558E3098EA6500A9D41D /* OrbotKit in Frameworks */,
 				019516D11B7D8B400078586A /* libz.tbd in Frameworks */,
 				A0B518963094DE680064131E /* DTFoundation in Frameworks */,
 				A0C4C93D307913200077EABC /* IPtProxyUI-iOS in Frameworks */,
+				A0B8B4CE3094ED8000031932 /* CTor in Frameworks */,
 				A0C4CAD23079240B0077EABC /* IPtProxyUI-iOS in Frameworks */,
-				A0D846A23093C406007886E8 /* CTor in Frameworks */,
 				A0B519553094DF7F0064131E /* MBProgressHUD in Frameworks */,
 				A0B518373094D9DB0064131E /* SDCAlertView in Frameworks */,
 				A09CCF83308629550014FB5F /* ImageRow in Frameworks */,
@@ -902,11 +904,12 @@
 				A0C4C93C307913200077EABC /* IPtProxyUI-iOS */,
 				A0C4CAD13079240B0077EABC /* IPtProxyUI-iOS */,
 				A09CCF82308629550014FB5F /* ImageRow */,
-				A0D846A13093C406007886E8 /* CTor */,
 				A0B518333094D7370064131E /* SwiftSoup */,
 				A0B518363094D9DB0064131E /* SDCAlertView */,
 				A0B518953094DE680064131E /* DTFoundation */,
 				A0B519543094DF7F0064131E /* MBProgressHUD */,
+				A0B8B4CD3094ED8000031932 /* CTor */,
+				A0EE558D3098EA6500A9D41D /* OrbotKit */,
 			);
 			productName = Endless;
 			productReference = 01801E921A32CA2A002B4718 /* OnionBrowser.app */;
@@ -944,7 +947,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1120;
-				LastUpgradeCheck = 2710;
+				LastUpgradeCheck = 2720;
 				ORGANIZATIONNAME = "Tigas Ventures, LLC (Mike Tigas)";
 				TargetAttributes = {
 					01801E911A32CA2A002B4718 = {
@@ -1018,11 +1021,12 @@
 			packageReferences = (
 				A0C4CAD03079240B0077EABC /* XCRemoteSwiftPackageReference "IPtProxyUI-ios" */,
 				A09CCF81308629550014FB5F /* XCRemoteSwiftPackageReference "ImageRow" */,
-				A0D846A03093C406007886E8 /* XCRemoteSwiftPackageReference "Tor" */,
 				A0B518323094D7370064131E /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 				A0B518353094D9DB0064131E /* XCRemoteSwiftPackageReference "SDCAlertView" */,
 				A0B518943094DE680064131E /* XCRemoteSwiftPackageReference "DTFoundation" */,
 				A0B519533094DF7F0064131E /* XCRemoteSwiftPackageReference "MBProgressHUD" */,
+				A0B8B4CC3094ED8000031932 /* XCLocalSwiftPackageReference "../Tor.framework" */,
+				A0EE558C3098EA6500A9D41D /* XCRemoteSwiftPackageReference "orbotkit" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 01801E931A32CA2A002B4718 /* Products */;
@@ -1866,6 +1870,13 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCLocalSwiftPackageReference section */
+		A0B8B4CC3094ED8000031932 /* XCLocalSwiftPackageReference "../Tor.framework" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../Tor.framework;
+		};
+/* End XCLocalSwiftPackageReference section */
+
 /* Begin XCRemoteSwiftPackageReference section */
 		A09CCF81308629550014FB5F /* XCRemoteSwiftPackageReference "ImageRow" */ = {
 			isa = XCRemoteSwiftPackageReference;
@@ -1915,12 +1926,12 @@
 				minimumVersion = 6.0.0;
 			};
 		};
-		A0D846A03093C406007886E8 /* XCRemoteSwiftPackageReference "Tor" */ = {
+		A0EE558C3098EA6500A9D41D /* XCRemoteSwiftPackageReference "orbotkit" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/iCepa/Tor.framework";
+			repositoryURL = "https://github.com/guardianproject/orbotkit";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 409.15.2;
+				minimumVersion = 2.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -1956,6 +1967,10 @@
 			package = A0B519533094DF7F0064131E /* XCRemoteSwiftPackageReference "MBProgressHUD" */;
 			productName = MBProgressHUD;
 		};
+		A0B8B4CD3094ED8000031932 /* CTor */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CTor;
+		};
 		A0C4C93C307913200077EABC /* IPtProxyUI-iOS */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = "IPtProxyUI-iOS";
@@ -1965,10 +1980,10 @@
 			package = A0C4CAD03079240B0077EABC /* XCRemoteSwiftPackageReference "IPtProxyUI-ios" */;
 			productName = "IPtProxyUI-iOS";
 		};
-		A0D846A13093C406007886E8 /* CTor */ = {
+		A0EE558D3098EA6500A9D41D /* OrbotKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A0D846A03093C406007886E8 /* XCRemoteSwiftPackageReference "Tor" */;
-			productName = CTor;
+			package = A0EE558C3098EA6500A9D41D /* XCRemoteSwiftPackageReference "orbotkit" */;
+			productName = OrbotKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
