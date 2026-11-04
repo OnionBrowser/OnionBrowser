@@ -67,4 +67,118 @@ class WelcomeViewController: UIViewController {
 		stack.setCustomSpacing(22, after: titleLabel)
 		stack.translatesAutoresizingMaskIntoConstraints = false
 
-		var config = UIButton.Config
+		var config = UIButton.Configuration.filled()
+		config.title = tr("Поехали", "Let's go")
+		config.baseBackgroundColor = Self.color(0x8B2CF5)
+		config.baseForegroundColor = .white
+		config.cornerStyle = .large
+		config.contentInsets = NSDirectionalEdgeInsets(top: 18, leading: 24, bottom: 18, trailing: 24)
+		config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
+			var outgoing = incoming
+			outgoing.font = .systemFont(ofSize: 18, weight: .bold)
+			return outgoing
+		}
+
+		let button = UIButton(configuration: config)
+		button.addTarget(self, action: #selector(nextTapped), for: .touchUpInside)
+		button.translatesAutoresizingMaskIntoConstraints = false
+
+		view.addSubview(rings)
+		view.addSubview(stack)
+		view.addSubview(button)
+
+		let guide = view.safeAreaLayoutGuide
+
+		NSLayoutConstraint.activate([
+			rings.topAnchor.constraint(equalTo: guide.topAnchor, constant: 56),
+			rings.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+			rings.widthAnchor.constraint(equalToConstant: 220),
+			rings.heightAnchor.constraint(equalToConstant: 220),
+
+			stack.topAnchor.constraint(equalTo: rings.bottomAnchor, constant: 32),
+			stack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 28),
+			stack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -28),
+
+			button.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+			button.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+			button.bottomAnchor.constraint(equalTo: guide.bottomAnchor, constant: -16),
+			button.heightAnchor.constraint(greaterThanOrEqualToConstant: 58)
+		])
+	}
+
+	override func viewDidLayoutSubviews() {
+		super.viewDidLayoutSubviews()
+
+		gradient.frame = view.bounds
+	}
+
+	@objc
+	func nextTapped() {
+		Settings.didWelcome = true
+
+		// Do not get in the way of the user after a fresh install.
+		// Advertising the new lockdown mode support will only be done,
+		// when this installation is an update.
+		Settings.updateAdvertiseLockdownMode = true
+
+		Task {
+			view.sceneDelegate?.show(await OrbotManager.shared.checkStatus())
+		}
+	}
+
+
+	// MARK: Private Methods
+
+	private func tr(_ ru: String, _ en: String) -> String {
+		(Locale.preferredLanguages.first ?? "").hasPrefix("ru") ? ru : en
+	}
+
+	private static func color(_ hex: UInt32) -> UIColor {
+		UIColor(red: CGFloat((hex >> 16) & 0xFF) / 255,
+				green: CGFloat((hex >> 8) & 0xFF) / 255,
+				blue: CGFloat(hex & 0xFF) / 255,
+				alpha: 1)
+	}
+}
+
+
+/// Concentric rings, like the layers of an onion.
+private class RingsView: UIView {
+
+	override init(frame: CGRect) {
+		super.init(frame: frame)
+
+		backgroundColor = .clear
+		isOpaque = false
+	}
+
+	required init?(coder: NSCoder) {
+		super.init(coder: coder)
+
+		backgroundColor = .clear
+		isOpaque = false
+	}
+
+	override func draw(_ rect: CGRect) {
+		guard let ctx = UIGraphicsGetCurrentContext() else {
+			return
+		}
+
+		let center = CGPoint(x: bounds.midX, y: bounds.midY)
+		let maxRadius = min(bounds.width, bounds.height) / 2 - 4
+
+		for i in 0..<4 {
+			let radius = maxRadius * (1 - CGFloat(i) * 0.22)
+			let alpha = 0.3 + 0.2 * CGFloat(i)
+
+			ctx.setStrokeColor(UIColor(red: 0.82, green: 0.62, blue: 1, alpha: alpha).cgColor)
+			ctx.setLineWidth(3)
+			ctx.addEllipse(in: CGRect(x: center.x - radius, y: center.y - radius, width: radius * 2, height: radius * 2))
+			ctx.strokePath()
+		}
+
+		let core = maxRadius * 0.2
+		ctx.setFillColor(UIColor(red: 0.55, green: 0.17, blue: 0.96, alpha: 1).cgColor)
+		ctx.fillEllipse(in: CGRect(x: center.x - core, y: center.y - core, width: core * 2, height: core * 2))
+	}
+}
