@@ -252,6 +252,18 @@ class SettingsViewController: FixedFormViewController {
 			}
 		}
 
+		<<< SwitchRow() {
+			$0.title = (Locale.preferredLanguages.first ?? "").hasPrefix("ru")
+				? "Объединить панели, как в Safari"
+				: "Merge bars like Safari"
+			$0.value = UserDefaults.standard.bool(forKey: BrowsingViewController.mergedBarsKey)
+			$0.cell.switchControl.onTintColor = .accent
+			$0.cell.textLabel?.numberOfLines = 0
+		}
+		.onChange { row in
+			UserDefaults.standard.set(row.value ?? false, forKey: BrowsingViewController.mergedBarsKey)
+		}
+
 		// Last section: only "About" and the version. No header.
 		form
 		+++ Section(header: "",
@@ -362,8 +374,8 @@ class CibulaAboutViewController: UIViewController {
 
 		let free = card("gift.fill",
 						tr("Абсолютно бесплатно", "Completely free"),
-						tr("Никаких подписок, рекламы и скрытых платежей. Cibula — свободный форк Onion Browser.",
-						   "No subscriptions, no ads, no hidden payments. Cibula is a free fork of Onion Browser."))
+						tr("Никаких подписок, рекламы и скрытых платежей.",
+						   "No subscriptions, no ads, no hidden payments."))
 
 		let design = card("paintbrush.fill",
 						  tr("Улучшенный дизайн", "Better design"),
@@ -375,9 +387,13 @@ class CibulaAboutViewController: UIViewController {
 						 tr("Убрано всё, что отвлекает. Весь трафик идёт через встроенный Tor, без дополнительных настроек.",
 							"Everything distracting is gone. All traffic goes through the built-in Tor, no extra setup."))
 
+		// The name of the original project is built from parts on purpose,
+		// so the build script which renames the app doesn't touch it.
+		let original = "Onion" + " " + "Browser"
+
 		let footer = UILabel()
-		footer.text = tr("Основано на открытом проекте Onion Browser.",
-						 "Based on the open source project Onion Browser.")
+		footer.text = tr("Основано на открытом проекте \(original).",
+						 "Based on the open source project \(original).")
 		footer.font = .systemFont(ofSize: 13, weight: .regular)
 		footer.textColor = UIColor.white.withAlphaComponent(0.5)
 		footer.textAlignment = .center
