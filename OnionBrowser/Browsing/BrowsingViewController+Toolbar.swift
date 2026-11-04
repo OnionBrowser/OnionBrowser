@@ -54,64 +54,37 @@ extension BrowsingViewController: UIScrollViewDelegate, UIGestureRecognizerDeleg
 
 	// MARK: Public Methods
 
-    func showToolbar(_ show: Bool = true, _ animated: Bool = true) {
-		if toolbar == nil || show != toolbar!.isHidden {
+	/**
+	Shows or hides the floating bottom bar by sliding it off the screen.
+	The page keeps its size, it scrolls under the bar anyway.
+	*/
+	func showToolbar(_ show: Bool = true, _ animated: Bool = true) {
+		guard let toolbar = toolbar else {
 			return
 		}
 
-        if show {
-            toolbar?.isHidden = false
-			toolbarHeightConstraint?.constant = toolbarHeight ?? 0
-			containerBottomConstraint2Superview?.isActive = false
-
-			// This goes away when deactivated for an unkown reason.
-			if containerBottomConstraint2Toolbar == nil {
-				containerBottomConstraint2Toolbar = container?.bottomAnchor.constraint(equalTo: toolbar!.topAnchor)
-			}
-
-			containerBottomConstraint2Toolbar?.isActive = true
-
-			// Fix for workaround when collapsing the toolbar. (See below.)
-			tabsBt?.setTitleColor(tabsBt?.tintColor, for: .normal)
-
-			if animated {
-				UIView.animate(withDuration: 0.25) {
-					self.view.layoutIfNeeded()
-				}
-			}
-        }
-        else {
-			toolbarHeightConstraint?.constant = 0
-
-			 // This goes away when deactivated for an unkown reason.
-            containerBottomConstraint2Toolbar?.isActive = false
-
-			containerBottomConstraint2Superview?.isActive = true
-
-			if animated {
-				// Workaround: If we don't do this, the tab count number stays roughly
-				// at the same place until the end of the animation, when it is
-				// removed suddenly.
-				tabsBt?.setTitleColor(.clear, for: .normal)
-
-				UIView.animate(withDuration: 0.25,
-							   animations: { self.view.layoutIfNeeded() })
-				{ [weak self] _ in
-					Task {
-						// Need to delay this a little, otherwise animation isn't seen,
-						// because isHidden becomes in effect before the animation,
-						// regardless, if we only do this in the completed callback.
-						try await Task.sleep(nanoseconds: 100_000_000)
-
-						await MainActor.run {
-							self?.toolbar?.isHidden = true
-						}
-					}
-				}
-			}
-			else {
-				toolbar?.isHidden = true
-			}
+		// Don't hide the bar while an address is typed.
+		if !show && (searchFl?.isFirstResponder ?? false) {
+			return
 		}
-    }
+
+		let currentlyShown = toolbar.transform.isIdentity
+
+		if show == currentlyShown {
+			return
+		}
+
+		let distance = toolbar.bounds.height + 60
+
+		let change = {
+			toolbar.transform = show ? .identity : CGAffineTransform(translationX: 0, y: distance)
+		}
+
+		if animated {
+			UIView.animate(withDuration: 0.25, animations: change)
+		}
+		else {
+			change()
+		}
+	}
 }
