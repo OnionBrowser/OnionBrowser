@@ -25,7 +25,12 @@ UICollectionViewDropDelegate, TabCellDelegate {
 		// Could be 0 or less, so secure against becoming negative with minimum width of smallest iOS device.
 		let width = (min(max(320, size.width), max(320, size.height)) - 8 * 2 /* left and right inset */) / 2 - 8 /* spacing */
 
-		return CGSize(width: width, height: width / 4 * 3)
+		// Tall cards, like in Safari.
+		return CGSize(width: width, height: width * 1.3)
+	}
+
+	private var overviewBackground: UIColor {
+		UIColor(red: 0.08, green: 0.02, blue: 0.16, alpha: 1)
 	}
 
 
@@ -40,7 +45,10 @@ UICollectionViewDropDelegate, TabCellDelegate {
 
 		self.tabsCollection?.reloadData()
 
-		view.backgroundColor = .darkGray
+		view.backgroundColor = overviewBackground
+		tabsCollection?.backgroundColor = .clear
+
+		styleTabsTools()
 
 		UIView.animate(withDuration: 0.5, animations: {
 			self.view.setNeedsLayout()
@@ -88,7 +96,10 @@ UICollectionViewDropDelegate, TabCellDelegate {
 			if indexPath.row > -1 && indexPath.row < tabs.count {
 				let tab = tabs[indexPath.row]
 
-				cell.header.backgroundColor = tab == currentTab ? .accentLight : .black
+				// Semi-transparent, so the glass effect of the header stays visible.
+				cell.header.backgroundColor = tab == currentTab
+					? UIColor(red: 0.55, green: 0.17, blue: 0.96, alpha: 0.6)
+					: UIColor(red: 0.10, green: 0.03, blue: 0.20, alpha: 0.6)
 				cell.title.text = tab.title
 
 				var size = cellSize
@@ -192,6 +203,28 @@ UICollectionViewDropDelegate, TabCellDelegate {
 
 
 	// MARK: Private Methods
+
+	private func styleTabsTools() {
+		let tools: UIView? = tabsTools
+
+		guard let bar = tools as? UIToolbar else {
+			return
+		}
+
+		bar.tintColor = UIColor(red: 0.85, green: 0.70, blue: 1, alpha: 1)
+
+		// On iOS 26 and newer the system draws its own glass bar. Leave that alone.
+		if #unavailable(iOS 26.0) {
+			let appearance = UIToolbarAppearance()
+			appearance.configureWithTransparentBackground()
+			appearance.backgroundEffect = UIBlurEffect(style: .systemUltraThinMaterialDark)
+			appearance.backgroundColor = UIColor(red: 0.16, green: 0.04, blue: 0.32, alpha: 0.35)
+
+			bar.standardAppearance = appearance
+			bar.scrollEdgeAppearance = appearance
+			bar.compactAppearance = appearance
+		}
+	}
 
 	private func hideOverview(completion: ((_ finished: Bool) -> Void)?) {
 		for tab in tabs {
