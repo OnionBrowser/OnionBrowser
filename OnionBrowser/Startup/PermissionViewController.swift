@@ -184,7 +184,10 @@ class PermissionViewController: UIViewController, WhyDelegate {
 	@IBAction
 	func action() {
 		Task {
-			await OrbotKit.shared.open(.requestApiToken(needBypass: false, callback: URL(string: "onionbrowser:token-callback")))
+			await OrbotKit.shared.open(.requestApiToken(
+				needBypass: false,
+				callback: URL(string: "https://onionbrowser.com/orbot/token-callback")
+			))
 		}
 	}
 
