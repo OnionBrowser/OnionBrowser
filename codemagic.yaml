@@ -71,6 +71,12 @@ workflows:
       - name: Package IPA
         script: |
           APP=$(find build/Build/Products/Release-iphoneos -maxdepth 1 -name "*.app" | head -n1)
+          for P in "$APP/Info.plist" "$APP"/PlugIns/*.appex/Info.plist "$APP"/Extensions/*.appex/Info.plist; do
+            [ -f "$P" ] || continue
+            /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString 1.0" "$P" 2>/dev/null || /usr/libexec/PlistBuddy -c "Add :CFBundleShortVersionString string 1.0" "$P"
+            /usr/libexec/PlistBuddy -c "Set :CFBundleVersion 1" "$P" 2>/dev/null || /usr/libexec/PlistBuddy -c "Add :CFBundleVersion string 1" "$P"
+            echo "Version patched: $P"
+          done
           mkdir Payload
           cp -R "$APP" Payload/
           zip -qry Cibula.ipa Payload
