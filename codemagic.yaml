@@ -1,0 +1,85 @@
+workflows:
+  cibula-ipa:
+    name: Cibula IPA
+    instance_type: mac_mini_m2
+    max_build_duration: 60
+    environment:
+      xcode: latest
+      cocoapods: default
+    scripts:
+      - name: Install pods
+        script: pod install --repo-update
+      - name: Fetch Tor.framework
+        script: git clone --depth 1 https://github.com/iCepa/Tor.framework.git ../Tor.framework
+      - name: Prepare version.h
+        script: |
+          if [ ! -f OnionBrowser/version.h ]; then
+            printf '/* placeholder generated in CI */\n' > OnionBrowser/version.h
+          fi
+      - name: Rename to Cibula
+        script: |
+          find . -type f \( -name "*.swift" -o -name "*.m" -o -name "*.h" -o -name "*.strings" -o -name "*.stringsdict" -o -name "*.plist" -o -name "*.html" \) \
+            -not -path "./.git/*" -not -path "./build/*" -not -path "*.xcodeproj/*" -print0 \
+            | xargs -0 perl -pi -e 's/Onion Browser/Cibula/g; s/ONION BROWSER/CIBULA/g'
+      - name: Purple accent colors
+        script: |
+          write_color () {
+            cat > "$1/Contents.json" <<EOF
+          {
+            "colors" : [
+              {
+                "color" : {
+                  "color-space" : "srgb",
+                  "components" : { "alpha" : "1.000", "red" : "$2", "green" : "$3", "blue" : "$4" }
+                },
+                "idiom" : "universal"
+              }
+            ],
+            "info" : { "author" : "xcode", "version" : 1 }
+          }
+          EOF
+          }
+          FOUND=0
+          for d in $(find . -type d -iname "*accent*.colorset" -not -path "./Pods/*" -not -path "./build/*"); do
+            FOUND=1
+            case "$(basename "$d" | tr 'A-Z' 'a-z')" in
+              *light*) write_color "$d" 0.790 0.600 1.000 ;;
+              *) write_color "$d" 0.545 0.173 0.961 ;;
+            esac
+            echo "Recolored: $d"
+          done
+          [ "$FOUND" = "0" ] && echo "No accent colorsets found" || true
+      - name: Build unsigned app
+        script: |
+          xcodebuild -quiet \
+            -workspace OnionBrowser.xcworkspace \
+            -scheme OnionBrowser \
+            -configuration Release \
+            -sdk iphoneos \
+            -destination 'generic/platform=iOS' \
+            -derivedDataPath build \
+            -skipPackagePluginValidation -skipMacroValidation \
+            MARKETING_VERSION=1.0 CURRENT_PROJECT_VERSION=1 \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" \
+            build > build.log 2>&1
+          STATUS=$?
+          if [ $STATUS -ne 0 ]; then
+            echo "===== ERRORS ====="
+            grep -n -E "error:|BUILD FAILED" build.log | head -n 20
+            exit $STATUS
+          fi
+      - name: Package IPA
+        script: |
+          APP=$(find build/Build/Products/Release-iphoneos -maxdepth 1 -name "*.app" | head -n1)
+          for P in "$APP/Info.plist" "$APP"/PlugIns/*.appex/Info.plist "$APP"/Extensions/*.appex/Info.plist; do
+            [ -f "$P" ] || continue
+            /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString 1.0" "$P" 2>/dev/null || /usr/libexec/PlistBuddy -c "Add :CFBundleShortVersionString string 1.0" "$P"
+            /usr/libexec/PlistBuddy -c "Set :CFBundleVersion 1" "$P" 2>/dev/null || /usr/libexec/PlistBuddy -c "Add :CFBundleVersion string 1" "$P"
+            echo "Version patched: $P"
+          done
+          mkdir Payload
+          cp -R "$APP" Payload/
+          zip -qry Cibula.ipa Payload
+          cp Cibula.ipa Cibula-ipa.zip
+    artifacts:
+      - Cibula-ipa.zip

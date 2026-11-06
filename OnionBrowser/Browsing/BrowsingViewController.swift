@@ -20,8 +20,26 @@ class BrowsingViewController: UIViewController, TabDelegate {
 		case inBackground
 	}
 
+	/// UserDefaults key of the "merge bars like Safari" switch in the settings.
+	static let mergedBarsKey = "CibulaMergedBars"
+
 	private static let reloadImg = UIImage(systemName: "arrow.clockwise")
 	private static let stopImg = UIImage(systemName: "xmark")
+
+	private let barGlassTag = 7702
+	private let backdropTag = 7703
+
+	/// Floating bars (iPhone only).
+	private var floating = false
+
+	/// Address bar and toolbar are one capsule at the bottom.
+	private var merged = false
+
+	private var topBarTopConstraint: NSLayoutConstraint?
+	private var toolbarBottomConstraint: NSLayoutConstraint?
+
+	private let edgeGap: CGFloat = 6
+	private let dockBottomGap: CGFloat = 16
 
 	@IBOutlet weak var searchBar: UIView?
 	@IBOutlet weak var searchBarHeightConstraint: NSLayoutConstraint? {
@@ -222,11 +240,15 @@ class BrowsingViewController: UIViewController, TabDelegate {
 			tab.add(to: container)
 		}
 
+		styleChrome()
+
 		updateChrome()
 	}
 
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
+
+		updateFloatingMetrics()
 
 		let nc = NotificationCenter.default
 
@@ -242,6 +264,8 @@ class BrowsingViewController: UIViewController, TabDelegate {
 
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
+
+		updateFloatingMetrics()
 
 		// We made it this far, remove lock on previous startup.
 		Settings.stateRestoreLock = false
@@ -416,11 +440,15 @@ class BrowsingViewController: UIViewController, TabDelegate {
 			liveSearchVc.tableView.contentInset = insets
 			liveSearchVc.tableView.scrollIndicatorInsets = insets
 		}
+
+		liftDock(notification, up: true)
 	}
 
 	@objc func keyboardWillBeHidden(notification: Notification) {
 		liveSearchVc.tableView.contentInset = .zero
 		liveSearchVc.tableView.scrollIndicatorInsets = .zero
+
+		liftDock(notification, up: false)
 	}
 
 
@@ -428,6 +456,8 @@ class BrowsingViewController: UIViewController, TabDelegate {
 
 	func updateChrome() {
 		debug("#updateChrome progress=\(currentTab?.progress ?? 1)")
+
+		updateFloatingMetrics()
 
 		if let progress = progress {
 			progress.progress = currentTab?.progress ?? 1
@@ -653,8 +683,364 @@ class BrowsingViewController: UIViewController, TabDelegate {
 		Log.debug(for: Self.self, msg)
 	}
 
+	/**
+	Keeps the page clear of the floating bars: the page itself fills the whole screen
+	and scrolls under the glass, only its safe area is reduced by the bars.
+	*/
+	func updateFloatingMetrics(overview: Bool? = nil) {
+		guard floating else {
+			return
+		}
+
+		let inOverview = overview ?? !(tabsCollection?.isHidden ?? true)
+
+		var insets = UIEdgeInsets.zero
+
+		if !inOverview {
+			let systemBottom = view.window?.safeAreaInsets.bottom ?? 0
+			let dockHeight = toolbarHeightConstraint?.constant ?? 49
+
+			insets.bottom = max(0, dockBottomGap + dockHeight + 8 - systemBottom)
+
+			if !merged {
+				let barHeight: CGFloat = searchBarHeight ?? 50
+
+				insets.top = edgeGap + barHeight + 10
+			}
+		}
+
+		if additionalSafeAreaInsets != insets {
+			additionalSafeAreaInsets = insets
+		}
+
+		// The top bar sits relative to the safe area, so take our own extra inset out again.
+		topBarTopConstraint?.constant = edgeGap - additionalSafeAreaInsets.top
+	}
+
 
 	// MARK: Private Methods
+
+	/**
+	Gives the top and bottom bars a floating liquid glass look, like Safari.
+	Optionally merges both bars into one at the bottom.
+	*/
+	private func styleChrome() {
+		let lilac = UIColor(red: 0.90, green: 0.82, blue: 1, alpha: 1)
+
+		let isPhone = UIDevice.current.userInterfaceIdiom != .pad
+
+		merged = isPhone && toolbar != nil && UserDefaults.standard.bool(forKey: Self.mergedBarsKey)
+		floating = isPhone && searchBar != nil && toolbar != nil && container != nil
+
+		addBackdrop()
+
+		if floating, let sb = searchBar, let tb = toolbar {
+			searchBarHeightConstraint?.constant = 50
+			searchBarHeight = 50
+
+			if merged {
+				moveAddressBarIntoToolbar()
+			}
+
+			rebuildVerticalLayout()
+
+			if !merged {
+				insetHorizontally(sb, by: 12)
+				addGlass(to: sb)
+			}
+
+			insetHorizontally(tb, by: 12)
+			addGlass(to: tb)
+
+			hideHairlines(in: sb)
+			hideHairlines(in: tb)
+
+			if let progress = progress {
+				view.bringSubviewToFront(progress)
+			}
+
+			if !merged {
+				view.bringSubviewToFront(sb)
+			}
+
+			view.bringSubviewToFront(tb)
+		}
+		else if let sb = searchBar {
+			sb.backgroundColor = .clear
+			sb.overrideUserInterfaceStyle = .dark
+		}
+
+		searchBar?.tintColor = lilac
+		toolbar?.tintColor = lilac
+		mainTools?.tintColor = lilac
+		tabsBt?.tintColor = lilac
+		tabsBt?.setTitleColor(lilac, for: .normal)
+
+		// The box around the address field comes from the layout file. Remove it,
+		// the capsule is the box now. Inside the shared capsule it stays as a soft pill.
+		if let box = searchFl?.superview {
+			box.backgroundColor = merged ? UIColor.white.withAlphaComponent(0.12) : .clear
+			box.layer.cornerRadius = merged ? 15 : 8
+			box.layer.cornerCurve = .continuous
+		}
+
+		if let field = searchFl {
+			field.overrideUserInterfaceStyle = .dark
+			field.borderStyle = .none
+			field.backgroundColor = .clear
+			field.textColor = .white
+			field.tintColor = lilac
+		}
+
+		reloadBt.tintColor = lilac
+
+		// The shield and the onion are too big for the slim capsule.
+		securityBt?.transform = CGAffineTransform(scaleX: 0.72, y: 0.72)
+		torBt?.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+		torBt?.tintColor = lilac
+
+		view.layoutIfNeeded()
+	}
+
+	/// Dark purple background, visible in the tab overview.
+	private func addBackdrop() {
+		if view.viewWithTag(backdropTag) != nil {
+			return
+		}
+
+		let backdrop = GradientBackdropView()
+		backdrop.tag = backdropTag
+		backdrop.isUserInteractionEnabled = false
+		backdrop.translatesAutoresizingMaskIntoConstraints = false
+		view.insertSubview(backdrop, at: 0)
+
+		NSLayoutConstraint.activate([
+			backdrop.topAnchor.constraint(equalTo: view.topAnchor),
+			backdrop.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+			backdrop.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+			backdrop.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+		])
+	}
+
+	/**
+	Moves the address bar from the top into the bottom bar, above the buttons.
+	The bottom bar grows by the height of the address bar.
+	*/
+	private func moveAddressBarIntoToolbar() {
+		guard let top = searchBar, let bottom = toolbar else {
+			return
+		}
+
+		let topHeight: CGFloat = 50
+
+		top.removeFromSuperview()
+		bottom.addSubview(top)
+		top.translatesAutoresizingMaskIntoConstraints = false
+		top.backgroundColor = .clear
+
+		NSLayoutConstraint.activate([
+			top.topAnchor.constraint(equalTo: bottom.topAnchor, constant: 4),
+			top.leadingAnchor.constraint(equalTo: bottom.leadingAnchor),
+			top.trailingAnchor.constraint(equalTo: bottom.trailingAnchor)
+		])
+
+		let newHeight = (toolbarHeightConstraint?.constant ?? 49) + topHeight + 4
+		toolbarHeight = newHeight
+		toolbarHeightConstraint?.constant = newHeight
+
+		// The buttons stay in the lower part.
+		mainTools?.isLayoutMarginsRelativeArrangement = true
+		mainTools?.layoutMargins = UIEdgeInsets(top: topHeight + 4, left: 0, bottom: 0, right: 0)
+	}
+
+	/**
+	Lets go of the old vertical chain (top bar - page - bottom bar) and builds a new one:
+	the page fills the whole screen, the bars float above it.
+	*/
+	private func rebuildVerticalLayout() {
+		guard let sb = searchBar, let tb = toolbar, let ct = container else {
+			return
+		}
+
+		var obsolete = [NSLayoutConstraint]()
+
+		for constraint in view.constraints where constraint.isActive {
+			if linked(constraint, ct, sb) || linked(constraint, ct, progress) || linked(constraint, tb, ct) {
+				obsolete.append(constraint)
+			}
+			else if edgeAttribute(of: constraint, for: sb) == .top || edgeAttribute(of: constraint, for: tb) == .bottom {
+				obsolete.append(constraint)
+			}
+		}
+
+		NSLayoutConstraint.deactivate(obsolete)
+
+		let toolbarBottom = tb.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -dockBottomGap)
+		toolbarBottomConstraint = toolbarBottom
+
+		NSLayoutConstraint.activate([
+			ct.topAnchor.constraint(equalTo: view.topAnchor),
+			ct.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+			toolbarBottom
+		])
+
+		if merged {
+			progress?.bottomAnchor.constraint(equalTo: tb.topAnchor, constant: -6).isActive = true
+		}
+		else {
+			let top = sb.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: edgeGap)
+			topBarTopConstraint = top
+			top.isActive = true
+
+			progress?.topAnchor.constraint(equalTo: sb.bottomAnchor, constant: 4).isActive = true
+		}
+	}
+
+	/// Pulls a bar away from the left and right screen edges, if the layout pins it there.
+	private func insetHorizontally(_ bar: UIView, by inset: CGFloat) {
+		for constraint in view.constraints where constraint.isActive {
+			let barIsFirst = constraint.firstItem === bar
+			let barIsSecond = constraint.secondItem === bar
+
+			if barIsFirst == barIsSecond {
+				continue
+			}
+
+			let other: AnyObject? = barIsFirst ? constraint.secondItem : constraint.firstItem
+			let attribute = barIsFirst ? constraint.firstAttribute : constraint.secondAttribute
+			let otherAttribute = barIsFirst ? constraint.secondAttribute : constraint.firstAttribute
+
+			guard attribute == otherAttribute, isScreenEdge(other) else {
+				continue
+			}
+
+			var inward: CGFloat = 0
+
+			switch attribute {
+			case .leading, .left:
+				inward = inset
+
+			case .trailing, .right:
+				inward = -inset
+
+			default:
+				break
+			}
+
+			if inward != 0 {
+				constraint.constant += barIsFirst ? inward : -inward
+			}
+		}
+	}
+
+	/// Puts a rounded glass capsule behind the content of a bar.
+	private func addGlass(to bar: UIView) {
+		if bar.viewWithTag(barGlassTag) != nil {
+			return
+		}
+
+		bar.backgroundColor = .clear
+		bar.overrideUserInterfaceStyle = .dark
+
+		let effect: UIVisualEffect
+
+		if #available(iOS 26.0, *) {
+			effect = UIGlassEffect()
+		}
+		else {
+			effect = UIBlurEffect(style: .systemUltraThinMaterialDark)
+		}
+
+		let glass = CapsuleGlassView(effect: effect)
+		glass.tag = barGlassTag
+		glass.frame = bar.bounds
+		glass.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+		glass.isUserInteractionEnabled = false
+		glass.clipsToBounds = true
+		glass.layer.cornerCurve = .continuous
+		glass.layer.borderWidth = 0.5
+		glass.layer.borderColor = UIColor(red: 0.85, green: 0.70, blue: 1, alpha: 0.35).cgColor
+
+		// Light purple tint on top of the glass.
+		glass.contentView.backgroundColor = UIColor(red: 0.30, green: 0.08, blue: 0.55, alpha: 0.20)
+
+		bar.insertSubview(glass, at: 0)
+	}
+
+	/// The thin grey lines of the old flat bars.
+	private func hideHairlines(in bar: UIView) {
+		for sub in bar.subviews where sub.tag != barGlassTag {
+			let isLine = sub.constraints.contains {
+				$0.firstAttribute == .height && $0.secondItem == nil && $0.constant <= 1
+			}
+
+			if isLine {
+				sub.isHidden = true
+			}
+		}
+	}
+
+	/// In the shared capsule the bar must rise above the keyboard while typing an address.
+	private func liftDock(_ notification: Notification, up: Bool) {
+		guard merged, let constraint = toolbarBottomConstraint else {
+			return
+		}
+
+		var offset = dockBottomGap
+
+		if up {
+			guard searchFl?.isFirstResponder ?? false,
+				  let frame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect
+			else {
+				return
+			}
+
+			let height = max(0, view.bounds.height - view.convert(frame, from: nil).minY)
+
+			offset = height + 8
+		}
+
+		constraint.constant = -offset
+
+		let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double ?? 0.25
+
+		UIView.animate(withDuration: duration) {
+			self.view.layoutIfNeeded()
+		}
+	}
+
+	private func linked(_ constraint: NSLayoutConstraint, _ a: UIView?, _ b: UIView?) -> Bool {
+		guard let a = a, let b = b else {
+			return false
+		}
+
+		return (constraint.firstItem === a && constraint.secondItem === b)
+			|| (constraint.firstItem === b && constraint.secondItem === a)
+	}
+
+	private func edgeAttribute(of constraint: NSLayoutConstraint, for bar: UIView) -> NSLayoutConstraint.Attribute? {
+		if constraint.firstItem === bar, isScreenEdge(constraint.secondItem) {
+			return constraint.firstAttribute
+		}
+
+		if constraint.secondItem === bar, isScreenEdge(constraint.firstItem) {
+			return constraint.secondAttribute
+		}
+
+		return nil
+	}
+
+	private func isScreenEdge(_ item: AnyObject?) -> Bool {
+		if let item = item as? UIView {
+			return item === view
+		}
+
+		if let guide = item as? UILayoutGuide {
+			return guide.owningView === view
+		}
+
+		return false
+	}
 
 	/**
 	Update and center tab count in `tabsBt`.
@@ -701,5 +1087,48 @@ class BrowsingViewController: UIViewController, TabDelegate {
 			reloadBt.setImage(BrowsingViewController.reloadImg, for: .normal)
 			reloadBt.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
 		}
+	}
+}
+
+
+/// Glass view with fully rounded ends.
+private final class CapsuleGlassView: UIVisualEffectView {
+
+	override func layoutSubviews() {
+		super.layoutSubviews()
+
+		layer.cornerRadius = min(bounds.height / 2, 28)
+	}
+}
+
+
+/// Dark purple gradient, drawn behind everything.
+private final class GradientBackdropView: UIView {
+
+	override class var layerClass: AnyClass {
+		CAGradientLayer.self
+	}
+
+	override init(frame: CGRect) {
+		super.init(frame: frame)
+
+		configure()
+	}
+
+	required init?(coder: NSCoder) {
+		super.init(coder: coder)
+
+		configure()
+	}
+
+	private func configure() {
+		guard let gradient = layer as? CAGradientLayer else {
+			return
+		}
+
+		gradient.colors = [UIColor(red: 0.05, green: 0.00, blue: 0.10, alpha: 1).cgColor,
+						   UIColor(red: 0.16, green: 0.04, blue: 0.32, alpha: 1).cgColor]
+		gradient.startPoint = CGPoint(x: 0.2, y: 0)
+		gradient.endPoint = CGPoint(x: 0.8, y: 1)
 	}
 }
