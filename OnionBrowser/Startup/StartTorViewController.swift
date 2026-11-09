@@ -93,20 +93,18 @@ class StartTorViewController: UIViewController, BridgesConfDelegate {
 				return
 			}
 
-			Task {
-				await MainActor.run {
-					self?.progressView.setProgress(Float(progress) / 100, animated: true)
+			Task { @MainActor in
+				self?.progressView.setProgress(Float(progress) / 100, animated: true)
 
-					UIAccessibility.post(notification: .announcement, argument: String(format: "%d%%", progress))
+				UIAccessibility.post(notification: .announcement, argument: String(format: "%d%%", progress))
 
-					if let summary = summary, !summary.isEmpty {
-						self?.statusLb.text = summary
-						self?.statusLb.textColor = .label
-						self?.statusLb.isHidden = false
-					}
-					else {
-						self?.statusLb.isHidden = true
-					}
+				if let summary = summary, !summary.isEmpty {
+					self?.statusLb.text = summary
+					self?.statusLb.textColor = .label
+					self?.statusLb.isHidden = false
+				}
+				else {
+					self?.statusLb.isHidden = true
 				}
 			}
 		} _: { [weak self] error in
