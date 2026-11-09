@@ -1,1 +1,3 @@
-- Oppdaterte Tor til versjon 0.4.9.15.
+- Tor er oppdatert til versjon 0.4.9.16.
+- Lyrebird er oppdatert til versjon 0.10.0.
+- Snowflake er oppdatert til versjon 2.15.3.

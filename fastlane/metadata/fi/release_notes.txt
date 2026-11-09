@@ -1,1 +1,3 @@
-- Päivitin Torin versioon 0.4.9.15.
+- Tor päivitettiin versioon 0.4.9.16.
+- Lyrebird päivitettiin versioon 0.10.0.
+- Snowflake päivitettiin versioon 2.15.3.

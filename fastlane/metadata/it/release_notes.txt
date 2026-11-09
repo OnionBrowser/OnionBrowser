@@ -1,1 +1,3 @@
-- Ho aggiornato Tor alla versione 0.4.9.15.
+- Tor è stato aggiornato alla versione 0.4.9.16.
+- Lyrebird è stato aggiornato alla versione 0.10.0.
+- Snowflake è stato aggiornato alla versione 2.15.3.

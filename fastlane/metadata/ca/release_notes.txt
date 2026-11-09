@@ -1,1 +1,3 @@
-- Tor actualitzat a la versió 0.4.9.15.
+- Actualitzat Tor a 0.4.9.16.
+- Actualitzat Lyrebird a 0.10.0.
+- Actualitzat Snowflake a 2.15.3.

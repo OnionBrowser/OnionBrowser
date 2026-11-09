@@ -1,1 +1,3 @@
-- A Tor-t 0.4.9.15-ös verzióra frissítettem.
+- A Tor-t 0.4.9.16-os verzióra frissítettük.
+- A Lyrebird-et 0.10.0-s verzióra frissítettük.
+- A Snowflake-et 2.15.3-as verzióra frissítettük.

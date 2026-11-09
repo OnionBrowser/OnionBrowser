@@ -1,1 +1,3 @@
-- Aktualizoval jsem Tor na verzi 0.4.9.15.
+- Aktualizován Tor na verzi 0.4.9.16.
+- Aktualizován Lyrebird na verzi 0.10.0.
+- Aktualizován Snowflake na verzi 2.15.3.

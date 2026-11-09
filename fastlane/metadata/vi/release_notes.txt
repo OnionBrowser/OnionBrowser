@@ -1,1 +1,3 @@
-- Đã cập nhật Tor lên phiên bản 0.4.9.15.
+- Đã cập nhật Tor lên phiên bản 0.4.9.16.
+- Đã cập nhật Lyrebird lên phiên bản 0.10.0.
+- Đã cập nhật Snowflake lên phiên bản 2.15.3.
