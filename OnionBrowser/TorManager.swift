@@ -100,18 +100,12 @@ class TorManager {
 	}
 
 	func start(_ transport: Transport,
-			   _ progressCallback: @escaping (_ progress: Int?, _ summary: String?) -> Void,
-			   _ completion: @escaping (Error?) -> Void)
+			   _ progressCallback: @escaping (_ progress: Int?, _ summary: String?) -> Void) async throws
 	{
 		self.transport = transport
 
 		if !torRunning {
-			do {
-				try startTransport()
-			}
-			catch {
-				return completion(error)
-			}
+			try startTransport()
 
 			torConf = getTorConf()
 
@@ -124,20 +118,20 @@ class TorManager {
 			torThread?.start()
 		}
 		else {
-			updateConfig(transport)
+			await updateConfig(transport)
 		}
 
-		controllerQueue.asyncAfter(deadline: .now() + 0.8) {
-			if self.torController == nil, let url = self.torConf?.controlPortFile {
-				self.torController = TorController(controlPortFile: url)
+		do {
+			try await Task.sleep(nanoseconds: UInt64(0.65 * Double(NSEC_PER_SEC)))
+
+			if torController == nil, let url = torConf?.controlPortFile {
+				torController = TorController(controlPortFile: url)
 			}
 
-			guard let torController = self.torController else {
-				self.log("#startTunnel error=\(Errors.noTorController)")
+			guard let torController else {
+				log("#startTunnel error=\(Errors.noTorController)")
 
-				self.stop()
-
-				return completion(Errors.noTorController)
+				throw Errors.noTorController
 			}
 
 			if !torController.isConnected {
@@ -151,17 +145,15 @@ class TorManager {
 						break
 					}
 					catch let error {
-						self.log("#startTunnel error=\(error)")
+						log("#startTunnel error=\(error)")
 						err = error
 
-						Thread.sleep(forTimeInterval: 0.25)
+						try? await Task.sleep(nanoseconds: UInt64(0.25 * Double(NSEC_PER_SEC)))
 					}
 				}
 
 				if let err {
-					self.stop()
-
-					return completion(err)
+					throw err
 				}
 			}
 
@@ -169,88 +161,90 @@ class TorManager {
 
 			// Why did this become unstable?
 			for _ in 0 ..< 3 {
-				cookie = self.torConf?.cookie
+				cookie = torConf?.cookie
 
 				if cookie != nil {
 					break
 				}
 
-				Thread.sleep(forTimeInterval: 0.25)
+				try? await Task.sleep(nanoseconds: UInt64(0.25 * Double(NSEC_PER_SEC)))
 			}
 
 			guard let cookie = cookie else {
 				self.log("#startTunnel cookie unreadable")
 
-				self.stop()
-
-				return completion(Errors.cookieUnreadable)
+				throw Errors.cookieUnreadable
 			}
 
-			torController.authenticate(with: cookie) { success, error in
-				if let error = error {
-					self.log("#startTunnel error=\(error)")
+			try await torController.authenticate(with: cookie)
 
-					self.stop()
+			torController.removeObserver(progressObs)
+			progressObs = nil
 
-					return completion(error)
-				}
+			progressObs = torController.addObserver(forStatusEvents: {
+				(type, severity, action, arguments) -> Bool in
 
-				self.progressObs = torController.addObserver(forStatusEvents: {
-					[weak self] (type, severity, action, arguments) -> Bool in
+				if type == "STATUS_CLIENT" && action == "BOOTSTRAP" {
+					self.log("#startTunnel arguments=\(arguments?.description ?? "(nil)")")
 
-					if type == "STATUS_CLIENT" && action == "BOOTSTRAP" {
-						self?.log("#startTunnel arguments=\(arguments?.description ?? "(nil)")")
+					var progress: Int? = nil
 
-						var progress: Int? = nil
-
-						if let p = arguments?["PROGRESS"] {
-							progress = Int(p)
-						}
-
-						progressCallback(progress, arguments?["SUMMARY"])
-
-						if progress ?? 0 >= 100 {
-							torController.removeObserver(self?.progressObs)
-						}
-
-						return true
+					if let p = arguments?["PROGRESS"] {
+						progress = Int(p)
 					}
 
-					return false
-				})
+					progressCallback(progress, arguments?["SUMMARY"])
 
-				self.establishedObs = torController.addObserver(forCircuitEstablished: { [weak self] established in
+					if progress ?? 0 >= 100 {
+						torController.removeObserver(self.progressObs)
+						self.progressObs = nil
+					}
+
+					return true
+				}
+
+				return false
+			})
+
+			torController.removeObserver(establishedObs)
+			establishedObs = nil
+
+			try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
+				establishedObs = torController.addObserver(forCircuitEstablished: { established in
 					guard established else {
 						return
 					}
 
-					torController.removeObserver(self?.establishedObs)
-					torController.removeObserver(self?.progressObs)
-
-					Task {
-						let response = await torController.info(forKeys: ["net/listeners/socks"])
-
-						guard let parts = response.first?.split(separator: ":"),
-							  let host = parts.first,
-							  let host = IPv4Address(String(host)),
-							  let port = parts.last,
-							  let port = NWEndpoint.Port(String(port))
-						else {
-							self?.stop()
-
-							return completion(Errors.noSocksAddr)
-						}
-
-						self?.torSocks5 = .hostPort(host: NWEndpoint.Host.ipv4(host), port: port)
-
-						completion(nil)
-					}
+					continuation.resume(returning: ())
 				})
 			}
+
+			torController.removeObserver(establishedObs)
+			establishedObs = nil
+			torController.removeObserver(progressObs)
+			progressObs = nil
+
+			let response = await torController.info(forKeys: ["net/listeners/socks"])
+
+			guard let parts = response.first?.split(separator: ":"),
+				  let host = parts.first,
+				  let host = IPv4Address(String(host)),
+				  let port = parts.last,
+				  let port = NWEndpoint.Port(String(port))
+			else {
+				throw Errors.noSocksAddr
+			}
+
+			torSocks5 = .hostPort(host: NWEndpoint.Host.ipv4(host), port: port)
+		}
+		catch {
+			stop()
+
+			throw error
 		}
 	}
 
-	func updateConfig(_ transport: Transport) {
+	func updateConfig(_ transport: Transport) async {
 		self.transport = transport
 
 		do {
@@ -267,22 +261,20 @@ class TorManager {
 		let resetKeys = ["UseBridges", "ClientTransportPlugin", "Bridge",
 						 "EntryNodes", "ExitNodes", "ExcludeNodes", "StrictNodes"]
 
-		Task {
-			for key in resetKeys {
-				do {
-					try await torController.resetConf(forKey: key)
-				}
-				catch {
-					log("error=\(error)")
-				}
-			}
-
+		for key in resetKeys {
 			do {
-				try await torController.setConfs(transportConf(Transport.asConf))
+				try await torController.resetConf(forKey: key)
 			}
 			catch {
 				log("error=\(error)")
 			}
+		}
+
+		do {
+			try await torController.setConfs(transportConf(Transport.asConf))
+		}
+		catch {
+			log("error=\(error)")
 		}
 	}
 
@@ -316,7 +308,11 @@ class TorManager {
 		await torController?.closeCircuits(byIds: ids) ?? false
 	}
 
-	func session(_ cookies: [HTTPCookie]? = nil, for url: URL? = nil, delegate: URLSessionDelegate? = nil, timeout: TimeInterval? = nil) -> URLSession {
+	func session(
+		_ cookies: [HTTPCookie]? = nil, for url: URL? = nil,
+		delegate: URLSessionDelegate? = nil, timeout: TimeInterval? = nil
+	) -> URLSession
+	{
 		let conf = URLSessionConfiguration.ephemeral
 		conf.waitsForConnectivity = true
 		conf.allowsConstrainedNetworkAccess = true

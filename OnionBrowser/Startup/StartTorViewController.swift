@@ -75,7 +75,9 @@ class StartTorViewController: UIViewController, BridgesConfDelegate {
 	}
 
 	func save() {
-		TorManager.shared.updateConfig(Settings.transport)
+		Task {
+			await TorManager.shared.updateConfig(Settings.transport)
+		}
 	}
 
 
@@ -88,44 +90,51 @@ class StartTorViewController: UIViewController, BridgesConfDelegate {
 		progressView.progress = 0
 		statusLb.isHidden = true
 
-		TorManager.shared.start(Settings.transport) { [weak self] progress, summary in
-			guard let progress = progress else {
-				return
-			}
+		Task { [weak self] in
+			do {
+				try await TorManager.shared.start(Settings.transport) { [weak self] progress, summary in
+					guard let progress = progress else {
+						return
+					}
 
-			Task { @MainActor in
-				self?.progressView.setProgress(Float(progress) / 100, animated: true)
+					Task { @MainActor in
+						self?.progressView.setProgress(Float(progress) / 100, animated: true)
 
-				UIAccessibility.post(notification: .announcement, argument: String(format: "%d%%", progress))
+						UIAccessibility.post(notification: .announcement, argument: String(format: "%d%%", progress))
 
-				if let summary = summary, !summary.isEmpty {
-					self?.statusLb.text = summary
-					self?.statusLb.textColor = .label
-					self?.statusLb.isHidden = false
+						if let summary = summary, !summary.isEmpty {
+							self?.statusLb.text = summary
+							self?.statusLb.textColor = .label
+							self?.statusLb.isHidden = false
+						}
+						else {
+							self?.statusLb.isHidden = true
+						}
+					}
 				}
-				else {
-					self?.statusLb.isHidden = true
-				}
 			}
-		} _: { [weak self] error in
-			Task { @MainActor in
-				guard error == nil else {
+			catch {
+				await MainActor.run {
 					self?.activityIndicator.isHidden = true
 					self?.retryBt.isHidden = false
-					self?.statusLb.text = (error ?? TorManager.Errors.noSocksAddr).localizedDescription
+					self?.statusLb.text = error.localizedDescription
 					self?.statusLb.textColor = .systemRed
 					self?.statusLb.isHidden = false
 
 					UIAccessibility.post(notification: .announcement, argument: self?.statusLb.text)
-
-					return
 				}
 
+				return
+			}
+
+			let orbotStatus = await OrbotManager.shared.checkStatus()
+
+			await MainActor.run {
 				AppDelegate.shared?.allOpenTabs.forEach { tab in
 					tab.reinitWebView()
 				}
 
-				self?.view.sceneDelegate?.show(await OrbotManager.shared.checkStatus())
+				self?.view.sceneDelegate?.show(orbotStatus)
 			}
 		}
 	}

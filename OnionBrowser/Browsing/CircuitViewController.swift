@@ -165,7 +165,9 @@ class CircuitViewController: UIViewController, UIPopoverPresentationControllerDe
 	}
 
 	func save() {
-		TorManager.shared.updateConfig(Settings.transport)
+		Task {
+			await TorManager.shared.updateConfig(Settings.transport)
+		}
 	}
 
 
