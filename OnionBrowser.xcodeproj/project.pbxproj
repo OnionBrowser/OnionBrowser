@@ -77,6 +77,7 @@
 		A06EC2A12BBA0C80003A9944 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A06EC2A02BBA0C71003A9944 /* PrivacyInfo.xcprivacy */; };
 		A07037C623C7571B00D670EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07037C523C7571B00D670EC /* AppDelegate.swift */; };
 		A07037C723C79AE500D670EC /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A07037C223C74DC900D670EC /* Media.xcassets */; };
+		A0724F6F30A22426005E0A82 /* IPtProxyUI-iOS in Frameworks */ = {isa = PBXBuildFile; productRef = A0724F6E30A22426005E0A82 /* IPtProxyUI-iOS */; };
 		A07754F02FE035AA00B1EC4E /* PreviewWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07754EF2FE035AA00B1EC4E /* PreviewWebView.swift */; };
 		A07754F22FE038FC00B1EC4E /* BaseNavigationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07754F12FE038FC00B1EC4E /* BaseNavigationDelegate.swift */; };
 		A07B55FC23D736D60051663B /* CertificateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07B55FB23D736D60051663B /* CertificateViewController.swift */; };
@@ -156,8 +157,6 @@
 		A0C1FB182D50FC9A00AE97A7 /* TlsCertificate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C1FB172D50FC9A00AE97A7 /* TlsCertificate.swift */; };
 		A0C1FB192D50FC9A00AE97A7 /* TlsCertificate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C1FB172D50FC9A00AE97A7 /* TlsCertificate.swift */; };
 		A0C3770E1F47342C0039198E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0C3770D1F47342C0039198E /* CoreData.framework */; };
-		A0C4C93D307913200077EABC /* IPtProxyUI-iOS in Frameworks */ = {isa = PBXBuildFile; productRef = A0C4C93C307913200077EABC /* IPtProxyUI-iOS */; };
-		A0C4CAD23079240B0077EABC /* IPtProxyUI-iOS in Frameworks */ = {isa = PBXBuildFile; productRef = A0C4CAD13079240B0077EABC /* IPtProxyUI-iOS */; };
 		A0C582582AE9136200A81084 /* Thread+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C582572AE9136200A81084 /* Thread+Helpers.swift */; };
 		A0CD36982890194900628DA6 /* Tab+WKNavigationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CD36972890194900628DA6 /* Tab+WKNavigationDelegate.swift */; };
 		A0CD76DE2EAB7A4400DA1AFB /* NcServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CD76DD2EAB7A4400DA1AFB /* NcServer.swift */; };
@@ -548,10 +547,9 @@
 				A0C3770E1F47342C0039198E /* CoreData.framework in Frameworks */,
 				A0EE558E3098EA6500A9D41D /* OrbotKit in Frameworks */,
 				019516D11B7D8B400078586A /* libz.tbd in Frameworks */,
+				A0724F6F30A22426005E0A82 /* IPtProxyUI-iOS in Frameworks */,
 				A0B518963094DE680064131E /* DTFoundation in Frameworks */,
-				A0C4C93D307913200077EABC /* IPtProxyUI-iOS in Frameworks */,
 				A0B8B4CE3094ED8000031932 /* CTor in Frameworks */,
-				A0C4CAD23079240B0077EABC /* IPtProxyUI-iOS in Frameworks */,
 				A0B519553094DF7F0064131E /* MBProgressHUD in Frameworks */,
 				A0B518373094D9DB0064131E /* SDCAlertView in Frameworks */,
 				A09CCF83308629550014FB5F /* ImageRow in Frameworks */,
@@ -901,8 +899,6 @@
 			);
 			name = OnionBrowser;
 			packageProductDependencies = (
-				A0C4C93C307913200077EABC /* IPtProxyUI-iOS */,
-				A0C4CAD13079240B0077EABC /* IPtProxyUI-iOS */,
 				A09CCF82308629550014FB5F /* ImageRow */,
 				A0B518333094D7370064131E /* SwiftSoup */,
 				A0B518363094D9DB0064131E /* SDCAlertView */,
@@ -910,6 +906,7 @@
 				A0B519543094DF7F0064131E /* MBProgressHUD */,
 				A0B8B4CD3094ED8000031932 /* CTor */,
 				A0EE558D3098EA6500A9D41D /* OrbotKit */,
+				A0724F6E30A22426005E0A82 /* IPtProxyUI-iOS */,
 			);
 			productName = Endless;
 			productReference = 01801E921A32CA2A002B4718 /* OnionBrowser.app */;
@@ -1019,14 +1016,14 @@
 			);
 			mainGroup = 01801E891A32CA2A002B4718;
 			packageReferences = (
-				A0C4CAD03079240B0077EABC /* XCRemoteSwiftPackageReference "IPtProxyUI-ios" */,
 				A09CCF81308629550014FB5F /* XCRemoteSwiftPackageReference "ImageRow" */,
 				A0B518323094D7370064131E /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 				A0B518353094D9DB0064131E /* XCRemoteSwiftPackageReference "SDCAlertView" */,
 				A0B518943094DE680064131E /* XCRemoteSwiftPackageReference "DTFoundation" */,
 				A0B519533094DF7F0064131E /* XCRemoteSwiftPackageReference "MBProgressHUD" */,
-				A0B8B4CC3094ED8000031932 /* XCLocalSwiftPackageReference "../Tor.framework" */,
 				A0EE558C3098EA6500A9D41D /* XCRemoteSwiftPackageReference "orbotkit" */,
+				A0724F0F30A222E9005E0A82 /* XCRemoteSwiftPackageReference "Tor" */,
+				A0724F6D30A22410005E0A82 /* XCRemoteSwiftPackageReference "IPtProxyUI-ios" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 01801E931A32CA2A002B4718 /* Products */;
@@ -1870,14 +1867,23 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCLocalSwiftPackageReference section */
-		A0B8B4CC3094ED8000031932 /* XCLocalSwiftPackageReference "../Tor.framework" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = ../Tor.framework;
-		};
-/* End XCLocalSwiftPackageReference section */
-
 /* Begin XCRemoteSwiftPackageReference section */
+		A0724F0F30A222E9005E0A82 /* XCRemoteSwiftPackageReference "Tor" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/iCepa/Tor.framework";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 409.16.1;
+			};
+		};
+		A0724F6D30A22410005E0A82 /* XCRemoteSwiftPackageReference "IPtProxyUI-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/tladesignz/IPtProxyUI-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.1.0;
+			};
+		};
 		A09CCF81308629550014FB5F /* XCRemoteSwiftPackageReference "ImageRow" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/EurekaCommunity/ImageRow";
@@ -1918,14 +1924,6 @@
 				minimumVersion = 1.2.0;
 			};
 		};
-		A0C4CAD03079240B0077EABC /* XCRemoteSwiftPackageReference "IPtProxyUI-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/tladesignz/IPtProxyUI-ios";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 6.0.0;
-			};
-		};
 		A0EE558C3098EA6500A9D41D /* XCRemoteSwiftPackageReference "orbotkit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/guardianproject/orbotkit";
@@ -1937,6 +1935,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A0724F6E30A22426005E0A82 /* IPtProxyUI-iOS */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0724F6D30A22410005E0A82 /* XCRemoteSwiftPackageReference "IPtProxyUI-ios" */;
+			productName = "IPtProxyUI-iOS";
+		};
 		A09CCF82308629550014FB5F /* ImageRow */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A09CCF81308629550014FB5F /* XCRemoteSwiftPackageReference "ImageRow" */;
@@ -1970,15 +1973,6 @@
 		A0B8B4CD3094ED8000031932 /* CTor */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = CTor;
-		};
-		A0C4C93C307913200077EABC /* IPtProxyUI-iOS */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = "IPtProxyUI-iOS";
-		};
-		A0C4CAD13079240B0077EABC /* IPtProxyUI-iOS */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A0C4CAD03079240B0077EABC /* XCRemoteSwiftPackageReference "IPtProxyUI-ios" */;
-			productName = "IPtProxyUI-iOS";
 		};
 		A0EE558D3098EA6500A9D41D /* OrbotKit */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -140,7 +140,7 @@ class NcServer {
 	}
 
 	private class func call<T: Codable>(_ request: URLRequest) async throws -> [T]? {
-		let response: NcResponse<T>? = try await TorManager.shared.session().apiTask(with: request)
+		let response: NcResponse<T>? = try await TorManager.shared.session().api(for: request)
 
 		guard response?.status == "success" else {
 			throw ApiError.notSuccess(status: response?.status)

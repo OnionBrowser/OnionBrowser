@@ -1,5 +1,5 @@
 {
-  "originHash" : "4166510c4083f007b83ecf5edf095196e5639d74e3485ab0c5542eb6580492ef",
+  "originHash" : "cd58e418ed15d0ee8fa60628f2b06334583cfb414866b291157a6dfeb9f07122",
   "pins" : [
     {
       "identity" : "dtfoundation",
@@ -33,8 +33,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/tladesignz/IPtProxy.git",
       "state" : {
-        "revision" : "46552b8422a200e3e69aa3686b6278be945138a5",
-        "version" : "5.7.0"
+        "revision" : "711a0ed9f5be0794814d04dc82aa9314db5b16db",
+        "version" : "5.8.1"
       }
     },
     {
@@ -42,8 +42,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/tladesignz/IPtProxyUI-ios",
       "state" : {
-        "revision" : "85c21e90a5457cfd6ca87a34a154e38843cef4e3",
-        "version" : "6.0.0"
+        "revision" : "e04f21812f0427ac27107b22fc52ac2f7dc9f5b1",
+        "version" : "6.1.0"
       }
     },
     {
@@ -89,6 +89,15 @@
       "state" : {
         "revision" : "e7f85f4d3dd91ca9a1e94d3328aa1ed5120a8c0f",
         "version" : "2.14.3"
+      }
+    },
+    {
+      "identity" : "tor.framework",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/iCepa/Tor.framework",
+      "state" : {
+        "revision" : "db4d31c2f9fe0773a175a23f1605cab7ab4d40a0",
+        "version" : "409.16.1"
       }
     }
   ],

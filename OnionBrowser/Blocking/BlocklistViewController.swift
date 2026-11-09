@@ -265,17 +265,11 @@ class BlocklistViewController: UIViewController, UITableViewDelegate, UITableVie
 
 		ProgressHUD.animate()
 
-		let task = TorManager.shared.session().apiTask(with: .init(url: url)) { [weak self] (data: Data?, error: Error?) in
-			if let error = error {
-				Log.error(for: Self.self, error.localizedDescription)
-
-				ProgressHUD.error(error.localizedDescription, delay: 3)
-
-				return
-			}
-
+		Task { [weak self] in
 			do {
-				try data?.write(to: dest, options: .atomic)
+				let data: Data = try await TorManager.shared.session().api(for: .init(url: url))
+
+				try data.write(to: dest, options: .atomic)
 
 				UrlBlocker.shared.reload()
 
@@ -288,8 +282,9 @@ class BlocklistViewController: UIViewController, UITableViewDelegate, UITableVie
 				Log.error(for: Self.self, error.localizedDescription)
 
 				ProgressHUD.error(error.localizedDescription, delay: 3)
+
+				return
 			}
 		}
-		task.resume()
 	}
 }
