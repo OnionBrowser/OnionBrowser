@@ -101,7 +101,7 @@ extension BrowsingViewController: UIScrollViewDelegate, UIGestureRecognizerDeleg
 						// Need to delay this a little, otherwise animation isn't seen,
 						// because isHidden becomes in effect before the animation,
 						// regardless, if we only do this in the completed callback.
-						try await Task.sleep(nanoseconds: 100_000_000)
+						try? await Task.sleep(nanoseconds: 100_000_000)
 
 						await MainActor.run {
 							self?.toolbar?.isHidden = true

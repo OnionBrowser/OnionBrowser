@@ -49,7 +49,7 @@ extension Tab {
 
 		Task {
 			// Delay just so it confirms to the user that something happened.
-			try await Task.sleep(nanoseconds: 500_000_000)
+			try? await Task.sleep(nanoseconds: 500_000_000)
 
 			await MainActor.run {
 				refresher.endRefreshing()
