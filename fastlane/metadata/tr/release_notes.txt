@@ -1,3 +1,4 @@
 - Tor, 0.4.9.16 sürümüne güncellendi.
 - Lyrebird, 0.10.0 sürümüne güncellendi.
 - Snowflake, 2.15.3 sürümüne güncellendi.
+- iPhone Duo için küçük düzen iyileştirmeleri yapıldı.

@@ -1,3 +1,4 @@
 - Zaktualizowano program Tor do wersji 0.4.9.16.
 - Zaktualizowano program Lyrebird do wersji 0.10.0.
 - Zaktualizowano program Snowflake do wersji 2.15.3.
+- Wprowadzono drobne poprawki w układzie graficznym aplikacji iPhone Duo.

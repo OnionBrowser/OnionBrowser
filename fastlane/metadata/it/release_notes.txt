@@ -1,3 +1,4 @@
-- Tor è stato aggiornato alla versione 0.4.9.16.
-- Lyrebird è stato aggiornato alla versione 0.10.0.
-- Snowflake è stato aggiornato alla versione 2.15.3.
+- Aggiornato Tor alla versione 0.4.9.16.
+- Aggiornato Lyrebird alla versione 0.10.0.
+- Aggiornato Snowflake alla versione 2.15.3.
+- Piccoli miglioramenti al layout per iPhone Duo.

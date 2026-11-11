@@ -1,3 +1,4 @@
-- Atualizei o Tor para a versão 0.4.9.16.
-- Atualizei o Lyrebird para a versão 0.10.0.
-- Atualizei o Snowflake para a versão 2.15.3.
+- Atualizou o Tor para a versão 0.4.9.16.
+- Atualizou o Lyrebird para a versão 0.10.0.
+- Atualizou o Snowflake para a versão 2.15.3.
+- Pequenas melhorias no layout do iPhone Duo.

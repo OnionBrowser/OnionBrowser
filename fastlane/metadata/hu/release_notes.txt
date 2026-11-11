@@ -1,3 +1,4 @@
-- A Tor-t 0.4.9.16-os verzióra frissítettük.
-- A Lyrebird-et 0.10.0-s verzióra frissítettük.
-- A Snowflake-et 2.15.3-as verzióra frissítettük.
+- A Tor verziója 0.4.9.16-ra frissült.
+- A Lyrebird verziója 0.10.0-ra frissült.
+- A Snowflake verziója 2.15.3-ra frissült.
+- Kisebb elrendezési javítások az iPhone Duo alkalmazásban.

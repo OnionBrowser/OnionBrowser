@@ -1,3 +1,4 @@
 - Updated Tor to 0.4.9.16.
 - Updated Lyrebird to 0.10.0.
 - Updated Snowflake to 2.15.3.
+- Minor layout improvements for iPhone Duo.

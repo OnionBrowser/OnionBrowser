@@ -1,3 +1,4 @@
 - Se ha actualizado Tor a la versión 0.4.9.16.
 - Se ha actualizado Lyrebird a la versión 0.10.0.
 - Se ha actualizado Snowflake a la versión 2.15.3.
+- Se han realizado pequeñas mejoras en el diseño de iPhone Duo.

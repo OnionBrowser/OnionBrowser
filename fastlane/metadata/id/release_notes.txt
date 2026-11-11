@@ -1,3 +1,4 @@
 - Tor telah diperbarui ke versi 0.4.9.16.
 - Lyrebird telah diperbarui ke versi 0.10.0.
 - Snowflake telah diperbarui ke versi 2.15.3.
+- Perbaikan tata letak kecil untuk iPhone Duo.

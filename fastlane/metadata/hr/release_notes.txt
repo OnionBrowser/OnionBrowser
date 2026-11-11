@@ -1,3 +1,4 @@
 - Ažuriran Tor na verziju 0.4.9.16.
 - Ažuriran Lyrebird na verziju 0.10.0.
 - Ažuriran Snowflake na verziju 2.15.3.
+- Manja poboljšanja izgleda za iPhone Duo.

@@ -5,6 +5,9 @@
 - Updated Lyrebird to 0.10.0.
 - Updated Snowflake to 2.15.3.
 - Restructured some code to use async/await.
+- Minor layout improvements for iPhone Duo.
+- Removed CocoaPods dependency manager.
+- Fixed tests.
 
 ## 3.4.5
 - Updated Tor to 0.4.9.15.
