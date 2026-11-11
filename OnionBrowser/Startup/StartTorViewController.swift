@@ -76,7 +76,7 @@ class StartTorViewController: UIViewController, BridgesConfDelegate {
 
 	func save() {
 		Task {
-			await TorManager.shared.updateConfig(Settings.transport)
+			try? await TorManager.shared.updateConfig(Settings.transport)
 		}
 	}
 

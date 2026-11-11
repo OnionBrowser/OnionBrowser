@@ -72,8 +72,6 @@ class TorManager {
 		 (torThread?.isExecuting ?? false) && (torConf?.isLocked ?? false)
 	}
 
-	private lazy var controllerQueue = DispatchQueue.global(qos: .userInitiated)
-
 	private var transport = Transport.none
 
 	private var ipStatus = IpSupport.Status.unavailable
@@ -118,7 +116,7 @@ class TorManager {
 			torThread?.start()
 		}
 		else {
-			await updateConfig(transport)
+			try await updateConfig(transport)
 		}
 
 		do {
@@ -179,8 +177,6 @@ class TorManager {
 			try await torController.authenticate(with: cookie)
 
 			torController.removeObserver(progressObs)
-			progressObs = nil
-
 			progressObs = torController.addObserver(forStatusEvents: {
 				(type, severity, action, arguments) -> Bool in
 
@@ -207,8 +203,6 @@ class TorManager {
 			})
 
 			torController.removeObserver(establishedObs)
-			establishedObs = nil
-
 			try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
 				establishedObs = torController.addObserver(forCircuitEstablished: { established in
 					guard established else {
@@ -244,7 +238,7 @@ class TorManager {
 		}
 	}
 
-	func updateConfig(_ transport: Transport) async {
+	func updateConfig(_ transport: Transport) async throws {
 		self.transport = transport
 
 		do {
@@ -270,12 +264,7 @@ class TorManager {
 			}
 		}
 
-		do {
-			try await torController.setConfs(transportConf(Transport.asConf))
-		}
-		catch {
-			log("error=\(error)")
-		}
+		try await torController.setConfs(transportConf(Transport.asConf))
 	}
 
 	func stop() {
