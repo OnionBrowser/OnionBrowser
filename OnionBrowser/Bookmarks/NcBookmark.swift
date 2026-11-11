@@ -6,7 +6,7 @@
 //  Copyright © 2025 Tigas Ventures, LLC (Mike Tigas). All rights reserved.
 //
 
-import Foundation
+import UIKit
 import FavIcon
 
 /**

@@ -1,5 +1,5 @@
 {
-  "originHash" : "cd58e418ed15d0ee8fa60628f2b06334583cfb414866b291157a6dfeb9f07122",
+  "originHash" : "5b2cac389ba8d56fc8f6d4e4636327c7bbaceea25627b37124c278310c8d59da",
   "pins" : [
     {
       "identity" : "dtfoundation",
@@ -17,6 +17,14 @@
       "state" : {
         "revision" : "028ef8e3191a256b8f6b8bb6b9496efcb0762dbc",
         "version" : "5.5.0"
+      }
+    },
+    {
+      "identity" : "favicon",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/tladesignz/FavIcon",
+      "state" : {
+        "revision" : "9969d1aaffced321facc66d20c82e7eab2a8aa98"
       }
     },
     {

@@ -29,7 +29,6 @@
 		01F2AE4A1B82835A00D5651A /* expired.superblock.net.crt in Resources */ = {isa = PBXBuildFile; fileRef = 01F2AE491B82835A00D5651A /* expired.superblock.net.crt */; };
 		01F879481A41141800A63654 /* urlblocker_mock_rules.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01F879461A41141800A63654 /* urlblocker_mock_rules.plist */; };
 		01F879491A41141800A63654 /* urlblocker_mock_targets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01F879471A41141800A63654 /* urlblocker_mock_targets.plist */; };
-		3E5C6BF218A52D07DF55A6FE /* Pods_OnionBrowser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7CE50C2429233D841D5F1C1 /* Pods_OnionBrowser.framework */; };
 		54F7DBC8281C189700CBEFDB /* CALayer+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F7DBC7281C189700CBEFDB /* CALayer+Helpers.swift */; };
 		A003A1932A0D1628008D8845 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A003A1922A0D1628008D8845 /* SceneDelegate.swift */; };
 		A004FB2A241A782500451A9E /* SecureEnclave.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06DF455241A60E700A07796 /* SecureEnclave.swift */; };
@@ -175,7 +174,6 @@
 		A0FA96612A0161DA005EDC3F /* InstallViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0FA965F2A0161DA005EDC3F /* InstallViewController.xib */; };
 		A0FA96622A0161DA005EDC3F /* InstallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0FA96602A0161DA005EDC3F /* InstallViewController.swift */; };
 		CEDA353A2FF5099400F2292B /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = CEDA35392FF5099400F2292B /* AppIcon.icon */; };
-		E6311B9040FEC20B68B89A24 /* Pods_OnionBrowser_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12570C301D8FEF51AB9F5CDD /* Pods_OnionBrowser_Tests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -222,11 +220,7 @@
 		01F879401A4112E500A63654 /* URLBlocker_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLBlocker_Tests.m; sourceTree = "<group>"; };
 		01F879461A41141800A63654 /* urlblocker_mock_rules.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = urlblocker_mock_rules.plist; sourceTree = "<group>"; };
 		01F879471A41141800A63654 /* urlblocker_mock_targets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = urlblocker_mock_targets.plist; sourceTree = "<group>"; };
-		0B6C8A679F0E1774945F3777 /* Pods-OnionBrowser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnionBrowser.release.xcconfig"; path = "Target Support Files/Pods-OnionBrowser/Pods-OnionBrowser.release.xcconfig"; sourceTree = "<group>"; };
-		0F209831E77CACB3F2BAE200 /* Pods-OnionBrowser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnionBrowser.debug.xcconfig"; path = "Target Support Files/Pods-OnionBrowser/Pods-OnionBrowser.debug.xcconfig"; sourceTree = "<group>"; };
-		12570C301D8FEF51AB9F5CDD /* Pods_OnionBrowser_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OnionBrowser_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		54F7DBC7281C189700CBEFDB /* CALayer+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Helpers.swift"; sourceTree = "<group>"; };
-		5FE3172A8893F37ED0730F03 /* Pods-OnionBrowser Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnionBrowser Tests.release.xcconfig"; path = "Target Support Files/Pods-OnionBrowser Tests/Pods-OnionBrowser Tests.release.xcconfig"; sourceTree = "<group>"; };
 		693145FD1D3EEAE400D08A6A /* Tor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tor.framework; path = Carthage/Build/iOS/Tor.framework; sourceTree = "<group>"; };
 		A003A1922A0D1628008D8845 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A004360B1E81856F0067652D /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -294,7 +288,6 @@
 		A0325D942EAA7598009C3DE9 /* NcBookmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NcBookmark.swift; sourceTree = "<group>"; };
 		A0325D962EAA766C009C3DE9 /* NcBookmarks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NcBookmarks.swift; sourceTree = "<group>"; };
 		A036C3B12937A06C0035AA4F /* AddSearchEngineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSearchEngineViewController.swift; sourceTree = "<group>"; };
-		A03A5C05EE3C1632DC4828FF /* Pods-OnionBrowser Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnionBrowser Tests.debug.xcconfig"; path = "Target Support Files/Pods-OnionBrowser Tests/Pods-OnionBrowser Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		A03CFA032892B05500F01DB5 /* DownloadHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadHelper.swift; sourceTree = "<group>"; };
 		A043B9502A02897A008025A7 /* PermissionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PermissionViewController.xib; sourceTree = "<group>"; };
 		A043B9512A02897A008025A7 /* PermissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionViewController.swift; sourceTree = "<group>"; };
@@ -522,7 +515,6 @@
 		A0FA965C2A015EBB005EDC3F /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		A0FA965F2A0161DA005EDC3F /* InstallViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InstallViewController.xib; sourceTree = "<group>"; };
 		A0FA96602A0161DA005EDC3F /* InstallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallViewController.swift; sourceTree = "<group>"; };
-		A7CE50C2429233D841D5F1C1 /* Pods_OnionBrowser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OnionBrowser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEDA35392FF5099400F2292B /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -534,6 +526,9 @@
 		};
 		A0CEE4762EA9273600F278A0 /* AppIntents */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				A0E5A75F30A4A909002453BE /* Exceptions for "AppIntents" folder in "OnionBrowser Tests" target */,
+			);
 			path = AppIntents;
 			sourceTree = "<group>";
 		};
@@ -553,8 +548,8 @@
 				A0B519553094DF7F0064131E /* MBProgressHUD in Frameworks */,
 				A0B518373094D9DB0064131E /* SDCAlertView in Frameworks */,
 				A09CCF83308629550014FB5F /* ImageRow in Frameworks */,
+				A0E5A75B30A4A877002453BE /* FavIcon in Frameworks */,
 				016B2FCD1A5648AE002D2730 /* WebKit.framework in Frameworks */,
-				3E5C6BF218A52D07DF55A6FE /* Pods_OnionBrowser.framework in Frameworks */,
 				A0B518343094D7370064131E /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -563,7 +558,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E6311B9040FEC20B68B89A24 /* Pods_OnionBrowser_Tests.framework in Frameworks */,
+				A0E5A7AA30A4AC81002453BE /* FavIcon in Frameworks */,
+				A0E5A69A30A4A6D0002453BE /* CTor in Frameworks */,
+				A0E5A7A030A4AC3C002453BE /* IPtProxyUI-iOS in Frameworks */,
+				A0E5A7A230A4AC50002453BE /* SDCAlertView in Frameworks */,
+				A0E5A7A430A4AC5E002453BE /* ImageRow in Frameworks */,
+				A0E5A7A830A4AC77002453BE /* OrbotKit in Frameworks */,
+				A0E5A7A630A4AC6B002453BE /* SwiftSoup in Frameworks */,
+				A0E5A79E30A4ABFA002453BE /* MBProgressHUD in Frameworks */,
 				A0B519523094DF1F0064131E /* DTFoundation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -583,7 +585,6 @@
 				018333D81A35727C00670CD1 /* OnionBrowser Tests */,
 				01801E931A32CA2A002B4718 /* Products */,
 				6CC21620E2AE7B4037C6401B /* Frameworks */,
-				1D12FDC84D38C4B31A5E3DFB /* Pods */,
 			);
 			sourceTree = "<group>";
 			usesTabs = 1;
@@ -624,17 +625,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		1D12FDC84D38C4B31A5E3DFB /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				0F209831E77CACB3F2BAE200 /* Pods-OnionBrowser.debug.xcconfig */,
-				0B6C8A679F0E1774945F3777 /* Pods-OnionBrowser.release.xcconfig */,
-				A03A5C05EE3C1632DC4828FF /* Pods-OnionBrowser Tests.debug.xcconfig */,
-				5FE3172A8893F37ED0730F03 /* Pods-OnionBrowser Tests.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		6CC21620E2AE7B4037C6401B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -644,8 +634,6 @@
 				019516D01B7D8B400078586A /* libz.tbd */,
 				016B2FCC1A5648AE002D2730 /* WebKit.framework */,
 				018333EB1A357D8B00670CD1 /* libPods-OCMock.a */,
-				A7CE50C2429233D841D5F1C1 /* Pods_OnionBrowser.framework */,
-				12570C301D8FEF51AB9F5CDD /* Pods_OnionBrowser_Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -880,14 +868,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 01801EB81A32CA2A002B4718 /* Build configuration list for PBXNativeTarget "OnionBrowser" */;
 			buildPhases = (
-				65319E2856D38575BBE828A1 /* [CP] Check Pods Manifest.lock */,
 				A06F5F4A275692870023622E /* BartyCrouch */,
 				A02640D52E33A9B2003D2C60 /* Load Blocklist */,
 				01801E8E1A32CA2A002B4718 /* Sources */,
 				01801E8F1A32CA2A002B4718 /* Frameworks */,
 				A0D8469F3093C0BD007886E8 /* Load GeoIP files */,
 				01801E901A32CA2A002B4718 /* Resources */,
-				75010C1DF4431D7C131B801C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -907,6 +893,7 @@
 				A0B8B4CD3094ED8000031932 /* CTor */,
 				A0EE558D3098EA6500A9D41D /* OrbotKit */,
 				A0724F6E30A22426005E0A82 /* IPtProxyUI-iOS */,
+				A0E5A75A30A4A877002453BE /* FavIcon */,
 			);
 			productName = Endless;
 			productReference = 01801E921A32CA2A002B4718 /* OnionBrowser.app */;
@@ -916,12 +903,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 018333DF1A35727C00670CD1 /* Build configuration list for PBXNativeTarget "OnionBrowser Tests" */;
 			buildPhases = (
-				C8C76E728A4BA9CC9C2E5513 /* [CP] Check Pods Manifest.lock */,
 				8A1177102010FD1F00741429 /* CopyFiles */,
 				018333D31A35727C00670CD1 /* Sources */,
 				018333D41A35727C00670CD1 /* Frameworks */,
 				018333D51A35727C00670CD1 /* Resources */,
-				D95B93887130336183D59208 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1024,6 +1009,7 @@
 				A0EE558C3098EA6500A9D41D /* XCRemoteSwiftPackageReference "orbotkit" */,
 				A0724F0F30A222E9005E0A82 /* XCRemoteSwiftPackageReference "Tor" */,
 				A0724F6D30A22410005E0A82 /* XCRemoteSwiftPackageReference "IPtProxyUI-ios" */,
+				A0E5A6A130A4A7C2002453BE /* XCRemoteSwiftPackageReference "FavIcon" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 01801E931A32CA2A002B4718 /* Products */;
@@ -1097,49 +1083,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		65319E2856D38575BBE828A1 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-OnionBrowser-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		75010C1DF4431D7C131B801C /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-OnionBrowser/Pods-OnionBrowser-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-OnionBrowser/Pods-OnionBrowser-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OnionBrowser/Pods-OnionBrowser-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		8A3EBA9221700AE80054A9FF /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -1214,50 +1157,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "#!/bin/sh\n\nDEST=\"$PROJECT_DIR/Resources\"\n\nmkdir -p \"$DEST\"\ncd \"$DEST\"\n\n# Test if file is older then 1 week.\nOLD=\"$(find geoip -mmin +10080 2>/dev/null)\"\n\n# Only download, if files are not existing or older than 1 week.\nif [ ! -f geoip -o ! -z \"$OLD\" ]; then\n    curl --remote-name --location https://gitlab.torproject.org/tpo/core/tor/-/raw/main/src/config/geoip\n    curl --remote-name --location https://gitlab.torproject.org/tpo/core/tor/-/raw/main/src/config/geoip6\nfi\n";
-		};
-		C8C76E728A4BA9CC9C2E5513 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-OnionBrowser Tests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D95B93887130336183D59208 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-OnionBrowser Tests/Pods-OnionBrowser Tests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-OnionBrowser Tests/Pods-OnionBrowser Tests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OnionBrowser Tests/Pods-OnionBrowser Tests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1686,7 +1585,6 @@
 		};
 		01801EB91A32CA2A002B4718 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0F209831E77CACB3F2BAE200 /* Pods-OnionBrowser.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1712,7 +1610,6 @@
 		};
 		01801EBA1A32CA2A002B4718 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0B6C8A679F0E1774945F3777 /* Pods-OnionBrowser.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1736,7 +1633,6 @@
 		};
 		018333E01A35727C00670CD1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A03A5C05EE3C1632DC4828FF /* Pods-OnionBrowser Tests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Manual;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1776,7 +1672,6 @@
 		};
 		018333E11A35727C00670CD1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5FE3172A8893F37ED0730F03 /* Pods-OnionBrowser Tests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Manual;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1924,6 +1819,14 @@
 				minimumVersion = 1.2.0;
 			};
 		};
+		A0E5A6A130A4A7C2002453BE /* XCRemoteSwiftPackageReference "FavIcon" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/tladesignz/FavIcon";
+			requirement = {
+				kind = revision;
+				revision = 9969d1aaffced321facc66d20c82e7eab2a8aa98;
+			};
+		};
 		A0EE558C3098EA6500A9D41D /* XCRemoteSwiftPackageReference "orbotkit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/guardianproject/orbotkit";
@@ -1973,6 +1876,51 @@
 		A0B8B4CD3094ED8000031932 /* CTor */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = CTor;
+		};
+		A0E5A69930A4A6D0002453BE /* CTor */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0724F0F30A222E9005E0A82 /* XCRemoteSwiftPackageReference "Tor" */;
+			productName = CTor;
+		};
+		A0E5A75A30A4A877002453BE /* FavIcon */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0E5A6A130A4A7C2002453BE /* XCRemoteSwiftPackageReference "FavIcon" */;
+			productName = FavIcon;
+		};
+		A0E5A79D30A4ABFA002453BE /* MBProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0B519533094DF7F0064131E /* XCRemoteSwiftPackageReference "MBProgressHUD" */;
+			productName = MBProgressHUD;
+		};
+		A0E5A79F30A4AC3C002453BE /* IPtProxyUI-iOS */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0724F6D30A22410005E0A82 /* XCRemoteSwiftPackageReference "IPtProxyUI-ios" */;
+			productName = "IPtProxyUI-iOS";
+		};
+		A0E5A7A130A4AC50002453BE /* SDCAlertView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0B518353094D9DB0064131E /* XCRemoteSwiftPackageReference "SDCAlertView" */;
+			productName = SDCAlertView;
+		};
+		A0E5A7A330A4AC5E002453BE /* ImageRow */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A09CCF81308629550014FB5F /* XCRemoteSwiftPackageReference "ImageRow" */;
+			productName = ImageRow;
+		};
+		A0E5A7A530A4AC6B002453BE /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0B518323094D7370064131E /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
+		A0E5A7A730A4AC77002453BE /* OrbotKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0EE558C3098EA6500A9D41D /* XCRemoteSwiftPackageReference "orbotkit" */;
+			productName = OrbotKit;
+		};
+		A0E5A7A930A4AC81002453BE /* FavIcon */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A0E5A6A130A4A7C2002453BE /* XCRemoteSwiftPackageReference "FavIcon" */;
+			productName = FavIcon;
 		};
 		A0EE558D3098EA6500A9D41D /* OrbotKit */ = {
 			isa = XCSwiftPackageProductDependency;
