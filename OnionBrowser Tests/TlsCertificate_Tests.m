@@ -1,8 +1,7 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 #import "OnionBrowser-Swift.h"
-
-#import "DTBase64Coding.h"
+#import <DTFoundation/DTBase64Coding.h>
 
 @interface TlsCertificate_Tests : XCTestCase
 @end

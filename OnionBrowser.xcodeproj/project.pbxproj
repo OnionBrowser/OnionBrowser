@@ -64,11 +64,9 @@
 		A043B9562A029FC3008025A7 /* StartOrbotViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A043B9542A029FC3008025A7 /* StartOrbotViewController.xib */; };
 		A043B9572A029FC3008025A7 /* StartOrbotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A043B9552A029FC3008025A7 /* StartOrbotViewController.swift */; };
 		A04F5DEE2D50FF6300966D68 /* URLBlocker_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F879401A4112E500A63654 /* URLBlocker_Tests.m */; };
-		A04F5DEF2D50FF7D00966D68 /* UrlBlocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C1FB112D50FC5200AE97A7 /* UrlBlocker.swift */; };
 		A04F5DF02D50FFAC00966D68 /* URL+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF524023AFC3580096624A /* URL+Helpers.swift */; };
 		A0550649271094A900922E18 /* ua-strings.plist in Resources */ = {isa = PBXBuildFile; fileRef = A0550648271094A900922E18 /* ua-strings.plist */; };
 		A05AD93B302B45EF000B3EF5 /* content-rules.json in Resources */ = {isa = PBXBuildFile; fileRef = A05AD93A302B45E6000B3EF5 /* content-rules.json */; };
-		A05AD93D302B46D3000B3EF5 /* ContentRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05AD93C302B46D3000B3EF5 /* ContentRules.swift */; };
 		A05AD93E302B46D3000B3EF5 /* ContentRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05AD93C302B46D3000B3EF5 /* ContentRules.swift */; };
 		A068DD99240D348300BF46E3 /* AltSvcHeader_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A068DD98240D348300BF46E3 /* AltSvcHeader_Tests.swift */; };
 		A068DD9A240D37FB00BF46E3 /* HostSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF522B23AFC3580096624A /* HostSettings.swift */; };
@@ -165,6 +163,95 @@
 		A0D8470B3093C5BA007886E8 /* geoip6 in Resources */ = {isa = PBXBuildFile; fileRef = A0D847093093C5BA007886E8 /* geoip6 */; };
 		A0D9008B24095F5C0046C9B3 /* AltSvcHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D9008A24095F5C0046C9B3 /* AltSvcHeader.swift */; };
 		A0DDCCCD2ECDCD7B00907CE1 /* MozillaBookmarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DDCCCC2ECDCD7B00907CE1 /* MozillaBookmarks.swift */; };
+		A0E5A68D30A4A617002453BE /* UrlBlocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C1FB112D50FC5200AE97A7 /* UrlBlocker.swift */; };
+		A0E5A68E30A4A62C002453BE /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF522623AFC3580096624A /* Settings.swift */; };
+		A0E5A68F30A4A63F002453BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07037C523C7571B00D670EC /* AppDelegate.swift */; };
+		A0E5A69030A4A652002453BE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A003A1922A0D1628008D8845 /* SceneDelegate.swift */; };
+		A0E5A69130A4A65D002453BE /* BrowsingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF520B23AFC3580096624A /* BrowsingViewController.swift */; };
+		A0E5A69230A4A670002453BE /* Thread+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C582572AE9136200A81084 /* Thread+Helpers.swift */; };
+		A0E5A69330A4A67E002453BE /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF520C23AFC3580096624A /* Tab.swift */; };
+		A0E5A69430A4A68A002453BE /* DownloadHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03CFA032892B05500F01DB5 /* DownloadHelper.swift */; };
+		A0E5A69530A4A699002453BE /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0140DB82D70844700BD2658 /* Log.swift */; };
+		A0E5A69630A4A6A6002453BE /* ContentRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05AD93C302B46D3000B3EF5 /* ContentRules.swift */; };
+		A0E5A69730A4A6B0002453BE /* WebsiteStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A028857F2893FA23007D5AE8 /* WebsiteStorage.swift */; };
+		A0E5A69830A4A6BB002453BE /* TorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07DD6B42AC5914B00441B48 /* TorManager.swift */; };
+		A0E5A69A30A4A6D0002453BE /* CTor in Frameworks */ = {isa = PBXBuildFile; productRef = A0E5A69930A4A6D0002453BE /* CTor */; };
+		A0E5A69B30A4A6DF002453BE /* Bundle+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF523923AFC3580096624A /* Bundle+Helpers.swift */; };
+		A0E5A69C30A4A6E8002453BE /* SecureEnclave.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06DF455241A60E700A07796 /* SecureEnclave.swift */; };
+		A0E5A69D30A4A6F0002453BE /* BlurredSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF523623AFC3580096624A /* BlurredSnapshot.swift */; };
+		A0E5A69E30A4A6FC002453BE /* NcBookmarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0325D962EAA766C009C3DE9 /* NcBookmarks.swift */; };
+		A0E5A69F30A4A70C002453BE /* NcFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0325D922EAA7540009C3DE9 /* NcFolder.swift */; };
+		A0E5A6A030A4A719002453BE /* NcBookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0325D942EAA7598009C3DE9 /* NcBookmark.swift */; };
+		A0E5A75B30A4A877002453BE /* FavIcon in Frameworks */ = {isa = PBXBuildFile; productRef = A0E5A75A30A4A877002453BE /* FavIcon */; };
+		A0E5A75C30A4A8EE002453BE /* NcServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CD76DD2EAB7A4400DA1AFB /* NcServer.swift */; };
+		A0E5A75D30A4A8FC002453BE /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0172C71288827E1008D42CD /* ApiError.swift */; };
+		A0E5A76030A4A90F002453BE /* FileTranslator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01A1CAF2F4726AA00D4591D /* FileTranslator.swift */; };
+		A0E5A76130A4A925002453BE /* OrbotManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF523323AFC3580096624A /* OrbotManager.swift */; };
+		A0E5A76230A4A92F002453BE /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0FA965C2A015EBB005EDC3F /* WelcomeViewController.swift */; };
+		A0E5A76330A4A93E002453BE /* UIButton+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF523F23AFC3580096624A /* UIButton+Helpers.swift */; };
+		A0E5A76430A4A94C002453BE /* UIView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF523D23AFC3580096624A /* UIView+Helpers.swift */; };
+		A0E5A76530A4A963002453BE /* UpdateAdvertisement.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0204FA02D720FF6006CDA3B /* UpdateAdvertisement.swift */; };
+		A0E5A76630A4A970002453BE /* PermissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A043B9512A02897A008025A7 /* PermissionViewController.swift */; };
+		A0E5A76730A4A976002453BE /* StartOrbotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A043B9552A029FC3008025A7 /* StartOrbotViewController.swift */; };
+		A0E5A76830A4A97D002453BE /* StartTorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02A09112AD6CAF000A9334C /* StartTorViewController.swift */; };
+		A0E5A76930A4A983002453BE /* OrbotOrBuiltInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02A090D2AD6BA9600A9334C /* OrbotOrBuiltInViewController.swift */; };
+		A0E5A76A30A4A98A002453BE /* InstallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0FA96602A0161DA005EDC3F /* InstallViewController.swift */; };
+		A0E5A76B30A4A99E002453BE /* WhyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02414362A0260B1009AEE25 /* WhyViewController.swift */; };
+		A0E5A76C30A4A9B8002453BE /* UIViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF523823AFC3580096624A /* UIViewController+Helpers.swift */; };
+		A0E5A76D30A4A9DE002453BE /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A07037C223C74DC900D670EC /* Media.xcassets */; };
+		A0E5A76E30A4A9EC002453BE /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0172C6D2888247C008D42CD /* AlertHelper.swift */; };
+		A0E5A76F30A4A9F7002453BE /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF522D23AFC3580096624A /* SettingsViewController.swift */; };
+		A0E5A77030A4AA00002453BE /* FixedFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0172C6F288824BD008D42CD /* FixedFormViewController.swift */; };
+		A0E5A77130A4AA07002453BE /* LiveSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF521623AFC3580096624A /* LiveSearchViewController.swift */; };
+		A0E5A77230A4AA13002453BE /* BrowsingViewController+UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF521823AFC3580096624A /* BrowsingViewController+UITextFieldDelegate.swift */; };
+		A0E5A77330A4AA1C002453BE /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF520A23AFC3580096624A /* HistoryViewController.swift */; };
+		A0E5A77430A4AA25002453BE /* Tab+Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF521423AFC3580096624A /* Tab+Gestures.swift */; };
+		A0E5A77530A4AA32002453BE /* Tab+WKScriptMessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A83AC128A14CAB005C15C9 /* Tab+WKScriptMessageHandler.swift */; };
+		A0E5A77630A4AA38002453BE /* Tab+Downloads.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF521523AFC3580096624A /* Tab+Downloads.swift */; };
+		A0E5A77730A4AA3E002453BE /* CALayer+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F7DBC7281C189700CBEFDB /* CALayer+Helpers.swift */; };
+		A0E5A77830A4AA47002453BE /* SearchEnginesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E8E8B02938CDFB00DC2A2F /* SearchEnginesViewController.swift */; };
+		A0E5A77930A4AA52002453BE /* CustomSitesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF522723AFC3580096624A /* CustomSitesViewController.swift */; };
+		A0E5A77A30A4AA59002453BE /* Storage1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF522923AFC3580096624A /* Storage1ViewController.swift */; };
+		A0E5A77B30A4AA60002453BE /* BlocklistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C1FB102D50FC5200AE97A7 /* BlocklistViewController.swift */; };
+		A0E5A77C30A4AA68002453BE /* DonationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF522F23AFC3580096624A /* DonationViewController.swift */; };
+		A0E5A77D30A4AA6F002453BE /* SecurityPresetsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF522523AFC3580096624A /* SecurityPresetsRow.swift */; };
+		A0E5A77E30A4AA77002453BE /* SecurityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF522823AFC3580096624A /* SecurityViewController.swift */; };
+		A0E5A77F30A4AA84002453BE /* Tab+WKNavigationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CD36972890194900628DA6 /* Tab+WKNavigationDelegate.swift */; };
+		A0E5A78030A4AA91002453BE /* SearchableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF523E23AFC3580096624A /* SearchableTableViewController.swift */; };
+		A0E5A78130A4AAA2002453BE /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF523B23AFC3580096624A /* Formatter.swift */; };
+		A0E5A78230A4AAAC002453BE /* SecurityShield.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF522C23AFC3580096624A /* SecurityShield.swift */; };
+		A0E5A78330A4AAB2002453BE /* AddSiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF522E23AFC3580096624A /* AddSiteViewController.swift */; };
+		A0E5A78430A4AABC002453BE /* BaseNavigationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07754F12FE038FC00B1EC4E /* BaseNavigationDelegate.swift */; };
+		A0E5A78530A4AACB002453BE /* UIImage+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A013DED92434E69A0087D12B /* UIImage+Helpers.swift */; };
+		A0E5A78630A4AADC002453BE /* Tab+WKUIDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BFD3E8289D4F5200CB9F6D /* Tab+WKUIDelegate.swift */; };
+		A0E5A78730A4AAE6002453BE /* AddSearchEngineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A036C3B12937A06C0035AA4F /* AddSearchEngineViewController.swift */; };
+		A0E5A78830A4AAF1002453BE /* PreviewWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07754EF2FE035AA00B1EC4E /* PreviewWebView.swift */; };
+		A0E5A78930A4AAFE002453BE /* Storage2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A028858128940B93007D5AE8 /* Storage2ViewController.swift */; };
+		A0E5A78A30A4AB0B002453BE /* BrowsingViewController+Tabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF521723AFC3580096624A /* BrowsingViewController+Tabs.swift */; };
+		A0E5A78B30A4AB15002453BE /* SecurityPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF521023AFC3580096624A /* SecurityPopUpViewController.swift */; };
+		A0E5A78C30A4AB1B002453BE /* TabCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF521223AFC3580096624A /* TabCell.swift */; };
+		A0E5A78D30A4AB2F002453BE /* SecurityLevelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF520F23AFC3580096624A /* SecurityLevelCell.swift */; };
+		A0E5A78E30A4AB3A002453BE /* CertificateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07B55FB23D736D60051663B /* CertificateViewController.swift */; };
+		A0E5A78F30A4AB5C002453BE /* BookmarksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF522023AFC3580096624A /* BookmarksViewController.swift */; };
+		A0E5A79030A4AB64002453BE /* CircuitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF520823AFC3580096624A /* CircuitViewController.swift */; };
+		A0E5A79130A4AB73002453BE /* BookmarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF522223AFC3580096624A /* BookmarkCell.swift */; };
+		A0E5A79230A4AB7A002453BE /* FolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CD76DF2EAB8BB500DA1AFB /* FolderViewController.swift */; };
+		A0E5A79330A4AB82002453BE /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF521B23AFC3580096624A /* BookmarkViewController.swift */; };
+		A0E5A79430A4AB88002453BE /* MozillaBookmarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DDCCCC2ECDCD7B00907CE1 /* MozillaBookmarks.swift */; };
+		A0E5A79530A4AB95002453BE /* SyncViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0696EAC2406C7D000512695 /* SyncViewController.swift */; };
+		A0E5A79630A4ABAE002453BE /* FavIconRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF521C23AFC3580096624A /* FavIconRow.swift */; };
+		A0E5A79730A4ABBB002453BE /* CircuitNodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BF520423AFC3580096624A /* CircuitNodeCell.swift */; };
+		A0E5A79830A4ABC2002453BE /* TorCircuit+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09F7ADC2AD80A1A00F7072F /* TorCircuit+Helper.swift */; };
+		A0E5A79930A4ABCC002453BE /* DownloadActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09A39612A17BE61008CC06A /* DownloadActivity.swift */; };
+		A0E5A79A30A4ABD2002453BE /* AddBookmarkActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02CB2B423D0B0B300880720 /* AddBookmarkActivity.swift */; };
+		A0E5A79B30A4ABD8002453BE /* SafariActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B517783094CBD40064131E /* SafariActivity.swift */; };
+		A0E5A79E30A4ABFA002453BE /* MBProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = A0E5A79D30A4ABFA002453BE /* MBProgressHUD */; };
+		A0E5A7A030A4AC3C002453BE /* IPtProxyUI-iOS in Frameworks */ = {isa = PBXBuildFile; productRef = A0E5A79F30A4AC3C002453BE /* IPtProxyUI-iOS */; };
+		A0E5A7A230A4AC50002453BE /* SDCAlertView in Frameworks */ = {isa = PBXBuildFile; productRef = A0E5A7A130A4AC50002453BE /* SDCAlertView */; };
+		A0E5A7A430A4AC5E002453BE /* ImageRow in Frameworks */ = {isa = PBXBuildFile; productRef = A0E5A7A330A4AC5E002453BE /* ImageRow */; };
+		A0E5A7A630A4AC6B002453BE /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = A0E5A7A530A4AC6B002453BE /* SwiftSoup */; };
+		A0E5A7A830A4AC77002453BE /* OrbotKit in Frameworks */ = {isa = PBXBuildFile; productRef = A0E5A7A730A4AC77002453BE /* OrbotKit */; };
+		A0E5A7AA30A4AC81002453BE /* FavIcon in Frameworks */ = {isa = PBXBuildFile; productRef = A0E5A7A930A4AC81002453BE /* FavIcon */; };
 		A0E8E8B12938CDFB00DC2A2F /* SearchEnginesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E8E8B02938CDFB00DC2A2F /* SearchEnginesViewController.swift */; };
 		A0EE558E3098EA6500A9D41D /* OrbotKit in Frameworks */ = {isa = PBXBuildFile; productRef = A0EE558D3098EA6500A9D41D /* OrbotKit */; };
 		A0F8BE8527C50549002D2999 /* FileManager+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D070FC275A513700922D70 /* FileManager+Helpers.swift */; };
@@ -517,6 +604,17 @@
 		A0FA96602A0161DA005EDC3F /* InstallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallViewController.swift; sourceTree = "<group>"; };
 		CEDA35392FF5099400F2292B /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		A0E5A75F30A4A909002453BE /* Exceptions for "AppIntents" folder in "OnionBrowser Tests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				BookmarkEntity.swift,
+				TabEntity.swift,
+			);
+			target = 018333D61A35727C00670CD1 /* OnionBrowser Tests */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		A03CBD982F3B98EA00B22D96 /* misc */ = {
@@ -916,6 +1014,14 @@
 			name = "OnionBrowser Tests";
 			packageProductDependencies = (
 				A0B519513094DF1F0064131E /* DTFoundation */,
+				A0E5A69930A4A6D0002453BE /* CTor */,
+				A0E5A79D30A4ABFA002453BE /* MBProgressHUD */,
+				A0E5A79F30A4AC3C002453BE /* IPtProxyUI-iOS */,
+				A0E5A7A130A4AC50002453BE /* SDCAlertView */,
+				A0E5A7A330A4AC5E002453BE /* ImageRow */,
+				A0E5A7A530A4AC6B002453BE /* SwiftSoup */,
+				A0E5A7A730A4AC77002453BE /* OrbotKit */,
+				A0E5A7A930A4AC81002453BE /* FavIcon */,
 			);
 			productName = "Endless Tests";
 			productReference = 018333D71A35727C00670CD1 /* OnionBrowser Tests.xctest */;
@@ -1072,6 +1178,7 @@
 			files = (
 				01F2AE461B827D3E00D5651A /* wildcard.pushover.net.crt in Resources */,
 				01F879481A41141800A63654 /* urlblocker_mock_rules.plist in Resources */,
+				A0E5A76D30A4A9DE002453BE /* Media.xcassets in Resources */,
 				01F2AE481B82822600D5651A /* paypal.com.crt in Resources */,
 				01F879491A41141800A63654 /* urlblocker_mock_targets.plist in Resources */,
 				01F2AE451B827D3E00D5651A /* lobste.rs.crt in Resources */,
@@ -1260,17 +1367,94 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0E5A76430A4A94C002453BE /* UIView+Helpers.swift in Sources */,
+				A0E5A78A30A4AB0B002453BE /* BrowsingViewController+Tabs.swift in Sources */,
+				A0E5A69D30A4A6F0002453BE /* BlurredSnapshot.swift in Sources */,
+				A0E5A76830A4A97D002453BE /* StartTorViewController.swift in Sources */,
+				A0E5A79430A4AB88002453BE /* MozillaBookmarks.swift in Sources */,
+				A0E5A78130A4AAA2002453BE /* Formatter.swift in Sources */,
+				A0E5A78330A4AAB2002453BE /* AddSiteViewController.swift in Sources */,
+				A0E5A68F30A4A63F002453BE /* AppDelegate.swift in Sources */,
+				A0E5A79A30A4ABD2002453BE /* AddBookmarkActivity.swift in Sources */,
+				A0E5A79330A4AB82002453BE /* BookmarkViewController.swift in Sources */,
+				A0E5A79130A4AB73002453BE /* BookmarkCell.swift in Sources */,
+				A0E5A77130A4AA07002453BE /* LiveSearchViewController.swift in Sources */,
+				A0E5A77330A4AA1C002453BE /* HistoryViewController.swift in Sources */,
+				A0E5A69B30A4A6DF002453BE /* Bundle+Helpers.swift in Sources */,
+				A0E5A79630A4ABAE002453BE /* FavIconRow.swift in Sources */,
+				A0E5A78B30A4AB15002453BE /* SecurityPopUpViewController.swift in Sources */,
+				A0E5A77430A4AA25002453BE /* Tab+Gestures.swift in Sources */,
+				A0E5A69630A4A6A6002453BE /* ContentRules.swift in Sources */,
 				A068DD9A240D37FB00BF46E3 /* HostSettings.swift in Sources */,
+				A0E5A77D30A4AA6F002453BE /* SecurityPresetsRow.swift in Sources */,
+				A0E5A79230A4AB7A002453BE /* FolderViewController.swift in Sources */,
+				A0E5A69530A4A699002453BE /* Log.swift in Sources */,
+				A0E5A79030A4AB64002453BE /* CircuitViewController.swift in Sources */,
+				A0E5A78630A4AADC002453BE /* Tab+WKUIDelegate.swift in Sources */,
+				A0E5A78530A4AACB002453BE /* UIImage+Helpers.swift in Sources */,
+				A0E5A76F30A4A9F7002453BE /* SettingsViewController.swift in Sources */,
+				A0E5A77A30A4AA59002453BE /* Storage1ViewController.swift in Sources */,
+				A0E5A77530A4AA32002453BE /* Tab+WKScriptMessageHandler.swift in Sources */,
+				A0E5A69230A4A670002453BE /* Thread+Helpers.swift in Sources */,
+				A0E5A77030A4AA00002453BE /* FixedFormViewController.swift in Sources */,
+				A0E5A6A030A4A719002453BE /* NcBookmark.swift in Sources */,
+				A0E5A78930A4AAFE002453BE /* Storage2ViewController.swift in Sources */,
+				A0E5A78030A4AA91002453BE /* SearchableTableViewController.swift in Sources */,
+				A0E5A76330A4A93E002453BE /* UIButton+Helpers.swift in Sources */,
+				A0E5A78F30A4AB5C002453BE /* BookmarksViewController.swift in Sources */,
+				A0E5A76E30A4A9EC002453BE /* AlertHelper.swift in Sources */,
+				A0E5A76030A4A90F002453BE /* FileTranslator.swift in Sources */,
+				A0E5A79830A4ABC2002453BE /* TorCircuit+Helper.swift in Sources */,
+				A0E5A79530A4AB95002453BE /* SyncViewController.swift in Sources */,
 				A04F5DF02D50FFAC00966D68 /* URL+Helpers.swift in Sources */,
+				A0E5A77230A4AA13002453BE /* BrowsingViewController+UITextFieldDelegate.swift in Sources */,
+				A0E5A76C30A4A9B8002453BE /* UIViewController+Helpers.swift in Sources */,
+				A0E5A75C30A4A8EE002453BE /* NcServer.swift in Sources */,
+				A0E5A79930A4ABCC002453BE /* DownloadActivity.swift in Sources */,
+				A0E5A76630A4A970002453BE /* PermissionViewController.swift in Sources */,
+				A0E5A78830A4AAF1002453BE /* PreviewWebView.swift in Sources */,
+				A0E5A69F30A4A70C002453BE /* NcFolder.swift in Sources */,
+				A0E5A77830A4AA47002453BE /* SearchEnginesViewController.swift in Sources */,
+				A0E5A77730A4AA3E002453BE /* CALayer+Helpers.swift in Sources */,
+				A0E5A78230A4AAAC002453BE /* SecurityShield.swift in Sources */,
+				A0E5A78D30A4AB2F002453BE /* SecurityLevelCell.swift in Sources */,
+				A0E5A76730A4A976002453BE /* StartOrbotViewController.swift in Sources */,
+				A0E5A76930A4A983002453BE /* OrbotOrBuiltInViewController.swift in Sources */,
+				A0E5A78730A4AAE6002453BE /* AddSearchEngineViewController.swift in Sources */,
 				A0F8BE8527C50549002D2999 /* FileManager+Helpers.swift in Sources */,
+				A0E5A76130A4A925002453BE /* OrbotManager.swift in Sources */,
+				A0E5A69C30A4A6E8002453BE /* SecureEnclave.swift in Sources */,
+				A0E5A77630A4AA38002453BE /* Tab+Downloads.swift in Sources */,
+				A0E5A77F30A4AA84002453BE /* Tab+WKNavigationDelegate.swift in Sources */,
 				A0C1FB162D50FC7400AE97A7 /* TlsCertificate_Tests.m in Sources */,
 				A0C1FB182D50FC9A00AE97A7 /* TlsCertificate.swift in Sources */,
+				A0E5A77E30A4AA77002453BE /* SecurityViewController.swift in Sources */,
 				A04F5DEE2D50FF6300966D68 /* URLBlocker_Tests.m in Sources */,
-				A04F5DEF2D50FF7D00966D68 /* UrlBlocker.swift in Sources */,
+				A0E5A75D30A4A8FC002453BE /* ApiError.swift in Sources */,
+				A0E5A69E30A4A6FC002453BE /* NcBookmarks.swift in Sources */,
+				A0E5A69130A4A65D002453BE /* BrowsingViewController.swift in Sources */,
+				A0E5A69730A4A6B0002453BE /* WebsiteStorage.swift in Sources */,
+				A0E5A77930A4AA52002453BE /* CustomSitesViewController.swift in Sources */,
 				A068DD99240D348300BF46E3 /* AltSvcHeader_Tests.swift in Sources */,
+				A0E5A76230A4A92F002453BE /* WelcomeViewController.swift in Sources */,
+				A0E5A69030A4A652002453BE /* SceneDelegate.swift in Sources */,
+				A0E5A69330A4A67E002453BE /* Tab.swift in Sources */,
 				A08737E1221324B5005A68CC /* HostSettings_Tests.m in Sources */,
+				A0E5A76530A4A963002453BE /* UpdateAdvertisement.swift in Sources */,
+				A0E5A68D30A4A617002453BE /* UrlBlocker.swift in Sources */,
+				A0E5A78430A4AABC002453BE /* BaseNavigationDelegate.swift in Sources */,
+				A0E5A76A30A4A98A002453BE /* InstallViewController.swift in Sources */,
+				A0E5A76B30A4A99E002453BE /* WhyViewController.swift in Sources */,
+				A0E5A78C30A4AB1B002453BE /* TabCell.swift in Sources */,
+				A0E5A77C30A4AA68002453BE /* DonationViewController.swift in Sources */,
+				A0E5A69830A4A6BB002453BE /* TorManager.swift in Sources */,
+				A0E5A79730A4ABBB002453BE /* CircuitNodeCell.swift in Sources */,
+				A0E5A69430A4A68A002453BE /* DownloadHelper.swift in Sources */,
+				A0E5A78E30A4AB3A002453BE /* CertificateViewController.swift in Sources */,
+				A0E5A77B30A4AA60002453BE /* BlocklistViewController.swift in Sources */,
+				A0E5A68E30A4A62C002453BE /* Settings.swift in Sources */,
+				A0E5A79B30A4ABD8002453BE /* SafariActivity.swift in Sources */,
 				A0F8BE8627C50586002D2999 /* AltSvcHeader.swift in Sources */,
-				A05AD93D302B46D3000B3EF5 /* ContentRules.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
