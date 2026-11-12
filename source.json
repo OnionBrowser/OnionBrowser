@@ -16,7 +16,7 @@
 			"iconURL": "https://onionbrowser.com/assets/img/logo-svg.svg",
 			"tintColor": "#3E2B4F",
 			"category": "other",
-			"screenshotURLs": [
+			"screenshots": [
 				{
 					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en_US/1_ipadPro129_1.1.png",
 					"width": 2732,
