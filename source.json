@@ -141,7 +141,8 @@
 				"entitlements": [
 					"com.apple.developer.default-data-protection",
 					"com.apple.developer.siri",
-					"com.apple.developer.web-browser"
+					"com.apple.developer.web-browser",
+					"beta-reports-active"
 				],
 				"privacy": {
 					"NSPhotoLibraryAddUsageDescription": "Needed to store the selected image to your photos.",
