@@ -160,43 +160,6 @@
 					"size": 48219749
 				}
 			]
-		},
-		{
-			"name": "Orbot",
-			"bundleIdentifier": "org.torproject.orbot",
-			"developerName": "Guardian Project",
-			"subtitle": "Tor VPN for Smartphones",
-			"localizedDescription": "Orbot is your trusted connection for Tor on Android and iOS.\n\nTraffic Privacy\n\nEncrypted traffic from any app, through the Tor network, gives you the highest standard of security and privacy.\n\nStop Snooping\n\nNo extra eyes know what apps you are using, and when, or can stop you from using them.\n\nProtected History\n\nNo central logging of your traffic history or IP address by your network operator and app servers.",
-			"iconURL": "https://raw.githubusercontent.com/guardianproject/orbot-apple/refs/heads/main/Shared/Assets.xcassets/App%20Icons/AppIcon.appiconset/orbot-ios-1024.png",
-			"tintColor": "#7423CF",
-			"category": "other",
-			"screenshots": [
-				{
-					"imageURL": "https://raw.githubusercontent.com/guardianproject/orbot-apple/refs/heads/main/docs/screenshots/localizable-strings/Main.png",
-					"width": 640,
-					"height": 1136
-				}
-			],
-			"appPermissions": {
-				"entitlements": [
-					"com.apple.developer.associated-domains",
-					"com.apple.developer.networking.networkextension",
-					"com.apple.security.application-groups"
-				],
-				"privacy": {
-					"NSCameraUsageDescription": "Needed to read bridge addresses from displayed QR codes."
-				}
-			},
-			"versions": [
-				{
-					"version": "1.14.2",
-					"buildVersion": "89",
-					"date": "2026-11-09",
-					"localizedDescription": "- Updated Tor to 0.4.9.16.\n- Updated Lyrebird to 0.10.0.\n- Updated Snowflake to 2.15.3.",
-					"downloadURL": "https://github.com/guardianproject/orbot-apple/releases/download/v1.14.2/Orbot.ipa",
-					"size": 48219749
-				}
-			]
 		}
 	],
 	"news": []
