@@ -310,8 +310,6 @@
 		54F7DBC7281C189700CBEFDB /* CALayer+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Helpers.swift"; sourceTree = "<group>"; };
 		693145FD1D3EEAE400D08A6A /* Tor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tor.framework; path = Carthage/Build/iOS/Tor.framework; sourceTree = "<group>"; };
 		A003A1922A0D1628008D8845 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A004360B1E81856F0067652D /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A004360C1E81856F0067652D /* Podfile.lock */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile.lock; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A00748252E2951EE0083E115 /* BlocklistViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlocklistViewController.xib; sourceTree = "<group>"; };
 		A010FA171E7986DE00E04222 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; };
 		A010FA191E798C0400E04222 /* BUILD.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = BUILD.md; sourceTree = "<group>"; };
@@ -598,6 +596,7 @@
 		A0DB59522747D36200B20436 /* Tor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Tor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0DDCCCC2ECDCD7B00907CE1 /* MozillaBookmarks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MozillaBookmarks.swift; sourceTree = "<group>"; };
 		A0E8E8B02938CDFB00DC2A2F /* SearchEnginesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEnginesViewController.swift; sourceTree = "<group>"; };
+		A0F108A030A6005C00F37AD6 /* source.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = source.json; sourceTree = "<group>"; };
 		A0FA965B2A015EBB005EDC3F /* WelcomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WelcomeViewController.xib; sourceTree = "<group>"; };
 		A0FA965C2A015EBB005EDC3F /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		A0FA965F2A0161DA005EDC3F /* InstallViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InstallViewController.xib; sourceTree = "<group>"; };
@@ -676,6 +675,7 @@
 			children = (
 				A010FA171E7986DE00E04222 /* README.md */,
 				A085A1EC270DAB8600800A29 /* SECURITY.md */,
+				A0F108A030A6005C00F37AD6 /* source.json */,
 				A025F27421F62C100034B947 /* Config.xcconfig */,
 				A00436111E8185AA0067652D /* Build */,
 				A0BF51F523AFC3580096624A /* OnionBrowser */,
@@ -746,8 +746,6 @@
 				A0894E36236AE7C800EE2743 /* CHANGELOG.md */,
 				A06F5F49275692060023622E /* .bartycrouch.toml */,
 				A07D655C2208A4320002D775 /* LICENSE */,
-				A004360B1E81856F0067652D /* Podfile */,
-				A004360C1E81856F0067652D /* Podfile.lock */,
 				A077D6BA2F361FED00CFC6FD /* .weblate */,
 				A03CBD982F3B98EA00B22D96 /* misc */,
 			);
