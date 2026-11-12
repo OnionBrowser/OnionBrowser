@@ -119,7 +119,7 @@ class StartOrbotViewController: UIViewController, WhyDelegate {
 					// when the user comes back.
 					AppDelegate.shared?.allOpenTabs.forEach { $0.needsRefresh = true }
 
-					await OrbotKit.shared.open(.start(callback: URL(string: "onionbrowser:main")))
+					await OrbotKit.shared.open(.start(callback: URL(string: "https://onionbrowser.com/orbot/main")))
 				}
 				else {
 					await OrbotKit.shared.open(.settings)
