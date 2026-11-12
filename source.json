@@ -4,7 +4,7 @@
 	"subtitle": "Official AltStore Source for all things Guardian Project",
 	"description": "A repository for all things Guardian Project provides for iOS.",
 	"tintColor": "#04A052",
-	"iconURL": "https://guardianproject.info/favicon.svg",
+	"iconURL": "https://guardianproject.info/Logomark/Guardian_Project_Logomark___Multicolor_Full_Color_Rgb%201.png",
 	"apps": [
 		{
 			"name": "Onion Browser",
@@ -12,127 +12,127 @@
 			"developerName": "Guardian Project",
 			"subtitle": "Onion Browser is your trusted connection to Tor on iOS.",
 			"localizedDescription": "Browsing is private.\n\nEncrypted traffic through the Tor network gives you the highest standard of security and privacy.\n\nNo extras.\n\nNo extra eyes see your activity, save your history or influence your browsing. Targeted ads are history.\n\nToss your history.\n\nTabs don’t hang around. They close when you’re done, so every search is new.",
-			"iconURL": "https://onionbrowser.com/assets/img/logo-svg.svg",
+			"iconURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/misc/appicon.png",
 			"tintColor": "#3E2B4F",
 			"category": "other",
 			"screenshots": [
 				{
-					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en_US/1_ipadPro129_1.1.png",
+					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en-US/1_ipadPro129_1.1.png",
 					"width": 2732,
 					"height": 2048
 				},
 				{
-					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en_US/2_ipadPro129_2.2.png",
+					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en-US/2_ipadPro129_2.2.png",
 					"width": 2732,
 					"height": 2048
 				},
 				{
-					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en_US/3_ipadPro129_3.3.png",
+					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en-US/3_ipadPro129_3.3.png",
 					"width": 2732,
 					"height": 2048
 				},
 				{
-					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en_US/4_ipadPro129_4.4.png",
+					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en-US/4_ipadPro129_4.4.png",
 					"width": 2732,
 					"height": 2048
 				},
 				{
-					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en_US/5_ipadPro129_5.5.png",
+					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en-US/5_ipadPro129_5.5.png",
 					"width": 2732,
 					"height": 2048
 				},
 				{
-					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en_US/6_ipadPro129_6.6.png",
+					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en-US/6_ipadPro129_6.6.png",
 					"width": 2732,
 					"height": 2048
 				},
 				{
-					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en_US/1_ipadPro_1.1.png",
+					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en-US/1_ipadPro_1.1.png",
 					"width": 2732,
 					"height": 2048
 				},
 				{
-					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en_US/2_ipadPro_2.2.png",
+					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en-US/2_ipadPro_2.2.png",
 					"width": 2732,
 					"height": 2048
 				},
 				{
-					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en_US/3_ipadPro_3.3.png",
+					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en-US/3_ipadPro_3.3.png",
 					"width": 2732,
 					"height": 2048
 				},
 				{
-					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en_US/4_ipadPro_4.4.png",
+					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en-US/4_ipadPro_4.4.png",
 					"width": 2732,
 					"height": 2048
 				},
 				{
-					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en_US/5_ipadPro_5.5.png",
+					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en-US/5_ipadPro_5.5.png",
 					"width": 2732,
 					"height": 2048
 				},
 				{
-					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en_US/6_ipadPro_6.6.png",
+					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en-US/6_ipadPro_6.6.png",
 					"width": 2732,
 					"height": 2048
 				},
 				{
-					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en_US/1_iphone6Plus_1.1.png",
+					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en-US/1_iphone6Plus_1.1.png",
 					"width": 1242,
 					"height": 2208
 				},
 				{
-					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en_US/2_iphone6Plus_2.2.png",
+					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en-US/2_iphone6Plus_2.2.png",
 					"width": 1242,
 					"height": 2208
 				},
 				{
-					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en_US/3_iphone6Plus_3.3.png",
+					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en-US/3_iphone6Plus_3.3.png",
 					"width": 1242,
 					"height": 2208
 				},
 				{
-					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en_US/4_iphone6Plus_4.4.png",
+					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en-US/4_iphone6Plus_4.4.png",
 					"width": 1242,
 					"height": 2208
 				},
 				{
-					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en_US/5_iphone6Plus_5.5.png",
+					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en-US/5_iphone6Plus_5.5.png",
 					"width": 1242,
 					"height": 2208
 				},
 				{
-					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en_US/6_iphone6Plus_6.6.png",
+					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en-US/6_iphone6Plus_6.6.png",
 					"width": 1242,
 					"height": 2208
 				},
 				{
-					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en_US/1_iphone65_1.1.png",
+					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en-US/1_iphone65_1.1.png",
 					"width": 1290,
 					"height": 2796
 				},
 				{
-					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en_US/2_iphone65_2.2.png",
+					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en-US/2_iphone65_2.2.png",
 					"width": 1290,
 					"height": 2796
 				},
 				{
-					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en_US/3_iphone65_3.3.png",
+					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en-US/3_iphone65_3.3.png",
 					"width": 1290,
 					"height": 2796
 				},
 				{
-					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en_US/4_iphone65_4.4.png",
+					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en-US/4_iphone65_4.4.png",
 					"width": 1290,
 					"height": 2796
 				},
 				{
-					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en_US/5_iphone65_5.5.png",
+					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en-US/5_iphone65_5.5.png",
 					"width": 1290,
 					"height": 2796
 				},
 				{
-					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en_US/6_iphone65_6.6.png",
+					"imageURL": "https://raw.githubusercontent.com/OnionBrowser/OnionBrowser/refs/heads/3.X/fastlane/screenshots/en-US/6_iphone65_6.6.png",
 					"width": 1290,
 					"height": 2796
 				}
