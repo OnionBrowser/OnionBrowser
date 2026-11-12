@@ -596,7 +596,6 @@
 		A0DB59522747D36200B20436 /* Tor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Tor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0DDCCCC2ECDCD7B00907CE1 /* MozillaBookmarks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MozillaBookmarks.swift; sourceTree = "<group>"; };
 		A0E8E8B02938CDFB00DC2A2F /* SearchEnginesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEnginesViewController.swift; sourceTree = "<group>"; };
-		A0F108A030A6005C00F37AD6 /* source.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = source.json; sourceTree = "<group>"; };
 		A0FA965B2A015EBB005EDC3F /* WelcomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WelcomeViewController.xib; sourceTree = "<group>"; };
 		A0FA965C2A015EBB005EDC3F /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		A0FA965F2A0161DA005EDC3F /* InstallViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InstallViewController.xib; sourceTree = "<group>"; };
@@ -675,7 +674,6 @@
 			children = (
 				A010FA171E7986DE00E04222 /* README.md */,
 				A085A1EC270DAB8600800A29 /* SECURITY.md */,
-				A0F108A030A6005C00F37AD6 /* source.json */,
 				A025F27421F62C100034B947 /* Config.xcconfig */,
 				A00436111E8185AA0067652D /* Build */,
 				A0BF51F523AFC3580096624A /* OnionBrowser */,

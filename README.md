@@ -1,7 +1,7 @@
 # Onion Browser
   
-[Official Site][official] | [Support][help] | [Release History][releases] | [Donate][donate]  
-&copy; 2012-2024, Tigas Ventures, LLC ([Mike Tigas][miketigas])
+[Official Site][official] | [Support][help] | [Release History][releases] | [Donate][donate] | [AltStore][AltStore]
+&copy; 2012-2026, Tigas Ventures, LLC ([Mike Tigas][miketigas])
 
 *This is the Onion Browser <strong>3.X branch</strong>. The older versions of Onion Browser can be found [here][2.X] and [here][1.X].*
 
@@ -24,6 +24,7 @@ Please see the [LICENSE][license] file for usage and redistribution terms.
 [tor]: https://www.torproject.org/
 [2.X]: https://github.com/OnionBrowser/OnionBrowser/tree/2.X
 [1.X]: https://github.com/OnionBrowser/OnionBrowser/tree/1.X
+[AltStore]: https://altdirect.app/?url=https://onionbrowser.com/assets/source.json
 
 ## Notable 3.X Features
 
