@@ -167,7 +167,14 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 		if Settings.muteWithSwitch {
 			try? session.setCategory(.ambient)
-			try? session.setActive(false)
+
+			if #available(iOS 27.0, *) {
+				Task {
+					try? await session.deactivate()
+				}
+			} else {
+				try? session.setActive(false)
+			}
 		}
 		else {
 			try? session.setCategory(.playback)
