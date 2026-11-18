@@ -1,7 +1,7 @@
 #  Onion Browser Changelog
 
 ## 3.4.6
-- Updated Tor to 0.4.9.16.
+- Updated Tor to 0.4.9.17.
 - Updated Lyrebird to 0.10.0.
 - Updated Snowflake to 2.15.3.
 - Restructured some code to use async/await.

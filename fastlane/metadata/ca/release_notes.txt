@@ -1,4 +1,4 @@
-- Actualitzat Tor a la versió 0.4.9.16.
+- Actualitzat Tor a la versió 0.4.9.17.
 - Actualitzat Lyrebird a la versió 0.10.0.
 - Actualitzat Snowflake a la versió 2.15.3.
 - Millores menors en el disseny per a l'iPhone Duo.
