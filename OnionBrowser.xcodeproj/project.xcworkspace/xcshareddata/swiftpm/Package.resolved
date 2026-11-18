@@ -95,8 +95,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/scinfu/SwiftSoup",
       "state" : {
-        "revision" : "e7f85f4d3dd91ca9a1e94d3328aa1ed5120a8c0f",
-        "version" : "2.14.3"
+        "revision" : "8397a860c6955924b584c50c5265c6aac0970015",
+        "version" : "2.14.4"
       }
     },
     {
@@ -104,8 +104,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/iCepa/Tor.framework",
       "state" : {
-        "revision" : "db4d31c2f9fe0773a175a23f1605cab7ab4d40a0",
-        "version" : "409.16.1"
+        "revision" : "9c5df82840cd83a62b592293c2e53249ffa1e083",
+        "version" : "409.17.1"
       }
     }
   ],

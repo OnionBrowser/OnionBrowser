@@ -1948,7 +1948,7 @@
 			repositoryURL = "https://github.com/iCepa/Tor.framework";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 409.16.1;
+				minimumVersion = 409.17.1;
 			};
 		};
 		A0724F6D30A22410005E0A82 /* XCRemoteSwiftPackageReference "IPtProxyUI-ios" */ = {
