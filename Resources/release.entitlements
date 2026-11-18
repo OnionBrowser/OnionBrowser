@@ -8,5 +8,9 @@
 	<true/>
 	<key>com.apple.developer.web-browser</key>
 	<true/>
+	<key>com.apple.developer.associated-domains</key>
+	<array>
+		<string>applinks:onionbrowser.com</string>
+	</array>
 </dict>
 </plist>
